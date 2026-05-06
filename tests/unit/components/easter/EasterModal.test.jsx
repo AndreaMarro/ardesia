@@ -52,18 +52,10 @@ describe('EasterModal', () => {
     expect(screen.getByText('Chi siamo')).toBeInTheDocument();
   });
 
-  it('renders plurale "Ragazzi" message (Principio Zero)', () => {
+  it('iter 44 minimal: NO message body NO credit line (Andrea solo foto + chi siamo)', () => {
     render(<EasterModal isOpen={true} onClose={() => {}} />);
-    const msg = screen.getByTestId('easter-modal-message');
-    expect(msg.textContent).toMatch(/Ragazzi/);
-  });
-
-  it('renders triplet kit + volumi + software credit line', () => {
-    render(<EasterModal isOpen={true} onClose={() => {}} />);
-    const dialogText = screen.getByRole('dialog').textContent || '';
-    expect(dialogText).toMatch(/kit/i);
-    expect(dialogText).toMatch(/volumi/i);
-    expect(dialogText).toMatch(/software/i);
+    expect(screen.queryByTestId('easter-modal-message')).toBeNull();
+    // Body solo contenitore foto + close. No prose plurale visible UI.
   });
 
   it('calls onClose when close button (×) clicked', () => {
@@ -96,37 +88,25 @@ describe('EasterModal', () => {
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  it('increments banana counter on scimpanze click', () => {
-    render(<EasterModal isOpen={true} onClose={() => {}} />);
-    const trigger = screen.getByTestId('easter-scimpanze-trigger');
-    fireEvent.click(trigger);
-    fireEvent.click(trigger);
-    // After 2 clicks, 3 remaining shown
-    const counter = screen.getByTestId('easter-banana-counter');
-    expect(counter.textContent).toMatch(/3 clic/);
-  });
-
-  it('activates banana mode after 5 clicks (sets body class)', () => {
+  it('activates banana mode after 5 clicks (silent — sets body class)', () => {
     render(<EasterModal isOpen={true} onClose={() => {}} />);
     const trigger = screen.getByTestId('easter-scimpanze-trigger');
     for (let i = 0; i < 5; i++) {
       fireEvent.click(trigger);
     }
     expect(document.body.classList.contains('elab-banana-mode')).toBe(true);
-    // Message label visible
-    expect(screen.getByTestId('easter-banana-active')).toBeInTheDocument();
+    // Iter 44 minimal: no banana label visible. Solo body class + cursor banana.
   });
 
-  it('persists click count in localStorage (elab-easter-banana-clicks)', () => {
+  it('persists click count in localStorage (silent counter, no UI label)', () => {
     render(<EasterModal isOpen={true} onClose={() => {}} />);
     const trigger = screen.getByTestId('easter-scimpanze-trigger');
     act(() => {
       fireEvent.click(trigger);
       fireEvent.click(trigger);
     });
-    // Counter UI reflects 2 clicks (3 remaining out of 5)
-    expect(screen.getByTestId('easter-banana-counter').textContent).toMatch(/3 clic/);
     expect(localStorage.getItem('elab-easter-banana-clicks')).toBe('2');
+    // Iter 44 minimal: counter testid removed UI. Solo localStorage persistence.
   });
 
   it('falls back to HD photo on GIF load error (iter 44)', () => {

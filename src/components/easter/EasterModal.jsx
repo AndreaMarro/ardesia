@@ -258,26 +258,12 @@ export default function EasterModal({ isOpen = true, onClose }) {
             )}
           </button>
 
-          <p className={styles.message} data-testid="easter-modal-message">
-            Ragazzi, qui sotto vivono gli scimpanzè ELAB — il team che ha
-            fatto i kit fisici, i volumi cartacei e il software che state
-            usando.
-          </p>
-
-          <p className={styles.creditLine}>
-            Andrea, Tea, Davide, Omaric e Giovanni — kit + volumi + software
-            morfico, un'unica esperienza per la classe.
-          </p>
-
-          {bananaActive ? (
-            <p className={styles.bananaCounter} data-testid="easter-banana-active">
-              🍌 Modalità banana attiva — durata 30 secondi!
-            </p>
-          ) : remainingClicks > 0 && remainingClicks < BANANA_THRESHOLD ? (
-            <p className={styles.bananaCounter} data-testid="easter-banana-counter">
-              {remainingClicks} clic alla sorpresa…
-            </p>
-          ) : null}
+          {/* Iter 44 fix Andrea 2026-05-06 PM "solo foto scimpanze e sopra
+              scritto chi siamo / nessun altra scritta":
+              rimossi message body + creditLine + banana counter UI.
+              Banana mode (5-click) preserved come Easter logica MA NO label
+              visible (sorpresa silente).
+              Title "Chi siamo" header sopra foto = unico testo visibile. */}
         </div>
       </div>
     </div>

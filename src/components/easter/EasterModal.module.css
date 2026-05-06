@@ -54,22 +54,30 @@
 }
 
 .header {
+  /* Iter 44 fix Andrea 2026-05-06 PM "dai molto contrasto a chi siamo":
+     padding aumentato + background Navy solid + border-bottom Lime spesso
+     per contrasto visivo massimo title vs photo. */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 24px 28px;
   background: var(--elab-navy);
-  color: #FFFFFF; /* palette */
-  border-bottom: 2px solid var(--elab-lime);
+  color: #FFFFFF;
+  border-bottom: 4px solid var(--elab-lime);
+  box-shadow: 0 4px 12px rgba(15, 27, 46, 0.25);
 }
 
 .title {
+  /* Iter 44 fix Andrea: font-size 20→32 + font-weight 700→900 +
+     letter-spacing aumentato + text-shadow per contrasto LIM proiezione. */
   font-family: 'Oswald', system-ui, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 900;
   margin: 0;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
 }
 
 .closeBtn {
