@@ -1218,6 +1218,21 @@ export default function LavagnaShell() {
         volumeOpen={volumeOpen}
         onCapitoliOpen={handleCapitoliOpen}
         capitoliOpen={capitoloPickerOpen || !!activeCapitoloId}
+        // iter 45 fix Andrea video2 06/05/2026 B3 "manca il pulsante per il
+        // salvataggio della sessione": pulsante esplicito Salva nel header.
+        // Chiama sessionTracker.finaliseSession() (saveSessions localStorage +
+        // saveSessionSummary unlimMemory + saveSessionToSupabase async). Auto
+        // save invisibility/beforeunload preserved.
+        onSaveSession={sessionTracker?.finaliseSession ? () => {
+          try {
+            sessionTracker.finaliseSession();
+            setToolToast('Sessione salvata. Buon lavoro, Ragazzi.');
+            setTimeout(() => setToolToast(null), 2500);
+          } catch (err) {
+            setToolToast('Errore salvataggio. Riprova tra un attimo.');
+            setTimeout(() => setToolToast(null), 2500);
+          }
+        } : undefined}
         onPercorsoToggle={() => {
           // Open UNLIM with Percorso tab instead of separate panel
           if (galileoOpen && unlimTab === 'percorso') {
