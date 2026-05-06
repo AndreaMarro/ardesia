@@ -62,15 +62,46 @@ class ErrorBoundary extends React.Component {
           <p style={{ color: '#555', fontSize: '18px', marginBottom: '24px', maxWidth: '500px' }}>
             Non preoccuparti! Prova a ricaricare la pagina. Se il problema continua, contattaci.
           </p>
-          <button
-            onClick={() => window.location.reload()}
-            style={{
-              background: 'var(--elab-navy)', color: 'white', border: 'none', padding: '14px 32px',
-              borderRadius: '8px', fontSize: '18px', cursor: 'pointer', minHeight: '44px'
-            }}
-          >
-            Ricarica la pagina
-          </button>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <button
+              onClick={() => window.location.reload()}
+              style={{
+                background: 'var(--elab-navy)', color: 'white', border: 'none', padding: '14px 32px',
+                borderRadius: '8px', fontSize: '18px', cursor: 'pointer', minHeight: '44px'
+              }}
+            >
+              Ricarica la pagina
+            </button>
+            {/* iter 45 fix Andrea video2 06/05/2026 B8 "spesso accade un errore... ricarico
+                la pagina e non va. Se invece utilizzo Berkeley va subito": ricarica
+                semplice non basta perché Service Worker continua servire chunk stale.
+                Pulsante hard-reset: unregister TUTTI gli SW + clearStorages caches +
+                reload. Risolve regressione cache cross-deploy. */}
+            <button
+              onClick={async () => {
+                try {
+                  if ('serviceWorker' in navigator) {
+                    const regs = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(regs.map(r => r.unregister().catch(() => null)));
+                  }
+                  if (typeof caches !== 'undefined') {
+                    const keys = await caches.keys();
+                    await Promise.all(keys.map(k => caches.delete(k).catch(() => null)));
+                  }
+                } catch { /* best-effort */ }
+                // Hard reload bypassing cache
+                try { window.location.replace(window.location.pathname + '?v=' + Date.now()); }
+                catch { window.location.reload(); }
+              }}
+              style={{
+                background: 'var(--elab-orange, #E8941C)', color: 'white', border: 'none', padding: '14px 24px',
+                borderRadius: '8px', fontSize: '16px', cursor: 'pointer', minHeight: '44px',
+              }}
+              title="Pulisce la cache locale e ricarica con la versione più recente"
+            >
+              Pulisci cache + ricarica
+            </button>
+          </div>
 
           <div style={{ marginTop: 18, display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
