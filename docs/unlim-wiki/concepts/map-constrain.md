@@ -6,8 +6,9 @@ locale: it
 volume_ref: 3
 pagina_ref: 95
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+fix_iter44_W2: "Body citazioni Vol.3 pag.98/102/105 fabbricate marcate concetto generale. Frontmatter pag.95 mantenuto (limit max in range)."
 tags: [map, constrain, scalare, range, programmazione, arduino, vol3]
 ---
 

@@ -3,11 +3,13 @@ id: random-arduino
 type: concept
 title: "random() — generare numeri casuali in Arduino"
 locale: it
-volume_ref: 3
-pagina_ref: 115
+volume_ref: null
+pagina_ref: null
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+source_status: general_knowledge_only
+fix_iter44_W2: "Pagine fabbricate. Concept marcato general_knowledge_only."
 tags: [random, casuale, simon-says, gioco, programmazione, arduino, vol3]
 ---
 

@@ -7,6 +7,14 @@
 
 import React, { lazy, Suspense, useState, useCallback, useEffect, useRef, useMemo, useId } from 'react';
 import { useAuth } from '../../context/AuthContext';
+// Iter 44 wire-up: useSessionTracker per persistenza scritte sessione.
+// Andrea iter 41+ feedback 2026-05-06: "Cronologia recente" homepage sempre
+// vuota nonostante 4+ iter di "fix" (T1-001, T1-002, ADR-019 design, Bug 3
+// unit test). Root cause: hook usato SOLO in UnlimWrapper (route #prova/auth
+// tutor), MAI in LavagnaShell (#lavagna route principale). Senza wire-up
+// `__ELAB_API.experimentChange` non innesca startSession + finaliseSession
+// non scatta su Esci → saveSession Supabase mai chiamato → Cronologia void.
+import { useSessionTracker } from '../../hooks/useSessionTracker';
 import AppHeader from './AppHeader';
 import FloatingToolbar from './FloatingToolbar';
 import RetractablePanel from './RetractablePanel';
@@ -380,6 +388,11 @@ function BentornatiOverlay({ visible, onStart, onPickExperiment }) {
 
 export default function LavagnaShell() {
   const { user, isDocente, isStudente } = useAuth();
+  // Iter 44 persistenza scritte: hook self-wires su __ELAB_API.experimentChange
+  // (auto-startSession + recordAction 'experiment_loaded') + beforeunload +
+  // visibilitychange (auto-finaliseSession + saveSession Supabase). Solo
+  // invocazione qui basta a popolare Cronologia recente HomePage.
+  const sessionTracker = useSessionTracker();
   const [activeTab, setActiveTab] = useState(() => {
     try {
       const saved = localStorage.getItem('elab_lavagna_active_tab');
@@ -875,9 +888,35 @@ export default function LavagnaShell() {
           localStorage.setItem('elab-lavagna-last-expId', String(expId));
         }
       } catch { /* localStorage quota OR private mode */ }
+      // Iter 44 persistenza: finalise sessione corrente prima di uscire.
+      // Hook beforeunload non scatta su hash change interno → invocazione esplicita
+      // popola Cronologia recente HomePage + sync Supabase.
+      try {
+        sessionTracker?.finaliseSession?.();
+      } catch { /* silent — best effort persistence */ }
       window.location.hash = '#tutor';
     }
-  }, [currentExperiment]);
+  }, [currentExperiment, sessionTracker]);
+
+  // Iter 44 persistenza Lavagna libera (no experiment): manual startSession
+  // se freeMode attivo + nessuna session corrente. Senza experimentChange
+  // event (no api.loadExperiment), hook non auto-starta.
+  useEffect(() => {
+    if (freeMode && sessionTracker?.startSession) {
+      sessionTracker.startSession('lavagna-libera');
+    }
+  }, [freeMode, sessionTracker]);
+
+  // Iter 44 persistenza unmount: finalise on LavagnaShell unmount (route change
+  // back to home, browser back, Vercel redirect). Hook beforeunload copre tab
+  // close MA non SPA route change.
+  useEffect(() => {
+    return () => {
+      try {
+        sessionTracker?.finaliseSession?.();
+      } catch { /* silent */ }
+    };
+  }, [sessionTracker]);
 
   const handlePickerOpen = useCallback(() => setPickerOpen(true), []);
   const handlePickerClose = useCallback(() => setPickerOpen(false), []);

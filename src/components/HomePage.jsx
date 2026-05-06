@@ -768,14 +768,26 @@ export default function HomePage({ onNavigate }) {
                 to PNG VERA `/assets/mascot/elab-mascot-vera.png` (Andrea explicit
                 "deve essere quella vera"). ElabMascotte SVG component preserved
                 in src/components/common/ElabMascotte.jsx for future use. */}
+            {/* Iter 44 carryover: className "elab-mascotte-vera" abilita
+                animations (idle bob + breathe + glow pulse + wiggle hover +
+                bounce active) definite src/index.css ITER 35 ATOM VII.
+                filter url(#elabRemoveWhite) trasforma sfondo bianco PNG
+                in alpha 0 (filter SVG inline definito qui sopra in <svg
+                style="display:none">). NO className → mascotte statica +
+                sfondo bianco visibile (regression iter 42 revert). */}
             <img
               src="/assets/mascot/elab-mascot-vera.png"
-              alt="Mascotte ELAB Tutor — robottino vera"
+              alt="Mascotte UNLIM — robottino ELAB navy con antenna e LED giallo, design ufficiale ELAB"
+              className="elab-mascotte-vera"
               data-testid="home-mascotte-png"
+              loading="eager"
+              decoding="async"
+              draggable={false}
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'contain',
+                userSelect: 'none',
                 pointerEvents: 'none',
               }}
             />

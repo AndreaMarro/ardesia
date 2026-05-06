@@ -7,12 +7,19 @@
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-// --- Replicated routing logic from src/App.jsx (lines 58-92) ---
+// --- Replicated routing logic from src/App.jsx (lines 60-67) ---
+// Iter 44 sync: 13 entries (added 'home' iter 35 + 'dashboard-v2' iter 28).
+// Iter 44 fix: HomePage sub-routes (#chatbot-only, #about-easter, #glossario)
+// normalized to 'home' so HomePage renders + handles hash internally
+// (BUG fix: previously direct-nav to #chatbot-only froze UI on previous page).
 
-const VALID_HASHES = ['tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'showcase', 'prova', 'lavagna'];
+const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
+
+const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
 
 function getPageFromHash(hash = window.location.hash) {
     const raw = hash.replace('#', '').split('?')[0].toLowerCase();
+    if (HOMEPAGE_SUBROUTES.includes(raw)) return 'home';
     return VALID_HASHES.includes(raw) ? raw : null;
 }
 
@@ -107,6 +114,36 @@ describe('getPageFromHash', () => {
     it('returns null for hash with only query params #?exp=abc', () => {
         expect(getPageFromHash('#?exp=abc')).toBeNull();
     });
+
+    // Iter 44 BUG fix: HomePage sub-routes — direct nav must NOT freeze UI.
+    // Before fix: #chatbot-only / #about-easter / #glossario returned null,
+    // App.jsx getPageFromHash returned null → setCurrentPage NOT called →
+    // UI stuck on previous page (e.g. lavagna modal "Scegli Esperimento").
+    // After fix: all 3 normalize to 'home' so HomePage renders + reads hash
+    // internally for ChatbotOnly / EasterModal / external Glossario card.
+    it('returns "home" for #chatbot-only (HomePage internal sub-route)', () => {
+        expect(getPageFromHash('#chatbot-only')).toBe('home');
+    });
+
+    it('returns "home" for #about-easter (HomePage internal sub-route)', () => {
+        expect(getPageFromHash('#about-easter')).toBe('home');
+    });
+
+    it('returns "home" for #glossario (HomePage card external link)', () => {
+        expect(getPageFromHash('#glossario')).toBe('home');
+    });
+
+    it('is case insensitive — #ChatBot-Only returns "home"', () => {
+        expect(getPageFromHash('#ChatBot-Only')).toBe('home');
+    });
+
+    it('returns "home" for #home (iter 35 P0 default landing)', () => {
+        expect(getPageFromHash('#home')).toBe('home');
+    });
+
+    it('returns "dashboard-v2" for #dashboard-v2 (iter 28 dashboard live flag)', () => {
+        expect(getPageFromHash('#dashboard-v2')).toBe('dashboard-v2');
+    });
 });
 
 describe('getExpFromHash', () => {
@@ -186,15 +223,21 @@ describe('getPathnameRoute', () => {
 });
 
 describe('VALID_HASHES completeness', () => {
-    it('contains exactly 11 entries', () => {
-        expect(VALID_HASHES).toHaveLength(11);
+    it('contains exactly 13 entries (iter 44 sync App.jsx)', () => {
+        expect(VALID_HASHES).toHaveLength(13);
     });
 
-    it('contains all expected page names', () => {
-        const expected = ['tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'showcase', 'prova', 'lavagna'];
+    it('contains all expected page names (13 incl home + dashboard-v2)', () => {
+        const expected = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
         for (const page of expected) {
             expect(VALID_HASHES).toContain(page);
         }
+    });
+
+    it('HOMEPAGE_SUBROUTES contains chatbot-only + about-easter + glossario', () => {
+        expect(HOMEPAGE_SUBROUTES).toContain('chatbot-only');
+        expect(HOMEPAGE_SUBROUTES).toContain('about-easter');
+        expect(HOMEPAGE_SUBROUTES).toContain('glossario');
     });
 
     it('has no duplicate entries', () => {

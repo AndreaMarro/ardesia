@@ -6,8 +6,9 @@ locale: it
 volume_ref: 3
 pagina_ref: 70
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+fix_iter44_W2: "Body citazione Vol.3 pag.100 fabbricata marcata concetto generale. Frontmatter pag.70 OK."
 tags: [while, ciclo, loop, condizione, programmazione, arduino, vol3]
 ---
 

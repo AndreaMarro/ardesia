@@ -4,16 +4,17 @@ type: concept
 title: "if / else — decisioni nel codice"
 locale: it
 volume_ref: 3
-pagina_ref: 102
+pagina_ref: 82
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe-opus
+fix_iter44_W2: "Pagina fabbricata Vol.3 pag.102 (Vol.3 max=95) corretta a pag.82 (Vol.3 Cap.8 esp.2 v3-cap8-esp2 usa if/else con threshold analogico)."
 tags: [if, else, controllo-flusso, condizioni, programmazione, logica]
 ---
 
 ## Definizione
 
-`if / else` è il costrutto base di decisione in Arduino C++. Permette di eseguire blocchi di codice diversi a seconda che una condizione sia vera (`true`) o falsa (`false`). Vol.3 pag.102.
+`if / else` è il costrutto base di decisione in Arduino C++. Permette di eseguire blocchi di codice diversi a seconda che una condizione sia vera (`true`) o falsa (`false`). Vol.3 pag.82.
 
 Sintassi:
 
@@ -63,7 +64,7 @@ Ragazzi, `if / else` è come la regola del bivio: SE piove, prendete l'ombrello;
 
 Quando spiegate questo concetto alla classe:
 - Parlate in plurale ("Proviamo insieme", "Decidete voi")
-- Citate **Vol.3 pag.102**
+- Citate **Vol.3 pag.82**
 - Disegnate il bivio sulla LIM prima di scrivere codice — la mente capisce prima il diagramma
 - MAX 60 parole + 1 analogia concreta (bivio della strada)
 - NO comandi diretti al docente — guida silenziosa per voi

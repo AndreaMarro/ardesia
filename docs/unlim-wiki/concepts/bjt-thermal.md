@@ -3,11 +3,13 @@ id: bjt-thermal
 type: concept
 title: "BJT calore — quando il transistor scotta"
 locale: it
-volume_ref: 2
-pagina_ref: 142
+volume_ref: null
+pagina_ref: null
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+source_status: general_knowledge_only
+fix_iter44_W2: "Pagine fabbricate. Concept marcato general_knowledge_only."
 tags: [bjt, transistor, calore, surriscaldamento, dissipazione, sicurezza, vol2]
 ---
 

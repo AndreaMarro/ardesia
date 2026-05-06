@@ -31,6 +31,27 @@ body,
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Iter 35 carryover hot-fix HomePage scroll — Andrea bug "homepage non
+   adattata schermo" 2026-05-04 PM. Global overflow:hidden serve LIM
+   full-screen no-scroll Lavagna/Simulator MA blocca HomePage cronologia
+   + footer credits + sezioni sotto cards (offset 705-1205px cutted).
+   Fix surgical via :has() (Chrome 105+ / Safari 15.4+ / Firefox 121+):
+   abilita scroll quando data-elab-mode="home" è mounted nell'app tree. */
+html:has([data-elab-mode="home"]),
+body:has([data-elab-mode="home"]),
+#root:has([data-elab-mode="home"]) {
+    overflow: auto;
+    height: auto;
+    min-height: 100%;
+}
+html:has([data-elab-mode="chatbot-only"]),
+body:has([data-elab-mode="chatbot-only"]),
+#root:has([data-elab-mode="chatbot-only"]) {
+    overflow: auto;
+    height: auto;
+    min-height: 100%;
+}
+
 /* ═══════════════════════════════════════════════════════════════ */
 /* TYPOGRAPHY                                                      */
 /* ═══════════════════════════════════════════════════════════════ */
@@ -333,5 +354,112 @@ body,
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* ITER 35 ATOM VII — Vera Mascotte ELAB animations                  */
+/* Andrea iter 31+ mandate "vera mascotte fighissima animata design  */
+/* perfetto" — robottino ELAB navy + antenna + LED giallo TRES JOLIE */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.elab-mascotte-vera {
+    /* Iter 35 PM Andrea fix "sfondo bianco fa schifo /animate animalo proprio":
+       PNG `elab-mascot-vera.png` ha sfondo bianco baked-in (verified canvas
+       getImageData corners A255). SVG feColorMatrix filter `url(#elabRemoveWhite)`
+       (defined HomePage.jsx <svg style=display:none>) trasforma pixel bianchi
+       in alpha 0 keeping Navy/Lime/Yellow + soft borders SOLID. Filter chain
+       drop-shadow + glow pulse compose dopo color matrix → animation viva. */
+    animation:
+        elabMascotIdleBob 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+        elabMascotBreathe 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+        elabMascotGlowPulse 2.4s ease-in-out infinite;
+    transform-origin: 50% 80%;
+    will-change: transform, filter;
+}
+
+@keyframes elabMascotIdleBob {
+    0%, 100% {
+        transform: translateY(0) rotate(-1.2deg);
+    }
+    25% {
+        transform: translateY(-6px) rotate(0.6deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(1.8deg);
+    }
+    75% {
+        transform: translateY(-4px) rotate(0.4deg);
+    }
+}
+
+@keyframes elabMascotBreathe {
+    0%, 100% {
+        scale: 1;
+    }
+    50% {
+        scale: 1.025;
+    }
+}
+
+@keyframes elabMascotGlowPulse {
+    /* Filter chain: SVG removeWhite FIRST (white pixels → alpha 0) THEN
+       drop-shadow (computed on transparent silhouette only, not bianco bg).
+       Lampada in mano LED giallo glow rgb(232,148,28) Lime accent rgb(74,122,37). */
+    0%, 100% {
+        filter: url(#elabRemoveWhite)
+                drop-shadow(0 8px 16px rgba(30, 77, 140, 0.18))
+                drop-shadow(0 0 12px rgba(74, 122, 37, 0.0));
+    }
+    50% {
+        filter: url(#elabRemoveWhite)
+                drop-shadow(0 14px 28px rgba(30, 77, 140, 0.28))
+                drop-shadow(0 0 24px rgba(232, 148, 28, 0.45));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .elab-mascotte-vera {
+        animation: none !important;
+    }
+}
+
+/* Hover state via parent button (HomePage hero mascot click target) */
+button[data-elab-action="click-mascotte"]:hover .elab-mascotte-vera {
+    animation: elabMascotWiggle 0.8s ease-in-out;
+}
+
+@keyframes elabMascotWiggle {
+    0%, 100% { transform: translateY(-6px) rotate(0deg) scale(1); }
+    20% { transform: translateY(-12px) rotate(-3deg) scale(1.05); }
+    40% { transform: translateY(-8px) rotate(3deg) scale(1.05); }
+    60% { transform: translateY(-12px) rotate(-2deg) scale(1.06); }
+    80% { transform: translateY(-8px) rotate(2deg) scale(1.05); }
+}
+
+/* Active state — bounce on click */
+button[data-elab-action="click-mascotte"]:active .elab-mascotte-vera {
+    animation: elabMascotBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes elabMascotBounce {
+    0% { transform: translateY(-6px) scale(1); }
+    50% { transform: translateY(-18px) scale(1.1); }
+    100% { transform: translateY(-6px) scale(1); }
+}
+
+/* Speech bubble companion mascotte greeting */
+.elab-mascotte-vera-greeting {
+    animation: elabSpeechBubblePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes elabSpeechBubblePop {
+    0% {
+        transform: scale(0.6) translateY(8px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
     }
 }

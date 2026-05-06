@@ -61,8 +61,17 @@ function LoadingFallback() {
 // iter 35 P0: 'home' added as new default landing (Tea-style 5 card grid + cronologia)
 const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
 
+// Iter 44 BUG fix: HomePage sub-routes — direct nav `#chatbot-only` /
+// `#about-easter` / `#glossario` from any other page (e.g. Lavagna modal)
+// must reset currentPage='home' so HomePage renders + reads hash internally.
+// Without this, getPageFromHash returned null → setCurrentPage NOT called →
+// UI stuck on previous page (verified via Chrome MCP smoke prod 2026-05-06).
+// Sync test: tests/unit/navigation.test.js (49 cases).
+const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
+
 function getPageFromHash() {
     const raw = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
+    if (HOMEPAGE_SUBROUTES.includes(raw)) return 'home';
     return VALID_HASHES.includes(raw) ? raw : null;
 }
 

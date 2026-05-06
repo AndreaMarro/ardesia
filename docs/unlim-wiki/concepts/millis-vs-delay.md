@@ -6,8 +6,9 @@ locale: it
 volume_ref: 3
 pagina_ref: 85
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+fix_iter44_W2: "Body citazione Vol.3 pag.100 fabbricata (Vol.3 max=95) marcata concetto generale. Frontmatter pag.85 OK."
 tags: [millis, delay, timing, non-blocking, arduino, vol3, intermedio]
 ---
 

@@ -3,11 +3,13 @@ id: bjt-saturation
 type: concept
 title: "BJT saturazione — quando il transistor è interruttore ON completo"
 locale: it
-volume_ref: 2
-pagina_ref: 138
+volume_ref: null
+pagina_ref: null
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+source_status: general_knowledge_only
+fix_iter44_W2: "Pagine fabbricate Vol.2 pag.138/142/148/152 (Vol.2 max=117). Concept marcato general_knowledge_only — BJT advanced non in capitolo dedicato."
 tags: [bjt, transistor, saturazione, switch, interruttore, vol2]
 ---
 

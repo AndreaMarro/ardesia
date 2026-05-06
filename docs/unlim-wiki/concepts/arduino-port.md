@@ -3,17 +3,19 @@ id: arduino-port
 type: concept
 title: "PORT register Arduino — manipolazione diretta dei pin"
 locale: it
-volume_ref: 3
-pagina_ref: 130
+volume_ref: null
+pagina_ref: null
+source_status: general_knowledge_only
 created_at: 2026-04-26
-updated_at: 2026-04-26
-updated_by: scribe
-tags: [port, register, atmega328, low-level, prestazioni, avanzato, vol3, capstone]
+updated_at: 2026-05-06
+updated_by: claude-opus-4-7
+fix_iter44_W2: "Pagine fabbricate Vol.3 pag.130/135/140/145 (Vol.3 max=95). Concept marcato general_knowledge_only — argomento avanzato non in capitolo dedicato dei volumi ELAB Tutor V0.13."
+tags: [port, register, atmega328, low-level, prestazioni, avanzato, general_knowledge]
 ---
 
 ## Definizione
 
-I **PORT register** sono celle di memoria del microcontrollore ATmega328P che controllano direttamente lo stato HIGH/LOW dei pin digitali. Vol. 3 pag. 130 li introduce nel capitolo avanzato come "il modo veloce di accendere e spegnere i pin, saltando il livello di Arduino".
+I **PORT register** sono celle di memoria del microcontrollore ATmega328P che controllano direttamente lo stato HIGH/LOW dei pin digitali. Argomento Arduino C++ avanzato, non trattato nei volumi ELAB Tutor.
 
 ATmega328P ha **3 PORT**:
 - **PORTB**: pin digitali 8-13
@@ -74,7 +76,7 @@ void loop() {
 
 PORT diretto salta tutto: scrive UN bit in UN register.
 
-**Vol. 3 pag. 130** menziona il caso d'uso: progetti capstone che richiedono switching ad alta frequenza (es. multiplex matrice LED, generatori d'onda, comunicazione bit-bang).
+Caso d'uso tipico: progetti capstone che richiedono switching ad alta frequenza (es. multiplex matrice LED, generatori d'onda, comunicazione bit-bang).
 
 ## Mappa pin → bit (ATmega328P / Arduino Nano)
 
@@ -94,8 +96,6 @@ PORT diretto salta tutto: scrive UN bit in UN register.
 | A0 | PC.0 |
 | ... | ... |
 | A5 | PC.5 |
-
-Vol. 3 pag. 130 fornisce poster stampabile della mappa per consultazione veloce in classe.
 
 ## Operazioni bit-wise essenziali
 
@@ -132,20 +132,18 @@ interrupts();
 
 ## Esperimenti correlati
 
-- **Vol. 3 pag. 130** — Introduzione PORT con confronto digitalWrite vs PORT
-- **Vol. 3 pag. 135** — Multiplex 4-cifre 7-segmenti a 60 Hz (richiede speedup PORT)
-- **Vol. 3 pag. 140** — Onda quadra 100 kHz su pin 8 (impossibile con digitalWrite)
-- **Vol. 3 pag. 145** — Capstone: matrice LED 8×8 con scrolling testo (PORT + timer)
+Argomento avanzato Arduino non coperto nei volumi ELAB Tutor V0.13. Riferimenti esterni consigliati: Arduino reference docs `https://docs.arduino.cc/learn/microcontrollers/digital-input-output` + AVR-libc `<avr/io.h>` headers.
 
 ## PRINCIPIO ZERO
 
-**Cosa dire ai ragazzi** (citazione Vol. 3 pag. 130):
-> "I PORT register sono il modo veloce di accendere e spegnere i pin, saltando il livello di Arduino. Sono per chi vuole capire COME funziona dentro."
+**Cosa dire ai ragazzi**:
+> "Ragazzi, i PORT register sono il modo veloce di accendere e spegnere i pin, saltando il livello di Arduino. Sono per chi vuole capire COME funziona dentro."
 
 **Cosa fare:**
-- Argomento **avanzato Vol. 3** — adatto a ragazzi che hanno già padroneggiato `digitalWrite` e curiosi di prestazioni
+- Argomento **avanzato** — adatto a ragazzi che hanno già padroneggiato `digitalWrite` e curiosi di prestazioni
+- NON in capitolo dedicato dei volumi ELAB — concept generale Arduino C++
 - Mostrate sull'oscilloscopio (se disponibile) la differenza: digitalWrite + delayMicroseconds(1) vs PORTB |= ... + delayMicroseconds(1). La forma d'onda è chiaramente più "pulita" con PORT
-- Vol. 3 pag. 130 raccomanda di NON insegnare PORT prima della terza media. Per le scuole elementari/prima media, restare su `digitalWrite` come API didattica
+- Per le scuole elementari/prima media, restare su `digitalWrite` come API didattica
 - Spiegate il trade-off: PORT è veloce ma confonde i principianti, riduce la portabilità tra board diverse, e bypassa le protezioni Arduino (es. PWM auto-disable)
 
 **Sicurezza:**

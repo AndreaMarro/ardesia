@@ -6,8 +6,9 @@ locale: it
 volume_ref: 3
 pagina_ref: 78
 created_at: 2026-04-26
-updated_at: 2026-04-26
+updated_at: 2026-05-06
 updated_by: scribe
+fix_iter44_W2: "Body citazioni Vol.3 pag.100/105 fabbricate (Vol.3 max=95) → marcate concetto generale. Frontmatter pag.78 mantenuto (in range)."
 tags: [array, collezione, indice, programmazione, arduino, vol3]
 ---
 
