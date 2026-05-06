@@ -34,8 +34,9 @@ import LessonSelector from './LessonSelector';
 import VisionButton from '../tutor/VisionButton';
 import logger from '../../utils/logger';
 import ErrorBoundary from '../common/ErrorBoundary';
-// Atom A5 iter 36 — Passo Passo LessonReader in draggable FloatingWindow
-import FloatingWindowCommon from '../common/FloatingWindow';
+// iter 45 (Andrea video 06/05/2026): rimosso import FloatingWindowCommon — Atom A5 iter 36
+// Passo Passo via FloatingWindow LessonReader era duplicato sbagliato del vero
+// ComponentDrawer step-by-step in NewElabSimulator. Vedi commento blocco render rimosso.
 // Sprint S iter 2 Task B — Capitolo lookup service
 import { getCapitolo, listAllCapitoli } from '../../services/percorsoService';
 // iter 35 fix Bug 5 Fumetto: static import preserves user-gesture chain (was async dynamic import → window.open() blocked browser popup policy).
@@ -1241,9 +1242,12 @@ export default function LavagnaShell() {
                 <span>Caricamento simulatore...</span>
               </div>
             }>
+              {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
+                   click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
+                   NON nascondere ComponentDrawer — al contrario, è proprio quello che
+                   l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
               <NewElabSimulator
                 hideLessonPath
-                hideComponentDrawer={modalita === 'passo-passo'}
                 enableDrawingSync
               />
             </Suspense>
@@ -1378,41 +1382,14 @@ export default function LavagnaShell() {
           </div>
         )}
 
-        {/* Atom A5 iter 36 — Passo Passo: LessonReader in resizable/draggable FloatingWindow.
-             Principio Zero: se nessun esperimento caricato, empty state plurale + kit reference.
-             Z-index 10001 > UNLIM panel (lavagna/FloatingWindow maximized = 10000). */}
-        {modalita === 'passo-passo' && (
-          <FloatingWindowCommon
-            title="Passo Passo"
-            initialPosition={{ x: 100, y: 100 }}
-            initialSize={{ width: 480, height: 600 }}
-            minSize={{ width: 320, height: 400 }}
-            resizable
-            draggable
-            zIndex={10001}
-            onClose={() => setModalita('percorso')}
-          >
-            {!activeLessonId ? (
-              <div style={{
-                padding: 32, textAlign: 'center', color: 'var(--elab-hex-737373)',
-                fontFamily: "'Open Sans', sans-serif", fontSize: 16, lineHeight: 1.6,
-              }}>
-                <p style={{ fontFamily: "'Oswald', sans-serif", fontSize: 18, fontWeight: 700, color: 'var(--elab-navy)', marginBottom: 12 }}>
-                  Ragazzi, scegliete un esperimento dalla lista
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  Aprite il kit ELAB e trovate l&apos;esperimento nel volume.
-                </p>
-              </div>
-            ) : (
-              <LessonReader
-                lessonId={activeLessonId}
-                currentExperimentId={currentExperiment?.id}
-                onExperimentSelect={handleLessonExperimentSelect}
-              />
-            )}
-          </FloatingWindowCommon>
-        )}
+        {/* iter 45 fix Andrea video 06/05/2026: rimosso FloatingWindow LessonReader per
+             modalita='passo-passo'. Era duplicato sbagliato (narrative capitolo invece
+             click-by-click build). Vero Passo Passo = ComponentDrawer in NewElabSimulator
+             (Andrea Marro 20/02/2026 src/components/simulator/panels/ComponentDrawer.jsx)
+             che renderizza quando currentExperiment.buildMode === 'guided' (iniettato
+             da ExperimentPicker:202 quando experiment ha buildSteps[]).
+             Andrea audio Voxtral verbatim 06/05/2026: "passo passo qua è sbagliato,
+             parla di cose a caso mentre in realtà sotto si nascondono i veri pulsanti". */}
       </div>
 
       {/* Bottom panel — placeholder for code/serial (simulator handles its own) */}
