@@ -63,14 +63,11 @@ const RotationHandle = ({
 
   const current = snapToNearestQuadrant(currentRotation);
 
-  // Layout: 4 buttons stacked vertically next to component (anchored top-right offset)
-  // Spacing 50px to keep 44px touch target + 6px padding
-  const positions = [
-    { rot: 0, label: '0', dy: 0 },
-    { rot: 90, label: '90', dy: 50 },
-    { rot: 180, label: '180', dy: 100 },
-    { rot: 270, label: '270', dy: 150 },
-  ];
+  // iter 45 fix Andrea video2 06/05/2026 B11 "questa cosa della rotazione fatta
+  // così è davvero brutta": 4 button stack verticale 0/90/180/270 ingombrante +
+  // numeri poco leggibili. Sostituito con SINGLE button "↻" (rotate +90 cycle).
+  // Click cicla 0→90→180→270→0. Touch target 44px. Indica direzione visivamente.
+  const next = (current + 90) % 360;
 
   return (
     <g
@@ -79,64 +76,63 @@ const RotationHandle = ({
       data-current-rotation={current}
       transform={`translate(${anchorX}, ${anchorY})`}
       role="group"
-      aria-label={`Rotazione ${componentId}`}
+      aria-label={`Rotazione ${componentId} — attualmente ${current} gradi`}
     >
-      {/* Background pill for visibility */}
-      <rect
-        x={-BUTTON_RADIUS - 4}
-        y={-BUTTON_RADIUS - 4}
-        width={BUTTON_SIZE + 8}
-        height={150 + BUTTON_SIZE + 8}
-        rx={BUTTON_RADIUS + 4}
-        fill="rgba(255,255,255,0.92)"
-        stroke="var(--color-primary, var(--elab-navy))"
-        strokeWidth="1.5"
-        opacity="0.95"
-      />
-
-      {positions.map(({ rot, label, dy }) => {
-        const isActive = rot === current;
-        return (
-          <g
-            key={rot}
-            data-testid={`rotation-handle-btn-${rot}`}
-            transform={`translate(0, ${dy})`}
-            style={{ cursor: 'pointer' }}
-            onPointerDown={(ev) => {
-              ev.stopPropagation();
-              ev.preventDefault();
-              const next = snapToNearestQuadrant(rot);
-              if (next !== current) onRotate(next);
-            }}
-            role="button"
-            aria-label={`Ruota a ${rot} gradi`}
-            aria-pressed={isActive}
-          >
-            {/* Invisible 44px hit area for touch */}
-            <circle r={HIT_RADIUS} fill="transparent" />
-            {/* Visible button */}
-            <circle
-              r={BUTTON_RADIUS}
-              fill={isActive ? 'var(--color-accent, var(--elab-lime))' : 'var(--color-primary, var(--elab-navy))'}
-              stroke="#fff"
-              strokeWidth="2"
-              opacity={isActive ? 1 : 0.85}
-            />
-            <text
-              x="0"
-              y="5"
-              textAnchor="middle"
-              fontSize="13"
-              fontWeight="700"
-              fontFamily="Oswald, Arial, sans-serif"
-              fill="#fff"
-              pointerEvents="none"
-            >
-              {label}
-            </text>
-          </g>
-        );
-      })}
+      {/* iter 45 B11: single rotate button (cycle +90°) sostituisce 4 stacked
+           button verticale. Più compatto, icona auto-esplicativa, touch ≥44px. */}
+      <g
+        data-testid="rotation-handle-btn-cycle"
+        data-current-rotation={current}
+        style={{ cursor: 'pointer' }}
+        onPointerDown={(ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+          onRotate(next);
+        }}
+        role="button"
+        aria-label={`Ruota di 90 gradi (prossimo: ${next}°)`}
+      >
+        {/* Invisible hit area 44px touch */}
+        <circle r={HIT_RADIUS} fill="transparent" />
+        {/* Visible button Lime accent */}
+        <circle
+          r={BUTTON_RADIUS}
+          fill="var(--color-accent, var(--elab-lime))"
+          stroke="#fff"
+          strokeWidth="2.5"
+          opacity="0.96"
+        />
+        {/* Rotate icon ↻ — circular arrow indicating clockwise rotation */}
+        <path
+          d="M -7,-2 A 7,7 0 1 1 -2,7"
+          stroke="#fff"
+          strokeWidth="2.5"
+          fill="none"
+          strokeLinecap="round"
+          pointerEvents="none"
+        />
+        <path
+          d="M -2,7 L 1,4 M -2,7 L 1,10"
+          stroke="#fff"
+          strokeWidth="2.5"
+          fill="none"
+          strokeLinecap="round"
+          pointerEvents="none"
+        />
+        {/* Current degree label sotto */}
+        <text
+          x="0"
+          y={BUTTON_RADIUS + 14}
+          textAnchor="middle"
+          fontSize="11"
+          fontWeight="700"
+          fontFamily="Oswald, Arial, sans-serif"
+          fill="var(--color-primary, var(--elab-navy))"
+          pointerEvents="none"
+        >
+          {current}°
+        </text>
+      </g>
     </g>
   );
 };

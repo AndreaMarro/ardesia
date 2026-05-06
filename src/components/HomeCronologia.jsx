@@ -692,6 +692,26 @@ export default function HomeCronologia({ onResume }) {
             data-testid="cronologia-search"
           />
         </div>
+        {/* iter 45 fix Andrea video2 06/05/2026 B12 "non so se siano veramente
+             tutte le sessioni che ho fatto": display count chiaro mostrate vs
+             totale + nota se cap MAX_ITEMS raggiunto. */}
+        {sessions.length > 0 && (
+          <p
+            data-testid="cronologia-count"
+            style={{
+              margin: '8px 0 0', fontSize: 13, color: PALETTE.textMuted,
+              fontFamily: 'Open Sans, sans-serif',
+            }}
+          >
+            {(() => {
+              const shown = Math.min(sessions.length, MAX_ITEMS);
+              if (sessions.length <= MAX_ITEMS) {
+                return `Ragazzi, ecco tutte le ${sessions.length} sessioni salvate.`;
+              }
+              return `Mostrate ${shown} sessioni più recenti su ${sessions.length} totali. Le più vecchie restano archiviate.`;
+            })()}
+          </p>
+        )}
       </div>
 
       {sessions.length === 0 ? (
