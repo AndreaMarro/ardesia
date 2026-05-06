@@ -19,10 +19,15 @@
  *   onCitationClick?: ({ volume, page }) => void
  */
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import VolumeCitation from '../common/VolumeCitation.jsx';
 import DocenteSidebar from './DocenteSidebar.jsx';
 import css from './PercorsoCapitoloView.module.css';
+// iter 45 Andrea video2 06/05/2026 + ADR-019 Sense 1.5: pulsante "Lezione personalizzata"
+// chiama unlim-chat con context onniscenza aggregator (L1 RAG + L2 Wiki + L4 Sessione +
+// L5 Lesson + L6 Chat history, già LIVE iter 24 onniscenza-bridge.ts) + Mistral routing
+// (LLM_ROUTING_WEIGHTS env attivo prod). Genera proposta adattata classe + storia.
+import { sendChat } from '../../services/api.js';
 
 const INCREMENTAL_LABEL = {
   add_component: 'aggiunta componente',
@@ -43,6 +48,44 @@ function findTransitionFromPrev(capitolo, espIndex) {
 export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClick }) {
   const [activeExpIndex, setActiveExpIndex] = useState(0);
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
+  // iter 45 Andrea video2 + ADR-019 Sense 1.5 — Lezione personalizzata state
+  const [lezioneProposta, setLezioneProposta] = useState(null);
+  const [lezioneLoading, setLezioneLoading] = useState(false);
+  const [lezioneError, setLezioneError] = useState(null);
+
+  // Builds Mistral prompt for "Lezione personalizzata" via unlim-chat onniscenza-bridge.
+  // Backend (ADR-023 §5 + onniscenza-bridge iter 24 LIVE) aggregates L1 RAG + L4 Sessione
+  // + L5 Lesson + L6 Chat history when class_id + session_id presenti context.
+  const generaLezione = useCallback(async () => {
+    if (!capitolo || lezioneLoading) return;
+    setLezioneLoading(true);
+    setLezioneError(null);
+    setLezioneProposta(null);
+    try {
+      const firstExp = capitolo.esperimenti?.[0];
+      const espIds = (capitolo.esperimenti || []).map(e => e.id).join(', ');
+      const prompt = [
+        `Ragazzi, prepara una proposta di lezione personalizzata per il Capitolo ${capitolo.capitolo ?? capitolo.cap ?? '?'} "${capitolo.titolo}" (Vol.${capitolo.volume}).`,
+        `Esperimenti del capitolo: ${espIds}.`,
+        `Considerando le sessioni precedenti della classe e la storia chat, suggerisci:`,
+        `1. Apertura narrativa breve per la classe (cita Vol/pag verbatim del libro).`,
+        `2. Ordine consigliato esperimenti adattato al livello rilevato.`,
+        `3. Una analogia chiave da usare durante la spiegazione.`,
+        `4. Un punto di verifica per capire se la classe ha capito.`,
+        `Mantieni linguaggio plurale "Ragazzi", mai imperativo verso il docente, registro narratore italiano scuola pubblica.`,
+      ].join('\n');
+      const reply = await sendChat(prompt, [], {
+        experimentId: firstExp?.id || null,
+        experimentContext: `[CAPITOLO ATTIVO] Vol.${capitolo.volume} Cap.${capitolo.capitolo ?? '?'} — ${capitolo.titolo}`,
+      });
+      const text = typeof reply === 'string' ? reply : (reply?.content || reply?.message || JSON.stringify(reply).slice(0, 1200));
+      setLezioneProposta(text);
+    } catch (err) {
+      setLezioneError(err?.message || 'Errore generazione lezione');
+    } finally {
+      setLezioneLoading(false);
+    }
+  }, [capitolo, lezioneLoading]);
 
   if (!capitolo) {
     return (
@@ -74,6 +117,55 @@ export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClic
             </button>
           )}
         </header>
+
+        {/* iter 45 Andrea video2 + ADR-019 Sense 1.5 — Lezione personalizzata.
+             Click → sendChat con context capitolo → unlim-chat (Mistral routing 70/20/10
+             + onniscenza-bridge iter 24 LIVE) genera proposta adattata classe + storia. */}
+        <section className={css.lezioneBox} aria-label="Lezione personalizzata">
+          <button
+            type="button"
+            onClick={generaLezione}
+            disabled={lezioneLoading}
+            data-testid="btn-lezione-personalizzata"
+            style={{
+              minHeight: 56, padding: '12px 24px',
+              background: lezioneLoading ? 'var(--elab-hex-737373)' : 'var(--elab-lime, #4A7A25)',
+              color: '#fff', border: 'none', borderRadius: 12,
+              fontFamily: "'Oswald', sans-serif", fontSize: 18, fontWeight: 700,
+              cursor: lezioneLoading ? 'wait' : 'pointer',
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              boxShadow: '0 4px 12px rgba(74,122,37,0.3)',
+            }}
+          >
+            <span aria-hidden="true">🎓</span>
+            {lezioneLoading ? 'Sto preparando la lezione…' : 'Lezione personalizzata'}
+          </button>
+          {lezioneError && (
+            <p style={{ marginTop: 12, color: 'var(--elab-red, #E54B3D)', fontFamily: "'Open Sans', sans-serif" }}>
+              Errore: {lezioneError}. Riprovate tra un attimo.
+            </p>
+          )}
+          {lezioneProposta && (
+            <article
+              data-testid="lezione-proposta"
+              style={{
+                marginTop: 16, padding: 20,
+                background: 'rgba(74,122,37,0.05)',
+                border: '2px solid var(--elab-lime, #4A7A25)',
+                borderRadius: 12,
+                fontFamily: "'Open Sans', sans-serif",
+                fontSize: 17, lineHeight: 1.7,
+                whiteSpace: 'pre-wrap',
+                color: 'var(--elab-navy, #1E4D8C)',
+              }}
+            >
+              <header style={{ fontFamily: "'Oswald', sans-serif", fontSize: 16, fontWeight: 700, color: 'var(--elab-lime)', marginBottom: 10, letterSpacing: '0.4px' }}>
+                Proposta UNLIM (adattata alla classe)
+              </header>
+              {lezioneProposta}
+            </article>
+          )}
+        </section>
 
         {capitolo.theory?.testo_classe && (
           <section className={css.theorySection} aria-label="Teoria">
