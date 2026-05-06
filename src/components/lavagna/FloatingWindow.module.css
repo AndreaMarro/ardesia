@@ -129,22 +129,39 @@
 .resizeCorner {
   right: 0;
   bottom: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: nwse-resize;
   touch-action: none;
 }
 
-/* Dot-grip pattern on corner */
+/* iter 45 fix Andrea video 06/05/2026 "dimensioni non modificabili": chevron
+   pattern visibile sempre (era radial-gradient dot opacity 0.3 invisibile prod).
+   3 diagonali stroke 1.5px Navy WCAG-contrast — match ComponentDrawer SE handle. */
 .resizeCorner::after {
   content: '';
   position: absolute;
   right: 4px;
   bottom: 4px;
-  width: 10px;
-  height: 10px;
-  background-image: radial-gradient(circle, rgba(30, 77, 140, 0.3) 1.5px, transparent 1.5px);
-  background-size: 4px 4px;
+  width: 14px;
+  height: 14px;
+  background-image: linear-gradient(135deg, transparent 0%, transparent 30%, var(--elab-navy, #1E4D8C) 30%, var(--elab-navy, #1E4D8C) 40%, transparent 40%, transparent 55%, var(--elab-navy, #1E4D8C) 55%, var(--elab-navy, #1E4D8C) 65%, transparent 65%, transparent 80%, var(--elab-navy, #1E4D8C) 80%, var(--elab-navy, #1E4D8C) 90%, transparent 90%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.resizeCorner:hover::after {
+  opacity: 1;
+}
+
+/* iter 45 right+bottom edges: visibili-subtle senza hover (Andrea touch device
+   docente LIM mai fa hover). 2px stripe Navy 0.15. */
+.resizeRight {
+  background: linear-gradient(to right, transparent 0%, transparent 50%, rgba(30, 77, 140, 0.15) 50%, rgba(30, 77, 140, 0.15) 100%);
+}
+
+.resizeBottom {
+  background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(30, 77, 140, 0.15) 50%, rgba(30, 77, 140, 0.15) 100%);
 }
 
 /* Maximized state */
@@ -181,6 +198,7 @@
   .resizeCorner {
     width: 32px;
     height: 32px;
+/* © Andrea Marro — 06/05/2026 — ELAB Tutor — Tutti i diritti riservati */
   }
   .resizeCorner::after {
     width: 14px;
