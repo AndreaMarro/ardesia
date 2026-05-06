@@ -1,3 +1,25 @@
+## [Sprint V iter 43 partial — A3 vision_request classifier + footer source-of-truth align + 3/15 atomi salvage] — 2026-05-06
+
+Sprint V iter 43 partial salvage post 3 BG agents KILLED mid-flight (Maker-1, Maker-2 explicit, Tester-1 session boundary). 3/15 atomi shipped pre-orchestrator-complete iter 44.
+
+### Added
+- A3 vision_request classifier `supabase/functions/_shared/onniscenza-classifier.ts` extends PromptCategory union + VISION_REQUEST_RE regex (verb guarda/vedi/controlla/verifica + target lavagna/circuito/breadboard/schema) + ClassificationResult.triggers_vision_chain optional flag
+- A2 partial scaffold `supabase/functions/_shared/state-snapshot-aggregator.ts` NEW (Maker-1 KILLED mid-flight, full wire-up deferred iter 44)
+- A4 partial scaffold `supabase/functions/_shared/clawbot-dispatcher-deno.ts` NEW 334 LOC (Maker-2 KILLED 'Now create unit tests for A4:', full 12-tool impl deferred iter 44)
+- A15 partial `scripts/bench/r8-fixture.jsonl` NEW 50 INTENT exec scenarios (Tester-1 partial)
+- 34/34 unit tests `tests/unit/onniscenza-classifier-vision-request.test.js` NEW
+
+### Changed
+- HomePage footer source-of-truth alignment matching e2e-bypass-preview: 'Andrea Marro [founder + dev] · Teodora De Venere [(Tea) — UX + tester + creativa]' → 'Homepage a cura di Andrea Marro · Teodora de Venere' (NO ©, NO roles, NO mascotte subline)
+- onniscenza-classifier feminine plural test input changed (vision_request beats plurale_ragazzi when both regex match — non-vision context preserves plurale semantic)
+
+### Iter 44 carryover (12/15 atomi DEFERRED)
+A1 Lesson Composer + A2 wire-up full + A4 12-tool impl + A5 INTENT exec Playwright + A6 Vision chat-bridge + A7+A8+A9 latency SSE + A10-A12 HomePage routing + A13 50 scenarios + A14 multi-vendor review + A15 R7 fixture
+
+Score iter 43 ONESTO **6.5/10** G45 cap (3/15 atomi salvage — NO claim full Phase 1 close).
+
+---
+
 ## [Sprint V iter 1 — wake word UX + lavagna persist + Percorso morphic + Mascotte SVG + multi-vendor workflow] — 2026-05-06
 
 Sprint V iter 1 Andrea mandate 16 issue 2026-05-05 PM via Pattern S 4-agent OPUS PHASE-PHASE. Phase 1 (3 BG diagnoses identificate root cause D1 wake word HIGH 75% Safari/iOS unsupported + dismiss flag NO TTL, D2 lavagna persistenza H1-H6 falsified secondary architectural syncEnabled MAI passato true anti-inflation iter 28 confermato falso, D3 modalità HP1+HP3+HW1 Percorso NO-OP + ComponentDrawer/FloatingWindowCommon gates ortogonali). Phase 3 (4 BG agent Pattern S OPUS): wake word UX feedback browser unsupported + MicPermissionNudge TTL 24h + DrawingOverlay skip remote hydration + drawingSync session_id wiring + Supabase migration scribble_paths_session_id (3-tuple unique) + LavagnaShell handleModalitaChange Percorso morphic Onniscenza Sense 1.5 client-side bridge + NewElabSimulator hideComponentDrawer prop (passo-passo single-window) + HomePage ElabMascotte SVG inline 174 LOC + Tea credits footer 5 strong tags. Anti-regression+anti-inflation+retroactive scan mechanism shipped + multi-vendor workflow Claude Opus 4.7 + Kimi K2.6 + Mistral Large + Codex con anti-bias + anti-inflation G45 + retroactive validation. CoV 13498 PASS (+24 vs baseline 13474). Migration applied prod via repair drift + db push.

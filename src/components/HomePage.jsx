@@ -848,40 +848,17 @@ export default function HomePage({ onNavigate }) {
             (Davide volumi cartacei + Omaric kit hardware + Giovanni
             commerciale + Andrea founder/dev + Tea UX/tester/creativa) tutti
             riconosciuti — NESSUNO è anonimo. */}
+        {/* Sprint V iter 43 Andrea source-of-truth alignment 2026-05-06:
+            footer ridotto a singola linea matching e2e-bypass-preview esatto.
+            "Homepage a cura di Andrea Marro · Teodora de Venere" — NO ©, NO roles, NO mascotte subline. */}
         <p
           style={styles.footerCredits}
           data-testid="home-footer-credits-team"
         >
-          <span>© 2026 ELAB Tutor</span>
-          <span style={{ margin: '0 8px', opacity: 0.5 }} aria-hidden="true">·</span>
+          <span>Homepage a cura di </span>
           <span style={styles.footerCreditsStrong}>Andrea Marro</span>
-          <em style={{ marginLeft: 4, fontWeight: 500, color: PALETTE.textMuted }}>
-            founder + dev
-          </em>
           <span style={{ margin: '0 8px', opacity: 0.5 }} aria-hidden="true">·</span>
-          <span style={styles.footerCreditsStrong}>Teodora De Venere</span>
-          <em style={{ marginLeft: 4, fontWeight: 500, color: PALETTE.textMuted }}>
-            (Tea) — UX + tester + creativa
-          </em>
-        </p>
-        <p
-          style={{
-            ...styles.footerCredits,
-            fontSize: 11,
-            marginTop: 4,
-            opacity: 0.85,
-          }}
-          data-testid="home-footer-credits-mascotte"
-        >
-          <span>Mascotte SVG</span>
-          {' · '}
-          <span style={{ ...styles.footerCreditsStrong, fontWeight: 600 }}>
-            Andrea Marro
-          </span>
-          {' + design feedback '}
-          <span style={{ ...styles.footerCreditsStrong, fontWeight: 600 }}>
-            Teodora De Venere
-          </span>
+          <span style={styles.footerCreditsStrong}>Teodora de Venere</span>
         </p>
         <button
           type="button"

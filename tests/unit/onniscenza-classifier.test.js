@@ -144,7 +144,9 @@ describe('onniscenza-classifier — plurale_ragazzi (top-2)', () => {
   });
 
   it('matches "ragazze" feminine plural too', () => {
-    expect(classifyPrompt('Ragazze e ragazzi guardate il circuito').category).toBe('plurale_ragazzi');
+    // Sprint V iter 43 ATOM A3 — vision_request beats plurale when prompt has both
+    // (guardate + circuito triggers vision_request first). Non-vision context tests plurale.
+    expect(classifyPrompt('Ragazze e ragazzi oggi facciamo elettronica insieme').category).toBe('plurale_ragazzi');
   });
 
   it('does NOT match singular "ragazzo" / "ragazza"', () => {

@@ -37,6 +37,7 @@
 
 export type PromptCategory =
   | 'safety_warning'
+  | 'vision_request'
   | 'deep_question'
   | 'citation_vol_pag'
   | 'plurale_ragazzi'
@@ -51,6 +52,13 @@ export interface ClassificationResult {
   topK: number;
   /** Word count of the input (zero when input is null/empty). */
   wordCount: number;
+  /**
+   * Sprint V iter 43 ATOM A3 (Bug 3 fix): when true, the chat handler should
+   * trigger the vision chain (capture screenshot + Pixtral/Gemini Vision) for
+   * "guarda lavagna / vedi circuito / controlla breadboard" style prompts.
+   * Defaults to false so non-vision categories don't accidentally fire vision.
+   */
+  triggers_vision_chain?: boolean;
 }
 
 /**
@@ -79,6 +87,19 @@ const CITATION_RE = /\b(vol(?:ume)?\.?\s*[123]\b|pag(?:ina)?\.?\s*\d{1,3}\b|p\.\
  * narrating to the class and needs concise reinforcement.
  */
 const PLURALE_RE = /\bragazz[ie]\b/i;
+
+/**
+ * Sprint V iter 43 ATOM A3 (Bug 3 — RAG classifier "guarda lavagna" fix):
+ * vision-request prompts where the docente asks UNLIM to look at the live
+ * lavagna / circuito / breadboard / schema. These should:
+ *   1. trigger the vision chain (capture screenshot + Pixtral/Gemini Vision),
+ *   2. force a focused top-2 onniscenza fetch (kit-anchored, not exploratory).
+ *
+ * Pattern: verb (guarda|vedi|controlla|verifica) + target (lavagna|circuito|
+ * breadboard|schema). Word boundaries anchor both sides to avoid false
+ * positives like "controllo automatico" or "verifica formale".
+ */
+const VISION_REQUEST_RE = /\b(guarda|guardi|guardiamo|guardate|vedi|vede|vediamo|vedete|controlla|controlli|controlliamo|controllate|verifica|verifichi|verifichiamo|verificate)\s+(?:(?:la|le|lo|gli|i|il|un|una|uno|dei|degli|delle|se|sul|sulla|nella|nel)\s+)*\b(lavagna|lavagne|circuito|circuiti|breadboard|schema|schemi|kit|montaggio|cablaggio)\b/i;
 
 /**
  * Word counter. Strips action tags / markdown punctuation that should NOT
@@ -132,6 +153,21 @@ export function classifyPrompt(input: string | null | undefined): Classification
     return { category: 'chit_chat', skipOnniscenza: true, topK: 0, wordCount };
   }
 
+  // 2.5 Sprint V iter 43 ATOM A3 — vision_request beats citation/plurale/deep
+  // because the docente literally asked UNLIM to LOOK at the lavagna. We must
+  // (a) keep onniscenza at top-2 (kit-anchored focused fetch),
+  // (b) flag triggers_vision_chain=true so the chat handler captures a screenshot
+  //     and routes through Pixtral/Gemini Vision instead of a text-only LLM call.
+  if (VISION_REQUEST_RE.test(text)) {
+    return {
+      category: 'vision_request',
+      skipOnniscenza: false,
+      topK: 2,
+      wordCount,
+      triggers_vision_chain: true,
+    };
+  }
+
   // 3. Explicit citation references → top-2 focused fetch (volume-anchored).
   if (CITATION_RE.test(text)) {
     return { category: 'citation_vol_pag', skipOnniscenza: false, topK: 2, wordCount };
@@ -160,4 +196,4 @@ export function classifyPrompt(input: string | null | undefined): Classification
  * Iter 38 changes are purely doc/comment — no behavioral diff that would
  * justify breaking the existing test contract. Version semantics: this
  * file's logical iter is 38, but the marker is held back by ownership. */
-export const ONNISCENZA_CLASSIFIER_VERSION = '1.0-iter37-iter38-doc-only';
+export const ONNISCENZA_CLASSIFIER_VERSION = '1.0-iter37-iter38-doc-only-iter43-vision';
