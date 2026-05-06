@@ -32,6 +32,33 @@ function saveSessions(sessions) {
   } catch { /* localStorage full — silent */ }
 }
 
+// 2026-05-06 Bug #5: snapshot dei disegni della lavagna nel record di sessione.
+// Legge i due localStorage bucket usati dalle lavagne ELAB:
+//   - elab_wb_<expId>      → WhiteboardOverlay (canvas raster + vector elements)
+//   - elab-drawing-<expId> → DrawingOverlay (SVG paths sopra il circuito)
+// Quando l'esperimento è "lobby" o vuoto si usano i bucket fallback (sandbox/paths).
+function snapshotDrawings(experimentId) {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    const wbKey = experimentId && experimentId !== 'lobby'
+      ? `elab_wb_${experimentId}`
+      : 'elab_wb_sandbox';
+    const svgKey = experimentId && experimentId !== 'lobby'
+      ? `elab-drawing-${experimentId}`
+      : 'elab-drawing-paths';
+    const whiteboard = localStorage.getItem(wbKey);
+    const svgPaths = localStorage.getItem(svgKey);
+    if (!whiteboard && !svgPaths) return null;
+    return {
+      whiteboard: whiteboard || null,
+      svgPaths: svgPaths || null,
+      capturedAt: new Date().toISOString(),
+    };
+  } catch {
+    return null;
+  }
+}
+
 // ─── Session summary builder (deterministic, no AI) ──────────────────
 
 function buildSessionSummary(session) {
@@ -66,6 +93,8 @@ export function useSessionTracker() {
 
     s.endTime = new Date().toISOString();
     s.summary = buildSessionSummary(s);
+    // 2026-05-06 Bug #5: includi i disegni della lavagna nel record sessione.
+    s.drawings = snapshotDrawings(s.experimentId);
 
     // Append or replace (dedup — visibilitychange may have saved a snapshot already)
     const sessions = loadSessions();
@@ -198,6 +227,8 @@ export function useSessionTracker() {
         const s = sessionRef.current;
         s.endTime = new Date().toISOString();
         s.summary = buildSessionSummary(s);
+        // 2026-05-06 Bug #5: includi disegni anche nel snapshot di visibilitychange.
+        s.drawings = snapshotDrawings(s.experimentId);
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
         const sessions = loadSessions();
         // Replace or append
@@ -244,6 +275,33 @@ export function getLastSession() {
 /** Get sessions for a specific experiment */
 export function getSessionsForExperiment(experimentId) {
   return loadSessions().filter(s => s.experimentId === experimentId);
+}
+
+// 2026-05-06 Bug #5: ripristina i disegni della lavagna dal record di sessione.
+// Usato da Cronologia "Riprendi" o quando arriva una sessione da Supabase su un
+// device dove il localStorage `elab_wb_*` è vuoto. Restituisce true se ha scritto
+// almeno una chiave; false se la session non ha disegni o se localStorage assente.
+// Security: sanitize experimentId per prevenire writes su key arbitrarie quando
+// la session arriva da Supabase con expId controllato esternamente.
+const VALID_EXPID_RE = /^[a-zA-Z0-9_-]+$/;
+export function restoreDrawingsFromSession(session) {
+  if (!session?.drawings || typeof localStorage === 'undefined') return false;
+  const expId = session.experimentId;
+  if (!expId || !VALID_EXPID_RE.test(expId)) return false;
+  let restored = false;
+  try {
+    const wbKey = expId !== 'lobby' ? `elab_wb_${expId}` : 'elab_wb_sandbox';
+    const svgKey = expId !== 'lobby' ? `elab-drawing-${expId}` : 'elab-drawing-paths';
+    if (session.drawings.whiteboard) {
+      localStorage.setItem(wbKey, session.drawings.whiteboard);
+      restored = true;
+    }
+    if (session.drawings.svgPaths) {
+      localStorage.setItem(svgKey, session.drawings.svgPaths);
+      restored = true;
+    }
+  } catch { /* quota / unavailable */ }
+  return restored;
 }
 
 export default useSessionTracker;

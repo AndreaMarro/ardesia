@@ -1,3 +1,26 @@
+## [fix(lavagna) — 6 bug WhiteboardOverlay + drawings nelle session] — 2026-05-06
+
+Fix multi-bug della lavagna principale `WhiteboardOverlay` emersi dal video bug-report `lavagna-multibug-2026-05-06.mov`. Coperti: gomma poco visibile (#1), toolbar non collassabile (#2), confusione fra cestino e chiusura (#3), residuo del precedente esperimento al cambio (#4), session-record privo di disegni (#5), toolbar non traslabile (#6). PR #77.
+
+### Added
+- `src/components/simulator/panels/WhiteboardOverlay.jsx` — drag handle (puntini sinistra, double-click reset) con position persistita in `localStorage[elab-wb-toolbar-pos]` + collapse/expand pill con stato in `localStorage[elab-wb-toolbar-collapsed]`. Icone `IconCollapse`/`IconExpand` SVG inline.
+- `src/components/simulator/panels/WhiteboardOverlay.jsx` — `ToolBtn` props `highlight="eraser"` per ring rosso pastello permanente sulla Gomma (affordance Bug #1).
+- `src/hooks/useSessionTracker.js` — `snapshotDrawings(experimentId)` legge `elab_wb_<id>` + `elab-drawing-<id>` (con fallback `*_sandbox`/`*-paths` per `lobby`) e infila `s.drawings = { whiteboard, svgPaths, capturedAt }` in `finaliseSession` + `handleVisibility` (Bug #5).
+- `src/hooks/useSessionTracker.js` — export `restoreDrawingsFromSession(session)` per consumers che ripristinano i disegni in localStorage da un record di sessione (HomeCronologia "Riprendi" / sync Supabase su device pulito).
+- `tests/unit/useSessionTrackerHelpers.test.js` — +6 unit test su `restoreDrawingsFromSession` (no-op senza drawings/expId, write whiteboard only, write svgPaths only, write entrambi, fallback `lobby` → sandbox/paths).
+
+### Changed
+- `src/components/simulator/panels/WhiteboardOverlay.jsx:361` — `useEffect[experimentId]` ora resetta INCONDIZIONATAMENTE canvas + rasterLayer + elements + history al cambio esperimento, poi (se esiste storage) ricarica. Prima `if (!saved) return` early lasciava il residuo del precedente sull'esperimento mai visitato (Bug #4).
+- `src/components/simulator/panels/WhiteboardOverlay.jsx:702` — `clearAll` chiede ora `window.confirm()` esplicito quando c'è contenuto, suggerendo Ctrl+Z come undo immediato (Bug #3 anti misclick cestino vs X).
+- Title delle azioni distruttive/chiusura riformulati: "Cancella tutto (chiede conferma)" e "Chiudi lavagna (i disegni restano salvati)" per chiarire che la X non perde dati.
+
+### Notes
+- Vitest 13589 passed / 15 skipped / 18 todo / 0 fail (baseline preservata, +6 nuovi).
+- `npm run build` PASS in 38.96s + PWA generata.
+- Anti-regression checklist in PR #77 verificata.
+
+---
+
 ## [Sprint V iter 43 partial — A3 vision_request classifier + footer source-of-truth align + 3/15 atomi salvage] — 2026-05-06
 
 Sprint V iter 43 partial salvage post 3 BG agents KILLED mid-flight (Maker-1, Maker-2 explicit, Tester-1 session boundary). 3/15 atomi shipped pre-orchestrator-complete iter 44.

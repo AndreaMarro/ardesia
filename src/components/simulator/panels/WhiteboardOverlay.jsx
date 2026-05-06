@@ -15,6 +15,29 @@ const THICKNESS = [2, 4, 8];
 const MAX_HISTORY = 30;
 const HANDLE_SIZE = 7;
 
+// 2026-05-06 Bug #6: persistenza posizione toolbar lavagna (draggable)
+const TOOLBAR_POS_KEY = 'elab-wb-toolbar-pos';
+function loadToolbarPos() {
+  try {
+    const raw = localStorage.getItem(TOOLBAR_POS_KEY);
+    if (!raw) return null;
+    const p = JSON.parse(raw);
+    if (typeof p?.left === 'number' && typeof p?.top === 'number') return p;
+    return null;
+  } catch { return null; }
+}
+function saveToolbarPos(pos) {
+  try { localStorage.setItem(TOOLBAR_POS_KEY, JSON.stringify(pos)); } catch { /* quota */ }
+}
+// 2026-05-06 Bug #2: persistenza stato collassato toolbar
+const TOOLBAR_COLLAPSED_KEY = 'elab-wb-toolbar-collapsed';
+function loadToolbarCollapsed() {
+  try { return localStorage.getItem(TOOLBAR_COLLAPSED_KEY) === '1'; } catch { return false; }
+}
+function saveToolbarCollapsed(v) {
+  try { localStorage.setItem(TOOLBAR_COLLAPSED_KEY, v ? '1' : '0'); } catch { /* quota */ }
+}
+
 // ── Element ID generator ────────────────────────
 let _nextId = 1;
 function nextElementId() { return `el_${_nextId++}_${Date.now()}`; }
@@ -45,6 +68,55 @@ export default function WhiteboardOverlay({
   // ── Text input state ───────────────────────────────
   const [textInput, setTextInput] = useState(null);
   const textInputRef = useRef(null);
+
+  // 2026-05-06 Bug #2/#6: toolbar collassabile + traslabile
+  const [toolbarCollapsed, setToolbarCollapsed] = useState(() => loadToolbarCollapsed());
+  const [toolbarPos, setToolbarPos] = useState(() => loadToolbarPos());
+  const toolbarRef = useRef(null);
+  const toolbarDragHandleRef = useRef(null);
+
+  const toggleToolbarCollapsed = useCallback(() => {
+    setToolbarCollapsed(prev => {
+      const next = !prev;
+      saveToolbarCollapsed(next);
+      return next;
+    });
+  }, []);
+
+  // 2026-05-06 Bug #6: pointer-down sull'handle di drag muove la toolbar.
+  // Click sui pulsanti continua a funzionare (no drag se target è un button).
+  const handleToolbarDragStart = useCallback((e) => {
+    if (e.target?.closest && e.target.closest('button, input, label')) return;
+    if (!toolbarRef.current) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const rect = toolbarRef.current.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+    try { toolbarDragHandleRef.current?.setPointerCapture?.(e.pointerId); } catch { /* */ }
+
+    const onMove = (ev) => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      // Mantieni la toolbar sempre visibile (clamp 8px di margine)
+      const left = Math.max(8, Math.min(ev.clientX - offsetX, vw - rect.width - 8));
+      const top = Math.max(8, Math.min(ev.clientY - offsetY, vh - rect.height - 8));
+      setToolbarPos({ left, top });
+    };
+    const onUp = () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      setToolbarPos(prev => { if (prev) saveToolbarPos(prev); return prev; });
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  }, []);
+
+  const handleToolbarDoubleClick = useCallback((e) => {
+    if (e.target?.closest && e.target.closest('button, input, label')) return;
+    setToolbarPos(null);
+    try { localStorage.removeItem(TOOLBAR_POS_KEY); } catch { /* */ }
+  }, []);
 
   // ── Zoom & Grid state ─────────────────────────────
   const [zoom, setZoom] = useState(1);
@@ -358,33 +430,55 @@ export default function WhiteboardOverlay({
 
   // ── Load saved drawing from localStorage ─────
   // T1-002 fix: use fallback key 'elab_wb_sandbox' when experimentId is null
+  // 2026-05-06 Bug #4: reset canvas/elements/history INCONDIZIONATAMENTE
+  // al cambio esperimento. Prima `if (!saved) return` lasciava residuo del
+  // precedente quando si passava a un esperimento mai visitato.
   useEffect(() => {
     if (!canvasRef.current) return;
+    const ctx = canvasRef.current.getContext('2d');
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    rasterLayer.current = null;
+    elements.current = [];
+    historyStack.current = [];
+    redoStack.current = [];
+    setSelectedId(null);
+    setCanUndo(false);
+    setCanRedo(false);
+
     const key = experimentId ? `elab_wb_${experimentId}` : 'elab_wb_sandbox';
     const saved = localStorage.getItem(key);
-    if (!saved) return;
+    if (!saved) {
+      redrawCanvas();
+      return;
+    }
     try {
       const data = JSON.parse(saved);
-      if (data.version === 3 && data.raster) {
-        const img = new Image();
-        img.onload = () => {
-          const ctx = canvasRef.current.getContext('2d');
-          ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-          ctx.drawImage(img, 0, 0);
-          rasterLayer.current = ctx.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
-          elements.current = data.elements || [];
+      if (data.version === 3) {
+        elements.current = data.elements || [];
+        if (data.raster) {
+          const img = new Image();
+          img.onload = () => {
+            const ctx2 = canvasRef.current?.getContext('2d');
+            if (!ctx2) return;
+            ctx2.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+            ctx2.drawImage(img, 0, 0);
+            rasterLayer.current = ctx2.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+            redrawCanvas();
+          };
+          img.src = data.raster;
+        } else {
           redrawCanvas();
-        };
-        img.src = data.raster;
+        }
         return;
       }
     } catch { /* legacy format */ }
     const img = new Image();
     img.onload = () => {
-      const ctx = canvasRef.current.getContext('2d');
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-      ctx.drawImage(img, 0, 0);
-      rasterLayer.current = ctx.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+      const ctx2 = canvasRef.current?.getContext('2d');
+      if (!ctx2) return;
+      ctx2.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      ctx2.drawImage(img, 0, 0);
+      rasterLayer.current = ctx2.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
     };
     img.src = saved;
   }, [experimentId, redrawCanvas]);
@@ -700,9 +794,18 @@ export default function WhiteboardOverlay({
   }, [textInput, color, thickness, pushHistory, redrawCanvas, saveToStorage]);
 
   // ── Clear all ────────────────────────────────
+  // 2026-05-06 Bug #3: prima di cancellare tutto chiedi conferma.
+  // L'utente confondeva il cestino (Cancella tutto) con la X (Chiudi lavagna)
+  // perdendo i disegni. Ora il cestino richiede conferma esplicita; la X chiude
+  // solo l'overlay senza toccare lo storage (i disegni restano).
   const clearAll = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const hasContent = !!rasterLayer.current || elements.current.length > 0;
+    if (hasContent && typeof window !== 'undefined' && typeof window.confirm === 'function') {
+      const ok = window.confirm('Cancellare tutto il disegno della lavagna? Operazione non reversibile (puoi annullare con Ctrl+Z subito dopo).');
+      if (!ok) return;
+    }
     pushHistory();
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     rasterLayer.current = null;
@@ -805,101 +908,171 @@ export default function WhiteboardOverlay({
         />
       )}
 
-      {/* Toolbar */}
-      <div style={{
-        position: 'absolute', top: '8px', left: '50%', transform: 'translateX(-50%)',
-        display: 'flex', alignItems: 'center', gap: '3px',
-        background: 'rgba(255,255,255,0.96)', borderRadius: '12px',
-        padding: '5px 8px', boxShadow: '0 2px 16px rgba(0,0,0,0.18)',
-        zIndex: 21, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 'calc(100% - 16px)',
-      }}>
-        <ToolBtn active={tool === 'select'} label="Seleziona" onClick={() => setTool('select')}>
-          <IconSelect />
-        </ToolBtn>
-        <Sep />
-        <ToolBtn active={tool === 'pencil'} label="Matita" onClick={() => { setTool('pencil'); setSelectedId(null); }}>
-          <IconPencil />
-        </ToolBtn>
-        <ToolBtn active={tool === 'eraser'} label="Gomma" onClick={() => { setTool('eraser'); setSelectedId(null); }}>
-          <IconEraser />
-        </ToolBtn>
-        <ToolBtn active={tool === 'text'} label="Testo" onClick={() => { setTool('text'); setSelectedId(null); }}>
-          <IconText />
-        </ToolBtn>
-        <Sep />
-        <ToolBtn active={tool === 'rect'} label="Rettangolo" onClick={() => { setTool('rect'); setSelectedId(null); }}>
-          <IconRect />
-        </ToolBtn>
-        <ToolBtn active={tool === 'circle'} label="Cerchio" onClick={() => { setTool('circle'); setSelectedId(null); }}>
-          <IconCircle />
-        </ToolBtn>
-        <ToolBtn active={tool === 'arrow'} label="Freccia" onClick={() => { setTool('arrow'); setSelectedId(null); }}>
-          <IconArrow />
-        </ToolBtn>
-        <ToolBtn active={tool === 'line'} label="Linea" onClick={() => { setTool('line'); setSelectedId(null); }}>
-          <IconLine />
-        </ToolBtn>
-        <Sep />
-        {COLORS_PRESET.map(c => (
-          <button key={c} onClick={() => { setColor(c); if (tool === 'eraser') setTool('pencil'); }}
-            title={c} aria-label={`Colore ${c}`}
+      {/* Toolbar — 2026-05-06 Bug #2/#6: collassabile + traslabile.
+          Drag handle sinistra (icona puntini) sposta la toolbar; double-click reset.
+          Bottone collapse destra minimizza in pill restore. */}
+      {!toolbarCollapsed && (
+        <div
+          ref={toolbarRef}
+          style={{
+            position: 'absolute',
+            top: toolbarPos ? `${toolbarPos.top}px` : '8px',
+            left: toolbarPos ? `${toolbarPos.left}px` : '50%',
+            transform: toolbarPos ? 'none' : 'translateX(-50%)',
+            display: 'flex', alignItems: 'center', gap: '3px',
+            background: 'rgba(255,255,255,0.96)', borderRadius: '12px',
+            padding: '5px 8px', boxShadow: '0 2px 16px rgba(0,0,0,0.18)',
+            zIndex: 21, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 'calc(100% - 16px)',
+            touchAction: 'none',
+          }}
+        >
+          {/* Drag handle (left) */}
+          <div
+            ref={toolbarDragHandleRef}
+            onPointerDown={handleToolbarDragStart}
+            onDoubleClick={handleToolbarDoubleClick}
+            title="Trascina per spostare la barra (doppio click per ricentrare)"
+            aria-label="Trascina barra strumenti"
             style={{
-              width: '36px', height: '36px', borderRadius: '50%', background: c,
-              cursor: 'pointer', padding: 0, flexShrink: 0, minWidth: '44px', minHeight: '44px',
+              width: '12px', height: '32px', cursor: 'grab',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              backgroundClip: 'content-box', boxSizing: 'border-box', paddingInline: '4px', paddingBlock: '4px',
-              border: color === c ? '2px solid var(--color-text-gray-700, #333)' : c === '#FFFFFF' ? '1px solid var(--color-border, #ccc)' : '2px solid transparent',
-              boxShadow: color === c ? '0 0 0 2px #fff, 0 0 0 3px var(--color-text-gray-700, #333)' : 'none',
+              flexShrink: 0, color: 'var(--color-text-gray-500, #888)',
+              userSelect: 'none',
             }}
-          />
-        ))}
-        <label title="Colore personalizzato" style={{
-          width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer',
-          background: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
-          minWidth: '44px', minHeight: '44px', boxSizing: 'border-box', padding: '4px', backgroundClip: 'content-box',
-          border: !COLORS_PRESET.includes(color) ? '2px solid var(--color-text-gray-700, #333)' : '2px solid transparent',
-          boxShadow: !COLORS_PRESET.includes(color) ? '0 0 0 2px #fff, 0 0 0 3px var(--color-text-gray-700, #333)' : 'none',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          flexShrink: 0, position: 'relative', overflow: 'hidden',
-        }}>
-          <input type="color" value={color}
-            onChange={e => { setColor(e.target.value); if (tool === 'eraser') setTool('pencil'); }}
-            style={{ opacity: 0, position: 'absolute', inset: 0, cursor: 'pointer', width: '100%', height: '100%' }}
-          />
-        </label>
-        <Sep />
-        {THICKNESS.map(t => (
-          <button key={t} onClick={() => setThickness(t)} title={`Spessore ${t}px`} aria-label={`Spessore ${t}px`}
-            style={{ ...toolBtnStyle(thickness === t), display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: `${Math.min(t * 2.5, 16)}px`, height: `${Math.min(t * 2.5, 16)}px`, borderRadius: '50%', background: 'var(--color-text-gray-700, #333)' }} />
-          </button>
-        ))}
-        <Sep />
-        <ToolBtn label="Annulla (Ctrl+Z)" onClick={undo} disabled={!canUndo}><IconUndo /></ToolBtn>
-        <ToolBtn label="Ripeti (Ctrl+Y)" onClick={redo} disabled={!canRedo}><IconRedo /></ToolBtn>
-        <Sep />
-        <ToolBtn label="Zoom indietro" onClick={() => setZoom(z => Math.max(0.5, Math.round((z - 0.1) * 10) / 10))} disabled={zoom <= 0.5}><IconZoomOut /></ToolBtn>
-        <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-text-gray-500, #555)', minWidth: '36px', textAlign: 'center', lineHeight: '30px' }}>
-          {Math.round(zoom * 100)}%
-        </span>
-        <ToolBtn label="Zoom avanti" onClick={() => setZoom(z => Math.min(2, Math.round((z + 0.1) * 10) / 10))} disabled={zoom >= 2}><IconZoomIn /></ToolBtn>
-        <ToolBtn label={showGrid ? 'Nascondi griglia' : 'Mostra griglia'} active={showGrid} onClick={() => setShowGrid(g => !g)}><IconGrid /></ToolBtn>
-        <Sep />
-        <ToolBtn label="Salva PNG" onClick={exportPng}><IconDownload /></ToolBtn>
-        {onSendToUNLIM && <ToolBtn label="Invia a UNLIM" onClick={sendToUNLIM}><IconUNLIM /></ToolBtn>}
-        <ToolBtn label="Cancella tutto" onClick={clearAll} danger><IconTrash /></ToolBtn>
-        <ToolBtn label="Chiudi lavagna" onClick={onClose}><IconClose /></ToolBtn>
-      </div>
+          >
+            <svg width="6" height="20" viewBox="0 0 6 20" fill="currentColor" aria-hidden="true">
+              <circle cx="1.5" cy="3" r="1.2" /><circle cx="4.5" cy="3" r="1.2" />
+              <circle cx="1.5" cy="10" r="1.2" /><circle cx="4.5" cy="10" r="1.2" />
+              <circle cx="1.5" cy="17" r="1.2" /><circle cx="4.5" cy="17" r="1.2" />
+            </svg>
+          </div>
+          <Sep />
+          <ToolBtn active={tool === 'select'} label="Seleziona" onClick={() => setTool('select')}>
+            <IconSelect />
+          </ToolBtn>
+          <Sep />
+          <ToolBtn active={tool === 'pencil'} label="Matita" onClick={() => { setTool('pencil'); setSelectedId(null); }}>
+            <IconPencil />
+          </ToolBtn>
+          <ToolBtn active={tool === 'eraser'} label="Gomma" onClick={() => { setTool('eraser'); setSelectedId(null); }} highlight="eraser">
+            <IconEraser />
+          </ToolBtn>
+          <ToolBtn active={tool === 'text'} label="Testo" onClick={() => { setTool('text'); setSelectedId(null); }}>
+            <IconText />
+          </ToolBtn>
+          <Sep />
+          <ToolBtn active={tool === 'rect'} label="Rettangolo" onClick={() => { setTool('rect'); setSelectedId(null); }}>
+            <IconRect />
+          </ToolBtn>
+          <ToolBtn active={tool === 'circle'} label="Cerchio" onClick={() => { setTool('circle'); setSelectedId(null); }}>
+            <IconCircle />
+          </ToolBtn>
+          <ToolBtn active={tool === 'arrow'} label="Freccia" onClick={() => { setTool('arrow'); setSelectedId(null); }}>
+            <IconArrow />
+          </ToolBtn>
+          <ToolBtn active={tool === 'line'} label="Linea" onClick={() => { setTool('line'); setSelectedId(null); }}>
+            <IconLine />
+          </ToolBtn>
+          <Sep />
+          {COLORS_PRESET.map(c => (
+            <button key={c} onClick={() => { setColor(c); if (tool === 'eraser') setTool('pencil'); }}
+              title={c} aria-label={`Colore ${c}`}
+              style={{
+                width: '36px', height: '36px', borderRadius: '50%', background: c,
+                cursor: 'pointer', padding: 0, flexShrink: 0, minWidth: '44px', minHeight: '44px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                backgroundClip: 'content-box', boxSizing: 'border-box', paddingInline: '4px', paddingBlock: '4px',
+                border: color === c ? '2px solid var(--color-text-gray-700, #333)' : c === '#FFFFFF' ? '1px solid var(--color-border, #ccc)' : '2px solid transparent',
+                boxShadow: color === c ? '0 0 0 2px #fff, 0 0 0 3px var(--color-text-gray-700, #333)' : 'none',
+              }}
+            />
+          ))}
+          <label title="Colore personalizzato" style={{
+            width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer',
+            background: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
+            minWidth: '44px', minHeight: '44px', boxSizing: 'border-box', padding: '4px', backgroundClip: 'content-box',
+            border: !COLORS_PRESET.includes(color) ? '2px solid var(--color-text-gray-700, #333)' : '2px solid transparent',
+            boxShadow: !COLORS_PRESET.includes(color) ? '0 0 0 2px #fff, 0 0 0 3px var(--color-text-gray-700, #333)' : 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0, position: 'relative', overflow: 'hidden',
+          }}>
+            <input type="color" value={color}
+              onChange={e => { setColor(e.target.value); if (tool === 'eraser') setTool('pencil'); }}
+              style={{ opacity: 0, position: 'absolute', inset: 0, cursor: 'pointer', width: '100%', height: '100%' }}
+            />
+          </label>
+          <Sep />
+          {THICKNESS.map(t => (
+            <button key={t} onClick={() => setThickness(t)} title={`Spessore ${t}px`} aria-label={`Spessore ${t}px`}
+              style={{ ...toolBtnStyle(thickness === t), display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: `${Math.min(t * 2.5, 16)}px`, height: `${Math.min(t * 2.5, 16)}px`, borderRadius: '50%', background: 'var(--color-text-gray-700, #333)' }} />
+            </button>
+          ))}
+          <Sep />
+          <ToolBtn label="Annulla (Ctrl+Z)" onClick={undo} disabled={!canUndo}><IconUndo /></ToolBtn>
+          <ToolBtn label="Ripeti (Ctrl+Y)" onClick={redo} disabled={!canRedo}><IconRedo /></ToolBtn>
+          <Sep />
+          <ToolBtn label="Zoom indietro" onClick={() => setZoom(z => Math.max(0.5, Math.round((z - 0.1) * 10) / 10))} disabled={zoom <= 0.5}><IconZoomOut /></ToolBtn>
+          <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-text-gray-500, #555)', minWidth: '36px', textAlign: 'center', lineHeight: '30px' }}>
+            {Math.round(zoom * 100)}%
+          </span>
+          <ToolBtn label="Zoom avanti" onClick={() => setZoom(z => Math.min(2, Math.round((z + 0.1) * 10) / 10))} disabled={zoom >= 2}><IconZoomIn /></ToolBtn>
+          <ToolBtn label={showGrid ? 'Nascondi griglia' : 'Mostra griglia'} active={showGrid} onClick={() => setShowGrid(g => !g)}><IconGrid /></ToolBtn>
+          <Sep />
+          <ToolBtn label="Salva PNG" onClick={exportPng}><IconDownload /></ToolBtn>
+          {onSendToUNLIM && <ToolBtn label="Invia a UNLIM" onClick={sendToUNLIM}><IconUNLIM /></ToolBtn>}
+          <ToolBtn label="Cancella tutto (chiede conferma)" onClick={clearAll} danger><IconTrash /></ToolBtn>
+          <ToolBtn label="Chiudi lavagna (i disegni restano salvati)" onClick={onClose}><IconClose /></ToolBtn>
+          <Sep />
+          {/* Collapse — minimize toolbar in pill */}
+          <ToolBtn label="Nascondi barra strumenti" onClick={toggleToolbarCollapsed}><IconCollapse /></ToolBtn>
+        </div>
+      )}
+
+      {/* Restore pill when collapsed */}
+      {toolbarCollapsed && (
+        <button
+          onClick={toggleToolbarCollapsed}
+          title="Mostra barra strumenti"
+          aria-label="Mostra barra strumenti"
+          style={{
+            position: 'absolute',
+            top: toolbarPos ? `${toolbarPos.top}px` : '8px',
+            left: toolbarPos ? `${toolbarPos.left}px` : '50%',
+            transform: toolbarPos ? 'none' : 'translateX(-50%)',
+            zIndex: 21,
+            display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '8px 14px', borderRadius: '20px',
+            background: 'rgba(255,255,255,0.96)', boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+            border: '1px solid var(--color-border, #ddd)',
+            cursor: 'pointer', fontSize: '13px', fontWeight: 600,
+            color: 'var(--color-primary, #1E4D8C)', fontFamily: "var(--font-sans, 'Open Sans', sans-serif)",
+          }}
+        >
+          <IconExpand />
+          <span>Strumenti</span>
+        </button>
+      )}
     </div>
   );
 }
 
 /* ── Sub-components ──────────────────────────── */
 
-function ToolBtn({ children, label, active, onClick, disabled, danger }) {
+function ToolBtn({ children, label, active, onClick, disabled, danger, highlight }) {
+  // 2026-05-06 Bug #1: highlight="eraser" rende la Gomma sempre visibile con
+  // ring rosso pastello, anche quando non attiva, per migliorarne l'affordance.
+  // Stesso pattern applicabile ad altri tool che si fatica a riconoscere.
+  const baseStyle = toolBtnStyle(active);
+  const highlightStyle = highlight === 'eraser' && !active
+    ? { boxShadow: 'inset 0 0 0 2px rgba(229,75,61,0.35)', background: 'rgba(229,75,61,0.08)' }
+    : null;
   return (
     <button onClick={onClick} title={label} aria-label={label} disabled={disabled}
-      style={{ ...toolBtnStyle(active), opacity: disabled ? 0.35 : 1,
+      style={{
+        ...baseStyle,
+        ...(highlightStyle || {}),
+        opacity: disabled ? 0.35 : 1,
         cursor: disabled ? 'default' : 'pointer',
         color: danger ? 'var(--color-vol3, var(--elab-red))' : (active ? 'var(--color-primary, var(--elab-navy))' : 'var(--color-text-gray-500, #555)'),
       }}>
@@ -939,6 +1112,9 @@ function IconRedo() { return <svg {...svgProps}><polyline points="23 4 23 10 17 
 function IconDownload() { return <svg {...svgProps}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>; }
 function IconTrash() { return <svg {...svgProps}><path d="M3 6h18" /><path d="M8 6V4h8v2" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /></svg>; }
 function IconClose() { return <svg {...svgProps}><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>; }
+// 2026-05-06 Bug #2: collapse/expand icons per nascondere/mostrare la toolbar.
+function IconCollapse() { return <svg {...svgProps}><polyline points="6 9 12 15 18 9" /></svg>; }
+function IconExpand() { return <svg {...svgProps}><polyline points="6 15 12 9 18 15" /></svg>; }
 function IconZoomIn() { return <svg {...svgProps}><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>; }
 function IconZoomOut() { return <svg {...svgProps}><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="8" y1="11" x2="14" y2="11" /></svg>; }
 function IconGrid() { return <svg {...svgProps}><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>; }
