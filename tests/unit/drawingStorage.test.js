@@ -126,4 +126,59 @@ describe('drawingStorage — per-experiment persistence', () => {
       expect(localStorage.removeItem).toHaveBeenCalledWith(DRAWING_STORAGE_PREFIX + 'paths');
     });
   });
+
+  // iter 45 fix Andrea video2 06/05/2026 C "Pen persistence per-experiment-as-lavagna":
+  // assicura che cambiare esperimento NON faccia leak paths cross-experiment.
+  // Andrea verbatim: "Ogni esperimento è una lavagna. Se io scrivo su un esperimento,
+  // sto scrivendo su una lavagna, cambio esperimento, scriverò su un'altra lavagna."
+  describe('Cross-experiment swap — ZERO bleed regression (iter 45 C)', () => {
+    it('exp A save → exp B save → return A: A paths intatti, B isolato', () => {
+      // Reset mocks for live storage simulation
+      const realStorage = {};
+      vi.spyOn(localStorage, 'setItem').mockImplementation((k, v) => { realStorage[k] = v; });
+      vi.spyOn(localStorage, 'getItem').mockImplementation((k) => realStorage[k] || null);
+
+      const pathsA = [{ d: 'M0,0 L10,10', color: 'red' }];
+      const pathsB = [{ d: 'M5,5 L20,20', color: 'blue' }];
+
+      saveDrawingPaths(pathsA, 'v1-cap6-esp1');
+      saveDrawingPaths(pathsB, 'v2-cap8-esp3');
+
+      const reloadedA = loadDrawingPaths('v1-cap6-esp1');
+      const reloadedB = loadDrawingPaths('v2-cap8-esp3');
+
+      expect(reloadedA).toEqual(pathsA);
+      expect(reloadedB).toEqual(pathsB);
+      // Cross-check: A != B
+      expect(reloadedA).not.toEqual(reloadedB);
+    });
+
+    it('experimentId switch + back preserva separation (no overwrite)', () => {
+      const realStorage = {};
+      vi.spyOn(localStorage, 'setItem').mockImplementation((k, v) => { realStorage[k] = v; });
+      vi.spyOn(localStorage, 'getItem').mockImplementation((k) => realStorage[k] || null);
+
+      saveDrawingPaths([{ id: 'a1' }], 'expA');
+      saveDrawingPaths([{ id: 'b1' }], 'expB');
+      saveDrawingPaths([{ id: 'c1' }], 'expC');
+      // Re-save expA con state aggiornato
+      saveDrawingPaths([{ id: 'a1' }, { id: 'a2' }], 'expA');
+
+      expect(loadDrawingPaths('expA')).toEqual([{ id: 'a1' }, { id: 'a2' }]);
+      expect(loadDrawingPaths('expB')).toEqual([{ id: 'b1' }]);
+      expect(loadDrawingPaths('expC')).toEqual([{ id: 'c1' }]);
+    });
+
+    it('legacy bucket "paths" non viene contaminato da experiment-scoped saves', () => {
+      const realStorage = {};
+      vi.spyOn(localStorage, 'setItem').mockImplementation((k, v) => { realStorage[k] = v; });
+      vi.spyOn(localStorage, 'getItem').mockImplementation((k) => realStorage[k] || null);
+
+      saveDrawingPaths([{ legacy: true }], null);  // sandbox legacy
+      saveDrawingPaths([{ exp: 'A' }], 'expA');
+
+      expect(loadDrawingPaths(null)).toEqual([{ legacy: true }]);
+      expect(loadDrawingPaths('expA')).toEqual([{ exp: 'A' }]);
+    });
+  });
 });
