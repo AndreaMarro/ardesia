@@ -183,3 +183,7 @@ Vol. 3 pag. 88 estende questo pattern fino a 4 LED + sensore TMP36 + Serial outp
 - `"unsigned long rollover millis 49 giorni"`
 - `"multi task Arduino senza bloccare"`
 - `"micros() risoluzione timing fine"`
+
+## Analogia per la classe
+
+Ragazzi, delay() è come fermare l'orologio: tutto si blocca finché finisce. millis() è il cronometro che corre sempre: voi guardate quanto è passato senza fermarvi. Se Arduino deve fare 2 cose insieme, serve millis().

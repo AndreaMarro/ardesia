@@ -117,9 +117,28 @@ function sanitizeChatbotText(raw) {
 }
 
 function MascotteAvatar() {
+  // Iter 44 fix Andrea 2026-05-06: chat avatar UNLIM era RobotIcon SVG
+  // generico (foto 1 segnalata "dovrebbe esserci vero logo"). Sostituito
+  // con PNG mascotte ELAB ufficiale `elab-mascot-vera.png` (stesso asset
+  // homepage). Animazioni elab-mascotte-vera class apply (idle bob +
+  // glow pulse + filter url(#elabRemoveWhite) per sfondo bianco baked-in).
   return (
     <span className={styles.mascotteSmall} aria-hidden="true">
-      <RobotIcon size={22} color="var(--elab-navy)" />
+      <img
+        src="/assets/mascot/elab-mascot-vera.png"
+        alt="UNLIM"
+        className="elab-mascotte-vera"
+        loading="eager"
+        decoding="async"
+        draggable={false}
+        style={{
+          width: 28,
+          height: 28,
+          objectFit: 'contain',
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}
+      />
     </span>
   );
 }

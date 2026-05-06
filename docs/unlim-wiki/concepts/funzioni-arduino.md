@@ -202,3 +202,7 @@ Vol. 3 pag. 113 introduce riferimenti come "tecnica avanzata" — utile per modi
 - `"parametro per valore vs riferimento"`
 - `"void function senza ritorno"`
 - `"prototipo funzione Arduino IDE"`
+
+## Analogia per la classe
+
+Ragazzi, una funzione è come una ricetta: scrivete una volta come si fa la torta, poi ogni volta che volete una torta basta dire 'fai la torta' invece di rifare tutti i passaggi. Il codice diventa breve e chiaro.

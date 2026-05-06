@@ -159,3 +159,7 @@ int letturaPulita = constrain(analogRead(A0), 100, 900);
 - `"potenziometro LED PWM map"`
 - `"map regola di tre formula"`
 - `"mapfloat float Arduino"`
+
+## Analogia per la classe
+
+Ragazzi, map() è come tradurre da una lingua a un'altra: 0-1023 del potenziometro diventa 0-255 del LED. constrain() è il guardiano che tiene un valore dentro i limiti permessi (mai sotto 0, mai sopra 100).

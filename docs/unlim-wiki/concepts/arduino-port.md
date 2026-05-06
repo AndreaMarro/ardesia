@@ -161,3 +161,7 @@ Argomento avanzato Arduino non coperto nei volumi ELAB Tutor V0.13. Riferimenti 
 - `"DDRB PORTB PINB Arduino"`
 - `"manipolazione bit pin Arduino"`
 - `"speedup pin toggle PORT"`
+
+## Analogia per la classe
+
+Ragazzi, immaginate i PORT register come telecomando rapido per ogni stanza di una grande casa: invece di chiamare al telefono per accendere la luce (digitalWrite), schiacciate direttamente il pulsante. Velocissimo MA serve sapere quale pulsante per quale stanza.

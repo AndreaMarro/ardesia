@@ -146,6 +146,13 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    // Iter 44 fix Andrea 2026-05-06 "deve avere spazio in alto":
+    // marginTop offset per evitare greeting bubble taglio top viewport.
+    // Hero header `padding: '24px 16px 16px'` + bubble height ~50px =
+    // bubble margin-bottom 24 ⇒ totale ~98px above mascotte top edge.
+    // Su LIM 1080p OK MA su laptop 13" 800h hero hero takes 50% screen
+    // bubble esce sopra. marginTop 60px adds clearance.
+    marginTop: 60,
   },
   heroRightMobile: {
     width: 160,

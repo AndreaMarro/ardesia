@@ -139,3 +139,7 @@ Per amplificazione lineare evitare saturazione: bias tale che Vce_quiescente ≈
 - `"zona attiva vs saturazione transistor"`
 - `"clipping amplificatore BJT saturato"`
 - `"safety factor 10 Ib saturazione"`
+
+## Analogia per la classe
+
+Ragazzi, BJT in saturazione è come un interruttore della luce completamente abbassato: corrente passa al massimo, niente sprechi. Quando il transistor è 'tutto giù' (saturazione) è come un cavo dritto.

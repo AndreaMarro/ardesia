@@ -150,3 +150,7 @@ Per uso didattico in classe, il bias è trascurabile. Per simulazioni statistich
 - `"Simon Says game Arduino"`
 - `"pseudo-casuale LCG seed"`
 - `"dado digitale LED random"`
+
+## Analogia per la classe
+
+Ragazzi, random() è come tirare un dado: ogni volta esce un numero diverso. Serve quando volete che il programma faccia cose diverse senza copione fisso (es. LED che lampeggia a tempi casuali).

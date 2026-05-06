@@ -115,3 +115,7 @@ Vs. lo stesso BJT in zona lineare (R_b sbagliata, beta = 50, Ib = 100 µA):
 - `"calcolo Pd BJT Vce Ic"`
 - `"BC547 thermal limit 625 mW"`
 - `"thermal runaway BJT carico induttivo"`
+
+## Analogia per la classe
+
+Ragazzi, un transistor BJT che lavora tanto è come voi quando correte: si scalda. Se corre troppo a lungo senza riposo (dissipatore), si rompe. Il dissipatore è il ventilatore che lo raffredda.
