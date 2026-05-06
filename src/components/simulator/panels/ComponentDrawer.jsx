@@ -167,6 +167,63 @@ const ComponentDrawer = ({
   const dragOffsetRef = useRef({ x: 0, y: 0 });
   const panelRef = useRef(null);
 
+  // iter 45 fix Andrea video 06/05/2026 "rendilo allungabile e allargabile":
+  // size state per pannello guided. Persiste localStorage. Default null usa
+  // clamp() default da floatingCard. Min 240×260, Max 600×720.
+  const SIZE_STORAGE_KEY = 'elab-component-drawer-guided-size';
+  const [size, setSize] = useState(() => {
+    try {
+      const raw = localStorage.getItem(SIZE_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed?.w >= 240 && parsed?.w <= 600 && parsed?.h >= 260 && parsed?.h <= 720) {
+          return parsed;
+        }
+      }
+    } catch { /* localStorage unavailable */ }
+    return null;
+  });
+  const isResizingRef = useRef(false);
+  const resizeStartRef = useRef({ x: 0, y: 0, w: 0, h: 0 });
+
+  const handleResizeStart = useCallback((e) => {
+    if (mode !== 'guided' || !panelRef.current) return;
+    e.preventDefault();
+    e.stopPropagation();
+    isResizingRef.current = true;
+    const rect = panelRef.current.getBoundingClientRect();
+    resizeStartRef.current = {
+      x: e.clientX, y: e.clientY,
+      w: rect.width, h: rect.height,
+    };
+    if (e.pointerId !== undefined) {
+      e.target.setPointerCapture?.(e.pointerId);
+    }
+  }, [mode]);
+
+  const handleResizeMove = useCallback((e) => {
+    if (!isResizingRef.current) return;
+    const dx = e.clientX - resizeStartRef.current.x;
+    const dy = e.clientY - resizeStartRef.current.y;
+    const newW = Math.max(240, Math.min(600, resizeStartRef.current.w + dx));
+    const newH = Math.max(260, Math.min(720, resizeStartRef.current.h + dy));
+    setSize({ w: newW, h: newH });
+  }, []);
+
+  const handleResizeEnd = useCallback((e) => {
+    if (!isResizingRef.current) return;
+    isResizingRef.current = false;
+    if (e?.pointerId !== undefined && e.target?.releasePointerCapture) {
+      try { e.target.releasePointerCapture(e.pointerId); } catch { /* noop */ }
+    }
+    setSize((prev) => {
+      if (prev) {
+        try { localStorage.setItem(SIZE_STORAGE_KEY, JSON.stringify(prev)); } catch { /* noop */ }
+      }
+      return prev;
+    });
+  }, []);
+
   // S89: Pointer handlers for dragging the panel header
   const handlePanelDragStart = useCallback((e) => {
     if (mode !== 'guided' || !panelRef.current) return;
@@ -315,8 +372,12 @@ const ComponentDrawer = ({
   const guidedPosStyle = dragPos
     ? { top: dragPos.y, left: dragPos.x, right: 'auto' }
     : {}; // default from styles.floatingCard (right: 12, top: 12)
+  // iter 45 fix Andrea: applica size se settata (override clamp default).
+  const guidedSizeStyle = size
+    ? { width: size.w, maxWidth: size.w, height: size.h, maxHeight: size.h }
+    : {};
   const containerStyle = mode === 'guided'
-    ? { ...styles.floatingCard, ...guidedPosStyle }
+    ? { ...styles.floatingCard, ...guidedPosStyle, ...guidedSizeStyle }
     : styles.drawer;
 
   return (
@@ -525,6 +586,40 @@ const ComponentDrawer = ({
               />
             ))}
           </div>
+        </div>
+      )}
+
+      {/* iter 45 fix Andrea video 06/05/2026: resize handle visibile bottom-right
+           per modalità guided (Passo Passo). Persiste size in localStorage. */}
+      {mode === 'guided' && (
+        <div
+          role="separator"
+          aria-label="Ridimensiona pannello passo passo"
+          aria-orientation="diagonal"
+          onPointerDown={handleResizeStart}
+          onPointerMove={handleResizeMove}
+          onPointerUp={handleResizeEnd}
+          onPointerCancel={handleResizeEnd}
+          style={{
+            position: 'absolute',
+            right: 0,
+            bottom: 0,
+            width: 24,
+            height: 24,
+            cursor: 'nwse-resize',
+            zIndex: 31,
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'flex-end',
+            padding: 4,
+            touchAction: 'none',
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M11 1 L1 11 M11 5 L5 11 M11 9 L9 11"
+                  stroke="var(--color-border-hover, #9CA3AF)"
+                  strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
         </div>
       )}
     </div>

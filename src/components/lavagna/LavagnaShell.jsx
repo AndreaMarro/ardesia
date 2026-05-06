@@ -655,6 +655,13 @@ export default function LavagnaShell() {
     // wire-up Edge Function chain decisione orchestratore Phase 4). NON muta
     // currentExperiment — preserva canvas (no clearAll).
     if (nextMode === 'percorso' && typeof window !== 'undefined') {
+      // iter 45 fix Andrea video 06/05/2026 "percorso non funziona": auto-apri UNLIM
+      // panel con tab 'percorso' come faceva handleBuildModeChange line 790-794 per
+      // buildMode='sandbox'. Senza questo, click Percorso aggiornava solo lo stato
+      // interno ma nulla diventava visibile per l'utente.
+      setGalileoOpen(true);
+      setUnlimTab('percorso');
+      manualOverridesRef.current.galileo = true;
       const api = window.__ELAB_API;
       if (api?.unlim?.aggregateContext) {
         try {
@@ -1248,6 +1255,7 @@ export default function LavagnaShell() {
                    l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
               <NewElabSimulator
                 hideLessonPath
+                hideBuildModeBar
                 enableDrawingSync
               />
             </Suspense>

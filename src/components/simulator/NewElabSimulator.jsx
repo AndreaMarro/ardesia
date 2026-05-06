@@ -103,6 +103,11 @@ const NewElabSimulator = ({
   activeVolume = null,
   hideLessonPath = false,
   hideComponentDrawer = false,
+  // iter 45 fix Andrea video 06/05/2026 "tasti sovrapposti": nasconde il BUILD MODE
+  // SWITCHER duplicato (Già Montato/Passo Passo/Libero) quando il simulatore gira
+  // dentro la Lavagna che ha la sua ModalitaSwitch canonical. Default false preserva
+  // il rendering legacy nel route #tutor standalone.
+  hideBuildModeBar = false,
   enableDrawingSync = false,
 }) => {
   // ─── UNLIM API highlight state (internal, merged with props) ───
@@ -838,8 +843,8 @@ const NewElabSimulator = ({
         </div>
       )}
 
-      {/* BUILD MODE SWITCHER */}
-      {currentExperiment && currentExperiment.buildSteps && currentExperiment.buildSteps.length > 0 && (
+      {/* BUILD MODE SWITCHER — iter 45 hideBuildModeBar prop nasconde duplicato in Lavagna */}
+      {!hideBuildModeBar && currentExperiment && currentExperiment.buildSteps && currentExperiment.buildSteps.length > 0 && (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, padding: '8px 16px', background: 'var(--color-bg-secondary, #F7F8FA)', borderBottom: '1px solid var(--color-border, #E5E5E5)', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
           <div style={{ display: 'flex', gap: 3, background: 'var(--color-bg-tertiary, #ECECF0)', borderRadius: 12, padding: 4 }}>
             {[
