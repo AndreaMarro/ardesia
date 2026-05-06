@@ -828,6 +828,23 @@ export default function LavagnaShell() {
         setActiveTool(next ? 'pen' : 'select');
         const penApi = typeof window !== 'undefined' && window.__ELAB_API;
         if (penApi?.toggleDrawing) penApi.toggleDrawing(next);
+        // iter 45 B5: switch back to pen mode (off eraser) when entering pen.
+        try {
+          window.dispatchEvent(new CustomEvent('elab-set-eraser-mode', { detail: { eraser: false } }));
+        } catch { /* noop */ }
+        return;
+      }
+      // iter 45 fix Andrea video2 06/05/2026 B5 "manca la gomma": tool eraser
+      // attiva drawing mode + switch isEraser=true via CustomEvent globale che
+      // DrawingOverlay (canvas/DrawingOverlay.jsx) ascolta e toggla state.
+      case 'eraser': {
+        setDrawingEnabled(true);
+        setActiveTool('eraser');
+        const eraserApi = typeof window !== 'undefined' && window.__ELAB_API;
+        if (eraserApi?.toggleDrawing) eraserApi.toggleDrawing(true);
+        try {
+          window.dispatchEvent(new CustomEvent('elab-set-eraser-mode', { detail: { eraser: true } }));
+        } catch { /* noop */ }
         return;
       }
       case 'delete': {

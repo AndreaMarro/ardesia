@@ -76,6 +76,19 @@ const tools = [
       </svg>
     ),
   },
+  // iter 45 fix Andrea video2 06/05/2026 B5 "manca la gomma": gomma esposta
+  // accanto alla penna nella FloatingToolbar (oltre quella già nel drawing
+  // toolbar interno DrawingOverlay top-center). Toggle modalità eraser via
+  // window CustomEvent 'elab-set-eraser-mode' che DrawingOverlay ascolta.
+  {
+    id: 'eraser',
+    label: 'Gomma',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M3 16h11M5 11l7-7 4 4-7 7H5v-4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export default function FloatingToolbar({
