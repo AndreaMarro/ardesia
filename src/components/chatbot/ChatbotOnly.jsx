@@ -387,7 +387,10 @@ export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
       return;
     }
     if (typeof window !== 'undefined') {
-      window.location.hash = '#';
+      // Iter 44 fix Andrea 2026-05-06 PM "non si puo tornare indietro":
+      // hash = '#' empty → App.jsx getPageFromHash null → setCurrentPage skip
+      // → no re-render. Fix: explicit '#home' route VALID_HASHES.
+      window.location.hash = '#home';
     }
   }, [onBackHome]);
 

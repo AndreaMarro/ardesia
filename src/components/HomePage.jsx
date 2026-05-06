@@ -552,29 +552,22 @@ export default function HomePage({ onNavigate }) {
   }, [onNavigate]);
 
   // Iter 37 Atom A6 — close handler for EasterModal (clears #about-easter hash)
+  // Iter 44 fix Andrea 2026-05-06 PM "non si puo tornare indietro": esplicito
+  // navigate '#home' invece di clear hash empty (App.jsx VALID_HASHES requires
+  // route name esplicito per setCurrentPage trigger).
   const handleEasterClose = useCallback(() => {
     if (typeof window !== 'undefined') {
-      // Clear hash but stay on home (avoid scroll jump)
-      try {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        setHash('');
-      } catch {
-        window.location.hash = '';
-        setHash('');
-      }
+      window.location.hash = '#home';
+      setHash('#home');
     }
   }, []);
 
   // Iter 37 Atom A6 — back home from ChatbotOnly
+  // Iter 44 fix idem.
   const handleChatbotBackHome = useCallback(() => {
     if (typeof window !== 'undefined') {
-      try {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        setHash('');
-      } catch {
-        window.location.hash = '';
-        setHash('');
-      }
+      window.location.hash = '#home';
+      setHash('#home');
     }
   }, []);
 

@@ -894,7 +894,11 @@ export default function LavagnaShell() {
       try {
         sessionTracker?.finaliseSession?.();
       } catch { /* silent — best effort persistence */ }
-      window.location.hash = '#tutor';
+      // Iter 44 fix Andrea 2026-05-06 PM "non si puo tornare indietro a homepage":
+      // Esci → '#tutor' veniva intercettato App.jsx S8 redirect (Strangler Fig
+      // switch) e tornava a '#lavagna' = loop infinito senza exit. Fix: torna
+      // direttamente a '#home' (route VALID_HASHES iter 35 P0 default landing).
+      window.location.hash = '#home';
     }
   }, [currentExperiment, sessionTracker]);
 
