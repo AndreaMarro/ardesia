@@ -33,6 +33,12 @@ const BANANA_THRESHOLD = 5;
 const BANANA_DURATION_MS = 30000;
 const GIF_COUNT = 4;
 
+// Iter 44 fix Andrea 2026-05-06: foto HD scimpanze vera (Wikimedia Commons
+// public domain). 1280×960 516 KB. Fonte: Schimpanse_Zoo_Leipzig.jpg
+// (commons.wikimedia.org). Mostrata pre-banana-mode insieme a SVG fallback
+// se 4 GIF placeholder mancano (`scimpanze-{1..4}.gif` non droppate Andrea).
+const SCIMPANZE_HD_PHOTO = '/easter/scimpanze-hd.jpg';
+
 /**
  * Fallback SVG mostrato se la GIF scimpanze non è disponibile (404).
  * Mascotte UNLIM stilizzata + messaggio plurale Principio Zero.
@@ -72,6 +78,7 @@ export default function EasterModal({ isOpen = true, onClose }) {
   const closeBtnRef = useRef(null);
   const previousFocusRef = useRef(null);
   const [imgError, setImgError] = useState(false);
+  const [photoError, setPhotoError] = useState(false);
   const [bananaClicks, setBananaClicks] = useState(() => {
     if (typeof localStorage === 'undefined') return 0;
     try {
@@ -218,13 +225,28 @@ export default function EasterModal({ isOpen = true, onClose }) {
             type="button"
             className={styles.scimpanzeFrame}
             onClick={handleScimpanzeClick}
-            aria-label={imgError
+            aria-label={photoError
               ? 'Ragazzi, ancora niente scimpanze qui — torneranno presto!'
-              : 'Scimpanzè ELAB — clic per sorpresa'}
+              : 'Scimpanzè ELAB — premi 5 volte per sorpresa banana'}
             data-testid="easter-scimpanze-trigger"
           >
-            {imgError ? (
+            {/* Iter 44 fix Andrea 2026-05-06: foto HD scimpanze vera
+                (Wikimedia Commons public domain) PRIMARY. GIF placeholder
+                tentate solo se Andrea dropperà 4 GIF in public/easter/.
+                Cascade fallback: GIF → HD photo → SVG mascotte stilizzata. */}
+            {photoError ? (
               <ScimpanzeFallback />
+            ) : imgError ? (
+              <img
+                className={styles.scimpanzeImg}
+                src={SCIMPANZE_HD_PHOTO}
+                alt="Scimpanzè ELAB — foto HD Wikimedia Commons"
+                onError={() => setPhotoError(true)}
+                loading="eager"
+                decoding="async"
+                draggable={false}
+                data-testid="easter-scimpanze-photo"
+              />
             ) : (
               <img
                 className={styles.scimpanzeImg}

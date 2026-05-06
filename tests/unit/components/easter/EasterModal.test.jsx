@@ -129,10 +129,21 @@ describe('EasterModal', () => {
     expect(localStorage.getItem('elab-easter-banana-clicks')).toBe('2');
   });
 
-  it('falls back to ScimpanzeFallback SVG on image load error', () => {
+  it('falls back to HD photo on GIF load error (iter 44)', () => {
     render(<EasterModal isOpen={true} onClose={() => {}} />);
     const img = screen.getByTestId('easter-scimpanze-img');
     fireEvent.error(img);
+    // Iter 44 cascade: GIF 404 → HD photo Wikimedia public domain (PRIMARY).
+    expect(screen.getByTestId('easter-scimpanze-photo')).toBeInTheDocument();
+  });
+
+  it('falls back to ScimpanzeFallback SVG on cascade GIF + HD photo error', () => {
+    render(<EasterModal isOpen={true} onClose={() => {}} />);
+    const gifImg = screen.getByTestId('easter-scimpanze-img');
+    fireEvent.error(gifImg);
+    // After GIF error → HD photo rendered. Now fail HD photo too.
+    const photoImg = screen.getByTestId('easter-scimpanze-photo');
+    fireEvent.error(photoImg);
     expect(screen.getByTestId('easter-fallback')).toBeInTheDocument();
   });
 
