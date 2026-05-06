@@ -102,7 +102,7 @@ function _normalizeExpId(experimentId) {
  * @returns {Promise<{paths: Array, updatedAt: string} | null>}
  *          null = not configured / not found / error (caller falls back to localStorage)
  */
-export async function loadPaths(experimentId) {
+export async function loadPaths(experimentId, sessionId = null) {
   if (!isSupabaseConfigured()) return null;
 
   const expId = _normalizeExpId(experimentId);
@@ -118,6 +118,15 @@ export async function loadPaths(experimentId) {
       query = query.eq('user_id', userId);
     } else {
       query = query.is('user_id', null);
+    }
+
+    // Sprint V iter 1 Atom A2.3 — session_id scoping (optional).
+    // Quando il caller non fornisce sessionId, manteniamo backward-compat
+    // matchando le righe legacy con session_id NULL.
+    if (typeof sessionId === 'string' && sessionId.length > 0) {
+      query = query.eq('session_id', sessionId);
+    } else {
+      query = query.is('session_id', null);
     }
 
     query = query.order('updated_at', { ascending: false }).limit(1);
@@ -143,7 +152,7 @@ export async function loadPaths(experimentId) {
  * @param {Array} paths — array of {points,color,width,isEraser}
  * @returns {Promise<{success: boolean, error?: string}>}
  */
-export async function savePaths(experimentId, paths) {
+export async function savePaths(experimentId, paths, sessionId = null) {
   if (!isSupabaseConfigured()) {
     return { success: false, error: 'Supabase non configurato' };
   }
@@ -154,19 +163,23 @@ export async function savePaths(experimentId, paths) {
   const expId = _normalizeExpId(experimentId);
   const userId = _getAnonUserId();
   const classKey = _getClassKey();
+  const sessId = (typeof sessionId === 'string' && sessionId.length > 0) ? sessionId : null;
 
   const row = {
     experiment_id: expId,
     user_id: userId,
     class_key: classKey,
+    session_id: sessId,
     paths,
     updated_at: new Date().toISOString(),
   };
 
   try {
+    // Sprint V iter 1 Atom A2.3 — onConflict include session_id per la nuova
+    // unique constraint (session_id, experiment_id, user_id).
     const { error } = await supabase
       .from(TABLE_NAME)
-      .upsert(row, { onConflict: 'experiment_id,user_id' });
+      .upsert(row, { onConflict: 'session_id,experiment_id,user_id' });
     if (error) {
       return { success: false, error: error.message || String(error) };
     }
@@ -241,30 +254,34 @@ export function subscribePaths(experimentId, onChange) {
  * @param {number} [delayMs=2000]
  * @returns {void}
  */
-export function debouncedSave(experimentId, paths, delayMs = 2000) {
+export function debouncedSave(experimentId, paths, delayMs = 2000, sessionId = null) {
   const expId = _normalizeExpId(experimentId);
-  const prev = debounceTimers.get(expId);
+  const sessKey = (typeof sessionId === 'string' && sessionId.length > 0) ? sessionId : '_';
+  const timerKey = `${sessKey}::${expId}`;
+  const prev = debounceTimers.get(timerKey);
   if (prev) clearTimeout(prev);
 
   const t = setTimeout(() => {
-    debounceTimers.delete(expId);
+    debounceTimers.delete(timerKey);
     // fire-and-forget; caller doesn't await
-    savePaths(experimentId, paths).catch(() => { /* swallow */ });
+    savePaths(experimentId, paths, sessionId).catch(() => { /* swallow */ });
   }, Math.max(0, delayMs));
 
-  debounceTimers.set(expId, t);
+  debounceTimers.set(timerKey, t);
 }
 
 /**
  * Cancel any pending debounced save for an experiment (e.g. on unmount).
  * @param {string|null} experimentId
  */
-export function cancelDebouncedSave(experimentId) {
+export function cancelDebouncedSave(experimentId, sessionId = null) {
   const expId = _normalizeExpId(experimentId);
-  const prev = debounceTimers.get(expId);
+  const sessKey = (typeof sessionId === 'string' && sessionId.length > 0) ? sessionId : '_';
+  const timerKey = `${sessKey}::${expId}`;
+  const prev = debounceTimers.get(timerKey);
   if (prev) {
     clearTimeout(prev);
-    debounceTimers.delete(expId);
+    debounceTimers.delete(timerKey);
   }
 }
 

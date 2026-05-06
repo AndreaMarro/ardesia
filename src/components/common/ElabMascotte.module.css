@@ -1,0 +1,133 @@
+/**
+ * ElabMascotte — animated SVG mascotte ELAB
+ * Sprint V iter 1 Phase 3 WebDesigner-1 Atom A10 NEW component.
+ *
+ * Andrea mandate iter 42 PM 2026-05-05: "nella homepage voglio mascotte
+ * e nessuna emoticon e i crediti per teodora de venere". Andrea ha
+ * esplicitamente chiesto mascotte design impeccable per HomePage hero.
+ *
+ * Stati supportati via data-state:
+ *   - idle    — blink eyes 3s loop
+ *   - speaks  — mouth wave 0.5s (TTS active)
+ *   - listens — ear/antenna pulse 1s (mic active)
+ *
+ * Size variants via data-size:
+ *   - hero  — 200x200 desktop (160x160 mobile via media query)
+ *   - small — 60x60
+ *
+ * Accessibility:
+ *   - prefers-reduced-motion respected (NO animation)
+ *   - aria-label fornito da componente parent
+ *
+ * Palette tokens:
+ *   --elab-navy #1E4D8C  — body
+ *   --elab-lime #4A7A25  — antenna + smile + accents
+ *   --elab-orange #E8941C — antenna tip glow
+ *   --elab-red #E54B3D   — heart bottom (Tea credit signature)
+ */
+
+.mascotte {
+  display: inline-block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+}
+
+.mascotte[data-size="hero"] {
+  width: 200px;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .mascotte[data-size="hero"] {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.mascotte[data-size="small"] {
+  width: 60px;
+  height: 60px;
+}
+
+/* ═══════════════ IDLE state ═══════════════ */
+/* Blink eyes 3s loop — gentle ambient. */
+.eyeLeft,
+.eyeRight {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.mascotte[data-state="idle"] .eyeLeft,
+.mascotte[data-state="idle"] .eyeRight {
+  animation: elab-mascotte-blink 3.6s ease-in-out infinite;
+}
+
+.mascotte[data-state="idle"] .body {
+  animation: elab-mascotte-bob 3.6s ease-in-out infinite;
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+
+/* ═══════════════ SPEAKS state (TTS active) ═══════════════ */
+/* Mouth waves 0.5s loop. */
+.mouth {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.mascotte[data-state="speaks"] .mouth {
+  animation: elab-mascotte-mouth-wave 0.5s ease-in-out infinite;
+}
+
+.mascotte[data-state="speaks"] .body {
+  animation: elab-mascotte-bob 1.8s ease-in-out infinite;
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+
+/* ═══════════════ LISTENS state (mic active) ═══════════════ */
+/* Antenna tip pulse 1s loop. */
+.antennaTipLeft,
+.antennaTipRight {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.mascotte[data-state="listens"] .antennaTipLeft,
+.mascotte[data-state="listens"] .antennaTipRight {
+  animation: elab-mascotte-antenna-pulse 1s ease-in-out infinite;
+}
+
+/* ═══════════════ Keyframes ═══════════════ */
+@keyframes elab-mascotte-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes elab-mascotte-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes elab-mascotte-mouth-wave {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  50% { transform: scaleY(1.4) scaleX(0.9); }
+}
+
+@keyframes elab-mascotte-antenna-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.85; }
+}
+
+/* ═══════════════ prefers-reduced-motion ═══════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .mascotte .eyeLeft,
+  .mascotte .eyeRight,
+  .mascotte .mouth,
+  .mascotte .antennaTipLeft,
+  .mascotte .antennaTipRight,
+  .mascotte .body {
+    animation: none !important;
+  }
+}

@@ -116,6 +116,27 @@ describe('Wake word permission denied iter 36 Atom A9 Bug 8', () => {
     expect(capturedEvent.detail.message).toContain('Ragazzi');
   });
 
+  // Sprint V iter 1 Atom A13.1 — Wake word UX feedback unsupported (Tester-1)
+  it('Sprint V A13.1: dispatches elab-wake-word-error code="unsupported" when SpeechRecognition undefined', () => {
+    // Force unsupported environment: remove both SpeechRecognition + webkit
+    delete window.SpeechRecognition;
+    delete window.webkitSpeechRecognition;
+
+    const dispatchSpy = vi.spyOn(window, 'dispatchEvent');
+
+    const started = startWakeWordListener({ onWake: vi.fn(), onCommand: vi.fn() });
+    expect(started).toBe(false);
+
+    const errorDispatches = dispatchSpy.mock.calls.filter(
+      call => call[0]?.type === 'elab-wake-word-error'
+    );
+    expect(errorDispatches.length).toBeGreaterThanOrEqual(1);
+    const ev = errorDispatches[0][0];
+    expect(ev.detail).toMatchObject({ code: 'unsupported' });
+    // PRINCIPIO ZERO plurale "Ragazzi" + actionable hint browser
+    expect(ev.detail.message).toMatch(/Ragazzi/);
+  });
+
   it('does NOT dispatch error event for benign error codes (no-speech)', () => {
     const dispatchSpy = vi.spyOn(window, 'dispatchEvent');
 

@@ -23,6 +23,28 @@ const WAKE_PHRASES = [
 
 const COMMAND_WINDOW_MS = 5000;
 
+/**
+ * Sprint V iter 3 — XSS hardening (Mistral multi-vendor finding).
+ * Fixed message map per error code. Dispatch event passes only code (+ literal
+ * static message for backward-compat LavagnaShell:591). Listener consumers
+ * MUST treat `detail.message` as plain text (React JSX safe by default;
+ * NEVER innerHTML). External-source messages are NEVER injected — strings
+ * defined at module scope are hardcoded literals.
+ */
+export const WAKE_WORD_ERROR_MESSAGES = Object.freeze({
+  unsupported: 'Ragazzi, su Safari/Firefox la voce "Ehi UNLIM" non funziona, usate Chrome o Edge.',
+  'not-allowed': 'Ragazzi, microfono non autorizzato. Abilitate il permesso microfono nelle impostazioni del browser per usare "Ehi UNLIM".',
+  'service-not-allowed': 'Ragazzi, microfono bloccato dal browser. Verificate impostazioni privacy.',
+  'audio-capture': 'Ragazzi, nessun microfono rilevato. Collegate un microfono al dispositivo.',
+  'no-speech': 'Ragazzi, non ho sentito nulla. Provate a parlare più vicino al microfono.',
+  network: 'Ragazzi, connessione internet assente. Voce "Ehi UNLIM" richiede internet.',
+});
+
+/** Resolve canonical safe message from code (XSS-hardened). */
+export function getWakeWordErrorMessage(code) {
+  return WAKE_WORD_ERROR_MESSAGES[code] || 'Ragazzi, problema con la voce "Ehi UNLIM". Riprovate.';
+}
+
 let recognition = null;
 let isListening = false;
 let commandMode = false;
@@ -48,6 +70,19 @@ export function isWakeWordSupported() {
  */
 export function startWakeWordListener({ onWake, onCommand, lang = 'it-IT' } = {}) {
   if (!isWakeWordSupported()) {
+    // Sprint V iter 1 Atom A1.1: surface UI event so docente sees actionable
+    // feedback on Safari/Firefox (era silent — Andrea reported "non funziona").
+    // LavagnaShell:589-599 ascolta `elab-wake-word-error` per toast docente.
+    try {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('elab-wake-word-error', {
+          detail: {
+            code: 'unsupported',
+            message: WAKE_WORD_ERROR_MESSAGES.unsupported,
+          },
+        }));
+      }
+    } catch (_) { /* ignore */ }
     logger.warn('[WakeWord] SpeechRecognition not supported');
     return false;
   }
@@ -137,9 +172,10 @@ export function startWakeWordListener({ onWake, onCommand, lang = 'it-IT' } = {}
         // LavagnaShell + similar listeners ascoltano `elab-wake-word-error` per toast/banner.
         try {
           if (typeof window !== 'undefined') {
+            // Sprint V iter 3 XSS hardening: code-driven message map (no external strings)
             window.dispatchEvent(new CustomEvent('elab-wake-word-error', {
               // iter 36 Atom A9 honesty caveat fix: prepend "Ragazzi, " plurale (PRINCIPIO ZERO V3 mandate).
-              detail: { code: event.error, message: 'Ragazzi, microfono non autorizzato. Abilitate il permesso microfono nelle impostazioni del browser per usare "Ehi UNLIM".' },
+              detail: { code: event.error, message: getWakeWordErrorMessage(event.error) },
             }));
           }
         } catch (_) { /* ignore */ }

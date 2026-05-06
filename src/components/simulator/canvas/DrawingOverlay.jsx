@@ -177,9 +177,17 @@ export default function DrawingOverlay({
         const localTs = lastLocalSaveAtRef.current || 0;
         const remoteIsNewer = remoteTs > localTs;
 
-        // Skip remote overwrite when remote=empty + local has paths + remote
-        // not newer (prevent accidental wipe by stale empty remote row)
-        if (remoteIsEmpty && localHasPaths && !remoteIsNewer) {
+        // Sprint V iter 1 Atom A2.1 — gap iter 34/35 fix parziale.
+        // localTs=0 quando user non ha disegnato sessione corrente → remote
+        // empty NON skippato (remoteIsNewer falso match) → wipe locale.
+        // Fix: se remote vuoto E local ha paths → skip incondizionato.
+        // Local prevale; perdita solo se utente cancella esplicitamente
+        // da altro device (edge case non primario classe LIM).
+        if (remoteIsEmpty && localHasPaths) {
+          return;
+        }
+        // Skip remote overwrite quando entrambi non-vuoti + remote non più nuovo
+        if (!remoteIsEmpty && localHasPaths && !remoteIsNewer) {
           return;
         }
         setPaths(remote.paths);

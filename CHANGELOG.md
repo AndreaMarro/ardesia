@@ -1,3 +1,52 @@
+## [Sprint V iter 1 — wake word UX + lavagna persist + Percorso morphic + Mascotte SVG + multi-vendor workflow] — 2026-05-06
+
+Sprint V iter 1 Andrea mandate 16 issue 2026-05-05 PM via Pattern S 4-agent OPUS PHASE-PHASE. Phase 1 (3 BG diagnoses identificate root cause D1 wake word HIGH 75% Safari/iOS unsupported + dismiss flag NO TTL, D2 lavagna persistenza H1-H6 falsified secondary architectural syncEnabled MAI passato true anti-inflation iter 28 confermato falso, D3 modalità HP1+HP3+HW1 Percorso NO-OP + ComponentDrawer/FloatingWindowCommon gates ortogonali). Phase 3 (4 BG agent Pattern S OPUS): wake word UX feedback browser unsupported + MicPermissionNudge TTL 24h + DrawingOverlay skip remote hydration + drawingSync session_id wiring + Supabase migration scribble_paths_session_id (3-tuple unique) + LavagnaShell handleModalitaChange Percorso morphic Onniscenza Sense 1.5 client-side bridge + NewElabSimulator hideComponentDrawer prop (passo-passo single-window) + HomePage ElabMascotte SVG inline 174 LOC + Tea credits footer 5 strong tags. Anti-regression+anti-inflation+retroactive scan mechanism shipped + multi-vendor workflow Claude Opus 4.7 + Kimi K2.6 + Mistral Large + Codex con anti-bias + anti-inflation G45 + retroactive validation. CoV 13498 PASS (+24 vs baseline 13474). Migration applied prod via repair drift + db push.
+
+### Added
+- `scripts/feature-parity-snapshot.sh` 12 metric snapshot diff (homepage cards, cronologia, modalita, lavagna comp, toolspec, RAG, wiki, lesson, vitest, edge, ADR, feedback)
+- `scripts/retroactive-regression-scan.sh` historical drift detect last N commits + audit md output
+- `scripts/anti-inflation-gate.sh` G45 mandate enforce score >=7.0 require Opus indipendente review
+- `scripts/git-hooks/pre-push-anti-regression.sh` blocking pre-push hook (regression block + inflation warn)
+- `scripts/multi-vendor/run-review.sh` Claude+Kimi+Mistral+Codex orchestrated workflow anti-bias + anti-inflation + retroactive
+- `src/components/common/ElabMascotte.jsx` + `.module.css` NEW (174 LOC + 117 LOC, 3 stati idle/speaks/listens, prefers-reduced-motion, palette ELAB Navy/Lime/Orange/Red+yellow LED)
+- `supabase/migrations/20260505000000_scribble_paths_session_id.sql` ALTER scribble_paths add session_id + 3-tuple unique constraint (APPLIED prod)
+- `tests/unit/sprint-V-iter-1-marker.test.js` TDD compliance marker (Governance Rule 2)
+- `tests/unit/components/HomePage.test.jsx` + `tests/unit/components/common/ElabMascotte.test.jsx` + `tests/unit/components/common/MicPermissionNudge.test.jsx` + `tests/unit/components/lavagna/LavagnaShell-modalita.test.jsx` + `tests/unit/components/simulator/NewElabSimulator-hideComponentDrawer.test.jsx` + `tests/unit/components/simulator/canvas/DrawingOverlay-skip-remote.test.jsx`
+- `tests/e2e/sprint-V-lavagna-persistence.spec.js` + `tests/e2e/sprint-V-modalita.spec.js`
+- `docs/audits/sprint-V-iter1-{wakeword,lavagna-persistence,modalita}-diagnosis.md` Phase 1 audit (3 file file:line citations, hypotheses falsified)
+- `docs/audits/multi-vendor-review-*.md` Kimi+Mistral brutal review identified RISCHI (race condition + stale state + multi-device clear) + SECURITY (XSS CustomEvent + GDPR lang hardcode + prompt injection onCommand) + ANTI-PATTERN (magic strings + empty catch + spaghetti booleans)
+- `docs/audits/retroactive-regression-scan-*.md` historical drift scan (zero drift last 15 commits)
+- `docs/plans/sprint-V-iter-1-PIANO-MASTER-2026-05-05.md` master plan 16 issue + Phase 0..4 + acceptance criteria + risk register
+- `automa/state/feature-parity-snapshot.json` baseline snapshot (4 card + cronologia + 4 modalita + 24 lavagna comp + 57 toolspec + 549 rag chunks + 126 wiki + 94 lesson paths + 13474 vitest + 11 edge + 17 adr + 18 feedback)
+
+### Changed
+- `src/services/wakeWord.js` dispatch CustomEvent `elab-wake-word-error` `{code:'unsupported',message}` plurale "Ragazzi" su browser unsupported (era silent fail)
+- `src/components/common/MicPermissionNudge.jsx` TTL 24h dismiss flag (legacy '1' treated expired, ri-prompt giornaliero)
+- `src/components/simulator/canvas/DrawingOverlay.jsx` skip remote hydration when remote vuoto + local has paths (gap iter 34/35 fix completo, localTs=0 race fixed)
+- `src/services/drawingSync.js` session_id wiring backward-compat (sessionId=null default, 25/25 PASS preserved)
+- `src/utils/drawingStorage.js` session-scoped bucket key fallback chain session→legacy→empty
+- `src/components/lavagna/LavagnaShell.jsx` handleModalitaChange Percorso morphic Onniscenza Sense 1.5 client-side bridge (best-effort aggregateContext, NO clearAll); pass hideComponentDrawer + enableDrawingSync props NewElabSimulator
+- `src/components/simulator/NewElabSimulator.jsx` accept hideComponentDrawer + enableDrawingSync props; ComponentDrawer suppress in passo-passo; DrawingOverlay syncEnabled drilled
+- `src/components/HomePage.jsx` ElabMascotte SVG hero + Tea credits footer 5 strong tags + sub-line attribution
+- Migration drift remote `20260501073000` + `20260501080000` repaired status reverted (prod migration history clean)
+
+### Anti-inflation retroactive validations (G45)
+- Iter 36 PHASE3-CLOSE score 8.0/10 NO Opus indipendente review (FLAGGED warn-only)
+- Iter 38 PHASE3-CLOSE score 9.5/10 NO Opus indipendente review (FLAGGED warn-only)
+- Iter 28 close doc-claim "Lavagna Bug 3 Supabase sync 25/25 PASS LIVE" REALITY FALSE (syncEnabled MAI passato true prod, D2 audit confirmed)
+
+### Open iter 2 carryover
+- 3 vitest todo (HomePage Tea text render path, MicPermissionNudge permState async race, LavagnaShell aggregateContext mock)
+- Onniscenza wire-up Edge Function chain (client-side bridge SHIPPED, server-side aggregator scaffold only iter 29)
+- Modalità libero merge in percorso semantica (4 modi attuali, Andrea mandate semantic 3 modi)
+- Mistral findings iter 2: race condition `lastLocalSaveAtRef`, XSS `wakeWord.js` message in CustomEvent UI render, GDPR lang hardcode, prompt injection `onCommand`, magic strings, empty catch, spaghetti booleans
+
+### PRs
+- PR #65 closed (regressioni HomePage Cronologia + UNLIM card + Tea credit)
+- PR #66 opened `fix/sprint-V-iter-1-homepage-restore-lavagna-fix`
+
+---
+
 ## [iter 42 PM — HomePage prod regression revert + Bug 2 mountExperiment fix + UNLIM env tuning autonomous] — 2026-05-05
 
 iter 42 PM autonomous decisions for max quality + zero regression Andrea mandate. PR #62 cherry-pick HomePage corretta `e2e-bypass-preview` HEAD `86b9b52` over main regression `ade4ae3` ("Kit fisici + volumi + software morfico" version Andrea forbade). Step-Back v84 deployed prod (system-prompt.ts:167 HIDDEN CoT iter 41 P0.2). Env vars critical fix prod: INCLUDE_UI_STATE_IN_ONNISCENZA=true + CANARY_DENO_DISPATCH_PERCENT=100 + ONNISCENZA_VERSION=v1 (V2 reverted iter 39 was -1.0pp PZ V3 + 36% slower). Bug 2 mountExperiment surgical fix: accept BOTH positional string AND `{id}/{experimentId}` object (intentsDispatcher passes args object, was silent fail return false → "Caricato" pillola UI shown but simulator empty). 4 parallel debug agents (HIGH/MED confidence reports). Sprint contract iter 42 committed. Hook verification-evidence-gate.sh WIRED `.claude/settings.local.json` Stop block (G45 anti-inflation mechanical).

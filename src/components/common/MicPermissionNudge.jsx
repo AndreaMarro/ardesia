@@ -40,7 +40,37 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { MicrophoneIcon } from './ElabIcons.jsx';
 
-const DISMISS_KEY = 'elab_mic_nudge_dismissed';
+// Legacy permanent dismiss key (iter 38, deprecated): 'elab_mic_nudge_dismissed'.
+// Sprint V iter 1 Atom A1.2: TTL 24h — dismiss expires so docente non-Chrome è
+// re-prompted al giorno dopo invece che permanently silenced. Legacy flag
+// 'elab-mic-nudge-dismissed' (single string '1') was permanent.
+const DISMISS_TS_KEY = 'elab-mic-nudge-dismissed-ts';
+const DISMISS_TTL_MS = 24 * 60 * 60 * 1000; // 24h
+
+/**
+ * Internal helper — read TTL-aware dismiss flag.
+ * Returns true if dismissed within last 24h, false otherwise.
+ * Migration: legacy string '1' under new key (or stored under DISMISS_KEY)
+ * is treated as expired (re-prompt immediately).
+ */
+function isDismissActive() {
+  try {
+    if (typeof localStorage === 'undefined') return false;
+    const raw = localStorage.getItem(DISMISS_TS_KEY);
+    if (!raw) return false;
+    const ts = Number(raw);
+    if (!Number.isFinite(ts) || ts <= 0) return false; // legacy '1' or junk
+    return (Date.now() - ts) < DISMISS_TTL_MS;
+  } catch { return false; }
+}
+
+function writeDismissNow() {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(DISMISS_TS_KEY, String(Date.now()));
+    }
+  } catch { /* no-op */ }
+}
 
 /**
  * Internal helper — query mic permission state.
@@ -92,12 +122,7 @@ export default function MicPermissionNudge({
 }) {
   const [permState, setPermState] = useState(null); // null | 'prompt' | 'granted' | 'denied' | 'unsupported'
   const [requesting, setRequesting] = useState(false);
-  const [dismissed, setDismissed] = useState(() => {
-    try {
-      return typeof localStorage !== 'undefined'
-        && localStorage.getItem(DISMISS_KEY) === '1';
-    } catch { return false; }
-  });
+  const [dismissed, setDismissed] = useState(() => isDismissActive());
   const mountedRef = useRef(true);
 
   useEffect(() => () => { mountedRef.current = false; }, []);
@@ -135,7 +160,7 @@ export default function MicPermissionNudge({
       setPermState('granted');
       if (typeof onGrant === 'function') onGrant();
       if (autoDismissOnGrant) {
-        try { localStorage.setItem(DISMISS_KEY, '1'); } catch { /* no-op */ }
+        writeDismissNow();
         setDismissed(true);
       }
     } catch (err) {
@@ -150,7 +175,7 @@ export default function MicPermissionNudge({
   }, [requesting, onGrant, onDeny, autoDismissOnGrant]);
 
   const handleDismiss = useCallback(() => {
-    try { localStorage.setItem(DISMISS_KEY, '1'); } catch { /* no-op */ }
+    writeDismissNow();
     setDismissed(true);
   }, []);
 

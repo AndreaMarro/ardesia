@@ -438,7 +438,8 @@ export default function LavagnaShell() {
   // invalid filtered out → setModalita default 'percorso' attivo MA bottone non mostrato attivo
   // perché il browser ricaricava su modalità non più rendered. Forziamo cleanup al mount.
   const [modalita, setModalita] = useState(() => {
-    const CANONICAL = ['percorso', 'passo-passo', 'gia-montato', 'libero'];
+    const CANONICAL = ['percorso', 'passo-passo', 'gia-montato'];
+    const MIGRATED_TO_PERCORSO = ['libero', 'guida-da-errore'];
     try {
       const v = localStorage.getItem('elab-lavagna-modalita');
       if (CANONICAL.includes(v)) return v;
@@ -619,8 +620,12 @@ export default function LavagnaShell() {
   // canvas) per consentire creazione libera senza esperimento pre-mounted.
   // Diagnose flow integrato dentro Già Montato + Passo Passo (mode 'guida-da-errore' REMOVED).
   const handleModalitaChange = useCallback((nextMode) => {
-    if (!['percorso', 'passo-passo', 'gia-montato', 'libero'].includes(nextMode)) {
-      return; // defensive: ignore unknown modes (e.g. legacy 'guida-da-errore')
+    // Sprint V iter 3 — 'libero' MERGED in 'percorso' (Andrea iter 1+ mandate). Migrate silently.
+    if (nextMode === 'libero' || nextMode === 'guida-da-errore') {
+      nextMode = 'percorso';
+    }
+    if (!['percorso', 'passo-passo', 'gia-montato'].includes(nextMode)) {
+      return; // defensive: ignore unknown modes
     }
     setModalita(nextMode);
     // Già Montato NEW: signal pre-assembled diagnose mode to simulator if API present
@@ -630,19 +635,29 @@ export default function LavagnaShell() {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
     }
-    // Iter 34 P0 fix Andrea bug "lavagna bianca selezionata non è mai vuota".
-    // Iter 35 P1 fix Andrea bug "premo libera e circuito rimane":
-    // - clearAll() pulisce simulator MA currentExperiment riresta settato → re-render ripopola componenti
-    // - setBuildMode('sandbox') NON è method API top-level → no-op
-    // Fix: set currentExperiment = null (deselect) + clearAll + remove localStorage exp id
-    if (nextMode === 'libero' && typeof window !== 'undefined') {
+    // Sprint V iter 1 Atom A5 — Percorso morphic Onniscenza Sense 1.5.
+    // Andrea mandate: vecchia "Libero" + adattamento contesto lezione+classe+sessioni.
+    // Trigger best-effort prefetch dell'aggregator Onniscenza (client-side bridge only;
+    // wire-up Edge Function chain decisione orchestratore Phase 4). NON muta
+    // currentExperiment — preserva canvas (no clearAll).
+    if (nextMode === 'percorso' && typeof window !== 'undefined') {
       const api = window.__ELAB_API;
-      try {
-        setCurrentExperiment(null);
-        if (api?.clearAll) api.clearAll();
-        try { localStorage.removeItem('elab-lavagna-exp-id'); } catch { /* noop */ }
-      } catch { /* noop */ }
+      if (api?.unlim?.aggregateContext) {
+        try {
+          api.unlim.aggregateContext({
+            lesson: api?.unlim?.getActiveLessonId?.() || null,
+            class_key: (() => {
+              try { return localStorage.getItem('elab-class-key') || null; } catch { return null; }
+            })(),
+            recent_sessions_limit: 5,
+          });
+        } catch { /* noop */ }
+      }
     }
+    // Sprint V iter 3 — 'libero' MERGED in 'percorso'. Legacy clearAll branch
+    // RIMOSSO: percorso preserva canvas (no clearAll) per Onniscenza morphic
+    // Sense 1.5 contesto lezione+classe+sessioni precedenti. Andrea iter 1+
+    // mandate: percorso = vecchia "Libero" + adattamento contesto morfico.
   }, []);
   useEffect(() => {
     try { localStorage.setItem('elab-lavagna-volume', String(currentVolume)); } catch {}
@@ -1183,7 +1198,11 @@ export default function LavagnaShell() {
                 <span>Caricamento simulatore...</span>
               </div>
             }>
-              <NewElabSimulator hideLessonPath />
+              <NewElabSimulator
+                hideLessonPath
+                hideComponentDrawer={modalita === 'passo-passo'}
+                enableDrawingSync
+              />
             </Suspense>
 
             <FloatingToolbar

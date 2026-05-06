@@ -1,14 +1,15 @@
 /**
- * ModalitaSwitch — 4 modes canonical UI per ADR-025 Sprint T iter 22+ (PROPOSED)
+ * ModalitaSwitch — 3 modes canonical UI Sprint V iter 3 (Andrea iter 1+ mandate)
  *
  * Modes (Italian K-12 plurale "Ragazzi" Principio Zero V3):
- *   • percorso     → 📖 Percorso (default narrative reading) ⭐
+ *   • percorso     → 📖 Percorso (default narrative reading + morphic Onniscenza Sense 1.5) ⭐
  *   • passo-passo  → 👣 Passo Passo (build sequenziale variazione interno capitolo)
  *   • gia-montato  → 🧩 Già Montato (pre-assembled diagnose mode, NEW iter 26)
- *   • libero       → 🎨 Libero (auto-Percorso, NON sandbox vuoto)
  *
- * Mode "guida-da-errore" REMOVED iter 26 (ADR-025 §4.5) — diagnose flow integrato
- * dentro Già Montato + Passo Passo inline.
+ * Modes REMOVED:
+ *   • guida-da-errore — iter 26 (ADR-025 §4.5) diagnose integrato Già Montato + Passo Passo inline
+ *   • libero — Sprint V iter 3 (Andrea iter 1+ mandate) MERGED in 'percorso' (Onniscenza morfico Sense 1.5)
+ *     Migration: localStorage 'libero' → 'percorso' on read (LavagnaShell:441-449)
  *
  * Iter 36 Phase 1 Atom A4 fix (PDR §3) — Modalità Percorso visibile:
  *   • availableModes prop opzionale: filter difensivo (mai escludere 'percorso')
@@ -22,7 +23,7 @@
 import React from 'react';
 import css from './ModalitaSwitch.module.css';
 
-export const MODALITA = ['percorso', 'passo-passo', 'gia-montato', 'libero'];
+export const MODALITA = ['percorso', 'passo-passo', 'gia-montato'];
 
 const MODE_META = {
   'percorso': {
@@ -41,12 +42,6 @@ const MODE_META = {
     icon: '🧩',
     label: 'Già Montato',
     tooltip: 'Ragazzi, guardate il circuito già pronto — sapete spiegarlo?',
-    isDefault: false,
-  },
-  'libero': {
-    icon: '🎨',
-    label: 'Libero',
-    tooltip: 'Ragazzi, esploriamo liberamente — UNLIM ci suggerisce variazioni.',
     isDefault: false,
   },
 };
