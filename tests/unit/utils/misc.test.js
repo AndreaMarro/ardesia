@@ -52,25 +52,30 @@ describe('cleanAndTruncate', () => {
     expect(result).toContain('LED');
   });
 
-  it('preserves [AZIONE:...] tags beyond word limit', () => {
+  // iter 45 fix Andrea video2 06/05/2026 B7: AZIONE/INTENT/STRUCTURED tags
+  // sono consumati dal browser dispatcher (intentsDispatcher iter 36 +
+  // 62-tool registry iter 31). Non DEVONO comparire in UI ("UNLIM SPIEGA
+  // L'ESPERIMENTO" mostrava raw tags Andrea screenshot).
+  it('STRIPS [AZIONE:...] tags from UI text (B7 fix iter 45)', () => {
     const longText = Array.from({ length: 65 }, (_, i) => `word${i}`).join(' ');
     const withAction = longText + ' [AZIONE:play]';
     const result = cleanAndTruncate(withAction);
-    expect(result).toContain('[AZIONE:play]');
+    expect(result).not.toContain('[AZIONE:');
   });
 
-  it('[AZIONE:...] tags do NOT count toward word limit', () => {
+  it('STRIPS [AZIONE:...] tags + does not let them affect word count (B7)', () => {
     const shortText = 'Il LED si accende. [AZIONE:highlight:led1] [AZIONE:play]';
     const result = cleanAndTruncate(shortText, 60);
     expect(result).not.toContain('...');
-    expect(result).toContain('[AZIONE:highlight:led1]');
+    expect(result).not.toContain('[AZIONE:');
+    expect(result).toContain('Il LED si accende');
   });
 
-  it('handles multiple [AZIONE:...] tags', () => {
+  it('STRIPS multiple [AZIONE:...] tags simultaneously (B7)', () => {
     const text = 'Avvio la simulazione. [AZIONE:play] [AZIONE:highlight:led1]';
     const result = cleanAndTruncate(text);
-    expect(result).toContain('[AZIONE:play]');
-    expect(result).toContain('[AZIONE:highlight:led1]');
+    expect(result).not.toContain('[AZIONE:');
+    expect(result).toContain('Avvio la simulazione');
   });
 });
 
