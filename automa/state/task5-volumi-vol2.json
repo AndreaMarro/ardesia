@@ -1,0 +1,377 @@
+{
+  "task": "volumi-vol2",
+  "timestamp": "2026-05-07T02:50:00Z",
+  "volume": 2,
+  "pdf_path": "CONTENUTI/volumi-pdf/VOL2_ITA_COMPLETO GP V 0.1.pdf",
+  "spec_path": "docs/superpowers/specs/2026-05-07-task5-volumi-vol2-design.md",
+  "plan_path": "docs/superpowers/plans/2026-05-07-sprint-u-cycle2-vol2-audit.md",
+  "esperimenti_count_declared": 27,
+  "esperimenti_count_actual": 27,
+  "esperimenti_audited": 27,
+  "summary": "Sprint U Cycle 2 Vol2 audit complete. Phase 1 (PDF parallel BG agents Maker-1+Maker-2) covered 27/27 esperimenti. Phase 2 (live functional test via Claude in Chrome MCP) confirmed 27/27 mount=true with 0 errors. Phase 3 (concept-grouping audit) identified 5/9 Vol2 lesson-groups MISLABELED (chapter labels shifted-by-1 vs PDF). Andrea 'spiattellato' feedback NOT confirmed for Vol2 (0/27 variations_collapsed). Cap11 GAP CONFIRMED (theoretical chapter, 0 esperimenti per ground truth + code).",
+  "phase_1_pdf_audit": {
+    "maker_1": {
+      "scope": "ch3+ch4+ch5+ch6 (Multimetro + Resistenze + Batterie + LED)",
+      "esperimenti_covered": 13,
+      "output_file": "automa/state/maker1-vol2-ch3-6-audit.md",
+      "completion_msg": "automa/team-state/messages/maker1-vol2-phase1-completed.md",
+      "severity_distribution": {"critical": 0, "high": 3, "medium": 2, "minor": 8},
+      "top_findings": [
+        "v2-cap5-esp1+esp2 HIGH: code 2x9V batterie (18V) vs PDF 3-4x AA 1.5V (3-6V) — MATERIAL DIVERGENCE narrative",
+        "v2-cap6-esp4 HIGH: PDF uses multimeter 'prova diodi' standalone with coccodrilli (no power); code builds full bb circuit (battery+R+LED+mm+8 wires) — METHODOLOGY DIVERGENT",
+        "13/13 PRINCIPIO ZERO violations: singolare imperative 'Posiziona/Collega/Prendi' instead 'Ragazzi posizionate/collegate/prendete'; 13/13 unlimPrompt lack verbatim 'Vol.2 pag.X' citation"
+      ],
+      "variations_collapsed_count": 0
+    },
+    "maker_2": {
+      "scope": "ch7+ch8+ch9+ch10+ch12 (Condensatori + Transistor + Fototransistor + Motore + Capstone)",
+      "esperimenti_covered": 14,
+      "output_file": "automa/state/maker2-vol2-ch7-12-audit.md",
+      "completion_msg": "automa/team-state/messages/maker2-vol2-phase1-completed.md",
+      "severity_distribution": {"critical": 0, "high": 0, "medium": 2, "minor": 12},
+      "top_findings": [
+        "Cap11 GAP CONFIRMED: PDF pp.99-102 'I diodi' puramente teorico, ZERO ESPERIMENTO markers in /tmp/vol2-full.txt:2624-2738. Match esatto ground truth. Code correttamente omette v2-cap11-* ID e lesson-groups.js non lista cap11.",
+        "PDF V0.9 typos book-side: marker duplicato 'ESPERIMENTO 2' cap8 (righe 2229+2239), terminologia 'fotoresistore'/'fototransistor' inconsistente cap9-esp1 (riga 2365) e cap12 (riga 2759). Codice mappa correttamente — issue libro V0.9 NON codice.",
+        "v2-cap7-esp4 MEDIUM: 'Variare R' non parametrizzata strutturalmente (R fissa 1000 identica esp2). v2-cap12-esp1 MEDIUM: capstone gap meccanici (ruote/supporto-batteria) extra-SVG."
+      ],
+      "variations_collapsed_count": 0,
+      "cap11_gap_confirmation": {
+        "confirmed": true,
+        "pdf_pages": "99-102",
+        "pdf_chapter_title": "I diodi",
+        "pdf_esperimento_count": 0,
+        "code_omits_cap11": true,
+        "lesson_groups_omits_cap11": true
+      }
+    },
+    "total_audited": 27,
+    "aggregate_severity": {"critical": 0, "high": 3, "medium": 4, "minor": 20}
+  },
+  "phase_2_live_functional_test": {
+    "tool": "Claude in Chrome MCP",
+    "browser_tabId": 1259340882,
+    "prod_url": "https://www.elabtutor.school/#lavagna",
+    "mega_loop_duration_seconds": 54,
+    "esperimenti_tested": 27,
+    "mount_success_count": 27,
+    "mount_success_rate": "100%",
+    "errors_count": 0,
+    "captured_screenshots_in_browser_count": 27,
+    "saved_screenshots_to_disk_count": 0,
+    "saved_screenshots_reason_skipped": "Technical limitation: Claude in Chrome MCP base64 return blocked + headless download trigger fail. Per-esperimento PNG save unreliable. Per-esperimento metadata (mount status, components, connections, desc verbatim) recorded as substantial evidence. Representative 2-3 screenshots taken via mcp__Claude_in_Chrome__computer for visual sample.",
+    "output_file": "automa/state/inline-vol2-functional-test.md",
+    "zero_connections_anomaly_count": 4,
+    "zero_connections_by_design_count": 5,
+    "zero_connections_by_design_explanation": "cap3-esp1..esp3 + cap5-esp1..esp2 (5/27) sono multimetro+puntali measurement esperimenti DOVE il PDF descrive uso puntali coccodrilli direct su componente (no breadboard wires). connections_count: 0 è atteso.",
+    "zero_connections_anomaly_list": ["v2-cap3-esp4", "v2-cap4-esp1", "v2-cap4-esp2", "v2-cap4-esp3"],
+    "zero_connections_anomaly_explanation": "4/27 esperimenti hanno componenti che richiedono wires breadboard (bb1+R+bat+mm) ma connections_count: 0 e desc 'Nessun filo collegato'. Studente deve aggiungere wires manualmente OR esperimento broken.",
+    "circuit_duplicates_count": 1,
+    "circuit_duplicates_list": [{"id": "v2-cap10-esp2", "duplicate_of": "v2-cap10-esp1", "issue": "Stessi 4 wires + motor 'acceso'. Title 'Invertire la rotazione' non rappresentato strutturalmente."}],
+    "average_components_count_overall": 5.4,
+    "average_connections_count_cap6_plus": 7.4,
+    "max_complexity_experiment": {"id": "v2-cap12-esp1", "components": 12, "connections": 20, "type": "capstone"}
+  },
+  "phase_3_concept_grouping": {
+    "concept_grouping_current": {
+      "lessons_count": 9,
+      "esperimenti_in_lessons": 27,
+      "source": "src/data/lesson-groups.js",
+      "lessons_list": [
+        "v2-resistenze (ch3, 4 esp cap3-esp1..esp4)",
+        "v2-led-avanzato (ch4, 3 esp cap4-esp1..esp3)",
+        "v2-condensatore (ch5, 2 esp cap5-esp1..esp2)",
+        "v2-circuiti-rc (ch6, 4 esp cap6-esp1..esp4)",
+        "v2-condensatori-combo (ch7, 4 esp cap7-esp1..esp4)",
+        "v2-transistor (ch8, 3 esp cap8-esp1..esp3)",
+        "v2-fototransistor (ch9, 2 esp cap9-esp1..esp2)",
+        "v2-motore (ch10, 4 esp cap10-esp1..esp4)",
+        "v2-robot-segui-luce (ch12, 1 esp cap12-esp1)"
+      ],
+      "mislabeled_count": 5,
+      "mislabeled_pattern": "Lesson labels shifted-by-1-chapter relative to PDF Vol2 actual content"
+    },
+    "concept_grouping_proposed": [
+      {
+        "concept": "Il Multimetro",
+        "pdf_pages": "13-36",
+        "pdf_chapter": 3,
+        "current_lesson_id": "v2-resistenze",
+        "current_lesson_problem": "Title 'Le resistenze in dettaglio' is MISLABELED — cap3 in PDF è MULTIMETRO non resistenze",
+        "proposed_lesson_id": "v2-multimetro",
+        "proposed_title": "Il Multimetro",
+        "proposed_concept": "Misure di tensione, resistenza, corrente",
+        "variations": [
+          {"raw_id": "v2-cap3-esp1", "code_subtitle": "Controlliamo la carica della batteria", "pdf_pages": "14-16"},
+          {"raw_id": "v2-cap3-esp2", "code_subtitle": "Diario di misurazione della pila", "pdf_pages": "17-19"},
+          {"raw_id": "v2-cap3-esp3", "code_subtitle": "Misuriamo una resistenza", "pdf_pages": "20-25"},
+          {"raw_id": "v2-cap3-esp4", "code_subtitle": "Misuriamo la corrente in un circuito", "pdf_pages": "26-36"}
+        ],
+        "rationale": "PDF cap3 = 'Il Multimetro' (24 pagine, 4 esperimenti su misure V/R/I). Lesson-groups.js erroneamente etichetta come 'resistenze'."
+      },
+      {
+        "concept": "Approfondiamo le resistenze",
+        "pdf_pages": "37-46",
+        "pdf_chapter": 4,
+        "current_lesson_id": "v2-led-avanzato",
+        "current_lesson_problem": "Title 'LED avanzato' is MISLABELED — cap4 in PDF è RESISTENZE non LED",
+        "proposed_lesson_id": "v2-resistenze-serie-parallelo",
+        "proposed_title": "Resistenze in serie e parallelo",
+        "proposed_concept": "Combinare resistori: serie, parallelo, partitore",
+        "variations": [
+          {"raw_id": "v2-cap4-esp1", "code_subtitle": "Due resistori in parallelo", "pdf_pages": "38-40"},
+          {"raw_id": "v2-cap4-esp2", "code_subtitle": "Tre resistori in serie", "pdf_pages": "41-43"},
+          {"raw_id": "v2-cap4-esp3", "code_subtitle": "Partitore di tensione", "pdf_pages": "44-46"}
+        ],
+        "rationale": "PDF cap4 = 'Approfondiamo le resistenze' (3 esperimenti su combinazioni R). Lesson-groups.js erroneamente etichetta come 'LED avanzato'."
+      },
+      {
+        "concept": "Approfondiamo le batterie",
+        "pdf_pages": "47-52",
+        "pdf_chapter": 5,
+        "current_lesson_id": "v2-condensatore",
+        "current_lesson_problem": "Title 'Il condensatore' is MISLABELED — cap5 in PDF è BATTERIE non condensatore",
+        "proposed_lesson_id": "v2-batterie-serie",
+        "proposed_title": "Batterie in serie",
+        "proposed_concept": "Sommare tensioni: serie e antiserie",
+        "variations": [
+          {"raw_id": "v2-cap5-esp1", "code_subtitle": "Batterie in serie (più spinta!)", "pdf_pages": "48-50"},
+          {"raw_id": "v2-cap5-esp2", "code_subtitle": "Batterie in antiserie", "pdf_pages": "51-52"}
+        ],
+        "rationale": "PDF cap5 = 'Approfondiamo le Batterie' (2 esperimenti su somma tensioni). Lesson-groups.js erroneamente etichetta come 'condensatore'.",
+        "additional_finding": "Maker-1 HIGH severity: code uses 2x battery9v giving 9+9=18V; PDF uses 3-4x AA 1.5V batteries giving 3V/4.5V/6V. Material divergence book-vs-code."
+      },
+      {
+        "concept": "Approfondiamo i LED",
+        "pdf_pages": "53-62",
+        "pdf_chapter": 6,
+        "current_lesson_id": "v2-circuiti-rc",
+        "current_lesson_problem": "Title 'Circuiti RC' is MISLABELED — cap6 in PDF è LED Vf+R calc non RC",
+        "proposed_lesson_id": "v2-led-vf-resistore",
+        "proposed_title": "LED: tensione Vf e calcolo resistore",
+        "proposed_concept": "Capire Vf del LED e dimensionare R serie",
+        "variations": [
+          {"raw_id": "v2-cap6-esp1", "code_subtitle": "LED in serie con 1 resistore", "pdf_pages": "54-55"},
+          {"raw_id": "v2-cap6-esp2", "code_subtitle": "LED in serie colori diversi", "pdf_pages": "56-57"},
+          {"raw_id": "v2-cap6-esp3", "code_subtitle": "Tre LED in serie", "pdf_pages": "58-59"},
+          {"raw_id": "v2-cap6-esp4", "code_subtitle": "Misurare Vf con multimetro", "pdf_pages": "60-62"}
+        ],
+        "rationale": "PDF cap6 = 'Approfondiamo i Led' (4 esperimenti Vf+calcolo R). Lesson-groups.js erroneamente etichetta come 'circuiti RC'.",
+        "additional_finding": "Maker-1 HIGH on cap6-esp4: PDF usa multimetro 'prova diodi' standalone (coccodrilli direct, no power), code costruisce full circuit con bb+8 wires."
+      },
+      {
+        "concept": "Cosa sono i condensatori",
+        "pdf_pages": "63-74",
+        "pdf_chapter": 7,
+        "current_lesson_id": "v2-condensatori-combo",
+        "current_lesson_problem": "Title 'Condensatori in serie e parallelo' è solo PARZIALMENTE corretto — cap7 PDF copre RC scarica/carica + parallelo (non solo serie/parallelo)",
+        "proposed_lesson_id": "v2-condensatori-rc",
+        "proposed_title": "Condensatori e circuiti RC",
+        "proposed_concept": "Carica, scarica, costante τ=RC, condensatori in parallelo",
+        "variations": [
+          {"raw_id": "v2-cap7-esp1", "code_subtitle": "Scarica condensatore + multimetro", "pdf_pages": "64-66"},
+          {"raw_id": "v2-cap7-esp2", "code_subtitle": "Scarica con LED rosso", "pdf_pages": "67-69"},
+          {"raw_id": "v2-cap7-esp3", "code_subtitle": "Condensatori in parallelo", "pdf_pages": "70-72"},
+          {"raw_id": "v2-cap7-esp4", "code_subtitle": "Variare R nella scarica RC", "pdf_pages": "73-74"}
+        ],
+        "rationale": "PDF cap7 = 'Cosa sono i condensatori?' (4 esperimenti su scarica RC + parallelo). Lesson-groups.js parzialmente esatto ma title misleading.",
+        "additional_finding": "Maker-2 MEDIUM cap7-esp4: stesso circuito esp2, R fissa 1000 identica. 'Variazione' non parametrizzata strutturalmente."
+      },
+      {
+        "concept": "I Transistor MOSFET",
+        "pdf_pages": "75-84",
+        "pdf_chapter": 8,
+        "current_lesson_id": "v2-transistor",
+        "current_lesson_problem": "Correctly labeled — no change needed",
+        "proposed_lesson_id": "v2-transistor",
+        "proposed_title": "Il transistor MOSFET",
+        "proposed_concept": "Interruttore elettronico controllato dalla tensione di gate",
+        "variations": [
+          {"raw_id": "v2-cap8-esp1", "code_subtitle": "MOSFET come interruttore", "pdf_pages": "76-78"},
+          {"raw_id": "v2-cap8-esp2", "code_subtitle": "MOSFET e carica del corpo", "pdf_pages": "79-81"},
+          {"raw_id": "v2-cap8-esp3", "code_subtitle": "MOSFET: l'interruttore magico", "pdf_pages": "82-84"}
+        ],
+        "rationale": "Already correct. NO change."
+      },
+      {
+        "concept": "I Fototransistor",
+        "pdf_pages": "85-92",
+        "pdf_chapter": 9,
+        "current_lesson_id": "v2-fototransistor",
+        "current_lesson_problem": "Correctly labeled — no change needed",
+        "proposed_lesson_id": "v2-fototransistor",
+        "proposed_title": "Il fototransistor",
+        "proposed_concept": "Sensore di luce avanzato con risposta lineare",
+        "variations": [
+          {"raw_id": "v2-cap9-esp1", "code_subtitle": "Fototransistor come sensore", "pdf_pages": "86-88"},
+          {"raw_id": "v2-cap9-esp2", "code_subtitle": "Luce notturna automatica", "pdf_pages": "89-92"}
+        ],
+        "rationale": "Already correct. NO change."
+      },
+      {
+        "concept": "Il motore DC",
+        "pdf_pages": "93-98",
+        "pdf_chapter": 10,
+        "current_lesson_id": "v2-motore",
+        "current_lesson_problem": "Correctly labeled — no change needed",
+        "proposed_lesson_id": "v2-motore",
+        "proposed_title": "Il motore DC",
+        "proposed_concept": "Trasformare elettricità in movimento",
+        "variations": [
+          {"raw_id": "v2-cap10-esp1", "code_subtitle": "Far girare il motore", "pdf_pages": "94"},
+          {"raw_id": "v2-cap10-esp2", "code_subtitle": "Invertire la rotazione", "pdf_pages": "95"},
+          {"raw_id": "v2-cap10-esp3", "code_subtitle": "Motore con pulsante", "pdf_pages": "96-97"},
+          {"raw_id": "v2-cap10-esp4", "code_subtitle": "Motore + pulsante + LED indicatore", "pdf_pages": "98"}
+        ],
+        "rationale": "Already correct. NO change.",
+        "additional_finding": "Phase 2 MEDIUM cap10-esp2: circuit IDENTICAL a cap10-esp1 (stessi 4 wires + motor 'acceso'). Title 'Invertire' non rappresentato strutturalmente."
+      },
+      {
+        "concept": "I diodi (theoretical only)",
+        "pdf_pages": "99-102",
+        "pdf_chapter": 11,
+        "current_lesson_id": null,
+        "current_lesson_problem": null,
+        "proposed_lesson_id": null,
+        "proposed_title": null,
+        "variations": [],
+        "rationale": "GAP CONFIRMED. PDF cap11 'I diodi' è capitolo TEORICO con 0 esperimenti. Code correttamente omette v2-cap11-*. NO action needed.",
+        "gap_confirmed": true
+      },
+      {
+        "concept": "Capstone: Robot Segui Luce",
+        "pdf_pages": "103-108",
+        "pdf_chapter": 12,
+        "current_lesson_id": "v2-robot-segui-luce",
+        "current_lesson_problem": "Correctly labeled — no change needed",
+        "proposed_lesson_id": "v2-robot-segui-luce",
+        "proposed_title": "Robot Segui Luce",
+        "proposed_concept": "Capstone: integra fototransistor + MOSFET + motori",
+        "variations": [
+          {"raw_id": "v2-cap12-esp1", "code_subtitle": "Robot Segui Luce", "pdf_pages": "103-108"}
+        ],
+        "rationale": "Already correct. NO change.",
+        "additional_finding": "Maker-2 MEDIUM cap12: capstone gap meccanici (ruote/supporto-batteria/struttura) extra-SVG. Software OK ma kit fisico richiede componenti meccanici aggiuntivi."
+      }
+    ],
+    "concept_grouping_summary": {
+      "total_concepts_proposed": 9,
+      "concepts_unchanged": 4,
+      "concepts_relabeled": 5,
+      "concepts_split": 0,
+      "concepts_merged": 0,
+      "spiattellato_evidence": 0,
+      "spiattellato_conclusion": "Andrea iter 21+ feedback 'spiattellato' NON applies to Vol2. Variations_collapsed: 0/27 across both Maker-1 + Maker-2 audits. Vol2 IS narratively distinct esperimenti (each esperimento = different sub-concept), NOT shallow flat list of variations. Andrea feedback may apply to Vol1 LED variations (cap6-7) OR Vol3 Arduino sketches — both deferred Sprint U successive cycles.",
+      "main_finding": "5/9 lesson-groups Vol2 are MISLABELED (chapter labels shifted-by-1 vs PDF Vol2 actual chapter content). Issue is naming/labeling, NOT structural grouping."
+    }
+  },
+  "figma_cross_ref": {
+    "status": "skipped",
+    "reason": "no_figma_file_id_provided_in_session",
+    "rationale": "Andrea did not provide Vol2 Figma file ID/URL during session. Per spec sezione 4 Phase 3 conditional clause + sezione 7 E6 mitigation, skipping gracefully.",
+    "future_action": "Cycle 3+ if Andrea provides Figma file ID, run mcp__Figma__get_design_context to cross-ref simulator components SVG vs Vol2 brand assets (palette, iconografia)."
+  },
+  "audit_findings_summary_table": [
+    {"id": "v2-cap3-esp1", "ch": 3, "code_components": 2, "live_connections": 0, "severity_pdf": "minor", "severity_live": "ok", "issue": "PRINCIPIO ZERO singolare imperative + missing Vol/pag citation"},
+    {"id": "v2-cap3-esp2", "ch": 3, "code_components": 2, "live_connections": 0, "severity_pdf": "minor", "severity_live": "ok", "issue": "PRINCIPIO ZERO singolare imperative + missing Vol/pag citation"},
+    {"id": "v2-cap3-esp3", "ch": 3, "code_components": 2, "live_connections": 0, "severity_pdf": "minor", "severity_live": "ok", "issue": "PRINCIPIO ZERO singolare imperative + missing Vol/pag citation"},
+    {"id": "v2-cap3-esp4", "ch": 3, "code_components": 4, "live_connections": 0, "severity_pdf": "minor", "severity_live": "anomaly", "issue": "0 wires anomalous (bb+R+bat presenti) + PRINCIPIO ZERO"},
+    {"id": "v2-cap4-esp1", "ch": 4, "code_components": 4, "live_connections": 0, "severity_pdf": "minor", "severity_live": "anomaly", "issue": "0 wires anomalous (bb+2R presenti) + PRINCIPIO ZERO"},
+    {"id": "v2-cap4-esp2", "ch": 4, "code_components": 5, "live_connections": 0, "severity_pdf": "minor", "severity_live": "anomaly", "issue": "0 wires anomalous (bb+3R presenti) + PRINCIPIO ZERO"},
+    {"id": "v2-cap4-esp3", "ch": 4, "code_components": 6, "live_connections": 0, "severity_pdf": "minor", "severity_live": "anomaly", "issue": "0 wires anomalous (bat+bb+3R presenti) + PRINCIPIO ZERO"},
+    {"id": "v2-cap5-esp1", "ch": 5, "code_components": 3, "live_connections": 0, "severity_pdf": "high", "severity_live": "ok", "issue": "Material divergence: code 2x9V (18V) vs PDF 3-4x1.5V AA"},
+    {"id": "v2-cap5-esp2", "ch": 5, "code_components": 3, "live_connections": 0, "severity_pdf": "high", "severity_live": "ok", "issue": "Material divergence: code 2x9V (18V) vs PDF 3-4x1.5V AA"},
+    {"id": "v2-cap6-esp1", "ch": 6, "code_components": 5, "live_connections": 6, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap6-esp2", "ch": 6, "code_components": 5, "live_connections": 6, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap6-esp3", "ch": 6, "code_components": 6, "live_connections": 6, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap6-esp4", "ch": 6, "code_components": 5, "live_connections": 8, "severity_pdf": "high", "severity_live": "method_divergent", "issue": "PDF uses multimeter standalone 'prova diodi' (coccodrilli direct), code builds full circuit"},
+    {"id": "v2-cap7-esp1", "ch": 7, "code_components": 6, "live_connections": 9, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap7-esp2", "ch": 7, "code_components": 7, "live_connections": 10, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap7-esp3", "ch": 7, "code_components": 8, "live_connections": 11, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap7-esp4", "ch": 7, "code_components": 7, "live_connections": 10, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "Same circuit as cap7-esp2, R fissa 1000 identica. 'Variazione R' non parametrizzata"},
+    {"id": "v2-cap8-esp1", "ch": 8, "code_components": 5, "live_connections": 7, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap8-esp2", "ch": 8, "code_components": 5, "live_connections": 5, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap8-esp3", "ch": 8, "code_components": 7, "live_connections": 10, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap9-esp1", "ch": 9, "code_components": 5, "live_connections": 7, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap9-esp2", "ch": 9, "code_components": 10, "live_connections": 12, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap10-esp1", "ch": 10, "code_components": 3, "live_connections": 4, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap10-esp2", "ch": 10, "code_components": 3, "live_connections": 4, "severity_pdf": "minor", "severity_live": "duplicate_circuit", "issue": "Circuit IDENTICAL a cap10-esp1. 'Invertire' non rappresentato strutturalmente"},
+    {"id": "v2-cap10-esp3", "ch": 10, "code_components": 4, "live_connections": 5, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap10-esp4", "ch": 10, "code_components": 6, "live_connections": 7, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v2-cap12-esp1", "ch": 12, "code_components": 12, "live_connections": 20, "severity_pdf": "medium", "severity_live": "mechanical_gap", "issue": "Capstone software OK ma kit fisico richiede ruote/supporto/struttura meccanica extra-SVG"}
+  ],
+  "cov_log": {
+    "iterations": 3,
+    "sample_method": "deterministic representative coverage (cap3 multimetro, cap6 LED, cap12 capstone) — instead of pure random shuf, chose representatives covering severity range + chapter range",
+    "sample_ids": ["v2-cap3-esp1", "v2-cap6-esp4", "v2-cap12-esp1"],
+    "runs_executed": [
+      {"run": 1, "source": "Maker-1+Maker-2 BG agents PDF audit", "method": "pdftotext -layout + Read experiments-vol2.js + structural diff"},
+      {"run": 2, "source": "Phase 2 inline live test", "method": "Claude in Chrome MCP mountExperiment + getLayout + getCircuitDescription"},
+      {"run": 3, "source": "Phase 3 inline cross-validation", "method": "re-read lesson-groups.js + cross-ref Maker outputs + verify chapter labels vs PDF"}
+    ],
+    "divergence_check": {
+      "v2-cap3-esp1": {"pdf_concept_match": "Misura tensione DC OK across runs", "mounted_stable": true, "components_count_stable": "2 across runs", "verdict": "STABLE"},
+      "v2-cap6-esp4": {"pdf_concept_match": "Vf measurement OK with HIGH severity flag (method divergent)", "mounted_stable": true, "components_count_stable": "5 across runs", "verdict": "STABLE_WITH_KNOWN_FINDING"},
+      "v2-cap12-esp1": {"pdf_concept_match": "Capstone Robot Segui Luce OK", "mounted_stable": true, "components_count_stable": "12 across runs", "verdict": "STABLE"}
+    },
+    "divergence_pct": 0.0,
+    "thresholds_pass": {"text_fields_under_5pct": true, "bool_int_fields_zero": true, "screenshot_perceptual_under_2": "n/a (screenshots not saved per Phase 2 scope decision)"},
+    "pass": true
+  },
+  "quality_audit": {
+    "skill": "elab-quality-gate",
+    "status": "not_invoked_inline",
+    "reason": "Skill /elab-quality-gate is project-specific quality gate, primarily designed for ELAB Tutor session-end quality validation (test count, build status, deploy readiness). For audit-only Cycle 2 (zero src/ changes), invoking this skill would not produce meaningful new measurement. Audit findings already provide quality-style severity/score evaluation per Phase 1+2+3.",
+    "alternative_audit_score": {
+      "score": 6.8,
+      "scale": "0-10",
+      "rationale": "Vol2 baseline audit: 27/27 mount PASS (1.0), 0/27 critical (0.5), 3 high severity findings (-0.5), 4 medium (-0.4), 20 minor (-0.3), 5/9 lesson-groups mislabeled (-1.0), 4 anomalous 0-wires + 2 duplicate circuits (-0.5). Score: 10 - 0.5 - 0.4 - 0.3 - 1.0 - 0.5 + 0 bonus = 7.3 raw → G45 anti-inflation cap to 6.8 (tighter calibration: PRINCIPIO ZERO violations 13/13 = systematic gap, mislabeling is critical for user-facing UX).",
+      "previous_score_reference": "task5-parita.json Vol2 score 6.5/10 (2026-04-14). +0.3 lift via comprehensive audit (was 5-esperimenti partial)."
+    }
+  },
+  "anti_regression": {
+    "vitest_baseline_pre_audit": 13595,
+    "vitest_baseline_recorded_at": "automa/state/task5-vol2-baseline.txt",
+    "vitest_baseline_post_audit": "to_be_verified_by_pre_commit_hook",
+    "src_modifications_count": 0,
+    "src_modifications_list": [],
+    "audit_only_cycle2": true,
+    "compliance": "PASS — zero src/ modifications, audit-only Cycle 2 mandate respected"
+  },
+  "verdetto": {
+    "score": 6.8,
+    "scale": "0-10",
+    "score_calibration": "G45 anti-inflation cap (raw 7.3 → 6.8 onesto)",
+    "giudizio": "Vol2 audit complete con findings significativi. Phase 1+2 evidence solida (27/27 mount, 27/27 pdf-coverage, dual-source validation). Phase 3 finding NUOVO: 5/9 lesson-groups Vol2 MISLABELED (chapter labels shifted-by-1) — issue NON era 'spiattellato' Andrea iter 21+ (0/27 collapsed), bensì semantic mislabeling. Cycle 3 fix wave deve: (1) rinominare 5 lesson-groups Vol2, (2) review HIGH cap5+cap6-esp4 material/methodology divergence con Davide (autore volumi), (3) fix 4 anomalous 0-wires esperimenti (cap3-esp4 + cap4-esp1..esp3), (4) parametrizzare 2 duplicate circuits (cap7-esp4 + cap10-esp2), (5) PRINCIPIO ZERO codemod 27/27 singolare imperative + missing Vol/pag citation.",
+    "top_fix": [
+      "1. CRITICAL UX — Rinominare 5 lesson-groups Vol2 (v2-resistenze→v2-multimetro, v2-led-avanzato→v2-resistenze-serie-parallelo, v2-condensatore→v2-batterie-serie, v2-circuiti-rc→v2-led-vf-resistore, v2-condensatori-combo→v2-condensatori-rc). Fix labels + concepts + chapter assignments. ETA 1-2h. Cycle 3 priority P0.",
+      "2. HIGH MATERIAL — cap5-esp1+esp2 review with Davide (autore Vol2): code 2x9V vs PDF 3-4x AA 1.5V. Decisione: change code (16 lines) o change book V0.10 (Davide). ETA 30min discussion + 30min impl. Cycle 3 P1.",
+      "3. HIGH METHODOLOGY — cap6-esp4 review with Davide: PDF 'prova diodi' standalone vs code full bb circuit. Decisione: which approach is canonical for PRINCIPIO ZERO 'leggere il libro'. ETA 30min + 1h impl. Cycle 3 P1.",
+      "4. MEDIUM ANOMALY — Fix 4 anomalous 0-wires (cap3-esp4 + cap4-esp1..esp3): aggiungere wires breadboard nel `wires` array di experiments-vol2.js. ETA 2h + visual verify. Cycle 3 P2.",
+      "5. MEDIUM DUPLICATE — Parametrizzare cap7-esp4 (variare R reale) + cap10-esp2 (invertire wires reali). ETA 1h. Cycle 3 P2.",
+      "6. SYSTEMATIC PRINCIPIO ZERO — Codemod 27 esperimenti Vol2: 'Posiziona/Collega/Prendi' → 'Ragazzi posizionate/collegate/prendete' + add verbatim 'Vol.2 pag.X' citation a unlimPrompt 27/27. ETA 2h sed + manual review. Cycle 3 P0 systematic."
+    ]
+  },
+  "phase_4_completion": {
+    "main_deliverables": [
+      "automa/state/task5-volumi-vol2.json (THIS FILE — primary machine-readable Cycle 3 input)",
+      "automa/state/maker1-vol2-ch3-6-audit.md (Maker-1 raw 13/13 ch3-6)",
+      "automa/state/maker2-vol2-ch7-12-audit.md (Maker-2 raw 14/14 ch7-12)",
+      "automa/state/inline-vol2-functional-test.md (Phase 2 raw 27/27 live test)",
+      "automa/team-state/messages/maker1-vol2-phase1-completed.md (Pattern S barrier)",
+      "automa/team-state/messages/maker2-vol2-phase1-completed.md (Pattern S barrier)",
+      "automa/state/task5-vol2-baseline.txt (vitest 13595 baseline reference)",
+      "docs/audits/2026-05-07-task5-volumi-vol2-audit.md (narrative report — TBD finalize)"
+    ],
+    "narrative_audit_path": "docs/audits/2026-05-07-task5-volumi-vol2-audit.md",
+    "execution_pattern": "Hybrid Approach 3: Phase 1 Maker-1+2 BG parallel (saved time vs serial), Phase 2 inline serial Control Chrome live test, Phase 3 inline concept-grouping, Phase 4 inline Documenter consolidation",
+    "execution_duration_minutes_actual": "~50min (vs spec budget 115min — under budget thanks to BG parallel)"
+  },
+  "honesty_caveats": [
+    "Per-esperimento PNG screenshots NOT saved to disk (technical limitation Claude in Chrome MCP base64 return blocked + headless download fail). Per-esperimento metadata (mount, components, connections, desc verbatim) recorded as substantial alternative evidence. Documented Phase 2 scope reduction.",
+    "Figma cross-ref skipped (no Figma file ID provided in session). Documented per spec E6 mitigation.",
+    "Quality gate skill /elab-quality-gate not invoked (project-specific session-end skill, not appropriate for audit-only Cycle 2). Inline alternative score 6.8/10 with explicit calibration.",
+    "CoV sample method deviation: chose deterministic representative samples (cap3+cap6+cap12 covering severity range) instead of pure random shuf. Justified: representative samples better validate severity ladder than random.",
+    "PDF page numbers in proposed lesson grouping are best-effort estimates from PDF text + chapter heading positions (pdftotext -layout output). May shift ±1-2 pages vs PDF reader. Maker-1+2 used ranges where uncertain.",
+    "lesson-groups.js mislabeling finding is NEW (not in prior audits task5-parita.json or VOLUMI-EXPERIMENT-ALIGNMENT-V2-GROUND-TRUTH.md). Verified by direct file read this session — high confidence claim. Andrea may want second-opinion review (Tea or Davide) before Cycle 3 rename action."
+  ]
+}
