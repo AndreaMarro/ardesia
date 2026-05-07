@@ -11,10 +11,29 @@ const TINY_PNG_BASE64 = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQ
 const TINY_PNG_DATA_URL = `data:image/png;base64,${TINY_PNG_BASE64}`;
 
 async function goToLavagna(page) {
+  // Sprint U Cycle 3 (2026-05-07) fix: PR #81 iter 45 B9 product change —
+  // "Lavagna libera" (freeMode=true) NO LONGER mounts NewElabSimulator,
+  // therefore __ELAB_API.captureScreenshot is undefined → VisionButton disabled.
+  // Per Andrea verbatim: "Lavagna libera" = solo UNLIM + manuale + capitoli + video.
+  // Vision E2E needs simulator → mount via experiment selection instead.
   await page.goto('/#lavagna');
-  const freeBtn = page.getByRole('button', { name: /Lavagna libera/i });
-  await expect(freeBtn).toBeVisible({ timeout: 15000 });
-  await freeBtn.click();
+  // ExperimentPicker auto-opens on lavagna route entry. Click first lesson card
+  // (Volume 1 default tab "Accendi il LED" cap6 has 3 esperimenti — auto-handleSelect
+  // first via lesson card click when expanded; here we click first esp directly via
+  // chapter view to avoid expand step).
+  const tutti = page.getByRole('button', { name: /Tutti gli esperimenti/i });
+  await expect(tutti).toBeVisible({ timeout: 15000 });
+  await tutti.click();
+  // Click first experiment "Accendi il tuo primo LED" (v1-cap6-esp1)
+  const firstExp = page.getByText(/Accendi il tuo primo LED/i).first();
+  await expect(firstExp).toBeVisible({ timeout: 5000 });
+  await firstExp.click();
+  // Wait for simulator + __ELAB_API exposure
+  await page.waitForFunction(
+    () => typeof window.__ELAB_API?.captureScreenshot === 'function',
+    null,
+    { timeout: 15000 },
+  );
 }
 
 async function stubVisionInfra(page) {
