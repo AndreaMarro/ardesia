@@ -19,7 +19,7 @@
  *   onCitationClick?: ({ volume, page }) => void
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import VolumeCitation from '../common/VolumeCitation.jsx';
 import DocenteSidebar from './DocenteSidebar.jsx';
 import css from './PercorsoCapitoloView.module.css';
@@ -53,11 +53,28 @@ export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClic
   const [lezioneLoading, setLezioneLoading] = useState(false);
   const [lezioneError, setLezioneError] = useState(null);
 
+  // iter 45 review fix T5/E1 (architect+code-reviewer): AbortController + unmount
+  // guard. Senza, race condition cambio capitolo durante fetch + setState dopo
+  // unmount = warning React + memory leak.
+  const abortControllerRef = useRef(null);
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      try { abortControllerRef.current?.abort(); } catch { /* noop */ }
+    };
+  }, []);
+
   // Builds Mistral prompt for "Lezione personalizzata" via unlim-chat onniscenza-bridge.
   // Backend (ADR-023 §5 + onniscenza-bridge iter 24 LIVE) aggregates L1 RAG + L4 Sessione
   // + L5 Lesson + L6 Chat history when class_id + session_id presenti context.
   const generaLezione = useCallback(async () => {
     if (!capitolo || lezioneLoading) return;
+    // Abort any in-flight request before starting new one
+    try { abortControllerRef.current?.abort(); } catch { /* noop */ }
+    const ctrl = new AbortController();
+    abortControllerRef.current = ctrl;
     setLezioneLoading(true);
     setLezioneError(null);
     setLezioneProposta(null);
@@ -77,13 +94,19 @@ export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClic
       const reply = await sendChat(prompt, [], {
         experimentId: firstExp?.id || null,
         experimentContext: `[CAPITOLO ATTIVO] Vol.${capitolo.volume} Cap.${capitolo.capitolo ?? '?'} — ${capitolo.titolo}`,
+        signal: ctrl.signal,
       });
+      // Guard: skip setState se aborted o unmounted
+      if (ctrl.signal.aborted || !isMountedRef.current) return;
       const text = typeof reply === 'string' ? reply : (reply?.content || reply?.message || JSON.stringify(reply).slice(0, 1200));
       setLezioneProposta(text);
     } catch (err) {
+      if (ctrl.signal.aborted || !isMountedRef.current) return;
+      // Defensive: AbortError NON deve propagare error UI
+      if (err?.name === 'AbortError') return;
       setLezioneError(err?.message || 'Errore generazione lezione');
     } finally {
-      setLezioneLoading(false);
+      if (isMountedRef.current) setLezioneLoading(false);
     }
   }, [capitolo, lezioneLoading]);
 

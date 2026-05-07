@@ -419,9 +419,20 @@ export default function LavagnaShell() {
   // libera" launchMode='solo' → localStorage 'elab_lavagna_launch_mode'='solo')
   // deve essere SCOPED — solo UNLIM + manuale + capitoli + video. NO simulator
   // components/breadboard. Init freeMode da localStorage al mount.
+  // iter 45 review fix F-4.1.a (architect): consume + clear flag al primo read
+  // così click "Lavagna libera" attiva freeMode SOLO per quella sessione, non
+  // perpetuamente. Senza clear, ogni successiva visita #lavagna restava bloccata
+  // in freeMode finché cache pulita. Pattern read-once safe legacy migration-friendly.
   const [freeMode, setFreeMode] = useState(() => {
-    try { return localStorage.getItem('elab_lavagna_launch_mode') === 'solo'; }
-    catch { return false; }
+    try {
+      const flag = localStorage.getItem('elab_lavagna_launch_mode');
+      if (flag === 'solo') {
+        // Consume flag — successivo mount torna al default false
+        try { localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+        return true;
+      }
+      return false;
+    } catch { return false; }
   });
   const [isEditing, setIsEditing] = useState(false);
   const [lessonSteps, setLessonSteps] = useState([]);
