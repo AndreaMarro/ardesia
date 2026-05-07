@@ -120,7 +120,8 @@ describe('findLessonForExperiment', () => {
   it('finds correct lesson for v2-cap3-esp1', () => {
     const result = findLessonForExperiment('v2-cap3-esp1');
     expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v2-resistenze');
+    // Sprint U Cycle 3: rinominato da v2-resistenze a v2-multimetro per allineamento PDF v0.13 cap3
+    expect(result.lessonId).toBe('v2-multimetro');
     expect(result.lesson.volume).toBe(2);
   });
 

@@ -1,3 +1,32 @@
+## [feat(sprint-u-cycle3-vol2-rename) — rename 5 Vol2 lesson-groups (audit fix #1)] — 2026-05-07
+
+Sprint U Cycle 3 Vol2 lesson-groups rinomina per audit `task5-volumi-vol2.json` verdetto.top_fix #1. PDF v0.13 chapter mapping fix: 5/9 lesson-groups Vol2 mislabeled (chapter labels shifted-by-1 vs actual content). Decisione 2A: solo id+title+concept+chapter, NO esperimenti touch. PR #85.
+
+### Changed
+- `src/data/lesson-groups.js` — 5 lesson-groups rinominate per allineamento PDF v0.13:
+  - `v2-resistenze` (cap3) → **v2-multimetro** "Il Multimetro"
+  - `v2-led-avanzato` (cap4) → **v2-resistenze-serie-parallelo** "Resistenze in serie e parallelo"
+  - `v2-condensatore` (cap5) → **v2-batterie-serie** "Batterie in serie"
+  - `v2-circuiti-rc` (cap6) → **v2-led-vf-resistore** "LED: tensione Vf e calcolo resistore"
+  - `v2-condensatori-combo` (cap7) → **v2-condensatori-rc** "Condensatori e circuiti RC"
+- Esperimenti UNCHANGED — `lesson.experiments[]` arrays preserved per decisione 2A.
+
+### Added
+- `tests/unit/data/lesson-groups-vol2-rename.test.js` — NEW 21 test cases (old IDs removed + new IDs structure + findLessonForExperiment routing + esperimenti preservation).
+
+### Test Updates (5 file referenced old labels)
+- `tests/unit/data/lesson-groups.test.js`, `tests/unit/lessonGroups.test.js`, `tests/unit/lessonGroupContext.test.js`, `tests/unit/lavagna/ExperimentPicker.test.jsx`, `tests/unit/lavagna/LessonSelector.test.jsx` — rinomina assertions OLD → NEW IDs/titles.
+
+### TDD Compliance (governance Regola 2)
+- `test()` commit `ddf0e03b` (test scaffold .skip) PRECEDES `feat()` commit `1ba35631` (lesson-groups update + tests unskipped).
+
+### Notes
+- Vitest 13611 PASS pre-commit + pre-push (baseline 11958 +1653 net).
+- ZERO src/components/ touched (only data + test labels).
+- Cycle 3 status: Vol2 1/3 done. Vol1 (spiattellato refactor 38→28) + Vol3 (4 INVENTED + 2 extras + Simon + cap9 piezo Davide blocker) pending.
+
+---
+
 ## [fix(lavagna) — 6 bug WhiteboardOverlay + drawings nelle session] — 2026-05-06
 
 Fix multi-bug della lavagna principale `WhiteboardOverlay` emersi dal video bug-report `lavagna-multibug-2026-05-06.mov`. Coperti: gomma poco visibile (#1), toolbar non collassabile (#2), confusione fra cestino e chiusura (#3), residuo del precedente esperimento al cambio (#4), session-record privo di disegni (#5), toolbar non traslabile (#6). PR #77.

@@ -100,41 +100,42 @@ const LESSON_GROUPS = {
   // VOLUME 2 — Approfondiamo
   // ═══════════════════════════════════════
 
-  'v2-resistenze': {
-    title: 'Le resistenze in dettaglio',
-    concept: 'Serie, parallelo e codice colori',
+  // Sprint U Cycle 3 (2026-05-07) — Vol2 rinomina 5 lessons per audit task5-volumi-vol2.json verdetto.top_fix #1
+  'v2-multimetro': {
+    title: 'Il Multimetro',
+    concept: 'Misure di tensione, resistenza, corrente',
     volume: 2,
     chapter: 3,
     icon: '🔧',
     experiments: ['v2-cap3-esp1', 'v2-cap3-esp2', 'v2-cap3-esp3', 'v2-cap3-esp4']
   },
-  'v2-led-avanzato': {
-    title: 'LED avanzato',
-    concept: 'Diodi, polarit\u00E0 e protezione',
+  'v2-resistenze-serie-parallelo': {
+    title: 'Resistenze in serie e parallelo',
+    concept: 'Combinare resistori: serie, parallelo, partitore',
     volume: 2,
     chapter: 4,
     icon: '💡',
     experiments: ['v2-cap4-esp1', 'v2-cap4-esp2', 'v2-cap4-esp3']
   },
-  'v2-condensatore': {
-    title: 'Il condensatore',
-    concept: 'Accumula e rilascia energia',
+  'v2-batterie-serie': {
+    title: 'Batterie in serie',
+    concept: 'Sommare tensioni: serie e antiserie',
     volume: 2,
     chapter: 5,
     icon: '⚡',
     experiments: ['v2-cap5-esp1', 'v2-cap5-esp2']
   },
-  'v2-circuiti-rc': {
-    title: 'Circuiti RC',
-    concept: 'Resistore + Condensatore: carica e scarica',
+  'v2-led-vf-resistore': {
+    title: 'LED: tensione Vf e calcolo resistore',
+    concept: 'Capire Vf del LED e dimensionare R serie',
     volume: 2,
     chapter: 6,
     icon: '📈',
     experiments: ['v2-cap6-esp1', 'v2-cap6-esp2', 'v2-cap6-esp3', 'v2-cap6-esp4']
   },
-  'v2-condensatori-combo': {
-    title: 'Condensatori in serie e parallelo',
-    concept: 'Come si combinano le capacit\u00E0',
+  'v2-condensatori-rc': {
+    title: 'Condensatori e circuiti RC',
+    concept: 'Carica, scarica, costante \u03C4=RC, condensatori in parallelo',
     volume: 2,
     chapter: 7,
     icon: '🔗',

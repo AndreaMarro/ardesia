@@ -49,7 +49,8 @@ describe('LessonSelector — scelta lezione', () => {
 
   it('renders lessons for volume 2', () => {
     render(<LessonSelector volumeNumber={2} onLessonSelect={vi.fn()} />);
-    expect(screen.getByText(/Le resistenze in dettaglio/i)).toBeInTheDocument();
+    // Sprint U Cycle 3: rinominato da v2-resistenze "Le resistenze in dettaglio" → v2-multimetro "Il Multimetro"
+    expect(screen.getByText(/Il Multimetro/i)).toBeInTheDocument();
   });
 
   it('renders nothing for invalid volume', () => {

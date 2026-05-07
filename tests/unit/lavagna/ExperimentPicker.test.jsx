@@ -46,7 +46,8 @@ describe('ExperimentPicker', () => {
     render(<ExperimentPicker open={true} onClose={mockClose} onSelect={mockSelect} />);
     fireEvent.click(screen.getByText('Volume 2'));
     // In lesson view, should show Vol2 lessons
-    expect(screen.getByText('Le resistenze in dettaglio')).toBeTruthy();
+    // Sprint U Cycle 3: rinominato da v2-resistenze "Le resistenze in dettaglio" → v2-multimetro "Il Multimetro"
+    expect(screen.getByText('Il Multimetro')).toBeTruthy();
     // Switch to chapter view and check Vol2 experiments
     switchToChapterView();
     expect(screen.queryByText(/Accendi il tuo primo LED/i)).toBeNull();

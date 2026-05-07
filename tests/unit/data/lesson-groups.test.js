@@ -102,8 +102,8 @@ describe('LESSON_GROUPS — Volume 2 experiments', () => {
     expect(transistor[1].concept).toBeTruthy();
   });
 
-  it('Volume 2 has condensatore lesson', () => {
-    const cond = v2.find(([id]) => id === 'v2-condensatore');
+  it('Volume 2 has batterie-serie lesson (renamed from v2-condensatore Sprint U Cycle 3)', () => {
+    const cond = v2.find(([id]) => id === 'v2-batterie-serie');
     expect(cond).toBeDefined();
   });
 
