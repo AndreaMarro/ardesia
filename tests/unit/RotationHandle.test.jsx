@@ -110,62 +110,61 @@ describe('RotationHandle — iter 13 R2 visible affordance', () => {
       expect(container.querySelector('[data-testid="rotation-handle"]')).toBeNull();
     });
 
-    it('renders 4 buttons when visible+componentId+onRotate', () => {
+    // iter 45 fix Andrea video2 06/05/2026 B11: cambiato da 4-button stack a
+    // SINGLE rotate button (cycle +90°). Test riallineati al nuovo contratto.
+    it('renders single cycle button when visible+componentId+onRotate (B11 iter 45)', () => {
       const { container } = render(
         <SvgWrapper>
           <RotationHandle componentId="led1" currentRotation={0} onRotate={() => {}} />
         </SvgWrapper>
       );
       expect(container.querySelector('[data-testid="rotation-handle"]')).not.toBeNull();
-      expect(container.querySelector('[data-testid="rotation-handle-btn-0"]')).not.toBeNull();
-      expect(container.querySelector('[data-testid="rotation-handle-btn-90"]')).not.toBeNull();
-      expect(container.querySelector('[data-testid="rotation-handle-btn-180"]')).not.toBeNull();
-      expect(container.querySelector('[data-testid="rotation-handle-btn-270"]')).not.toBeNull();
+      expect(container.querySelector('[data-testid="rotation-handle-btn-cycle"]')).not.toBeNull();
     });
 
-    it('marks current rotation as aria-pressed', () => {
+    it('exposes current rotation via data-current-rotation attribute (B11)', () => {
       const { container } = render(
         <SvgWrapper>
           <RotationHandle componentId="led1" currentRotation={90} onRotate={() => {}} />
         </SvgWrapper>
       );
-      const btn90 = container.querySelector('[data-testid="rotation-handle-btn-90"]');
-      const btn0 = container.querySelector('[data-testid="rotation-handle-btn-0"]');
-      expect(btn90.getAttribute('aria-pressed')).toBe('true');
-      expect(btn0.getAttribute('aria-pressed')).toBe('false');
+      const handle = container.querySelector('[data-testid="rotation-handle"]');
+      expect(handle.getAttribute('data-current-rotation')).toBe('90');
+      const btn = container.querySelector('[data-testid="rotation-handle-btn-cycle"]');
+      expect(btn.getAttribute('data-current-rotation')).toBe('90');
     });
 
-    it('calls onRotate with snapped 90 when btn90 pressed', () => {
+    it('cycle button calls onRotate with current+90 (B11)', () => {
       const onRotate = vi.fn();
       const { container } = render(
         <SvgWrapper>
           <RotationHandle componentId="led1" currentRotation={0} onRotate={onRotate} />
         </SvgWrapper>
       );
-      const btn = container.querySelector('[data-testid="rotation-handle-btn-90"]');
+      const btn = container.querySelector('[data-testid="rotation-handle-btn-cycle"]');
       fireEvent.pointerDown(btn);
       expect(onRotate).toHaveBeenCalledWith(90);
     });
 
-    it('does NOT call onRotate when pressing already-active button', () => {
+    it('cycle button at 270° wraps to 0° (B11)', () => {
       const onRotate = vi.fn();
       const { container } = render(
         <SvgWrapper>
-          <RotationHandle componentId="led1" currentRotation={180} onRotate={onRotate} />
+          <RotationHandle componentId="led1" currentRotation={270} onRotate={onRotate} />
         </SvgWrapper>
       );
-      const btn = container.querySelector('[data-testid="rotation-handle-btn-180"]');
+      const btn = container.querySelector('[data-testid="rotation-handle-btn-cycle"]');
       fireEvent.pointerDown(btn);
-      expect(onRotate).not.toHaveBeenCalled();
+      expect(onRotate).toHaveBeenCalledWith(0);
     });
 
-    it('hit area circle ≥ 22 radius (44px touch target CLAUDE.md regola 9)', () => {
+    it('hit area circle ≥ 22 radius (44px touch target CLAUDE.md regola 9, B11)', () => {
       const { container } = render(
         <SvgWrapper>
           <RotationHandle componentId="led1" onRotate={() => {}} />
         </SvgWrapper>
       );
-      const btn = container.querySelector('[data-testid="rotation-handle-btn-0"]');
+      const btn = container.querySelector('[data-testid="rotation-handle-btn-cycle"]');
       const hitCircle = btn.querySelector('circle');
       expect(Number(hitCircle.getAttribute('r'))).toBeGreaterThanOrEqual(22);
     });

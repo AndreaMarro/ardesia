@@ -1,7 +1,14 @@
 /**
  * UNLIM Response Cleaner — tronca risposte lunghe e rimuove hallucination.
  * Target: <60 parole per risposte kid-friendly (regola UNLIM).
- * © Andrea Marro — 31/03/2026
+ *
+ * iter 45 fix Andrea video2 06/05/2026 B7: i tag [AZIONE:...] e [INTENT:...]
+ * NON devono finire in UI ("UNLIM SPIEGA L'ESPERIMENTO" mostrava raw
+ * "[AZIONE:highlightComponent:{...}] [AZIONE:askUNLIM:...]" — Andrea screenshot).
+ * I tag sono consumati lato browser dal dispatcher (intentsDispatcher.js iter 36
+ * + 62-tool registry iter 31). Sono side-effect runtime, MAI testo visibile docente.
+ *
+ * © Andrea Marro — 31/03/2026 — modified iter 45
  */
 
 /**
@@ -16,21 +23,19 @@ export function cleanAndTruncate(text, maxWords = 60) {
   // Rimuovi hallucination "Ho analizzato l'immagine che hai inviato"
   let cleaned = text.replace(/Ho analizzato l['']immagine che hai inviato\.?\s*/gi, '');
 
-  // Estrai i tag [AZIONE:...] prima di troncare (non contano nel limite)
-  const actionTags = [];
-  cleaned = cleaned.replace(/\[AZIONE:[^\]]+\]/g, (match) => {
-    actionTags.push(match);
-    return '';
-  });
+  // iter 45 B7 fix: STRIP COMPLETO [AZIONE:...] + [INTENT:...] + [STRUCTURED:...]
+  // dal testo visibile. Tags consumati dal dispatcher → mai mostrati al docente.
+  cleaned = cleaned
+    .replace(/\[AZIONE:[^\]]+\]/g, '')
+    .replace(/\[INTENT:[^\]]+\]/g, '')
+    .replace(/\[STRUCTURED:[^\]]+\]/g, '')
+    // Pulizia residual whitespace + virgole orfane post-strip multi-tag
+    .replace(/[\s,;]+(\.|$)/g, '$1')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
 
-  // Tronca a maxWords parole (solo testo, non azioni)
-  const words = cleaned.trim().split(/\s+/).filter(w => w.length > 0);
-  const truncated = words.length <= maxWords
-    ? words.join(' ')
-    : words.slice(0, maxWords).join(' ') + '...';
-
-  // Riattacca i tag azione
-  return actionTags.length > 0
-    ? truncated + ' ' + actionTags.join(' ')
-    : truncated;
+  // Tronca a maxWords parole
+  const words = cleaned.split(/\s+/).filter(w => w.length > 0);
+  if (words.length <= maxWords) return words.join(' ');
+  return words.slice(0, maxWords).join(' ') + '...';
 }

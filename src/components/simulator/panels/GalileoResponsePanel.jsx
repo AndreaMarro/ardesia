@@ -11,8 +11,26 @@
  *   onClose: () => void
  */
 
-import React from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { cleanAndTruncate } from '../../../utils/truncateResponse';
+
+// iter 45 fix Andrea video2 06/05/2026 B10: modal "UNLIM SPIEGA L'ESPERIMENTO"
+// copriva il potenziometro al centro canvas. Andrea verbatim "queste finestre
+// che compaiono dovrebbero essere spostabili perché il potenziometro è coperto".
+// Aggiunto state + drag pointer su header. Backdrop click-to-close preserve.
+// Persiste posizione localStorage 'elab-unlim-response-pos' per coerenza UX.
+const POSITION_STORAGE_KEY = 'elab-unlim-response-pos';
+
+function loadSavedPosition() {
+  try {
+    const raw = localStorage.getItem(POSITION_STORAGE_KEY);
+    if (raw) {
+      const p = JSON.parse(raw);
+      if (typeof p?.x === 'number' && typeof p?.y === 'number') return p;
+    }
+  } catch { /* localStorage unavailable */ }
+  return null;
+}
 
 const UNLIMResponsePanel = React.memo(function UNLIMResponsePanel({
   response,
@@ -20,13 +38,62 @@ const UNLIMResponsePanel = React.memo(function UNLIMResponsePanel({
   onAskAgain,
   onClose,
 }) {
+  const [pos, setPos] = useState(loadSavedPosition);
+  const dragRef = useRef(null);
+
+  const handleHeaderPointerDown = useCallback((e) => {
+    if (e.target.closest('button')) return; // close btn click
+    e.preventDefault();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startPos = pos || { x: 0, y: 0 };
+    dragRef.current = { startX, startY, startPos };
+    if (e.pointerId !== undefined) {
+      try { e.target.setPointerCapture(e.pointerId); } catch { /* noop */ }
+    }
+  }, [pos]);
+
+  const handleHeaderPointerMove = useCallback((e) => {
+    if (!dragRef.current) return;
+    const { startX, startY, startPos } = dragRef.current;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    setPos({ x: startPos.x + dx, y: startPos.y + dy });
+  }, []);
+
+  const handleHeaderPointerUp = useCallback((e) => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    if (e?.pointerId !== undefined) {
+      try { e.target.releasePointerCapture?.(e.pointerId); } catch { /* noop */ }
+    }
+    setPos((p) => {
+      if (p) {
+        try { localStorage.setItem(POSITION_STORAGE_KEY, JSON.stringify(p)); } catch { /* noop */ }
+      }
+      return p;
+    });
+  }, []);
+
   if (!response) return null;
+
+  // iter 45 B10 fix: panel translation runtime via pos state. Default centered (no transform).
+  const panelDynamicStyle = pos
+    ? { transform: `translate(${pos.x}px, ${pos.y}px)` }
+    : {};
 
   return (
     <div style={S.backdrop} onClick={() => !response.loading && onClose()} role="button" tabIndex={-1} aria-label="Chiudi risposta UNLIM">
-      <div style={S.panel} onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
-        <div style={S.header}>
+      <div style={{ ...S.panel, ...panelDynamicStyle }} onClick={(e) => e.stopPropagation()}>
+        {/* Header — iter 45 B10 draggable per non coprire potenziometro/canvas */}
+        <div
+          style={{ ...S.header, cursor: 'grab', touchAction: 'none', userSelect: 'none' }}
+          onPointerDown={handleHeaderPointerDown}
+          onPointerMove={handleHeaderPointerMove}
+          onPointerUp={handleHeaderPointerUp}
+          onPointerCancel={handleHeaderPointerUp}
+          aria-label="Trascina per spostare la finestra UNLIM"
+        >
           <div style={S.headerLeft}>
             <span style={{ fontSize: 22, lineHeight: 1 }}>
               {response.loading ? '\u2026' : 'U'}

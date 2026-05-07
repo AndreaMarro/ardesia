@@ -15,6 +15,12 @@ export default function AppHeader({
   onCapitoliOpen,
   capitoliOpen = false,
   onFumettoOpen,
+  // iter 45 fix Andrea video2 06/05/2026 B3 "manca il pulsante per il salvataggio
+  // della sessione": esponiamo un pulsante esplicito Salva Sessione che il docente
+  // può usare per finalizzare la sessione corrente (chiama finaliseSession +
+  // saveSession Supabase via useSessionTracker hook). Auto-save su visibility/
+  // beforeunload rimane invariato.
+  onSaveSession,
   activeTab = 'lavagna',
   onTabChange,
   showClasseTab = false,
@@ -138,6 +144,24 @@ export default function AppHeader({
               <path d="M14 8l4-2v8l-4-2V8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
             <span>Video</span>
+          </button>
+        )}
+        {/* iter 45 fix Andrea video2 06/05/2026 B3: Salva Sessione esplicito */}
+        {onSaveSession && (
+          <button
+            type="button"
+            className={`${css.btn} ${css.btnLabeled}`}
+            onClick={onSaveSession}
+            aria-label="Salva la sessione corrente"
+            title="Salva sessione (la salviamo anche automaticamente all'uscita)"
+            data-testid="btn-salva-sessione"
+            style={{ minWidth: 44, minHeight: 44 }}
+          >
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 3h11l3 3v11H3V3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M6 3v5h7V3M6 17v-6h8v6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            </svg>
+            <span className={css.btnText}>Salva</span>
           </button>
         )}
         {onFumettoOpen && (

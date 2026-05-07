@@ -46,7 +46,11 @@ const PEN_SIZES = [
   { label: 'M', value: 3,   title: 'Medio'  },
   { label: 'L', value: 6,   title: 'Spesso' },
 ];
-const DEFAULT_PEN_SIZE = 1.5;
+// iter 45 fix Andrea video2 06/05/2026 B6 "qualità della penna dovrebbe essere
+// [migliore]": default 1.5px troppo sottile per LIM 65"+ proiezione (tratto
+// invisibile a 5m). Bump default Medio 3px = visibilità classe + smoothing
+// bezier già attivo (pointsToSmoothPath line 60).
+const DEFAULT_PEN_SIZE = 3;
 const ERASER_WIDTH = 18;
 
 /**
@@ -115,6 +119,19 @@ export default function DrawingOverlay({
   const [showToolbar, setShowToolbar] = useState(true);
   const [penSize, setPenSize] = useState(DEFAULT_PEN_SIZE);
   const [isFullscreen, setIsFullscreen] = useState(initialFullscreen);
+
+  // iter 45 fix Andrea video2 06/05/2026 B5 "manca la gomma": ascolta CustomEvent
+  // 'elab-set-eraser-mode' emesso da FloatingToolbar (LavagnaShell handleToolChange
+  // case 'eraser') per togglare modalità gomma da pulsante esterno.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleSetEraser = (ev) => {
+      const next = !!ev?.detail?.eraser;
+      setIsEraser(next);
+    };
+    window.addEventListener('elab-set-eraser-mode', handleSetEraser);
+    return () => window.removeEventListener('elab-set-eraser-mode', handleSetEraser);
+  }, []);
 
   // Undo/Redo stacks (store path snapshots)
   const undoStackRef = useRef([]);

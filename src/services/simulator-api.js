@@ -109,7 +109,16 @@ function createPublicAPI() {
       if (!_simulatorRef?.selectExperiment) return false;
       const exp = findExperimentById(experimentId);
       if (!exp) return false;
-      _simulatorRef.selectExperiment(exp);
+      // iter 45 fix Andrea video 06/05/2026: inject buildMode 'guided' quando esperimento
+      // ha buildSteps[]. Allinea a ExperimentPicker.jsx:202 che faceva la stessa iniezione
+      // solo nel suo flusso click. Senza questa iniezione, INIZIA Bentornati / loadExperiment
+      // da useGalileoChat / loadExperiment da PercorsoPanel non triggeravano ComponentDrawer
+      // (vero pannello Passo Passo click-by-click).
+      const hasBuildSteps = Array.isArray(exp.buildSteps) && exp.buildSteps.length > 0;
+      const enriched = exp.buildMode
+        ? exp
+        : { ...exp, buildMode: hasBuildSteps ? 'guided' : false };
+      _simulatorRef.selectExperiment(enriched);
       return true;
     },
 

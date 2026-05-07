@@ -34,8 +34,9 @@ import LessonSelector from './LessonSelector';
 import VisionButton from '../tutor/VisionButton';
 import logger from '../../utils/logger';
 import ErrorBoundary from '../common/ErrorBoundary';
-// Atom A5 iter 36 — Passo Passo LessonReader in draggable FloatingWindow
-import FloatingWindowCommon from '../common/FloatingWindow';
+// iter 45 (Andrea video 06/05/2026): rimosso import FloatingWindowCommon — Atom A5 iter 36
+// Passo Passo via FloatingWindow LessonReader era duplicato sbagliato del vero
+// ComponentDrawer step-by-step in NewElabSimulator. Vedi commento blocco render rimosso.
 // Sprint S iter 2 Task B — Capitolo lookup service
 import { getCapitolo, listAllCapitoli } from '../../services/percorsoService';
 // iter 35 fix Bug 5 Fumetto: static import preserves user-gesture chain (was async dynamic import → window.open() blocked browser popup policy).
@@ -414,7 +415,25 @@ export default function LavagnaShell() {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [lavagnaState, setLavagnaState] = useState(STATES.CLEAN);
   const [hasExperiment, setHasExperiment] = useState(false);
-  const [freeMode, setFreeMode] = useState(false); // Lavagna libera — no experiment loaded
+  // iter 45 fix Andrea video2 06/05/2026 B9: Lavagna libera (HomePage card "Lavagna
+  // libera" launchMode='solo' → localStorage 'elab_lavagna_launch_mode'='solo')
+  // deve essere SCOPED — solo UNLIM + manuale + capitoli + video. NO simulator
+  // components/breadboard. Init freeMode da localStorage al mount.
+  // iter 45 review fix F-4.1.a (architect): consume + clear flag al primo read
+  // così click "Lavagna libera" attiva freeMode SOLO per quella sessione, non
+  // perpetuamente. Senza clear, ogni successiva visita #lavagna restava bloccata
+  // in freeMode finché cache pulita. Pattern read-once safe legacy migration-friendly.
+  const [freeMode, setFreeMode] = useState(() => {
+    try {
+      const flag = localStorage.getItem('elab_lavagna_launch_mode');
+      if (flag === 'solo') {
+        // Consume flag — successivo mount torna al default false
+        try { localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+        return true;
+      }
+      return false;
+    } catch { return false; }
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [lessonSteps, setLessonSteps] = useState([]);
   const [unlimSpeaking, setUnlimSpeaking] = useState(false);
@@ -654,6 +673,13 @@ export default function LavagnaShell() {
     // wire-up Edge Function chain decisione orchestratore Phase 4). NON muta
     // currentExperiment — preserva canvas (no clearAll).
     if (nextMode === 'percorso' && typeof window !== 'undefined') {
+      // iter 45 fix Andrea video 06/05/2026 "percorso non funziona": auto-apri UNLIM
+      // panel con tab 'percorso' come faceva handleBuildModeChange line 790-794 per
+      // buildMode='sandbox'. Senza questo, click Percorso aggiornava solo lo stato
+      // interno ma nulla diventava visibile per l'utente.
+      setGalileoOpen(true);
+      setUnlimTab('percorso');
+      manualOverridesRef.current.galileo = true;
       const api = window.__ELAB_API;
       if (api?.unlim?.aggregateContext) {
         try {
@@ -813,6 +839,23 @@ export default function LavagnaShell() {
         setActiveTool(next ? 'pen' : 'select');
         const penApi = typeof window !== 'undefined' && window.__ELAB_API;
         if (penApi?.toggleDrawing) penApi.toggleDrawing(next);
+        // iter 45 B5: switch back to pen mode (off eraser) when entering pen.
+        try {
+          window.dispatchEvent(new CustomEvent('elab-set-eraser-mode', { detail: { eraser: false } }));
+        } catch { /* noop */ }
+        return;
+      }
+      // iter 45 fix Andrea video2 06/05/2026 B5 "manca la gomma": tool eraser
+      // attiva drawing mode + switch isEraser=true via CustomEvent globale che
+      // DrawingOverlay (canvas/DrawingOverlay.jsx) ascolta e toggla state.
+      case 'eraser': {
+        setDrawingEnabled(true);
+        setActiveTool('eraser');
+        const eraserApi = typeof window !== 'undefined' && window.__ELAB_API;
+        if (eraserApi?.toggleDrawing) eraserApi.toggleDrawing(true);
+        try {
+          window.dispatchEvent(new CustomEvent('elab-set-eraser-mode', { detail: { eraser: true } }));
+        } catch { /* noop */ }
         return;
       }
       case 'delete': {
@@ -1186,6 +1229,21 @@ export default function LavagnaShell() {
         volumeOpen={volumeOpen}
         onCapitoliOpen={handleCapitoliOpen}
         capitoliOpen={capitoloPickerOpen || !!activeCapitoloId}
+        // iter 45 fix Andrea video2 06/05/2026 B3 "manca il pulsante per il
+        // salvataggio della sessione": pulsante esplicito Salva nel header.
+        // Chiama sessionTracker.finaliseSession() (saveSessions localStorage +
+        // saveSessionSummary unlimMemory + saveSessionToSupabase async). Auto
+        // save invisibility/beforeunload preserved.
+        onSaveSession={sessionTracker?.finaliseSession ? () => {
+          try {
+            sessionTracker.finaliseSession();
+            setToolToast('Sessione salvata. Buon lavoro, Ragazzi.');
+            setTimeout(() => setToolToast(null), 2500);
+          } catch (err) {
+            setToolToast('Errore salvataggio. Riprova tra un attimo.');
+            setTimeout(() => setToolToast(null), 2500);
+          }
+        } : undefined}
         onPercorsoToggle={() => {
           // Open UNLIM with Percorso tab instead of separate panel
           if (galileoOpen && unlimTab === 'percorso') {
@@ -1214,8 +1272,9 @@ export default function LavagnaShell() {
             <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange} />
           </div>
 
-          {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito) */}
-          {hasExperiment && buildMode !== 'sandbox' && (
+          {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito.
+               iter 45 B9: anche hidden in freeMode 'Lavagna libera' Andrea mandate). */}
+          {!freeMode && hasExperiment && buildMode !== 'sandbox' && (
             <RetractablePanel
               id="lavagna-left"
               direction="left"
@@ -1231,22 +1290,57 @@ export default function LavagnaShell() {
             </RetractablePanel>
           )}
 
-          {/* Center — simulator canvas + floating toolbar */}
+          {/* Center — simulator canvas + floating toolbar.
+               iter 45 fix Andrea video2 B9: Lavagna libera (freeMode=true) NO simulator
+               components/breadboard. Andrea verbatim "dovrei essere impossibilitato
+               nell'utilizzare componenti, breadboard. Solo UNLIM, manuale, capitoli, video".
+               Render canvas pulito drawing-only sostituisce NewElabSimulator. */}
           <main className={css.canvas} style={{
-            ...(leftPanelOpen ? { marginLeft: leftPanelSize } : {}),
+            ...(leftPanelOpen && !freeMode ? { marginLeft: leftPanelSize } : {}),
             ...(bottomPanelOpen ? { marginBottom: bottomPanelSize } : {}),
           }}>
-            <Suspense fallback={
-              <div className={css.loading}>
-                <span>Caricamento simulatore...</span>
+            {freeMode ? (
+              <div
+                data-testid="lavagna-libera-empty-canvas"
+                style={{
+                  width: '100%', height: '100%',
+                  background: 'linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%)',
+                  border: '2px dashed var(--elab-hex-737373, #737373)',
+                  borderRadius: 16,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexDirection: 'column', gap: 12,
+                  fontFamily: "'Open Sans', sans-serif",
+                  color: 'var(--elab-navy, #1E4D8C)',
+                  padding: 32,
+                }}
+              >
+                <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 28, fontWeight: 700, margin: 0 }}>
+                  Lavagna libera
+                </h2>
+                <p style={{ fontSize: 17, lineHeight: 1.6, textAlign: 'center', margin: 0, maxWidth: 520 }}>
+                  Ragazzi, questa lavagna è pulita. Usate UNLIM, il manuale, i capitoli o le videolezioni dal menu in alto.
+                </p>
+                <p style={{ fontSize: 14, color: 'var(--elab-hex-737373)', margin: 0 }}>
+                  Niente simulatore qui — la lavagna è solo per scrivere e parlare con la classe.
+                </p>
               </div>
-            }>
-              <NewElabSimulator
-                hideLessonPath
-                hideComponentDrawer={modalita === 'passo-passo'}
-                enableDrawingSync
-              />
-            </Suspense>
+            ) : (
+              <Suspense fallback={
+                <div className={css.loading}>
+                  <span>Caricamento simulatore...</span>
+                </div>
+              }>
+                {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
+                     click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
+                     NON nascondere ComponentDrawer — al contrario, è proprio quello che
+                     l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
+                <NewElabSimulator
+                  hideLessonPath
+                  hideBuildModeBar
+                  enableDrawingSync
+                />
+              </Suspense>
+            )}
 
             <FloatingToolbar
               activeTool={activeTool}
@@ -1378,41 +1472,14 @@ export default function LavagnaShell() {
           </div>
         )}
 
-        {/* Atom A5 iter 36 — Passo Passo: LessonReader in resizable/draggable FloatingWindow.
-             Principio Zero: se nessun esperimento caricato, empty state plurale + kit reference.
-             Z-index 10001 > UNLIM panel (lavagna/FloatingWindow maximized = 10000). */}
-        {modalita === 'passo-passo' && (
-          <FloatingWindowCommon
-            title="Passo Passo"
-            initialPosition={{ x: 100, y: 100 }}
-            initialSize={{ width: 480, height: 600 }}
-            minSize={{ width: 320, height: 400 }}
-            resizable
-            draggable
-            zIndex={10001}
-            onClose={() => setModalita('percorso')}
-          >
-            {!activeLessonId ? (
-              <div style={{
-                padding: 32, textAlign: 'center', color: 'var(--elab-hex-737373)',
-                fontFamily: "'Open Sans', sans-serif", fontSize: 16, lineHeight: 1.6,
-              }}>
-                <p style={{ fontFamily: "'Oswald', sans-serif", fontSize: 18, fontWeight: 700, color: 'var(--elab-navy)', marginBottom: 12 }}>
-                  Ragazzi, scegliete un esperimento dalla lista
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  Aprite il kit ELAB e trovate l&apos;esperimento nel volume.
-                </p>
-              </div>
-            ) : (
-              <LessonReader
-                lessonId={activeLessonId}
-                currentExperimentId={currentExperiment?.id}
-                onExperimentSelect={handleLessonExperimentSelect}
-              />
-            )}
-          </FloatingWindowCommon>
-        )}
+        {/* iter 45 fix Andrea video 06/05/2026: rimosso FloatingWindow LessonReader per
+             modalita='passo-passo'. Era duplicato sbagliato (narrative capitolo invece
+             click-by-click build). Vero Passo Passo = ComponentDrawer in NewElabSimulator
+             (Andrea Marro 20/02/2026 src/components/simulator/panels/ComponentDrawer.jsx)
+             che renderizza quando currentExperiment.buildMode === 'guided' (iniettato
+             da ExperimentPicker:202 quando experiment ha buildSteps[]).
+             Andrea audio Voxtral verbatim 06/05/2026: "passo passo qua è sbagliato,
+             parla di cose a caso mentre in realtà sotto si nascondono i veri pulsanti". */}
       </div>
 
       {/* Bottom panel — placeholder for code/serial (simulator handles its own) */}

@@ -36,22 +36,40 @@ describe('cleanAndTruncate', () => {
     expect(cleanAndTruncate('')).toBe('');
   });
 
-  it('preserva tag [AZIONE:...] anche quando tronca', () => {
-    const long = Array(80).fill('parola').join(' ') + ' [AZIONE:highlight:led1] [AZIONE:play]';
-    const result = cleanAndTruncate(long);
-    expect(result).toContain('[AZIONE:highlight:led1]');
-    expect(result).toContain('[AZIONE:play]');
-    // Le parole di testo sono troncate a 60
-    const textOnly = result.replace(/\[AZIONE:[^\]]+\]/g, '').trim();
-    const wordCount = textOnly.split(/\s+/).filter(w => w.length > 0).length;
-    expect(wordCount).toBeLessThanOrEqual(60);
+  // iter 45 fix Andrea video2 06/05/2026 B7: AZIONE/INTENT/STRUCTURED tags
+  // sono consumati dal browser dispatcher (intentsDispatcher iter 36 +
+  // 62-tool registry iter 31). Non DEVONO comparire in UI ("UNLIM SPIEGA
+  // L'ESPERIMENTO" mostrava raw tags Andrea screenshot).
+  it('STRIP completo tag [AZIONE:...] dal testo visibile (B7 fix iter 45)', () => {
+    const text = 'Ragazzi, accendete il LED. [AZIONE:highlight:led1] [AZIONE:play]';
+    const result = cleanAndTruncate(text);
+    expect(result).not.toContain('[AZIONE:');
+    expect(result).not.toContain('AZIONE:highlight');
+    expect(result).toContain('Ragazzi');
+    expect(result).toContain('accendete il LED');
   });
 
-  it('non conta tag [AZIONE:...] nel limite parole', () => {
-    const text = Array(55).fill('parola').join(' ') + ' [AZIONE:highlight:led1]';
+  it('STRIP tag [INTENT:...] dal testo visibile (B7 fix iter 45)', () => {
+    const text = 'Cliccate sul pulsante. [INTENT:{"action":"click","id":"btn1"}]';
     const result = cleanAndTruncate(text);
-    // 55 words < 60, so text should NOT be truncated
-    expect(result).not.toContain('...');
-    expect(result).toContain('[AZIONE:highlight:led1]');
+    expect(result).not.toContain('[INTENT:');
+    expect(result).not.toContain('"action"');
+    expect(result).toContain('Cliccate sul pulsante');
+  });
+
+  it('STRIP tag [STRUCTURED:...] dal testo visibile (B7 fix iter 45)', () => {
+    const text = 'Vol.1 pag.32 il resistore limita la corrente. [STRUCTURED:{"type":"citation"}]';
+    const result = cleanAndTruncate(text);
+    expect(result).not.toContain('[STRUCTURED:');
+    expect(result).toContain('Vol.1 pag.32');
+  });
+
+  it('tronca testo lungo + strip tags simultaneo (B7 + brevity)', () => {
+    const long = Array(80).fill('parola').join(' ') + ' [AZIONE:highlight:led1] [AZIONE:play]';
+    const result = cleanAndTruncate(long);
+    expect(result).not.toContain('[AZIONE:');
+    expect(result).toContain('...');
+    const wordCount = result.replace('...', '').trim().split(/\s+/).filter(w => w.length > 0).length;
+    expect(wordCount).toBeLessThanOrEqual(60);
   });
 });
