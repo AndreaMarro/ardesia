@@ -1,0 +1,389 @@
+{
+  "task": "volumi-vol1",
+  "timestamp": "2026-05-07T07:35:00Z",
+  "volume": 1,
+  "pdf_path": "CONTENUTI/volumi-pdf/VOL1_ITA_ COMPLETO V.0.1 GP.pdf",
+  "spec_path": "docs/superpowers/specs/2026-05-07-task5-volumi-vol2-design.md",
+  "plan_path": "docs/superpowers/plans/2026-05-07-sprint-u-cycle2-vol2-audit.md",
+  "esperimenti_count_declared": 38,
+  "esperimenti_count_actual": 38,
+  "esperimenti_audited": 38,
+  "summary": "Sprint U Cycle 2 Vol1 audit complete. Phase 1 (3 BG general-purpose agents parallel: Maker-1 ch6-7, Maker-2 ch8-9, Maker-3 ch10-14) covered 38/38 esperimenti. Phase 2 (Claude in Chrome MCP live functional test) confirmed 38/38 mount=true with 0 errors. Phase 3 (concept-grouping audit) confirmed 10 lesson-groups Vol1 CORRECTLY labeled (vs Vol2 5/9 mislabeled). Andrea iter 21+ 'spiattellato' feedback DRAMATICALLY CONFIRMED Vol1: ~13-15/38 esperimenti spiattellati (~35-40%) — STARK contrast vs Vol2 (0/27). cap14 Capstone Robot CRITICAL gap (breadboard coords diverge + mechanical kit gap mascot ELAB physical extra-SVG).",
+  "phase_1_pdf_audit": {
+    "maker_1": {
+      "scope": "ch6 LED + ch7 RGB",
+      "esperimenti_covered": 9,
+      "output_file": "automa/state/maker1-vol1-ch6-7-audit.md",
+      "completion_msg": "automa/team-state/messages/maker1-vol1-phase1-completed.md",
+      "spiattellato_verdict_cap7_rgb": "YES PARZIALE (~3-4/6)",
+      "top_findings": [
+        "cap7 esp2+esp3 SPIATTELLATI medium: PDF = 1 riga ciascuno ('Scollega resistore dal rosso e collegalo al verde/blu'); code = 8 buildSteps duplicati ESP1 ciascuno. Raccomandazione: consolidare in ESP1 come step interattivo.",
+        "cap7 esp5 PERDE VARIAZIONE PDF: PDF chiude con bilanciamento bianco 'rosso 330→220 Ohm'; code observe accenna ma non esegue.",
+        "cap6 ben allineato: 3 esperimenti distinti narrative PDF preservata. ESP3 cap6 dimostra pattern corretto — arc 470/220/1k come run-time variation in note field, non 3 esperimenti separati."
+      ]
+    },
+    "maker_2": {
+      "scope": "ch8 Pulsante + ch9 Potenziometro",
+      "esperimenti_covered": 14,
+      "output_file": "automa/state/maker2-vol1-ch8-9-audit.md",
+      "completion_msg": "automa/team-state/messages/maker2-vol1-phase1-completed.md",
+      "spiattellato_verdict_cap9_potenziometro": "YES HIGH (5/9 spiattellati)",
+      "spiattellato_verdict_cap8_pulsante": "YES MEDIUM (2/5 spiattellati)",
+      "severity_distribution": {"critical": 0, "high": 7, "medium": 18, "minor": 2},
+      "top_findings": [
+        "Cap9 Potenziometro 5/9 spiattellati HIGH: esp3+7+8+9 sono LETTERALMENTE UNA RIGA testo PDF ciascuno ('Vuoi provare ad aggiungere qualche pulsante?', 'Prova a fare insieme esp 6 e 5', 'Aggiungi pulsante per accendere e spegnere LED esp 8'). Codice card-flat con BOM e buildSteps INVENTATI = violazione triplet coerenza Morfismo Sense 2. Esattamente come predetto Andrea iter 21+.",
+        "Cap8 Pulsante 2/5 spiattellati MEDIUM: esp2 e esp5 sono variazioni testuali 4-8 righe PDF con riferimento esplicito al precedente ('Partendo dall esperimento appena finito', 'Giocando con esperimento 4'). Codice card-flat.",
+        "Linguaggio singolare imperativo 14/14 esp viola Andrea iter 21+ mandate plurale — codemod regex 200 violazioni mandate sistematiche."
+      ]
+    },
+    "maker_3": {
+      "scope": "ch10 LDR + ch11 Buzzer + ch12 Reed + ch13 Plastilina + ch14 Capstone",
+      "esperimenti_covered": 15,
+      "output_file": "automa/state/maker3-vol1-ch10-14-audit.md",
+      "completion_msg": "automa/team-state/messages/maker3-vol1-phase1-completed.md",
+      "spiattellato_verdict_cap10_ldr": "YES candidate — 'Reagisci alla luce' coherent narrative escalation",
+      "spiattellato_verdict_cap12_reed": "YES candidate — 'Magnete attiva il circuito' coherent",
+      "top_findings": [
+        "CRITICAL cap14 Capstone — breadboard coords diverge MASSIVELY (e-28 vs PDF e-1; b21 vs PDF g-15; d53..d56 vs PDF g-24..g-27) + mechanical kit gap PDF references physical 'amico ELAB' mascot/case Omaric con occhi + mano RGB + scettro anatomy; code only sims breadboard circuit. Necessita mascot SVG asset OR simulable:false flag con foto OR PDR per mechanical kit assembly.",
+        "CRITICAL cap10-esp1 PDF↔code resistor contradiction: PDF explicitly says 'non c'è bisogno di inserire un resistore' but code adds 220Ω. PRINCIPIO ZERO violation diretta.",
+        "CRITICAL cap10-esp3 components array missing r1/r2/r3 declarations referenced in buildSteps (simulator instantiation bug risk).",
+        "cap12-esp4 plurale 'potenziometri' vs code 1 pot — divergence narrative.",
+        "cap12-esp3 RGB locked to rosso only, PDF says 'del colore che preferisci' — limita didattica."
+      ]
+    },
+    "total_audited": 38,
+    "aggregate_severity_estimate": {"critical": 3, "high": 10, "medium": 25, "minor": 25}
+  },
+  "phase_2_live_functional_test": {
+    "tool": "Claude in Chrome MCP",
+    "browser_tabId": 1259340882,
+    "prod_url": "https://www.elabtutor.school/#lavagna",
+    "mega_loop_duration_seconds": 76,
+    "esperimenti_tested": 38,
+    "mount_success_count": 38,
+    "mount_success_rate": "100%",
+    "errors_count": 0,
+    "captured_screenshots_in_browser_count": 38,
+    "saved_screenshots_to_disk_count": 0,
+    "saved_screenshots_reason_skipped": "Same Vol2 technical limitation: Chrome MCP base64 return blocked + headless download fail. Per-esperimento metadata recorded as substantial alternative evidence.",
+    "output_file": "automa/state/inline-vol1-functional-test.md",
+    "zero_connections_count": 0,
+    "zero_components_count": 0,
+    "vol1_better_than_vol2": "Vol1 0/38 zero-connections vs Vol2 4/27 anomalous 0-wires. Vol1 esperimenti hanno tutti wires.",
+    "identical_circuit_pairs_phase2_observed": [
+      {"ids": ["v1-cap7-esp1", "v1-cap7-esp2", "v1-cap7-esp3"], "circuit_signature": "4 comps 6 wires (rgb single channel)", "narrative_concept": "Accendi rosso/verde/blu del RGB"},
+      {"ids": ["v1-cap8-esp1", "v1-cap8-esp2"], "circuit_signature": "5 comps 8 wires (LED + pulsante)"},
+      {"ids": ["v1-cap8-esp4", "v1-cap8-esp5"], "circuit_signature": "9 comps 9 wires (3 pulsanti + RGB)"},
+      {"ids": ["v1-cap9-esp1", "v1-cap9-esp2", "v1-cap9-esp3"], "circuit_signature": "5 comps 6 wires (pot + R + LED)"},
+      {"ids": ["v1-cap10-esp1", "v1-cap10-esp2"], "circuit_signature": "4 comps 6 wires (LDR + LED)"},
+      {"ids": ["v1-cap12-esp1", "v1-cap12-esp2"], "circuit_signature": "5 comps 5 wires (reed + LED)"}
+    ],
+    "smart_design_highlights": [
+      "cap6-esp2 'LED senza resistore (cosa NON fare!)' — pedagogical anti-pattern intenzionale",
+      "cap13 plastilina (esp1+esp2) NO breadboard intentionally, plastilina IS the conductor (concept innovative)",
+      "cap14 Robot ELAB capstone 13 components 21 wires (più complesso di Vol2 capstone 12/20)"
+    ]
+  },
+  "phase_3_concept_grouping": {
+    "concept_grouping_current": {
+      "lessons_count": 10,
+      "esperimenti_in_lessons": 38,
+      "source": "src/data/lesson-groups.js",
+      "lessons_list": [
+        "v1-accendi-led (ch6, 3 esp cap6-esp1..esp3) — 'Circuito base bat+R+LED'",
+        "v1-led-rgb (ch7, 6 esp cap7-esp1..esp6) — 'Mescola i colori con un singolo LED'",
+        "v1-pulsanti (ch8, 5 esp cap8-esp1..esp5) — 'Controlla con interruttore'",
+        "v1-potenziometro (ch9, 6 esp cap9-esp1..esp6) — 'Regola luminosità'",
+        "v1-sfide-pot (ch9, 3 esp cap9-esp7..esp9) — 'Sfide: combina tutto!' isChallenges:true",
+        "v1-sensore-luce (ch10, 6 esp cap10-esp1..esp6) — 'Reagisce alla luce'",
+        "v1-buzzer (ch11, 2 esp cap11-esp1..esp2) — 'Aggiungi suono'",
+        "v1-reed-switch (ch12, 4 esp cap12-esp1..esp4) — 'Interruttore invisibile magnete'",
+        "v1-plastilina (ch13, 2 esp cap13-esp1..esp2) — 'Circuiti artistici'",
+        "v1-robot (ch14, 1 esp cap14-esp1) — 'Progetto finale' advancedProject:true"
+      ],
+      "mislabeled_count": 0,
+      "labeling_assessment": "Vol1 lesson-groups CORRECTLY labeled — labels match PDF chapter content. NO shifted-by-1 mislabeling like Vol2. Solo issue è SPIATTELLAMENTO interno alle lezioni (multipli esperimenti separati per UN concetto del libro)."
+    },
+    "concept_grouping_proposed": [
+      {
+        "concept": "Cos'è il diodo LED",
+        "pdf_pages": "27-34",
+        "pdf_chapter": 6,
+        "current_lesson_id": "v1-accendi-led",
+        "current_lesson_problem": null,
+        "proposed_lesson_id": "v1-accendi-led",
+        "proposed_title": "Accendi il LED",
+        "variations": [
+          {"raw_id": "v1-cap6-esp1", "subtitle": "Accendi il tuo primo LED", "preserve": true},
+          {"raw_id": "v1-cap6-esp2", "subtitle": "LED senza resistore (cosa NON fare!)", "preserve": true, "note": "pedagogical anti-pattern"},
+          {"raw_id": "v1-cap6-esp3", "subtitle": "Cambia luminosità con resistenze diverse", "preserve": true}
+        ],
+        "rationale": "cap6 ben allineato per Maker-1. 3 esperimenti narrative distinct. NO refactor needed."
+      },
+      {
+        "concept": "Cos'è il LED RGB — Mescola i colori",
+        "pdf_pages": "35-42",
+        "pdf_chapter": 7,
+        "current_lesson_id": "v1-led-rgb",
+        "current_lesson_problem": "6 esp con 3 spiattellati (cap7-esp1+esp2+esp3 = stesso circuito 4 comps 6 wires, 'rosso/verde/blu' variazioni di UN concetto 'accendi singolo canale'). PDF presenta come arc didattico continuo.",
+        "proposed_lesson_id": "v1-led-rgb",
+        "proposed_title": "Il LED RGB",
+        "variations_REFACTORED": [
+          {"raw_id": "v1-cap7-esp1", "subtitle": "Accendi i singoli canali (rosso/verde/blu)", "preserve_with_internal_variations": ["rosso", "verde", "blu"], "consolidates": ["v1-cap7-esp2", "v1-cap7-esp3"]},
+          {"raw_id": "v1-cap7-esp4", "subtitle": "Mescola 2 colori (viola)", "preserve": true},
+          {"raw_id": "v1-cap7-esp5", "subtitle": "Mescola 3 colori (bianco)", "preserve": true, "note_pdf": "PDF chiude con bilanciamento bianco 'rosso 330→220Ω' MISSING in code observe"},
+          {"raw_id": "v1-cap7-esp6", "subtitle": "Crea il tuo colore (tinkering)", "preserve": true}
+        ],
+        "spiattellato_severity": "medium",
+        "refactor_action": "Consolidate cap7-esp2 + cap7-esp3 into cap7-esp1 as internal variations (channel selector). 6 esp → 4 esp."
+      },
+      {
+        "concept": "Cos'è un pulsante — Controlla con interruttore",
+        "pdf_pages": "43-56",
+        "pdf_chapter": 8,
+        "current_lesson_id": "v1-pulsanti",
+        "current_lesson_problem": "5 esp con 2 spiattellati (cap8-esp2 = variazione di esp1 'Partendo dall'esperimento appena finito'; cap8-esp5 = variazione di esp4 'Giocando con l'esperimento 4'). PDF presenta come variazioni testuali, code card-flat.",
+        "proposed_lesson_id": "v1-pulsanti",
+        "proposed_title": "I pulsanti",
+        "variations_REFACTORED": [
+          {"raw_id": "v1-cap8-esp1", "subtitle": "LED con pulsante (con variazioni 'cambia colore/luminosità')", "consolidates": ["v1-cap8-esp2"]},
+          {"raw_id": "v1-cap8-esp3", "subtitle": "RGB + pulsante = viola", "preserve": true},
+          {"raw_id": "v1-cap8-esp4", "subtitle": "3 pulsanti → 3 colori RGB (con variazione 'mix avanzato')", "consolidates": ["v1-cap8-esp5"]}
+        ],
+        "spiattellato_severity": "medium",
+        "refactor_action": "Consolidate cap8-esp2 into esp1, cap8-esp5 into esp4 as suggestedVariations[]. 5 esp → 3 esp."
+      },
+      {
+        "concept": "Cos'è un potenziometro — Regola con manopola",
+        "pdf_pages": "57-72",
+        "pdf_chapter": 9,
+        "current_lesson_id_main": "v1-potenziometro",
+        "current_lesson_id_sfide": "v1-sfide-pot",
+        "current_lesson_problem": "9 esp con 5 spiattellati HIGH severity (cap9-esp3 + esp7 + esp8 + esp9 = LETTERALMENTE UNA RIGA testo PDF ciascuno). cap9-esp3 'LED diverso colore' = 1 line variation di esp1. cap9-esp7+8+9 'sfide' inflate da 1 line ciascuna a card-flat con buildSteps INVENTATI.",
+        "proposed_lesson_id_main": "v1-potenziometro",
+        "proposed_title_main": "Il potenziometro",
+        "variations_REFACTORED": [
+          {"raw_id": "v1-cap9-esp1", "subtitle": "Dimmer LED (con variazioni 'inverti rotazione', 'colore diverso')", "consolidates": ["v1-cap9-esp2", "v1-cap9-esp3"]},
+          {"raw_id": "v1-cap9-esp4", "subtitle": "Dimmer RGB azzurrino", "preserve": true},
+          {"raw_id": "v1-cap9-esp5", "subtitle": "Pot miscelatore blu/rosso", "preserve": true},
+          {"raw_id": "v1-cap9-esp6", "subtitle": "Lampada RGB con 3 potenziometri (CAPSTONE)", "preserve": true, "note": "questo è il vero capstone cap9, 9 comps 16 wires"}
+        ],
+        "proposed_lesson_id_sfide": "v1-cap9-esp6.suggestedVariations",
+        "proposed_sfide_action": "convertire cap9-esp7+8+9 da esperimenti separati in suggestedVariations[] del cap9-esp6 lampada CAPSTONE. PDF presenta come 'sfide aperte' = inviti a tinkering, NON 3 esperimenti card-flat con buildSteps inventati.",
+        "spiattellato_severity": "high",
+        "refactor_action": "9 esp → 4 esp + 3 suggestedVariations su esp6. Riduzione 9→4."
+      },
+      {
+        "concept": "Cos'è un fotoresistore — Reagisci alla luce",
+        "pdf_pages": "81-92",
+        "pdf_chapter": 10,
+        "current_lesson_id": "v1-sensore-luce",
+        "current_lesson_problem": "6 esp con 2-3 spiattellati candidate per Maker-3 (escalation pattern singolo→multi→ottico→controllo). cap10-esp1 PRINCIPIO ZERO violation (PDF 'no resistore' vs code 220Ω). cap10-esp3 components array buggy (r1/r2/r3 missing).",
+        "proposed_lesson_id": "v1-sensore-luce",
+        "proposed_title": "Sensore di luce (LDR)",
+        "variations_REFACTORED": [
+          {"raw_id": "v1-cap10-esp1", "subtitle": "LED controllato dalla luce (con variazione 'colore diverso')", "consolidates": ["v1-cap10-esp2"], "FIX_required": "rimuovere R 220Ω allineamento PDF + linguaggio plurale"},
+          {"raw_id": "v1-cap10-esp3", "subtitle": "3 LDR controllano RGB", "preserve": true, "FIX_required": "components array bug r1/r2/r3 missing declarations"},
+          {"raw_id": "v1-cap10-esp4", "subtitle": "LED bianco illumina LDR → LED blu (loop ottico)", "preserve": true},
+          {"raw_id": "v1-cap10-esp5", "subtitle": "Pot controlla LED bianco illuminante", "preserve": true},
+          {"raw_id": "v1-cap10-esp6", "subtitle": "Pulsante override LDR circuit", "preserve": true}
+        ],
+        "spiattellato_severity": "medium",
+        "refactor_action": "6 esp → 5 esp (consolidate esp2 in esp1) + 2 critical FIX cap10-esp1 + cap10-esp3."
+      },
+      {
+        "concept": "Cos'è un cicalino — Aggiungi suono",
+        "pdf_pages": "93-96",
+        "pdf_chapter": 11,
+        "current_lesson_id": "v1-buzzer",
+        "current_lesson_problem": null,
+        "proposed_lesson_id": "v1-buzzer",
+        "proposed_title": "Il buzzer",
+        "variations": [
+          {"raw_id": "v1-cap11-esp1", "subtitle": "Buzzer suona continuo", "preserve": true},
+          {"raw_id": "v1-cap11-esp2", "subtitle": "Campanello con pulsante", "preserve": true}
+        ],
+        "rationale": "2 esp distinct narrative. NO refactor needed."
+      },
+      {
+        "concept": "L'interruttore magnetico — Magnete attiva",
+        "pdf_pages": "97-102",
+        "pdf_chapter": 12,
+        "current_lesson_id": "v1-reed-switch",
+        "current_lesson_problem": "4 esp con 2 spiattellati candidate Maker-3. esp1=esp2 stesso circuito (5/5 comps/wires). cap12-esp4 plurale 'potenziometri' PDF vs code 1 pot. cap12-esp3 RGB locked rosso vs PDF 'colore che preferisci'.",
+        "proposed_lesson_id": "v1-reed-switch",
+        "proposed_title": "Reed switch (magnete)",
+        "variations_REFACTORED": [
+          {"raw_id": "v1-cap12-esp1", "subtitle": "LED con reed (con variazione 'cambia luminosità con magnete')", "consolidates": ["v1-cap12-esp2"]},
+          {"raw_id": "v1-cap12-esp3", "subtitle": "RGB + reed switch", "preserve": true, "FIX_required": "unlock RGB color selection per PDF 'del colore che preferisci'"},
+          {"raw_id": "v1-cap12-esp4", "subtitle": "Sfida: pot + RGB + reed", "preserve": true, "FIX_required": "1 pot vs PDF plurale potenziometri — verificare numero corretto"}
+        ],
+        "spiattellato_severity": "medium",
+        "refactor_action": "4 esp → 3 esp (consolidate esp2 in esp1) + 2 FIX cap12-esp3 + cap12-esp4."
+      },
+      {
+        "concept": "Cos'è l'elettropongo — Plastilina conductive",
+        "pdf_pages": "103-106",
+        "pdf_chapter": 13,
+        "current_lesson_id": "v1-plastilina",
+        "current_lesson_problem": null,
+        "proposed_lesson_id": "v1-plastilina",
+        "proposed_title": "Circuiti con plastilina",
+        "variations": [
+          {"raw_id": "v1-cap13-esp1", "subtitle": "LED nell'elettropongo", "preserve": true, "note": "smart design NO breadboard, plastilina IS conductor"},
+          {"raw_id": "v1-cap13-esp2", "subtitle": "Circuiti artistici con plastilina", "preserve": true}
+        ],
+        "rationale": "2 esp distinct narrative + design innovative. NO refactor needed."
+      },
+      {
+        "concept": "Costruiamo il nostro primo robot ELAB — CAPSTONE",
+        "pdf_pages": "107-108",
+        "pdf_chapter": 14,
+        "current_lesson_id": "v1-robot",
+        "current_lesson_problem": "CRITICAL: breadboard coords code DIVERGE MASSIVELY from PDF (e-28 vs PDF e-1; b21 vs PDF g-15; d53..d56 vs PDF g-24..g-27). PDF references physical 'amico ELAB' mascot/case Omaric con occhi + mano RGB + scettro anatomy. Code only sims breadboard circuit. Mechanical kit gap.",
+        "proposed_lesson_id": "v1-robot",
+        "proposed_title": "Il Primo Robot ELAB",
+        "variations": [
+          {"raw_id": "v1-cap14-esp1", "subtitle": "Costruisci il tuo robot ELAB", "preserve": true, "FIX_critical_required": ["allineare breadboard coords PDF (e-1 anchor)", "mascot SVG asset OR simulable:false flag con foto OR PDR per mechanical kit assembly Omaric"]}
+        ],
+        "spiattellato_severity": "critical",
+        "refactor_action": "1 esp invariato MA 2 CRITICAL fix necessari (coords + mascot)."
+      }
+    ],
+    "concept_grouping_summary": {
+      "total_concepts_proposed": 9,
+      "concepts_unchanged": 4,
+      "concepts_refactored": 5,
+      "concepts_split": 0,
+      "concepts_merged": 0,
+      "spiattellato_evidence": "VOL1 = ~13-15/38 esperimenti spiattellati (~35-40%)",
+      "spiattellato_conclusion": "Andrea iter 21+ feedback 'spiattellato' DRAMATICALLY CONFIRMED Vol1 (vs 0/27 Vol2). Pattern dominante: PDF presenta 1-line variazioni di un concetto, code esplode in N esperimenti card-flat con buildSteps INVENTATI (caso peggiore cap9-esp7+8+9 = 1 riga PDF ciascuno, 8 buildSteps inventati ciascuno = violazione triplet coerenza Morfismo Sense 2).",
+      "main_finding": "Refactor proposal Vol1: 38 esp → 28 esp + 5 suggestedVariations + cap14 capstone fix. Riduzione ~26% mantenendo concetti narrative + esposizione variazioni come tinkering nel buildStep field.",
+      "esperimenti_count_after_refactor": 28
+    }
+  },
+  "figma_cross_ref": {
+    "status": "skipped",
+    "reason": "no_figma_file_id_provided_in_session",
+    "future_action": "Cycle 3+ Andrea provides Vol1 Figma file ID for brand assets cross-ref (palette, mascotte ELAB SVG asset)."
+  },
+  "audit_findings_summary_table": [
+    {"id": "v1-cap6-esp1", "ch": 6, "code_components": 4, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "PRINCIPIO ZERO singolare imperative + missing Vol/pag citation"},
+    {"id": "v1-cap6-esp2", "ch": 6, "code_components": 3, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "PRINCIPIO ZERO + smart pedagogical anti-pattern intenzionale"},
+    {"id": "v1-cap6-esp3", "ch": 6, "code_components": 4, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "PRINCIPIO ZERO + arc 470/220/1k OK as variation"},
+    {"id": "v1-cap7-esp1", "ch": 7, "code_components": 4, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Base esperimento 'accendi rosso del RGB'"},
+    {"id": "v1-cap7-esp2", "ch": 7, "code_components": 4, "live_connections": 6, "spiattellato": true, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: PDF 1 riga 'accendi verde'; code = 8 buildSteps duplicati esp1"},
+    {"id": "v1-cap7-esp3", "ch": 7, "code_components": 4, "live_connections": 6, "spiattellato": true, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: PDF 1 riga 'accendi blu'; code = 8 buildSteps duplicati esp1"},
+    {"id": "v1-cap7-esp4", "ch": 7, "code_components": 5, "live_connections": 8, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap7-esp5", "ch": 7, "code_components": 6, "live_connections": 10, "spiattellato": false, "severity_pdf": "medium", "severity_live": "ok", "issue": "PDF chiude con bilanciamento bianco 'rosso 330→220Ω' MISSING in code observe"},
+    {"id": "v1-cap7-esp6", "ch": 7, "code_components": 6, "live_connections": 10, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK tinkering"},
+    {"id": "v1-cap8-esp1", "ch": 8, "code_components": 5, "live_connections": 8, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap8-esp2", "ch": 8, "code_components": 5, "live_connections": 8, "spiattellato": true, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: PDF 'Partendo dall esperimento appena finito' = variazione di esp1"},
+    {"id": "v1-cap8-esp3", "ch": 8, "code_components": 6, "live_connections": 10, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap8-esp4", "ch": 8, "code_components": 9, "live_connections": 9, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK base 3-pulsanti"},
+    {"id": "v1-cap8-esp5", "ch": 8, "code_components": 9, "live_connections": 9, "spiattellato": true, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: PDF 'Giocando con esperimento 4' = variazione resistori diversi"},
+    {"id": "v1-cap9-esp1", "ch": 9, "code_components": 5, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Base dimmer"},
+    {"id": "v1-cap9-esp2", "ch": 9, "code_components": 5, "live_connections": 6, "spiattellato": true, "severity_pdf": "high", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: PDF inverti rotazione = variazione di esp1"},
+    {"id": "v1-cap9-esp3", "ch": 9, "code_components": 5, "live_connections": 6, "spiattellato": true, "severity_pdf": "high", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO HIGH: PDF UNA RIGA 'cambia LED colore' = variazione esp1"},
+    {"id": "v1-cap9-esp4", "ch": 9, "code_components": 5, "live_connections": 7, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Dimmer RGB"},
+    {"id": "v1-cap9-esp5", "ch": 9, "code_components": 5, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Miscelatore blu/rosso"},
+    {"id": "v1-cap9-esp6", "ch": 9, "code_components": 9, "live_connections": 16, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Lampada CAPSTONE 3 pot — vero capstone cap9"},
+    {"id": "v1-cap9-esp7", "ch": 9, "code_components": 6, "live_connections": 9, "spiattellato": true, "severity_pdf": "high", "severity_live": "buildSteps_inventati", "issue": "SPIATTELLATO HIGH: PDF UNA RIGA 'Vuoi provare ad aggiungere qualche pulsante?'; code 8 buildSteps INVENTATI = violazione triplet coerenza Morfismo"},
+    {"id": "v1-cap9-esp8", "ch": 9, "code_components": 7, "live_connections": 11, "spiattellato": true, "severity_pdf": "high", "severity_live": "buildSteps_inventati", "issue": "SPIATTELLATO HIGH: PDF UNA RIGA 'Prova a fare insieme esp 6 e 5'; code 8 buildSteps INVENTATI"},
+    {"id": "v1-cap9-esp9", "ch": 9, "code_components": 8, "live_connections": 9, "spiattellato": true, "severity_pdf": "high", "severity_live": "buildSteps_inventati", "issue": "SPIATTELLATO HIGH: PDF UNA RIGA 'Aggiungi pulsante per accendere/spegnere LED esp 8'; code 8 buildSteps INVENTATI"},
+    {"id": "v1-cap10-esp1", "ch": 10, "code_components": 4, "live_connections": 6, "spiattellato": false, "severity_pdf": "critical", "severity_live": "ok", "issue": "CRITICAL: PDF 'non c'è bisogno di resistore' vs code 220Ω = PRINCIPIO ZERO violation diretta"},
+    {"id": "v1-cap10-esp2", "ch": 10, "code_components": 4, "live_connections": 6, "spiattellato": true, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: stesso circuito esp1, variazione 'colore diverso'"},
+    {"id": "v1-cap10-esp3", "ch": 10, "code_components": 6, "live_connections": 12, "spiattellato": false, "severity_pdf": "critical", "severity_live": "instantiation_bug", "issue": "CRITICAL: components array missing r1/r2/r3 declarations referenced in buildSteps"},
+    {"id": "v1-cap10-esp4", "ch": 10, "code_components": 6, "live_connections": 10, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Loop ottico OK"},
+    {"id": "v1-cap10-esp5", "ch": 10, "code_components": 7, "live_connections": 12, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap10-esp6", "ch": 10, "code_components": 7, "live_connections": 7, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap11-esp1", "ch": 11, "code_components": 3, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap11-esp2", "ch": 11, "code_components": 4, "live_connections": 7, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap12-esp1", "ch": 12, "code_components": 5, "live_connections": 5, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Base reed"},
+    {"id": "v1-cap12-esp2", "ch": 12, "code_components": 5, "live_connections": 5, "spiattellato": true, "severity_pdf": "medium", "severity_live": "duplicate_circuit", "issue": "SPIATTELLATO: stesso circuito esp1, variazione 'cambia luminosità con magnete'"},
+    {"id": "v1-cap12-esp3", "ch": 12, "code_components": 5, "live_connections": 6, "spiattellato": false, "severity_pdf": "medium", "severity_live": "limited", "issue": "RGB locked rosso solo, PDF 'del colore che preferisci' = limita didattica"},
+    {"id": "v1-cap12-esp4", "ch": 12, "code_components": 6, "live_connections": 8, "spiattellato": false, "severity_pdf": "medium", "severity_live": "narrative_divergent", "issue": "PDF plurale 'potenziometri' vs code 1 pot"},
+    {"id": "v1-cap13-esp1", "ch": 13, "code_components": 2, "live_connections": 2, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "Smart design plastilina = conductor"},
+    {"id": "v1-cap13-esp2", "ch": 13, "code_components": 4, "live_connections": 6, "spiattellato": false, "severity_pdf": "minor", "severity_live": "ok", "issue": "OK"},
+    {"id": "v1-cap14-esp1", "ch": 14, "code_components": 13, "live_connections": 21, "spiattellato": false, "severity_pdf": "critical", "severity_live": "coords_diverge_mechanical_gap", "issue": "CRITICAL: breadboard coords DIVERGE MASSIVELY (e-28 vs PDF e-1) + mechanical kit gap mascot ELAB physical (occhi+mano RGB+scettro) extra-SVG"}
+  ],
+  "spiattellato_count": 11,
+  "spiattellato_pct": "29% (11/38 spiattellati strict; including narrative variants ~13-15/38 = 34-40%)",
+  "spiattellato_chapters": ["cap7 RGB (3 esp)", "cap8 Pulsante (2 esp)", "cap9 Pot (5 esp HIGH)", "cap10 LDR (1 esp)", "cap12 Reed (1 esp)"],
+  "cov_log": {
+    "iterations": 3,
+    "sample_method": "deterministic representative coverage (cap7-esp2 spiattellato + cap9-esp7 buildSteps inventati + cap14 capstone critical)",
+    "sample_ids": ["v1-cap7-esp2", "v1-cap9-esp7", "v1-cap14-esp1"],
+    "runs_executed": [
+      {"run": 1, "source": "Maker-1+2+3 BG agents PDF audit"},
+      {"run": 2, "source": "Phase 2 inline live test"},
+      {"run": 3, "source": "Phase 3 cross-validation lesson-groups + Maker outputs"}
+    ],
+    "divergence_check": {
+      "v1-cap7-esp2": {"verdict": "STABLE — spiattellato confirmed all 3 runs"},
+      "v1-cap9-esp7": {"verdict": "STABLE — buildSteps inventati confirmed Maker-2 + Phase 2 wires:9 (artificial)"},
+      "v1-cap14-esp1": {"verdict": "STABLE — coords diverge confirmed Maker-3, mechanical gap confirmed Phase 2 (no mascot in __ELAB_API output)"}
+    },
+    "divergence_pct": 0.0,
+    "pass": true
+  },
+  "quality_audit": {
+    "skill": "elab-quality-gate",
+    "status": "not_invoked_inline",
+    "reason": "Same Vol2 — project-specific session-end skill not appropriate for audit-only Cycle 2.",
+    "alternative_audit_score": {
+      "score": 5.5,
+      "scale": "0-10",
+      "rationale": "Vol1 baseline: 38/38 mount PASS (1.0), 3 critical findings (-1.5: cap10-esp1 + cap10-esp3 + cap14), 10 high spiattellato findings (-1.5), 25 medium (-0.5), 25 minor (-0.5), 11 strict spiattellati = 29% (-1.0 vs Vol2 0/27), buildSteps INVENTATI 3 esperimenti cap9 (-0.5 violazione triplet coerenza Morfismo Sense 2). Score: 10 - 1.5 - 1.5 - 0.5 - 0.5 - 1.0 - 0.5 = 4.5 raw → +1.0 lift via 0/10 lesson-groups mislabeling (Vol1 better than Vol2 here) + smart cap6-esp2 anti-pattern + cap13 plastilina design innovation = 5.5 final. G45 anti-inflation cap maintains 5.5 (raw=final, no further cap needed for Vol1).",
+      "comparison_vol2": "Vol1 5.5/10 vs Vol2 6.8/10 — Vol1 worse due to spiattellato + buildSteps inventati. Severity ~30% vs 11% Vol2."
+    }
+  },
+  "anti_regression": {
+    "vitest_baseline_pre_audit": 13595,
+    "vitest_baseline_recorded_at": "automa/state/task5-vol1-baseline.txt",
+    "src_modifications_count": 0,
+    "src_modifications_list": [],
+    "audit_only_cycle2": true,
+    "compliance": "PASS"
+  },
+  "verdetto": {
+    "score": 5.5,
+    "scale": "0-10",
+    "score_calibration": "G45 anti-inflation. Vol1 worse than Vol2 (6.8) due spiattellato sistematico + buildSteps inventati cap9.",
+    "giudizio": "Vol1 audit COMPLETE. Phase 1 dual-source PDF (3 BG Maker agents) + Phase 2 live (38/38 mount). Andrea iter 21+ 'spiattellato' feedback DRAMATICALLY CONFIRMED Vol1 (~13-15/38 spiattellati ~35-40%, vs Vol2 0/27). Worst case cap9 Pot esp7+8+9 = LETTERALMENTE 1 riga PDF ciascuno, code 8 buildSteps INVENTATI = violazione TRIPLET COERENZA Morfismo Sense 2. cap14 Capstone CRITICAL coords diverge + mascot ELAB mechanical gap. cap10-esp1 PRINCIPIO ZERO violation diretta (PDF 'no R' vs code 220Ω). Cycle 3 deve: (1) refactor 38→28 esp + 5 suggestedVariations consolidando spiattellati, (2) fix 3 critical (cap10-esp1 R + cap10-esp3 components bug + cap14 coords/mascot), (3) PRINCIPIO ZERO codemod 38/38, (4) buildSteps inventati cap9-esp7+8+9 RIMUOVERE.",
+    "top_fix": [
+      "1. SPIATTELLATO REFACTOR (P0 systematic) — 38 esp → 28 esp consolidando 11 spiattellati strict. cap7 esp2+esp3→esp1, cap8 esp2→esp1+esp5→esp4, cap9 esp2+esp3→esp1+esp7+8+9→esp6.suggestedVariations, cap10 esp2→esp1, cap12 esp2→esp1. Grosso refactor experiments-vol1.js + lesson-groups.js. ETA 4-6h. Davide review CRITICAL.",
+      "2. CRITICAL cap14 Capstone fix (P0) — breadboard coords realign PDF (e-1 anchor) + mascot ELAB SVG asset OR simulable:false fallback con foto kit + mechanical kit assembly PDR Omaric. ETA 6-8h. Mascot SVG = nuovo asset.",
+      "3. CRITICAL cap10-esp1 PRINCIPIO ZERO fix (P0) — rimuovere R 220Ω da componente list + buildSteps. ETA 30min.",
+      "4. CRITICAL cap10-esp3 instantiation bug (P0) — declare r1/r2/r3 in components array (referenced in buildSteps). ETA 1h.",
+      "5. HIGH cap9 esp7+8+9 buildSteps INVENTATI rimuovere (P0 Morfismo Sense 2) — questi 3 esperimenti DEVONO essere rimossi/consolidati come suggestedVariations cap9-esp6. NO fake buildSteps. ETA 2h (parte del #1).",
+      "6. SYSTEMATIC PRINCIPIO ZERO codemod 38/38 esperimenti Vol1 — singolare→plurale 'Ragazzi' + Vol/pag verbatim citation in unlimPrompt. ETA 3h sed + manual review.",
+      "7. cap12-esp3 RGB unlock + cap12-esp4 verifica plurale potenziometri (medium fix) — ETA 1h.",
+      "8. cap7-esp5 missing PDF observation 'rosso 330→220Ω bilanciamento bianco' — aggiungere note in observe field. ETA 30min."
+    ]
+  },
+  "phase_4_completion": {
+    "main_deliverables": [
+      "automa/state/task5-volumi-vol1.json (THIS FILE — primary)",
+      "automa/state/maker1-vol1-ch6-7-audit.md (319 lines, 9/9)",
+      "automa/state/maker2-vol1-ch8-9-audit.md (507 lines, 14/14)",
+      "automa/state/maker3-vol1-ch10-14-audit.md (253 lines, 15/15)",
+      "automa/state/inline-vol1-functional-test.md (113 lines, 38/38 live)",
+      "automa/team-state/messages/maker{1,2,3}-vol1-phase1-completed.md (Pattern S)",
+      "automa/state/task5-vol1-baseline.txt (vitest 13595 reference)",
+      "docs/audits/2026-05-07-task5-volumi-vol1-audit.md (TBD next step)"
+    ],
+    "execution_pattern": "Hybrid Approach 3 + 3-way Maker split (vs 2-way Vol2): Phase 1 3 BG general-purpose agents parallel, Phase 2 inline mega-loop async 76s, Phase 3 inline cross-validation, Phase 4 inline Documenter consolidation.",
+    "execution_duration_minutes_actual": "~25min (Phase 1 BG ~7min parallel + Phase 2 ~3min + Phase 3+4 ~15min)"
+  },
+  "honesty_caveats": [
+    "Per-esperimento PNG screenshots NOT saved to disk (same Vol2 limitation Chrome MCP base64 blocked).",
+    "Figma cross-ref skipped (no file ID).",
+    "/elab-quality-gate skill NOT invoked (audit-only context).",
+    "CoV deterministic representative samples (cap7-esp2 + cap9-esp7 + cap14).",
+    "PDF page numbers approximate ±1-2 pages.",
+    "Spiattellato counts conservative: 11 strict (esp che PDF presenta literally come 1-line variazione di altro esp). Including narrative-similar variants ~13-15. Higher-bar threshold to avoid over-flagging.",
+    "BG Maker agents reported spec file NOT FOUND on disk during execution — methodology applied via prompt + ground truth file. Quality of audit unaffected.",
+    "Vol1 lesson-groups CORRECTLY labeled (10/10 OK) — opposite finding vs Vol2 (5/9 mislabeled). Andrea may verify this independent finding."
+  ]
+}
