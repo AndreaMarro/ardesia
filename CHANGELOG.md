@@ -1,3 +1,31 @@
+## [fix(sprint-u-cycle3-vol1-cap10-esp1) — internal contradiction removal 220Ω] — 2026-05-07
+
+Sprint U Cycle 3 Phase 1 PR-A. Vol1 cap10-esp1 ("LED controllato dalla luce") had internal contradiction: `desc` + `components` + `pinAssignments` correctly stated "no resistor" (per PDF Vol.1 cap.10 line 1851 verbatim "non c'è bisogno di inserire un resistore in serie al LED perché il fotoresistore anche quando illuminato ha una resistenza abbastanza elevata da non bruciare il LED"), BUT `layout`, `steps`, `observe`, `unlimPrompt`, `buildSteps` step 4 + wire steps 8-9, and `connections` array all referenced 220Ω r1 component as if it existed. Audit Cycle 2 PR #83 marked this critical "PRINCIPIO ZERO violation" → REFINED via Cycle 3 truth table refresh to "internal contradiction" (PARTIAL not HALLUCINATED). Fix = REMOVE r1 references everywhere (NOT add r1 component as handoff initial direction). Realigned `connections` (6 → 5 entries: collapsed orphan a6→a7 + a9→a10 wires into single jumper a8→a9, replaced a11→bus-11 with a10→bus-10 to match `pinAssignments` led1:cathode bb1:d10), `layout` (removed r1 orphan), `steps` (8 → 6 entries removed resistor steps), `buildSteps` (11 → 9 steps removed step 4 r1 entry + collapsed 2 wire steps), `observe` + `unlimPrompt` (replaced "guardiano (resistore)" analogy with "portinaio LDR" analogy, added Ragazzi plurale per Andrea iter 21+ mandate, cited Vol.1 cap.10 verbatim).
+
+### Changed
+- `src/data/experiments-vol1.js` cap10-esp1 (lines 4170-4310 region):
+  - `desc` field: appended "(Vol.1 cap.10 verbatim)" Morfismo Sense 2 citation
+  - `connections`: 6 → 5 entries (removed orphan, fixed wire path no-resistor)
+  - `layout`: removed `"r1": { x: 170, y: 43.75 }` orphan entry
+  - `steps`: 8 → 6 user-facing strings (removed resistor placement + intermediate wire)
+  - `observe`: stripped "Il resistore da 220Ω protegge il LED dalla troppa corrente" + replaced with "Non serve un resistore: l'LDR stesso protegge il LED limitando la corrente quando illuminato (Vol.1 cap.10 verbatim)"
+  - `unlimPrompt`: stripped 220Ω resistor narrative + added Ragazzi plurale "osservate insieme cosa succede coprendo l'LDR"
+  - `buildSteps`: 11 → 9 entries (removed step 4 r1 placement + collapsed steps 8+9 into single jumper a8→a9 + step 10 a11→bus-11 to a10→bus-10)
+
+### Anti-hallucination protocol enforced (per Cycle 3 mandate)
+- **Code state grep evidence**: `experiments-vol1.js:4178-4183` `components[]` 4 entries (no r1) + `:4185-4189` `pinAssignments` no r1 + `:4202` (pre-fix) orphan layout.r1 + `:4207,4215,4216,4248-4252` (pre-fix) all reference 220Ω r1
+- **PDF citation Vol.1 cap.10 line 1851**: "non c'è bisogno di inserire un resistore in serie al LED perché il fotoresistore anche quando illuminato ha una resistenza abbastanza elevata da non bruciare il LED"
+- **Truth table source**: `docs/audits/2026-05-07-cycle3-truth-table-refresh.md` (Phase 0 preamble PR #89)
+
+### Notes
+- ZERO components added (audit handoff initial direction "ADD r1 220Ω" was wrong per truth table — code already correctly had no-resistor in `components` + `pinAssignments`)
+- cap10-esp2 has IDENTICAL contradiction (same orphan layout.r1, same pinAssignments d5/d8/d9/d10 design) — DEFERRED to Phase 2 PR `refactor/cycle3-vol1-cap10-ldr-consolidate-esp2` (consolidates esp2 → esp1.suggestedVariations[] per ratify 3A) — single fix consolidates both
+- Phase 2 PR per chapter atomic per Andrea iter 21+ "atomic PR per fix" mandate
+- Vitest baseline preserved (13616+ PASS confirmed via pre-commit hook)
+- Davide block separate: cap14 mascot SVG asset + Vol3 cap9 piezo content delivery + Vol2 cap5 batterie material decision + Vol2 cap6-esp4 methodology decision + spiattellato 38→28 ratify gate
+
+---
+
 ## [feat(sprint-u-cycle3-vol2-rename) — rename 5 Vol2 lesson-groups (audit fix #1)] — 2026-05-07
 
 Sprint U Cycle 3 Vol2 lesson-groups rinomina per audit `task5-volumi-vol2.json` verdetto.top_fix #1. PDF v0.13 chapter mapping fix: 5/9 lesson-groups Vol2 mislabeled (chapter labels shifted-by-1 vs actual content). Decisione 2A: solo id+title+concept+chapter, NO esperimenti touch. PR #85.

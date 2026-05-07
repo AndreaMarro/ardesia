@@ -4170,7 +4170,7 @@ const EXPERIMENTS_VOL1 = {
     {
       id: "v1-cap10-esp1",
       title: "Cap. 10 Esp. 1 - LED controllato dalla luce",
-      desc: "Il fotoresistore cambia resistenza con la luce: non serve un resistore in serie, l'LDR protegge il LED!",
+      desc: "Il fotoresistore cambia resistenza con la luce: non serve un resistore in serie, l'LDR protegge il LED (Vol.1 cap.10 verbatim)!",
       chapter: "Capitolo 10 - Cos'è un fotoresistore?",
       difficulty: 2,
       icon: "\u2600\uFE0F",
@@ -4190,30 +4190,26 @@ const EXPERIMENTS_VOL1 = {
       connections: [
         { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
         { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a6", to: "bb1:a7", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:a10", color: "yellow" },
-        { from: "bb1:a11", to: "bb1:bus-top-minus-11", color: "black" },
+        { from: "bb1:a8", to: "bb1:a9", color: "yellow" },
+        { from: "bb1:a10", to: "bb1:bus-top-minus-10", color: "black" },
         { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
       ],
       layout: {
         "bat1": { x: 15, y: 60 },
         "bb1": { x: 100, y: 10 },
         "ldr1": { x: 151.5, y: 43.75 },
-        "r1": { x: 170, y: 43.75 },
         "led1": { x: 189, y: 43.75 }
       },
       steps: [
-        "Inserisci il fotoresistore (LDR) nella fila d, colonne 5-6",
-        "Inserisci il resistore da 220\u03A9 nella fila d, colonne 7-9 (protegge il LED!)",
-        "Inserisci il LED rosso nella fila d, colonne 10-11",
+        "Inserisci il fotoresistore (LDR) nella fila d, colonne 5-8",
+        "Inserisci il LED rosso nella fila d, colonne 9-10 (anodo in 9, catodo in 10)",
         "Collega il bus + alla colonna 5 (pin1 dell'LDR)",
-        "Collega la colonna 6 alla colonna 7 (LDR al resistore)",
-        "Collega la colonna 9 alla colonna 10 (resistore al LED)",
-        "Collega la colonna 11 al bus \u2212",
+        "Collega la colonna 8 alla colonna 9 (LDR all'anodo del LED)",
+        "Collega la colonna 10 al bus \u2212 (catodo del LED a massa)",
         "Muovi il cursore luminosit\u00e0 sull'LDR e osserva il LED!"
       ],
-      observe: "Con luce l'LDR ha poca resistenza e il LED si accende! Al buio l'LDR blocca la corrente. Il resistore da 220\u03A9 protegge il LED dalla troppa corrente.",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'LED controllato dalla luce'. Il fotoresistore (LDR) cambia resistenza con la luce: al buio ha molta resistenza (poca corrente), con la luce ha poca resistenza (molta corrente). Il resistore da 220Ω protegge il LED dalla troppa corrente quando l'LDR ha poca resistenza. Il LED si accende quando c'è luce e si spegne al buio. Usa l'analogia di una porta che si apre quando c'è il sole, con un guardiano (il resistore) che controlla quanta gente passa. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      observe: "Con luce l'LDR ha poca resistenza e il LED si accende! Al buio l'LDR blocca la corrente. Non serve un resistore: l'LDR stesso protegge il LED limitando la corrente quando illuminato (Vol.1 cap.10 verbatim).",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'LED controllato dalla luce'. Il fotoresistore (LDR) cambia resistenza con la luce: al buio ha molta resistenza (poca corrente), con la luce ha poca resistenza (molta corrente). In questo circuito non serve un resistore in serie: l'LDR stesso, anche quando illuminato, ha una resistenza abbastanza alta da non bruciare il LED (Vol.1 cap.10 verbatim). Il LED si accende quando c'è luce e si spegne al buio. Usa l'analogia di una porta che si apre quando c'è il sole, con l'LDR come portinaio che decide quanta corrente lasciar passare. Ragazzi, osservate insieme cosa succede coprendo l'LDR con la mano. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "Fotoresistore, resistenza varia con la luce, sensore",
@@ -4237,30 +4233,22 @@ const EXPERIMENTS_VOL1 = {
         },
         {
           step: 3,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D5 e D6.",
+          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D5 e D8.",
           componentId: "ldr1",
           componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:d5", "ldr1:pin2": "bb1:d6" },
+          targetPins: { "ldr1:pin1": "bb1:d5", "ldr1:pin2": "bb1:d8" },
           hint: "La fotoresistenza cambia valore con la luce."
         },
         {
           step: 4,
-          text: "Inserisci il resistore da 220Ω nei fori D7 e D9. Protegge il LED dalla troppa corrente!",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:d7", "r1:pin2": "bb1:d9" },
-          hint: "Il resistore limita la corrente: anche con tanta luce sull'LDR, il LED non si brucia."
+          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D9 e D10.",
+          componentId: "led1",
+          componentType: "led",
+          targetPins: { "led1:anode": "bb1:d9", "led1:cathode": "bb1:d10" },
+          hint: "L'anodo (+, gamba lunga) va in D9 e il catodo (−, gamba corta) in D10."
         },
         {
           step: 5,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D10 e D11.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d10", "led1:cathode": "bb1:d11" },
-          hint: "L'anodo (+, gamba lunga) va in D10 e il catodo (−, gamba corta) in D11."
-        },
-        {
-          step: 6,
           text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
           wireFrom: "bat1:positive",
           wireTo: "bb1:bus-top-plus-1",
@@ -4268,7 +4256,7 @@ const EXPERIMENTS_VOL1 = {
           hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
         },
         {
-          step: 7,
+          step: 6,
           text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
           wireFrom: "bb1:bus-top-plus-5",
           wireTo: "bb1:a5",
@@ -4276,31 +4264,23 @@ const EXPERIMENTS_VOL1 = {
           hint: "Questo filo porta la corrente dal bus positivo al fotoresistore."
         },
         {
+          step: 7,
+          text: "Collega un filo GIALLO dal foro A8 al foro A9 (dal fotoresistore all'anodo del LED).",
+          wireFrom: "bb1:a8",
+          wireTo: "bb1:a9",
+          wireColor: "yellow",
+          hint: "Niente resistore: l'LDR stesso limita la corrente e protegge il LED quando illuminato."
+        },
+        {
           step: 8,
-          text: "Collega un filo GIALLO dal foro A6 al foro A7 (dal fotoresistore al resistore).",
-          wireFrom: "bb1:a6",
-          wireTo: "bb1:a7",
-          wireColor: "yellow",
-          hint: "Questo filo collega l'uscita dell'LDR all'ingresso del resistore di protezione."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro A9 al foro A10 (dal resistore al LED).",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a10",
-          wireColor: "yellow",
-          hint: "Questo filo collega l'uscita del resistore all'anodo del LED."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro A11 al foro bus − superiore (col. 11).",
-          wireFrom: "bb1:a11",
-          wireTo: "bb1:bus-top-minus-11",
+          text: "Collega un filo NERO dal foro A10 al foro bus − superiore (col. 10).",
+          wireFrom: "bb1:a10",
+          wireTo: "bb1:bus-top-minus-10",
           wireColor: "black",
           hint: "Questo filo riporta la corrente al bus negativo."
         },
         {
-          step: 11,
+          step: 9,
           text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
           wireFrom: "bb1:bus-top-minus-1",
           wireTo: "bat1:negative",
