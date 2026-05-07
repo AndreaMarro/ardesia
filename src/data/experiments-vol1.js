@@ -4474,11 +4474,11 @@ const EXPERIMENTS_VOL1 = {
       ],
       pinAssignments: {
         "ldr1:pin1": "bb1:d3",
-        "ldr1:pin2": "bb1:d6",
-        "ldr2:pin1": "bb1:d8",
-        "ldr2:pin2": "bb1:d11",
-        "ldr3:pin1": "bb1:d13",
-        "ldr3:pin2": "bb1:d16",
+        "ldr1:pin2": "bb1:d4",
+        "ldr2:pin1": "bb1:d7",
+        "ldr2:pin2": "bb1:d8",
+        "ldr3:pin1": "bb1:d11",
+        "ldr3:pin2": "bb1:d12",
         "rgb1:red": "bb1:d19",
         "rgb1:common": "bb1:d20",
         "rgb1:green": "bb1:d21",
@@ -4489,12 +4489,9 @@ const EXPERIMENTS_VOL1 = {
         { from: "bb1:bus-top-plus-3", to: "bb1:a3", color: "red" },
         { from: "bb1:bus-top-plus-7", to: "bb1:a7", color: "red" },
         { from: "bb1:bus-top-plus-11", to: "bb1:a11", color: "red" },
-        { from: "bb1:a4", to: "bb1:a5", color: "orange" },
-        { from: "bb1:a6", to: "bb1:a19", color: "orange" },
-        { from: "bb1:a8", to: "bb1:a9", color: "green" },
-        { from: "bb1:a10", to: "bb1:a21", color: "green" },
-        { from: "bb1:a12", to: "bb1:a13", color: "blue" },
-        { from: "bb1:a14", to: "bb1:a22", color: "blue" },
+        { from: "bb1:a4", to: "bb1:a19", color: "orange" },
+        { from: "bb1:a8", to: "bb1:a21", color: "green" },
+        { from: "bb1:a12", to: "bb1:a22", color: "blue" },
         { from: "bb1:a20", to: "bb1:bus-top-minus-20", color: "black" },
         { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
       ],
@@ -4502,24 +4499,20 @@ const EXPERIMENTS_VOL1 = {
         "bat1": { x: 15, y: 60 },
         "bb1": { x: 100, y: 10 },
         "ldr1": { x: 136.5, y: 43.75 },
-        "r1": { x: 147, y: 43.75 },
         "ldr2": { x: 166.5, y: 43.75 },
-        "r2": { x: 177, y: 43.75 },
         "ldr3": { x: 196.5, y: 43.75 },
-        "r3": { x: 207, y: 43.75 },
         "rgb1": { x: 234, y: 43.75 }
       },
       steps: [
         "Inserisci 3 fotoresistori nella fila d alle colonne 3-4, 7-8 e 11-12",
-        "Inserisci 3 resistori da 220\u03A9 nelle colonne 5-6, 9-10 e 13-14 (proteggono il LED RGB!)",
         "Inserisci il LED RGB nella fila d, colonne 19-22",
-        "Collega il + della batteria al pin1 di ogni LDR",
-        "Collega ogni LDR al suo resistore, poi ogni resistore al canale RGB corrispondente",
-        "Collega il catodo comune del RGB al \u2212 della batteria",
+        "Collega il + della batteria al pin1 di ogni LDR (d3, d7, d11)",
+        "Collega ogni pin2 LDR direttamente al canale RGB: d4\u2192d19 (rosso), d8\u2192d21 (verde), d12\u2192d22 (blu)",
+        "Collega il catodo comune del RGB (d20) al \u2212 della batteria",
         "Copri o illumina ogni LDR separatamente per creare colori!"
       ],
-      observe: "Ogni LDR controlla un colore! Coprili per spegnere un canale, illuminali per accenderlo. I resistori da 220\u03A9 proteggono ogni canale del LED RGB.",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento '3 LDR controllano RGB'. Tre fotoresistori controllano indipendentemente i 3 canali del LED RGB. Coprendo o illuminando ogni LDR separatamente si possono creare colori diversi. È come avere 3 finestre: ogni finestra lascia entrare luce per un colore diverso. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      observe: "Ogni LDR controlla un colore! Coprili per spegnere un canale, illuminali per accenderlo. PDF Vol.1 cap.10 ESP.3 specifica solo 3 fotoresistori e 3 fili colorati: niente resistori, l'LDR limita la corrente da solo.",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento '3 LDR controllano RGB'. Tre fotoresistori controllano indipendentemente i 3 canali del LED RGB. Per il PDF Vol.1 cap.10 ESPERIMENTO 3 servono SOLO 3 fotoresistori e 3 fili colorati (verbatim 'Tre fotoresistori, Tre fili colorati'): niente resistori, l'LDR stesso limita la corrente. Coprendo o illuminando ogni LDR separatamente si possono creare colori diversi. È come avere 3 finestre: ogni finestra lascia entrare luce per un colore diverso. Ragazzi, provate insieme a creare il giallo, il viola, il bianco. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "3 sensori di luce → 3 canali RGB indipendenti",
@@ -4566,30 +4559,6 @@ const EXPERIMENTS_VOL1 = {
         },
         {
           step: 6,
-          text: "Inserisci R1 (220Ω) nei fori D5 e D6. Protegge il canale rosso!",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:d5", "r1:pin2": "bb1:d6" },
-          hint: "Ogni canale del LED RGB ha bisogno del suo resistore di protezione."
-        },
-        {
-          step: 7,
-          text: "Inserisci R2 (220Ω) nei fori D9 e D10. Protegge il canale verde!",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:d9", "r2:pin2": "bb1:d10" },
-          hint: "Senza resistore, troppa corrente potrebbe bruciare il canale verde."
-        },
-        {
-          step: 8,
-          text: "Inserisci R3 (220Ω) nei fori D13 e D14. Protegge il canale blu!",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:d13", "r3:pin2": "bb1:d14" },
-          hint: "Tre LDR, tre resistori: uno per ogni canale del LED RGB."
-        },
-        {
-          step: 9,
           text: "Prendi il LED RGB dalla palette e posizionalo nei fori D19, D20, D21 e D22.",
           componentId: "rgb1",
           componentType: "rgb-led",
@@ -4597,7 +4566,7 @@ const EXPERIMENTS_VOL1 = {
           hint: "I 4 piedini: Rosso in D19, Catodo comune in D20, Verde in D21, Blu in D22."
         },
         {
-          step: 10,
+          step: 7,
           text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
           wireFrom: "bat1:positive",
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
@@ -4606,7 +4575,7 @@ const EXPERIMENTS_VOL1 = {
           hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
         },
         {
-          step: 11,
+          step: 8,
           text: "Collega un filo ROSSO dal foro bus + (col. 3) al foro A3.",
           wireFrom: "bb1:bus-top-plus-3",
           wireTo: "bb1:a3",
@@ -4614,7 +4583,7 @@ const EXPERIMENTS_VOL1 = {
           hint: "Alimenta LDR1 (canale rosso)."
         },
         {
-          step: 12,
+          step: 9,
           text: "Collega un filo ROSSO dal foro bus + (col. 7) al foro A7.",
           wireFrom: "bb1:bus-top-plus-7",
           wireTo: "bb1:a7",
@@ -4622,7 +4591,7 @@ const EXPERIMENTS_VOL1 = {
           hint: "Alimenta LDR2 (canale verde)."
         },
         {
-          step: 13,
+          step: 10,
           text: "Collega un filo ROSSO dal foro bus + (col. 11) al foro A11.",
           wireFrom: "bb1:bus-top-plus-11",
           wireTo: "bb1:a11",
@@ -4630,55 +4599,31 @@ const EXPERIMENTS_VOL1 = {
           hint: "Alimenta LDR3 (canale blu)."
         },
         {
-          step: 14,
-          text: "Collega un filo ARANCIONE dal foro A4 al foro A5 (LDR1 → R1).",
+          step: 11,
+          text: "Collega un filo ARANCIONE dal foro A4 al foro A19 (LDR1 → rosso RGB direct).",
           wireFrom: "bb1:a4",
-          wireTo: "bb1:a5",
-          wireColor: "orange",
-          hint: "Collega l'uscita di LDR1 all'ingresso del resistore R1."
-        },
-        {
-          step: 15,
-          text: "Collega un filo ARANCIONE dal foro A6 al foro A19 (R1 → rosso RGB).",
-          wireFrom: "bb1:a6",
           wireTo: "bb1:a19",
           wireColor: "orange",
-          hint: "Dal resistore al pin rosso del LED RGB."
+          hint: "Niente resistore: LDR1 alimenta direttamente il canale rosso."
         },
         {
-          step: 16,
-          text: "Collega un filo VERDE dal foro A8 al foro A9 (LDR2 → R2).",
+          step: 12,
+          text: "Collega un filo VERDE dal foro A8 al foro A21 (LDR2 → verde RGB direct).",
           wireFrom: "bb1:a8",
-          wireTo: "bb1:a9",
-          wireColor: "green",
-          hint: "Collega l'uscita di LDR2 all'ingresso del resistore R2."
-        },
-        {
-          step: 17,
-          text: "Collega un filo VERDE dal foro A10 al foro A21 (R2 → verde RGB).",
-          wireFrom: "bb1:a10",
           wireTo: "bb1:a21",
           wireColor: "green",
-          hint: "Dal resistore al pin verde del LED RGB."
+          hint: "Niente resistore: LDR2 alimenta direttamente il canale verde."
         },
         {
-          step: 18,
-          text: "Collega un filo BLU dal foro A12 al foro A13 (LDR3 → R3).",
+          step: 13,
+          text: "Collega un filo BLU dal foro A12 al foro A22 (LDR3 → blu RGB direct).",
           wireFrom: "bb1:a12",
-          wireTo: "bb1:a13",
-          wireColor: "blue",
-          hint: "Collega l'uscita di LDR3 all'ingresso del resistore R3."
-        },
-        {
-          step: 19,
-          text: "Collega un filo BLU dal foro A14 al foro A22 (R3 → blu RGB).",
-          wireFrom: "bb1:a14",
           wireTo: "bb1:a22",
           wireColor: "blue",
-          hint: "Dal resistore al pin blu del LED RGB."
+          hint: "Niente resistore: LDR3 alimenta direttamente il canale blu."
         },
         {
-          step: 20,
+          step: 14,
           text: "Collega un filo NERO dal foro A20 al foro bus − superiore (col. 20).",
           wireFrom: "bb1:a20",
           wireTo: "bb1:bus-top-minus-20",
@@ -4686,7 +4631,7 @@ const EXPERIMENTS_VOL1 = {
           hint: "Il catodo comune del LED RGB torna al negativo."
         },
         {
-          step: 21,
+          step: 15,
           text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
           wireFrom: "bb1:bus-top-minus-1",
           wireTo: "bat1:negative",

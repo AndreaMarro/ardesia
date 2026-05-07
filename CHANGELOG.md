@@ -26,6 +26,39 @@ Sprint U Cycle 3 Phase 1 PR-A. Vol1 cap10-esp1 ("LED controllato dalla luce") ha
 
 ---
 
+## [fix(sprint-u-cycle3-vol1-cap10-esp3) — phantom r1/r2/r3 removal + audit fix-direction inverted] — 2026-05-07
+
+Sprint U Cycle 3 Phase 1 PR-B. Vol1 cap10-esp3 ("3 LDR controllano RGB") had internal contradiction identical pattern to cap10-esp1: `desc` + `components` (6 entries: bat1, bb1, ldr1, ldr2, ldr3, rgb1 — NO r) correctly stated NO RESISTORS per PDF Vol.1 cap.10 ESPERIMENTO 3 line 100-109 verbatim materials list "Per questo esperimento abbiamo bisogno di: Un LED RGB / Una breadboard / Una batteria 9V / La clip per la batteria 9V / **Tre fotoresistori** / **Tre fili colorati**", BUT `layout` (r1, r2, r3 orphan entries), `buildSteps` (steps 6/7/8 phantom r placement + 6 r-bridge wire steps), `connections` (12 entries with 3 r-bridge intermediate wires), `steps` ("Inserisci 3 resistori da 220Ω"), `observe` ("I resistori da 220Ω proteggono..."), all referenced 3× phantom 220Ω resistors as if instantiated.
+
+**CRITICAL HALLUC FINDING revised**: audit Cycle 2 PR #84 marked cap10-esp3 critical "components missing r1/r2/r3 declarations" → suggested ADD r-components to align. **PDF verification reverses fix direction**: code components correct (6, no r per PDF "Tre fotoresistori, Tre fili colorati"), layout/buildSteps/connections WRONGLY add 3 phantom resistors. Fix = REMOVE r-references (NOT add). Hallucination type: **fix-direction-inverted** (code state correct, audit prescribed wrong fix). 1/14 Vol1 audit findings fix-inverted = 7%.
+
+Same internal contradiction pattern as cap10-esp1 PR-A iter 38 same-day Cycle 3 fix wave.
+
+### Changed
+- `src/data/experiments-vol1.js` cap10-esp3 (lines 4479-4699 region):
+  - `pinAssignments` LDR pin2 d6/d11/d16 → d4/d8/d12 + LDR pin1 d8/d13 → d7/d11 (alignment with buildSteps targetPins + connections wire-start cols, was 3-way contradiction pre-fix)
+  - `connections`: 12 → 9 entries (collapsed 3 r-bridge wire pairs into 3 direct LDR→RGB wires: a4→a5+a6→a19 → a4→a19; a8→a9+a10→a21 → a8→a21; a12→a13+a14→a22 → a12→a22; removed all r-related orphan wires)
+  - `layout`: removed `r1`, `r2`, `r3` orphan entries (3 lines)
+  - `steps`: 7 → 6 entries (removed "Inserisci 3 resistori da 220Ω" step + rewrote wire description to direct LDR→RGB)
+  - `observe`: stripped "I resistori da 220Ω proteggono ogni canale" + added "PDF Vol.1 cap.10 ESP.3 specifica solo 3 fotoresistori e 3 fili colorati: niente resistori, l'LDR limita la corrente da solo"
+  - `unlimPrompt`: added explicit Morfismo Sense 2 PDF citation "Per il PDF Vol.1 cap.10 ESPERIMENTO 3 servono SOLO 3 fotoresistori e 3 fili colorati (verbatim 'Tre fotoresistori, Tre fili colorati')" + Ragazzi plurale "provate insieme a creare il giallo, il viola, il bianco"
+  - `buildSteps`: 21 → 15 entries (removed 3 r-placement steps 6/7/8 + collapsed 6 r-bridge wire steps 14-19 into 3 direct LDR→RGB wire steps + renumbered all subsequent steps 9→6, 10→7, ..., 21→15)
+
+### Anti-hallucination protocol enforced (per Cycle 3 mandate iter 21+)
+- **Code state grep evidence**: `experiments-vol1.js:4487-4493` `components[]` 6 entries (no r) + `:4495-4506` (pre-fix) pinAssignments LDR pin2 d6/d11/d16 + buildSteps targetPins d4/d8/d12 + connections wire-start a4/a8/a12 = 3-way contradiction
+- **PDF citation Vol.1 cap.10 ESP.3 line 100-109**: "Per questo esperimento abbiamo bisogno di: ... Tre fotoresistori / Tre fili colorati" + line 134 "Inserisci i tre fotoresistori nella breadboard con un piedino nella striscia rossa e l'altro piedino in un punto qualunque della breadboard" + line 145+150+155 "Collega il primo/secondo/terzo fotoresistore al LED blu/verde/rosso del LED RGB" = direct LDR→RGB design with 3 colored wires, no resistors
+- **Truth table source**: `docs/audits/2026-05-07-cycle3-truth-table-refresh.md` Phase 0 PR #89 + revision noted in this CHANGELOG entry
+
+### Notes
+- ZERO r-components added (audit handoff initial direction "ADD r1/r2/r3 to components" was wrong per PDF — code already correctly had no-resistor design in `components` + new pinAssignments aligns)
+- Total halluc rate Vol1 audit Cycle 2 refreshed post Phase 1 PR-A + PR-B: strict 0/14 (none fabricated) BUT fix-direction-inverted 1/14 = 7% (cap10-esp3) → mandate ALL Vol3 Phase 4 fixes get same PDF materials-list verify FIRST per anti-halluc protocol
+- cap10-esp1 (PR-A) + cap10-esp3 (PR-B) both fixed same PDF design "no resistor in series with LED because LDR resistance high enough to protect"
+- Phase 2 PR `refactor/cycle3-vol1-cap10-ldr-consolidate-esp2` will consolidate cap10-esp2 → cap10-esp1.suggestedVariations[] per ratify 3A (cap10-esp2 has IDENTICAL pre-fix pattern to cap10-esp1)
+- Vitest baseline 13616 PASS preserve mandate (verify post pre-commit hook)
+- Davide block separate: Vol3 cap9 piezo + Vol2 cap5 batterie + Vol2 cap6-esp4 methodology + Vol1 cap14 mascot SVG + spiattellato 38→28 ratify
+
+---
+
 ## [feat(sprint-u-cycle3-vol2-rename) — rename 5 Vol2 lesson-groups (audit fix #1)] — 2026-05-07
 
 Sprint U Cycle 3 Vol2 lesson-groups rinomina per audit `task5-volumi-vol2.json` verdetto.top_fix #1. PDF v0.13 chapter mapping fix: 5/9 lesson-groups Vol2 mislabeled (chapter labels shifted-by-1 vs actual content). Decisione 2A: solo id+title+concept+chapter, NO esperimenti touch. PR #85.
