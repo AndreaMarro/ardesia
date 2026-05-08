@@ -20,15 +20,34 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
  * Replicates handleModalitaChange contract from LavagnaShell.jsx:621-665.
  * If src behavior changes, update this factory + tests in lockstep.
  */
-function makeHandler({ setModalita, setCurrentExperiment, getApi }) {
+function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode = () => {}, setGalileoOpen = () => {}, setUnlimTab = () => {} }) {
   return function handleModalitaChange(nextMode) {
-    if (!['percorso', 'passo-passo', 'gia-montato', 'libero'].includes(nextMode)) {
+    // iter 48: 'libero' + 'guida-da-errore' silently migrate to 'percorso'
+    if (nextMode === 'libero' || nextMode === 'guida-da-errore') {
+      nextMode = 'percorso';
+    }
+    if (!['percorso', 'passo-passo', 'gia-montato'].includes(nextMode)) {
       return; // defensive
     }
     setModalita(nextMode);
 
+    // iter 48 wire-up: passo-passo → buildMode='guided' + UNLIM guida tab
+    if (nextMode === 'passo-passo') {
+      const api = getApi();
+      setBuildMode('guided');
+      if (api?.setBuildMode) {
+        try { api.setBuildMode('guided'); } catch { /* noop */ }
+      }
+      setGalileoOpen(true);
+      setUnlimTab('guida');
+    }
+
     if (nextMode === 'gia-montato') {
       const api = getApi();
+      setBuildMode('complete');
+      if (api?.setBuildMode) {
+        try { api.setBuildMode('complete'); } catch { /* noop */ }
+      }
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
@@ -47,15 +66,6 @@ function makeHandler({ setModalita, setCurrentExperiment, getApi }) {
           });
         } catch { /* noop */ }
       }
-    }
-
-    if (nextMode === 'libero') {
-      const api = getApi();
-      try {
-        setCurrentExperiment(null);
-        if (api?.clearAll) api.clearAll();
-        try { localStorage.removeItem('elab-lavagna-exp-id'); } catch { /* noop */ }
-      } catch { /* noop */ }
     }
   };
 }
@@ -88,19 +98,19 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setCurrentExperiment).not.toHaveBeenCalled();
   });
 
-  it('Libero click → currentExperiment cleared + clearAll() invoked + localStorage exp-id removed (iter 34 P0 inversion)', () => {
-    localStorage.setItem('elab-lavagna-exp-id', 'v1-cap6-esp1');
+  it('Libero click → silently migrated to percorso (Sprint V iter 3 merge)', () => {
+    const setModalita = vi.fn();
     const setCurrentExperiment = vi.fn();
     const clearAll = vi.fn();
     const handler = makeHandler({
-      setModalita: vi.fn(),
+      setModalita,
       setCurrentExperiment,
       getApi: () => ({ clearAll }),
     });
     handler('libero');
-    expect(setCurrentExperiment).toHaveBeenCalledWith(null);
-    expect(clearAll).toHaveBeenCalledTimes(1);
-    expect(localStorage.getItem('elab-lavagna-exp-id')).toBeNull();
+    expect(setModalita).toHaveBeenCalledWith('percorso');
+    expect(clearAll).not.toHaveBeenCalled();
+    expect(setCurrentExperiment).not.toHaveBeenCalled();
   });
 
   it('Già Montato click → setDiagnoseMode(true) invoked', () => {
@@ -114,7 +124,53 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setDiagnoseMode).toHaveBeenCalledWith(true);
   });
 
-  it('Unknown / legacy mode (e.g. "guida-da-errore") → no-op defensive ignore', () => {
+  it('Già Montato click → setBuildMode("complete") + api.setBuildMode("complete") (iter 48 wire-up)', () => {
+    const setBuildMode = vi.fn();
+    const apiSetBuildMode = vi.fn();
+    const handler = makeHandler({
+      setModalita: vi.fn(),
+      setCurrentExperiment: vi.fn(),
+      setBuildMode,
+      getApi: () => ({ setBuildMode: apiSetBuildMode, unlim: { setDiagnoseMode: vi.fn() } }),
+    });
+    handler('gia-montato');
+    expect(setBuildMode).toHaveBeenCalledWith('complete');
+    expect(apiSetBuildMode).toHaveBeenCalledWith('complete');
+  });
+
+  it('Passo Passo click → setBuildMode("guided") + api.setBuildMode("guided") + UNLIM guida tab (iter 48 wire-up)', () => {
+    const setBuildMode = vi.fn();
+    const apiSetBuildMode = vi.fn();
+    const setGalileoOpen = vi.fn();
+    const setUnlimTab = vi.fn();
+    const handler = makeHandler({
+      setModalita: vi.fn(),
+      setCurrentExperiment: vi.fn(),
+      setBuildMode,
+      setGalileoOpen,
+      setUnlimTab,
+      getApi: () => ({ setBuildMode: apiSetBuildMode }),
+    });
+    handler('passo-passo');
+    expect(setBuildMode).toHaveBeenCalledWith('guided');
+    expect(apiSetBuildMode).toHaveBeenCalledWith('guided');
+    expect(setGalileoOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimTab).toHaveBeenCalledWith('guida');
+  });
+
+  it('Passo Passo click with no __ELAB_API → setBuildMode("guided") still called + graceful no-op for api.setBuildMode (defensive)', () => {
+    const setBuildMode = vi.fn();
+    const handler = makeHandler({
+      setModalita: vi.fn(),
+      setCurrentExperiment: vi.fn(),
+      setBuildMode,
+      getApi: () => null,
+    });
+    expect(() => handler('passo-passo')).not.toThrow();
+    expect(setBuildMode).toHaveBeenCalledWith('guided');
+  });
+
+  it('Legacy "guida-da-errore" mode → silently migrated to percorso (ADR-025 §4.5 + Sprint V iter 3)', () => {
     const setModalita = vi.fn();
     const handler = makeHandler({
       setModalita,
@@ -122,6 +178,17 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       getApi: () => null,
     });
     handler('guida-da-errore');
+    expect(setModalita).toHaveBeenCalledWith('percorso');
+  });
+
+  it('Unknown mode (e.g. "alien-mode") → no-op defensive ignore', () => {
+    const setModalita = vi.fn();
+    const handler = makeHandler({
+      setModalita,
+      setCurrentExperiment: vi.fn(),
+      getApi: () => null,
+    });
+    handler('alien-mode');
     expect(setModalita).not.toHaveBeenCalled();
   });
 

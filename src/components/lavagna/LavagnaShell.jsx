@@ -660,9 +660,31 @@ export default function LavagnaShell() {
       return; // defensive: ignore unknown modes
     }
     setModalita(nextMode);
+    // iter 48 Andrea verbatim "i tre tasti devono attivare quello per cui sono pensati":
+    // wire-up modalita → simulator buildMode + ComponentDrawer + UNLIM tab. Senza
+    // questo, prima di iter 48, Passo Passo + Già Montato cambiavano solo lo stato
+    // UI (button visualmente attivo) ma il simulator non riceveva setBuildMode →
+    // ComponentDrawer NON appariva → tasto inutile. Mapping canonical:
+    //   percorso     → buildMode preservato + UNLIM percorso tab (vecchia Libero morfica)
+    //   passo-passo  → buildMode 'guided' + ComponentDrawer + UNLIM guida tab
+    //   gia-montato  → buildMode 'complete' + diagnose mode + canvas mostrato pre-montato
+    if (nextMode === 'passo-passo' && typeof window !== 'undefined') {
+      const api = window.__ELAB_API;
+      setBuildMode('guided');
+      if (api?.setBuildMode) {
+        try { api.setBuildMode('guided'); } catch { /* noop */ }
+      }
+      setGalileoOpen(true);
+      setUnlimTab('guida');
+      manualOverridesRef.current.galileo = true;
+    }
     // Già Montato NEW: signal pre-assembled diagnose mode to simulator if API present
     if (nextMode === 'gia-montato' && typeof window !== 'undefined') {
       const api = window.__ELAB_API;
+      setBuildMode('complete');
+      if (api?.setBuildMode) {
+        try { api.setBuildMode('complete'); } catch { /* noop */ }
+      }
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
