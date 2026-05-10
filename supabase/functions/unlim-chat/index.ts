@@ -561,12 +561,14 @@ serve(async (req: Request) => {
       });
       result = await Promise.race([llmCallPromise, timeoutPromise]);
 
-      // iter 38 A7 — when schema mode used + provider is Mistral, parse the
-      // JSON object out of result.text and project text/intents back into
-      // the legacy flow shape. If parse fails for any reason (provider
-      // didn't honor schema, or Gemini fallback ran), we leave the original
-      // text intact and rely on the legacy `parseIntentTags` regex below.
-      if (useIntentSchema && result && typeof result.text === 'string' && result.provider === 'mistral') {
+      // 2026-05-10 iter 7 — schema parse for ANY provider that honored
+      // useIntentSchema (Gemini Flash-Lite + Mistral both support
+      // responseFormat:json_schema). Live probe v54 confirmed Gemini emits
+      // canonical {text,intents} but previous code skipped parse because
+      // provider !== 'mistral'. Now parse defensively whenever schema mode
+      // active AND text starts with `{`. Legacy [INTENT:...] regex below
+      // remains fallback for non-schema mode.
+      if (useIntentSchema && result && typeof result.text === 'string' && result.text.trim().startsWith('{')) {
         try {
           const parsed = JSON.parse(result.text) as { text?: string; intents?: unknown[] };
           if (parsed && typeof parsed.text === 'string' && parsed.text.trim()) {
