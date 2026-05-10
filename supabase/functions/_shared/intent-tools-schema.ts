@@ -130,8 +130,11 @@ export const INTENT_TOOLS_SCHEMA: MistralResponseFormat = {
  * Returns false for chit-chat / pure-explanation prompts where the legacy
  * regex path is faster and equivalent.
  */
+// 2026-05-10 iter 8 Agent 5 Fix 1 expansion: action verbs that trigger schema mode.
+// Iter 7 live probe I5 "Avvia simulazione" missed → legacy [AZIONE:play] text instead
+// of canonical INTENT JSON. Adds simulation control + editor + diagnose verbs.
 const ACTION_TRIGGER_RE =
-  /\b(mostra|mostrami|evidenzi[ai]|highlight|carica|monta|montami|montiamo|screenshot|cattura|foto|scatta|pulisci|cancella|connect[ai]?|collega|cambia|imposta)\b/i;
+  /\b(mostra|mostrami|evidenzi[ai]|highlight|carica|monta|montami|montiamo|screenshot|cattura|foto|scatta|pulisci|cancella|connect[ai]?|collega|cambia|imposta|avvia|avviamo|play|start|esegui|riavvia|pausa|stop|ferma|reset|resetta|compila|compile|undo|annulla|redo|ripeti|interagisci|interact|apri|apriamo|chiudi|chiudiamo)\b/i;
 
 export function shouldUseIntentSchema(message: string | null | undefined): boolean {
   if (!message || typeof message !== 'string') return false;

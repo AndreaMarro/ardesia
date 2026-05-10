@@ -15,7 +15,7 @@ import { checkRateLimitPersistent, validateChatInput, sanitizeMessage, sanitizeC
 import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.ts';
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
 import { getCapitoloByExperimentId, buildCapitoloPromptFragment } from '../_shared/capitoli-loader.ts';
-import { validatePrincipioZero } from '../_shared/principio-zero-validator.ts';
+import { validatePrincipioZero, enforceItalianK12Opener } from '../_shared/principio-zero-validator.ts';
 import { selectTemplate, executeTemplate } from '../_shared/clawbot-template-router.ts';
 import { aggregateOnniscenza } from '../_shared/onniscenza-bridge.ts';
 // iter 37 Phase 1 Atom A2 — pre-LLM regex classifier drives ENABLE_ONNISCENZA
@@ -281,53 +281,57 @@ serve(async (req: Request) => {
     // citation_vol_pag/plurale top-2, deep/safety/default top-3).
     // RAG metadata NULL gap (chapter/page/section_title) iter 14 backfill still
     // pending — citations limited to chunk content text until backfill ships.
-    const studentContext = await loadStudentContext(sessionId);
+    //
+    // 2026-05-10 iter 8 Agent 2 Fix 1: Promise.all parallelize loadStudentContext
+    // + hybridRetrieve. Previously sequential ~250ms + 2000ms = 2250ms. Now
+    // parallel, max(250, 2000) = 2000ms = -250ms p95 lift. Onniscenza aggregator
+    // remains sequential (depends on classifier output already computed).
+    const promptClass = classifyPrompt(safeMessage);
 
     let ragContext = '';
     let retrievedChunksDebug: Array<Record<string, unknown>> = [];
     let retrievalModeUsed: 'hybrid' | 'dense' | 'fallback' = 'dense';
 
-    // 2026-05-10 — Live RAG retrieval restored.
-    // Run classifier first to decide topK; chit_chat skips entirely; others get
-    // 2-3 chunks. Hybrid retrieval = dense (cosine) + sparse (BM25 italian) RRF k=60.
-    // Defensive: errors fall through to empty ragContext (LLM still works on
-    // static knowledge pack from system prompt).
-    const promptClass = classifyPrompt(safeMessage);
-    if (!promptClass.skipOnniscenza) {
-      try {
-        const ragTopK = Math.max(2, Math.min(3, promptClass.topK || 3));
-        // 2026-05-10 iter 5 fix: 2s timeout race vs hybridRetrieve to avoid
-        // P4 503 regression (full path LLM 8s + RAG 2-3s + Onniscenza 1-2s
-        // exceeded global timeout). RAG timeout falls through to static pack.
-        const RAG_TIMEOUT_MS = 2000;
-        const ragTimeoutPromise = new Promise<never>((_, rej) =>
-          setTimeout(() => rej(new Error('rag_timeout_2s')), RAG_TIMEOUT_MS)
-        );
-        const ragHitsPromise = hybridRetrieve(safeMessage, ragTopK, {
-          source: safeExperimentId
-            ? (safeExperimentId.startsWith('v1-') ? 'vol1' : safeExperimentId.startsWith('v2-') ? 'vol2' : safeExperimentId.startsWith('v3-') ? 'vol3' : undefined)
-            : undefined,
-        });
-        const hits = await Promise.race([ragHitsPromise, ragTimeoutPromise]);
-        if (hits && hits.length > 0) {
-          ragContext = formatHybridContext(hits);
-          retrievedChunksDebug = hits.map((h) => ({
-            id: h.id,
-            source: h.source,
-            chapter: h.chapter,
-            page: h.page,
-            score: h.score,
-            mode: h.mode,
-          }));
-          retrievalModeUsed = 'hybrid';
-        }
-      } catch (ragErr) {
+    // Build hybridRetrieve promise (with 2s timeout race) only if classifier
+    // says we need it; otherwise short-circuit.
+    const ragTopK = Math.max(2, Math.min(3, promptClass.topK || 3));
+    const RAG_TIMEOUT_MS = 2000;
+    const buildRagPromise = (): Promise<unknown[] | null> => {
+      if (promptClass.skipOnniscenza) return Promise.resolve(null);
+      const ragTimeoutPromise = new Promise<never>((_, rej) =>
+        setTimeout(() => rej(new Error('rag_timeout_2s')), RAG_TIMEOUT_MS)
+      );
+      const ragHitsPromise = hybridRetrieve(safeMessage, ragTopK, {
+        source: safeExperimentId
+          ? (safeExperimentId.startsWith('v1-') ? 'vol1' : safeExperimentId.startsWith('v2-') ? 'vol2' : safeExperimentId.startsWith('v3-') ? 'vol3' : undefined)
+          : undefined,
+      });
+      return Promise.race([ragHitsPromise, ragTimeoutPromise]).catch((ragErr) => {
         console.warn(JSON.stringify({
           level: 'warn', event: 'rag_hybrid_error',
           error: ragErr instanceof Error ? ragErr.message : 'unknown',
         }));
-        // ragContext stays '' — fall through to static knowledge pack
-      }
+        return null;
+      });
+    };
+
+    // Parallel fetch: studentContext (Supabase REST ~250ms) + RAG hybridRetrieve (≤2s).
+    const [studentContext, ragHits] = await Promise.all([
+      loadStudentContext(sessionId),
+      buildRagPromise(),
+    ]);
+
+    if (ragHits && Array.isArray(ragHits) && ragHits.length > 0) {
+      ragContext = formatHybridContext(ragHits as Parameters<typeof formatHybridContext>[0]);
+      retrievedChunksDebug = (ragHits as Array<Record<string, unknown>>).map((h) => ({
+        id: h.id,
+        source: h.source,
+        chapter: h.chapter,
+        page: h.page,
+        score: h.score,
+        mode: h.mode,
+      }));
+      retrievalModeUsed = 'hybrid';
     }
 
     // Iter 30 P0.6 — Onniscenza 7-layer aggregator wire-up (opt-in env flag).
@@ -556,8 +560,13 @@ serve(async (req: Request) => {
         // other providers ignore this field; Mistral validates server-side.
         ...(useIntentSchema ? { responseFormat: INTENT_TOOLS_SCHEMA } : {}),
       });
+      // 2026-05-10 iter 8 Agent 2 Fix 2: raise LLM cap conditionally to kill
+      // I1 mount 503 timeout (Onniscenza + Mistral schema gen overflow 8s).
+      // Schema mode + vision + thinkingLevel routinely need 8-12s structured
+      // generation. Default 8s preserved for fast chat path.
+      const llmCapMs = (useIntentSchema || hasImages || thinkingLevel) ? 12000 : 8000;
       const timeoutPromise = new Promise<never>((_, rej) => {
-        setTimeout(() => rej(new Error('llm_timeout_8s')), 8000);
+        setTimeout(() => rej(new Error(`llm_timeout_${llmCapMs}ms`)), llmCapMs);
       });
       result = await Promise.race([llmCallPromise, timeoutPromise]);
 
@@ -625,10 +634,11 @@ serve(async (req: Request) => {
     // Parse `[INTENT:{tool:"...",args:{...}}]` tags from the LLM response and
     // surface them as `intents_parsed` for the client (browser `__ELAB_API`)
     // to dispatch. Server-side dispatch is NOT performed here because the
-    // 62-tool registry handlers live in the browser context (see
+    // 57-tool registry handlers live in the browser context (see
     // `scripts/openclaw/dispatcher.ts` which resolves `globalThis.__ELAB_API`).
     // Defensive: never throws — empty array on any error / no tags.
     let parsedIntents: IntentTag[] = [];
+    // Enforcer applied as LAST step (post INTENT parse) at line 6a-bis below.
     let cleanText = cappedText;
     try {
       // iter 38 A7: when Mistral structured-output produced intents, prefer
@@ -674,6 +684,11 @@ serve(async (req: Request) => {
       parsedIntents = [];
       cleanText = cappedText;
     }
+
+    // 6a-bis. 2026-05-10 iter 8 — apply enforcer AS LAST STEP.
+    // Strip leaked context tags + auto-prepend "Ragazzi," opener.
+    // Idempotent. Live r5-042 + andrea-screenshot-comemai catastrophic fix.
+    cleanText = enforceItalianK12Opener(cleanText);
 
     // 6b. Sprint S iter 2 — Task A4: post-LLM PRINCIPIO ZERO validation.
     // Append-warning pattern: log violations, NEVER reject/modify response.

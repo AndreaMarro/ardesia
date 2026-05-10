@@ -179,3 +179,71 @@ export function validatePrincipioZero(
     passes: violations.length === 0,
   };
 }
+
+/**
+ * 2026-05-10 iter 8 Agent 1 Patch 2 + Patch 4 — server-side post-LLM cleanup.
+ *
+ * 1. Strip leaked system context tags ([MEMORIA STUDENTE], [NARRAZIONE LIVE],
+ *    [PRESENTE LIVE...], [CONTESTO CAPITOLO]) — LLM occasionally echoes the
+ *    injected context verbatim (live prod r5-042 catastrophic).
+ * 2. Auto-prepend "Ragazzi," opener when absent and response is meaningful
+ *    (>5 words, no existing plurale opener variant). Deterministic, 0ms cost,
+ *    bypasses LLM unreliability. Andrea iter 21 PRINCIPIO ZERO V3 mandate
+ *    "INIZIA SEMPRE con Ragazzi,".
+ *
+ * NOTE: idempotent — running twice does not double-prepend.
+ */
+export function enforceItalianK12Opener(rawText: string): string {
+  if (typeof rawText !== 'string' || !rawText.trim()) return rawText;
+
+  // Step 1: strip leaked context tags ONLY (just the bracket tag itself, NOT
+  // the prose that follows). Live r5-042 + andrea-screenshot iter 8 fix.
+  // Tags formats observed in prod leak:
+  //   [MEMORIA STUDENTE]
+  //   [NARRAZIONE LIVE]
+  //   [PRESENTE LIVE - STATO CIRCUITO]
+  //   [PRESENTE LIVE - ESPERIMENTO ATTIVO]
+  //   [CONTESTO CAPITOLO LIBRO]
+  //   [STORIA SESSIONI]
+  //   [RIFERIMENTO LIBRO FISICO]
+  //   [REGIA MULTI-AI UNLIM]
+  //   [PROFILO ATTIVO: ...]
+  //   [GERARCHIA CONTESTO]
+  //   [AGENT_DECISION_JSON]
+  //   [AUTOCOSCIENZA]
+  // Strip ONLY the tag (not following prose) so prose remains. Trailing
+  // whitespace collapsed.
+  let cleaned = rawText
+    .replace(/\[MEMORIA STUDENTE[^\]]*\]/g, '')
+    .replace(/\[NARRAZIONE LIVE[^\]]*\]/g, '')
+    .replace(/\[PRESENTE LIVE[^\]]*\]/g, '')
+    .replace(/\[CONTESTO CAPITOLO[^\]]*\]/g, '')
+    .replace(/\[STORIA SESSIONI[^\]]*\]/g, '')
+    .replace(/\[RIFERIMENTO LIBRO FISICO[^\]]*\]/g, '')
+    .replace(/\[REGIA MULTI-AI[^\]]*\]/g, '')
+    .replace(/\[PROFILO ATTIVO[^\]]*\]/g, '')
+    .replace(/\[GERARCHIA CONTESTO[^\]]*\]/g, '')
+    .replace(/\[AGENT_DECISION_JSON[^\]]*\]/g, '')
+    .replace(/\[AUTOCOSCIENZA[^\]]*\]/g, '')
+    .replace(/[ \t]{2,}/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+  if (!cleaned) return rawText;
+
+  // Step 2: detect existing plurale opener (be permissive — accept variants).
+  const hasPluraleOpener = /^(Ragazzi[,!.\s]|Ciao\s+ragazzi|Bambini[,!.\s]|Vediamo|Insieme|Provate|Guardate|Iniziamo|Cominciamo|Ehi)/i.test(cleaned);
+  if (hasPluraleOpener) return cleaned;
+
+  // Step 3: skip prepend on very short responses (<5 words) — likely action-only
+  // ("[AZIONE:play]") or single greeting echo.
+  const wc = cleaned.split(/\s+/).filter(Boolean).length;
+  if (wc < 5) return cleaned;
+
+  // Step 4: prepend "Ragazzi, " preserving the rest. Lowercase the first letter
+  // of the original text since it now follows a comma.
+  const firstChar = cleaned.charAt(0);
+  const restAfterFirst = cleaned.slice(1);
+  const lowerFirst = firstChar.toLowerCase();
+  return `Ragazzi, ${lowerFirst}${restAfterFirst}`;
+}
