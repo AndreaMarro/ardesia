@@ -89,31 +89,43 @@ export const UNLIM_VOLUME_1_KNOWLEDGE_PACK = [
   '- Cap.14 robot base: progetto finale con breadboard, resistenze e LED.',
 ].join('\n');
 
+// 2026-05-10 — capitoli numerati per allineamento con V1 pack (TRES JOLIE audit fix).
+// Nota: "Rele" precedente NON è capitolo autonomo nel PDF Vol2 (rimosso).
+// Ordine PDF Vol2 cartaceo: Cap.3 Multimetro -> Cap.4 Resistenze -> Cap.5 Batterie ->
+// Cap.6 LED avanzati -> Cap.7 Condensatore -> Cap.8 Transistor -> Cap.9 Rele
+// (NB: rele è cap.9 effettivo, non capitolo "autonomo") -> Cap.10 Motori ->
+// Cap.11 Diodi -> Cap.12 Robot marciante (segui luce).
 export const UNLIM_VOLUME_2_KNOWLEDGE_PACK = [
   'VOL2 - ESPERTO VOLUME 2 - MISURE, ENERGIA E COMPONENTI INTERMEDI:',
   '- Missione: collegare cio che si vede sul circuito con misure reali, corrente, tensione, resistenza equivalente e comportamento dinamico.',
-  '- Multimetro: tensione in parallelo, corrente in serie nel percorso, resistenza a circuito scollegato, puntali corretti.',
-  '- Resistenze: serie somma, parallelo riduce, cadute di tensione, luminosita LED e corrente.',
-  '- Batterie: serie aumenta tensione, polarita sbagliata non somma e puo creare problemi.',
-  '- Condensatore: carica/scarica, memoria temporanea, LED che si spegne gradualmente, tempo dipende da R e C.',
-  '- Diodo: senso unico della corrente, protezione e polarita.',
-  '- MOSFET/transistor: interruttore elettronico comandato da piccolo segnale, gate/base come controllo.',
-  '- Rele: comando separato dal circuito di potenza.',
-  '- Motore DC: alimentazione, verso, velocita, protezione e controllo con transistor/rele.',
-  '- Fototransistor e robot segui-luce: sensore ottico che guida movimento o confronto tra lati.',
+  '- Cap.3 Multimetro: tensione in parallelo, corrente in serie nel percorso, resistenza a circuito scollegato, puntali corretti.',
+  '- Cap.4 Resistenze: serie somma, parallelo riduce, cadute di tensione, luminosita LED e corrente.',
+  '- Cap.5 Batterie: serie aumenta tensione, polarita sbagliata non somma e puo creare problemi.',
+  '- Cap.6 LED avanzati: serie/parallelo, resistore di protezione, luminosita e corrente reale.',
+  '- Cap.7 Condensatore: carica/scarica, memoria temporanea, LED che si spegne gradualmente, tempo dipende da R e C.',
+  '- Cap.8 Transistor/MOSFET: interruttore elettronico comandato da piccolo segnale, gate/base come controllo.',
+  '- Cap.9 Rele: comando separato dal circuito di potenza.',
+  '- Cap.10 Motori DC: alimentazione, verso, velocita, protezione e controllo con transistor/rele.',
+  '- Cap.11 Diodi (p.103): senso unico corrente, protezione, polarita, diodo di ricircolo per motori.',
+  '- Cap.12 Robot marciante segui-luce (p.109): fototransistor + MOSFET + diodi + motori, progetto finale Vol2.',
 ].join('\n');
 
+// 2026-05-10 — capitoli numerati Vol3 (TRES JOLIE audit fix). NB: PDF Vol3 manca,
+// solo ODT. Cap.5 titolo corretto "Il nostro primo programma (Blink)" — NON
+// "Come è fatto un programma Arduino" come errato in versioni precedenti.
 export const UNLIM_VOLUME_3_KNOWLEDGE_PACK = [
   'VOL3 - ESPERTO VOLUME 3 - ARDUINO, SCRATCH E CONTROLLO:',
   '- Missione: trasformare circuiti in sistemi controllati da codice o blocchi, con verifica tramite compilazione/stato reale.',
-  '- Scheda: pin digitali/analogici, 5V, 3.3V, GND comune, VIN, editor, upload/compile.',
-  '- Output digitali: pinMode, digitalWrite, HIGH/LOW, Blink su D13, sequenze, semaforo, morse, delay.',
-  '- Input digitali: pulsante, digitalRead, pull-up/pull-down, debounce semplice.',
-  '- Analogico: analogRead 0-1023, potenziometro/LDR, soglie, map/constrain, Serial Monitor.',
-  '- PWM: analogWrite 0-255, fade LED, intensita percepita, non vera uscita analogica.',
+  '- Cap.5 Il nostro primo programma (Blink) (p.47): void setup(), void loop(), pinMode, digitalWrite HIGH/LOW, delay, LED integrato D13, primo upload.',
+  '- Cap.6 I Pin Digitali (p.53): output digitali, LED esterno + resistore 470Ω, sequenze, semaforo, morse, delay come tempo.',
+  '- Cap.7 Input digitali (p.~70): pulsante, digitalRead, pull-up/pull-down, debounce semplice, lettura stato.',
+  '- Cap.8 Analogico/Seriale (p.~80): analogRead 0-1023, potenziometro/LDR, soglie, map/constrain, Serial Monitor, valori live.',
+  '- Cap.9 Servo/movimento: angolo 0-180, alimentazione stabile, attenzione allo sforzo meccanico.',
+  '- Cap.10 Buzzer/suono: tone/noTone, melodie, pause, pattern sonori.',
+  '- Cap.11 Comunicazione seriale: stampare valori, leggere comandi, debug pratico.',
+  '- Cap.12 Robot/seguiluce Arduino: integra LDR, motori/servo, logica di confronto e movimento.',
+  '- PWM (in Cap.6+): analogWrite 0-255, fade LED, intensita percepita, NON vera uscita analogica.',
   '- Scratch/blocchi: forever, wait/delay, set pin high/low, if, sensori, blocchi leggibili per principianti.',
-  '- Servo e attuatori: angolo 0-180, alimentazione stabile, attenzione allo sforzo meccanico.',
-  '- Buzzer: tone/noTone, melodie, pause.',
   '- Debug: leggi riga errore, parentesi/semicolon, pin non disponibile, GND comune, compilare prima di dire che funziona.',
 ].join('\n');
 
