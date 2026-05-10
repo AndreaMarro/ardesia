@@ -228,12 +228,12 @@
       "common_mistakes": [
         {
           "mistake": "Un LED resta sempre acceso, anche quando dovrebbe spegnersi",
-          "teacher_response": "Regola il codice: ogni fase deve mettere LOW tutti i pin tranne quello acceso. Se manca un digitalWrite LOW su un pin, quel LED resta acceso!",
+          "teacher_response": "Regolate il codice: ogni fase deve mettere LOW tutti i pin tranne quello acceso. Se manca un digitalWrite LOW su un pin, quel LED resta acceso!",
           "analogy": "È come le luci di casa: se vuoi che solo il salotto sia illuminato, devi SPEGNERE le altre stanze, non basta accendere il salotto."
         },
         {
           "mistake": "Il LED non si accende affatto o è molto fioco",
-          "teacher_response": "Regola i collegamenti: il resistore è tra il pin Arduino e il LED? Il catodo del LED va a GND? Ricorda che il LED ha una direzione!",
+          "teacher_response": "Regolate i collegamenti: il resistore è tra il pin Arduino e il LED? Il catodo del LED va a GND? Ricorda che il LED ha una direzione!",
           "analogy": null
         }
       ]

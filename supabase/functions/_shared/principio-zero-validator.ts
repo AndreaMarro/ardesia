@@ -63,7 +63,7 @@ function countWords(text: string): number {
  * Implements 6 runtime rules:
  *   1. imperativo_docente (HIGH)
  *   2. singolare_studente (HIGH)
- *   3. max_words_60 (MEDIUM)
+ *   3. max_words_120 (MEDIUM) — Andrea ricalibrazione 10/05/2026
  *   4. no_citation_concept_intro (LOW, conditional)
  *   5. english_filler (LOW)
  *   6. chatbot_preamble (LOW)
@@ -112,14 +112,16 @@ export function validatePrincipioZero(
     });
   }
 
-  // Rule 3: max_words_60 (MEDIUM)
+  // Rule 3: max_words_120 (MEDIUM) — Andrea regola 10/05/2026 ricalibrazione
+  // Max 120 parole ben formattate. Analogie OPZIONALI (NON sempre obbligatorie).
+  // Sostituisce regola 60 parole + analogia obbligatoria.
   const wc = countWords(response);
-  if (wc > 60) {
+  if (wc > 120) {
     violations.push({
-      rule: 'max_words_60',
+      rule: 'max_words_120',
       severity: 'MEDIUM',
       matched: `${wc} parole`,
-      suggestion: 'Riduci a max 60 parole + 1 analogia',
+      suggestion: 'Riduci a max 120 parole ben formattate (analogia opzionale)',
     });
   }
 
@@ -225,6 +227,16 @@ export function enforceItalianK12Opener(rawText: string): string {
     .replace(/\[GERARCHIA CONTESTO[^\]]*\]/g, '')
     .replace(/\[AGENT_DECISION_JSON[^\]]*\]/g, '')
     .replace(/\[AUTOCOSCIENZA[^\]]*\]/g, '')
+    // iter 11 P0 — live smoke prod Q9 220V leaked these tags. Strip RAG/Wiki/Hybrid surfaces.
+    .replace(/\[CONOSCENZA DAI VOLUMI ELAB[^\]]*\]/gi, '')
+    .replace(/\[CONTESTO ONNISCENZA[^\]]*\]/gi, '')
+    .replace(/\[Hybrid RAG[^\]]*\]/gi, '')
+    .replace(/\[wiki[^\]]*\]/gi, '')
+    .replace(/\[rag[^\]]*\]/gi, '')
+    .replace(/\[glossario[^\]]*\]/gi, '')
+    .replace(/\[fonte:[^\]]*\]/gi, '')
+    .replace(/\[FONTE[^\]]*\]/g, '')
+    .replace(/^---+\s*$/gm, '') // markdown separator leaks from prompt scaffolding
     .replace(/[ \t]{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();

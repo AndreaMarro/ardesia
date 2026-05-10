@@ -15,7 +15,7 @@
  * Rules implemented at runtime (this file tests):
  *   1. imperativo_docente (HIGH) — line-start "Distribuisci|Spiega|Mostra..."
  *   2. singolare_studente (HIGH) — "devi|prova|guarda" (excluding inside «...»)
- *   3. max_words_60 (MEDIUM) — wc > 60
+ *   3. max_words_120 (MEDIUM) — wc > 60
  *   4. no_citation_concept_intro (LOW, conditional via ctx.isConceptIntro)
  *   5. english_filler (LOW) — "let me|please|sure|of course|happy to"
  *   6. chatbot_preamble (LOW) — "Certo|Volentieri|Ottima/Bella domanda|Sicuramente"
@@ -87,26 +87,26 @@ describe('validatePrincipioZero — 6 runtime rules (Sprint S iter 2 Task A)', (
   });
 
   // ───────────────────────────────────────────────────────────────
-  // RULE 3: max_words_60
+  // RULE 3: max_words_120
   // ───────────────────────────────────────────────────────────────
-  it('detects max_words_60 exceeded (>60 words) → MEDIUM', () => {
-    const longResp = 'Ragazzi, vediamo insieme. ' + 'parola '.repeat(80);
+  it('detects max_words_120 exceeded (>120 words) → MEDIUM', () => {
+    const longResp = 'Ragazzi, vediamo insieme. ' + 'parola '.repeat(140);
     const r = callOrFail(longResp);
-    const v = r.violations.find((x) => x.rule === 'max_words_60');
+    const v = r.violations.find((x) => x.rule === 'max_words_120');
     expect(v).toBeDefined();
     expect(v.severity).toBe('MEDIUM');
   });
 
   it('passes max_words for 30-word response', () => {
     const r = callOrFail('Ragazzi, vediamo come funziona il LED. È come una piccola lampadina che si accende solo nella direzione giusta. Provate insieme con il Vol. 1 pag. 27.');
-    const v = r.violations.find((x) => x.rule === 'max_words_60');
+    const v = r.violations.find((x) => x.rule === 'max_words_120');
     expect(v).toBeUndefined();
   });
 
   it('strips [AZIONE:...] tags from word count', () => {
     const resp = 'Ragazzi, vediamo. [AZIONE:highlight:led1] Provate insieme.';
     const r = callOrFail(resp);
-    const v = r.violations.find((x) => x.rule === 'max_words_60');
+    const v = r.violations.find((x) => x.rule === 'max_words_120');
     expect(v).toBeUndefined();
   });
 

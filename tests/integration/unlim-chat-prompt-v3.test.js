@@ -109,12 +109,46 @@ describe('unlim-chat prompt v3 wire-up — RED phase (Sprint S iter 2 Task A)', 
     expect(out.length).toBeGreaterThan(100);
   });
 
+  it('system prompt describes ELAB Tutor as parallel operational branches, not a linear chat chain', () => {
+    if (typeof buildSystemPrompt !== 'function') {
+      expect.fail(`buildSystemPrompt missing — ${importErrors.systemPrompt ?? 'symbol not exported'}`);
+    }
+    const out = buildSystemPrompt(null, null, null);
+    expect(out).toContain('MAPPA OPERATIVA ELAB TUTOR');
+    expect(out).toContain('rami paralleli');
+    expect(out).toContain('narrazione live');
+    expect(out).toContain('stato simulatore');
+    expect(out).toContain('Scratch/Arduino');
+    expect(out).toContain('Pixtral');
+  });
+
+  it('system prompt keeps citations as short anchors, not as a replacement for natural discourse', () => {
+    if (typeof buildSystemPrompt !== 'function') {
+      expect.fail(`buildSystemPrompt missing — ${importErrors.systemPrompt ?? 'symbol not exported'}`);
+    }
+    const out = buildSystemPrompt(null, null, null);
+    expect(out).toContain('Citazione = ancora, non risposta intera');
+    expect(out).toContain('Una sola citazione breve');
+    expect(out).toContain('prima diagnosi/azione, poi citazione solo se aiuta');
+  });
+
+  it('system prompt requires original synthesis instead of citation-only answers', () => {
+    if (typeof buildSystemPrompt !== 'function') {
+      expect.fail(`buildSystemPrompt missing — ${importErrors.systemPrompt ?? 'symbol not exported'}`);
+    }
+    const out = buildSystemPrompt(null, null, null);
+    expect(out).toContain('RISPOSTA ORIGINALE');
+    expect(out).toContain('non copiare il volume come risposta');
+    expect(out).toContain('sintesi tua');
+    expect(out).toContain('massimo una citazione breve');
+  });
+
   it('validator violations have stable rule-name keys for audit logging', () => {
     if (typeof validatePrincipioZero !== 'function') {
       expect.fail('validatePrincipioZero missing');
     }
-    // 80+ word response triggers max_words_60; ensure rule keys are stable strings
-    const result = validatePrincipioZero('Distribuisci il LED. ' + 'parola '.repeat(80));
+    // 140+ word response triggers max_words_120 (Andrea ricalibrazione 10/05/2026); ensure rule keys are stable strings
+    const result = validatePrincipioZero('Distribuisci il LED. ' + 'parola '.repeat(140));
     expect(result.violations.length).toBeGreaterThan(0);
     for (const v of result.violations) {
       expect(v).toHaveProperty('rule');

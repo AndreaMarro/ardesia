@@ -17,6 +17,100 @@
 
 import { TEMPLATES_L2, type ClawBotTemplate, type ClawBotStep, type ClawBotCategory } from './clawbot-templates.ts';
 
+// ─── Sprint U Cycle 2 Fix #1: per-experiment template map ───────────────────
+//
+// Audit `sprint-u-cycle1-iter1-CONSOLIDATED-audit.md` finding: bag-of-words
+// scoring selects `L2-explain-led-blink` for every `lesson-explain` query
+// regardless of `experimentId` → 20/20 test responses identical body →
+// Morfismo Sense 2 (kit fisico Vol/cap/esp alignment) broken.
+//
+// Fix: build a `experimentId → templateId` map from each template's own
+// default `inputs.experimentId`. When the caller supplies `experimentId` in
+// context AND the message intent (verb hint like "spiega/diagnos/...") matches
+// the mapped template's category, return the dedicated template. Otherwise:
+//   1. If no verb hint, return null → fall through to LLM+RAG (safer than
+//      wrong-firing a template). This is Sense-2-aligned: the LLM gets the
+//      full RAG context for that experimentId, no canned answer.
+//   2. If a verb hint exists but no per-experiment template, fall back to the
+//      bag-of-words scorer (legacy behavior, threshold respected).
+//
+// Result: experiments WITH a dedicated template get experiment-specific
+// content (currently 11/94 templates have an explicit experimentId default,
+// see EXPERIMENT_TEMPLATE_MAP below). Everything else flows to LLM+RAG
+// (no more catch-all wrong-fire).
+
+interface ExperimentMapEntry {
+  templateId: string;
+  category: ClawBotCategory;
+}
+
+/**
+ * Build the experiment → template map from `TEMPLATES_L2`. Each template
+ * declares its canonical experimentId in `inputs.experimentId`. Templates
+ * with empty/missing experimentId are considered "generic" — they only
+ * match via bag-of-words category cues (no per-experiment binding).
+ *
+ * A single experimentId can map to MULTIPLE templates (different categories
+ * — e.g. v1-cap6-esp1 has both explain-led-blink + diagnose-led-rovesciato
+ * + recap-fine-lezione). The map stores all and `selectTemplate` picks by
+ * verb-hint category match.
+ */
+function buildExperimentTemplateMap(): Map<string, ExperimentMapEntry[]> {
+  const map = new Map<string, ExperimentMapEntry[]>();
+  for (const t of TEMPLATES_L2) {
+    const expId = (t.inputs as Record<string, unknown> | undefined)?.experimentId;
+    if (typeof expId !== 'string' || expId === '') continue;
+    const entry: ExperimentMapEntry = { templateId: t.id, category: t.category };
+    const list = map.get(expId) ?? [];
+    list.push(entry);
+    map.set(expId, list);
+  }
+  return map;
+}
+
+export const EXPERIMENT_TEMPLATE_MAP: Map<string, ExperimentMapEntry[]> = buildExperimentTemplateMap();
+
+/**
+ * Map a verb stem (lowercase Italian) to candidate categories. Mirrors the
+ * verbMap used inside `scoreTemplate` but exposed for the per-experiment
+ * fast-path so we route to the RIGHT template among multiples bound to the
+ * same experimentId.
+ */
+const VERB_TO_CATEGORY: Array<[string, ClawBotCategory[]]> = [
+  ['spieg', ['lesson-explain']],
+  ['intro', ['lesson-introduce']],
+  ['diagnos', ['diagnose', 'diagnose-error', 'diagnose-vision', 'lesson-diagnose']],
+  ['rovesc', ['diagnose-vision']],
+  ['fioco', ['lesson-diagnose']],
+  ['cortocirc', ['diagnose-error']],
+  ['corto', ['diagnose-error']],
+  ['guid', ['guide-action', 'guide-build', 'lesson-guide']],
+  ['compil', ['guide-action']],
+  ['serial', ['lesson-guide']],
+  ['mont', ['guide-build']],
+  ['celebr', ['lesson-celebrate', 'feedback-positive']],
+  ['critic', ['critique-vision']],
+  ['recap', ['lesson-recap']],
+  ['ricap', ['lesson-recap']],
+  ['error', ['error-recovery']],
+  ['errat', ['error-recovery']],
+  ['scratc', ['lesson-program-first']],
+  ['blockl', ['lesson-program-first']],
+];
+
+function detectIntentCategories(queryTokens: Set<string>): Set<ClawBotCategory> {
+  const out = new Set<ClawBotCategory>();
+  for (const [stem, cats] of VERB_TO_CATEGORY) {
+    for (const qt of queryTokens) {
+      if (qt.startsWith(stem)) {
+        for (const c of cats) out.add(c);
+        break;
+      }
+    }
+  }
+  return out;
+}
+
 // ─── Selection ──────────────────────────────────────────────────────────────
 
 /**
@@ -126,12 +220,46 @@ export function selectTemplate(query: string, context: SelectContext = {}): Claw
   // 2026-05-10 — Live prod audit (probe stamane Vol.2 multimetro → celebrate-end-volume,
   // Vol.1 LED → diagnose-led-rovesciato, spiega LED → wrong-fire) showed bag-of-words
   // threshold=2 selects wrong-category templates for descriptive queries.
-  // Disable L2 short-circuit globally; AgentDecision JSON router (parallel-agent
-  // 2026-05-09 architecture) replaces this routing path.
-  // Re-enable later only with normalized scoring + per-category thresholds.
-  // Tests pass `threshold: 2` explicit override to verify scoring algorithm still works.
+  // Sprint U Cycle 2 Fix #1: re-enable L2 short-circuit via per-experiment map
+  // (Morfismo Sense 2 kit fisico alignment). Tests pass `threshold: 2` explicit
+  // override to verify scoring algorithm still works.
   const threshold = context.threshold ?? 999;
 
+  // ── Per-experiment fast-path (Sprint U Cycle 2 Fix #1) ───────────────────
+  //
+  // If caller supplies `experimentId` AND we have a dedicated template bound
+  // to it AND the query expresses a clear intent (verb stem), route directly.
+  // This is the Morfismo Sense 2 alignment: each kit-fisico experiment maps
+  // to its own L2 morphic pattern (vs catch-all wrong-fire on LED blink).
+  if (typeof context.experimentId === 'string' && context.experimentId.length > 0) {
+    const candidates = EXPERIMENT_TEMPLATE_MAP.get(context.experimentId);
+    if (candidates && candidates.length > 0) {
+      const intents = detectIntentCategories(tokens);
+      if (intents.size > 0) {
+        // Prefer the candidate whose category matches the verb-hint intent.
+        const matched = candidates.find(c => intents.has(c.category));
+        if (matched) {
+          const tpl = TEMPLATES_L2.find(t => t.id === matched.templateId);
+          if (tpl) return tpl;
+        }
+      }
+      // No verb hint matches a bound template for this experiment → fall
+      // through to LLM+RAG. Returning the first candidate blindly would
+      // re-introduce the iter-1 audit wrong-fire bug. Safer to return null.
+      // The exception: respect explicit category_hint when provided.
+      if (context.category_hint) {
+        const hinted = candidates.find(c => c.category === context.category_hint);
+        if (hinted) {
+          const tpl = TEMPLATES_L2.find(t => t.id === hinted.templateId);
+          if (tpl) return tpl;
+        }
+      }
+      // intentionally fall through to bag-of-words below ONLY if threshold
+      // allows it (default 999 → null path keeps prod LLM+RAG behavior).
+    }
+  }
+
+  // ── Bag-of-words scoring (legacy, gated by threshold) ────────────────────
   const scored: ScoredTemplate[] = TEMPLATES_L2.map(t => ({ template: t, score: scoreTemplate(t, tokens, context) }));
   scored.sort((a, b) => b.score - a.score);
 

@@ -73,7 +73,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, oggi usiamo un servomotore! A differenza di un motore normale che gira sempre nello stesso verso, il servo può posizionarsi a un angolo PRECISO da 0 a 180 gradi. Arduino gli manda un segnale PWM sul pin D9 e il servo ubbidisce. Con la libreria Servo, basta scrivere myServo.write(90) per andare a 90 gradi!",
-      "teacher_tip": "Mostra dove si usano i servomotori nella vita reale: timone dei droni, articolazioni dei robot, flap degli aeroplani, sterzo dei modellini RC. Il punto chiave: il servo VA a un angolo specifico e CI RESTA — non gira in continuo come un motore normale.",
+      "teacher_tip": "Mostrate dove si usano i servomotori nella vita reale: timone dei droni, articolazioni dei robot, flap degli aeroplani, sterzo dei modellini RC. Il punto chiave: il servo VA a un angolo specifico e CI RESTA — non gira in continuo come un motore normale.",
       "components_list": "Ti servono: 1 breadboard half-size, 1 Arduino Nano R4, 1 servomotore, solo 3 fili di collegamento!",
       "class_hook": "Avete mai visto i droni o i modellini radiocomandati? Hanno dei piccoli motori che controllano le ali o lo sterzo — si chiamano servomotori! Diversi dai motori normali: non girano sempre, vanno esattamente all'angolo che vuoi e ci restano. Oggi ne costruiamo uno!",
       "action_tags": [],
@@ -135,7 +135,7 @@
       "duration_minutes": 7,
       "teacher_message": "Il servo è collegato. Il codice usa delay(15) tra ogni grado di movimento. Cosa succederebbe se usassimo delay(1) invece di delay(15)? E se usassimo delay(500)?",
       "teacher_tip": "Con delay(1) il movimento sarebbe rapidissimo, quasi istantaneo. Con delay(500) ci vorrebbe 90 secondi per fare mezzo giro (500ms × 180 gradi = 90 secondi!). Il delay regola la VELOCITÀ del movimento.",
-      "provocative_question": "Il servo si muove da 0 a 180 gradi con delay(15) per ogni grado. Quanto tempo ci vuole per fare UN giro completo andata e ritorno? Prova a calcolare: 180 gradi × 15ms + 180 gradi × 15ms = ?",
+      "provocative_question": "Il servo si muove da 0 a 180 gradi con delay(15) per ogni grado. Quanto tempo ci vuole per fare UN giro completo andata e ritorno? Provate a calcolare: 180 gradi × 15ms + 180 gradi × 15ms = ?",
       "components_list": null,
       "class_hook": null,
       "action_tags": [],
@@ -148,7 +148,7 @@
         },
         {
           "mistake": "Il servo va solo in una direzione e non torna indietro",
-          "teacher_response": "Regola che ci siano ENTRAMBI i cicli for nel codice: uno da 0 a 180 (angle++) e uno da 180 a 0 (angle--). Se manca il secondo ciclo, il servo arriva a 180 e riparte da 0 di scatto!",
+          "teacher_response": "Regolate che ci siano ENTRAMBI i cicli for nel codice: uno da 0 a 180 (angle++) e uno da 180 a 0 (angle--). Se manca il secondo ciclo, il servo arriva a 180 e riparte da 0 di scatto!",
           "analogy": null
         }
       ]

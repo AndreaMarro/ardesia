@@ -16,6 +16,10 @@ import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.t
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
 import { getCapitoloByExperimentId, buildCapitoloPromptFragment } from '../_shared/capitoli-loader.ts';
 import { validatePrincipioZero, enforceItalianK12Opener } from '../_shared/principio-zero-validator.ts';
+// iter 11 P0 — Andrea mandate: 10 paletti runtime checkContentSafety post-LLM.
+// Audit iter 11 backend trovò content-safety-guard.ts (306 LOC) DEAD CODE non wired.
+// Wire post-enforcer + pre-PZ-validator. Live smoke Q9 220V FAIL → safety_warning trigger.
+import { checkContentSafety } from '../_shared/content-safety-guard.ts';
 import { selectTemplate, executeTemplate } from '../_shared/clawbot-template-router.ts';
 import { aggregateOnniscenza } from '../_shared/onniscenza-bridge.ts';
 // iter 37 Phase 1 Atom A2 — pre-LLM regex classifier drives ENABLE_ONNISCENZA
@@ -384,7 +388,10 @@ serve(async (req: Request) => {
           session_id: sessionId, // iter 35 fix Agent C audit: was undefined ref `safeSessionId` masked while ENABLE_ONNISCENZA off
           history: [], // caller history injection iter 31+
           supabase: supaClient,
-          enable: { L1_rag: false /* already done above */, L3_glossario: false },
+          // iter 11 P0 #5 — Andrea audit: L3_glossario era hard-disabled (Tea 180 termini
+          // esclusi del tutto). Rimuovo opt-out per riabilitare. L1 RAG resta disabled
+          // perché già fatto sopra (riga 298) — evita doppio retrieve.
+          enable: { L1_rag: false /* already done above */ },
         });
       } catch (onniErr) {
         console.warn(JSON.stringify({
@@ -690,11 +697,48 @@ serve(async (req: Request) => {
     // Idempotent. Live r5-042 + andrea-screenshot-comemai catastrophic fix.
     cleanText = enforceItalianK12Opener(cleanText);
 
+    // 6a-ter. iter 11 P0 — Andrea mandate paletti: wire checkContentSafety post-enforcer.
+    // 10 rules runtime: volgari/off-topic/220V/privacy minori/GDPR Art.8/hallucination/citation verbatim.
+    // Pre-fix audit: content-safety-guard.ts (306 LOC) DEAD CODE 0 callsites.
+    // Behavior: if rewritten provided → use it; else log + preserve. NEVER blocca chat (defensive).
+    let safetyFires: string[] = [];
+    let safetyBlocked = false;
+    try {
+      const safetyResult = await checkContentSafety(cleanText, {
+        rag_chunks: retrievedChunksDebug?.map(c => ({
+          volume: typeof c === 'object' && c !== null ? (c as Record<string, unknown>).volume_id as string | number | undefined : undefined,
+          page: typeof c === 'object' && c !== null ? (c as Record<string, unknown>).page_number as number | undefined : undefined,
+        })),
+      });
+      if (!safetyResult.passed) {
+        safetyFires = safetyResult.all_fires || (safetyResult.rule_fired ? [safetyResult.rule_fired] : []);
+        safetyBlocked = true;
+        console.warn(JSON.stringify({
+          level: 'warn', event: 'content_safety_fires',
+          fires: safetyFires,
+          notes: safetyResult.notes,
+          experimentId: safeExperimentId || null,
+        }));
+        // Auto-rewrite if available (imperative docente case typically).
+        if (safetyResult.rewritten && typeof safetyResult.rewritten === 'string') {
+          cleanText = safetyResult.rewritten;
+          // Re-apply enforcer on rewritten text (idempotent).
+          cleanText = enforceItalianK12Opener(cleanText);
+        }
+      }
+    } catch (safetyErr) {
+      // Safety guard must NEVER break chat flow.
+      console.warn('[Nanobot V2] content-safety-guard error (non-blocking):', safetyErr);
+    }
+
     // 6b. Sprint S iter 2 — Task A4: post-LLM PRINCIPIO ZERO validation.
     // Append-warning pattern: log violations, NEVER reject/modify response.
     // CRITICAL severity → console.error; lower → no-op (telemetry future).
     try {
-      const isConceptIntro = false; // best-guess; future: derive from experimentContext metadata
+      // iter 11 P0 #9 — isConceptIntro dynamic: derive from capitoloFragment presence
+      // (when capitolo recognized + experimentId valid → likely concept intro).
+      // Was hardcoded `false` → citation Vol/pag rule MAI triggered. Audit P1 #9 fix.
+      const isConceptIntro = capitoloFragment !== '' && safeExperimentId !== '';
       const pzValidation = validatePrincipioZero(cleanText, { isConceptIntro });
       if (pzValidation.severity === 'CRITICAL') {
         console.error(JSON.stringify({
@@ -735,8 +779,11 @@ serve(async (req: Request) => {
       debug_retrieval?: Array<Record<string, unknown>>;
       retrieval_mode?: string;
       intents_parsed?: Array<{ tool: string; args: Record<string, unknown> }>;
-      // iter 37 A2: telemetry for benchmark/debug. Omitted unless debug_retrieval=true to keep payload minimal.
-      prompt_class?: { category: string; skipOnniscenza: boolean; topK: number; wordCount: number };
+      // iter 11 P0 — Andrea live smoke audit: surface ALWAYS (was debug-only).
+      // Telemetry observability for benchmark + frontend client (Onniscenza visible).
+      prompt_class?: { category: string; skipOnniscenza: boolean; topK: number; wordCount: number; triggers_vision_chain?: boolean };
+      // iter 11 P0 #1 — content-safety-guard fires surface for audit + frontend.
+      safety_fires?: string[];
     } = {
       success: true,
       response: cleanText,
@@ -752,17 +799,23 @@ serve(async (req: Request) => {
         : 'google-gemini',
       aiProfile: activeAiProfile.id,
     };
+    // iter 11 P0 — surface prompt_class ALWAYS (Andrea live smoke 2026-05-10
+    // findings: prompt_class invisible in prod API → Onniscenza classifier
+    // non-osservabile da telemetry). Cheap: ~80 byte payload extra.
+    response.prompt_class = {
+      category: promptClass.category,
+      skipOnniscenza: promptClass.skipOnniscenza,
+      topK: promptClass.topK,
+      wordCount: promptClass.wordCount,
+      triggers_vision_chain: promptClass.triggers_vision_chain || false,
+    };
+    if (safetyFires.length > 0) {
+      response.safety_fires = safetyFires;
+    }
     // Iter 10 P0: surface retrieved chunks for bench (B2 hybrid RAG eval)
     if (debugRetrieval) {
       response.debug_retrieval = retrievedChunksDebug;
       response.retrieval_mode = retrievalModeUsed;
-      // iter 37 A2: surface classifier verdict for bench R5 latency measurement.
-      response.prompt_class = {
-        category: promptClass.category,
-        skipOnniscenza: promptClass.skipOnniscenza,
-        topK: promptClass.topK,
-        wordCount: promptClass.wordCount,
-      };
     }
 
     // iter 36 Phase 1 Atom A1: surface parsed intents for client-side dispatch

@@ -1,6 +1,8 @@
 import type { CircuitState } from './types.ts';
 
-export const UNLIM_MAX_VISIBLE_WORDS = 80;
+// iter 11 P0 — Andrea regola 10/05/2026 ricalibrazione: max 120 parole ben formattate.
+// Sostituisce cap 80 (drift vs prompt 60 vs validator 60). 4 numeri diversi → 1 unificato.
+export const UNLIM_MAX_VISIBLE_WORDS = 120;
 export const UNLIM_THINKING_LABEL = 'Sto ELABorando...';
 
 export type ResponseQualityIntent =

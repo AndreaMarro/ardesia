@@ -14,19 +14,63 @@
   "target_age": "10-14 anni",
   "objective": "Controllare due pin digitali separatamente per creare un effetto alternanza stile sirena della polizia. Capire che Arduino può controllare più LED contemporaneamente con un ciclo loop.",
   "components_needed": [
-    { "name": "Arduino Nano R4 (breakout wing)", "quantity": 1, "icon": "🤖" },
-    { "name": "Breadboard half-size", "quantity": 1, "icon": "🔲" },
-    { "name": "LED rosso", "quantity": 1, "icon": "❤️" },
-    { "name": "LED blu", "quantity": 1, "icon": "💙" },
-    { "name": "Resistore 470ohm", "quantity": 2, "icon": "⚡" },
-    { "name": "Fili di collegamento", "quantity": 8, "icon": "🔌" }
+    {
+      "name": "Arduino Nano R4 (breakout wing)",
+      "quantity": 1,
+      "icon": "🤖"
+    },
+    {
+      "name": "Breadboard half-size",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "❤️"
+    },
+    {
+      "name": "LED blu",
+      "quantity": 1,
+      "icon": "💙"
+    },
+    {
+      "name": "Resistore 470ohm",
+      "quantity": 2,
+      "icon": "⚡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 8,
+      "icon": "🔌"
+    }
   ],
   "vocabulary": {
-    "allowed": ["Arduino", "pin", "digitale", "OUTPUT", "digitalWrite", "HIGH", "LOW", "delay", "LED", "alternanza", "sequenza"],
-    "forbidden": ["PWM", "duty cycle", "frequenza", "hertz", "tone"],
+    "allowed": [
+      "Arduino",
+      "pin",
+      "digitale",
+      "OUTPUT",
+      "digitalWrite",
+      "HIGH",
+      "LOW",
+      "delay",
+      "LED",
+      "alternanza",
+      "sequenza"
+    ],
+    "forbidden": [
+      "PWM",
+      "duty cycle",
+      "frequenza",
+      "hertz",
+      "tone"
+    ],
     "note": "Primo esperimento con DUE pin OUTPUT: enfatizzare che si possono controllare più componenti contemporaneamente"
   },
-  "prerequisites": ["v3-cap6-esp3"],
+  "prerequisites": [
+    "v3-cap6-esp3"
+  ],
   "next_experiment": {
     "id": "v3-cap6-esp5",
     "title": "Pulsante con INPUT_PULLUP",
@@ -49,7 +93,9 @@
       "duration_minutes": 10,
       "teacher_message": "Ragazzi, carichiamo il circuito: LED rosso sul pin 5 e LED blu sul pin 6. Il codice alterna i due LED ogni 200 millisecondi — 5 volte al secondo — proprio come un lampeggio d'emergenza.",
       "teacher_tip": "Evidenziare che ci sono DUE chiamate a digitalWrite nel loop: una per il rosso (HIGH) e una per il blu (LOW), poi si invertono.",
-      "action_tags": ["[AZIONE:loadexp:v3-cap6-esp4]"],
+      "action_tags": [
+        "[AZIONE:loadexp:v3-cap6-esp4]"
+      ],
       "auto_action": "load_experiment"
     },
     {
@@ -57,7 +103,7 @@
       "icon": "❓",
       "duration_minutes": 7,
       "teacher_message": "Se cambiamo delay(200) con delay(500), le luci lampeggiano più veloci o più lente? E se mettiamo delay(50)?",
-      "teacher_tip": "Regola semplice: numero grande = più lento, numero piccolo = più veloce. Far indovinare prima di testare.",
+      "teacher_tip": "Regolate semplice: numero grande = più lento, numero piccolo = più veloce. Far indovinare prima di testare.",
       "provocative_question": "Cosa succede se togliamo del tutto il delay? Arduino è così veloce che i LED sembrerebbero tutti accesi contemporaneamente!",
       "action_tags": [],
       "auto_action": null
@@ -68,7 +114,9 @@
       "duration_minutes": 8,
       "teacher_message": "Premete Play! I due LED si alternano: rosso acceso blu spento, poi rosso spento blu acceso. Modificate il valore del delay nel codice e osservate come cambia la velocità del lampeggio.",
       "teacher_tip": "Far provare valori molto piccoli (50ms) e molto grandi (1000ms). Chiedere: a quanti ms non si vede più la differenza tra i due stati?",
-      "action_tags": ["[AZIONE:play]"],
+      "action_tags": [
+        "[AZIONE:play]"
+      ],
       "auto_action": "play_and_highlight",
       "observation_prompt": "Quale velocità vi sembra più simile a una vera auto della polizia? Trovate il delay perfetto per l'effetto sirena."
     },
@@ -79,12 +127,22 @@
       "teacher_message": "Ragazzi, con due pin OUTPUT e un delay() preciso abbiamo creato un effetto visivo complesso! Arduino regola ogni LED separatamente: quando uno è HIGH l'altro è LOW, poi si scambiano in loop infinito.",
       "teacher_tip": "Sottolineare il concetto chiave: più pin = più controllo. Lo stesso principio vale per semafori, segnali luminosi, robot.",
       "summary_for_class": "Arduino può controllare più LED contemporaneamente usando un pin OUTPUT per ciascuno. Il delay() determina la velocità del ciclo.",
-      "concepts_learned": ["due pin OUTPUT in parallelo", "alternanza HIGH/LOW sincronizzata", "delay per controllo velocità", "effetto visivo con timing preciso"],
+      "concepts_learned": [
+        "due pin OUTPUT in parallelo",
+        "alternanza HIGH/LOW sincronizzata",
+        "delay per controllo velocità",
+        "effetto visivo con timing preciso"
+      ],
       "next_preview": "Nella prossima lezione aggiungeremo un pulsante e impareremo a leggere un INPUT da Arduino."
     }
   ],
   "session_save": {
-    "concepts_covered": ["due pin OUTPUT", "alternanza LED", "delay timing", "loop infinito"],
+    "concepts_covered": [
+      "due pin OUTPUT",
+      "alternanza LED",
+      "delay timing",
+      "loop infinito"
+    ],
     "next_suggested": "v3-cap6-esp5",
     "resume_message": "L'ultima volta avete creato l'effetto polizia con due LED alternati. Oggi aggiungiamo un pulsante da leggere come INPUT."
   }

@@ -30,18 +30,24 @@ import { serve } from 'https://deno.land/std@0.208.0/http/server.ts';
 import { getCorsHeaders, getSecurityHeaders, checkBodySize, BODY_SIZE_MULTIMODAL } from '../_shared/guards.ts';
 import { callMistralChat } from '../_shared/mistral-client.ts';
 import { synthesizeGeminiVision } from '../_shared/gemini-vision.ts';
+import type { UnlimAiProfile } from '../_shared/unlim-ai-profiles.ts';
+import { buildUnlimAiProfilePrompt, selectUnlimAiProfile } from '../_shared/unlim-ai-profiles.ts';
 
 interface VisionRequest {
   prompt: string;
   images: string[]; // base64 data URI OR https URL (Pixtral supports URL, Gemini does not)
   sessionId: string;
+  provider?: 'gemini' | 'pixtral' | 'auto';
+  aiProfile?: string | null;
+  aiDepth?: 'total' | 'compact' | null;
+  unlimMode?: string | null;
 }
 
 const PIXTRAL_SYSTEM_PROMPT = `Sei UNLIM, tutor visivo ELAB Tutor Italian K-12 8-14yo. Analizzi foto del kit fisico (breadboard, componenti, circuito Arduino).
 
 REGOLE:
 - INIZIA risposta con "Ragazzi,"
-- Massimo 60 parole
+- Massimo 120 parole ben formattate (analogia opzionale)
 - Identifica componenti visibili (LED, resistore, breadboard, fili colore, batteria)
 - Diagnosi se circuito errato (LED contrario, fili sbagliati, breadboard mal collegata)
 - Linguaggio 10-14 anni, analogie quotidiano
@@ -58,8 +64,15 @@ REGOLE:
 async function callVisionChain(
   prompt: string,
   images: string[],
+  providerHint?: 'gemini' | 'pixtral' | 'auto',
+  aiProfile?: UnlimAiProfile,
 ): Promise<{ text: string; latencyMs: number; model: string; provider: 'gemini-2.5-flash' | 'pixtral-12b'; dataProcessing: string }> {
-  const providerOverride = (Deno.env.get('VISION_PROVIDER') || 'auto').toLowerCase().trim();
+  const explicitProvider = providerHint && providerHint !== 'auto' ? providerHint : null;
+  const providerOverride = (explicitProvider || aiProfile?.visionProvider || Deno.env.get('VISION_PROVIDER') || 'auto').toLowerCase().trim();
+  const profilePrompt = aiProfile ? buildUnlimAiProfilePrompt(aiProfile) : '';
+  const enrichedPrompt = profilePrompt
+    ? `${profilePrompt}\n\nRICHIESTA VISIVA:\n${prompt}`
+    : prompt;
 
   // Detect if images are all base64 (Gemini-compatible) or contain URLs (Pixtral-only).
   const allBase64 = images.every((src) =>
@@ -75,9 +88,9 @@ async function callVisionChain(
   if (tryGeminiFirst) {
     const geminiResult = await synthesizeGeminiVision({
       imageBase64: images[0],
-      prompt,
+      prompt: enrichedPrompt,
       timeoutMs: 5000,
-      maxOutputTokens: 200,
+      maxOutputTokens: aiProfile?.depth === 'total' ? 260 : 140,
       temperature: 0.3,
     });
 
@@ -106,10 +119,10 @@ async function callVisionChain(
   const pixtralImages = images.map((src) => ({ source: src }));
   const pixtralResult = await callMistralChat({
     model: 'pixtral-12b-2409',
-    systemPrompt: PIXTRAL_SYSTEM_PROMPT,
+    systemPrompt: [PIXTRAL_SYSTEM_PROMPT, profilePrompt].filter(Boolean).join('\n\n'),
     message: prompt.slice(0, 1000),
     images: pixtralImages,
-    maxOutputTokens: 200,
+    maxOutputTokens: aiProfile?.depth === 'total' ? 260 : 140,
     temperature: 0.3,
   });
 
@@ -161,7 +174,13 @@ serve(async (req: Request) => {
       });
     }
 
-    const result = await callVisionChain(body.prompt, body.images);
+    const profile = selectUnlimAiProfile(body.prompt, {
+      hasImages: true,
+      requestedProfile: body.aiProfile || null,
+      requestedDepth: body.aiDepth || null,
+      simulatorContext: body.unlimMode ? { modalita: body.unlimMode } : null,
+    });
+    const result = await callVisionChain(body.prompt, body.images, body.provider, profile);
 
     // Surface provider via header for client-side observability + audit trails
     const headers = new Headers(getSecurityHeaders(req));
@@ -172,6 +191,7 @@ serve(async (req: Request) => {
       response: result.text,
       model: result.model,
       provider: result.provider,
+      aiProfile: profile.id,
       dataProcessing: result.dataProcessing,
       latencyMs: result.latencyMs,
     }), {

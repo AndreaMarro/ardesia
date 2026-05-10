@@ -60,7 +60,7 @@ export type CanonicalIntentTool = typeof CANONICAL_INTENT_TOOLS[number];
  * Schema shape (per PDR §3 A7):
  *   {
  *     intents: [{ tool, args }],   // optional array of structured intents
- *     text: "Italian K-12 prose"   // mandatory plurale "Ragazzi," ≤60 parole
+ *     text: "Italian K-12 prose"   // mandatory plurale "Ragazzi," ≤120 parole (Andrea 10/05/2026)
  *   }
  *
  * `text` is REQUIRED (every UNLIM reply needs prose). `intents` is OPTIONAL

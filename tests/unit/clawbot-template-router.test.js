@@ -16,6 +16,7 @@ let getTemplateById;
 let selectTemplate;
 let executeTemplate;
 let interpolateArgs;
+let EXPERIMENT_TEMPLATE_MAP;
 let importError = null;
 
 try {
@@ -26,6 +27,7 @@ try {
   selectTemplate = routerMod.selectTemplate;
   executeTemplate = routerMod.executeTemplate;
   interpolateArgs = routerMod.interpolateArgs;
+  EXPERIMENT_TEMPLATE_MAP = routerMod.EXPERIMENT_TEMPLATE_MAP;
 } catch (err) {
   importError = err;
 }
@@ -206,5 +208,102 @@ describe('executeTemplate', () => {
     // citation derived from principio_zero.vol_pag = "Vol.1 pag.34"
     expect(res.citation?.vol).toBe('1');
     expect(res.citation?.page).toBe('34');
+  });
+});
+
+// ─── Sprint U Cycle 2 Fix #1: per-experiment template routing ──────────────
+//
+// Audit `sprint-u-cycle1-iter1-CONSOLIDATED-audit.md` BLOCKER finding:
+//   selectTemplate() returned `L2-explain-led-blink` for ALL 94 experiments
+//   → 20/20 test responses identical body → Morfismo Sense 2 broken.
+//
+// These tests assert that 5 different experimentIds route to 5 DIFFERENT
+// template IDs (not all L2-explain-led-blink) when paired with a clear
+// "spiega" / "diagnos" / "introduc" verb intent.
+
+describe('selectTemplate per-experiment routing (Sprint U Cycle 2 Fix #1)', () => {
+  it('EXPERIMENT_TEMPLATE_MAP is non-empty and well-formed', () => {
+    expect(EXPERIMENT_TEMPLATE_MAP).toBeInstanceOf(Map);
+    expect(EXPERIMENT_TEMPLATE_MAP.size).toBeGreaterThanOrEqual(10);
+    for (const [expId, entries] of EXPERIMENT_TEMPLATE_MAP.entries()) {
+      expect(typeof expId).toBe('string');
+      expect(expId.length).toBeGreaterThan(0);
+      expect(Array.isArray(entries)).toBe(true);
+      for (const e of entries) {
+        expect(typeof e.templateId).toBe('string');
+        expect(e.templateId).toMatch(/^L2-/);
+        expect(typeof e.category).toBe('string');
+      }
+    }
+  });
+
+  it('5 different experimentIds with "spiega" verb route to 5 DIFFERENT templates (anti-catch-all regression)', () => {
+    // The audit found 20/20 responses identical → L2-explain-led-blink for all.
+    // Post-fix: each experimentId with a dedicated explain template returns
+    // its OWN template (Morfismo Sense 2 alignment).
+    const cases = [
+      { experimentId: 'v1-cap6-esp1', message: 'Ragazzi, spiegate il LED Blink', expectedId: 'L2-explain-led-blink' },
+      { experimentId: 'v2-cap8-esp1', message: 'Ragazzi, spiegate PWM fade', expectedId: 'L2-explain-pwm-fade' },
+      { experimentId: 'v2-cap9-esp3', message: 'Ragazzi, spiegate la resistenza pull-up', expectedId: 'L2-explain-resistenza-pull-up' },
+      { experimentId: 'v2-cap10-esp1', message: 'Ragazzi, spiegate il condensatore τ=RC', expectedId: 'L2-explain-condensatore-tempo' },
+      { experimentId: 'v1-cap3-esp1', message: 'Ragazzi, introducete il resistore', expectedId: 'L2-introduce-resistor' },
+    ];
+    const seenIds = new Set();
+    for (const { experimentId, message, expectedId } of cases) {
+      const tpl = selectTemplate(message, { experimentId });
+      expect(tpl, `experimentId=${experimentId} returned null`).toBeTruthy();
+      expect(tpl.id, `experimentId=${experimentId}`).toBe(expectedId);
+      seenIds.add(tpl.id);
+    }
+    // Critical regression assertion: NOT all 5 → L2-explain-led-blink.
+    expect(seenIds.size).toBe(5);
+    expect(seenIds.has('L2-explain-led-blink')).toBe(true); // first case still OK
+  });
+
+  it('v1-cap6-esp1 with "diagnos" verb routes to diagnose template (NOT explain)', () => {
+    // Same experimentId, different verb intent → different template.
+    // v1-cap6-esp1 is bound to BOTH L2-explain-led-blink AND L2-diagnose-led-rovesciato + L2-recap-fine-lezione.
+    const tpl = selectTemplate('Ragazzi, il LED è rovesciato, diagnosticate', { experimentId: 'v1-cap6-esp1' });
+    expect(tpl).toBeTruthy();
+    expect(tpl.id).toBe('L2-diagnose-led-rovesciato');
+  });
+
+  it('v1-cap6-esp1 with "ricap" verb routes to recap template', () => {
+    const tpl = selectTemplate('Ragazzi, ricapitoliamo la lezione', { experimentId: 'v1-cap6-esp1' });
+    expect(tpl).toBeTruthy();
+    expect(tpl.id).toBe('L2-recap-fine-lezione');
+  });
+
+  it('experimentId without verb hint returns null (safe fall-through to LLM+RAG)', () => {
+    // No verb stem in query → caller wants LLM, not a canned template.
+    // This prevents the iter-1 audit catch-all wrong-fire.
+    const tpl = selectTemplate('Ragazzi, cosa dice il libro?', { experimentId: 'v1-cap6-esp1' });
+    expect(tpl).toBeNull();
+  });
+
+  it('experimentId NOT in map returns null (no fallback wrong-fire)', () => {
+    // An experimentId with no dedicated template (e.g. v1-cap10-esp1 fotoresistenza)
+    // → null → LLM+RAG handles it. NOT a catch-all to L2-explain-led-blink.
+    const tpl = selectTemplate('Ragazzi, spiegate la fotoresistenza', { experimentId: 'v1-cap10-esp1' });
+    expect(tpl).toBeNull();
+  });
+
+  it('default threshold (999) still respected when no experimentId is given', () => {
+    // Regression: legacy callers without experimentId must still get null
+    // (LLM+RAG path). Per-experiment fast-path does NOT lower the threshold
+    // for the global bag-of-words scorer.
+    const tpl = selectTemplate('Ragazzi, spiegate il LED Blink', {});
+    expect(tpl).toBeNull();
+  });
+
+  it('explicit category_hint overrides verb-hint when both bind to the same experiment', () => {
+    // v1-cap6-esp1 has 3 bound templates. Without verb hint, category_hint
+    // disambiguates explicitly.
+    const tpl = selectTemplate('Ragazzi, parliamo del LED', {
+      experimentId: 'v1-cap6-esp1',
+      category_hint: 'lesson-recap',
+    });
+    expect(tpl).toBeTruthy();
+    expect(tpl.id).toBe('L2-recap-fine-lezione');
   });
 });

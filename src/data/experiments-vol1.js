@@ -3583,7 +3583,7 @@ const EXPERIMENTS_VOL1 = {
         "Sfida: riesci ad aggiungere 2 pulsanti e 2 pot per tutti e 3 i canali?"
       ],
       observe: "Il pulsante \u00e8 l'ON/OFF, il pot regola la luminosit\u00e0. Due livelli di controllo!",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: aggiungi pulsanti alla lampada'. Questa è una sfida aperta! Il circuito mostra un esempio con un pulsante e un pot per un canale del RGB. La sfida è progettare il circuito completo con 3 pulsanti e 3 pot. Incoraggia lo studente a pensare come combinare i componenti e a disegnare il circuito prima di costruirlo. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: aggiungi pulsanti alla lampada'. Questa è una sfida aperta! Il circuito mostra un esempio con un pulsante e un pot per un canale del RGB. La sfida è progettare il circuito completo con 3 pulsanti e 3 pot. Aiuta il docente a far ragionare i ragazzi su come pensare come combinare i componenti e a disegnare il circuito prima di costruirlo. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "Sfida: integrazione pulsante + pot + RGB",
@@ -3791,7 +3791,7 @@ const EXPERIMENTS_VOL1 = {
         "Sfida: aggiungi un terzo pot per il canale verde!"
       ],
       observe: "Due manopole controllano rosso e blu indipendentemente. Riesci a creare il viola perfetto?",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: combina esperimenti 5+6'. Due potenziometri controllano indipendentemente il rosso e il blu del LED RGB. Questa sfida richiede di combinare il concetto di miscelatore (esp 5) con quello della lampada multi-pot (esp 6). Incoraggia lo studente a ragionare su come aggiungere il terzo canale verde. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: combina esperimenti 5+6'. Due potenziometri controllano indipendentemente il rosso e il blu del LED RGB. Questa sfida richiede di combinare il concetto di miscelatore (esp 5) con quello della lampada multi-pot (esp 6). Aiuta il docente a far ragionare i ragazzi su come ragionare su come aggiungere il terzo canale verde. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "Sfida: integrazione circuiti precedenti",
@@ -4020,7 +4020,7 @@ const EXPERIMENTS_VOL1 = {
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
       ],
       observe: "Pulsante = ON/OFF, potenziometro = regola luminosit\u00e0. Una catena di controllo a 2 livelli!",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: aggiungi pulsante all'esp 8'. Il pulsante funge da ON/OFF generale, il potenziometro regola la luminosità, e il LED mostra il risultato. È una catena di controllo: pulsante -> pot -> resistore -> LED. Sfida lo studente a pensare: cosa succede se il pulsante viene messo DOPO il pot invece che prima? Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: aggiungi pulsante all'esp 8'. Il pulsante funge da ON/OFF generale, il potenziometro regola la luminosità, e il LED mostra il risultato. È una catena di controllo: pulsante -> pot -> resistore -> LED. Aiuta il docente a stimolare i ragazzi a pensare: cosa succede se il pulsante viene messo DOPO il pot invece che prima? Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "Sfida: integrazione completa pulsante + pot + LED",
@@ -5909,7 +5909,7 @@ const EXPERIMENTS_VOL1 = {
         "Sfida: aggiungi altri resistori per accendere pi\u00f9 canali!"
       ],
       observe: "Il magnete accende il canale rosso del RGB! Riesci a farlo diventare bianco aggiungendo circuiti per verde e blu?",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: RGB + reed switch'. Il reed switch accende il canale rosso del LED RGB quando il magnete è vicino. La sfida è espandere il circuito per accendere più canali o creare colori diversi con il magnete. Incoraggia lo studente a pensare: come si possono aggiungere resistori per accendere anche verde e blu? Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Sfida: RGB + reed switch'. Il reed switch accende il canale rosso del LED RGB quando il magnete è vicino. La sfida è espandere il circuito per accendere più canali o creare colori diversi con il magnete. Aiuta il docente a far ragionare i ragazzi su come pensare: come si possono aggiungere resistori per accendere anche verde e blu? Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "Sfida: reed switch + RGB LED",
@@ -6558,7 +6558,7 @@ const EXPERIMENTS_VOL1 = {
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
       ],
       observe: "Il magnete accende il robot! Gli occhi verdi si illuminano e la mano RGB cambia colore con le 3 manopole. Complimenti, hai costruito il tuo primo robot!",
-      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Il Primo Robot ELAB'. Questo è il progetto finale del Volume 1! Il robot ha: occhi verdi (2 LED), mano colorata (LED RGB con 3 potenziometri per controllare il colore), e un sensore magnetico (reed switch) come interruttore generale. Il magnete accende tutto il robot! Spiega come tutti i concetti imparati nel volume si uniscono qui. Complimentati con lo studente per essere arrivato fin qui. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
+      unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Il Primo Robot ELAB'. Questo è il progetto finale del Volume 1! Il robot ha: occhi verdi (2 LED), mano colorata (LED RGB con 3 potenziometri per controllare il colore), e un sensore magnetico (reed switch) come interruttore generale. Il magnete accende tutto il robot! Spiega come tutti i concetti imparati nel volume si uniscono qui. Complimentati con i ragazzi per essere arrivati fin qui. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
       code: null,
       hexFile: null,
       concept: "Progetto finale: integrazione tutti i componenti del volume",

@@ -112,7 +112,7 @@
       "icon": "❓",
       "duration_minutes": 8,
       "teacher_message": "Il codice confronta millis() con il tempo dell'ultima pressione. Se la differenza e maggiore di 50ms, accetta la pressione. Perche 50ms? E tanto o poco? Cosa succede se mettiamo 500ms invece? E se mettiamo 5ms?",
-      "teacher_tip": "50ms e un buon compromesso: abbastanza lungo per ignorare tutti i rimbalzi (che durano 5-20ms), abbastanza corto per non perdere pressioni veloci. Con 500ms perderemmo le pressioni rapide. Con 5ms potremmo ancora avere rimbalzi. Fai provare diversi valori nel simulatore.",
+      "teacher_tip": "50ms e un buon compromesso: abbastanza lungo per ignorare tutti i rimbalzi (che durano 5-20ms), abbastanza corto per non perdere pressioni veloci. Con 500ms perderemmo le pressioni rapide. Con 5ms potremmo ancora avere rimbalzi. Fate provare diversi valori nel simulatore.",
       "provocative_question": "Se due studenti premono lo stesso pulsante a 30ms di distanza, il debounce ignora la seconda pressione. E giusto o sbagliato? Quando il debounce diventa un problema invece di una soluzione?",
       "action_tags": [],
       "auto_action": null
@@ -122,7 +122,7 @@
       "icon": "👀",
       "duration_minutes": 10,
       "teacher_message": "Premete Play! Provate a premere il pulsante velocemente tante volte. Con il debounce millis() ogni pressione viene registrata correttamente, senza salti o doppie letture. Il LED fa toggle pulito ad ogni pressione.",
-      "teacher_tip": "Fai confrontare mentalmente con il debounce a delay: il risultato sembra lo stesso, ma con delay il LED non puo fare nient'altro durante quei 50ms. Con millis() Arduino e libero di controllare sensori, muovere motori, aggiornare display. Nella pratica professionale non si usa mai delay per il debounce.",
+      "teacher_tip": "Fate confrontare mentalmente con il debounce a delay: il risultato sembra lo stesso, ma con delay il LED non puo fare nient'altro durante quei 50ms. Con millis() Arduino e libero di controllare sensori, muovere motori, aggiornare display. Nella pratica professionale non si usa mai delay per il debounce.",
       "action_tags": [
         "[AZIONE:play]",
         "[AZIONE:highlight:btn1]",

@@ -103,7 +103,9 @@ export async function loadStudentContext(
 
     return {
       completedExperiments: completed.length,
-      totalExperiments: 62,
+      // iter 11 P0 #7 — Andrea audit: 94 esperimenti reali (38 Vol1 + 27 Vol2 + 29 Vol3, iter 37 +2).
+      // Era hardcoded 62 → drift -32 esperimenti. CLAUDE.md "94 esperimenti in 3 volumi".
+      totalExperiments: 94,
       commonMistakes: mistakes.slice(0, 5),
       lastSession: lastSession?.started_at || null,
       level: completed.length < 10 ? 'principiante'
