@@ -123,7 +123,14 @@ export function selectTemplate(query: string, context: SelectContext = {}): Claw
   const tokens = new Set(tokenize(query));
   if (tokens.size === 0) return null;
 
-  const threshold = context.threshold ?? 2;
+  // 2026-05-10 — Live prod audit (probe stamane Vol.2 multimetro → celebrate-end-volume,
+  // Vol.1 LED → diagnose-led-rovesciato, spiega LED → wrong-fire) showed bag-of-words
+  // threshold=2 selects wrong-category templates for descriptive queries.
+  // Disable L2 short-circuit globally; AgentDecision JSON router (parallel-agent
+  // 2026-05-09 architecture) replaces this routing path.
+  // Re-enable later only with normalized scoring + per-category thresholds.
+  // Tests pass `threshold: 2` explicit override to verify scoring algorithm still works.
+  const threshold = context.threshold ?? 999;
 
   const scored: ScoredTemplate[] = TEMPLATES_L2.map(t => ({ template: t, score: scoreTemplate(t, tokens, context) }));
   scored.sort((a, b) => b.score - a.score);

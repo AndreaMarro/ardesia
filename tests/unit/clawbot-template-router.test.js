@@ -64,43 +64,49 @@ describe('clawbot-templates registry', () => {
 });
 
 describe('selectTemplate', () => {
-  it('matches "spiega LED" → L2-explain-led-blink', () => {
-    const t = selectTemplate('Ragazzi, spiega LED Blink lampeggio', {});
+  // 2026-05-10 OPZIONE FIX: default threshold raised to 999 to disable L2 short-circuit
+  // (live prod audit found bag-of-words wrong-fires for descriptive queries).
+  // Scoring algorithm tests now pass `threshold: 2` explicit to verify mechanics.
+  // Production caller relies on default 999 → null path (AgentDecision router replaces).
+  const TEST_OPTS = { threshold: 2 };
+
+  it('matches "spiega LED" → L2-explain-led-blink (with explicit threshold=2)', () => {
+    const t = selectTemplate('Ragazzi, spiega LED Blink lampeggio', TEST_OPTS);
     expect(t).toBeTruthy();
     expect(t.id).toBe('L2-explain-led-blink');
   });
 
-  it('matches "diagnose LED rovesciato" → L2-diagnose-led-rovesciato', () => {
-    const t = selectTemplate('LED rovesciato cosa fare? polarità invertita', {});
+  it('matches "diagnose LED rovesciato" → L2-diagnose-led-rovesciato (threshold=2)', () => {
+    const t = selectTemplate('LED rovesciato cosa fare? polarità invertita', TEST_OPTS);
     expect(t).toBeTruthy();
     expect(t.id).toBe('L2-diagnose-led-rovesciato');
   });
 
-  it('matches "introduce breadboard" → L2-introduce-breadboard', () => {
-    const t = selectTemplate('Cosa è la breadboard? introduzione bus alimentazione', {});
+  it('matches "introduce breadboard" → L2-introduce-breadboard (threshold=2)', () => {
+    const t = selectTemplate('Cosa è la breadboard? introduzione bus alimentazione', TEST_OPTS);
     expect(t).toBeTruthy();
     expect(t.id).toBe('L2-introduce-breadboard');
   });
 
-  it('matches "spiega PWM fade" → L2-explain-pwm-fade', () => {
-    const t = selectTemplate('spiega PWM analogWrite fade rubinetto', {});
+  it('matches "spiega PWM fade" → L2-explain-pwm-fade (threshold=2)', () => {
+    const t = selectTemplate('spiega PWM analogWrite fade rubinetto', TEST_OPTS);
     expect(t).toBeTruthy();
     expect(t.id).toBe('L2-explain-pwm-fade');
   });
 
-  it('matches "compile arduino" → L2-guide-arduino-compile', () => {
-    const t = selectTemplate('guida compile sketch arduino HEX', {});
+  it('matches "compile arduino" → L2-guide-arduino-compile (threshold=2)', () => {
+    const t = selectTemplate('guida compile sketch arduino HEX', TEST_OPTS);
     expect(t).toBeTruthy();
     expect(t.id).toBe('L2-guide-arduino-compile');
   });
 
-  it('returns null for chat-only generic query', () => {
-    const t = selectTemplate('ciao bambini come state oggi', {});
+  it('returns null for chat-only generic query (threshold=2)', () => {
+    const t = selectTemplate('ciao bambini come state oggi', TEST_OPTS);
     expect(t).toBeNull();
   });
 
-  it('respects category_hint when scores tie', () => {
-    const t = selectTemplate('breadboard kit primo setup', { category_hint: 'lesson-introduce' });
+  it('respects category_hint when scores tie (threshold=2)', () => {
+    const t = selectTemplate('breadboard kit primo setup', { category_hint: 'lesson-introduce', threshold: 2 });
     expect(t).toBeTruthy();
     expect(t.category).toBe('lesson-introduce');
   });
@@ -109,6 +115,23 @@ describe('selectTemplate', () => {
     expect(selectTemplate('', {})).toBeNull();
     expect(selectTemplate('   ', {})).toBeNull();
     expect(selectTemplate(null, {})).toBeNull();
+  });
+
+  it('default threshold (999) returns null for previously-matching query (OPZIONE FIX)', () => {
+    const t = selectTemplate('Ragazzi, spiega LED Blink lampeggio', {});
+    expect(t).toBeNull();
+  });
+
+  it('default threshold returns null for Vol.2 multimetro query (regression prod probe stamane)', () => {
+    // Live prod 2026-05-10 stamane: this query selected L2-celebrate-end-volume (catastrofico).
+    const t = selectTemplate('Spiegate ai ragazzi come si misura la corrente con il multimetro. Citate Vol.2 e la pagina.', {});
+    expect(t).toBeNull();
+  });
+
+  it('default threshold returns null for Vol.1 LED contenuto query (regression prod probe stamane)', () => {
+    // Live prod 2026-05-10 stamane: this query selected L2-diagnose-led-rovesciato (wrong category).
+    const t = selectTemplate('Quale e il contenuto del Vol.1 cap.6 sulla LED? Cita pagina.', {});
+    expect(t).toBeNull();
   });
 });
 

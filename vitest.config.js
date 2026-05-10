@@ -5,9 +5,22 @@
 
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
     plugins: [react()],
+    resolve: {
+        alias: {
+            // 2026-05-10 — mock vite-plugin-pwa virtual module for vitest.
+            // src/components/common/UpdatePrompt.jsx imports virtual:pwa-register
+            // dynamically; vite-plugin-pwa transform doesn't run in vitest, so
+            // the alias points to a stub mock returning a no-op registerSW.
+            'virtual:pwa-register': path.resolve(__dirname, 'tests/mocks/virtual-pwa-register.js'),
+        },
+    },
     test: {
         environment: 'jsdom',
         globals: true,

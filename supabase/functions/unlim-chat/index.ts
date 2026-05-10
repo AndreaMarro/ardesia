@@ -33,6 +33,8 @@ import { parseIntentTags, stripIntentTags, type IntentTag } from '../_shared/int
 // Falls through to legacy regex when ENABLE_INTENT_TOOLS_SCHEMA != true OR
 // when the model didn't return parseable JSON (defensive).
 import { INTENT_TOOLS_SCHEMA, shouldUseIntentSchema, CANONICAL_INTENT_TOOLS } from '../_shared/intent-tools-schema.ts';
+import { buildDirectOperationalResponse, capWordsPreservingControlTags, UNLIM_MAX_VISIBLE_WORDS } from '../_shared/operational-response.ts';
+import { selectUnlimAiProfile } from '../_shared/unlim-ai-profiles.ts';
 
 // CORS headers dynamically generated per-request via getCorsHeaders(req)
 
@@ -84,22 +86,22 @@ async function requestTTS(text: string): Promise<string | null> {
   }
 }
 
-/**
- * Cap response to ~60 words (ELAB brevity rule)
- */
-function capWords(text: string, maxWords = 60): string {
-  const words = text.split(/\s+/).filter(Boolean);
-  if (words.length <= maxWords) return text;
-  const truncated = words.slice(0, maxWords).join(' ');
-  const lastSentence = truncated.search(/[.!?][^.!?]*$/);
-  return lastSentence > 20
-    ? truncated.substring(0, lastSentence + 1)
-    : truncated + '\u2026';
-}
-
 // Uptime tracking
 const START_TIME = Date.now();
 const VERSION = '2.1.0';
+
+function mapDebugRetrievalChunk(cr: Record<string, unknown>): Record<string, unknown> {
+  return {
+    id: cr.id,
+    content: cr.content,
+    source: cr.source,
+    chapter: cr.chapter,
+    page: cr.page,
+    section_title: cr.section_title,
+    corpus: cr.corpus,
+    score: cr.score,
+  };
+}
 
 serve(async (req: Request) => {
   // CORS preflight
@@ -152,7 +154,7 @@ serve(async (req: Request) => {
       retrieval_mode?: 'hybrid' | 'dense' | 'auto';
       top_k?: number;
     };
-    const { message, sessionId, circuitState, experimentId, simulatorContext, images } = body;
+    const { message, sessionId, circuitState, experimentId, simulatorContext, images, aiProfile: requestedAiProfile, aiDepth, unlimMode } = body;
     // Iter 10 P0 debug: surface retrieved chunks when bench/dev requests debug_retrieval=true
     const debugRetrieval = body.debug_retrieval === true;
     const retrievalModeReq = body.retrieval_mode;
@@ -208,6 +210,35 @@ serve(async (req: Request) => {
       mimeType: validateMimeType(img.mimeType),
     }));
 
+    const hasImages = (safeImages?.length ?? 0) > 0;
+    const liveSimulatorContext = simulatorContext && typeof simulatorContext === 'object'
+      ? { ...simulatorContext, modalita: unlimMode || simulatorContext.modalita || simulatorContext.mode || simulatorContext.buildMode }
+      : (unlimMode ? { modalita: unlimMode } : null);
+    const activeAiProfile = selectUnlimAiProfile(safeMessage, {
+      hasImages,
+      requestedProfile: requestedAiProfile || null,
+      requestedDepth: aiDepth || null,
+      experimentId: safeExperimentId || null,
+      simulatorContext: liveSimulatorContext,
+      circuitState: safeCircuitState as CircuitState | null,
+    });
+
+    const directOperational = buildDirectOperationalResponse(safeMessage, safeCircuitState as CircuitState | null);
+    if (directOperational) {
+      saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', directOperational.response.slice(0, 100), directOperational.source)
+        .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      return new Response(JSON.stringify({
+          success: true,
+          response: directOperational.response,
+          source: directOperational.source,
+          dataProcessing: directOperational.dataProcessing,
+          aiProfile: activeAiProfile.id,
+        } satisfies ChatResponse), {
+        status: 200,
+        headers: getSecurityHeaders(req),
+      });
+    }
+
     // Consent check — configurable enforcement level via CONSENT_MODE env var:
     // 'strict' = block if consent not explicitly granted (requires Supabase Auth)
     // 'soft' = block if revoked, warn if unknown (default)
@@ -242,91 +273,53 @@ serve(async (req: Request) => {
       }
     }
 
-    // 1+2. Parallelize student memory load + RAG retrieval — Sprint T iter 38 Atom A3.
-    //
-    // Pre-iter-38 these were sequential awaits (~600ms loadStudentContext +
-    // ~600-1200ms hybrid/dense retrieval). Both calls are independent: student
-    // memory is per-sessionId DB read, RAG retrieval is embedding+vector search
-    // and never reads the student row. Running them in parallel via Promise.all
-    // saves ~800-1200ms p95 on cold-cache requests (PDR §3 A3 acceptance).
-    //
-    // Defensive: each branch keeps its own try/catch internally (loadStudentContext
-    // already returns null on DB failure; hybrid path falls back to dense; dense
-    // path itself catches downstream). Promise.all therefore cannot reject here
-    // unless something synchronous throws before the promises start, which is
-    // why we still leave the surrounding try/catch on the outer route handler.
-    //
-    // Sprint S iter 8 ATOM-S8-A2: optional hybrid retrieval (BM25+dense+RRF) gated
-    // by env RAG_HYBRID_ENABLED=true. Default false → preserves iter 7 dense-only path.
-    // Iter 10: request param retrieval_mode='hybrid' overrides env to force hybrid (debug/bench).
-    const envHybrid = (Deno.env.get('RAG_HYBRID_ENABLED') || 'false').toLowerCase() === 'true';
-    const useHybrid = retrievalModeReq === 'hybrid' || (retrievalModeReq !== 'dense' && envHybrid);
+    // LIVE_CHAT_RAG: hybrid retrieval restored 2026-05-10.
+    // Earlier directive 2026-05-09 disabled live RAG in chat hot path. Live prod
+    // probes 2026-05-10 confirmed Vol/pag verbatim citations missing 3/5 because
+    // static knowledge pack covers only chapter-level summaries, not page-level
+    // verbatim quotes. Restore hybridRetrieve gated by classifier (chit_chat skips,
+    // citation_vol_pag/plurale top-2, deep/safety/default top-3).
+    // RAG metadata NULL gap (chapter/page/section_title) iter 14 backfill still
+    // pending — citations limited to chunk content text until backfill ships.
+    const studentContext = await loadStudentContext(sessionId);
 
-    // Launch both independent fetches in parallel.
-    const studentContextPromise = loadStudentContext(sessionId);
-    const ragRetrievePromise = useHybrid
-      ? hybridRetrieve(safeMessage, topKReq, {}).then(
-          (chunks): { kind: 'hybrid'; chunks: typeof chunks } => ({ kind: 'hybrid', chunks }),
-          // Hybrid threw — defensively fall back to dense at the same await
-          async (): Promise<{ kind: 'fallback'; text: string }> => ({
-            kind: 'fallback',
-            text: await retrieveVolumeContext(safeMessage, safeExperimentId, 3),
-          }),
-        )
-      : retrieveVolumeContext(safeMessage, safeExperimentId, 3).then(
-          (text): { kind: 'dense'; text: string } => ({ kind: 'dense', text }),
-        );
-
-    const [studentContext, ragResult] = await Promise.all([
-      studentContextPromise,
-      ragRetrievePromise,
-    ]);
-
-    let ragContext: string;
+    let ragContext = '';
     let retrievedChunksDebug: Array<Record<string, unknown>> = [];
     let retrievalModeUsed: 'hybrid' | 'dense' | 'fallback' = 'dense';
 
-    if (ragResult.kind === 'hybrid') {
-      const chunks = ragResult.chunks;
-      if (chunks.length > 0) {
-        ragContext = formatHybridContext(chunks);
-        retrievedChunksDebug = chunks.map(c => {
-          const cr = c as Record<string, unknown>;
-          const rrf = typeof cr.rrf_score === 'number' ? cr.rrf_score : null;
-          const sim = typeof cr.similarity === 'number' ? cr.similarity : null;
-          const contentStr = typeof cr.content === 'string' ? cr.content as string : '';
-          return {
-            // Iter 12 ATOM-S12-A4: surface unified score + chunk_id alias + content_preview (60 chars).
-            // Preserve legacy fields (id, content) for backward compat with iter 10 bench scripts.
-            chunk_id: cr.id ?? null,
-            id: cr.id ?? null,
-            score: rrf !== null ? rrf : sim,
-            source: cr.source ?? null,
-            // Iter 13 U3: corpus tag — 'rag' (volumi) | 'wiki' (concept).
-            corpus: cr.corpus ?? null,
-            chapter: cr.chapter ?? null,
-            page: cr.page ?? null,
-            figure_id: cr.figure_id ?? null,
-            section_title: cr.section_title ?? null,
-            content_preview: contentStr.slice(0, 60),
-            content: contentStr.slice(0, 240),
-            rrf_score: rrf,
-            similarity: sim,
-          };
+    // 2026-05-10 — Live RAG retrieval restored.
+    // Run classifier first to decide topK; chit_chat skips entirely; others get
+    // 2-3 chunks. Hybrid retrieval = dense (cosine) + sparse (BM25 italian) RRF k=60.
+    // Defensive: errors fall through to empty ragContext (LLM still works on
+    // static knowledge pack from system prompt).
+    const promptClass = classifyPrompt(safeMessage);
+    if (!promptClass.skipOnniscenza) {
+      try {
+        const ragTopK = Math.max(2, Math.min(3, promptClass.topK || 3));
+        const hits = await hybridRetrieve(safeMessage, ragTopK, {
+          source: safeExperimentId
+            ? (safeExperimentId.startsWith('v1-') ? 'vol1' : safeExperimentId.startsWith('v2-') ? 'vol2' : safeExperimentId.startsWith('v3-') ? 'vol3' : undefined)
+            : undefined,
         });
-        retrievalModeUsed = 'hybrid';
-      } else {
-        // Hybrid returned empty — defensive fallback to dense (preserves iter 7
-        // pre-A3 behavior: empty hybrid result should not produce empty context).
-        ragContext = await retrieveVolumeContext(safeMessage, safeExperimentId, 3);
-        retrievalModeUsed = 'fallback';
+        if (hits && hits.length > 0) {
+          ragContext = formatHybridContext(hits);
+          retrievedChunksDebug = hits.map((h) => ({
+            id: h.id,
+            source: h.source,
+            chapter: h.chapter,
+            page: h.page,
+            score: h.score,
+            mode: h.mode,
+          }));
+          retrievalModeUsed = 'hybrid';
+        }
+      } catch (ragErr) {
+        console.warn(JSON.stringify({
+          level: 'warn', event: 'rag_hybrid_error',
+          error: ragErr instanceof Error ? ragErr.message : 'unknown',
+        }));
+        // ragContext stays '' — fall through to static knowledge pack
       }
-    } else if (ragResult.kind === 'fallback') {
-      ragContext = ragResult.text;
-      retrievalModeUsed = 'fallback';
-    } else {
-      ragContext = ragResult.text;
-      retrievalModeUsed = 'dense';
     }
 
     // Iter 30 P0.6 — Onniscenza 7-layer aggregator wire-up (opt-in env flag).
@@ -342,7 +335,7 @@ serve(async (req: Request) => {
     //   deep_question    => onniscenza top-3 (full RRF context)
     //   safety_warning   => onniscenza top-3 (mandatory safety)
     //   default fallback => onniscenza top-3 (safer default)
-    const promptClass = classifyPrompt(safeMessage);
+    // promptClass already computed above for live RAG retrieval gate.
     let onniscenzaSnapshot: unknown = null;
     let onniTopK = 3; // top-K used for prompt injection (default keeps existing behavior)
     if ((Deno.env.get('ENABLE_ONNISCENZA') || 'false').toLowerCase() === 'true' && !promptClass.skipOnniscenza) {
@@ -391,7 +384,6 @@ serve(async (req: Request) => {
     }
 
     // 3. Build system prompt with all context
-    const hasImages = (safeImages?.length ?? 0) > 0;
     const experimentContext = safeExperimentId
       ? `Esperimento attivo: ${safeExperimentId}`
       : null;
@@ -454,6 +446,7 @@ serve(async (req: Request) => {
       experimentContext,
       capitoloFragment,
       useIntentSchema,
+      activeAiProfile,
     )
       + (ragContext ? `\n\n${ragContext}` : '')
       + onniscenzaContext
@@ -471,13 +464,7 @@ serve(async (req: Request) => {
       });
       if (tpl) {
         const exec = await executeTemplate(tpl, { experimentId: safeExperimentId ?? undefined }, {
-          ragRetrieve: async (q: string, k: number) => {
-            try {
-              return await hybridRetrieve(q, k, {});
-            } catch {
-              return [];
-            }
-          },
+          ragRetrieve: async (_q: string, _k: number) => [],
         });
         const tplText = exec.responseText;
         // Iter 34 P0 latency fix Andrea "troppo lento":
@@ -519,7 +506,10 @@ serve(async (req: Request) => {
     }
 
     // 4. Route to optimal model
-    const model = routeModel(safeMessage, hasImages, safeCircuitState as CircuitState | null);
+    const routedModel = routeModel(safeMessage, hasImages, safeCircuitState as CircuitState | null);
+    const model = activeAiProfile.depth === 'total' && routedModel === 'gemini-2.5-flash-lite'
+      ? 'gemini-2.5-flash'
+      : routedModel;
 
     // 4. Determine thinking level for Pro model
     const thinkingLevel = model === 'gemini-2.5-pro' ? 'medium' : undefined;
@@ -550,9 +540,10 @@ serve(async (req: Request) => {
         systemPrompt,
         message: safeMessage,
         images: safeImages,
-        maxOutputTokens: 120,
+        maxOutputTokens: activeAiProfile.depth === 'total' ? 520 : 240,
         temperature: 0.7,
         thinkingLevel,
+        preferFastProvider: true,
         // Iter 38 A7: structured output for Mistral when opt-in. Defensive:
         // other providers ignore this field; Mistral validates server-side.
         ...(useIntentSchema ? { responseFormat: INTENT_TOOLS_SCHEMA } : {}),
@@ -608,8 +599,11 @@ serve(async (req: Request) => {
       }
     }
 
-    // 6. Cap response length
-    const cappedText = capWords(result.text);
+    // 6. Cap visible prose length, preserving complete action/intent tags.
+    const cappedText = capWordsPreservingControlTags(
+      result.text,
+      Math.min(activeAiProfile.maxVisibleWords || UNLIM_MAX_VISIBLE_WORDS, UNLIM_MAX_VISIBLE_WORDS),
+    );
 
     // 6a. Sprint T iter 36 Phase 1 — Atom A1 — Onnipotenza dispatcher wire-up.
     // Parse `[INTENT:{tool:"...",args:{...}}]` tags from the LLM response and
@@ -725,6 +719,7 @@ serve(async (req: Request) => {
         : result.provider === 'together' ? 'together-ai'
         : result.provider === 'brain' ? 'local-brain'
         : 'google-gemini',
+      aiProfile: activeAiProfile.id,
     };
     // Iter 10 P0: surface retrieved chunks for bench (B2 hybrid RAG eval)
     if (debugRetrieval) {
