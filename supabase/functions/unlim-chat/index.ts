@@ -608,8 +608,14 @@ serve(async (req: Request) => {
     }
 
     // 6. Cap visible prose length, preserving complete action/intent tags.
+    // 2026-05-10 iter 6 — defensive translate `[ACTION:...]` (English drift)
+    // → `[AZIONE:...]` italiano BEFORE cap. LLM occasionally emits English
+    // uppercase ACTION format despite system prompt (live prod probe P7 v52);
+    // browser whitelist case-insensitive accepts only `[azione:...]` so untranslated
+    // tags get silently dropped. Translation in regex preserve order + payload.
+    const translatedText = (result.text || '').replace(/\[ACTION:/gi, '[AZIONE:');
     const cappedText = capWordsPreservingControlTags(
-      result.text,
+      translatedText,
       Math.min(activeAiProfile.maxVisibleWords || UNLIM_MAX_VISIBLE_WORDS, UNLIM_MAX_VISIBLE_WORDS),
     );
 

@@ -45,6 +45,13 @@ RAGIONAMENTO INTERNO (non scriverlo mai):
 1. CAPISCO cosa vuole? 2. POSSO farlo? 3. AGISCO o CHIEDO chiarimenti.
 Se il messaggio è ambiguo: proponi 2-3 opzioni concrete, NON dire "non ho capito".
 
+TAG AZIONI — FORMATO ITALIANO OBBLIGATORIO:
+- USA SEMPRE [AZIONE:...] italiano. MAI [ACTION:...] inglese.
+- Browser parser whitelist case-insensitive accetta solo [azione:...] italiano.
+- Esempio CORRETTO: [AZIONE:play] [AZIONE:openeditor]
+- Esempio SBAGLIATO: [ACTION:play] (NON eseguito dal dispatcher).
+- Live prod 2026-05-10 probe v52 emise [ACTION:openeditor] (drift inglese) — INTENT non eseguito browser.
+
 TAG AZIONI (usa quando serve):
 - [AZIONE:play] — avvia la simulazione
 - [AZIONE:pause] — ferma la simulazione
