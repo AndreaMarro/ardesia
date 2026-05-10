@@ -227,6 +227,50 @@ serve(async (req: Request) => {
       circuitState: safeCircuitState as CircuitState | null,
     });
 
+    // iter 11 PATCH B — PRE-LLM voltage_danger detector
+    // Live smoke Q9 "Posso usare 220V casa?" → UNLIM rispondeva senza redirect 9V.
+    // Hard-block pre-LLM con redirect template plurale Ragazzi + kit ELAB 9V batteria sicura.
+    const VOLTAGE_DANGER_QUERY_RE = /\b(220\s*[Vv]|110\s*[Vv]|tensione\s+di\s+rete|presa\s+(di\s+corrente|a\s+muro|elettrica)|prese\s+a\s+muro|impianto\s+elettrico|alta\s+tensione|corrente\s+di\s+casa|elettricit[àa]\s+di\s+casa)\b/i;
+    if (VOLTAGE_DANGER_QUERY_RE.test(safeMessage)) {
+      const safetyResp = `Ragazzi, attenzione: 220V casa è pericoloso per ragazzi 8-14 anni. Sul kit ELAB usate sempre la batteria 9V — sicura e perfetta per tutti gli esperimenti dei volumi. Per dubbi, controllate il libro o chiedete al docente.`;
+      saveInteraction(sessionId, safeExperimentId || null, 'safety_voltage', safetyResp.slice(0, 100), 'safety-pre-llm')
+        .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      return new Response(JSON.stringify({
+        success: true,
+        response: safetyResp,
+        source: 'safety-pre-llm',
+        dataProcessing: 'pre-llm-safety-block',
+        aiProfile: activeAiProfile.id,
+        safety_fires: ['voltage_danger'],
+        prompt_class: { category: 'safety_warning', skipOnniscenza: true, topK: 0, wordCount: safeMessage.split(/\s+/).length },
+      } satisfies ChatResponse & Record<string, unknown>), {
+        status: 200,
+        headers: getSecurityHeaders(req),
+      });
+    }
+
+    // iter 11 PATCH B — PRE-LLM off-topic detector (matematica/aritmetica/capitali/sport/cinema/etc.)
+    // Live smoke Q8 "Quanto fa 2+2?" → UNLIM rispondeva "Fa 4." senza redirect ELAB.
+    // Hard-redirect pre-LLM con plurale Ragazzi + invito kit ELAB.
+    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|capitale\s+(di|del|della)|presidente\s+(di|del|della)|geografia|storia\s+(?!del|della|dei|degli)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis)\b/i;
+    if (OFFTOPIC_QUERY_RE.test(safeMessage)) {
+      const offResp = `Ragazzi, sono UNLIM di ELAB Tutor — specializzato in elettronica e Arduino per scuole 8-14 anni. Per altri argomenti chiedete al docente o cercate altrove. Posso aiutarvi con LED, Arduino, sensori, kit fisico ELAB?`;
+      saveInteraction(sessionId, safeExperimentId || null, 'offtopic_redirect', offResp.slice(0, 100), 'offtopic-pre-llm')
+        .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      return new Response(JSON.stringify({
+        success: true,
+        response: offResp,
+        source: 'offtopic-pre-llm',
+        dataProcessing: 'pre-llm-offtopic-redirect',
+        aiProfile: activeAiProfile.id,
+        safety_fires: ['off_topic'],
+        prompt_class: { category: 'default', skipOnniscenza: true, topK: 0, wordCount: safeMessage.split(/\s+/).length },
+      } satisfies ChatResponse & Record<string, unknown>), {
+        status: 200,
+        headers: getSecurityHeaders(req),
+      });
+    }
+
     const directOperational = buildDirectOperationalResponse(safeMessage, safeCircuitState as CircuitState | null);
     if (directOperational) {
       saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', directOperational.response.slice(0, 100), directOperational.source)

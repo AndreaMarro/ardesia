@@ -229,7 +229,8 @@ export function enforceItalianK12Opener(rawText: string): string {
     .replace(/\[AUTOCOSCIENZA[^\]]*\]/g, '')
     // iter 11 P0 — live smoke prod Q9 220V leaked these tags. Strip RAG/Wiki/Hybrid surfaces.
     .replace(/\[CONOSCENZA DAI VOLUMI ELAB[^\]]*\]/gi, '')
-    .replace(/\[CONTESTO ONNISCENZA[^\]]*\]/gi, '')
+    // iter 11 PATCH B — generic CONTESTO catch-all (ONNISCENZA + ATTUALE + CAPITOLO + altre varianti)
+    .replace(/\[CONTESTO[^\]]*\]/gi, '')
     .replace(/\[Hybrid RAG[^\]]*\]/gi, '')
     .replace(/\[wiki[^\]]*\]/gi, '')
     .replace(/\[rag[^\]]*\]/gi, '')

@@ -82,7 +82,14 @@ const VOLGARI_IT = [
 const VOLGARI_RE = new RegExp(`\\b(${VOLGARI_IT.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'i');
 
 // Rule 2: Off-topic detect (non-STEM-K12)
-const OFFTOPIC_RE = /\b(politica|elezioni|governo|religione|preghiera|sesso|porno|droga|alcool|alcol|sigaretta|fumo|marijuana|cocaina|partito\s+politico|terrorismo|guerra\s+in\s+\w+)\b/i;
+// iter 11 PATCH B: extend per live smoke Q8 "Quanto fa 2+2?" + altre matematica/aritmetica generic.
+// UNLIM è specializzato elettronica/Arduino, non matematica generica/storia/sport. Redirect mandate.
+const OFFTOPIC_RE = /\b(politica|elezioni|governo|religione|preghiera|sesso|porno|droga|alcool|alcol|sigaretta|fumo|marijuana|cocaina|partito\s+politico|terrorismo|guerra\s+in\s+\w+|quanto\s+fa\s+\d|matematica\s+(?!del|della|dei|degli)|aritmetica|calcolo\s+matematico|capitale\s+(di|del|della)|presidente\s+(di|del|della)|geografia|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube)\b/i;
+
+// iter 11 PATCH B — voltage safety detector (Q9 "220V casa" hard block).
+// Andrea mandate Principio Zero: kit ELAB sempre 9V batteria sicura, MAI 220V casa minori 8-14.
+// Regex match: 220V|110V|tensione di rete|presa (di corrente|a muro)|impianto elettrico|alta tensione.
+const VOLTAGE_DANGER_RE = /\b(220\s*[Vv]|110\s*[Vv]|tensione\s+di\s+rete|presa\s+(di\s+corrente|a\s+muro|elettrica)|prese\s+a\s+muro|impianto\s+elettrico|alta\s+tensione|corrente\s+di\s+casa|elettricit[àa]\s+di\s+casa)\b/i;
 
 // Rule 3: Linguaggio inappropriato minori (Flesch-Kincaid IT < 8th grade)
 function fkGradeIt(text: string): number {
@@ -196,6 +203,22 @@ export async function checkContentSafety(
     fires.push('off_topic');
     notes.off_topic = `match='${m2[0]}' redirect to STEM K12`;
     emitMetricFn('safety_guard_fires_total', 1, { rule: 'off_topic' });
+  }
+
+  // iter 11 PATCH B Rule 11: voltage_danger detector + safety rewrite
+  // Andrea live smoke Q9 "Posso usare 220V casa?" UNLIM rispondeva senza redirect 9V.
+  // Hard rewrite con plurale Ragazzi + redirect kit ELAB 9V batteria sicura.
+  const m11 = text.match(VOLTAGE_DANGER_RE);
+  if (m11) {
+    fires.push('voltage_danger');
+    notes.voltage_danger = `voltage match='${m11[0]}' — minori 8-14 vietato 220V casa`;
+    emitMetricFn('safety_guard_fires_total', 1, { rule: 'voltage_danger' });
+    rewritten = `Ragazzi, attenzione: ${m11[0]} è pericoloso per ragazzi 8-14 anni. Sul kit ELAB usate sempre la batteria 9V — sicura e perfetta per tutti gli esperimenti dei volumi. Per dubbi, controllate il libro o chiedete al docente.`;
+    await fireAudit({
+      ts: new Date().toISOString(), rule: 'voltage_danger', severity: 'CRITICAL',
+      reason: `voltage danger detected: ${m11[0]}`, classe_eta: context.classe_eta,
+      text_preview: text.slice(0, 120),
+    });
   }
 
   // Rule 3: Flesch-Kincaid grade
