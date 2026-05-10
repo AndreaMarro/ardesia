@@ -296,11 +296,19 @@ serve(async (req: Request) => {
     if (!promptClass.skipOnniscenza) {
       try {
         const ragTopK = Math.max(2, Math.min(3, promptClass.topK || 3));
-        const hits = await hybridRetrieve(safeMessage, ragTopK, {
+        // 2026-05-10 iter 5 fix: 2s timeout race vs hybridRetrieve to avoid
+        // P4 503 regression (full path LLM 8s + RAG 2-3s + Onniscenza 1-2s
+        // exceeded global timeout). RAG timeout falls through to static pack.
+        const RAG_TIMEOUT_MS = 2000;
+        const ragTimeoutPromise = new Promise<never>((_, rej) =>
+          setTimeout(() => rej(new Error('rag_timeout_2s')), RAG_TIMEOUT_MS)
+        );
+        const ragHitsPromise = hybridRetrieve(safeMessage, ragTopK, {
           source: safeExperimentId
             ? (safeExperimentId.startsWith('v1-') ? 'vol1' : safeExperimentId.startsWith('v2-') ? 'vol2' : safeExperimentId.startsWith('v3-') ? 'vol3' : undefined)
             : undefined,
         });
+        const hits = await Promise.race([ragHitsPromise, ragTimeoutPromise]);
         if (hits && hits.length > 0) {
           ragContext = formatHybridContext(hits);
           retrievedChunksDebug = hits.map((h) => ({
