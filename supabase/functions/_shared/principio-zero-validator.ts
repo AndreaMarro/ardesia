@@ -348,6 +348,75 @@ export function validatePrincipioZero(
  *
  * NOTE: idempotent — running twice does not double-prepend.
  */
+
+/**
+ * iter 32 M4 code-review refactor — LEAKED_CONTEXT_PATTERNS bundle (44 regex → 1 array loop).
+ *
+ * Patterns grouped semantically:
+ *   - Section A: bracket tags `[XYZ ...]` (iter 14, 11 patterns)
+ *   - Section B: leaked text without brackets (iter 15, 8 patterns)
+ *   - Section C: Vol fast/deep + directive leak (3 patterns)
+ *   - Section D: RAG/Wiki/Hybrid surfaces (iter 11, 8 patterns)
+ *   - Section E: RAG source path leak `--- [docs/...] ---` (iter 23 P1, 3 patterns)
+ *   - Section F: state-dump simulator leak (iter 23 P2, 5 patterns)
+ *
+ * Whitespace + line collapse NOT included — applied once at end of strip (post-loop).
+ * Each pattern unit-testable in isolation (helper export `LEAKED_CONTEXT_PATTERNS`).
+ */
+export const LEAKED_CONTEXT_PATTERNS: RegExp[] = [
+  // Section A — bracket tags /gi case-insensitive (LLM emette case-mixed)
+  /\[MEMORIA STUDENTE[^\]]*\]/gi,
+  /\[NARRAZIONE LIVE[^\]]*\]/gi,
+  /\[PRESENTE LIVE[^\]]*\]/gi,
+  /\[CONTESTO CAPITOLO[^\]]*\]/gi,
+  /\[STORIA SESSIONI[^\]]*\]/gi,
+  /\[RIFERIMENTO LIBRO FISICO[^\]]*\]/gi,
+  /\[REGIA MULTI-AI[^\]]*\]/gi,
+  /\[PROFILO ATTIVO[^\]]*\]/gi,
+  /\[GERARCHIA CONTESTO[^\]]*\]/gi,
+  /\[AGENT_DECISION_JSON[^\]]*\]/gi,
+  /\[AUTOCOSCIENZA[^\]]*\]/gi,
+  /\[CITAZIONE VOL[^\]]*\]/gi,
+
+  // Section B — leaked plain-text patterns NO brackets (iter 15 mid-line "[REGIA] REGIA PARALLELA 3x2:...")
+  /[a-zA-Z]?ROFILO\s+ATTIVO:?\s*[^\n]*/g,
+  /[a-zA-Z]?EGIA\s+(?:PARALLELA|MULTI-AI)[^\n]*/g,
+  /Profilo:\s+\w+[^\n]*/g,
+  /Ruolo:\s+[^\n]*/g,
+  /Modalit[aà]:\s+\w+[^\n]*/g,
+  /Contesto:\s+\w+[^\n]*/g,
+  /Budget\s+parole[^\n]*/g,
+  /Screenshot:\s+[^\n]*/g,
+
+  // Section C — Vol fast/deep + "Scegli mentalmente" directive leak
+  /Vol[123]\s+(?:fast|deep)\/?(?:fast|deep)?[,\s]*/gi,
+  /Scegli\s+mentalmente[^\n]*/g,
+  /non\s+mostrare\s+la\s+regia[^\n]*/g,
+
+  // Section D — RAG/Wiki/Hybrid surface leaks (iter 11 PATCH B)
+  /\[CONOSCENZA DAI VOLUMI ELAB[^\]]*\]/gi,
+  /\[CONTESTO[^\]]*\]/gi,        // generic catch-all CONTESTO + varianti
+  /\[Hybrid RAG[^\]]*\]/gi,
+  /\[wiki[^\]]*\]/gi,
+  /\[rag[^\]]*\]/gi,
+  /\[glossario[^\]]*\]/gi,
+  /\[fonte:[^\]]*\]/gi,
+  /\[FONTE[^\]]*\]/g,
+  /^---+\s*$/gm,                  // markdown separator leak prompt scaffolding
+
+  // Section E — RAG source path leak `--- [docs/...] ---` (iter 23 P1 marathon s2-msg2)
+  /---\s*\[docs\/[^\]]+\]\s*---/gi,
+  /\[docs\/unlim-wiki[^\]]*\]/gi,
+  /\[wiki\/concepts[^\]]*\]/gi,
+
+  // Section F — state-dump simulator leak (iter 23 P2)
+  /stato\s+simulatore:\s*[^\n]+/gi,
+  /Componenti:\s*\n?\s*-\s*[a-z0-9_]+[^\n]*/gim,
+  /^\s*-\s*(breadboard_\d+|led_\d+|resistor_\d+|nano_\d+|button_\d+|wire_\d+)[^\n]*/gim,
+  /Fili:\s*\d+\s*$/gim,
+  /Posizioni:\s*\[[^\]]+\]/gi,
+];
+
 export function enforceItalianK12Opener(rawText: string): string {
   if (typeof rawText !== 'string' || !rawText.trim()) return rawText;
 
@@ -368,57 +437,15 @@ export function enforceItalianK12Opener(rawText: string): string {
   //   [AUTOCOSCIENZA]
   // Strip ONLY the tag (not following prose) so prose remains. Trailing
   // whitespace collapsed.
-  let cleaned = rawText
-    // iter 14 — flag /gi case-insensitive (LLM emette case-mixed leak come `pROFILO ATTIVO` `rEGIA PARALLELA 3x2`)
-    .replace(/\[MEMORIA STUDENTE[^\]]*\]/gi, '')
-    .replace(/\[NARRAZIONE LIVE[^\]]*\]/gi, '')
-    .replace(/\[PRESENTE LIVE[^\]]*\]/gi, '')
-    .replace(/\[CONTESTO CAPITOLO[^\]]*\]/gi, '')
-    .replace(/\[STORIA SESSIONI[^\]]*\]/gi, '')
-    .replace(/\[RIFERIMENTO LIBRO FISICO[^\]]*\]/gi, '')
-    .replace(/\[REGIA MULTI-AI[^\]]*\]/gi, '')
-    .replace(/\[PROFILO ATTIVO[^\]]*\]/gi, '')
-    .replace(/\[GERARCHIA CONTESTO[^\]]*\]/gi, '')
-    .replace(/\[AGENT_DECISION_JSON[^\]]*\]/gi, '')
-    .replace(/\[AUTOCOSCIENZA[^\]]*\]/gi, '')
-    .replace(/\[CITAZIONE VOL[^\]]*\]/gi, '')
-    // iter 15 — strip residual leaked text patterns (LLM emette "pROFILO ATTIVO: ..." senza brackets).
-    // Relaxed regex (NO line anchors $/^$) per match mid-line leak "[REGIA MULTI-AI UNLIM] REGIA PARALLELA 3x2: ..."
-    .replace(/[a-zA-Z]?ROFILO\s+ATTIVO:?\s*[^\n]*/g, '')
-    .replace(/[a-zA-Z]?EGIA\s+(?:PARALLELA|MULTI-AI)[^\n]*/g, '')
-    .replace(/Profilo:\s+\w+[^\n]*/g, '')
-    .replace(/Ruolo:\s+[^\n]*/g, '')
-    .replace(/Modalit[aà]:\s+\w+[^\n]*/g, '')
-    .replace(/Contesto:\s+\w+[^\n]*/g, '')
-    .replace(/Budget\s+parole[^\n]*/g, '')
-    .replace(/Screenshot:\s+[^\n]*/g, '')
-    // Vol1 fast/deep, Vol2 fast/deep, Vol3 fast/deep pattern leak
-    .replace(/Vol[123]\s+(?:fast|deep)\/?(?:fast|deep)?[,\s]*/gi, '')
-    // "Scegli mentalmente la corsia giusta..." leak directive
-    .replace(/Scegli\s+mentalmente[^\n]*/g, '')
-    .replace(/non\s+mostrare\s+la\s+regia[^\n]*/g, '')
-    // iter 11 P0 — live smoke prod Q9 220V leaked these tags. Strip RAG/Wiki/Hybrid surfaces.
-    .replace(/\[CONOSCENZA DAI VOLUMI ELAB[^\]]*\]/gi, '')
-    // iter 11 PATCH B — generic CONTESTO catch-all (ONNISCENZA + ATTUALE + CAPITOLO + altre varianti)
-    .replace(/\[CONTESTO[^\]]*\]/gi, '')
-    .replace(/\[Hybrid RAG[^\]]*\]/gi, '')
-    .replace(/\[wiki[^\]]*\]/gi, '')
-    .replace(/\[rag[^\]]*\]/gi, '')
-    .replace(/\[glossario[^\]]*\]/gi, '')
-    .replace(/\[fonte:[^\]]*\]/gi, '')
-    .replace(/\[FONTE[^\]]*\]/g, '')
-    .replace(/^---+\s*$/gm, '') // markdown separator leaks from prompt scaffolding
-    // iter 23 P1 — RAG source leak template "--- [docs/unlim-wiki/concepts/led.md] ---" (iter 22 marathon s2-msg2 evidence)
-    .replace(/---\s*\[docs\/[^\]]+\]\s*---/gi, '')
-    .replace(/\[docs\/unlim-wiki[^\]]*\]/gi, '')
-    .replace(/\[wiki\/concepts[^\]]*\]/gi, '')
-    // iter 23 P2 — state-dump simulator leak literal "stato simulatore: ... Componenti: - breadboard_1..."
-    .replace(/stato\s+simulatore:\s*[^\n]+/gi, '')
-    .replace(/Componenti:\s*\n?\s*-\s*[a-z0-9_]+[^\n]*/gim, '')
-    .replace(/^\s*-\s*(breadboard_\d+|led_\d+|resistor_\d+|nano_\d+|button_\d+|wire_\d+)[^\n]*/gim, '')
-    // iter 23 P2 — additional state-dump patterns
-    .replace(/Fili:\s*\d+\s*$/gim, '')
-    .replace(/Posizioni:\s*\[[^\]]+\]/gi, '')
+  // iter 32 M4 code-review refactor — bundle 44 .replace calls into LEAKED_CONTEXT_PATTERNS[] array loop.
+  // Maintenance: NEW leak pattern = add 1 RegExp to array vs chained .replace insertion.
+  // Test isolatable: each pattern unit-testable solo.
+  // Whitespace + line collapse applicato ONCE at end (post-strip).
+  let cleaned = rawText;
+  for (const re of LEAKED_CONTEXT_PATTERNS) {
+    cleaned = cleaned.replace(re, '');
+  }
+  cleaned = cleaned
     .replace(/[ \t]{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
