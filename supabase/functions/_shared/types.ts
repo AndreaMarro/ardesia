@@ -95,6 +95,17 @@ export interface ImageData {
   mimeType: string;
 }
 
+// iter 25 P0-A — per-message timeline entry returned by `loadRecentHistory`.
+// Backward-compatible with prior single-shape `Array<{ role: 'assistant', content: string }>`:
+// callers expecting only role+content keep working; new meta fields are additive optionals.
+export interface MessageHistoryEntry {
+  role: 'user' | 'assistant';
+  content: string;
+  experiment_id?: string;
+  chapter?: number;
+  volume?: number;
+}
+
 export interface StudentContext {
   completedExperiments: number;
   totalExperiments: number;

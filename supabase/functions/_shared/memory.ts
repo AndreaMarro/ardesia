@@ -6,7 +6,12 @@
  */
 
 import { createClient, SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import type { StudentContext } from './types.ts';
+import type { MessageHistoryEntry, StudentContext } from './types.ts';
+
+// iter 25 P0-A — GDPR slice caps for unlim_message_history previews.
+// MUST mirror values in `_shared/memory.ts` saveInteraction (250 user / 100 response).
+const USER_MSG_PREVIEW_MAX = 250;
+const RESPONSE_PREVIEW_MAX = 100;
 
 let supabase: SupabaseClient | null = null;
 
@@ -58,38 +63,154 @@ export async function checkConsent(sessionId: string): Promise<'granted' | 'revo
 }
 
 /**
- * iter 12 P0 — load last N lesson_contexts for Onniscenza L6_chat_history injection.
- * Diagnosi memoria Q10 V2 regression: history `[]` hardcoded `unlim-chat/index.ts:433`
- * → Onniscenza L6 vuota → msg2 "Continuiamo" perde contesto seed Vol.X cap.Y di msg1.
- * Fix #1: caller usa loadRecentHistory(sessionId, 5) e injette in aggregateOnniscenza({history}).
+ * iter 12 P0 + iter 25 P0-A — load last N message turns for Onniscenza L6_chat_history.
  *
- * Returns array di {role,content} ultimi N record (default 5). MAI raw user message
- * (GDPR mandate iter 14 P0 #2): solo `responsePreview` AI assistant + `topic` proxy.
+ * iter 25 P0-A architectural unblocker (Doc-4 Phase 0 ROOT CAUSE):
+ *   - PRIMARY path: query `unlim_message_history` per-message timeline ORDER BY message_idx DESC LIMIT N.
+ *     Each row produces 2 entries interleaved: `user_msg_preview` → role:'user', then
+ *     `response_preview` → role:'assistant'. Final array reversed to chronological order
+ *     (oldest first) so prompt L6 reads naturally as a conversation log.
+ *   - FALLBACK path: legacy `unlim_session_memory` single-row (iter 18.5 era sessions
+ *     created BEFORE migration 20260511120000_unlim_message_history.sql applied).
+ *
+ * Return shape backward-compatible: `Array<{ role: 'user'|'assistant', content: string, ...meta }>`
+ * Existing callers expecting only `assistant` entries still work (TypeScript widening; orchestrator
+ * filters role if needed). NEW richer fields (`experiment_id`, `chapter`, `volume`) optional and
+ * additive — does NOT break iter 18.5 consumers.
+ *
+ * GDPR mandate iter 14 P0 #2: previews already capped server-side at INSERT (saveMessageHistory)
+ * to USER_MSG_PREVIEW_MAX (250) / RESPONSE_PREVIEW_MAX (100). No raw full content leaks.
  */
 export async function loadRecentHistory(
   sessionId: string,
   limit = 5,
-): Promise<Array<{ role: 'assistant'; content: string }>> {
+): Promise<MessageHistoryEntry[]> {
   const client = getClient();
   if (!client) return [];
+
+  // PRIMARY: per-message timeline table (iter 25 P0-A).
   try {
-    // iter 18.5 BUG FIX — usa unlim_session_memory (lesson_contexts schema mismatch + RLS recursion).
-    // Only single most-recent row per session_id (no msg-by-msg history yet — Future iter aggiunge
-    // table unlim_message_history per multi-msg context).
+    const { data: rows, error } = await client
+      .from('unlim_message_history')
+      .select('message_idx, experiment_id, chapter, volume, topic, user_msg_preview, response_preview')
+      .eq('session_id', sessionId)
+      .order('message_idx', { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.warn('[Memory] loadRecentHistory primary query error:', error);
+      // Fall through to fallback path below.
+    } else if (Array.isArray(rows) && rows.length > 0) {
+      // Interleave user + assistant per row. Each timeline row = 1 turn (user msg + AI response).
+      // DESC order from DB → newest first; iterate in REVERSE so older turns push first → final
+      // array is chronological (oldest user → oldest assistant → newest user → newest assistant).
+      const interleaved: MessageHistoryEntry[] = [];
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const row = rows[i];
+        const meta = {
+          experiment_id: row.experiment_id ?? undefined,
+          chapter: typeof row.chapter === 'number' ? row.chapter : undefined,
+          volume: typeof row.volume === 'number' ? row.volume : undefined,
+        };
+        if (row.user_msg_preview) {
+          interleaved.push({
+            role: 'user',
+            content: row.user_msg_preview,
+            ...meta,
+          });
+        }
+        if (row.response_preview) {
+          interleaved.push({
+            role: 'assistant',
+            content: row.response_preview,
+            ...meta,
+          });
+        }
+      }
+      return interleaved;
+    }
+  } catch (err) {
+    console.warn('[Memory] loadRecentHistory primary path threw:', err);
+    // Fall through to fallback path below.
+  }
+
+  // FALLBACK: iter 18.5 single-row unlim_session_memory (backward compat).
+  try {
     const { data: mem } = await client
       .from('unlim_session_memory')
-      .select('last_experiment_id, last_response_preview, last_topic, updated_at')
+      .select('last_experiment_id, last_response_preview, last_topic, last_chapter, last_volume, updated_at')
       .eq('session_id', sessionId)
       .maybeSingle();
     if (!mem || !mem.last_response_preview) return [];
     const expRef = mem.last_experiment_id ? `[${mem.last_experiment_id}] ` : '';
     return [{
-      role: 'assistant' as const,
+      role: 'assistant',
       content: `${expRef}${mem.last_response_preview}`,
+      experiment_id: mem.last_experiment_id ?? undefined,
+      chapter: typeof mem.last_chapter === 'number' ? mem.last_chapter : undefined,
+      volume: typeof mem.last_volume === 'number' ? mem.last_volume : undefined,
     }];
   } catch (err) {
-    console.warn('[Memory] loadRecentHistory failed:', err);
+    console.warn('[Memory] loadRecentHistory fallback failed:', err);
     return [];
+  }
+}
+
+/**
+ * iter 25 P0-A — append a single per-message turn to `unlim_message_history` timeline.
+ *
+ * Orchestrator (unlim-chat/index.ts) wires this call AFTER each completed user/AI turn,
+ * alongside the existing single-row `saveInteraction` upsert. Both writes coexist:
+ * - saveInteraction: keeps `unlim_session_memory.last_*` for quick "current state" reads.
+ * - saveMessageHistory: appends timeline row for "il secondo era quale?" / "riepilogo" recall.
+ *
+ * GDPR: user message sliced to USER_MSG_PREVIEW_MAX (250), response to RESPONSE_PREVIEW_MAX (100).
+ * Server-side atomic RPC `insert_message_history` auto-increments `message_idx` (SECURITY DEFINER
+ * lock semantics — no race vs MERGE PG15 race-unsafe pattern Doc-3 evidence).
+ *
+ * Defensive: NEVER throws — DB unavailable / RPC error logged + swallowed (chat flow unaffected).
+ * Returns new `message_idx` on success, `null` on failure.
+ */
+export async function saveMessageHistory(
+  sessionId: string,
+  experimentId: string | null,
+  chapter: number | null,
+  volume: number | null,
+  topic: string,
+  userMessage: string,
+  responsePreview: string,
+  model: string,
+): Promise<number | null> {
+  const client = getClient();
+  if (!client) return null;
+
+  try {
+    const userPreview = typeof userMessage === 'string'
+      ? userMessage.slice(0, USER_MSG_PREVIEW_MAX)
+      : null;
+    const respPreview = typeof responsePreview === 'string'
+      ? responsePreview.slice(0, RESPONSE_PREVIEW_MAX)
+      : null;
+
+    const { data, error } = await client.rpc('insert_message_history', {
+      p_session_id: sessionId,
+      p_experiment_id: experimentId,
+      p_chapter: chapter,
+      p_volume: volume,
+      p_topic: topic,
+      p_user_msg_preview: userPreview,
+      p_response_preview: respPreview,
+      p_model: model,
+    });
+
+    if (error) {
+      console.warn('[Memory] insert_message_history RPC error:', error);
+      return null;
+    }
+    return typeof data === 'number' ? data : null;
+  } catch (err) {
+    console.warn('[Memory] saveMessageHistory threw:', err);
+    return null;
   }
 }
 

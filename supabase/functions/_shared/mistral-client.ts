@@ -27,6 +27,37 @@ import type { GeminiModel, ImageData } from './types.ts';
 const MISTRAL_BASE = 'https://api.mistral.ai/v1';
 const TIMEOUT_MS = 15000;
 
+// ════════════════════════════════════════════════════════════════════
+// Sprint U iter 25 P0-B — Inner retry for HTTP 5xx/429 burst rate-limit
+// ════════════════════════════════════════════════════════════════════
+//
+// Iter 24 dim-1 LIVE prod bench: HTTP 503 rate 11.4% (8/70 query) on Mistral
+// burst rate-limit. Adding 2× retry [400ms, 1000ms] + jitter at the client
+// layer recovers the majority of transient 5xx without falling through to
+// next provider (which doubles latency).
+//
+// llm-client.ts ALSO wraps callMistralChat in its outer callWithRetry — that
+// gives 3 attempts total (1 outer + 2 inner) but the inner layer is cheaper
+// because it does not re-load credentials nor re-build the body.
+
+const MISTRAL_RETRY_DELAYS_MS = [400, 1000] as const;
+const MISTRAL_NETWORK_RETRY = 1;
+
+function isMistralRetriableStatus(status: number): boolean {
+  // 429 + any 5xx → retry. 4xx (400/401/403/422) → fail-fast.
+  return status === 429 || (status >= 500 && status <= 599);
+}
+
+function computeMistralJitter(baseMs: number): number {
+  // ±20% jitter, deterministic non-negative.
+  const offset = (Math.random() * 2 - 1) * baseMs * 0.2;
+  return Math.max(0, Math.floor(baseMs + offset));
+}
+
+function mistralSleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export type MistralChatModel =
   | 'mistral-small-latest'
   | 'mistral-large-latest'
@@ -127,51 +158,133 @@ export async function callMistralChat(opts: MistralChatOptions): Promise<Mistral
   }
 
   const start = Date.now();
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
-  try {
-    const res = await fetch(`${MISTRAL_BASE}/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify(body),
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
 
-    if (!res.ok) {
-      const text = await res.text().catch(() => '');
-      const code = res.status === 429
-        ? ErrorCode.SERVICE_RATE_LIMITED
-        : res.status >= 500
-          ? ErrorCode.SERVICE_UNAVAILABLE
-          : ErrorCode.API_ERROR;
-      throw new GeminiError(code, `Mistral ${res.status}: ${text.slice(0, 200)}`);
-    }
-    const data = await res.json();
-    const content: string = data?.choices?.[0]?.message?.content ?? '';
-    if (!content) throw new GeminiError(ErrorCode.EMPTY_RESPONSE, 'Mistral empty response');
+  // Sprint U iter 25 P0-B: HTTP 5xx/429 burst rate-limit inner retry loop
+  // [400ms, 1000ms] + jitter ±20%. Network errors (TypeError) retry 1x.
+  // 4xx (auth/validation) → fail-fast. Preserves TIMEOUT_MS=15000 per attempt.
+  let networkRetryUsed = 0;
+  let lastError: unknown = null;
+  const maxStatusRetries = MISTRAL_RETRY_DELAYS_MS.length;
+  const maxAttempts = 1 + maxStatusRetries; // 1 initial + 2 retries = 3 total
 
-    return {
-      text: content,
-      model,
-      provider: 'mistral',
-      tokensUsed: {
-        input: data?.usage?.prompt_tokens ?? 0,
-        output: data?.usage?.completion_tokens ?? 0,
-      },
-      latencyMs: Date.now() - start,
-    };
-  } catch (e) {
-    clearTimeout(timeout);
-    if (e instanceof GeminiError) throw e;
-    if (e instanceof DOMException && e.name === 'AbortError') {
-      throw new GeminiError(ErrorCode.TIMEOUT, 'Mistral request timed out');
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+    try {
+      const res = await fetch(`${MISTRAL_BASE}/chat/completions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        const code = res.status === 429
+          ? ErrorCode.SERVICE_RATE_LIMITED
+          : res.status >= 500
+            ? ErrorCode.SERVICE_UNAVAILABLE
+            : ErrorCode.API_ERROR;
+        const err = new GeminiError(code, `Mistral ${res.status}: ${text.slice(0, 200)}`);
+
+        // Retriable status (5xx / 429) AND we still have retries → backoff + retry.
+        if (isMistralRetriableStatus(res.status) && attempt < maxAttempts - 1) {
+          const baseDelay = MISTRAL_RETRY_DELAYS_MS[attempt] ?? 1000;
+          const delayMs = computeMistralJitter(baseDelay);
+          console.info(JSON.stringify({
+            level: 'info',
+            event: 'mistral_retry_scheduled',
+            attempt,
+            status: res.status,
+            delayMs,
+            model,
+          }));
+          await mistralSleep(delayMs);
+          lastError = err;
+          continue;
+        }
+
+        // 4xx fail-fast OR retries exhausted.
+        console.warn(JSON.stringify({
+          level: 'warn',
+          event: isMistralRetriableStatus(res.status) ? 'mistral_retry_exhausted' : 'mistral_fail_fast_4xx',
+          attempt,
+          status: res.status,
+          model,
+        }));
+        throw err;
+      }
+
+      const data = await res.json();
+      const content: string = data?.choices?.[0]?.message?.content ?? '';
+      if (!content) throw new GeminiError(ErrorCode.EMPTY_RESPONSE, 'Mistral empty response');
+
+      if (attempt > 0) {
+        console.info(JSON.stringify({
+          level: 'info',
+          event: 'mistral_retry_success',
+          attempt,
+          model,
+          totalElapsedMs: Date.now() - start,
+        }));
+      }
+
+      return {
+        text: content,
+        model,
+        provider: 'mistral',
+        tokensUsed: {
+          input: data?.usage?.prompt_tokens ?? 0,
+          output: data?.usage?.completion_tokens ?? 0,
+        },
+        latencyMs: Date.now() - start,
+      };
+    } catch (e) {
+      clearTimeout(timeout);
+      if (e instanceof GeminiError) throw e;
+      if (e instanceof DOMException && e.name === 'AbortError') {
+        // Treat timeout as retriable network event if we have budget left.
+        if (networkRetryUsed < MISTRAL_NETWORK_RETRY && attempt < maxAttempts - 1) {
+          networkRetryUsed++;
+          const delayMs = computeMistralJitter(MISTRAL_RETRY_DELAYS_MS[0]);
+          console.info(JSON.stringify({
+            level: 'info',
+            event: 'mistral_network_timeout_retry',
+            attempt,
+            delayMs,
+          }));
+          await mistralSleep(delayMs);
+          lastError = e;
+          continue;
+        }
+        throw new GeminiError(ErrorCode.TIMEOUT, 'Mistral request timed out');
+      }
+      // Native fetch TypeError → retriable network error.
+      if (e instanceof TypeError && networkRetryUsed < MISTRAL_NETWORK_RETRY && attempt < maxAttempts - 1) {
+        networkRetryUsed++;
+        const delayMs = computeMistralJitter(MISTRAL_RETRY_DELAYS_MS[0]);
+        console.info(JSON.stringify({
+          level: 'info',
+          event: 'mistral_network_error_retry',
+          attempt,
+          delayMs,
+          errorMessage: e.message,
+        }));
+        await mistralSleep(delayMs);
+        lastError = e;
+        continue;
+      }
+      throw new GeminiError(ErrorCode.API_ERROR, `Mistral failed: ${e}`);
     }
-    throw new GeminiError(ErrorCode.API_ERROR, `Mistral failed: ${e}`);
   }
+
+  // Unreachable — loop returns or throws. Defensive fallback.
+  if (lastError instanceof GeminiError) throw lastError;
+  throw new GeminiError(ErrorCode.SERVICE_UNAVAILABLE, 'Mistral: all retries exhausted');
 }
 
 /**

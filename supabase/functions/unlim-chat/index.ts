@@ -10,7 +10,8 @@ import { serve } from 'https://deno.land/std@0.208.0/http/server.ts';
 import { callLLM, callBrainFallback, getMetrics } from '../_shared/llm-client.ts';
 import { routeModel, modelDisplayName } from '../_shared/router.ts';
 import { buildSystemPrompt } from '../_shared/system-prompt.ts';
-import { loadStudentContext, saveInteraction, checkConsent, loadRecentHistory, extractVolCapFromMessage } from '../_shared/memory.ts';
+import { loadStudentContext, saveInteraction, saveMessageHistory, checkConsent, loadRecentHistory, extractVolCapFromMessage } from '../_shared/memory.ts';
+import { buildOfftopicGentleBridge, type OfftopicType } from '../_shared/offtopic-template-response.ts';
 import { checkRateLimitPersistent, validateChatInput, sanitizeMessage, sanitizeCircuitState, validateExperimentId, validateMimeType, getCorsHeaders, getSecurityHeaders, checkBodySize, validateSessionId, verifyElabApiKey } from '../_shared/guards.ts';
 import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.ts';
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
@@ -378,6 +379,40 @@ serve(async (req: Request) => {
     // parallel, max(250, 2000) = 2000ms = -250ms p95 lift. Onniscenza aggregator
     // remains sequential (depends on classifier output already computed).
     const promptClass = classifyPrompt(safeMessage);
+
+    // iter 25 P0-C — off-topic Cat D regression fix (vs iter 5 P3 91.80% baseline, dim-1 measured 37.5%).
+    // Classifier off_topic category triggers template response WITHOUT LLM call (deterministic).
+    // 3-step gentle bridge pattern Andrea iter 21 mandate "riportare al focus LENTAMENTE".
+    // Runs AFTER legacy inline OFFTOPIC_QUERY_RE block (line ~261) — picks up cases legacy regex missed
+    // (cooking/translation/celebrity/extended sport/extended culture). Legacy regex retained iter 25
+    // (double-fire impossible: legacy returns first if matches; classifier handles remainder).
+    if (promptClass.category === 'off_topic') {
+      const offSessionCtxPromise = loadStudentContext(sessionId).catch(() => null);
+      const offTimeoutPromise = new Promise<null>(resolve => setTimeout(() => resolve(null), 100));
+      const offSessionCtx = await Promise.race([offSessionCtxPromise, offTimeoutPromise]);
+      const offtopicType = (promptClass.offtopicType ?? 'generic') as OfftopicType;
+      const offResp = buildOfftopicGentleBridge(offtopicType, {
+        lastExperimentId: offSessionCtx?.lastExperimentId || undefined,
+        currentVolume: offSessionCtx?.currentVolume || undefined,
+        currentChapter: offSessionCtx?.currentChapter || undefined,
+      });
+      saveInteraction(sessionId, safeExperimentId || null, 'offtopic_classifier', offResp.slice(0, 100), 'offtopic-template-iter25', safeMessage)
+        .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      saveMessageHistory(sessionId, safeExperimentId || null, offSessionCtx?.currentChapter || null, offSessionCtx?.currentVolume || null, 'offtopic_classifier', safeMessage, offResp.slice(0, 100), 'offtopic-template-iter25')
+        .catch(err => console.warn('[Nanobot V2] MessageHistory save error:', err));
+      return new Response(JSON.stringify({
+        success: true,
+        response: offResp,
+        source: 'offtopic-template-iter25',
+        dataProcessing: 'classifier-off-topic-template',
+        aiProfile: activeAiProfile.id,
+        safety_fires: ['off_topic'],
+        prompt_class: promptClass,
+      } satisfies ChatResponse & Record<string, unknown>), {
+        status: 200,
+        headers: getSecurityHeaders(req),
+      });
+    }
 
     let ragContext = '';
     let retrievedChunksDebug: Array<Record<string, unknown>> = [];
@@ -942,6 +977,12 @@ serve(async (req: Request) => {
     // fire-and-forget (chit_chat/offtopic non-critical). Trade-off ~50-100ms latency
     // Q10a-style msg1, ma Q10b read garantito.
     const isMemoryRelevant = fallbackExpId !== null && cleanText.length > 30;
+    // iter 25 P0-A — extract chapter/volume from fallbackExpId for unlim_message_history timeline.
+    // Critical for marathon msg4 recall fix (Doc-4 #1 architectural unblocker).
+    const histChapterMatch = fallbackExpId?.match(/cap(\d+)/);
+    const histChapter = histChapterMatch ? parseInt(histChapterMatch[1], 10) : null;
+    const histVolMatch = fallbackExpId?.match(/^v([1-3])/);
+    const histVolume = histVolMatch ? parseInt(histVolMatch[1], 10) : null;
     if (isMemoryRelevant) {
       await saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model, safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error (sync):', err));
@@ -949,6 +990,10 @@ serve(async (req: Request) => {
       saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model, safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error (async):', err));
     }
+    // iter 25 P0-A — append per-message turn to unlim_message_history timeline (fire-and-forget).
+    // Sblocca marathon recall "il secondo era quale?" / "riepilogo". GDPR slice 250/100 server-side.
+    saveMessageHistory(sessionId, fallbackExpId, histChapter, histVolume, topicCategory, safeMessage, cleanText.slice(0, 100), result.model)
+      .catch(err => console.warn('[Nanobot V2] MessageHistory save error:', err));
 
     const audioUrl: string | null = null; // decoupled — frontend fetches separately
 
