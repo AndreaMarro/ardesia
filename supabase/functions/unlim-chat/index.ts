@@ -71,7 +71,7 @@ async function requestTTS(text: string): Promise<string | null> {
     const cleanText = text
       .replace(/\[azione:[^\]]+\]/gi, '')
       .replace(/\[AZIONE:[^\]]+\]/gi, '')
-      .replace(/\[INTENT:\{[^}]+\}\]/g, '')
+      .replace(/\[INTENT:\{[\s\S]*?\}\]/g, '')
       .replace(/\n{2,}/g, ' ')
       .trim();
 
@@ -418,11 +418,18 @@ serve(async (req: Request) => {
       const offTimeoutPromise = new Promise<null>(resolve => setTimeout(() => resolve(null), 100));
       const offSessionCtx = await Promise.race([offSessionCtxPromise, offTimeoutPromise]);
       const offtopicType = (promptClass.offtopicType ?? 'generic') as OfftopicType;
-      const offResp = buildOfftopicGentleBridge(offtopicType, {
+      let offResp = buildOfftopicGentleBridge(offtopicType, {
         lastExperimentId: offSessionCtx?.lastExperimentId || undefined,
         currentVolume: offSessionCtx?.currentVolume || undefined,
         currentChapter: offSessionCtx?.currentChapter || undefined,
       });
+      // iter 28 H6 fix code-review — wire forceCitation chain on classifier off-topic path
+      // (precedente skipping enforceItalianK12Opener + rewriteCitationToCanonical + forceCitationFromQuery
+      // + forceCitationFromSession). Mirror direct-operational path line 336-339.
+      offResp = enforceItalianK12Opener(offResp);
+      offResp = rewriteCitationToCanonical(offResp);
+      offResp = forceCitationFromQuery(safeMessage, offResp);
+      offResp = forceCitationFromSession(offSessionCtx?.lastExperimentId || null, offResp);
       saveInteraction(sessionId, safeExperimentId || null, 'offtopic_classifier', offResp.slice(0, 100), 'offtopic-template-iter25', safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
       saveMessageHistory(sessionId, safeExperimentId || null, offSessionCtx?.currentChapter || null, offSessionCtx?.currentVolume || null, 'offtopic_classifier', safeMessage, offResp.slice(0, 100), 'offtopic-template-iter25')

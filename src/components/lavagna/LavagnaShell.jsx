@@ -907,6 +907,31 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     return () => clearInterval(check);
   }, []);
 
+  // iter 28 hashchange listener — in-place navigation from #lavagna?exp=A to
+  // #lavagna?exp=B triggers `loadExperiment(B)`. Complements iter 27 first-mount
+  // prop wiring (which only fires on FIRST mount via __ELAB_API polling above).
+  // Guards: skip if same expId (no double-load), skip if API not ready
+  // (will retry on next hashchange), skip if no `?exp=` (graceful).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    function getExpFromHash() {
+      const m = window.location.hash.match(/[?&]exp=([^&]+)/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+    function handleHashChange() {
+      const newExpId = getExpFromHash();
+      if (!newExpId) return;
+      const api = window.__ELAB_API;
+      if (!api || !api.loadExperiment) return;
+      // Only switch if different from current (avoid double-load race with first-mount)
+      const current = api.getCurrentExperiment?.();
+      if (current?.id === newExpId) return;
+      api.loadExperiment(newExpId);
+    }
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   // Track current panel values in refs (avoids putting them in useEffect deps)
   const panelStateRef = useRef({ leftPanel: false, bottomPanel: false, galileo: false });
   useEffect(() => {

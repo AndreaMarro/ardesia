@@ -38,8 +38,8 @@ describe('clawbot-templates registry', () => {
     expect(Array.isArray(TEMPLATES_L2)).toBe(true);
   });
 
-  it('contains all 20 L2 templates', () => {
-    expect(TEMPLATES_L2.length).toBe(20);
+  it('contains all 25 L2 templates (iter 28 +5 Vol1 cap.10-14 expand)', () => {
+    expect(TEMPLATES_L2.length).toBe(25);
   });
 
   it('every template has required fields', () => {
@@ -282,9 +282,11 @@ describe('selectTemplate per-experiment routing (Sprint U Cycle 2 Fix #1)', () =
   });
 
   it('experimentId NOT in map returns null (no fallback wrong-fire)', () => {
-    // An experimentId with no dedicated template (e.g. v1-cap10-esp1 fotoresistenza)
-    // → null → LLM+RAG handles it. NOT a catch-all to L2-explain-led-blink.
-    const tpl = selectTemplate('Ragazzi, spiegate la fotoresistenza', { experimentId: 'v1-cap10-esp1' });
+    // Iter 28 binds v1-cap10-esp1 -> L2-explain-fotoresistore-vol1cap10, so we
+    // use a still-unbound Vol.2 experimentId here. The router must return
+    // null when no per-experiment template exists -> LLM+RAG path, NOT a
+    // catch-all to L2-explain-led-blink (Sprint U Cycle 1 audit BLOCKER).
+    const tpl = selectTemplate('Ragazzi, spiegate il sensore HC-SR04', { experimentId: 'v2-cap99-esp99' });
     expect(tpl).toBeNull();
   });
 

@@ -476,7 +476,7 @@ ${experimentContext}`);
   // JSON object rather than embedded brackets in prose.
   if (useIntentSchema) {
     parts.push(`
-[OUTPUT FORMAT — IMPORTANT]
+[FORMATO OUTPUT — IMPORTANTE]
 Devi rispondere con un SINGOLO oggetto JSON valido, NIENTE altro testo:
 {"text":"<risposta in italiano K-12 plurale Ragazzi, max 120 parole>","intents":[{"tool":"<nome>","args":{...}}]}
 

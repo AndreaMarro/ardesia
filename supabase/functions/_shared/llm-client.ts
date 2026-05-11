@@ -701,9 +701,11 @@ export async function callLLMWithFallback(
     }
   } else if (pick === 'mistral-small') {
     try {
+      // iter 28 M5 fix code-review: maxAttempts:1 outer (callMistralChat ha già inner retry [400,1000]+jitter su 5xx/429).
+      // Stacked outer+inner = up to 9 attempts ~30s tail latency BREAKING hot-path 4s budget.
       return await callWithRetry(
         () => callMistral(options, 'mistral-small-latest'),
-        { label: 'mistral-small-weighted' },
+        { label: 'mistral-small-weighted', maxAttempts: 1 },
       );
     } catch (e) {
       providersDown.push('mistral-small-weighted');
@@ -711,9 +713,10 @@ export async function callLLMWithFallback(
     }
   } else if (pick === 'mistral-large') {
     try {
+      // iter 28 M5 fix code-review: maxAttempts:1 outer (callMistralChat inner retry already)
       return await callWithRetry(
         () => callMistral(options, 'mistral-large-latest'),
-        { label: 'mistral-large-weighted' },
+        { label: 'mistral-large-weighted', maxAttempts: 1 },
       );
     } catch (e) {
       providersDown.push('mistral-large-weighted');
