@@ -221,17 +221,30 @@ export async function saveMessageHistory(
  *   "Vol.1 cap.6"  → "v1-cap6"
  *   "volume 2 capitolo 4" → "v2-cap4"
  *   "Vol.3 capitolo 8 esperimento 1" → "v3-cap8-esp1"
+ *   "v.1 c.6" (iter 31 L2 fix code-review) → "v1-cap6" abbreviazione
+ *   "vol 1 cap 6" (no dot) → "v1-cap6"
  * Returns null se nessun pattern matchato.
  */
 export function extractVolCapFromMessage(message: string): string | null {
   if (!message || typeof message !== 'string') return null;
-  // Pattern: vol.N cap.M [esp.K]
-  const m = message.match(/\bvol(?:ume)?\.?\s*([1-3])\s+cap(?:itolo)?\.?\s*(\d{1,2})(?:\s+esp(?:erimento)?\.?\s*(\d{1,2}))?/i);
-  if (!m) return null;
-  const vol = m[1];
-  const cap = m[2];
-  const esp = m[3];
-  return esp ? `v${vol}-cap${cap}-esp${esp}` : `v${vol}-cap${cap}`;
+  // Pattern primary: vol.N cap.M [esp.K]
+  const primary = message.match(/\bvol(?:ume)?\.?\s*([1-3])\s+cap(?:itolo)?\.?\s*(\d{1,2})(?:\s+esp(?:erimento)?\.?\s*(\d{1,2}))?/i);
+  if (primary) {
+    const vol = primary[1];
+    const cap = primary[2];
+    const esp = primary[3];
+    return esp ? `v${vol}-cap${cap}-esp${esp}` : `v${vol}-cap${cap}`;
+  }
+  // iter 31 L2 fix code-review — extend abbreviazione studenti: "v.N c.M" / "v N c M" / "v.Nc.M"
+  // Andrea iter 21+ linguaggio plurale studenti typing abbreviato common.
+  const abbrev = message.match(/\bv\.?\s*([1-3])\s*c\.?\s*(\d{1,2})(?:\s*e\.?\s*(\d{1,2}))?/i);
+  if (abbrev) {
+    const vol = abbrev[1];
+    const cap = abbrev[2];
+    const esp = abbrev[3];
+    return esp ? `v${vol}-cap${cap}-esp${esp}` : `v${vol}-cap${cap}`;
+  }
+  return null;
 }
 
 /**
