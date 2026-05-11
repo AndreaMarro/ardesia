@@ -15,7 +15,7 @@ import { checkRateLimitPersistent, validateChatInput, sanitizeMessage, sanitizeC
 import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.ts';
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
 import { getCapitoloByExperimentId, buildCapitoloPromptFragment, inferCapitoloFromMessage, buildCapitoloSummaryFragment } from '../_shared/capitoli-loader.ts';
-import { buildCitazioneFragment, rewriteCitationToCanonical, forceCitationFromQuery } from '../_shared/volumi-citazioni.ts';
+import { buildCitazioneFragment, rewriteCitationToCanonical, forceCitationFromQuery, forceCitationFromSession } from '../_shared/volumi-citazioni.ts';
 import { validatePrincipioZero, enforceItalianK12Opener } from '../_shared/principio-zero-validator.ts';
 // iter 11 P0 — Andrea mandate: 10 paletti runtime checkContentSafety post-LLM.
 // Audit iter 11 backend trovò content-safety-guard.ts (306 LOC) DEAD CODE non wired.
@@ -253,9 +253,31 @@ serve(async (req: Request) => {
     // iter 11 PATCH B — PRE-LLM off-topic detector (matematica/aritmetica/capitali/sport/cinema/etc.)
     // Live smoke Q8 "Quanto fa 2+2?" → UNLIM rispondeva "Fa 4." senza redirect ELAB.
     // Hard-redirect pre-LLM con plurale Ragazzi + invito kit ELAB.
-    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|capitale\s+(di|del|della)|presidente\s+(di|del|della)|geografia|storia\s+(?!del|della|dei|degli)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis)\b/i;
+    // iter 20 P1 — expand OFFTOPIC_QUERY_RE per iter 19 stress fail D03 "presidente" + D05 "Inter Juventus".
+    // Add: presidente standalone + squadre calcio + Serie A + partita/gol/campionato + risultato sportivo + altre.
+    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|capitale\s+(di|del|della)|presidente(?:\s+(di|del|della))?|chi\s+è\s+il\s+presidente|geografia|storia\s+(?!del|della|dei|degli)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|risultato\s+(inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a)|risultato\s+sportivo)\b/i;
     if (OFFTOPIC_QUERY_RE.test(safeMessage)) {
-      const offResp = `Ragazzi, sono UNLIM di ELAB Tutor — specializzato in elettronica e Arduino per scuole 8-14 anni. Per altri argomenti chiedete al docente o cercate altrove. Posso aiutarvi con LED, Arduino, sensori, kit fisico ELAB?`;
+      // iter 21 Andrea mandate "deve riportare al focus del discorso LENTAMENTE" — NON brutal rejection.
+      // Acknowledge brief + gentle bridge + recall session lastExperimentId se disponibile.
+      // 3-step pattern: (1) acknowledge curiosità (2) bridge dolce a ELAB context (3) recall/proposta.
+      const offSessionCtx = await loadStudentContext(sessionId).catch(() => null);
+      const hasSession = offSessionCtx?.lastExperimentId;
+      // Detect tipo off-topic per acknowledge personalizzato
+      const isSport = /\b(calcio|inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a|champions|partita|gol|campionato|sport(?!ello))\b/i.test(safeMessage);
+      const isMath = /\b(quanto\s+fa\s+\d|aritmetica|matematica)\b/i.test(safeMessage);
+      const isHistory = /\b(presidente|capitale|geografia|storia)\b/i.test(safeMessage);
+      const isCulture = /\b(cinema|musica|tiktok|instagram|youtube|videogioc|pokemon)\b/i.test(safeMessage);
+      let acknowledge: string;
+      if (isSport) acknowledge = 'Ragazzi, capisco la passione per lo sport! È bello avere altre passioni.';
+      else if (isMath) acknowledge = 'Ragazzi, bella curiosità matematica!';
+      else if (isHistory) acknowledge = 'Ragazzi, bella domanda di cultura generale!';
+      else if (isCulture) acknowledge = 'Ragazzi, capisco la curiosità!';
+      else acknowledge = 'Ragazzi, è una bella curiosità!';
+      const bridge = `Però adesso siamo dentro il nostro percorso ELAB — qui ci occupiamo di elettronica e Arduino.`;
+      const recall = hasSession
+        ? ` Ricordate? Stavamo lavorando su ${offSessionCtx.lastExperimentId} (Vol.${offSessionCtx.currentVolume || '?'} cap.${offSessionCtx.currentChapter || '?'}). Riprendiamo da lì insieme? [AZIONE:loadexp:${offSessionCtx.lastExperimentId}]`
+        : ` Volete iniziare un esperimento sul kit ELAB? Possiamo cominciare con il primo LED del Vol.1 cap.6, oppure scegliete voi.`;
+      const offResp = `${acknowledge} ${bridge}${recall}`;
       saveInteraction(sessionId, safeExperimentId || null, 'offtopic_redirect', offResp.slice(0, 100), 'offtopic-pre-llm')
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
       return new Response(JSON.stringify({
@@ -274,11 +296,22 @@ serve(async (req: Request) => {
 
     const directOperational = buildDirectOperationalResponse(safeMessage, safeCircuitState as CircuitState | null);
     if (directOperational) {
-      saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', directOperational.response.slice(0, 100), directOperational.source)
+      // iter 20 P0 BUG FIX — direct-operational source bypassava enforcer + forceCitation*
+      // → iter 19 stress 100q evidence: 5+ fail su categorie A/E/H (Arduino bypass canned string
+      // "Passo ad Arduino e preparo Blink sul pin 13" ignora Vol/pag + plurale).
+      // Wire enforceItalianK12Opener + rewriteCitationToCanonical + forceCitationFromQuery
+      // + forceCitationFromSession (iter 20 P0 short-prompt recall) su direct-operational path.
+      // Load studentContext sync per session-based citation force (short blocking ~250ms OK).
+      const opStudentCtx = await loadStudentContext(sessionId).catch(() => null);
+      let opResponse = enforceItalianK12Opener(directOperational.response);
+      opResponse = rewriteCitationToCanonical(opResponse);
+      opResponse = forceCitationFromQuery(safeMessage, opResponse);
+      opResponse = forceCitationFromSession(opStudentCtx?.lastExperimentId || null, opResponse);
+      saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', opResponse.slice(0, 100), directOperational.source)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
       return new Response(JSON.stringify({
           success: true,
-          response: directOperational.response,
+          response: opResponse,
           source: directOperational.source,
           dataProcessing: directOperational.dataProcessing,
           aiProfile: activeAiProfile.id,
@@ -796,6 +829,12 @@ serve(async (req: Request) => {
     // Q1 LED Vol.1 cap.6 evidence: LLM rephrase analogia senza Vol/cap mention → rewriter miss.
     // forceCitationFromQuery detect Vol.X cap.Y in MESSAGE + force append se response missing.
     cleanText = forceCitationFromQuery(safeMessage, cleanText);
+
+    // iter 20 P0 — force inject canonical da SESSION CONTEXT (lastExperimentId).
+    // Iter 19 stress 100q B Memoria 60% fail short-prompt recall ("Continuiamo", "Pin?", "Componente?").
+    // forceCitationFromQuery checks ONLY message → short prompt no Vol/cap → no force inject.
+    // forceCitationFromSession check studentContext.lastExperimentId → force inject from session memory.
+    cleanText = forceCitationFromSession(studentContext?.lastExperimentId || null, cleanText);
 
     // 6a-ter. iter 14 Andrea — auto-trigger screenshot quando classifier flagga
     // `triggers_vision_chain=true` (audit P0 #4 finalmente chiuso). Andrea ricordo nanobot

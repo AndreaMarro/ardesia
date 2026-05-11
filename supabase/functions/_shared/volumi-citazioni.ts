@@ -172,6 +172,34 @@ export function forceCitationFromQuery(message: string, response: string): strin
 }
 
 /**
+ * iter 20 P0 — force inject canonical "Vol.X pag.Y" da SESSION CONTEXT (lastExperimentId).
+ * Iter 19 stress 100q B Memoria 9/15 = 60% fail short-prompt recall ("Continuiamo", "Pin?", "Componente?").
+ * forceCitationFromQuery (iter 17) checks ONLY message → short prompt no Vol/cap → no force inject.
+ * forceCitationFromSession check studentContext.lastExperimentId → force inject from session memory.
+ * Wire post forceCitationFromQuery in unlim-chat/index.ts step 6a.
+ */
+export function forceCitationFromSession(
+  lastExperimentId: string | null | undefined,
+  response: string,
+): string {
+  if (!lastExperimentId || !response || typeof response !== 'string') return response;
+  // Skip se response already canonical
+  if (/Vol\.\s*[1-3]\s+pag\.\s*\d+/i.test(response)) return response;
+  // Extract Vol + cap from lastExperimentId (v1-cap6-esp1 → vol=1 cap=6)
+  const m = lastExperimentId.match(/^v([1-3])-cap(\d{1,2})/i);
+  if (!m) return response;
+  const vol = parseInt(m[1], 10);
+  const cap = parseInt(m[2], 10);
+  const c = VOLUMI_CITAZIONI_CORE.find(x => x.vol === vol && x.cap === cap);
+  if (!c) return response;
+  // Append canonical citation at first sentence boundary
+  const canonical = `(Vol.${c.vol} pag.${c.pag})`;
+  const idx = response.search(/[.\n]/);
+  if (idx === -1) return `${response} ${canonical}`;
+  return `${response.slice(0, idx + 1)} ${canonical}${response.slice(idx + 1)}`;
+}
+
+/**
  * iter 15 — rewriter post-LLM narrative form → canonical "Vol.X pag.Y".
  * R-100 evidence iter 14: LLM cita "Volume 1 capitolo 6" / "il capitolo 5 del Volume 3"
  * (narrative form) MA NON "Vol.X pag.Y" canonical. citation_strict 0/89.
