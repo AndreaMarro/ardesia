@@ -34,6 +34,20 @@ import { classifyPrompt } from '../_shared/onniscenza-classifier.ts';
 // `cleanText` strips the tags before TTS / display (Principio Zero V3
 // preservation: tags don't pollute the user-facing line count / Vol/pag check).
 import { parseIntentTags, stripIntentTags, type IntentTag } from '../_shared/intent-parser.ts';
+// iter 27 Agent Z — safety hardcoded fallback wrap.
+// Iter 24 dim-1 LIVE prod bench: Cat C "scossa" returned 503 vuoto (GDPR
+// rischio minori 8-14 anni). Iter 25 P0-B shipped pure fallback helper.
+// Iter 27 wires it into the catch path so when the entire LLM chain
+// (Together → Gemini → Brain) returns nothing OR Promise.race timeout
+// fires on a SAFETY-relevant query, we emit the canonical 220V refusal
+// instead of HTTP 503. ZERO network. ZERO breaking change on success path.
+import { getSafetyHardcodedResponse } from '../_shared/safety-hardcoded-fallback.ts';
+// Broader Cat C safety detection: voltage_danger regex covers 220V/110V/presa
+// of `safeMessage`, but iter 24 evidence also showed "scossa" / "brucia" /
+// "elettrocuzione" / "pericoloso" / "ferito" miss the strict voltage regex.
+// Local module-private regex to AVOID coupling with VOLTAGE_DANGER_QUERY_RE
+// (line 235) — that pattern is iter 11 PATCH B owned, do not redefine here.
+const ITER27_SAFETY_BROAD_RE = /\b(scossa|scoss[ae]|elettrocuzion[ei]|brucia(?:re|to|ti|no)?|pericolo(?:so|si)?|ferit[oai]|folgora(?:re|to)?|ustion[ei])\b/i;
 // iter 38 A7 — Mistral function calling (structured output) opt-in for action prompts.
 // Replaces legacy `[INTENT:{...}]` regex parsing path on a heuristic match.
 // Falls through to legacy regex when ENABLE_INTENT_TOOLS_SCHEMA != true OR
@@ -802,6 +816,60 @@ serve(async (req: Request) => {
       }));
       result = await callBrainFallback(safeMessage, systemPrompt);
       if (!result) {
+        // iter 27 Agent Z — safety hardcoded fallback wrap.
+        // LLM chain fully exhausted (Together + Gemini + Brain all failed).
+        // For SAFETY-relevant queries (voltage_danger OR broader Cat C
+        // scossa/brucia/pericolo/ferito/elettrocuzione/folgora/ustione),
+        // GDPR Art. 8 + D.Lgs. 101/2018 mandate a warning to minors 8-14
+        // — never 503 vuoto. ZERO network — pure helper from iter 25.
+        const isSafetyRelevant =
+          VOLTAGE_DANGER_QUERY_RE.test(safeMessage) ||
+          ITER27_SAFETY_BROAD_RE.test(safeMessage);
+        if (isSafetyRelevant) {
+          const safetyFallback = getSafetyHardcodedResponse('voltage_danger');
+          saveInteraction(
+            sessionId,
+            safeExperimentId || null,
+            'safety_fallback_wrap',
+            safetyFallback.slice(0, 100),
+            'safety-hardcoded-fallback-iter27',
+            safeMessage,
+          ).catch((err) => console.warn('[Nanobot V2] Memory save error:', err));
+          saveMessageHistory(
+            sessionId,
+            safeExperimentId || null,
+            null,
+            null,
+            'safety_fallback_wrap',
+            safeMessage,
+            safetyFallback.slice(0, 100),
+            'safety-hardcoded-fallback-iter27',
+          ).catch((err) => console.warn('[Nanobot V2] MessageHistory save error:', err));
+          console.warn(JSON.stringify({
+            level: 'warn',
+            event: 'safety_hardcoded_fallback_fired',
+            source: 'safety-hardcoded-fallback-iter27',
+            llmError: llmError instanceof Error ? llmError.message : 'unknown',
+            timestamp: new Date().toISOString(),
+          }));
+          return new Response(JSON.stringify({
+            success: true,
+            response: safetyFallback,
+            source: 'safety-hardcoded-fallback-iter27',
+            dataProcessing: 'llm-chain-exhausted-safety-fallback',
+            aiProfile: activeAiProfile.id,
+            safety_fires: ['voltage_danger', 'llm_chain_exhausted'],
+            prompt_class: {
+              category: 'safety_warning',
+              skipOnniscenza: true,
+              topK: 0,
+              wordCount: safeMessage.split(/\s+/).length,
+            },
+          } satisfies ChatResponse & Record<string, unknown>), {
+            status: 200,
+            headers: getSecurityHeaders(req),
+          });
+        }
         return new Response(JSON.stringify({
           success: false,
           error: 'AI temporaneamente non disponibile. Riprova tra qualche secondo.',

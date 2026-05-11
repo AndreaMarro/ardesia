@@ -16,12 +16,13 @@
  * - Append-warning pattern (no rejection on student runtime)
  */
 
-export type Severity = 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
+export type Severity = 'CRITICAL' | 'MAJOR' | 'HIGH' | 'MEDIUM' | 'LOW' | 'NONE';
 
 export interface Violation {
   rule: string;
   severity: Severity;
   matched?: string;
+  snippet?: string;
   suggestion?: string;
 }
 
@@ -29,17 +30,29 @@ export interface ValidationResult {
   violations: Violation[];
   severity: Severity | null;
   passes: boolean;
+  telemetry?: TelemetrySignals;
+}
+
+export interface TelemetrySignals {
+  analogiaCount: number;
+  analogiaMarkers: string[];
 }
 
 export interface ValidationContext {
-  isConceptIntro?: boolean; // se true → enforce citation rule
+  isConceptIntro?: boolean; // se true → enforce citation rule (legacy iter 2)
+  requiresCitation?: boolean; // iter 27: enforce citation_vol_pag rule (volume context active)
+  isOfftopic?: boolean; // iter 27: skip citation rule for off-topic responses
+  isSafetyRefusal?: boolean; // iter 27: skip Ragazzi opener for safety refusals
+  expectedActions?: string[]; // iter 27: enforce action_tags_when_expected rule
 }
 
 const SEVERITY_RANK: Record<Severity, number> = {
-  CRITICAL: 4,
+  CRITICAL: 5,
+  MAJOR: 4,
   HIGH: 3,
   MEDIUM: 2,
   LOW: 1,
+  NONE: 0,
 };
 
 /**
@@ -60,29 +73,43 @@ function countWords(text: string): number {
  * Validate response against Principio Zero rules.
  * Latency: <5ms typical (regex-only).
  *
- * Implements 6 runtime rules:
+ * Iter 27 (2026-05-11) — PZ V3 +6 runtime rules promotion (12/12 coverage):
+ *
+ * RUNTIME RULES (12, this function):
  *   1. imperativo_docente (HIGH)
  *   2. singolare_studente (HIGH)
  *   3. max_words_120 (MEDIUM) — Andrea ricalibrazione 10/05/2026
- *   4. no_citation_concept_intro (LOW, conditional)
+ *   4. no_citation_concept_intro (LOW, conditional ctx.isConceptIntro)
  *   5. english_filler (LOW)
  *   6. chatbot_preamble (LOW)
+ *   7. plurale_ragazzi (MAJOR) — iter 27: MUST start "Ragazzi," (case-insens), skip if isSafetyRefusal
+ *   8. citation_vol_pag (MAJOR) — iter 27: when ctx.requiresCitation, MUST contain Vol.\d+ pag./cap.\d+
+ *   9. analogia (LOW telemetry-only) — iter 27: count occurrences "come una/come se/immagina", NOT MUST
+ *  10. no_verbatim_3plus_frasi (MEDIUM) — iter 27 runtime: detect 3+ consecutive verbatim block markers
+ *  11. off_topic_recognition (LOW) — iter 27 runtime: when isOfftopic, expect humble admission marker
+ *  12. action_tags_when_expected (MEDIUM) — iter 27 runtime: when expectedActions provided, MUST emit [AZIONE:*]
  *
- * Defers 6 more rules to scripts/bench/score-unlim-quality.mjs (bench-time only):
- *   - plurale_ragazzi (positive presence, fixture-dependent)
- *   - citation_vol_pag (fixture flag-based)
- *   - analogia (fixture flag-based)
- *   - no_verbatim_3plus_frasi (need RAG source diff)
- *   - synthesis_not_verbatim (need RAG sources)
- *   - off_topic_recognition (fixture scenario-based)
- *   - humble_admission (fixture scenario-based)
- *   - action_tags_when_expected (fixture metadata-based)
+ * Bench-time-only deferred (humble_admission + synthesis_not_verbatim) still in score-unlim-quality.mjs:
+ *   - humble_admission (deep-question/off-topic scenario rich check)
+ *   - synthesis_not_verbatim (requires full RAG source corpus diff)
+ *
+ * Iter 27 severity model:
+ *   - MAJOR triggers console.warn JSON telemetry (event=pz_runtime_violation_major)
+ *   - MAJOR NON-BLOCKING (Andrea iter 28 ratify decide hard-block)
+ *   - analogia LOW-telemetry: count-only, NO violation push
+ *
+ * @param response — LLM raw response text
+ * @param ctx — optional context (backward-compat, all keys optional)
  */
 export function validatePrincipioZero(
   response: string,
   ctx: ValidationContext = {},
 ): ValidationResult {
   const violations: Violation[] = [];
+  const telemetry: TelemetrySignals = {
+    analogiaCount: 0,
+    analogiaMarkers: [],
+  };
 
   // Rule 1: imperativo_docente (HIGH)
   // Frasi che iniziano con verbo imperativo singolare diretto al docente.
@@ -164,6 +191,131 @@ export function validatePrincipioZero(
     });
   }
 
+  // ────────────────────────────────────────────────────────────────────
+  // Iter 27 — PZ V3 +6 runtime rules promotion (bench → runtime)
+  // ────────────────────────────────────────────────────────────────────
+
+  // Rule 7: plurale_ragazzi (MAJOR) — iter 27
+  // Response MUST start with "Ragazzi" (case-insens). Skip if isSafetyRefusal.
+  // Note: enforceItalianK12Opener auto-prepends "Ragazzi," but validator measures
+  // raw LLM compliance as MAJOR telemetry signal.
+  if (!ctx.isSafetyRefusal) {
+    const cleanedForOpener = stripTags(response).replace(/^\s+/, '');
+    if (cleanedForOpener.length > 0) {
+      const opensWithRagazzi = /^ragazz[ie]\b/i.test(cleanedForOpener);
+      if (!opensWithRagazzi) {
+        const v: Violation = {
+          rule: 'plurale_ragazzi',
+          severity: 'MAJOR',
+          snippet: cleanedForOpener.slice(0, 40),
+          suggestion: 'Inizia SEMPRE con "Ragazzi," (plurale inclusivo PRINCIPIO ZERO V3)',
+        };
+        violations.push(v);
+        // Telemetry signal (non-blocking iter 27, Andrea iter 28 ratify hard-block)
+        try {
+          console.warn(
+            JSON.stringify({
+              event: 'pz_runtime_violation_major',
+              rule: v.rule,
+              snippet: v.snippet,
+              ts: Date.now(),
+            }),
+          );
+        } catch {
+          // defensive — never throw from logging
+        }
+      }
+    }
+  }
+
+  // Rule 8: citation_vol_pag (MAJOR conditional) — iter 27
+  // When ctx.requiresCitation === true AND NOT ctx.isOfftopic, response MUST contain
+  // Vol.X pag.Y OR Vol.X cap.Y citation pattern (canonical Vol/pag morphic Sense 2).
+  if (ctx.requiresCitation && !ctx.isOfftopic) {
+    const citationRe = /Vol\.?\s*\d+\s*(?:pag|cap)\.?\s*\d+/i;
+    const hasCitation = citationRe.test(response);
+    if (!hasCitation) {
+      const v: Violation = {
+        rule: 'citation_vol_pag',
+        severity: 'MAJOR',
+        suggestion: 'Cita SEMPRE Vol.X pag.Y o Vol.X cap.Y quando contesto volume attivo',
+      };
+      violations.push(v);
+      try {
+        console.warn(
+          JSON.stringify({
+            event: 'pz_runtime_violation_major',
+            rule: v.rule,
+            requiresCitation: true,
+            ts: Date.now(),
+          }),
+        );
+      } catch {
+        // defensive
+      }
+    }
+  }
+
+  // Rule 9: analogia (LOW telemetry-only) — iter 27
+  // Andrea iter 5/10/2026 unified mandate: analogie OPZIONALI. Count occurrences
+  // ONLY for telemetry signal — NEVER push a violation.
+  const analogiaMarkers = ['come una', 'come un ', 'come se', 'immagina', 'è come '];
+  for (const marker of analogiaMarkers) {
+    const re = new RegExp(marker.replace(/\s+/g, '\\s+'), 'gi');
+    const matches = response.match(re);
+    if (matches && matches.length > 0) {
+      telemetry.analogiaCount += matches.length;
+      telemetry.analogiaMarkers.push(marker.trim());
+    }
+  }
+
+  // Rule 10: no_verbatim_3plus_frasi (MEDIUM) — iter 27
+  // Detect 3+ consecutive sentences wrapped in «...» (verbatim block from volume).
+  // Verbatim citation OK in moderation; 3+ back-to-back violates synthesis mandate.
+  const verbatimBlocks = response.match(/«[^»]+»/g) || [];
+  if (verbatimBlocks.length >= 3) {
+    // count adjacent verbatim blocks (separated only by whitespace/punctuation)
+    const adjacentRe = /«[^»]+»[\s.,;:]*«[^»]+»[\s.,;:]*«[^»]+»/;
+    if (adjacentRe.test(response)) {
+      violations.push({
+        rule: 'no_verbatim_3plus_frasi',
+        severity: 'MEDIUM',
+        matched: `${verbatimBlocks.length} citazioni verbatim consecutive`,
+        suggestion: 'Massimo 2 citazioni «...» consecutive — sintetizza il resto',
+      });
+    }
+  }
+
+  // Rule 11: off_topic_recognition (LOW) — iter 27
+  // When ctx.isOfftopic === true, response SHOULD include humble redirect marker
+  // ("torniamo", "non è il momento", "concentriamoci", "elettronica") to acknowledge
+  // off-topic and redirect. Soft check — LOW severity (not blocking).
+  if (ctx.isOfftopic) {
+    const redirectRe = /\b(torniamo|concentriamoci|elettronica|non\s+è\s+il\s+momento|altro\s+momento|focus|argomento)\b/i;
+    if (!redirectRe.test(response)) {
+      violations.push({
+        rule: 'off_topic_recognition',
+        severity: 'LOW',
+        suggestion: 'Riconosci off-topic e redirect: "Ragazzi, torniamo all\'elettronica..."',
+      });
+    }
+  }
+
+  // Rule 12: action_tags_when_expected (MEDIUM) — iter 27
+  // When ctx.expectedActions provided (e.g. ['highlight', 'mountExperiment']), response
+  // MUST emit at least one [AZIONE:*] tag. Onnipotenza Sense 1 mandate.
+  if (Array.isArray(ctx.expectedActions) && ctx.expectedActions.length > 0) {
+    const actionTagRe = /\[AZIONE:[^\]]+\]/i;
+    if (!actionTagRe.test(response)) {
+      violations.push({
+        rule: 'action_tags_when_expected',
+        severity: 'MEDIUM',
+        matched: `expected: ${ctx.expectedActions.join(', ')}`,
+        suggestion: 'Emetti tag [AZIONE:tool] quando contesto richiede dispatch ClawBot',
+      });
+    }
+  }
+
   // Compute max severity
   let maxSeverity: Severity | null = null;
   let maxRank = 0;
@@ -179,6 +331,7 @@ export function validatePrincipioZero(
     violations,
     severity: maxSeverity,
     passes: violations.length === 0,
+    telemetry,
   };
 }
 

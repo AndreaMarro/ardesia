@@ -236,10 +236,16 @@ function AppRouter() {
     }
 
     // Lavagna — nuova esperienza workspace
+    // iter 27 P0 SURGICAL FIX (Agent X 94/94 esperimenti BROKEN evidence brutale):
+    // pre-fix: getExpFromHash() consumed solo `#prova` route, `#lavagna` IGNORAVA `?exp=` query param.
+    // Deep-link `#lavagna?exp=v1-cap6-esp1` arrivava in LavagnaShell senza prop initialExperimentId
+    // → mount engine non riceveva contesto → picker default + 0 componenti rendered + 0 Vol/pag citation.
+    // Sblocca 94/94 esperimenti accessibili da deep-link Playwright sweep + Andrea iter 21+ mandate carryover.
     if (currentPage === 'lavagna' || currentPage === 'tutor') {
+        const deepLinkExp = getExpFromHash();
         return (
             <Suspense fallback={<LoadingFallback />}>
-                <LavagnaShell />
+                <LavagnaShell initialExperimentId={deepLinkExp} />
             </Suspense>
         );
     }

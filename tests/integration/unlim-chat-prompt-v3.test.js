@@ -78,7 +78,8 @@ describe('unlim-chat prompt v3 wire-up — RED phase (Sprint S iter 2 Task A)', 
     const llmResponse = 'Distribuisci il LED ai ragazzi.';
     const result = validatePrincipioZero(llmResponse);
     expect(result.violations.length).toBeGreaterThan(0);
-    expect(['CRITICAL', 'HIGH']).toContain(result.severity);
+    // Iter 27: MAJOR severity added (plurale_ragazzi MAJOR + imperativo_docente HIGH).
+    expect(['CRITICAL', 'MAJOR', 'HIGH']).toContain(result.severity);
     expect(result.passes).toBe(false);
   });
 
@@ -154,7 +155,8 @@ describe('unlim-chat prompt v3 wire-up — RED phase (Sprint S iter 2 Task A)', 
       expect(v).toHaveProperty('rule');
       expect(typeof v.rule).toBe('string');
       expect(v).toHaveProperty('severity');
-      expect(['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']).toContain(v.severity);
+      // Iter 27: MAJOR tier added between CRITICAL and HIGH.
+      expect(['CRITICAL', 'MAJOR', 'HIGH', 'MEDIUM', 'LOW']).toContain(v.severity);
     }
   });
 });
