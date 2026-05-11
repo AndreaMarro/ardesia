@@ -11,6 +11,7 @@ import useIsMobile from './hooks/useIsMobile';
 import useOnlineStatus from './hooks/useOnlineStatus';
 import { startSyncInterval, stopSyncInterval } from './services/supabaseSync';
 import { warmupRender } from './services/api';
+import { getExpFromHash } from './utils/hashUtils';
 
 import RequireAuth from './components/auth/RequireAuth';
 import RequireLicense from './components/auth/RequireLicense';
@@ -79,12 +80,9 @@ function getPageFromHash() {
     return VALID_HASHES.includes(raw) ? raw : null;
 }
 
-/** Extract ?exp=xxx from hash for deep-linking experiments */
-function getExpFromHash() {
-    const hash = window.location.hash;
-    const match = hash.match(/[?&]exp=([^&]+)/);
-    return match ? decodeURIComponent(match[1]) : null;
-}
+// iter 30 P2.3 (Agent T tech-debt P0-3) — getExpFromHash extracted to src/utils/hashUtils.js
+// Was duplicated here + src/components/lavagna/LavagnaShell.jsx:917 (iter 28 hashchange listener)
+// Now single source of truth via import — drift prevented.
 
 /** Dashboard-v2 live flag + teacher + range from hash query (E2E spec 15). */
 function getDashboardV2Params() {

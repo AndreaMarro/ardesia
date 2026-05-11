@@ -26,6 +26,7 @@ import MascotPresence from './MascotPresence';
 import ErrorToast from './ErrorToast';
 import { soundTick, soundPlay, soundPause } from './lavagnaSounds';
 import { buildClassProfile, getNextLessonSuggestion } from '../../services/classProfile';
+import { getExpFromHash } from '../../utils/hashUtils';
 import { HandWaveIcon, PartyIcon, FlaskIcon } from '../common/ElabIcons';
 import useOverlayQueue, { markOverlayDismissed } from '../../hooks/useOverlayQueue';
 import { isWakeWordSupported, startWakeWordListener, stopWakeWordListener } from '../../services/wakeWord';
@@ -914,10 +915,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // (will retry on next hashchange), skip if no `?exp=` (graceful).
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    function getExpFromHash() {
-      const m = window.location.hash.match(/[?&]exp=([^&]+)/);
-      return m ? decodeURIComponent(m[1]) : null;
-    }
+    // iter 30 P2.3 (Agent T tech-debt P0-3) — getExpFromHash imported from utility module.
+    // Was duplicated here + src/App.jsx:83 — single source prevents drift iter 27 P0 fix + iter 28 hashchange.
     function handleHashChange() {
       const newExpId = getExpFromHash();
       if (!newExpId) return;
