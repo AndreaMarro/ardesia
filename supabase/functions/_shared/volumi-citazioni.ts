@@ -147,6 +147,31 @@ export function lookupCitazioneByCapitolo(vol: number, cap: number): VolumeCitaz
 }
 
 /**
+ * iter 17 — force inject canonical "Vol.X pag.Y" da QUERY (non solo da response).
+ * R-100 evidence iter 14: Q1 LED Vol.1 cap.6 query → response solo "verso giusto + 470 Ohm" no narrative.
+ * rewriteCitationToCanonical miss perché response NON contains "Volume X capitolo Y".
+ * forceCitationFromQuery detect Vol.X cap.Y in MESSAGE + force append "(Vol.X pag.Y)" se response missing.
+ * Wire post-rewriteCitationToCanonical in unlim-chat per coverage 100% Vol/cap-aware queries.
+ */
+export function forceCitationFromQuery(message: string, response: string): string {
+  if (!message || !response || typeof message !== 'string' || typeof response !== 'string') return response;
+  // Skip se response already canonical
+  if (/Vol\.\s*[1-3]\s+pag\.\s*\d+/i.test(response)) return response;
+  // Detect Vol.X cap.Y in MESSAGE (query)
+  const m = message.match(/\b(?:vol(?:ume)?\.?\s*)([1-3])[,\s]+(?:cap(?:itolo)?\.?\s*)(\d{1,2})\b/i);
+  if (!m) return response;
+  const vol = parseInt(m[1], 10);
+  const cap = parseInt(m[2], 10);
+  const c = VOLUMI_CITAZIONI_CORE.find(x => x.vol === vol && x.cap === cap);
+  if (!c) return response;
+  // Append canonical inline at first sentence boundary
+  const canonical = `(Vol.${c.vol} pag.${c.pag})`;
+  const idx = response.search(/[.\n]/);
+  if (idx === -1) return `${response} ${canonical}`;
+  return `${response.slice(0, idx + 1)} ${canonical}${response.slice(idx + 1)}`;
+}
+
+/**
  * iter 15 — rewriter post-LLM narrative form → canonical "Vol.X pag.Y".
  * R-100 evidence iter 14: LLM cita "Volume 1 capitolo 6" / "il capitolo 5 del Volume 3"
  * (narrative form) MA NON "Vol.X pag.Y" canonical. citation_strict 0/89.

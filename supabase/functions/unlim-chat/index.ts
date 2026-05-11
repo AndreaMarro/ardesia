@@ -15,7 +15,7 @@ import { checkRateLimitPersistent, validateChatInput, sanitizeMessage, sanitizeC
 import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.ts';
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
 import { getCapitoloByExperimentId, buildCapitoloPromptFragment, inferCapitoloFromMessage, buildCapitoloSummaryFragment } from '../_shared/capitoli-loader.ts';
-import { buildCitazioneFragment, rewriteCitationToCanonical } from '../_shared/volumi-citazioni.ts';
+import { buildCitazioneFragment, rewriteCitationToCanonical, forceCitationFromQuery } from '../_shared/volumi-citazioni.ts';
 import { validatePrincipioZero, enforceItalianK12Opener } from '../_shared/principio-zero-validator.ts';
 // iter 11 P0 — Andrea mandate: 10 paletti runtime checkContentSafety post-LLM.
 // Audit iter 11 backend trovò content-safety-guard.ts (306 LOC) DEAD CODE non wired.
@@ -780,6 +780,11 @@ serve(async (req: Request) => {
     // R-100 evidence iter 14: LLM cita narrative form 100% volte, mai canonical strict.
     // Detect "Volume X capitolo Y" / "il capitolo Y del Volume X" → append "(Vol.X pag.Y)".
     cleanText = rewriteCitationToCanonical(cleanText);
+
+    // iter 17 — force inject canonical da QUERY (non solo da response narrative).
+    // Q1 LED Vol.1 cap.6 evidence: LLM rephrase analogia senza Vol/cap mention → rewriter miss.
+    // forceCitationFromQuery detect Vol.X cap.Y in MESSAGE + force append se response missing.
+    cleanText = forceCitationFromQuery(safeMessage, cleanText);
 
     // 6a-ter. iter 14 Andrea — auto-trigger screenshot quando classifier flagga
     // `triggers_vision_chain=true` (audit P0 #4 finalmente chiuso). Andrea ricordo nanobot
