@@ -211,19 +211,8 @@ export function validatePrincipioZero(
           suggestion: 'Inizia SEMPRE con "Ragazzi," (plurale inclusivo PRINCIPIO ZERO V3)',
         };
         violations.push(v);
-        // Telemetry signal (non-blocking iter 27, Andrea iter 28 ratify hard-block)
-        try {
-          console.warn(
-            JSON.stringify({
-              event: 'pz_runtime_violation_major',
-              rule: v.rule,
-              snippet: v.snippet,
-              ts: Date.now(),
-            }),
-          );
-        } catch {
-          // defensive — never throw from logging
-        }
+        // iter 32 L1 — sampled log 10% + counter (was 100% emit, R5 load ~50 logs/run).
+        logPzViolationSampled('pz_runtime_violation_major', { rule: v.rule, snippet: v.snippet });
       }
     }
   }
@@ -241,18 +230,8 @@ export function validatePrincipioZero(
         suggestion: 'Cita SEMPRE Vol.X pag.Y o Vol.X cap.Y quando contesto volume attivo',
       };
       violations.push(v);
-      try {
-        console.warn(
-          JSON.stringify({
-            event: 'pz_runtime_violation_major',
-            rule: v.rule,
-            requiresCitation: true,
-            ts: Date.now(),
-          }),
-        );
-      } catch {
-        // defensive
-      }
+      // iter 32 L1 — sampled log 10% + counter
+      logPzViolationSampled('pz_runtime_violation_major', { rule: v.rule, requiresCitation: true });
     }
   }
 
@@ -363,6 +342,38 @@ export function validatePrincipioZero(
  * Whitespace + line collapse NOT included — applied once at end of strip (post-loop).
  * Each pattern unit-testable in isolation (helper export `LEAKED_CONTEXT_PATTERNS`).
  */
+/**
+ * iter 32 L1 code-review fix — PZ MAJOR violation log rate-limit.
+ *
+ * Pre-fix: every MAJOR violation emitted console.warn (R5 load ~50 logs/run).
+ * Post-fix: 10% sample log + module-scope counter exposed via `getPzViolationCounts()`.
+ * Trade-off: per-violation full visibility lost, aggregate counts preserved + 90% log noise reduction.
+ * Sample threshold tunable via env `PZ_LOG_SAMPLE_RATE` (default 0.1 = 10%).
+ */
+const pzViolationCounts = new Map<string, number>();
+
+function logPzViolationSampled(event: string, payload: Record<string, unknown>): void {
+  const rule = String(payload.rule || 'unknown');
+  pzViolationCounts.set(rule, (pzViolationCounts.get(rule) || 0) + 1);
+  try {
+    const envRate = typeof Deno !== 'undefined' ? Deno.env.get('PZ_LOG_SAMPLE_RATE') : undefined;
+    const sampleRate = envRate ? parseFloat(envRate) : 0.1;
+    if (Math.random() < sampleRate) {
+      console.warn(JSON.stringify({ event, ...payload, ts: Date.now(), counter: pzViolationCounts.get(rule) }));
+    }
+  } catch {
+    // defensive — never throw from logging
+  }
+}
+
+export function getPzViolationCounts(): Record<string, number> {
+  return Object.fromEntries(pzViolationCounts.entries());
+}
+
+export function resetPzViolationCounts(): void {
+  pzViolationCounts.clear();
+}
+
 export const LEAKED_CONTEXT_PATTERNS: RegExp[] = [
   // Section A — bracket tags /gi case-insensitive (LLM emette case-mixed)
   /\[MEMORIA STUDENTE[^\]]*\]/gi,

@@ -429,27 +429,36 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // così click "Lavagna libera" attiva freeMode SOLO per quella sessione, non
   // perpetuamente. Senza clear, ogni successiva visita #lavagna restava bloccata
   // in freeMode finché cache pulita. Pattern read-once safe legacy migration-friendly.
+  //
+  // iter 32 M8 code-review fix React 19 strict-mode:
+  // useState initializer è PURE READ-ONLY (NO side effects). Side effects (localStorage.remove + delete window prop)
+  // moved to useEffect con freeModeConsumeRef one-shot guard. React 19 strict-mode safe (double-invoke initializer
+  // returna identical value senza mutazione globale state).
   const [freeMode, setFreeMode] = useState(() => {
     try {
       const rawHash = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
-      if (rawHash === 'lavagna-solo') {
-        try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
-        return true;
-      }
-      if (window.__ELAB_LAVAGNA_LAUNCH_MODE === 'solo') {
-        try { delete window.__ELAB_LAVAGNA_LAUNCH_MODE; } catch { window.__ELAB_LAVAGNA_LAUNCH_MODE = null; }
-        try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
-        return true;
-      }
+      if (rawHash === 'lavagna-solo') return true;
+      if (window.__ELAB_LAVAGNA_LAUNCH_MODE === 'solo') return true;
       const flag = window.localStorage.getItem('elab_lavagna_launch_mode');
-      if (flag === 'solo') {
-        // Consume flag — successivo mount torna al default false
-        try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
-        return true;
-      }
+      if (flag === 'solo') return true;
       return false;
     } catch { return false; }
   });
+  const freeModeConsumeRef = useRef(false);
+  useEffect(() => {
+    if (freeModeConsumeRef.current) return;
+    freeModeConsumeRef.current = true;
+    if (freeMode) {
+      // Side-effect contained: consume flags post-mount (React 19 strict-mode safe via ref guard).
+      try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+      try {
+        if (typeof window.__ELAB_LAVAGNA_LAUNCH_MODE !== 'undefined') {
+          try { delete window.__ELAB_LAVAGNA_LAUNCH_MODE; } catch { window.__ELAB_LAVAGNA_LAUNCH_MODE = null; }
+        }
+      } catch { /* noop */ }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps — one-shot consume on mount only
+  }, []);
   const [isEditing, setIsEditing] = useState(false);
   const [lessonSteps, setLessonSteps] = useState([]);
   const [unlimSpeaking, setUnlimSpeaking] = useState(false);
