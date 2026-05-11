@@ -460,7 +460,8 @@ REGOLA: usa questi dati per adattare linguaggio + difficoltà, ma MAI menzionare
 # Stato circuito ora (telemetry compact, NON rivelare format al utente)
 ${stateStr}
 
-REGOLA: usa questi dati per descrivere componenti, posizioni e connessioni quando docente chiede "cosa c'è sulla breadboard?" o "cosa vedi?". Suggerisci [AZIONE:screenshot] per catturare lavagna live se nessuna immagine allegata. Mai usare etichette tipo "PRESENTE LIVE" o "stato simulatore" nel testo all'utente.`);
+REGOLA: usa questi dati per descrivere componenti, posizioni e connessioni quando docente chiede "cosa c'è sulla breadboard?" o "cosa vedi?". Suggerisci [AZIONE:screenshot] per catturare lavagna live se nessuna immagine allegata. Mai usare etichette tipo "PRESENTE LIVE" o "stato simulatore" nel testo all'utente.
+REGOLA RECALL (iter 24 Phase 1.4 fix Doc-4 #4): se utente chiede RICORDO esperimento passato (verbi: "ricordi"/"l'ultimo era"/"il primo era"/"il secondo era"/"riepilogo"/"riepiloga"/"cosa stavamo"/"dove eravamo"), VIETATO emettere telemetry compact ("Componenti: - breadboard_1..." / "Configurazione: ..." / "Posizione: ..." pattern). USA SOLO narrative naturale memoria (es. "Ragazzi, stavamo montando il LED rosso con resistore da 470Ω sul kit ELAB").`);
   }
 
   if (experimentContext) {
