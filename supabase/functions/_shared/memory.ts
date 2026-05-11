@@ -73,22 +73,20 @@ export async function loadRecentHistory(
   const client = getClient();
   if (!client) return [];
   try {
-    const { data: ctxs } = await client
-      .from('lesson_contexts')
-      .select('context_data, experiment_id, updated_at')
+    // iter 18.5 BUG FIX — usa unlim_session_memory (lesson_contexts schema mismatch + RLS recursion).
+    // Only single most-recent row per session_id (no msg-by-msg history yet — Future iter aggiunge
+    // table unlim_message_history per multi-msg context).
+    const { data: mem } = await client
+      .from('unlim_session_memory')
+      .select('last_experiment_id, last_response_preview, last_topic, updated_at')
       .eq('session_id', sessionId)
-      .order('updated_at', { ascending: false })
-      .limit(limit);
-    if (!Array.isArray(ctxs) || ctxs.length === 0) return [];
-    return ctxs
-      .map((c) => {
-        const data = (c.context_data ?? {}) as Record<string, unknown>;
-        const preview = typeof data.responsePreview === 'string' ? data.responsePreview : '';
-        const expRef = c.experiment_id ? `[${c.experiment_id}] ` : '';
-        return preview ? { role: 'assistant' as const, content: `${expRef}${preview}` } : null;
-      })
-      .filter((x): x is { role: 'assistant'; content: string } => x !== null)
-      .reverse(); // chronological order (oldest first)
+      .maybeSingle();
+    if (!mem || !mem.last_response_preview) return [];
+    const expRef = mem.last_experiment_id ? `[${mem.last_experiment_id}] ` : '';
+    return [{
+      role: 'assistant' as const,
+      content: `${expRef}${mem.last_response_preview}`,
+    }];
   } catch (err) {
     console.warn('[Memory] loadRecentHistory failed:', err);
     return [];
@@ -126,50 +124,50 @@ export async function loadStudentContext(
   if (!client) return null;
 
   try {
+    // iter 18.5 BUG FIX critical — schema diagnostic prod live:
+    //   - student_progress.session_id COLUMN does NOT exist (real PK student_id UUID FK)
+    //   - student_sessions.last_experiment_id COLUMN does NOT exist
+    //   - lesson_contexts RLS infinite recursion class_students policy
+    // memory.ts assume schema diverso → memoria UNLIM mai funzionata davvero
+    // (Andrea brutal "memoria mai esistita davvero" ROOT CAUSE).
+    // Fix: NEW table dedicated unlim_session_memory keyed session_id, bypass legacy schema.
     const { data: progress } = await client
-      .from('student_progress')
-      .select('completed_experiments, common_mistakes, level, last_experiment_id')
+      .from('unlim_session_memory')
+      .select('last_experiment_id, last_chapter, last_volume, common_mistakes, message_count, updated_at')
       .eq('session_id', sessionId)
       .order('updated_at', { ascending: false })
       .limit(1)
-      .single();
+      .maybeSingle();
 
     if (!progress) {
       return {
         completedExperiments: 0,
-        totalExperiments: 62,
+        totalExperiments: 94,
         commonMistakes: [],
         lastSession: null,
         level: 'principiante',
         currentChapter: null,
+        lastExperimentId: null,
+        currentVolume: null,
       };
     }
 
-    const { data: lastSession } = await client
-      .from('student_sessions')
-      .select('started_at')
-      .eq('session_id', sessionId)
-      .order('started_at', { ascending: false })
-      .limit(1)
-      .single();
-
-    const completed = progress.completed_experiments || [];
-    const mistakes = progress.common_mistakes || [];
-
-    const chapterMatch = progress.last_experiment_id?.match(/cap(\d+)/);
-    const currentChapter = chapterMatch ? parseInt(chapterMatch[1], 10) : null;
+    const completed: number = progress.message_count || 0;
+    const mistakes: string[] = Array.isArray(progress.common_mistakes) ? progress.common_mistakes as string[] : [];
+    const currentChapter: number | null = progress.last_chapter || null;
+    const currentVolume: number | null = progress.last_volume || null;
 
     return {
-      completedExperiments: completed.length,
-      // iter 11 P0 #7 — Andrea audit: 94 esperimenti reali (38 Vol1 + 27 Vol2 + 29 Vol3, iter 37 +2).
-      // Era hardcoded 62 → drift -32 esperimenti. CLAUDE.md "94 esperimenti in 3 volumi".
+      completedExperiments: completed,
       totalExperiments: 94,
       commonMistakes: mistakes.slice(0, 5),
-      lastSession: lastSession?.started_at || null,
-      level: completed.length < 10 ? 'principiante'
-        : completed.length < 30 ? 'intermedio'
+      lastSession: progress.updated_at || null,
+      level: completed < 10 ? 'principiante'
+        : completed < 30 ? 'intermedio'
         : 'avanzato',
       currentChapter,
+      lastExperimentId: progress.last_experiment_id || null,
+      currentVolume,
     };
   } catch (err) {
     console.warn('[Memory] Failed to load student context:', err);
@@ -204,29 +202,13 @@ export async function saveInteraction(
       effectiveExperimentId = extractVolCapFromMessage(responsePreview);
     }
 
-    // Upsert session
-    await client.from('student_sessions').upsert({
-      session_id: sessionId,
-      last_experiment_id: effectiveExperimentId,
-      updated_at: new Date().toISOString(),
-    }, { onConflict: 'session_id' });
-
-    // Save lesson context — NO raw message, only topic + response preview
-    // iter 12 fix #2: usa effectiveExperimentId (potrebbe essere extratto da responsePreview).
-    if (effectiveExperimentId) {
-      await client.from('lesson_contexts').upsert({
-        session_id: sessionId,
-        experiment_id: effectiveExperimentId,
-        context_data: {
-          topic: topicCategory,
-          messageLength: 0, // Placeholder — caller can pass actual length
-          responsePreview: responsePreview.slice(0, 100),
-          model,
-          timestamp: new Date().toISOString(),
-        },
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'session_id,experiment_id' });
-    }
+    // iter 18.5 BUG FIX critical — use unlim_session_memory dedicated table (bypass schema mismatch).
+    // Legacy student_sessions + lesson_contexts queries failed silently (schema diverso reale prod).
+    // Extract chapter + volume from effectiveExperimentId for verbatim recall msg2.
+    const chapterMatch = effectiveExperimentId?.match(/cap(\d+)/);
+    const lastChapter = chapterMatch ? parseInt(chapterMatch[1], 10) : null;
+    const volMatch = effectiveExperimentId?.match(/^v([1-3])/);
+    const lastVolume = volMatch ? parseInt(volMatch[1], 10) : null;
 
     // Detect common mistakes from AI response only (not user message)
     const mistakePatterns = [
@@ -245,22 +227,33 @@ export async function saveInteraction(
       }
     }
 
-    if (detectedMistakes.length > 0) {
+    // iter 18.5 BUG FIX critical — upsert unlim_session_memory dedicated table
+    // (bypass legacy student_progress schema mismatch + class_students RLS recursion).
+    // UNCONDITIONAL upsert quando effectiveExperimentId valido (audit iter 18.2 P0 ROOT CAUSE chiuso).
+    if (effectiveExperimentId) {
+      // Fetch existing mistakes (preserve cross-session accumulation)
       const { data: existing } = await client
-        .from('student_progress')
-        .select('common_mistakes')
+        .from('unlim_session_memory')
+        .select('common_mistakes, message_count')
         .eq('session_id', sessionId)
-        .single();
+        .maybeSingle();
 
       const allMistakes = [...new Set([
-        ...(existing?.common_mistakes || []),
+        ...((existing?.common_mistakes as string[] | null) || []),
         ...detectedMistakes,
       ])].slice(0, 10);
+      const newMessageCount = (existing?.message_count || 0) + 1;
 
-      await client.from('student_progress').upsert({
+      await client.from('unlim_session_memory').upsert({
         session_id: sessionId,
+        last_experiment_id: effectiveExperimentId,
+        last_chapter: lastChapter,
+        last_volume: lastVolume,
+        last_topic: topicCategory,
+        last_response_preview: responsePreview.slice(0, 100),
+        last_model: model,
         common_mistakes: allMistakes,
-        last_experiment_id: experimentId,
+        message_count: newMessageCount,
         updated_at: new Date().toISOString(),
       }, { onConflict: 'session_id' });
     }

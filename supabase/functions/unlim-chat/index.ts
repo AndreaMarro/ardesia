@@ -369,6 +369,17 @@ serve(async (req: Request) => {
       loadStudentContext(sessionId),
       buildRagPromise(),
     ]);
+    // iter 18.3 DEBUG — surface studentContext per diagnose memoria Q10 verbatim recall.
+    console.info(JSON.stringify({
+      level: 'info', event: 'debug_student_context',
+      sessionId: sessionId.slice(0, 12),
+      studentContext: studentContext ? {
+        lastExperimentId: studentContext.lastExperimentId || null,
+        currentChapter: studentContext.currentChapter || null,
+        currentVolume: studentContext.currentVolume || null,
+        completedExperiments: studentContext.completedExperiments,
+      } : null,
+    }));
 
     if (ragHits && Array.isArray(ragHits) && ragHits.length > 0) {
       ragContext = formatHybridContext(ragHits as Parameters<typeof formatHybridContext>[0]);

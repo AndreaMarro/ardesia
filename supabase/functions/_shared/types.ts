@@ -10,6 +10,9 @@ export interface ChatRequest {
   experimentId?: string | null;
   simulatorContext?: SimulatorContext | null;
   images?: ImageData[];
+  aiProfile?: string | null;
+  aiDepth?: 'total' | 'compact' | null;
+  unlimMode?: string | null;
 }
 
 export interface ChatResponse {
@@ -20,6 +23,7 @@ export interface ChatResponse {
   actions?: string[];
   error?: string;
   dataProcessing?: string; // GDPR transparency: which external service processed the data
+  aiProfile?: string;
 }
 
 export interface DiagnoseRequest {
@@ -81,6 +85,9 @@ export interface SimulatorContext {
   running?: boolean;
   errors?: string[];
   activeExperiment?: string;
+  mode?: string;
+  modalita?: string;
+  buildMode?: string;
 }
 
 export interface ImageData {
@@ -95,6 +102,9 @@ export interface StudentContext {
   lastSession: string | null;
   level: 'principiante' | 'intermedio' | 'avanzato';
   currentChapter: number | null;
+  // iter 18 — verbatim recall fields per memoria Q10b cross-msg
+  lastExperimentId?: string | null;
+  currentVolume?: number | null;
 }
 
 // NB (17/04/2026): modelli GA Google. I preview 3.x erano instabili (503

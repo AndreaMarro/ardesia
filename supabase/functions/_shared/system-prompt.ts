@@ -398,6 +398,7 @@ Esperimenti completati: ${studentContext.completedExperiments}/${studentContext.
 Errori frequenti: ${studentContext.commonMistakes.length > 0 ? studentContext.commonMistakes.join(', ') : 'nessuno ancora'}.
 Ultima sessione: ${studentContext.lastSession || 'prima volta!'}.
 Livello: ${studentContext.level}. Capitolo attuale: ${studentContext.currentChapter || 'non iniziato'}.
+${studentContext.lastExperimentId ? `Ultimo esperimento sessione: ${studentContext.lastExperimentId} (Vol.${studentContext.currentVolume || '?'} cap.${studentContext.currentChapter || '?'}). Se utente dice "continuiamo" / "riprendiamo" SENZA specificare esperimento, USA questo come contesto + cita Vol.X cap.Y nel messaggio.` : ''}
 REGOLA: usa questi dati per adattare linguaggio + difficoltà, ma MAI menzionare "memoria", "profilo", "livello" esplicitamente al utente. Stai dentro la conversazione naturale.`);
   }
 
