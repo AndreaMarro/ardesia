@@ -216,17 +216,34 @@ export function enforceItalianK12Opener(rawText: string): string {
   // Strip ONLY the tag (not following prose) so prose remains. Trailing
   // whitespace collapsed.
   let cleaned = rawText
-    .replace(/\[MEMORIA STUDENTE[^\]]*\]/g, '')
-    .replace(/\[NARRAZIONE LIVE[^\]]*\]/g, '')
-    .replace(/\[PRESENTE LIVE[^\]]*\]/g, '')
-    .replace(/\[CONTESTO CAPITOLO[^\]]*\]/g, '')
-    .replace(/\[STORIA SESSIONI[^\]]*\]/g, '')
-    .replace(/\[RIFERIMENTO LIBRO FISICO[^\]]*\]/g, '')
-    .replace(/\[REGIA MULTI-AI[^\]]*\]/g, '')
-    .replace(/\[PROFILO ATTIVO[^\]]*\]/g, '')
-    .replace(/\[GERARCHIA CONTESTO[^\]]*\]/g, '')
-    .replace(/\[AGENT_DECISION_JSON[^\]]*\]/g, '')
-    .replace(/\[AUTOCOSCIENZA[^\]]*\]/g, '')
+    // iter 14 — flag /gi case-insensitive (LLM emette case-mixed leak come `pROFILO ATTIVO` `rEGIA PARALLELA 3x2`)
+    .replace(/\[MEMORIA STUDENTE[^\]]*\]/gi, '')
+    .replace(/\[NARRAZIONE LIVE[^\]]*\]/gi, '')
+    .replace(/\[PRESENTE LIVE[^\]]*\]/gi, '')
+    .replace(/\[CONTESTO CAPITOLO[^\]]*\]/gi, '')
+    .replace(/\[STORIA SESSIONI[^\]]*\]/gi, '')
+    .replace(/\[RIFERIMENTO LIBRO FISICO[^\]]*\]/gi, '')
+    .replace(/\[REGIA MULTI-AI[^\]]*\]/gi, '')
+    .replace(/\[PROFILO ATTIVO[^\]]*\]/gi, '')
+    .replace(/\[GERARCHIA CONTESTO[^\]]*\]/gi, '')
+    .replace(/\[AGENT_DECISION_JSON[^\]]*\]/gi, '')
+    .replace(/\[AUTOCOSCIENZA[^\]]*\]/gi, '')
+    .replace(/\[CITAZIONE VOL[^\]]*\]/gi, '')
+    // iter 15 — strip residual leaked text patterns (LLM emette "pROFILO ATTIVO: ..." senza brackets).
+    // Relaxed regex (NO line anchors $/^$) per match mid-line leak "[REGIA MULTI-AI UNLIM] REGIA PARALLELA 3x2: ..."
+    .replace(/[a-zA-Z]?ROFILO\s+ATTIVO:?\s*[^\n]*/g, '')
+    .replace(/[a-zA-Z]?EGIA\s+(?:PARALLELA|MULTI-AI)[^\n]*/g, '')
+    .replace(/Profilo:\s+\w+[^\n]*/g, '')
+    .replace(/Ruolo:\s+[^\n]*/g, '')
+    .replace(/Modalit[aà]:\s+\w+[^\n]*/g, '')
+    .replace(/Contesto:\s+\w+[^\n]*/g, '')
+    .replace(/Budget\s+parole[^\n]*/g, '')
+    .replace(/Screenshot:\s+[^\n]*/g, '')
+    // Vol1 fast/deep, Vol2 fast/deep, Vol3 fast/deep pattern leak
+    .replace(/Vol[123]\s+(?:fast|deep)\/?(?:fast|deep)?[,\s]*/gi, '')
+    // "Scegli mentalmente la corsia giusta..." leak directive
+    .replace(/Scegli\s+mentalmente[^\n]*/g, '')
+    .replace(/non\s+mostrare\s+la\s+regia[^\n]*/g, '')
     // iter 11 P0 — live smoke prod Q9 220V leaked these tags. Strip RAG/Wiki/Hybrid surfaces.
     .replace(/\[CONOSCENZA DAI VOLUMI ELAB[^\]]*\]/gi, '')
     // iter 11 PATCH B — generic CONTESTO catch-all (ONNISCENZA + ATTUALE + CAPITOLO + altre varianti)

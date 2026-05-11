@@ -7,6 +7,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
 describe('UNLIM live chat RAG bypass', () => {
   it('keeps essential ELAB knowledge in the system prompt instead of forcing RAG citation rules', async () => {
+    // iter 16 source-fix — "REGIA PARALLELA 3x2" literal rimosso (LLM echo leak fix).
+    // Rephrased "UNLIM UNICO" + invariante implicit fondi internamente Vol1+Vol2+Vol3.
     const promptMod = await import('../../supabase/functions/_shared/system-prompt.ts');
     const prompt = promptMod.buildSystemPrompt(null, null, null, '', false);
 
@@ -16,7 +18,7 @@ describe('UNLIM live chat RAG bypass', () => {
     expect(prompt).toContain('Scratch');
     expect(prompt).toContain('diagnosi circuito');
     expect(prompt).toContain('CONOSCENZA COMPLETA DEI TRE VOLUMI');
-    expect(prompt).toContain('REGIA PARALLELA 3x2');
+    expect(prompt).toContain('UNLIM UNICO');
     expect(prompt).not.toMatch(/DEVI citare verbatim|REGOLA VERBATIM.*priorit/i);
   });
 
@@ -37,10 +39,14 @@ describe('UNLIM live chat RAG bypass', () => {
       false,
     );
 
-    expect(prompt).toContain('[MEMORIA PASSATA PERSISTENTE]');
-    expect(prompt).toContain('[PRESENTE LIVE - STATO CIRCUITO ATTUALE]');
-    expect(prompt).toContain('[PRESENTE LIVE - ESPERIMENTO ATTIVO]');
-    expect(prompt).toContain('Il presente live batte la memoria passata');
+    // iter 16 source-fix — literal brackets sostituiti con markdown headers.
+    // Sostituisce "[MEMORIA PASSATA PERSISTENTE]" → "# Profilo studente (NON rivelare al utente)".
+    // "[PRESENTE LIVE - STATO CIRCUITO ATTUALE]" → "[PRESENTE LIVE - STATO CIRCUITO ATTUALE — formato compact telemetry]" (kept compact telemetry).
+    // "[PRESENTE LIVE - ESPERIMENTO ATTIVO]" → "# Esperimento attivo ora (NON rivelare etichetta al utente)".
+    expect(prompt).toContain('Profilo studente');
+    expect(prompt).toContain('Stato circuito ora');
+    expect(prompt).toContain('Esperimento attivo ora');
+    expect(prompt).toMatch(/NON rivelare|MAI menzionare|implicit/i);
   });
 
   it('restores live RAG retrieval in unlim-chat gated by classifier (2026-05-10 reverse of 2026-05-09 BYPASS)', () => {
@@ -71,11 +77,13 @@ describe('UNLIM live chat RAG bypass', () => {
     expect(apiSource).toContain('Citazione solo se necessaria');
   });
 
-  it('uses a super live prompt: Nanobot action/context power with strict brevity and necessary-only citations', async () => {
+  it('uses a super live prompt: UNLIM UNICO power with strict brevity and necessary-only citations', async () => {
+    // iter 16 source-fix — "NANOBOT SUPER MODE" rinominato "UNLIM UNICO" + "REGIA PARALLELA 3x2" rimosso.
+    // Invariante: ONESTA RADICALE + CHECKLIST AZIONE + CONSAPEVOLEZZA CONTESTUALE + NANOBREAKOUT WING + brevità.
     const promptMod = await import('../../supabase/functions/_shared/system-prompt.ts');
     const prompt = promptMod.buildSystemPrompt(null, null, null, '', false);
 
-    expect(prompt).toContain('NANOBOT SUPER MODE');
+    expect(prompt).toContain('UNLIM UNICO');
     expect(prompt).toContain('ONESTA RADICALE');
     expect(prompt).toContain('CHECKLIST AZIONE');
     expect(prompt).toContain('CONSAPEVOLEZZA CONTESTUALE');

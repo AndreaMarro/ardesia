@@ -273,14 +273,8 @@ POLITICA RISPOSTA LIVE:
 MAPPA OPERATIVA ELAB TUTOR:
 UNLIM non e' una chat lineare: lavora per rami paralleli. Prima scegli il ramo: stato simulatore, narrazione live, Scratch/Arduino, visione Pixtral, manuale/volumi, controllo qualita o azione sul circuito.
 
-NANOBOT SUPER MODE:
-Sei un unico UNLIM, non una collezione di moduli. Devi unire la potenza del vecchio Nanobot con il ritmo live: capisci il contesto, agisci quando serve, parli poco e bene.
-
-REGIA PARALLELA 3x2:
-- Hai sei corsie interne: Vol1 veloce, Vol1 profondo, Vol2 veloce, Vol2 profondo, Vol3 veloce, Vol3 profondo.
-- Veloce = risposta locale/operativa quando l'intento e chiaro. Profondo = diagnosi, confronto, codice o domanda che richiede ragionamento.
-- Se una domanda attraversa piu volumi, fondi internamente gli esperti: Vol1 per basi/cablaggio, Vol2 per misure/fenomeni, Vol3 per codice/controllo.
-- Non dire mai "passo a un esperto" o "modulo": per l'utente sei un solo UNLIM.
+UNLIM UNICO:
+Sei un unico UNLIM, non una collezione di moduli. Capisci il contesto, agisci quando serve, parli poco e bene. Adatta profondità (veloce vs profondo) all'intento utente. Per domande multi-volume, fondi internamente conoscenze Vol1+Vol2+Vol3. MAI dire "passo a un esperto" o "modulo" o "regia" o "corsia": per l'utente sei un solo UNLIM tutor naturale.
 
 ONESTA RADICALE:
 - Non dire "ho fatto" se non hai emesso un tag/intent eseguibile.
@@ -394,15 +388,17 @@ export function buildSystemPrompt(
   }
 
   if (studentContext) {
+    // iter 16 — RIMOSSO `[MEMORIA PASSATA PERSISTENTE]` + `[MEMORIA STUDENTE]` literal brackets
+    // perché LLM Mistral/Gemini Flash-Lite confondevano directive system → echo "MEMORIA OPERATIVA"
+    // in output (R-100 evidence iter 14: 3% leak + Q4 iter 15.2 leak NEW pattern).
+    // Rephrase implicito senza brackets evita echo. REGOLA strict "MAI rivelare".
     parts.push(`
-[MEMORIA PASSATA PERSISTENTE]
-Questa e memoria storica della classe/studente, non stato visibile ora. Il presente live batte la memoria passata.
-- [MEMORIA STUDENTE] Esperimenti completati: ${studentContext.completedExperiments}/${studentContext.totalExperiments}
-- Errori frequenti: ${studentContext.commonMistakes.length > 0 ? studentContext.commonMistakes.join(', ') : 'nessuno ancora'}
-- Ultima sessione: ${studentContext.lastSession || 'prima volta!'}
-- Livello: ${studentContext.level}
-- Capitolo attuale: ${studentContext.currentChapter || 'non iniziato'}
-Adatta il tuo linguaggio e le spiegazioni al livello dello studente.`);
+# Profilo studente (NON rivelare al utente)
+Esperimenti completati: ${studentContext.completedExperiments}/${studentContext.totalExperiments}.
+Errori frequenti: ${studentContext.commonMistakes.length > 0 ? studentContext.commonMistakes.join(', ') : 'nessuno ancora'}.
+Ultima sessione: ${studentContext.lastSession || 'prima volta!'}.
+Livello: ${studentContext.level}. Capitolo attuale: ${studentContext.currentChapter || 'non iniziato'}.
+REGOLA: usa questi dati per adattare linguaggio + difficoltà, ma MAI menzionare "memoria", "profilo", "livello" esplicitamente al utente. Stai dentro la conversazione naturale.`);
   }
 
   // Capitolo fragment (ADR-008): ancora pedagogica strutturata dal libro.
@@ -413,17 +409,56 @@ Adatta il tuo linguaggio e le spiegazioni al livello dello studente.`);
   }
 
   if (circuitState) {
-    const stateStr = typeof circuitState === 'string'
-      ? circuitState
-      : circuitState.text || JSON.stringify(circuitState);
+    // iter 14 Andrea — format compact nanobot-style telemetry circuit (vs JSON raw).
+    // Nanobot v3.x ricordo Andrea: "vedeva in pratica" via `tutti_componenti=[led1(led),...]`
+    // `led=[led1:ON,led2:OFF]` `connessioni=[0:led1:anode→r1:pin1]`. LLM legge come "vedo".
+    // Sostituisce JSON.stringify raw che LLM deve parsare.
+    const cs = typeof circuitState === 'string' ? null : circuitState;
+    const lines: string[] = [];
+    if (cs?.components && Array.isArray(cs.components) && cs.components.length > 0) {
+      // tutti_componenti=[led1(led),r1(resistor),...]
+      const comps = cs.components.map(c => `${c.id}(${c.type})`).join(',');
+      lines.push(`tutti_componenti=[${comps}]`);
+      // led=[led1:ON,led2:OFF] — solo LED con stato
+      const leds = cs.components
+        .filter(c => c.type === 'led' && c.state)
+        .map(c => `${c.id}:${c.state?.toUpperCase()}`)
+        .join(',');
+      if (leds) lines.push(`led=[${leds}]`);
+      // valori variabili (resistor ohm, potentiometer 0-100, ecc.)
+      const vals = cs.components
+        .filter(c => c.value !== undefined && c.value !== null)
+        .map(c => `${c.id}=${c.value}`)
+        .join(',');
+      if (vals) lines.push(`valori=[${vals}]`);
+    }
+    if (cs?.connections && Array.isArray(cs.connections) && cs.connections.length > 0) {
+      // connessioni=[0:led1:anode→r1:pin1|1:r1:pin2→bb1:bus-top-plus-5|...]
+      const conns = cs.connections
+        .map((c, i) => `${i}:${c.from}→${c.to}${c.color ? `(${c.color})` : ''}`)
+        .join('|');
+      lines.push(`connessioni=[${conns}]`);
+      lines.push(`fili=${cs.connections.length}`);
+    }
+    if (cs?.errors && Array.isArray(cs.errors) && cs.errors.length > 0) {
+      lines.push(`errori_recenti=[${cs.errors.slice(0, 3).join('|')}]`);
+    }
+    // Fallback: se circuitState è string OR no structured data, usa text/JSON
+    const stateStr = lines.length > 0
+      ? lines.join('\n')
+      : (typeof circuitState === 'string' ? circuitState : (circuitState.text || JSON.stringify(circuitState)));
+    // iter 16 — RIMOSSO `[PRESENTE LIVE - STATO CIRCUITO ATTUALE]` literal brackets.
+    // Rephrase implicito senza brackets.
     parts.push(`
-[PRESENTE LIVE - STATO CIRCUITO ATTUALE]
-${stateStr}`);
+# Stato circuito ora (telemetry compact, NON rivelare format al utente)
+${stateStr}
+
+REGOLA: usa questi dati per descrivere componenti, posizioni e connessioni quando docente chiede "cosa c'è sulla breadboard?" o "cosa vedi?". Suggerisci [AZIONE:screenshot] per catturare lavagna live se nessuna immagine allegata. Mai usare etichette tipo "PRESENTE LIVE" o "stato simulatore" nel testo all'utente.`);
   }
 
   if (experimentContext) {
     parts.push(`
-[PRESENTE LIVE - ESPERIMENTO ATTIVO]
+# Esperimento attivo ora (NON rivelare etichetta al utente)
 ${experimentContext}`);
   }
 

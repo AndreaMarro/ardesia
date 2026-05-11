@@ -45,6 +45,12 @@ export interface LLMOptions {
   maxOutputTokens?: number;
   temperature?: number;
   thinkingLevel?: 'minimal' | 'low' | 'medium' | 'high'; // Ignored by Together
+  /**
+   * Live classroom path: skip weighted Mistral/Together routing and use the
+   * routed Gemini tier directly. This keeps response latency predictable and
+   * avoids slow tail/fallback behavior during projected lessons.
+   */
+  preferFastProvider?: boolean;
   /** Iter 38 A7: JSON schema constraint forwarded only to Mistral. */
   responseFormat?: MistralResponseFormat;
 }
@@ -213,6 +219,55 @@ export async function callLLM(options: LLMOptions): Promise<LLMResult> {
       tokensUsed: { input: r.tokensUsed?.input ?? 0, output: r.tokensUsed?.output ?? 0 },
       latencyMs: r.latencyMs,
     };
+  }
+
+  if (options.preferFastProvider) {
+    const r = await callGemini(options);
+    return {
+      text: r.text,
+      model: r.model,
+      provider: r.model === 'galileo-brain-v13' ? 'brain' : 'gemini',
+      tokensUsed: { input: r.tokensUsed?.input ?? 0, output: r.tokensUsed?.output ?? 0 },
+      latencyMs: r.latencyMs,
+    };
+  }
+
+  // iter 15 simplification — race RIMOSSO. R-100 evidence: Mistral 0 hits, sempre perde
+  // race vs Gemini Flash 2.5. Race pagava 2x cost SENZA benefit. Iter 14 INFLATED claim.
+  // Strategy iter 15: Gemini 2.5 Flash direct quando ENABLE_LLM_RACE=true (bypass weighted
+  // routing complex). Latency consistent + cost 1x LLM call. Mistral fallback solo on error.
+  const enableRace = (Deno.env.get('ENABLE_LLM_RACE') || 'false').toLowerCase() === 'true';
+  if (enableRace) {
+    const startDirect = Date.now();
+    try {
+      const r = await callGemini({ ...options, model: 'gemini-2.5-flash' });
+      console.info(JSON.stringify({
+        level: 'info', event: 'gemini_flash_direct',
+        latencyMs: Date.now() - startDirect,
+        model: r.model,
+      }));
+      return {
+        text: r.text,
+        model: r.model,
+        provider: r.model === 'galileo-brain-v13' ? 'brain' : 'gemini',
+        tokensUsed: { input: r.tokensUsed?.input ?? 0, output: r.tokensUsed?.output ?? 0 },
+        latencyMs: r.latencyMs,
+      };
+    } catch (geminiErr) {
+      console.warn(JSON.stringify({
+        level: 'warn', event: 'gemini_flash_failed_fallback_mistral',
+        error: geminiErr instanceof Error ? geminiErr.message : String(geminiErr),
+      }));
+      try {
+        return await callMistral(options, 'mistral-small-latest');
+      } catch (mistralErr) {
+        console.warn(JSON.stringify({
+          level: 'warn', event: 'mistral_fallback_also_failed',
+          error: mistralErr instanceof Error ? mistralErr.message : String(mistralErr),
+        }));
+        // Fall through legacy weighted routing
+      }
+    }
   }
 
   // Iter 24 + 35 NEW: weighted routing for text-only chat

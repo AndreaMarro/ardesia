@@ -79,6 +79,58 @@ export function listAllCapitoli(): Capitolo[] {
   return bundle.capitoli;
 }
 
+/**
+ * iter 14 Andrea — infer Capitolo from user message regex when experimentId missing.
+ * Pattern: "Vol.X cap.Y" / "Volume X capitolo Y" / "Vol.X cap.Y esp.K".
+ * Returns first matching Capitolo OR null. Used by unlim-chat to ALWAYS inject
+ * Vol/cap context when classifier category=citation_vol_pag (audit P0 #9 fix).
+ */
+export function inferCapitoloFromMessage(message: string): Capitolo | null {
+  if (!message || typeof message !== 'string') return null;
+  // Pattern volume.X cap.Y [esp.K]
+  const m = message.match(/\bvol(?:ume)?\.?\s*([1-3])\s+cap(?:itolo)?\.?\s*(\d{1,2})(?:\s+esp(?:erimento)?\.?\s*(\d{1,2}))?/i);
+  if (!m) return null;
+  const vol = parseInt(m[1], 10);
+  const cap = parseInt(m[2], 10);
+  const esp = m[3] ? parseInt(m[3], 10) : null;
+  // Try exact experiment ID first
+  if (esp) {
+    const expId = `v${vol}-cap${cap}-esp${esp}`;
+    const found = getCapitoloByExperimentId(expId);
+    if (found) return found.capitolo;
+  }
+  // Fallback: capitolo level (any experiment in that chapter, OR theory capitolo)
+  return bundle.capitoli.find(c => c.volume === vol && c.capitolo === cap) ?? null;
+}
+
+/**
+ * iter 14 Andrea — build compact Capitolo summary for system prompt inject.
+ * Format: titolo + pageStart-End + testo_classe + citazioni_volume + analogies_classe.
+ * Replaces buildCapitoloPromptFragment for inferred Capitolo (no experimentId).
+ * Max ~600 char per Capitolo to fit budget.
+ */
+export function buildCapitoloSummaryFragment(cap: Capitolo | null): string {
+  if (!cap) return '';
+  const lines: string[] = [];
+  lines.push(`[CAPITOLO RICONOSCIUTO — ${cap.titolo} (Vol.${cap.volume} pag.${cap.pageStart}-${cap.pageEnd})]`);
+  if (cap.theory?.testo_classe) {
+    lines.push(`Testo classe: ${cap.theory.testo_classe.slice(0, 200)}`);
+  }
+  if (cap.theory?.citazioni_volume?.length > 0) {
+    const c = cap.theory.citazioni_volume[0];
+    lines.push(`Citazione Vol.${cap.volume} pag.${c.page}: «${c.quote.slice(0, 150)}»`);
+  }
+  if (cap.theory?.analogies_classe?.length > 0) {
+    const a = cap.theory.analogies_classe[0];
+    lines.push(`Analogia: ${a.concept} → ${a.text.slice(0, 100)}`);
+  }
+  if (cap.esperimenti?.length > 0) {
+    const espTitoli = cap.esperimenti.slice(0, 3).map(e => `esp.${e.num} ${e.title_classe}`).join(', ');
+    lines.push(`Esperimenti: ${espTitoli}`);
+  }
+  return lines.join('\n');
+}
+
 export function getBonusCapitoli(): Capitolo[] {
   return bundle.capitoli.filter((c) => c.type === "bonus");
 }

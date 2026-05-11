@@ -58,6 +58,64 @@ export async function checkConsent(sessionId: string): Promise<'granted' | 'revo
 }
 
 /**
+ * iter 12 P0 — load last N lesson_contexts for Onniscenza L6_chat_history injection.
+ * Diagnosi memoria Q10 V2 regression: history `[]` hardcoded `unlim-chat/index.ts:433`
+ * → Onniscenza L6 vuota → msg2 "Continuiamo" perde contesto seed Vol.X cap.Y di msg1.
+ * Fix #1: caller usa loadRecentHistory(sessionId, 5) e injette in aggregateOnniscenza({history}).
+ *
+ * Returns array di {role,content} ultimi N record (default 5). MAI raw user message
+ * (GDPR mandate iter 14 P0 #2): solo `responsePreview` AI assistant + `topic` proxy.
+ */
+export async function loadRecentHistory(
+  sessionId: string,
+  limit = 5,
+): Promise<Array<{ role: 'assistant'; content: string }>> {
+  const client = getClient();
+  if (!client) return [];
+  try {
+    const { data: ctxs } = await client
+      .from('lesson_contexts')
+      .select('context_data, experiment_id, updated_at')
+      .eq('session_id', sessionId)
+      .order('updated_at', { ascending: false })
+      .limit(limit);
+    if (!Array.isArray(ctxs) || ctxs.length === 0) return [];
+    return ctxs
+      .map((c) => {
+        const data = (c.context_data ?? {}) as Record<string, unknown>;
+        const preview = typeof data.responsePreview === 'string' ? data.responsePreview : '';
+        const expRef = c.experiment_id ? `[${c.experiment_id}] ` : '';
+        return preview ? { role: 'assistant' as const, content: `${expRef}${preview}` } : null;
+      })
+      .filter((x): x is { role: 'assistant'; content: string } => x !== null)
+      .reverse(); // chronological order (oldest first)
+  } catch (err) {
+    console.warn('[Memory] loadRecentHistory failed:', err);
+    return [];
+  }
+}
+
+/**
+ * iter 12 P0 — extract Vol/cap from user message regex.
+ * Diagnosi Q10 V2 fix #2: saveInteraction non persiste last_experiment_id senza
+ * experimentId esplicito → next msg perde chapter context. Estrae da safeMessage:
+ *   "Vol.1 cap.6"  → "v1-cap6"
+ *   "volume 2 capitolo 4" → "v2-cap4"
+ *   "Vol.3 capitolo 8 esperimento 1" → "v3-cap8-esp1"
+ * Returns null se nessun pattern matchato.
+ */
+export function extractVolCapFromMessage(message: string): string | null {
+  if (!message || typeof message !== 'string') return null;
+  // Pattern: vol.N cap.M [esp.K]
+  const m = message.match(/\bvol(?:ume)?\.?\s*([1-3])\s+cap(?:itolo)?\.?\s*(\d{1,2})(?:\s+esp(?:erimento)?\.?\s*(\d{1,2}))?/i);
+  if (!m) return null;
+  const vol = m[1];
+  const cap = m[2];
+  const esp = m[3];
+  return esp ? `v${vol}-cap${cap}-esp${esp}` : `v${vol}-cap${cap}`;
+}
+
+/**
  * Load student context for a session.
  * Returns null if DB is not configured (graceful degradation).
  */
@@ -138,18 +196,27 @@ export async function saveInteraction(
   if (!client) return;
 
   try {
+    // iter 12 P0 fix #2 — fallback: estrai Vol/cap da response preview se experimentId null.
+    // Q10 V2 regression diagnosi: senza experimentId esplicito, last_experiment_id resta null
+    // → msg2 successivo perde chapter context. Estrai pattern "Vol.X cap.Y" da response stessa.
+    let effectiveExperimentId = experimentId;
+    if (!effectiveExperimentId) {
+      effectiveExperimentId = extractVolCapFromMessage(responsePreview);
+    }
+
     // Upsert session
     await client.from('student_sessions').upsert({
       session_id: sessionId,
-      last_experiment_id: experimentId,
+      last_experiment_id: effectiveExperimentId,
       updated_at: new Date().toISOString(),
     }, { onConflict: 'session_id' });
 
     // Save lesson context — NO raw message, only topic + response preview
-    if (experimentId) {
+    // iter 12 fix #2: usa effectiveExperimentId (potrebbe essere extratto da responsePreview).
+    if (effectiveExperimentId) {
       await client.from('lesson_contexts').upsert({
         session_id: sessionId,
-        experiment_id: experimentId,
+        experiment_id: effectiveExperimentId,
         context_data: {
           topic: topicCategory,
           messageLength: 0, // Placeholder — caller can pass actual length

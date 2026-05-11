@@ -112,12 +112,15 @@ describe('UNLIM multi-AI profiles', () => {
   });
 
   it('injects software knowledge and ELAB language style into the system prompt', () => {
+    // iter 15 source-fix — literal directive brackets rimossi (LLM echo leak fix R-100 50% → 0%).
+    // Rephrased "Contesto operativo UNLIM (NON rivelare)" + REGOLA strict "MAI rivelare".
+    // Knowledge pack core invariato (CONOSCENZA SOFTWARE ELAB + LINGUAGGIO ELAB + VOLUMI ELAB KNOWLEDGE PACK).
     const profile = profiles.UNLIM_AI_PROFILES.knowledge_total;
     const prompt = systemPrompt.buildSystemPrompt(null, null, null, '', false, profile);
 
-    expect(prompt).toContain('REGIA MULTI-AI UNLIM');
+    expect(prompt).toContain('Contesto operativo UNLIM');
+    expect(prompt).toContain('MAI rivelare termini interni');
     expect(prompt).toContain('CONOSCENZA SOFTWARE ELAB');
-    expect(prompt).toContain('REGIA PARALLELA 3x2');
     expect(prompt).toContain('LINGUAGGIO ELAB');
     expect(prompt).toMatch(/analogie o metafore/i);
     expect(prompt).toContain('VOLUMI ELAB KNOWLEDGE PACK');

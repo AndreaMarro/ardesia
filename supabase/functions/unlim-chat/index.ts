@@ -10,11 +10,12 @@ import { serve } from 'https://deno.land/std@0.208.0/http/server.ts';
 import { callLLM, callBrainFallback, getMetrics } from '../_shared/llm-client.ts';
 import { routeModel, modelDisplayName } from '../_shared/router.ts';
 import { buildSystemPrompt } from '../_shared/system-prompt.ts';
-import { loadStudentContext, saveInteraction, checkConsent } from '../_shared/memory.ts';
+import { loadStudentContext, saveInteraction, checkConsent, loadRecentHistory, extractVolCapFromMessage } from '../_shared/memory.ts';
 import { checkRateLimitPersistent, validateChatInput, sanitizeMessage, sanitizeCircuitState, validateExperimentId, validateMimeType, getCorsHeaders, getSecurityHeaders, checkBodySize, validateSessionId, verifyElabApiKey } from '../_shared/guards.ts';
 import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.ts';
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
-import { getCapitoloByExperimentId, buildCapitoloPromptFragment } from '../_shared/capitoli-loader.ts';
+import { getCapitoloByExperimentId, buildCapitoloPromptFragment, inferCapitoloFromMessage, buildCapitoloSummaryFragment } from '../_shared/capitoli-loader.ts';
+import { buildCitazioneFragment, rewriteCitationToCanonical } from '../_shared/volumi-citazioni.ts';
 import { validatePrincipioZero, enforceItalianK12Opener } from '../_shared/principio-zero-validator.ts';
 // iter 11 P0 — Andrea mandate: 10 paletti runtime checkContentSafety post-LLM.
 // Audit iter 11 backend trovò content-safety-guard.ts (306 LOC) DEAD CODE non wired.
@@ -426,11 +427,15 @@ serve(async (req: Request) => {
             }),
           };
         }
+        // iter 12 P0 fix #1 — caller history injection (audit P0 #3 chiuso).
+        // loadRecentHistory carica ultimi 5 lesson_contexts assistant messages
+        // → Onniscenza L6_chat_history popolata → memoria Q10 cross-msg PASS.
+        const recentHistory = await loadRecentHistory(sessionId, 5).catch(() => []);
         onniscenzaSnapshot = await aggregateOnniscenza({
           query: safeMessage,
           experiment_id: safeExperimentId,
           session_id: sessionId, // iter 35 fix Agent C audit: was undefined ref `safeSessionId` masked while ENABLE_ONNISCENZA off
-          history: [], // caller history injection iter 31+
+          history: recentHistory,
           supabase: supaClient,
           // iter 11 P0 #5 — Andrea audit: L3_glossario era hard-disabled (Tea 180 termini
           // esclusi del tutto). Rimuovo opt-out per riabilitare. L1 RAG resta disabled
@@ -452,8 +457,10 @@ serve(async (req: Request) => {
       : null;
 
     // Sprint S iter 2 — Task A4: resolve Capitolo from experimentId (defensive).
-    // Legacy experimentId not yet in 37-Capitoli mapping → returns null → fragment empty.
-    // buildSystemPrompt skips empty fragment, preserving legacy behavior (Task A5).
+    // iter 14 Andrea — fallback inferCapitoloFromMessage quando experimentId missing
+    // (audit P0 #9 fix). Sostituisce RAG dynamic broken con knowledge inline da
+    // capitoli.json 37 capitoli structure ricca (testo_classe + citazioni_volume +
+    // analogies_classe + esperimenti elenco). LLM cita Vol/pag verbatim sempre.
     let capitoloFragment = '';
     if (safeExperimentId) {
       try {
@@ -466,6 +473,34 @@ serve(async (req: Request) => {
           error: capErr instanceof Error ? capErr.message : 'unknown',
         }));
         capitoloFragment = '';
+      }
+    }
+    // iter 14 fallback — infer Capitolo da safeMessage regex Vol.X cap.Y
+    if (!capitoloFragment) {
+      try {
+        const inferred = inferCapitoloFromMessage(safeMessage);
+        if (inferred) {
+          // capitoli.json ha 0/37 citazioni populated — fallback a volumi-citazioni hardcoded
+          // 30 capitoli core con bookText verbatim + analogia + errori_comuni.
+          const citazione = buildCitazioneFragment(inferred.volume, inferred.capitolo ?? 0);
+          if (citazione) {
+            capitoloFragment = citazione;
+          } else {
+            capitoloFragment = buildCapitoloSummaryFragment(inferred);
+          }
+          console.info(JSON.stringify({
+            level: 'info', event: 'capitolo_inferred',
+            volume: inferred.volume,
+            capitolo: inferred.capitolo,
+            citazione_hardcoded: !!citazione,
+            messagePreview: safeMessage.slice(0, 60),
+          }));
+        }
+      } catch (inferErr) {
+        console.warn(JSON.stringify({
+          level: 'warn', event: 'capitolo_infer_error',
+          error: inferErr instanceof Error ? inferErr.message : 'unknown',
+        }));
       }
     }
 
@@ -741,6 +776,26 @@ serve(async (req: Request) => {
     // Idempotent. Live r5-042 + andrea-screenshot-comemai catastrophic fix.
     cleanText = enforceItalianK12Opener(cleanText);
 
+    // iter 15 — rewrite citation narrative → canonical Vol.X pag.Y.
+    // R-100 evidence iter 14: LLM cita narrative form 100% volte, mai canonical strict.
+    // Detect "Volume X capitolo Y" / "il capitolo Y del Volume X" → append "(Vol.X pag.Y)".
+    cleanText = rewriteCitationToCanonical(cleanText);
+
+    // 6a-ter. iter 14 Andrea — auto-trigger screenshot quando classifier flagga
+    // `triggers_vision_chain=true` (audit P0 #4 finalmente chiuso). Andrea ricordo nanobot
+    // "capiva quando fare screenshot" via VISION_REQUEST_RE pattern (guarda lavagna /
+    // vedi circuito / controlla breadboard). Append [AZIONE:screenshot] alla risposta
+    // SOLO se nessuna immagine già allegata (hasImages=false) e classifier ha detected.
+    // Frontend dispatcher iter 36 IntentsDispatcher consuma azione → captureScreenshot live.
+    if (promptClass.triggers_vision_chain && !hasImages && !cleanText.includes('[AZIONE:screenshot]')) {
+      cleanText = `${cleanText}\n[AZIONE:screenshot]`;
+      console.info(JSON.stringify({
+        level: 'info', event: 'auto_trigger_screenshot',
+        category: promptClass.category,
+        wordCount: promptClass.wordCount,
+      }));
+    }
+
     // 6a-ter. iter 11 P0 — Andrea mandate paletti: wire checkContentSafety post-enforcer.
     // 10 rules runtime: volgari/off-topic/220V/privacy minori/GDPR Art.8/hallucination/citation verbatim.
     // Pre-fix audit: content-safety-guard.ts (306 LOC) DEAD CODE 0 callsites.
@@ -811,10 +866,25 @@ serve(async (req: Request) => {
     // PREVIOUSLY blocked chat response up to 3s waiting TTS render (Promise.race).
     // NOW return chat text IMMEDIATELY + frontend fetches TTS audio async via
     // separate /unlim-tts call when needed. Effect: -3s perceived latency.
-    // 7. Save interaction to memory (async, non-blocking)
+    // 7. Save interaction to memory.
     const topicCategory = safeExperimentId || 'general';
-    saveInteraction(sessionId, safeExperimentId || null, topicCategory, cleanText.slice(0, 100), result.model)
-      .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+    // iter 12 P0 fix #2 — extract Vol/cap from user message as fallback experimentId.
+    // Q10 memoria diagnosi: msg1 "Stiamo facendo Vol.1 cap.6" senza experimentId esplicito
+    // → last_experiment_id null → msg2 perde context. Estrai da safeMessage prima.
+    const fallbackExpId = safeExperimentId || extractVolCapFromMessage(safeMessage) || null;
+    // iter 13 P0 race-cond fix — V4 live smoke Q10b "Continuiamo" 2-3s gap mostrava
+    // memoria FAIL: saveInteraction async non committed prima di Q10b read.
+    // Await sync save quando experimentId disponibile (recall-relevant), altrimenti
+    // fire-and-forget (chit_chat/offtopic non-critical). Trade-off ~50-100ms latency
+    // Q10a-style msg1, ma Q10b read garantito.
+    const isMemoryRelevant = fallbackExpId !== null && cleanText.length > 30;
+    if (isMemoryRelevant) {
+      await saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model)
+        .catch(err => console.warn('[Nanobot V2] Memory save error (sync):', err));
+    } else {
+      saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model)
+        .catch(err => console.warn('[Nanobot V2] Memory save error (async):', err));
+    }
 
     const audioUrl: string | null = null; // decoupled — frontend fetches separately
 
