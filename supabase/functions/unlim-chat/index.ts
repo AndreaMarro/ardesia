@@ -253,9 +253,11 @@ serve(async (req: Request) => {
     // iter 11 PATCH B — PRE-LLM off-topic detector (matematica/aritmetica/capitali/sport/cinema/etc.)
     // Live smoke Q8 "Quanto fa 2+2?" → UNLIM rispondeva "Fa 4." senza redirect ELAB.
     // Hard-redirect pre-LLM con plurale Ragazzi + invito kit ELAB.
-    // iter 20 P1 — expand OFFTOPIC_QUERY_RE per iter 19 stress fail D03 "presidente" + D05 "Inter Juventus".
-    // Add: presidente standalone + squadre calcio + Serie A + partita/gol/campionato + risultato sportivo + altre.
-    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|capitale\s+(di|del|della)|presidente(?:\s+(di|del|della))?|chi\s+è\s+il\s+presidente|geografia|storia\s+(?!del|della|dei|degli)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|risultato\s+(inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a)|risultato\s+sportivo)\b/i;
+    // iter 22 — expand OFFTOPIC_QUERY_RE per edge case 33% pass test 9 patterns.
+    // iter 20 baseline added: presidente/squadre calcio/Serie A/partita/gol/campionato.
+    // iter 22 add: math operators (5x7/5+7) + "capitale X" (no preposition) + guerra mondiale +
+    // teorema/formula/equazione + Marvel/Disney/Hollywood/Netflix/Amazon film/serie.
+    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d+(?:\s*[+\-*x×÷/]\s*\d+)?|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|teorema(?!\s+di\s+kirchhoff)|formula\s+(?:matematica|chimica|fisica\s+(?!del\s+circuito))|equazione\s+(?!circuito|elettrica)|capitale\s+\w+|presidente(?:\s+(di|del|della))?|chi\s+è\s+il\s+presidente|geografia|storia\s+(?!del|della|dei|degli|elettronica|arduino)|guerra\s+(?:mondiale|prima|seconda)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|risultato\s+(inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a)|risultato\s+sportivo|film\s+(?:Marvel|Disney|Hollywood|nuovo|recente|ultimo)|serie\s+(?:Netflix|Amazon|HBO|TV)|Marvel|Disney(?!\s+land)|Hollywood|canzone\s+(?:tiktok|virale|nuova)|Pitagora|Pitagorica)\b/i;
     if (OFFTOPIC_QUERY_RE.test(safeMessage)) {
       // iter 21 Andrea mandate "deve riportare al focus del discorso LENTAMENTE" — NON brutal rejection.
       // Acknowledge brief + gentle bridge + recall session lastExperimentId se disponibile.
@@ -263,10 +265,12 @@ serve(async (req: Request) => {
       const offSessionCtx = await loadStudentContext(sessionId).catch(() => null);
       const hasSession = offSessionCtx?.lastExperimentId;
       // Detect tipo off-topic per acknowledge personalizzato
+      // iter 22 — extend isMath/isHistory/isCulture detect regex (iter 21 acknowledge 33%→67%→?)
       const isSport = /\b(calcio|inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a|champions|partita|gol|campionato|sport(?!ello))\b/i.test(safeMessage);
-      const isMath = /\b(quanto\s+fa\s+\d|aritmetica|matematica)\b/i.test(safeMessage);
-      const isHistory = /\b(presidente|capitale|geografia|storia)\b/i.test(safeMessage);
-      const isCulture = /\b(cinema|musica|tiktok|instagram|youtube|videogioc|pokemon)\b/i.test(safeMessage);
+      // iter 22.3 fix bug \b boundary fail on "5x7" (no boundary digit-letter). Remove trailing \b after \d, add operator.
+      const isMath = /\b(quanto\s+fa\s+\d+|aritmetica|matematica|teorema|formula\s+(?:matematica|fisica|chimica)|equazione|pitagora|pitagorica)/i.test(safeMessage);
+      const isHistory = /\b(presidente|capitale\s+\w+|geografia|storia|guerra\s+(?:mondiale|prima|seconda))\b/i.test(safeMessage);
+      const isCulture = /\b(cinema|musica|tiktok|instagram|youtube|videogioc|pokemon|film|serie\s+(?:tv|netflix|amazon)|marvel|disney|hollywood|canzone)\b/i.test(safeMessage);
       let acknowledge: string;
       if (isSport) acknowledge = 'Ragazzi, capisco la passione per lo sport! È bello avere altre passioni.';
       else if (isMath) acknowledge = 'Ragazzi, bella curiosità matematica!';
