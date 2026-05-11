@@ -237,6 +237,9 @@ serve(async (req: Request) => {
       const safetyResp = `Ragazzi, attenzione: 220V casa è pericoloso per ragazzi 8-14 anni. Sul kit ELAB usate sempre la batteria 9V — sicura e perfetta per tutti gli esperimenti dei volumi. Per dubbi, controllate il libro o chiedete al docente.`;
       saveInteraction(sessionId, safeExperimentId || null, 'safety_voltage', safetyResp.slice(0, 100), 'safety-pre-llm', safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      // iter 26 P0 — saveMessageHistory wire safety-pre-llm path timeline (Doc-4 #1).
+      saveMessageHistory(sessionId, safeExperimentId || null, null, null, 'safety_voltage', safeMessage, safetyResp.slice(0, 100), 'safety-pre-llm')
+        .catch(err => console.warn('[Nanobot V2] MessageHistory save error:', err));
       return new Response(JSON.stringify({
         success: true,
         response: safetyResp,
@@ -290,6 +293,9 @@ serve(async (req: Request) => {
       const offResp = `${acknowledge} ${bridge}${recall}`;
       saveInteraction(sessionId, safeExperimentId || null, 'offtopic_redirect', offResp.slice(0, 100), 'offtopic-pre-llm', safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      // iter 26 P0 — saveMessageHistory wire offtopic-pre-llm legacy regex path timeline (Doc-4 #1).
+      saveMessageHistory(sessionId, safeExperimentId || null, offSessionCtx?.currentChapter || null, offSessionCtx?.currentVolume || null, 'offtopic_redirect', safeMessage, offResp.slice(0, 100), 'offtopic-pre-llm')
+        .catch(err => console.warn('[Nanobot V2] MessageHistory save error:', err));
       return new Response(JSON.stringify({
         success: true,
         response: offResp,
@@ -319,6 +325,13 @@ serve(async (req: Request) => {
       opResponse = forceCitationFromSession(opStudentCtx?.lastExperimentId || null, opResponse);
       saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', opResponse.slice(0, 100), directOperational.source, safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+      // iter 26 P0 — saveMessageHistory wire direct-operational path timeline (Doc-4 #1).
+      const opChapterMatch = (safeExperimentId || '').match(/cap(\d+)/);
+      const opChapter = opChapterMatch ? parseInt(opChapterMatch[1], 10) : (opStudentCtx?.currentChapter || null);
+      const opVolMatch = (safeExperimentId || '').match(/^v([1-3])/);
+      const opVolume = opVolMatch ? parseInt(opVolMatch[1], 10) : (opStudentCtx?.currentVolume || null);
+      saveMessageHistory(sessionId, safeExperimentId || null, opChapter, opVolume, safeExperimentId || 'operational', safeMessage, opResponse.slice(0, 100), directOperational.source)
+        .catch(err => console.warn('[Nanobot V2] MessageHistory save error:', err));
       return new Response(JSON.stringify({
           success: true,
           response: opResponse,
@@ -661,8 +674,15 @@ serve(async (req: Request) => {
         const tplAudio: string | null = null;
         // Save short audit row to student memory (non-blocking)
         const topicCategory = safeExperimentId || tpl.category;
-        saveInteraction(sessionId, safeExperimentId || null, topicCategory, `tpl:${tpl.id}`, 'clawbot-l2')
+        saveInteraction(sessionId, safeExperimentId || null, topicCategory, `tpl:${tpl.id}`, 'clawbot-l2', safeMessage)
           .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
+        // iter 26 P0 — saveMessageHistory wire clawbot-l2 template path timeline (Doc-4 #1) + user_intent_seed via 6th arg above.
+        const tplChapterMatch = (safeExperimentId || '').match(/cap(\d+)/);
+        const tplChapter = tplChapterMatch ? parseInt(tplChapterMatch[1], 10) : null;
+        const tplVolMatch = (safeExperimentId || '').match(/^v([1-3])/);
+        const tplVolume = tplVolMatch ? parseInt(tplVolMatch[1], 10) : null;
+        saveMessageHistory(sessionId, safeExperimentId || null, tplChapter, tplVolume, topicCategory, safeMessage, tplText.slice(0, 100), `clawbot-l2-${tpl.id}`)
+          .catch(err => console.warn('[Nanobot V2] MessageHistory save error:', err));
 
         const tplResponse: ChatResponse & {
           template_id?: string;

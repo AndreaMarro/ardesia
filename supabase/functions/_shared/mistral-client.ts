@@ -60,8 +60,10 @@ function mistralSleep(ms: number): Promise<void> {
 
 export type MistralChatModel =
   | 'mistral-small-latest'
+  | 'mistral-small-2506'        // iter 26 vision migration replacement (Mistral Small 3.2, vision-capable, EU FR)
   | 'mistral-large-latest'
-  | 'pixtral-12b-2409';
+  | 'pixtral-12b-2409'          // iter 26 LEGACY fallback (deprecated 2 Dec 2025 MA endpoint still alive)
+  | 'pixtral-large-latest';
 
 /**
  * Mistral La Plateforme `response_format` parameter — JSON schema mode.
@@ -100,13 +102,25 @@ export interface MistralChatResult {
 
 /**
  * Pick default model:
- *   - images present → pixtral-12b-2409
+ *   - images present → mistral-small-2506 (iter 26 vision migration, env override MISTRAL_VISION_MODEL)
  *   - else           → mistral-small-latest (cheap primary)
  * Caller can override via options.model.
+ *
+ * iter 26 P1 migration: pixtral-12b-2409 deprecated 2 Dec 2025 (endpoint still alive prod 2026-05-11
+ * MA Mistral può retire silently). Replacement mistral-small-2506 (Mistral Small 3.2):
+ * - Vision-capable, same EU FR data residency, cost parity ~€0.0011/img
+ * - Unified text+vision model (simpler client)
+ * - Rollback via env var: `supabase secrets set MISTRAL_VISION_MODEL=pixtral-12b-2409` no redeploy.
  */
 function pickDefaultModel(opts: MistralChatOptions): MistralChatModel {
   if (opts.model) return opts.model;
-  if (opts.images && opts.images.length > 0) return 'pixtral-12b-2409';
+  if (opts.images && opts.images.length > 0) {
+    const envOverride = (Deno.env.get('MISTRAL_VISION_MODEL') || '').trim();
+    if (envOverride === 'pixtral-12b-2409' || envOverride === 'pixtral-large-latest' || envOverride === 'mistral-small-2506' || envOverride === 'mistral-small-latest') {
+      return envOverride as MistralChatModel;
+    }
+    return 'mistral-small-2506';
+  }
   return 'mistral-small-latest';
 }
 

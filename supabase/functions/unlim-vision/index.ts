@@ -115,10 +115,18 @@ async function callVisionChain(
     }));
   }
 
-  // ── Pixtral fallback (or primary when Gemini skipped/disabled) ─────────────
+  // ── Mistral vision fallback (or primary when Gemini skipped/disabled) ─────────────
+  // iter 26 P1 migration — was pixtral-12b-2409 (deprecated 2 Dec 2025, endpoint still alive
+  // MA Mistral può retire silently). Replacement mistral-small-2506 vision-capable EU FR.
+  // Rollback via env: `supabase secrets set MISTRAL_VISION_MODEL=pixtral-12b-2409` no redeploy.
+  const visionModel = ((Deno.env.get('MISTRAL_VISION_MODEL') || '').trim() || 'mistral-small-2506') as
+    | 'mistral-small-2506'
+    | 'mistral-small-latest'
+    | 'pixtral-12b-2409'
+    | 'pixtral-large-latest';
   const pixtralImages = images.map((src) => ({ source: src }));
   const pixtralResult = await callMistralChat({
-    model: 'pixtral-12b-2409',
+    model: visionModel,
     systemPrompt: [PIXTRAL_SYSTEM_PROMPT, profilePrompt].filter(Boolean).join('\n\n'),
     message: prompt.slice(0, 1000),
     images: pixtralImages,
@@ -129,8 +137,8 @@ async function callVisionChain(
   return {
     text: pixtralResult.text,
     latencyMs: pixtralResult.latencyMs,
-    model: 'pixtral-12b-2409',
-    provider: 'pixtral-12b',
+    model: visionModel,
+    provider: visionModel.startsWith('pixtral') ? 'pixtral' : 'mistral-vision',
     dataProcessing: 'mistral-eu-fr',
   };
 }

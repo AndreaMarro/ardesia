@@ -64,19 +64,129 @@ function copyrightWatermark() {
     };
 }
 
+// Preview/dev builds must stay fast for hourly QA sessions. Code protection is
+// kept for real production unless explicitly disabled, and can be forced with
+// ELAB_OBFUSCATE=true when a protected local build is needed.
+const enableCodeProtection = (mode, env = process.env) => {
+    if (env.ELAB_OBFUSCATE === 'true') return true;
+    if (env.ELAB_OBFUSCATE === 'false') return false;
+    return mode === 'production' && env.VERCEL_ENV === 'production';
+};
+
+const PUBLIC_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
+
+function elabDevApiProxy() {
+    const edgeUrl = (process.env.SUPABASE_EDGE_URL
+        || process.env.VITE_SUPABASE_EDGE_URL
+        || 'https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1').replace(/\/+$/, '');
+    const anonKey = process.env.SUPABASE_ANON_KEY
+        || process.env.VITE_SUPABASE_ANON_KEY
+        || PUBLIC_SUPABASE_ANON_KEY;
+
+    return {
+        name: 'elab-dev-api-proxy',
+        apply: 'serve',
+        configureServer(server) {
+            server.middlewares.use('/api/voxtral', async (req, res) => {
+                if (req.method !== 'POST') {
+                    res.statusCode = 405;
+                    res.setHeader('Allow', 'POST');
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Method Not Allowed - use POST' }));
+                    return;
+                }
+
+                let rawBody = '';
+                for await (const chunk of req) rawBody += chunk;
+
+                let body = {};
+                try {
+                    body = rawBody ? JSON.parse(rawBody) : {};
+                } catch {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Invalid JSON body' }));
+                    return;
+                }
+
+                const input = String(body.input || body.text || '').trim().slice(0, 500);
+                if (!input) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Missing input' }));
+                    return;
+                }
+
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 10_000);
+                try {
+                    const upstream = await fetch(`${edgeUrl}/unlim-tts`, {
+                        method: 'POST',
+                        signal: controller.signal,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            apikey: anonKey,
+                            Authorization: `Bearer ${anonKey}`,
+                        },
+                        body: JSON.stringify({
+                            text: input,
+                            provider: 'voxtral',
+                            format: body.response_format || body.format || 'mp3',
+                            voice_id: body.voice_id,
+                            sessionId: body.sessionId,
+                        }),
+                    });
+                    const contentType = upstream.headers.get('content-type') || '';
+                    const provider = upstream.headers.get('x-tts-provider') || '';
+                    const buffer = Buffer.from(await upstream.arrayBuffer());
+
+                    if (!upstream.ok || !contentType.startsWith('audio/') || provider !== 'voxtral') {
+                        res.statusCode = 502;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify({
+                            error: 'Voxtral upstream did not return cloned audio',
+                            status: upstream.status,
+                            contentType,
+                            provider,
+                            detail: buffer.toString('utf8').slice(0, 240),
+                        }));
+                        return;
+                    }
+
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', contentType || 'audio/mpeg');
+                    res.setHeader('Cache-Control', 'no-store');
+                    for (const header of ['x-tts-provider', 'x-tts-voice', 'x-tts-model', 'x-tts-latency-ms']) {
+                        const value = upstream.headers.get(header);
+                        if (value) res.setHeader(header, value);
+                    }
+                    res.end(buffer);
+                } catch (err) {
+                    res.statusCode = err?.name === 'AbortError' ? 504 : 502;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({
+                        error: err?.name === 'AbortError' ? 'Voxtral timeout 10s' : 'Voxtral proxy error',
+                        detail: String(err?.message || err).slice(0, 200),
+                    }));
+                } finally {
+                    clearTimeout(timer);
+                }
+            });
+        },
+    };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
     plugins: [
+        elabDevApiProxy(),
         react(),
         VitePWA({
-            // iter 38 Atom A12 (WebDesigner-1): switch da 'autoUpdate' a 'prompt'
-            // così i docenti vedono un toast (UpdatePrompt.jsx) PRIMA di
-            // ricaricare. Risolve drift osservato post key rotation iter 32
-            // dove SW autoUpdate serviva chunk stale finché il browser
-            // non chiudeva tutte le tab. Il toast plurale "Ragazzi, c'è una
-            // nuova versione…" + countdown 5s mette il docente in controllo.
-            // Source: web.dev/learn/pwa/workbox + Workbox Issue #2767.
-            registerType: 'prompt',
+            // iter 49: autoUpdate. In classe e su iPad non possiamo lasciare
+            // l'utente su una vecchia UI con Capitoli/Video legacy mentre il
+            // deploy nuovo e' gia pronto. Il controllerchange in main.jsx
+            // ricarica una sola volta quando il nuovo SW prende controllo.
+            registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
             manifest: {
                 name: 'ELAB Tutor — Simulatore Arduino',
@@ -95,20 +205,14 @@ export default defineConfig(({ mode }) => ({
             },
             workbox: {
                 maximumFileSizeToCacheInBytes: 2500 * 1024, // 2.5MB max per file — increased for lesson-paths JSON (94 files)
-                // iter 38 Atom A12 (WebDesigner-1): registerType passa a 'prompt'
-                // → skipWaiting deve essere FALSE altrimenti il toast
-                // UpdatePrompt non avrebbe modo di mostrarsi (SW si attiverebbe
-                // immediatamente senza chiedere). updateSW(true) chiamato dal
-                // bottone "Ricarica adesso" passa skipWaiting=true al SW
-                // tramite postMessage, attivando l'aggiornamento solo dopo
-                // conferma docente.
+                // autoUpdate + skipWaiting: evita drift PWA tra deploy e aula.
                 // - clientsClaim: new SW takes control of uncontrolled tabs on
                 //   activate, firing `controllerchange` which main.jsx uses to
                 //   trigger a single automatic reload onto the fresh HTML.
                 // - cleanupOutdatedCaches: purge old workbox-precache-v* entries
                 //   so a stale precache from a prior deploy cannot serve stale
                 //   HTML on the next navigation.
-                skipWaiting: false,
+                skipWaiting: true,
                 clientsClaim: true,
                 cleanupOutdatedCaches: true,
                 // G11: Only precache critical path — NOT all chunks
@@ -122,7 +226,8 @@ export default defineConfig(({ mode }) => ({
                     // CodeMirror excluded from precache — runtime cached on first use (saves ~460KB)
                     // 'assets/codemirror-*.js',
                     'assets/avr-*.js',             // AVR emulation (if separate)
-                    'registerSW.js',
+                    // VitePWA virtual register module is now bundled as a lazy
+                    // JS chunk; there is no public registerSW.js file to precache.
                     'fonts/*.woff2',
                     'hex/*.hex',               // G40: pre-compiled HEX for offline use
                 ],
@@ -192,7 +297,7 @@ export default defineConfig(({ mode }) => ({
                 ],
             },
         }),
-        ...(mode === 'production' ? [obfuscateChunks({
+        ...(enableCodeProtection(mode) ? [obfuscateChunks({
             compact: true,
             // Control flow — DISABLED: causes TDZ errors across chunk boundaries
             controlFlowFlattening: false,
@@ -244,6 +349,18 @@ export default defineConfig(({ mode }) => ({
         format: 'es',
     },
     build: {
+        // iter 26 P1 Lighthouse perf 26/23 fix — Vite `modulePreload` directive
+        // crawls modulegraph and emits `<link rel="modulepreload">` for every chunk
+        // reachable from index.js INCLUDING React.lazy()/await import() chunks.
+        // Browser downloads ~2.5MB extra (react-pdf 1.8MB + mammoth 492KB) before paint
+        // on every route — chatbot-only + easter-modal NEVER use react-pdf/mammoth.
+        // Fix: filter out heavy lazy-only chunks from preload graph.
+        // Projected: -2.3MB initial, +40-50 Lighthouse perf points (26→65-75).
+        modulePreload: {
+            resolveDependencies: (_filename, deps) => {
+                return deps.filter((d) => !/(?:react-pdf|pdfjs-dist|@react-pdf|mammoth)/.test(d));
+            },
+        },
         rollupOptions: {
             output: {
                 manualChunks(id) {
