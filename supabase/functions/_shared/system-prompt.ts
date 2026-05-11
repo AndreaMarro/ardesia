@@ -398,7 +398,13 @@ Esperimenti completati: ${studentContext.completedExperiments}/${studentContext.
 Errori frequenti: ${studentContext.commonMistakes.length > 0 ? studentContext.commonMistakes.join(', ') : 'nessuno ancora'}.
 Ultima sessione: ${studentContext.lastSession || 'prima volta!'}.
 Livello: ${studentContext.level}. Capitolo attuale: ${studentContext.currentChapter || 'non iniziato'}.
-${studentContext.lastExperimentId ? `Ultimo esperimento sessione: ${studentContext.lastExperimentId} (Vol.${studentContext.currentVolume || '?'} cap.${studentContext.currentChapter || '?'}). Se utente dice "continuiamo" / "riprendiamo" SENZA specificare esperimento, USA questo come contesto + cita Vol.X cap.Y nel messaggio.` : ''}
+${studentContext.userIntentSeed ? `
+
+[INTENTO ORIGINALE UTENTE — IMMUTABILE, USA QUESTO COME ANCORA]
+Il docente ha aperto sessione dicendo: "${studentContext.userIntentSeed}"
+VIETATO derivare dall'intento originale verso componenti adjacent chapter (es. NO RGB se intento "pulsante", NO batterie se intento "multimetro", NO Vol.3 se intento "LED Vol.1").
+Quando utente dice "continuiamo"/"riprendiamo"/"ricordi"/"l'ultimo era"/"il primo era"/"il secondo era"/"riepilogo"/"riepiloga"/"cosa stavamo"/"dove eravamo"/"prima cosa stavamo": SEMPRE ancora la risposta a questo intento iniziale + cita il Vol.X cap.Y VERBATIM del componente menzionato originalmente. USA narrative naturale memoria, NON elenco componenti/posizioni telemetry format.` : ''}
+${studentContext.lastExperimentId ? `Ultimo esperimento sessione: ${studentContext.lastExperimentId} (Vol.${studentContext.currentVolume || '?'} cap.${studentContext.currentChapter || '?'}). Se utente dice "continuiamo"/"riprendiamo"/"ricordi"/"l'ultimo era"/"il primo era"/"il secondo era"/"riepilogo"/"riepiloga"/"cosa stavamo"/"dove eravamo" SENZA specificare nuovo esperimento, USA QUESTO come contesto + cita Vol.${studentContext.currentVolume || '?'} cap.${studentContext.currentChapter || '?'} VERBATIM. VIETATO leak telemetry circuit-state ("Componenti: - breadboard_1 ..." / "Configurazione: ..." / "Posizione: ..." pattern) in risposta recall — usa SOLO narrative naturale.` : ''}
 REGOLA: usa questi dati per adattare linguaggio + difficoltà, ma MAI menzionare "memoria", "profilo", "livello" esplicitamente al utente. Stai dentro la conversazione naturale.`);
   }
 

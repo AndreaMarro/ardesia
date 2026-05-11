@@ -133,10 +133,9 @@ export async function loadStudentContext(
     // Fix: NEW table dedicated unlim_session_memory keyed session_id, bypass legacy schema.
     const { data: progress } = await client
       .from('unlim_session_memory')
-      .select('last_experiment_id, last_chapter, last_volume, common_mistakes, message_count, updated_at')
+      // iter 24 Phase 1 — include user_intent_seed per recall verbatim msg1 intent
+      .select('last_experiment_id, last_chapter, last_volume, user_intent_seed, common_mistakes, message_count, updated_at')
       .eq('session_id', sessionId)
-      .order('updated_at', { ascending: false })
-      .limit(1)
       .maybeSingle();
 
     if (!progress) {
@@ -168,6 +167,8 @@ export async function loadStudentContext(
       currentChapter,
       lastExperimentId: progress.last_experiment_id || null,
       currentVolume,
+      // iter 24 Phase 1 P0 — user_intent_seed verbatim msg1 IMMUTABLE preserve cross-msg
+      userIntentSeed: progress.user_intent_seed || null,
     };
   } catch (err) {
     console.warn('[Memory] Failed to load student context:', err);
@@ -189,17 +190,21 @@ export async function saveInteraction(
   topicCategory: string,
   responsePreview: string,
   model: string,
+  userMessage?: string,  // iter 24 Phase 1 P0 — preserve user msg1 verbatim intent
 ): Promise<void> {
   const client = getClient();
   if (!client) return;
 
   try {
-    // iter 12 P0 fix #2 — fallback: estrai Vol/cap da response preview se experimentId null.
-    // Q10 V2 regression diagnosi: senza experimentId esplicito, last_experiment_id resta null
-    // → msg2 successivo perde chapter context. Estrai pattern "Vol.X cap.Y" da response stessa.
+    // iter 24 Phase 1 P0 ROOT CAUSE FIX (Doc-4 Phase 0 evidence brutale).
+    // PRECEDENTE iter 12 BUG: extractVolCapFromMessage(responsePreview) estraeva Vol/cap
+    // dalla RISPOSTA AI stessa → quando msg2 reply citava "Vol.3 pag.33" (side-topic digitalWrite),
+    // sovrascriveva last_chapter=6 last_volume=3 cancellando stato Vol.1 cap.6 LED msg1.
+    // Session 5 iter 22 marathon hallucination CONFIRMED verbatim Doc-4.
+    // FIX: extract Vol/cap SOLO da userMessage (utente esplicitamente intende chapter), MAI da AI response.
     let effectiveExperimentId = experimentId;
-    if (!effectiveExperimentId) {
-      effectiveExperimentId = extractVolCapFromMessage(responsePreview);
+    if (!effectiveExperimentId && userMessage) {
+      effectiveExperimentId = extractVolCapFromMessage(userMessage);
     }
 
     // iter 18.5 BUG FIX critical — use unlim_session_memory dedicated table (bypass schema mismatch).
@@ -227,35 +232,26 @@ export async function saveInteraction(
       }
     }
 
-    // iter 18.5 BUG FIX critical — upsert unlim_session_memory dedicated table
-    // (bypass legacy student_progress schema mismatch + class_students RLS recursion).
-    // UNCONDITIONAL upsert quando effectiveExperimentId valido (audit iter 18.2 P0 ROOT CAUSE chiuso).
+    // iter 24 Phase 1 P0 ROOT CAUSE FIX — atomic RPC upsert_session_memory
+    // preserve user_intent_seed COALESCE (msg1 verbatim) + jsonb merge mistakes server-side.
+    // Doc-3+4 evidence H5: SELECT-then-UPSERT race window + user intent lost cross-msg.
+    // Sostituisce iter 18.5 client-side merge with atomic SECURITY DEFINER function.
     if (effectiveExperimentId) {
-      // Fetch existing mistakes (preserve cross-session accumulation)
-      const { data: existing } = await client
-        .from('unlim_session_memory')
-        .select('common_mistakes, message_count')
-        .eq('session_id', sessionId)
-        .maybeSingle();
-
-      const allMistakes = [...new Set([
-        ...((existing?.common_mistakes as string[] | null) || []),
-        ...detectedMistakes,
-      ])].slice(0, 10);
-      const newMessageCount = (existing?.message_count || 0) + 1;
-
-      await client.from('unlim_session_memory').upsert({
-        session_id: sessionId,
-        last_experiment_id: effectiveExperimentId,
-        last_chapter: lastChapter,
-        last_volume: lastVolume,
-        last_topic: topicCategory,
-        last_response_preview: responsePreview.slice(0, 100),
-        last_model: model,
-        common_mistakes: allMistakes,
-        message_count: newMessageCount,
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'session_id' });
+      const userIntentPreview = userMessage ? userMessage.slice(0, 250) : null;
+      const { error } = await client.rpc('upsert_session_memory', {
+        p_session_id: sessionId,
+        p_user_intent: userIntentPreview,
+        p_last_experiment_id: effectiveExperimentId,
+        p_last_chapter: lastChapter,
+        p_last_volume: lastVolume,
+        p_last_topic: topicCategory,
+        p_last_response_preview: responsePreview.slice(0, 100),
+        p_last_model: model,
+        p_new_mistakes: detectedMistakes,
+      });
+      if (error) {
+        console.warn('[Memory] upsert_session_memory RPC error:', error);
+      }
     }
   } catch (err) {
     console.warn('[Memory] Save failed:', err);

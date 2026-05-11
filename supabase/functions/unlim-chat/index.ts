@@ -234,7 +234,7 @@ serve(async (req: Request) => {
     const VOLTAGE_DANGER_QUERY_RE = /\b(220\s*[Vv]|110\s*[Vv]|tensione\s+di\s+rete|presa\s+(di\s+corrente|a\s+muro|elettrica)|prese\s+a\s+muro|impianto\s+elettrico|alta\s+tensione|corrente\s+di\s+casa|elettricit[àa]\s+di\s+casa)\b/i;
     if (VOLTAGE_DANGER_QUERY_RE.test(safeMessage)) {
       const safetyResp = `Ragazzi, attenzione: 220V casa è pericoloso per ragazzi 8-14 anni. Sul kit ELAB usate sempre la batteria 9V — sicura e perfetta per tutti gli esperimenti dei volumi. Per dubbi, controllate il libro o chiedete al docente.`;
-      saveInteraction(sessionId, safeExperimentId || null, 'safety_voltage', safetyResp.slice(0, 100), 'safety-pre-llm')
+      saveInteraction(sessionId, safeExperimentId || null, 'safety_voltage', safetyResp.slice(0, 100), 'safety-pre-llm', safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
       return new Response(JSON.stringify({
         success: true,
@@ -262,7 +262,12 @@ serve(async (req: Request) => {
       // iter 21 Andrea mandate "deve riportare al focus del discorso LENTAMENTE" — NON brutal rejection.
       // Acknowledge brief + gentle bridge + recall session lastExperimentId se disponibile.
       // 3-step pattern: (1) acknowledge curiosità (2) bridge dolce a ELAB context (3) recall/proposta.
-      const offSessionCtx = await loadStudentContext(sessionId).catch(() => null);
+      // iter 24 Phase 2 P2 latency fix — Promise.race timeout 100ms (Doc-1 evidence iter 21 await loadStudentContext blocks hot-path +200-300ms).
+      // Trade-off: 100ms slow session → no recall (fallback "prima volta" template). Acceptable hot-path target <300ms.
+      const offSessionCtx = await Promise.race([
+        loadStudentContext(sessionId).catch(() => null),
+        new Promise<null>(resolve => setTimeout(() => resolve(null), 100)),
+      ]);
       const hasSession = offSessionCtx?.lastExperimentId;
       // Detect tipo off-topic per acknowledge personalizzato
       // iter 22 — extend isMath/isHistory/isCulture detect regex (iter 21 acknowledge 33%→67%→?)
@@ -282,7 +287,7 @@ serve(async (req: Request) => {
         ? ` Ricordate? Stavamo lavorando su ${offSessionCtx.lastExperimentId} (Vol.${offSessionCtx.currentVolume || '?'} cap.${offSessionCtx.currentChapter || '?'}). Riprendiamo da lì insieme? [AZIONE:loadexp:${offSessionCtx.lastExperimentId}]`
         : ` Volete iniziare un esperimento sul kit ELAB? Possiamo cominciare con il primo LED del Vol.1 cap.6, oppure scegliete voi.`;
       const offResp = `${acknowledge} ${bridge}${recall}`;
-      saveInteraction(sessionId, safeExperimentId || null, 'offtopic_redirect', offResp.slice(0, 100), 'offtopic-pre-llm')
+      saveInteraction(sessionId, safeExperimentId || null, 'offtopic_redirect', offResp.slice(0, 100), 'offtopic-pre-llm', safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
       return new Response(JSON.stringify({
         success: true,
@@ -311,7 +316,7 @@ serve(async (req: Request) => {
       opResponse = rewriteCitationToCanonical(opResponse);
       opResponse = forceCitationFromQuery(safeMessage, opResponse);
       opResponse = forceCitationFromSession(opStudentCtx?.lastExperimentId || null, opResponse);
-      saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', opResponse.slice(0, 100), directOperational.source)
+      saveInteraction(sessionId, safeExperimentId || null, safeExperimentId || 'operational', opResponse.slice(0, 100), directOperational.source, safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error:', err));
       return new Response(JSON.stringify({
           success: true,
@@ -938,10 +943,10 @@ serve(async (req: Request) => {
     // Q10a-style msg1, ma Q10b read garantito.
     const isMemoryRelevant = fallbackExpId !== null && cleanText.length > 30;
     if (isMemoryRelevant) {
-      await saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model)
+      await saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model, safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error (sync):', err));
     } else {
-      saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model)
+      saveInteraction(sessionId, fallbackExpId, topicCategory, cleanText.slice(0, 100), result.model, safeMessage)
         .catch(err => console.warn('[Nanobot V2] Memory save error (async):', err));
     }
 
