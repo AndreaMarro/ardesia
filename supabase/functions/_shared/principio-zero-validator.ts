@@ -255,6 +255,17 @@ export function enforceItalianK12Opener(rawText: string): string {
     .replace(/\[fonte:[^\]]*\]/gi, '')
     .replace(/\[FONTE[^\]]*\]/g, '')
     .replace(/^---+\s*$/gm, '') // markdown separator leaks from prompt scaffolding
+    // iter 23 P1 — RAG source leak template "--- [docs/unlim-wiki/concepts/led.md] ---" (iter 22 marathon s2-msg2 evidence)
+    .replace(/---\s*\[docs\/[^\]]+\]\s*---/gi, '')
+    .replace(/\[docs\/unlim-wiki[^\]]*\]/gi, '')
+    .replace(/\[wiki\/concepts[^\]]*\]/gi, '')
+    // iter 23 P2 — state-dump simulator leak literal "stato simulatore: ... Componenti: - breadboard_1..."
+    .replace(/stato\s+simulatore:\s*[^\n]+/gi, '')
+    .replace(/Componenti:\s*\n?\s*-\s*[a-z0-9_]+[^\n]*/gim, '')
+    .replace(/^\s*-\s*(breadboard_\d+|led_\d+|resistor_\d+|nano_\d+|button_\d+|wire_\d+)[^\n]*/gim, '')
+    // iter 23 P2 — additional state-dump patterns
+    .replace(/Fili:\s*\d+\s*$/gim, '')
+    .replace(/Posizioni:\s*\[[^\]]+\]/gi, '')
     .replace(/[ \t]{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();

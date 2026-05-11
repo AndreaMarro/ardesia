@@ -310,9 +310,11 @@ export function buildDirectOperationalResponse(
       source: 'direct-operational-arduino',
       dataProcessing: 'local-direct',
       response: [
+        // iter 23 P1 fix — add Vol/pag canonical inline (iter 22 stress evidence Cat A regression -23.7pp).
+        // Arduino default → Vol.3 cap.5 Blink (semaforo Vol.1 cap.8). Plurale "Ragazzi" opener.
         wantsTrafficLight
-          ? 'Passo ad Arduino e preparo il semaforo a tre LED.'
-          : 'Passo ad Arduino e preparo Blink sul pin 13.',
+          ? 'Ragazzi, passo ad Arduino e preparo il semaforo a tre LED (Vol.1 pag.43).'
+          : 'Ragazzi, passo ad Arduino e preparo Blink sul pin 13 (Vol.3 pag.23).',
         'Compilo subito; se fallisce, guardiamo la riga esatta sul kit ELAB.',
         tags,
       ].join(' '),
