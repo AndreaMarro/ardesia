@@ -60,6 +60,9 @@ function LoadingFallback() {
 // Hash-based routing: maps hash fragments to page names (P0-6)
 // iter 35 P0: 'home' added as new default landing (Tea-style 5 card grid + cronologia)
 const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
+const HASH_PAGE_ALIASES = {
+    'lavagna-solo': 'lavagna',
+};
 
 // Iter 44 BUG fix: HomePage sub-routes — direct nav `#chatbot-only` /
 // `#about-easter` / `#glossario` from any other page (e.g. Lavagna modal)
@@ -71,6 +74,7 @@ const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
 
 function getPageFromHash() {
     const raw = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
+    if (HASH_PAGE_ALIASES[raw]) return HASH_PAGE_ALIASES[raw];
     if (HOMEPAGE_SUBROUTES.includes(raw)) return 'home';
     return VALID_HASHES.includes(raw) ? raw : null;
 }
@@ -402,6 +406,7 @@ function GatedConsentBanner() {
  */
 const CONSENT_SKIP_HASHES = new Set([
     'lavagna',
+    'lavagna-solo',
     'tutor',
     'dashboard',
     'dashboard-v2',

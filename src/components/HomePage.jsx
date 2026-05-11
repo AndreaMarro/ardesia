@@ -34,16 +34,14 @@
  *
  * Andrea Marro — iter 36 WebDesigner-1 Phase 1 — 2026-04-30
  */
-import React, { lazy, Suspense, useState, useCallback, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useCallback, useEffect, useMemo } from 'react';
 // Iter 36 M1+Q1+O3 — Andrea mandate "SVG sostitutivi emoticon più belli
 // usa impeccable" + 4° card Glossario.
 import {
   LavagnaCardIcon,
   TutorCardIcon,
-  RobotIcon,
-  UNLIMCardIcon,
-  GlossarioCardIcon,
 } from './common/ElabIcons';
+import { VIDEO_COURSES } from '../data/video-courses';
 // Sprint V iter 1 Phase 3 WebDesigner-1 Atom A10 — ElabMascotte SVG
 // inline impeccable (replaces PNG mascot — Andrea iter 42 PM mandate
 // "voglio mascotte e nessuna emoticon" + design strutturato).
@@ -203,7 +201,9 @@ const styles = {
   },
   card: {
     background: PALETTE.cardBg,
-    border: '1px solid rgba(30, 77, 140, 0.12)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'rgba(30, 77, 140, 0.12)',
     borderRadius: 20,
     padding: '28px 24px',
     minHeight: 220,
@@ -262,6 +262,62 @@ const styles = {
     letterSpacing: '0.04em',
     minHeight: 44,
     paddingTop: 4,
+  },
+  homeVideoWrap: {
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: 'minmax(0, 1fr)',
+    gap: 10,
+  },
+  homeVideoPlayer: {
+    width: '100%',
+    aspectRatio: '16 / 9',
+    maxHeight: 210,
+    borderRadius: 12,
+    background: '#0E2D5C',
+    objectFit: 'cover',
+    display: 'block',
+  },
+  homeVideoList: {
+    position: 'relative',
+    width: '100%',
+    height: 112,
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    border: '1px solid rgba(30, 77, 140, 0.12)',
+    borderRadius: 12,
+    background: 'rgba(30, 77, 140, 0.035)',
+  },
+  homeVideoRow: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 56,
+    padding: 6,
+    boxSizing: 'border-box',
+  },
+  homeVideoButton: {
+    width: '100%',
+    height: '100%',
+    minHeight: 44,
+    border: '1px solid rgba(30, 77, 140, 0.12)',
+    borderRadius: 10,
+    background: '#fff',
+    color: PALETTE.navy,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+    padding: '0 12px',
+    fontFamily: "'Open Sans', system-ui, sans-serif",
+    fontSize: 14,
+    fontWeight: 700,
+    cursor: 'pointer',
+    textAlign: 'left',
+  },
+  homeVideoButtonActive: {
+    border: `1px solid ${PALETTE.orange}`,
+    boxShadow: '0 0 0 2px rgba(232, 148, 28, 0.18)',
   },
   cardCredit: {
     fontSize: 12,
@@ -327,13 +383,9 @@ const CARDS = [
     title: 'Lavagna libera',
     text: 'Lavagna pulita per scrivere e parlare con UNLIM. Volumi sempre a portata. Niente circuiti.',
     cta: 'Entra in Lavagna',
-    // Iter 35 H1 — Lavagna libera entry. App.jsx VALID_HASHES strict
-    // ['home','tutor','lavagna',...] — `#lavagna-solo` would fail route.
-    // Workaround: keep `#lavagna` href + set localStorage flag
-    // `elab_lavagna_launch_mode='solo'` su click (read by Maker-2
-    // LavagnaShell on mount; clear after consume → solo first launch).
-    // Pattern coordina con `data-elab-mode="lavagna-solo"` Maker-2 H2.
-    href: '#lavagna',
+    // Deterministic route for the home-only whiteboard. App.jsx aliases it to
+    // currentPage='lavagna'; LavagnaShell consumes the hash and blocks circuits.
+    href: '#lavagna-solo',
     launchMode: 'solo',
     target: 'internal',
     credit: null,
@@ -356,20 +408,6 @@ const CARDS = [
   // Card entry rimosso: route #chatbot-only + ChatbotOnly component (1749 LOC iter 37 A6)
   // PRESERVATI accessibili da admin menu / Tutor interno / direct hash URL.
   // NO regression Andrea iter 37 A6 work — solo entry semiotic homepage.
-  // Iter 36 O1 — Andrea mandate "metti anche il glossario, ma solo glossario
-  // nella home page". 4° card link external Glossario Tea sviluppato.
-  {
-    id: 'glossario',
-    emoji: '📖',
-    IconComponent: GlossarioCardIcon,
-    accent: PALETTE.lime,
-    title: 'Glossario',
-    text: 'Tutti i termini di elettronica spiegati semplici: LED, resistore, breadboard, Arduino. Cercate parole + leggete con la classe.',
-    cta: 'Apri Glossario',
-    href: 'https://elab-tutor-glossario.vercel.app',
-    target: 'external',
-    credit: null,
-  },
   // Iter 39 Andrea direttiva: 4° card = Videolezioni canale diretto.
   // Sostituisce "Chi siamo" (Andrea togli + replace).
   // Href placeholder YouTube channel — Andrea ratify URL specifico.
@@ -379,13 +417,81 @@ const CARDS = [
     IconComponent: null,
     accent: PALETTE.orange,
     title: 'Videolezioni',
-    text: 'Lezioni video pronte: docente guarda + ragazzi seguono. Per ogni esperimento del kit ELAB con i volumi cartacei.',
-    cta: 'Apri Videolezioni',
-    href: 'https://www.youtube.com/@elabtutor',
-    target: 'external',
+    text: 'I due video TikTok del kit, caricati qui dentro senza uscire dalla home.',
+    cta: 'Guarda nella card',
+    href: null,
+    target: 'inline-video',
     credit: null,
   },
 ];
+
+const HOME_VIDEO_ROW_HEIGHT = 56;
+const HOME_VIDEO_VIEWPORT_HEIGHT = 112;
+
+function getVirtualItems(items, scrollTop, rowHeight, viewportHeight, overscan = 2) {
+  const start = Math.max(0, Math.floor(scrollTop / rowHeight) - overscan);
+  const end = Math.min(items.length, Math.ceil((scrollTop + viewportHeight) / rowHeight) + overscan);
+  return items.slice(start, end).map((item, offset) => ({
+    item,
+    index: start + offset,
+  }));
+}
+
+function HomeVideoInline() {
+  const videos = VIDEO_COURSES;
+  const [selectedId, setSelectedId] = useState(videos[0]?.id || null);
+  const [scrollTop, setScrollTop] = useState(0);
+  const selected = videos.find(video => video.id === selectedId) || videos[0];
+  const virtualRows = useMemo(
+    () => getVirtualItems(videos, scrollTop, HOME_VIDEO_ROW_HEIGHT, HOME_VIDEO_VIEWPORT_HEIGHT),
+    [videos, scrollTop]
+  );
+
+  if (!selected) return null;
+
+  return (
+    <div style={styles.homeVideoWrap}>
+      <video
+        data-testid="home-video-player"
+        src={selected.src}
+        controls
+        playsInline
+        preload="metadata"
+        style={styles.homeVideoPlayer}
+      />
+      <div
+        data-testid="home-video-virtual-list"
+        data-virtualized="true"
+        style={styles.homeVideoList}
+        role="list"
+        onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)}
+      >
+        <div style={{ height: videos.length * HOME_VIDEO_ROW_HEIGHT, position: 'relative' }}>
+          {virtualRows.map(({ item, index }) => (
+            <div
+              key={item.id}
+              role="listitem"
+              style={{ ...styles.homeVideoRow, top: index * HOME_VIDEO_ROW_HEIGHT }}
+            >
+              <button
+                type="button"
+                aria-label={item.title}
+                onClick={() => setSelectedId(item.id)}
+                style={{
+                  ...styles.homeVideoButton,
+                  ...(item.id === selected.id ? styles.homeVideoButtonActive : {}),
+                }}
+              >
+                <span>{item.title}</span>
+                <span aria-hidden="true">▶</span>
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function HomeCard({ card, onActivate }) {
   const [hover, setHover] = useState(false);
@@ -399,7 +505,13 @@ function HomeCard({ card, onActivate }) {
     // card declares launchMode (Lavagna libera = 'solo'). LavagnaShell
     // reads + consumes (clears) on mount → applies data-elab-mode.
     if (card.launchMode) {
-      try { localStorage.setItem('elab_lavagna_launch_mode', card.launchMode); } catch { /* best-effort */ }
+      try { window.__ELAB_LAVAGNA_LAUNCH_MODE = card.launchMode; } catch { /* best-effort */ }
+      try { window.localStorage.setItem('elab_lavagna_launch_mode', card.launchMode); } catch { /* best-effort */ }
+      try {
+        window.dispatchEvent(new CustomEvent('elab-lavagna-launch-mode', {
+          detail: { mode: card.launchMode },
+        }));
+      } catch { /* best-effort */ }
     }
     if (typeof onActivate === 'function') onActivate(card.href);
   }, [card.href, card.launchMode, card.target, onActivate]);
@@ -432,6 +544,7 @@ function HomeCard({ card, onActivate }) {
       )}
       <h2 style={styles.cardTitle}>{card.title}</h2>
       <p style={styles.cardText}>{card.text}</p>
+      {card.target === 'inline-video' && <HomeVideoInline />}
       {card.credit && (
         <span style={styles.cardCredit} data-testid={`home-card-credit-${card.id}`}>
           {card.credit}
@@ -457,8 +570,16 @@ function HomeCard({ card, onActivate }) {
     );
   }
 
+  if (card.target === 'inline-video') {
+    return (
+      <section role="region" {...sharedProps}>
+        {innerContent}
+      </section>
+    );
+  }
+
   return (
-    <button type="button" onClick={handle} {...sharedProps}>
+    <button {...sharedProps} type="button" onClick={handle}>
       {innerContent}
     </button>
   );
@@ -480,7 +601,7 @@ const ROTATING_GREETINGS = [
   'Buongiorno, ragazzi!',
 ];
 
-export default function HomePage({ onNavigate }) {
+export default function HomePage({ onNavigate, onActivate }) {
   const [showGreeting, setShowGreeting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   // Iter 37 Atom A6 — hash route awareness for #chatbot-only and #about-easter
@@ -546,10 +667,19 @@ export default function HomePage({ onNavigate }) {
         }
         return;
       }
+      if (page === 'lavagna-solo') {
+        if (typeof window !== 'undefined') {
+          window.location.hash = href;
+          setHash(href);
+        }
+        if (typeof onActivate === 'function') onActivate(href);
+        return;
+      }
       if (typeof onNavigate === 'function') onNavigate(page);
+      else if (typeof onActivate === 'function') onActivate(href);
       else if (typeof window !== 'undefined') window.location.hash = href;
     }
-  }, [onNavigate]);
+  }, [onNavigate, onActivate]);
 
   // Iter 37 Atom A6 — close handler for EasterModal (clears #about-easter hash)
   // Iter 44 fix Andrea 2026-05-06 PM "non si puo tornare indietro": esplicito
