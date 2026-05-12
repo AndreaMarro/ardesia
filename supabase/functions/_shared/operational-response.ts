@@ -296,7 +296,8 @@ export function buildDirectOperationalResponse(
     { re: /\bmorse\b/i, id: 'v3-cap6-morse', title: 'codice Morse' },
     { re: /\bsimon\b/i, id: 'v3-cap8-simon', title: 'Simon' },
   ];
-  const expNavTrigger = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?)\b.*\b(esperimento|esercizio|lezione|capitolo)?\b/i.test(text);
+  const expNavTrigger = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?)\b.*\b(esperimento|esercizio|lezione|capitolo|gioco)?\b/i.test(text)
+    || /\b(esperimento|gioco)\b/i.test(text);
   if (expNavTrigger || /\bl[''']?\s*esperimento\b/i.test(text)) {
     for (const { re, id, title } of expNamePatterns) {
       if (re.test(text)) {
@@ -309,7 +310,8 @@ export function buildDirectOperationalResponse(
     }
   }
 
-  const isHighlight = /\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente)\b/i.exec(text)
+  const isHighlight = (/\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente|r\d+|btn\d+|bat\d+|led\d+|bb\d+)\b/i.exec(text)
+    || /\b(evidenz(?:ia|iate|iare))\b\s+(r\d+|led\d+|btn\d+|bat\d+|bb\d+|nano)\b/i.exec(text))
     && !/\b(esperimento|esercizio|lezione|capitolo)\b/i.test(text);
   if (isHighlight) {
     const componentText = text.match(/\b(led1?|led2|r1|r2|btn1|buzzer|nano|breadboard)\b/i)?.[0]?.toLowerCase() || 'led1';
@@ -367,7 +369,9 @@ export function buildDirectOperationalResponse(
   // LLM ricostruiva intero circuito con addcomponent tags invece di
   // modificare LED esistente. Pre-LLM detector dispatch INTENT
   // setComponentValue color quando componente gia presente in circuitState.
-  const colorChangeMatch = /\b(metti|cambia|imposta|setta|fai)\b.*\bled\b.*\b(rosso|verde|blu|giallo|bianco|arancione|viola|red|green|blue|yellow|white|orange|purple)\b/i.exec(text);
+  const colorChangeMatch = /\b(metti|cambia|imposta|setta|fai)\b.*\bled\b.*\b(rosso|verde|blu|giallo|bianco|arancione|viola|red|green|blue|yellow|white|orange|purple)\b/i.exec(text)
+    || /\bled\b.*\b(deve\s+(?:essere|diventare)|sia)\s+(rosso|verde|blu|giallo|bianco|arancione|viola)\b/i.exec(text)
+    || /\b(rosso|verde|blu|giallo|bianco|arancione|viola)\b\s+(?:per\s+)?(?:il\s+|un\s+|al\s+)?\bled\b/i.exec(text);
   if (colorChangeMatch && (circuitState?.components || []).some(c => /led/i.test(c.type || ''))) {
     const colorMap: Record<string, string> = {
       rosso: 'red', verde: 'green', blu: 'blue', giallo: 'yellow',
