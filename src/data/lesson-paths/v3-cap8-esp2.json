@@ -79,7 +79,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il codice ha Serial.begin(9600) nel setup e Serial.println nel loop. Una variabile contatore parte da 0 e si incrementa con contatore++ ad ogni ciclo. Il delay(500) tra un messaggio e l'altro rende l'output leggibile: un messaggio ogni mezzo secondo.",
+      "teacher_message": "Ragazzi, Il codice ha Serial.begin(9600) nel setup e Serial.println nel loop. Una variabile contatore parte da 0 e si incrementa con contatore++ ad ogni ciclo. Il delay(500) tra un messaggio e l'altro rende l'output leggibile: un messaggio ogni mezzo secondo.",
       "teacher_tip": "Mostrate cosa succede concettualmente: ciclo 1 stampa 'Conteggio: 0', ciclo 2 stampa 'Conteggio: 1', ciclo 3 stampa 'Conteggio: 2'... all'infinito. La variabile contatore e dichiarata FUORI dal loop (variabile globale) altrimenti ripartirebbe da 0 ogni ciclo. Fate notare la differenza tra variabile locale e globale.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap8-esp2]"
@@ -90,7 +90,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il contatore si incrementa di 1 a ogni ciclo con contatore++. Se togliamo il delay(500), quanti messaggi vedremmo in un secondo? Arduino gira il loop migliaia di volte al secondo! E se mettiamo delay(1000), quanti messaggi al secondo?",
+      "teacher_message": "Ragazzi, Il contatore si incrementa di 1 a ogni ciclo con contatore++. Se togliamo il delay(500), quanti messaggi vedremmo in un secondo? Arduino gira il loop migliaia di volte al secondo! E se mettiamo delay(1000), quanti messaggi al secondo?",
       "teacher_tip": "Guida il calcolo: con delay(500) = 2 messaggi al secondo (1000ms / 500ms). Con delay(1000) = 1 al secondo. Senza delay = migliaia al secondo, il monitor non riesce a star dietro. Questo introduce il concetto di frequenza di campionamento, che tornera utile con i sensori.",
       "provocative_question": "Se la variabile contatore e un int (che va da -32768 a 32767 su Arduino), cosa succede quando il contatore supera 32767? Si blocca? Va in errore? Fa qualcosa di strano?",
       "action_tags": [],
@@ -100,7 +100,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play e aprite il Serial Monitor! Vedete i numeri che scorrono: 0, 1, 2, 3... uno ogni mezzo secondo. Il contatore non si ferma mai. Osservate la velocita costante dei messaggi grazie al delay.",
+      "teacher_message": "Ragazzi, Premete Play e aprite il Serial Monitor! Vedete i numeri che scorrono: 0, 1, 2, 3... uno ogni mezzo secondo. Il contatore non si ferma mai. Osservate la velocita costante dei messaggi grazie al delay.",
       "teacher_tip": "Fate osservare tre cose: la regolarita del timing (un messaggio ogni 500ms), il contatore che cresce senza fermarsi, e cosa succede se si preme Reset (il contatore riparte da 0 perche la variabile si reinizializza). Chiedi: e possibile far partire il contatore da 100 invece che da 0?",
       "action_tags": [
         "[AZIONE:play]"
@@ -112,7 +112,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Ora Arduino sa mandare messaggi continui al computer! Con un contatore e il Serial Monitor possiamo monitorare qualsiasi cosa: quante volte gira il loop, quante volte viene premuto un pulsante, che valore legge un sensore. Il Serial Monitor e lo strumento numero uno per il debug!",
+      "teacher_message": "Ragazzi, Ora Arduino sa mandare messaggi continui al computer! Con un contatore e il Serial Monitor possiamo monitorare qualsiasi cosa: quante volte gira il loop, quante volte viene premuto un pulsante, che valore legge un sensore. Il Serial Monitor e lo strumento numero uno per il debug!",
       "teacher_tip": "Recap: Serial.println nel loop stampa all'infinito. Il contatore con ++ si incrementa a ogni ciclo. Il delay regola la frequenza dei messaggi. La variabile deve essere globale (fuori dal loop) per non resettarsi. Nella pratica reale, Serial.println e la prima cosa che aggiungi quando qualcosa non funziona: stampi i valori per capire il problema.",
       "summary_for_class": "Mettendo Serial.println nel loop, Arduino stampa messaggi all'infinito. Con un contatore vediamo quanti cicli ha fatto. Il delay regola la velocita: senza delay il monitor si riempe troppo velocemente. Il Serial Monitor e lo strumento piu importante per capire cosa fa Arduino: quando qualcosa non funziona, stampate i valori!",
       "concepts_learned": [

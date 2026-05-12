@@ -100,7 +100,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, i computer contano in binario: solo con 0 e 1. I nostri LED fanno la stessa cosa: acceso = 1, spento = 0. Con 3 LED possiamo contare da 0 a 7! Oggi costruiamo un contatore che mostra il numero di pressioni del pulsante in binario.",
-      "teacher_tip": "Scrivi alla lavagna i numeri da 0 a 7 in binario: 000, 001, 010, 011, 100, 101, 110, 111. Mostrate che con 3 cifre binarie (3 bit = 3 LED) si possono rappresentare 8 numeri diversi (da 0 a 7). Il LED piu a destra vale 1, quello centrale vale 2, quello a sinistra vale 4.",
+      "teacher_tip": "Scrivete alla lavagna i numeri da 0 a 7 in binario: 000, 001, 010, 011, 100, 101, 110, 111. Mostrate che con 3 cifre binarie (3 bit = 3 LED) si possono rappresentare 8 numeri diversi (da 0 a 7). Il LED piu a destra vale 1, quello centrale vale 2, quello a sinistra vale 4.",
       "class_hook": "Sapete come conta un computer? Non usa le dita (ne ha solo due: acceso e spento). Con 3 LED possiamo contare fino a 7. Sembra poco, ma con 8 LED arriviamo a 255, e con 32 LED a oltre 4 miliardi!",
       "action_tags": [],
       "auto_action": null
@@ -109,7 +109,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito ha un pulsante INPUT_PULLUP e 3 LED su pin OUTPUT. Una variabile int conta le pressioni da 0 a 7 e poi ricomincia. Il codice usa l'operatore modulo (%) per tornare a 0 dopo il 7, e operazioni sui bit per accendere i LED giusti.",
+      "teacher_message": "Ragazzi, Il circuito ha un pulsante INPUT_PULLUP e 3 LED su pin OUTPUT. Una variabile int conta le pressioni da 0 a 7 e poi ricomincia. Il codice usa l'operatore modulo (%) per tornare a 0 dopo il 7, e operazioni sui bit per accendere i LED giusti.",
       "teacher_tip": "L'operatore modulo e come un orologio: dopo le 12 torna a 1. Dopo il 7 il contatore torna a 0. Per i bit, spiega in modo semplice: il primo LED mostra se il numero e dispari (bit 0), il secondo mostra i 'due' (bit 1), il terzo mostra i 'quattro' (bit 2). Non serve andare nel dettaglio del bitwise AND.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp7]"
@@ -120,7 +120,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Se premo il pulsante 5 volte, quali LED saranno accesi? Pensate: 5 in binario si scrive 101. Significa che il LED delle unita (vale 1) e acceso, quello dei due (vale 2) e spento, e quello dei quattro (vale 4) e acceso. 4 + 0 + 1 = 5!",
+      "teacher_message": "Ragazzi, Se premo il pulsante 5 volte, quali LED saranno accesi? Pensate: 5 in binario si scrive 101. Significa che il LED delle unita (vale 1) e acceso, quello dei due (vale 2) e spento, e quello dei quattro (vale 4) e acceso. 4 + 0 + 1 = 5!",
       "teacher_tip": "Fate provare agli studenti a convertire mentalmente: 3 = 011 (due + uno), 6 = 110 (quattro + due), 7 = 111 (tutto acceso). Se qualcuno chiede 8: con 3 LED non si puo! Servirebbero 4 LED. Questo introduce naturalmente il concetto di overflow.",
       "provocative_question": "Cosa succede se premo il pulsante 8 volte? 8 in binario e 1000, ma abbiamo solo 3 LED. Dove va il quarto bit?",
       "action_tags": [],
@@ -130,7 +130,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! All'inizio tutti i LED sono spenti (numero 0). Premete il pulsante e contate: 1, 2, 3... Osservate come i LED si accendono e spengono seguendo lo schema binario. Dopo il 7 si torna a 0!",
+      "teacher_message": "Ragazzi, Premete Play! All'inizio tutti i LED sono spenti (numero 0). Premete il pulsante e contate: 1, 2, 3... Osservate come i LED si accendono e spengono seguendo lo schema binario. Dopo il 7 si torna a 0!",
       "teacher_tip": "Fate tenere un foglio con la tabella binaria 0-7 e chiedi di verificare ad ogni pressione che i LED corrispondono. E un momento di scoperta potente: stanno vedendo come un computer rappresenta i numeri!",
       "action_tags": [
         "[AZIONE:play]",
@@ -146,7 +146,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete appena visto come conta un computer! Il sistema binario e alla base di tutta l'informatica. Con 3 bit contiamo fino a 7, con 8 bit fino a 255, con 32 bit fino a 4 miliardi. Ogni LED del nostro circuito e esattamente un bit nella memoria di Arduino.",
+      "teacher_message": "Ragazzi, Avete appena visto come conta un computer! Il sistema binario e alla base di tutta l'informatica. Con 3 bit contiamo fino a 7, con 8 bit fino a 255, con 32 bit fino a 4 miliardi. Ogni LED del nostro circuito e esattamente un bit nella memoria di Arduino.",
       "teacher_tip": "Recap: ogni LED e un bit. Il LED destro vale 1 (bit 0), il centrale vale 2 (bit 1), il sinistro vale 4 (bit 2). L'operatore modulo (%) fa tornare il contatore a 0 dopo il massimo. Collegamento con la vita reale: la RAM del computer ha miliardi di questi 'LED microscopici'.",
       "summary_for_class": "Il sistema binario usa solo 0 e 1, proprio come i nostri LED (spento e acceso). Con 3 LED rappresentiamo numeri da 0 a 7. Il LED a destra vale 1, quello al centro vale 2, quello a sinistra vale 4. Per sapere il numero, sommiamo i valori dei LED accesi. Tutti i computer del mondo contano cosi!",
       "concepts_learned": [

@@ -90,7 +90,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Carichiamo il programma. Un punto e un flash breve di 200ms. Una linea e un flash lungo di 600ms. Tra un simbolo e l'altro, pausa di 200ms. Tra le lettere, pausa di 600ms.",
+      "teacher_message": "Ragazzi, Carichiamo il programma. Un punto e un flash breve di 200ms. Una linea e un flash lungo di 600ms. Tra un simbolo e l'altro, pausa di 200ms. Tra le lettere, pausa di 600ms.",
       "teacher_tip": "Le regole standard Morse: linea = 3x punto, pausa tra simboli = 1x punto, pausa tra lettere = 3x punto, pausa tra parole = 7x punto. Semplificare per i ragazzi.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap6-esp7]"
@@ -101,7 +101,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Se raddoppio tutti i tempi, il messaggio cambia o resta lo stesso SOS ma piu lento? E se dimezziamo solo i punti ma non le linee?",
+      "teacher_message": "Ragazzi, Se raddoppio tutti i tempi, il messaggio cambia o resta lo stesso SOS ma piu lento? E se dimezziamo solo i punti ma non le linee?",
       "teacher_tip": "Far capire che nel Morse conta il rapporto tra breve e lungo, non il tempo assoluto. Se cambio le proporzioni, il messaggio diventa illeggibile.",
       "provocative_question": "Se qualcuno vi manda un messaggio Morse con il LED ma voi non conoscete il codice, come fate a capire almeno quante lettere ci sono?",
       "action_tags": [],
@@ -111,7 +111,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premiamo Play e osserviamo il LED. Tre flash brevi, tre lunghi, tre brevi, pausa lunga, e ricomincia. Provate a decodificarlo contando la durata dei flash.",
+      "teacher_message": "Ragazzi, Premiamo Play e osserviamo il LED. Tre flash brevi, tre lunghi, tre brevi, pausa lunga, e ricomincia. Provate a decodificarlo contando la durata dei flash.",
       "teacher_tip": "Sfida avanzata: chi vuole provare a scrivere il proprio nome in Morse? Fornire la tabella Morse per le lettere piu comuni (A-Z).",
       "action_tags": [
         "[AZIONE:play]"
@@ -123,7 +123,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Con il timing preciso di Arduino possiamo trasmettere messaggi in codice Morse. Il segreto e il rapporto tra punti brevi e linee lunghe. Lo stesso principio del telegrafo del 1836.",
+      "teacher_message": "Ragazzi, Con il timing preciso di Arduino possiamo trasmettere messaggi in codice Morse. Il segreto e il rapporto tra punti brevi e linee lunghe. Lo stesso principio del telegrafo del 1836.",
       "teacher_tip": "Collegare alla storia della comunicazione: dal telegrafo al WiFi, il concetto di codificare informazioni in segnali on/off e lo stesso.",
       "summary_for_class": "Il codice Morse usa flash brevi (punti) e lunghi (linee) per codificare lettere. SOS e tre punti, tre linee, tre punti. Il timing preciso di delay() lo rende possibile.",
       "concepts_learned": [

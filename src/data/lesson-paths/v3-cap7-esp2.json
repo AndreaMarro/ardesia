@@ -96,7 +96,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito ha due parti: il LED su un pin OUTPUT e il pulsante su un pin INPUT. Quando il pulsante non e premuto, digitalRead legge HIGH e il LED resta acceso. Quando lo premiamo, legge LOW e il LED si spegne.",
+      "teacher_message": "Ragazzi, Il circuito ha due parti: il LED su un pin OUTPUT e il pulsante su un pin INPUT. Quando il pulsante non e premuto, digitalRead legge HIGH e il LED resta acceso. Quando lo premiamo, legge LOW e il LED si spegne.",
       "teacher_tip": "Spiega il concetto di INPUT vs OUTPUT con un paragone semplice: OUTPUT e come parlare (Arduino comanda), INPUT e come ascoltare (Arduino riceve). Fino ad ora abbiamo solo parlato, oggi impariamo ad ascoltare.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp2]"
@@ -107,7 +107,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il LED e acceso. Il pulsante e collegato. Cosa pensate che succeda quando lo premiamo? E perche quando rilasciamo il pulsante, il LED torna ad accendersi? Arduino ha memoria di cosa e successo?",
+      "teacher_message": "Ragazzi, Il LED e acceso. Il pulsante e collegato. Cosa pensate che succeda quando lo premiamo? E perche quando rilasciamo il pulsante, il LED torna ad accendersi? Arduino ha memoria di cosa e successo?",
       "teacher_tip": "Guida la riflessione: Arduino non ricorda nulla tra un ciclo e l'altro del loop. Ogni volta legge il pulsante e decide. Se il pulsante e premuto, spegne il LED. Se non e premuto, lo accende. Non c'e memoria, solo lettura istantanea.",
       "provocative_question": "Se il loop di Arduino gira migliaia di volte al secondo, perche non vediamo il LED che lampeggia? Come fa Arduino a sembrare cosi veloce?",
       "action_tags": [],
@@ -117,7 +117,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! Il LED rosso si accende. Ora cliccate sul pulsante nel simulatore e tenetelo premuto: il LED si spegne. Rilasciate: torna acceso. E un comportamento momentaneo, non un toggle.",
+      "teacher_message": "Ragazzi, Premete Play! Il LED rosso si accende. Ora cliccate sul pulsante nel simulatore e tenetelo premuto: il LED si spegne. Rilasciate: torna acceso. E un comportamento momentaneo, non un toggle.",
       "teacher_tip": "Fate notare la differenza con un interruttore di casa: quello resta nella posizione in cui lo metti. Il pulsante invece torna su da solo quando lo lasci. Chiedi: servirebbe una variabile per farlo restare spento?",
       "action_tags": [
         "[AZIONE:play]",
@@ -131,7 +131,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete costruito il primo circuito interattivo! Arduino ora sa ascoltare un pulsante con digitalRead. INPUT e OUTPUT sono le due direzioni della comunicazione tra Arduino e il mondo.",
+      "teacher_message": "Ragazzi, Avete costruito il primo circuito interattivo! Arduino ora sa ascoltare un pulsante con digitalRead. INPUT e OUTPUT sono le due direzioni della comunicazione tra Arduino e il mondo.",
       "teacher_tip": "Recap: pinMode(pin, INPUT) configura un pin per ascoltare. digitalRead(pin) legge il valore: HIGH o LOW. Il pulsante e momentaneo: funziona solo mentre lo tieni premuto. Per un toggle serve una variabile, che vedremo presto.",
       "summary_for_class": "Arduino puo sia comandare (OUTPUT) che ascoltare (INPUT). Con digitalRead leggiamo il pulsante: HIGH quando rilasciato, LOW quando premuto. Il LED si spegne solo finche teniamo premuto. Per farlo restare spento servira una variabile di stato!",
       "concepts_learned": [

@@ -92,7 +92,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito e identico al precedente: un LED con resistore su un pin PWM. La differenza e nel codice: il primo for va da 0 a 255 (fade up), il secondo for va da 255 a 0 (fade down). Nel loop() si ripetono all'infinito.",
+      "teacher_message": "Ragazzi, Il circuito e identico al precedente: un LED con resistore su un pin PWM. La differenza e nel codice: il primo for va da 0 a 255 (fade up), il secondo for va da 255 a 0 (fade down). Nel loop() si ripetono all'infinito.",
       "teacher_tip": "Spiega la struttura dei due for: for(int i=0; i<=255; i+=5) sale, for(int i=255; i>=0; i-=5) scende. Il passo di 5 rende il fade visibile (51 passaggi invece di 256). Il delay(10) tra ogni passo regola la velocita dell'effetto.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp5]"
@@ -103,7 +103,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il primo for sale da 0 a 255 con passi di 5. Il secondo scende da 255 a 0 con passi di 5. Se cambio il delay da 10 a 50, cosa succede all'effetto? E se cambio il passo da 5 a 1?",
+      "teacher_message": "Ragazzi, Il primo for sale da 0 a 255 con passi di 5. Il secondo scende da 255 a 0 con passi di 5. Se cambio il delay da 10 a 50, cosa succede all'effetto? E se cambio il passo da 5 a 1?",
       "teacher_tip": "Guida il ragionamento: delay piu lungo = fade piu lento e morbido. Passo piu piccolo = piu passaggi = transizione piu fluida ma piu lunga. Con passo 1 e delay 10 servono 255 x 10ms = 2.55 secondi per salire. Con passo 5 servono 51 x 10ms = 0.51 secondi.",
       "provocative_question": "Se il LED fa 256 livelli di luminosita, quanti ne distingue davvero il vostro occhio? Provate a immaginare: vedreste la differenza tra il livello 100 e il livello 101?",
       "action_tags": [],
@@ -113,7 +113,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! Osservate il LED che si accende lentamente e poi si spegne lentamente, come un respiro. Il ciclo si ripete all'infinito. Provate a contare quanti secondi dura un ciclo completo.",
+      "teacher_message": "Ragazzi, Premete Play! Osservate il LED che si accende lentamente e poi si spegne lentamente, come un respiro. Il ciclo si ripete all'infinito. Provate a contare quanti secondi dura un ciclo completo.",
       "teacher_tip": "Fate misurare il tempo di un ciclo completo (up + down). Con delay(10) e passo 5, ogni fase dura circa 0.5 secondi, quindi un ciclo completo e circa 1 secondo. Chiedi: come lo rallenterei a 3 secondi per fase?",
       "action_tags": [
         "[AZIONE:play]",
@@ -126,7 +126,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete creato un effetto di luce professionale con solo due cicli for! Questo tipo di animazione si usa in prodotti reali: LED di notifica, luci di standby, indicatori di ricarica. Il principio e sempre lo stesso: PWM + ciclo.",
+      "teacher_message": "Ragazzi, Avete creato un effetto di luce professionale con solo due cicli for! Questo tipo di animazione si usa in prodotti reali: LED di notifica, luci di standby, indicatori di ricarica. Il principio e sempre lo stesso: PWM + ciclo.",
       "teacher_tip": "Recap: due for loop consecutivi nel loop() creano un ciclo infinito di fade up e fade down. Il delay regola la velocita, il passo regola la fluidita. Sfida per casa: provate a fare il fade solo nella direzione up, fermandosi a 128 invece di 255.",
       "summary_for_class": "Due cicli for consecutivi creano l'effetto respiro: il primo sale da 0 a 255, il secondo scende da 255 a 0. Il delay tra ogni passo regola la velocita. Nel loop() il ciclo si ripete all'infinito. Questo effetto si usa nei LED di standby di tutti i dispositivi elettronici!",
       "concepts_learned": [

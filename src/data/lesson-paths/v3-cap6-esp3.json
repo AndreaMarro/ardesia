@@ -93,7 +93,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Carichiamo il circuito: LED rosso sul pin 7, LED verde sul pin 8. Nel codice, accendiamo il rosso e spegniamo il verde, aspettiamo, poi il contrario.",
+      "teacher_message": "Ragazzi, Carichiamo il circuito: LED rosso sul pin 7, LED verde sul pin 8. Nel codice, accendiamo il rosso e spegniamo il verde, aspettiamo, poi il contrario.",
       "teacher_tip": "Scrivere lo schema alla lavagna: HIGH-LOW-delay-LOW-HIGH-delay. Far notare che le istruzioni sono in coppia: quando uno sale, l'altro scende.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap6-esp3]"
@@ -104,7 +104,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il codice ha 6 righe nel loop. Cosa succede se metto entrambi i LED su HIGH contemporaneamente? Si accendono tutti e due?",
+      "teacher_message": "Ragazzi, Il codice ha 6 righe nel loop. Cosa succede se metto entrambi i LED su HIGH contemporaneamente? Si accendono tutti e due?",
       "teacher_tip": "Questa domanda porta a capire che Arduino puo accendere piu pin insieme. L'alternanza e una scelta del programmatore, non un limite.",
       "provocative_question": "Riuscite a far lampeggiare i due LED insieme, come luci di Natale? Cosa dovete cambiare nel codice?",
       "action_tags": [],
@@ -114,7 +114,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premiamo Play. Rosso acceso, verde spento. Pausa. Verde acceso, rosso spento. Pausa. Si ripete all'infinito. Provate a cambiare i delay.",
+      "teacher_message": "Ragazzi, Premiamo Play. Rosso acceso, verde spento. Pausa. Verde acceso, rosso spento. Pausa. Si ripete all'infinito. Provate a cambiare i delay.",
       "teacher_tip": "Sfidare i piu veloci: 'Riuscite a fare 3 LED alternati?' (serve un terzo LED e pin). Non e richiesto ma stimola i migliori.",
       "action_tags": [
         "[AZIONE:play]"
@@ -126,7 +126,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Arduino esegue le istruzioni una dopo l'altra, nell'ordine esatto in cui le scriviamo. Controllando piu pin in sequenza creiamo effetti luminosi coordinati.",
+      "teacher_message": "Ragazzi, Arduino esegue le istruzioni una dopo l'altra, nell'ordine esatto in cui le scriviamo. Controllando piu pin in sequenza creiamo effetti luminosi coordinati.",
       "teacher_tip": "Collegare al concetto di esecuzione sequenziale: il computer non 'pensa', esegue riga per riga. L'ordine conta.",
       "summary_for_class": "Con due pin OUTPUT e istruzioni in sequenza, creiamo LED alternati. Arduino esegue le righe una alla volta, nell'ordine in cui le scriviamo.",
       "concepts_learned": [

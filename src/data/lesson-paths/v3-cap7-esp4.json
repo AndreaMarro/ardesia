@@ -90,7 +90,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito e semplice: un LED con resistore collegato a un pin PWM (quelli marcati con la tilde ~). Il codice usa analogWrite(pin, valore) dove valore va da 0 a 255. Solo i pin 3, 5, 6, 9, 10, 11 supportano il PWM!",
+      "teacher_message": "Ragazzi, Il circuito e semplice: un LED con resistore collegato a un pin PWM (quelli marcati con la tilde ~). Il codice usa analogWrite(pin, valore) dove valore va da 0 a 255. Solo i pin 3, 5, 6, 9, 10, 11 supportano il PWM!",
       "teacher_tip": "Mostrate sulla scheda Arduino dove sono i pin con il simbolo ~. Spiega che se usano analogWrite su un pin senza ~, non funziona. Il nome analogWrite e ingannevole: non produce un vero segnale analogico, ma un treno di impulsi digitali (PWM).",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp4]"
@@ -101,7 +101,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "analogWrite(5, 128) imposta il LED a meta luminosita. Ma Arduino non ha un dimmer analogico vero! Come fa a creare una luminosita intermedia usando solo acceso e spento? Pensateci: cosa succede se accendo e spengo una luce 500 volte al secondo?",
+      "teacher_message": "Ragazzi, analogWrite(5, 128) imposta il LED a meta luminosita. Ma Arduino non ha un dimmer analogico vero! Come fa a creare una luminosita intermedia usando solo acceso e spento? Pensateci: cosa succede se accendo e spengo una luce 500 volte al secondo?",
       "teacher_tip": "Guida verso la risposta: se il LED e acceso il 50% del tempo e spento il 50%, l'occhio non vede il lampeggio (troppo veloce!) ma percepisce meta luminosita. analogWrite(5, 64) = acceso 25% del tempo = un quarto di luminosita. Questo e il duty cycle.",
       "provocative_question": "Se analogWrite usa solo ON e OFF velocissimi, come facciamo a distinguere 128 da 127? L'occhio umano riesce davvero a vedere la differenza tra 256 livelli?",
       "action_tags": [],
@@ -111,7 +111,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! Il LED si accende gradualmente da spento a piena luminosita. Osservate come la luce cresce in modo fluido. Il ciclo for aumenta il valore da 0 a 255, un passo alla volta.",
+      "teacher_message": "Ragazzi, Premete Play! Il LED si accende gradualmente da spento a piena luminosita. Osservate come la luce cresce in modo fluido. Il ciclo for aumenta il valore da 0 a 255, un passo alla volta.",
       "teacher_tip": "Chiedi agli studenti di contare mentalmente i livelli di luminosita che riescono a distinguere a occhio. Probabilmente ne distinguono 10-15, non 256. Questo apre una discussione interessante sulla percezione umana vs la precisione digitale.",
       "action_tags": [
         "[AZIONE:play]",
@@ -124,7 +124,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Ora sapete controllare la luminosita di un LED! analogWrite e il PWM vi aprono un mondo: non solo LED, ma anche la velocita dei motori e il volume dei buzzer. Tutto con 256 livelli di controllo.",
+      "teacher_message": "Ragazzi, Ora sapete controllare la luminosita di un LED! analogWrite e il PWM vi aprono un mondo: non solo LED, ma anche la velocita dei motori e il volume dei buzzer. Tutto con 256 livelli di controllo.",
       "teacher_tip": "Recap: analogWrite(pin, valore) regola il duty cycle del PWM. 0 = sempre spento, 255 = sempre acceso, 128 = acceso meta del tempo. Solo i pin con ~ supportano il PWM. Il nome 'analogWrite' e fuorviante: e digitale mascherato!",
       "summary_for_class": "Il PWM (Pulse Width Modulation) e il trucco di Arduino per simulare valori analogici usando solo ON e OFF. analogWrite regola per quanto tempo il pin resta acceso in ogni ciclo. 256 livelli di luminosita, da 0 (spento) a 255 (massimo). Funziona solo sui pin marcati con ~.",
       "concepts_learned": [

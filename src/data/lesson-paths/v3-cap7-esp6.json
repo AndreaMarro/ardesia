@@ -103,8 +103,8 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito ha tre parti: il pulsante su INPUT_PULLUP, il LED verde e il LED rosso su due pin OUTPUT. Il codice usa una variabile booleana per ricordare quale LED e acceso. A ogni pressione la variabile si inverte: da true diventa false e viceversa.",
-      "teacher_tip": "Spiega la variabile booleana con un esempio fisico: e come un post-it dove scrivi 'verde' o 'rosso'. Ogni volta che premete il pulsante, cancelli e scrivi l'altro colore. Senza il post-it, Arduino non saprebbe quale LED era acceso al ciclo precedente.",
+      "teacher_message": "Ragazzi, Il circuito ha tre parti: il pulsante su INPUT_PULLUP, il LED verde e il LED rosso su due pin OUTPUT. Il codice usa una variabile booleana per ricordare quale LED e acceso. A ogni pressione la variabile si inverte: da true diventa false e viceversa.",
+      "teacher_tip": "Spiega la variabile booleana con un esempio fisico: e come un post-it dove scrivi 'verde' o 'rosso'. Ogni volta che premete il pulsante, cancelli e scrivete l'altro colore. Senza il post-it, Arduino non saprebbe quale LED era acceso al ciclo precedente.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp6]"
       ],
@@ -114,7 +114,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il codice ha un delay(50) dopo aver letto la pressione del pulsante. A cosa serve? Provate a pensare: cosa succede fisicamente quando premete un pulsante? Il contatto e perfetto o rimbalza un po'?",
+      "teacher_message": "Ragazzi, Il codice ha un delay(50) dopo aver letto la pressione del pulsante. A cosa serve? Provate a pensare: cosa succede fisicamente quando premete un pulsante? Il contatto e perfetto o rimbalza un po'?",
       "teacher_tip": "Il debounce e fondamentale. Un pulsante meccanico rimbalza per 5-20 millisecondi dopo ogni pressione, generando tanti contatti rapidi. Senza delay, Arduino potrebbe leggere 5-10 pressioni invece di una sola. Il delay(50) aspetta che il rimbalzo finisca. Analogia: una moneta che cade sul tavolo rimbalza prima di fermarsi.",
       "provocative_question": "Se togliamo il delay(50) dal codice, il toggle funzionera ancora correttamente? O succede qualcosa di strano?",
       "action_tags": [],
@@ -124,7 +124,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! Il LED verde si accende. Cliccate sul pulsante: il verde si spegne e il rosso si accende. Cliccate ancora: si scambiano di nuovo! Ogni pressione alterna lo stato per sempre.",
+      "teacher_message": "Ragazzi, Premete Play! Il LED verde si accende. Cliccate sul pulsante: il verde si spegne e il rosso si accende. Cliccate ancora: si scambiano di nuovo! Ogni pressione alterna lo stato per sempre.",
       "teacher_tip": "Fate notare che e una vera ALTERNANZA di stato: ogni pressione cambia. Non e come tenere premuto un pulsante normale. Questo meccanismo e ovunque nell'elettronica: interruttori della luce, tasto Mute, tasto Play/Pausa. La variabile booleana e la chiave.",
       "action_tags": [
         "[AZIONE:play]",
@@ -139,7 +139,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete costruito un vero toggle! Tre concetti fondamentali: la variabile booleana per ricordare lo stato, il debounce per evitare rimbalzi, e INPUT_PULLUP per il pulsante. Con questi strumenti potete costruire qualsiasi interfaccia interattiva.",
+      "teacher_message": "Ragazzi, Avete costruito un vero toggle! Tre concetti fondamentali: la variabile booleana per ricordare lo stato, il debounce per evitare rimbalzi, e INPUT_PULLUP per il pulsante. Con questi strumenti potete costruire qualsiasi interfaccia interattiva.",
       "teacher_tip": "Recap: variabile booleana = memoria tra un ciclo e l'altro. Debounce con delay(50) = ignora i rimbalzi meccanici. Toggle = ogni pressione inverte lo stato. Sfida: e se volessimo 3 stati invece di 2? Servirebbe un int invece di un bool.",
       "summary_for_class": "Il toggle usa tre ingredienti: INPUT_PULLUP per il pulsante, variabile booleana per ricordare lo stato corrente, e debounce con delay per ignorare i rimbalzi meccanici. Il risultato e un pulsante che ogni pressione cambia stato permanentemente, come il Caps Lock!",
       "concepts_learned": [

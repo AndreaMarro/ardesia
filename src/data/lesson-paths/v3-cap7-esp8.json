@@ -100,7 +100,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito e uguale al toggle: pulsante INPUT_PULLUP e LED. La differenza e nel codice: usiamo millis() per registrare il tempo dell'ultima pressione. Se sono passati almeno 50ms dalla pressione precedente, accettiamo la nuova pressione. Altrimenti la ignoriamo.",
+      "teacher_message": "Ragazzi, Il circuito e uguale al toggle: pulsante INPUT_PULLUP e LED. La differenza e nel codice: usiamo millis() per registrare il tempo dell'ultima pressione. Se sono passati almeno 50ms dalla pressione precedente, accettiamo la nuova pressione. Altrimenti la ignoriamo.",
       "teacher_tip": "Spiega millis() come un cronometro che parte quando Arduino si accende e non si ferma mai. Restituisce il numero di millisecondi trascorsi dall'accensione. Il tipo unsigned long serve perche dopo 50 giorni il numero diventa enorme (4 miliardi). La logica e: tempo_attuale - tempo_ultima_pressione > 50.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp8]"
@@ -111,7 +111,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il codice confronta millis() con il tempo dell'ultima pressione. Se la differenza e maggiore di 50ms, accetta la pressione. Perche 50ms? E tanto o poco? Cosa succede se mettiamo 500ms invece? E se mettiamo 5ms?",
+      "teacher_message": "Ragazzi, Il codice confronta millis() con il tempo dell'ultima pressione. Se la differenza e maggiore di 50ms, accetta la pressione. Perche 50ms? E tanto o poco? Cosa succede se mettiamo 500ms invece? E se mettiamo 5ms?",
       "teacher_tip": "50ms e un buon compromesso: abbastanza lungo per ignorare tutti i rimbalzi (che durano 5-20ms), abbastanza corto per non perdere pressioni veloci. Con 500ms perderemmo le pressioni rapide. Con 5ms potremmo ancora avere rimbalzi. Fate provare diversi valori nel simulatore.",
       "provocative_question": "Se due studenti premono lo stesso pulsante a 30ms di distanza, il debounce ignora la seconda pressione. E giusto o sbagliato? Quando il debounce diventa un problema invece di una soluzione?",
       "action_tags": [],
@@ -121,7 +121,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! Provate a premere il pulsante velocemente tante volte. Con il debounce millis() ogni pressione viene registrata correttamente, senza salti o doppie letture. Il LED fa toggle pulito ad ogni pressione.",
+      "teacher_message": "Ragazzi, Premete Play! Provate a premere il pulsante velocemente tante volte. Con il debounce millis() ogni pressione viene registrata correttamente, senza salti o doppie letture. Il LED fa toggle pulito ad ogni pressione.",
       "teacher_tip": "Fate confrontare mentalmente con il debounce a delay: il risultato sembra lo stesso, ma con delay il LED non puo fare nient'altro durante quei 50ms. Con millis() Arduino e libero di controllare sensori, muovere motori, aggiornare display. Nella pratica professionale non si usa mai delay per il debounce.",
       "action_tags": [
         "[AZIONE:play]",
@@ -135,7 +135,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete imparato la tecnica professionale per gestire i pulsanti! millis() e uno strumento potentissimo: serve per il debounce, per i timer, per far lampeggiare LED senza delay, per il multitasking. E la base della programmazione non-bloccante.",
+      "teacher_message": "Ragazzi, Avete imparato la tecnica professionale per gestire i pulsanti! millis() e uno strumento potentissimo: serve per il debounce, per i timer, per far lampeggiare LED senza delay, per il multitasking. E la base della programmazione non-bloccante.",
       "teacher_tip": "Recap: millis() restituisce i millisecondi dall'accensione. Confrontando il tempo attuale con quello dell'ultimo evento, decidiamo se e passato abbastanza tempo. Nessun delay, nessun blocco. Pattern: if(millis() - ultimoTempo > intervallo). Questo pattern si usa ovunque nella programmazione Arduino professionale.",
       "summary_for_class": "Il debounce con millis() e la versione professionale dell'anti-rimbalzo: invece di bloccare il programma con delay, confrontiamo i tempi. Se sono passati almeno 50ms dall'ultima pressione, accettiamo quella nuova. Il programma non si ferma mai e Arduino puo fare piu cose contemporaneamente!",
       "concepts_learned": [
