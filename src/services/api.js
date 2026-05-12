@@ -607,6 +607,9 @@ function friendlyError(error) {
     if (msg.includes('500') || msg.includes('502') || msg.includes('503')) {
         return 'Ops! Qualcosa non funziona. Riprova tra un momento!';
     }
+    if (msg.includes('400') || msg.includes('message too long') || msg.includes('invalid')) {
+        return 'Il messaggio è troppo lungo o non valido. Riprova con una domanda più breve.';
+    }
     if (msg.includes('429')) {
         return 'Troppe richieste! Aspetta qualche secondo e riprova.';
     }
