@@ -860,6 +860,24 @@ serve(async (req: Request) => {
       // startsWith('{') gate fails on prefix → raw JSON literal leaks to chat UI.
       // Universal post-process: extract text fields from ANY JSON envelope leak,
       // concat clean text, drop literal. Idempotent if no envelope present.
+      // Iter 41 v66: strip markdown code-fence FIRST (catches `\`\`\`json {tool...} \`\`\`` leak even
+      // without `"text":` envelope match — matrix evidence concept run 2/3 LLM emit code-fence
+      // with intent_tools array literal NOT wrapped in {text:..} envelope).
+      if (result && typeof result.text === 'string' && /```/.test(result.text)) {
+        const stripped = result.text
+          .replace(/```json[\s\S]*?```/gi, ' ')
+          .replace(/```[\s\S]*?```/g, ' ')
+          .replace(/```json[\s\S]*$/gi, ' ') // unterminated fence salvage
+          .replace(/\s+/g, ' ')
+          .trim();
+        if (stripped && stripped !== result.text) {
+          result = { ...result, text: stripped };
+          console.info(JSON.stringify({
+            level: 'info', event: 'markdown_codefence_scrubbed',
+            timestamp: new Date().toISOString(),
+          }));
+        }
+      }
       if (result && typeof result.text === 'string' && /\{\s*"text"\s*:/i.test(result.text)) {
         try {
           const envelopeRe = /\{\s*"text"\s*:\s*"((?:[^"\\]|\\.)*)"\s*(?:,\s*"intents"\s*:\s*\[[\s\S]*?\])?\s*\}/g;
@@ -890,6 +908,40 @@ serve(async (req: Request) => {
               envelopeCount: extracted.length,
               timestamp: new Date().toISOString(),
             }));
+          } else {
+            // Iter 41 v64 NEW fallback: closed-envelope regex didn't match (truncated mid-JSON
+            // due to maxOutputTokens cap). Andrea matrix 1/1000 evidence:
+            // `Ragazzi, {"text":"Ragazzi, il terminale 'drain'...` (200-char log slice).
+            // Salvage: find first `{"text":"` opening, extract substring until EOF or
+            // closing quote heuristically, decode escapes, drop wrapper prefix.
+            const openIdx = result.text.search(/\{\s*"text"\s*:\s*"/);
+            if (openIdx >= 0) {
+              const opener = result.text.slice(openIdx).match(/\{\s*"text"\s*:\s*"/);
+              const afterOpen = openIdx + (opener ? opener[0].length : 0);
+              let tail = result.text.slice(afterOpen);
+              // Truncate at unescaped closing quote if present.
+              const closeMatch = tail.match(/(?<!\\)"\s*(?:,\s*"intents"|\})/);
+              if (closeMatch && typeof closeMatch.index === 'number') {
+                tail = tail.slice(0, closeMatch.index);
+              }
+              const decoded = tail
+                .replace(/\\"/g, '"')
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, ' ')
+                .replace(/\\\\/g, '\\')
+                .trim();
+              const before = result.text.slice(0, openIdx).replace(/Ragazzi,?\s*$/i, '').trim();
+              const merged = (before ? before + ' ' : '') + decoded;
+              const cleanResponse = merged.replace(/\s+/g, ' ').trim();
+              if (cleanResponse) {
+                result = { ...result, text: cleanResponse };
+                console.info(JSON.stringify({
+                  level: 'info', event: 'json_envelope_truncated_salvaged',
+                  charsExtracted: decoded.length,
+                  timestamp: new Date().toISOString(),
+                }));
+              }
+            }
           }
         } catch (_scrubErr) {
           console.warn(JSON.stringify({

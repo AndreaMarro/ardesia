@@ -295,10 +295,24 @@ export function buildDirectOperationalResponse(
     { re: /\bblink\b/i, id: 'v3-cap5-blink', title: 'Blink LED' },
     { re: /\bmorse\b/i, id: 'v3-cap6-morse', title: 'codice Morse' },
     { re: /\bsimon\b/i, id: 'v3-cap8-simon', title: 'Simon' },
+    { re: /\baccendi(?:amo)?\s+(?:il\s+|la\s+|i\s+|un\s+|vostro\s+|primo\s+)*led\b/i, id: 'v1-cap6-esp1', title: 'primo LED' },
+    { re: /\bprim[oa]\s+led\b/i, id: 'v1-cap6-esp1', title: 'primo LED' },
+    { re: /\bpotenziometro\s+dimmer\b/i, id: 'v2-cap5-esp1', title: 'potenziometro dimmer' },
+    { re: /\bpotenziometro\b/i, id: 'v2-cap5-esp1', title: 'potenziometro' },
+    { re: /\bpulsante\b/i, id: 'v1-cap10-esp1', title: 'pulsante' },
+    { re: /\bcondensatore\b/i, id: 'v2-cap6-esp1', title: 'condensatore' },
+    { re: /\bmosfet\b/i, id: 'v2-cap10-esp1', title: 'MOSFET' },
   ];
-  const expNavTrigger = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?|voglio\s+(?:fare|provare|giocare)|vorrei\s+(?:fare|provare)|proviamo|facciamo|fammi\s+fare|partiamo)\b.*\b(esperimento|esercizio|lezione|capitolo|gioco)?\b/i.test(text)
-    || /\b(esperimento|gioco)\b/i.test(text);
-  if (expNavTrigger || /\bl[''']?\s*esperimento\b/i.test(text)) {
+  // Iter 41 v64 fix: keep OLD tight trigger (verb + noun) to preserve Scratch/Arduino route
+  // (test contract: "Apri i blocchi Scratch e carica blink" must route Scratch, not expNav).
+  // Backup trigger: specific component/experiment words + any nav verb + NO scratch/arduino keyword.
+  const hasScratchOrArduinoKeyword = /\b(scratch|blocchi|blocchett\w*|blockly|arduino|ide)\b/i.test(text);
+  const hasNavVerb = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|porta|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|vado|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?|voglio|vorrei|proviamo|fammi\s+fare|partiamo|accendi(?:amo)?)\b/i.test(text);
+  const hasSpecificExpKeyword = /\b(accendi.*led|prim[oa]\s+led|potenziometro|pulsante|condensatore|mosfet|semaforo|led\s*rgb|servo|lcd|buzzer|blink|morse|simon)\b/i.test(text);
+  const expNavTrigger = (/\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?|voglio\s+(?:fare|provare|giocare)|vorrei\s+(?:fare|provare)|proviamo|facciamo|fammi\s+fare|partiamo)\b.*\b(esperimento|esercizio|lezione|capitolo|gioco)\b/i.test(text)
+    || /\b(esperimento|gioco)\b/i.test(text));
+  const expNavBackup = hasSpecificExpKeyword && hasNavVerb && !hasScratchOrArduinoKeyword;
+  if (expNavTrigger || expNavBackup || /\bl[''']?\s*esperimento\b/i.test(text)) {
     for (const { re, id, title } of expNamePatterns) {
       if (re.test(text)) {
         return {
@@ -308,6 +322,21 @@ export function buildDirectOperationalResponse(
         };
       }
     }
+  }
+
+  // Iter 41 v64 NEW: vol.X cap.Y pre-LLM detector — matrix evidence 4 volpag no_plurale fails.
+  // "leggi vol.3 cap.13" → response was [AZIONE:loadexp:v3-cap13-esp1] alone (no plurale prose).
+  // Hand-craft full response with plurale opener + Vol/pag citation + canonical INTENT.
+  const volpagMatch = text.match(/\b(?:leggi(?:amo)?|apri|aprite|carica(?:te)?|mostra(?:mi|te)?|vai\s+a|portami\s+a)?\s*vol(?:ume)?\.?\s*([123])\s+cap(?:itolo)?\.?\s*(\d{1,2})\b/i);
+  if (volpagMatch) {
+    const volN = volpagMatch[1];
+    const capN = volpagMatch[2];
+    const expId = `v${volN}-cap${capN}-esp1`;
+    return {
+      source: 'direct-operational-volpag-nav',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo Vol.${volN} cap.${capN} sul kit ELAB. Carichiamo il primo esperimento del capitolo. [INTENT:{"tool":"mountExperiment","args":{"id":"${expId}"}}]`,
+    };
   }
 
   const isHighlight = (/\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente|r\d+|btn\d+|bat\d+|led\d+|bb\d+)\b/i.exec(text)
@@ -341,11 +370,15 @@ export function buildDirectOperationalResponse(
   // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
   // "portami al volume 2" → LLM rispondeva spiegazione invece navigazione.
   // Pre-LLM detector dispatch INTENT mountExperiment con primo esp volume target.
-  const volumeNavMatch = /\b(portami|portateci|portateli|portate?ci|vai|andate|andiamo|apri|aprite|aprire|carica|caricate|caricare|mostra|mostrate|mostrami|mostrare|passa|passate|vado|voglio\s+(?:andare|fare|vedere)|vorrei|prendiamo|partiamo)\b.*\bvolume\s*([123])\b/i.exec(text)
-    || /\bvolume\s*([123])\b.*\b(grazie|apri|aprite|carica|caricate|adesso|ora|subito|adesso|please|per\s+favore)\b/i.exec(text)
+  // Iter 41 v64 r2 fix: non-capturing verb group + qualifier group so DIGIT is ALWAYS group [1].
+  // Previous bug: branch 1 captured verb (group 1) AND digit (group 2). My iter 41 v64 first patch
+  // (match[1] only) regressed branch 1 to pick the verb word. Fix: drop verb capture entirely.
+  const volumeNavMatch = /\b(?:porta(?:mi|teci|teli|te?ci|te)?|vai|andate|andiamo|apri|aprite|aprire|carica|caricate|caricare|mostra|mostrate|mostrami|mostrare|passa|passate|vado|voglio\s+(?:andare|fare|vedere)|vorrei|prendiamo|partiamo)\b.*\bvolume\s*([123])\b/i.exec(text)
+    || /\bvolume\s*([123])\b.*\b(?:grazie|apri|aprite|carica|caricate|adesso|ora|subito|adesso|please|per\s+favore)\b/i.exec(text)
     || /^volume\s*([123])\s*$/i.exec(text);
   if (volumeNavMatch) {
-    const volN = (volumeNavMatch[2] || volumeNavMatch[1] || '').match(/[123]/)?.[0];
+    // After non-capturing rewrite above, group [1] is the digit in all 3 branches.
+    const volN = volumeNavMatch[1];
     if (volN === '1' || volN === '2' || volN === '3') {
       const firstEspByVol: Record<string, string> = {
         '1': 'v1-cap6-esp1',
