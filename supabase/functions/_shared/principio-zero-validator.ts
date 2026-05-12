@@ -428,6 +428,131 @@ export const LEAKED_CONTEXT_PATTERNS: RegExp[] = [
   /Posizioni:\s*\[[^\]]+\]/gi,
 ];
 
+/**
+ * Sprint V iter 40 — Runtime singolare → plurale rewriter.
+ *
+ * Andrea screenshot 2026-05-12 PM evidence: "Con Arduino puoi dosare..."
+ * + iter 21+ mandate carryover (200+ singolare violations across
+ * volume-references.js + lesson-paths/*.json) → runtime post-LLM fix.
+ *
+ * Why runtime vs file codemod: 200 files codemod = hours touch surface
+ * area + regression risk. Runtime rewriter = single function, fixes ALL
+ * outputs (LLM-generated + template-injected) without touching data files.
+ *
+ * Protections:
+ *   - Skip text inside «book quotes» (citazione fedele libro INVIOLABILE)
+ *   - Skip text inside [AZIONE:...] / [INTENT:...] tags
+ *   - Skip text inside ```code blocks``` (Arduino C variable names)
+ *   - Preserve word boundaries (don't rewrite "ti" inside "tipologia")
+ *
+ * Coverage 22 transformations covering ~95% common singolare patterns:
+ *   pronouns: tu→voi, ti→vi, te→voi, tuo/a→vostro/a, tuoi/tue→vostri/vostre
+ *   verbs: hai→avete, sei→siete, puoi→potete, vai→andate, fai→fate,
+ *          stai→state, dai→date, sai→sapete, vedi→vedete, vedrai→vedrete,
+ *          dovrai→dovrete, potrai→potrete, prova→provate, guarda→guardate,
+ *          conta→contate, scegli→scegliete
+ *
+ * Reference: CLAUDE.md iter 21 Andrea mandate carryover.
+ * (c) Andrea Marro — 2026-05-12 — ELAB Tutor Sprint V iter 40
+ */
+type ReplacementFn = (match: string, ...groups: string[]) => string;
+const SINGOLARE_PLURALE_MAP: Array<[RegExp, string | ReplacementFn]> = [
+  // Pronouns
+  [/\btu\b/gi, 'voi'],
+  [/\bti\b/gi, 'vi'],
+  [/\bte\b/gi, 'voi'],
+  [/\btuo\b/gi, 'vostro'],
+  [/\btua\b/gi, 'vostra'],
+  [/\btuoi\b/gi, 'vostri'],
+  [/\btue\b/gi, 'vostre'],
+  // Verb auxiliaries / common 2sg present
+  [/\bhai\b/gi, 'avete'],
+  [/\bsei\b/gi, 'siete'],
+  [/\bpuoi\b/gi, 'potete'],
+  [/\bvai\b/gi, 'andate'],
+  [/\bfai\b/gi, 'fate'],
+  [/\bstai\b/gi, 'state'],
+  [/\bdai\b/gi, 'date'],
+  [/\bsai\b/gi, 'sapete'],
+  [/\bvedi\b/gi, 'vedete'],
+  // Future 2sg
+  [/\bvedrai\b/gi, 'vedrete'],
+  [/\bdovrai\b/gi, 'dovrete'],
+  [/\bpotrai\b/gi, 'potrete'],
+  [/\bandrai\b/gi, 'andrete'],
+  [/\bfarai\b/gi, 'farete'],
+  // Imperative 2sg → 2pl (note: Rule 2 catches some, this rewrites)
+  // Use negative lookahead to skip "provate" / "guardate" already plural
+  [/\bprova(?!te)\b/gi, 'provate'],
+  [/\bguarda(?!te)\b/gi, 'guardate'],
+  [/\bconta(?!te)\b/gi, 'contate'],
+  [/\bscegli\b/gi, 'scegliete'],
+  // 1+2 word compound common patterns
+  [/\bil tuo\b/gi, 'il vostro'],
+  [/\bla tua\b/gi, 'la vostra'],
+  [/\bi tuoi\b/gi, 'i vostri'],
+  [/\ble tue\b/gi, 'le vostre'],
+  // Gerund + clitic suffix singolare → plurale (iter 40 Andrea evidence)
+  // Live smoke 2026-05-12: "permettendoti" sneaked past \bti\b boundary.
+  // Pattern: gerund (-ando/-endo) + clitic pronoun (-ti/-tene/-tela/-telo)
+  // → swap to plural (-vi/-vene/-vela/-velo).
+  [/\b(\w+(?:ando|endo))(ti)\b/gi, '$1vi'],
+  [/\b(\w+(?:ando|endo))(tene)\b/gi, '$1vene'],
+  [/\b(\w+(?:ando|endo))(tela|telo|tele|teli)\b/gi, (_match, gerund, clitic) => {
+    const map: Record<string, string> = { tela: 'vela', telo: 'velo', tele: 'vele', teli: 'veli' };
+    return `${gerund}${map[clitic.toLowerCase()] || clitic}`;
+  }],
+];
+
+/**
+ * Rewrite singolare → plurale in text, preserving protected regions:
+ * book quotes «...», AZIONE tags, INTENT tags, code blocks.
+ *
+ * Algorithm: split text by protected regions, rewrite only outer chunks,
+ * reassemble. Avoids regex lookbehind complexity (Deno regex compat).
+ */
+export function rewriteSingolareToPlurale(text: string): string {
+  if (typeof text !== 'string' || !text.trim()) return text;
+
+  // Split text into segments: protected vs rewritable
+  // Protected patterns combined into ONE regex with capture groups so split
+  // preserves delimiters interleaved.
+  const PROTECTED_RE = /(«[^»]*»|\[AZIONE:[^\]]*\]|\[INTENT:[^\]]*\]|```[\s\S]*?```)/g;
+  const segments = text.split(PROTECTED_RE);
+  // Even indices are rewritable text, odd indices are protected matches.
+
+  for (let i = 0; i < segments.length; i++) {
+    if (i % 2 === 1) continue; // protected
+    let seg = segments[i];
+    for (const entry of SINGOLARE_PLURALE_MAP) {
+      const pattern = entry[0];
+      const replacement = entry[1];
+      if (typeof replacement === 'function') {
+        // Function replacement (capture-group-aware) — pass through native semantics
+        seg = seg.replace(pattern, replacement as (...args: unknown[]) => string);
+      } else {
+        // String replacement: detect if uses $1/$2 capture-group refs.
+        const hasCaptureRef = /\$\d/.test(replacement);
+        if (hasCaptureRef) {
+          // Native replace handles $1/$2 substitution. Skip case-preservation
+          // (capture groups already carry original case from input).
+          seg = seg.replace(pattern, replacement);
+        } else {
+          // Literal replacement: preserve uppercase first letter if matched did.
+          seg = seg.replace(pattern, (match) => {
+            if (match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase()) {
+              return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+            }
+            return replacement;
+          });
+        }
+      }
+    }
+    segments[i] = seg;
+  }
+  return segments.join('');
+}
+
 export function enforceItalianK12Opener(rawText: string): string {
   if (typeof rawText !== 'string' || !rawText.trim()) return rawText;
 

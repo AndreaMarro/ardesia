@@ -17,7 +17,7 @@ import type { ChatRequest, ChatResponse, CircuitState } from '../_shared/types.t
 import { retrieveVolumeContext, hybridRetrieve, formatHybridContext } from '../_shared/rag.ts';
 import { getCapitoloByExperimentId, buildCapitoloPromptFragment, inferCapitoloFromMessage, buildCapitoloSummaryFragment } from '../_shared/capitoli-loader.ts';
 import { buildCitazioneFragment, rewriteCitationToCanonical, forceCitationFromQuery, forceCitationFromSession } from '../_shared/volumi-citazioni.ts';
-import { validatePrincipioZero, enforceItalianK12Opener } from '../_shared/principio-zero-validator.ts';
+import { validatePrincipioZero, enforceItalianK12Opener, rewriteSingolareToPlurale } from '../_shared/principio-zero-validator.ts';
 // iter 11 P0 — Andrea mandate: 10 paletti runtime checkContentSafety post-LLM.
 // Audit iter 11 backend trovò content-safety-guard.ts (306 LOC) DEAD CODE non wired.
 // Wire post-enforcer + pre-PZ-validator. Live smoke Q9 220V FAIL → safety_warning trigger.
@@ -973,6 +973,14 @@ serve(async (req: Request) => {
     // Strip leaked context tags + auto-prepend "Ragazzi," opener.
     // Idempotent. Live r5-042 + andrea-screenshot-comemai catastrophic fix.
     cleanText = enforceItalianK12Opener(cleanText);
+
+    // 6a-bis-2. Sprint V iter 40 — singolare → plurale runtime rewriter.
+    // Andrea screenshot 2026-05-12 PM: "Con Arduino puoi dosare..." singolare
+    // violation persists despite CLAUDE.md iter 21 codemod mandate (200 files
+    // pending). Runtime rewriter fixes ALL outputs (LLM + L2 template + RAG)
+    // without touching data files. Protected regions: «book quotes», AZIONE
+    // tags, INTENT tags, code blocks preserved INVIOLATE.
+    cleanText = rewriteSingolareToPlurale(cleanText);
 
     // iter 15 — rewrite citation narrative → canonical Vol.X pag.Y.
     // R-100 evidence iter 14: LLM cita narrative form 100% volte, mai canonical strict.
