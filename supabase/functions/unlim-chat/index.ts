@@ -1124,12 +1124,18 @@ serve(async (req: Request) => {
       source: result.provider === 'mistral' ? result.model
         : result.provider === 'together' ? `together-${result.model}`
         : result.provider === 'brain' ? 'brain'
+        : result.provider === 'vertex' ? `vertex-${result.model}`
         : modelDisplayName(model) || result.model,
       audio: audioUrl || undefined,
+      // Sprint U iter 39 Phase 0 — Vertex EU label for GDPR Art.8 minori
+      // observability (Andrea + audit trail). dataProcessing surfaces actual
+      // provider used by callLLM router (vertex-eu wins over AI Studio when
+      // ENABLE_VERTEX_EU=true + SA configured).
       dataProcessing: result.provider === 'mistral' ? 'mistral-eu'
         : result.provider === 'together' ? 'together-ai'
         : result.provider === 'brain' ? 'local-brain'
-        : 'google-gemini',
+        : result.provider === 'vertex' ? `vertex-eu-${Deno.env.get('GCP_VERTEX_LOCATION') || 'europe-west9'}`
+        : 'google-gemini-ai-studio',
       aiProfile: activeAiProfile.id,
     };
     // iter 11 P0 — surface prompt_class ALWAYS (Andrea live smoke 2026-05-10
