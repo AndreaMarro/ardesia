@@ -249,6 +249,93 @@ export function buildDirectOperationalResponse(
   const qualityRoute = classifyResponseQualityIntent(message, circuitState);
   const explicitVagueRequest = /\b(fai tu|aiuto|panico|non so|boh|parti tu|decidi tu)\b/i.test(text);
 
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea test matrix evidence:
+  // play/pause/compile/screenshot/highlight comandi semplici NON intercettati
+  // pre-LLM. LLM Vertex risponde con diagnosi invece di dispatch action.
+  // Pre-LLM detector dispatch INTENT/AZIONE diretto per comandi canonici corti.
+  const isPlay = /^(fallo partire|fai partire|vai|via|parti|start|avvia|play|partit?o|partit?e|partiamo|avviamo|inizia(?:mo)?)$|\b(fallo partire|fai partire|premi play|avvia(?:la|lo)?\s|click(?:a)? play|inizia(?:mo)? la simulazione)\b/i.test(text);
+  if (isPlay) {
+    return {
+      source: 'direct-operational-play',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, avvio la simulazione del circuito. [AZIONE:play]',
+    };
+  }
+  const isPause = /^(stop|ferma|pausa|pause|interrompi|spegni)$|\b(ferma(?:te)?\s+la\s+simulazione|metti(?:te)?\s+in\s+pausa|spegni(?:amo|ete)?\s+il\s+circuito)\b/i.test(text);
+  if (isPause) {
+    return {
+      source: 'direct-operational-pause',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, fermo la simulazione. [AZIONE:pause]',
+    };
+  }
+  const isCompile = /^(compila|compile|verifica codice|build)$|\b(compila(?:te|re)?\s+(?:il\s+)?codice|prova(?:te|re)?\s+(?:il\s+)?codice|verifica(?:te|re)?\s+il\s+codice)\b/i.test(text);
+  if (isCompile) {
+    return {
+      source: 'direct-operational-compile',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, compilo il codice e preparo il programma per Arduino. [AZIONE:compile]',
+    };
+  }
+  const isScreenshot = /\b(cattura(?:te|re)?|scatta(?:te)?|fai\s+(?:una\s+)?foto|fotograf(?:a|ate|are)|screenshot|catturate?\s+(?:lo\s+)?schermo)\b.*\b(circuito|schermo|breadboard|lavagna)?\b/i.test(text) && !/\b(cosa|come|spieg)\b/i.test(text);
+  if (isScreenshot) {
+    return {
+      source: 'direct-operational-screenshot',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, scatto una foto del circuito da analizzare. [INTENT:{"tool":"captureScreenshot","args":{}}]',
+    };
+  }
+  // Iter 41 Sprint U Cycle 2 — experiment-name nav detector (precedence over highlight).
+  const expNamePatterns: Array<{ re: RegExp; id: string; title: string }> = [
+    { re: /\bsemaforo\b/i, id: 'v3-cap6-semaforo', title: 'semaforo' },
+    { re: /\bled\s*rgb\b/i, id: 'v1-cap9-esp6', title: 'LED RGB' },
+    { re: /\bservo(?:motore)?\b/i, id: 'v3-cap7-servo-sweep', title: 'servomotore' },
+    { re: /\blcd\b/i, id: 'v3-cap7-lcd-hello', title: 'LCD' },
+    { re: /\bbuzzer\b/i, id: 'v3-cap7-buzzer-melody', title: 'buzzer melodia' },
+    { re: /\bblink\b/i, id: 'v3-cap5-blink', title: 'Blink LED' },
+    { re: /\bmorse\b/i, id: 'v3-cap6-morse', title: 'codice Morse' },
+    { re: /\bsimon\b/i, id: 'v3-cap8-simon', title: 'Simon' },
+  ];
+  const expNavTrigger = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?)\b.*\b(esperimento|esercizio|lezione|capitolo)?\b/i.test(text);
+  if (expNavTrigger || /\bl[''']?\s*esperimento\b/i.test(text)) {
+    for (const { re, id, title } of expNamePatterns) {
+      if (re.test(text)) {
+        return {
+          source: 'direct-operational-experiment-nav',
+          dataProcessing: 'local-direct',
+          response: `Ragazzi, apriamo l'esperimento del ${title} sul kit ELAB. [INTENT:{"tool":"mountExperiment","args":{"id":"${id}"}}]`,
+        };
+      }
+    }
+  }
+
+  const isHighlight = /\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente)\b/i.exec(text)
+    && !/\b(esperimento|esercizio|lezione|capitolo)\b/i.test(text);
+  if (isHighlight) {
+    const componentText = text.match(/\b(led1?|led2|r1|r2|btn1|buzzer|nano|breadboard)\b/i)?.[0]?.toLowerCase() || 'led1';
+    const compId = componentText === 'led' ? 'led1' : componentText === 'r' ? 'r1' : componentText;
+    return {
+      source: 'direct-operational-highlight',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, evidenzio ${compId} sulla breadboard. [INTENT:{"tool":"highlightComponent","args":{"ids":["${compId}"]}}]`,
+    };
+  }
+
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea test matrix evidence:
+  // "imposta la resistenza a 470" → LLM testuale invece di INTENT canonico.
+  const resistanceMatch = /\b(imposta(?:te)?|setta(?:te)?|cambia(?:te)?|metti(?:te)?|fai)\b.*\b(resist(?:enza|ore)|R\d+)\b.*?(\d+)\s*(ohm|Ω|k|kΩ|kohm)?\b/i.exec(text);
+  if (resistanceMatch) {
+    let value = parseInt(resistanceMatch[3], 10);
+    const unit = (resistanceMatch[4] || '').toLowerCase();
+    if (unit.startsWith('k')) value = value * 1000;
+    const rId = (text.match(/\br\d+\b/i)?.[0] || 'r1').toLowerCase();
+    return {
+      source: 'direct-operational-resistance',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, imposto ${rId.toUpperCase()} a ${value}Ω. [INTENT:{"tool":"setComponentValue","args":{"id":"${rId}","field":"resistance","value":${value}}}]`,
+    };
+  }
+
   // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
   // "portami al volume 2" → LLM rispondeva spiegazione invece navigazione.
   // Pre-LLM detector dispatch INTENT mountExperiment con primo esp volume target.
