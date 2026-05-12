@@ -1071,8 +1071,18 @@ export async function sendChat(message, images = [], options = {}) {
             }
         }
 
-        // Fallback a knowledge base locale (risposte curate offline)
-        if (images.length === 0) {
+        // Sprint U Cycle 2 iter 41 — Andrea live test 2026-05-12 PM evidence:
+        // `searchKnowledgeBase` fallback served stale canned responses ("Il LED
+        // è una lucina speciale che funziona come una porta girevole...") that
+        // bypassed Edge Function Vertex + linguaggio rewriter + Onniscenza +
+        // anti-invenzione. Result: singolare violations ("metti", "se lo metti
+        // al contrario", "tranquillo") + RGB memory leak on Vol.1 cap.6 LED.
+        // Mitigation: gate behind `VITE_ENABLE_LOCAL_KNOWLEDGE_FALLBACK` env
+        // flag (default OFF). When Edge Function unreachable, surface honest
+        // failure (`friendlyError`) instead of canned content with violations.
+        // Re-enable when knowledge-base entries rewritten Sprint U Cycle 2+ scope.
+        const enableLocalKnowledge = (import.meta.env.VITE_ENABLE_LOCAL_KNOWLEDGE_FALLBACK || 'false').toString().toLowerCase() === 'true';
+        if (enableLocalKnowledge && images.length === 0) {
             const kbResult = searchKnowledgeBase(message);
             if (kbResult) {
                 const actions = extractActions(kbResult.answer, message);
