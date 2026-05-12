@@ -852,6 +852,53 @@ serve(async (req: Request) => {
           }));
         }
       }
+
+      // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence
+      // multiple bugs: LLM occasionally emits `Ragazzi, {"text":"...","intents":[]}`
+      // with PREFIX before JSON envelope, OR multiple concatenated envelopes
+      // `{...}{...}{...}`, OR markdown code-fence `json {...}` blocks.
+      // startsWith('{') gate fails on prefix → raw JSON literal leaks to chat UI.
+      // Universal post-process: extract text fields from ANY JSON envelope leak,
+      // concat clean text, drop literal. Idempotent if no envelope present.
+      if (result && typeof result.text === 'string' && /\{\s*"text"\s*:/i.test(result.text)) {
+        try {
+          const envelopeRe = /\{\s*"text"\s*:\s*"((?:[^"\\]|\\.)*)"\s*(?:,\s*"intents"\s*:\s*\[[\s\S]*?\])?\s*\}/g;
+          const extracted: string[] = [];
+          let stripped = result.text;
+          let m: RegExpExecArray | null;
+          envelopeRe.lastIndex = 0;
+          // eslint-disable-next-line no-cond-assign
+          while ((m = envelopeRe.exec(result.text)) !== null) {
+            const cleanText = m[1]
+              .replace(/\\"/g, '"')
+              .replace(/\\n/g, '\n')
+              .replace(/\\t/g, ' ')
+              .replace(/\\\\/g, '\\');
+            extracted.push(cleanText);
+          }
+          if (extracted.length > 0) {
+            stripped = result.text
+              .replace(/```json[\s\S]*?```/gi, ' ')
+              .replace(/```[\s\S]*?```/g, ' ')
+              .replace(envelopeRe, ' ')
+              .replace(/^\s*Ragazzi,?\s*$/gim, ' ')
+              .trim();
+            const cleanResponse = (stripped + ' ' + extracted.join(' ')).replace(/\s+/g, ' ').trim();
+            result = { ...result, text: cleanResponse };
+            console.info(JSON.stringify({
+              level: 'info', event: 'json_envelope_leak_scrubbed',
+              envelopeCount: extracted.length,
+              timestamp: new Date().toISOString(),
+            }));
+          }
+        } catch (_scrubErr) {
+          console.warn(JSON.stringify({
+            level: 'warn', event: 'json_envelope_scrub_failed',
+            error: _scrubErr instanceof Error ? _scrubErr.message : 'unknown',
+            timestamp: new Date().toISOString(),
+          }));
+        }
+      }
     } catch (llmError) {
       // Both Together + Gemini failed — try Brain fallback
       console.warn(JSON.stringify({
