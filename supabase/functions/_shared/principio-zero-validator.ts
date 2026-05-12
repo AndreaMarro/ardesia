@@ -482,10 +482,34 @@ const SINGOLARE_PLURALE_MAP: Array<[RegExp, string | ReplacementFn]> = [
   [/\bandrai\b/gi, 'andrete'],
   [/\bfarai\b/gi, 'farete'],
   // Imperative 2sg → 2pl (note: Rule 2 catches some, this rewrites)
-  // Use negative lookahead to skip "provate" / "guardate" already plural
-  [/\bprova(?!te)\b/gi, 'provate'],
-  [/\bguarda(?!te)\b/gi, 'guardate'],
-  [/\bconta(?!te)\b/gi, 'contate'],
+  // Use negative lookahead to skip "provate" / "guardate" already plural.
+  // ALSO skip when preceded by article/preposition (noun context, e.g.
+  // "banco di prova" = test bench NOT imperative "test it!"):
+  // Use replacer fn checking preceding word for article/preposition.
+  [/\bprova(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|sotto|sopra|con|per|su)\s+$/.test(before)) return match; // noun context
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Provate' : 'provate';
+  }],
+  [/\bguarda(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|sotto|sopra|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Guardate' : 'guardate';
+  }],
+  [/\bconta(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|sotto|sopra|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Contate' : 'contate';
+  }],
   [/\bscegli\b/gi, 'scegliete'],
   // 1+2 word compound common patterns
   [/\bil tuo\b/gi, 'il vostro'],

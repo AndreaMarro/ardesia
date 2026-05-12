@@ -194,3 +194,24 @@ describe('rewriteSingolareToPlurale — gerund + clitic suffix iter 40 hotfix', 
     expect(rewriteSingolareToPlurale('tipologia generale')).toBe('tipologia generale');
   });
 });
+
+describe('rewriteSingolareToPlurale — noun-imperative disambiguation iter 40', () => {
+  it('preserves "banco di prova" (noun: test bench, NOT imperative)', () => {
+    expect(rewriteSingolareToPlurale('Sul banco di prova vedete il LED')).toBe('Sul banco di prova vedete il LED');
+  });
+  it('preserves "la prova" (noun)', () => {
+    expect(rewriteSingolareToPlurale('La prova è positiva')).toBe('La prova è positiva');
+  });
+  it('preserves "una prova" (noun)', () => {
+    expect(rewriteSingolareToPlurale('Una prova rapida')).toBe('Una prova rapida');
+  });
+  it('STILL rewrites bare imperative "prova" (no article)', () => {
+    expect(rewriteSingolareToPlurale('Prova questo circuito')).toBe('Provate questo circuito');
+  });
+  it('preserves "in conta" / "la conta" (noun count)', () => {
+    expect(rewriteSingolareToPlurale('la conta dei componenti')).toBe('la conta dei componenti');
+  });
+  it('STILL rewrites bare "conta"', () => {
+    expect(rewriteSingolareToPlurale('Conta i pin')).toBe('Contate i pin');
+  });
+});
