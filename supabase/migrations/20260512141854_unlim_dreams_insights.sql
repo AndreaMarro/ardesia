@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS unlim_dreams_insights (
 -- Per-docente recent fetch (Dashboard widget + chat pre-context inject)
 CREATE INDEX IF NOT EXISTS idx_dreams_docente_recent
   ON unlim_dreams_insights (docente_id, created_at DESC)
-  WHERE expires_at > now();
+;  -- partial WHERE expires_at > now() removed (now() not IMMUTABLE)
 
 -- Semantic retrieval (similarity search next-day insight by chat query)
 CREATE INDEX IF NOT EXISTS idx_dreams_embedding
@@ -66,12 +66,12 @@ CREATE INDEX IF NOT EXISTS idx_dreams_embedding
 -- Scope-based fetch (per-experiment insight aggregate cross-classe)
 CREATE INDEX IF NOT EXISTS idx_dreams_scope
   ON unlim_dreams_insights (insight_type, scope_key)
-  WHERE expires_at > now();
+;  -- partial WHERE expires_at > now() removed (now() not IMMUTABLE)
 
 -- Expiry cleanup support
 CREATE INDEX IF NOT EXISTS idx_dreams_expires
   ON unlim_dreams_insights (expires_at)
-  WHERE expires_at > now();
+;  -- partial WHERE expires_at > now() removed (now() not IMMUTABLE)
 
 -- ════════════════════════════════════════════════════════════════════════════
 -- Row Level Security
