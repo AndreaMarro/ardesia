@@ -511,6 +511,80 @@ const SINGOLARE_PLURALE_MAP: Array<[RegExp, string | ReplacementFn]> = [
     return isUpper ? 'Contate' : 'contate';
   }],
   [/\bscegli\b/gi, 'scegliete'],
+  // Iter 41 Andrea live smoke 2026-05-12 PM "Pensa a una piccola lampadina"
+  // — additional imperatives missing from initial set
+  [/\bpensa(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Pensate' : 'pensate';
+  }],
+  [/\bpensalo\b/gi, 'pensatelo'],
+  [/\bpensala\b/gi, 'pensatela'],
+  [/\bpensali\b/gi, 'pensateli'],
+  [/\bricorda(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Ricordate' : 'ricordate';
+  }],
+  [/\bricordi\b/gi, 'ricordate'],
+  [/\bimmagina(?!te)\b/gi, (match, ...args) => {
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Immaginate' : 'immaginate';
+  }],
+  [/\bconsidera(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Considerate' : 'considerate';
+  }],
+  [/\bosserva(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Osservate' : 'osservate';
+  }],
+  [/\bnota(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Notate' : 'notate';
+  }],
+  [/\bcollega(?!te)\b/gi, (match, ...args) => {
+    const fullStr = args[args.length - 1] as string;
+    const offset = args[args.length - 2] as number;
+    const before = fullStr.slice(Math.max(0, offset - 20), offset).toLowerCase();
+    if (/\b(la|una|della|di|in|alla|con|per|su)\s+$/.test(before)) return match;
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Collegate' : 'collegate';
+  }],
+  [/\bclicca(?!te)\b/gi, (match, ...args) => {
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Cliccate' : 'cliccate';
+  }],
+  [/\bpremi(?!te)\b/gi, (match, ...args) => {
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Premete' : 'premete';
+  }],
+  [/\bapri(?!te)\b/gi, (match, ...args) => {
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Aprite' : 'aprite';
+  }],
+  [/\bchiudi(?!te)\b/gi, (match, ...args) => {
+    const isUpper = match.charAt(0) === match.charAt(0).toUpperCase() && match.charAt(0) !== match.charAt(0).toLowerCase();
+    return isUpper ? 'Chiudete' : 'chiudete';
+  }],
   // 1+2 word compound common patterns
   [/\bil tuo\b/gi, 'il vostro'],
   [/\bla tua\b/gi, 'la vostra'],

@@ -215,3 +215,45 @@ describe('rewriteSingolareToPlurale — noun-imperative disambiguation iter 40',
     expect(rewriteSingolareToPlurale('Conta i pin')).toBe('Contate i pin');
   });
 });
+
+describe('rewriteSingolareToPlurale — iter 41 expanded imperatives', () => {
+  it('pensa → pensate (Andrea live smoke "Pensa a una piccola lampadina")', () => {
+    expect(rewriteSingolareToPlurale('Pensa a una piccola lampadina')).toBe('Pensate a una piccola lampadina');
+  });
+  it('pensalo → pensatelo', () => {
+    expect(rewriteSingolareToPlurale('pensalo bene')).toBe('pensatelo bene');
+  });
+  it('ricorda → ricordate', () => {
+    expect(rewriteSingolareToPlurale('ricorda il pin')).toBe('ricordate il pin');
+  });
+  it('ricordi → ricordate (interrogative)', () => {
+    expect(rewriteSingolareToPlurale('ricordi il pin?')).toBe('ricordate il pin?');
+  });
+  it('immagina → immaginate', () => {
+    expect(rewriteSingolareToPlurale('Immagina un fiume')).toBe('Immaginate un fiume');
+  });
+  it('osserva → osservate', () => {
+    expect(rewriteSingolareToPlurale('Osserva il LED')).toBe('Osservate il LED');
+  });
+  it('clicca → cliccate', () => {
+    expect(rewriteSingolareToPlurale('Clicca Play')).toBe('Cliccate Play');
+  });
+  it('premi → premete', () => {
+    expect(rewriteSingolareToPlurale('Premi il pulsante')).toBe('Premete il pulsante');
+  });
+  it('apri → aprite', () => {
+    expect(rewriteSingolareToPlurale('Apri il manuale')).toBe('Aprite il manuale');
+  });
+  it('considera → considerate', () => {
+    expect(rewriteSingolareToPlurale('considera il fatto')).toBe('considerate il fatto');
+  });
+  it('preserves noun "pensa" preceded by article (rare but defensive)', () => {
+    expect(rewriteSingolareToPlurale('la pensa diversa')).toBe('la pensa diversa');
+  });
+  it('collega → collegate (imperative)', () => {
+    expect(rewriteSingolareToPlurale('Collega il filo')).toBe('Collegate il filo');
+  });
+  it('preserves "la collega" noun (colleague)', () => {
+    expect(rewriteSingolareToPlurale('la collega di Anna')).toBe('la collega di Anna');
+  });
+});

@@ -673,15 +673,21 @@ serve(async (req: Request) => {
       + imagePiiGuard;
 
     // 3.5 ClawBot L2 template short-circuit (Sprint T iter 26).
-    // Try keyword/category match BEFORE invoking the LLM. If a template fits,
-    // execute it server-side, return [AZIONE:...] tags + speakTTS text. This
-    // gives a deterministic morphic path for the 20 documented patterns
-    // (introduce/explain/diagnose/guide/celebrate/recap/critique/debug/
-    // reroute) and falls back to the LLM otherwise.
+    // Sprint U iter 41 — Andrea live test 2026-05-12 PM evidence: L2 templates
+    // serve hardcoded narrative ("Vol.1 pag.45 'Approfondimento...'") for ANY
+    // matching experimentId regardless of actual query. Bypasses Vertex Edge
+    // Function entirely → linguaggio rewriter + anti-invenzione + memoria
+    // contextualized SKIPPED. Real user gets stale RGB context on Vol.1 LED
+    // query because L2 template content hardcoded shared.
+    // Mitigation: gate behind `ENABLE_L2_TEMPLATES` env (default OFF). Edge
+    // Function handles ALL educational queries via Vertex Gemini Flash-Lite
+    // + Onniscenza + RAG + linguaggio rewriter post-LLM. Re-enable when L2
+    // template content rewritten per-experiment Sprint U Cycle 2+ scope.
+    const l2TemplatesEnabled = (Deno.env.get('ENABLE_L2_TEMPLATES') || 'false').toLowerCase() === 'true';
     try {
-      const tpl = selectTemplate(safeMessage, {
+      const tpl = l2TemplatesEnabled ? selectTemplate(safeMessage, {
         experimentId: safeExperimentId ?? undefined,
-      });
+      }) : null;
       if (tpl) {
         // iter-RALPH-2 (2026-05-12): wire real hybridRetrieve so L2 templates
         // surface real Vol/pag citation from RAG instead of empty "Vol.1 pag.''".
