@@ -249,6 +249,29 @@ export function buildDirectOperationalResponse(
   const qualityRoute = classifyResponseQualityIntent(message, circuitState);
   const explicitVagueRequest = /\b(fai tu|aiuto|panico|non so|boh|parti tu|decidi tu)\b/i.test(text);
 
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
+  // LLM ricostruiva intero circuito con addcomponent tags invece di
+  // modificare LED esistente. Pre-LLM detector dispatch INTENT
+  // setComponentValue color quando componente gia presente in circuitState.
+  const colorChangeMatch = /\b(metti|cambia|imposta|setta|fai)\b.*\bled\b.*\b(rosso|verde|blu|giallo|bianco|arancione|viola|red|green|blue|yellow|white|orange|purple)\b/i.exec(text);
+  if (colorChangeMatch && (circuitState?.components || []).some(c => /led/i.test(c.type || ''))) {
+    const colorMap: Record<string, string> = {
+      rosso: 'red', verde: 'green', blu: 'blue', giallo: 'yellow',
+      bianco: 'white', arancione: 'orange', viola: 'purple',
+      red: 'red', green: 'green', blue: 'blue', yellow: 'yellow',
+      white: 'white', orange: 'orange', purple: 'purple',
+    };
+    const colorIt = colorChangeMatch[2].toLowerCase();
+    const colorEn = colorMap[colorIt] || colorIt;
+    const ledComp = (circuitState?.components || []).find(c => /led/i.test(c.type || ''));
+    const ledId = ledComp?.id || 'led1';
+    return {
+      source: 'direct-operational-led-color',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, cambio il LED a ${colorIt}. [INTENT:{"tool":"setComponentValue","args":{"id":"${ledId}","field":"color","value":"${colorEn}"}}]`,
+    };
+  }
+
   if (/\b(report|fumetto|riassunto)\b.*\b(sessione|lezione|quello che abbiamo fatto|oggi)\b|\b(sessione|lezione)\b.*\b(report|fumetto)\b/i.test(text)) {
     return {
       source: 'direct-operational-report-comic',
