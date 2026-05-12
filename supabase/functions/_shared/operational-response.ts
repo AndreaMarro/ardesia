@@ -250,6 +250,33 @@ export function buildDirectOperationalResponse(
   const explicitVagueRequest = /\b(fai tu|aiuto|panico|non so|boh|parti tu|decidi tu)\b/i.test(text);
 
   // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
+  // "portami al volume 2" → LLM rispondeva spiegazione invece navigazione.
+  // Pre-LLM detector dispatch INTENT mountExperiment con primo esp volume target.
+  const volumeNavMatch = /\b(portami|portateci|portateli|portate?ci|vai|andate|andiamo|apri|aprite|aprire|carica|caricate|caricare|mostra|mostrate|mostrami|mostrare|passa|passate)\b.*\bvolume\s*([123])\b/i.exec(text)
+    || /\bvolume\s*([123])\b.*\b(grazie|apri|aprite|carica|caricate|adesso)\b/i.exec(text);
+  if (volumeNavMatch) {
+    const volN = (volumeNavMatch[2] || volumeNavMatch[1] || '').match(/[123]/)?.[0];
+    if (volN === '1' || volN === '2' || volN === '3') {
+      const firstEspByVol: Record<string, string> = {
+        '1': 'v1-cap6-esp1',
+        '2': 'v2-cap3-esp1',
+        '3': 'v3-cap5-esp1',
+      };
+      const expId = firstEspByVol[volN];
+      const volTitleByVol: Record<string, string> = {
+        '1': 'Volume 1 — Le Basi',
+        '2': 'Volume 2 — Approfondiamo',
+        '3': 'Volume 3 — Arduino',
+      };
+      return {
+        source: 'direct-operational-volume-nav',
+        dataProcessing: 'local-direct',
+        response: `Ragazzi, apriamo il ${volTitleByVol[volN]} sul kit ELAB. Cominciamo dal primo esperimento. [INTENT:{"tool":"mountExperiment","args":{"id":"${expId}"}}]`,
+      };
+    }
+  }
+
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
   // LLM ricostruiva intero circuito con addcomponent tags invece di
   // modificare LED esistente. Pre-LLM detector dispatch INTENT
   // setComponentValue color quando componente gia presente in circuitState.
