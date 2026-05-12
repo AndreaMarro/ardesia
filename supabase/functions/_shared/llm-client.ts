@@ -8,6 +8,7 @@
 
 import type { GeminiModel, ImageData } from './types.ts';
 import { callGemini, callBrainFallback, GeminiError, ErrorCode } from './gemini.ts';
+import { callVertexGemini, isVertexEUEnabled, VertexError } from './vertex-client.ts';
 import {
   canUseTogether,
   anonymizePayload,
@@ -379,6 +380,41 @@ async function callTogether(options: LLMOptions): Promise<LLMResult> {
 export async function callLLM(options: LLMOptions): Promise<LLMResult> {
   const provider = (Deno.env.get('LLM_PROVIDER') || 'together').trim().toLowerCase();
   const hasImages = (options.images?.length ?? 0) > 0;
+
+  // Sprint U iter 39 Phase 0 — Pure Gemini Vertex EU short-circuit.
+  // When ENABLE_VERTEX_EU=true AND GCP_VERTEX_SA_JSON_B64 + GCP_VERTEX_PROJECT_ID
+  // configured, route 100% chat traffic (text + vision) to Vertex Frankfurt
+  // (europe-west3) for GDPR Art.8 minori EU residency compliance.
+  // Falls through legacy AI Studio Gemini + Mistral chain on Vertex failure
+  // (backward-compatible safety net during Phase 0 rollout).
+  // Evidence-based: empirical R5 2026-05-11 1877ms avg p50, Andrea Pure G
+  // ratify iter 39 (docs/decisions/2026-05-12-pure-gemini-chat-evidence-based.md).
+  if (isVertexEUEnabled()) {
+    try {
+      // Model selection: thinking mode → Pro; vision (images) → Flash (vision
+      // capable); else → Flash-Lite (default fast chat ~1877ms p50 empirical).
+      const vertexModel = options.thinkingLevel
+        ? 'gemini-2.5-pro'
+        : (hasImages ? 'gemini-2.5-flash' : 'gemini-2.5-flash-lite');
+      const r = await callVertexGemini({ ...options, model: vertexModel });
+      return {
+        text: r.text,
+        model: r.model,
+        provider: 'vertex',
+        tokensUsed: { input: r.tokensUsed.input, output: r.tokensUsed.output },
+        latencyMs: r.latencyMs,
+      };
+    } catch (e) {
+      console.warn(JSON.stringify({
+        level: 'warn',
+        event: 'vertex_fallthrough_to_legacy',
+        error_code: e instanceof VertexError ? e.code : 'unknown',
+        error_message: e instanceof Error ? e.message.slice(0, 200) : String(e).slice(0, 200),
+        hint: 'AI Studio + Mistral legacy chain active as safety net',
+      }));
+      // Fall through to legacy paths below (AI Studio Gemini + Mistral chain).
+    }
+  }
 
   // Vision: ALWAYS Gemini (Mistral Pixtral fallback iter 25+)
   if (hasImages) {
