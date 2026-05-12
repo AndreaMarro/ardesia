@@ -100,7 +100,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, i computer contano in binario: solo con 0 e 1. I nostri LED fanno la stessa cosa: acceso = 1, spento = 0. Con 3 LED possiamo contare da 0 a 7! Oggi costruiamo un contatore che mostra il numero di pressioni del pulsante in binario.",
-      "teacher_tip": "Scrivi alla lavagna i numeri da 0 a 7 in binario: 000, 001, 010, 011, 100, 101, 110, 111. Mostra che con 3 cifre binarie (3 bit = 3 LED) si possono rappresentare 8 numeri diversi (da 0 a 7). Il LED piu a destra vale 1, quello centrale vale 2, quello a sinistra vale 4.",
+      "teacher_tip": "Scrivi alla lavagna i numeri da 0 a 7 in binario: 000, 001, 010, 011, 100, 101, 110, 111. Mostrate che con 3 cifre binarie (3 bit = 3 LED) si possono rappresentare 8 numeri diversi (da 0 a 7). Il LED piu a destra vale 1, quello centrale vale 2, quello a sinistra vale 4.",
       "class_hook": "Sapete come conta un computer? Non usa le dita (ne ha solo due: acceso e spento). Con 3 LED possiamo contare fino a 7. Sembra poco, ma con 8 LED arriviamo a 255, e con 32 LED a oltre 4 miliardi!",
       "action_tags": [],
       "auto_action": null
@@ -121,7 +121,7 @@
       "icon": "❓",
       "duration_minutes": 8,
       "teacher_message": "Se premo il pulsante 5 volte, quali LED saranno accesi? Pensate: 5 in binario si scrive 101. Significa che il LED delle unita (vale 1) e acceso, quello dei due (vale 2) e spento, e quello dei quattro (vale 4) e acceso. 4 + 0 + 1 = 5!",
-      "teacher_tip": "Fai provare agli studenti a convertire mentalmente: 3 = 011 (due + uno), 6 = 110 (quattro + due), 7 = 111 (tutto acceso). Se qualcuno chiede 8: con 3 LED non si puo! Servirebbero 4 LED. Questo introduce naturalmente il concetto di overflow.",
+      "teacher_tip": "Fate provare agli studenti a convertire mentalmente: 3 = 011 (due + uno), 6 = 110 (quattro + due), 7 = 111 (tutto acceso). Se qualcuno chiede 8: con 3 LED non si puo! Servirebbero 4 LED. Questo introduce naturalmente il concetto di overflow.",
       "provocative_question": "Cosa succede se premo il pulsante 8 volte? 8 in binario e 1000, ma abbiamo solo 3 LED. Dove va il quarto bit?",
       "action_tags": [],
       "auto_action": null
@@ -131,7 +131,7 @@
       "icon": "👀",
       "duration_minutes": 10,
       "teacher_message": "Premete Play! All'inizio tutti i LED sono spenti (numero 0). Premete il pulsante e contate: 1, 2, 3... Osservate come i LED si accendono e spengono seguendo lo schema binario. Dopo il 7 si torna a 0!",
-      "teacher_tip": "Fai tenere un foglio con la tabella binaria 0-7 e chiedi di verificare ad ogni pressione che i LED corrispondono. E un momento di scoperta potente: stanno vedendo come un computer rappresenta i numeri!",
+      "teacher_tip": "Fate tenere un foglio con la tabella binaria 0-7 e chiedi di verificare ad ogni pressione che i LED corrispondono. E un momento di scoperta potente: stanno vedendo come un computer rappresenta i numeri!",
       "action_tags": [
         "[AZIONE:play]",
         "[AZIONE:highlight:btn1]",
@@ -140,7 +140,7 @@
         "[AZIONE:highlight:led3]"
       ],
       "auto_action": "play_and_highlight",
-      "observation_prompt": "Premi 1: solo il LED destro si accende (001). Premi 2: solo il centrale (010). Premi 3: destro e centrale (011). Premi 4: solo il sinistro (100). Continua fino a 7 (111 = tutti accesi), poi torna a 0."
+      "observation_prompt": "Premete 1: solo il LED destro si accende (001). Premete 2: solo il centrale (010). Premete 3: destro e centrale (011). Premete 4: solo il sinistro (100). Continua fino a 7 (111 = tutti accesi), poi torna a 0."
     },
     {
       "name": "CONCLUDI",

@@ -8,7 +8,7 @@
  * PRINCIPIO ZERO v3.1:
  * - parla ai RAGAZZI plurale
  * - cita Vol.X pag.Y
- * - max 60 parole risposta
+ * - max 120 parole risposta (feedback 2026-05-10, analogie opzionali)
  * - dual output classe_display + docente_sidebar
  *
  * Token optimization (50% saving stimato):
@@ -18,11 +18,11 @@
  */
 
 const PRINCIPIO_ZERO_RULES = `
-VINCOLI RISPOSTA (PRINCIPIO ZERO v3.1):
+VINCOLI RISPOSTA (PRINCIPIO ZERO v3.2 — feedback 2026-05-10):
 - Parla ai RAGAZZI plurale ("Vediamo insieme", "Provate")
 - MAI rivolto direttamente al docente come comando
-- Max 60 parole + UNA analogia concreta
-- CITA Vol.X pag.Y quando opportuno
+- Max 120 parole ben formattate; analogie OPZIONALI (usa solo se chiariscono)
+- CITA Vol.X pag.Y quando rilevante per ancorare al volume cartaceo
 - Output dual: classe_display narrative + docente_sidebar nominale
 `.trim();
 

@@ -15,7 +15,7 @@
  * Rules implemented at runtime (this file tests):
  *   1. imperativo_docente (HIGH) — line-start "Distribuisci|Spiega|Mostra..."
  *   2. singolare_studente (HIGH) — "devi|prova|guarda" (excluding inside «...»)
- *   3. max_words_60 (MEDIUM) — wc > 60
+ *   3. max_words_120 (MEDIUM) — wc > 60
  *   4. no_citation_concept_intro (LOW, conditional via ctx.isConceptIntro)
  *   5. english_filler (LOW) — "let me|please|sure|of course|happy to"
  *   6. chatbot_preamble (LOW) — "Certo|Volentieri|Ottima/Bella domanda|Sicuramente"
@@ -87,26 +87,26 @@ describe('validatePrincipioZero — 6 runtime rules (Sprint S iter 2 Task A)', (
   });
 
   // ───────────────────────────────────────────────────────────────
-  // RULE 3: max_words_60
+  // RULE 3: max_words_120
   // ───────────────────────────────────────────────────────────────
-  it('detects max_words_60 exceeded (>60 words) → MEDIUM', () => {
-    const longResp = 'Ragazzi, vediamo insieme. ' + 'parola '.repeat(80);
+  it('detects max_words_120 exceeded (>120 words) → MEDIUM', () => {
+    const longResp = 'Ragazzi, vediamo insieme. ' + 'parola '.repeat(140);
     const r = callOrFail(longResp);
-    const v = r.violations.find((x) => x.rule === 'max_words_60');
+    const v = r.violations.find((x) => x.rule === 'max_words_120');
     expect(v).toBeDefined();
     expect(v.severity).toBe('MEDIUM');
   });
 
   it('passes max_words for 30-word response', () => {
     const r = callOrFail('Ragazzi, vediamo come funziona il LED. È come una piccola lampadina che si accende solo nella direzione giusta. Provate insieme con il Vol. 1 pag. 27.');
-    const v = r.violations.find((x) => x.rule === 'max_words_60');
+    const v = r.violations.find((x) => x.rule === 'max_words_120');
     expect(v).toBeUndefined();
   });
 
   it('strips [AZIONE:...] tags from word count', () => {
     const resp = 'Ragazzi, vediamo. [AZIONE:highlight:led1] Provate insieme.';
     const r = callOrFail(resp);
-    const v = r.violations.find((x) => x.rule === 'max_words_60');
+    const v = r.violations.find((x) => x.rule === 'max_words_120');
     expect(v).toBeUndefined();
   });
 
@@ -191,19 +191,239 @@ describe('validatePrincipioZero — 6 runtime rules (Sprint S iter 2 Task A)', (
   it('aggregates max severity across multiple violations', () => {
     const r = callOrFail('Distribuisci il LED. Devi girare. Let me help. ' + 'parola '.repeat(80));
     expect(r.violations.length).toBeGreaterThan(1);
-    expect(r.severity).toBe('HIGH'); // imperativo + singolare are HIGH, max wins
+    // Iter 27: plurale_ragazzi promoted to MAJOR (response lacks "Ragazzi" opener)
+    // MAJOR > HIGH > MEDIUM > LOW in iter 27 severity ranking.
+    expect(r.severity).toBe('MAJOR');
     expect(r.passes).toBe(false);
   });
 
   // ───────────────────────────────────────────────────────────────
   // Bench-time-only rules (deferred — documented as it.todo)
   // ───────────────────────────────────────────────────────────────
-  it.todo('plurale_ragazzi — bench-time only, requires positive presence check (fixture-dependent)');
-  it.todo('citation_vol_pag — bench-time only, fixture flag-based unconditional check');
-  it.todo('analogia — bench-time only, fixture flag-based');
-  it.todo('no_verbatim_3plus_frasi — bench-time only, requires RAG source diff');
-  it.todo('synthesis_not_verbatim — bench-time only, requires RAG retrieved chunks comparison');
-  it.todo('off_topic_recognition — bench-time only, requires fixture.scenario==="off-topic"');
+  // Iter 27 (2026-05-11) — 6/8 promoted to runtime (see describe block below).
+  // Only 2 remain bench-time-only.
   it.todo('humble_admission — bench-time only, requires fixture.scenario in [deep-question, off-topic]');
-  it.todo('action_tags_when_expected — bench-time only, requires fixture.expectedActions');
+  it.todo('synthesis_not_verbatim — bench-time only, requires RAG retrieved chunks comparison');
+});
+
+// ═════════════════════════════════════════════════════════════════════
+// Iter 27 (2026-05-11) — PZ V3 +6 runtime rules promotion
+// Promotes 6 bench-only rules to runtime enforcement (12/12 coverage).
+// Validator accepts optional ctx { requiresCitation, isOfftopic, isSafetyRefusal,
+// expectedActions } — backward-compat preserved (ctx fully optional).
+// MAJOR severity NON-BLOCKING iter 27 (Andrea iter 28 ratify decide hard-block).
+// ═════════════════════════════════════════════════════════════════════
+describe('validatePrincipioZero — iter 27 +6 runtime rules (PZ V3 100% coverage)', () => {
+  // ───────────────────────────────────────────────────────────────
+  // RULE 7: plurale_ragazzi (MAJOR) — MUST start "Ragazzi,"
+  // ───────────────────────────────────────────────────────────────
+  it('plurale_ragazzi: passes when response starts "Ragazzi,"', () => {
+    const r = callOrFail('Ragazzi, vediamo insieme il LED.');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('plurale_ragazzi: fails (MAJOR) when missing "Ragazzi" opener', () => {
+    const r = callOrFail('Il LED si accende quando la corrente passa.');
+    const v = r.violations.find((x) => x.rule === 'plurale_ragazzi');
+    expect(v).toBeDefined();
+    expect(v.severity).toBe('MAJOR');
+  });
+
+  it('plurale_ragazzi: case-insensitive accepts "ragazzi" lowercase', () => {
+    const r = callOrFail('ragazzi, vediamo il LED.');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('plurale_ragazzi: accepts "Ragazze" feminine plural', () => {
+    const r = callOrFail('Ragazze, vediamo insieme.');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('plurale_ragazzi: SKIPPED when ctx.isSafetyRefusal=true', () => {
+    const r = callOrFail('Mi spiace, questa richiesta non è appropriata.', {
+      isSafetyRefusal: true,
+    });
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('plurale_ragazzi: strips [AZIONE:...] prefix when measuring opener', () => {
+    const r = callOrFail('[AZIONE:highlight:led1] Ragazzi, guardate il LED.');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // RULE 8: citation_vol_pag (MAJOR conditional)
+  // ───────────────────────────────────────────────────────────────
+  it('citation_vol_pag: passes with "Vol.1 pag.27" when requiresCitation=true', () => {
+    const r = callOrFail('Ragazzi, il LED si trova su Vol.1 pag.27.', {
+      requiresCitation: true,
+    });
+    expect(r.violations.some((x) => x.rule === 'citation_vol_pag')).toBe(false);
+  });
+
+  it('citation_vol_pag: passes with "Vol.2 cap.5" alternative format', () => {
+    const r = callOrFail('Ragazzi, vediamo Vol.2 cap.5.', { requiresCitation: true });
+    expect(r.violations.some((x) => x.rule === 'citation_vol_pag')).toBe(false);
+  });
+
+  it('citation_vol_pag: fails MAJOR when requiresCitation=true and no Vol/pag', () => {
+    const r = callOrFail('Ragazzi, il LED si accende così.', { requiresCitation: true });
+    const v = r.violations.find((x) => x.rule === 'citation_vol_pag');
+    expect(v).toBeDefined();
+    expect(v.severity).toBe('MAJOR');
+  });
+
+  it('citation_vol_pag: SKIPPED when requiresCitation is undefined/false', () => {
+    const r = callOrFail('Ragazzi, il LED si accende così.');
+    expect(r.violations.some((x) => x.rule === 'citation_vol_pag')).toBe(false);
+  });
+
+  it('citation_vol_pag: SKIPPED when ctx.isOfftopic=true even with requiresCitation', () => {
+    const r = callOrFail('Ragazzi, torniamo all\'elettronica.', {
+      requiresCitation: true,
+      isOfftopic: true,
+    });
+    expect(r.violations.some((x) => x.rule === 'citation_vol_pag')).toBe(false);
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // RULE 9: analogia (LOW telemetry-only) — Andrea 10/05/2026 OPZIONALE
+  // ───────────────────────────────────────────────────────────────
+  it('analogia: telemetry counts "come una lampadina" without violation', () => {
+    const r = callOrFail('Ragazzi, il LED è come una piccola lampadina.');
+    expect(r.violations.some((x) => x.rule === 'analogia')).toBe(false);
+    expect(r.telemetry).toBeDefined();
+    expect(r.telemetry.analogiaCount).toBeGreaterThan(0);
+  });
+
+  it('analogia: telemetry counts "come se" marker', () => {
+    const r = callOrFail('Ragazzi, funziona come se fosse un interruttore.');
+    expect(r.telemetry.analogiaCount).toBeGreaterThan(0);
+  });
+
+  it('analogia: telemetry counts "immagina" marker', () => {
+    const r = callOrFail('Ragazzi, immagina una corrente d\'acqua.');
+    expect(r.telemetry.analogiaCount).toBeGreaterThan(0);
+  });
+
+  it('analogia: NO violation when missing (Andrea 10/05/2026 OPZIONALE rule)', () => {
+    const r = callOrFail('Ragazzi, il LED si accende quando passa corrente.');
+    expect(r.violations.some((x) => x.rule === 'analogia')).toBe(false);
+    expect(r.telemetry.analogiaCount).toBe(0);
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // RULE 10: no_verbatim_3plus_frasi (MEDIUM)
+  // ───────────────────────────────────────────────────────────────
+  it('no_verbatim_3plus_frasi: fails MEDIUM with 3+ consecutive «...» blocks', () => {
+    const r = callOrFail('Ragazzi, «frase uno», «frase due», «frase tre» Vol.1 pag.27.');
+    const v = r.violations.find((x) => x.rule === 'no_verbatim_3plus_frasi');
+    expect(v).toBeDefined();
+    expect(v.severity).toBe('MEDIUM');
+  });
+
+  it('no_verbatim_3plus_frasi: passes with 2 verbatim blocks (under threshold)', () => {
+    const r = callOrFail('Ragazzi, «frase uno» e «frase due» Vol.1 pag.27.');
+    expect(r.violations.some((x) => x.rule === 'no_verbatim_3plus_frasi')).toBe(false);
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // RULE 11: off_topic_recognition (LOW)
+  // ───────────────────────────────────────────────────────────────
+  it('off_topic_recognition: passes when isOfftopic=true AND redirect marker present', () => {
+    const r = callOrFail('Ragazzi, torniamo all\'elettronica e al nostro LED.', {
+      isOfftopic: true,
+    });
+    expect(r.violations.some((x) => x.rule === 'off_topic_recognition')).toBe(false);
+  });
+
+  it('off_topic_recognition: fails LOW when isOfftopic=true AND no redirect marker', () => {
+    const r = callOrFail('Ragazzi, il calcio è uno sport bellissimo.', { isOfftopic: true });
+    const v = r.violations.find((x) => x.rule === 'off_topic_recognition');
+    expect(v).toBeDefined();
+    expect(v.severity).toBe('LOW');
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // RULE 12: action_tags_when_expected (MEDIUM)
+  // ───────────────────────────────────────────────────────────────
+  it('action_tags_when_expected: passes with [AZIONE:highlight] when expected', () => {
+    const r = callOrFail('Ragazzi, guardate. [AZIONE:highlight:led1]', {
+      expectedActions: ['highlight'],
+    });
+    expect(r.violations.some((x) => x.rule === 'action_tags_when_expected')).toBe(false);
+  });
+
+  it('action_tags_when_expected: fails MEDIUM when expectedActions provided but no [AZIONE:]', () => {
+    const r = callOrFail('Ragazzi, guardate il LED.', {
+      expectedActions: ['highlight', 'mountExperiment'],
+    });
+    const v = r.violations.find((x) => x.rule === 'action_tags_when_expected');
+    expect(v).toBeDefined();
+    expect(v.severity).toBe('MEDIUM');
+  });
+
+  it('action_tags_when_expected: SKIPPED when expectedActions is empty array', () => {
+    const r = callOrFail('Ragazzi, guardate il LED.', { expectedActions: [] });
+    expect(r.violations.some((x) => x.rule === 'action_tags_when_expected')).toBe(false);
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // Combined scenarios + severity aggregation
+  // ───────────────────────────────────────────────────────────────
+  it('aggregates MAJOR severity correctly (plurale + citation both missing)', () => {
+    const r = callOrFail('Il LED si accende così.', { requiresCitation: true });
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(true);
+    expect(r.violations.some((x) => x.rule === 'citation_vol_pag')).toBe(true);
+    expect(r.severity).toBe('MAJOR');
+    expect(r.passes).toBe(false);
+  });
+
+  it('MAJOR ranks higher than HIGH in severity aggregation', () => {
+    // plurale_ragazzi (MAJOR) + imperativo_docente (HIGH) → MAJOR wins
+    const r = callOrFail('Distribuisci il LED ai ragazzi.');
+    expect(r.severity).toBe('MAJOR');
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // Backward-compat: ctx optional (existing callers)
+  // ───────────────────────────────────────────────────────────────
+  it('backward-compat: validatePrincipioZero(response) without ctx still works', () => {
+    const r = callOrFail('Ragazzi, vediamo insieme.');
+    expect(r).toHaveProperty('violations');
+    expect(r).toHaveProperty('passes');
+    expect(r).toHaveProperty('telemetry');
+  });
+
+  it('backward-compat: legacy ctx { isConceptIntro } still functions', () => {
+    const r = callOrFail('Ragazzi, il LED è un componente.', { isConceptIntro: true });
+    // Legacy no_citation_concept_intro rule still active
+    expect(r.violations.some((x) => x.rule === 'no_citation_concept_intro')).toBe(true);
+  });
+
+  // ───────────────────────────────────────────────────────────────
+  // Edge cases
+  // ───────────────────────────────────────────────────────────────
+  it('edge: empty string returns no plurale_ragazzi violation (nothing to validate)', () => {
+    const r = callOrFail('');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('edge: whitespace-only string treated as empty', () => {
+    const r = callOrFail('   \n\t  ');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('edge: Unicode «» chars and accented Italian preserved', () => {
+    const r = callOrFail('Ragazzi, «è perché» così.');
+    expect(r.violations.some((x) => x.rule === 'plurale_ragazzi')).toBe(false);
+  });
+
+  it('returns telemetry shape { analogiaCount, analogiaMarkers }', () => {
+    const r = callOrFail('Ragazzi, è come una lampadina, immagina la corrente.');
+    expect(r.telemetry).toBeDefined();
+    expect(typeof r.telemetry.analogiaCount).toBe('number');
+    expect(Array.isArray(r.telemetry.analogiaMarkers)).toBe(true);
+    expect(r.telemetry.analogiaCount).toBeGreaterThanOrEqual(2);
+  });
 });

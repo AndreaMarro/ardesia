@@ -98,7 +98,7 @@
       "icon": "🔧",
       "duration_minutes": 10,
       "teacher_message": "Il circuito e quasi uguale al precedente, ma il pulsante va da un pin di Arduino direttamente a GND, senza resistore esterno. Con pinMode(pin, INPUT_PULLUP) Arduino attiva la resistenza interna da 20k ohm. Il pin legge HIGH quando rilasciato, LOW quando premuto.",
-      "teacher_tip": "Disegna alla lavagna il circuito equivalente: pin --- [R interna 20k] --- 5V e pin --- [pulsante] --- GND. Quando il pulsante e aperto, la resistenza tira il pin verso 5V (HIGH). Quando e chiuso, la corrente va a GND (LOW). La logica e invertita rispetto all'intuizione.",
+      "teacher_tip": "Disegnate alla lavagna il circuito equivalente: pin --- [R interna 20k] --- 5V e pin --- [pulsante] --- GND. Quando il pulsante e aperto, la resistenza tira il pin verso 5V (HIGH). Quando e chiuso, la corrente va a GND (LOW). La logica e invertita rispetto all'intuizione.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp3]"
       ],

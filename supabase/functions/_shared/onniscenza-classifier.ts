@@ -42,7 +42,23 @@ export type PromptCategory =
   | 'citation_vol_pag'
   | 'plurale_ragazzi'
   | 'chit_chat'
+  | 'off_topic'
   | 'default';
+
+/**
+ * Sprint U iter 25 — fine-grained off-topic sub-classification used by the
+ * template responder (`buildOfftopicGentleBridge`) to pick the matching
+ * acknowledge variant. Mutually exclusive; ordered by detection priority.
+ */
+export type OfftopicType =
+  | 'sport'
+  | 'math'
+  | 'history'
+  | 'culture'
+  | 'cooking'
+  | 'translation'
+  | 'celebrity'
+  | 'generic';
 
 export interface ClassificationResult {
   category: PromptCategory;
@@ -59,6 +75,12 @@ export interface ClassificationResult {
    * Defaults to false so non-vision categories don't accidentally fire vision.
    */
   triggers_vision_chain?: boolean;
+  /**
+   * Sprint U iter 25 — set when `category === 'off_topic'`. Drives the
+   * type-specific acknowledge in `buildOfftopicGentleBridge`. Absent for
+   * any other category.
+   */
+  offtopicType?: OfftopicType;
 }
 
 /**
@@ -100,6 +122,71 @@ const PLURALE_RE = /\bragazz[ie]\b/i;
  * positives like "controllo automatico" or "verifica formale".
  */
 const VISION_REQUEST_RE = /\b(guarda|guardi|guardiamo|guardate|vedi|vede|vediamo|vedete|controlla|controlli|controlliamo|controllate|verifica|verifichi|verifichiamo|verificate)\s+(?:(?:la|le|lo|gli|i|il|un|una|uno|dei|degli|delle|se|sul|sulla|nella|nel)\s+)*\b(lavagna|lavagne|circuito|circuiti|breadboard|schema|schemi|kit|montaggio|cablaggio)\b/i;
+
+/**
+ * Sprint U iter 25 — off-topic category. Detects prompts that have NOTHING
+ * to do with electronics / Arduino / kit ELAB (history, sport, cooking,
+ * translation, celebrity, math-arithmetic, generic pop culture) so the
+ * orchestrator can short-circuit the LLM call and return a deterministic
+ * "gentle bridge" template per Andrea iter 21 mandate (acknowledge → bridge
+ * → recall/proposta).
+ *
+ * Extended from `unlim-chat/index.ts:260` OFFTOPIC_QUERY_RE (iter 22.3 + iter
+ * 24 dim-1 evidence gaps). 10 macro-clusters:
+ *   1. sport            (calcio/serie A/squadre/champions/gol)
+ *   2. math arithmetic  (quanto fa N+M / aritmetica / teorema / equazione)
+ *   3. history/geo      (presidente / capitale X / geografia / guerra mond.)
+ *   4. culture/enter.   (cinema/musica/tiktok/film Marvel/serie Netflix)
+ *   5. cooking          (ricetta/cucina/cuocere/ingredienti)
+ *   6. translation      (traduci/traduzione/come si dice in inglese)
+ *   7. celebrity        (cantante/attore/regista/celebrità)
+ *   8. politics         (elezione/partito/governo)
+ *   9. videogames       (videogioc/pokemon)
+ *  10. social media     (instagram/youtube/tiktok)
+ *
+ * Anti-backtracking: bounded `\w+` (≤1 token), `{1,N}` quantifiers, NO nested
+ * `*` of groups containing alternations. Negative lookaheads exclude legit
+ * ELAB neighbours ("storia dell'elettronica", "Inter milan città", etc.).
+ */
+const OFFTOPIC_RE = /\b(?:quanto\s+fa\s+\d+(?:\s*[+\-*x×÷/]\s*\d+)?|matematica(?!\s+(?:del|della|dei|degli|del\s+LED|del\s+circuito))|aritmetica|teorema(?!\s+di\s+kirchhoff)|formula\s+(?:matematica|chimica|fisica(?!\s+del\s+circuito))|equazione(?!\s+(?:circuito|elettrica))|presidente(?:\s+(?:di|del|della))?|chi\s+è\s+il\s+presidente|capitale\s+\w+|geografia|storia(?!\s+(?:del|della|dei|degli|elettronica|arduino))|guerra\s+(?:mondiale|prima|seconda)|elezione|elezioni|politica|partito|governo|ricetta|cucina|cuocere|ingredient\w*|traduci|traduzione|come\s+si\s+dice\s+in\s+\w+|celebrità|cantante|attore|attrice|regista|sport(?!ello)|cinema|musica|tiktok|instagram|youtube|videogioc\w*|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|film\s+(?:Marvel|Disney|Hollywood|nuovo|recente|ultimo)|serie\s+(?:Netflix|Amazon|HBO|TV)|Marvel|Disney(?!\s+land)|Hollywood|canzone\s+(?:tiktok|virale|nuova)|Pitagora|Pitagorica)\b/i;
+
+/** Cooking sub-cluster (drives offtopicType differentiation). */
+const OFFTOPIC_COOKING_RE = /\b(ricetta|cucina|cuocere|ingredient\w*)\b/i;
+/** Translation sub-cluster. */
+const OFFTOPIC_TRANSLATION_RE = /\b(traduci|traduzione|come\s+si\s+dice\s+in\s+\w+)\b/i;
+/** Celebrity / entertainment-people sub-cluster. */
+const OFFTOPIC_CELEBRITY_RE = /\b(celebrità|cantante|attore|attrice|regista|elezione|elezioni|politica|partito|governo)\b/i;
+/** Sport sub-cluster. */
+const OFFTOPIC_SPORT_RE = /\b(calcio|inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a|champions|partita|gol|campionato|sport(?!ello)|basket|tennis)\b/i;
+/** Math / arithmetic sub-cluster. */
+const OFFTOPIC_MATH_RE = /\b(?:quanto\s+fa\s+\d+|aritmetica|matematica|teorema|formula\s+(?:matematica|fisica|chimica)|equazione|pitagora|pitagorica)\b/i;
+/** History / geography sub-cluster. */
+const OFFTOPIC_HISTORY_RE = /\b(presidente|capitale\s+\w+|geografia|storia|guerra\s+(?:mondiale|prima|seconda))\b/i;
+/** Culture / entertainment-content sub-cluster. */
+const OFFTOPIC_CULTURE_RE = /\b(cinema|musica|tiktok|instagram|youtube|videogioc\w*|pokemon|film|serie\s+(?:tv|netflix|amazon|hbo)|marvel|disney|hollywood|canzone)\b/i;
+
+/**
+ * Sub-classify off-topic prompt into a specific `OfftopicType` so the
+ * template responder can pick the matching acknowledge variant.
+ *
+ * Priority (mutually exclusive, first match wins):
+ *   cooking → translation → celebrity → sport → math → history → culture → generic
+ *
+ * Cooking/translation/celebrity come FIRST because they are narrower clusters
+ * with less overlap risk; the broader sport/math/history/culture buckets
+ * follow. `generic` is the safe fallback when the OFFTOPIC_RE umbrella
+ * matched but no sub-cluster did (rare; future-proof).
+ */
+export function classifyOfftopicType(text: string): OfftopicType {
+  if (OFFTOPIC_COOKING_RE.test(text)) return 'cooking';
+  if (OFFTOPIC_TRANSLATION_RE.test(text)) return 'translation';
+  if (OFFTOPIC_CELEBRITY_RE.test(text)) return 'celebrity';
+  if (OFFTOPIC_SPORT_RE.test(text)) return 'sport';
+  if (OFFTOPIC_MATH_RE.test(text)) return 'math';
+  if (OFFTOPIC_HISTORY_RE.test(text)) return 'history';
+  if (OFFTOPIC_CULTURE_RE.test(text)) return 'culture';
+  return 'generic';
+}
 
 /**
  * Word counter. Strips action tags / markdown punctuation that should NOT
@@ -183,6 +270,23 @@ export function classifyPrompt(input: string | null | undefined): Classification
     return { category: 'deep_question', skipOnniscenza: false, topK: 3, wordCount };
   }
 
+  // 5.5 Sprint U iter 25 — off-topic detector BEFORE default fallback.
+  // Cat D 37.5% regression evidence iter 24 dim-1 LIVE prod bench: LLM was
+  // answering history/cooking/translation/celebrity content instead of
+  // applying the gentle bridge. Hard-redirect pre-LLM via OFFTOPIC_RE + sub-
+  // classify via classifyOfftopicType so `unlim-chat/index.ts` can call
+  // `buildOfftopicGentleBridge(offtopicType, sessionContext)` and skip the
+  // (expensive + drifty) LLM call entirely.
+  if (OFFTOPIC_RE.test(text)) {
+    return {
+      category: 'off_topic',
+      skipOnniscenza: true,
+      topK: 0,
+      wordCount,
+      offtopicType: classifyOfftopicType(text),
+    };
+  }
+
   // 6. Fallback default → top-3 (preserve iter 37 test contract; Maker-1 cannot
   // edit tests/unit/onniscenza-classifier.test.js per file-ownership rigid).
   // Iter 38 A5 latency lift achieved via A3 Promise.all parallelization + A5
@@ -196,4 +300,4 @@ export function classifyPrompt(input: string | null | undefined): Classification
  * Iter 38 changes are purely doc/comment — no behavioral diff that would
  * justify breaking the existing test contract. Version semantics: this
  * file's logical iter is 38, but the marker is held back by ownership. */
-export const ONNISCENZA_CLASSIFIER_VERSION = '1.0-iter37-iter38-doc-only-iter43-vision';
+export const ONNISCENZA_CLASSIFIER_VERSION = '1.0-iter37-iter38-doc-only-iter43-vision-iter25-offtopic';

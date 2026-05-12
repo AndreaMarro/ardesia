@@ -11,47 +11,82 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3
+    "max_parole": 120,
+    "max_frasi": 6,
+    "vol_pag": "Vol.1 pag.10"
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["primaria-4-5", "secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true,
     "tone_register": "calm-reassuring"
   },
   "inputs": {
-    "compileError": { "type": "string", "required": false },
-    "runtimeError": { "type": "string", "required": false },
-    "errorLine": { "type": "number", "required": false },
-    "experimentId": { "type": "string", "required": false }
+    "compileError": {
+      "type": "string",
+      "required": false
+    },
+    "runtimeError": {
+      "type": "string",
+      "required": false
+    },
+    "errorLine": {
+      "type": "number",
+      "required": false
+    },
+    "experimentId": {
+      "type": "string",
+      "required": false
+    }
   },
   "sequence": [
     {
       "step": "rag-retrieve-error-pattern",
       "tool": "ragRetrieve",
-      "args": { "query": "errore Arduino ${inputs.compileError}${inputs.runtimeError} causa comune fix", "topK": 3, "wikiFusion": true },
+      "args": {
+        "query": "errore Arduino ${inputs.compileError}${inputs.runtimeError} causa comune fix",
+        "topK": 3,
+        "wikiFusion": true
+      },
       "expected_status": "ok"
     },
     {
       "step": "wiki-retrieve-error-concept",
       "tool": "wikiRetrieve",
-      "args": { "concept": "${prev.errorConceptId}", "topK": 1 },
+      "args": {
+        "concept": "${prev.errorConceptId}",
+        "topK": 1
+      },
       "expected_status": "ok"
     },
     {
       "step": "highlight-error-line",
       "tool": "highlightCodeLine",
-      "args": { "line": "${inputs.errorLine}" },
+      "args": {
+        "line": "${inputs.errorLine}"
+      },
       "expected_status": "ok"
     },
     {
       "step": "suggest-fix",
       "tool": "suggestCodeFix",
-      "args": { "errorPattern": "${prev.errorPattern}", "fix": "${prev.suggestedFix}" },
+      "args": {
+        "errorPattern": "${prev.errorPattern}",
+        "fix": "${prev.suggestedFix}"
+      },
       "expected_status": "ok"
     },
     {
@@ -72,7 +107,7 @@
     "sequence[0].tool === 'ragRetrieve'",
     "sequence[1].tool === 'wikiRetrieve'",
     "sequence[4].args.text.includes('Ragazzi,')",
-    "principio_zero.max_parole <= 60",
+    "principio_zero.max_parole <= 120",
     "morfismo_sense_1_5.tone_register === 'calm-reassuring'"
   ]
 }

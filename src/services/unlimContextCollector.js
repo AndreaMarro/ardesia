@@ -12,10 +12,22 @@
  */
 
 import logger from '../utils/logger';
+import {
+  buildAgentDecisionSeed,
+  getUnlimSharedState,
+  recordUnlimSnapshot,
+} from './unlimSharedStateStore';
 
 const MEMORY_KEY = 'elab_unlim_memory';
 const SESSIONS_KEY = 'elab_unlim_sessions';
 const ERROR_HISTORY_KEY = 'elab_error_history';
+const LIVE_NARRATIVE_KEY = 'elab_unlim_live_narrative';
+const MAX_LIVE_SNAPSHOTS = 8;
+
+let liveNarrativeTimer = null;
+let liveNarrativeBusy = false;
+let latestVisualSnapshot = null;
+let liveNarrativeEntries = [];
 
 /**
  * Log an error to the session error history (for AI context)
@@ -38,6 +50,146 @@ export function logError(type, message) {
  */
 function getAPI() {
   return (typeof window !== 'undefined' && window.__ELAB_API) || null;
+}
+
+function readStoredNarrative() {
+  try {
+    const raw = sessionStorage.getItem(LIVE_NARRATIVE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    if (Array.isArray(parsed) && parsed.length > 0) return parsed.slice(-MAX_LIVE_SNAPSHOTS);
+  } catch {
+    /* fall back to memory */
+  }
+  return liveNarrativeEntries.slice(-MAX_LIVE_SNAPSHOTS);
+}
+
+function writeStoredNarrative(entries) {
+  liveNarrativeEntries = entries.slice(-MAX_LIVE_SNAPSHOTS);
+  try {
+    sessionStorage.setItem(LIVE_NARRATIVE_KEY, JSON.stringify(liveNarrativeEntries));
+  } catch { /* session storage may be full or unavailable */ }
+}
+
+function summarizeSnapshot({ simulatorContext, circuitDescription, editorCode, visualAvailable, reason }) {
+  const components = simulatorContext?.components || simulatorContext?.circuit?.components || [];
+  const wires = simulatorContext?.wires || simulatorContext?.circuit?.wires || simulatorContext?.circuit?.connections || [];
+  const exp = simulatorContext?.experiment || simulatorContext?.circuit?.experiment || {};
+  const buildStep = simulatorContext?.buildStep || null;
+  const simulationState = simulatorContext?.simulation?.state
+    || (simulatorContext?.circuit?.simulation?.state)
+    || (simulatorContext?.circuit?.isSimulating ? 'running' : 'stopped');
+  const editorMode = simulatorContext?.editorMode || null;
+
+  const parts = [];
+  if (exp?.id || exp?.name) parts.push(`esperimento ${exp.name || exp.id}`);
+  if (buildStep?.current) parts.push(`passo ${buildStep.current}/${buildStep.total || '?'}`);
+  parts.push(`${components.length} componenti`);
+  parts.push(`${wires.length} fili`);
+  if (simulationState) parts.push(`simulazione ${simulationState}`);
+  if (editorMode) parts.push(`editor ${editorMode}`);
+  if (visualAvailable) parts.push('screenshot app disponibile');
+
+  return {
+    ts: Date.now(),
+    reason,
+    experimentId: exp?.id || null,
+    experimentName: exp?.name || exp?.title || null,
+    buildStep,
+    editorMode,
+    editorVisible: simulatorContext?.editorVisible ?? null,
+    simulationState,
+    componentsCount: components.length,
+    wiresCount: wires.length,
+    circuitDescription: circuitDescription ? String(circuitDescription).slice(0, 240) : null,
+    editorCodePreview: editorCode ? String(editorCode).slice(0, 320) : null,
+    hasVisualSnapshot: Boolean(visualAvailable),
+    narrativeLine: parts.join(' | '),
+  };
+}
+
+/**
+ * Capture one compact application snapshot for UNLIM's live narrative.
+ * Calls independent app/simulator getters in parallel; base64 images stay in
+ * memory only, while the prompt receives compact metadata.
+ */
+export async function captureApplicationSnapshot({ includeVisual = false, reason = 'periodic' } = {}) {
+  const api = getAPI();
+  if (!api) return null;
+
+  const tasks = [
+    Promise.resolve().then(() => api.getSimulatorContext?.() || null),
+    Promise.resolve().then(() => api.getCircuitDescription?.() || null),
+    Promise.resolve().then(() => api.getEditorCode?.() || null),
+    includeVisual
+      ? Promise.resolve().then(() => api.captureScreenshot?.() || null)
+      : Promise.resolve(null),
+  ];
+
+  const [ctxResult, descResult, codeResult, visualResult] = await Promise.allSettled(tasks);
+  const simulatorContext = ctxResult.status === 'fulfilled' ? ctxResult.value : null;
+  const circuitDescription = descResult.status === 'fulfilled' ? descResult.value : null;
+  const editorCode = codeResult.status === 'fulfilled' ? codeResult.value : null;
+  const visualDataUrl = visualResult.status === 'fulfilled' ? visualResult.value : null;
+
+  if (typeof visualDataUrl === 'string' && visualDataUrl.startsWith('data:image/')) {
+    latestVisualSnapshot = { dataUrl: visualDataUrl, mimeType: visualDataUrl.split(';')[0].split(':')[1] || 'image/png' };
+  }
+
+  const compact = summarizeSnapshot({
+    simulatorContext,
+    circuitDescription,
+    editorCode,
+    visualAvailable: Boolean(latestVisualSnapshot),
+    reason,
+  });
+
+  const stored = readStoredNarrative();
+  stored.push(compact);
+  writeStoredNarrative(stored);
+  recordUnlimSnapshot(compact, { reason });
+
+  return {
+    ...compact,
+    visual: compact.hasVisualSnapshot ? { available: true, source: 'app-screenshot' } : { available: false },
+  };
+}
+
+export function startApplicationNarrativeLoop({ intervalMs = 15000, includeVisual = true } = {}) {
+  if (typeof window === 'undefined') return false;
+  if (liveNarrativeTimer) return true;
+
+  liveNarrativeTimer = window.setInterval(() => {
+    if (liveNarrativeBusy) return;
+    liveNarrativeBusy = true;
+    captureApplicationSnapshot({ includeVisual, reason: 'periodic-15s' })
+      .catch((err) => logger.warn?.('[unlimContextCollector] live narrative snapshot failed:', err?.message || err))
+      .finally(() => { liveNarrativeBusy = false; });
+  }, intervalMs);
+
+  return true;
+}
+
+export function stopApplicationNarrativeLoop() {
+  if (typeof window !== 'undefined' && liveNarrativeTimer) {
+    window.clearInterval(liveNarrativeTimer);
+  }
+  liveNarrativeTimer = null;
+  liveNarrativeBusy = false;
+}
+
+export function getApplicationSnapshots() {
+  return readStoredNarrative();
+}
+
+export function getLatestVisualSnapshotImage() {
+  return latestVisualSnapshot;
+}
+
+export function resetApplicationNarrativeForTests() {
+  stopApplicationNarrativeLoop();
+  liveNarrativeEntries = [];
+  latestVisualSnapshot = null;
+  try { sessionStorage.removeItem(LIVE_NARRATIVE_KEY); } catch { /* noop */ }
 }
 
 /**
@@ -257,6 +409,30 @@ export function collectFullContext() {
     if (pinState && Object.keys(pinState).length > 0) {
       context.pinStates = pinState;
     }
+  } catch { /* silent */ }
+
+  try {
+    const narrative = getApplicationSnapshots();
+    if (narrative.length > 0) {
+      context.applicationNarrative = narrative.slice(-5);
+    }
+  } catch { /* silent */ }
+
+  try {
+    const sharedState = getUnlimSharedState();
+    if (sharedState.revision > 0) {
+      context.unlimSharedState = {
+        revision: sharedState.revision,
+        updatedAt: sharedState.updatedAt,
+        latestSnapshot: sharedState.latestSnapshot,
+        recentEvents: sharedState.events.slice(-8),
+      };
+    }
+    context.agentDecisionSeed = buildAgentDecisionSeed({
+      simulatorContext: context,
+      narrativeContext: context.applicationNarrative?.at?.(-1) || null,
+      albumContext: context.completedExperiments || null,
+    });
   } catch { /* silent */ }
 
   logger.debug('[unlimContextCollector] Full context collected:', Object.keys(context));

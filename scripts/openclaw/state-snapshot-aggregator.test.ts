@@ -72,12 +72,12 @@ describe('snapshotToPromptFragment — PZ v3 compliance', () => {
     expect(prompt).toMatch(/RAGAZZI/);
   });
 
-  it('includes 60 words constraint', async () => {
+  it('includes 120 words constraint (feedback 2026-05-10)', async () => {
     const snap = await buildStateSnapshot({
       elabApi: null, wikiRetriever: null, ragSearcher: null, unlimMemory: null,
     }, {});
     const prompt = snapshotToPromptFragment(snap, 'led?');
-    expect(prompt).toMatch(/60 parole/);
+    expect(prompt).toMatch(/120 parole/);
   });
 
   it('includes Vol.X pag.Y citation reminder', async () => {

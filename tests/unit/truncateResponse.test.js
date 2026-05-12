@@ -2,11 +2,11 @@ import { cleanAndTruncate } from '../../src/utils/truncateResponse';
 import { describe, it, expect } from 'vitest';
 
 describe('cleanAndTruncate', () => {
-  it('tronca a 60 parole di default', () => {
-    const long = Array(100).fill('parola').join(' ');
+  it('tronca a 120 parole di default (feedback 2026-05-10)', () => {
+    const long = Array(200).fill('parola').join(' ');
     const result = cleanAndTruncate(long);
     const wordCount = result.replace('...', '').trim().split(/\s+/).length;
-    expect(wordCount).toBeLessThanOrEqual(60);
+    expect(wordCount).toBeLessThanOrEqual(120);
     expect(result).toContain('...');
   });
 
@@ -65,11 +65,11 @@ describe('cleanAndTruncate', () => {
   });
 
   it('tronca testo lungo + strip tags simultaneo (B7 + brevity)', () => {
-    const long = Array(80).fill('parola').join(' ') + ' [AZIONE:highlight:led1] [AZIONE:play]';
+    const long = Array(150).fill('parola').join(' ') + ' [AZIONE:highlight:led1] [AZIONE:play]';
     const result = cleanAndTruncate(long);
     expect(result).not.toContain('[AZIONE:');
     expect(result).toContain('...');
     const wordCount = result.replace('...', '').trim().split(/\s+/).filter(w => w.length > 0).length;
-    expect(wordCount).toBeLessThanOrEqual(60);
+    expect(wordCount).toBeLessThanOrEqual(120);
   });
 });

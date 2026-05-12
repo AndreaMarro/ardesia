@@ -11,48 +11,93 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3,
+    "max_parole": 120,
+    "max_frasi": 6,
     "vol_pag": "Vol.2 pag.58",
     "analogia": "pull-up come palla in cima alla scala che cade quando spingi pulsante"
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true
   },
   "inputs": {
-    "experimentId": { "type": "string", "required": true, "default": "v2-cap9-esp3" },
-    "classProfile": { "type": "object", "required": false },
-    "kitTier": { "type": "string", "enum": ["basic", "advanced"], "default": "basic" },
-    "docenteExperienceLevel": { "type": "string", "enum": ["primo-anno", "esperto"], "default": "esperto" }
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v2-cap9-esp3"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "esperto"
+    }
   },
   "sequence": [
     {
       "step": "highlight-resistor-pullup",
       "tool": "highlightComponent",
-      "args": { "ids": ["r10k", "btn1"], "color": "orange" },
+      "args": {
+        "ids": [
+          "r10k",
+          "btn1"
+        ],
+        "color": "orange"
+      },
       "expected_status": "ok"
     },
     {
       "step": "ask-unlim-pullup-logic",
       "tool": "askUNLIM",
-      "args": { "query": "Spiega resistenza pull-up 10kOhm + INPUT_PULLUP keyword Arduino", "vol": "Vol.2", "cap": 9 },
+      "args": {
+        "query": "Spiega resistenza pull-up 10kOhm + INPUT_PULLUP keyword Arduino",
+        "vol": "Vol.2",
+        "cap": 9
+      },
       "expected_status": "ok"
     },
     {
       "step": "show-nudge-input-pullup",
       "tool": "showNudge",
-      "args": { "text": "pinMode(2, INPUT_PULLUP) attiva resistenza interna: pulsante non premuto = HIGH", "duration_ms": 4500 },
+      "args": {
+        "text": "pinMode(2, INPUT_PULLUP) attiva resistenza interna: pulsante non premuto = HIGH",
+        "duration_ms": 4500
+      },
       "expected_status": "ok"
     },
     {
       "step": "capture-screenshot-circuit",
       "tool": "captureScreenshot",
-      "args": { "target": "pull-up-circuit" },
+      "args": {
+        "target": "pull-up-circuit"
+      },
       "expected_status": "ok"
     },
     {
@@ -70,7 +115,11 @@
   "expected_total_latency_ms": 5800,
   "expected_outcome": "Classe capisce stato HIGH default + transizione LOW al click. Docente padroneggia INPUT_PULLUP.",
   "telemetry": {
-    "track_events": ["template_dispatched", "tts_complete", "analogia_used"],
+    "track_events": [
+      "template_dispatched",
+      "tts_complete",
+      "analogia_used"
+    ],
     "supabase_table": "openclaw_template_runs"
   },
   "test_assertions": [

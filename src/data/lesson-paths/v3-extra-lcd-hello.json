@@ -71,7 +71,7 @@
       "icon": "📋",
       "duration_minutes": 6,
       "teacher_message": "Ragazzi, finora abbiamo controllato LED singoli. Oggi passiamo a un vero display: l'LCD 16x2 può mostrare 16 caratteri per 2 righe, proprio come gli schermi delle calcolatrici o delle casse del supermercato! Arduino lo regola con 6 pin usando una libreria chiamata LiquidCrystal.",
-      "teacher_tip": "Mostra dove si trovano display LCD 16x2 nella vita reale: calcolatrici, microonde, vecchie casse del supermercato, stazioni meteo. La libreria LiquidCrystal è come un 'traduttore': noi diciamo lcd.print(\"ciao\") e lei si occupa di inviare tutti i segnali giusti al display.",
+      "teacher_tip": "Mostrate dove si trovano display LCD 16x2 nella vita reale: calcolatrici, microonde, vecchie casse del supermercato, stazioni meteo. La libreria LiquidCrystal è come un 'traduttore': noi diciamo lcd.print(\"ciao\") e lei si occupa di inviare tutti i segnali giusti al display.",
       "components_list": "Ti servono: 1 breadboard half-size, 1 Arduino Nano R4, 1 display LCD 16x2, fili di collegamento.",
       "class_hook": "Avete mai visto le calcolatrici con lo schermo verde o nero che mostra i numeri? Oppure le casse del supermercato con il display che mostra il totale? Oggi costruiamo lo stesso tipo di display! Si chiama LCD 16x2 e può scrivere testo con Arduino.",
       "action_tags": [],
@@ -166,12 +166,12 @@
       "common_mistakes": [
         {
           "mistake": "Il display non mostra nulla o mostra solo quadratini neri",
-          "teacher_response": "Regola tutti i 6 collegamenti dei pin dati (RS, E, D4-D7). Basta un filo mancante o invertito perché il display non funzioni. Verifica anche VCC e GND del display!",
+          "teacher_response": "Regolate tutti i 6 collegamenti dei pin dati (RS, E, D4-D7). Basta un filo mancante o invertito perché il display non funzioni. Verificate anche VCC e GND del display!",
           "analogy": "È come un telefono con 8 tasti: se uno non funziona, non riesci a comporre il numero giusto. Tutti i pin devono essere collegati correttamente."
         },
         {
           "mistake": "Il testo appare sulla riga sbagliata o fuori posizione",
-          "teacher_response": "Regola setCursor(colonna, riga): le coordinate partono da 0! setCursor(0,0) = prima riga, setCursor(0,1) = seconda riga. Attenzione: NON è setCursor(riga, colonna) ma setCursor(colonna, riga)!",
+          "teacher_response": "Regolate setCursor(colonna, riga): le coordinate partono da 0! setCursor(0,0) = prima riga, setCursor(0,1) = seconda riga. Attenzione: NON è setCursor(riga, colonna) ma setCursor(colonna, riga)!",
           "analogy": null
         }
       ]

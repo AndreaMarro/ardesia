@@ -73,7 +73,7 @@ describe('Iter 13 U4 — Template schema validation per file', () => {
         expect(t.principio_zero).toBeDefined();
         expect(t.principio_zero.plurale_obbligatorio).toBe('Ragazzi,');
         expect(t.principio_zero.citazione_verbatim).toBe(true);
-        expect(t.principio_zero.max_parole).toBeLessThanOrEqual(60);
+        expect(t.principio_zero.max_parole).toBeLessThanOrEqual(120);
       });
 
       it('has morfismo_sense_1_5 block with adapt flags (docente/classe/kit)', () => {

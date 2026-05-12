@@ -6,10 +6,11 @@
 // © Andrea Marro — 20/02/2026
 // ========================================
 import { filterAIResponse } from '../utils/aiSafetyFilter';
-import { searchKnowledgeBase, searchRAGChunks } from '../data/unlim-knowledge-base';
+import { searchKnowledgeBase } from '../data/unlim-knowledge-base';
 import { getVolumeRef } from '../data/volume-references';
 import { ensureBookCitation } from './bookCitation';
 import { getExperimentGroupContext } from '../data/lesson-groups';
+import { buildAgentDecisionSeed } from './unlimSharedStateStore';
 
 // URLs da variabili d'ambiente (Vite: VITE_ prefix)
 // In produzione: solo backend webhook. Nessun fallback localhost.
@@ -31,10 +32,28 @@ const RENDER_FALLBACK = 'https://elab-galileo.onrender.com'; // Fallback se Edge
 const CHAT_WEBHOOK = (import.meta.env.VITE_N8N_CHAT_URL || '').trim();
 const COMPILE_URL = (import.meta.env.VITE_COMPILE_URL || '').trim() || null; // Server standalone (priorità)
 const COMPILE_WEBHOOK = (import.meta.env.VITE_COMPILE_WEBHOOK_URL || '').trim() || null; // Backend fallback
+const COMPILE_PROXY_URL = (import.meta.env.VITE_COMPILE_PROXY_URL || `${_SUPABASE_EDGE}/compile-proxy`).trim();
 const LOCAL_API = (import.meta.env.VITE_LOCAL_API_URL || '').trim() || null;
 const LOCAL_URL = (import.meta.env.VITE_LOCAL_COMPILE_URL || '').trim() || null; // Dev locale
 const LOCAL_SERVER = 'http://localhost:8000'; // elab-local-server (Ollama)
-const API_TIMEOUT = parseInt(import.meta.env.VITE_API_TIMEOUT || '30000'); // 30s (was 60s)
+function boundedTimeout(value, fallback, max) {
+    const parsed = Number.parseInt(value || `${fallback}`, 10);
+    if (!Number.isFinite(parsed) || parsed <= 0) return fallback;
+    return Math.min(parsed, max);
+}
+// 2026-05-10 iter 9 — frontend timeout cap raised to absorb Edge Function v57
+// pipeline (LLM 12s + Onniscenza + RAG + INTENT). Andrea screenshot bug
+// "UNLIM ci sta mettendo un po' troppo. Riprova" was caused by frontend
+// abort PRIOR to Edge response. Edge p95 5s warm + cold start ~10s.
+// New caps: 25s text (was 12s API_TIMEOUT, was 15s master), 35s image
+// (was 25s master). Pre-cap value retained as floor via boundedTimeout max
+// override env-bumped.
+const API_TIMEOUT = boundedTimeout(import.meta.env.VITE_API_TIMEOUT, 25000, 30000);
+const LOCAL_HEALTH_TIMEOUT_MS = boundedTimeout(import.meta.env.VITE_LOCAL_HEALTH_TIMEOUT_MS, 300, 400);
+const LOCAL_CHAT_TIMEOUT_TEXT_MS = boundedTimeout(import.meta.env.VITE_LOCAL_CHAT_TIMEOUT_TEXT_MS, 2500, 3000);
+const LOCAL_CHAT_TIMEOUT_IMAGE_MS = boundedTimeout(import.meta.env.VITE_LOCAL_CHAT_TIMEOUT_IMAGE_MS, 6000, 8000);
+const MASTER_TIMEOUT_TEXT = boundedTimeout(import.meta.env.VITE_UNLIM_MASTER_TIMEOUT_TEXT_MS, 25000, 30000);
+const MASTER_TIMEOUT_IMAGE = boundedTimeout(import.meta.env.VITE_UNLIM_MASTER_TIMEOUT_IMAGE_MS, 35000, 40000);
 const COMPILE_TIMEOUT = 65000; // 65s for compilation (arduino-cli has 60s timeout)
 const CHAT_RETRY_COUNT = 1;
 const CHAT_RETRY_BACKOFF_MS = 400;
@@ -57,15 +76,16 @@ const SOCRATIC_INSTRUCTION = [
     'I ragazzi lavorano sui kit fisici ELAB — breadboard, LED, resistori, batterie reali.',
     'CHIUNQUE accenda ELAB Tutor deve poter fare lezione SENZA conoscenze pregresse.',
     '',
-    'Usa le STESSE PAROLE dei volumi ELAB — cita il libro, non parafrasare.',
-    'Se ricevi [RIFERIMENTO LIBRO FISICO], CITA quella pagina: "Come dice il libro a pagina 29..."',
+    'Integra i volumi ELAB con parole tue: non copiare, non citare se non serve.',
+    'Citazione solo se necessaria: se ricevi [RIFERIMENTO LIBRO FISICO], usa Vol./pag. come micro-ancora breve solo quando aiuta davvero.',
     'Se ricevi [CONTESTO CAPITOLO], racconta come questo esperimento prosegue dal precedente.',
     'Se ricevi [STORIA SESSIONI], prosegui dal punto giusto senza ripetere ciò che è già stato fatto.',
     '',
-    '[REGOLA ASSOLUTA — BREVITÀ]',
-    'MASSIMO 3 frasi + 1 analogia. Mai superare 60 parole. Se la risposta è più lunga, TAGLIA.',
+    '[REGOLA ASSOLUTA — RISPOSTA COMPLETA MA SCANSIONABILE]',
+    'Rispondi in modo breve quando basta, ma NON tagliare informazioni essenziali, azioni o diagnosi.',
+    'Target LIM: 3-6 frasi brevi, una analogia concreta solo quando aiuta. Se la domanda è complessa, usa righe corte invece di troncare.',
     'I tag [AZIONE:...] NON contano nel limite parole.',
-    'Esempio buono: "Come dice il libro a pagina 29: il LED è come una porta girevole, passa solo in un verso! Gira il piedino lungo verso il +. [AZIONE:highlight:led1]"',
+    'Esempio buono: "Il LED e come una porta girevole: passa solo in un verso. Gira il piedino lungo verso il +. [AZIONE:highlight:led1]"',
     '',
     '[LINGUAGGIO — Come parlare ai ragazzi 10-14 anni]',
     'SEMPRE in italiano. SEMPRE con analogie dal mondo reale che i ragazzi conoscono.',
@@ -77,7 +97,7 @@ const SOCRATIC_INSTRUCTION = [
     'Esempi BUONI:',
     '"La corrente è come l\'acqua: scorre dal + al − della batteria, e il resistore è una strettoia che la rallenta!"',
     '"Il LED funziona come una porta girevole: passa solo in un verso! Se non si accende, prova a girarlo."',
-    '"Come dice il libro a pagina 29, per il nostro primo esperimento ci servono un LED, una breadboard e la batteria da 9 volt."',
+    '"Per il primo circuito servono pochi pezzi: LED, resistore, breadboard e batteria da 9 volt."',
     '',
     'Esempi CATTIVI (da NON fare):',
     '"La tensione di soglia del LED è circa 2V con una corrente di 20mA" — TROPPO TECNICO',
@@ -87,6 +107,12 @@ const SOCRATIC_INSTRUCTION = [
     '',
     'Se il messaggio è ambiguo: proponi 2-3 opzioni concrete basate sul contesto, NON dire "non ho capito".',
     'Es: "Vuoi che io: (1) avvii la simulazione, (2) evidenzi un componente, o (3) ti spieghi il circuito?"',
+    '',
+    '[CONTESTO VIVO — Narrazione parallela]',
+    'Se ricevi [NARRAZIONE LIVE], usala come memoria degli ultimi secondi: cosa era aperto, circuito, editor, step, screenshot disponibile.',
+    'Prima di rispondere chiediti: serve attuare un comando, leggere lo stato, usare screenshot/Pixtral, o citare il volume?',
+    'Se devi FARE una cosa, emetti tag azione concreti. Non dire "ho fatto" se non stai emettendo il tag.',
+    'Se vedi una modifica recente del circuito, rispondi a QUELLA modifica, non con una spiegazione generica.',
     '',
     '[AZIONI DISPONIBILI — Formato: [AZIONE:comando:argomenti]]',
     '',
@@ -160,6 +186,40 @@ function nanobotHeaders() {
     return h;
 }
 
+function normalizeUnlimMode(simulatorContext) {
+    const raw = simulatorContext?.modalita || simulatorContext?.mode || simulatorContext?.buildMode || '';
+    if (!raw) return null;
+    const value = String(raw).toLowerCase();
+    if (value.includes('passo')) return 'passopasso';
+    if (value.includes('montato') || value.includes('complete')) return 'montato';
+    if (value.includes('libero') || value.includes('sandbox')) return 'libero';
+    if (value.includes('percorso') || value.includes('path')) return 'percorso';
+    return value;
+}
+
+function inferAiProfileHint(message, images = [], simulatorContext = null, options = {}) {
+    if (options.aiProfile) return options.aiProfile;
+    const text = String(message || '').toLowerCase();
+    const experimentId = String(options.experimentId || simulatorContext?.experimentId || simulatorContext?.experiment?.id || simulatorContext?.currentExperiment?.id || '').toLowerCase();
+    const volumeHaystack = `${text} ${experimentId}`;
+    const wantsDeep = /\b(tutto|totale|profond|perche|perché|diagnosi|analizza|ragiona|confronta|debug|errore|non funziona)\b/i.test(text);
+    const volumeMatch = /\bv([123])-/.exec(volumeHaystack)
+        || /\bvol(?:ume|\.)?\s*([123])\b/i.exec(volumeHaystack)
+        || (/\b(arduino|scratch|blocchi|blink|digitalwrite|digitalread|analogread|analogwrite|serial monitor|servo)\b/i.test(volumeHaystack) ? [, '3'] : null)
+        || (/\b(multimetro|condensatore|mosfet|rele|relè|motore dc|fototransistor)\b/i.test(volumeHaystack) ? [, '2'] : null)
+        || (/\b(primo circuito|rgb|potenziometro|fotoresistore|cicalino|reed|elettropongo)\b/i.test(volumeHaystack) ? [, '1'] : null);
+    const hasImages = Array.isArray(images) && images.length > 0;
+    if (hasImages || /\b(guarda|screenshot|schermo|lavagna|foto|immagine|vedi|osserva)\b/i.test(text)) {
+        return /\b(essenziale|rapido|veloce|breve|solo)\b/i.test(text) ? 'pixtral_essential' : 'pixtral_total';
+    }
+    if (/\b(controlla|verifica|audit|qualita|qualità|sicurezza)\b/i.test(text)) return 'control_total';
+    if (volumeMatch?.[1]) return `volume${volumeMatch[1]}_${wantsDeep ? 'deep' : 'fast'}`;
+    if (/\b(tutto|totale|software|volumi|volume|perfettamente|profondo)\b/i.test(text)) return 'knowledge_total';
+    const mode = normalizeUnlimMode(simulatorContext);
+    if (mode) return /\b(essenziale|rapido|veloce|breve)\b/i.test(text) ? `${mode}_compact` : `${mode}_total`;
+    return 'general_purpose_compact';
+}
+
 const API = {
     nanobot: NANOBOT_URL,
     local: LOCAL_URL,
@@ -169,6 +229,18 @@ const API = {
     compileWebhook: COMPILE_WEBHOOK,
     timeout: API_TIMEOUT,
 };
+
+function isHttpsBrowserOrigin() {
+    try {
+        return typeof window !== 'undefined' && window.location?.protocol === 'https:';
+    } catch {
+        return false;
+    }
+}
+
+function isDirectN8nCompileUrl(url) {
+    return typeof url === 'string' && /^https:\/\/n8n\.srv1022317\.hstgr\.cloud(?:\/|$)/.test(url);
+}
 
 /**
  * Get or create a stable tutor session ID (persisted in localStorage).
@@ -205,7 +277,7 @@ async function isLocalServerAvailable() {
     } catch { /* SSR */ }
     try {
         const resp = await fetch(`${LOCAL_SERVER}/health`, {
-            signal: AbortSignal.timeout(2000),
+            signal: AbortSignal.timeout(LOCAL_HEALTH_TIMEOUT_MS),
         });
         _localServerAvailable = resp.ok;
     } catch {
@@ -225,7 +297,7 @@ async function tryLocalServer(message, circuitState, externalSignal, experimentI
 
     try {
         const controller = new AbortController();
-        const timeout = images.length > 0 ? 120000 : 60000;
+        const timeout = images.length > 0 ? LOCAL_CHAT_TIMEOUT_IMAGE_MS : LOCAL_CHAT_TIMEOUT_TEXT_MS;
         const timer = setTimeout(() => controller.abort(), timeout);
 
         // G42: Named handler so we can remove the listener on cleanup
@@ -278,7 +350,7 @@ async function tryLocalServer(message, circuitState, externalSignal, experimentI
  * Returns null if unavailable — caller falls through to backend webhook.
  * Uses /tutor-chat endpoint with experiment context and persistent session.
  */
-async function tryNanobot(message, circuitState, externalSignal, experimentId, images = [], simulatorContext = null) {
+async function tryNanobot(message, circuitState, externalSignal, experimentId, images = [], simulatorContext = null, options = {}) {
     if (!NANOBOT_URL) return null;
 
     const controller = new AbortController();
@@ -302,6 +374,9 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
             circuitState: circuitState || null,
             experimentId: experimentId || null,
             simulatorContext: simulatorContext || null,
+            aiProfile: inferAiProfileHint(message, images, simulatorContext, options),
+            aiDepth: options.aiDepth || null,
+            unlimMode: normalizeUnlimMode(simulatorContext),
         };
         if (images.length > 0) {
             payload.images = images.map(img => ({
@@ -333,6 +408,7 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
                 source: 'nanobot',
                 actions: extractActions(safeContent),
                 intentsParsed,
+                aiProfile: data.aiProfile || null,
             };
         }
         return null;
@@ -343,6 +419,44 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
         if (externalSignal && abortHandler) {
             externalSignal.removeEventListener('abort', abortHandler);
         }
+    }
+}
+
+async function tryVisionEndpoint(question, imageDataUrl, options = {}) {
+    if (!_SUPABASE_EDGE || !imageDataUrl) return null;
+    try {
+        const preferPixtral = options.preferProvider === 'pixtral';
+        const images = preferPixtral
+            ? [imageDataUrl, imageDataUrl]
+            : [imageDataUrl];
+        const res = await fetch(`${_SUPABASE_EDGE}/unlim-vision`, {
+            method: 'POST',
+            headers: nanobotHeaders(),
+            signal: options.signal || AbortSignal.timeout(MASTER_TIMEOUT_IMAGE),
+            body: JSON.stringify({
+                prompt: question,
+                images,
+                sessionId: getTutorSessionId(),
+                provider: preferPixtral ? 'pixtral' : 'auto',
+                aiProfile: options.aiProfile || (preferPixtral ? 'pixtral_total' : null),
+                aiDepth: options.aiDepth || null,
+                unlimMode: normalizeUnlimMode(options.simulatorContext),
+            }),
+        });
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (!data?.success || !data.response) return null;
+        return {
+            success: true,
+            response: ensureBookCitation(data.response, options.experimentId || null),
+            source: data.provider === 'pixtral-12b' ? 'pixtral-vision' : 'vision',
+            provider: data.provider || null,
+            aiProfile: data.aiProfile || options.aiProfile || null,
+            model: data.model || null,
+            actions: extractActions(data.response),
+        };
+    } catch {
+        return null;
     }
 }
 
@@ -639,9 +753,7 @@ export async function sendChat(message, images = [], options = {}) {
     }
 
     // ── G25: Master AbortController — hard timeout for entire sendChat() ──
-    // 30s for text, 45s for images. Render cold-start can take 15-30s.
-    const MASTER_TIMEOUT_TEXT = 30000;
-    const MASTER_TIMEOUT_IMAGE = 45000;
+    // Live-class interaction must fail fast enough that the teacher can retry.
     const masterTimeout = images.length > 0 ? MASTER_TIMEOUT_IMAGE : MASTER_TIMEOUT_TEXT;
     const masterController = new AbortController();
     const masterTimer = setTimeout(() => masterController.abort(), masterTimeout);
@@ -660,17 +772,20 @@ export async function sendChat(message, images = [], options = {}) {
 
     // Nanobot message: enriched context + brevity rule
     // Webhook message: con SOCRATIC_INSTRUCTION (n8n non ha un system prompt proprio)
-    const BREVITY_RULE = 'REGOLA: Rispondi in MASSIMO 3 frasi + 1 analogia. Mai superare 60 parole. I tag [AZIONE:...] non contano.';
+    const BREVITY_RULE = 'REGOLA: rispondi breve quando basta, ma completa. Non troncare diagnosi, azioni o passaggi necessari. Citazione solo se necessaria e breve. Usa righe corte leggibili alla LIM; i tag [AZIONE:...] non contano.';
 
     // ── ENRICHED CONTEXT: circuit + student + RAG + volume refs ──
-    const contextParts = [BREVITY_RULE];
+    const contextParts = [
+        BREVITY_RULE,
+        '[GERARCHIA CONTESTO]\nPRESENTE LIVE batte MEMORIA PASSATA PERSISTENTE. Non trattare esperimenti/storia come cose visibili ora.',
+    ];
 
     // Experiment context (from buildTutorContext in useGalileoChat)
     if (experimentContext) contextParts.push(experimentContext);
 
     // Simulator context snapshot (circuit, code, build step, errors, pin states)
     if (simulatorContext && typeof simulatorContext === 'object' && Object.keys(simulatorContext).length > 0) {
-        const ctxLines = ['[STATO SIMULATORE]'];
+        const ctxLines = ['[PRESENTE LIVE - STATO SIMULATORE]'];
         if (simulatorContext.circuit) {
             const c = simulatorContext.circuit;
             const comps = c.components || [];
@@ -694,12 +809,20 @@ export async function sendChat(message, images = [], options = {}) {
         }
         if (ctxLines.length > 1) contextParts.push(ctxLines.join('\n'));
 
+        if (Array.isArray(simulatorContext.applicationNarrative) && simulatorContext.applicationNarrative.length > 0) {
+            const liveLines = simulatorContext.applicationNarrative.slice(-5).map((s, idx) => {
+                const ageSec = s.ts ? Math.max(0, Math.round((Date.now() - s.ts) / 1000)) : '?';
+                return `${idx + 1}. ${ageSec}s fa: ${s.narrativeLine || 'snapshot app'}${s.circuitDescription ? ` — ${String(s.circuitDescription).slice(0, 180)}` : ''}`;
+            });
+            contextParts.push('[PRESENTE LIVE - NARRAZIONE LIVE]\n' + liveLines.join('\n') + '\nUsa questa narrazione per rispondere allo stato reale; se serve visione, chiedi/usa screenshot Pixtral.');
+        }
+
         // Student history
         if (simulatorContext.completedExperiments?.total > 0) {
-            contextParts.push(`[STORIA STUDENTE] Esperimenti completati: ${simulatorContext.completedExperiments.total}. IDs: ${simulatorContext.completedExperiments.list.slice(0, 10).map(e => e.id).join(', ')}`);
+            contextParts.push(`[MEMORIA PASSATA PERSISTENTE - STORIA STUDENTE] Esperimenti completati: ${simulatorContext.completedExperiments.total}. IDs: ${simulatorContext.completedExperiments.list.slice(0, 10).map(e => e.id).join(', ')}. Non e stato live attuale.`);
         }
         if (simulatorContext.currentExperimentAttempts > 0) {
-            contextParts.push(`Tentativi su questo esperimento: ${simulatorContext.currentExperimentAttempts}, hint usati: ${simulatorContext.currentExperimentHintsUsed || 0}`);
+            contextParts.push(`[MEMORIA PASSATA PERSISTENTE - TENTATIVI] Tentativi su questo esperimento: ${simulatorContext.currentExperimentAttempts}, hint usati: ${simulatorContext.currentExperimentHintsUsed || 0}`);
         }
     }
 
@@ -710,7 +833,7 @@ export async function sendChat(message, images = [], options = {}) {
             const volLines = [`[RIFERIMENTO LIBRO FISICO] Vol. ${volRef.volume}, pag. ${volRef.bookPage} — ${volRef.chapter}`];
             if (volRef.bookText) volLines.push(`Testo libro: "${volRef.bookText}"`);
             if (volRef.bookContext) volLines.push(`Contesto: ${volRef.bookContext}`);
-            volLines.push('Quando rispondi, cita il libro: "Come spiega il Vol. N a pagina X..."');
+            volLines.push('Citazione solo se necessaria: usa questo Vol./pag. come micro-ancora breve solo se aiuta la risposta.');
             contextParts.push(volLines.join('\n'));
         }
         // Group context: where this experiment sits in the chapter
@@ -720,17 +843,18 @@ export async function sendChat(message, images = [], options = {}) {
         }
     }
 
-    // RAG context injection: top 3 relevant chunks from volumes/glossary/FAQ
-    if (images.length === 0) {
-        const ragResults = searchRAGChunks(message, 3);
-        if (ragResults.length > 0) {
-            const ragLines = ragResults.map(r => {
-                const src = r.source ? ` (${r.source})` : '';
-                return r.text + src;
-            });
-            contextParts.push('[CONTESTO DAI VOLUMI ELAB]\n' + ragLines.join('\n---\n') + '\n[FINE CONTESTO]');
-        }
-    }
+    const agentDecisionSeed = buildAgentDecisionSeed({
+        message,
+        simulatorContext,
+        narrativeContext: simulatorContext?.applicationNarrative?.at?.(-1) || null,
+        albumContext: simulatorContext?.completedExperiments || null,
+        comicContext: simulatorContext?.comicAsset || null,
+    });
+    contextParts.push('[AGENT_DECISION_JSON]\n' + JSON.stringify(agentDecisionSeed));
+
+    // LIVE_CHAT_RAG_BYPASS:
+    // No browser-side RAG injection in the classroom hot path. The Edge
+    // Function system prompt carries the stable volume knowledge pack.
 
     contextParts.push('\nMessaggio studente:\n' + message);
     const nanobotMessage = contextParts.join('\n\n');
@@ -738,11 +862,21 @@ export async function sendChat(message, images = [], options = {}) {
 
     // 0. Try local server first (Ollama, 100% offline, zero config)
     const localResult = await tryLocalServer(nanobotMessage, circuitState, combinedSignal, experimentId, images, simulatorContext);
-    if (localResult) return localResult;
+    if (localResult) {
+        return {
+            success: true,
+            response: ensureBookCitation(localResult, experimentId),
+            source: 'local-server',
+            actions: extractActions(localResult),
+        };
+    }
 
     // 1. Try nanobot cloud (text + vision via Gemini, circuit-aware, parallel racing)
     if (NANOBOT_URL) {
-        const nanobotResult = await tryNanobot(nanobotMessage, circuitState, combinedSignal, experimentId, images, simulatorContext);
+        const nanobotResult = await tryNanobot(nanobotMessage, circuitState, combinedSignal, experimentId, images, simulatorContext, {
+            ...options,
+            aiProfile: options.aiProfile || inferAiProfileHint(message, images, simulatorContext, options),
+        });
         if (nanobotResult) return nanobotResult;
     }
 
@@ -924,7 +1058,7 @@ export async function sendChat(message, images = [], options = {}) {
                 const searchData = await searchResponse.json();
 
                 if (searchData.success && searchData.results && searchData.results.length > 0) {
-                    const answer = searchData.results[0]?.answer || searchData.results[0]?.text;
+                    const answer = ensureBookCitation(searchData.results[0]?.answer || searchData.results[0]?.text, experimentId);
                     return {
                         success: true,
                         response: answer,
@@ -951,26 +1085,14 @@ export async function sendChat(message, images = [], options = {}) {
                 }
                 return {
                     success: true,
-                    response: kbResult.answer,
+                    response: ensureBookCitation(kbResult.answer, experimentId),
                     source: 'local-knowledge',
                     actions,
                 };
             }
 
-            // Fallback a RAG chunks (549 chunk dai volumi, glossario, FAQ, errori, analogie)
-            const ragResults = searchRAGChunks(message, 3);
-            if (ragResults.length > 0) {
-                const topChunk = ragResults[0];
-                const ragAnswer = topChunk.source === 'glossary' || topChunk.source === 'faq' || topChunk.source === 'error-guide'
-                    ? topChunk.text
-                    : `Ecco cosa ho trovato nei volumi ELAB:\n\n${topChunk.text}`;
-                return {
-                    success: true,
-                    response: ragAnswer,
-                    source: 'rag-local',
-                    ragScore: topChunk.score,
-                };
-            }
+            // LIVE_CHAT_RAG_BYPASS: no local RAG fallback for chat wording.
+            // Better a short honest failure than slow document-style output.
         }
 
         return {
@@ -1118,19 +1240,33 @@ function extractActions(text, userMessage = '') {
  * @param {AbortSignal} [options.signal] - AbortSignal per cancellare la richiesta
  */
 export async function analyzeImage(imageData, question = "Analizza questa immagine di un circuito elettronico.", options = {}) {
-    const { signal } = options;
+    const { signal, circuitState = null, simulatorContext = null, experimentId = null, preferProvider = null } = options;
 
     // Check if already aborted before starting
     if (signal?.aborted) {
         throw new DOMException('Aborted', 'AbortError');
     }
 
-    const base64 = imageData.includes(',') ? imageData.split(',')[1] : imageData;
-    const mimeType = imageData.includes('data:')
-        ? imageData.split(';')[0].split(':')[1]
+    const firstImage = Array.isArray(imageData) ? imageData[0] : imageData;
+    const imageString = typeof firstImage === 'string'
+        ? firstImage
+        : (firstImage?.base64 ? `data:${firstImage.mimeType || 'image/png'};base64,${firstImage.base64}` : '');
+    const directVision = await tryVisionEndpoint(question, imageString, {
+        signal,
+        experimentId,
+        preferProvider,
+        simulatorContext,
+        aiProfile: options.aiProfile,
+        aiDepth: options.aiDepth,
+    });
+    if (directVision) return directVision;
+
+    const base64 = imageString.includes(',') ? imageString.split(',')[1] : imageString;
+    const mimeType = imageString.includes('data:')
+        ? imageString.split(';')[0].split(':')[1]
         : 'image/png';
 
-    return await sendChat(question, [{ base64, mimeType }], { signal });
+    return await sendChat(question, [{ base64, mimeType }], { signal, circuitState, simulatorContext, experimentId });
 }
 
 /**
@@ -1150,11 +1286,19 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     async function tryCompile(url, label) {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), COMPILE_TIMEOUT);
+        const headers = { 'Content-Type': 'application/json' };
+        if (url.includes('supabase.co/functions') && _SUPABASE_ANON) {
+            headers.apikey = _SUPABASE_ANON;
+            headers.Authorization = `Bearer ${_SUPABASE_ANON}`;
+        }
+        if (url.includes('supabase.co/functions') && _ELAB_API_KEY) {
+            headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
+        }
 
         try {
             const res = await fetch(url, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers,
                 signal: controller.signal,
                 body: JSON.stringify({ code, board: safeBoard }),
             });
@@ -1189,20 +1333,30 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         }
     }
 
-    // 1. Server standalone (compile-server.js sul VPS — priorità)
-    if (COMPILE_URL) {
+    const httpsBrowser = isHttpsBrowserOrigin();
+
+    // 1. Production/preview HTTPS: same-origin-safe Supabase proxy first.
+    // Direct n8n compile endpoints fail browser CORS on www.elabtutor.school.
+    if (httpsBrowser && COMPILE_PROXY_URL) {
+        const result = await tryCompile(COMPILE_PROXY_URL, 'Supabase compile proxy');
+        if (result) return result;
+    }
+
+    // 2. Server standalone (compile-server.js sul VPS). In HTTPS, never call
+    // the known n8n compile URL directly from the browser: it creates CORS noise.
+    if (COMPILE_URL && !(httpsBrowser && isDirectN8nCompileUrl(COMPILE_URL))) {
         const result = await tryCompile(`${COMPILE_URL}/compile`, 'Standalone server');
         if (result) return result;
     }
 
-    // 2. Fallback: backend webhook
-    if (COMPILE_WEBHOOK) {
+    // 3. Fallback: backend webhook, but not direct n8n from HTTPS browser.
+    if (COMPILE_WEBHOOK && !(httpsBrowser && isDirectN8nCompileUrl(COMPILE_WEBHOOK))) {
         const result = await tryCompile(COMPILE_WEBHOOK, 'Backend webhook');
         if (result) return result;
     }
 
-    // 3. Fallback: server locale (sviluppo)
-    if (LOCAL_URL) {
+    // 4. Fallback: server locale only in dev/non-HTTPS.
+    if (!httpsBrowser && LOCAL_URL) {
         const result = await tryCompile(`${LOCAL_URL}/compile`, 'Local server');
         if (result) return result;
     }
@@ -1248,8 +1402,18 @@ export function preloadExperiment(experimentId) {
 export function warmupRender() {
     fetch(`${RENDER_FALLBACK}/health`, {
         method: 'GET',
+        mode: 'no-cors',
         signal: AbortSignal.timeout(60000), // 60s max, Render wakes in ~37s
     }).catch(() => { }); // Silently ignore errors (service may be sleeping)
 }
+
+export const __test__ = {
+    API_TIMEOUT,
+    LOCAL_HEALTH_TIMEOUT_MS,
+    LOCAL_CHAT_TIMEOUT_TEXT_MS,
+    LOCAL_CHAT_TIMEOUT_IMAGE_MS,
+    MASTER_TIMEOUT_TEXT,
+    MASTER_TIMEOUT_IMAGE,
+};
 
 export { API };

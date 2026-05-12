@@ -11,49 +11,106 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3,
+    "max_parole": 120,
+    "max_frasi": 6,
     "vol_pag": "Vol.1 pag.70",
     "analogia": "ricapitolare è come fare lo zaino prima di tornare a casa: prendiamo i 3 oggetti più importanti"
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["primaria-4-5", "secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true
   },
   "inputs": {
-    "experimentId": { "type": "string", "required": true, "default": "v1-cap6-esp1" },
-    "classProfile": { "type": "object", "required": false },
-    "kitTier": { "type": "string", "enum": ["basic", "advanced"], "default": "basic" },
-    "docenteExperienceLevel": { "type": "string", "enum": ["primo-anno", "esperto"], "default": "primo-anno" },
-    "lessonKeyPoints": { "type": "array", "required": false, "default": ["LED polarità", "resistenza serie", "blink delay"] }
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v1-cap6-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    },
+    "lessonKeyPoints": {
+      "type": "array",
+      "required": false,
+      "default": [
+        "LED polarità",
+        "resistenza serie",
+        "blink delay"
+      ]
+    }
   },
   "sequence": [
     {
       "step": "highlight-key-components",
       "tool": "highlightComponent",
-      "args": { "ids": ["led1", "r1", "nano"], "color": "navy", "pulse": false },
+      "args": {
+        "ids": [
+          "led1",
+          "r1",
+          "nano"
+        ],
+        "color": "navy",
+        "pulse": false
+      },
       "expected_status": "ok"
     },
     {
       "step": "ask-unlim-recap",
       "tool": "askUNLIM",
-      "args": { "query": "Genera recap 3 punti chiave lezione: LED polarità + resistenza serie 220Ω + delay blink", "context": "Vol.1 cap.6 chiusura lezione" },
+      "args": {
+        "query": "Genera recap 3 punti chiave lezione: LED polarità + resistenza serie 220Ω + delay blink",
+        "context": "Vol.1 cap.6 chiusura lezione"
+      },
       "expected_status": "ok"
     },
     {
       "step": "show-nudge-3-points",
       "tool": "showNudge",
-      "args": { "text": "Oggi abbiamo imparato: 1) LED ha polarità (gamba lunga +) 2) resistenza 220Ω in serie protegge 3) delay 1000 fa lampeggio 1 secondo", "position": "center", "duration_ms": 8000 },
+      "args": {
+        "text": "Oggi abbiamo imparato: 1) LED ha polarità (gamba lunga +) 2) resistenza 220Ω in serie protegge 3) delay 1000 fa lampeggio 1 secondo",
+        "position": "center",
+        "duration_ms": 8000
+      },
       "expected_status": "ok"
     },
     {
       "step": "capture-screenshot-final-state",
       "tool": "captureScreenshot",
-      "args": { "purpose": "save-lesson-final-state", "saveToReport": true },
+      "args": {
+        "purpose": "save-lesson-final-state",
+        "saveToReport": true
+      },
       "expected_status": "ok"
     },
     {

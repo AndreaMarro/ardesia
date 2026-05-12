@@ -8,6 +8,7 @@
 
 import type { GeminiModel, ImageData } from './types.ts';
 import { callGemini, callBrainFallback, GeminiError, ErrorCode } from './gemini.ts';
+import { callVertexGemini, isVertexEUEnabled, VertexError } from './vertex-client.ts';
 import {
   canUseTogether,
   anonymizePayload,
@@ -30,6 +31,177 @@ export type { TogetherContext };
 const TOGETHER_API_URL = 'https://api.together.xyz/v1/chat/completions';
 const TOGETHER_TIMEOUT_MS = 15000;
 
+// ════════════════════════════════════════════════════════════════════
+// Sprint U iter 25 P0-B — Exponential backoff retry with jitter
+// ════════════════════════════════════════════════════════════════════
+
+/**
+ * Retry policy options. Total wall-clock budget is capped per-provider so a
+ * burst of 5xx does not exceed the hot-path timeout (~4s default vs 15s
+ * fetch timeout = retries stay inside provider budget).
+ */
+export interface RetryOptions {
+  /** Hard cap on attempts (initial + retries). Default 3. */
+  maxAttempts?: number;
+  /** Base delay in ms before the 1st retry. Default 300ms. */
+  baseDelayMs?: number;
+  /** Multiplier for each subsequent retry. Default 2 (exponential). */
+  factor?: number;
+  /** Jitter ratio 0..1 — actual delay = base * factor^n * (1 ± jitter*random). */
+  jitter?: number;
+  /** Total wall-clock budget across all retries (ms). Default 4000ms. */
+  totalBudgetMs?: number;
+  /** Optional label for log telemetry (provider name). */
+  label?: string;
+}
+
+/**
+ * Decide whether an error should be retried.
+ * Retry: HTTP 5xx, 429 rate-limit, network errors (TypeError fetch failed).
+ * Fail-fast: HTTP 4xx auth/validation, schema errors.
+ */
+function isRetriableError(err: unknown): boolean {
+  if (err instanceof GeminiError) {
+    // 5xx + 429 retriable; API_ERROR (4xx) + EMPTY_RESPONSE fail-fast.
+    return err.code === ErrorCode.SERVICE_UNAVAILABLE
+      || err.code === ErrorCode.SERVICE_RATE_LIMITED
+      || err.code === ErrorCode.TIMEOUT;
+  }
+  // Native fetch network error (TypeError "fetch failed" / DNS / ECONNRESET).
+  if (err instanceof TypeError) return true;
+  // DOMException AbortError (timeout) — retriable once.
+  if (err instanceof DOMException && err.name === 'AbortError') return true;
+  // Unknown errors: conservative fail-fast (do NOT mask logic bugs).
+  return false;
+}
+
+/**
+ * Compute next backoff delay with jitter.
+ * Pure function — no setTimeout, no state mutation.
+ */
+function computeBackoffDelay(
+  attempt: number,
+  baseDelayMs: number,
+  factor: number,
+  jitter: number,
+): number {
+  const exp = baseDelayMs * Math.pow(factor, attempt);
+  // Jitter window: ±jitter * exp. Math.random ∈ [0,1) → range [-jitter, +jitter].
+  const jitterRange = exp * jitter;
+  const offset = (Math.random() * 2 - 1) * jitterRange;
+  return Math.max(0, Math.floor(exp + offset));
+}
+
+/**
+ * Async sleep helper (Promise + setTimeout, NO synchronous block).
+ */
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * callWithRetry — wraps a provider call with exponential backoff retry.
+ *
+ * Retry decision tree:
+ *   - HTTP 5xx (SERVICE_UNAVAILABLE) → RETRY with backoff
+ *   - HTTP 429 (SERVICE_RATE_LIMITED) → RETRY with backoff
+ *   - HTTP 4xx (API_ERROR) → FAIL-FAST (auth/validation, retry won't help)
+ *   - EMPTY_RESPONSE → FAIL-FAST (model output empty, retry unlikely to fix)
+ *   - TypeError "fetch failed" → RETRY (transient network)
+ *   - DOMException AbortError (timeout) → RETRY once (transient)
+ *   - Unknown Error → FAIL-FAST (avoid masking logic bugs)
+ *
+ * Budget enforcement: total wall-clock across all retries ≤ totalBudgetMs.
+ * If a retry would exceed budget, abort and throw last error.
+ *
+ * Pure orchestrator — no state mutation outside provided fn.
+ *
+ * Sprint U iter 25 P0-B addresses HTTP 503 rate 11.4% iter 24 dim-1 bench:
+ * Mistral burst rate-limit / Supabase Edge cold-start → 1-2 retries usually
+ * succeed within <500ms total added latency.
+ */
+export async function callWithRetry<T>(
+  fn: () => Promise<T>,
+  opts: RetryOptions = {},
+): Promise<T> {
+  const maxAttempts = Math.max(1, opts.maxAttempts ?? 3);
+  const baseDelayMs = Math.max(0, opts.baseDelayMs ?? 300);
+  const factor = opts.factor ?? 2;
+  const jitter = Math.max(0, Math.min(1, opts.jitter ?? 0.3));
+  const totalBudgetMs = Math.max(0, opts.totalBudgetMs ?? 4000);
+  const label = opts.label ?? 'unknown';
+
+  const startedAt = Date.now();
+  let lastError: unknown = null;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      const result = await fn();
+      if (attempt > 0) {
+        console.info(JSON.stringify({
+          level: 'info',
+          event: 'retry_success',
+          label,
+          attempt,
+          elapsedMs: Date.now() - startedAt,
+        }));
+      }
+      return result;
+    } catch (err) {
+      lastError = err;
+      const isLast = attempt === maxAttempts - 1;
+      const retriable = isRetriableError(err);
+
+      if (!retriable || isLast) {
+        console.warn(JSON.stringify({
+          level: 'warn',
+          event: retriable ? 'retry_exhausted' : 'retry_fail_fast',
+          label,
+          attempt,
+          maxAttempts,
+          retriable,
+          errorMessage: err instanceof Error ? err.message : String(err),
+          errorCode: err instanceof GeminiError ? err.code : undefined,
+          elapsedMs: Date.now() - startedAt,
+        }));
+        throw err;
+      }
+
+      // Compute delay; abort if budget would be exceeded.
+      const delay = computeBackoffDelay(attempt, baseDelayMs, factor, jitter);
+      const projectedElapsed = (Date.now() - startedAt) + delay;
+      if (projectedElapsed > totalBudgetMs) {
+        console.warn(JSON.stringify({
+          level: 'warn',
+          event: 'retry_budget_exceeded',
+          label,
+          attempt,
+          projectedElapsedMs: projectedElapsed,
+          budgetMs: totalBudgetMs,
+          errorMessage: err instanceof Error ? err.message : String(err),
+        }));
+        throw err;
+      }
+
+      console.info(JSON.stringify({
+        level: 'info',
+        event: 'retry_scheduled',
+        label,
+        attempt,
+        delayMs: delay,
+        errorMessage: err instanceof Error ? err.message : String(err),
+        errorCode: err instanceof GeminiError ? err.code : undefined,
+      }));
+      await sleep(delay);
+    }
+  }
+
+  // Unreachable — loop either returns or throws — defensive only.
+  throw lastError instanceof Error
+    ? lastError
+    : new GeminiError(ErrorCode.SERVICE_UNAVAILABLE, `${label}: retry loop exhausted`);
+}
+
 /**
  * LLMOptions — identical to GeminiOptions so callers don't change signature.
  *
@@ -45,6 +217,12 @@ export interface LLMOptions {
   maxOutputTokens?: number;
   temperature?: number;
   thinkingLevel?: 'minimal' | 'low' | 'medium' | 'high'; // Ignored by Together
+  /**
+   * Live classroom path: skip weighted Mistral/Together routing and use the
+   * routed Gemini tier directly. This keeps response latency predictable and
+   * avoids slow tail/fallback behavior during projected lessons.
+   */
+  preferFastProvider?: boolean;
   /** Iter 38 A7: JSON schema constraint forwarded only to Mistral. */
   responseFormat?: MistralResponseFormat;
 }
@@ -203,6 +381,41 @@ export async function callLLM(options: LLMOptions): Promise<LLMResult> {
   const provider = (Deno.env.get('LLM_PROVIDER') || 'together').trim().toLowerCase();
   const hasImages = (options.images?.length ?? 0) > 0;
 
+  // Sprint U iter 39 Phase 0 — Pure Gemini Vertex EU short-circuit.
+  // When ENABLE_VERTEX_EU=true AND GCP_VERTEX_SA_JSON_B64 + GCP_VERTEX_PROJECT_ID
+  // configured, route 100% chat traffic (text + vision) to Vertex Frankfurt
+  // (europe-west3) for GDPR Art.8 minori EU residency compliance.
+  // Falls through legacy AI Studio Gemini + Mistral chain on Vertex failure
+  // (backward-compatible safety net during Phase 0 rollout).
+  // Evidence-based: empirical R5 2026-05-11 1877ms avg p50, Andrea Pure G
+  // ratify iter 39 (docs/decisions/2026-05-12-pure-gemini-chat-evidence-based.md).
+  if (isVertexEUEnabled()) {
+    try {
+      // Model selection: thinking mode → Pro; vision (images) → Flash (vision
+      // capable); else → Flash-Lite (default fast chat ~1877ms p50 empirical).
+      const vertexModel = options.thinkingLevel
+        ? 'gemini-2.5-pro'
+        : (hasImages ? 'gemini-2.5-flash' : 'gemini-2.5-flash-lite');
+      const r = await callVertexGemini({ ...options, model: vertexModel });
+      return {
+        text: r.text,
+        model: r.model,
+        provider: 'vertex',
+        tokensUsed: { input: r.tokensUsed.input, output: r.tokensUsed.output },
+        latencyMs: r.latencyMs,
+      };
+    } catch (e) {
+      console.warn(JSON.stringify({
+        level: 'warn',
+        event: 'vertex_fallthrough_to_legacy',
+        error_code: e instanceof VertexError ? e.code : 'unknown',
+        error_message: e instanceof Error ? e.message.slice(0, 200) : String(e).slice(0, 200),
+        hint: 'AI Studio + Mistral legacy chain active as safety net',
+      }));
+      // Fall through to legacy paths below (AI Studio Gemini + Mistral chain).
+    }
+  }
+
   // Vision: ALWAYS Gemini (Mistral Pixtral fallback iter 25+)
   if (hasImages) {
     const r = await callGemini(options);
@@ -213,6 +426,55 @@ export async function callLLM(options: LLMOptions): Promise<LLMResult> {
       tokensUsed: { input: r.tokensUsed?.input ?? 0, output: r.tokensUsed?.output ?? 0 },
       latencyMs: r.latencyMs,
     };
+  }
+
+  if (options.preferFastProvider) {
+    const r = await callGemini(options);
+    return {
+      text: r.text,
+      model: r.model,
+      provider: r.model === 'galileo-brain-v13' ? 'brain' : 'gemini',
+      tokensUsed: { input: r.tokensUsed?.input ?? 0, output: r.tokensUsed?.output ?? 0 },
+      latencyMs: r.latencyMs,
+    };
+  }
+
+  // iter 15 simplification — race RIMOSSO. R-100 evidence: Mistral 0 hits, sempre perde
+  // race vs Gemini Flash 2.5. Race pagava 2x cost SENZA benefit. Iter 14 INFLATED claim.
+  // Strategy iter 15: Gemini 2.5 Flash direct quando ENABLE_LLM_RACE=true (bypass weighted
+  // routing complex). Latency consistent + cost 1x LLM call. Mistral fallback solo on error.
+  const enableRace = (Deno.env.get('ENABLE_LLM_RACE') || 'false').toLowerCase() === 'true';
+  if (enableRace) {
+    const startDirect = Date.now();
+    try {
+      const r = await callGemini({ ...options, model: 'gemini-2.5-flash' });
+      console.info(JSON.stringify({
+        level: 'info', event: 'gemini_flash_direct',
+        latencyMs: Date.now() - startDirect,
+        model: r.model,
+      }));
+      return {
+        text: r.text,
+        model: r.model,
+        provider: r.model === 'galileo-brain-v13' ? 'brain' : 'gemini',
+        tokensUsed: { input: r.tokensUsed?.input ?? 0, output: r.tokensUsed?.output ?? 0 },
+        latencyMs: r.latencyMs,
+      };
+    } catch (geminiErr) {
+      console.warn(JSON.stringify({
+        level: 'warn', event: 'gemini_flash_failed_fallback_mistral',
+        error: geminiErr instanceof Error ? geminiErr.message : String(geminiErr),
+      }));
+      try {
+        return await callMistral(options, 'mistral-small-latest');
+      } catch (mistralErr) {
+        console.warn(JSON.stringify({
+          level: 'warn', event: 'mistral_fallback_also_failed',
+          error: mistralErr instanceof Error ? mistralErr.message : String(mistralErr),
+        }));
+        // Fall through legacy weighted routing
+      }
+    }
   }
 
   // Iter 24 + 35 NEW: weighted routing for text-only chat
@@ -315,7 +577,7 @@ async function callRunPod(options: LLMOptions): Promise<LLMResult> {
           { role: 'system', content: options.systemPrompt },
           { role: 'user', content: options.message },
         ],
-        max_tokens: options.maxOutputTokens ?? 120,
+        max_tokens: options.maxOutputTokens ?? 200,
         temperature: options.temperature ?? 0.7,
         stream: false,
       }),
@@ -452,10 +714,16 @@ export async function callLLMWithFallback(
 
   // Iter 24 + 35 NEW: weighted routing 50/15/15/20 (iter 35 Gemini Flash-Lite primary fast EU)
   // Andrea iter 34: "Mistral lento vs Gemini/DeepSeek/Nanobot era veloce"
+  // Sprint U iter 25 P0-B: each provider wrapped in callWithRetry — HTTP 5xx/429
+  // burst rate-limit auto-retried with exponential backoff before falling
+  // through to next provider in chain. Budget 4s per provider total.
   const pick = pickWeightedProvider();
   if (pick === 'gemini-flash-lite') {
     try {
-      const r = await callGemini({ ...options, modelOverride: 'gemini-2.5-flash-lite' });
+      const r = await callWithRetry(
+        () => callGemini({ ...options, modelOverride: 'gemini-2.5-flash-lite' }),
+        { label: 'gemini-flash-lite-weighted' },
+      );
       return {
         text: r.text,
         model: r.model,
@@ -469,14 +737,23 @@ export async function callLLMWithFallback(
     }
   } else if (pick === 'mistral-small') {
     try {
-      return await callMistral(options, 'mistral-small-latest');
+      // iter 28 M5 fix code-review: maxAttempts:1 outer (callMistralChat ha già inner retry [400,1000]+jitter su 5xx/429).
+      // Stacked outer+inner = up to 9 attempts ~30s tail latency BREAKING hot-path 4s budget.
+      return await callWithRetry(
+        () => callMistral(options, 'mistral-small-latest'),
+        { label: 'mistral-small-weighted', maxAttempts: 1 },
+      );
     } catch (e) {
       providersDown.push('mistral-small-weighted');
       console.info(JSON.stringify({ level: 'info', event: 'mistral_small_weighted_down', request_id: reqId, error: e instanceof Error ? e.message : String(e) }));
     }
   } else if (pick === 'mistral-large') {
     try {
-      return await callMistral(options, 'mistral-large-latest');
+      // iter 28 M5 fix code-review: maxAttempts:1 outer (callMistralChat inner retry already)
+      return await callWithRetry(
+        () => callMistral(options, 'mistral-large-latest'),
+        { label: 'mistral-large-weighted', maxAttempts: 1 },
+      );
     } catch (e) {
       providersDown.push('mistral-large-weighted');
       console.info(JSON.stringify({ level: 'info', event: 'mistral_large_weighted_down', request_id: reqId, error: e instanceof Error ? e.message : String(e) }));
@@ -514,8 +791,9 @@ export async function callLLMWithFallback(
   }
 
   // 1. RunPod EU (legacy fallback chain start)
+  // Sprint U iter 25 P0-B: each provider wrapped in callWithRetry.
   try {
-    return await callRunPod(options);
+    return await callWithRetry(() => callRunPod(options), { label: 'runpod' });
   } catch (e) {
     providersDown.push('runpod');
     console.info(JSON.stringify({
@@ -526,7 +804,7 @@ export async function callLLMWithFallback(
 
   // 1.5. Mistral EU fallback (default Small if weighted pick wasn't Mistral)
   try {
-    return await callMistral(options);
+    return await callWithRetry(() => callMistral(options), { label: 'mistral-fallback' });
   } catch (e) {
     providersDown.push('mistral');
     console.info(JSON.stringify({
@@ -538,7 +816,7 @@ export async function callLLMWithFallback(
   // 2. Gemini EU (existing)
   let lastError: unknown = null;
   try {
-    const r = await callGemini(options);
+    const r = await callWithRetry(() => callGemini(options), { label: 'gemini-fallback' });
     return {
       text: r.text,
       model: r.model,

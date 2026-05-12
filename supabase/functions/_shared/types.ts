@@ -10,6 +10,9 @@ export interface ChatRequest {
   experimentId?: string | null;
   simulatorContext?: SimulatorContext | null;
   images?: ImageData[];
+  aiProfile?: string | null;
+  aiDepth?: 'total' | 'compact' | null;
+  unlimMode?: string | null;
 }
 
 export interface ChatResponse {
@@ -20,6 +23,7 @@ export interface ChatResponse {
   actions?: string[];
   error?: string;
   dataProcessing?: string; // GDPR transparency: which external service processed the data
+  aiProfile?: string;
 }
 
 export interface DiagnoseRequest {
@@ -81,11 +85,25 @@ export interface SimulatorContext {
   running?: boolean;
   errors?: string[];
   activeExperiment?: string;
+  mode?: string;
+  modalita?: string;
+  buildMode?: string;
 }
 
 export interface ImageData {
   base64: string;
   mimeType: string;
+}
+
+// iter 25 P0-A — per-message timeline entry returned by `loadRecentHistory`.
+// Backward-compatible with prior single-shape `Array<{ role: 'assistant', content: string }>`:
+// callers expecting only role+content keep working; new meta fields are additive optionals.
+export interface MessageHistoryEntry {
+  role: 'user' | 'assistant';
+  content: string;
+  experiment_id?: string;
+  chapter?: number;
+  volume?: number;
 }
 
 export interface StudentContext {
@@ -95,6 +113,11 @@ export interface StudentContext {
   lastSession: string | null;
   level: 'principiante' | 'intermedio' | 'avanzato';
   currentChapter: number | null;
+  // iter 18 — verbatim recall fields per memoria Q10b cross-msg
+  lastExperimentId?: string | null;
+  currentVolume?: number | null;
+  // iter 24 Phase 1 P0 — user_intent_seed verbatim msg1 IMMUTABLE (Doc-3+4 ROOT CAUSE H5 fix)
+  userIntentSeed?: string | null;
 }
 
 // NB (17/04/2026): modelli GA Google. I preview 3.x erano instabili (503

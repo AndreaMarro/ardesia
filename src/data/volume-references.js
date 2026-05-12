@@ -855,6 +855,10 @@ const VOLUME_REFERENCES = {
   },
 
   // Capitolo 12 — Robot Segui Luce (p.103)
+  // 2026-05-10 TRES JOLIE audit segnala discrepanza: PDF Vol2 dice Cap.12 inizia p.109
+  // (p.103 = Cap.11 "I diodi"). Tea narrative metadata file ESTERNO (/elab-fumetti-consegna-v2/)
+  // ha bookPage:103. Test teaFumettiPackageAudit richiede equality. Mantengo 103 per ora
+  // per non rompere baseline Tea-sync. Iter 4 P0: Andrea+Tea decide fonte verità (PDF o Tea map).
   'v2-cap12-esp1': {
     volume: 2, bookPage: 103, chapter: "Capitolo 12 - Robot Segui Luce", chapterPage: 103,
     bookText: "In questo capitolo metteremo insieme un po' tutti i concetti acquisiti in questo volume per costruire un semplice robot che segue la luce!",
@@ -874,9 +878,11 @@ const VOLUME_REFERENCES = {
   // Fonte: Manuale VOLUME 3 V0.8.1 — pagine fisiche del libro
   // ─────────────────────────────────────────────────
 
-  // Capitolo 5 — Come è fatto un programma Arduino? (p.47)
+  // Capitolo 5 — Il nostro primo programma (Blink) (p.47)
+  // 2026-05-10 fix TRES JOLIE audit: precedente titolo "Come è fatto un programma Arduino?"
+  // era ERRATO. ODT/PDF Vol3 dice "Il nostro primo programma (Blink)".
   'v3-cap5-esp1': {
-    volume: 3, bookPage: 47, chapter: "Capitolo 5 - Come è fatto un programma Arduino?", chapterPage: 47,
+    volume: 3, bookPage: 47, chapter: "Capitolo 5 - Il nostro primo programma (Blink)", chapterPage: 47,
     bookText: "Il capitolo introduce la struttura base di un programma Arduino con void setup() e void loop(), e il primo sketch Blink che fa lampeggiare il LED integrato sulla scheda.",
     bookInstructions: [
       "Collega Arduino Nano al PC con il cavo USB-C",
@@ -888,7 +894,7 @@ const VOLUME_REFERENCES = {
     bookContext: "Primo programma Arduino: Blink. Il capitolo spiega void setup(), void loop(), pinMode, digitalWrite e delay."
   },
   'v3-cap5-esp2': {
-    volume: 3, bookPage: 49, chapter: "Capitolo 5 - Come è fatto un programma Arduino?", chapterPage: 47,
+    volume: 3, bookPage: 49, chapter: "Capitolo 5 - Il nostro primo programma (Blink)", chapterPage: 47,
     bookText: "Modifica il programma Blink per cambiare la velocità del lampeggio. Prova con delay diversi per capire il concetto di millisecondi.",
     bookInstructions: [
       "Modifica il delay: 100ms per lampeggio veloce",

@@ -14,14 +14,37 @@ const DEFAULT_SUGGESTIONS = [];
 
 // Keyframes and global styles moved to ChatOverlay.module.css (IT3 perf fix)
 
+export const UNLIM_WAITING_PHRASES = [
+    'Sto ELABorando...',
+    'Controllo il circuito...',
+    'Leggo lo stato live...',
+    'Preparo il prossimo gesto...',
+    'Guardo pin e collegamenti...',
+    'Metto ordine tra codice e circuito...',
+    'Verifico prima di rispondere...',
+    'Cerco la causa piu probabile...',
+    'Tengo la risposta corta...',
+    'Ci sono, quasi pronto...',
+];
+
 // -- Typing indicator (animated 3 dots) --
 function TypingIndicator() {
+    const [phraseIndex, setPhraseIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPhraseIndex((idx) => Math.min(idx + 1, UNLIM_WAITING_PHRASES.length - 1));
+        }, 2200);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className={css.typingRow}>
             <div className={css.typingAvatar}>
-                <span role="img" aria-hidden="true">G</span>
+                <span role="img" aria-hidden="true">U</span>
             </div>
             <div className={css.typingBubble}>
+                <span className={css.typingText}>{UNLIM_WAITING_PHRASES[phraseIndex]}</span>
                 {[0, 1, 2].map(i => (
                     <div key={i} className={css.typingDot}
                         style={{ animation: `unlimBounce 1.4s ease-in-out ${i * 0.16}s infinite` }}
@@ -257,7 +280,7 @@ export default React.memo(function ChatOverlay({
                         <span className={css.brandName}>UNLIM</span>
                         <span className={css.statusRowFull}>
                             <span className={css.statusDotSmall} />
-                            {isLoading ? 'Sta scrivendo...' : 'Online'}
+                            {isLoading ? 'In ascolto' : 'Online'}
                         </span>
                     </div>
                 </div>
@@ -552,7 +575,7 @@ function MessageBubble({ msg, onRetry }) {
         <div className={isUser ? css.msgRowUser : css.msgRowAssistant}>
             {/* Avatar */}
             {!isUser && (
-                <div className={css.avatarAssistant}>G</div>
+                <div className={css.avatarAssistant}>U</div>
             )}
 
             <div className={isUser ? css.msgContentUser : css.msgContentAssistant}>

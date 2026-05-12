@@ -11,6 +11,7 @@ import useIsMobile from './hooks/useIsMobile';
 import useOnlineStatus from './hooks/useOnlineStatus';
 import { startSyncInterval, stopSyncInterval } from './services/supabaseSync';
 import { warmupRender } from './services/api';
+import { getExpFromHash } from './utils/hashUtils';
 
 import RequireAuth from './components/auth/RequireAuth';
 import RequireLicense from './components/auth/RequireLicense';
@@ -60,6 +61,9 @@ function LoadingFallback() {
 // Hash-based routing: maps hash fragments to page names (P0-6)
 // iter 35 P0: 'home' added as new default landing (Tea-style 5 card grid + cronologia)
 const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
+const HASH_PAGE_ALIASES = {
+    'lavagna-solo': 'lavagna',
+};
 
 // Iter 44 BUG fix: HomePage sub-routes — direct nav `#chatbot-only` /
 // `#about-easter` / `#glossario` from any other page (e.g. Lavagna modal)
@@ -71,16 +75,14 @@ const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
 
 function getPageFromHash() {
     const raw = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
+    if (HASH_PAGE_ALIASES[raw]) return HASH_PAGE_ALIASES[raw];
     if (HOMEPAGE_SUBROUTES.includes(raw)) return 'home';
     return VALID_HASHES.includes(raw) ? raw : null;
 }
 
-/** Extract ?exp=xxx from hash for deep-linking experiments */
-function getExpFromHash() {
-    const hash = window.location.hash;
-    const match = hash.match(/[?&]exp=([^&]+)/);
-    return match ? decodeURIComponent(match[1]) : null;
-}
+// iter 30 P2.3 (Agent T tech-debt P0-3) — getExpFromHash extracted to src/utils/hashUtils.js
+// Was duplicated here + src/components/lavagna/LavagnaShell.jsx:917 (iter 28 hashchange listener)
+// Now single source of truth via import — drift prevented.
 
 /** Dashboard-v2 live flag + teacher + range from hash query (E2E spec 15). */
 function getDashboardV2Params() {
@@ -232,10 +234,16 @@ function AppRouter() {
     }
 
     // Lavagna — nuova esperienza workspace
+    // iter 27 P0 SURGICAL FIX (Agent X 94/94 esperimenti BROKEN evidence brutale):
+    // pre-fix: getExpFromHash() consumed solo `#prova` route, `#lavagna` IGNORAVA `?exp=` query param.
+    // Deep-link `#lavagna?exp=v1-cap6-esp1` arrivava in LavagnaShell senza prop initialExperimentId
+    // → mount engine non riceveva contesto → picker default + 0 componenti rendered + 0 Vol/pag citation.
+    // Sblocca 94/94 esperimenti accessibili da deep-link Playwright sweep + Andrea iter 21+ mandate carryover.
     if (currentPage === 'lavagna' || currentPage === 'tutor') {
+        const deepLinkExp = getExpFromHash();
         return (
             <Suspense fallback={<LoadingFallback />}>
-                <LavagnaShell />
+                <LavagnaShell initialExperimentId={deepLinkExp} />
             </Suspense>
         );
     }
@@ -402,6 +410,7 @@ function GatedConsentBanner() {
  */
 const CONSENT_SKIP_HASHES = new Set([
     'lavagna',
+    'lavagna-solo',
     'tutor',
     'dashboard',
     'dashboard-v2',

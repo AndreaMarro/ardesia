@@ -26,12 +26,12 @@ import MascotPresence from './MascotPresence';
 import ErrorToast from './ErrorToast';
 import { soundTick, soundPlay, soundPause } from './lavagnaSounds';
 import { buildClassProfile, getNextLessonSuggestion } from '../../services/classProfile';
+import { getExpFromHash } from '../../utils/hashUtils';
 import { HandWaveIcon, PartyIcon, FlaskIcon } from '../common/ElabIcons';
 import useOverlayQueue, { markOverlayDismissed } from '../../hooks/useOverlayQueue';
 import { isWakeWordSupported, startWakeWordListener, stopWakeWordListener } from '../../services/wakeWord';
 import LessonReader from './LessonReader';
 import LessonSelector from './LessonSelector';
-import VisionButton from '../tutor/VisionButton';
 import logger from '../../utils/logger';
 import ErrorBoundary from '../common/ErrorBoundary';
 // iter 45 (Andrea video 06/05/2026): rimosso import FloatingWindowCommon — Atom A5 iter 36
@@ -42,6 +42,7 @@ import { getCapitolo, listAllCapitoli } from '../../services/percorsoService';
 // iter 35 fix Bug 5 Fumetto: static import preserves user-gesture chain (was async dynamic import → window.open() blocked browser popup policy).
 import { openReportWindow } from '../unlim/UnlimReport';
 import { showToast as showToastSync } from '../common/Toast';
+import { startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../../services/unlimContextCollector';
 // iter 38 Atom A11 + A12 (WebDesigner-1): pre-emptive UX nudges.
 //   - MicPermissionNudge: chiede mic ai docenti PRIMA di entrare in Lavagna
 //     così wake word "Ehi UNLIM" è caldo al primo uso (browser cache grant
@@ -65,6 +66,9 @@ const DrawingOverlay = lazy(() => import('../simulator/canvas/DrawingOverlay'));
 // Sprint S iter 2 Task B — lazy load Capitolo flow components
 const CapitoloPicker = lazy(() => import('./CapitoloPicker'));
 const PercorsoCapitoloView = lazy(() => import('./PercorsoCapitoloView'));
+
+const DEFAULT_MODALITA_EXPERIMENT_ID = 'v1-cap6-esp1';
+const DRAWING_SYNC_ENABLED = import.meta.env.VITE_ENABLE_DRAWING_SYNC === 'true';
 
 // Component quick-add buttons for left panel (uses __ELAB_API)
 // Realistic component icons — recognizable by a 10-year-old
@@ -387,7 +391,10 @@ function BentornatiOverlay({ visible, onStart, onPickExperiment }) {
   );
 }
 
-export default function LavagnaShell() {
+export default function LavagnaShell({ initialExperimentId } = {}) {
+  // iter 27 P0 SURGICAL FIX (Agent X 94/94 esperimenti BROKEN evidence brutale):
+  // Accept initialExperimentId prop from App.jsx #lavagna route deep-link `?exp=<id>`.
+  // Wired in useEffect mount polling __ELAB_API ready below.
   const { user, isDocente, isStudente } = useAuth();
   // Iter 44 persistenza scritte: hook self-wires su __ELAB_API.experimentChange
   // (auto-startSession + recordAction 'experiment_loaded') + beforeunload +
@@ -402,7 +409,7 @@ export default function LavagnaShell() {
   });
   const [activeTool, setActiveTool] = useState('select');
   const [toolToast, setToolToast] = useState(null);
-  const [galileoOpen, setGalileoOpen] = useState(false); // P0 fix: UNLIM parte minimizzato — il docente vede prima il circuito
+  const [galileoOpen, setGalileoOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [videoMinimized, setVideoMinimized] = useState(false);
   const [leftPanelOpen, setLeftPanelOpen] = useState(false);
@@ -415,25 +422,43 @@ export default function LavagnaShell() {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [lavagnaState, setLavagnaState] = useState(STATES.CLEAN);
   const [hasExperiment, setHasExperiment] = useState(false);
-  // iter 45 fix Andrea video2 06/05/2026 B9: Lavagna libera (HomePage card "Lavagna
-  // libera" launchMode='solo' → localStorage 'elab_lavagna_launch_mode'='solo')
-  // deve essere SCOPED — solo UNLIM + manuale + capitoli + video. NO simulator
-  // components/breadboard. Init freeMode da localStorage al mount.
+  // Homepage "Lavagna libera" launchMode='solo': scope hard = lavagna bianca + UNLIM.
+  // Nessun percorso verso esperimenti, componenti, breadboard, manuale, capitoli,
+  // videolezioni o fumetto. Il Tutor completo resta su #tutor/#lavagna normale.
   // iter 45 review fix F-4.1.a (architect): consume + clear flag al primo read
   // così click "Lavagna libera" attiva freeMode SOLO per quella sessione, non
   // perpetuamente. Senza clear, ogni successiva visita #lavagna restava bloccata
   // in freeMode finché cache pulita. Pattern read-once safe legacy migration-friendly.
+  //
+  // iter 32 M8 code-review fix React 19 strict-mode:
+  // useState initializer è PURE READ-ONLY (NO side effects). Side effects (localStorage.remove + delete window prop)
+  // moved to useEffect con freeModeConsumeRef one-shot guard. React 19 strict-mode safe (double-invoke initializer
+  // returna identical value senza mutazione globale state).
   const [freeMode, setFreeMode] = useState(() => {
     try {
-      const flag = localStorage.getItem('elab_lavagna_launch_mode');
-      if (flag === 'solo') {
-        // Consume flag — successivo mount torna al default false
-        try { localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
-        return true;
-      }
+      const rawHash = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
+      if (rawHash === 'lavagna-solo') return true;
+      if (window.__ELAB_LAVAGNA_LAUNCH_MODE === 'solo') return true;
+      const flag = window.localStorage.getItem('elab_lavagna_launch_mode');
+      if (flag === 'solo') return true;
       return false;
     } catch { return false; }
   });
+  const freeModeConsumeRef = useRef(false);
+  useEffect(() => {
+    if (freeModeConsumeRef.current) return;
+    freeModeConsumeRef.current = true;
+    if (freeMode) {
+      // Side-effect contained: consume flags post-mount (React 19 strict-mode safe via ref guard).
+      try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+      try {
+        if (typeof window.__ELAB_LAVAGNA_LAUNCH_MODE !== 'undefined') {
+          try { delete window.__ELAB_LAVAGNA_LAUNCH_MODE; } catch { window.__ELAB_LAVAGNA_LAUNCH_MODE = null; }
+        }
+      } catch { /* noop */ }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps — one-shot consume on mount only
+  }, []);
   const [isEditing, setIsEditing] = useState(false);
   const [lessonSteps, setLessonSteps] = useState([]);
   const [unlimSpeaking, setUnlimSpeaking] = useState(false);
@@ -498,6 +523,26 @@ export default function LavagnaShell() {
   const bentornatiAllowed = useOverlayQueue('bentornati');
   const pickerAllowed = useOverlayQueue('picker');
 
+  const ensureDefaultExperimentForMode = useCallback((api) => {
+    if (!api) return false;
+    try {
+      if (api.getCurrentExperiment?.()) return true;
+    } catch { /* noop */ }
+    try {
+      const loaded = api.loadExperiment?.(DEFAULT_MODALITA_EXPERIMENT_ID);
+      if (loaded) {
+        const exp = api.getExperiment?.(DEFAULT_MODALITA_EXPERIMENT_ID);
+        setExperimentName(exp?.title || 'Accendi il tuo primo LED');
+        setHasExperiment(true);
+        setBentornatiVisible(false);
+        setPickerOpen(false);
+        setCurrentVolume(1);
+        return true;
+      }
+    } catch { /* noop */ }
+    return false;
+  }, []);
+
   // Refs for wake-word callback — avoid re-mounting listener on state change.
   // The wakeWord service holds module-level singleton state, so re-mounting
   // would risk double-listener leaks. Refs read latest values without redep.
@@ -505,10 +550,59 @@ export default function LavagnaShell() {
   useEffect(() => { galileoOpenRef.current = galileoOpen; }, [galileoOpen]);
   const lastWakeAtRef = useRef(0);
 
+  useEffect(() => {
+    startApplicationNarrativeLoop({ intervalMs: 15000, includeVisual: true });
+    return () => stopApplicationNarrativeLoop();
+  }, []);
+
   // Persist wake-word toggle preference
   useEffect(() => {
     try { localStorage.setItem('elab-lavagna-wake-word', wakeWordEnabled ? 'on' : 'off'); } catch {}
   }, [wakeWordEnabled]);
+
+  useEffect(() => {
+    if (freeMode) return;
+    try {
+      const rawHash = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
+      if (rawHash === 'lavagna-solo') {
+        try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+        setFreeMode(true);
+        return;
+      }
+      if (window.__ELAB_LAVAGNA_LAUNCH_MODE === 'solo') {
+        try { delete window.__ELAB_LAVAGNA_LAUNCH_MODE; } catch { window.__ELAB_LAVAGNA_LAUNCH_MODE = null; }
+        try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+        setFreeMode(true);
+        return;
+      }
+      if (window.localStorage.getItem('elab_lavagna_launch_mode') === 'solo') {
+        window.localStorage.removeItem('elab_lavagna_launch_mode');
+        setFreeMode(true);
+      }
+    } catch { /* noop */ }
+  }, [freeMode]);
+
+  useEffect(() => {
+    const onLaunchMode = (event) => {
+      if (event?.detail?.mode !== 'solo') return;
+      try { delete window.__ELAB_LAVAGNA_LAUNCH_MODE; } catch { window.__ELAB_LAVAGNA_LAUNCH_MODE = null; }
+      try { window.localStorage.removeItem('elab_lavagna_launch_mode'); } catch { /* noop */ }
+      setFreeMode(true);
+    };
+    window.addEventListener('elab-lavagna-launch-mode', onLaunchMode);
+    return () => window.removeEventListener('elab-lavagna-launch-mode', onLaunchMode);
+  }, []);
+
+  useEffect(() => {
+    if (!freeMode) return;
+    setGalileoOpen(false);
+    setUnlimTab('chat');
+    setPickerOpen(false);
+    setCapitoloPickerOpen(false);
+    setActiveCapitoloId(null);
+    setBentornatiVisible(false);
+    setVideoOpen(false);
+  }, [freeMode]);
 
   /**
    * Sprint T iter 28 — "Ehi UNLIM" wake-word lifecycle wired to LavagnaShell.
@@ -568,8 +662,8 @@ export default function LavagnaShell() {
                 const now = Date.now();
                 if (now - lastWakeAtRef.current < 1500) return;
                 lastWakeAtRef.current = now;
-                if (galileoOpenRef.current) return;
                 setGalileoOpen(true);
+                setUnlimTab('chat');
                 setToolToast('Ti ascolto!');
                 setTimeout(() => setToolToast(null), 2000);
               },
@@ -593,9 +687,8 @@ export default function LavagnaShell() {
         const now = Date.now();
         if (now - lastWakeAtRef.current < 1500) return;
         lastWakeAtRef.current = now;
-        // No-op when UNLIM già aperto (evita toast spam + auto-focus loop).
-        if (galileoOpenRef.current) return;
         setGalileoOpen(true);
+        setUnlimTab('chat');
         setToolToast('Ti ascolto!');
         setTimeout(() => setToolToast(null), 2000);
       },
@@ -665,25 +758,41 @@ export default function LavagnaShell() {
     // questo, prima di iter 48, Passo Passo + Già Montato cambiavano solo lo stato
     // UI (button visualmente attivo) ma il simulator non riceveva setBuildMode →
     // ComponentDrawer NON appariva → tasto inutile. Mapping canonical:
-    //   percorso     → buildMode preservato + UNLIM percorso tab (vecchia Libero morfica)
-    //   passo-passo  → buildMode 'guided' + ComponentDrawer + UNLIM guida tab
-    //   gia-montato  → buildMode 'complete' + diagnose mode + canvas mostrato pre-montato
+    //   percorso     → buildMode 'sandbox' + canvas vuoto + UNLIM percorso tab
+    //   passo-passo  → buildMode 'guided' + solo ComponentDrawer; UNLIM resta chat
+    //   gia-montato  → buildMode 'complete' + diagnose backend; UNLIM resta chat
     if (nextMode === 'passo-passo' && typeof window !== 'undefined') {
       const api = window.__ELAB_API;
+      ensureDefaultExperimentForMode(api);
       setBuildMode('guided');
+      setGalileoOpen(true);
+      setUnlimTab('chat');
+      manualOverridesRef.current.galileo = true;
       if (api?.setBuildMode) {
         try { api.setBuildMode('guided'); } catch { /* noop */ }
       }
-      setGalileoOpen(true);
-      setUnlimTab('guida');
-      manualOverridesRef.current.galileo = true;
+      if (api?.setBuildStepIndex) {
+        try { api.setBuildStepIndex(0); } catch { /* noop */ }
+      } else if (api?.nextStep && (api?.getBuildStepIndex?.() ?? -1) < 0) {
+        try { api.nextStep(); } catch { /* noop */ }
+      }
+      if (api?.unlim?.setDiagnoseMode) {
+        try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
+      }
     }
     // Già Montato NEW: signal pre-assembled diagnose mode to simulator if API present
     if (nextMode === 'gia-montato' && typeof window !== 'undefined') {
       const api = window.__ELAB_API;
+      ensureDefaultExperimentForMode(api);
       setBuildMode('complete');
+      setGalileoOpen(true);
+      setUnlimTab('chat');
+      manualOverridesRef.current.galileo = true;
       if (api?.setBuildMode) {
         try { api.setBuildMode('complete'); } catch { /* noop */ }
+      }
+      if (api?.setBuildStepIndex) {
+        try { api.setBuildStepIndex(Number.POSITIVE_INFINITY); } catch { /* noop */ }
       }
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
@@ -695,14 +804,26 @@ export default function LavagnaShell() {
     // wire-up Edge Function chain decisione orchestratore Phase 4). NON muta
     // currentExperiment — preserva canvas (no clearAll).
     if (nextMode === 'percorso' && typeof window !== 'undefined') {
-      // iter 45 fix Andrea video 06/05/2026 "percorso non funziona": auto-apri UNLIM
-      // panel con tab 'percorso' come faceva handleBuildModeChange line 790-794 per
-      // buildMode='sandbox'. Senza questo, click Percorso aggiornava solo lo stato
-      // interno ma nulla diventava visibile per l'utente.
+      // Andrea 2026-05-08: Percorso deve partire senza nulla. Quindi non
+      // preserviamo il circuito: mettiamo il simulatore in sandbox vuota e
+      // lasciamo a UNLIM la lettura narrativa/morfica.
+      setBuildMode('sandbox');
       setGalileoOpen(true);
       setUnlimTab('percorso');
       manualOverridesRef.current.galileo = true;
       const api = window.__ELAB_API;
+      if (api?.setBuildMode) {
+        try { api.setBuildMode('sandbox'); } catch { /* noop */ }
+      }
+      if (api?.setBuildStepIndex) {
+        try { api.setBuildStepIndex(-1); } catch { /* noop */ }
+      }
+      if (api?.clearAll) {
+        try { api.clearAll(); } catch { /* noop */ }
+      }
+      if (api?.unlim?.setDiagnoseMode) {
+        try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
+      }
       if (api?.unlim?.aggregateContext) {
         try {
           api.unlim.aggregateContext({
@@ -719,7 +840,7 @@ export default function LavagnaShell() {
     // RIMOSSO: percorso preserva canvas (no clearAll) per Onniscenza morphic
     // Sense 1.5 contesto lezione+classe+sessioni precedenti. Andrea iter 1+
     // mandate: percorso = vecchia "Libero" + adattamento contesto morfico.
-  }, []);
+  }, [ensureDefaultExperimentForMode]);
   useEffect(() => {
     try { localStorage.setItem('elab-lavagna-volume', String(currentVolume)); } catch {}
   }, [currentVolume]);
@@ -755,9 +876,12 @@ export default function LavagnaShell() {
         // intact (saved via handleMenuOpen on exit). NOT applied if user already
         // started a fresh experiment (currentExperiment !== null at restore time).
         try {
-          const savedExpId = localStorage.getItem('elab-lavagna-last-expId');
-          if (savedExpId && !currentExperiment && api.loadExperiment) {
-            api.loadExperiment(savedExpId);
+          // iter 27 P0 SURGICAL FIX — PRIORITY: deep-link prop > localStorage > nothing.
+          // Deep-link `#lavagna?exp=v1-cap6-esp1` arriva via App.jsx prop initialExperimentId.
+          // Override savedExpId iff prop fornito (intentional user navigation).
+          const expIdToLoad = initialExperimentId || localStorage.getItem('elab-lavagna-last-expId');
+          if (expIdToLoad && !currentExperiment && api.loadExperiment) {
+            api.loadExperiment(expIdToLoad);
           }
         } catch { /* localStorage quota OR private mode */ }
 
@@ -793,6 +917,29 @@ export default function LavagnaShell() {
     return () => clearInterval(check);
   }, []);
 
+  // iter 28 hashchange listener — in-place navigation from #lavagna?exp=A to
+  // #lavagna?exp=B triggers `loadExperiment(B)`. Complements iter 27 first-mount
+  // prop wiring (which only fires on FIRST mount via __ELAB_API polling above).
+  // Guards: skip if same expId (no double-load), skip if API not ready
+  // (will retry on next hashchange), skip if no `?exp=` (graceful).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    // iter 30 P2.3 (Agent T tech-debt P0-3) — getExpFromHash imported from utility module.
+    // Was duplicated here + src/App.jsx:83 — single source prevents drift iter 27 P0 fix + iter 28 hashchange.
+    function handleHashChange() {
+      const newExpId = getExpFromHash();
+      if (!newExpId) return;
+      const api = window.__ELAB_API;
+      if (!api || !api.loadExperiment) return;
+      // Only switch if different from current (avoid double-load race with first-mount)
+      const current = api.getCurrentExperiment?.();
+      if (current?.id === newExpId) return;
+      api.loadExperiment(newExpId);
+    }
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   // Track current panel values in refs (avoids putting them in useEffect deps)
   const panelStateRef = useRef({ leftPanel: false, bottomPanel: false, galileo: false });
   useEffect(() => {
@@ -801,6 +948,7 @@ export default function LavagnaShell() {
 
   // ── State machine: auto-manage panels ──
   useEffect(() => {
+    if (freeMode) return;
     const newState = deriveState({ hasExperiment, isPlaying, isEditing });
     if (newState !== lavagnaState) {
       setLavagnaState(newState);
@@ -829,19 +977,40 @@ export default function LavagnaShell() {
     setBuildMode(mode);
     const api = typeof window !== 'undefined' && window.__ELAB_API;
     if (api?.setBuildMode) api.setBuildMode(mode);
-    // Auto-open UNLIM with matching tab
     if (mode === 'guided') {
-      // "Passo Passo" mode → open UNLIM Passo Passo tab
-      setGalileoOpen(true);
-      setUnlimTab('guida');
-      manualOverridesRef.current.galileo = true;
+      return;
     } else if (mode === 'sandbox') {
-      // "Percorso" mode (was Libero) → open UNLIM Percorso tab
       setGalileoOpen(true);
       setUnlimTab('percorso');
       manualOverridesRef.current.galileo = true;
     }
   }, []);
+
+  const applyCurrentModalitaToSimulator = useCallback((mode = modalita) => {
+    const api = typeof window !== 'undefined' && window.__ELAB_API;
+    if (!api) return;
+    if (mode === 'percorso') {
+      try { api.setBuildMode?.('sandbox'); } catch { /* noop */ }
+      try { api.setBuildStepIndex?.(-1); } catch { /* noop */ }
+      try { api.clearAll?.(); } catch { /* noop */ }
+      try { api.unlim?.setDiagnoseMode?.(false); } catch { /* noop */ }
+      setBuildMode('sandbox');
+      return;
+    }
+    if (mode === 'passo-passo') {
+      try { api.setBuildMode?.('guided'); } catch { /* noop */ }
+      try { api.setBuildStepIndex?.(0); } catch { /* noop */ }
+      try { api.unlim?.setDiagnoseMode?.(false); } catch { /* noop */ }
+      setBuildMode('guided');
+      return;
+    }
+    if (mode === 'gia-montato') {
+      try { api.setBuildMode?.('complete'); } catch { /* noop */ }
+      try { api.setBuildStepIndex?.(Number.POSITIVE_INFINITY); } catch { /* noop */ }
+      try { api.unlim?.setDiagnoseMode?.(true); } catch { /* noop */ }
+      setBuildMode('complete');
+    }
+  }, [modalita]);
 
   // Helper: sync drawing state with simulator via __ELAB_API
   const syncDrawing = useCallback((enabled) => {
@@ -976,6 +1145,16 @@ export default function LavagnaShell() {
     }
   }, [freeMode, sessionTracker]);
 
+  // SessionTracker listens to __ELAB_API experimentChange, but API-driven loads
+  // can race that subscription. Keep the session aligned with the visible
+  // experiment so the explicit Salva button never becomes a no-op.
+  useEffect(() => {
+    const expId = currentExperiment?.id;
+    if (!freeMode && expId && sessionTracker?.startSession) {
+      sessionTracker.startSession(expId);
+    }
+  }, [currentExperiment?.id, freeMode, sessionTracker]);
+
   // Iter 44 persistenza unmount: finalise on LavagnaShell unmount (route change
   // back to home, browser back, Vercel redirect). Hook beforeunload copre tab
   // close MA non SPA route change.
@@ -994,6 +1173,7 @@ export default function LavagnaShell() {
     const api = typeof window !== 'undefined' && window.__ELAB_API;
     if (api?.loadExperiment) {
       api.loadExperiment(exp.id);
+      setTimeout(() => applyCurrentModalitaToSimulator(), 120);
     }
     setExperimentName(exp.title || exp.id);
     setHasExperiment(true);
@@ -1003,7 +1183,7 @@ export default function LavagnaShell() {
     if (volMatch) setCurrentVolume(Number(volMatch[1]));
     // Reset manual overrides when loading new experiment
     manualOverridesRef.current = {};
-  }, []);
+  }, [applyCurrentModalitaToSimulator]);
 
   // Bentornati: teacher clicks "Inizia" → load suggested experiment + open UNLIM
   // Handles race condition: if __ELAB_API is not ready yet, retries with polling
@@ -1019,7 +1199,6 @@ export default function LavagnaShell() {
     setPickerOpen(false);
     const volMatch = (suggestion.experimentId || '').match(/^v(\d)/);
     if (volMatch) setCurrentVolume(Number(volMatch[1]));
-    setGalileoOpen(true);
     manualOverridesRef.current = {};
 
     // Load experiment via API — with retry if API not ready yet
@@ -1027,6 +1206,7 @@ export default function LavagnaShell() {
       const api = typeof window !== 'undefined' && window.__ELAB_API;
       if (api?.loadExperiment) {
         api.loadExperiment(suggestion.experimentId);
+        setTimeout(() => applyCurrentModalitaToSimulator(), 120);
         return true;
       }
       return false;
@@ -1038,7 +1218,7 @@ export default function LavagnaShell() {
         if (tryLoad() || ++attempts >= 10) clearInterval(poll);
       }, 300);
     }
-  }, []);
+  }, [applyCurrentModalitaToSimulator]);
 
   const handleLessonExperimentSelect = useCallback((expId) => {
     const api = typeof window !== 'undefined' && window.__ELAB_API;
@@ -1141,22 +1321,6 @@ export default function LavagnaShell() {
     }
   }, [volumeOpen]);
 
-  // ── Vision (VisionButton → UNLIM) ──
-  const handleVisionResult = useCallback(({ base64, mimeType }) => {
-    if (!base64) return;
-    manualOverridesRef.current.galileo = true;
-    setGalileoOpen(true);
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('elab-vision-capture', {
-        detail: { base64, mimeType: mimeType || 'image/png' },
-      }));
-    }
-  }, []);
-
-  const handleVisionError = useCallback((err) => {
-    logger.warn('[Lavagna] VisionButton error:', err?.message || err);
-  }, []);
-
   // ── Video toggle ──
   const toggleVideo = useCallback(() => {
     if (videoOpen && !videoMinimized) {
@@ -1239,18 +1403,16 @@ export default function LavagnaShell() {
         <UpdatePrompt autoReloadSeconds={5} />
       </Suspense>
       <AppHeader
-        experimentName={experimentName}
+        experimentName={freeMode ? 'ELAB' : experimentName}
         totalSteps={totalSteps}
         currentStep={currentStep}
-        onPickerOpen={handlePickerOpen}
-        onGalileoToggle={toggleGalileo}
+        onPickerOpen={freeMode ? undefined : handlePickerOpen}
+        onGalileoToggle={undefined}
         galileoOpen={galileoOpen}
-        onVideoToggle={toggleVideo}
+        onVideoToggle={freeMode ? undefined : toggleVideo}
         videoOpen={videoOpen}
         onVolumeToggle={toggleVolume}
         volumeOpen={volumeOpen}
-        onCapitoliOpen={handleCapitoliOpen}
-        capitoliOpen={capitoloPickerOpen || !!activeCapitoloId}
         // iter 45 fix Andrea video2 06/05/2026 B3 "manca il pulsante per il
         // salvataggio della sessione": pulsante esplicito Salva nel header.
         // Chiama sessionTracker.finaliseSession() (saveSessions localStorage +
@@ -1258,6 +1420,9 @@ export default function LavagnaShell() {
         // save invisibility/beforeunload preserved.
         onSaveSession={sessionTracker?.finaliseSession ? () => {
           try {
+            if (currentExperiment?.id && sessionTracker?.startSession) {
+              sessionTracker.startSession(currentExperiment.id);
+            }
             sessionTracker.finaliseSession();
             setToolToast('Sessione salvata. Buon lavoro, Ragazzi.');
             setTimeout(() => setToolToast(null), 2500);
@@ -1278,21 +1443,23 @@ export default function LavagnaShell() {
           }
         }}
         percorsoOpen={galileoOpen && unlimTab === 'percorso'}
-        onFumettoOpen={handleFumettoOpen}
+        onFumettoOpen={freeMode ? undefined : handleFumettoOpen}
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        showLezioneTab={isDocente}
-        showClasseTab={isDocente}
-        showProgressiTab={isStudente}
+        showLezioneTab={!freeMode && isDocente}
+        showClasseTab={!freeMode && isDocente}
+        showProgressiTab={!freeMode && isStudente}
       />
 
       <div className={css.body}>
         {/* === LAVAGNA VIEW (simulatore + pannelli) === */}
         <div className={css.lavagnaView} style={{ display: activeTab === 'lavagna' ? 'contents' : 'none' }}>
           {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso) */}
-          <div className={css.modalitaSwitchSlot} data-testid="modalita-switch-slot">
-            <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange} />
-          </div>
+          {!freeMode && (
+            <div className={css.modalitaSwitchSlot} data-testid="modalita-switch-slot">
+              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange} />
+            </div>
+          )}
 
           {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito.
                iter 45 B9: anche hidden in freeMode 'Lavagna libera' Andrea mandate). */}
@@ -1313,56 +1480,27 @@ export default function LavagnaShell() {
           )}
 
           {/* Center — simulator canvas + floating toolbar.
-               iter 45 fix Andrea video2 B9: Lavagna libera (freeMode=true) NO simulator
-               components/breadboard. Andrea verbatim "dovrei essere impossibilitato
-               nell'utilizzare componenti, breadboard. Solo UNLIM, manuale, capitoli, video".
-               Render canvas pulito drawing-only sostituisce NewElabSimulator. */}
+               Homepage freeMode=true: blank simulator bridge + UNLIM, without
+               permanent copy that blocks manuals/actions. */}
           <main className={css.canvas} style={{
             ...(leftPanelOpen && !freeMode ? { marginLeft: leftPanelSize } : {}),
             ...(bottomPanelOpen ? { marginBottom: bottomPanelSize } : {}),
           }}>
-            {freeMode ? (
-              <div
-                data-testid="lavagna-libera-empty-canvas"
-                style={{
-                  width: '100%', height: '100%',
-                  background: 'linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%)',
-                  border: '2px dashed var(--elab-hex-737373, #737373)',
-                  borderRadius: 16,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexDirection: 'column', gap: 12,
-                  fontFamily: "'Open Sans', sans-serif",
-                  color: 'var(--elab-navy, #1E4D8C)',
-                  padding: 32,
-                }}
-              >
-                <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 28, fontWeight: 700, margin: 0 }}>
-                  Lavagna libera
-                </h2>
-                <p style={{ fontSize: 17, lineHeight: 1.6, textAlign: 'center', margin: 0, maxWidth: 520 }}>
-                  Ragazzi, questa lavagna è pulita. Usate UNLIM, il manuale, i capitoli o le videolezioni dal menu in alto.
-                </p>
-                <p style={{ fontSize: 14, color: 'var(--elab-hex-737373)', margin: 0 }}>
-                  Niente simulatore qui — la lavagna è solo per scrivere e parlare con la classe.
-                </p>
+            <Suspense fallback={
+              <div className={css.loading}>
+                <span>Caricamento simulatore...</span>
               </div>
-            ) : (
-              <Suspense fallback={
-                <div className={css.loading}>
-                  <span>Caricamento simulatore...</span>
-                </div>
-              }>
-                {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
-                     click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
-                     NON nascondere ComponentDrawer — al contrario, è proprio quello che
-                     l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
-                <NewElabSimulator
-                  hideLessonPath
-                  hideBuildModeBar
-                  enableDrawingSync
-                />
-              </Suspense>
-            )}
+            }>
+              {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
+                   click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
+                   NON nascondere ComponentDrawer — al contrario, è proprio quello che
+                   l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
+              <NewElabSimulator
+                hideLessonPath
+                hideBuildModeBar
+                enableDrawingSync={DRAWING_SYNC_ENABLED}
+              />
+            </Suspense>
 
             <FloatingToolbar
               activeTool={activeTool}
@@ -1370,13 +1508,6 @@ export default function LavagnaShell() {
               abovePanel={bottomPanelOpen}
               leftPanelOpen={leftPanelOpen}
             />
-
-            <div className={css.visionButtonSlot}>
-              <VisionButton
-                onVisionResult={handleVisionResult}
-                onError={handleVisionError}
-              />
-            </div>
           </main>
 
           {/* Right — UNLIM AI in FloatingWindow */}
@@ -1432,16 +1563,18 @@ export default function LavagnaShell() {
         </Suspense>
 
         {/* Video — YouTube + Videocorsi in FloatingWindow */}
-        <VideoFloat
-          visible={videoOpen}
-          minimized={videoMinimized}
-          onClose={() => { setVideoOpen(false); setVideoMinimized(false); }}
-          onMinimize={() => setVideoMinimized(true)}
-          onRestore={() => setVideoMinimized(false)}
-        />
+        {!freeMode && (
+          <VideoFloat
+            visible={videoOpen}
+            minimized={videoMinimized}
+            onClose={() => { setVideoOpen(false); setVideoMinimized(false); }}
+            onMinimize={() => setVideoMinimized(true)}
+            onRestore={() => setVideoMinimized(false)}
+          />
+        )}
 
         {/* Sprint S iter 2 Task B — CapitoloPicker overlay (modal) */}
-        {capitoloPickerOpen && (
+        {!freeMode && capitoloPickerOpen && (
           <div
             className={css.capitoloPickerOverlay}
             data-testid="capitolo-picker-overlay"
@@ -1477,7 +1610,7 @@ export default function LavagnaShell() {
         )}
 
         {/* Sprint S iter 2 Task B — PercorsoCapitoloView overlay (side panel) */}
-        {activeCapitoloId && (
+        {!freeMode && activeCapitoloId && (
           <div
             className={css.percorsoCapitoloOverlay}
             data-testid="percorso-capitolo-view"
@@ -1529,6 +1662,18 @@ export default function LavagnaShell() {
         </div>
       )}
 
+      <button
+        type="button"
+        className={`${css.wakeWordPill} ${wakeWordActive ? css.wakeWordPillActive : ''}`}
+        onClick={() => setWakeWordEnabled(v => !v)}
+        aria-pressed={wakeWordEnabled}
+        aria-label={wakeWordEnabled ? 'Disattiva wake word Ehi UNLIM' : 'Attiva wake word Ehi UNLIM'}
+        title={wakeWordEnabled ? 'Wake word attiva: dì Ehi UNLIM' : 'Attiva wake word Ehi UNLIM'}
+      >
+        <span className={css.wakeWordDot} aria-hidden="true" />
+        <span>Ehi UNLIM</span>
+      </button>
+
       {/* Drawing overlay controlled via NewElabSimulator's own DrawingOverlay + __ELAB_API.toggleDrawing */}
 
       {/* Error-to-UNLIM bridge — toast when circuit/compilation errors occur */}
@@ -1545,21 +1690,24 @@ export default function LavagnaShell() {
       {/* Mascotte ELAB — draggable, click apre UNLIM */}
       <MascotPresence
         speaking={unlimSpeaking}
-        onClick={() => { manualOverridesRef.current.galileo = true; setGalileoOpen(true); }}
+        onClick={() => {
+          manualOverridesRef.current.galileo = true;
+          setGalileoOpen(open => !open);
+        }}
         mascotSrc="/assets/mascot/logo-senza-sfondo.png"
       />
 
       {/* Bentornati Overlay — Principio Zero: auto-propose next experiment.
           Serializzato: attende ConsentBanner dismesso (route student-facing). */}
       <BentornatiOverlay
-        visible={bentornatiVisible && !hasExperiment && bentornatiAllowed}
+        visible={!freeMode && bentornatiVisible && !hasExperiment && bentornatiAllowed}
         onStart={handleBentornatiStart}
         onPickExperiment={handleBentornatiPickExperiment}
       />
 
       {/* Experiment Picker Modal — ultimo in coda: evita stacking con Bentornati. */}
       <ExperimentPicker
-        open={pickerOpen && pickerAllowed && !bentornatiVisible}
+        open={!freeMode && pickerOpen && pickerAllowed && !bentornatiVisible}
         onClose={handlePickerClose}
         onSelect={handleExperimentSelect}
         onAskUnlim={(msg) => {

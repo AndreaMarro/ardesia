@@ -60,7 +60,7 @@ export type CanonicalIntentTool = typeof CANONICAL_INTENT_TOOLS[number];
  * Schema shape (per PDR §3 A7):
  *   {
  *     intents: [{ tool, args }],   // optional array of structured intents
- *     text: "Italian K-12 prose"   // mandatory plurale "Ragazzi," ≤60 parole
+ *     text: "Italian K-12 prose"   // mandatory plurale "Ragazzi," ≤120 parole (Andrea 10/05/2026)
  *   }
  *
  * `text` is REQUIRED (every UNLIM reply needs prose). `intents` is OPTIONAL
@@ -108,7 +108,7 @@ export const INTENT_TOOLS_SCHEMA: MistralResponseFormat = {
         },
         text: {
           type: 'string',
-          description: 'Italian K-12 plurale "Ragazzi," prose response. Max ~60 words. Cita Vol/pag verbatim quando RAG context lo include. Mention kit fisico in ultima frase.',
+          description: 'Italian K-12 plurale "Ragazzi/e," prose response. Max ~120 words ben formattate (feedback 2026-05-10). Cita Vol N pag NN verbatim quando RAG context lo include. Analogie OPZIONALI (solo se aggiungono valore). Mention kit fisico in ultima frase.',
           minLength: 1,
         },
       },
@@ -130,8 +130,11 @@ export const INTENT_TOOLS_SCHEMA: MistralResponseFormat = {
  * Returns false for chit-chat / pure-explanation prompts where the legacy
  * regex path is faster and equivalent.
  */
+// 2026-05-10 iter 8 Agent 5 Fix 1 expansion: action verbs that trigger schema mode.
+// Iter 7 live probe I5 "Avvia simulazione" missed → legacy [AZIONE:play] text instead
+// of canonical INTENT JSON. Adds simulation control + editor + diagnose verbs.
 const ACTION_TRIGGER_RE =
-  /\b(mostra|mostrami|evidenzi[ai]|highlight|carica|monta|montami|montiamo|screenshot|cattura|foto|scatta|pulisci|cancella|connect[ai]?|collega|cambia|imposta)\b/i;
+  /\b(mostra|mostrami|evidenzi[ai]|highlight|carica|monta|montami|montiamo|screenshot|cattura|foto|scatta|pulisci|cancella|connect[ai]?|collega|cambia|imposta|avvia|avviamo|play|start|esegui|riavvia|pausa|stop|ferma|reset|resetta|compila|compile|undo|annulla|redo|ripeti|interagisci|interact|apri|apriamo|chiudi|chiudiamo)\b/i;
 
 export function shouldUseIntentSchema(message: string | null | undefined): boolean {
   if (!message || typeof message !== 'string') return false;
