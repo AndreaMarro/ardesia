@@ -268,6 +268,21 @@ serve(async (req: Request) => {
       });
     }
 
+    // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
+    // OFFTOPIC_QUERY_RE matchava "storia" all'interno del template envelope
+    // `[GERARCHIA CONTESTO] ... esperimenti/storia come cose visibili ora.`
+    // di api.js:783 → ON-TOPIC user query (legge Ohm, LED, etc.) classificata
+    // erroneamente off-topic. Strip envelope blocks before regex test.
+    const stripEnvelope = (s: string): string => String(s || '')
+      .replace(/\[GERARCHIA CONTESTO[\s\S]*?(?:\n\n|\}\s*$)/gi, ' ')
+      .replace(/\[PRESENTE LIVE[\s\S]*?(?:\n\n|\]\s*\n|\}\s*\n)/gi, ' ')
+      .replace(/\[CONTESTO CAPITOLO[\s\S]*?(?:\n\n|\}\s*\n)/gi, ' ')
+      .replace(/\[NARRAZIONE LIVE[\s\S]*?(?:\n\n|\}\s*\n)/gi, ' ')
+      .replace(/REGOLA:[\s\S]*?\n\n/gi, ' ')
+      .replace(/\{[\s\S]{200,}?\}/g, ' ')
+      .trim();
+    const userQueryStripped = stripEnvelope(safeMessage) || safeMessage;
+
     // iter 11 PATCH B — PRE-LLM off-topic detector (matematica/aritmetica/capitali/sport/cinema/etc.)
     // Live smoke Q8 "Quanto fa 2+2?" → UNLIM rispondeva "Fa 4." senza redirect ELAB.
     // Hard-redirect pre-LLM con plurale Ragazzi + invito kit ELAB.
@@ -277,7 +292,7 @@ serve(async (req: Request) => {
     // teorema/formula/equazione + Marvel/Disney/Hollywood/Netflix/Amazon film/serie.
     // Iter 41 Sprint U Cycle 2 — extend cooking + historical figures detection.
     const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d+(?:\s*[+\-*x×÷/]\s*\d+)?|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|teorema(?!\s+di\s+kirchhoff)|formula\s+(?:matematica|chimica|fisica\s+(?!del\s+circuito))|equazione\s+(?!circuito|elettrica)|capitale\s+\w+|presidente(?:\s+(di|del|della))?|chi\s+è\s+il\s+presidente|geografia|storia\s+(?!del|della|dei|degli|elettronica|arduino)|guerra\s+(?:mondiale|prima|seconda)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|risultato\s+(inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a)|risultato\s+sportivo|film\s+(?:Marvel|Disney|Hollywood|nuovo|recente|ultimo)|serie\s+(?:Netflix|Amazon|HBO|TV)|Marvel|Disney(?!\s+land)|Hollywood|canzone\s+(?:tiktok|virale|nuova)|Pitagora|Pitagorica|cuoc\w*|cuccere|bollire|friggere|condire|impastare|ricett\w*|ingredient\w*|Napoleone|Cesare|Garibaldi|Mussolini|Hitler|Stalin|imperatore|imperat(?:rice|rici)|antichi\s+romani|antichi\s+greci|medioevo|rinascimento|rivoluzione\s+francese|rivoluzione\s+industriale)\b/i;
-    if (OFFTOPIC_QUERY_RE.test(safeMessage)) {
+    if (OFFTOPIC_QUERY_RE.test(userQueryStripped)) {
       // iter 21 Andrea mandate "deve riportare al focus del discorso LENTAMENTE" — NON brutal rejection.
       // Acknowledge brief + gentle bridge + recall session lastExperimentId se disponibile.
       // 3-step pattern: (1) acknowledge curiosità (2) bridge dolce a ELAB context (3) recall/proposta.
@@ -406,7 +421,8 @@ serve(async (req: Request) => {
     // + hybridRetrieve. Previously sequential ~250ms + 2000ms = 2250ms. Now
     // parallel, max(250, 2000) = 2000ms = -250ms p95 lift. Onniscenza aggregator
     // remains sequential (depends on classifier output already computed).
-    const promptClass = classifyPrompt(safeMessage);
+    // Reuse stripped query computed above (line ~272) per Andrea iter 41 fix.
+    const promptClass = classifyPrompt(userQueryStripped);
 
     // iter 25 P0-C — off-topic Cat D regression fix (vs iter 5 P3 91.80% baseline, dim-1 measured 37.5%).
     // Classifier off_topic category triggers template response WITHOUT LLM call (deterministic).
