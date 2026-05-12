@@ -296,7 +296,7 @@ export function buildDirectOperationalResponse(
     { re: /\bmorse\b/i, id: 'v3-cap6-morse', title: 'codice Morse' },
     { re: /\bsimon\b/i, id: 'v3-cap8-simon', title: 'Simon' },
   ];
-  const expNavTrigger = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?)\b.*\b(esperimento|esercizio|lezione|capitolo|gioco)?\b/i.test(text)
+  const expNavTrigger = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?|voglio\s+(?:fare|provare|giocare)|vorrei\s+(?:fare|provare)|proviamo|facciamo|fammi\s+fare|partiamo)\b.*\b(esperimento|esercizio|lezione|capitolo|gioco)?\b/i.test(text)
     || /\b(esperimento|gioco)\b/i.test(text);
   if (expNavTrigger || /\bl[''']?\s*esperimento\b/i.test(text)) {
     for (const { re, id, title } of expNamePatterns) {
@@ -341,8 +341,9 @@ export function buildDirectOperationalResponse(
   // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
   // "portami al volume 2" → LLM rispondeva spiegazione invece navigazione.
   // Pre-LLM detector dispatch INTENT mountExperiment con primo esp volume target.
-  const volumeNavMatch = /\b(portami|portateci|portateli|portate?ci|vai|andate|andiamo|apri|aprite|aprire|carica|caricate|caricare|mostra|mostrate|mostrami|mostrare|passa|passate)\b.*\bvolume\s*([123])\b/i.exec(text)
-    || /\bvolume\s*([123])\b.*\b(grazie|apri|aprite|carica|caricate|adesso)\b/i.exec(text);
+  const volumeNavMatch = /\b(portami|portateci|portateli|portate?ci|vai|andate|andiamo|apri|aprite|aprire|carica|caricate|caricare|mostra|mostrate|mostrami|mostrare|passa|passate|vado|voglio\s+(?:andare|fare|vedere)|vorrei|prendiamo|partiamo)\b.*\bvolume\s*([123])\b/i.exec(text)
+    || /\bvolume\s*([123])\b.*\b(grazie|apri|aprite|carica|caricate|adesso|ora|subito|adesso|please|per\s+favore)\b/i.exec(text)
+    || /^volume\s*([123])\s*$/i.exec(text);
   if (volumeNavMatch) {
     const volN = (volumeNavMatch[2] || volumeNavMatch[1] || '').match(/[123]/)?.[0];
     if (volN === '1' || volN === '2' || volN === '3') {
@@ -369,7 +370,7 @@ export function buildDirectOperationalResponse(
   // LLM ricostruiva intero circuito con addcomponent tags invece di
   // modificare LED esistente. Pre-LLM detector dispatch INTENT
   // setComponentValue color quando componente gia presente in circuitState.
-  const colorChangeMatch = /\b(metti|cambia|imposta|setta|fai)\b.*\bled\b.*\b(rosso|verde|blu|giallo|bianco|arancione|viola|red|green|blue|yellow|white|orange|purple)\b/i.exec(text)
+  const colorChangeMatch = /\b(metti|cambia|imposta|setta|fai|trasforma|porta|rendi|fammi)\b.*\bled\b.*\b(rosso|verde|blu|giallo|bianco|arancione|viola|red|green|blue|yellow|white|orange|purple)\b/i.exec(text)
     || /\bled\b.*\b(deve\s+(?:essere|diventare)|sia)\s+(rosso|verde|blu|giallo|bianco|arancione|viola)\b/i.exec(text)
     || /\b(rosso|verde|blu|giallo|bianco|arancione|viola)\b\s+(?:per\s+)?(?:il\s+|un\s+|al\s+)?\bled\b/i.exec(text);
   if (colorChangeMatch && (circuitState?.components || []).some(c => /led/i.test(c.type || ''))) {
