@@ -683,8 +683,23 @@ serve(async (req: Request) => {
         experimentId: safeExperimentId ?? undefined,
       });
       if (tpl) {
+        // iter-RALPH-2 (2026-05-12): wire real hybridRetrieve so L2 templates
+        // surface real Vol/pag citation from RAG instead of empty "Vol.1 pag.''".
+        // Source filter derived from experimentId (v1-→vol1, v2-→vol2, v3-→vol3).
+        const tplRagSource = safeExperimentId
+          ? (safeExperimentId.startsWith('v1-') ? 'vol1'
+            : safeExperimentId.startsWith('v2-') ? 'vol2'
+            : safeExperimentId.startsWith('v3-') ? 'vol3' : undefined)
+          : undefined;
         const exec = await executeTemplate(tpl, { experimentId: safeExperimentId ?? undefined }, {
-          ragRetrieve: async (_q: string, _k: number) => [],
+          ragRetrieve: async (q: string, k: number) => {
+            try {
+              const hits = await hybridRetrieve(q, k, { source: tplRagSource });
+              return Array.isArray(hits) ? (hits as Array<Record<string, unknown>>) : [];
+            } catch (_e) {
+              return [];
+            }
+          },
         });
         const tplText = exec.responseText;
         // Iter 34 P0 latency fix Andrea "troppo lento":

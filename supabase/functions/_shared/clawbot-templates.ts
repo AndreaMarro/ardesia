@@ -111,7 +111,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'critiqueCircuitPhoto',
     description: "Morphic template: critica costruttiva foto webcam del circuito fisico ragazzi. Vision EU identifica differenze vs riferimento volume, sintetizza 1 punto positivo + 1 da migliorare con citazione verbatim, parla pronunciando plurale 'Ragazzi,'.",
     category: 'critique-vision',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.10' },
     inputs: { photoUrl: '', experimentId: '', referenceFigureId: '' },
     sequence: [
       { step: 'post-vision-photo', tool: 'postToVisionEndpoint', args: { image: '${inputs.photoUrl}', task: 'compare-vs-reference', referenceFigureId: '${inputs.referenceFigureId}' }, expected_status: 'ok' },
@@ -179,7 +179,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'diagnoseNoCurrent',
     description: "Morphic template: diagnosi 'circuito non funziona / corrente assente'. Cattura screenshot kit fisico, posta a Vision EU, identifica 1 errore principale (polarità invertita / resistenza mancante / batteria scarica), highlight componente, parla diagnosi al docente.",
     category: 'diagnose',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.30' },
     inputs: { circuitState: {}, experimentId: '' },
     sequence: [
       { step: 'capture-screenshot', tool: 'captureScreenshot', args: { target: 'simulator-canvas' }, expected_status: 'ok' },
@@ -213,7 +213,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainLedBlink',
     description: "Morphic template: spiega l'esperimento LED lampeggiante (Blink) con highlight visuale, citazione VERBATIM dal Volume e voice TTS Isabella. Adatta tono per docente esperto vs primo anno (Sense 1.5).",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.45' },
     inputs: { experimentId: 'v1-cap6-esp1' },
     sequence: [
       { step: 'highlight-experiment', tool: 'highlightExperiment', args: { experimentId: '${inputs.experimentId}' }, expected_status: 'ok' },
@@ -281,7 +281,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'guideMountExperiment',
     description: 'Morphic template: guida montaggio esperimento step-by-step sul kit fisico. Mostra componenti del kit Omaric uno alla volta sulla LIM con highlight breadboard fila/colonna e dispenser progressivo per le mani dei ragazzi.',
     category: 'guide-build',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.10' },
     inputs: { experimentId: '', stepIndex: 0 },
     sequence: [
       { step: 'mount-experiment', tool: 'mountExperiment', args: { experimentId: '${inputs.experimentId}' }, expected_status: 'ok' },
@@ -491,7 +491,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'rerouteFromError',
     description: 'Morphic template: ricovero post-errore compilazione/runtime. Estrae errore, RAG su pattern errore comune, suggerisce fix minimo con riferimento Vol.X pag.Y, applica fix tramite simulator-api senza intervento ragazzi.',
     category: 'error-recovery',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.10' },
     inputs: { compileError: '', runtimeError: '', errorLine: 0, experimentId: '' },
     sequence: [
       { step: 'rag-retrieve-error-pattern', tool: 'ragRetrieve', args: { query: 'errore Arduino ${inputs.compileError}${inputs.runtimeError} causa comune fix', topK: 3, wikiFusion: true }, expected_status: 'ok' },
