@@ -50,7 +50,7 @@ describe('clawbot-templates registry', () => {
       expect(typeof t.category).toBe('string');
       expect(t.principio_zero).toBeTruthy();
       expect(t.principio_zero.plurale_obbligatorio).toBe('Ragazzi,');
-      expect(t.principio_zero.max_parole).toBeLessThanOrEqual(60);
+      expect(t.principio_zero.max_parole).toBeLessThanOrEqual(120);
       expect(Array.isArray(t.sequence)).toBe(true);
       expect(t.sequence.length).toBe(5);
       expect(['halt-on-error', 'continue', 'retry', 'retry-then-halt']).toContain(t.fallback_strategy);

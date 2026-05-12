@@ -11,48 +11,93 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3,
+    "max_parole": 120,
+    "max_frasi": 6,
     "vol_pag": "Vol.2 pag.42",
     "analogia": "scheda Arduino come citta con strade (pin) numerate"
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["primaria-4-5", "secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true
   },
   "inputs": {
-    "experimentId": { "type": "string", "required": true, "default": "v2-cap7-esp1" },
-    "classProfile": { "type": "object", "required": false },
-    "kitTier": { "type": "string", "enum": ["basic", "advanced"], "default": "basic" },
-    "docenteExperienceLevel": { "type": "string", "enum": ["primo-anno", "esperto"], "default": "primo-anno" }
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v2-cap7-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
   },
   "sequence": [
     {
       "step": "highlight-arduino-board",
       "tool": "highlightComponent",
-      "args": { "ids": ["nano:board"], "color": "blue" },
+      "args": {
+        "ids": [
+          "nano:board"
+        ],
+        "color": "blue"
+      },
       "expected_status": "ok"
     },
     {
       "step": "ask-unlim-pin-map",
       "tool": "askUNLIM",
-      "args": { "query": "Spiega pin map Arduino Nano D0-D13 PORTD/PORTB e A0-A5 PORTC", "vol": "Vol.2", "cap": 7 },
+      "args": {
+        "query": "Spiega pin map Arduino Nano D0-D13 PORTD/PORTB e A0-A5 PORTC",
+        "vol": "Vol.2",
+        "cap": 7
+      },
       "expected_status": "ok"
     },
     {
       "step": "show-nudge-usb-power",
       "tool": "showNudge",
-      "args": { "text": "Collegate USB al PC: il LED ON si accende = scheda alimentata", "duration_ms": 4000 },
+      "args": {
+        "text": "Collegate USB al PC: il LED ON si accende = scheda alimentata",
+        "duration_ms": 4000
+      },
       "expected_status": "ok"
     },
     {
       "step": "capture-screenshot-board",
       "tool": "captureScreenshot",
-      "args": { "target": "arduino-board-overview" },
+      "args": {
+        "target": "arduino-board-overview"
+      },
       "expected_status": "ok"
     },
     {
@@ -70,7 +115,11 @@
   "expected_total_latency_ms": 5500,
   "expected_outcome": "Classe identifica pin digitali D0-D13 + analogici A0-A5 + alimentazione USB. Docente capisce ordine introduzione board.",
   "telemetry": {
-    "track_events": ["template_dispatched", "tts_complete", "screenshot_captured"],
+    "track_events": [
+      "template_dispatched",
+      "tts_complete",
+      "screenshot_captured"
+    ],
     "supabase_table": "openclaw_template_runs"
   },
   "test_assertions": [
@@ -80,7 +129,7 @@
     "sequence[4].args.text.includes('Ragazzi,')",
     "sequence[4].args.text.match(/Vol\\.2/)",
     "sequence[4].args.text.match(/pag\\.42/)",
-    "principio_zero.max_parole <= 60",
+    "principio_zero.max_parole <= 120",
     "iter_introduced === 15"
   ]
 }

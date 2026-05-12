@@ -541,7 +541,7 @@ async function callRunPod(options: LLMOptions): Promise<LLMResult> {
           { role: 'system', content: options.systemPrompt },
           { role: 'user', content: options.message },
         ],
-        max_tokens: options.maxOutputTokens ?? 120,
+        max_tokens: options.maxOutputTokens ?? 200,
         temperature: options.temperature ?? 0.7,
         stream: false,
       }),

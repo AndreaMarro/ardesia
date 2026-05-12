@@ -11,44 +11,72 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3
+    "max_parole": 120,
+    "max_frasi": 6
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["primaria-4-5", "secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true
   },
   "inputs": {
-    "circuitState": { "type": "object", "required": true },
-    "experimentId": { "type": "string", "required": false }
+    "circuitState": {
+      "type": "object",
+      "required": true
+    },
+    "experimentId": {
+      "type": "string",
+      "required": false
+    }
   },
   "sequence": [
     {
       "step": "capture-screenshot",
       "tool": "captureScreenshot",
-      "args": { "target": "simulator-canvas" },
+      "args": {
+        "target": "simulator-canvas"
+      },
       "expected_status": "ok"
     },
     {
       "step": "post-vision-endpoint",
       "tool": "postToVisionEndpoint",
-      "args": { "image": "${prev.image}", "task": "identify-circuit-fault" },
+      "args": {
+        "image": "${prev.image}",
+        "task": "identify-circuit-fault"
+      },
       "expected_status": "ok"
     },
     {
       "step": "rag-retrieve-fault",
       "tool": "ragRetrieve",
-      "args": { "query": "circuito aperto polarità LED batteria scarica", "topK": 3, "wikiFusion": true },
+      "args": {
+        "query": "circuito aperto polarità LED batteria scarica",
+        "topK": 3,
+        "wikiFusion": true
+      },
       "expected_status": "ok"
     },
     {
       "step": "highlight-faulty-component",
       "tool": "highlightComponent",
-      "args": { "ids": "${prev.faultyIds}", "color": "red" },
+      "args": {
+        "ids": "${prev.faultyIds}",
+        "color": "red"
+      },
       "expected_status": "ok"
     },
     {
@@ -70,6 +98,6 @@
     "sequence[1].tool === 'postToVisionEndpoint'",
     "sequence[4].args.text.includes('Ragazzi,')",
     "sequence[4].args.text.match(/Vol\\.\\d|Vol\\.\\$/)",
-    "principio_zero.max_parole <= 60"
+    "principio_zero.max_parole <= 120"
   ]
 }

@@ -108,7 +108,7 @@ export const INTENT_TOOLS_SCHEMA: MistralResponseFormat = {
         },
         text: {
           type: 'string',
-          description: 'Italian K-12 plurale "Ragazzi," prose response. Max ~60 words. Cita Vol/pag verbatim quando RAG context lo include. Mention kit fisico in ultima frase.',
+          description: 'Italian K-12 plurale "Ragazzi/e," prose response. Max ~120 words ben formattate (feedback 2026-05-10). Cita Vol N pag NN verbatim quando RAG context lo include. Analogie OPZIONALI (solo se aggiungono valore). Mention kit fisico in ultima frase.',
           minLength: 1,
         },
       },

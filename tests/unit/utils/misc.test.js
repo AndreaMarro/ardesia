@@ -31,12 +31,12 @@ describe('cleanAndTruncate', () => {
     expect(result).toContain('LED');
   });
 
-  it('truncates text over 60 words with ...', () => {
-    const words = Array.from({ length: 80 }, (_, i) => `parola${i}`).join(' ');
+  it('truncates text over 120 words with ... (feedback 2026-05-10)', () => {
+    const words = Array.from({ length: 150 }, (_, i) => `parola${i}`).join(' ');
     const result = cleanAndTruncate(words);
     expect(result).toContain('...');
     const resultWords = result.replace('...', '').trim().split(/\s+/);
-    expect(resultWords.length).toBeLessThanOrEqual(61); // 60 + possible ...
+    expect(resultWords.length).toBeLessThanOrEqual(121); // 120 + possible ...
   });
 
   it('custom maxWords param is respected', () => {

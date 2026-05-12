@@ -18,7 +18,7 @@ const VPS_TTS_URL = Deno.env.get('VPS_TTS_URL') || 'http://72.60.129.50:8880/tts
 
 // Sprint T iter 29 — Voxtral PRIMARY (Mistral EU 70 ms 9 languages incl IT).
 // Andrea iter 31 mandate: KEEP Mistral stack — voce/lentezza fix via:
-//   1. max_tokens cap 200 in llm-client.ts (60 parole ≈ 80 token + safety)
+//   1. max_tokens cap 200 in llm-client.ts (120 parole ≈ 180 token, feedback 2026-05-10)
 //   2. Streaming response SSE (perceived latency <500ms)
 //   3. Warm-up Cron 30s prevent cold start
 //   4. Voice cloning Andrea/Davide IT 6s audio (Voxtral native Italian voice_id)

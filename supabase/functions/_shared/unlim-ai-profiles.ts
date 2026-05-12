@@ -152,7 +152,7 @@ function profile(
     contextBudget: depth === 'total' ? 'full' : 'compressed',
     visionProvider: opts.visionProvider || 'auto',
     canCaptureScreenshot: opts.canCaptureScreenshot ?? mode === 'vision',
-    maxVisibleWords: opts.maxVisibleWords || (depth === 'total' ? 90 : 55),
+    maxVisibleWords: opts.maxVisibleWords || (depth === 'total' ? 120 : 85),
     promptBlock,
     volume: opts.volume ?? null,
   };
@@ -169,7 +169,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'Usa tutta la memoria software ELAB, il pack volumi e il contesto vivo. Puoi andare oltre il testo se serve, ma devi restare utile alla lezione e non inventare stato non visto.',
       'Se la domanda e operativa, fai o prepara l azione prima della spiegazione.',
     ].join('\n'),
-    { maxVisibleWords: 90 },
+    { maxVisibleWords: 120 },
   ),
   general_purpose_compact: profile(
     'general_purpose_compact',
@@ -180,7 +180,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: GENERAL PURPOSE COMPRESSO.',
       'Rispondi con il minimo contesto utile. Se emerge bisogno di software, circuito o volume, passa mentalmente al profilo piu specifico e dai solo il prossimo gesto.',
     ].join('\n'),
-    { maxVisibleWords: 50 },
+    { maxVisibleWords: 110 },
   ),
   control_total: profile(
     'control_total',
@@ -191,7 +191,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: CONTROLLO TOTALE.',
       'Controlla se la risposta e breve, naturale, verificabile, senza citazioni inutili e senza dichiarare azioni non confermate. Se serve, correggi rotta: una frase e un tool.',
     ].join('\n'),
-    { maxVisibleWords: 65 },
+    { maxVisibleWords: 100 },
   ),
   control_compact: profile(
     'control_compact',
@@ -202,7 +202,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: CONTROLLO COMPRESSO.',
       'Usa check rapidi: lunghezza, concretezza, azione/verifica, niente linguaggio da chatbot.',
     ].join('\n'),
-    { maxVisibleWords: 45 },
+    { maxVisibleWords: 70 },
   ),
   pixtral_total: profile(
     'pixtral_total',
@@ -213,7 +213,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: PIXTRAL TOTALE.',
       'Leggi screenshot/foto come parte del software ELAB: lavagna, circuito, editor, errori, modalita, volume aperto. Integra software+volumi+stato visuale, poi dai una diagnosi breve e concreta.',
     ].join('\n'),
-    { visionProvider: 'pixtral', canCaptureScreenshot: true, maxVisibleWords: 80 },
+    { visionProvider: 'pixtral', canCaptureScreenshot: true, maxVisibleWords: 110 },
   ),
   pixtral_essential: profile(
     'pixtral_essential',
@@ -224,7 +224,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: PIXTRAL ESSENZIALE.',
       'Guarda solo cio che serve per rispondere: errore visibile, componente, editor, stato UI. Una diagnosi o una domanda mirata, massimo due frasi.',
     ].join('\n'),
-    { visionProvider: 'pixtral', canCaptureScreenshot: true, maxVisibleWords: 40 },
+    { visionProvider: 'pixtral', canCaptureScreenshot: true, maxVisibleWords: 60 },
   ),
   volume1_fast: profile(
     'volume1_fast',
@@ -235,7 +235,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: ESPERTO VOLUME 1 VELOCE.',
       'Usa le basi reali: breadboard, LED, resistori, pulsanti, potenziometro, LDR, buzzer, reed. Dai il prossimo gesto o una spiegazione da LIM in poche parole.',
     ].join('\n'),
-    { maxVisibleWords: 45, volume: 1 },
+    { maxVisibleWords: 70, volume: 1 },
   ),
   volume1_deep: profile(
     'volume1_deep',
@@ -246,7 +246,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: ESPERTO VOLUME 1 PROFONDO.',
       'Ragiona sulle basi fisiche del circuito e sugli esperimenti del Vol.1. Se diagnostichi, parti da polarita, resistore, alimentazione, breadboard e circuito aperto/chiuso.',
     ].join('\n'),
-    { maxVisibleWords: 75, volume: 1 },
+    { maxVisibleWords: 110, volume: 1 },
   ),
   volume2_fast: profile(
     'volume2_fast',
@@ -257,7 +257,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: ESPERTO VOLUME 2 VELOCE.',
       'Usa misure e componenti intermedi senza lezione lunga: multimetro, serie/parallelo, condensatore, diodo, MOSFET, rele, motore.',
     ].join('\n'),
-    { maxVisibleWords: 45, volume: 2 },
+    { maxVisibleWords: 70, volume: 2 },
   ),
   volume2_deep: profile(
     'volume2_deep',
@@ -268,7 +268,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: ESPERTO VOLUME 2 PROFONDO.',
       'Integra misure, energia e comportamento dinamico. Se serve, confronta valore atteso e valore reale; non stimare quando puoi chiedere misura/stato.',
     ].join('\n'),
-    { maxVisibleWords: 75, volume: 2 },
+    { maxVisibleWords: 110, volume: 2 },
   ),
   volume3_fast: profile(
     'volume3_fast',
@@ -279,7 +279,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: ESPERTO VOLUME 3 VELOCE.',
       'Vai dritto su Arduino/Scratch: pin, codice, blocchi, compile, Serial Monitor. Per azioni note prepara tag o risposta locale.',
     ].join('\n'),
-    { maxVisibleWords: 45, volume: 3 },
+    { maxVisibleWords: 70, volume: 3 },
   ),
   volume3_deep: profile(
     'volume3_deep',
@@ -290,7 +290,7 @@ export const UNLIM_AI_PROFILES: Record<string, UnlimAiProfile> = {
       'PROFILO ATTIVO: ESPERTO VOLUME 3 PROFONDO.',
       'Analizza codice, blocchi, pin e circuito insieme. Prima correggi o prepara l azione, poi spiega solo la causa utile.',
     ].join('\n'),
-    { maxVisibleWords: 75, volume: 3 },
+    { maxVisibleWords: 110, volume: 3 },
   ),
 };
 
@@ -313,7 +313,7 @@ for (const mode of ['percorso', 'passopasso', 'montato', 'libero'] as const) {
       `PROFILO ATTIVO: ${mode.toUpperCase()} TOTALE.`,
       'Usa piena conoscenza del software ELAB, dei volumi e del contesto vivo. Mantieni la lezione fluida: stato reale, concetto, gesto operativo.',
     ].join('\n'),
-    { maxVisibleWords: 80 },
+    { maxVisibleWords: 110 },
   );
   UNLIM_AI_PROFILES[`${mode}_compact`] = profile(
     `${mode}_compact`,
@@ -324,7 +324,7 @@ for (const mode of ['percorso', 'passopasso', 'montato', 'libero'] as const) {
       `PROFILO ATTIVO: ${mode.toUpperCase()} COMPRESSO.`,
       'Usa solo il contesto indispensabile. Dai una risposta corta, naturale e subito usabile alla LIM.',
     ].join('\n'),
-    { maxVisibleWords: 45 },
+    { maxVisibleWords: 70 },
   );
 }
 

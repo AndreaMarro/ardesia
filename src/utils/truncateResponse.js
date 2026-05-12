@@ -1,6 +1,6 @@
 /**
  * UNLIM Response Cleaner — tronca risposte lunghe e rimuove hallucination.
- * Target: <60 parole per risposte kid-friendly (regola UNLIM).
+ * Target: ≤120 parole (feedback 2026-05-10), analogie OPZIONALI, plurale + Vol/pag.
  *
  * iter 45 fix Andrea video2 06/05/2026 B7: i tag [AZIONE:...] e [INTENT:...]
  * NON devono finire in UI ("UNLIM SPIEGA L'ESPERIMENTO" mostrava raw
@@ -14,10 +14,10 @@
 /**
  * Pulisce e tronca un testo di risposta UNLIM.
  * @param {string} text — testo grezzo della risposta
- * @param {number} maxWords — massimo numero di parole (default 60)
+ * @param {number} maxWords — massimo numero di parole (default 120, feedback 2026-05-10)
  * @returns {string} testo pulito e troncato
  */
-export function cleanAndTruncate(text, maxWords = 60) {
+export function cleanAndTruncate(text, maxWords = 120) {
   if (!text) return '';
 
   // Rimuovi hallucination "Ho analizzato l'immagine che hai inviato"

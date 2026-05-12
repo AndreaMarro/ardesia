@@ -422,7 +422,7 @@ export function snapshotToPromptFragment(snap: StateSnapshot, userMsg: string): 
   lines.push('');
   lines.push('=== VINCOLI RISPOSTA (Principio Zero v3) ===');
   lines.push('- Rivolgiti ai RAGAZZI in plurale, MAI al docente');
-  lines.push('- Max 60 parole, massimo 3 frasi + 1 analogia concreta');
+  lines.push('- Max 120 parole ben formattate (feedback 2026-05-10), analogie opzionali quando aggiungono valore');
   lines.push('- Se usi un concetto chiave (LED, resistenza, Ohm, potenziometro...), CITA Vol.X pag.Y');
   lines.push('- Se il circuito live mostra qualcosa di specifico, menzionalo (diagnosi concreta)');
   lines.push('- Se vuoi eseguire azioni (highlight componente, aggiungi resistenza, avvia simulazione), usa tool-call strutturato OLTRE al testo — non confondere i due canali');

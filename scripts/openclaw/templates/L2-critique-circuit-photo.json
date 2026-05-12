@@ -11,46 +11,79 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3
+    "max_parole": 120,
+    "max_frasi": 6
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["primaria-4-5", "secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true,
     "tone_register": "encouraging-pedagogical"
   },
   "inputs": {
-    "photoUrl": { "type": "string", "required": true },
-    "experimentId": { "type": "string", "required": true },
-    "referenceFigureId": { "type": "string", "required": false }
+    "photoUrl": {
+      "type": "string",
+      "required": true
+    },
+    "experimentId": {
+      "type": "string",
+      "required": true
+    },
+    "referenceFigureId": {
+      "type": "string",
+      "required": false
+    }
   },
   "sequence": [
     {
       "step": "post-vision-photo",
       "tool": "postToVisionEndpoint",
-      "args": { "image": "${inputs.photoUrl}", "task": "compare-vs-reference", "referenceFigureId": "${inputs.referenceFigureId}" },
+      "args": {
+        "image": "${inputs.photoUrl}",
+        "task": "compare-vs-reference",
+        "referenceFigureId": "${inputs.referenceFigureId}"
+      },
       "expected_status": "ok"
     },
     {
       "step": "rag-retrieve-reference",
       "tool": "ragRetrieve",
-      "args": { "query": "${inputs.experimentId} schema riferimento corretto kit", "topK": 3, "wikiFusion": true },
+      "args": {
+        "query": "${inputs.experimentId} schema riferimento corretto kit",
+        "topK": 3,
+        "wikiFusion": true
+      },
       "expected_status": "ok"
     },
     {
       "step": "highlight-positive-area",
       "tool": "highlightComponent",
-      "args": { "ids": "${prev.positiveAreaIds}", "color": "green" },
+      "args": {
+        "ids": "${prev.positiveAreaIds}",
+        "color": "green"
+      },
       "expected_status": "ok"
     },
     {
       "step": "highlight-improvement-area",
       "tool": "highlightComponent",
-      "args": { "ids": "${prev.improvementAreaIds}", "color": "orange" },
+      "args": {
+        "ids": "${prev.improvementAreaIds}",
+        "color": "orange"
+      },
       "expected_status": "ok"
     },
     {

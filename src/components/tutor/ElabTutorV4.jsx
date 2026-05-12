@@ -1488,8 +1488,8 @@ REGOLE CRITICHE PER QUESTA RISPOSTA:
 4. DOMANDE OFF-TOPIC: Rispondi brevemente (max 1 frase) e ridireziona all'elettronica. Non fare lezioni step-by-step su matematica o altro.
 5. TAG FORMATO: [AZIONE:comando:args] — AZIONE sempre MAIUSCOLO, tag alla FINE della risposta, dopo la spiegazione.
 6. PER RIMUOVERE TUTTI I FILI: Se fili=N, emetti N tag [AZIONE:removewire:i] per i da N-1 a 0 (partendo dall'ultimo).
-7. LINGUAGGIO 10-14 ANNI: Max 60 parole per risposta (3 frasi + 1 analogia). Mai termini come "dispositivo a semiconduttore", "diodo a emissione di luce", "componente elettronico passivo". Usa analogie: LED="lampadina minuscola", resistore="tubo stretto per l'acqua", corrente="acqua che scorre", tensione="pressione dell'acqua".
-8. ANALOGIA OBBLIGATORIA: Per ogni domanda "cos'e' X?" inizia SEMPRE con "E' come..." prima di qualsiasi spiegazione tecnica. Sii entusiasta e concreto.
+7. LINGUAGGIO 10-14 ANNI: Max 120 parole ben formattate (feedback 2026-05-10). Plurale "Ragazzi/e" o "voi". Mai termini come "dispositivo a semiconduttore", "diodo a emissione di luce", "componente elettronico passivo". Analogie utili quando rendono chiaro: LED="lampadina minuscola", resistore="tubo stretto per l'acqua", corrente="acqua che scorre", tensione="pressione dell'acqua".
+8. ANALOGIA OPZIONALE: Usa analogie quando aggiungono valore, non sempre obbligatorie. Cita Vol N pag NN concordato quando rilevante.
 9. MONTA CIRCUITO: Se l'utente dice "monta il semaforo" o simile → usa [AZIONE:loadexp:v3-cap6-semaforo]. ID formato: v{vol}-cap{cap}-esp{num} o v3-cap6-semaforo, v3-extra-lcd-hello, v3-extra-servo-sweep, v3-extra-simon.
 10. PREPARA LEZIONE: Se il docente chiede di preparare la lezione → usa il contesto attuale + memoria sessioni per suggerire l'esperimento giusto e caricarlo.${memoryContext ? `\n\n${memoryContext}` : ''}`;
     }, [activeTab, activeExperiment, activeVolume, selectedVolume, currentDocPage,
@@ -2221,17 +2221,6 @@ REGOLE CRITICHE PER QUESTA RISPOSTA:
 
         setIsLoading(true);
 
-        // G25: Show "slow response" message after 5s — Prof.ssa Rossi never sees a blank screen
-        const slowMsgId = Date.now() + 999;
-        const slowTimer = setTimeout(() => {
-            setMessages(prev => [...prev, {
-                id: slowMsgId,
-                role: 'assistant',
-                content: 'UNLIM sta cercando la risposta migliore...',
-                isSlowIndicator: true,
-            }]);
-        }, 5000);
-
         const volNum = activeExperiment?.id?.match(/^v(\d+)-/)?.[1] || '?';
         // UNLIM CENTRO DI COMANDO: always include tutor context + circuit state
         const tutorContext = buildTutorContext();
@@ -2326,9 +2315,9 @@ REGOLE CRITICHE PER QUESTA RISPOSTA:
                 .replace(/\n{3,}/g, '\n\n')
                 .trim();
 
-            // G25: Client-side word count enforcement — truncate at 80 words (sentence boundary)
-            // The AI prompt says 60 words but LLMs often exceed it. Hard cap at 80.
-            const UNLIM_MAX_WORDS = 80;
+            // iter-RALPH-1 (2026-05-12): word count cap 80→140 to match new 120-parole rule
+            // (feedback 2026-05-10). Safety margin +20 over target 120 for graceful sentence end.
+            const UNLIM_MAX_WORDS = 140;
             const words = displayText.split(/\s+/).filter(Boolean);
             if (words.length > UNLIM_MAX_WORDS) {
                 const truncated = words.slice(0, UNLIM_MAX_WORDS).join(' ');
@@ -2351,7 +2340,7 @@ REGOLE CRITICHE PER QUESTA RISPOSTA:
             // Step 3: Execute actions (async — Ralph Loop, PlacementEngine, AZIONE commands)
             await processAiResponse(aiResponse, userMessage, msgId);
         } else {
-            const errorMsg = result.error || 'Errore sconosciuto';
+            const errorMsg = result.error || result.response || 'Qualcosa non ha funzionato. Riprova tra qualche secondo.';
             let friendlyError = errorMsg;
             if (errorMsg.includes('Timeout') || errorMsg.includes('timeout')) {
                 friendlyError = 'UNLIM ci sta mettendo un po\'. Riprova tra qualche secondo.';
@@ -2368,9 +2357,8 @@ REGOLE CRITICHE PER QUESTA RISPOSTA:
                 retryMessage: userMessage
             }]);
         }
-        // G25: Clear slow-response indicator and loading state
-        clearTimeout(slowTimer);
-        setMessages(prev => prev.filter(m => m.id !== slowMsgId));
+        // Loading state is rendered by ChatOverlay only; no duplicate assistant placeholder.
+        setMessages(prev => prev.filter(m => !m.isSlowIndicator));
         setIsLoading(false);
     };
 

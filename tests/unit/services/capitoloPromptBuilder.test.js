@@ -157,7 +157,7 @@ describe('buildCapitoloPromptFragment', () => {
     const out = buildCapitoloPromptFragment(SAMPLE_CAPITOLO);
     expect(out).toContain('PRINCIPIO ZERO');
     expect(out).toContain('plurale');
-    expect(out).toContain('60 parole');
+    expect(out).toContain('120 parole');
   });
 
   it('respects activePhaseName option', () => {

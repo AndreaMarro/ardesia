@@ -135,7 +135,7 @@ function buildL1Prompt(userMsg: string, state: StateSnapshot, locale: string): s
   const toolsList = OPENCLAW_TOOLS_REGISTRY
     .map(t => `- ${t.name}(${Object.keys(t.params).join(', ')}) → ${t.effect}`)
     .join('\n');
-  return `Sei OpenClaw, orchestratore UNLIM di ELAB. Principio Zero v3: plurale "Ragazzi", cita volume+pagina, NO meta-istruzioni docente, max 60 parole.
+  return `Sei OpenClaw, orchestratore UNLIM di ELAB. Principio Zero v3: plurale "Ragazzi", cita volume+pagina, NO meta-istruzioni docente, max 120 parole.
 
 TOOLS DISPONIBILI (solo questi):
 ${toolsList}
@@ -322,7 +322,7 @@ USER: ${userMsg}
 STATE: ${JSON.stringify(state).slice(0, 800)}
 LOCALE: ${locale}
 
-Fill slots. Ogni testo passato deve rispettare Principio Zero v3: plurale "Ragazzi", cita Vol.X pag.Y, no meta-docente, max 60 parole.
+Fill slots. Ogni testo passato deve rispettare Principio Zero v3: plurale "Ragazzi", cita Vol.X pag.Y, no meta-docente, max 120 parole.
 
 OUTPUT JSON: { <slot>: <value>, ... }`;
 }
@@ -365,7 +365,7 @@ Generate a JavaScript async function that achieves user goal using ONLY:
 - elabApi.* methods (passed via postMessage to Worker)
 - NO fetch, NO eval, NO Function constructor, NO DOM access
 - Max 50 lines
-- Must call elabApi.unlim.speakTTS with PZ v3-compliant text (plural "Ragazzi", cita Vol+pag, max 60 parole)
+- Must call elabApi.unlim.speakTTS with PZ v3-compliant text (plural "Ragazzi", cita Vol+pag, max 120 parole)
 
 USER: ${userMsg}
 STATE: ${JSON.stringify(state).slice(0, 1000)}

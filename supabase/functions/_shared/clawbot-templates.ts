@@ -77,7 +77,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'celebrateEndVolume',
     description: "Morphic template iter 15: chiusura volume completo — riassunto capitoli + transizione next volume. Citazione VERBATIM ultima pagina Vol + voice TTS Isabella + analogia traguardo tappa Giro.",
     category: 'lesson-celebrate',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.156', analogia: "fine volume come traguardo di tappa Giro d'Italia" },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.156', analogia: "fine volume come traguardo di tappa Giro d'Italia" },
     inputs: { experimentId: 'v1-end', volumeId: 'vol1' },
     sequence: [
       { step: 'highlight-all-experiments-done', tool: 'highlightComponent', args: { ids: ['progress:vol1'], color: 'green' }, expected_status: 'ok' },
@@ -94,7 +94,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'celebrateExperimentComplete',
     description: 'Morphic template: feedback positivo classe dopo esperimento completato con successo + suggerimento next experiment coerente percorso. Capture screenshot finale, nudge celebrativo, voice TTS Isabella tono caldo, citazione volume.',
     category: 'feedback-positive',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.10', analogia: 'primo passo da elettronici veri' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.10', analogia: 'primo passo da elettronici veri' },
     inputs: { experimentId: '', nextExperimentId: '', completionTime_s: 0 },
     sequence: [
       { step: 'capture-screenshot-success', tool: 'captureScreenshot', args: { target: 'experiment-complete', annotate: true, saveToReport: true }, expected_status: 'ok' },
@@ -111,7 +111,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'critiqueCircuitPhoto',
     description: "Morphic template: critica costruttiva foto webcam del circuito fisico ragazzi. Vision EU identifica differenze vs riferimento volume, sintetizza 1 punto positivo + 1 da migliorare con citazione verbatim, parla pronunciando plurale 'Ragazzi,'.",
     category: 'critique-vision',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
     inputs: { photoUrl: '', experimentId: '', referenceFigureId: '' },
     sequence: [
       { step: 'post-vision-photo', tool: 'postToVisionEndpoint', args: { image: '${inputs.photoUrl}', task: 'compare-vs-reference', referenceFigureId: '${inputs.referenceFigureId}' }, expected_status: 'ok' },
@@ -128,7 +128,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'debugShortCircuit',
     description: "Morphic template: rilevamento corto-circuito breadboard via vision Gemini + suggerimento riposiziona componenti. Highlight rotaie alimentazione, captura foto kit, diagnosi automatica, voice TTS Isabella avverte classe. Citazione Vol.1 pag.45 'attenzione cortocircuito'.",
     category: 'diagnose-error',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.45', analogia: 'ponte diretto tra positivo e negativo = scorciatoia che brucia' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.45', analogia: 'ponte diretto tra positivo e negativo = scorciatoia che brucia' },
     inputs: { experimentId: '', errorContext: {} },
     sequence: [
       { step: 'highlight-power-rails', tool: 'highlightComponent', args: { ids: ['bus-bot-plus', 'bus-bot-minus'], color: 'red', duration_ms: 3000 }, expected_status: 'ok' },
@@ -145,7 +145,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'diagnoseLedFioco',
     description: 'Morphic template iter 15: LED basso brightness diagnosi vision — captureScreenshot + postToVisionEndpoint detect resistenza troppo alta + suggerisci R 220Ohm. Citazione VERBATIM Vol.1 + voice TTS Isabella.',
     category: 'lesson-diagnose',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.78', analogia: 'LED fioco come lampadina con cavo troppo sottile = poca corrente' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.78', analogia: 'LED fioco come lampadina con cavo troppo sottile = poca corrente' },
     inputs: { experimentId: 'v1-cap6-esp2' },
     sequence: [
       { step: 'capture-screenshot-led-dim', tool: 'captureScreenshot', args: { target: 'led-brightness-check' }, expected_status: 'ok' },
@@ -162,7 +162,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'diagnoseLedRovesciato',
     description: 'Morphic template diagnosi vision LED catodo errato (anodo invertito polarità) — captureScreenshot + Vision detect + animazione rotazione 180° + nudge orientamento gamba lunga + cita Vol.1 cap.6.',
     category: 'diagnose-vision',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.52', analogia: 'il LED ha una freccia: gamba lunga (anodo) verso il +' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.52', analogia: 'il LED ha una freccia: gamba lunga (anodo) verso il +' },
     inputs: { experimentId: 'v1-cap6-esp1' },
     sequence: [
       { step: 'capture-screenshot-led', tool: 'captureScreenshot', args: { purpose: 'diagnose-led-polarity', focus: 'led1' }, expected_status: 'ok' },
@@ -179,7 +179,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'diagnoseNoCurrent',
     description: "Morphic template: diagnosi 'circuito non funziona / corrente assente'. Cattura screenshot kit fisico, posta a Vision EU, identifica 1 errore principale (polarità invertita / resistenza mancante / batteria scarica), highlight componente, parla diagnosi al docente.",
     category: 'diagnose',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
     inputs: { circuitState: {}, experimentId: '' },
     sequence: [
       { step: 'capture-screenshot', tool: 'captureScreenshot', args: { target: 'simulator-canvas' }, expected_status: 'ok' },
@@ -196,7 +196,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainCondensatoreTempo',
     description: 'Morphic template condensatore + costante tempo τ=RC Vol.2 cap.10 — analogia secchio acqua riempimento progressivo + highlight componenti + grafico carica + cita testo verbatim volume.',
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.2 pag.78', analogia: 'il condensatore è un secchio: la resistenza è il rubinetto, τ è il tempo per riempirlo al 63%' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.2 pag.78', analogia: 'il condensatore è un secchio: la resistenza è il rubinetto, τ è il tempo per riempirlo al 63%' },
     inputs: { experimentId: 'v2-cap10-esp1' },
     sequence: [
       { step: 'highlight-rc-circuit', tool: 'highlightComponent', args: { ids: ['c1', 'r1'], color: 'orange', pulse: true }, expected_status: 'ok' },
@@ -213,7 +213,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainLedBlink',
     description: "Morphic template: spiega l'esperimento LED lampeggiante (Blink) con highlight visuale, citazione VERBATIM dal Volume e voice TTS Isabella. Adatta tono per docente esperto vs primo anno (Sense 1.5).",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
     inputs: { experimentId: 'v1-cap6-esp1' },
     sequence: [
       { step: 'highlight-experiment', tool: 'highlightExperiment', args: { experimentId: '${inputs.experimentId}' }, expected_status: 'ok' },
@@ -230,7 +230,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainPwmFade',
     description: 'Morphic template: spiegazione PWM + analogWrite via analogia rubinetto rapido aperto/chiuso (Vol.1 cap.6 / Vol.2 cap.8 LED fade). Highlight pin PWM (D3,D5,D6,D9,D10,D11) sul Nano, esempio fade 0-255, citazione VERBATIM, voice TTS Isabella.',
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.2 pag.78', analogia: 'rubinetto rapido aperto/chiuso = LED che lampeggia velocissimo sembra dimmer' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.2 pag.78', analogia: 'rubinetto rapido aperto/chiuso = LED che lampeggia velocissimo sembra dimmer' },
     inputs: { experimentId: 'v2-cap8-esp1', pwmPin: 'D9', fadeRange: '0-255' },
     sequence: [
       { step: 'highlight-pwm-pins', tool: 'highlightPin', args: { ids: ['nano:D3', 'nano:D5', 'nano:D6', 'nano:D9', 'nano:D10', 'nano:D11'], color: 'orange', duration_ms: 4000 }, expected_status: 'ok' },
@@ -247,7 +247,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainResistenzaPullUp',
     description: 'Morphic template iter 15: pull-up resistor Vol.2 cap.9 — analogia palla in cima alla scala + INPUT_PULLUP keyword. Citazione VERBATIM Vol.2 + voice TTS Isabella + highlight resistore 10kOhm.',
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.2 pag.58', analogia: 'pull-up come palla in cima alla scala che cade quando spingi pulsante' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.2 pag.58', analogia: 'pull-up come palla in cima alla scala che cade quando spingi pulsante' },
     inputs: { experimentId: 'v2-cap9-esp3' },
     sequence: [
       { step: 'highlight-resistor-pullup', tool: 'highlightComponent', args: { ids: ['r10k', 'btn1'], color: 'orange' }, expected_status: 'ok' },
@@ -264,7 +264,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'guideArduinoCompile',
     description: 'Morphic template: guida primo compile Arduino via n8n endpoint. Highlight bottone compile, ask UNLIM verify codice prima invio, controllo errori output HEX, retry on failure, voice TTS Isabella spiega processo classe (Vol.1 pag.58).',
     category: 'guide-action',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.58', analogia: "compilare = tradurre dall'italiano alla lingua del Nano" },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.58', analogia: "compilare = tradurre dall'italiano alla lingua del Nano" },
     inputs: { sketchCode: '', compileEndpoint: 'https://n8n.srv1022317.hstgr.cloud/compile', retryOnFailure: true },
     sequence: [
       { step: 'highlight-compile-button', tool: 'highlightComponent', args: { ids: ['compile-btn'], color: 'navy', duration_ms: 3000, pulse: true }, expected_status: 'ok' },
@@ -281,7 +281,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'guideMountExperiment',
     description: 'Morphic template: guida montaggio esperimento step-by-step sul kit fisico. Mostra componenti del kit Omaric uno alla volta sulla LIM con highlight breadboard fila/colonna e dispenser progressivo per le mani dei ragazzi.',
     category: 'guide-build',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
     inputs: { experimentId: '', stepIndex: 0 },
     sequence: [
       { step: 'mount-experiment', tool: 'mountExperiment', args: { experimentId: '${inputs.experimentId}' }, expected_status: 'ok' },
@@ -298,7 +298,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'guideScratchBlocklyFirst',
     description: 'Morphic template primo programma Scratch/Blockly — digitalWrite blink LED, highlight blocchi colorati, mapping Scratch → C++ Arduino, cita Vol.1 cap.7 setup() + loop().',
     category: 'lesson-program-first',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.62', analogia: 'i blocchi Scratch sono come pezzi LEGO: ogni colore = istruzione Arduino diversa' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.62', analogia: 'i blocchi Scratch sono come pezzi LEGO: ogni colore = istruzione Arduino diversa' },
     inputs: { experimentId: 'v1-cap7-esp1' },
     sequence: [
       { step: 'highlight-blockly-blocks', tool: 'highlightComponent', args: { ids: ['block-pinmode', 'block-digitalwrite', 'block-delay'], color: 'green', pulse: true }, expected_status: 'ok' },
@@ -315,7 +315,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'guideSerialMonitor',
     description: 'Morphic template iter 15: prima volta Serial Monitor Vol.2 cap.10 — Serial.begin(9600) + Serial.println + analogia walkie-talkie 9600 baud. Citazione VERBATIM Vol.2 + voice TTS Isabella.',
     category: 'lesson-guide',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.2 pag.66', analogia: 'Serial Monitor come walkie-talkie tra Arduino e PC, baud 9600 = velocita radio' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.2 pag.66', analogia: 'Serial Monitor come walkie-talkie tra Arduino e PC, baud 9600 = velocita radio' },
     inputs: { experimentId: 'v2-cap10-esp1' },
     sequence: [
       { step: 'highlight-serial-pins', tool: 'highlightComponent', args: { ids: ['nano:D0-RX', 'nano:D1-TX'], color: 'purple' }, expected_status: 'ok' },
@@ -332,7 +332,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'introduceArduinoBoard',
     description: 'Morphic template iter 15: prima sessione Arduino Vol.2 cap.7 — pin map digitali/analogici, USB power, IDE first run. Citazione VERBATIM Vol.2 + voice TTS Isabella + analogia citta-strade per pin map.',
     category: 'lesson-introduce',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.2 pag.42', analogia: 'scheda Arduino come citta con strade (pin) numerate' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.2 pag.42', analogia: 'scheda Arduino come citta con strade (pin) numerate' },
     inputs: { experimentId: 'v2-cap7-esp1' },
     sequence: [
       { step: 'highlight-arduino-board', tool: 'highlightComponent', args: { ids: ['nano:board'], color: 'blue' }, expected_status: 'ok' },
@@ -349,7 +349,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'introduceBreadboard',
     description: 'Morphic template prima sessione kit Vol.1 cap.4 — orientamento bus alimentazione + righe centrali + collegamento batteria. Adatta per docente primo anno (analogie esplicite righe come autostrada) vs esperto (jump diretto a setup esperimento).',
     category: 'lesson-introduce',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.34', analogia: 'righe orizzontali come binari di una stazione, bus laterali come autostrada del + e del -' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.34', analogia: 'righe orizzontali come binari di una stazione, bus laterali come autostrada del + e del -' },
     inputs: { experimentId: 'v1-cap4-esp1' },
     sequence: [
       { step: 'highlight-breadboard', tool: 'highlightComponent', args: { ids: ['bb1'], color: 'blue', pulse: true }, expected_status: 'ok' },
@@ -366,7 +366,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'introduceResistor',
     description: 'Morphic template: prima introduzione resistore alla classe (Vol.1 cap.3) — verbose introductive con analogia rubinetto, highlight visuale resistenza 220 ohm sul kit, citazione VERBATIM volume, voice TTS Isabella. Adatta tono per docente primo anno (più analogie esplicite) vs esperto.',
     category: 'lesson-introduce',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.32', analogia: 'rubinetto che limita acqua = resistore che limita corrente' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.32', analogia: 'rubinetto che limita acqua = resistore che limita corrente' },
     inputs: { experimentId: 'v1-cap3-esp1', resistorValue: '220' },
     sequence: [
       { step: 'highlight-component-resistor', tool: 'highlightComponent', args: { ids: ['r1'], color: 'orange', duration_ms: 4000 }, expected_status: 'ok' },
@@ -383,7 +383,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'recapFineLezione',
     description: "Morphic template chiusura lezione classe — sintesi 3 punti chiave + frase 'ai ragazzi vediamo cosa abbiamo imparato' + nudge feedback + cita testo finale capitolo dal volume.",
     category: 'lesson-recap',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.70', analogia: 'ricapitolare è come fare lo zaino prima di tornare a casa: prendiamo i 3 oggetti più importanti' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.70', analogia: 'ricapitolare è come fare lo zaino prima di tornare a casa: prendiamo i 3 oggetti più importanti' },
     inputs: { experimentId: 'v1-cap6-esp1', lessonKeyPoints: ['LED polarità', 'resistenza serie', 'blink delay'] },
     sequence: [
       { step: 'highlight-key-components', tool: 'highlightComponent', args: { ids: ['led1', 'r1', 'nano'], color: 'navy', pulse: false }, expected_status: 'ok' },
@@ -406,7 +406,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainFotoresistoreVol1Cap10',
     description: "Morphic template iter 28 — Vol.1 cap.10 fotoresistore (LDR): più luce, meno resistenza. Analogia occhio elettronico + highlight LDR + divisore di tensione + citazione VERBATIM Vol.1 pag.81 + voice TTS Isabella.",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.81', analogia: "occhio elettronico che 'sente' la luce" },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.81', analogia: "occhio elettronico che 'sente' la luce" },
     inputs: { experimentId: 'v1-cap10-esp1' },
     sequence: [
       { step: 'highlight-ldr-kit', tool: 'highlightComponent', args: { ids: ['fotoresistore_1', 'r10k', 'breadboard_1'], color: 'orange', pulse: true }, expected_status: 'ok' },
@@ -423,7 +423,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainBuzzerVol1Cap11',
     description: "Morphic template iter 28 — Vol.1 cap.11 cicalino (buzzer): altoparlante piccolo che emette suoni. Distinzione passivo (suono fisso) vs attivo (programmabile tone()). Analogia sveglia miniatura + highlight buzzer + citazione VERBATIM Vol.1 pag.93 + voice TTS Isabella.",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.93', analogia: 'sveglia in miniatura che suona quando la alimenti' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.93', analogia: 'sveglia in miniatura che suona quando la alimenti' },
     inputs: { experimentId: 'v1-cap11-esp1' },
     sequence: [
       { step: 'highlight-buzzer-kit', tool: 'highlightComponent', args: { ids: ['buzzer_1', 'breadboard_1', 'resistore_1'], color: 'orange', pulse: true }, expected_status: 'ok' },
@@ -440,7 +440,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainReedSwitchVol1Cap12',
     description: "Morphic template iter 28 — Vol.1 cap.12 reed switch: interruttore magnetico che si chiude vicino a un magnete. Analogia chiusura magnetica porta + highlight reed + magnete + citazione VERBATIM Vol.1 pag.97 + voice TTS Isabella.",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.97', analogia: 'chiusura magnetica di una porta che scatta quando avvicini il magnete' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.97', analogia: 'chiusura magnetica di una porta che scatta quando avvicini il magnete' },
     inputs: { experimentId: 'v1-cap12-esp1' },
     sequence: [
       { step: 'highlight-reed-kit', tool: 'highlightComponent', args: { ids: ['reed_switch_1', 'breadboard_1', 'resistore_1'], color: 'orange', pulse: true }, expected_status: 'ok' },
@@ -457,7 +457,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainElettropongoVol1Cap13',
     description: "Morphic template iter 28 — Vol.1 cap.13 elettropongo: pasta conduttrice fatta in casa (acqua + sale + bicarbonato) usata al posto dei fili. Analogia pasta modellabile + highlight breadboard + LED + citazione VERBATIM Vol.1 pag.103 + voice TTS Isabella.",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.103', analogia: 'pasta modellabile che conduce corrente come un filo morbido' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.103', analogia: 'pasta modellabile che conduce corrente come un filo morbido' },
     inputs: { experimentId: 'v1-cap13-esp1' },
     sequence: [
       { step: 'highlight-elettropongo-kit', tool: 'highlightComponent', args: { ids: ['breadboard_1', 'led_1', 'batteria_9v', 'resistore_1'], color: 'orange', pulse: true }, expected_status: 'ok' },
@@ -474,7 +474,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'explainRobotVol1Cap14',
     description: "Morphic template iter 28 — Vol.1 cap.14 Costruiamo un Robot: progetto capstone che mette insieme LED + motori + sensori + pulsanti dei capitoli precedenti. Analogia robot = somma componenti conosciuti + highlight kit completo + citazione VERBATIM Vol.1 pag.107 + voice TTS Isabella.",
     category: 'lesson-explain',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3, vol_pag: 'Vol.1 pag.107', analogia: 'il robot è la somma di tutti i componenti che ora conosciamo, come un puzzle finito' },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6, vol_pag: 'Vol.1 pag.107', analogia: 'il robot è la somma di tutti i componenti che ora conosciamo, come un puzzle finito' },
     inputs: { experimentId: 'v1-cap14-esp1' },
     sequence: [
       { step: 'highlight-robot-kit', tool: 'highlightComponent', args: { ids: ['nano:board', 'breadboard_1', 'motor_dc_1', 'led_1', 'fotoresistore_1', 'pulsante_1', 'batteria_9v'], color: 'blue', pulse: true }, expected_status: 'ok' },
@@ -491,7 +491,7 @@ export const TEMPLATES_L2: ClawBotTemplate[] = [
     name: 'rerouteFromError',
     description: 'Morphic template: ricovero post-errore compilazione/runtime. Estrae errore, RAG su pattern errore comune, suggerisce fix minimo con riferimento Vol.X pag.Y, applica fix tramite simulator-api senza intervento ragazzi.',
     category: 'error-recovery',
-    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 60, max_frasi: 3 },
+    principio_zero: { plurale_obbligatorio: 'Ragazzi,', citazione_verbatim: true, max_parole: 120, max_frasi: 6 },
     inputs: { compileError: '', runtimeError: '', errorLine: 0, experimentId: '' },
     sequence: [
       { step: 'rag-retrieve-error-pattern', tool: 'ragRetrieve', args: { query: 'errore Arduino ${inputs.compileError}${inputs.runtimeError} causa comune fix', topK: 3, wikiFusion: true }, expected_status: 'ok' },

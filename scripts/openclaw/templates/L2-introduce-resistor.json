@@ -11,49 +11,100 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3,
+    "max_parole": 120,
+    "max_frasi": 6,
     "vol_pag": "Vol.1 pag.32",
     "analogia": "rubinetto che limita acqua = resistore che limita corrente"
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["primaria-4-5", "secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "primaria-4-5",
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true
   },
   "inputs": {
-    "experimentId": { "type": "string", "required": false, "default": "v1-cap3-esp1" },
-    "resistorValue": { "type": "string", "required": false, "default": "220" },
-    "classProfile": { "type": "object", "required": false },
-    "kitTier": { "type": "string", "enum": ["basic", "advanced"], "default": "basic" },
-    "docenteExperienceLevel": { "type": "string", "enum": ["primo-anno", "esperto"], "default": "primo-anno" }
+    "experimentId": {
+      "type": "string",
+      "required": false,
+      "default": "v1-cap3-esp1"
+    },
+    "resistorValue": {
+      "type": "string",
+      "required": false,
+      "default": "220"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
   },
   "sequence": [
     {
       "step": "highlight-component-resistor",
       "tool": "highlightComponent",
-      "args": { "ids": ["r1"], "color": "orange", "duration_ms": 4000 },
+      "args": {
+        "ids": [
+          "r1"
+        ],
+        "color": "orange",
+        "duration_ms": 4000
+      },
       "expected_status": "ok"
     },
     {
       "step": "ask-unlim-resistor-context",
       "tool": "askUNLIM",
-      "args": { "query": "introduzione resistore prima volta classe analogia rubinetto Vol.1 cap.3", "context": "introduce-resistor" },
+      "args": {
+        "query": "introduzione resistore prima volta classe analogia rubinetto Vol.1 cap.3",
+        "context": "introduce-resistor"
+      },
       "expected_status": "ok"
     },
     {
       "step": "show-nudge-rubinetto",
       "tool": "showNudge",
-      "args": { "text": "Mostrate il rubinetto: aprite poco = poca acqua. Resistore stessa cosa con la corrente.", "type": "analogy", "duration_ms": 6000 },
+      "args": {
+        "text": "Mostrate il rubinetto: aprite poco = poca acqua. Resistore stessa cosa con la corrente.",
+        "type": "analogy",
+        "duration_ms": 6000
+      },
       "expected_status": "ok"
     },
     {
       "step": "capture-screenshot-kit",
       "tool": "captureScreenshot",
-      "args": { "target": "resistor-on-breadboard", "annotate": true },
+      "args": {
+        "target": "resistor-on-breadboard",
+        "annotate": true
+      },
       "expected_status": "ok"
     },
     {
@@ -79,7 +130,7 @@
     "sequence[0].tool === 'highlightComponent'",
     "sequence[4].args.text.includes('Ragazzi,')",
     "sequence[4].args.text.match(/Vol\\.\\d/)",
-    "principio_zero.max_parole <= 60",
+    "principio_zero.max_parole <= 120",
     "principio_zero.analogia.includes('rubinetto')"
   ]
 }

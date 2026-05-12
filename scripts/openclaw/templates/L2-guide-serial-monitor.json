@@ -11,48 +11,93 @@
   "principio_zero": {
     "plurale_obbligatorio": "Ragazzi,",
     "citazione_verbatim": true,
-    "max_parole": 60,
-    "max_frasi": 3,
+    "max_parole": 120,
+    "max_frasi": 6,
     "vol_pag": "Vol.2 pag.66",
     "analogia": "Serial Monitor come walkie-talkie tra Arduino e PC, baud 9600 = velocita radio"
   },
   "morfismo_sense_1_5": {
-    "docente_esperienza": ["primo-anno", "esperto"],
-    "classe_eta": ["secondaria-1-2", "secondaria-3"],
-    "kit_tier": ["basic", "advanced"],
+    "docente_esperienza": [
+      "primo-anno",
+      "esperto"
+    ],
+    "classe_eta": [
+      "secondaria-1-2",
+      "secondaria-3"
+    ],
+    "kit_tier": [
+      "basic",
+      "advanced"
+    ],
     "lim_distance_m": 5,
     "adapt_voice": true,
     "adapt_complexity_lessico": true
   },
   "inputs": {
-    "experimentId": { "type": "string", "required": true, "default": "v2-cap10-esp1" },
-    "classProfile": { "type": "object", "required": false },
-    "kitTier": { "type": "string", "enum": ["basic", "advanced"], "default": "basic" },
-    "docenteExperienceLevel": { "type": "string", "enum": ["primo-anno", "esperto"], "default": "primo-anno" }
+    "experimentId": {
+      "type": "string",
+      "required": true,
+      "default": "v2-cap10-esp1"
+    },
+    "classProfile": {
+      "type": "object",
+      "required": false
+    },
+    "kitTier": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "docenteExperienceLevel": {
+      "type": "string",
+      "enum": [
+        "primo-anno",
+        "esperto"
+      ],
+      "default": "primo-anno"
+    }
   },
   "sequence": [
     {
       "step": "highlight-serial-pins",
       "tool": "highlightComponent",
-      "args": { "ids": ["nano:D0-RX", "nano:D1-TX"], "color": "purple" },
+      "args": {
+        "ids": [
+          "nano:D0-RX",
+          "nano:D1-TX"
+        ],
+        "color": "purple"
+      },
       "expected_status": "ok"
     },
     {
       "step": "ask-unlim-serial-begin",
       "tool": "askUNLIM",
-      "args": { "query": "Spiega Serial.begin(9600) + Serial.println e apertura Serial Monitor IDE", "vol": "Vol.2", "cap": 10 },
+      "args": {
+        "query": "Spiega Serial.begin(9600) + Serial.println e apertura Serial Monitor IDE",
+        "vol": "Vol.2",
+        "cap": 10
+      },
       "expected_status": "ok"
     },
     {
       "step": "show-nudge-open-monitor",
       "tool": "showNudge",
-      "args": { "text": "Strumenti > Monitor seriale (Ctrl+Shift+M). Selezionate 9600 baud in basso a destra", "duration_ms": 4500 },
+      "args": {
+        "text": "Strumenti > Monitor seriale (Ctrl+Shift+M). Selezionate 9600 baud in basso a destra",
+        "duration_ms": 4500
+      },
       "expected_status": "ok"
     },
     {
       "step": "capture-screenshot-monitor",
       "tool": "captureScreenshot",
-      "args": { "target": "serial-monitor-output" },
+      "args": {
+        "target": "serial-monitor-output"
+      },
       "expected_status": "ok"
     },
     {
@@ -70,7 +115,11 @@
   "expected_total_latency_ms": 5500,
   "expected_outcome": "Classe apre Serial Monitor + vede output Hello World. Docente padroneggia debug seriale.",
   "telemetry": {
-    "track_events": ["template_dispatched", "serial_opened", "tts_complete"],
+    "track_events": [
+      "template_dispatched",
+      "serial_opened",
+      "tts_complete"
+    ],
     "supabase_table": "openclaw_template_runs"
   },
   "test_assertions": [
