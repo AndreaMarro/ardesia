@@ -12,15 +12,38 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { act, createEvent, fireEvent, render, waitFor } from '@testing-library/react';
 import DrawingOverlay from '../../src/components/simulator/canvas/DrawingOverlay.jsx';
 import { DRAWING_STORAGE_PREFIX } from '../../src/utils/drawingStorage.js';
 
 const SANDBOX_KEY = DRAWING_STORAGE_PREFIX + 'paths';
 const EXP_KEY = DRAWING_STORAGE_PREFIX + 'v1-cap6-esp1';
 
+function firePointer(target, type, options) {
+  const event = createEvent[type](target);
+  Object.defineProperties(event, {
+    clientX: { value: options.clientX },
+    clientY: { value: options.clientY },
+    pointerId: { value: options.pointerId || 1 },
+    buttons: { value: options.buttons || 0 },
+  });
+  fireEvent(target, event);
+}
+
 beforeEach(() => {
   vi.clearAllMocks();
+  localStorage.getItem.mockReturnValue(null);
+  if (!SVGElement.prototype.setPointerCapture) {
+    SVGElement.prototype.setPointerCapture = vi.fn();
+  }
+  SVGElement.prototype.getBoundingClientRect = vi.fn(() => ({
+    left: 0,
+    top: 0,
+    right: 400,
+    bottom: 300,
+    width: 400,
+    height: 300,
+  }));
 });
 
 describe('DrawingOverlay iter 25 — bucket migration sandbox → experiment', () => {
@@ -99,5 +122,58 @@ describe('DrawingOverlay iter 25 — bucket migration sandbox → experiment', (
     const setCalls = localStorage.setItem.mock.calls.map(([k]) => k);
     expect(setCalls.includes(EXP_KEY), 'no spurious write on empty-sandbox transition').toBe(false);
     expect(localStorage.getItem).toHaveBeenCalledWith(EXP_KEY);
+  });
+
+  it('keeps saved strokes visible after drawing mode exits', () => {
+    localStorage.getItem.mockImplementation((k) => {
+      if (k === EXP_KEY) return JSON.stringify([{ points: '10,10 40,40', color: '#EF4444', width: 3 }]);
+      return null;
+    });
+
+    const { container, queryByLabelText } = render(
+      <DrawingOverlay drawingEnabled={false} experimentId="v1-cap6-esp1" canvasWidth={400} canvasHeight={300} />,
+    );
+
+    expect(container.querySelector('svg path')).toBeInTheDocument();
+    expect(queryByLabelText(/Gomma/i)).not.toBeInTheDocument();
+  });
+
+  it('eraser removes hit strokes instead of saving a white/transparent paint stroke', async () => {
+    const storedPaths = [
+      { points: '10,10 80,80', color: '#EF4444', width: 3 },
+      { points: '200,200 260,260', color: '#2563EB', width: 3 },
+    ];
+    localStorage.getItem.mockImplementation((k) => {
+      if (k === EXP_KEY) return JSON.stringify(storedPaths);
+      return null;
+    });
+
+    const { container, getByLabelText } = render(
+      <DrawingOverlay drawingEnabled={true} experimentId="v1-cap6-esp1" canvasWidth={400} canvasHeight={300} />,
+    );
+
+    fireEvent.click(getByLabelText('Gomma'));
+    const svg = container.querySelector('svg');
+    await act(async () => {
+      firePointer(svg, 'pointerDown', { clientX: 14, clientY: 14, pointerId: 1, buttons: 1 });
+    });
+    await waitFor(() => expect(container.querySelectorAll('svg[width="400"] > path').length).toBeGreaterThan(2));
+    await act(async () => {
+      firePointer(svg, 'pointerMove', { clientX: 65, clientY: 65, pointerId: 1, buttons: 1 });
+    });
+    await act(async () => {
+      firePointer(svg, 'pointerUp', { clientX: 65, clientY: 65, pointerId: 1 });
+    });
+
+    await waitFor(() => {
+      const savedCall = [...localStorage.setItem.mock.calls]
+        .reverse()
+        .find(([key]) => key === EXP_KEY);
+      expect(savedCall).toBeDefined();
+      const savedPaths = JSON.parse(savedCall[1]);
+      expect(savedPaths).toHaveLength(1);
+      expect(savedPaths[0].color).toBe('#2563EB');
+      expect(savedPaths.some(path => path.isEraser)).toBe(false);
+    });
   });
 });
