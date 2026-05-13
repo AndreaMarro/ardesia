@@ -975,6 +975,63 @@ serve(async (req: Request) => {
           }));
         }
       }
+
+      // ── Iter 50 v79 — H1 fix [CONTESTO OPERATIVO] envelope echo scrubber ──
+      // Andrea 2026-05-13 1000-q matrix evidence color-036/046/076 + diag-068:
+      // Vertex Gemini Flash plain (iter 46 v78 architectural pivot from Pro→Flash,
+      // no thinkingBudget) occasionally verbalizes the `[CONTESTO OPERATIVO ...]`
+      // (or `[CONTESTO OPERATIVO ELAB]` / `[- STATO SIMULATORE]` / `[UNLIM]` variants)
+      // bracket-prefix envelope back as user-facing response. BASE_PROMPT v3.1 has
+      // no explicit "MAI ripetere" rule for this variant (rule exists only for
+      // [CONTESTO CAPITOLO LIBRO] at system-prompt.ts:257). H1 agent confidence 6/10.
+      // Surgical post-LLM regex strip + defensive fallback to neutral Ragazzi opener.
+      if (result && typeof result.text === 'string' && /\[CONTESTO\s+OPERATIVO/i.test(result.text)) {
+        const stripped = result.text.replace(/\[CONTESTO\s+OPERATIVO[^\]]*\][^\n]*\n?/gi, '').trim();
+        if (stripped.length === 0) {
+          // Entire response was envelope echo — substitute polite retry message.
+          result = { ...result, text: 'Ragazzi, riprovate la domanda — un momento di confusione.' };
+          console.warn(JSON.stringify({
+            level: 'warn', event: 'contesto_operativo_full_echo_substituted',
+            timestamp: new Date().toISOString(),
+          }));
+        } else {
+          result = { ...result, text: stripped };
+          console.warn(JSON.stringify({
+            level: 'warn', event: 'contesto_operativo_envelope_scrubbed',
+            originalLen: result.text.length,
+            strippedLen: stripped.length,
+            timestamp: new Date().toISOString(),
+          }));
+        }
+      }
+
+      // ── Iter 50 v79 — H2 fix bare {"intents":[ JSON literal scrubber ──
+      // Andrea 2026-05-13 1000-q matrix evidence control-065 "Stop simulazione":
+      // Mistral/Gemini structured output schema mode (ENABLE_INTENT_TOOLS_SCHEMA iter 38+)
+      // with token cap (120-520 maxOutputTokens) can emit prose then open `{"intents":[`
+      // and EOF mid-JSON. Iter 41 v66 envelope scrubber only catches `{"text":"..."}`
+      // shape requiring "text" key (line 907 regex), blind to bare `{"intents":[`.
+      // H2 agent confidence 7/10. Strip from first `{"intents":[` substring onwards
+      // outside `[INTENT:...]` brackets (server intent-parser handles those separately).
+      if (result && typeof result.text === 'string' && /\{\s*"intents"\s*:\s*\[/.test(result.text)) {
+        const match = result.text.match(/\{\s*"intents"\s*:\s*\[/);
+        const idx = match ? result.text.indexOf(match[0]) : -1;
+        if (idx >= 0) {
+          const before = result.text.slice(0, idx).trim();
+          // Defensive: only strip if there's natural language prose before the JSON.
+          // (Avoid emitting empty response if the entire result was bare JSON.)
+          if (before && before.length >= 10) {
+            const slicedLen = result.text.length - idx;
+            result = { ...result, text: before };
+            console.warn(JSON.stringify({
+              level: 'warn', event: 'bare_intents_literal_scrubbed',
+              sliceLen: slicedLen,
+              prefixLen: before.length,
+              timestamp: new Date().toISOString(),
+            }));
+          }
+        }
+      }
     } catch (llmError) {
       // Both Together + Gemini failed — try Brain fallback
       console.warn(JSON.stringify({
