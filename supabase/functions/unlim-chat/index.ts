@@ -287,7 +287,20 @@ serve(async (req: Request) => {
       .replace(/\{[\s\S]{200,}?\}/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
-    const userQueryStripped = stripEnvelope(safeMessage) || safeMessage;
+    // Iter 52 v80 fix Andrea screenshot 2026-05-13 — off-topic template fires
+    // on on-topic queries because envelope from api.js:783 contains literal
+    // "storia" word ("Non trattare esperimenti/storia come cose visibili ora.")
+    // SYSTEM_TAG_RE strips [GERARCHIA CONTESTO]…EOF (lookahead fails when no
+    // closing tag), so stripEnvelope returns empty → fallback `|| safeMessage`
+    // returns ORIGINAL envelope WITH "storia" → OFFTOPIC_QUERY_RE matches
+    // `storia\s+(?!del…)`. Bug live since iter 39 envelope add.
+    //
+    // Fix: extract user message via "Messaggio studente:" anchor BEFORE strip
+    // fallback. api.js:863 appends user msg with this canonical marker.
+    const STUDENT_MSG_RE = /Messaggio\s+studente\s*:\s*\n?([\s\S]+?)$/i;
+    const studentMsgMatch = safeMessage.match(STUDENT_MSG_RE);
+    const extractedUserMsg = studentMsgMatch ? studentMsgMatch[1].trim() : null;
+    const userQueryStripped = extractedUserMsg || stripEnvelope(safeMessage) || safeMessage;
 
     // iter 11 PATCH B — PRE-LLM off-topic detector (matematica/aritmetica/capitali/sport/cinema/etc.)
     // Live smoke Q8 "Quanto fa 2+2?" → UNLIM rispondeva "Fa 4." senza redirect ELAB.
