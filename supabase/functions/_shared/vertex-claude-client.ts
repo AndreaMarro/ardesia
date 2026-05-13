@@ -141,6 +141,17 @@ export async function callVertexClaude(options: ClaudeVertexOptions): Promise<Cl
     .map((b) => b.text as string)
     .join('');
 
+  // Iter 49 Codex audit medium fix: malformed 200 response (empty content[] or
+  // no text blocks) must throw API_ERROR so llm-client.ts fall-through path
+  // activates Vertex Gemini fallback. Returning successful empty text would
+  // silently degrade UX with a blank chat bubble downstream.
+  if (!text || text.trim().length === 0) {
+    throw new VertexError(
+      VertexErrorCode.API_ERROR,
+      `Vertex Claude 200 OK with empty content[] (malformed response, model=${model})`
+    );
+  }
+
   return {
     text,
     model: data.model || model,
