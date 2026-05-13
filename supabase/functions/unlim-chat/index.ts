@@ -817,7 +817,11 @@ serve(async (req: Request) => {
       // I1 mount 503 timeout (Onniscenza + Mistral schema gen overflow 8s).
       // Schema mode + vision + thinkingLevel routinely need 8-12s structured
       // generation. Default 8s preserved for fast chat path.
-      const llmCapMs = (useIntentSchema || hasImages || thinkingLevel) ? 12000 : 8000;
+      // Iter 43 A1 hotfix: Vertex Pro + thinkingLevel:medium routinely exceeds 12s
+      // (live v68 smoke "approfondisci nel dettaglio..." → 503 timeout 13.7s elapsed).
+      // Raise thinking cap 12s→25s to accommodate Pro thinking budget. Other paths
+      // (schema/vision) keep 12s. Cost: slower 503 detection on Pro fail (acceptable).
+      const llmCapMs = thinkingLevel ? 25000 : ((useIntentSchema || hasImages) ? 12000 : 8000);
       const timeoutPromise = new Promise<never>((_, rej) => {
         setTimeout(() => rej(new Error(`llm_timeout_${llmCapMs}ms`)), llmCapMs);
       });

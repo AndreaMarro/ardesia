@@ -249,6 +249,28 @@ export function buildDirectOperationalResponse(
   const qualityRoute = classifyResponseQualityIntent(message, circuitState);
   const explicitVagueRequest = /\b(fai tu|aiuto|panico|non so|boh|parti tu|decidi tu)\b/i.test(text);
 
+  // Iter 43 A2 — Onnipotenza composite emission gate (iter 41 bench bug #3 fix).
+  // Multi-INTENT queries like "accendi led, evidenzia r1 e compila" returned only
+  // the FIRST greedy match (direct-operational-experiment-nav for "accendi led"),
+  // suppressing the other 2 actions. Browser dispatched 1 of 3 expected intents.
+  // Fix: return null when query contains 2+ action verbs (composite multi-action),
+  // letting the LLM emit a composite intent ARRAY via INTENT_TOOLS_SCHEMA function
+  // calling. Browser intentsDispatcher then iterates and dispatches all of them.
+  //
+  // Regression mandate: must NOT trigger on SINGLE-action queries (iter 41 v67
+  // 1000-matrix-failures.jsonl must remain empty). Verb count threshold ≥2 keeps
+  // single-action queries on their existing pre-LLM fast path.
+  //
+  // Domain-specific composites EXCLUDED: the arduino/scratch detectors below
+  // already ship multi-AZIONE composite responses in one canonical reply
+  // (openeditor + switcheditor + setcode + compile etc.). Those paths are
+  // NOT broken by bench bug #3 — only the cross-domain multi-INTENT path is.
+  const hasArduinoOrScratchKeyword = /\b(arduino|sketch|blink|lampegg|scratch|blocchi|blocchett\w*|blockly)\b/i.test(text);
+  const actionVerbMatches = text.match(/\b(accendi|metti|imposta|setta|fai|fammi|carica|apri|mostra|evidenzia|compila|play|pause|cambia|porta|vai|vado)\b/gi) || [];
+  if (!hasArduinoOrScratchKeyword && actionVerbMatches.length >= 2) {
+    return null;
+  }
+
   // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea test matrix evidence:
   // play/pause/compile/screenshot/highlight comandi semplici NON intercettati
   // pre-LLM. LLM Vertex risponde con diagnosi invece di dispatch action.
