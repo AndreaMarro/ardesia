@@ -1,22 +1,30 @@
 /**
  * Unit tests for routeModel (supabase/functions/_shared/router.ts).
  *
- * Sprint U iter 43 A1-iter43 — fixes iter 41 bench bug #2:
- *   chat_thinking 9/10 routed Flash-Lite instead of Pro.
+ * Sprint U iter 46 v75 — architectural pivot Pro → Flash + thinkingBudget.
  *
- * Validates THINKING_KEYWORDS promotion → 'gemini-2.5-pro' for explicit
+ * Iter 43 A1 originally promoted THINKING_KEYWORDS → 'gemini-2.5-pro'.
+ * Iter 45 v73 restored Pro after thinkingBudget integer fix.
+ * Iter 46 v75 measured Pro LIVE 8-9s — too slow for LIM real-time mandate.
+ * Andrea iter 46 directive "9681ms troppo lungo": rollback to Flash with
+ * thinkingBudget=2048 ('medium' level via routeThinkingLevel helper).
+ *
+ * Validates THINKING_KEYWORDS promotion → 'gemini-2.5-flash' for explicit
  * deep-thinking prompts ("approfondisci", "spiegami nel dettaglio",
  * "comprendere a fondo", "metti a confronto", "differenza tra X e Y", ...).
  *
- * Upstream `unlim-chat/index.ts:779` sets `thinkingLevel = 'medium'` when
- * routeModel returns 'gemini-2.5-flash', which the Vertex EU short-circuit at
- * `llm-client.ts:392-415` consumes to call `gemini-2.5-pro` with deep
- * reasoning.
+ * Upstream `unlim-chat/index.ts:795` calls `routeThinkingLevel(model, msg)`
+ * which returns 'medium' when (Flash + THINKING_KEYWORDS) OR explicit Pro.
+ * Vertex EU short-circuit `llm-client.ts:392-415` consumes model+thinkingLevel
+ * to call `gemini-2.5-flash` with thinkingBudget=2048. Target <5s latency vs
+ * Pro 8-9s. Cost ~2x Flash-Lite for <5% of live traffic.
  *
  * Cost discipline: regex tight by design (verb+phrase pairs for ambiguous
  * tokens). Promotion rate target <5% of live traffic vs Flash-Lite baseline.
  *
- * Evidence: docs/audits/2026-05-13-iter-41-latency-bench-7-capabilities.md.
+ * Evidence:
+ *   - docs/audits/2026-05-13-iter-41-latency-bench-7-capabilities.md
+ *   - docs/audits/2026-05-13-iter-46-pro-flash-pivot.md (this iter)
  *
  * (c) Andrea Marro 2026-05-13 — ELAB Tutor
  */
@@ -25,66 +33,66 @@ import { describe, it, expect } from 'vitest';
 
 // Vitest resolves '.ts' through esbuild. The shared router module has zero
 // Deno-only deps (only type-only import from './types.ts').
-import { routeModel } from '../../supabase/functions/_shared/router.ts';
+import { routeModel, routeThinkingLevel } from '../../supabase/functions/_shared/router.ts';
 
-describe('routeModel — iter 43 THINKING_KEYWORDS promotion (bug #2 fix)', () => {
-  describe('Pro promotion (deep-thinking prompts)', () => {
+describe('routeModel — iter 46 THINKING_KEYWORDS Flash + thinkingBudget pivot', () => {
+  describe('Flash promotion (deep-thinking prompts → Flash + thinkingBudget=2048)', () => {
     it('promotes "Spiegami nel dettaglio come funziona Ohm" to Pro', () => {
       expect(routeModel('Spiegami nel dettaglio come funziona Ohm')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "Approfondisci differenza serie e parallelo" to Pro', () => {
       expect(routeModel('Approfondisci differenza serie e parallelo')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "Analizza in profondità il circuito" to Pro', () => {
       expect(routeModel('Analizza in profondità il circuito')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "Analizza nel dettaglio questo esperimento" to Pro', () => {
       expect(routeModel('Analizza nel dettaglio questo esperimento')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "Vorrei comprendere a fondo la legge di Ohm" to Pro', () => {
       expect(routeModel('Vorrei comprendere a fondo la legge di Ohm')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "Metti a confronto LED e resistore" to Pro', () => {
       expect(routeModel('Metti a confronto LED e resistore')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "Differenza tra corrente e tensione" (explicit compare form) to Pro', () => {
       expect(routeModel('Differenza tra corrente e tensione')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('promotes "differenza fra resistenza e impedenza" (fra variant) to Pro', () => {
       expect(routeModel('Qual e la differenza fra resistenza e impedenza?')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
 
     it('matches case-insensitively', () => {
-      expect(routeModel('APPROFONDISCI questo concetto')).toBe('gemini-2.5-pro');
-      expect(routeModel('Approfondire il tema')).toBe('gemini-2.5-pro');
+      expect(routeModel('APPROFONDISCI questo concetto')).toBe('gemini-2.5-flash');
+      expect(routeModel('Approfondire il tema')).toBe('gemini-2.5-flash');
     });
 
     it('promotes "in profondita" without accent (loose Italian input)', () => {
       expect(routeModel('Spiegami in profondita la corrente alternata')).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
   });
@@ -165,9 +173,9 @@ describe('routeModel — iter 43 THINKING_KEYWORDS promotion (bug #2 fix)', () =
     });
 
     it('handles missing circuitState gracefully', () => {
-      expect(routeModel('Approfondisci', false, null)).toBe('gemini-2.5-pro');
+      expect(routeModel('Approfondisci', false, null)).toBe('gemini-2.5-flash');
       expect(routeModel('Approfondisci', false, undefined)).toBe(
-        'gemini-2.5-pro',
+        'gemini-2.5-flash',
       );
     });
   });
@@ -196,5 +204,37 @@ describe('routeModel — iter 43 THINKING_KEYWORDS promotion (bug #2 fix)', () =
     it('does NOT promote "comprendere" alone (requires "a fondo")', () => {
       expect(routeModel('voglio comprendere')).toBe('gemini-2.5-flash-lite');
     });
+  });
+});
+
+describe('routeThinkingLevel — iter 46 v76 helper (Pro-only, latency-first pivot)', () => {
+  it('returns "medium" ONLY for explicit Pro model (legacy / offline audit path)', () => {
+    expect(routeThinkingLevel('gemini-2.5-pro', 'qualunque cosa')).toBe('medium');
+    expect(routeThinkingLevel('gemini-2.5-pro', '')).toBe('medium');
+    expect(routeThinkingLevel('gemini-2.5-pro', 'Approfondisci')).toBe('medium');
+  });
+
+  it('returns undefined for Flash + THINKING_KEYWORDS (iter 46 latency pivot — Flash plain)', () => {
+    // Iter 46 v76: thinking OFF for Flash regardless of keywords.
+    // Empirical: Flash + thinkingBudget=1024 measured 10-22s LIVE (worse than Pro).
+    // Quality preserved via system-prompt + RAG inject; latency ~3-4s target.
+    expect(routeThinkingLevel('gemini-2.5-flash', 'Approfondisci il concetto')).toBeUndefined();
+    expect(routeThinkingLevel('gemini-2.5-flash', 'Spiegami nel dettaglio Ohm')).toBeUndefined();
+  });
+
+  it('returns undefined for Flash + no THINKING_KEYWORDS (diagnostic / vision Flash)', () => {
+    expect(routeThinkingLevel('gemini-2.5-flash', 'Spiega come funziona LED')).toBeUndefined();
+    expect(routeThinkingLevel('gemini-2.5-flash', 'circuito non funziona')).toBeUndefined();
+  });
+
+  it('returns undefined for Flash-Lite always (no thinking budget)', () => {
+    expect(routeThinkingLevel('gemini-2.5-flash-lite', 'Approfondisci')).toBeUndefined();
+    expect(routeThinkingLevel('gemini-2.5-flash-lite', 'Ciao')).toBeUndefined();
+  });
+
+  it('handles non-string message gracefully → undefined for Flash', () => {
+    expect(routeThinkingLevel('gemini-2.5-flash', null)).toBeUndefined();
+    expect(routeThinkingLevel('gemini-2.5-flash', undefined)).toBeUndefined();
+    expect(routeThinkingLevel('gemini-2.5-flash', 42)).toBeUndefined();
   });
 });

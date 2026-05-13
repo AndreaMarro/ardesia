@@ -57,14 +57,16 @@ export function routeModel(
   const safeMessage = typeof message === 'string' ? message : '';
   const hasErrors = (circuitState?.errors?.length ?? 0) > 0;
 
-  // PRO-promote (iter 45 v73 RESTORE, ~<5% of traffic): explicit deep-thinking prompts.
-  // Iter 43 v70 hotfix routed to Flash due to Vertex Pro 503 with thinkingLevel string.
-  // Iter 45 A1 Codex audit (gpt-5.5 high reasoning) confirmed root cause:
-  // - thinkingLevel is GEMINI 3 ONLY param; Gemini 2.5 Pro requires thinkingBudget integer.
-  // - vertex-client.ts iter 45 A1 fix maps level string→budget integer per model.
-  // Now safe to promote Pro again. Cost: ~5x Flash-Lite for <5% queries (regex tight).
+  // FLASH-promote with thinking (iter 46 architecture v75, ~<5% of traffic):
+  // Iter 45 v73 Pro restore measured 8-9s LIVE (budget=512) — too slow for LIM real-time.
+  // Andrea iter 46 mandate "9681ms troppo lungo". Pro Vertex EU inherently slow for educational
+  // queries (~80ms/char gen + thinking overhead). Architectural pivot:
+  // - Pro = premium reasoning, BUT 5x cost + 3x latency vs Flash
+  // - Flash with thinkingBudget=2048 = similar depth for educational queries, ~3-4s atteso
+  // Cost: ~2x Flash-Lite for <5% queries. Latency target <5s LIM-friendly.
+  // unlim-chat sets thinkingLevel='medium' via routeThinkingLevel helper export below.
   if (!hasImages && THINKING_KEYWORDS.test(safeMessage)) {
-    return 'gemini-2.5-pro';
+    return 'gemini-2.5-flash';
   }
 
   // Live class path: complex/diagnostic prompts need enough reasoning, but not
@@ -79,6 +81,32 @@ export function routeModel(
 
   // FLASH-LITE (70%): everything else (greetings, quiz, hints, simple Q&A)
   return 'gemini-2.5-flash-lite';
+}
+
+/**
+ * Iter 46 v76 — Return thinking level for a routed (model, message) pair.
+ *
+ * Architectural pivot: empirical Flash + thinkingBudget=1024 (medium) LIVE bench
+ * measured 10-22s (WORSE than Pro 6-8s). Andrea iter 46 mandate "9681ms troppo
+ * lungo" → Flash WITHOUT thinking (~3-4s typical, slight quality drop but
+ * latency target <5s met for educational deep-thinking queries).
+ *
+ * Returns 'medium' ONLY for explicit Pro model (legacy / offline audit). For
+ * Flash, thinking is OFF regardless of THINKING_KEYWORDS — quality preserved
+ * via system-prompt v3.1 + few-shot + Onniscenza topK=3 RAG inject.
+ *
+ * NB: undefined preserves existing 8s llmCapMs path; 'medium' triggers 25s cap
+ * (unlim-chat/index.ts:839 thinkingLevel branch).
+ */
+export function routeThinkingLevel(
+  model: GeminiModel,
+  _message: string,
+  _hasImages: boolean = false,
+): 'medium' | undefined {
+  if (model === 'gemini-2.5-pro') return 'medium';
+  // Flash + THINKING_KEYWORDS: thinking OFF (iter 46 v76 latency-first pivot).
+  // Quality preserved via prompt-engineering + RAG inject; latency ~3-4s typical.
+  return undefined;
 }
 
 /**

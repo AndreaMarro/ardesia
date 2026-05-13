@@ -8,7 +8,7 @@
 
 import { serve } from 'https://deno.land/std@0.208.0/http/server.ts';
 import { callLLM, callBrainFallback, getMetrics } from '../_shared/llm-client.ts';
-import { routeModel, modelDisplayName } from '../_shared/router.ts';
+import { routeModel, routeThinkingLevel, modelDisplayName } from '../_shared/router.ts';
 import { buildSystemPrompt } from '../_shared/system-prompt.ts';
 import { loadStudentContext, saveInteraction, saveMessageHistory, checkConsent, loadRecentHistory, extractVolCapFromMessage } from '../_shared/memory.ts';
 import { buildOfftopicGentleBridge, type OfftopicType } from '../_shared/offtopic-template-response.ts';
@@ -791,8 +791,13 @@ serve(async (req: Request) => {
       ? 'gemini-2.5-flash'
       : routedModel;
 
-    // 4. Determine thinking level for Pro model
-    const thinkingLevel = model === 'gemini-2.5-pro' ? 'medium' : undefined;
+    // 4. Determine thinking level (iter 46 v75 architectural pivot):
+    //   - Pro model → 'medium' (legacy retained for explicit Pro paths / offline audit)
+    //   - Flash + THINKING_KEYWORDS → 'medium' (educational deep-thinking, cheaper than Pro)
+    //   - Otherwise undefined (Flash-Lite + vision + diagnostic Flash → no thinking)
+    // Andrea iter 46 mandate "9681ms troppo lungo" → Flash + thinkingBudget=2048
+    // (vertex-client.ts:thinkingLevelToBudget) targets ~3-4s vs Pro 8-9s LIVE.
+    const thinkingLevel = routeThinkingLevel(model, safeMessage, hasImages);
 
     // 5. Call LLM (Together default, Gemini fallback, Brain last resort)
     // Sprint S iter 5: Andrea decision — Together AI primary, Gemini fallback

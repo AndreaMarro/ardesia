@@ -391,11 +391,22 @@ export async function callLLM(options: LLMOptions): Promise<LLMResult> {
   // ratify iter 39 (docs/decisions/2026-05-12-pure-gemini-chat-evidence-based.md).
   if (isVertexEUEnabled()) {
     try {
-      // Model selection: thinking mode → Pro; vision (images) → Flash (vision
-      // capable); else → Flash-Lite (default fast chat ~1877ms p50 empirical).
-      const vertexModel = options.thinkingLevel
+      // Model selection (iter 46 v77 architectural pivot — respect router):
+      //   - options.model from router (THINKING_KEYWORDS → Flash) is the source of truth.
+      //   - Vision (images): force Flash (vision capable, override Flash-Lite if upstream routed).
+      //   - Fall back to Flash-Lite when options.model missing AND no vision (legacy callers).
+      // Iter 39 prior behavior hardcoded Flash-Lite for non-Pro non-vision — that ignored
+      // router output. Iter 46 v77: trust router decision (Flash for deep-thinking promote).
+      // Andrea iter 46 directive "9681ms troppo lungo": Flash without thinking ~3-4s typical,
+      // quality preserved via system-prompt v3.1 + RAG inject (no thinkingBudget overhead).
+      const upstreamModel = options.model as GeminiModel | undefined;
+      const vertexModel: GeminiModel = upstreamModel === 'gemini-2.5-pro'
         ? 'gemini-2.5-pro'
-        : (hasImages ? 'gemini-2.5-flash' : 'gemini-2.5-flash-lite');
+        : hasImages
+        ? 'gemini-2.5-flash'
+        : upstreamModel === 'gemini-2.5-flash'
+        ? 'gemini-2.5-flash'
+        : 'gemini-2.5-flash-lite';
       const r = await callVertexGemini({ ...options, model: vertexModel });
       return {
         text: r.text,
