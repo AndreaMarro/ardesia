@@ -127,3 +127,37 @@ scripts/dev/codex-bg.sh verify-dead-routing \
 scripts/dev/codex-bg.sh verify-drawing-readonly \
   "show DrawingOverlay.jsx render branch when !drawingEnabled, locate line range"
 ```
+
+## Codex model + reasoning configuration (iter 44 verify)
+
+**Active config** `~/.codex/config.toml`:
+```toml
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+```
+
+Verified iter 44 via `codex exec` output:
+```
+model: gpt-5.5
+provider: openai
+reasoning effort: high
+reasoning summaries: none
+```
+
+All iter 41-44 Codex bg jobs used gpt-5.5 + high reasoning by default (NO `-m` flag override needed).
+
+Override examples:
+- Different model: `codex exec -m gpt-4 ...` (NB: gpt-5 NOT supported on ChatGPT account, gpt-5.5 only)
+- Lower reasoning: `codex exec -c model_reasoning_effort=low ...`
+- Read-only sandbox: `codex exec --sandbox read-only ...` (no file mutations)
+- Default `workspace-write`: filesystem RW, NO network (DNS block)
+
+Validated iter 41-44 jobs (gpt-5.5 high):
+1. `codex-job1-index.txt` — unlim-chat pipeline latency analysis
+2. `codex-job2-vision.txt` — Pixtral 12B latency analysis
+3. `codex-job3-onnipotenza.txt` — composite handler latency
+4. `codex-verify-a5-fixes.txt` — A5 vitest fixes file:line citation verify
+5. `codex-verify-routing-removal.txt` — LLM_ROUTING_WEIGHTS ZERO test refs (safe)
+6. `codex-find-flaky-tests.txt` — 30+ candidates timer/clock dependency listed
+7. `codex-investigate-frontend-fast-path.txt` — useGalileoChat.js fast-path file:line
+8. `codex-verify-bundle-v72-shipped.txt` — dist/assets buildDirectOperationalResponse tree-shaken verified
