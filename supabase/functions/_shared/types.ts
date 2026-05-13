@@ -126,4 +126,9 @@ export interface StudentContext {
 export type GeminiModel =
   | 'gemini-2.5-flash-lite'
   | 'gemini-2.5-flash'
-  | 'gemini-2.5-pro';
+  | 'gemini-2.5-pro'
+  // Iter 47 Opzione B — Claude on Vertex AI EU multi-region (Anthropic Messages API).
+  // GeminiModel union now misnamed but preserved for backward compat across the
+  // codebase; treat as ProviderModel. Routing branches in llm-client.ts switch
+  // on prefix `claude-` to dispatch via vertex-claude-client.
+  | 'claude-haiku-4-5';

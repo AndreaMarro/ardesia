@@ -9,6 +9,7 @@
 import type { GeminiModel, ImageData } from './types.ts';
 import { callGemini, callBrainFallback, GeminiError, ErrorCode } from './gemini.ts';
 import { callVertexGemini, isVertexEUEnabled, VertexError } from './vertex-client.ts';
+import { callVertexClaude } from './vertex-claude-client.ts';
 import {
   canUseTogether,
   anonymizePayload,
@@ -389,6 +390,40 @@ export async function callLLM(options: LLMOptions): Promise<LLMResult> {
   // (backward-compatible safety net during Phase 0 rollout).
   // Evidence-based: empirical R5 2026-05-11 1877ms avg p50, Andrea Pure G
   // ratify iter 39 (docs/decisions/2026-05-12-pure-gemini-chat-evidence-based.md).
+  // ── Iter 47 Opzione B — Claude on Vertex AI EU multi-region branch ──
+  // When upstream router selects 'claude-haiku-4-5' (THINKING_KEYWORDS + flag
+  // ENABLE_VERTEX_CLAUDE_THINKING=true), dispatch via vertex-claude-client.
+  // GDPR EU residency preserved (multi-region `eu` endpoint), reuses existing
+  // SA token from vertex-client.ts (Karpathy Simple: no AWS Bedrock complexity).
+  // Falls through to Vertex Gemini on Claude failure (safety net).
+  if (typeof options.model === 'string' && options.model.startsWith('claude-')) {
+    try {
+      const r = await callVertexClaude({
+        systemPrompt: options.systemPrompt,
+        message: options.message,
+        maxTokens: options.maxOutputTokens,
+        temperature: options.temperature,
+        model: `${options.model}@20251001`,
+      });
+      return {
+        text: r.text,
+        model: r.model,
+        provider: 'vertex-claude',
+        tokensUsed: { input: r.tokensUsed.input, output: r.tokensUsed.output },
+        latencyMs: r.latencyMs,
+      };
+    } catch (e) {
+      console.warn(JSON.stringify({
+        level: 'warn',
+        event: 'vertex_claude_fallthrough',
+        error_code: e instanceof VertexError ? e.code : 'unknown',
+        error_message: e instanceof Error ? e.message.slice(0, 200) : String(e).slice(0, 200),
+        hint: 'Vertex Gemini fallback active',
+      }));
+      // Fall through to Vertex Gemini path below.
+    }
+  }
+
   if (isVertexEUEnabled()) {
     try {
       // Model selection (iter 46 v77 architectural pivot — respect router):

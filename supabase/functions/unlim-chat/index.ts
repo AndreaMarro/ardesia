@@ -1279,6 +1279,7 @@ serve(async (req: Request) => {
         : result.provider === 'together' ? `together-${result.model}`
         : result.provider === 'brain' ? 'brain'
         : result.provider === 'vertex' ? `vertex-${result.model}`
+        : result.provider === 'vertex-claude' ? `vertex-claude-${result.model}`
         : modelDisplayName(model) || result.model,
       audio: audioUrl || undefined,
       // Sprint U iter 39 Phase 0 — Vertex EU label for GDPR Art.8 minori

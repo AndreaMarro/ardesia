@@ -57,14 +57,29 @@ export function routeModel(
   const safeMessage = typeof message === 'string' ? message : '';
   const hasErrors = (circuitState?.errors?.length ?? 0) > 0;
 
-  // FLASH-promote with thinking (iter 46 architecture v75, ~<5% of traffic):
-  // Iter 45 v73 Pro restore measured 8-9s LIVE (budget=512) — too slow for LIM real-time.
-  // Andrea iter 46 mandate "9681ms troppo lungo". Pro Vertex EU inherently slow for educational
-  // queries (~80ms/char gen + thinking overhead). Architectural pivot:
-  // - Pro = premium reasoning, BUT 5x cost + 3x latency vs Flash
-  // - Flash with thinkingBudget=2048 = similar depth for educational queries, ~3-4s atteso
-  // Cost: ~2x Flash-Lite for <5% queries. Latency target <5s LIM-friendly.
-  // unlim-chat sets thinkingLevel='medium' via routeThinkingLevel helper export below.
+  // Iter 47 Opzione B — Claude Haiku 4.5 on Vertex AI EU multi-region (canary):
+  // When ENABLE_VERTEX_CLAUDE_THINKING=true env flag AND THINKING_KEYWORDS match
+  // AND not vision (Claude on Vertex doesn't yet match Gemini's vision pipeline
+  // for ELAB use case), route to Claude. Latency target <1s TTFT (Haiku 4.5 is
+  // fastest LLM 2026, p95 612ms TTFT). Cost $1.10/$5.50 per 1M tok (+10% EU
+  // multi-region premium) = trivial volumi ELAB (<$0.001/scuola/mese).
+  //
+  // Falls back to Flash promote below on Claude failure (vertex-claude-client
+  // throws → llm-client.ts catches → Gemini Vertex EU branch active).
+  if (
+    !hasImages &&
+    THINKING_KEYWORDS.test(safeMessage) &&
+    (typeof Deno !== 'undefined' &&
+      (Deno.env.get('ENABLE_VERTEX_CLAUDE_THINKING') || 'false').trim().toLowerCase() === 'true')
+  ) {
+    return 'claude-haiku-4-5';
+  }
+
+  // FLASH-promote (iter 46 architecture v78, ~<5% of traffic):
+  // Iter 45 v73 Pro restore measured 8-9s LIVE — too slow for LIM real-time.
+  // Iter 46 v78 architectural pivot: Flash plain (no thinkingBudget) ~3-4s typical.
+  // Quality preserved via system-prompt v3.1 + few-shot + Onniscenza topK=3 RAG inject.
+  // Cost ~2x Flash-Lite for <5% queries. Latency target <5s LIM-friendly.
   if (!hasImages && THINKING_KEYWORDS.test(safeMessage)) {
     return 'gemini-2.5-flash';
   }
