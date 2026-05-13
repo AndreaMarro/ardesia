@@ -273,13 +273,19 @@ serve(async (req: Request) => {
     // `[GERARCHIA CONTESTO] ... esperimenti/storia come cose visibili ora.`
     // di api.js:783 → ON-TOPIC user query (legge Ohm, LED, etc.) classificata
     // erroneamente off-topic. Strip envelope blocks before regex test.
+    // Iter 44 P0 Andrea 2026-05-13 prod screenshot evidence: pre-LLM detector
+    // matched expNamePatterns words ("semaforo", "primo LED") INSIDE system-injected
+    // context blocks like [GERARCHIA CONTESTO]/[RIFERIMENTO LIBRO FISICO]. Previous
+    // regex required `\n\n` paragraph terminator — failed on SINGLE-LINE envelopes
+    // from frontend api.js:783 envelope-builder. Surgical fix: strip ALL square-bracket
+    // UPPERCASE system-tag content from `[TAG ...]` until next `[AZIONE`/`[INTENT` OR EOF
+    // OR another `[UPPERCASE_TAG]` block. Strip envelope tags whitelist-style.
+    const SYSTEM_TAG_RE = /\[(?:GERARCHIA\s+CONTESTO|PRESENTE\s+LIVE|CONTESTO\s+CAPITOLO|NARRAZIONE\s+LIVE|RIFERIMENTO\s+LIBRO\s+FISICO|STORIA\s+SESSIONI|MEMORIA\s+(?:STUDENTE|PASSATA)|REGIA\s+(?:MULTI-AI|PARALLELA)|PROFILO\s+ATTIVO|AGENT_DECISION_JSON|AUTOCOSCIENZA|CITAZIONE\s+VOL|CONOSCENZA\s+DAI\s+VOLUMI|CONTESTO|Hybrid\s+RAG|FONTE|wiki|rag|glossario|docs)\b[\s\S]*?(?=\[(?:AZIONE|INTENT|GERARCHIA|PRESENTE|CONTESTO|NARRAZIONE|RIFERIMENTO|STORIA|MEMORIA|REGIA|PROFILO|AGENT|AUTOCOSCIENZA|CITAZIONE|CONOSCENZA|Hybrid|FONTE|wiki|rag|glossario|docs)\b|$)/gi;
     const stripEnvelope = (s: string): string => String(s || '')
-      .replace(/\[GERARCHIA CONTESTO[\s\S]*?(?:\n\n|\}\s*$)/gi, ' ')
-      .replace(/\[PRESENTE LIVE[\s\S]*?(?:\n\n|\]\s*\n|\}\s*\n)/gi, ' ')
-      .replace(/\[CONTESTO CAPITOLO[\s\S]*?(?:\n\n|\}\s*\n)/gi, ' ')
-      .replace(/\[NARRAZIONE LIVE[\s\S]*?(?:\n\n|\}\s*\n)/gi, ' ')
-      .replace(/REGOLA:[\s\S]*?\n\n/gi, ' ')
+      .replace(SYSTEM_TAG_RE, ' ')
+      .replace(/REGOLA:[\s\S]*?(?:\n\n|$)/gi, ' ')
       .replace(/\{[\s\S]{200,}?\}/g, ' ')
+      .replace(/\s+/g, ' ')
       .trim();
     const userQueryStripped = stripEnvelope(safeMessage) || safeMessage;
 
@@ -340,7 +346,16 @@ serve(async (req: Request) => {
       });
     }
 
-    const directOperational = buildDirectOperationalResponse(safeMessage, safeCircuitState as CircuitState | null);
+    // Iter 44 P0 hotfix Andrea 2026-05-13 prod screenshot evidence: pre-LLM detector
+    // was receiving FULL envelope `safeMessage` containing [GERARCHIA CONTESTO]
+    // system narrative with experiment context words like "semaforo", "primo LED".
+    // Detector matched expNamePatterns inside CONTEXT blocks → returned mount-experiment
+    // template regardless of actual user query. Verified prod: envelope containing
+    // "esperimenti/semaforo come template" → returned "Ragazzi, apriamo esperimento del semaforo"
+    // for ANY user query. Surgical fix: pass `userQueryStripped` (already computed line 283
+    // via stripEnvelope) instead of `safeMessage`. Preserves detector behavior on REAL user
+    // query, strips system-injected context words.
+    const directOperational = buildDirectOperationalResponse(userQueryStripped, safeCircuitState as CircuitState | null);
     if (directOperational) {
       // iter 20 P0 BUG FIX — direct-operational source bypassava enforcer + forceCitation*
       // → iter 19 stress 100q evidence: 5+ fail su categorie A/E/H (Arduino bypass canned string
