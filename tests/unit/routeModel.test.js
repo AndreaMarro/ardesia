@@ -4,7 +4,7 @@
  * Sprint U iter 43 A1-iter43 — fixes iter 41 bench bug #2:
  *   chat_thinking 9/10 routed Flash-Lite instead of Pro.
  *
- * Validates THINKING_KEYWORDS promotion → 'gemini-2.5-flash' for explicit
+ * Validates THINKING_KEYWORDS promotion → 'gemini-2.5-pro' for explicit
  * deep-thinking prompts ("approfondisci", "spiegami nel dettaglio",
  * "comprendere a fondo", "metti a confronto", "differenza tra X e Y", ...).
  *
@@ -31,60 +31,60 @@ describe('routeModel — iter 43 THINKING_KEYWORDS promotion (bug #2 fix)', () =
   describe('Pro promotion (deep-thinking prompts)', () => {
     it('promotes "Spiegami nel dettaglio come funziona Ohm" to Pro', () => {
       expect(routeModel('Spiegami nel dettaglio come funziona Ohm')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "Approfondisci differenza serie e parallelo" to Pro', () => {
       expect(routeModel('Approfondisci differenza serie e parallelo')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "Analizza in profondità il circuito" to Pro', () => {
       expect(routeModel('Analizza in profondità il circuito')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "Analizza nel dettaglio questo esperimento" to Pro', () => {
       expect(routeModel('Analizza nel dettaglio questo esperimento')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "Vorrei comprendere a fondo la legge di Ohm" to Pro', () => {
       expect(routeModel('Vorrei comprendere a fondo la legge di Ohm')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "Metti a confronto LED e resistore" to Pro', () => {
       expect(routeModel('Metti a confronto LED e resistore')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "Differenza tra corrente e tensione" (explicit compare form) to Pro', () => {
       expect(routeModel('Differenza tra corrente e tensione')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('promotes "differenza fra resistenza e impedenza" (fra variant) to Pro', () => {
       expect(routeModel('Qual e la differenza fra resistenza e impedenza?')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
 
     it('matches case-insensitively', () => {
-      expect(routeModel('APPROFONDISCI questo concetto')).toBe('gemini-2.5-flash');
-      expect(routeModel('Approfondire il tema')).toBe('gemini-2.5-flash');
+      expect(routeModel('APPROFONDISCI questo concetto')).toBe('gemini-2.5-pro');
+      expect(routeModel('Approfondire il tema')).toBe('gemini-2.5-pro');
     });
 
     it('promotes "in profondita" without accent (loose Italian input)', () => {
       expect(routeModel('Spiegami in profondita la corrente alternata')).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
   });
@@ -165,9 +165,9 @@ describe('routeModel — iter 43 THINKING_KEYWORDS promotion (bug #2 fix)', () =
     });
 
     it('handles missing circuitState gracefully', () => {
-      expect(routeModel('Approfondisci', false, null)).toBe('gemini-2.5-flash');
+      expect(routeModel('Approfondisci', false, null)).toBe('gemini-2.5-pro');
       expect(routeModel('Approfondisci', false, undefined)).toBe(
-        'gemini-2.5-flash',
+        'gemini-2.5-pro',
       );
     });
   });

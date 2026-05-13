@@ -57,15 +57,14 @@ export function routeModel(
   const safeMessage = typeof message === 'string' ? message : '';
   const hasErrors = (circuitState?.errors?.length ?? 0) > 0;
 
-  // FLASH-promote (iter 43 v69 hotfix, ~<5% of traffic): explicit deep-thinking prompts.
-  // ORIGINALLY iter 43 v68 promoted to Pro+thinkingLevel:medium but Vertex EU
-  // Frankfurt Pro returned 503 at 15s consistently (root cause unclear — Pro
-  // availability OR thinkingConfig.thinkingLevel param compat). Surgical
-  // fallback: promote to Flash (faster than Pro, better capability than
-  // Flash-Lite, no thinking timeout risk). Iter 44 P0: investigate Vertex Pro
-  // accessibility OR thinkingBudget number-vs-string + restore Pro promotion.
+  // PRO-promote (iter 45 v73 RESTORE, ~<5% of traffic): explicit deep-thinking prompts.
+  // Iter 43 v70 hotfix routed to Flash due to Vertex Pro 503 with thinkingLevel string.
+  // Iter 45 A1 Codex audit (gpt-5.5 high reasoning) confirmed root cause:
+  // - thinkingLevel is GEMINI 3 ONLY param; Gemini 2.5 Pro requires thinkingBudget integer.
+  // - vertex-client.ts iter 45 A1 fix maps level string→budget integer per model.
+  // Now safe to promote Pro again. Cost: ~5x Flash-Lite for <5% queries (regex tight).
   if (!hasImages && THINKING_KEYWORDS.test(safeMessage)) {
-    return 'gemini-2.5-flash';
+    return 'gemini-2.5-pro';
   }
 
   // Live class path: complex/diagnostic prompts need enough reasoning, but not

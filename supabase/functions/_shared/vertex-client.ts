@@ -289,12 +289,29 @@ export async function callVertexGemini(options: VertexOptions): Promise<VertexRe
     temperature,
   };
 
-  // Vertex Gemini 2.5 thinking: flash-lite no thinking. flash/pro require
-  // explicit thinkingBudget=0 to skip thinking + return visible text faster.
+  // Iter 45 A1 FIX (Codex gpt-5.5 high reasoning audit 2026-05-13):
+  // Per Google Vertex docs (https://cloud.google.com/vertex-ai/generative-ai/docs/thinking):
+  // - `thinking_level` parameter is GEMINI 3 ONLY. Earlier models return INVALID_ARGUMENT.
+  // - Gemini 2.5 (Pro/Flash/Flash-Lite) MUST use `thinking_budget` integer.
+  // - Gemini 2.5 Pro budget range 128-32768 (CANNOT disable, no budget=0).
+  // - Flash/Flash-Lite budget range 0-... (0 disables thinking).
+  // Previous code sent `{ thinkingLevel: 'medium' }` to Vertex 2.5 Pro → 503 timeout 15s.
+  // Iter 43 hotfix routed deep-thinking to Flash instead of Pro (router.ts).
+  // Iter 45 A1: map string → integer budget per model, restore Pro accessibility.
+  const thinkingLevelToBudget = (level: string | undefined, m: string): number | undefined => {
+    if (!level) return m === 'gemini-2.5-pro' ? undefined : 0; // Pro can't disable, Flash 0=off
+    // Map string to integer budget (Pro requires 128+ min)
+    if (m === 'gemini-2.5-pro') {
+      return { minimal: 256, low: 1024, medium: 2048, high: 8192 }[level] ?? 2048;
+    }
+    return { minimal: 128, low: 512, medium: 1024, high: 4096 }[level] ?? 1024;
+  };
   if (model !== 'gemini-2.5-flash-lite') {
-    generationConfig.thinkingConfig = thinkingLevel
-      ? { thinkingLevel }
-      : { thinkingBudget: 0 };
+    const budget = thinkingLevelToBudget(thinkingLevel, model);
+    if (budget !== undefined) {
+      generationConfig.thinkingConfig = { thinkingBudget: budget };
+    }
+    // Pro without thinkingLevel: omit thinkingConfig entirely (Pro auto-thinks default).
   }
 
   const requestBody = {
