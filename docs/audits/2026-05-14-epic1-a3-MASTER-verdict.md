@@ -87,8 +87,14 @@ variants — deferred, not blocking; the subagents verified directly.)
 
 ## Coverage gaps + structural problems
 
-- **Vol 2 Cap.11 "I diodi"** has printed experiments — but there are **zero `v2-cap11-*` records**
-  in either the repo dataset or Tea's map. Missing entirely.
+- **Vol 2 Cap.11 "I diodi" is a pure-theory chapter — no experiments.** A4.1c (iter 56)
+  read the chapter body directly (`vol2.txt` lines 2624-2738, PDF pp.99-102) and confirmed
+  it contains zero `ESPERIMENTO`/`ESERCIZIO`/hands-on blocks — it is explanatory theory
+  (diodes as one-way current, anodo/catodo, reverse-polarity protection, flyback diodes).
+  The earlier "has printed experiments" claim in this verdict was wrong. The contract is
+  already self-consistent with this (it chains `v2-cap10-esp4` → `v2-cap12-esp1`). Per
+  parità stretta there are correctly **0** `v2-cap11-*` lesson-paths. Codex independently
+  confirmed (see `docs/audits/2026-05-14-epic1-a4-1c-cap11-finding.md`).
 - **Vol 3 is structurally inflated.** V0.8.1 has real content only for Ch5-8 (~14 printed
   experiment blocks). Both the repo (29 `v3-*`) and Tea (29) declare roughly double. **~15 Vol 3
   software experiments have no printed counterpart** (all PWM/Fade/Knight-Rider/debounce/contatore
@@ -127,8 +133,13 @@ metadata for Vol1+Vol2, and the *structure* of the 7-step schema — but `narrat
    comment.
 5. **Vol 2 Cap.12 title wording** — TOC "Robot marciante!" vs body header "Robot segui luce" vs repo
    "Robot Segui Luce". Pick the canonical phrasing.
-6. **Vol 2 Cap.11 "I diodi" coverage gap** — add `v2-cap11-*` experiments (book has them, software
-   has none)?
+6. **Vol 2 Cap.11 "I diodi" — RESOLVED by A4.1c.** Not a coverage gap: the chapter has no
+   printed experiments (verified iter 56, Claude + Codex). No `v2-cap11-*` lesson-paths are
+   added. OPEN for A4.1e: whether Cap.11 should appear in the narrative arc
+   (`chapter-map.js` / `lesson-groups.js`) as a **theory node** with no experiment
+   lesson-path — so a teacher in Modalità Percorso still reads the diodi theory between
+   Cap.10 and Cap.12 (Morfismo Sense 2 arc continuity). This is a schema decision for
+   A4.1e, not A4.1c.
 
 Items 4-6 are low-stakes ratifications. Items 1-3 are the real Vol 3 product decisions and **block
 A4 for the ~15-20 affected experiments** (the 65 Vol1+Vol2 experiments are not blocked).
