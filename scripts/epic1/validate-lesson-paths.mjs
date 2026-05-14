@@ -25,7 +25,12 @@ export function checkLessonPath(id, lessonPath, correction) {
       issues.push(`pending-removal: correction.action=remove but lesson-path ${id} still exists`);
     }
   } else if (correction.action === 'consolidate') {
-    issues.push(`pending-consolidation: ${id} should be consolidated into ${correction.consolidateInto}`);
+    // pending-consolidation fires ONLY while the numbered-id lesson-path still
+    // exists. Once consolidated (lessonPath == null), the consolidation is
+    // complete → ok. Mirrors the A4.1b pending-removal fix (commit 36121f8f).
+    if (lessonPath) {
+      issues.push(`pending-consolidation: ${id} should be consolidated into ${correction.consolidateInto}`);
+    }
   } else {
     // action keep | correct — the lesson-path must exist and match the contract.
     // The contract FULLY specifies title/chapter/nextId for keep/correct entries

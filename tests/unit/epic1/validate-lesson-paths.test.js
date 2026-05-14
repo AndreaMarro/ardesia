@@ -103,6 +103,24 @@ describe('checkLessonPath', () => {
     expect(r.ok).toBe(false);
     expect(r.issues.some((i) => i.includes('pending-consolidation') && i.includes('v3-cap6-morse'))).toBe(true);
   });
+  it('consolidate: pending-consolidation fires while the source lesson-path still exists', () => {
+    const r = checkLessonPath(
+      'v3-cap6-esp3',
+      { experiment_id: 'v3-cap6-esp3', title: '2 LED alternati', chapter: 6 }, // lessonPath present
+      { action: 'consolidate', consolidateInto: 'v3-cap6-morse' }
+    );
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.startsWith('pending-consolidation'))).toBe(true);
+  });
+  it('consolidate: pending-consolidation clears once the source lesson-path is gone', () => {
+    const r = checkLessonPath(
+      'v3-cap6-esp3',
+      null, // lessonPath removed — consolidation complete
+      { action: 'consolidate', consolidateInto: 'v3-cap6-morse' }
+    );
+    expect(r.ok).toBe(true);
+    expect(r.issues).toEqual([]);
+  });
   it('reports a missing correction entry', () => {
     const lp = { experiment_id: 'v9-cap1-esp1', title: 'orphan' };
     const r = checkLessonPath('v9-cap1-esp1', lp, undefined);
