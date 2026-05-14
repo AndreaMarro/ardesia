@@ -14,7 +14,7 @@ You are continuing autonomous work on **ELAB Tutor** — an educational electron
 
 ## §0 — Entrance sequence (do these FIRST, in this exact order — do not skip, do not reorder)
 
-1. **Confirm working dir + branch + Codex.** `cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"`, `git branch --show-current` → must be `feat/iter-41-sprint-u-cycle-2-real-user-fix`. `git log --oneline -8` → the iter-56 tail ends at `ad2bc106`. Then **verify Codex**: `ls ~/.npm-global/bin/codex && ~/.npm-global/bin/codex --version` → must be `codex-cli 0.128.0`. `which codex` may return "not found" — that is fine, it is a PATH issue only; `scripts/dev/codex-bg.sh` hardcodes the absolute path `$HOME/.npm-global/bin/codex` and works regardless. If the binary is genuinely missing, restoring it is iter-57's FIRST sub-task (`npm ls -g @openai/codex`; it was `@openai/codex@0.128.0` in iter 56).
+1. **Confirm working dir + branch + Codex.** `cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"`, `git branch --show-current` → must be `feat/iter-41-sprint-u-cycle-2-real-user-fix`. `git log --oneline -10` → HEAD = `f043f82c` (the iter-56 close-docs commit); the A4.1c *implementation* tail is `ad2bc106`. Then **verify Codex**: `ls ~/.npm-global/bin/codex && ~/.npm-global/bin/codex --version` → must be `codex-cli 0.128.0`. `which codex` may return "not found" — that is fine, it is a PATH issue only; `scripts/dev/codex-bg.sh` hardcodes the absolute path `$HOME/.npm-global/bin/codex` and works regardless. If the binary is genuinely missing, restoring it is iter-57's FIRST sub-task (`npm ls -g @openai/codex`; it was `@openai/codex@0.128.0` in iter 56).
 2. **`git status`.** Expect a clean tree EXCEPT a handful of files left modified by the concurrent autonomous loop (`AGENTS.md`, `automa/state/heartbeat`, `automa/state/iter-19-harness-2.0-results.json`, `automa/state/parallel-research.json`) — those are NOT yours, leave them, never stage them. If you see a large unexpected diff in `src/` or `tests/`, the autonomous loop is mid-task — investigate provenance before touching anything (§5). Do NOT `git stash` in this repo — the concurrent loop modifies `automa/state/*` underneath a stash and the pop conflicts (iter 56 hit this).
 3. **Pre-flight CoV (entrance gate — MANDATORY before any change).** `npx vitest run` → must be **13106 passed, 0 failed** (15 skip + 12 todo). `npm run build` → exit 0. `node scripts/epic1/validate-lesson-paths.mjs` → **0 `pending-consolidation`** (94 checked · 64 pass · 30 fail — the 30 fails ARE the A4.1d work-list). If any is red → STOP and report — do not "fix" by touching tests. (Note: 13106, not 13273 — A4.1c legitimately re-baselined; both `.test-count-baseline.json` `total` and `automa/baseline-tests.txt` read 13106.)
 4. **`/mem-search` to re-anchor on the §2 mandate.** Run the claude-mem `search` tool with: `"EPIC 1 narrative arc parità volumi kit elabtutor"`, `"A4.1d re-thread dangling refs per-field correct"`, `"A3 master verdict repo book-faithful"`, `"Morfismo Sense 2 triplet"`. Background only — the authoritative iter-56 state is the files in §3.
@@ -46,7 +46,7 @@ Operating rule, ratified: **parità stretta** — the software experiment invent
 
 **EPIC 1 progress: A1 + A2 + A3 done; A4 spec'd; A4.1a + A4.1b + A4.1c DONE. A4.1d + A4.1e remain.**
 
-### A4.1c — DONE (7 iter-56 commits `91e36709..ad2bc106`, all pushed):
+### A4.1c — DONE (8 iter-56 commits `91e36709..f043f82c`, all pushed):
 | commit | what |
 |---|---|
 | `91e36709` | A4.1c design spec |
@@ -55,7 +55,8 @@ Operating rule, ratified: **parità stretta** — the software experiment invent
 | `d3b88f72` | gate fix — `pending-consolidation` fires only while the source file exists |
 | `e8166ef2` | archive — `scripts/epic1/consolidated-into-named-id/` (2 JSON + MANIFEST) |
 | `bee5e627` | **apply** — consolidate esp3→morse, esp5→semaforo, 51 files |
-| `ad2bc106` | A3 verdict correction — Vol2 Cap.11 is pure theory |
+| `ad2bc106` | A3 verdict correction — Vol2 Cap.11 is pure theory (A4.1c implementation tail) |
+| `f043f82c` | iter-56 close docs — close audit + this iter-57 activation prompt (HEAD) |
 
 ### iter-56 close state (CoV — independently verified by Claude re-runs + Codex):
 - `npx vitest run` = **13106 passed / 0 failed**. `npm run build` = exit 0. `validate-lesson-paths.mjs` = **0 `pending-consolidation`** (94 checked · 64 pass · 30 fail).
@@ -67,7 +68,7 @@ Operating rule, ratified: **parità stretta** — the software experiment invent
 
 ### A4.1d work-list (the validation gate's 30 fails + iter-56 carryover):
 1. **`v3-cap6.json` narrative_flow cycle** (above) — #1 priority.
-2. **6-file dangling-ref set** — surviving lesson-paths referencing removed ids (per the A4.1b MANIFEST `scripts/epic1/removed-no-volume-counterpart/MANIFEST.md`): `v3-cap6-semaforo`→`v3-cap6-esp6`, `v3-cap7-esp3`→`v3-cap7-esp4`, `v3-cap7-esp6`→`v3-cap7-esp7`, `v3-cap8-esp3`→`v3-extra-lcd-hello`, `v3-cap7-esp2`→`v3-cap6-esp6`, `v3-cap8-esp1`→`v3-cap7-esp8` (`next_experiment` + `next_suggested` + prerequisite arrays).
+2. **Dangling-ref set — 6 files / ~11 concrete refs** (per the A4.1b MANIFEST `scripts/epic1/removed-no-volume-counterpart/MANIFEST.md`, but the MANIFEST under-enumerates — see below). Surviving lesson-paths referencing removed ids: `v3-cap6-semaforo`→`v3-cap6-esp6`, `v3-cap7-esp3`→`v3-cap7-esp4`, `v3-cap7-esp6`→`v3-cap7-esp7`, `v3-cap8-esp3`→`v3-extra-lcd-hello` AND `v3-cap8-esp3` ALSO has a 2nd dangling ref `prerequisites→v3-cap6-esp6` (`v3-cap8-esp3.json:66` — Codex-caught iter-56 close audit; the MANIFEST + the original 6-file table missed this 2nd ref), `v3-cap7-esp2`→`v3-cap6-esp6`, `v3-cap8-esp1`→`v3-cap7-esp8`. **The recon for this MUST `git grep` every removed id (`v3-cap6-esp6`, `v3-cap6-esp7`, `v3-cap7-esp4/5/7/8`, `v3-cap7-mini`, `v3-cap8-esp4/5`, `v3-cap8-serial`, `v3-extra-*`) across ALL `src/` files and enumerate EVERY concrete ref (`next_experiment.id` + `next_suggested` + every `prerequisites[]` entry) — do NOT assume one ref per file.**
 3. **6 `action:correct` per-field fixes** in `scripts/epic1/a3-corrections.json` — entries with `"action": "correct"` (v2-cap12-esp1, v3-cap6-esp1, v3-cap7-esp2, v3-cap7-esp6, v3-cap8-esp1, v3-cap8-esp2) — apply the corrected title/page/chapter/nextId to the lesson-path files.
 4. **Survivor-title divergences** — `keep`-entry lesson-paths whose title diverges from the contract.
 5. **`morse` forward link** — `v3-cap6-morse` lacks a `next_experiment` (it should continue the Ch6 arc).
@@ -140,7 +141,7 @@ Gli esperimenti sono su un arco narrativo continuo, NON spezzettati come card fl
 ━━ LAVORO iter 57 ━━
 P0 — A4.1d (re-thread + per-field fidelity), in ordine:
   #1 Il ciclo narrative_flow in src/data/capitoli/v3-cap6.json (semaforo↔morse, introdotto da A4.1c — close audit §REGRESSION). Catena attuale: esp1→esp2→morse→esp4→semaforo→morse→semaforo. Va resa aciclica (probabile: esp1→esp2→morse→esp4→semaforo→[Ch7], transizioni 5+6 rimosse/riparate) — ma è decisione di RE-THREAD, fai recon prima, non improvvisare.
-  #2 I 6 file con dangling-ref a id rimossi (scripts/epic1/removed-no-volume-counterpart/MANIFEST.md).
+  #2 Dangling-ref a id rimossi: 6 file / ~11 ref concrete (MANIFEST scripts/epic1/removed-no-volume-counterpart/MANIFEST.md SOTTOSTIMA — es. v3-cap8-esp3.json ha 2 ref: next_experiment→v3-extra-lcd-hello E prerequisites→v3-cap6-esp6, Codex-caught). Il recon DEVE git grep OGNI id rimosso (v3-cap6-esp6/esp7, v3-cap7-esp4/5/7/8, v3-cap7-mini, v3-cap8-esp4/5, v3-cap8-serial, v3-extra-*) su TUTTO src/ ed enumerare OGNI ref concreta (next_experiment.id + next_suggested + ogni prerequisites[]) — NON assumere una ref per file.
   #3 I 6 action:correct per-field in scripts/epic1/a3-corrections.json (title/page/chapter/nextId → lesson-path files).
   #4 Survivor-title divergences (keep-entry con title divergente dal contract).
   #5 Forward link mancante di v3-cap6-morse.

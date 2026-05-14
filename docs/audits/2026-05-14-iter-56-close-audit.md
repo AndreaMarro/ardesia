@@ -1,6 +1,6 @@
 # EPIC 1 iter 56 — close audit (A4.1c)
 
-> iter 56. Branch `feat/iter-41-sprint-u-cycle-2-real-user-fix`. 7 commits `91e36709..ad2bc106` on top of `8b9b03aa`, all pushed to origin.
+> iter 56. Branch `feat/iter-41-sprint-u-cycle-2-real-user-fix`. 7 A4.1c-implementation commits `91e36709..ad2bc106` on top of `8b9b03aa` + this close-docs commit `f043f82c`, all pushed to origin.
 > Honest audit — G45 anti-inflation mandate enforced. Verified by independent Claude re-runs + Codex GPT-5.5 cross-check (the recursive anti-inflation loop).
 
 ## Verdict
