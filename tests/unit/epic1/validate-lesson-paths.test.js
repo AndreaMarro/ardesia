@@ -35,11 +35,21 @@ describe('validateCorrectionsFile', () => {
     const r = validateCorrectionsFile(bad);
     expect(r.ok).toBe(false);
   });
+  it('rejects an empty generatedFrom array', () => {
+    const bad = structuredClone(VALID_FILE);
+    bad.generatedFrom = [];
+    expect(validateCorrectionsFile(bad).ok).toBe(false);
+  });
   it('CorrectionEntry requires consolidateInto only when action=consolidate', () => {
     const ok = CorrectionEntry.safeParse({
       action: 'consolidate', bookFaithfulTitle: 'x', page: 1, chapter: 1,
       nextId: null, consolidateInto: 'v3-cap6-esp3', source: 'repo', confidence: 'high',
     });
     expect(ok.success).toBe(true);
+    const missing = CorrectionEntry.safeParse({
+      action: 'consolidate', bookFaithfulTitle: 'x', page: 1, chapter: 1,
+      nextId: null, source: 'repo', confidence: 'high',
+    });
+    expect(missing.success).toBe(false);
   });
 });

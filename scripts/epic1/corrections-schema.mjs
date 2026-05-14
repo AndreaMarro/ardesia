@@ -15,7 +15,10 @@ export const CorrectionEntry = z.object({
   source: z.enum(['repo', 'tea', 'neither', 'volume']),
   confidence: z.enum(['high', 'medium', 'low']),
   note: z.string().optional(),
-});
+}).strict().refine(
+  (e) => e.action !== 'consolidate' || typeof e.consolidateInto === 'string',
+  { message: 'consolidateInto is required when action is "consolidate"', path: ['consolidateInto'] },
+);
 
 export const CorrectionsFile = z.object({
   generatedFrom: z.array(z.string()).min(1),
