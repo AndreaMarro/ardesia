@@ -11,8 +11,8 @@ const LP_DIR = path.resolve('src/data/lesson-paths');
 const jsonFiles = fs.readdirSync(LP_DIR).filter(f => f.endsWith('.json'));
 
 describe('Lesson Paths — JSON Validation Massiva', () => {
-  it(`ci sono almeno 80 file JSON`, () => {
-    expect(jsonFiles.length).toBeGreaterThanOrEqual(80);
+  it(`ci sono almeno 78 file JSON`, () => {
+    expect(jsonFiles.length).toBeGreaterThanOrEqual(78);
   });
 
   describe('ogni JSON e\' parsabile', () => {

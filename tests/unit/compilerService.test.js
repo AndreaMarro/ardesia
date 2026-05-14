@@ -34,8 +34,8 @@ function extractCodes() {
 describe('Arduino Code Patterns — Vol3', () => {
   const codes = extractCodes();
 
-  test('at least 15 experiments have extractable Arduino code', () => {
-    expect(codes.length).toBeGreaterThanOrEqual(15);
+  test('at least 13 experiments have extractable Arduino code', () => {
+    expect(codes.length).toBeGreaterThanOrEqual(13);
   });
 
   test('every code has void setup', () => {

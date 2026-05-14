@@ -39,7 +39,7 @@ export const CHAPTER_MAP = {
 };
 
 // Experiment IDs that belong to Cap 6 INPUT (not OUTPUT)
-const CAP6_INPUT_IDS = ['v3-cap6-esp5'];
+const CAP6_INPUT_IDS = [];
 
 /**
  * Get display info for an experiment ID.

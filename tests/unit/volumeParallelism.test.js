@@ -24,8 +24,8 @@ describe('Volume Parallelism — Struttura VOLUME_REFERENCES', () => {
     expect(Object.keys(VOLUME_REFERENCES).length).toBeGreaterThan(0);
   });
 
-  it('contiene esattamente 81 esperimenti', () => {
-    expect(Object.keys(VOLUME_REFERENCES).length).toBe(81);
+  it('contiene esattamente 79 esperimenti', () => {
+    expect(Object.keys(VOLUME_REFERENCES).length).toBe(79);
   });
 
   it('tutti gli esperimenti hanno volume 1, 2 o 3', () => {

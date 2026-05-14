@@ -45,7 +45,7 @@ describe('Tea narrative and fumetti v2 package audit', () => {
 
     expect(teaIds).toHaveLength(94);
     expect(Object.keys(metadata)).toHaveLength(94);
-    expect(repoIds).toHaveLength(81);
+    expect(repoIds).toHaveLength(79);
     // Every surviving repo experiment exists in the Tea package and VOLUME_REFERENCES.
     expect(repoIds.every((id) => teaIdSet.has(id))).toBe(true);
     const volRefIds = Object.keys(VOLUME_REFERENCES).sort();

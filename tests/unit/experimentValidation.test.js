@@ -43,8 +43,8 @@ describe('Volume metadata', () => {
     expect(VOL3.length).toBeGreaterThanOrEqual(14);
   });
 
-  it('total experiments >= 80', () => {
-    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(80);
+  it('total experiments >= 78', () => {
+    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(78);
   });
 });
 

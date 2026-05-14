@@ -37,8 +37,8 @@ function getStepTexts(experiment) {
 // ─── Sanity check ───────────────────────────────────────────────────────
 
 describe('buildStepsQuality — sanity', () => {
-  it('ALL_EXPERIMENTS contains 81 experiments', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(81);
+  it('ALL_EXPERIMENTS contains 79 experiments', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(79);
   });
 });
 

@@ -7,8 +7,8 @@ import { findExperimentById, getExperimentsByVolume, getTotalExperiments, ALL_EX
 import { getLessonPath, hasLessonPath, getAvailableLessonPaths, PHASE_NAMES } from '../../src/data/lesson-paths';
 
 describe('experiments-index — data integrity', () => {
-  it('has 81+ total experiments', () => {
-    expect(getTotalExperiments()).toBeGreaterThanOrEqual(81);
+  it('has 79+ total experiments', () => {
+    expect(getTotalExperiments()).toBeGreaterThanOrEqual(79);
   });
 
   it('has 3 volumes', () => {
@@ -23,8 +23,8 @@ describe('experiments-index — data integrity', () => {
     expect(getExperimentsByVolume(2).length).toBe(27);
   });
 
-  it('Vol3 has 16 experiments', () => {
-    expect(getExperimentsByVolume(3).length).toBe(16);
+  it('Vol3 has 14 experiments', () => {
+    expect(getExperimentsByVolume(3).length).toBe(14);
   });
 
   it('every experiment has id and title', () => {

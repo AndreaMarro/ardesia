@@ -944,16 +944,6 @@ const VOLUME_REFERENCES = {
     bookQuote: null,
     bookContext: "Codice Morse con LED: applicazione creativa dei delay. Lo studente programma una sequenza di lampeggi significativa."
   },
-  'v3-cap6-esp3': {
-    volume: 3, bookPage: 57, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Esperimento aggiuntivo per approfondire i pin digitali e le temporizzazioni.",
-    bookInstructions: [
-      "Sperimenta con diverse combinazioni di delay e pin",
-      "Crea pattern di lampeggio personalizzati"
-    ],
-    bookQuote: null,
-    bookContext: "Sperimentazione libera con pin digitali e temporizzazioni. Consolida i concetti di OUTPUT, digitalWrite e delay."
-  },
   'v3-cap6-esp4': {
     volume: 3, bookPage: 58, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
     bookText: "Programma luci lampeggiante stile sirenato: due LED con effetto \"polizia\". LED1 su pin 8, LED2 su pin 9. Programma: uno acceso, l'altro spento, poi si scambiano.",
@@ -975,16 +965,6 @@ const VOLUME_REFERENCES = {
     ],
     bookQuote: null,
     bookContext: "Semaforo a tre LED: progetto classico che introduce la sequenza temporizzata con più uscite. Tre pin digitali coordinati."
-  },
-  'v3-cap6-esp5': {
-    volume: 3, bookPage: 59, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Esperimento avanzato con i commenti nel codice. Lo studente impara a documentare il proprio codice usando // per i commenti.",
-    bookInstructions: [
-      "Aggiungi commenti al codice del semaforo usando // prima di ogni riga",
-      "Spiega cosa fa ogni istruzione con un commento"
-    ],
-    bookQuote: "Un buon programmatore controlla sempre anche i fili.",
-    bookContext: "Introduce i commenti nel codice Arduino. I commenti con // servono per spiegare il codice senza modificarne il comportamento."
   },
 
   // Capitolo 7 — I Pin di Input: Arduino Ascolta e Decide (p.63)

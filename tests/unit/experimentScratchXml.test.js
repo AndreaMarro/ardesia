@@ -20,16 +20,16 @@ const VOL3_EXPERIMENTS = EXPERIMENTS_VOL3.experiments;
 const SCRATCH_EXPERIMENTS = ALL_EXPERIMENTS.filter(e => e.scratchXml);
 
 describe('experimentScratchXml — count and distribution', () => {
-  it('all 81 experiments are loaded', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(81);
+  it('all 79 experiments are loaded', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(79);
   });
 
   it('there are experiments with scratchXml', () => {
     expect(SCRATCH_EXPERIMENTS.length).toBeGreaterThan(0);
   });
 
-  it('exactly 15 experiments have scratchXml', () => {
-    expect(SCRATCH_EXPERIMENTS.length).toBe(15);
+  it('exactly 13 experiments have scratchXml', () => {
+    expect(SCRATCH_EXPERIMENTS.length).toBe(13);
   });
 
   it('Vol1 experiments do NOT have scratchXml', () => {

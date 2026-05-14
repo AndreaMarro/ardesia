@@ -79,15 +79,6 @@ const ALL_VOL3_EXPERIMENTS = [
     isNew: false,
   },
   {
-    id: 'v3-cap6-esp3',
-    title: 'Cap. 6 Esp. 3 - SOS Morse (duplicate slot)',
-    chapter: 'Capitolo 6',
-    difficulty: 1,
-    expectedComponents: 3,
-    notes: 'Morse variant in esp3 slot',
-    isNew: false,
-  },
-  {
     id: 'v3-cap6-esp4',
     title: 'Cap. 6 Esp. 4 - Due LED: effetto polizia',
     chapter: 'Capitolo 6',
@@ -103,15 +94,6 @@ const ALL_VOL3_EXPERIMENTS = [
     difficulty: 2,
     expectedComponents: 5, // bb + nano + 3 LEDs
     notes: 'Traffic light — 3 LEDs red/yellow/green',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap6-esp5',
-    title: 'Cap. 7 Ese. 7.3 - Pulsante con INPUT_PULLUP',
-    chapter: 'Capitolo 6',
-    difficulty: 2,
-    expectedComponents: 4, // bb + nano + LED + button
-    notes: 'Button INPUT_PULLUP (cross-chapter reference)',
     isNew: false,
   },
 

@@ -57,12 +57,6 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     expect(info.title).toContain('OUTPUT');
   });
 
-  test('getDisplayInfo maps v3-cap6-esp5 (INPUT_PULLUP) to display Cap 3', () => {
-    const info = getDisplayInfo('v3-cap6-esp5');
-    expect(info.displayChapter).toBe(3);
-    expect(info.title).toContain('INPUT');
-  });
-
   test('getDisplayInfo maps v3-cap6-morse to display Cap 2 OUTPUT', () => {
     const info = getDisplayInfo('v3-cap6-morse');
     expect(info.displayChapter).toBe(2);
@@ -133,15 +127,14 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
       'v2-cap9-esp1', 'v2-cap9-esp2',
       'v2-cap10-esp1', 'v2-cap10-esp2', 'v2-cap10-esp3', 'v2-cap10-esp4',
       'v2-cap12-esp1',
-      // Vol3 (16)
+      // Vol3 (14)
       'v3-cap5-esp1', 'v3-cap5-esp2',
-      'v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-morse', 'v3-cap6-esp3', 'v3-cap6-esp4', 'v3-cap6-semaforo',
-      'v3-cap6-esp5',
+      'v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-morse', 'v3-cap6-esp4', 'v3-cap6-semaforo',
       'v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp6',
       'v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3',
     ];
 
-    expect(allIds.length).toBe(81);
+    expect(allIds.length).toBe(79);
 
     allIds.forEach(id => {
       const info = getDisplayInfo(id);

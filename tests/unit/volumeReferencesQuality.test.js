@@ -35,13 +35,13 @@ describe('Volume References — Distribuzione per volume', () => {
     expect(v2.length).toBe(27);
   });
 
-  it('Vol. 3 ha esattamente 16 esperimenti', () => {
+  it('Vol. 3 ha esattamente 14 esperimenti', () => {
     const v3 = ALL_REFS.filter(([, r]) => r.volume === 3);
-    expect(v3.length).toBe(16);
+    expect(v3.length).toBe(14);
   });
 
-  it('totale esperimenti è 81', () => {
-    expect(ALL_IDS.length).toBe(81);
+  it('totale esperimenti è 79', () => {
+    expect(ALL_IDS.length).toBe(79);
   });
 
   it('tutti gli ID iniziano con v1-, v2- o v3-', () => {
@@ -85,7 +85,7 @@ describe('Volume References — bookQuote', () => {
 
   it('almeno il 30% degli esperimenti ha bookQuote (coverage check)', () => {
     const withQuote = ALL_REFS.filter(([, r]) => typeof r.bookQuote === 'string' && r.bookQuote.trim().length > 0);
-    expect(withQuote.length).toBeGreaterThanOrEqual(Math.floor(81 * 0.3));
+    expect(withQuote.length).toBeGreaterThanOrEqual(Math.floor(79 * 0.3));
   });
 
   it('primo esperimento v1-cap6-esp1 ha bookQuote del libro', () => {

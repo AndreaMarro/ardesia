@@ -152,7 +152,7 @@ describe('findLessonForExperiment — extended', () => {
     expect(result.lessonId).toBe('v3-progetti-led');
   });
 
-  it('finds all 81 experiments without error', () => {
+  it('finds all 79 experiments without error', () => {
     let found = 0;
     ALL_ENTRIES.forEach(([, lesson]) => {
       lesson.experiments.forEach(expId => {
@@ -160,7 +160,7 @@ describe('findLessonForExperiment — extended', () => {
         if (r) found++;
       });
     });
-    expect(found).toBe(81);
+    expect(found).toBe(79);
   });
 
   it('returns null for numeric input', () => {
@@ -250,9 +250,9 @@ describe('getExperimentGroupContext', () => {
 // ─── Cross-volume consistency ─────────────────────────────────────────
 
 describe('LESSON_GROUPS — cross-volume experiment distribution', () => {
-  it('total experiments across all volumes sums to 81', () => {
+  it('total experiments across all volumes sums to 79', () => {
     const total = ALL_ENTRIES.reduce((sum, [, l]) => sum + l.experiments.length, 0);
-    expect(total).toBe(81);
+    expect(total).toBe(79);
   });
 
   it('Volume 1 contains exactly 38 experiments', () => {
@@ -269,11 +269,11 @@ describe('LESSON_GROUPS — cross-volume experiment distribution', () => {
     expect(v2Exps.length).toBe(27);
   });
 
-  it('Volume 3 contains exactly 16 experiments', () => {
+  it('Volume 3 contains exactly 14 experiments', () => {
     const v3Exps = ALL_ENTRIES
       .filter(([, l]) => l.volume === 3)
       .flatMap(([, l]) => l.experiments);
-    expect(v3Exps.length).toBe(16);
+    expect(v3Exps.length).toBe(14);
   });
 
   it('no experiment appears in more than one lesson', () => {

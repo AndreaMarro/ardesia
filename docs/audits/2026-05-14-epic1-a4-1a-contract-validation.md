@@ -7,8 +7,8 @@
 | Metric | Value |
 |---|---|
 | Experiments checked | 94 |
-| PASS (already match contract) | 62 |
-| FAIL (need A4.1b-e work) | 32 |
+| PASS (already match contract) | 64 |
+| FAIL (need A4.1b-e work) | 30 |
 | action=keep | 73 |
 | action=correct | 6 |
 | action=remove (pending A4.1b) | 13 |
@@ -75,14 +75,8 @@
 ### v3-cap6-esp2 (keep)
 - title: "Cambia pin del LED" != contract "Esperimento 2: cambia il numero di pin (sul codice e sulla breadboard)"
 
-### v3-cap6-esp3 (consolidate)
-- pending-consolidation: v3-cap6-esp3 should be consolidated into v3-cap6-morse
-
 ### v3-cap6-esp4 (keep)
 - title: "Due LED: effetto polizia" != contract "Esperimento 4: due LED, effetto "polizia" / stile sirenato"
-
-### v3-cap6-esp5 (consolidate)
-- pending-consolidation: v3-cap6-esp5 should be consolidated into v3-cap6-semaforo
 
 ### v3-cap6-morse (keep)
 - title: "SOS in codice Morse" != contract "Esperimento 3: fai un SOS in codice Morse (duplicate of v3-cap6-esp3 in repo's named-id scheme)"

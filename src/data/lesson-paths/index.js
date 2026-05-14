@@ -79,9 +79,7 @@ import v3Cap5Esp1 from './v3-cap5-esp1.json';
 import v3Cap5Esp2 from './v3-cap5-esp2.json';
 import v3Cap6Esp1 from './v3-cap6-esp1.json';
 import v3Cap6Esp2 from './v3-cap6-esp2.json';
-import v3Cap6Esp3 from './v3-cap6-esp3.json';
 import v3Cap6Esp4 from './v3-cap6-esp4.json';
-import v3Cap6Esp5 from './v3-cap6-esp5.json';
 import v3Cap6Morse from './v3-cap6-morse.json';
 import v3Cap6Semaforo from './v3-cap6-semaforo.json';
 import v3Cap7Esp1 from './v3-cap7-esp1.json';
@@ -168,9 +166,7 @@ const LESSON_PATHS = {
   'v3-cap5-esp2': v3Cap5Esp2,
   'v3-cap6-esp1': v3Cap6Esp1,
   'v3-cap6-esp2': v3Cap6Esp2,
-  'v3-cap6-esp3': v3Cap6Esp3,
   'v3-cap6-esp4': v3Cap6Esp4,
-  'v3-cap6-esp5': v3Cap6Esp5,
   'v3-cap6-morse': v3Cap6Morse,
   'v3-cap6-semaforo': v3Cap6Semaforo,
   'v3-cap7-esp1': v3Cap7Esp1,

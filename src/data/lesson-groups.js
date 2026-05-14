@@ -193,7 +193,7 @@ const LESSON_GROUPS = {
     volume: 3,
     chapter: 6,
     icon: '💡',
-    experiments: ['v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp3', 'v3-cap6-esp4', 'v3-cap6-esp5']
+    experiments: ['v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp4']
   },
   'v3-progetti-led': {
     title: 'Progetti LED: semaforo e Morse',

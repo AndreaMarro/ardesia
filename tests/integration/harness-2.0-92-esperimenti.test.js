@@ -211,7 +211,7 @@ afterAll(() => {
 
 describe('Harness 2.0 — enumeration 92 esperimenti (Sprint T iter 19)', () => {
   it('enumera tutti i lesson-paths v1/v2/v3 senza errore di parsing', () => {
-    expect(allLessonPaths.length).toBeGreaterThanOrEqual(80);
+    expect(allLessonPaths.length).toBeGreaterThanOrEqual(78);
     const parseErrors = allLessonPaths.filter((lp) => lp.parseError);
     expect(parseErrors).toEqual([]);
   });

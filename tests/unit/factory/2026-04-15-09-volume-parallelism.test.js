@@ -13,7 +13,7 @@ import { ALL_EXPERIMENTS, VOLUMES, findExperimentById } from '../../../src/data/
 import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../../src/data/volume-references';
 
 // ─── Costanti attese ──────────────────────────────────────────────────────────
-const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 16, total: 81 };
+const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 14, total: 79 };
 const EXPERIMENT_ID_PATTERN = /^v[1-3]-cap\d+(-esp\d+|-[a-z]+)$/;
 
 // ─── Campi obbligatori per la parità con il volume fisico ─────────────────────
@@ -40,11 +40,11 @@ describe('Volume distribution', () => {
     expect(VOLUMES[1].experiments).toHaveLength(EXPECTED_COUNTS.vol2);
   });
 
-  it('Vol3 ha esattamente 29 esperimenti', () => {
+  it('Vol3 ha esattamente 14 esperimenti', () => {
     expect(VOLUMES[2].experiments).toHaveLength(EXPECTED_COUNTS.vol3);
   });
 
-  it('ALL_EXPERIMENTS aggrega tutti e 94 gli esperimenti', () => {
+  it('ALL_EXPERIMENTS aggrega tutti e 79 gli esperimenti', () => {
     expect(ALL_EXPERIMENTS).toHaveLength(EXPECTED_COUNTS.total);
   });
 
@@ -229,7 +229,7 @@ describe('volume-references.js — helper API con dati reali', () => {
   it('VOLUME_REFERENCES esportato come oggetto non vuoto (dati PDF reali)', () => {
     expect(typeof VOLUME_REFERENCES).toBe('object');
     expect(VOLUME_REFERENCES).not.toBeNull();
-    expect(Object.keys(VOLUME_REFERENCES).length).toBeGreaterThan(80);
+    expect(Object.keys(VOLUME_REFERENCES).length).toBeGreaterThan(78);
   });
 
   it('getVolumeRef ritorna il riferimento corretto per v1-cap6-esp1', () => {

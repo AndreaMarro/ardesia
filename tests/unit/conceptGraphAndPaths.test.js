@@ -354,8 +354,8 @@ describe('lesson-paths', () => {
       }
     });
 
-    it('has at least 80 lesson paths', () => {
-      expect(availablePaths.length).toBeGreaterThanOrEqual(80);
+    it('has at least 78 lesson paths', () => {
+      expect(availablePaths.length).toBeGreaterThanOrEqual(78);
     });
   });
 
@@ -480,7 +480,7 @@ describe('lesson-paths', () => {
     });
 
     it('sample Vol3 experiments have lesson paths', () => {
-      const v3Sample = ['v3-cap6-semaforo', 'v3-cap8-esp3', 'v3-cap6-esp5', 'v3-cap7-esp6'];
+      const v3Sample = ['v3-cap6-semaforo', 'v3-cap8-esp3', 'v3-cap6-morse', 'v3-cap7-esp6'];
       for (const id of v3Sample) {
         expect(hasLessonPath(id)).toBe(true);
       }

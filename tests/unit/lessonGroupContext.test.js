@@ -234,12 +234,12 @@ describe('getLessonCount', () => {
 describe('Cross-validation with experiments-index', () => {
   const experimentIndexIds = new Set(ALL_EXPERIMENTS.map(e => e.id));
 
-  it('ALL_EXPERIMENTS has at least 80 experiments', () => {
-    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(80);
+  it('ALL_EXPERIMENTS has at least 78 experiments', () => {
+    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(78);
   });
 
-  it('LESSON_GROUPS contains exactly 81 experiment IDs', () => {
-    expect(ALL_LESSON_EXP_IDS.length).toBe(81);
+  it('LESSON_GROUPS contains exactly 79 experiment IDs', () => {
+    expect(ALL_LESSON_EXP_IDS.length).toBe(79);
   });
 
   it('every experiment in LESSON_GROUPS exists in experiments-index', () => {
