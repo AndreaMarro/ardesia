@@ -1,0 +1,246 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-10",
+    "source": "curriculum YAML + experiments-vol3.js"
+  },
+  "experiment_id": "v3-cap8-esp4",
+  "volume": 3,
+  "chapter": 8,
+  "title": "Serial Plotter con 2 potenziometri",
+  "chapter_title": "Comunicazione Seriale",
+  "difficulty": 2,
+  "duration_minutes": 45,
+  "target_age": "10-14 anni",
+  "objective": "Collegare due potenziometri ai pin A3 e A4 di Arduino e visualizzare i valori nel Serial Plotter come due grafici in tempo reale. Scoprire il formato dati per il plotter.",
+  "components_needed": [
+    {
+      "name": "Arduino Nano R4 (breakout wing)",
+      "quantity": 1,
+      "icon": "🤖"
+    },
+    {
+      "name": "Breadboard half-size",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Potenziometro 10kohm",
+      "quantity": 2,
+      "icon": "🎛️"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 8,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "Arduino",
+      "Serial Plotter",
+      "grafico",
+      "analogRead",
+      "potenziometro",
+      "A3",
+      "A4",
+      "pin analogico",
+      "separatore",
+      "tab",
+      "println",
+      "tempo reale",
+      "due canali",
+      "breadboard"
+    ],
+    "forbidden": [
+      "condensatore",
+      "transistor",
+      "MOSFET",
+      "motore",
+      "diodo",
+      "fototransistor"
+    ],
+    "note": "Vol 3 Cap 8 — Serial Plotter multi-canale, formato dati, visualizzazione."
+  },
+  "prerequisites": [
+    "v3-cap8-esp3"
+  ],
+  "next_experiment": {
+    "id": "v3-cap8-esp5",
+    "title": "Pot + 3 LED + Serial",
+    "preview": "Il progetto finale: un potenziometro regola 3 LED E stampa sul Serial Monitor!"
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, il Serial Monitor mostra numeri. Ma non sarebbe meglio vedere un GRAFICO? Il Serial Plotter di Arduino fa esattamente questo! E con due potenziometri vedremo DUE grafici sovrapposti in tempo reale.",
+      "teacher_tip": "Spiega che il Serial Plotter legge lo stesso output del Monitor ma lo disegna come un grafico. Per avere due linee, i valori vanno separati da un TAB (\\t).",
+      "components_list": "Ti servono: 1 breadboard half-size, 1 Arduino Nano R4, 2 potenziometri 10kohm, 8 fili di collegamento.",
+      "class_hook": "Immaginate di poter vedere la temperatura e l'umidita della vostra stanza disegnate su un grafico in tempo reale. Oggi facciamo qualcosa di simile con due manopole!",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Due potenziometri: uno su A3, l'altro su A4. Il codice legge entrambi e stampa: 'val1\\tval2' (separati da TAB). Il Serial Plotter interpreta il TAB come separatore tra due grafici diversi!",
+      "teacher_tip": "Il trucco e nel formato: Serial.print(val1); Serial.print('\\t'); Serial.println(val2). Il TAB separa i canali, il println chiude la riga. Ogni riga = un punto sul grafico.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [
+        "[AZIONE:loadexp:v3-cap8-esp4]"
+      ],
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Montate 2 potenziometri sui pin A3 e A4 di Arduino",
+        "button_label": "Montate il circuito per me",
+        "intent": {
+          "components": [
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "nano-r4",
+              "id": "nano1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot2",
+              "value": 10000
+            }
+          ],
+          "wires": [
+            {
+              "from": "bb1:f22",
+              "to": "bb1:bus-bot-plus-22",
+              "color": "red"
+            },
+            {
+              "from": "nano1:W_A3",
+              "to": "bb1:f23",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:f24",
+              "to": "bb1:bus-bot-minus-24",
+              "color": "black"
+            },
+            {
+              "from": "bb1:f27",
+              "to": "bb1:bus-bot-plus-27",
+              "color": "red"
+            },
+            {
+              "from": "nano1:W_A4",
+              "to": "bb1:f28",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:f29",
+              "to": "bb1:bus-bot-minus-29",
+              "color": "black"
+            },
+            {
+              "from": "nano1:GND_R",
+              "to": "bb1:bus-bot-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "nano1:5V",
+              "to": "bb1:bus-bot-plus-1",
+              "color": "red"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Se giro una sola manopola, quale grafico si muove? Se le giro entrambe alla stessa velocita, i grafici saranno uguali o diversi?",
+      "teacher_tip": "Ogni potenziometro e indipendente: girare pot1 muove solo il grafico A3, girare pot2 solo A4. Se li giri nello stesso modo, i grafici si sovrappongono!",
+      "provocative_question": "Il Serial Plotter puo mostrare anche 3, 4, 5 grafici contemporaneamente? Come modifichereste il codice per aggiungere un terzo canale?",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "common_mistakes": [
+        {
+          "mistake": "Usare la virgola invece del TAB come separatore",
+          "teacher_response": "Il Serial Plotter standard riconosce il TAB (\\t) o lo spazio come separatore. La virgola potrebbe non funzionare in tutte le versioni.",
+          "analogy": null
+        },
+        {
+          "mistake": "Dimenticare il println alla fine della riga",
+          "teacher_response": "Senza println i valori si accumulano sulla stessa riga e il plotter non sa dove finisce un campione e inizia il successivo!",
+          "analogy": "E come scrivere una frase senza mai andare a capo: dopo un po nessuno capisce piu nulla!"
+        }
+      ]
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 14,
+      "teacher_message": "Ragazzi, Premete Play e aprite il Serial Plotter! Vedete due linee colorate. Girate una manopola alla volta: vedrete una linea salire/scendere mentre l'altra resta ferma. Poi giratele entrambe!",
+      "teacher_tip": "Evidenzia entrambi i potenziometri. Fate notare: le due linee hanno colori diversi. Sfida: 'Riuscite a fare un disegno con le due manopole? Una montagna con una valle?' Rende il concetto divertente.",
+      "action_tags": [
+        "[AZIONE:play]",
+        "[AZIONE:highlight:pot1]",
+        "[AZIONE:highlight:pot2]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Due grafici in tempo reale! Ogni potenziometro regola una linea. Girando pot1 si muove la linea A3, girando pot2 la linea A4. I grafici sono indipendenti e sovrapposti.",
+      "analogies": [
+        {
+          "concept": "serial_plotter",
+          "text": "Il Serial Plotter e come un cardiogramma al pronto soccorso: invece del battito cardiaco, mostra i valori dei sensori in tempo reale. Due sensori = due tracce sullo schermo!",
+          "evidence": "Curriculum ELAB Vol 3 Cap 8"
+        }
+      ]
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 6,
+      "teacher_message": "Ragazzi, Il Serial Plotter trasforma i numeri in grafici visivi. Con il formato giusto (valori separati da TAB) possiamo monitorare piu sensori contemporaneamente. E potentissimo per debug e monitoraggio!",
+      "teacher_tip": "Recap: Serial.print(val1) + '\\t' + Serial.println(val2) = due grafici. Per N grafici: N valori separati da TAB sulla stessa riga, chiusa con println.",
+      "components_list": null,
+      "class_hook": null,
+      "action_tags": [],
+      "auto_action": null,
+      "summary_for_class": "Il Serial Plotter visualizza dati come grafici in tempo reale. Con due potenziometri su A3 e A4, vediamo due linee indipendenti. Il formato: valori separati da TAB (\\t) e chiusi con println.",
+      "concepts_learned": [
+        "Serial Plotter multi-canale",
+        "formato TAB-separated per plotter",
+        "monitoraggio visuale in tempo reale",
+        "due pin analogici contemporanei"
+      ],
+      "next_preview": "Il progetto finale del Volume 3: un potenziometro che regola 3 LED e stampa i valori sul Serial Monitor!"
+    }
+  ],
+  "assessment_invisible": [
+    "Se capisce che il TAB separa i canali → comprensione del formato dati",
+    "Se propone di aggiungere un terzo canale → capacita di estensione",
+    "Se collega il concetto a monitoraggio reale (temperatura, umidita) → trasferimento"
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "serial_plotter",
+      "multi_canale",
+      "formato_TAB",
+      "due_analogici"
+    ],
+    "next_suggested": "v3-cap8-esp5",
+    "resume_message": "Avete scoperto il Serial Plotter! Prossimo: il progetto finale con pot + 3 LED + Serial."
+  }
+}

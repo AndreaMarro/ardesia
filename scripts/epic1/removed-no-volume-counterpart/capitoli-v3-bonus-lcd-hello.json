@@ -1,0 +1,257 @@
+{
+  "id": "v3-bonus-lcd-hello",
+  "volume": 3,
+  "capitolo": null,
+  "type": "bonus",
+  "titolo": "Extra — Componenti Avanzati",
+  "titolo_classe": "Extra — Componenti Avanzati",
+  "pageStart": null,
+  "pageEnd": null,
+  "theory": {
+    "testo_classe": "Extra — Componenti Avanzati.",
+    "citazioni_volume": [],
+    "figure_refs": [],
+    "analogies_classe": []
+  },
+  "esperimenti": [
+    {
+      "id": "v3-bonus-lcd-hello-esp1",
+      "num": 1,
+      "title_classe": "LCD Hello World",
+      "title_docente": "LCD Hello World",
+      "volume_ref": {
+        "page_start": 5,
+        "page_end": 5,
+        "fig_refs": []
+      },
+      "duration_minutes": 45,
+      "components_needed": [
+        {
+          "name": "Arduino Nano R4 (breakout wing)",
+          "quantity": 1,
+          "icon": "🤖"
+        },
+        {
+          "name": "Breadboard half-size",
+          "quantity": 1,
+          "icon": "🔲"
+        },
+        {
+          "name": "Display LCD 16x2",
+          "quantity": 1,
+          "icon": "📺"
+        },
+        {
+          "name": "Fili di collegamento",
+          "quantity": 8,
+          "icon": "🔌"
+        }
+      ],
+      "build_circuit": {
+        "mode": "from_scratch",
+        "intent": {
+          "components": [
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "nano-r4",
+              "id": "nano1"
+            },
+            {
+              "type": "lcd16x2",
+              "id": "lcd1"
+            }
+          ],
+          "wires": [
+            {
+              "from": "nano1:5V",
+              "to": "bb1:bus-bot-plus-1",
+              "color": "red"
+            },
+            {
+              "from": "nano1:GND_R",
+              "to": "bb1:bus-bot-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "nano1:W_D12",
+              "to": "bb1:e25",
+              "color": "orange"
+            },
+            {
+              "from": "nano1:W_D11",
+              "to": "bb1:e26",
+              "color": "orange"
+            },
+            {
+              "from": "nano1:W_D5",
+              "to": "bb1:e27",
+              "color": "yellow"
+            },
+            {
+              "from": "nano1:W_D10",
+              "to": "bb1:e28",
+              "color": "yellow"
+            },
+            {
+              "from": "nano1:W_D3",
+              "to": "bb1:e29",
+              "color": "yellow"
+            },
+            {
+              "from": "nano1:W_D6",
+              "to": "bb1:e30",
+              "color": "yellow"
+            }
+          ]
+        }
+      },
+      "phases": [
+        {
+          "name": "PREPARA",
+          "duration_minutes": 6,
+          "classe_display": {
+            "text_hook": "Avete mai visto le calcolatrici con lo schermo verde o nero che mostra i numeri? Oppure le casse del supermercato con il display che mostra il totale? Oggi costruiamo lo stesso tipo di display! Si chiama LCD 16x2 e può scrivere testo con Arduino.",
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Finora abbiamo controllato LED singoli. Oggi passiamo a un vero display: l'LCD 16x2 può mostrare 16 caratteri per 2 righe, proprio come gli schermi delle calcolatrici o delle casse del supermercato! Arduino lo controlla con 6 pin usando una libreria chiamata LiquidCrystal.",
+            "spunto_per_classe": null,
+            "note": [
+              "Visualizzazione dove si trovano display LCD 16x2 nella vita reale: calcolatrici, microonde, vecchie casse del supermercato, stazioni meteo. La libreria LiquidCrystal è come un 'traduttore': noi diciamo lcd.print(\"ciao\") e lei si occupa di inviare tutti i segnali giusti al display."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "MOSTRA",
+          "duration_minutes": 12,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il display LCD usa 6 pin di dati (RS, E, D4-D7) più VCC e GND. RS e E sono i pin di controllo, D4-D7 sono i pin dati in modalità 4-bit. Il codice viene caricato automaticamente. Nel setup, lcd.begin(16,2) inizializza il display, lcd.setCursor(0,0) posiziona il cursore, lcd.print() scrive il testo.",
+            "spunto_per_classe": null,
+            "note": [
+              "Spiegazione il concetto di libreria: 'Una libreria è come un libro di istruzioni già scritte. Invece di scrivere centinaia di righe di codice per controllare l'LCD, usiamo la libreria LiquidCrystal che lo fa per noi. Il codice diventa brevissimo!' Poi spiega setCursor: 'Le coordinate partono da 0 in alto a sinistra. (0,0) = prima colonna, prima riga. (0,1) = prima colonna, seconda riga.'"
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:loadexp:v3-extra-lcd-hello]"
+          ],
+          "auto_action": "load_experiment"
+        },
+        {
+          "name": "CHIEDI",
+          "duration_minutes": 8,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": null,
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Il display è collegato e il codice è pronto. Il testo viene scritto nel setup(), non nel loop(). Perché? E quanti caratteri possiamo scrivere su ogni riga?",
+            "spunto_per_classe": "Domanda: 'Il codice scrive solo nel setup() e il loop() è vuoto. Se volessimo far lampeggiare il testo ogni secondo, dove dovremmo mettere il codice? Nel setup() o nel loop()? E cosa dovremmo aggiungere?'",
+            "note": [
+              "Il testo viene scritto solo una volta nel setup perché non cambia mai. Se il testo cambiasse continuamente (es. un orologio), andrebbe aggiornato nel loop. Riguardo ai caratteri: 16 per riga. Se proviamo a scrivere di più, il testo va fuori schermo silenziosamente."
+            ],
+            "errori_tipici": [
+              {
+                "problema": "Il display non mostra nulla o mostra solo quadratini neri",
+                "soluzione_neutra": "Controllo tutti i 6 collegamenti dei pin dati (RS, E, D4-D7). Basta un filo mancante o invertito perché il display non funzioni. Verifica anche VCC e GND del display!"
+              },
+              {
+                "problema": "Il testo appare sulla riga sbagliata o fuori posizione",
+                "soluzione_neutra": "Controllo setCursor(colonna, riga): le coordinate partono da 0! setCursor(0,0) = prima riga, setCursor(0,1) = seconda riga. Attenzione: NON è setCursor(riga, colonna) ma setCursor(colonna, riga)!"
+              }
+            ]
+          },
+          "action_tags": [],
+          "auto_action": null
+        },
+        {
+          "name": "OSSERVA",
+          "duration_minutes": 12,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il display mostra 'Hello World!' sulla prima riga e 'ELAB Simulator' sulla seconda. Il testo compare subito grazie al setup(). Il loop() è vuoto perché il messaggio non deve cambiare!",
+            "analogies": [
+              {
+                "concept": "libreria_semplifica",
+                "text": "La libreria LiquidCrystal è come avere un traduttore esperto accanto: tu dici 'stampa ciao' in italiano, lui lo traduce in tutti i segnali elettrici complicati che il display capisce. Senza la libreria, dovresti mandare decine di segnali precisi a mano!",
+                "evidence": "Curriculum ELAB Vol 3 Extra LCD"
+              },
+              {
+                "concept": "coordinate_cursore",
+                "text": "Il cursore del display è come il puntatore di un foglio Excel: ha una posizione (colonna, riga). Con setCursor(0,0) sei nell'angolo in alto a sinistra. Con setCursor(5,1) sei al sesto carattere della seconda riga. Poi scrivi da lì!",
+                "evidence": "Curriculum ELAB Vol 3 Extra LCD"
+              }
+            ]
+          },
+          "docente_sidebar": {
+            "step_corrente": "Pressione Play! Il display LCD si illumina e compare il testo: 'Hello World!' sulla prima riga e 'ELAB Simulator' sulla seconda. Il codice si esegue una volta nel setup() e rimane fermo lì!",
+            "spunto_per_classe": null,
+            "note": [
+              "Evidenzia il display LCD. Fai notare che il testo appare quasi istantaneamente perché il codice è semplice. Chiedi: 'Quanti caratteri ci sono in Hello World!? (12). Quante colonne ha il display? (16). Quante colonne rimangono vuote? (4).' Questo aiuta a capire la griglia 16x2."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [
+            "[AZIONE:play]",
+            "[AZIONE:highlight:lcd1]"
+          ],
+          "auto_action": "play_and_highlight"
+        },
+        {
+          "name": "CONCLUDI",
+          "duration_minutes": 7,
+          "classe_display": {
+            "text_hook": null,
+            "observation_prompt": "Il display LCD 16x2 mostra testo con Arduino usando 6 pin di controllo e la libreria LiquidCrystal. lcd.begin() inizializza il display, setCursor() posiziona il cursore, lcd.print() scrive il testo. Con questo display potete costruire orologi, stazioni meteo, menu interattivi e molto altro!",
+            "analogies": []
+          },
+          "docente_sidebar": {
+            "step_corrente": "Ottimo! Avete imparato a usare un display LCD con Arduino. Con la libreria LiquidCrystal, controllare un display da 32 caratteri richiede solo poche righe di codice!",
+            "spunto_per_classe": null,
+            "note": [
+              "Recap: 'lcd.begin(16,2) = inizializza il display 16 colonne, 2 righe. lcd.setCursor(col,riga) = posiziona il cursore. lcd.print() = scrive il testo. Tutto nel setup() se il testo non cambia, nel loop() se deve aggiornarsi.' Il LCD è la base per molti progetti: orologio, stazione meteo, menu interattivo."
+            ],
+            "errori_tipici": []
+          },
+          "action_tags": [],
+          "auto_action": null
+        }
+      ],
+      "assessment_invisible": [
+        "Se spiega perché il testo va nel setup() e non nel loop() → comprensione del flusso di esecuzione Arduino",
+        "Se calcola correttamente le coordinate con setCursor → comprensione della griglia 16x2",
+        "Se propone un'applicazione pratica (orologio, stazione meteo) → trasferimento creativo del concetto"
+      ],
+      "session_save": {
+        "concepts_covered": [
+          "LCD_16x2",
+          "LiquidCrystal",
+          "lcd_begin",
+          "setCursor",
+          "lcd_print",
+          "libreria_Arduino"
+        ],
+        "next_suggested": "v3-extra-servo-sweep",
+        "resume_message": "Avete imparato il display LCD 16x2! Prossimo passo: il servomotore."
+      }
+    }
+  ],
+  "narrative_flow": {
+    "intro_text": "Extra — Componenti Avanzati",
+    "transitions": [],
+    "closing_text": "Avete imparato il display LCD 16x2! Prossimo passo: il servomotore."
+  }
+}
