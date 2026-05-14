@@ -19,7 +19,11 @@ export function checkLessonPath(id, lessonPath, correction) {
     return { id, action: null, ok: false, issues: [`no correction entry for ${id}`] };
   }
   if (correction.action === 'remove') {
-    issues.push(`pending-removal: correction.action=remove but lesson-path ${id} still exists`);
+    // pending-removal fires ONLY while the lesson-path file still exists.
+    // Once removed (lessonPath == null), the removal is complete → ok.
+    if (lessonPath) {
+      issues.push(`pending-removal: correction.action=remove but lesson-path ${id} still exists`);
+    }
   } else if (correction.action === 'consolidate') {
     issues.push(`pending-consolidation: ${id} should be consolidated into ${correction.consolidateInto}`);
   } else {

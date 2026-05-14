@@ -89,6 +89,12 @@ describe('checkLessonPath', () => {
     expect(r.ok).toBe(false);
     expect(r.issues.some((i) => i.includes('pending-removal'))).toBe(true);
   });
+  it('passes when correction.action is remove and the lesson-path is gone', () => {
+    const r = checkLessonPath('v3-cap6-esp6', null, { action: 'remove', bookFaithfulTitle: null,
+      page: null, chapter: null, nextId: null, source: 'neither', confidence: 'high' });
+    expect(r.ok).toBe(true);
+    expect(r.issues).toEqual([]);
+  });
   it('reports pending-consolidation when action is consolidate', () => {
     const lp = { experiment_id: 'v3-cap6-esp3', title: 'whatever' };
     const r = checkLessonPath('v3-cap6-esp3', lp, { action: 'consolidate', bookFaithfulTitle: null,
