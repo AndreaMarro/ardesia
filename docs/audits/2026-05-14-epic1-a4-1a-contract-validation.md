@@ -16,3 +16,13 @@
 
 ## Divergences
 _(none — contract fully satisfied)_
+
+## Reference integrity (A4.1d guard)
+> Every `next_experiment.id` / `session_save.next_suggested` / `prerequisites[]` entry must resolve to an existing lesson-path id (or be `null`).
+
+_(none — all references resolve)_
+
+## Narrative acyclicity (A4.1d guard)
+> Each `capitoli/*.json` `narrative_flow.transitions` graph must be acyclic — a continuous arc, not a loop.
+
+_(none — all narrative graphs acyclic)_

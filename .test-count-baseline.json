@@ -1,8 +1,8 @@
 {
-  "total": 13106,
+  "total": 13118,
   "localTotal": 12081,
   "date": "2026-05-14",
-  "commit": "a1d0a98",
+  "commit": "bee5e627",
   "test_files": 198,
   "coverage_min": 60.0,
   "bundle_max_kb": 90000,
@@ -10,6 +10,7 @@
   "regression_threshold": 0.005,
   "regression_threshold_absolute": 50,
   "notes": [
+    "iter 57 A4.1d Phase 4: total 13106 -> 13118 (+12, new tests/unit/epic1/validate-references-acyclic.test.js; 0-failed, skip 15 + todo 12 unchanged, +1 test file collected — clean arithmetic proof).",
     "Baseline CI 19/04/2026: 11958 test passano su Linux GitHub Actions (12081 passano su Mac locale). 0 fail entrambi.",
     "Gap 123 test CI vs locale PERSISTENTE. Node 22 + npm ci --include=optional NON risolto. Root cause profondo (non lightningcss come inizialmente ipotizzato).",
     "Hypothesis testate 19/04:",
