@@ -98,8 +98,6 @@ const EXPERIMENTS_WITH_EMPTY_CONNECTIONS = new Set([
   'v2-cap4-esp1', 'v2-cap4-esp2', 'v2-cap4-esp3',
   'v2-cap5-esp1', 'v2-cap5-esp2',
   'v3-cap5-esp1', 'v3-cap5-esp2', 'v3-cap8-esp1', 'v3-cap8-esp2',
-  // Sprint T iter 37 Phase 3 — Maker-3 atom A9-FIX: v3-cap8-serial = USB only, no breadboard wiring
-  'v3-cap8-serial',
 ]);
 
 // ─── Sampled experiments for deeper validation (20, mixed across volumes) ────
@@ -133,8 +131,8 @@ const sampledExperiments = () => SAMPLED_IDS
 // ═══════════════════════════════════════════════════════════════════════════
 
 describe('Connections — Existence', () => {
-  it('ALL_EXPERIMENTS contains exactly 92 experiments', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(94);
+  it('ALL_EXPERIMENTS contains exactly 81 experiments', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(81);
   });
 
   describe('connections array exists on every experiment', () => {

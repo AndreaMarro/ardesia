@@ -132,17 +132,8 @@ describe('LESSON_GROUPS — Volume 3 experiments', () => {
     expect(input).toBeDefined();
   });
 
-  it('Volume 3 has progetti extra lesson', () => {
-    const extra = v3.find(([id]) => id === 'v3-progetti-extra');
-    expect(extra).toBeDefined();
-  });
-
   it('all Vol3 lesson IDs start with v3-', () => {
     v3.forEach(([id]) => expect(id).toMatch(/^v3-/));
-  });
-
-  it('v3-progetti-extra has chapter 99 (extra)', () => {
-    expect(LESSON_GROUPS['v3-progetti-extra'].chapter).toBe(99);
   });
 });
 
@@ -161,7 +152,7 @@ describe('findLessonForExperiment — extended', () => {
     expect(result.lessonId).toBe('v3-progetti-led');
   });
 
-  it('finds all 92 experiments without error', () => {
+  it('finds all 81 experiments without error', () => {
     let found = 0;
     ALL_ENTRIES.forEach(([, lesson]) => {
       lesson.experiments.forEach(expId => {
@@ -169,7 +160,7 @@ describe('findLessonForExperiment — extended', () => {
         if (r) found++;
       });
     });
-    expect(found).toBe(94);
+    expect(found).toBe(81);
   });
 
   it('returns null for numeric input', () => {
@@ -222,8 +213,8 @@ describe('getLessonsForVolume — extended', () => {
 // ─── getLessonCount ───────────────────────────────────────────────────
 
 describe('getLessonCount', () => {
-  it('returns 25', () => {
-    expect(getLessonCount()).toBe(25);
+  it('returns 24', () => {
+    expect(getLessonCount()).toBe(24);
   });
 
   it('matches actual LESSON_GROUPS size', () => {
@@ -259,9 +250,9 @@ describe('getExperimentGroupContext', () => {
 // ─── Cross-volume consistency ─────────────────────────────────────────
 
 describe('LESSON_GROUPS — cross-volume experiment distribution', () => {
-  it('total experiments across all volumes sums to 92', () => {
+  it('total experiments across all volumes sums to 81', () => {
     const total = ALL_ENTRIES.reduce((sum, [, l]) => sum + l.experiments.length, 0);
-    expect(total).toBe(94);
+    expect(total).toBe(81);
   });
 
   it('Volume 1 contains exactly 38 experiments', () => {
@@ -278,11 +269,11 @@ describe('LESSON_GROUPS — cross-volume experiment distribution', () => {
     expect(v2Exps.length).toBe(27);
   });
 
-  it('Volume 3 contains exactly 27 experiments', () => {
+  it('Volume 3 contains exactly 16 experiments', () => {
     const v3Exps = ALL_ENTRIES
       .filter(([, l]) => l.volume === 3)
       .flatMap(([, l]) => l.experiments);
-    expect(v3Exps.length).toBe(29);
+    expect(v3Exps.length).toBe(16);
   });
 
   it('no experiment appears in more than one lesson', () => {

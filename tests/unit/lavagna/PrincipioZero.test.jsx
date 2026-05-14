@@ -13,7 +13,7 @@ function switchToChapterView() {
 }
 
 describe('Principio Zero', () => {
-  it('picker shows 94 experiments across 3 volumes', () => {
+  it('picker shows 81 experiments across 3 volumes', () => {
     render(<ExperimentPicker open={true} onClose={vi.fn()} onSelect={vi.fn()} />);
 
     // Default is lesson view — check lesson cards
@@ -24,9 +24,9 @@ describe('Principio Zero', () => {
     fireEvent.click(screen.getByText('Volume 2'));
     expect(screen.getByText('0/27 completati')).toBeTruthy();
 
-    // Switch to Vol3 (Sprint T iter 37 Phase 3: 27 -> 29 via Maker-3 atom A9-FIX)
+    // Switch to Vol3 (EPIC 1 A4.1b: 29 -> 16, 13 no-counterpart experiments removed)
     fireEvent.click(screen.getByText('Volume 3'));
-    expect(screen.getByText('0/29 completati')).toBeTruthy();
+    expect(screen.getByText('0/16 completati')).toBeTruthy();
   });
 
   it('experiment selection calls onSelect with experiment data', () => {

@@ -19,11 +19,7 @@ import { getCachedHex, setCachedHex } from '../components/simulator/utils/compil
 // ─────────────────────────────────────────────────────────────
 const PRECOMPILED_HEX = {
   'v3-cap6-semaforo':    '/hex/v3-cap6-semaforo.hex',
-  'v3-cap6-esp6':        '/hex/v3-cap6-esp6.hex',
   'v3-cap8-esp3':        '/hex/v3-cap8-esp3.hex',
-  'v3-extra-lcd-hello':  '/hex/v3-extra-lcd-hello.hex',
-  'v3-extra-servo-sweep':'/hex/v3-extra-servo-sweep.hex',
-  'v3-extra-simon':      '/hex/v3-extra-simon.hex',
   // Extra pre-compiled (sub-experiments, variants)
   'v3-cap6-blink':       '/hex/v3-cap6-blink.hex',
   'v3-cap6-morse':       '/hex/v3-cap6-morse.hex',

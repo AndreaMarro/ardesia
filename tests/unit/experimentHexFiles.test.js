@@ -17,8 +17,8 @@ const AVR_EXPERIMENTS = ALL_EXPERIMENTS.filter(e => e.simulationMode === 'avr');
 const CIRCUIT_EXPERIMENTS = ALL_EXPERIMENTS.filter(e => e.simulationMode === 'circuit');
 
 describe('experimentHexFiles — simulation modes', () => {
-  it('all 92 experiments are loaded', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(94);
+  it('all 81 experiments are loaded', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(81);
   });
 
   it('every experiment has a simulationMode', () => {
@@ -36,8 +36,8 @@ describe('experimentHexFiles — simulation modes', () => {
     });
   });
 
-  it('there are 27 AVR experiments', () => {
-    expect(AVR_EXPERIMENTS.length).toBe(29);
+  it('there are 16 AVR experiments', () => {
+    expect(AVR_EXPERIMENTS.length).toBe(16);
   });
 
   it('there are 65 circuit experiments', () => {
@@ -113,7 +113,7 @@ describe('experimentHexFiles — code field for AVR experiments', () => {
   const withCode = AVR_EXPERIMENTS.filter(e => e.code && e.code.trim().length > 0);
 
   it('most AVR experiments have Arduino code', () => {
-    expect(withCode.length).toBeGreaterThan(20);
+    expect(withCode.length).toBeGreaterThan(10);
   });
 
   withCode.forEach(exp => {

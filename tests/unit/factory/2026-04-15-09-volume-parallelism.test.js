@@ -13,7 +13,7 @@ import { ALL_EXPERIMENTS, VOLUMES, findExperimentById } from '../../../src/data/
 import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../../src/data/volume-references';
 
 // ─── Costanti attese ──────────────────────────────────────────────────────────
-const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 29, total: 94 };
+const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 16, total: 81 };
 const EXPERIMENT_ID_PATTERN = /^v[1-3]-cap\d+(-esp\d+|-[a-z]+)$/;
 
 // ─── Campi obbligatori per la parità con il volume fisico ─────────────────────

@@ -51,9 +51,9 @@ describe('Phase 4: Smoke Test All 69 Experiments', () => {
         }
     });
 
-    it('verifies data integrity of all 91 experiments', () => {
+    it('verifies data integrity of all 81 experiments', () => {
         // This is instant: checking the raw JSON
-        expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(91); // 38 + 27 + 26 = 91
+        expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(81); // 38 + 27 + 16 = 81
 
         // Check everyone has a title, id, category, and valid components
         for (const exp of ALL_EXPERIMENTS) {

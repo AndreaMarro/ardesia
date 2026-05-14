@@ -33,11 +33,17 @@ Each of these `capitoli` files wraps a single removed experiment, so the whole f
 
 ## Deferred to A4.1d
 
-These 4 SURVIVING lesson-paths have a `next_experiment.id` that points at a removed id. They must be re-threaded by A4.1d — NOT by A4.1b.
+These SURVIVING lesson-paths still reference a removed id. They must be re-threaded by A4.1d — NOT by A4.1b. They do not break vitest/build (no test asserts target-resolution — A4.1b recon §4), but A4.1d must clear them all.
 
-| surviving lesson-path | dangling `next_experiment.id` (removed) |
-|-----------------------|-----------------------------------------|
-| `v3-cap6-semaforo` | `v3-cap6-esp6` |
-| `v3-cap7-esp3` | `v3-cap7-esp4` |
-| `v3-cap7-esp6` | `v3-cap7-esp7` |
-| `v3-cap8-esp3` | `v3-extra-lcd-hello` |
+**Corrected set (iter-55 close verification — the recon's "4" was a `next_experiment`-only count; the real surface is 6 files / ~10 references):**
+
+| surviving lesson-path | removed id referenced | field(s) |
+|-----------------------|-----------------------|----------|
+| `v3-cap6-semaforo` | `v3-cap6-esp6` | `next_experiment.id` + `next_suggested` |
+| `v3-cap7-esp3` | `v3-cap7-esp4` | `next_experiment.id` + `next_suggested` |
+| `v3-cap7-esp6` | `v3-cap7-esp7` | `next_experiment.id` + `next_suggested` |
+| `v3-cap8-esp3` | `v3-extra-lcd-hello` | `next_experiment.id` + `next_suggested` |
+| `v3-cap7-esp2` | `v3-cap6-esp6` | prerequisite-style array |
+| `v3-cap8-esp1` | `v3-cap7-esp8` | prerequisite-style array |
+
+A4.1d must also re-confirm the "deferral-safe" verdict for the `next_suggested` field and the prerequisite arrays (the recon §4 verdict only covered `next_experiment`).

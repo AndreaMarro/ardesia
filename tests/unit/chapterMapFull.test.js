@@ -189,8 +189,8 @@ describe('chapterMapFull — Vol3 Cap6 INPUT/OUTPUT split', () => {
     });
   });
 
-  it('v3-cap6-esp5 through esp7 are INPUT (displayChapter 3)', () => {
-    ['v3-cap6-esp5', 'v3-cap6-esp6', 'v3-cap6-esp7'].forEach(id => {
+  it('v3-cap6-esp5 is INPUT (displayChapter 3)', () => {
+    ['v3-cap6-esp5'].forEach(id => {
       const info = getDisplayInfo(id);
       expect(info).not.toBeNull();
       expect(info.displayChapter).toBe(3);
@@ -203,26 +203,5 @@ describe('chapterMapFull — Vol3 Cap6 INPUT/OUTPUT split', () => {
       expect(info).not.toBeNull();
       expect(info.displayChapter).toBe(2);
     });
-  });
-});
-
-describe('chapterMapFull — Vol3 extra projects', () => {
-  it('v3-extra-lcd-hello is displayChapter 6', () => {
-    const info = getDisplayInfo('v3-extra-lcd-hello');
-    expect(info).not.toBeNull();
-    expect(info.displayChapter).toBe(6);
-    expect(info.volume).toBe(3);
-  });
-
-  it('v3-extra-servo-sweep is displayChapter 6', () => {
-    const info = getDisplayInfo('v3-extra-servo-sweep');
-    expect(info).not.toBeNull();
-    expect(info.displayChapter).toBe(6);
-  });
-
-  it('v3-extra-simon is displayChapter 6', () => {
-    const info = getDisplayInfo('v3-extra-simon');
-    expect(info).not.toBeNull();
-    expect(info.displayChapter).toBe(6);
   });
 });

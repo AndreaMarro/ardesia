@@ -26,8 +26,8 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     expect(getVolumeChapters(2)).toHaveLength(9);
   });
 
-  test('Vol 3 has 6 chapters (Cap 5, Cap 6 OUTPUT, Cap 6 INPUT, Cap 7, Cap 8, Extra)', () => {
-    expect(getVolumeChapters(3)).toHaveLength(6);
+  test('Vol 3 has 5 chapters (Cap 5, Cap 6 OUTPUT, Cap 6 INPUT, Cap 7, Cap 8)', () => {
+    expect(getVolumeChapters(3)).toHaveLength(5);
   });
 
   test('Vol 3 Cap 6 is split into OUTPUT and INPUT', () => {
@@ -63,18 +63,6 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     expect(info.title).toContain('INPUT');
   });
 
-  test('getDisplayInfo maps v3-cap6-esp6 (debounce) to display Cap 3 INPUT', () => {
-    const info = getDisplayInfo('v3-cap6-esp6');
-    expect(info.displayChapter).toBe(3);
-    expect(info.title).toContain('INPUT');
-  });
-
-  test('getDisplayInfo maps v3-cap6-esp7 (debounce while) to display Cap 3 INPUT', () => {
-    const info = getDisplayInfo('v3-cap6-esp7');
-    expect(info.displayChapter).toBe(3);
-    expect(info.title).toContain('INPUT');
-  });
-
   test('getDisplayInfo maps v3-cap6-morse to display Cap 2 OUTPUT', () => {
     const info = getDisplayInfo('v3-cap6-morse');
     expect(info.displayChapter).toBe(2);
@@ -85,23 +73,6 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     const info = getDisplayInfo('v3-cap6-semaforo');
     expect(info.displayChapter).toBe(2);
     expect(info.title).toContain('OUTPUT');
-  });
-
-  test('getDisplayInfo maps v3-extra-lcd-hello to Cap 6 Progetti e Sfide Finali', () => {
-    const info = getDisplayInfo('v3-extra-lcd-hello');
-    expect(info.displayChapter).toBe(6);
-    expect(info.title).toContain('Progetti');
-  });
-
-  test('getDisplayInfo maps v3-extra-servo-sweep to Cap 6 Progetti e Sfide Finali', () => {
-    const info = getDisplayInfo('v3-extra-servo-sweep');
-    expect(info.displayChapter).toBe(6);
-    expect(info.title).toContain('Sfide');
-  });
-
-  test('getDisplayInfo maps v3-extra-simon to Cap 6 Progetti e Sfide Finali', () => {
-    const info = getDisplayInfo('v3-extra-simon');
-    expect(info.displayChapter).toBe(6);
   });
 
   test('getDisplayInfo returns null for invalid input', () => {
@@ -138,7 +109,7 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     }
   });
 
-  test('all 92 experiment IDs map to a valid chapter', () => {
+  test('all 81 experiment IDs map to a valid chapter', () => {
     // All known experiment IDs from experiments-vol1/2/3.js
     const allIds = [
       // Vol1 (38)
@@ -162,17 +133,15 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
       'v2-cap9-esp1', 'v2-cap9-esp2',
       'v2-cap10-esp1', 'v2-cap10-esp2', 'v2-cap10-esp3', 'v2-cap10-esp4',
       'v2-cap12-esp1',
-      // Vol3 (27)
+      // Vol3 (16)
       'v3-cap5-esp1', 'v3-cap5-esp2',
       'v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-morse', 'v3-cap6-esp3', 'v3-cap6-esp4', 'v3-cap6-semaforo',
-      'v3-cap6-esp5', 'v3-cap6-esp6', 'v3-cap6-esp7',
-      'v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp4',
-      'v3-cap7-esp5', 'v3-cap7-esp6', 'v3-cap7-esp7', 'v3-cap7-esp8', 'v3-cap7-mini',
-      'v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3', 'v3-cap8-esp4', 'v3-cap8-esp5', 'v3-cap8-serial',
-      'v3-extra-lcd-hello', 'v3-extra-servo-sweep', 'v3-extra-simon',
+      'v3-cap6-esp5',
+      'v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp6',
+      'v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3',
     ];
 
-    expect(allIds.length).toBe(94);
+    expect(allIds.length).toBe(81);
 
     allIds.forEach(id => {
       const info = getDisplayInfo(id);

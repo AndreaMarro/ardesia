@@ -87,69 +87,7 @@ export default function useExperimentLoader({
   recordEvent,
   // Merged experiment (for polling)
   mergedExperiment,
-  // Component states (for Simon)
-  componentStates,
-  currentExperiment,
-  isRunning,
 }) {
-  // ─── SIMON SOUNDS: Web Audio for LED state changes ───
-  const simonAudioRef = useRef({ ctx: null, oscillators: {} });
-  const simonPrevStatesRef = useRef({});
-  useEffect(() => {
-    if (currentExperiment?.id !== 'v3-extra-simon' || !isRunning) {
-      const audio = simonAudioRef.current;
-      Object.values(audio.oscillators).forEach(o => { try { o.stop(); } catch {} });
-      audio.oscillators = {};
-      simonPrevStatesRef.current = {};
-      return;
-    }
-    const SIMON_LEDS = {
-      led1: { pin: 9,  freq: 262 },
-      led2: { pin: 10, freq: 330 },
-      led3: { pin: 11, freq: 392 },
-      led4: { pin: 12, freq: 523 },
-    };
-    const audio = simonAudioRef.current;
-    if (!audio.ctx) {
-      try { audio.ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch { return; }
-    }
-    if (audio.ctx.state === 'suspended') {
-      audio.ctx.resume().catch(() => {});
-    }
-    const prevStates = simonPrevStatesRef.current;
-    for (const [ledId, cfg] of Object.entries(SIMON_LEDS)) {
-      const ledState = componentStates[ledId];
-      const isOn = ledState?.on === true || (ledState?.brightness > 0);
-      const wasOn = prevStates[ledId] || false;
-      if (isOn && !wasOn) {
-        try {
-          const osc = audio.ctx.createOscillator();
-          const gain = audio.ctx.createGain();
-          osc.type = 'square';
-          osc.frequency.value = cfg.freq;
-          gain.gain.value = 0.08;
-          osc.connect(gain).connect(audio.ctx.destination);
-          osc.start();
-          audio.oscillators[ledId] = osc;
-        } catch {}
-      } else if (!isOn && wasOn) {
-        try { audio.oscillators[ledId]?.stop(); } catch {}
-        delete audio.oscillators[ledId];
-      }
-      prevStates[ledId] = isOn;
-    }
-    simonPrevStatesRef.current = prevStates;
-  }, [componentStates, currentExperiment, isRunning]);
-
-  // Cleanup Simon audio on unmount
-  useEffect(() => {
-    return () => {
-      const audio = simonAudioRef.current;
-      Object.values(audio.oscillators).forEach(o => { try { o.stop(); } catch {} });
-      if (audio.ctx?.state !== 'closed') { try { audio.ctx?.close(); } catch {} }
-    };
-  }, []);
-
   /* ─────────────────────────────────────────────────
      Select experiment
      ───────────────────────────────────────────────── */

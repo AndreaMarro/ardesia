@@ -4,7 +4,7 @@
 //
 // Vol1: Cap 6-14 internal -> display Cap 2-10 (Cap 1 "Breadboard" is future)
 // Vol2: Cap 3-12 internal -> display Cap 1-9
-// Vol3: Cap 5-8 + extra internal -> display Cap 1-6 (Cap 6 split OUTPUT/INPUT)
+// Vol3: Cap 5-8 internal -> display Cap 1-5 (Cap 6 split OUTPUT/INPUT)
 
 export const CHAPTER_MAP = {
   // Volume 1 — Le Basi
@@ -36,44 +36,34 @@ export const CHAPTER_MAP = {
                      sourceChapter: 'v3-cap6' },
   'v3-cap7':       { volume: 3, displayChapter: 4, title: 'I Pin Analogici' },
   'v3-cap8':       { volume: 3, displayChapter: 5, title: 'Comunicazione Seriale' },
-  'v3-extra':      { volume: 3, displayChapter: 6, title: 'Progetti e Sfide Finali' },
 };
 
 // Experiment IDs that belong to Cap 6 INPUT (not OUTPUT)
-const CAP6_INPUT_IDS = ['v3-cap6-esp5', 'v3-cap6-esp6', 'v3-cap6-esp7'];
+const CAP6_INPUT_IDS = ['v3-cap6-esp5'];
 
 /**
  * Get display info for an experiment ID.
- * Handles the Vol3 Cap 6 OUTPUT/INPUT split and extra projects.
+ * Handles the Vol3 Cap 6 OUTPUT/INPUT split.
  *
- * @param {string} experimentId - e.g. "v3-cap6-esp1", "v3-extra-simon"
+ * @param {string} experimentId - e.g. "v3-cap6-esp1", "v3-cap6-morse"
  * @returns {{ volume: number, displayChapter: number, title: string } | null}
  */
 export function getDisplayInfo(experimentId) {
   if (!experimentId || typeof experimentId !== 'string') return null;
 
-  // Vol3 Cap 6 INPUT split: esp5, esp6, esp7 are INPUT experiments
+  // Vol3 Cap 6 INPUT split: esp5 is an INPUT experiment
   if (CAP6_INPUT_IDS.includes(experimentId)) {
     return CHAPTER_MAP['v3-cap6-input'];
-  }
-
-  // Vol3 extra projects: v3-extra-lcd-hello, v3-extra-servo-sweep, v3-extra-simon
-  if (experimentId.startsWith('v3-extra')) {
-    return CHAPTER_MAP['v3-extra'];
   }
 
   // General case: strip experiment suffix to get chapter key
   // v1-cap6-esp1 -> v1-cap6
   // v3-cap6-morse -> v3-cap6
   // v3-cap6-semaforo -> v3-cap6
-  // v3-cap7-mini -> v3-cap7 (Sprint T iter 37 Phase 3)
-  // v3-cap8-serial -> v3-cap8 (Sprint T iter 37 Phase 3)
   const chapterKey = experimentId
     .replace(/-esp\d+.*$/, '')
     .replace(/-morse$/, '')
-    .replace(/-semaforo$/, '')
-    .replace(/-mini.*$/, '')
-    .replace(/-serial$/, '');
+    .replace(/-semaforo$/, '');
 
   return CHAPTER_MAP[chapterKey] || null;
 }

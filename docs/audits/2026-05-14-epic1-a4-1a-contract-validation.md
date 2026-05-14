@@ -7,8 +7,8 @@
 | Metric | Value |
 |---|---|
 | Experiments checked | 94 |
-| PASS (already match contract) | 49 |
-| FAIL (need A4.1b-e work) | 45 |
+| PASS (already match contract) | 62 |
+| FAIL (need A4.1b-e work) | 32 |
 | action=keep | 73 |
 | action=correct | 6 |
 | action=remove (pending A4.1b) | 13 |
@@ -84,12 +84,6 @@
 ### v3-cap6-esp5 (consolidate)
 - pending-consolidation: v3-cap6-esp5 should be consolidated into v3-cap6-semaforo
 
-### v3-cap6-esp6 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap6-esp6 still exists
-
-### v3-cap6-esp7 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap6-esp7 still exists
-
 ### v3-cap6-morse (keep)
 - title: "SOS in codice Morse" != contract "Esperimento 3: fai un SOS in codice Morse (duplicate of v3-cap6-esp3 in repo's named-id scheme)"
 
@@ -105,23 +99,8 @@
 ### v3-cap7-esp3 (keep)
 - title: "Pulsante con INPUT_PULLUP" != contract "ESERCIZIO 7.3: collegamento del pulsante con INPUT_PULLUP (1 filo + GND, D2)"
 
-### v3-cap7-esp4 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap7-esp4 still exists
-
-### v3-cap7-esp5 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap7-esp5 still exists
-
 ### v3-cap7-esp6 (correct)
 - title: "2 LED con pulsante (toggle)" != contract "ESERCIZIO: "Cambia un numero, cambia il circuito" — sposta il filo del LED da pin 8 a pin 9 (variabile int led)"
-
-### v3-cap7-esp7 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap7-esp7 still exists
-
-### v3-cap7-esp8 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap7-esp8 still exists
-
-### v3-cap7-mini (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap7-mini still exists
 
 ### v3-cap8-esp1 (correct)
 - title: "Serial.println in setup" != contract "First analog program: analogRead(A0) → int valore → Serial.println on Monitor Seriale (setup: Serial.begin)"
@@ -131,21 +110,3 @@
 
 ### v3-cap8-esp3 (keep)
 - title: "analogRead + Serial Monitor" != contract "ESERCIZIO 8.x: "Trova A0" + analogRead + Serial Monitor @ 9600 baud"
-
-### v3-cap8-esp4 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap8-esp4 still exists
-
-### v3-cap8-esp5 (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap8-esp5 still exists
-
-### v3-cap8-serial (remove)
-- pending-removal: correction.action=remove but lesson-path v3-cap8-serial still exists
-
-### v3-extra-lcd-hello (remove)
-- pending-removal: correction.action=remove but lesson-path v3-extra-lcd-hello still exists
-
-### v3-extra-servo-sweep (remove)
-- pending-removal: correction.action=remove but lesson-path v3-extra-servo-sweep still exists
-
-### v3-extra-simon (remove)
-- pending-removal: correction.action=remove but lesson-path v3-extra-simon still exists

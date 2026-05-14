@@ -986,32 +986,9 @@ const VOLUME_REFERENCES = {
     bookQuote: "Un buon programmatore controlla sempre anche i fili.",
     bookContext: "Introduce i commenti nel codice Arduino. I commenti con // servono per spiegare il codice senza modificarne il comportamento."
   },
-  'v3-cap6-esp6': {
-    volume: 3, bookPage: 59, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Checklist di debug: se il LED non si accende, controlla LED girato nel verso giusto, resistenza collegata bene, GND presente, numero del pin corretto sia sulla breadboard che nel codice.",
-    bookInstructions: [
-      "Se il circuito non funziona, segui la checklist di debug",
-      "Verifica LED, resistenza, GND e pin nel codice",
-      "Correggi eventuali errori e riprova"
-    ],
-    bookQuote: null,
-    bookContext: "Metodo di debug sistematico per circuiti Arduino. Lo studente impara a diagnosticare problemi hardware e software."
-  },
 
   // Capitolo 7 — I Pin di Input: Arduino Ascolta e Decide (p.63)
   // INPUT experiments (esp7 from cap6, cap7-esp1/2)
-  'v3-cap6-esp7': {
-    volume: 3, bookPage: 65, chapter: "Capitolo 7 - I Pin di Input: Arduino Ascolta e Decide", chapterPage: 63,
-    bookText: "Collegamento del pulsante con INPUT_PULLUP. Obiettivo: collegare il pulsante usando solo 1 filo + GND.",
-    bookInstructions: [
-      "Collega un cavetto da D2 a un lato del pulsante",
-      "Collega l'altro lato del pulsante a GND",
-      "Usa pinMode(2, INPUT_PULLUP) nel codice"
-    ],
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-    bookQuote: "Se premi il pulsante, D2 si collega a GND e Arduino legge LOW. Se non premi, Arduino legge HIGH grazie al pullup interno.",
-    bookContext: "Primo esperimento con INPUT. Il capitolo spiega che Arduino ora ascolta anziché comandare: INPUT_PULLUP attiva una resistenza interna che rende stabile la lettura."
-  },
   'v3-cap7-esp1': {
     volume: 3, bookPage: 65, chapter: "Capitolo 7 - I Pin di Input: Arduino Ascolta e Decide", chapterPage: 63,
     bookText: "Arduino legge lo stato di un pulsante con digitalRead() e decide cosa fare con if/else: se il pulsante è premuto, accendi il LED; altrimenti spegnilo.",
@@ -1047,31 +1024,6 @@ const VOLUME_REFERENCES = {
     bookQuote: null,
     bookContext: "Introduzione ai pin analogici. Il capitolo spiega la differenza tra digitale (sì/no) e analogico (una quantità che può cambiare piano piano), con valori da 0 a 1023."
   },
-  'v3-cap7-esp4': {
-    volume: 3, bookPage: 76, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "Prepariamo la nostra breadboard con Arduino Nano e alimentazione. Colleghiamo il potenziometro: un piedino esterno a 5V, l'altro a GND, il piedino centrale ad A0.",
-    bookInstructions: [
-      "Inserisci Arduino Nano sulla breadboard",
-      "Collega 5V e GND alle linee di alimentazione della breadboard su entrambi i lati",
-      "Inserisci il potenziometro con un piedino esterno a 5V e l'altro a GND",
-      "Collega il piedino centrale ad A0"
-    ],
-    bookQuote: null,
-    bookContext: "Setup della breadboard con alimentazione da Arduino. Da questo momento le linee 5V e GND restano collegate per tutti gli esperimenti successivi."
-  },
-  'v3-cap7-esp5': {
-    volume: 3, bookPage: 77, chapter: "Capitolo 7 - I Pin Analogici", chapterPage: 63,
-    bookText: "Primo programma analogico: leggiamo un valore con analogRead(A0) e lo stampiamo sul Monitor Seriale. Il potenziometro genera numeri da 0 a 1023 che vediamo scorrere sullo schermo.",
-    bookInstructions: [
-      "Collega il potenziometro: 5V e GND agli estremi, pin centrale al pin A0",
-      "Scrivi nel setup: Serial.begin(9600);",
-      "Nel loop: int valore = analogRead(A0); Serial.println(valore); delay(250);",
-      "Carica lo sketch e apri Strumenti > Monitor Seriale (9600 baud)",
-      "Gira la manopola e osserva i numeri che cambiano da 0 a 1023"
-    ],
-    bookQuote: "Il Monitor Seriale è la finestra che ti fa vedere cosa sta pensando Arduino: ogni numero è quello che legge dal potenziometro in quel momento!",
-    bookContext: "Introduce analogRead(), variabili int e Serial.println(). Il Monitor Seriale diventa lo strumento per capire cosa succede dentro Arduino."
-  },
   'v3-cap7-esp6': {
     volume: 3, bookPage: 78, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
     bookText: "Spiegazione dettagliata di int valore = 0: le scatoline dei numeri. int significa numero intero senza virgola. Serve per creare una scatolina capace di contenere numeri.",
@@ -1081,28 +1033,6 @@ const VOLUME_REFERENCES = {
     ],
     bookQuote: "Se funziona, hai capito cos'è una variabile: hai cambiato un solo numero e hai cambiato il comportamento del programma.",
     bookContext: "Spiegazione del concetto di variabile int. La metafora della scatolina rende comprensibile il concetto ai bambini 8-14 anni."
-  },
-  'v3-cap7-esp7': {
-    volume: 3, bookPage: 79, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "La funzione nuova: analogRead(A0). Questa funzione restituisce un numero: 0 quando il segnale è bassissimo (verso GND), 1023 quando il segnale è altissimo (verso 5V).",
-    bookInstructions: [
-      "Carica il programma con analogRead(A0)",
-      "Osserva sul Monitor Seriale: manopola verso GND = 0, manopola verso 5V = 1023",
-      "Gira la manopola lentamente e osserva i numeri intermedi"
-    ],
-    bookQuote: "Arduino non riceve sì/no, riceve un numero.",
-    bookContext: "Approfondimento su analogRead: come Arduino converte una tensione analogica in un numero digitale (ADC a 10 bit). La spiegazione riga per riga aiuta a capire ogni istruzione."
-  },
-  'v3-cap7-esp8': {
-    volume: 3, bookPage: 80, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "Serial.println(valore): ora Arduino dice al PC quel numero. Serial è il canale che Arduino usa per parlare con il computer attraverso il cavo USB.",
-    bookInstructions: [
-      "Comprendi Serial.begin(9600): inizia la comunicazione seriale a velocità 9600",
-      "Comprendi Serial.println(valore): scrivi il valore e vai a capo",
-      "Comprendi delay(250): aspetta un pochino prima di leggere e stampare di nuovo"
-    ],
-    bookQuote: "Senza pausa Arduino stamperebbe migliaia di numeri al secondo e il monitor scorrerebbe troppo veloce.",
-    bookContext: "Spiegazione dettagliata della comunicazione seriale: Serial.begin, Serial.println e delay. Il Monitor Seriale è il primo strumento di debug."
   },
   'v3-cap8-esp1': {
     volume: 3, bookPage: 81, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
@@ -1138,92 +1068,6 @@ const VOLUME_REFERENCES = {
     ],
     bookQuote: null,
     bookContext: "Approfondimento sulla comunicazione seriale. Il capitolo introduce la differenza tra Serial.print e Serial.println e l'uso di stringhe di testo."
-  },
-  'v3-cap8-esp4': {
-    volume: 3, bookPage: 86, chapter: "Capitolo 9 - Comunicazione Seriale", chapterPage: 85,
-    bookText: "Esperimento avanzato con la comunicazione seriale: invia dati dal potenziometro al PC e visualizzali in tempo reale.",
-    bookInstructions: [
-      "Collega il potenziometro ad A0",
-      "Stampa il valore con un'etichetta: Serial.print(\"Valore: \") e Serial.println(valore)",
-      "Osserva i dati formattati sul Monitor Seriale"
-    ],
-    bookQuote: null,
-    bookContext: "Formattazione dei dati seriali: aggiungere etichette ai numeri per rendere l'output leggibile e comprensibile."
-  },
-  'v3-cap8-esp5': {
-    volume: 3, bookPage: 87, chapter: "Capitolo 9 - Comunicazione Seriale", chapterPage: 85,
-    bookText: "Esperimento finale del capitolo sulla comunicazione seriale: combina più sensori e stampa i valori su righe separate.",
-    bookInstructions: [
-      "Collega più componenti (potenziometro, pulsante, fotoresistore) ad Arduino",
-      "Leggi i valori di ogni componente e stampali sul Monitor Seriale",
-      "Usa delay per non sovraccaricare il monitor"
-    ],
-    bookQuote: null,
-    bookContext: "Lettura multipla di sensori con output seriale formattato. Prepara lo studente ai progetti più complessi dove servono più input contemporaneamente."
-  },
-
-  // Extra — Progetti Avanzati (p.88+)
-  'v3-extra-lcd-hello': {
-    volume: 3, bookPage: 88, chapter: "Extra - Progetti e Sfide Finali", chapterPage: 88,
-    bookText: "Progetto LCD Hello World: collega un display LCD ad Arduino e mostra un messaggio di benvenuto. Il display LCD permette di mostrare testo senza bisogno del computer.",
-    bookInstructions: [
-      "Collega il display LCD alla breadboard secondo lo schema",
-      "Installa la libreria LiquidCrystal nell'IDE Arduino",
-      "Scrivi il codice per mostrare 'Hello World!' sul display"
-    ],
-    bookQuote: null,
-    bookContext: "Primo progetto extra: display LCD. Introduce l'uso di librerie esterne e la comunicazione con un display per visualizzare informazioni senza computer."
-  },
-  'v3-extra-servo-sweep': {
-    volume: 3, bookPage: 90, chapter: "Extra - Progetti e Sfide Finali", chapterPage: 88,
-    bookText: "Progetto Servo Sweep: controlla un servomotore che ruota avanti e indietro. Il servomotore è un motore di precisione che può essere posizionato ad un angolo specifico.",
-    bookInstructions: [
-      "Collega il servomotore: filo rosso a 5V, filo nero/marrone a GND, filo arancione/giallo al pin 9",
-      "Installa la libreria Servo nell'IDE Arduino",
-      "Scrivi il codice per far ruotare il servo da 0 a 180 gradi e ritorno"
-    ],
-    bookQuote: null,
-    bookContext: "Secondo progetto extra: servomotore. Introduce il concetto di controllo di posizione angolare e l'uso della libreria Servo."
-  },
-  'v3-extra-simon': {
-    volume: 3, bookPage: 92, chapter: "Extra - Progetti e Sfide Finali", chapterPage: 88,
-    bookText: "Progetto Simon Says: il gioco di memoria con LED e pulsanti. Arduino genera una sequenza di LED che lo studente deve riprodurre premendo i pulsanti corrispondenti.",
-    bookInstructions: [
-      "Collega 4 LED di colori diversi a 4 pin digitali con le rispettive resistenze",
-      "Collega 4 pulsanti a 4 pin digitali con INPUT_PULLUP",
-      "Programma la logica del gioco: Arduino mostra una sequenza, il giocatore la riproduce"
-    ],
-    bookQuote: null,
-    bookContext: "Progetto finale avanzato: gioco Simon Says. Combina tutti i concetti del Volume 3: pin digitali OUTPUT e INPUT, array, cicli, random. È la sfida più complessa del libro."
-  },
-
-  // Sprint T iter 37 Phase 3 — Maker-3 atom A9-FIX (2/7 deferred Maker-1 iter 37 Phase 1 closure)
-  // Source: Vol3 ODT extract /tmp/manuale-vol3-iter37.txt — Cap 7 line 2851-3000 + Cap 8 line 3864-4100 verbatim
-  'v3-cap7-mini': {
-    volume: 3, bookPage: 75, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 73,
-    bookText: "ESERCIZIO 7.1: in questo esperimento faremo una cosa molto interessante: accenderemo un LED collegato al pin 13 della Arduino Nano R4 solo quando la tensione letta sul pin A0 supera i 2,5 V. Per realizzare il circuito abbiamo bisogno di: Arduino Nano R4, ELAB Nano Breakout, 1 LED verde, 1 resistore da 470 Ohm, 1 trimmer (potenziometro), 3 cavetti. Ricorda che il trimmer, collegato così, funziona come un partitore di tensione. Quando lo giri verso sinistra la tensione sul pin centrale è circa 0V, verso destra arriva fino a circa 5V, a metà è circa 2,5V. La risoluzione della scheda è di 10 bit: può rappresentare 1024 valori diversi (da 0 a 1023). A 0 V corrisponde 0, a 5 V corrisponde 1023. Il passo minimo è 5V/1024 = 4,88 mV circa 5 mV.",
-    bookInstructions: [
-      "Costruisci il circuito come nella figura 7.2: trimmer su A0 come partitore, LED verde + resistore 470Ω su pin 13",
-      "In setup(): pinMode(A0, INPUT); pinMode(13, OUTPUT); — non serve INPUT_PULLUP perché il trimmer è già un partitore",
-      "Nel loop(): int valoreLetto = analogRead(A0); — usa UN solo = perché stiamo assegnando, non confrontando",
-      "Se valoreLetto > 512 (circa metà, ~2,5V), accendi il LED su pin 13; altrimenti spegnilo",
-      "Ruota il trimmer oltre la metà per accendere il LED; riportalo indietro per spegnerlo"
-    ],
-    bookQuote: "Il valore cambia solo se la tensione aumenta (o diminuisce) di almeno 5 millivolt.",
-    bookContext: "Mini progetto sintesi del Capitolo 7: lettura analogica con potenziometro come partitore + decisione con soglia. Introduce ADC, quantizzazione (1024 gradini, passo 5 mV), pin analogici A0-A7. Prepara al Capitolo 8 dove vedremo i valori letti tramite Serial Monitor."
-  },
-  'v3-cap8-serial': {
-    volume: 3, bookPage: 87, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 82,
-    bookText: "ESERCIZIO 8.1: in questo esperimento faremo una cosa molto semplice ma importante: Arduino invierà un messaggio di saluto al computer! Per farlo non serve costruire nessun circuito complicato. Ti basta collegare la scheda Arduino al PC con il cavo USB. Per prima cosa dobbiamo attivare la comunicazione seriale: Serial.begin(9600). Questa istruzione significa 'inizia la comunicazione tra Arduino e il computer'. Serial è un oggetto, begin() è un comando per avviarlo, 9600 è la velocità di comunicazione (baud). Poi while(!Serial); aspetta finché la comunicazione seriale non è pronta. Infine Serial.println(\"Ciao dal Team di ELAB!\") scrive il messaggio nel Serial Monitor. println stampa il testo e va a capo.",
-    bookInstructions: [
-      "Collega la scheda Arduino Nano R4 al PC con il cavo USB",
-      "Apri il Monitor Seriale: clicca su Strumenti -> Monitor Seriale, oppure sulla lente di ingrandimento in alto a destra dello sketch",
-      "Imposta la velocità su 9600 baud (in basso a destra del Monitor Seriale)",
-      "Nel setup() scrivi: Serial.begin(9600); while(!Serial); Serial.println(\"Ciao dal Team di ELAB!\");",
-      "Carica il programma e osserva il messaggio nella finestra bianca del Monitor Seriale"
-    ],
-    bookQuote: "Le virgolette sono fondamentali perché indicano che quello che c'è dentro è testo. Questo tipo di dato si chiama stringa (String).",
-    bookContext: "Primo esercizio del Capitolo 8: introduzione alla comunicazione seriale. Lo studente impara che Arduino può PARLARE al computer (debug, sensori, log). Concetti chiave: Serial.begin(baud), while(!Serial), Serial.println(), stringhe tra virgolette doppie, baud rate (9600 standard). Strumento fondamentale per il debug: trovare e correggere errori."
   },
 };
 

@@ -23,7 +23,8 @@ describe('Cross-Validation: Experiments ↔ Lesson Paths', () => {
       console.log(`⚠️ BUG REALE: ${orphanPaths.length} lesson paths orfani (esperimento non esiste): ${orphanPaths.join(', ')}`);
       console.log('   FIX: Rimuovere da lesson-paths/index.js o creare gli esperimenti mancanti');
     }
-    // Max 2 orfani tollerati (v3-cap7-mini, v3-cap8-serial)
+    // Max 2 orfani tollerati (EPIC 1 A4.1b removed v3-cap7-mini + v3-cap8-serial
+    // symmetrically from both lesson-paths and experiments — expect 0 now)
     expect(orphanPaths.length, `Troppi lesson paths orfani`).toBeLessThanOrEqual(2);
   });
 

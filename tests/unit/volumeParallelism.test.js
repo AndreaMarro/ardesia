@@ -1,5 +1,5 @@
 /**
- * volumeParallelism.test.js — Verifica parità dei 92 esperimenti con i volumi fisici ELAB
+ * volumeParallelism.test.js — Verifica parità degli 81 esperimenti con i volumi fisici ELAB
  *
  * Ogni esperimento nel simulatore DEVE avere:
  *   - bookText non-null (testo dal PDF verbatim)
@@ -24,8 +24,8 @@ describe('Volume Parallelism — Struttura VOLUME_REFERENCES', () => {
     expect(Object.keys(VOLUME_REFERENCES).length).toBeGreaterThan(0);
   });
 
-  it('contiene esattamente 92 esperimenti', () => {
-    expect(Object.keys(VOLUME_REFERENCES).length).toBe(94);
+  it('contiene esattamente 81 esperimenti', () => {
+    expect(Object.keys(VOLUME_REFERENCES).length).toBe(81);
   });
 
   it('tutti gli esperimenti hanno volume 1, 2 o 3', () => {
@@ -119,9 +119,9 @@ describe('Volume Parallelism — Distribuzione volumi', () => {
     expect(vol2.length).toBeGreaterThanOrEqual(20);
   });
 
-  it('Volume 3 ha almeno 20 esperimenti', () => {
+  it('Volume 3 ha almeno 14 esperimenti', () => {
     const vol3 = Object.values(VOLUME_REFERENCES).filter(r => r.volume === 3);
-    expect(vol3.length).toBeGreaterThanOrEqual(20);
+    expect(vol3.length).toBeGreaterThanOrEqual(14);
   });
 
   it('tutti i volumi sono rappresentati', () => {

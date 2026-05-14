@@ -1,5 +1,5 @@
 /**
- * Experiment Data Integrity — Comprehensive verification of ALL 94 experiments (Sprint T iter 37 Phase 3 +2 Vol3)
+ * Experiment Data Integrity — Comprehensive verification of ALL 81 experiments (EPIC 1 A4.1b — 13 Vol3 no-counterpart removed)
  * Verifies counts, uniqueness, required fields, components, lesson groups,
  * volume references, difficulty ranges, and simulation modes.
  * Target: ~300 test cases
@@ -42,12 +42,12 @@ describe('1. Count Integrity', () => {
     expect(vol2Experiments.length).toBe(27);
   });
 
-  test('Volume 3 has exactly 29 experiments', () => {
-    expect(vol3Experiments.length).toBe(29);
+  test('Volume 3 has exactly 16 experiments', () => {
+    expect(vol3Experiments.length).toBe(16);
   });
 
-  test('Total experiments is 38 + 27 + 29 = 94', () => {
-    expect(allExperiments.length).toBe(94);
+  test('Total experiments is 38 + 27 + 16 = 81', () => {
+    expect(allExperiments.length).toBe(81);
   });
 
   test('Sum of volumes equals total', () => {
@@ -90,7 +90,7 @@ describe('2. ID Uniqueness', () => {
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 3. REQUIRED FIELDS (92 tests — one per experiment)
+// 3. REQUIRED FIELDS (81 tests — one per experiment)
 // ═════════════════════════════════════════════════════════════════════════════
 
 describe('3. Required Fields — one test per experiment', () => {
@@ -121,7 +121,7 @@ describe('3. Required Fields — one test per experiment', () => {
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 4. COMPONENT VALIDITY (92 tests — one per experiment)
+// 4. COMPONENT VALIDITY (81 tests — one per experiment)
 // ═════════════════════════════════════════════════════════════════════════════
 
 describe('4. Component Validity — one test per experiment', () => {
@@ -146,8 +146,8 @@ describe('4. Component Validity — one test per experiment', () => {
 // ═════════════════════════════════════════════════════════════════════════════
 
 describe('5. Lesson Group Coverage', () => {
-  test('There are exactly 25 lesson groups', () => {
-    expect(lessonGroupEntries.length).toBe(25);
+  test('There are exactly 24 lesson groups', () => {
+    expect(lessonGroupEntries.length).toBe(24);
   });
 
   test('Every experiment belongs to at least one lesson group', () => {
@@ -169,8 +169,8 @@ describe('5. Lesson Group Coverage', () => {
     }
   });
 
-  test('Lesson group experiment IDs total matches 94', () => {
-    expect(lessonGroupExperimentIds.size).toBe(94);
+  test('Lesson group experiment IDs total matches 81', () => {
+    expect(lessonGroupExperimentIds.size).toBe(81);
   });
 
   test('Every lesson group experiment ID corresponds to a real experiment', () => {
@@ -181,7 +181,7 @@ describe('5. Lesson Group Coverage', () => {
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 6. VOLUME REFERENCE MAPPING (92 tests — one per experiment)
+// 6. VOLUME REFERENCE MAPPING (81 tests — one per experiment)
 // ═════════════════════════════════════════════════════════════════════════════
 
 describe('6. Volume Reference Mapping — one test per experiment', () => {
@@ -213,7 +213,7 @@ describe('7. Lesson Path Existence — sample of 10 experiments', () => {
     'v2-cap12-esp1',  // robot segui luce
     'v3-cap5-esp1',   // primi passi Arduino
     'v3-cap6-semaforo', // semaforo
-    'v3-extra-simon', // Simon Says
+    'v3-cap6-esp5',   // INPUT_PULLUP
   ];
 
   sampleIds.forEach(id => {
@@ -244,7 +244,7 @@ describe('8. Cross-Reference Consistency — 10 sample experiments', () => {
     { id: 'v3-cap5-esp2', expectedVol: 3 },
     { id: 'v3-cap6-esp5', expectedVol: 3 },
     { id: 'v3-cap8-esp3', expectedVol: 3 },
-    { id: 'v3-extra-lcd-hello', expectedVol: 3 },
+    { id: 'v3-cap6-esp4', expectedVol: 3 },
   ];
 
   samples.forEach(({ id, expectedVol }) => {
@@ -336,11 +336,11 @@ describe('10. SimulationMode Valid', () => {
     });
   });
 
-  test('Circuit mode count (65) + AVR mode count (29) = 94', () => {
+  test('Circuit mode count (65) + AVR mode count (16) = 81', () => {
     const circuitCount = allExperiments.filter(e => e.simulationMode === 'circuit').length;
     const avrCount = allExperiments.filter(e => e.simulationMode === 'avr').length;
     expect(circuitCount).toBe(65);
-    expect(avrCount).toBe(29);
-    expect(circuitCount + avrCount).toBe(94);
+    expect(avrCount).toBe(16);
+    expect(circuitCount + avrCount).toBe(81);
   });
 });
