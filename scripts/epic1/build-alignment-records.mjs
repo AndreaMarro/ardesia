@@ -76,3 +76,77 @@ export function buildAlignmentRecord(id, src = {}) {
     },
   };
 }
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const REPO = resolve(HERE, '..', '..');
+const TEA = join(HERE, 'tea-canon');
+const VOL_DIR = '/Users/andreamarro/VOLUME 3/CONTENUTI/volumi-pdf';
+const VOL_TEXT = {
+  1: join(VOL_DIR, 'vol1.txt'),
+  2: join(VOL_DIR, 'vol2.txt'),
+  3: join(VOL_DIR, 'vol3-v0.8.1.txt'),
+};
+const OUT = join(HERE, 'alignment-records.json');
+
+// volume-references.js is ESM (export default). The runner block below only runs
+// on direct `node` invocation; vitest imports this module purely for its named
+// exports. Vite's SSR transform cannot parse a non-literal dynamic import()
+// specifier in this file (Rollup "Expected ident" parse failure), so the import()
+// is constructed via `new Function` â the token is invisible to vite's parser,
+// while `node` evaluates it natively at runtime.
+const __esmImport = new Function('s', 'return import(s)');
+
+function main() {
+  const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
+  const narrativeMap = readJson(join(TEA, 'narrative_map.json'));
+  const metadata94 = readJson(join(TEA, 'narrative_metadata_94.json'));
+  const teaMap = {};
+  for (const volKey of Object.keys(narrativeMap)) {
+    const vol = narrativeMap[volKey];
+    for (const chKey of Object.keys(vol.chapters || {})) {
+      for (const e of vol.chapters[chKey].experiments || []) teaMap[e.id] = e;
+    }
+  }
+  const lpDir = join(REPO, 'src', 'data', 'lesson-paths');
+  const lessonPaths = {};
+  for (const f of readdirSync(lpDir).filter((f) => f.endsWith('.json'))) {
+    const j = readJson(join(lpDir, f));
+    if (j.experiment_id) lessonPaths[j.experiment_id] = j;
+  }
+  return { narrativeMap, metadata94, teaMap, lessonPaths };
+}
+
+async function run() {
+  const { metadata94, teaMap, lessonPaths } = main();
+  const volumeRefs = (await __esmImport(join(REPO, 'src/data/volume-references.js'))).default;
+  const volText = {
+    1: readFileSync(VOL_TEXT[1], 'utf8'),
+    2: readFileSync(VOL_TEXT[2], 'utf8'),
+    3: readFileSync(VOL_TEXT[3], 'utf8'),
+  };
+  const ids = Object.keys(teaMap).sort();
+  const records = ids.map((id) => {
+    const volNum = Number(id.charAt(1)); // v1-... -> 1
+    return buildAlignmentRecord(id, {
+      lessonPath: lessonPaths[id] ?? null,
+      teaMapEntry: teaMap[id] ?? null,
+      teaMetaEntry: metadata94[id] ?? null,
+      volumeRefEntry: volumeRefs[id] ?? null,
+      volumeText: volText[volNum] ?? '',
+    });
+  });
+  const summary = {
+    total: records.length,
+    titleAgree: records.filter((r) => r.flags.titleAgree).length,
+    nextIdAgree: records.filter((r) => r.flags.nextIdAgree).length,
+    teaBookTextVerified: records.filter((r) => r.flags.teaBookTextVerified).length,
+  };
+  mkdirSync(dirname(OUT), { recursive: true });
+  writeFileSync(OUT, JSON.stringify({ generatedAt: new Date().toISOString(), summary, records }, null, 2));
+  console.log(`✓ ${OUT}`);
+  console.log(`  ${summary.total} records · titleAgree ${summary.titleAgree} · nextIdAgree ${summary.nextIdAgree} · teaBookTextVerified ${summary.teaBookTextVerified}/${summary.total}`);
+}
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  run().catch((e) => { console.error('FATAL', e); process.exit(1); });
+}
