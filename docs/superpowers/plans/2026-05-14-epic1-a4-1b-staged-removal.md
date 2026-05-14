@@ -22,6 +22,18 @@
 
 ---
 
+## AMENDMENT (iter-55, post-Task-1 recon)
+
+Task 1's recon (`docs/audits/2026-05-14-epic1-a4-1b-recon.md`, commit `473c84b8`) surfaced a **critical flaw in the original exit mechanism**: `scripts/epic1/validate-lesson-paths.mjs` `checkLessonPath()` pushes `pending-removal` **unconditionally** on `correction.action === 'remove'` — it never checks whether the lesson-path file still exists. So deleting the 13 lesson-path JSONs alone would NOT drive the gate to 0 `pending-removal`; the original Task 3 Step 2 exit criterion was unreachable.
+
+**Resolution — option (b), fix the gate (it is a bug, not scope creep):** the gate's issue message says *"...but lesson-path ${id} still exists"* and its unit test is named *"...and the file still exists"* — the file-existence condition was *intended*, iter-54 just never implemented it (only the file-exists case was ever tested). The contract `a3-corrections.json` **keeps** its 13 `remove` entries — they are the permanent A3 verdict record; the manifest cites them, it does not replace them. The fix is a one-condition guard + a new test for the previously-untested file-gone case — strengthening, not weakening.
+
+This adds **Task 1.5** (below) — a standalone, separately-committed gate bug-fix — between Task 1 and Task 2. After Task 1.5, the vitest pre-count is **14367** (the +1 new test); Task 3's arithmetic uses 14367 as the pre-removal baseline.
+
+Recon also confirmed: dangling-`next_experiment` set = **4** (activation §4's "5" is wrong — `v3-cap6-esp5` does not dangle); deferral to A4.1d is **safe** (no test asserts `next_experiment` target-resolution); the pre-commit hook reads **`.test-count-baseline.json`** `total` (Task 3 updates that AND `automa/baseline-tests.txt`); 5 `public/hex` artifacts; two fixed `toBe(94)` assertions inside generated files (`experimentConnections.test.js:137`, `chapterMap.test.js:175`) must be hand-edited to `toBe(81)`.
+
+---
+
 ## File Structure
 
 | File | Action | Responsibility |
@@ -120,6 +132,87 @@ Expected: pre-commit hook passes (docs-only, test count unchanged).
 
 ---
 
+## Task 1.5: Fix the validation-gate `pending-removal` bug (standalone commit)
+
+**Files:**
+- Modify: `scripts/epic1/validate-lesson-paths.mjs` (the `checkLessonPath` `remove` branch)
+- Modify: `tests/unit/epic1/validate-lesson-paths.test.js` (add one test)
+
+TDD. This makes Task 3's exit criterion (0 `pending-removal` after the files are gone) actually reachable. `scripts/` is not in the Vite build — build is unaffected; vitest gains +1 test.
+
+- [ ] **Step 1: Write the failing test**
+
+Append inside the existing `describe('checkLessonPath', ...)` block in `tests/unit/epic1/validate-lesson-paths.test.js` (after the `it('reports pending-removal when correction.action is remove and the file still exists', ...)` test at lines 85-91 — leave that test unchanged, it correctly covers the file-exists branch):
+```js
+  it('passes when correction.action is remove and the lesson-path is gone', () => {
+    const r = checkLessonPath('v3-cap6-esp6', null, { action: 'remove', bookFaithfulTitle: null,
+      page: null, chapter: null, nextId: null, source: 'neither', confidence: 'high' });
+    expect(r.ok).toBe(true);
+    expect(r.issues).toEqual([]);
+  });
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+```bash
+cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder" && npx vitest run tests/unit/epic1/validate-lesson-paths.test.js
+```
+Expected: the new test FAILS — `checkLessonPath('v3-cap6-esp6', null, {action:'remove',...})` currently returns `ok: false` with a `pending-removal` issue (the unconditional bug). The other tests still pass.
+
+- [ ] **Step 3: Fix the gate logic**
+
+In `scripts/epic1/validate-lesson-paths.mjs`, change the `remove` branch of `checkLessonPath` (currently lines 21-22) from:
+```js
+  if (correction.action === 'remove') {
+    issues.push(`pending-removal: correction.action=remove but lesson-path ${id} still exists`);
+  } else if (correction.action === 'consolidate') {
+```
+to:
+```js
+  if (correction.action === 'remove') {
+    // pending-removal fires ONLY while the lesson-path file still exists.
+    // Once removed (lessonPath == null), the removal is complete → ok.
+    if (lessonPath) {
+      issues.push(`pending-removal: correction.action=remove but lesson-path ${id} still exists`);
+    }
+  } else if (correction.action === 'consolidate') {
+```
+
+- [ ] **Step 4: Run the test to verify it passes**
+
+```bash
+cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder" && npx vitest run tests/unit/epic1/validate-lesson-paths.test.js
+```
+Expected: ALL tests pass — the new file-gone test is green, the file-exists test (85-91) still green, every other `checkLessonPath` / `validateCorrectionsFile` test unchanged-green.
+
+- [ ] **Step 5: Confirm the gate still reports 13 pending-removal NOW (files not yet deleted)**
+
+```bash
+cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder" && node scripts/epic1/validate-lesson-paths.mjs
+```
+Expected: `94 checked · 49 pass · 45 fail` — UNCHANGED. The 13 `pending-removal` lines are still in the report because the 13 lesson-path files still exist. The fix only changes behavior once the files are gone (Task 3). This confirms Task 1.5 did not alter the gate's verdict for the still-present files.
+
+- [ ] **Step 6: Commit**
+
+```bash
+cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"
+git add scripts/epic1/validate-lesson-paths.mjs tests/unit/epic1/validate-lesson-paths.test.js
+git commit -m "fix(iter-55): EPIC 1 A4.1b — validation gate pending-removal fires only while the file exists
+
+checkLessonPath() pushed pending-removal unconditionally on action=remove,
+never checking whether the lesson-path file still existed — so a completed
+removal would never clear the gate. The issue message and the unit-test name
+both already promised file-existence-conditional behaviour; iter-54 only
+implemented (and tested) the file-exists case. Adds the if (lessonPath) guard
++ the previously-missing file-gone test. Makes A4.1b's 0-pending-removal exit
+criterion reachable.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
+```
+Expected: pre-commit hook passes — vitest +1 (14367), well above the hook's baseline.
+
+---
+
 ## Task 2: Archive the to-be-deleted files (the "move" commit)
 
 **Files:**
@@ -184,8 +277,9 @@ Then edit `src/data/lesson-paths/index.js`: delete the 13 `import` lines (lines 
 
 ```bash
 cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder" && node scripts/epic1/validate-lesson-paths.mjs
+grep -c 'pending-removal' docs/audits/2026-05-14-epic1-a4-1a-contract-validation.md
 ```
-Expected: the summary line shows `0` for `action=remove (pending A4.1b)` divergences — i.e. the 13 `pending-removal` entries are gone from `docs/audits/2026-05-14-epic1-a4-1a-contract-validation.md`. **This is the A4.1b exit criterion.** (Other FAIL rows — titles, consolidations — remain; those are A4.1c/d, not this task.)
+Expected: the `grep -c 'pending-removal'` returns **0** — the 13 `pending-removal:` divergence lines are gone from `docs/audits/2026-05-14-epic1-a4-1a-contract-validation.md` (the 13 files no longer exist, and Task 1.5's gate fix now returns `ok: true` for a removed entry). **This is the A4.1b exit criterion.** Note: the summary-table line `action=remove` still shows `13` — that is a count of `remove`-*actioned* contract entries, not of *pending* ones; correct, since the contract keeps its 13 `remove` records. The `fail` total drops by 13. Other FAIL rows — titles, consolidations — remain; those are A4.1c/d, not this task.
 
 - [ ] **Step 3: Splice the 13 objects out of `experiments-vol3.js`**
 
@@ -222,7 +316,14 @@ for h in <list from recon doc>; do git rm "public/hex/$h"; done
 
 - [ ] **Step 8: Update the consuming tests to the new reality**
 
-For each test file the Task 1 recon classified as `test-assertion`: update its assertions so they reflect the post-removal reality. Rules: a test asserting "the 13 exist / have N total" → update the expected value / remove the now-invalid case. A *generated* suite (iterates the data) needs no edit — it auto-shrinks. A test must **never** be `.skip`-ed or have an assertion deleted to "make it pass" — if a test cannot be honestly updated, STOP and escalate. The e2e vol3 specs (`tests/e2e/sprint-u-cycle1-iter1-vol3-*.spec.js`) — remove the cases targeting the 13 removed ids. Do NOT touch `tests/unit/epic1/validate-lesson-paths.test.js` (it uses inline fixtures, unaffected).
+For each test file the Task 1 recon doc (`docs/audits/2026-05-14-epic1-a4-1b-recon.md` §1 + §6) classified as `test-assertion`: update its assertions so they reflect the post-removal reality. Rules: a test asserting "the 13 exist / have N total" → update the expected value / remove the now-invalid case. A *generated* suite (iterates the data) auto-shrinks and needs no edit **except** for fixed assertions embedded inside it. A test must **never** be `.skip`-ed or have an assertion deleted to "make it pass" — if a test cannot be honestly updated, STOP and escalate. The recon §6 gives the exact per-file hand-edits — follow it. In particular:
+  - **`tests/unit/experimentConnections.test.js:137`** — `expect(ALL_EXPERIMENTS.length).toBe(94)` → `toBe(81)`; remove `'v3-cap8-serial'` from `EXPERIMENTS_WITH_EMPTY_CONNECTIONS` (line ~102).
+  - **`tests/unit/chapterMap.test.js:175`** — `expect(allIds.length).toBe(94)` → `toBe(81)`; remove the 13 ids from the `allIds` array (lines ~155-173); delete the 5 dedicated `test()` blocks for removed ids (recon §6).
+  - **`tests/unit/chapterMapFull.test.js`** — delete the 3 dedicated `v3-extra-*` `it()` blocks; drop the 2 dead ids from the inline array at line 193.
+  - Fixed-count suites (`chapterMap.extended`, `compiler.extended`, `drawingStorage`, `offtopicCategoryExpand`, `lessonGroupContext`, `lessonGroups`, `scratchXmlBlockly`, `volume-references-validity`, `breaknano.physical`, `dataIntegrity.cross`, `experimentDataIntegrity` sample arrays, `conceptGraphAndPaths`) — apply the exact per-file hand-edit from recon §6 (delete dead `it()` / replace removed id with a surviving id / update threshold comments). Prefer **replacing a removed id with a surviving id** over deleting an `it()` where the test logic is id-agnostic, to keep coverage honest.
+  - The MIXED files (`experimentDataIntegrity`, `conceptGraphAndPaths`, `volume-references-validity`) — **read each in full** per recon §6 to find any `*.forEach(id => it(...))` generated block; those auto-shrink, no edit, but count their contribution toward Δgenerated.
+  - The e2e vol3 specs (`tests/e2e/sprint-u-cycle1-iter1-vol3-*.spec.js`) — remove the 13 entries from the local `ALL_VOL3_EXPERIMENTS` arrays, delete the 2 dedicated `v3-cap7-mini`/`v3-cap8-serial` `test()` blocks, update the "29 vol3 experiments" header comments to 16. (Playwright — not in the vitest count, but still updated per "never weakened".)
+  - Do NOT touch `tests/unit/epic1/validate-lesson-paths.test.js` — Task 1.5 already owns it.
 
 - [ ] **Step 9: Run the full CoV**
 
@@ -232,11 +333,11 @@ node scripts/epic1/validate-lesson-paths.mjs
 npx vitest run 2>&1 | tail -8
 npm run build 2>&1 | tail -3
 ```
-Expected: gate shows 0 `pending-removal`; build exit 0; vitest **all passing** at a count *below* 14366. Compute `Δ = 14366 − new_count`. Compare Δ against the Task 1 recon doc's Δgenerated prediction. **They must match.** If `Δ > Δgenerated` → a fixed-count test broke → a real regression → REVERT this task and investigate. If `Δ == Δgenerated` → proceed.
+Expected: gate shows 0 `pending-removal`; build exit 0; vitest **all passing** at a count *below* 14367 (the pre-count is **14367** — iter-55 pre-flight 14366 + Task 1.5's +1 test). Compute `Δ = 14367 − new_count`. Per recon §6, Task 3 must read each generated test file in full and compute the **exact** `Δgenerated` integer (auto-shrink from data removal) + `Δfixed` (the `it()`/`test()` blocks Step 8 deliberately deleted); the honest equation is `new_count = 14367 − Δgenerated − Δfixed`. The recon's ~90-115 range is a **sanity bound, not the proof** — the proof is the exact integer arithmetic closing. If `Δ` exceeds `Δgenerated + Δfixed` by even one → an unexpected fixed-count test broke → a real regression → REVERT this task and investigate. If it closes exactly → proceed.
 
 - [ ] **Step 10: Re-baseline the test-count floor**
 
-Per the Task 1 recon doc's identified baseline file(s): update `automa/baseline-tests.txt` (and `.test-count-baseline.json` if it exists) to the new `new_count` from Step 9. Re-run the pre-commit hook's check logic manually to confirm it will pass with the new baseline (the recon doc recorded how the hook compares).
+Recon §4 confirmed: the pre-commit hook reads **`.test-count-baseline.json`** (`total` field, currently `11958`, via `scripts/quick-regression-check.sh`); `automa/baseline-tests.txt` (currently `13474`) is NOT read by the hook but IS read by CI-side scripts and treated as canonical by CLAUDE.md. Update **BOTH** to the `new_count` from Step 9: set `.test-count-baseline.json` `total` = `new_count` (leave `regression_threshold_absolute` as-is), and `automa/baseline-tests.txt` = `new_count`. Re-run the hook's check logic manually (`bash scripts/quick-regression-check.sh` if it is safe to run standalone, else read it and confirm `new_count >= total` holds) to confirm the commit will pass.
 
 - [ ] **Step 11: Codex Pattern V cross-check (MANDATORY pre-commit)**
 
@@ -252,7 +353,7 @@ Expected: `ZERO REFERENCES IN src/` (except the 4 documented deferred `next_expe
 
 ```bash
 cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"
-git add -A src/ tests/ automa/baseline-tests.txt
+git add -A src/ tests/ automa/baseline-tests.txt .test-count-baseline.json
 git add -u
 git status --short
 ```
@@ -268,11 +369,12 @@ concept-graph, volume-references, welcome-messages, scratch-xml, and the
 3 consumers. Gate (validate-lesson-paths.mjs) now shows 0 pending-removal.
 
 Test-count re-baseline (arithmetic proof):
-  pre  = 14366 (iter-55 pre-flight)
+  pre  = 14367 (iter-55 pre-flight 14366 + Task 1.5 +1 test)
   post = <new_count>
-  Δ    = <Δ> = generated tests of the 13 removed experiments (verified ==
-         recon doc Δgenerated prediction; no fixed-count test lost)
-automa/baseline-tests.txt updated to <new_count>.
+  Δ    = <Δ> = <Δgenerated> auto-shrink (generated suites) + <Δfixed>
+         deliberate it()/test() deletions (Step 8) — closes exactly;
+         no unexpected fixed-count test lost.
+.test-count-baseline.json total + automa/baseline-tests.txt updated to <new_count>.
 
 Deferred to A4.1d (documented, not fixed): <N> surviving lesson-paths with
 next_experiment.id -> removed id. See removed-no-volume-counterpart/MANIFEST.md.
