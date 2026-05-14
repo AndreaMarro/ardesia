@@ -1,0 +1,1320 @@
+{
+  "v1": {
+    "volume": 1,
+    "note_label_origin": "tea-inferred = nome dell'arc dedotto da Tea dai contenuti del capitolo, NON presente in volume-references.js. capstone-canonical = chiusura ufficiale di volume/sezione (next_id=null).",
+    "story_arcs": [
+      {
+        "arc": "Cap.6 — Il diodo LED: polarità, resistore, luminosità",
+        "chapters": [
+          6
+        ],
+        "experiments": 3,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.7 — LED RGB: i 3 colori primari e tutte le combinazioni",
+        "chapters": [
+          7
+        ],
+        "experiments": 6,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.8 — Il pulsante: lo studente diventa controllore",
+        "chapters": [
+          8
+        ],
+        "experiments": 5,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.9 — Sensori, transistor, relay: il circuito reagisce",
+        "chapters": [
+          9
+        ],
+        "experiments": 9,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.10 — Fotoresistenza: il circuito vede la luce",
+        "chapters": [
+          10
+        ],
+        "experiments": 6,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.11 — Logica con relè: AND, OR",
+        "chapters": [
+          11
+        ],
+        "experiments": 2,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.12 — Pulsante: comportamento reale e debouncing",
+        "chapters": [
+          12
+        ],
+        "experiments": 4,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.13 — Elettropongo conduttivo: arte del circuito",
+        "chapters": [
+          13
+        ],
+        "experiments": 2,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.14 — Capstone Vol.1: sensore di luce intelligente",
+        "chapters": [
+          14
+        ],
+        "experiments": 1,
+        "label_origin": "capstone-canonical"
+      }
+    ],
+    "chapters": {
+      "cap6": {
+        "chapter_number": 6,
+        "chapter_title": "Il diodo LED",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.6 — Il diodo LED: polarità, resistore, luminosità",
+        "experiments": [
+          {
+            "id": "v1-cap6-esp1",
+            "esp_num": 1,
+            "title": "Accendi il tuo primo LED",
+            "page": 29,
+            "components": "LED rosso · breadboard · batteria 9V · resistore 470Ω",
+            "next_id": "v1-cap6-esp2",
+            "cliffhanger": "E se togliamo il resistore? Lo scopriamo nel prossimo esperimento… ma attenti: il LED sarà in pericolo!",
+            "breadcrumb": "Volume 1 · Capitolo 6 · Accendi il tuo primo LED"
+          },
+          {
+            "id": "v1-cap6-esp2",
+            "esp_num": 2,
+            "title": "LED senza resistore (cosa NON fare!)",
+            "page": 32,
+            "components": "Breadboard · Batteria 9V con clip · LED blu · Fili di collegamento",
+            "next_id": "v1-cap6-esp3",
+            "cliffhanger": "Allora, prossimo: come facciamo a limitare la corrente con un resistore da 470 Ohm?",
+            "breadcrumb": "Volume 1 · Capitolo 6 · LED senza resistore (cosa NON fare!)"
+          },
+          {
+            "id": "v1-cap6-esp3",
+            "esp_num": 3,
+            "title": "Cambia luminosità con resistenze diverse",
+            "page": 33,
+            "components": "Breadboard · Batteria 9V · Resistore 220Ω · Resistore 470Ω · Resistore 1kΩ · LED verde · Fili",
+            "next_id": "v1-cap7-esp1",
+            "cliffhanger": "Cosa succede se colleghiamo due LED in serie? E in parallelo?",
+            "breadcrumb": "Volume 1 · Capitolo 6 · Cambia luminosità con resistenze diverse"
+          }
+        ]
+      },
+      "cap7": {
+        "chapter_number": 7,
+        "chapter_title": "Il LED RGB",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.7 — LED RGB: i 3 colori primari e tutte le combinazioni",
+        "experiments": [
+          {
+            "id": "v1-cap7-esp1",
+            "esp_num": 1,
+            "title": "Accendi il rosso del RGB",
+            "page": 36,
+            "components": "Breadboard · Batteria 9V · Resistore 470Ω · LED RGB catodo comune · Fili",
+            "next_id": "v1-cap7-esp2",
+            "cliffhanger": "E se accendiamo anche il verde insieme al rosso? Che colore otteniamo?",
+            "breadcrumb": "Volume 1 · Capitolo 7 · Accendi il rosso del RGB"
+          },
+          {
+            "id": "v1-cap7-esp2",
+            "esp_num": 2,
+            "title": "Accendi il verde del RGB",
+            "page": 38,
+            "components": "Breadboard · Batteria 9V · Resistore 470Ω · LED RGB catodo comune · Fili",
+            "next_id": "v1-cap7-esp3",
+            "cliffhanger": "E il blu? Come accendiamo il terzo colore del nostro RGB?",
+            "breadcrumb": "Volume 1 · Capitolo 7 · Accendi il verde del RGB"
+          },
+          {
+            "id": "v1-cap7-esp3",
+            "esp_num": 3,
+            "title": "Accendi il blu del RGB",
+            "page": 39,
+            "components": "Breadboard · Batteria 9V · Resistore 470Ω · LED RGB catodo comune · Fili",
+            "next_id": "v1-cap7-esp4",
+            "cliffhanger": "Se accendiamo rosso e verde assieme, che colore otteniamo? Proviamo!",
+            "breadcrumb": "Volume 1 · Capitolo 7 · Accendi il blu del RGB"
+          },
+          {
+            "id": "v1-cap7-esp4",
+            "esp_num": 4,
+            "title": "Mescola 2 colori: il viola!",
+            "page": 39,
+            "components": "Breadboard · Batteria 9V · Resistore 470Ω (x2) · LED RGB catodo comune · Fili",
+            "next_id": "v1-cap7-esp5",
+            "cliffhanger": "Allora, e se accendiamo rosso e verde? Quale colore viene fuori?",
+            "breadcrumb": "Volume 1 · Capitolo 7 · Mescola 2 colori: il viola!"
+          },
+          {
+            "id": "v1-cap7-esp5",
+            "esp_num": 5,
+            "title": "Tutti e 3: bianco!",
+            "page": 41,
+            "components": "Breadboard · Batteria 9V · Resistore 470Ω (x3) · LED RGB catodo comune · Fili",
+            "next_id": "v1-cap7-esp6",
+            "cliffhanger": "Cosa succede se diminuiamo la luminosità di uno dei colori? Come controlliamo l'intensità singola?",
+            "breadcrumb": "Volume 1 · Capitolo 7 · Tutti e 3: bianco!"
+          },
+          {
+            "id": "v1-cap7-esp6",
+            "esp_num": 6,
+            "title": "Crea il tuo colore!",
+            "page": 42,
+            "components": "Breadboard · Batteria 9V · Resistore 220Ω · Resistore 470Ω (x2) · LED RGB catodo comune · Fili",
+            "next_id": "v1-cap8-esp1",
+            "cliffhanger": "Adesso sapete come controllare i colori con le resistenze. Ma cosa succede con componenti più complessi?",
+            "breadcrumb": "Volume 1 · Capitolo 7 · Crea il tuo colore!"
+          }
+        ]
+      },
+      "cap8": {
+        "chapter_number": 8,
+        "chapter_title": "Il pulsante e il controllo del LED",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.8 — Il pulsante: lo studente diventa controllore",
+        "experiments": [
+          {
+            "id": "v1-cap8-esp1",
+            "esp_num": 1,
+            "title": "Il pulsante accende il LED",
+            "page": 44,
+            "components": "Breadboard · Batteria 9V con clip · Pulsante (tact switch) · +3",
+            "next_id": "v1-cap8-esp2",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 8 · Il pulsante accende il LED"
+          },
+          {
+            "id": "v1-cap8-esp2",
+            "esp_num": 2,
+            "title": "Cambia colore e luminosità con il pulsante",
+            "page": 47,
+            "components": "Breadboard · Batteria 9V con clip · Pulsante (tact switch) · +3",
+            "next_id": "v1-cap8-esp3",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 8 · Cambia colore e luminosità con il pulsante"
+          },
+          {
+            "id": "v1-cap8-esp3",
+            "esp_num": 3,
+            "title": "Illumina con variazione di resistenza",
+            "page": 47,
+            "components": "Breadboard · Batteria 9V con clip · Pulsante (tact switch) · +3",
+            "next_id": "v1-cap8-esp4",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 8 · Illumina con variazione di resistenza"
+          },
+          {
+            "id": "v1-cap8-esp4",
+            "esp_num": 4,
+            "title": "Prova il circuito con il kit Omaric",
+            "page": 51,
+            "components": "Breadboard · Batteria 9V · Pulsante · +3",
+            "next_id": "v1-cap8-esp5",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 8 · Prova il circuito con il kit Omaric"
+          },
+          {
+            "id": "v1-cap8-esp5",
+            "esp_num": 5,
+            "title": "Misura la tensione nel circuito",
+            "page": 56,
+            "components": "Breadboard · Batteria 9V · Pulsante · +3",
+            "next_id": "v1-cap11-esp1",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 8 · Misura la tensione nel circuito"
+          }
+        ]
+      },
+      "cap9": {
+        "chapter_number": 9,
+        "chapter_title": "Sensori, transistor e relay",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.9 — Sensori, transistor, relay: il circuito reagisce",
+        "experiments": [
+          {
+            "id": "v1-cap9-esp1",
+            "esp_num": 1,
+            "title": "Accendi un LED con un bottone",
+            "page": 58,
+            "components": "LED rosso · Resistore 470Ω · Breadboard · Batteria 9V",
+            "next_id": "v2-cap9-esp2",
+            "cliffhanger": "E se il circuito potesse accendersi da solo quando rileva una mano vicina? Scopriamolo nel prossimo esperimento!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Accendi un LED con un bottone"
+          },
+          {
+            "id": "v1-cap9-esp2",
+            "esp_num": 2,
+            "title": "Sensore di prossimità con LED",
+            "page": 62,
+            "components": "LED rosso · Resistore 470Ω · Breadboard · Batteria 9V",
+            "next_id": "v1-cap9-esp3",
+            "cliffhanger": "E se potessimo controllare la luminosità del LED, non solo accenderlo? Nel prossimo esperimento lo faremo!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Sensore di prossimità con LED"
+          },
+          {
+            "id": "v1-cap9-esp3",
+            "esp_num": 3,
+            "title": "LED con luminosità variabile",
+            "page": 63,
+            "components": "LED rosso · Potenziometro 10kΩ · Breadboard · Batteria 9V",
+            "next_id": "v1-cap9-esp4",
+            "cliffhanger": "Vediamo cosa fa un transistor: amplifica il segnale! Nel prossimo esperimento accenderemo tanti LED insieme!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · LED con luminosità variabile"
+          },
+          {
+            "id": "v1-cap9-esp4",
+            "esp_num": 4,
+            "title": "Amplificazione con transistor",
+            "page": 63,
+            "components": "LED rosso · Resistore 470Ω · Transistor NPN (2N2222) · Resistore base 10kΩ",
+            "next_id": "v1-cap9-esp5",
+            "cliffhanger": "Il transistor è forte, ma sapete che c'è uno strumento ancora più potente? Si chiama relay! Nel prossimo esperimento scopriremo come!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Amplificazione con transistor"
+          },
+          {
+            "id": "v1-cap9-esp5",
+            "esp_num": 5,
+            "title": "Relay elettromagnetico",
+            "page": 67,
+            "components": "LED rosso · Resistore 470Ω · Relay SPDT 5V · Resistore diodo di protezione 1kΩ",
+            "next_id": "v1-cap9-esp6",
+            "cliffhanger": "Avete visto la potenza del relay? Vediamo che succede se al posto del LED mettiamo un motore! Nel prossimo capitolo scoprirete!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Relay elettromagnetico"
+          },
+          {
+            "id": "v1-cap9-esp6",
+            "esp_num": 6,
+            "title": "Lampada RGB con 3 potenziometri",
+            "page": 71,
+            "components": "Breadboard · Batteria 9V · Potenziometri 10kΩ · Resistori 470Ω · LED RGB · Fili",
+            "next_id": "v1-cap9-esp7",
+            "cliffhanger": "Adesso aggiungiamo un pulsante per controllare un secondo LED RGB!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Lampada RGB con 3 potenziometri"
+          },
+          {
+            "id": "v1-cap9-esp7",
+            "esp_num": 7,
+            "title": "Sfida: aggiungi pulsanti alla lampada",
+            "page": 78,
+            "components": "Breadboard · Batteria 9V · Potenziometro 10kΩ · Pulsante (tact switch) · Resistori 470Ω · LED RGB · Fili",
+            "next_id": "v1-cap9-esp8",
+            "cliffhanger": "Adesso combineremo due circuiti RGB in un unico grande controllo!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Sfida: aggiungi pulsanti alla lampada"
+          },
+          {
+            "id": "v1-cap9-esp8",
+            "esp_num": 8,
+            "title": "Combina esperimenti: due LED RGB sincronizzati",
+            "page": 79,
+            "components": "Breadboard · Batteria 9V · 2x Potenziometri 10kΩ · 2x Resistori 470Ω · LED RGB catodo comune · Miscellatore (esp5) + Lampada multi-pot (esp6)",
+            "next_id": "v1-cap9-esp9",
+            "cliffhanger": "Prossimo: un pulsante 'master' che accende tutte le luci insieme — sfida finale!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Combina esperimenti: due LED RGB sincronizzati"
+          },
+          {
+            "id": "v1-cap9-esp9",
+            "esp_num": 9,
+            "title": "Sfida finale: pulsante master a 3 livelli",
+            "page": 79,
+            "components": "Breadboard · Batteria 9V · Pulsante (tact switch) · Potenziometro 10kΩ · Resistori 470Ω · LED rosso · Fili",
+            "next_id": "v1-cap13-esp1",
+            "cliffhanger": "Capitolo 13: abbandoniamo i fili e scopriamo la conduttività — l'elettropongo! Incrociamo le dita!",
+            "breadcrumb": "Volume 1 · Capitolo 9 · Sfida finale: pulsante master a 3 livelli"
+          }
+        ]
+      },
+      "cap10": {
+        "chapter_number": 10,
+        "chapter_title": "La fotoresistenza",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.10 — Fotoresistenza: il circuito vede la luce",
+        "experiments": [
+          {
+            "id": "v1-cap10-esp1",
+            "esp_num": 1,
+            "title": "La fotoresistenza sente la luce",
+            "page": 82,
+            "components": "breadboard · batteria 9V · fotoresistenza LDR · resistore 220Ω · LED rosso · fili",
+            "next_id": "v1-cap10-esp2",
+            "cliffhanger": "Adesso proviamo a controllare il LED con l'ombra della nostra mano!",
+            "breadcrumb": "Volume 1 · Capitolo 10 · La fotoresistenza sente la luce"
+          },
+          {
+            "id": "v1-cap10-esp2",
+            "esp_num": 2,
+            "title": "Bloccare il LED con il dito",
+            "page": 84,
+            "components": "fotoresistenza LDR · breadboard · LED rosso · mano",
+            "next_id": "v1-cap10-esp3",
+            "cliffhanger": "Adesso portiamo il circuito completamente al buio e vediamo cosa accade!",
+            "breadcrumb": "Volume 1 · Capitolo 10 · Bloccare il LED con il dito"
+          },
+          {
+            "id": "v1-cap10-esp3",
+            "esp_num": 3,
+            "title": "Il sensore di luce nel buio",
+            "page": 85,
+            "components": "fotoresistenza LDR · LED rosso · circuito completo · scatola buia",
+            "next_id": "v1-cap10-esp4",
+            "cliffhanger": "Cosa accade con la luce mezzana? Scopriamo come il sensore legge le sfumature!",
+            "breadcrumb": "Volume 1 · Capitolo 10 · Il sensore di luce nel buio"
+          },
+          {
+            "id": "v1-cap10-esp4",
+            "esp_num": 4,
+            "title": "Luminosità controllata",
+            "page": 88,
+            "components": "fotoresistenza LDR · LED rosso · lamp dimmer · circuito sensibile",
+            "next_id": "v1-cap10-esp5",
+            "cliffhanger": "Il sensore di luce è il primo guardiano del nostro circuito!",
+            "breadcrumb": "Volume 1 · Capitolo 10 · Luminosità controllata"
+          },
+          {
+            "id": "v1-cap10-esp5",
+            "esp_num": 5,
+            "title": "Il primo sensore del progetto",
+            "page": 91,
+            "components": "fotoresistenza LDR · LED rosso · breadboard · resistore",
+            "next_id": "v1-cap10-esp6",
+            "cliffhanger": "Ora scopriamo come costruire un vero dialogo tra il circuito e l'ambiente!",
+            "breadcrumb": "Volume 1 · Capitolo 10 · Il primo sensore del progetto"
+          },
+          {
+            "id": "v1-cap10-esp6",
+            "esp_num": 6,
+            "title": "Sensori e feedback immediato",
+            "page": 92,
+            "components": "fotoresistenza · LED · batteria · circuito completo",
+            "next_id": "v1-cap12-esp1",
+            "cliffhanger": "Adesso impareremo a controllare il circuito con i nostri diti: il pulsante!",
+            "breadcrumb": "Volume 1 · Capitolo 10 · Sensori e feedback immediato"
+          }
+        ]
+      },
+      "cap11": {
+        "chapter_number": 11,
+        "chapter_title": "Porte logiche con relè (AND, OR)",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.11 — Logica con relè: AND, OR",
+        "experiments": [
+          {
+            "id": "v1-cap11-esp1",
+            "esp_num": 1,
+            "title": "Crea una porta AND con i relè",
+            "page": 94,
+            "components": "Breadboard · Relè 5V · Batteria 9V · +3",
+            "next_id": "v1-cap11-esp2",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 11 · Crea una porta AND con i relè"
+          },
+          {
+            "id": "v1-cap11-esp2",
+            "esp_num": 2,
+            "title": "Crea una porta OR con i relè",
+            "page": 95,
+            "components": "Breadboard · Relè 5V · Batteria 9V · +3",
+            "next_id": "v1-cap14-esp1",
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 11 · Crea una porta OR con i relè"
+          }
+        ]
+      },
+      "cap12": {
+        "chapter_number": 12,
+        "chapter_title": "Il pulsante: comportamento reale e debouncing",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.12 — Pulsante: comportamento reale e debouncing",
+        "experiments": [
+          {
+            "id": "v1-cap12-esp1",
+            "esp_num": 1,
+            "title": "Il bottone che accende il LED",
+            "page": 98,
+            "components": "pulsante · LED rosso · breadboard · batteria 9V · resistore",
+            "next_id": "v1-cap12-esp2",
+            "cliffhanger": "Adesso giochiamo con il pulsante e osserviamo il comportamento del LED!",
+            "breadcrumb": "Volume 1 · Capitolo 12 · Il bottone che accende il LED"
+          },
+          {
+            "id": "v1-cap12-esp2",
+            "esp_num": 2,
+            "title": "Prova il circuito con il pulsante",
+            "page": 100,
+            "components": "pulsante · LED rosso · breadboard · resistore 220Ω",
+            "next_id": "v1-cap12-esp3",
+            "cliffhanger": "Ora scopriamo un problema curioso: perché il pulsante a volte fa strani effetti?",
+            "breadcrumb": "Volume 1 · Capitolo 12 · Prova il circuito con il pulsante"
+          },
+          {
+            "id": "v1-cap12-esp3",
+            "esp_num": 3,
+            "title": "Rimbalzi e contatti sporchi",
+            "page": 101,
+            "components": "pulsante con contatti · LED · circuito sensibile · oscilloscopio",
+            "next_id": "v1-cap12-esp4",
+            "cliffhanger": "Scopriamo come il pulsante è il primo passo verso l'automazione vera!",
+            "breadcrumb": "Volume 1 · Capitolo 12 · Rimbalzi e contatti sporchi"
+          },
+          {
+            "id": "v1-cap12-esp4",
+            "esp_num": 4,
+            "title": "Controllo manuale dei circuiti",
+            "page": 101,
+            "components": "pulsante · LED · batteria · resistore · breadboard",
+            "next_id": null,
+            "cliffhanger": "Avete imparato i fondamenti! Ora inizia il vero viaggio verso circuiti intelligenti.",
+            "breadcrumb": "Volume 1 · Capitolo 12 · Controllo manuale dei circuiti"
+          }
+        ]
+      },
+      "cap13": {
+        "chapter_number": 13,
+        "chapter_title": "L'elettropongo conduttivo",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.13 — Elettropongo conduttivo: arte del circuito",
+        "experiments": [
+          {
+            "id": "v1-cap13-esp1",
+            "esp_num": 1,
+            "title": "LED nell'elettropongo conduttivo",
+            "page": 104,
+            "components": "Batteria 9V · LED bianco · Elettropongo (plastilina conduttiva) · Fili",
+            "next_id": "v1-cap13-esp2",
+            "cliffhanger": "Adesso creiamoù circuiti artistici — composizioni decorative con più LED sull'elettropongo!",
+            "breadcrumb": "Volume 1 · Capitolo 13 · LED nell'elettropongo conduttivo"
+          },
+          {
+            "id": "v1-cap13-esp2",
+            "esp_num": 2,
+            "title": "Circuiti artistici con elettropongo",
+            "page": 105,
+            "components": "Batteria 9V · 3x LED bianchi · Elettropongo (plastilina conduttiva) · Fili",
+            "next_id": null,
+            "cliffhanger": "Avete dominato il primo volume! Capitoli 6-13 completi. Prossimi: transistor, sensori, programmazione e robotica!",
+            "breadcrumb": "Volume 1 · Capitolo 13 · Circuiti artistici con elettropongo"
+          }
+        ]
+      },
+      "cap14": {
+        "chapter_number": 14,
+        "chapter_title": "Capstone: sensore di luce intelligente",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.14 — Capstone Vol.1: sensore di luce intelligente",
+        "experiments": [
+          {
+            "id": "v1-cap14-esp1",
+            "esp_num": 1,
+            "title": "Costruisci un circuito con sensore di luce",
+            "page": 107,
+            "components": "Breadboard · Fotoresistore (LDR) · Batteria 9V · +3",
+            "next_id": null,
+            "cliffhanger": "E se provassimo con componenti diversi?",
+            "breadcrumb": "Volume 1 · Capitolo 14 · Costruisci un circuito con sensore di luce"
+          }
+        ]
+      }
+    }
+  },
+  "v2": {
+    "volume": 2,
+    "note_label_origin": "tea-inferred = nome dell'arc dedotto da Tea dai contenuti del capitolo, NON presente in volume-references.js. capstone-canonical = chiusura ufficiale di volume/sezione (next_id=null).",
+    "story_arcs": [
+      {
+        "arc": "Cap.3 — Il multimetro: leggere la realtà elettrica",
+        "chapters": [
+          3
+        ],
+        "experiments": 4,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.4 — Le resistenze: serie, parallelo, partitore",
+        "chapters": [
+          4
+        ],
+        "experiments": 3,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.5 — Le batterie: serie e antiserie",
+        "chapters": [
+          5
+        ],
+        "experiments": 2,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.6-7-8 — Serie, parallelo, circuiti misti, misurazioni",
+        "chapters": [
+          6,
+          7,
+          8
+        ],
+        "experiments": 11,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.9 — Pulsanti e logica AND",
+        "chapters": [
+          9
+        ],
+        "experiments": 2,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.10 — Porte logiche complete: NOT, NAND, NOR, XOR",
+        "chapters": [
+          10
+        ],
+        "experiments": 4,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.12 — Capstone Vol.2: l'addizionatore binario",
+        "chapters": [
+          12
+        ],
+        "experiments": 1,
+        "label_origin": "capstone-canonical"
+      }
+    ],
+    "chapters": {
+      "cap3": {
+        "chapter_number": 3,
+        "chapter_title": "Il multimetro",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.3 — Il multimetro: leggere la realtà elettrica",
+        "experiments": [
+          {
+            "id": "v2-cap3-esp1",
+            "esp_num": 1,
+            "title": "Controlliamo la carica della batteria",
+            "page": 17,
+            "components": "Batteria 9V · Multimetro",
+            "next_id": "v2-cap3-esp2",
+            "cliffhanger": "Adesso guardiamo cosa succede se misuriamo la batteria ogni giorno... cambierà il numero!",
+            "breadcrumb": "Volume 2 · Capitolo 3 · Controlliamo la carica della batteria"
+          },
+          {
+            "id": "v2-cap3-esp2",
+            "esp_num": 2,
+            "title": "Diario di misurazione della pila",
+            "page": 20,
+            "components": "Batteria 9V · Multimetro · Foglio di registrazione",
+            "next_id": "v2-cap3-esp3",
+            "cliffhanger": "Dopo pochi giorni vedrete il valore scendere. Dati reali del mondo scientifico!",
+            "breadcrumb": "Volume 2 · Capitolo 3 · Diario di misurazione della pila"
+          },
+          {
+            "id": "v2-cap3-esp3",
+            "esp_num": 3,
+            "title": "Misuriamo una resistenza",
+            "page": 22,
+            "components": "Resistore 330Ω · Multimetro",
+            "next_id": "v2-cap3-esp4",
+            "cliffhanger": "Ora misurerete la corrente che attraversa un circuito. Quel numero ci dice quanti elettroni passano!",
+            "breadcrumb": "Volume 2 · Capitolo 3 · Misuriamo una resistenza"
+          },
+          {
+            "id": "v2-cap3-esp4",
+            "esp_num": 4,
+            "title": "Misuriamo la corrente in un circuito",
+            "page": 28,
+            "components": "Batteria 9V · Multimetro · Resistore 1kΩ",
+            "next_id": "v2-cap4-esp1",
+            "cliffhanger": "Adesso sapete misurare tensione, resistenza e corrente. Iniziamo a combinare i resistori in modi diversi!",
+            "breadcrumb": "Volume 2 · Capitolo 3 · Misuriamo la corrente in un circuito"
+          }
+        ]
+      },
+      "cap4": {
+        "chapter_number": 4,
+        "chapter_title": "Le resistenze in serie e parallelo",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.4 — Le resistenze: serie, parallelo, partitore",
+        "experiments": [
+          {
+            "id": "v2-cap4-esp1",
+            "esp_num": 1,
+            "title": "Due resistori in parallelo",
+            "page": 43,
+            "components": "Due resistori 1kΩ · Multimetro",
+            "next_id": "v2-cap4-esp2",
+            "cliffhanger": "Adesso proviamo in serie: i valori si sommeranno! Scoprirete che la fisica è coerente.",
+            "breadcrumb": "Volume 2 · Capitolo 4 · Due resistori in parallelo"
+          },
+          {
+            "id": "v2-cap4-esp2",
+            "esp_num": 2,
+            "title": "Tre resistori in serie",
+            "page": 44,
+            "components": "Tre resistori 1kΩ · Multimetro",
+            "next_id": "v2-cap4-esp3",
+            "cliffhanger": "Adesso aggiungiamo la batteria e misuriamo le tensioni in diversi punti. È un partitore di tensione!",
+            "breadcrumb": "Volume 2 · Capitolo 4 · Tre resistori in serie"
+          },
+          {
+            "id": "v2-cap4-esp3",
+            "esp_num": 3,
+            "title": "Partitore di tensione",
+            "page": 45,
+            "components": "Tre resistori 1kΩ · Batteria 9V · Multimetro",
+            "next_id": "v2-cap5-esp1",
+            "cliffhanger": "Passiamo alle batterie: cosa succede se mettiamo due batterie insieme? Scopriamolo nei prossimi esperimenti!",
+            "breadcrumb": "Volume 2 · Capitolo 4 · Partitore di tensione"
+          }
+        ]
+      },
+      "cap5": {
+        "chapter_number": 5,
+        "chapter_title": "Le batterie in serie e antiserie",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.5 — Le batterie: serie e antiserie",
+        "experiments": [
+          {
+            "id": "v2-cap5-esp1",
+            "esp_num": 1,
+            "title": "Batterie in serie (più spinta!)",
+            "page": 49,
+            "components": "Due batterie AA/AAA · Multimetro",
+            "next_id": "v2-cap5-esp2",
+            "cliffhanger": "Cosa succede se le mettiamo al contrario? Se le spinte vanno in direzioni opposte? Scopriamo l'antiserie!",
+            "breadcrumb": "Volume 2 · Capitolo 5 · Batterie in serie (più spinta!)"
+          },
+          {
+            "id": "v2-cap5-esp2",
+            "esp_num": 2,
+            "title": "Batterie in antiserie",
+            "page": 51,
+            "components": "Due batterie AA/AAA · Multimetro",
+            "next_id": null,
+            "cliffhanger": "Ora capite come le batterie si comportano come spinte in direzioni diverse. Questo vi servirà per tutti i circuiti futuri!",
+            "breadcrumb": "Volume 2 · Capitolo 5 · Batterie in antiserie"
+          }
+        ]
+      },
+      "cap6": {
+        "chapter_number": 6,
+        "chapter_title": "Serie e parallelo: primi contatti",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.6-7-8 — Serie, parallelo, circuiti misti, misurazioni",
+        "experiments": [
+          {
+            "id": "v2-cap6-esp1",
+            "esp_num": 1,
+            "title": "Serie e parallelo: primi contatti",
+            "page": 56,
+            "components": "LED rosso · resistenza · pile",
+            "next_id": "v2-cap6-esp2",
+            "cliffhanger": "Ora proviamo con tre LED: quale configurazione è più brillante?",
+            "breadcrumb": "Volume 2 · Capitolo 6 · Serie e parallelo: primi contatti"
+          },
+          {
+            "id": "v2-cap6-esp2",
+            "esp_num": 2,
+            "title": "Resistenza e caduta di tensione",
+            "page": 58,
+            "components": "resistenza · voltmetro · LED",
+            "next_id": "v2-cap6-esp3",
+            "cliffhanger": "Prossimo: cosa succede con due resistenze in serie?",
+            "breadcrumb": "Volume 2 · Capitolo 6 · Resistenza e caduta di tensione"
+          },
+          {
+            "id": "v2-cap6-esp3",
+            "esp_num": 3,
+            "title": "Resistenze in serie: effetto cumulativo",
+            "page": 59,
+            "components": "due resistenze · voltmetro · LED",
+            "next_id": "v2-cap6-esp4",
+            "cliffhanger": "Ora proviamo due resistenze in parallelo: cambierà?",
+            "breadcrumb": "Volume 2 · Capitolo 6 · Resistenze in serie: effetto cumulativo"
+          },
+          {
+            "id": "v2-cap6-esp4",
+            "esp_num": 4,
+            "title": "Resistenze in parallelo: il percorso alternativo",
+            "page": 60,
+            "components": "due resistenze · amperometro · LED",
+            "next_id": "v2-cap7-esp1",
+            "cliffhanger": "Capitolo 7: ora mescoliamo serie e parallelo assieme!",
+            "breadcrumb": "Volume 2 · Capitolo 6 · Resistenze in parallelo: il percorso alternativo"
+          }
+        ]
+      },
+      "cap7": {
+        "chapter_number": 7,
+        "chapter_title": "Circuiti misti e misurazioni",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.6-7-8 — Serie, parallelo, circuiti misti, misurazioni",
+        "experiments": [
+          {
+            "id": "v2-cap7-esp1",
+            "esp_num": 1,
+            "title": "Circuiti misti: serie dentro parallelo",
+            "page": 67,
+            "components": "LED · resistenza · pile",
+            "next_id": "v2-cap7-esp2",
+            "cliffhanger": "Prossimo: calcoliamo corrente e tensione nel circuito misto con misure vere!",
+            "breadcrumb": "Volume 2 · Capitolo 7 · Circuiti misti: serie dentro parallelo"
+          },
+          {
+            "id": "v2-cap7-esp2",
+            "esp_num": 2,
+            "title": "Misurare corrente in circuiti misti",
+            "page": 69,
+            "components": "amperometro · circuito misto · LED",
+            "next_id": "v2-cap7-esp3",
+            "cliffhanger": "Ora misuriamo le tensioni: cambiano negli stessi punti?",
+            "breadcrumb": "Volume 2 · Capitolo 7 · Misurare corrente in circuiti misti"
+          },
+          {
+            "id": "v2-cap7-esp3",
+            "esp_num": 3,
+            "title": "Misurare tensione in circuiti misti",
+            "page": 72,
+            "components": "voltmetro · circuito misto · resistenze",
+            "next_id": "v2-cap7-esp4",
+            "cliffhanger": "Ultima sfida: applica tutto insieme in un super-circuito complesso!",
+            "breadcrumb": "Volume 2 · Capitolo 7 · Misurare tensione in circuiti misti"
+          },
+          {
+            "id": "v2-cap7-esp4",
+            "esp_num": 4,
+            "title": "Challenge: circuito super-complesso",
+            "page": 73,
+            "components": "LED · resistenze · amperometro · voltmetro",
+            "next_id": null,
+            "cliffhanger": "Bravissimi! Avete dominato serie, parallelo e circuiti misti. Prossimo volume: componenti speciali!",
+            "breadcrumb": "Volume 2 · Capitolo 7 · Challenge: circuito super-complesso"
+          }
+        ]
+      },
+      "cap8": {
+        "chapter_number": 8,
+        "chapter_title": "Serie e parallelo con LED multipli",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.6-7-8 — Serie, parallelo, circuiti misti, misurazioni",
+        "experiments": [
+          {
+            "id": "v2-cap8-esp1",
+            "esp_num": 1,
+            "title": "Il circuito in serie",
+            "page": 78,
+            "components": "LED · Resistenza · Batteria",
+            "next_id": "v2-cap8-esp2",
+            "cliffhanger": "Ora vediamo cosa succede se aggiungiamo altri LED in serie.",
+            "breadcrumb": "Volume 2 · Capitolo 8 · Il circuito in serie"
+          },
+          {
+            "id": "v2-cap8-esp2",
+            "esp_num": 2,
+            "title": "LED multipli in serie",
+            "page": 81,
+            "components": "LED · Resistenza · Batteria",
+            "next_id": "v2-cap8-esp3",
+            "cliffhanger": "Cosa succede se mettiamo i LED in parallelo, invece?",
+            "breadcrumb": "Volume 2 · Capitolo 8 · LED multipli in serie"
+          },
+          {
+            "id": "v2-cap8-esp3",
+            "esp_num": 3,
+            "title": "Circuito parallelo",
+            "page": 82,
+            "components": "LED · Resistenza · Batteria",
+            "next_id": "v2-cap9-esp1",
+            "cliffhanger": "Passiamo ai pulsanti e alla logica: come controlliamo l'accensione?",
+            "breadcrumb": "Volume 2 · Capitolo 8 · Circuito parallelo"
+          }
+        ]
+      },
+      "cap9": {
+        "chapter_number": 9,
+        "chapter_title": "Pulsanti e logica AND",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.9 — Pulsanti e logica AND",
+        "experiments": [
+          {
+            "id": "v2-cap9-esp1",
+            "esp_num": 1,
+            "title": "Il pulsante accende il LED",
+            "page": 86,
+            "components": "Pulsante · LED · Batteria",
+            "next_id": "v2-cap9-esp2",
+            "cliffhanger": "Cosa succede se mettiamo due pulsanti insieme? Proviamo la logica AND.",
+            "breadcrumb": "Volume 2 · Capitolo 9 · Il pulsante accende il LED"
+          },
+          {
+            "id": "v2-cap9-esp2",
+            "esp_num": 2,
+            "title": "Logica AND con due pulsanti",
+            "page": 89,
+            "components": "Pulsanti · LED · Batteria",
+            "next_id": "v2-cap10-esp1",
+            "cliffhanger": "Ora scopriamo come gli interruttori invertono la logica: la negazione NOT.",
+            "breadcrumb": "Volume 2 · Capitolo 9 · Logica AND con due pulsanti"
+          }
+        ]
+      },
+      "cap10": {
+        "chapter_number": 10,
+        "chapter_title": "Porte logiche complete (NOT, NAND, NOR, XOR)",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.10 — Porte logiche complete: NOT, NAND, NOR, XOR",
+        "experiments": [
+          {
+            "id": "v2-cap10-esp1",
+            "esp_num": 1,
+            "title": "Interruttore invertito (NOT)",
+            "page": 95,
+            "components": "Interruttore · LED · Batteria",
+            "next_id": "v2-cap10-esp2",
+            "cliffhanger": "Combinando AND e NOT, scopriamo la logica NAND.",
+            "breadcrumb": "Volume 2 · Capitolo 10 · Interruttore invertito (NOT)"
+          },
+          {
+            "id": "v2-cap10-esp2",
+            "esp_num": 2,
+            "title": "Logica NAND (NOT AND)",
+            "page": 96,
+            "components": "Pulsanti · LED · Batteria",
+            "next_id": "v2-cap10-esp3",
+            "cliffhanger": "Ora scopriamo NOR: l'opposto di OR. Proviamo!",
+            "breadcrumb": "Volume 2 · Capitolo 10 · Logica NAND (NOT AND)"
+          },
+          {
+            "id": "v2-cap10-esp3",
+            "esp_num": 3,
+            "title": "Logica NOR (NOT OR)",
+            "page": 96,
+            "components": "Pulsanti · LED · Batteria",
+            "next_id": "v2-cap10-esp4",
+            "cliffhanger": "Infine, scopriamo XOR: il controllo dalla scena più incredibile della logica!",
+            "breadcrumb": "Volume 2 · Capitolo 10 · Logica NOR (NOT OR)"
+          },
+          {
+            "id": "v2-cap10-esp4",
+            "esp_num": 4,
+            "title": "XOR (Exclusive OR)",
+            "page": 96,
+            "components": "Pulsanti · LED · Batteria",
+            "next_id": "v2-cap12-esp1",
+            "cliffhanger": "Nella prossima lezione, combiniamo tutto in un addizionatore binario!",
+            "breadcrumb": "Volume 2 · Capitolo 10 · XOR (Exclusive OR)"
+          }
+        ]
+      },
+      "cap12": {
+        "chapter_number": 12,
+        "chapter_title": "Capstone: l'addizionatore binario",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.12 — Capstone Vol.2: l'addizionatore binario",
+        "experiments": [
+          {
+            "id": "v2-cap12-esp1",
+            "esp_num": 1,
+            "title": "L'addizionatore binario",
+            "page": 103,
+            "components": "Pulsanti · LED · Batteria",
+            "next_id": null,
+            "cliffhanger": "Congratulazioni! Avete scoperto la base dei computer moderni: logica booleana e circuiti.",
+            "breadcrumb": "Volume 2 · Capitolo 12 · L'addizionatore binario"
+          }
+        ]
+      }
+    }
+  },
+  "v3": {
+    "volume": 3,
+    "note_label_origin": "tea-inferred = nome dell'arc dedotto da Tea dai contenuti del capitolo, NON presente in volume-references.js. capstone-canonical = chiusura ufficiale di volume/sezione (next_id=null).",
+    "story_arcs": [
+      {
+        "arc": "Cap.5 — Arduino entra in scena: primi interruttori",
+        "chapters": [
+          5
+        ],
+        "experiments": 2,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.6 — Programmare le luci: porte logiche, morse, semaforo",
+        "chapters": [
+          6
+        ],
+        "experiments": 9,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.7 — Sensori analogici e attuatori (PWM, TMP36)",
+        "chapters": [
+          7
+        ],
+        "experiments": 9,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Cap.8 — Legge di Ohm, potenza, comunicazione seriale",
+        "chapters": [
+          8
+        ],
+        "experiments": 6,
+        "label_origin": "tea-inferred"
+      },
+      {
+        "arc": "Extra — Capstone tematici: LCD, Servo, Simon",
+        "chapters": [
+          99
+        ],
+        "experiments": 3,
+        "label_origin": "capstone-canonical"
+      }
+    ],
+    "chapters": {
+      "cap5": {
+        "chapter_number": 5,
+        "chapter_title": "Primi contatti con Arduino e gli interruttori",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.5 — Arduino entra in scena: primi interruttori",
+        "experiments": [
+          {
+            "id": "v3-cap5-esp1",
+            "esp_num": 1,
+            "title": "Il primo contatto con gli interruttori",
+            "page": 47,
+            "components": "interruttore · LED",
+            "next_id": "v3-cap5-esp2",
+            "cliffhanger": "Ora che sappiamo come funziona un interruttore, possiamo usarlo per controllare circuiti più complessi.",
+            "breadcrumb": "Volume 3 · Capitolo 5 · Il primo contatto con gli interruttori"
+          },
+          {
+            "id": "v3-cap5-esp2",
+            "esp_num": 2,
+            "title": "Interruttori in serie",
+            "page": 49,
+            "components": "interruttore · interruttore · LED",
+            "next_id": "v3-cap6-esp1",
+            "cliffhanger": "Nel prossimo esperimento scopriremo come funzionano gli interruttori in parallelo, che è il contrario!",
+            "breadcrumb": "Volume 3 · Capitolo 5 · Interruttori in serie"
+          }
+        ]
+      },
+      "cap6": {
+        "chapter_number": 6,
+        "chapter_title": "Programmare le luci: dalle porte logiche al codice morse",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.6 — Programmare le luci: porte logiche, morse, semaforo",
+        "experiments": [
+          {
+            "id": "v3-cap6-morse",
+            "esp_num": null,
+            "title": "Codice Morse",
+            "page": 57,
+            "components": "pulsante · LED · buzzer",
+            "next_id": "v3-cap6-semaforo",
+            "cliffhanger": "Oggi usiamo luci diverse per comunicare. Scopriamo come i semafori usano i colori!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Codice Morse"
+          },
+          {
+            "id": "v3-cap6-semaforo",
+            "esp_num": null,
+            "title": "Semaforo intelligente con logica",
+            "page": 58,
+            "components": "sensore · interruttore · LED rosso · LED giallo · LED verde",
+            "next_id": null,
+            "cliffhanger": "Avete scoperto i principi fondamentali dell'informatica: ora siete pronti per circuiti ancora più complessi!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Semaforo intelligente con logica"
+          },
+          {
+            "id": "v3-cap6-esp1",
+            "esp_num": 1,
+            "title": "Interruttori in parallelo",
+            "page": 56,
+            "components": "interruttore · interruttore · LED",
+            "next_id": "v3-cap6-esp2",
+            "cliffhanger": "Ora useremo questa logica per creare circuiti più intelligenti e flessibili.",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Interruttori in parallelo"
+          },
+          {
+            "id": "v3-cap6-esp2",
+            "esp_num": 2,
+            "title": "Porte logiche AND",
+            "page": 57,
+            "components": "interruttore · interruttore · LED",
+            "next_id": "v3-cap6-esp3",
+            "cliffhanger": "Nel prossimo esperimento scopriremo la porta contraria: l'OR!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Porte logiche AND"
+          },
+          {
+            "id": "v3-cap6-esp3",
+            "esp_num": 3,
+            "title": "Porte logiche OR",
+            "page": 57,
+            "components": "interruttore · interruttore · LED",
+            "next_id": "v3-cap6-esp4",
+            "cliffhanger": "Adesso scopriremo come combinare AND e OR per creare circuiti ancora più sofisticati!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Porte logiche OR"
+          },
+          {
+            "id": "v3-cap6-esp4",
+            "esp_num": 4,
+            "title": "Combinare AND e OR",
+            "page": 58,
+            "components": "interruttore · interruttore · interruttore · LED",
+            "next_id": "v3-cap6-esp5",
+            "cliffhanger": "Questi circuiti logici sono i mattoni dei computer veri! Scopriamo come funzionano gli encoder.",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Combinare AND e OR"
+          },
+          {
+            "id": "v3-cap6-esp5",
+            "esp_num": 5,
+            "title": "Encoder binario a 3 bit",
+            "page": 59,
+            "components": "interruttore · interruttore · interruttore · LED · LED · LED",
+            "next_id": "v3-cap6-esp6",
+            "cliffhanger": "Ora scopriamo come i computer usano questo sistema per fare conti veri e propri!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Encoder binario a 3 bit"
+          },
+          {
+            "id": "v3-cap6-esp6",
+            "esp_num": 6,
+            "title": "Decoder binario",
+            "page": 59,
+            "components": "interruttore · interruttore · LED · LED · LED · LED",
+            "next_id": "v3-cap6-esp7",
+            "cliffhanger": "Questi principi si usano nei circuiti del Kit Omaric. Andiamo a scoprire cosa si può fare con la trasmissione di dati!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Decoder binario"
+          },
+          {
+            "id": "v3-cap6-esp7",
+            "esp_num": 7,
+            "title": "Modulazione d'ampiezza (AM)",
+            "page": 65,
+            "components": "oscillatore · LED · sensore",
+            "next_id": "v3-cap6-morse",
+            "cliffhanger": "Storicamente, il primo codice per comunicare con segnali luminosi era il codice Morse. Scopriamolo insieme!",
+            "breadcrumb": "Volume 3 · Capitolo 6 · Modulazione d'ampiezza (AM)"
+          }
+        ]
+      },
+      "cap7": {
+        "chapter_number": 7,
+        "chapter_title": "Sensori analogici e attuatori (PWM, potenziometro, TMP36)",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.7 — Sensori analogici e attuatori (PWM, TMP36)",
+        "experiments": [
+          {
+            "id": "v3-cap7-mini",
+            "esp_num": null,
+            "title": "Sfida capstone: sistema di allarme intelligente",
+            "page": 75,
+            "components": "sensore TMP36 · LED × 3 · buzzer · bottone · stato",
+            "next_id": "v3-extra-lcd-hello",
+            "cliffhanger": "Ora i progetti speciali: display LCD, servo motori, giochi interattivi!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Sfida capstone: sistema di allarme intelligente"
+          },
+          {
+            "id": "v3-cap7-esp1",
+            "esp_num": 1,
+            "title": "PWM e modulazione della velocità",
+            "page": 65,
+            "components": "motore DC · resistenza · transistor · PWM",
+            "next_id": "v3-cap7-esp2",
+            "cliffhanger": "Ora proviamo a controllare il motore con un potenziometro!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · PWM e modulazione della velocità"
+          },
+          {
+            "id": "v3-cap7-esp2",
+            "esp_num": 2,
+            "title": "Potenziometro e controllo analogico",
+            "page": 67,
+            "components": "potenziometro · LED · Arduino · pin analogico",
+            "next_id": "v3-cap7-esp3",
+            "cliffhanger": "Uniamo potenziometro e PWM: controllo totale!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Potenziometro e controllo analogico"
+          },
+          {
+            "id": "v3-cap7-esp3",
+            "esp_num": 3,
+            "title": "Controllo motore con potenziometro",
+            "page": 75,
+            "components": "potenziometro · motore DC · transistor · pin PWM",
+            "next_id": "v3-cap7-esp4",
+            "cliffhanger": "Ora aggiungiamo sensori: leggere il mondo reale!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Controllo motore con potenziometro"
+          },
+          {
+            "id": "v3-cap7-esp4",
+            "esp_num": 4,
+            "title": "Sensore di temperatura TMP36",
+            "page": 76,
+            "components": "sensore TMP36 · LED · pin analogico · termometro",
+            "next_id": "v3-cap7-esp5",
+            "cliffhanger": "Ora ussiamo il LED per mostrare se fa troppo caldo!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Sensore di temperatura TMP36"
+          },
+          {
+            "id": "v3-cap7-esp5",
+            "esp_num": 5,
+            "title": "Semaforino termico: if condizionale",
+            "page": 77,
+            "components": "sensore TMP36 · LED rosso · LED verde · condizionale if",
+            "next_id": "v3-cap7-esp6",
+            "cliffhanger": "Prossimo: loop for per automatizzare azioni ripetitive!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Semaforino termico: if condizionale"
+          },
+          {
+            "id": "v3-cap7-esp6",
+            "esp_num": 6,
+            "title": "Loop for: sequenze automatiche",
+            "page": 78,
+            "components": "LED · loop for · variabile contatore · delay",
+            "next_id": "v3-cap7-esp7",
+            "cliffhanger": "Prossimo: i LED diventano un gioco! Knight Rider!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Loop for: sequenze automatiche"
+          },
+          {
+            "id": "v3-cap7-esp7",
+            "esp_num": 7,
+            "title": "Knight Rider: sequenza luminosa",
+            "page": 79,
+            "components": "LED × 8 · loop for · delay · delay variabile",
+            "next_id": "v3-cap7-esp8",
+            "cliffhanger": "Ora uniamo tutto: sensore + Knight Rider + temperatura!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Knight Rider: sequenza luminosa"
+          },
+          {
+            "id": "v3-cap7-esp8",
+            "esp_num": 8,
+            "title": "Progetto integrato: stazione meteorologica",
+            "page": 80,
+            "components": "sensore TMP36 · LED array · potenziometro · Serial",
+            "next_id": "v3-cap7-mini",
+            "cliffhanger": "Prossimo: sfida finale del capitolo — costruisci il tuo progetto!",
+            "breadcrumb": "Volume 3 · Capitolo 7 · Progetto integrato: stazione meteorologica"
+          }
+        ]
+      },
+      "cap8": {
+        "chapter_number": 8,
+        "chapter_title": "Legge di Ohm, potenza, comunicazione seriale",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Cap.8 — Legge di Ohm, potenza, comunicazione seriale",
+        "experiments": [
+          {
+            "id": "v3-cap8-serial",
+            "esp_num": null,
+            "title": "Potenza e calore: l'energia del circuito",
+            "page": 87,
+            "components": "resistenza · LED · batteria",
+            "next_id": null,
+            "cliffhanger": "Capito il circuito? Vi aspetta il capitolo 9: il magnetismo dai vostri fili. Andiamo!",
+            "breadcrumb": "Volume 3 · Capitolo 8 · Potenza e calore: l'energia del circuito"
+          },
+          {
+            "id": "v3-cap8-esp1",
+            "esp_num": 1,
+            "title": "Resistenze in serie: addizione",
+            "page": 81,
+            "components": "resistenza · LED · batteria",
+            "next_id": "v3-cap8-esp2",
+            "cliffhanger": "E se le mettiamo in parallelo? Scopriamolo con UNLIM.",
+            "breadcrumb": "Volume 3 · Capitolo 8 · Resistenze in serie: addizione"
+          },
+          {
+            "id": "v3-cap8-esp2",
+            "esp_num": 2,
+            "title": "Resistenze in parallelo: armonia",
+            "page": 82,
+            "components": "resistenza · LED · batteria",
+            "next_id": "v3-cap8-esp3",
+            "cliffhanger": "Ora: mischiano serie e parallelo. Il circuito misto vi aspetta!",
+            "breadcrumb": "Volume 3 · Capitolo 8 · Resistenze in parallelo: armonia"
+          },
+          {
+            "id": "v3-cap8-esp3",
+            "esp_num": 3,
+            "title": "Circuiti misti: la sfida",
+            "page": 85,
+            "components": "resistenza · LED · batteria",
+            "next_id": "v3-cap8-esp4",
+            "cliffhanger": "I veri circuiti sono così. Passiamo alla corrente che li percorre.",
+            "breadcrumb": "Volume 3 · Capitolo 8 · Circuiti misti: la sfida"
+          },
+          {
+            "id": "v3-cap8-esp4",
+            "esp_num": 4,
+            "title": "Legge di Ohm: il triangolo magico",
+            "page": 86,
+            "components": "resistenza · voltmetro · amperometro",
+            "next_id": "v3-cap8-esp5",
+            "cliffhanger": "Ora applichiamo Ohm ai vostri circuiti: predire la corrente con misure vere.",
+            "breadcrumb": "Volume 3 · Capitolo 8 · Legge di Ohm: il triangolo magico"
+          },
+          {
+            "id": "v3-cap8-esp5",
+            "esp_num": 5,
+            "title": "Predire e misurare: la sfida pratica",
+            "page": 87,
+            "components": "resistenza · voltmetro · amperometro",
+            "next_id": "v3-cap8-serial",
+            "cliffhanger": "Completiamo il capitolo: la potenza dissipata. Il vero calore nei circuiti.",
+            "breadcrumb": "Volume 3 · Capitolo 8 · Predire e misurare: la sfida pratica"
+          }
+        ]
+      },
+      "extra": {
+        "chapter_number": null,
+        "chapter_title": "Progetti capstone Vol.3 (LCD, servo, Simon)",
+        "chapter_title_origin": "tea-inferred",
+        "story_arc": "Extra — Capstone tematici: LCD, Servo, Simon",
+        "experiments": [
+          {
+            "id": "v3-extra-lcd-hello",
+            "esp_num": null,
+            "title": "Display LCD 16x2: Hello World",
+            "page": 88,
+            "components": "LCD 16×2 · libreria Wire · interfaccia I2C · testo",
+            "next_id": "v3-extra-servo-sweep",
+            "cliffhanger": "Prossimo: servo motori — muoviamo il mondo fisico!",
+            "breadcrumb": "Volume 3 · Capitolo extra · Display LCD 16x2: Hello World"
+          },
+          {
+            "id": "v3-extra-servo-sweep",
+            "esp_num": null,
+            "title": "Servo motore: sweep da 0 a 180 gradi",
+            "page": 90,
+            "components": "servo motore · pin PWM · libreria Servo · gradi",
+            "next_id": "v3-extra-simon",
+            "cliffhanger": "Ultimo: il gioco Simon — tutti gli elementi insieme!",
+            "breadcrumb": "Volume 3 · Capitolo extra · Servo motore: sweep da 0 a 180 gradi"
+          },
+          {
+            "id": "v3-extra-simon",
+            "esp_num": null,
+            "title": "Gioco Simon: memoria e velocità",
+            "page": 92,
+            "components": "LED × 4 · bottoni × 4 · buzzer · memoria · arrays",
+            "next_id": null,
+            "cliffhanger": "Fine Volume 3! Avete imparato a fare sistemi intelligenti con il Kit Omaric!",
+            "breadcrumb": "Volume 3 · Capitolo extra · Gioco Simon: memoria e velocità"
+          }
+        ]
+      }
+    }
+  }
+}
