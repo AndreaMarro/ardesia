@@ -1,7 +1,7 @@
 # SPEC — EPIC 1 A4: Total parity between software lesson-paths and the paper volumes
 
-**Date:** 2026-05-14 · **Iter:** 54 · **Status:** DRAFT — gated on Andrea ratifying the A3 master verdict + the one blocking open question below
-**Governing rule (Andrea):** *parità totale con i volumi cartacei* — the software experiment inventory must exactly equal the volume experiment inventory.
+**Date:** 2026-05-14 · **Iter:** 54 · **Status:** DRAFT — blocking question RESOLVED 2026-05-14 (Andrea: *parità stretta*). Gated on ratifying the rest of the A3 master verdict + factual ratifications #4/#5.
+**Governing rule (Andrea):** *parità totale / parità stretta con i volumi cartacei* — the software experiment inventory must exactly equal the **current** printed volume inventory. No experiment ships that is not in the printed volume.
 **Inputs:** `docs/audits/2026-05-14-epic1-a3-MASTER-verdict.md` + the 3 per-volume verdicts · `docs/adrs/ADR-047-*.md` (A3 addendum, D1 reversed) · prior `docs/data/volume-structure.json` + `docs/audits/2026-04-24-tresjolie-vs-tutor-mapping.md`
 
 ---
@@ -63,9 +63,9 @@ Rebuild `narrative_map` chapter titles, experiment titles, and `nextId` chains f
 Every parità-corrected lesson-path gains a `steps` object (Tea's `standard_experiment_schema.json` 7-step shape), authored from: the existing repo `phases` content (mapped) + the volume text + Tea's `bookText`/`success_citation`/`analogy` metadata **for Vol 1 + Vol 2 only** (A3: verbatim-verified there). **Vol 3 `steps` authored from the volume text directly** — Tea's Vol 3 metadata is fabricated (A3: 0/29 verbatim). The `misura` step has no `phases` antecedent and is authored fresh.
 - **AC:** every lesson-path has `steps` with all 7 keys (`setup, ipotesi, costruzione, misura, variazione, conclusione, trasferimento`); `git diff` shows `phases` blocks unchanged.
 
-**R5 — Quarantine mechanism for no-counterpart experiments.**
-No-counterpart experiments must not silently count as "volume experiments". A data-level flag (e.g. `parity: "no-volume-counterpart"` + excluded from the canonical inventory count) keeps the parity claim honest while preserving the work pending Andrea's decision.
-- **AC:** quarantined experiments are flagged in their lesson-path JSON and excluded from the canonical count; the canonical count = exactly the printed-block total.
+**R5 — Staged removal of no-counterpart experiments (strict parity).**
+The ~15 Vol 3 no-counterpart experiments are **removed** (Andrea: *parità stretta*). Staged for auditability, not deleted blind: (1) move the lesson-path JSONs to `scripts/epic1/removed-no-volume-counterpart/` + write a removal manifest listing each id and the A3 evidence; (2) update every reference — the 8 consumers, `lesson-paths/index.js`, `lesson-groups.js`, `chapter-map.js`, the regenerated `narrative_map`; (3) CoV green; (4) commit the move; (5) commit the delete. Git history keeps them recoverable if Andrea reverses.
+- **AC:** the ~15 are gone from `src/data/lesson-paths/`; **zero dangling references**; canonical inventory count == exactly the printed-block total; alignment-audit re-run shows 0 no-counterpart records.
 
 **R6 — Zero regression.**
 - **AC:** `npx vitest run` ≥ baseline (currently 14353); `npm run build` exit 0; the 8 consumers (`UnlimWrapper`, `UnlimReport`, `LessonPathPanel`, `useExperimentLoader`, `GalileoAdapter`, `TeacherDashboard`, `classProfile`, `lessonPrepService`) still load and render.
@@ -78,7 +78,7 @@ No-counterpart experiments must not silently count as "volume experiments". A da
 
 ### Future Considerations (P2)
 
-- Re-integration of the quarantined Vol 3 experiments when Vol 3's complete edition ships.
+- If a future complete Vol 3 edition adds PWM/servo/LCD/Simon/etc. content, those experiments are authored fresh from that edition (strict parity — NOT resurrected from the removed set).
 - `phases` removal once all 8 consumers are migrated to `steps` (separate ADR).
 
 ## Success Metrics
@@ -94,7 +94,7 @@ No-counterpart experiments must not silently count as "volume experiments". A da
 
 ## Open Questions
 
-- **[BLOCKING — Andrea]** The ~15 Vol 3 experiments with no printed counterpart: **remove entirely**, or **quarantine pending the complete Vol 3 edition**? "Parità totale" strictly implies remove — but Vol 3 V0.8.1 is an explicitly incomplete edition (Ch9-12 are empty shells), so these experiments may be for content the finished volume *will* carry. R5 builds the quarantine mechanism either way; this decides whether quarantine is permanent (→ delete) or temporary (→ re-integrate at P2). **A4.2 for Vol 3 cannot start until this is answered.**
+- **[RESOLVED 2026-05-14 — Andrea: "VOGLIO LA PARITÀ STRETTA"]** The ~15 Vol 3 no-counterpart experiments are **removed** (R5), not quarantined-pending-edition. Strict parity: the software inventory == the *current* printed volume, full stop. Vol 3 V0.8.1's empty Ch9-12 do not earn placeholder software experiments. If a future complete Vol 3 edition adds the content, those experiments are authored fresh from that edition — not resurrected. **A4.2 for Vol 3 is unblocked.**
 - **[Andrea]** Vol 2 Cap.12 page: A3 confirms **103** against `vol2.txt`; a stale `volume-references.js` comment says 109 — ratify 103 and delete the comment.
 - **[Andrea]** Vol 2 Cap.12 title wording: "Robot segui luce" (body header, A3-preferred) vs "Robot marciante!" (TOC).
 - **[Davide / Andrea]** Vol 2 Cap.11 "I diodi": does Davide supply the canonical experiment list, or does A4 extract it from the volume text?
