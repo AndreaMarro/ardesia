@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { validateCorrectionsFile, CorrectionEntry } from '../../../scripts/epic1/corrections-schema.mjs';
+import { checkLessonPath } from '../../../scripts/epic1/validate-lesson-paths.mjs';
 
 const VALID_FILE = {
   generatedFrom: ['docs/audits/2026-05-14-epic1-a3-vol1-verdict.md'],
@@ -51,5 +52,55 @@ describe('validateCorrectionsFile', () => {
       nextId: null, source: 'repo', confidence: 'high',
     });
     expect(missing.success).toBe(false);
+  });
+});
+
+describe('checkLessonPath', () => {
+  const correction = {
+    action: 'correct', bookFaithfulTitle: 'Accendi il tuo primo LED',
+    page: 29, chapter: 6, nextId: 'v1-cap6-esp2', source: 'repo', confidence: 'high',
+  };
+  it('passes when the lesson-path matches its correction', () => {
+    const lp = { experiment_id: 'v1-cap6-esp1', title: 'Accendi il tuo primo LED',
+      chapter: 6, next_experiment: { id: 'v1-cap6-esp2' } };
+    const r = checkLessonPath('v1-cap6-esp1', lp, correction);
+    expect(r.ok).toBe(true);
+    expect(r.issues).toEqual([]);
+  });
+  it('flags a title divergence', () => {
+    const lp = { experiment_id: 'v1-cap6-esp1', title: 'WRONG TITLE',
+      chapter: 6, next_experiment: { id: 'v1-cap6-esp2' } };
+    const r = checkLessonPath('v1-cap6-esp1', lp, correction);
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('title'))).toBe(true);
+  });
+  it('flags a nextId and chapter divergence', () => {
+    const lp = { experiment_id: 'v1-cap6-esp1', title: 'Accendi il tuo primo LED',
+      chapter: 99, next_experiment: { id: 'v1-cap6-esp9' } };
+    const r = checkLessonPath('v1-cap6-esp1', lp, correction);
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('chapter'))).toBe(true);
+    expect(r.issues.some((i) => i.includes('nextId'))).toBe(true);
+  });
+  it('reports pending-removal when correction.action is remove and the file still exists', () => {
+    const lp = { experiment_id: 'v3-cap6-esp6', title: 'whatever' };
+    const r = checkLessonPath('v3-cap6-esp6', lp, { action: 'remove', bookFaithfulTitle: null,
+      page: null, chapter: null, nextId: null, source: 'neither', confidence: 'high' });
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('pending-removal'))).toBe(true);
+  });
+  it('reports pending-consolidation when action is consolidate', () => {
+    const lp = { experiment_id: 'v3-cap6-esp3', title: 'whatever' };
+    const r = checkLessonPath('v3-cap6-esp3', lp, { action: 'consolidate', bookFaithfulTitle: null,
+      page: null, chapter: null, nextId: null, consolidateInto: 'v3-cap6-morse',
+      source: 'repo', confidence: 'high' });
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('pending-consolidation') && i.includes('v3-cap6-morse'))).toBe(true);
+  });
+  it('reports a missing correction entry', () => {
+    const lp = { experiment_id: 'v9-cap1-esp1', title: 'orphan' };
+    const r = checkLessonPath('v9-cap1-esp1', lp, undefined);
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('no correction entry'))).toBe(true);
   });
 });
