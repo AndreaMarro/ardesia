@@ -42,8 +42,8 @@ export function findVerbatimInVolume(volumeText, claimedText, contextChars = 240
   return { found: false, reason: 'not in volume text' };
 }
 
-export function buildAlignmentRecord(id, src) {
-  const { lessonPath: lp, teaMapEntry: tm, teaMetaEntry: tmeta, volumeRefEntry: vref, volumeText } = src;
+export function buildAlignmentRecord(id, src = {}) {
+  const { lessonPath: lp, teaMapEntry: tm, teaMetaEntry: tmeta, volumeRefEntry: vref, volumeText } = src ?? {};
   const teaBookText = tmeta?.bookText ?? '';
   const teaVerbatim = findVerbatimInVolume(volumeText, teaBookText);
   const repoTitleHit = findVerbatimInVolume(volumeText, lp?.title ?? '');
@@ -68,8 +68,10 @@ export function buildAlignmentRecord(id, src) {
       repoTitleInVolume: repoTitleHit,
     },
     flags: {
-      titleAgree: norm(lp?.title) === norm(tm?.title),
-      nextIdAgree: (lp?.next_experiment?.id ?? null) === (tm?.next_id ?? null),
+      titleAgree: lp?.title != null && tm?.title != null && norm(lp.title) === norm(tm.title),
+      nextIdAgree: (lp?.next_experiment?.id ?? null) != null
+        && (tm?.next_id ?? null) != null
+        && lp.next_experiment.id === tm.next_id,
       teaBookTextVerified: teaVerbatim.found,
     },
   };

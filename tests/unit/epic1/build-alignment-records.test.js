@@ -75,4 +75,19 @@ describe('buildAlignmentRecord', () => {
     expect(r.flags.titleAgree).toBe(false);
     expect(r.flags.teaBookTextVerified).toBe(false);
   });
+
+  it('produces a clean record when sources are missing, no false agreement', () => {
+    const r = buildAlignmentRecord('v1-cap6-esp1', {
+      lessonPath: null, teaMapEntry: null, teaMetaEntry: null,
+      volumeRefEntry: null, volumeText: null,
+    });
+    expect(r.repo.title).toBe(null);
+    expect(r.repo.components).toEqual([]);
+    expect(r.flags.titleAgree).toBe(false);
+    expect(r.flags.nextIdAgree).toBe(false);
+    expect(r.flags.teaBookTextVerified).toBe(false);
+  });
+  it('does not throw on a null src', () => {
+    expect(() => buildAlignmentRecord('v1-cap6-esp1', null)).not.toThrow();
+  });
 });
