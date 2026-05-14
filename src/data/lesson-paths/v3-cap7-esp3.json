@@ -75,11 +75,11 @@
     "note": "Cap 7 Vol 3 — INPUT_PULLUP, resistenza interna, logica invertita."
   },
   "prerequisites": [
-    "v3-cap7-esp2"
+    "v3-cap7-esp1"
   ],
   "next_experiment": {
-    "id": "v3-cap7-esp4",
-    "title": "PWM: luminosita variabile",
+    "id": "v3-cap7-esp6",
+    "title": "ESERCIZIO: \"Cambia un numero, cambia il circuito\" — sposta il filo del LED da pin 8 a pin 9 (variabile int led)",
     "preview": "Nel prossimo esperimento il LED non sara solo acceso o spento: controlleremo la luminosita con valori da 0 a 255 usando il PWM!"
   },
   "phases": [
@@ -150,7 +150,7 @@
       "logica_invertita",
       "pulsante_senza_resistore"
     ],
-    "next_suggested": "v3-cap7-esp4",
+    "next_suggested": "v3-cap7-esp6",
     "resume_message": "Avete scoperto INPUT_PULLUP e la logica invertita! Prossimo: PWM e luminosita variabile."
   }
 }

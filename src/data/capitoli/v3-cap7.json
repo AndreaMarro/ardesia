@@ -179,7 +179,7 @@
           "pull-down",
           "interazione"
         ],
-        "next_suggested": "v3-cap7-esp2",
+        "next_suggested": "v3-cap7-esp3",
         "resume_message": "L'ultima volta avete usato il pulsante per accendere un LED con digitalRead e if. Oggi aggiungiamo il conteggio delle pressioni."
       }
     },
@@ -344,7 +344,7 @@
           "pulsante_momentaneo",
           "HIGH_LOW"
         ],
-        "next_suggested": "v3-cap7-esp3",
+        "next_suggested": "v3-cap8-esp3",
         "resume_message": "Avete imparato a leggere un pulsante con digitalRead! Prossimo: INPUT_PULLUP e la resistenza interna."
       }
     },
@@ -679,7 +679,7 @@
           "debounce",
           "INPUT_PULLUP_con_LED"
         ],
-        "next_suggested": "v3-cap8-esp1",
+        "next_suggested": "v3-cap7-esp2",
         "resume_message": "Avete costruito un toggle con pulsante e due LED! Prossimo: contatore binario con LED."
       }
     }
@@ -690,7 +690,7 @@
       {
         "between": [
           "v3-cap7-esp1",
-          "v3-cap7-esp2"
+          "v3-cap7-esp3"
         ],
         "text_classe": "Immaginate un campanello: quando lo premete, suona. Quando lo lasciate, smette. Oggi il nostro pulsante fa il contrario: quando lo premete, il LED si spegne!",
         "text_docente_action": "Inizia chiedendo alla classe: chi ha mai usato un pulsante per spegnere qualcosa? Il telecomando della TV, il campanello di casa. Ogni volta che premi, mandi un segnale. Oggi Arduino riceve quel segnale.",
@@ -698,8 +698,8 @@
       },
       {
         "between": [
-          "v3-cap7-esp2",
-          "v3-cap7-esp3"
+          "v3-cap7-esp3",
+          "v3-cap7-esp6"
         ],
         "text_classe": "Sapete che dentro Arduino ci sono delle resistenze nascoste? Come un paracadute di emergenza: se non c'e nient'altro collegato al pin, la resistenza interna lo tiene a un valore sicuro. Oggi la usiamo!",
         "text_docente_action": "Usa l'analogia dell'elastico: immagina un muretto (il pin) tenuto su da un elastico (la resistenza interna). Di default il muretto sta su (HIGH). Quando premi il pulsante, lo abbatti (LOW). Senza elastico il muretto potrebbe cadere da solo (valore casuale).",
@@ -707,8 +707,8 @@
       },
       {
         "between": [
-          "v3-cap7-esp3",
-          "v3-cap7-esp6"
+          "v3-cap7-esp6",
+          "v3-cap7-esp2"
         ],
         "text_classe": "Conoscete il tasto Caps Lock? Quando lo premete una volta, le lettere diventano maiuscole. Quando lo ripremete, tornano minuscole. Non serve tenerlo premuto! Oggi costruiamo lo stesso meccanismo con due LED.",
         "text_docente_action": "Parti dall'esperienza quotidiana: Caps Lock, tasto Mute, Play/Pausa. Tutti sono toggle. La sfida tecnica e che il loop gira migliaia di volte al secondo: come fa Arduino a capire che e UNA pressione e non mille? Servono due ingredienti: variabile di stato e debounce.",

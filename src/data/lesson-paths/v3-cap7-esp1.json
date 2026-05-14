@@ -78,11 +78,11 @@
     "note": "Primo INPUT e primo if. Spiegare il pull-down come necessita pratica: senza resistore il pin 'fluttua' e legge valori a caso."
   },
   "prerequisites": [
-    "v3-cap6-esp2"
+    "v3-cap6-semaforo"
   ],
   "next_experiment": {
-    "id": "v3-cap7-esp2",
-    "title": "Pulsante con conteggio",
+    "id": "v3-cap7-esp3",
+    "title": "ESERCIZIO 7.3: collegamento del pulsante con INPUT_PULLUP (1 filo + GND, D2)",
     "preview": "Nella prossima lezione il pulsante contera quante volte viene premuto e mostrera il numero."
   },
   "phases": [
@@ -154,7 +154,7 @@
       "pull-down",
       "interazione"
     ],
-    "next_suggested": "v3-cap7-esp2",
+    "next_suggested": "v3-cap7-esp3",
     "resume_message": "L'ultima volta avete usato il pulsante per accendere un LED con digitalRead e if. Oggi aggiungiamo il conteggio delle pressioni."
   }
 }

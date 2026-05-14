@@ -64,11 +64,11 @@
     "note": "Cap 8 Vol 3 — pin analogici, analogRead, Serial Monitor, ADC 10 bit."
   },
   "prerequisites": [
-    "v3-cap6-esp6"
+    "v3-cap7-esp2"
   ],
   "next_experiment": {
-    "id": "v3-extra-lcd-hello",
-    "title": "LCD Hello World",
+    "id": "v3-cap8-esp1",
+    "title": "First analog program: analogRead(A0) → int valore → Serial.println on Monitor Seriale (setup: Serial.begin)",
     "preview": "Nell'Extra scoprirete come scrivere messaggi su un display LCD 16x2!"
   },
   "phases": [
@@ -230,7 +230,7 @@
       "Serial_begin",
       "Serial_println"
     ],
-    "next_suggested": "v3-extra-lcd-hello",
+    "next_suggested": "v3-cap8-esp1",
     "resume_message": "Avete scoperto i pin analogici e il Serial Monitor! Prossimo passo: il display LCD."
   }
 }
