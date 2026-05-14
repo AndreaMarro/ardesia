@@ -28,7 +28,10 @@
 # /tmp/codex-<task>.txt → cross-check → commit only if both agree.
 # ════════════════════════════════════════════════════════════════
 
-set -euo pipefail
+# NOTE: `set -u` omitted deliberately — macOS ships bash 3.2, where expanding an
+# empty array (`"${CONFIG_OVERRIDES[@]}"`) under `set -u` errors with "unbound
+# variable". `set -eo pipefail` gives the safety we need without that footgun.
+set -eo pipefail
 
 CODEX_BIN="$HOME/.npm-global/bin/codex"
 PROJECT_DIR="${PROJECT_DIR:-/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder}"

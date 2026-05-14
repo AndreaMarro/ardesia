@@ -354,7 +354,10 @@ function main() {
 
 async function run() {
   const { metadata94, teaMap, lessonPaths } = main();
-  const volumeRefs = (await import(join(REPO, 'src/data/volume-references.js'))).default;
+  // NOTE (corrected during execution): use a LITERAL relative specifier. A
+  // non-literal import() breaks vite's SSR parser when vitest imports this
+  // module; this dynamic import stays lazy (runs only on direct `node`).
+  const volumeRefs = (await import('../../src/data/volume-references.js')).default;
   const volText = {
     1: readFileSync(VOL_TEXT[1], 'utf8'),
     2: readFileSync(VOL_TEXT[2], 'utf8'),
@@ -387,7 +390,11 @@ async function run() {
 }
 
 // Only run when invoked directly, not when imported by tests
-if (import.meta.url === `file://${process.argv[1]}`) {
+// NOTE (corrected during execution): the original `import.meta.url === file://...`
+// guard never matched — `import.meta.url` percent-encodes the space in the repo
+// path ("VOLUME 3" → "VOLUME%203"), `process.argv[1]` does not. Compare resolved
+// filesystem paths instead.
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   run().catch((e) => { console.error('FATAL', e); process.exit(1); });
 }
 ```

@@ -16,7 +16,17 @@ import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 
-export const norm = (s) => String(s ?? '').toLowerCase().replace(/\s+/g, ' ').trim();
+// pdftotext volume text uses curly typographic punctuation; Tea bookText / repo
+// titles use straight ASCII. Fold both to ASCII so indexOf() exact-match works.
+export const norm = (s) =>
+  String(s ?? '')
+    .toLowerCase()
+    .replace(/[‘’‚‛`´]/g, "'")
+    .replace(/[“”„‟]/g, '"')
+    .replace(/[–—]/g, '-')
+    .replace(/…/g, '...')
+    .replace(/\s+/g, ' ')
+    .trim();
 
 export function findVerbatimInVolume(volumeText, claimedText, contextChars = 240) {
   const haystack = norm(volumeText);
@@ -88,14 +98,6 @@ const VOL_TEXT = {
 };
 const OUT = join(HERE, 'alignment-records.json');
 
-// volume-references.js is ESM (export default). The runner block below only runs
-// on direct `node` invocation; vitest imports this module purely for its named
-// exports. Vite's SSR transform cannot parse a non-literal dynamic import()
-// specifier in this file (Rollup "Expected ident" parse failure), so the import()
-// is constructed via `new Function` â the token is invisible to vite's parser,
-// while `node` evaluates it natively at runtime.
-const __esmImport = new Function('s', 'return import(s)');
-
 function main() {
   const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
   const narrativeMap = readJson(join(TEA, 'narrative_map.json'));
@@ -118,7 +120,10 @@ function main() {
 
 async function run() {
   const { metadata94, teaMap, lessonPaths } = main();
-  const volumeRefs = (await __esmImport(join(REPO, 'src/data/volume-references.js'))).default;
+  // Literal relative specifier: a non-literal import() breaks vite's SSR parser
+  // when vitest imports this module for its named exports. This dynamic import
+  // stays lazy — it runs only on direct `node` invocation, never during tests.
+  const volumeRefs = (await import('../../src/data/volume-references.js')).default;
   const volText = {
     1: readFileSync(VOL_TEXT[1], 'utf8'),
     2: readFileSync(VOL_TEXT[2], 'utf8'),

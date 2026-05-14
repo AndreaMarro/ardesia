@@ -17,6 +17,14 @@ describe('norm', () => {
     expect(norm(null)).toBe('');
     expect(norm(undefined)).toBe('');
   });
+  it('folds curly quotes, apostrophes, dashes, ellipsis to ASCII', () => {
+    // pdftotext volume text uses curly punctuation; Tea bookText uses straight.
+    // Without folding, indexOf() exact-match gives false negatives.
+    expect(norm('Più “Spinta”!')).toBe(norm('Più "Spinta"!'));
+    expect(norm('l’anodo')).toBe(norm("l'anodo"));
+    expect(norm('serie–parallelo')).toBe(norm('serie-parallelo'));
+    expect(norm('uno…')).toBe(norm('uno...'));
+  });
 });
 
 describe('findVerbatimInVolume', () => {
