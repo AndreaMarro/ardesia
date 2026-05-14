@@ -14,7 +14,7 @@ You are continuing autonomous work on **ELAB Tutor** — an educational electron
 
 ## §0 — Entrance sequence (do these FIRST, in this exact order — do not skip, do not reorder)
 
-1. **Confirm working dir + branch.** `cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"`, `git branch --show-current` → must be `feat/iter-41-sprint-u-cycle-2-real-user-fix`. `git log --oneline -10` → the iter-55 tail ends at `b0f9efa3` (the A4.1b removal commit).
+1. **Confirm working dir + branch + Codex.** `cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"`, `git branch --show-current` → must be `feat/iter-41-sprint-u-cycle-2-real-user-fix`. `git log --oneline -10` → the iter-55 tail ends at `c9f6c5cf`. Then `which codex && codex --version` — Codex GPT-5.5 is **mandatory** for iter 56 (see §6). iter 55's env had `codex not found`; it ran fine in iter 41-43 (CLI 0.128.0), so it is a PATH/install issue. **If `codex` is missing, restoring it is iter-56's FIRST sub-task** (check `~/.codex/config.toml`, PATH, the install method) — do not proceed deep into A4.1c without Codex working, only the manual fallback if it genuinely cannot be restored.
 2. **`git status`.** Expect a clean tree EXCEPT a handful of files left modified by the concurrent autonomous loop (`AGENTS.md`, `automa/state/*`) — those are NOT yours, leave them. If you see a large unexpected diff, the autonomous loop is mid-task — investigate provenance before touching anything (§5).
 3. **Pre-flight CoV (entrance gate — MANDATORY before any change).** `npx vitest run` → must be **13273 passed, 0 failed** (the iter-55 post-A4.1b baseline). `npm run build` → exit 0. If either is red → STOP and report — do not "fix" by touching tests. (Note: 13273, not the old 14367 — A4.1b legitimately removed the 13 experiments' generated tests; both `.test-count-baseline.json` `total` and `automa/baseline-tests.txt` are re-baselined to 13273.)
 4. **`/mem-search` to recover context.** Run the claude-mem `search` tool with queries: `"EPIC 1 narrative arc parità volumi kit elabtutor"`, `"A4.1c consolidate collapse Cap.11"`, `"A3 master verdict repo book-faithful"`, `"Morfismo Sense 2 triplet"`. The corpus is stale (~April) — background only; the authoritative iter-55 state is the files in §3.
@@ -112,7 +112,7 @@ Then A4.2 (`steps` authoring — the 7-step block per experiment), A5 (PZ-V3 val
 ## §5 — Known environmental issues (do not be surprised by these)
 
 - **A concurrent autonomous loop is active in this repo.** It commits on its own, creates `auto/*` branches, and modifies the working tree (it executed A4.1b's removal uncommitted in iter 55). It leaves `AGENTS.md` + `automa/state/*` modified. Always check provenance before committing; never assume the working tree is yours alone; never blind-`git add -A`.
-- **`codex` CLI is not installed** — `which codex` → not found. `scripts/dev/codex-bg.sh` exists but the binary is missing. Codex Pattern V cross-checks must be done manually (grep + vitest + build) until Codex is installed.
+- **`codex` CLI was not on PATH in iter 55** — `which codex` → not found, though `scripts/dev/codex-bg.sh` exists and Codex CLI 0.128.0 ran in iter 41-43. This is a PATH/install issue, NOT a permanent gap. §6 makes restoring Codex iter-56's first sub-task — Codex use is mandated throughout iter 56, manual fallback only if restoration genuinely fails.
 - **Two baseline files, both `13273`:** the pre-commit hook reads `.test-count-baseline.json` `total`; `automa/baseline-tests.txt` is CI-side + treated as canonical by CLAUDE.md. Keep both in sync; only move them with an arithmetic proof.
 - **`block-console-log` hookify rule** blocks Edit/Write on ANY content containing the literal `console.log(` regardless of path — false-positives on legitimate `scripts/*.mjs` reporters. Workaround: write such files via Bash heredoc, then `node --check`.
 - macOS bash 3.2: no `timeout`/`gtimeout`; do not use `set -u` with empty-array expansion.
@@ -121,9 +121,36 @@ Then A4.2 (`steps` authoring — the 7-step block per experiment), A5 (PZ-V3 val
 
 ## §6 — Workflow
 
-- **Skill chain:** `using-superpowers` → `mem-search` (re-anchor on the §2 mandate) → `brainstorming` → `writing-plans` → `subagent-driven-development` (opus subagents only, no sonnet). `systematic-debugging` if any bug. `verification-before-completion` before any "done" claim.
-- **Anti-inflation / NON COMPIACERE:** no auto-score > 7.5 without an independent opus review. No "fixed" / "verified" claim without the command output shown. Cite test counts only from output just seen. If a proof does not close, say so plainly and do not commit. iter 54's A3 overturned its own A2 premise because the work was honest — keep that.
-- **Self-review before any commit:** does `git diff --cached --stat` contain ONLY files you authored or rigorously verified? Does vitest show 0 failed? Does build exit 0? Is any test-count change accompanied by an arithmetic proof?
+### Codex GPT-5.5 — use it CONSTANTLY (mandate, not optional)
+
+Codex GPT-5.5 — via `scripts/dev/codex-bg.sh <task-name> --profile verify "<4-element prompt>"`, output `/tmp/codex-<task-name>.txt` — is the independent second pair of eyes and the **anti-inflation + anti-regression backbone of iter 56**. Use it as heavily as possible — NOT a pre-commit afterthought. Run it in parallel with your own work, on every non-trivial step:
+- after recon → Codex verifies the recon is exhaustive (no missed reference, no wrong line range)
+- after a plan → Codex sanity-checks the plan against the spec
+- after each implementation step / each subagent task → Codex cross-checks the diff
+- before EVERY commit → Codex verifies the diff for regressions AND independently re-derives the claim
+- after any "done" / score / count claim → Codex re-derives it from the actual code/output
+
+A **4-element prompt is mandatory** (GOAL: one sentence / CONTEXT: @file mentions + conventions / CONSTRAINTS: read-only, cite file:line / DONE: concrete verifiable criterion) — single-line prompts return useless file dumps. Reference: `docs/dev/CODEX-WORKFLOW.md` + `.codex/AGENTS.md`. If `codex` is unavailable and cannot be restored (see §0.1), the fallback is an *independent* re-derivation (`grep` + `vitest` + `build` done from scratch, not trusting your own prior output) — and you state "Codex unavailable, manual equivalent" explicitly every single time.
+
+### Recursive anti-inflation loop — every claim, every score
+
+No claim — "done", "verified", "N tests pass", "score X", "Δ accounted for" — is ever Claude's self-assessment alone. The loop:
+1. Claude states the claim + the evidence.
+2. Codex independently re-derives the SAME claim from the actual code/output — NOT from Claude's report.
+3. If Codex disagrees → Claude revises → **GOTO 2** (the recursion — repeats until convergence).
+4. The accepted value is the Claude∩Codex intersection — when they differ, the **more skeptical** value wins.
+5. Codex's verification output (`/tmp/codex-*.txt`) is copied into the iter close audit/handoff doc, so the verification is itself auditable.
+No score > 7.5 without this loop closing. No "done" without it. iter 54's A3 overturned its own A2 premise because the work was honest — that honesty is now *enforced by the loop*, not merely intended.
+
+### Recursive anti-regression loop — every change, every commit
+
+Every change is gated by ALL FOUR of: (a) `npx vitest run` 0-failed, (b) `npm run build` exit 0, (c) the validation gate (`node scripts/epic1/validate-lesson-paths.mjs`), (d) a Codex diff-review for regressions. **Recursive** = if ANY gate fails, you fix → **re-run ALL FOUR gates**, not just the one that failed — a fix can introduce a regression elsewhere, and partial re-checking is exactly how regressions slip through. Re-baseline the test count ONLY with an arithmetic proof (A4.1b's method: exactly-N-removed + 0-failed + all-files-collected + no-`.skip`/`.todo`-added → every absent test is accounted-for generated shrinkage). NEVER `--no-verify`, NEVER bypass the pre-commit hook, NEVER push to `main`.
+
+### Skill chain
+`using-superpowers` → `mem-search` (re-anchor on the §2 mandate) → `brainstorming` → `writing-plans` → `subagent-driven-development` (opus subagents only, no sonnet) → at EVERY checkpoint, both recursive loops above. `systematic-debugging` if any bug. `verification-before-completion` before any "done" claim.
+
+### Self-review before any commit
+Does `git diff --cached --stat` contain ONLY files you authored or Codex-verified? vitest 0 failed? build exit 0? gate clean? Codex agrees with the claim? Any test-count change carries an arithmetic proof? If any answer is no → do not commit.
 
 ---
 
@@ -132,7 +159,7 @@ Then A4.2 (`steps` authoring — the 7-step block per experiment), A5 (PZ-V3 val
 ```
 Continua ELAB Tutor iter 56. Working dir: /Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder, branch feat/iter-41-sprint-u-cycle-2-real-user-fix.
 
-Leggi PRIMA docs/handoff/2026-05-14-iter-56-activation.md ed esegui §0 entrance sequence in ordine: (1) verifica branch, (2) git status — atteso pulito tranne i file del loop autonomo (AGENTS.md, automa/state/* — NON tuoi, lasciali; se vedi un diff grosso inatteso, il loop è mid-task, indaga la provenienza), (3) pre-flight CoV — npx vitest run deve essere 13273 passed / 0 failed + npm run build exit 0 (se rosso STOP; 13273 è la baseline post-A4.1b, non più 14367), (4) /mem-search per il contesto, (5) leggi la cartella TEA (/Users/andreamarro/VOLUME 3/TEA/ + /Nuovo lavoro tea/) — si PARTE dal lavoro di Tea: schema 7-step canonico, metadata bookText/citation/analogy canonici SOLO per Vol 1+2, narrative_map e Vol3 bookText inaffidabili, (6) leggi lo stato iter-55 (§3: A4.1b COMPLETO — 8 commit, rimozione verificata + committata b0f9efa3 + le CoV evidence + i 6 file dangling deferiti ad A4.1d).
+Leggi PRIMA docs/handoff/2026-05-14-iter-56-activation.md ed esegui §0 entrance sequence in ordine: (1) verifica branch + Codex (which codex && codex --version — Codex GPT-5.5 è OBBLIGATORIO iter 56; se manca, RIPRISTINARLO è il PRIMO sub-task — girava in iter 41-43, è un problema di PATH/install), (2) git status — atteso pulito tranne i file del loop autonomo (AGENTS.md, automa/state/* — NON tuoi, lasciali; se vedi un diff grosso inatteso, il loop è mid-task, indaga la provenienza), (3) pre-flight CoV — npx vitest run deve essere 13273 passed / 0 failed + npm run build exit 0 (se rosso STOP; 13273 è la baseline post-A4.1b, non più 14367), (4) /mem-search per il contesto, (5) leggi la cartella TEA (/Users/andreamarro/VOLUME 3/TEA/ + /Nuovo lavoro tea/) — si PARTE dal lavoro di Tea: schema 7-step canonico, metadata bookText/citation/analogy canonici SOLO per Vol 1+2, narrative_map e Vol3 bookText inaffidabili, (6) leggi lo stato iter-55 (§3: A4.1b COMPLETO — 8 commit, rimozione verificata + committata b0f9efa3 + le CoV evidence + i 6 file dangling deferiti ad A4.1d).
 
 MANDATO RICORRENTE ANDREA (il PERCHÉ di tutto EPIC 1): gli esperimenti sono su un arco narrativo continuo, NON spezzettati come card flat scollegate; parità totale volumi cartacei ↔ kit Omaric ↔ software elabtutor (Morfismo Sense 2). Regola operativa: parità stretta. Esegui /mem-search "EPIC 1 narrative arc parità volumi kit elabtutor" per ri-ancorarti — Andrea lo ha ripetuto molte volte.
 
@@ -140,5 +167,11 @@ ANTI-REGRESSIONI FERREO: npx vitest run 0-failed prima e dopo ogni modifica, bui
 
 LAVORO iter 56 P0: A4.1c — consolidate i 2 id duplicati Vol3 (v3-cap6-esp3→v3-cap6-morse, v3-cap6-esp5→v3-cap6-semaforo, action:consolidate in a3-corrections.json), collapse gli over-split Ch7/Ch8 al conteggio reale del volume, aggiungi i lesson-path mancanti Vol2 Cap.11 "I diodi" (chiedi ad Andrea se Davide fornisce la lista o si estrae dal volume). Exit: node scripts/epic1/validate-lesson-paths.mjs mostra 0 pending-consolidation. Metodo: brainstorming → writing-plans → subagent-driven-development con subagent opus (no sonnet), riusa la disciplina staged A4.1b (recon-first, archive-before-destruct, CoV gate, commit onesti). Poi A4.1d (re-thread 6 file dangling + 6 correct per-field), A4.1e (rigenera narrative_map).
 
-NON COMPIACERE: onestà, niente score gonfiati, nomina ciò che non è dimostrato. Codex CLI non installato in questo ambiente — cross-check manuali (grep+vitest+build).
+USA CODEX TANTISSIMO (§6 — mandate, non opzionale): Codex GPT-5.5 via scripts/dev/codex-bg.sh <task> --profile verify "<prompt 4-elementi: GOAL/CONTEXT/CONSTRAINTS/DONE>" è la spina dorsale anti-inflazione + anti-regressione. Girarlo in PARALLELO al tuo lavoro su OGNI step non banale: dopo recon, dopo piano, dopo ogni step/subagent, prima di OGNI commit, dopo OGNI claim/score. NON un afterthought pre-commit.
+
+LOOP RICORSIVO ANTI-INFLAZIONE (ogni claim/score): 1) Claude dichiara claim+evidenza, 2) Codex ri-deriva lo STESSO claim dal codice/output reale (non dal report di Claude), 3) se Codex dissente → Claude rivede → GOTO 2 (ricorsione fino a convergenza), 4) valore accettato = intersezione Claude∩Codex, vince il più scettico, 5) output Codex salvato come artefatto auditabile. Nessuno score >7.5 senza chiudere il loop. Nessun "done" senza.
+
+LOOP RICORSIVO ANTI-REGRESSIONE (ogni modifica/commit): gate su TUTTI E QUATTRO — (a) vitest 0-failed, (b) build exit 0, (c) validation gate, (d) Codex diff-review. RICORSIVO = se UN gate fallisce, fix → ri-esegui TUTTI E QUATTRO (non solo quello fallito — un fix può introdurre regressione altrove). Re-baseline conteggio test SOLO con prova aritmetica.
+
+NON COMPIACERE: onestà, niente score gonfiati, nomina ciò che non è dimostrato e ciò che non è fatto.
 ```
