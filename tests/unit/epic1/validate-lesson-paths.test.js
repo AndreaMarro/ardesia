@@ -103,4 +103,20 @@ describe('checkLessonPath', () => {
     expect(r.ok).toBe(false);
     expect(r.issues.some((i) => i.includes('no correction entry'))).toBe(true);
   });
+  it('reports missing-lesson-path when lessonPath is null but a correction exists', () => {
+    const r = checkLessonPath('v1-cap6-esp1', null, correction);
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('missing-lesson-path'))).toBe(true);
+  });
+  it('treats contract nextId:null as a capstone — ok with no next, flagged with a next', () => {
+    const capstone = { action: 'keep', bookFaithfulTitle: 'Capstone', page: 60,
+      chapter: 9, nextId: null, source: 'repo', confidence: 'high' };
+    const noNext = { experiment_id: 'v9-cap9-esp9', title: 'Capstone', chapter: 9 };
+    expect(checkLessonPath('v9-cap9-esp9', noNext, capstone).ok).toBe(true);
+    const hasNext = { experiment_id: 'v9-cap9-esp9', title: 'Capstone', chapter: 9,
+      next_experiment: { id: 'v9-cap9-esp10' } };
+    const r = checkLessonPath('v9-cap9-esp9', hasNext, capstone);
+    expect(r.ok).toBe(false);
+    expect(r.issues.some((i) => i.includes('nextId'))).toBe(true);
+  });
 });

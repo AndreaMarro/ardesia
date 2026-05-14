@@ -23,17 +23,27 @@ export function checkLessonPath(id, lessonPath, correction) {
   } else if (correction.action === 'consolidate') {
     issues.push(`pending-consolidation: ${id} should be consolidated into ${correction.consolidateInto}`);
   } else {
-    // action keep | correct — the lesson-path should match the contract
-    if (correction.bookFaithfulTitle != null
-        && norm(lessonPath?.title) !== norm(correction.bookFaithfulTitle)) {
-      issues.push(`title: "${lessonPath?.title}" != contract "${correction.bookFaithfulTitle}"`);
-    }
-    if (correction.chapter != null && Number(lessonPath?.chapter) !== Number(correction.chapter)) {
-      issues.push(`chapter: ${lessonPath?.chapter} != contract ${correction.chapter}`);
-    }
-    const lpNext = lessonPath?.next_experiment?.id ?? null;
-    if (lpNext !== correction.nextId) {
-      issues.push(`nextId: ${lpNext} != contract ${correction.nextId}`);
+    // action keep | correct — the lesson-path must exist and match the contract.
+    // The contract FULLY specifies title/chapter/nextId for keep/correct entries
+    // (A4.1a Task-2 spec: title/chapter are never null for keep/correct). The
+    // `!= null` guards on title/chapter are defensive. nextId is checked
+    // UNCONDITIONALLY on purpose: `nextId: null` is a MEANINGFUL value here
+    // (capstone = no next), not "unspecified" — a capstone whose lesson-path
+    // has a next_experiment.id IS a real divergence to flag.
+    if (!lessonPath) {
+      issues.push(`missing-lesson-path: ${id} has a ${correction.action} correction but no lesson-path file`);
+    } else {
+      if (correction.bookFaithfulTitle != null
+          && norm(lessonPath.title) !== norm(correction.bookFaithfulTitle)) {
+        issues.push(`title: "${lessonPath.title}" != contract "${correction.bookFaithfulTitle}"`);
+      }
+      if (correction.chapter != null && Number(lessonPath.chapter) !== Number(correction.chapter)) {
+        issues.push(`chapter: ${lessonPath.chapter} != contract ${correction.chapter}`);
+      }
+      const lpNext = lessonPath.next_experiment?.id ?? null;
+      if (lpNext !== correction.nextId) {
+        issues.push(`nextId: ${lpNext} != contract ${correction.nextId}`);
+      }
     }
   }
   return { id, action: correction.action, ok: issues.length === 0, issues };
