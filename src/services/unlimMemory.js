@@ -129,7 +129,10 @@ function buildMemoryContext() {
     const p = getProfile();
     if (!p.experiments && !p.mistakes && !p.quizzes && !p.sessionSummaries) return '';
 
-    const parts = ['[MEMORIA STUDENTE]'];
+    const parts = [
+        '[MEMORIA STUDENTE]',
+        'MEMORIA PASSATA PERSISTENTE: non e stato live attuale; serve per livello, continuita ed errori ricorrenti.',
+    ];
 
     if (p.experiments) {
         const completed = Object.keys(p.experiments).filter(k => p.experiments[k].completed);
@@ -322,6 +325,35 @@ async function buildEnhancedContext(classId) {
     }
     if (progress.conceptsAcquired.length > 0) {
         parts.push(`[CONCETTI ACQUISITI] ${progress.conceptsAcquired.join(', ')}`);
+    }
+
+    return parts.join('\n');
+}
+
+/**
+ * Build a strict live-vs-past context block for UNLIM.
+ * Present data must always win over persisted memory.
+ * @param {string} [classId]
+ * @param {{experimentId?: string|null, liveState?: string|null, visibleScreen?: string|null}} [current]
+ * @returns {Promise<string>}
+ */
+async function buildPersistentContext(classId, current = {}) {
+    const parts = [
+        '[PRESENTE LIVE]',
+        'Questo e cio che succede ora e batte ogni memoria passata.',
+    ];
+
+    if (current.experimentId) parts.push(`Esperimento attivo ora: ${current.experimentId}`);
+    if (current.liveState) parts.push(`Stato live ora: ${current.liveState}`);
+    if (current.visibleScreen) parts.push(`Schermo/lavagna ora: ${current.visibleScreen}`);
+
+    const memory = await buildEnhancedContext(classId);
+    if (memory) {
+        parts.push(
+            '[MEMORIA PASSATA PERSISTENTE]',
+            'Non trattare questa memoria come stato visibile ora.',
+            memory,
+        );
     }
 
     return parts.join('\n');
@@ -565,6 +597,7 @@ export const unlimMemory = {
     getLastLesson,
     getProgress,
     buildEnhancedContext,
+    buildPersistentContext,
     // Tier 3: Nanobot backend
     syncWithBackend,
     loadFromBackend,

@@ -51,15 +51,17 @@ function MascotSvg({ size = 44, micActive = false }) {
   );
 }
 
-export default function MascotPresence({ speaking = false, micActive = false, onClick, mascotSrc }) {
+export default function MascotPresence({ speaking = false, isSpeaking, micActive = false, onClick, onMascotClick, mascotSrc }) {
+  const activeSpeaking = Boolean(isSpeaking ?? speaking);
+  const clickHandler = onClick || onMascotClick;
   const [idle, setIdle] = useState(false);
   const [dragging, setDragging] = useState(false);
   const timerRef = useRef(null);
   const dragRef = useRef(null);
   const wasDragged = useRef(false);
   const posRef = useRef(null); // track latest pos for handleUp closure
-  const onClickRef = useRef(onClick);
-  onClickRef.current = onClick;
+  const onClickRef = useRef(clickHandler);
+  onClickRef.current = clickHandler;
 
   const saved = loadPos();
   const clampToViewport = (p) => {
@@ -139,12 +141,12 @@ export default function MascotPresence({ speaking = false, micActive = false, on
   useEffect(() => { savePos(pos); }, [pos]);
 
   const handleClick = useCallback(() => {
-    if (!wasDragged.current) onClick?.();
-  }, [onClick]);
+    if (!wasDragged.current) onClickRef.current?.();
+  }, []);
 
   const stateClasses = [
     css.mascot,
-    speaking ? css.speaking : '',
+    activeSpeaking ? css.speaking : '',
     idle ? css.idle : '',
     dragging ? css.dragging : '',
     css.floating,
@@ -164,8 +166,9 @@ export default function MascotPresence({ speaking = false, micActive = false, on
       ) : (
         <MascotSvg size={44} micActive={micActive} />
       )}
-      {speaking && (
-        <div className={css.speechBubble} aria-hidden="true">
+      {activeSpeaking && (
+        <div className={css.speechBubble} role="status" aria-label="Sto ELABorando...">
+          <span className={css.speechText}>Sto ELABorando...</span>
           <span className={css.dot} />
           <span className={css.dot} />
           <span className={css.dot} />

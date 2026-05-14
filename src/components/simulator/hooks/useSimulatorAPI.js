@@ -333,7 +333,11 @@ export default function useSimulatorAPI({
       removeComponent: (id) => handleComponentDeleteRef.current?.(id),
       setComponentValue: (id, field, value) => handlePropChangeRef.current?.(id, field, value),
       getEditorCode: () => editorModeRef?.current === 'scratch' ? scratchGeneratedCodeRef.current : editorCodeRef.current,
-      setEditorCode: (code) => { setEditorCode(code); codeNeedsCompileRef.current = true; },
+      setEditorCode: (code) => {
+        editorCodeRef.current = code;
+        setEditorCode(code);
+        codeNeedsCompileRef.current = true;
+      },
       setHighlightedComponents: (ids) => setApiHighlightedComponents(Array.isArray(ids) ? ids : (ids ? [ids] : [])),
       setHighlightedPins: (refs) => setApiHighlightedPins(Array.isArray(refs) ? refs : (refs ? [refs] : [])),
       serialWrite: (text) => { if (avrRef.current) avrRef.current.serialWrite?.(text); },
@@ -373,10 +377,22 @@ export default function useSimulatorAPI({
       getCompilationSnapshot: () => compilationDetailsRef.current,
       showEditor: () => setShowCodeEditor(true),
       hideEditor: () => setShowCodeEditor(false),
-      setEditorMode: (mode) => { if (mode === 'scratch' || mode === 'arduino') { setEditorMode(mode); pushActivity('editor_switch', mode); } },
+      setEditorMode: (mode) => {
+        if (mode === 'scratch' || mode === 'arduino') {
+          editorModeRef.current = mode;
+          setEditorMode(mode);
+          setShowCodeEditor(true);
+          pushActivity('editor_switch', mode);
+        }
+      },
       getEditorMode: () => editorModeRef.current,
       isEditorVisible: () => showCodeEditorRef.current,
-      loadScratchWorkspace: (xml) => { setScratchXml(xml); setEditorMode('scratch'); setShowCodeEditor(true); },
+      loadScratchWorkspace: (xml) => {
+        editorModeRef.current = 'scratch';
+        setScratchXml(xml);
+        setEditorMode('scratch');
+        setShowCodeEditor(true);
+      },
       undo: () => {
         const snapshot = undoHistory(getCurrentSnapshot());
         if (snapshot) restoreSnapshotRef.current?.(snapshot);
@@ -389,6 +405,23 @@ export default function useSimulatorAPI({
       canRedo: () => canRedoRef.current,
       highlightPin: (refs) => setApiHighlightedPins(Array.isArray(refs) ? refs : (refs ? [refs] : [])),
       setBuildMode: (mode) => handleBuildModeSwitchRef.current?.(mode),
+      setBuildStepIndex: (index) => {
+        const steps = currentExperimentRef.current?.buildSteps || [];
+        const numericIndex = Number(index);
+        if (numericIndex === Number.POSITIVE_INFINITY) {
+          setBuildStepIndex(Infinity);
+          pushActivity('build_step_complete', 'mounted');
+          return;
+        }
+        if (!Number.isFinite(numericIndex)) return;
+        const requested = Math.max(-1, Math.trunc(numericIndex));
+        const next = steps.length > 0
+          ? Math.min(requested, steps.length - 1)
+          : requested;
+        setBuildStepIndex(next);
+        if (next >= 0) pushActivity('build_step_set', `step ${next + 1}/${steps.length}`);
+      },
+      resetBuildSteps: () => setBuildStepIndex(-1),
       getBuildMode: () => {
         const mode = currentExperimentRef.current?.buildMode;
         if (mode === false || mode === undefined || mode === null) return 'complete';

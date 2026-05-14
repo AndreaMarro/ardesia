@@ -14,11 +14,15 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 // (BUG fix: previously direct-nav to #chatbot-only froze UI on previous page).
 
 const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
+const HASH_PAGE_ALIASES = {
+    'lavagna-solo': 'lavagna',
+};
 
 const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
 
 function getPageFromHash(hash = window.location.hash) {
     const raw = hash.replace('#', '').split('?')[0].toLowerCase();
+    if (HASH_PAGE_ALIASES[raw]) return HASH_PAGE_ALIASES[raw];
     if (HOMEPAGE_SUBROUTES.includes(raw)) return 'home';
     return VALID_HASHES.includes(raw) ? raw : null;
 }
@@ -81,6 +85,10 @@ describe('getPageFromHash', () => {
 
     it('returns "lavagna" for #lavagna', () => {
         expect(getPageFromHash('#lavagna')).toBe('lavagna');
+    });
+
+    it('returns "lavagna" for #lavagna-solo home-only whiteboard route', () => {
+        expect(getPageFromHash('#lavagna-solo')).toBe('lavagna');
     });
 
     it('returns null for invalid hash #nonexistent', () => {

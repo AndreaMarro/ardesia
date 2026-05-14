@@ -667,6 +667,7 @@ export default function useCircuitHandlers({
     setCustomConnections(prev => [...prev, newConn]);
     recordMilestone('connectedWire');
     try { emitSimulatorEvent('circuitChange', { action: 'wireAdded', from: fromPinRef, to: toPinRef }); } catch { }
+    return newConn.id;
   }, [pushSnapshot, getCurrentSnapshot, recordMilestone]);
 
   const handleWireUpdate = useCallback((wireIndex, newConnectionData) => {
@@ -762,6 +763,7 @@ export default function useCircuitHandlers({
     if (Object.keys(newPinAssignments).length > 0) {
       setCustomPinAssignments(prev => ({ ...prev, ...newPinAssignments }));
     }
+    try { emitSimulatorEvent('circuitChange', { action: 'componentAdded', componentId: id, type }); } catch { }
     return id;
   }, [mergedExperiment, pushSnapshot, getCurrentSnapshot]);
 
@@ -841,8 +843,11 @@ export default function useCircuitHandlers({
      Arduino compilation handler (with cache)
      ═══════════════════════════════════════════════════════════════ */
   const handleCompile = useCallback(async (code) => {
-    if (compilingRef.current) return;
+    if (compilingRef.current) {
+      return { success: false, status: 'busy', errors: 'Compilazione gia in corso' };
+    }
     compilingRef.current = true;
+    let finalResult = null;
 
     setCompilationStatus('compiling');
     setCompilationErrors(null);
@@ -864,42 +869,49 @@ export default function useCircuitHandlers({
         const hexBytes = result.size || Math.floor(result.hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
         setCompilationSize({ bytes: hexBytes, total: FLASH_TOTAL, percent: Math.round((hexBytes / FLASH_TOTAL) * 100) });
 
-        if (avrRef.current) {
-          avrRef.current.pause();
-          if (avrPollRef.current) { clearInterval(avrPollRef.current); avrPollRef.current = null; }
-          setIsRunning(false);
-          const loaded = await avrRef.current.loadHexFromString(result.hex);
-          if (loaded) {
-            setSerialOutput('');
-            const lcdMapping = buildLCDPinMapping(mergedExperiment || currentExperiment);
-            if (lcdMapping && avrRef.current.configureLCDPins) avrRef.current.configureLCDPins(lcdMapping);
-            setComponentStates({ _pins: avrRef.current.getPinStates() });
-          }
-        } else if (currentExperiment?.simulationMode === 'avr') {
+        pushActivity('compile_success', `${hexBytes}/${FLASH_TOTAL}B (${result.source})`);
+        sessionMetrics.trackCompilation(true);
+        finalResult = {
+          ...result,
+          success: true,
+          status: compileSource === 'precompiled' ? 'success-local' : 'success',
+          size: result.size || hexBytes,
+        };
+        void (async () => {
           try {
-            const { default: AVRBridge } = await import('../engine/AVRBridge');
-            const bridge = new AVRBridge();
-            bridge.onSerialOutput = (char) => {
-              setSerialOutput(prev => { const next = prev + char; return next.length > 4000 ? next.slice(-3000) : next; });
-              try { emitSimulatorEvent('serialOutput', { char }); } catch { }
-            };
-            bridge.onPinChange = createOnPinChangeHandler(bridge, setComponentStates, pinMapRef);
-            const loaded = await bridge.loadHexFromString(result.hex);
-            if (loaded) {
-              avrRef.current = bridge;
-              setAvrReady(true);
-              setSerialOutput('');
-              const lcdMapping = buildLCDPinMapping(mergedExperiment || currentExperiment);
-              if (lcdMapping && bridge.configureLCDPins) bridge.configureLCDPins(lcdMapping);
-              setComponentStates({ _pins: bridge.getPinStates() });
+            if (avrRef.current) {
+              avrRef.current.pause();
+              if (avrPollRef.current) { clearInterval(avrPollRef.current); avrPollRef.current = null; }
+              setIsRunning(false);
+              const loaded = await avrRef.current.loadHexFromString(result.hex);
+              if (loaded) {
+                setSerialOutput('');
+                const lcdMapping = buildLCDPinMapping(mergedExperiment || currentExperiment);
+                if (lcdMapping && avrRef.current.configureLCDPins) avrRef.current.configureLCDPins(lcdMapping);
+                setComponentStates({ _pins: avrRef.current.getPinStates() });
+              }
+            } else if (currentExperiment?.simulationMode === 'avr') {
+              const { default: AVRBridge } = await import('../engine/AVRBridge');
+              const bridge = new AVRBridge();
+              bridge.onSerialOutput = (char) => {
+                setSerialOutput(prev => { const next = prev + char; return next.length > 4000 ? next.slice(-3000) : next; });
+                try { emitSimulatorEvent('serialOutput', { char }); } catch { }
+              };
+              bridge.onPinChange = createOnPinChangeHandler(bridge, setComponentStates, pinMapRef);
+              const loaded = await bridge.loadHexFromString(result.hex);
+              if (loaded) {
+                avrRef.current = bridge;
+                setAvrReady(true);
+                setSerialOutput('');
+                const lcdMapping = buildLCDPinMapping(mergedExperiment || currentExperiment);
+                if (lcdMapping && bridge.configureLCDPins) bridge.configureLCDPins(lcdMapping);
+                setComponentStates({ _pins: bridge.getPinStates() });
+              }
             }
           } catch (err) {
             logger.warn('[ELAB] AVRBridge lazy-load failed:', err.message);
           }
-        }
-
-        pushActivity('compile_success', `${hexBytes}/${FLASH_TOTAL}B (${result.source})`);
-        sessionMetrics.trackCompilation(true);
+        })();
         if (result.output) {
           const warnLines = result.output.split('\n').filter(l => /warning:/i.test(l));
           if (warnLines.length > 0) setCompilationWarnings(translateCompilationErrors(warnLines.join('\n')));
@@ -919,6 +931,7 @@ export default function useCircuitHandlers({
         try { sendAnalyticsEvent(EVENTS.ERROR, { type: 'compilation_failed', errors: rawErrors.slice(0, 200) }); } catch { }
         const lineMatch = fullText.match(/\.ino:(\d+):\d+:.*error/);
         if (lineMatch) setCompilationErrorLine(parseInt(lineMatch[1]));
+        finalResult = { ...result, success: false, status: 'error', errors: rawErrors };
       }
     } catch (err) {
       logger.error('[ELAB] Compilation error:', err);
@@ -926,9 +939,11 @@ export default function useCircuitHandlers({
       setCompilationErrors('Non riesco a compilare il codice. Controlla la connessione internet e riprova!');
       try { sendAnalyticsEvent(EVENTS.ERROR, { type: 'compilation', message: err.message }); } catch { }
       trackedTimeout(() => { setCompilationStatus(null); setCompilationErrors(null); }, 10000);
+      finalResult = { success: false, status: 'error', errors: err?.message || 'Errore di compilazione' };
     } finally {
       compilingRef.current = false;
     }
+    return finalResult || { success: false, status: 'error', errors: 'Compilazione senza risultato' };
   }, [currentExperiment, mergedExperiment, trackedTimeout]);
 
   /* ─────────────────────────────────────────────────

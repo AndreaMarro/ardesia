@@ -6,14 +6,14 @@ export default function AppHeader({
   totalSteps = 0,
   currentStep = 0,
   onPickerOpen,
+  onGalileoToggle,
+  galileoOpen = false,
   onVideoToggle,
   videoOpen = false,
   onVolumeToggle,
   volumeOpen = false,
   onPercorsoToggle,
   percorsoOpen = false,
-  onCapitoliOpen,
-  capitoliOpen = false,
   onFumettoOpen,
   // iter 45 fix Andrea video2 06/05/2026 B3 "manca il pulsante per il salvataggio
   // della sessione": esponiamo un pulsante esplicito Salva Sessione che il docente
@@ -78,10 +78,10 @@ export default function AppHeader({
         <span
           className={css.experimentName}
           onClick={onPickerOpen}
-          role="button"
-          tabIndex={0}
-          aria-label={`Esperimento: ${experimentName}. Clicca per cambiare.`}
-          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onPickerOpen?.(); } }}
+          role={onPickerOpen ? 'button' : undefined}
+          tabIndex={onPickerOpen ? 0 : undefined}
+          aria-label={onPickerOpen ? `Esperimento: ${experimentName}. Clicca per cambiare.` : `Esperimento: ${experimentName}.`}
+          onKeyDown={onPickerOpen ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onPickerOpen?.(); } } : undefined}
         >
           {experimentName.replace(/^Cap\.\s*\d+\s*Esp\.\s*\d+\s*-\s*/i, '')}
         </span>
@@ -97,24 +97,22 @@ export default function AppHeader({
         )}
       </div>
 
-      {/* Right: Volume + Video */}
+      {/* Right: Manuale + Video */}
       <div className={css.right}>
         {/* Percorso button removed — now accessed via build mode selector (Percorso = ex Libero) */}
-        {onCapitoliOpen && (
+        {onGalileoToggle && (
           <button
-            type="button"
-            className={`${css.btn} ${css.btnLabeled} ${capitoliOpen ? css.btnActive : ''}`}
-            onClick={onCapitoliOpen}
-            aria-label={capitoliOpen ? 'Chiudi elenco capitoli' : 'Apri elenco capitoli'}
-            aria-pressed={capitoliOpen}
-            title="Apri elenco capitoli"
-            style={{ minWidth: 44, minHeight: 44 }}
+            className={`${css.btn} ${css.btnLabeled} ${galileoOpen ? css.btnActive : ''}`}
+            onClick={onGalileoToggle}
+            aria-label={galileoOpen ? 'Nascondi chat UNLIM' : 'Mostra chat UNLIM'}
+            aria-pressed={galileoOpen}
+            title="Apri la chat UNLIM"
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M3 3h6c1 0 2 1 2 2v12c0-1-1-2-2-2H3V3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-              <path d="M17 3h-6c-1 0-2 1-2 2v12c0-1 1-2 2-2h6V3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M4 4h12a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 3v-3a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M6 8h8M6 11h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
-            <span className={css.btnText}>Capitoli</span>
+            <span className={css.btnText}>UNLIM</span>
           </button>
         )}
         {onVolumeToggle && (

@@ -69,4 +69,18 @@ describe('AppHeader', () => {
     expect(img).toBeTruthy();
     expect(img.getAttribute('src')).toContain('logo');
   });
+
+  it('does not render the Capitoli header button even if a handler is passed', () => {
+    render(<AppHeader onCapitoliOpen={vi.fn()} capitoliOpen={false} />);
+    expect(screen.queryByRole('button', { name: /capitoli/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/^Capitoli$/i)).not.toBeInTheDocument();
+  });
+
+  it('renders UNLIM chat toggle when handler is provided', () => {
+    const onGalileoToggle = vi.fn();
+    render(<AppHeader onGalileoToggle={onGalileoToggle} galileoOpen={false} />);
+    const btn = screen.getByRole('button', { name: /mostra chat unlim/i });
+    fireEvent.click(btn);
+    expect(onGalileoToggle).toHaveBeenCalledOnce();
+  });
 });

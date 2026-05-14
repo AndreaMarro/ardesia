@@ -22,6 +22,8 @@ const CURATED_VIDEOS = unlimVideos.CURATED_VIDEOS || [];
 // ── Tabs ──
 const TAB_YOUTUBE = 'youtube';
 const TAB_CORSI = 'corsi';
+const COURSE_ROW_HEIGHT = 64;
+const COURSE_VIEWPORT_HEIGHT = 260;
 
 // ── Quick search suggestions (topics aligned with ELAB volumes) ──
 const SUGGESTIONS = [
@@ -54,6 +56,23 @@ function YouTubePlayer({ videoId, title }) {
   );
 }
 
+function LocalVideoPlayer({ src, title }) {
+  if (!src) return null;
+  return (
+    <div className={css.playerWrap}>
+      <video
+        className={css.localVideo}
+        data-testid="videofloat-local-player"
+        src={src}
+        title={title || 'Videocorso ELAB'}
+        controls
+        playsInline
+        preload="metadata"
+      />
+    </div>
+  );
+}
+
 // ── Video Card ──
 function VideoCard({ video, onClick }) {
   return (
@@ -63,12 +82,12 @@ function VideoCard({ video, onClick }) {
       aria-label={`Guarda: ${video.title}`}
     >
       <div className={css.cardThumb}>
-        <img
-          src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`}
-          alt={video.title || 'Video thumbnail'}
-          className={css.thumbImg}
-          loading="lazy"
-        />
+        <div className={css.youtubeThumbPlaceholder} aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" fill="rgba(255,255,255,0.92)" />
+            <path d="M12 9.5l7 4.5-7 4.5v-9z" fill="var(--elab-navy)" />
+          </svg>
+        </div>
       </div>
       <div className={css.cardInfo}>
         <span className={css.cardTitle}>{video.title}</span>
@@ -108,6 +127,49 @@ function CorsoCard({ corso, unlocked, onClick }) {
   );
 }
 
+function getVirtualItems(items, scrollTop, rowHeight, viewportHeight, overscan = 3) {
+  const start = Math.max(0, Math.floor(scrollTop / rowHeight) - overscan);
+  const end = Math.min(items.length, Math.ceil((scrollTop + viewportHeight) / rowHeight) + overscan);
+  return items.slice(start, end).map((item, offset) => ({
+    item,
+    index: start + offset,
+  }));
+}
+
+function VirtualCourseList({ courses, isUnlocked, onSelect }) {
+  const [scrollTop, setScrollTop] = useState(0);
+  const virtualRows = useMemo(
+    () => getVirtualItems(courses, scrollTop, COURSE_ROW_HEIGHT, COURSE_VIEWPORT_HEIGHT),
+    [courses, scrollTop]
+  );
+
+  return (
+    <div
+      className={css.virtualList}
+      data-testid="videocorsi-virtual-list"
+      data-virtualized="true"
+      role="list"
+      onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)}
+    >
+      <div className={css.virtualSpacer} style={{ height: courses.length * COURSE_ROW_HEIGHT }}>
+        {virtualRows.map(({ item, index }) => (
+          <div
+            key={item.id}
+            className={css.virtualRow}
+            style={{ top: index * COURSE_ROW_HEIGHT, height: COURSE_ROW_HEIGHT }}
+          >
+            <CorsoCard
+              corso={item}
+              unlocked={isUnlocked(item)}
+              onClick={() => onSelect(item)}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Main VideoFloat Component ──
 export default function VideoFloat({
   visible = false,
@@ -119,8 +181,7 @@ export default function VideoFloat({
 }) {
   const [activeTab, setActiveTab] = useState(TAB_YOUTUBE);
   const [searchInput, setSearchInput] = useState('');
-  const [activeVideoId, setActiveVideoId] = useState(null);
-  const [activeVideoTitle, setActiveVideoTitle] = useState('');
+  const [activeVideo, setActiveVideo] = useState(null);
   const searchRef = useRef(null);
 
   // ── Videocorsi list ──
@@ -138,13 +199,11 @@ export default function VideoFloat({
   }, [searchInput]);
 
   const handleSelectVideo = useCallback((video) => {
-    setActiveVideoId(video.videoId);
-    setActiveVideoTitle(video.title);
+    setActiveVideo({ type: 'youtube', videoId: video.videoId, title: video.title });
   }, []);
 
   const handleBack = useCallback(() => {
-    setActiveVideoId(null);
-    setActiveVideoTitle('');
+    setActiveVideo(null);
   }, []);
 
   const handleSuggestion = useCallback((query) => {
@@ -161,6 +220,20 @@ export default function VideoFloat({
     return unlockedVolumes.includes(volumeId);
   }, [unlockedVolumes]);
 
+  const isCourseUnlocked = useCallback((course) => {
+    return course.type === 'local' || !!course.src || isVolumeUnlocked(course.volumeId);
+  }, [isVolumeUnlocked]);
+
+  const handleSelectCourse = useCallback((course) => {
+    if (course.type === 'local' || course.src) {
+      setActiveVideo({ type: 'local', src: course.src, title: course.title });
+      return;
+    }
+    if (course.youtubeId) {
+      setActiveVideo({ type: 'youtube', videoId: course.youtubeId, title: course.title });
+    }
+  }, []);
+
   if (!visible) return null;
 
   // ── PiP minimize thumbnail ──
@@ -171,10 +244,10 @@ export default function VideoFloat({
         onClick={onRestore}
         aria-label="Espandi video"
       >
-        {activeVideoId ? (
+        {activeVideo?.type === 'youtube' && activeVideo.videoId ? (
           <img
-            src={`https://img.youtube.com/vi/${activeVideoId}/default.jpg`}
-            alt={activeVideoTitle}
+            src={`https://img.youtube.com/vi/${activeVideo.videoId}/default.jpg`}
+            alt={activeVideo.title}
             className={css.pipImg}
           />
         ) : (
@@ -190,7 +263,7 @@ export default function VideoFloat({
 
   // Determine window title
   let windowTitle = 'Video';
-  if (activeVideoTitle) windowTitle = activeVideoTitle;
+  if (activeVideo?.title) windowTitle = activeVideo.title;
 
   return (
     <FloatingWindow
@@ -204,9 +277,13 @@ export default function VideoFloat({
     >
       <div className={css.container}>
         {/* Playing a video */}
-        {activeVideoId ? (
+        {activeVideo ? (
           <div className={css.searchResults}>
-            <YouTubePlayer videoId={activeVideoId} title={activeVideoTitle} />
+            {activeVideo.type === 'local' ? (
+              <LocalVideoPlayer src={activeVideo.src} title={activeVideo.title} />
+            ) : (
+              <YouTubePlayer videoId={activeVideo.videoId} title={activeVideo.title} />
+            )}
             <button className={css.backBtn} onClick={handleBack} aria-label="Torna al catalogo">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -324,19 +401,11 @@ export default function VideoFloat({
                   </div>
                 ) : (
                   <div className={css.cardList} role="list">
-                    {courses.map((corso) => (
-                      <CorsoCard
-                        key={corso.id}
-                        corso={corso}
-                        unlocked={isVolumeUnlocked(corso.volumeId)}
-                        onClick={() => {
-                          if (corso.youtubeId) {
-                            setActiveVideoId(corso.youtubeId);
-                            setActiveVideoTitle(corso.title);
-                          }
-                        }}
-                      />
-                    ))}
+                    <VirtualCourseList
+                      courses={courses}
+                      isUnlocked={isCourseUnlocked}
+                      onSelect={handleSelectCourse}
+                    />
                   </div>
                 )}
                 <div className={css.corsoInfo}>

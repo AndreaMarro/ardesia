@@ -1,0 +1,237 @@
+{
+  "generatedAt": "2026-05-09T09:58:41.462Z",
+  "baseUrl": "https://www.elabtutor.school",
+  "thresholds": {
+    "domContentLoadedMs": 3000,
+    "apiReadyMs": 7000,
+    "firstMeaningfulTextMs": 7500,
+    "loadExperimentMs": 1200,
+    "domNodes": 9000,
+    "longTaskCount": 35,
+    "longTaskMaxMs": 750,
+    "horizontalOverflowPx": 24,
+    "getLayoutP95Ms": 8,
+    "getSimulatorContextP95Ms": 35,
+    "getCircuitDescriptionP95Ms": 45,
+    "setGetCodeP95Ms": 45,
+    "compileP95Ms": 1500,
+    "scratchLoadP95Ms": 300,
+    "addRemoveComponentP95Ms": 35,
+    "exportFumettoP95Ms": 120
+  },
+  "navigation": {
+    "domContentLoadedMs": 2452,
+    "apiReadyMs": 7899,
+    "apiReadyWaitOnlyMs": 22222,
+    "firstMeaningfulTextMs": 7916,
+    "loadExperimentMs": 18.19999999552965
+  },
+  "actionMetrics": {
+    "getLayout": {
+      "count": 250,
+      "min": 0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0.30000000447034836
+    },
+    "getSimulatorContext": {
+      "count": 160,
+      "min": 0,
+      "p50": 0,
+      "p95": 0.10000000149011612,
+      "max": 1.8000000044703484
+    },
+    "getCircuitDescription": {
+      "count": 120,
+      "min": 0,
+      "p50": 0.09999999403953552,
+      "p95": 0.10000000149011612,
+      "max": 1.5
+    },
+    "setGetCode": {
+      "count": 80,
+      "min": 0,
+      "p50": 0,
+      "p95": 0.10000000149011612,
+      "max": 0.6000000014901161
+    },
+    "compile": {
+      "count": 12,
+      "min": 796.2999999970198,
+      "p50": 942.3000000044703,
+      "p95": 2003.3000000044703,
+      "max": 2003.3000000044703
+    },
+    "scratchLoad": {
+      "count": 40,
+      "min": 0,
+      "p50": 0,
+      "p95": 0.10000000149011612,
+      "max": 0.30000000447034836
+    },
+    "addRemoveComponent": {
+      "count": 120,
+      "min": 0.09999999403953552,
+      "p50": 0.20000000298023224,
+      "p95": 0.6000000014901161,
+      "max": 1.6000000014901161
+    },
+    "exportFumetto": {
+      "count": 25,
+      "min": 22.799999997019768,
+      "p50": 36.600000001490116,
+      "p95": 56.900000005960464,
+      "max": 103.39999999850988
+    }
+  },
+  "pageHealth": {
+    "title": "ELAB Tutor — Simulatore di Elettronica e Arduino per la Scuola",
+    "url": "https://www.elabtutor.school/#lavagna",
+    "bodyLength": 1074,
+    "domNodes": 2081,
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "objectObject": false,
+    "autoplayMedia": 0,
+    "longTaskUnavailable": false,
+    "longTaskCount": 8,
+    "longTaskSummary": {
+      "count": 8,
+      "min": 52,
+      "p50": 335,
+      "p95": 1038,
+      "max": 1038
+    },
+    "heap": {
+      "usedJSHeapSize": 103000000,
+      "totalJSHeapSize": 177000000,
+      "jsHeapSizeLimit": 2330000000
+    }
+  },
+  "checks": [
+    {
+      "name": "domContentLoadedMs",
+      "value": 2452,
+      "threshold": 3000,
+      "ok": true
+    },
+    {
+      "name": "apiReadyMs",
+      "value": 7899,
+      "threshold": 7000,
+      "ok": false
+    },
+    {
+      "name": "firstMeaningfulTextMs",
+      "value": 7916,
+      "threshold": 7500,
+      "ok": false
+    },
+    {
+      "name": "loadExperimentMs",
+      "value": 18.19999999552965,
+      "threshold": 1200,
+      "ok": true
+    },
+    {
+      "name": "domNodes",
+      "value": 2081,
+      "threshold": 9000,
+      "ok": true
+    },
+    {
+      "name": "longTaskCount",
+      "value": 8,
+      "threshold": 35,
+      "ok": true
+    },
+    {
+      "name": "longTaskMaxMs",
+      "value": 1038,
+      "threshold": 750,
+      "ok": false
+    },
+    {
+      "name": "horizontalOverflowPx",
+      "value": 0,
+      "threshold": 24,
+      "ok": true
+    },
+    {
+      "name": "getLayoutP95Ms",
+      "value": 0,
+      "threshold": 8,
+      "ok": true
+    },
+    {
+      "name": "getSimulatorContextP95Ms",
+      "value": 0.10000000149011612,
+      "threshold": 35,
+      "ok": true
+    },
+    {
+      "name": "getCircuitDescriptionP95Ms",
+      "value": 0.10000000149011612,
+      "threshold": 45,
+      "ok": true
+    },
+    {
+      "name": "setGetCodeP95Ms",
+      "value": 0.10000000149011612,
+      "threshold": 45,
+      "ok": true
+    },
+    {
+      "name": "compileP95Ms",
+      "value": 2003.3000000044703,
+      "threshold": 1500,
+      "ok": false
+    },
+    {
+      "name": "scratchLoadP95Ms",
+      "value": 0.10000000149011612,
+      "threshold": 300,
+      "ok": true
+    },
+    {
+      "name": "addRemoveComponentP95Ms",
+      "value": 0.6000000014901161,
+      "threshold": 35,
+      "ok": true
+    },
+    {
+      "name": "exportFumettoP95Ms",
+      "value": 56.900000005960464,
+      "threshold": 120,
+      "ok": true
+    }
+  ],
+  "console": {
+    "errors": [],
+    "warnings": []
+  },
+  "screenshot": "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/docs/audits/2026-05-09-unlim-performance-benchmark/performance-lavagna-desktop.png",
+  "verdict": "FAIL",
+  "failures": [
+    {
+      "name": "apiReadyMs",
+      "value": 7899,
+      "threshold": 7000
+    },
+    {
+      "name": "firstMeaningfulTextMs",
+      "value": 7916,
+      "threshold": 7500
+    },
+    {
+      "name": "longTaskMaxMs",
+      "value": 1038,
+      "threshold": 750
+    },
+    {
+      "name": "compileP95Ms",
+      "value": 2003.3000000044703,
+      "threshold": 1500
+    }
+  ]
+}

@@ -8,14 +8,16 @@ import { VIDEO_COURSES } from '../../src/data/video-courses';
 describe('videoCourses', () => {
   it('VIDEO_COURSES is a non-empty array', () => {
     expect(Array.isArray(VIDEO_COURSES)).toBe(true);
-    expect(VIDEO_COURSES.length).toBeGreaterThan(0);
+    expect(VIDEO_COURSES).toHaveLength(2);
   });
 
-  it('has courses for all 3 volumes', () => {
-    const volumes = [...new Set(VIDEO_COURSES.map(c => c.volumeId))];
-    expect(volumes).toContain('v1');
-    expect(volumes).toContain('v2');
-    expect(volumes).toContain('v3');
+  it('uses the two bundled local TikTok MP4 files', () => {
+    expect(VIDEO_COURSES.map(c => c.src)).toEqual([
+      '/videos/tiktok-elab-1.mp4',
+      '/videos/tiktok-elab-2.mp4',
+    ]);
+    expect(VIDEO_COURSES.every(c => c.type === 'local')).toBe(true);
+    expect(VIDEO_COURSES.every(c => c.youtubeId == null)).toBe(true);
   });
 
   it('every course has required fields', () => {
@@ -25,6 +27,7 @@ describe('videoCourses', () => {
       expect(course.description).toBeTruthy();
       expect(course.volumeId).toBeTruthy();
       expect(course.volumeLabel).toBeTruthy();
+      expect(course.src).toMatch(/^\/videos\/tiktok-elab-[12]\.mp4$/);
       expect(course.color).toMatch(/^#[0-9A-Fa-f]{6}$/);
       expect(typeof course.order).toBe('number');
     }
@@ -42,12 +45,10 @@ describe('videoCourses', () => {
     }
   });
 
-  it('volume colors match ELAB palette', () => {
-    const v1Courses = VIDEO_COURSES.filter(c => c.volumeId === 'v1');
-    const v2Courses = VIDEO_COURSES.filter(c => c.volumeId === 'v2');
-    const v3Courses = VIDEO_COURSES.filter(c => c.volumeId === 'v3');
-    for (const c of v1Courses) expect(c.color).toBe('#4A7A25');
-    for (const c of v2Courses) expect(c.color).toBe('#E8941C');
-    for (const c of v3Courses) expect(c.color).toBe('#E54B3D');
+  it('uses ELAB homepage video labels in order', () => {
+    expect(VIDEO_COURSES.map(c => c.title)).toEqual([
+      'Videolezione ELAB 1',
+      'Videolezione ELAB 2',
+    ]);
   });
 });

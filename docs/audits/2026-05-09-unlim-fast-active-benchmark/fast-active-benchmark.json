@@ -1,0 +1,154 @@
+{
+  "generatedAt": "2026-05-09T09:56:41.263Z",
+  "baseUrl": "https://www.elabtutor.school",
+  "thresholds": {
+    "firstOperationalReplyMs": 2000,
+    "actionVerifiedMs": 6000,
+    "apiReadyMs": 10000,
+    "horizontalOverflowPx": 24
+  },
+  "apiReadyMs": 7826,
+  "results": [
+    {
+      "text": "Prepara codice Arduino per semaforo e compila",
+      "expectedText": "semaforo a tre LED",
+      "firstReplyMs": 197,
+      "actionVerifiedMs": 1454,
+      "actionEvents": [
+        {
+          "name": "showEditor",
+          "args": [],
+          "ok": true,
+          "ms": 0.29999999701976776
+        },
+        {
+          "name": "setEditorMode",
+          "args": [
+            "arduino"
+          ],
+          "ok": true,
+          "ms": 0.19999999552965164
+        },
+        {
+          "name": "setEditorCode",
+          "args": [
+            "const int PIN_ROSSO = 13;\nconst int PIN_GIALLO = 12;\nconst int PIN_VERDE = 11;\n\nvoid setup() {\n  pinMode(PIN_ROSSO, OUTPUT);\n  pinMode(PIN_GIALLO, OUTPUT);\n  pinMode(PIN_VERDE, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(PIN_VERDE, HIGH);\n  delay(3000);\n  digitalWrite(PIN_VERDE, LOW);\n\n  digitalWrite(PIN_GIALLO, HIGH);\n  delay(1000);\n  digitalWrite(PIN_GIALLO, LOW);\n\n  digitalWrite(PIN_ROSSO, HIGH);\n  delay(3000);\n  digitalWrite(PIN_ROSSO, LOW);\n}"
+          ],
+          "ok": true,
+          "ms": 0.10000000149011612
+        },
+        {
+          "name": "getEditorCode",
+          "args": [],
+          "ok": true,
+          "ms": 0.10000000149011612
+        },
+        {
+          "name": "compile",
+          "args": [
+            "const int PIN_ROSSO = 13;\nconst int PIN_GIALLO = 12;\nconst int PIN_VERDE = 11;\n\nvoid setup() {\n  pinMode(PIN_ROSSO, OUTPUT);\n  pinMode(PIN_GIALLO, OUTPUT);\n  pinMode(PIN_VERDE, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(PIN_VERDE, HIGH);\n  delay(3000);\n  digitalWrite(PIN_VERDE, LOW);\n\n  digitalWrite(PIN_GIALLO, HIGH);\n  delay(1000);\n  digitalWrite(PIN_GIALLO, LOW);\n\n  digitalWrite(PIN_ROSSO, HIGH);\n  delay(3000);\n  digitalWrite(PIN_ROSSO, LOW);\n}"
+          ],
+          "ok": true,
+          "ms": 1222
+        }
+      ]
+    },
+    {
+      "text": "Apri Scratch e carica i blocchi per far lampeggiare il LED",
+      "expectedText": "editor a blocchi",
+      "firstReplyMs": 435,
+      "actionVerifiedMs": 464,
+      "actionEvents": [
+        {
+          "name": "showEditor",
+          "args": [],
+          "ok": true,
+          "ms": 0.20000000298023224
+        },
+        {
+          "name": "setEditorMode",
+          "args": [
+            "scratch"
+          ],
+          "ok": true,
+          "ms": 0.09999999403953552
+        },
+        {
+          "name": "loadScratchWorkspace",
+          "args": [
+            "<xml><block type=\"arduino_pinmode\"><field name=\"PIN\">13</field><field name=\"MODE\">OUTPUT</field><next><block type=\"controls_forever\"><statement name=\"DO\"><block type=\"arduino_digitalwrite\"><field name=\"PIN\">13</field><field name=\"STATE\">HIGH</field><next><block type=\"arduino_delay\"><field name=\"DELAY\">1000</field><next><block type=\"arduino_digitalwrite\"><field name=\"PIN\">13</field><field name=\"STATE\">LOW</field><next><block type=\"arduino_delay\"><field name=\"DELAY\">1000</field></block></next></block></next></block></next></block></statement></block></next></block></xml>"
+          ],
+          "ok": true,
+          "ms": 0.30000000447034836
+        }
+      ]
+    },
+    {
+      "text": "Monta un circuito LED con resistenza su Arduino D13 e GND",
+      "expectedText": "monto il circuito LED base",
+      "firstReplyMs": 510,
+      "actionVerifiedMs": 543,
+      "actionEvents": [
+        {
+          "name": "loadExperiment",
+          "args": [
+            "v1-cap6-esp1"
+          ],
+          "ok": true,
+          "ms": 25.69999999552965
+        },
+        {
+          "name": "addWire",
+          "args": [
+            "nano:D13",
+            "r1:pin1"
+          ],
+          "ok": true,
+          "ms": 0.8999999985098839
+        },
+        {
+          "name": "addWire",
+          "args": [
+            "r1:pin2",
+            "led1:anode"
+          ],
+          "ok": true,
+          "ms": 0.30000000447034836
+        },
+        {
+          "name": "addWire",
+          "args": [
+            "led1:cathode",
+            "nano:GND"
+          ],
+          "ok": true,
+          "ms": 0.19999999552965164
+        },
+        {
+          "name": "highlightPin",
+          "args": [
+            [
+              "nano:D13",
+              "nano:GND"
+            ]
+          ],
+          "ok": true,
+          "ms": 0.20000000298023224
+        }
+      ]
+    }
+  ],
+  "pageHealth": {
+    "bodyLength": 1949,
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "objectObject": false,
+    "autoplayMedia": 0
+  },
+  "console": {
+    "errors": []
+  },
+  "networkFailures": [],
+  "verdict": "PASS",
+  "failures": []
+}

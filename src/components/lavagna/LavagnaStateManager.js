@@ -23,31 +23,31 @@ export const STATE_PANELS = {
   [STATES.CLEAN]: {
     leftPanel: false,
     bottomPanel: false,
-    galileo: false,      // P0 fix: UNLIM parte chiuso — docente vede prima il circuito, click mascotte per aprire
+    galileo: false,
     toolbar: true,
   },
   [STATES.BUILD]: {
     leftPanel: true,      // Componenti aperti per drag
     bottomPanel: false,    // Codice chiuso durante montaggio
-    galileo: false,        // P0: UNLIM non si auto-apre — mascotte sempre visibile per click manuale
+    galileo: false,
     toolbar: true,
   },
   [STATES.CODE]: {
     leftPanel: false,      // Componenti chiusi
     bottomPanel: true,     // Editor codice aperto
-    galileo: false,        // P0: UNLIM non si auto-apre durante coding
+    galileo: false,
     toolbar: false,        // Non serve durante coding
   },
   [STATES.RUN]: {
     leftPanel: false,
     bottomPanel: true,     // Monitor seriale visibile
-    galileo: false,        // P0: UNLIM non si auto-apre durante simulazione
+    galileo: false,
     toolbar: false,
   },
   [STATES.STUCK]: {
     leftPanel: false,
     bottomPanel: false,
-    galileo: true,         // ECCEZIONE: STUCK auto-apre UNLIM per aiutare (Principio Zero)
+    galileo: false,
     toolbar: true,
   },
 };

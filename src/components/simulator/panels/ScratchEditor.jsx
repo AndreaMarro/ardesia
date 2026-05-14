@@ -19,36 +19,36 @@ const ELAB_THEME = Blockly.Theme.defineTheme('elab', {
     base: Blockly.Themes.Classic,
     blockStyles: {
         // ELAB palette: Navy=control, Lime=digital I/O, Orange=analog, Red=comms
-        logic_blocks:    { colourPrimary: 'var(--elab-navy)', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
+        logic_blocks:    { colourPrimary: '#1E4D8C', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
         loop_blocks:     { colourPrimary: '#2e7d50', colourSecondary: '#246840', colourTertiary: '#1a5330' }, // palette
         math_blocks:     { colourPrimary: '#3a8a9e', colourSecondary: '#2e7688', colourTertiary: '#226272' }, // palette
         text_blocks:     { colourPrimary: '#5a8dbe', colourSecondary: '#4a7aa8', colourTertiary: '#3a6892' }, // palette
         colour_blocks:   { colourPrimary: '#9e5ac0', colourSecondary: '#8848a8', colourTertiary: '#723890' }, // palette
-        variable_blocks: { colourPrimary: 'var(--elab-orange)', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
-        list_blocks:     { colourPrimary: 'var(--elab-red)', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
+        variable_blocks: { colourPrimary: '#F5A623', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
+        list_blocks:     { colourPrimary: '#E54B3D', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
         // Arduino ELAB categories — Lime for digital, Orange for analog, Red for comms
-        arduino_io:      { colourPrimary: 'var(--elab-lime)', colourSecondary: '#3D6820', colourTertiary: '#30561A' },
+        arduino_io:      { colourPrimary: '#4A7A25', colourSecondary: '#3D6820', colourTertiary: '#30561A' },
         arduino_sound:   { colourPrimary: '#9e5ac0', colourSecondary: '#8848a8', colourTertiary: '#723890' }, // palette
         arduino_servo:   { colourPrimary: '#0ea87b', colourSecondary: '#0c9068', colourTertiary: '#0a7855' }, // palette
-        arduino_time:    { colourPrimary: 'var(--elab-orange)', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
-        arduino_serial:  { colourPrimary: 'var(--elab-red)', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
+        arduino_time:    { colourPrimary: '#F5A623', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
+        arduino_serial:  { colourPrimary: '#E54B3D', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
         arduino_lcd:     { colourPrimary: '#6e4ca8', colourSecondary: '#5e3e92', colourTertiary: '#4e307c' }, // palette
         // ELAB high-level blocks
-        arduino_elab:    { colourPrimary: 'var(--elab-navy)', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
+        arduino_elab:    { colourPrimary: '#1E4D8C', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
     },
     categoryStyles: {
-        logic_category:    { colour: 'var(--elab-navy)' },
+        logic_category:    { colour: '#1E4D8C' },
         loop_category:     { colour: '#2e7d50' }, // palette
         math_category:     { colour: '#3a8a9e' }, // palette
         text_category:     { colour: '#5a8dbe' }, // palette
-        variable_category: { colour: 'var(--elab-orange)' },
-        arduino_io_cat:    { colour: 'var(--elab-lime)' },
+        variable_category: { colour: '#F5A623' },
+        arduino_io_cat:    { colour: '#4A7A25' },
         arduino_sound_cat: { colour: '#9e5ac0' }, // palette
         arduino_servo_cat: { colour: '#0ea87b' }, // palette
-        arduino_time_cat:  { colour: 'var(--elab-orange)' },
-        arduino_serial_cat:{ colour: 'var(--elab-red)' },
+        arduino_time_cat:  { colour: '#F5A623' },
+        arduino_serial_cat:{ colour: '#E54B3D' },
         arduino_lcd_cat:   { colour: '#6e4ca8' }, // palette
-        arduino_elab_cat:  { colour: 'var(--elab-navy)' },
+        arduino_elab_cat:  { colour: '#1E4D8C' },
     },
     componentStyles: {
         workspaceBackgroundColour: '#1e2530', // palette
@@ -59,9 +59,9 @@ const ELAB_THEME = Blockly.Theme.defineTheme('elab', {
         flyoutOpacity: 0.95,
         scrollbarColour: '#3a4050', // palette
         scrollbarOpacity: 0.6,
-        insertionMarkerColour: 'var(--elab-lime)',
+        insertionMarkerColour: '#4A7A25',
         insertionMarkerOpacity: 0.4,
-        cursorColour: 'var(--elab-lime)',
+        cursorColour: '#4A7A25',
     },
     fontStyle: {
         family: "'Open Sans', 'Helvetica Neue', sans-serif",

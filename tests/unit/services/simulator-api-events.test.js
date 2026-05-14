@@ -102,6 +102,8 @@ const mockSimulator = {
   setToolMode: vi.fn(),
   nextStep: vi.fn(),
   prevStep: vi.fn(),
+  setBuildStepIndex: vi.fn(),
+  resetBuildSteps: vi.fn(),
   showBom: vi.fn(),
   hideBom: vi.fn(),
   showSerialMonitor: vi.fn(),

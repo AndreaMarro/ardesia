@@ -78,6 +78,7 @@ const EXPECTED_LEGACY_HANDLERS = [
   'serialWrite',
   'getCircuitState',
   'sendMessage',
+  'setDiagnoseMode',
 ];
 
 const EXPECTED_UNLIM_HANDLERS = [...EXPECTED_LEGACY_HANDLERS, ...EXPECTED_SPRINT6_HANDLERS];
@@ -132,7 +133,7 @@ describe('window.__ELAB_API.unlim — shape snapshot (regression guard)', () => 
     },
   );
 
-  it('snapshot key count equals expected: 15 handlers + 2 meta = 17 keys', () => {
+  it('snapshot key count equals expected handlers + meta keys', () => {
     const keys = Object.keys(window.__ELAB_API.unlim);
     // If this fails, review docs/audit/day-37-audit-2026-04-23.md §5 G6 and
     // update EXPECTED_UNLIM_HANDLERS + EXPECTED_UNLIM_META atomically.

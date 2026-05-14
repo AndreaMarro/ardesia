@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-05-08-live-qa-hourly-0559",
+  "automation_id": "elab-live-qa-hourly-sessions",
+  "created_at": "2026-05-08T06:08:58Z",
+  "overall_status": "blocked",
+  "build": "pass",
+  "tests": {
+    "initial_full": "fail",
+    "targeted_post_fix": "pass",
+    "quick_gate_post_fix": "pass"
+  },
+  "live_browser": "blocked",
+  "preview_deploy": "blocked_no_deploy",
+  "production_alias": "blocked_no_alias",
+  "primary_blocker": "Chromium/Chrome launch is denied by sandbox permissions and npm registry DNS blocks Playwright CLI/Vercel fallback tools.",
+  "next_task": "Run live Playwright baseline/local/iPad/UNLIM sweep and deploy preview from an environment with browser launch and Vercel CLI access."
+}

@@ -182,8 +182,17 @@ function emitDryRunSql(matches, skipped) {
   for (const [, g] of groups) {
     const idsList = g.ids.map(id => `'${id}'`).join(', ');
     const titleEsc = (g.sectionTitle || '').replace(/'/g, "''");
+    // iter 12 patch: chapterInt may be null for Path C (wiki topic-ID
+    // sources) since wiki concepts are organised by volume+page only,
+    // no chapter integer. Emit SQL NULL literal in that case.
+    const chapterSql = (g.chapterInt === null || g.chapterInt === undefined)
+      ? 'NULL'
+      : String(g.chapterInt);
+    const pageSql = (g.page === null || g.page === undefined)
+      ? 'NULL'
+      : String(g.page);
     lines.push(
-      `UPDATE rag_chunks SET chapter=${g.chapterInt}, page=${g.page}, section_title='${titleEsc}', updated_at=now() WHERE id IN (${idsList});  -- ${g.ids.length} rows`,
+      `UPDATE rag_chunks SET chapter=${chapterSql}, page=${pageSql}, section_title='${titleEsc}', updated_at=now() WHERE id IN (${idsList});  -- ${g.ids.length} rows`,
     );
   }
 

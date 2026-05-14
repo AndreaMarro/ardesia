@@ -41,24 +41,26 @@ describe('LavagnaStateManager', () => {
       const result = computePanelActions(STATES.CLEAN, {}, {});
       expect(result.leftPanel).toBe(false);
       expect(result.bottomPanel).toBe(false);
-      expect(result.galileo).toBe(false); // P0: UNLIM parte chiuso, mascotte per accesso
+      expect(result.galileo).toBe(false);
       expect(result.toolbar).toBe(true);
     });
 
     it('opens left panel in BUILD state', () => {
       const result = computePanelActions(STATES.BUILD, {}, {});
       expect(result.leftPanel).toBe(true);
+      expect(result.galileo).toBe(false);
     });
 
     it('opens bottom panel in CODE state', () => {
       const result = computePanelActions(STATES.CODE, {}, {});
       expect(result.bottomPanel).toBe(true);
       expect(result.leftPanel).toBe(false);
+      expect(result.galileo).toBe(false);
     });
 
-    it('opens galileo in STUCK state', () => {
+    it('does not auto-open galileo in STUCK state', () => {
       const result = computePanelActions(STATES.STUCK, {}, {});
-      expect(result.galileo).toBe(true);
+      expect(result.galileo).toBe(false);
     });
 
     it('respects manual overrides', () => {

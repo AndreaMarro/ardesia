@@ -33,6 +33,30 @@ const PRECOMPILED_HEX = {
   'v3-cap7-pulsante':    '/hex/v3-cap7-pulsante.hex',
 };
 
+const FAST_PRECOMPILED_MATCHERS = [
+  {
+    experimentId: 'v3-cap6-semaforo',
+    hexFile: PRECOMPILED_HEX['v3-cap6-semaforo'],
+    matches: (code) => (
+      /pinMode\(5,\s*OUTPUT\)/.test(code)
+      && /pinMode\(6,\s*OUTPUT\)/.test(code)
+      && /pinMode\(3,\s*OUTPUT\)/.test(code)
+      && /digitalWrite\(5,\s*HIGH\)/.test(code)
+      && /digitalWrite\(6,\s*HIGH\)/.test(code)
+      && /digitalWrite\(3,\s*HIGH\)/.test(code)
+    ),
+  },
+  {
+    experimentId: 'v3-cap6-blink',
+    hexFile: PRECOMPILED_HEX['v3-cap6-blink'],
+    matches: (code) => (
+      /pinMode\(13,\s*OUTPUT\)/.test(code)
+      && /digitalWrite\(13,\s*HIGH\)/.test(code)
+      && /digitalWrite\(13,\s*LOW\)/.test(code)
+    ),
+  },
+];
+
 // ─────────────────────────────────────────────────────────────
 // Code hash → HEX file mapping (for compile button matching)
 // Populated lazily on first compile request.
@@ -146,6 +170,29 @@ export async function compileArduinoCode(code, options = {}) {
   const { experimentId, board } = options;
   const normalizedCode = normalizeCode(code);
   const codeHash = fnv1aHash(normalizedCode);
+
+  const fastPrecompiled = FAST_PRECOMPILED_MATCHERS.find(entry => entry.matches(normalizedCode));
+  if (fastPrecompiled) {
+    try {
+      const hex = await fetchHexFile(fastPrecompiled.hexFile);
+      if (hex) {
+        lastCompileSource = 'precompiled';
+        const size = Math.floor(hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
+        setCachedResult(codeHash, hex, size);
+        return {
+          success: true,
+          hex,
+          errors: null,
+          output: null,
+          source: 'precompiled',
+          experimentId: fastPrecompiled.experimentId,
+          size,
+        };
+      }
+    } catch {
+      // Continue to the normal cache/remote chain.
+    }
+  }
 
   // ── Step 1: Direct pre-compiled lookup by experiment ID ──
   if (experimentId && PRECOMPILED_HEX[experimentId]) {

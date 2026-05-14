@@ -233,6 +233,7 @@ export default function MicPermissionNudge({
       fontFamily: "'Open Sans', system-ui, sans-serif",
       border: '2px solid var(--elab-lime, var(--elab-lime))',
       animation: 'elabMicNudgeSlideIn 240ms cubic-bezier(.2,.8,.2,1)',
+      pointerEvents: 'none',
     },
     iconBox: {
       flexShrink: 0,
@@ -276,6 +277,7 @@ export default function MicPermissionNudge({
       opacity: requesting ? 0.6 : 1,
       letterSpacing: '0.02em',
       fontFamily: 'inherit',
+      pointerEvents: 'auto',
     },
     btnSecondary: {
       minWidth: 88,
@@ -288,6 +290,7 @@ export default function MicPermissionNudge({
       borderRadius: 8,
       cursor: 'pointer',
       fontFamily: 'inherit',
+      pointerEvents: 'auto',
     },
   };
 

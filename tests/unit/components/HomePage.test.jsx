@@ -11,7 +11,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import React from 'react';
-import { render, screen, cleanup, within } from '@testing-library/react';
+import { render, screen, cleanup, within, fireEvent } from '@testing-library/react';
 import HomePage from '../../../src/components/HomePage.jsx';
 
 // Mock heavy lazy children to avoid mount cost
@@ -20,7 +20,9 @@ vi.mock('../../../src/components/HomeCronologia.jsx', () => ({
 }));
 
 beforeEach(() => {
-  if (typeof localStorage !== 'undefined') localStorage.clear();
+  window.localStorage.getItem.mockReturnValue(null);
+  window.localStorage.setItem.mockClear();
+  window.localStorage.clear.mockClear();
 });
 
 afterEach(() => {
@@ -28,14 +30,14 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe('HomePage 4-card grid + Cronologia + Tea credit (Sprint V A13.6)', () => {
-  it('renders 4 cards (Lavagna + Tutor + UNLIM/Glossario + Videolezioni)', () => {
+describe('HomePage entry cards + inline video', () => {
+  it('renders Lavagna, Tutor and Videolezioni without Glossario', () => {
     render(<HomePage />);
-    // Find card title region — match by known card titles
-    const lavagna = screen.queryAllByText(/Lavagna/i);
-    const tutor = screen.queryAllByText(/Tutor|Galileo|UNLIM/i);
-    expect(lavagna.length).toBeGreaterThanOrEqual(1);
-    expect(tutor.length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByTestId('home-card-lavagna')).toBeInTheDocument();
+    expect(screen.getByTestId('home-card-tutor')).toBeInTheDocument();
+    expect(screen.getByTestId('home-card-videolezioni')).toBeInTheDocument();
+    expect(screen.queryByTestId('home-card-glossario')).not.toBeInTheDocument();
+    expect(screen.queryByText(/^Glossario$/i)).not.toBeInTheDocument();
   });
 
   it('each card with IconComponent renders SVG (not emoji span)', () => {
@@ -46,7 +48,29 @@ describe('HomePage 4-card grid + Cronologia + Tea credit (Sprint V A13.6)', () =
     expect(svgs.length).toBeGreaterThanOrEqual(2);
   });
 
-  it.todo('Glossario card href === "#glossario" (internal route, NOT external URL) — pending WebDesigner-1 Phase 3 swap');
+  it('plays the two local TikTok videos inside the existing Videolezioni card', () => {
+    render(<HomePage />);
+    const card = screen.getByTestId('home-card-videolezioni');
+    const player = within(card).getByTestId('home-video-player');
+    const virtualList = within(card).getByTestId('home-video-virtual-list');
+
+    expect(player).toHaveAttribute('src', '/videos/tiktok-elab-1.mp4');
+    expect(player.closest('[data-testid="home-card-videolezioni"]')).toBe(card);
+    expect(virtualList).toHaveAttribute('data-virtualized', 'true');
+    expect(within(card).getAllByRole('button', { name: /videolezione/i })).toHaveLength(2);
+
+    fireEvent.click(within(card).getByRole('button', { name: /videolezione elab 2/i }));
+    expect(player).toHaveAttribute('src', '/videos/tiktok-elab-2.mp4');
+  });
+
+  it('Lavagna card stores the solo launch mode for a no-circuits whiteboard entry', () => {
+    const onActivate = vi.fn();
+    render(<HomePage onActivate={onActivate} />);
+    fireEvent.click(screen.getByTestId('home-card-lavagna'));
+    expect(window.localStorage.setItem).toHaveBeenCalledWith('elab_lavagna_launch_mode', 'solo');
+    expect(onActivate).toHaveBeenCalledWith('#lavagna-solo');
+    expect(window.location.hash).toBe('#lavagna-solo');
+  });
 
   it('Cronologia HomeCronologia component rendered below grid', async () => {
     render(<HomePage />);

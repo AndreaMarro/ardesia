@@ -75,6 +75,11 @@ export async function saveSession(session) {
     return { success: false, error: 'Supabase non configurato — salvato in coda offline' };
   }
 
+  if (!row.student_id) {
+    addToQueue('student_sessions', row);
+    return { success: false, error: 'Sessione anonima — salvata in coda offline' };
+  }
+
   try {
     const { error } = await supabase.from('student_sessions').insert(row);
     if (error) throw error;
@@ -456,6 +461,16 @@ export async function sendNudge(nudgeData) {
  */
 export function subscribeToNudges(studentId, onNudge) {
   if (!isSupabaseConfigured() || !studentId) return { unsubscribe: () => {} };
+  const isLocalHost = (() => {
+    try {
+      return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+    } catch {
+      return false;
+    }
+  })();
+  if (isLocalHost && import.meta.env.VITE_ENABLE_SUPABASE_REALTIME !== 'true') {
+    return { unsubscribe: () => {} };
+  }
 
   const channel = supabase
     .channel('nudges-' + studentId)
@@ -522,7 +537,7 @@ function _getCurrentUserId() {
  */
 export function _getCurrentClassKey() {
   try {
-    return localStorage.getItem('elab_class_key') || null;
+    return localStorage.getItem('elab_class_key') || localStorage.getItem('elab-class-key') || null;
   } catch {
     return null;
   }

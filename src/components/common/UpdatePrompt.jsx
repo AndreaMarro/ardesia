@@ -54,15 +54,13 @@ function useSafeRegisterSW() {
 
   useEffect(() => {
     let cancelled = false;
-    // Dynamic import — virtual:pwa-register è iniettato dal plugin solo in
-    // build con SW abilitato. In dev / vitest senza il plugin, il modulo
-    // virtual non esiste; usiamo una stringa variabile per neutralizzare la
-    // static analysis di Vite che altrimenti farebbe fail il parse.
-    const moduleName = 'virtual:' + 'pwa-register'; // eslint-disable-line prefer-template
     // SSR / vitest gate: se non siamo in browser con SW supportato, skip.
     if (typeof window === 'undefined') return undefined;
     if (!('serviceWorker' in (typeof navigator !== 'undefined' ? navigator : {}))) return undefined;
-    import(/* @vite-ignore */ moduleName).then((mod) => {
+    // Let Vite resolve the PWA virtual module at build time. Do not hide this
+    // import behind @vite-ignore, otherwise production browsers try to fetch
+    // the literal "virtual:pwa-register" URL and CSP blocks the update flow.
+    import('virtual:pwa-register').then((mod) => {
       if (cancelled || typeof mod?.registerSW !== 'function') return;
       try {
         const updateSW = mod.registerSW({
