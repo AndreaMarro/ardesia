@@ -1,8 +1,9 @@
 ---
 id: ADR-047
 title: Narrative arc canon — Tea standard-schema adoption + additive 7-step migration
-status: PROPOSED
+status: A1+A2+A3 ACCEPTED · D1 REVERSED by A3 · D5 SUPERSEDED · A4-A7 PROPOSED (gated on Andrea ratifying the A3 master verdict)
 date: 2026-05-14
+last-updated: 2026-05-14 (iter-54 A3 addendum)
 deciders:
   - Claude Opus 4.7 (iter 54 — EPIC 1 atom A1, narrative arc refactor)
   - Andrea Marro (final approver — gates A3-A7 data mutation before execution)
@@ -184,3 +185,68 @@ cover only `v1-cap6-esp1` and `v3-cap7-mini`) is genuinely multi-iteration work.
    for now, or block on volume-PDF / Davide verification first?
 3. After the A2 gap report: full A3-A7 in one iteration, or A3+A4 (data) first,
    then A5+A6 (validator + UI) separately?
+
+---
+
+## ADDENDUM — iter-54 ratified decisions + A3 findings (2026-05-14)
+
+### Andrea's iter-54 ratified decisions (gate answers)
+
+1. **Canonical definition per ID** — not "Tea overrides" nor "repo overrides": every
+   experiment is verified against the physical volume text (A3). The book-faithful
+   definition wins, per the A3 master verdict.
+2. **chapter_titles** — verified against the volume text in A3, not accepted as
+   `tea-inferred` and not blocked indefinitely.
+3. **Sequencing** — incremental, checkpoint-first: A3 (verification) ships and is
+   ratified before A4 (data mutation) starts.
+
+### A3 findings — D1 is REVERSED, D5 is SUPERSEDED
+
+A3 verified all 94 experiments against the printed volumes
+(`CONTENUTI/volumi-pdf/vol{1,2,3-v0.8.1}.txt`). Master verdict:
+`docs/audits/2026-05-14-epic1-a3-MASTER-verdict.md`. Per-volume detail:
+`docs/audits/2026-05-14-epic1-a3-vol{1,2,3}-verdict.md`.
+
+**The A3 result overturns this ADR's central premise.** D1 assumed Tea's three files
+are "the single source of truth for narrative canon." Verified against the books:
+
+- repo `lesson-paths/` titles are **book-faithful for 74 / 94** (all 38 Vol 1, all 27
+  Vol 2, 9 of 29 Vol 3).
+- Tea's `narrative_map` titles are sole-faithful for **0 / 94**.
+- Tea's chapter titles are wrong for **16 / 22** chapters.
+- Tea's `nextId` chains are unreliable (cross-volume jumps, skipped chapters); the repo
+  chains match printed book order.
+- Tea's `bookText` is genuinely verbatim for Vol 1 + Vol 2 but **fabricated for all 29 of
+  Vol 3**.
+- The A2 `teaBookTextVerified 50/94` signal is partly a tooling artifact (`norm()` does
+  not fold curly quotes/apostrophes).
+
+**D1 — REVERSED.** Tea's `narrative_map` is NOT the single source of truth. The physical
+volume text is. The repo `lesson-paths/` are the better starting point for Vol 1 + Vol 2.
+Tea's deliverables remain useful for: the **7-step schema structure**
+(`standard_experiment_schema.json`), and the **`bookText` / `success_citation` / `analogy`
+metadata for Vol 1 + Vol 2 only** (verbatim-verified) — NOT for Vol 3 (fabricated).
+
+**D5 — SUPERSEDED.** A3 does not adopt `narrative_map.json` into `src/data/narrative-arc.js`
+as-is — `narrative_map` needs regeneration from the volumes first (16 wrong chapter titles,
+wrong experiment titles, wrong `nextId` chains).
+
+### Revised A4-A7 scope (still gated on Andrea ratifying the A3 master verdict + its 6 decisions)
+
+- **A4** — for the 65 Vol 1 + Vol 2 experiments: adopt the **repo** `lesson-paths`
+  title/page/order as canonical; add the additive `steps` block (D2 still holds) using Tea's
+  verbatim `bookText`/`citation`/`analogy` metadata. For Vol 3: adopt repo-or-corrected
+  titles, author `steps` from the volume text directly (Tea Vol 3 metadata is fabricated).
+  ~15 Vol 3 experiments with no printed counterpart are **blocked** on Andrea decision #1.
+- **A4-prereq** — regenerate Tea's `narrative_map` (chapter titles, experiment titles,
+  `nextId` chains) from the volumes before it is used anywhere.
+- **A5** — D4 still holds (extend `principioZeroValidator.js`).
+- **A6** — D2 still holds (additive). Modalità Percorso UI.
+- **D2 (additive `steps`) and D3 (reconciliation-first) are NOT affected** — they were
+  correct and are confirmed by A3.
+
+### 6 open decisions for Andrea (A3 ratification gate)
+
+See `docs/audits/2026-05-14-epic1-a3-MASTER-verdict.md` § "Open decisions for Andrea":
+Vol 3 no-counterpart experiments, Vol 3 duplicate-id consolidation, Vol 3 Ch7/Ch8 collapse,
+Vol 2 Cap.12 page (103 confirmed), Vol 2 Cap.12 title wording, Vol 2 Cap.11 coverage gap.
