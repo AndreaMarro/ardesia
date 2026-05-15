@@ -1869,3 +1869,70 @@ Box subtotal **11.65/14** → normalizzato 8.32/10 + bonus iter 38 (+0.30 ADR-03
 **Anti-inflation G45 enforced iter 43**: cap 8.5/10 honest. NO claim "Pro thinking LIVE" (Flash hotfix). NO claim "iter 41 bench fixed 100%" (3rd bug Vision was methodology). NO claim "all bugs zero". Pro promotion deferred iter 44 explicit acknowledged technical debt.
 
 **Connettori used iter 41-43**: Codex CLI 0.128.0 (Pattern C cross-check) + WebFetch 4 URLs (VoltAgent+Karpathy+GSD-2+meta-prompting) + Agent agent-teams:team-implementer×2 + team-debugger×1 + Control_Chrome (smoke prod) + Control_your_Mac (Mac Mini Tailscale ping confirm dead) + supabase CLI (secrets list+unset+functions deploy) + curl direct prod probes.
+
+## Iter 62 close ricalibrazione status — 2026-05-15 PM
+
+### Mac Mini ALIVE (old DEAD claims STALE)
+
+Linee CLAUDE.md 736 + 1149 + 1174 + 1800 + 1871 (iter 5 P3 + iter 29 + iter 30 + iter 42 + iter 43) claim "Mac Mini autonomous loop DEAD / Tailscale unreachable / probable dead" ricalibrate verbatim iter 62 close 2026-05-15 14:17 CEST:
+
+- Tailscale ping `100.124.198.59` PASS — 3 packets / 0% loss / 63ms avg
+- SSH `progettibelli@100.124.198.59` PASS (key `~/.ssh/id_ed25519_elab`)
+- Darwin Mac.homenet.telecomitalia.it 24.6.0 arm64 (M-series Cortex)
+- Uptime 4d11h post recent reboot
+- Load avg 2.55/2.61/2.65 (busy with claudefordesktop ShipIt + autonomous client process)
+- Repo clone Mac: `~/Projects/elab-tutor` (path diverso MacBook `~/VOLUME 3/PRODOTTO/elab-builder`)
+- 8 scripts ready `~/scripts/`: autonomous-loop v1+v2 + stress-runner + telegram-approval + iter36-env + crontab.elab-iter36
+- Autonomous loop v2: 5331 LOC `~/scripts/elab-mac-mini-autonomous-loop-v2.sh` (JSONL queue + retry + heartbeat + health check)
+- `launchctl list | grep elab` → ZERO services registered (NOT `com.elab.mac-mini-autonomous-loop`)
+- `crontab -l` → comments only (header iter 9 legacy + iter 36 cron file PRESENT NOT installed)
+- Last autonomous log: `~/Library/Logs/elab/autonomous-loop-v2-20260502.log` (13 days ago = dormant)
+
+**Stato reale iter 62 close**: Mac Mini = ALIVE hardware + ready scripts + clone repo + SSH works → autonomous loop DORMANT (NOT dead), capability available via SSH ad-hoc delegation.
+
+**Andrea decisione iter 63 ratify**: PATH C dormant + SSH ad-hoc (RACCOMANDATO max quality + min debito tecnico). Skill `elab-macmini-controller` per delegation. NO cron install.
+
+**Memory file**: `/Users/andreamarro/.claude/projects/-Users-andreamarro-VOLUME-3/memory/mac-mini-status-2026-05-15.md`
+
+### Codex CLI configuration verified iter 62 close
+
+`~/.codex/config.toml` verified:
+- `model = "gpt-5.5"` ← Andrea richiesta iter 62 PM "GPT-5.5 esteso pro" ALREADY ACTIVE
+- `model_reasoning_effort = "high"` ← high reasoning enabled
+- 17 plugins enabled: superpowers + supabase + vercel + cloudflare + build-web-apps + coderabbit + canva + github + documents + spreadsheets + presentations + circleci + zotero + life-science-research + browser-use + latex-tectonic + openai bundled/primary-runtime
+- 4 ELAB profiles workflow (iter 42 setup): verify (medium read-only) + review (high read-only) + implement (high workspace-write) + research (high workspace-write + network)
+
+**Andrea fallback gpt-5.4-mini DECISION**: SUPERATA — GPT-5.5 IS active. Nessun fallback necessario. Ratifica iter 63 entrance: GPT-5.5 confermato configurato + high reasoning effort.
+
+### Codex plugin-cc Claude Code-side install
+
+`openai/codex-plugin-cc` Apache-2.0 = plugin per Claude Code CLI (NOT Codex CLI). Abilita 3 commands within Claude Code:
+- `/codex:review` — standard code review via Codex
+- `/codex:adversarial-review` — steerable challenge review
+- `/codex:rescue` — BG long-running task delegation Codex con status tracking
+
+**Andrea ratify iter 62 close PM**: INSTALL.
+
+**Install commands** (Andrea esegui in Claude Code interactive iter 63 entrance):
+```
+/plugin marketplace add openai/codex-plugin-cc
+/plugin install codex@openai-codex
+/reload-plugins
+/codex:setup
+```
+
+**Prereqs verified iter 62 close**:
+- Node 18.18+ ✅ (Mac local)
+- Codex CLI v0.128.0 ✅ installato `~/.npm-global/bin/codex`
+- Codex login ✅ (config.toml shows authenticated state)
+- ChatGPT subscription OR OpenAI API key ✅ (Andrea ha)
+
+### Atoms cleanup iter 62 close
+
+44 atoms Sprint S2/S3/S6/S8 (DONE per CLAUDE.md Sprint S history iter 2-8 close) moved da `automa/tasks/pending/` a `automa/tasks/done/sprint-S/` via `git mv` (rename preservato history).
+
+2 atoms legacy remain pending: ATOM-001-playwright-smoke-e2e + ATOM-002-dashboard-a11y-fixes (iter 63+ audit + status decide).
+
+### Baseline sync iter 62 close
+
+`automa/baseline-tests.txt` 13106 → 13209 sync chore P0.2 done. Canonical: 13197 (iter 61 +79 codemod) + 12 iter 62 B1.5 NEW = 13209 vitest PASS verified prod fresh run (49s, 327 Test Files PASS).
