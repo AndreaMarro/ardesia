@@ -101,7 +101,7 @@
       "icon": "🔧",
       "duration_minutes": 10,
       "teacher_message": "Ragazzi, Carichiamo il circuito: pulsante collegato al pin 2 con resistore pull-down, LED sul pin 7. Nel codice, il pin 2 e INPUT e il pin 7 e OUTPUT. Con if leggiamo il pulsante e decidiamo.",
-      "teacher_tip": "Spiegare il resistore pull-down in modo semplice: senza di lui, quando il pulsante non e premuto, il pin non sa se e HIGH o LOW. Il resistore lo tiene a LOW finche non premiamo.",
+      "teacher_tip": "Spiegate il resistore pull-down in modo semplice: senza di lui, quando il pulsante non e premuto, il pin non sa se e HIGH o LOW. Il resistore lo tiene a LOW finche non premiamo.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp1]"
       ],
@@ -112,7 +112,7 @@
       "icon": "❓",
       "duration_minutes": 8,
       "teacher_message": "Ragazzi, Il codice dice: se il pulsante e premuto, accendi il LED. Altrimenti, spegnilo. Cosa succede se tolgo la parte 'altrimenti'? Il LED resta acceso per sempre dopo la prima pressione?",
-      "teacher_tip": "Lasciare provare. Senza l'else, il LED si accende quando premete ma si spegne al giro di loop successivo se non si preme. Il loop e cosi veloce che sembra funzionare comunque.",
+      "teacher_tip": "Lasciate provare. Senza l'else, il LED si accende quando premete ma si spegne al giro di loop successivo se non si preme. Il loop e cosi veloce che sembra funzionare comunque.",
       "provocative_question": "Se il loop gira migliaia di volte al secondo, Arduino regola il pulsante migliaia di volte al secondo. Spreca energia o e utile?",
       "action_tags": [],
       "auto_action": null

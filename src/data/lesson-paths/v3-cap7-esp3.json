@@ -88,7 +88,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, nell'esperimento precedente il pulsante aveva bisogno di un resistore esterno. Arduino ha un trucco: una resistenza nascosta dentro al chip chiamata pullup. Oggi la attiviamo con INPUT_PULLUP e risparmiamo un componente!",
-      "teacher_tip": "Usa l'analogia dell'elastico: immagina un muretto (il pin) tenuto su da un elastico (la resistenza interna). Di default il muretto sta su (HIGH). Quando premete il pulsante, lo abbatti (LOW). Senza elastico il muretto potrebbe cadere da solo (valore casuale).",
+      "teacher_tip": "Usate l'analogia dell'elastico: immagina un muretto (il pin) tenuto su da un elastico (la resistenza interna). Di default il muretto sta su (HIGH). Quando premete il pulsante, lo abbatti (LOW). Senza elastico il muretto potrebbe cadere da solo (valore casuale).",
       "class_hook": "Sapete che dentro Arduino ci sono delle resistenze nascoste? Come un paracadute di emergenza: se non c'e nient'altro collegato al pin, la resistenza interna lo tiene a un valore sicuro. Oggi la usiamo!",
       "action_tags": [],
       "auto_action": null
@@ -109,7 +109,7 @@
       "icon": "❓",
       "duration_minutes": 8,
       "teacher_message": "Ragazzi, Attenzione: con INPUT_PULLUP quando il pulsante NON e premuto, il pin legge HIGH. Quando lo premiamo, legge LOW. E il contrario di quello che ci aspetteremmo! Perche la logica e invertita?",
-      "teacher_tip": "Questa e la domanda chiave. Spiega che la resistenza interna 'tira su' il pin verso 5V (HIGH). Il pulsante, quando premuto, collega il pin direttamente a GND (0V = LOW). GND vince sempre sulla resistenza perche e un collegamento diretto. E come un braccio di ferro dove GND e piu forte.",
+      "teacher_tip": "Questa e la domanda chiave. Spiegate che la resistenza interna 'tira su' il pin verso 5V (HIGH). Il pulsante, quando premuto, collegate il pin direttamente a GND (0V = LOW). GND vince sempre sulla resistenza perche e un collegamento diretto. E come un braccio di ferro dove GND e piu forte.",
       "provocative_question": "Se scriviamo if(digitalRead(pin) == HIGH) per accendere il LED, il LED si accende quando premiamo o quando rilasciamo il pulsante? Attenzione, non e intuitivo!",
       "action_tags": [],
       "auto_action": null

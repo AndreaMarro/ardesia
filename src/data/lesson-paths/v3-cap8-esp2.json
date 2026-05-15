@@ -91,7 +91,7 @@
       "icon": "❓",
       "duration_minutes": 8,
       "teacher_message": "Ragazzi, Il contatore si incrementa di 1 a ogni ciclo con contatore++. Se togliamo il delay(500), quanti messaggi vedremmo in un secondo? Arduino gira il loop migliaia di volte al secondo! E se mettiamo delay(1000), quanti messaggi al secondo?",
-      "teacher_tip": "Guida il calcolo: con delay(500) = 2 messaggi al secondo (1000ms / 500ms). Con delay(1000) = 1 al secondo. Senza delay = migliaia al secondo, il monitor non riesce a star dietro. Questo introduce il concetto di frequenza di campionamento, che tornera utile con i sensori.",
+      "teacher_tip": "Guidate il calcolo: con delay(500) = 2 messaggi al secondo (1000ms / 500ms). Con delay(1000) = 1 al secondo. Senza delay = migliaia al secondo, il monitor non riesce a star dietro. Questo introduce il concetto di frequenza di campionamento, che tornera utile con i sensori.",
       "provocative_question": "Se la variabile contatore e un int (che va da -32768 a 32767 su Arduino), cosa succede quando il contatore supera 32767? Si blocca? Va in errore? Fa qualcosa di strano?",
       "action_tags": [],
       "auto_action": null
@@ -101,7 +101,7 @@
       "icon": "👀",
       "duration_minutes": 10,
       "teacher_message": "Ragazzi, Premete Play e aprite il Serial Monitor! Vedete i numeri che scorrono: 0, 1, 2, 3... uno ogni mezzo secondo. Il contatore non si ferma mai. Osservate la velocita costante dei messaggi grazie al delay.",
-      "teacher_tip": "Fate osservare tre cose: la regolarita del timing (un messaggio ogni 500ms), il contatore che cresce senza fermarsi, e cosa succede se si preme Reset (il contatore riparte da 0 perche la variabile si reinizializza). Chiedi: e possibile far partire il contatore da 100 invece che da 0?",
+      "teacher_tip": "Fate osservare tre cose: la regolarita del timing (un messaggio ogni 500ms), il contatore che cresce senza fermarsi, e cosa succede se si preme Reset (il contatore riparte da 0 perche la variabile si reinizializza). Chiedete: e possibile far partire il contatore da 100 invece che da 0?",
       "action_tags": [
         "[AZIONE:play]"
       ],

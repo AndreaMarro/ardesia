@@ -79,7 +79,7 @@
       "icon": "🔧",
       "duration_minutes": 10,
       "teacher_message": "Ragazzi, Non serve nessun circuito! Solo Arduino e il cavo USB. Il codice ha due righe nel setup: Serial.begin(9600) apre la comunicazione a velocita 9600 baud, e Serial.println scrive il messaggio. Tutto nel setup, quindi il messaggio appare una sola volta.",
-      "teacher_tip": "Spiega il baud rate con una analogia: e la velocita della conversazione. Se Arduino parla a 9600 baud e il monitor ascolta a 9600, si capiscono. Se le velocita sono diverse, vedrai caratteri strani (come parlare italiano a qualcuno che ascolta in francese). 9600 e lo standard per principianti.",
+      "teacher_tip": "Spiegate il baud rate con una analogia: e la velocita della conversazione. Se Arduino parla a 9600 baud e il monitor ascolta a 9600, si capiscono. Se le velocita sono diverse, vedrai caratteri strani (come parlare italiano a qualcuno che ascolta in francese). 9600 e lo standard per principianti.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap8-esp1]"
       ],
@@ -112,7 +112,7 @@
       "icon": "✅",
       "duration_minutes": 7,
       "teacher_message": "Ragazzi, Avete aperto il primo canale di comunicazione tra Arduino e il computer! Serial.begin apre la porta, Serial.println manda il messaggio. Da oggi Arduino non e piu muto: puo dirci cosa sta facendo, che valori legge, se qualcosa non funziona.",
-      "teacher_tip": "Recap: Serial.begin(9600) nel setup apre la comunicazione. Serial.println('testo') invia una riga di testo. Il Serial Monitor mostra i messaggi ricevuti. Il baud rate deve corrispondere (9600 su entrambi i lati). Questa e la base del debug: quando qualcosa non funziona, stampi i valori per capire cosa succede.",
+      "teacher_tip": "Recap: Serial.begin(9600) nel setup apre la comunicazione. Serial.println('testo') invia una riga di testo. Il Serial Monitor mostrate i messaggi ricevuti. Il baud rate deve corrispondere (9600 su entrambi i lati). Questa e la base del debug: quando qualcosa non funziona, stampi i valori per capire cosa succede.",
       "summary_for_class": "La comunicazione seriale e il modo in cui Arduino parla col computer. Serial.begin apre il canale, Serial.println invia un messaggio. Nel setup il messaggio appare una sola volta. Il Serial Monitor e la finestra dove leggiamo i messaggi. Da oggi Arduino puo dirci cosa sta succedendo nel suo codice!",
       "concepts_learned": [
         "Serial.begin() e baud rate 9600",
