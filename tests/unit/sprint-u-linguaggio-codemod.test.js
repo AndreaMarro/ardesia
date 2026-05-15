@@ -1,15 +1,14 @@
 /**
  * tests/unit/sprint-u-linguaggio-codemod.test.js
  *
- * Iter 61 B1 P0 PRIMARIO — Workstream B Andrea iter 21+ mandate carryover.
- * Andrea ratify Q-CODEMOD-1=a (PLURALE imperativo uniforme) + Q-CODEMOD-3=a (per-file Codex C-V).
- * Q-CODEMOD-2 teacher_messages DISMISSED iter 61 — OUT-OF-SCOPE.
+ * Iter 61 B1 + Iter 62 B1.5 — Workstream B Andrea iter 21+ mandate carryover.
+ * Andrea ratify Q-CODEMOD-1=a (PLURALE imperativo uniforme) + Q-CODEMOD-2 (teacher_message+teacher_response iter 62).
  *
  * Scope: scripts/sprint-u/linguaggio-codemod.mjs
  * - Verb map 40 entries singolare imperativo → plurale imperativo
  * - False positive guards: preceded-by (quando|se|dopo|prima|perché|mentre|finché|appena)
  * - Student speech inside '...' single quotes: preserve verbatim
- * - JSON path scope strict: phases[].teacher_tip ONLY
+ * - JSON path scope: phases[].teacher_tip + phases[].teacher_message + phases[].common_mistakes[].teacher_response
  * - Enclitic pronouns: Mostralo→Mostratelo
  * - Composite negation: Non dare→Non date
  * - Infinito → plurale: Mostrare→Mostrate (Q-CODEMOD-1=a "uniforme" mandate)
@@ -238,7 +237,7 @@ describe('transformTeacherTip — input/output API', () => {
   });
 });
 
-describe('transformLessonPath — JSON scope strict', () => {
+describe('transformLessonPath — JSON scope (iter 61 teacher_tip + iter 62 teacher_message + teacher_response)', () => {
   const sampleLessonPath = {
     experiment_id: 'v1-test-esp1',
     volume: 1,
@@ -250,30 +249,52 @@ describe('transformLessonPath — JSON scope strict', () => {
       {
         name: 'OSSERVA',
         teacher_tip: 'Chiedi prima. Mostra dopo.',
-        teacher_messages: ['Premi qui.'],
+        teacher_message: 'Ragazzi, Chiedi alla classe cosa vedete.',
+        common_mistakes: [
+          { mistake: 'LED al contrario', teacher_response: "Non correggerli. Chiedi: 'Cosa succede se lo giri?'" },
+        ],
       },
       {
         name: 'COSTRUISCI',
         teacher_tip: 'Evidenzia il LED.',
-        teacher_messages: ['Collega il filo.'],
+        teacher_message: 'Ragazzi, Mostrate il circuito.',
+        common_mistakes: [
+          { mistake: 'Filo staccato', teacher_response: 'Mostrate al docente.' },
+        ],
       },
     ],
     unlimPrompt: 'Mostra il LED al docente.',
   };
 
-  it('transforms phases[].teacher_tip ONLY', () => {
+  it('transforms phases[].teacher_tip (iter 61 B1)', () => {
     const result = transformLessonPath(sampleLessonPath);
     expect(result.json.phases[0].teacher_tip).toBe('Chiedete prima. Mostrate dopo.');
     expect(result.json.phases[1].teacher_tip).toBe('Evidenziate il LED.');
   });
 
-  it('PRESERVES teacher_messages unchanged (Q-CODEMOD-2 DISMISSED iter 61)', () => {
+  it('transforms phases[].teacher_message (iter 62 B1.5 Q-CODEMOD-2)', () => {
     const result = transformLessonPath(sampleLessonPath);
-    expect(result.json.phases[0].teacher_messages[0]).toBe('Premi qui.');
-    expect(result.json.phases[1].teacher_messages[0]).toBe('Collega il filo.');
+    expect(result.json.phases[0].teacher_message).toBe('Ragazzi, Chiedete alla classe cosa vedete.');
   });
 
-  it('PRESERVES objective unchanged', () => {
+  it('PRESERVES already-plurale teacher_message unchanged', () => {
+    const result = transformLessonPath(sampleLessonPath);
+    expect(result.json.phases[1].teacher_message).toBe('Ragazzi, Mostrate il circuito.');
+  });
+
+  it('transforms phases[].common_mistakes[].teacher_response (iter 62 B1.5 Q-CODEMOD-2)', () => {
+    const result = transformLessonPath(sampleLessonPath);
+    expect(result.json.phases[0].common_mistakes[0].teacher_response).toBe(
+      "Non correggerli. Chiedete: 'Cosa succede se lo giri?'"
+    );
+  });
+
+  it('PRESERVES already-plurale teacher_response unchanged', () => {
+    const result = transformLessonPath(sampleLessonPath);
+    expect(result.json.phases[1].common_mistakes[0].teacher_response).toBe('Mostrate al docente.');
+  });
+
+  it('PRESERVES objective unchanged (out-of-scope iter 62)', () => {
     const result = transformLessonPath(sampleLessonPath);
     expect(result.json.objective).toBe('Chiedi agli studenti di osservare.');
   });
@@ -283,15 +304,26 @@ describe('transformLessonPath — JSON scope strict', () => {
     expect(result.json.chapter_title).toBe('Capitolo Test');
   });
 
-  it('PRESERVES unlimPrompt unchanged (iter 61 scope teacher_tip only)', () => {
+  it('PRESERVES unlimPrompt unchanged (iter 62 scope: teacher_tip + teacher_message + teacher_response only)', () => {
     const result = transformLessonPath(sampleLessonPath);
     expect(result.json.unlimPrompt).toBe('Mostra il LED al docente.');
   });
 
-  it('reports aggregate changesCount across phases', () => {
+  it('reports aggregate changesCount across phases + fields', () => {
     const result = transformLessonPath(sampleLessonPath);
-    // 2 (Chiedi, Mostra) + 1 (Evidenzia) = 3 changes
-    expect(result.changesCount).toBeGreaterThanOrEqual(3);
+    // teacher_tip phase0: 2 (Chiedi, Mostra) + phase1: 1 (Evidenzia)
+    // teacher_message phase0: 1 (Chiedi)
+    // teacher_response phase0: 1 (Chiedi)
+    // total >= 5
+    expect(result.changesCount).toBeGreaterThanOrEqual(5);
+  });
+
+  it('diff entries discriminate field source (teacher_tip vs teacher_message vs teacher_response)', () => {
+    const result = transformLessonPath(sampleLessonPath);
+    const fields = result.diff.map((d) => d.field).filter(Boolean);
+    expect(fields).toContain('teacher_tip');
+    expect(fields).toContain('teacher_message');
+    expect(fields).toContain('teacher_response');
   });
 
   it('handles lesson-path with no phases array (edge case)', () => {
@@ -301,13 +333,123 @@ describe('transformLessonPath — JSON scope strict', () => {
     expect(result.json).toEqual(noPhasesObj);
   });
 
-  it('handles phases without teacher_tip field (edge case)', () => {
+  it('handles phases without any teacher_* field (edge case)', () => {
     const partialPhases = {
       experiment_id: 'test',
-      phases: [{ name: 'OSSERVA', teacher_messages: ['x'] }],
+      phases: [{ name: 'OSSERVA', icon: '👀' }],
     };
     const result = transformLessonPath(partialPhases);
     expect(result.changesCount).toBe(0);
+  });
+
+  it('handles phase with teacher_message but no common_mistakes (edge case)', () => {
+    const noMistakes = {
+      experiment_id: 'test',
+      phases: [{ name: 'OSSERVA', teacher_message: 'Ragazzi, Premi Play.' }],
+    };
+    const result = transformLessonPath(noMistakes);
+    expect(result.json.phases[0].teacher_message).toBe('Ragazzi, Premete Play.');
+    expect(result.changesCount).toBe(1);
+  });
+
+  it('handles common_mistakes with non-string teacher_response (edge case skip)', () => {
+    const malformed = {
+      experiment_id: 'test',
+      phases: [
+        {
+          name: 'OSSERVA',
+          common_mistakes: [{ mistake: 'x', teacher_response: null }, { mistake: 'y' }],
+        },
+      ],
+    };
+    const result = transformLessonPath(malformed);
+    expect(result.changesCount).toBe(0);
+  });
+
+  it('idempotent: applying transform twice yields same result (iter 62 B1.5)', () => {
+    const first = transformLessonPath(sampleLessonPath);
+    const second = transformLessonPath(first.json);
+    expect(second.json).toEqual(first.json);
+    expect(second.changesCount).toBe(0);
+  });
+});
+
+describe('transformLessonPath — Vol1 real-world 10 violations sample (iter 62 B1.5)', () => {
+  it('v1-cap6-esp1 teacher_response Chiedi → Chiedete (with quote preservation)', () => {
+    const fixture = {
+      phases: [
+        {
+          name: 'OSSERVA',
+          common_mistakes: [
+            { teacher_response: "Non correggerli. Chiedi: 'Cosa succede se lo giri?'" },
+          ],
+        },
+      ],
+    };
+    const result = transformLessonPath(fixture);
+    expect(result.json.phases[0].common_mistakes[0].teacher_response).toBe(
+      "Non correggerli. Chiedete: 'Cosa succede se lo giri?'"
+    );
+  });
+
+  it('v1-cap6-esp2 teacher_response Usa l\'analogia (apostrofo elision preserved)', () => {
+    const fixture = {
+      phases: [
+        {
+          name: 'COSTRUISCI',
+          common_mistakes: [{ teacher_response: "Usa l'analogia del rubinetto: troppa acqua." }],
+        },
+      ],
+    };
+    const result = transformLessonPath(fixture);
+    expect(result.json.phases[0].common_mistakes[0].teacher_response).toBe(
+      "Usate l'analogia del rubinetto: troppa acqua."
+    );
+  });
+
+  it('v1-cap10-esp1 teacher_response Coprire (infinito) → Coprite (plurale)', () => {
+    const fixture = {
+      phases: [
+        {
+          name: 'OSSERVA',
+          common_mistakes: [
+            { teacher_response: 'Stanza non troppo illuminata. Coprire completamente con la mano.' },
+          ],
+        },
+      ],
+    };
+    const result = transformLessonPath(fixture);
+    expect(result.json.phases[0].common_mistakes[0].teacher_response).toContain('Coprite completamente');
+  });
+
+  it('v1-cap7-esp6 teacher_message Lascia + Chiedi multi-verb', () => {
+    const fixture = {
+      phases: [
+        {
+          name: 'OSSERVA',
+          teacher_message: "Ragazzi, Lascia sperimentare liberamente. Chiedi: 'Che colore?'",
+        },
+      ],
+    };
+    const result = transformLessonPath(fixture);
+    expect(result.json.phases[0].teacher_message).toBe(
+      "Ragazzi, Lasciate sperimentare liberamente. Chiedete: 'Che colore?'"
+    );
+  });
+
+  it('v1-cap11-esp1 teacher_response Cerca → Cercate', () => {
+    const fixture = {
+      phases: [
+        {
+          name: 'COSTRUISCI',
+          common_mistakes: [
+            { teacher_response: 'Collegare al piedino + del cicalino. Cerca il segno + stampato.' },
+          ],
+        },
+      ],
+    };
+    const result = transformLessonPath(fixture);
+    expect(result.json.phases[0].common_mistakes[0].teacher_response).toContain('Cercate il segno');
   });
 });
 

@@ -149,20 +149,28 @@ function preserveCase(match, plurale) {
 }
 
 /**
- * Build a regex pattern for a singolare verb, case-insensitive,
+ * Build a regex pattern for a singolare verb,
  * with negative lookbehind for false-positive guard words.
+ *
+ * @param {string} singolare - verb key
+ * @param {object} [opts]
+ * @param {boolean} [opts.caseInsensitive=true] - iter 61 default `true` for teacher_tip;
+ *   iter 62 B1.5 uses `false` for teacher_message + teacher_response (anti-false-positive
+ *   guard: lowercase mid-sentence "dai/mostra/usa" are usually preposition+article or
+ *   3rd-person indicative, NOT imperative — restricting to TitleCase prevents wrong transforms).
  */
-function buildVerbPattern(singolare) {
+function buildVerbPattern(singolare, { caseInsensitive = true } = {}) {
   const guardAlt = GUARD_WORDS.join('|');
   // Allow optional intervening "non " between guard word and verb
   // (e.g. "finché non chiudi", "se non premi")
-  return new RegExp(`(?<!\\b(?:${guardAlt})\\s+(?:non\\s+)?)\\b${escapeRegex(singolare)}\\b`, 'gi');
+  const flags = caseInsensitive ? 'gi' : 'g';
+  return new RegExp(`(?<!\\b(?:${guardAlt})\\s+(?:non\\s+)?)\\b${escapeRegex(singolare)}\\b`, flags);
 }
 
 // ============================================================================
 // transformText — core string transformer
 // ============================================================================
-export function transformText(input) {
+export function transformText(input, opts = {}) {
   if (!input || typeof input !== 'string') return input;
 
   // 1. mask elisions
@@ -177,7 +185,7 @@ export function transformText(input) {
 
   for (const singolare of sortedKeys) {
     const plurale = VERB_MAP[singolare];
-    const pattern = buildVerbPattern(singolare);
+    const pattern = buildVerbPattern(singolare, opts);
     working = working.replace(pattern, (match) => preserveCase(match, plurale));
   }
 
@@ -193,16 +201,17 @@ export function transformText(input) {
 // ============================================================================
 // transformTeacherTip — input/output with changes log
 // ============================================================================
-export function transformTeacherTip(input) {
+export function transformTeacherTip(input, opts = {}) {
   if (!input || typeof input !== 'string') {
     return { output: input || '', changes: [] };
   }
-  const output = transformText(input);
+  const output = transformText(input, opts);
   const changes = [];
   if (output !== input) {
+    const flags = opts.caseInsensitive === false ? 'g' : 'gi';
     for (const [singolare, plurale] of Object.entries(VERB_MAP)) {
       const escS = escapeRegex(singolare);
-      const beforePattern = new RegExp(`\\b${escS}\\b`, 'gi');
+      const beforePattern = new RegExp(`\\b${escS}\\b`, flags);
       const beforeCount = (input.match(beforePattern) || []).length;
       const afterCount = (output.match(beforePattern) || []).length;
       const delta = beforeCount - afterCount;
@@ -215,7 +224,9 @@ export function transformTeacherTip(input) {
 }
 
 // ============================================================================
-// transformLessonPath — JSON scope strict (phases[].teacher_tip ONLY)
+// transformLessonPath — JSON scope:
+//   iter 61 B1: phases[].teacher_tip
+//   iter 62 B1.5: + phases[].teacher_message + phases[].common_mistakes[].teacher_response
 // ============================================================================
 export function transformLessonPath(json) {
   if (!json || typeof json !== 'object') {
@@ -228,18 +239,64 @@ export function transformLessonPath(json) {
   if (Array.isArray(cloned.phases)) {
     for (let i = 0; i < cloned.phases.length; i++) {
       const phase = cloned.phases[i];
+      const phaseName = phase.name || `phase-${i}`;
+
+      // iter 61 B1: teacher_tip
       if (typeof phase.teacher_tip === 'string') {
         const result = transformTeacherTip(phase.teacher_tip);
         if (result.changes.length > 0) {
           diff.push({
             phase: i,
-            phaseName: phase.name || `phase-${i}`,
+            phaseName,
+            field: 'teacher_tip',
             before: phase.teacher_tip,
             after: result.output,
             changes: result.changes,
           });
           phase.teacher_tip = result.output;
           changesCount += result.changes.reduce((sum, c) => sum + c.count, 0);
+        }
+      }
+
+      // iter 62 B1.5: teacher_message (Q-CODEMOD-2) — STRICT case-sensitive
+      // Avoids false-positive lowercase mid-sentence "dai/mostra/usa" (preposition+article
+      // or 3rd-person indicative, NOT imperative). TitleCase imperatives still caught.
+      if (typeof phase.teacher_message === 'string') {
+        const result = transformTeacherTip(phase.teacher_message, { caseInsensitive: false });
+        if (result.changes.length > 0) {
+          diff.push({
+            phase: i,
+            phaseName,
+            field: 'teacher_message',
+            before: phase.teacher_message,
+            after: result.output,
+            changes: result.changes,
+          });
+          phase.teacher_message = result.output;
+          changesCount += result.changes.reduce((sum, c) => sum + c.count, 0);
+        }
+      }
+
+      // iter 62 B1.5: common_mistakes[].teacher_response (Q-CODEMOD-2) — STRICT case-sensitive
+      if (Array.isArray(phase.common_mistakes)) {
+        for (let cm = 0; cm < phase.common_mistakes.length; cm++) {
+          const cmObj = phase.common_mistakes[cm];
+          if (cmObj && typeof cmObj.teacher_response === 'string') {
+            const result = transformTeacherTip(cmObj.teacher_response, { caseInsensitive: false });
+            if (result.changes.length > 0) {
+              diff.push({
+                phase: i,
+                phaseName,
+                field: 'teacher_response',
+                mistakeIndex: cm,
+                before: cmObj.teacher_response,
+                after: result.output,
+                changes: result.changes,
+              });
+              cmObj.teacher_response = result.output;
+              changesCount += result.changes.reduce((sum, c) => sum + c.count, 0);
+            }
+          }
         }
       }
     }
