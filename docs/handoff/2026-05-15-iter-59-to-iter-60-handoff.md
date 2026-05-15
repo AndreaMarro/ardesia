@@ -214,7 +214,52 @@ Total: 22-34h across 3 iterations. NO inflation, Codex Pattern C-V + 4-gate casc
 
 ---
 
-## §8 NON COMPIACERE — iter 59 entrance honest
+## §8 ADDENDUM — Lino + Riccardo input WhatsApp 2026-05-15 AM (CRITICO iter 60 priorità)
+
+Post-iter-59 commit team meeting WhatsApp ha portato 4 input critici che ricalibrano priorità iter 60+. Vedi PRD docs/specs/2026-05-15-iter-59-blockly-cross-compile-ux.md ADDENDUM §A-K per dettaglio.
+
+### 4 fatti operativi nuovi
+
+1. **DOPPIA CONFERMA mBlock REJECTED**: Lino Moretto ha verificato indipendentemente — "mBlock proprio non supporta i Chip Renesas. L'opzione 'creare nuovo device' non funzionerebbe". Allineato con iter 58 mBlock recon §C2. Decisione iter 59 pivot REJECT mBlock = ROBUSTA con doppia conferma.
+
+2. **Lino 5-step Arduino Cloud pattern web-based IDE**: per chiudere il loop full editor→kit serve: (1) editor a blocchi (esiste) + (2) translate Arduino C++ (esiste) + (3) cross-compile container Docker arduino-cli (n8n esiste, R3 PREREQ core install) + (4) **browser-agent proxy seriale locale PC** (NON esiste — Lino "Arduino Cloud Agent" pattern) + (5) **flash protocol** (avrdude AVR esistente only troubleshooting docs / **dfu-util** Renesas — ZERO infra esistente per Cortex-M4 Codex confirm).
+
+3. **Riccardo "termina prima il resto"** (mandate priorità): "questa è un idea ma terminiamo prima tutto il lavoro che abbiamo iniziato tutor, piattaforma, prodotti ecc cosi stabilizziamo i processi. questo a tempo perso iniziamo a impostarlo e a valutare tutte le strade." → **Workstream B (iter-21+ mandate carryover) = P0 PRIMARIO iter 60+**. Blockly Phase 1 (R1-R6 cross-compile end ~6-8h) = P0 QUICK WIN compatibile. Phase 2+3 (UX overhaul + verification) = **P2 SECONDARIO defer iter 66+** post Workstream B stabilization + pilot test gate.
+
+4. **NEW Pilot test gate Q8 iter 62 entrance** (Lino): "più che la fattibilità tecnica è da capire se poi davvero viene usata in classe e con quali risultati". PRIMA di investire Phase 2+3 UX overhaul, validare assunzione "Blockly editor used in classe". Tea T4 (iter 58 brief) first responder. Metric target: uso Blockly >30% lezioni / 1 settimana misurazione.
+
+### Codex BG iter 59 addendum verifica (CONFIRM Lino)
+
+`bash scripts/dev/codex-bg.sh iter59-addendum-flash-protocol-recon --profile verify "..."` → CONFIRM:
+- `avrdude` solo in `docs/unlim-wiki/concepts/comunicazione-seriale-uart.md:121,149,180` (troubleshooting docs, NON pipeline)
+- ZERO `dfu-util` + ZERO `WebSerial` + ZERO `uploadHex` in `src/`
+- Recommendation: post-cross-compile path = server-side `n8n + arduino-cli` flash until browser-agent exists (Phase 4 deferred iter 70+)
+
+Output: `/tmp/codex-iter59-addendum-flash-protocol-recon.txt` (149 lines).
+
+### Updated phasing iter 60+ (post Lino+Riccardo)
+
+| Phase | Iter | Priority | Note |
+|---|---|---|---|
+| **iter 60 P0 PRIMARIO**: Workstream B carryover iter-21+ | 60-65 | Riccardo "termina prima resto" | linguaggio codemod + 92 esperimenti UNO-PER-UNO + UX/UI overhaul + Modalità Passo Passo + HomePage regression + Glossario Tea + Vol3 narrative refactor |
+| **iter 60 P0 QUICK WIN**: Blockly Phase 1 R1-R6 | 60 | compatibile con Workstream B | board selector + ALLOWED_COMPILE_BOARDS extend + n8n core SSH verify + return `.hex` (NO upload web Phase 1) ~6-8h |
+| **iter 66+ P2 SECONDARIO**: Blockly Phase 2 R7-R13 UX overhaul | 66+ | DEFER post Workstream B + pilot Q8 PASS | Italian labels + tooltips + icons + Morfismo palette + touch ≥44 + per-experiment filter |
+| **iter 67+ P2**: Blockly Phase 3 R14-R19 verification | 67+ | DEFER post Phase 2 + Q8 PASS evidence | walkthrough + Playwright E2E + visual regression + Matteo UX test |
+| **iter 70+ P3 NEW**: Phase 4 browser-agent serial proxy + dfu-util flash | 70+ | Andrea ratify post pilot POSITIVO | Arduino Cloud Agent pattern OR WebSerial API custom — Lino "bel pò di roba da mantenere nel tempo" |
+
+### Andrea ratify queue iter 60 entrance — ricalibrato 11 voci
+
+Carryover 10 voci iter 59 audit + NUOVA:
+
+11. **NEW Q8 — Pilot test gate iter 62 entrance** (Lino mandate): Quale scuola pilot? Quando (entro iter 65)? Tempo misurazione (1 settimana / 1 mese)? Metrics target uso Blockly editor (>30% lezioni / numero blocchi most-used / errori comuni)? Tea T4 first responder? **Andrea + Tea + Riccardo decide**.
+
+### Riccardo nota team
+
+Riccardo (09:39): "Giovanni ha una certa età non possiamo stressarlo troppo🤣" — Giovanni Fagherazzi sales/network deve essere protetto da scope creep. Mantenere conversation focus Andrea+Lino+Riccardo per technical decisions, Giovanni per vendite scuole post Phase 1 stabilizzato.
+
+---
+
+## §9 NON COMPIACERE — iter 59 entrance honest
 
 - iter 59 entrance shipped DOCS + CONFIG, NO src/ code yet.
 - Andrea ratify queue 10 voci OPEN — iter 60 entrance MUST close PRIMA Phase 1 execute.

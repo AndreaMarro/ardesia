@@ -216,3 +216,99 @@ Recommended trigger points iter 59-61:
 - ADR-032 (Architecture Decision Record): "Blockly preserved, cross-compile via board param, NO mBlock migration".
 
 **Ask**: which follow-up Andrea wants generated first (or skip — execute directly)?
+
+---
+
+## ADDENDUM — Lino Moretto + Riccardo Franzoso input WhatsApp 2026-05-15 AM
+
+> Updated 2026-05-15 post-PRD authoring. Material input dal team meeting WhatsApp.
+
+### A) Lino conferma indipendente: mBlock NON supporta Renesas
+
+Lino Moretto (collaboratore esperto IDE schede) ha verificato direttamente (WhatsApp 09:49):
+> "mBlock proprio non supporta i Chip Renesas. L'opzione 'creare nuovo device' non funzionerebbe e si dovrebbe passare per gli script ufficiali Arduino (percorso non semplicissimo perchè oltre a mBlock si dovrebbe installare anche il toolchain Arduino)"
+
+Allineato con iter 58 mBlock recon §C2 finding (Path C Hybrid CRITICAL flag). **DOPPIA conferma** indipendente (Codex iter 58 recon + Lino esperto IDE 2026-05-15) che mBlock NON è una strada valida per Nano R4. iter 59 pivot REJECT mBlock = decisione corretta.
+
+### B) Lino 5-step Arduino Cloud pattern (web-based IDE per schede)
+
+Lino esperienza IDE schede via app web = "impervio". Pattern Arduino Cloud:
+
+1. **Editor web a blocchi** — già esiste in ELAB Tutor (Blockly + 23 custom blocks).
+2. **Tradurre i blocchi in codice** — già esiste (`scratchGenerator.js` `Blockly.Generator('Arduino')` → Arduino C++).
+3. **Cross-compilare** — esiste tramite n8n endpoint (`compileCode()` api.js:1293), tirando su container Docker con `arduino-cli`. iter 59 R3 PREREQ: install `arduino:renesas_uno` core.
+4. **Agente browser proxy seriale** — NON esiste in ELAB Tutor. Pattern Arduino Cloud Agent: script piccolo che gira nel browser (WebSerial API) + fa proxy della seriale locale del PC a cui è collegata la scheda. Permette upload `.hex` + lettura Serial Monitor diretto da web.
+5. **Protocollo flash scheda** — AVR vecchie usano `avrdude`. Renesas Nano R4 usa `dfu-util` (Device Firmware Update). Differente toolchain.
+
+**Implicazione iter 59-60**: PRD R6 anti-regression non sufficiente. Per chiudere il loop upload web→kit serve ALMENO step 4+5 oltre 1+2+3. Reality check Lino:
+> "tutto dentro un software solo… ma vero anche che è un bel pò di roba da mantenere nel tempo".
+
+### C) Lino+Riccardo mandate "step-by-step strada più facile" + pilot test gate
+
+Lino (09:31):
+> "Io andrei per step - testare l'idea di un editor a blocchi secondo me è sensata, ma più che la fattibilità tecnica è da capire se poi davvero viene usata in classe e con quali risultati. Quindi prenderei la strada più facile e chiuderei il loop il più velocemente possibile per avere qualcosa di funzionante."
+
+Riccardo Franzoso (09:38):
+> "si esatto, questa è un idea ma terminiamo prima tutto il lavoro che abbiamo iniziato tutor, piattaforma, prodotti ecc cosi stabilizziamo i processi. questo a tempo perso iniziamo a impostarlo e a valutare tutte le strade."
+
+**Implicazione priorità**:
+- **Blockly cross-compile Phase 1-3 = P2 SECONDARIO** ("a tempo perso") NON P0 prioritario.
+- **Workstream B carryover iter-21+ mandate = P0 PRIMARIO** (linguaggio codemod + 92 esperimenti UNO-PER-UNO + UX/UI overhaul + Modalità Passo Passo + HomePage regression + Glossario Tea integration + Vol3 narrative refactor).
+- Andrea: "Per quanto migliorabile l'editor a blocchi che traduce in c++ c'è già" — quindi Phase 1 (cross-compile R1-R6) può essere quick win, MA Phase 2 (UX overhaul R7-R13) NON va prima della stabilizzazione iter-21+ tutor/piattaforma.
+
+### D) Pilot test gate (Lino) — pre-iter-62
+
+PRIMA di investire Phase 2+3 UX overhaul + walkthrough + Playwright E2E, validare assunzione "il blocchi-editor viene davvero usato in classe + con quali risultati". Lino:
+> "se dal punto di vista utilizzativo la cosa prende piede, si fa tesoro dell'esperienza e si capisce se ha senso o no partire con qualcosa di fatto in casa - ma a questo punto con dei feedback e con degli obiettivi e motivazioni precise."
+
+**NEW Andrea ratify gate iter 62 entrance** (BLOCKING):
+- Q8 — pilot test in classe (1+ scuola pilota) con Phase 1 cross-compile live: il docente USA effettivamente l'editor a blocchi? Quante volte per lezione? Quali blocchi più usati? Errori comuni? Tea T4 (iter 58 brief) può essere first responder per misurazione.
+- Se pilot NEGATIVO (uso <30% di lezioni): Phase 2+3 UX overhaul **DEFER iter 70+** o **ABBANDONA** in favor di alternativa "fatto in casa con obiettivi precisi" o IDE esterno (Arduino IDE installato locale, ELAB Tutor solo simulator + tutor + content).
+
+### E) Andrea inclined Blockly (convergente con Lino)
+
+Andrea (09:09):
+> "Posso anche sbagliarmi, però per come la vedo io ha più senso restare sul mio sistema: è più faticoso adesso, ma ci lascia padroni del prodotto. ELABTutor non è ancora perfetto e alcune parti vanno limate/abbattute (poi magari sbaglio tutto e con mblock si può fare uguale)."
+
+Convergente con Lino (09:24-09:26) che riconosce trade-off:
+> "Vero che sta tutto dentro un software solo… ma vero anche che è un bel pò di roba da mantenere nel tempo".
+
+**Conferma direzione iter 59 pivot**: Blockly preserve, NO mBlock, accettare costo manutenzione "padroni prodotto".
+
+### F) NEW NON-GOALS iter 59-61 (post Lino+Riccardo input)
+
+7. **Browser-agent serial proxy + dfu-util flash protocol web upload**: P2 deferred iter 70+ via Arduino Cloud Agent pattern OR Web Serial API custom. Lino "bel pò di roba da mantenere" + Riccardo "termina prima resto". iter 60 Phase 1 limita a CROSS-COMPILE end (return .hex) — upload step rimane responsibility docente via Arduino IDE locale + cable USB.
+8. **Phase 2+3 UX overhaul senza pilot test gate**: NEW gate iter 62 entrance Q8 pilot test "viene davvero usato in classe?". DEFER Phase 2+3 fino a evidence pilot POSITIVO (>30% lezioni uso Blockly editor).
+
+### G) Updated phasing iter 60+ (revised post Lino+Riccardo)
+
+| Phase | Iter | Priority | Andrea gate | Note |
+|---|---|---|---|---|
+| **Phase 1** Cross-compile (R1-R6) | 60 | P0 quick win | Ratify Q1-Q3 | "Editor c'è già" — board param + ALLOWED extend + n8n core install. ~6-8h. Risultato finale: `.hex` ritornato (NO upload web — Arduino IDE locale docente) |
+| **Workstream B P0 PRIMARIO** (iter-21+ mandate) | 60-65 | P0 PRIMARIO | Riccardo "termina prima resto" + Andrea iter 21 mandate carryover | Linguaggio codemod + 92 esperimenti UNO-PER-UNO + UX/UI overhaul + Modalità Passo Passo + HomePage regression + Glossario Tea + Vol3 narrative refactor. PRIORITARIO vs Phase 2 Blockly UX |
+| **Phase 2** UX overhaul (R7-R13) | 66+ | P2 SECONDARIO | Q8 pilot test PASS PRIMA execute | DEFER post Workstream B + pilot test gate. Lino+Riccardo "a tempo perso". |
+| **Phase 3** Verification (R14-R19) | 67+ | P2 | Q9 NEW pilot test esiti + Andrea ratify | DEFER post Phase 2 |
+| **Phase 4** NEW (post pilot POSITIVO) | 70+ | P3 | Andrea ratify "fatto in casa con obiettivi precisi" | Browser agent serial proxy + dfu-util flash + WebSerial UI |
+
+### H) Codex BG iter 59 addendum (flash protocol recon)
+
+Codex BG `iter59-addendum-flash-protocol-recon` dispatched 2026-05-15 post-WhatsApp. Output `/tmp/codex-iter59-addendum-flash-protocol-recon.txt`. Section 3 verdict: which flash protocol path for Nano R4 + existing WebSerial infra (likely ZERO).
+
+### I) Mandate update — score iter 60 entrance ricalibrato
+
+- iter 60 score target ricalibrato: **8.7/10** (Phase 1 quick win) + **Workstream B item 1 progress** (linguaggio codemod start) — NOT 8.7 from Phase 1 alone.
+- iter 61 score target: **9.0/10** (Workstream B item 1 complete + item 2 92 esperimenti audit 25/92).
+- Phase 2 Blockly UX overhaul deferred iter 66+ post pilot gate.
+
+### J) NEW Andrea ratify queue iter 60 entrance (TOTAL 11 voci)
+
+Aggiunto agli iter 60 entrance queue iter 59 audit (Q1-Q7 + iter58 voce 1-3):
+
+11. **NEW Q8 — Pilot test gate iter 62 entrance** (Lino mandate): Tea T4 first responder pilot 1 scuola? Quale scuola pilot? Quando? Tempo misurazione (1 settimana? 1 mese?)? Metrics target uso Blockly editor (>30% lezioni)? **Andrea + Tea + Riccardo decide**.
+
+### K) Vincoli aggiuntivi confermati
+
+- iter 60+ Workstream B PRIMARIO (Riccardo mandate "termina prima resto"). Blockly cross-compile Phase 1 = quick win compatibile (~6-8h scope), MA Phase 2+ defer post Workstream B stabilizzazione.
+- mBlock REJECTED definitively (doppia conferma indipendente Codex iter 58 + Lino 2026-05-15).
+- Upload flash protocol web NOT in iter 60-65 scope (Lino 5-step #4+#5 deferred iter 70+ post pilot test POSITIVO).
+
