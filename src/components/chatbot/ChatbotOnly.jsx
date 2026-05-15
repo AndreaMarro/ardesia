@@ -9,6 +9,14 @@
  *   - Tools palette right: 5 button SVG (Vision / Compile / Fumetto /
  *     Lavagna mini / Reset)
  *
+ * Iter 64 T2 Lighthouse perf optim (Sprint U):
+ *   Shell (sidebar + tools palette + header skeleton) renders synchronously.
+ *   The chat panel — which owns `useGalileoChat` and transitively pulls
+ *   ~700KB of supabase + RAG + lesson-paths data — is split into a lazy
+ *   chunk via React.lazy + Suspense. This eliminates the heavy chain from
+ *   first paint of the #chatbot-only route, lifting Lighthouse perf
+ *   from 26/100 (iter 38 baseline) toward ≥90.
+ *
  * Compliance gate iter 37 §0:
  *   ✅ Linguaggio plurale "Ragazzi" (welcome + new chat + tooltips)
  *   ✅ Kit fisico mention (placeholder input + tooltips tools)
@@ -19,9 +27,9 @@
  *   ✅ WCAG AA contrast Navy bg + white text
  *   ✅ Cross-pollination Onniscenza wired via useGalileoChat hook (L1+L4+L7)
  *
- * Andrea Marro — iter 37 — 2026-04-30
+ * Andrea Marro — iter 37 — 2026-04-30 — iter 64 perf split 2026-05-15
  */
-import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useCallback, Suspense, lazy } from 'react';
 import styles from './ChatbotOnly.module.css';
 import {
   CameraIcon,
@@ -29,10 +37,12 @@ import {
   ReportIcon,
   CircuitIcon,
   RefreshIcon,
-  SendIcon,
-  RobotIcon,
 } from '../common/ElabIcons.jsx';
-import useGalileoChat from '../lavagna/useGalileoChat.js';
+
+// Lazy-loaded chat panel — pulls useGalileoChat + supabase + RAG context
+// collector + lesson-paths data into its own chunk. Loaded after the shell
+// paints to keep #chatbot-only Lighthouse perf high.
+const ChatbotChatPanel = lazy(() => import('./ChatbotChatPanel.jsx'));
 
 const SESSIONS_KEY = 'elab_unlim_sessions';
 const MAX_SIDEBAR_ITEMS = 50;
@@ -81,66 +91,6 @@ function loadSessions() {
   } catch {
     return [];
   }
-}
-
-/**
- * INTENT validate subset chatbot-safe (per PDR spec §3 A6).
- * Whitelist permitted tags: nessuno, mostraTesto, citaVolPag.
- * Tutti gli altri tag (es. azione lavagna) sono filtrati out display-only.
- */
-const CHATBOT_SAFE_INTENT_ACTIONS = new Set(['nessuno', 'mostratesto', 'citavolpag']);
-function isChatbotSafeIntent(intentObj) {
-  if (!intentObj || typeof intentObj.action !== 'string') return false;
-  return CHATBOT_SAFE_INTENT_ACTIONS.has(intentObj.action.toLowerCase());
-}
-
-/**
- * Strip Lavagna-only INTENT tags from displayed chatbot text.
- * The full chat hook executes them in lavagna mode; in chatbot we suppress
- * non-safe actions visually too (defensive — useGalileoChat already strips
- * before display).
- */
-function sanitizeChatbotText(raw) {
-  if (typeof raw !== 'string') return '';
-  // Remove [INTENT:{...}] blocks that are not chatbot-safe
-  let out = raw;
-  const intentRe = /\[INTENT:(\{[\s\S]*?\})\]/g;
-  out = out.replace(intentRe, (match, json) => {
-    try {
-      const parsed = JSON.parse(json);
-      return isChatbotSafeIntent(parsed) ? match : '';
-    } catch { return ''; }
-  });
-  // AZIONE tags always stripped (Lavagna only)
-  out = out.replace(/\[azione:[^\]]+\]/gi, '').replace(/\[AZIONE:[^\]]+\]/g, '');
-  return out.trim();
-}
-
-function MascotteAvatar() {
-  // Iter 44 fix Andrea 2026-05-06: chat avatar UNLIM era RobotIcon SVG
-  // generico (foto 1 segnalata "dovrebbe esserci vero logo"). Sostituito
-  // con PNG mascotte ELAB ufficiale `elab-mascot-vera.png` (stesso asset
-  // homepage). Animazioni elab-mascotte-vera class apply (idle bob +
-  // glow pulse + filter url(#elabRemoveWhite) per sfondo bianco baked-in).
-  return (
-    <span className={styles.mascotteSmall} aria-hidden="true">
-      <img
-        src="/assets/mascot/elab-mascot-vera.png"
-        alt="UNLIM"
-        className="elab-mascotte-vera"
-        loading="eager"
-        decoding="async"
-        draggable={false}
-        style={{
-          width: 28,
-          height: 28,
-          objectFit: 'contain',
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}
-      />
-    </span>
-  );
 }
 
 function HistoryItem({ session, isActive, onSelect }) {
@@ -303,48 +253,53 @@ function ToolsPalette({ onVision, onCompile, onFumetto, onLavagna, onReset, busy
   );
 }
 
-function ChatBubble({ message }) {
-  const isUser = message.role === 'user';
-  const content = isUser ? message.content : sanitizeChatbotText(message.content);
+/**
+ * Lightweight fallback shown while the lazy chat panel chunk loads.
+ * Keeps the chat area visually populated (header skeleton) so the LCP
+ * candidate is the chat header rather than reflowing on hydration.
+ */
+function ChatPanelFallback() {
   return (
-    <div
-      className={`${styles.bubble} ${isUser ? styles.bubbleUser : styles.bubbleAssistant}`}
-      data-testid={isUser ? 'chatbot-bubble-user' : 'chatbot-bubble-assistant'}
-      role={isUser ? undefined : 'status'}
-    >
-      {content}
-    </div>
-  );
-}
-
-function LoadingBubble() {
-  return (
-    <div
-      className={`${styles.bubble} ${styles.bubbleAssistant} ${styles.bubbleAssistantLoading}`}
-      role="status"
-      aria-live="polite"
-      data-testid="chatbot-bubble-loading"
-    >
-      <span className={styles.loadingDot} />
-      <span className={styles.loadingDot} />
-      <span className={styles.loadingDot} />
-    </div>
+    <>
+      <header className={styles.chatHeader}>
+        <span className={styles.mascotteSmall} aria-hidden="true">
+          <img
+            src="/assets/mascot/elab-mascot-vera.png"
+            alt="UNLIM"
+            className="elab-mascotte-vera"
+            loading="eager"
+            decoding="async"
+            draggable={false}
+            style={{ width: 28, height: 28, objectFit: 'contain' }}
+          />
+        </span>
+        <div>
+          <h1 className={styles.chatHeaderTitle}>UNLIM</h1>
+          <p className={styles.chatHeaderSub}>
+            Ragazzi, qui parlate con il tutor — kit fisici sempre pronti.
+          </p>
+        </div>
+      </header>
+      <div className={styles.chatScroll} aria-busy="true" data-testid="chatbot-chat-loading">
+        <div
+          className={`${styles.bubble} ${styles.bubbleAssistant} ${styles.bubbleAssistantLoading}`}
+          role="status"
+          aria-live="polite"
+        >
+          <span className={styles.loadingDot} />
+          <span className={styles.loadingDot} />
+          <span className={styles.loadingDot} />
+        </div>
+      </div>
+    </>
   );
 }
 
 export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
   const [sessions, setSessions] = useState(() => loadSessions());
   const [activeSessionId, setActiveSessionId] = useState(null);
-  const scrollRef = useRef(null);
-
-  // Hook UNLIM chat (Onniscenza wired via useGalileoChat -> collectFullContext)
-  // NOTE: useGalileoChat è il same hook usato dalla Lavagna; il filtering
-  // INTENT-tags chatbot-safe è applicato visivamente in sanitizeChatbotText.
-  const chat = useGalileoChat();
-  const { messages, input, isLoading } = chat;
-  const handleSend = chat.handleSend || chat.send || (() => {});
-  const handleInputChange = chat.setInput || chat.handleInputChange || (() => {});
-  const handleReset = chat.handleReset || chat.resetChat || (() => {});
+  const panelRef = useRef(null);
+  const [panelBusy, setPanelBusy] = useState(false);
 
   // Listen for cross-tab session updates
   useEffect(() => {
@@ -356,19 +311,12 @@ export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
     return () => window.removeEventListener('storage', handler);
   }, []);
 
-  // Auto-scroll to bottom on new messages
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollTop = el.scrollHeight;
-  }, [messages, isLoading]);
-
   const handleNewChat = useCallback(() => {
     setActiveSessionId(null);
-    if (typeof handleReset === 'function') {
-      try { handleReset(); } catch { /* defensive */ }
+    if (panelRef.current && typeof panelRef.current.reset === 'function') {
+      try { panelRef.current.reset(); } catch { /* defensive */ }
     }
-  }, [handleReset]);
+  }, []);
 
   const handleSelectSession = useCallback((session) => {
     if (!session) return;
@@ -395,16 +343,16 @@ export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
   }, [onBackHome]);
 
   const handleVision = useCallback(() => {
-    if (typeof handleSend === 'function') {
-      handleSend('Guarda il mio circuito e diagnosticalo, ragazzi.');
+    if (panelRef.current && typeof panelRef.current.sendVision === 'function') {
+      panelRef.current.sendVision();
     }
-  }, [handleSend]);
+  }, []);
 
   const handleCompile = useCallback(() => {
-    if (typeof handleSend === 'function') {
-      handleSend('Compila lo sketch Arduino corrente e mostrami eventuali errori.');
+    if (panelRef.current && typeof panelRef.current.sendCompile === 'function') {
+      panelRef.current.sendCompile();
     }
-  }, [handleSend]);
+  }, []);
 
   const handleFumetto = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -425,31 +373,10 @@ export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
   }, [onOpenLavagna]);
 
   const handleResetClick = useCallback(() => {
-    if (typeof handleReset === 'function') handleReset();
-  }, [handleReset]);
-
-  const onInputChange = useCallback((e) => {
-    if (typeof handleInputChange === 'function') {
-      handleInputChange(e.target.value);
+    if (panelRef.current && typeof panelRef.current.reset === 'function') {
+      panelRef.current.reset();
     }
-  }, [handleInputChange]);
-
-  const onInputKeyDown = useCallback((e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      if (!isLoading && input?.trim() && typeof handleSend === 'function') {
-        handleSend();
-      }
-    }
-  }, [handleSend, isLoading, input]);
-
-  const onSendClick = useCallback(() => {
-    if (!isLoading && input?.trim() && typeof handleSend === 'function') {
-      handleSend();
-    }
-  }, [handleSend, isLoading, input]);
-
-  const visibleMessages = useMemo(() => Array.isArray(messages) ? messages : [], [messages]);
+  }, []);
 
   return (
     <div className={styles.shell} data-testid="chatbot-only-shell">
@@ -462,47 +389,9 @@ export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
       />
 
       <main className={styles.main} aria-label="Conversazione UNLIM">
-        <header className={styles.chatHeader}>
-          <MascotteAvatar />
-          <div>
-            <h1 className={styles.chatHeaderTitle}>UNLIM</h1>
-            <p className={styles.chatHeaderSub}>
-              Ragazzi, qui parlate con il tutor — kit fisici sempre pronti.
-            </p>
-          </div>
-        </header>
-
-        <div ref={scrollRef} className={styles.chatScroll} data-testid="chatbot-chat-scroll">
-          {visibleMessages.map((m) => (
-            <ChatBubble key={m.id || `${m.role}-${m.content?.slice(0, 8) || Math.random()}`} message={m} />
-          ))}
-          {isLoading && <LoadingBubble />}
-        </div>
-
-        <div className={styles.composer}>
-          <textarea
-            className={styles.input}
-            value={input || ''}
-            onChange={onInputChange}
-            onKeyDown={onInputKeyDown}
-            placeholder="Ragazzi, scrivete cosa volete costruire dal kit ELAB…"
-            rows={2}
-            aria-label="Scrivete il vostro messaggio per UNLIM"
-            data-testid="chatbot-input"
-            disabled={isLoading}
-          />
-          <button
-            type="button"
-            className={styles.sendBtn}
-            onClick={onSendClick}
-            disabled={isLoading || !(input?.trim())}
-            aria-label="Invia messaggio a UNLIM"
-            data-testid="chatbot-send-btn"
-          >
-            <SendIcon size={18} color="var(--elab-hex-ffffff)" />
-            Invia
-          </button>
-        </div>
+        <Suspense fallback={<ChatPanelFallback />}>
+          <ChatbotChatPanel ref={panelRef} />
+        </Suspense>
       </main>
 
       <ToolsPalette
@@ -511,7 +400,7 @@ export default function ChatbotOnly({ onBackHome, onOpenLavagna }) {
         onFumetto={handleFumetto}
         onLavagna={handleLavagnaMini}
         onReset={handleResetClick}
-        busy={isLoading}
+        busy={panelBusy}
       />
     </div>
   );
