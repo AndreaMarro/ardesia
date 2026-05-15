@@ -9,7 +9,7 @@
 2. **Recommended Option A backward-compat** (Architect ADR-048): default `arduino:avr:nano:cpu=atmega328old` PRESERVED + ALLOWED_COMPILE_BOARDS extend + BoardSelector radio toggle in compile region. Scope ~6h, zero regression risk, aligned con Riccardo+Lino mandate.
 3. **Research surprise findings** (3 critici):
    - **3rd Renesas FQBN exists**: `arduino:renesas_uno:nanor4` (oltre `unor4wifi` + `minima`) — Q3 expanded a 3 opzioni vs 2.
-   - **WiFi=bossac vs Minima/Nano R4=dfu-util** — Phase 4 future dual-path. iter 59 PRD ADDENDUM dfu-util cmd `0x40010000` ERRATO — correct: `dfu-util --device 0x2341:0x0369 -a 0 -D <bin> -Q`. **PRD addendum needs correction**.
+   - **WiFi=bossac vs Minima/Nano R4=dfu-util** — Phase 4 future dual-path. Research correctly invalidato example dfu-util cmd `0x40010000` (citato in mio Research prompt) — actual Arduino official recipe: `dfu-util --device 0x2341:0x0369 -a 0 -D <bin> -Q` (NO `-s 0x40010000:leave`). **PRD doc stesso NON contiene quel cmd errato** (PRD lines 241/280/291 dicono solo "dfu-util" generale = corretto). Catch = anti-inflation Pattern C-V via Research subagent.
    - **WebSerial→RA4M1 DFU = 40-80h research project** zero OSS prior art. Strongly recommend Phase 4 DEFER iter 70+ OR descope completely. `arduino-create-agent` AGPL-3.0 alternative (invoke external NO fork).
 4. **Coder scaffold delivered** (NO merge): BoardSelector.jsx 148 LOC stub disabled=true default + api-js-annotations.md diff preview NOT applied. ZERO src/services/api.js edits. ZERO src/components/simulator/panels/ScratchEditor.jsx edits. ZERO commit/push.
 5. **Test plan complete**: 10 unit BoardSelector + 5 integration ALLOWED_COMPILE_BOARDS + 26 E2E parametric (13 Vol3 × 2 boards) + anti-regression gate (vitest 13118 PRESERVED) + Codex Pattern C-V per commit. Estimated vitest delta +15 arithmetic-proven post Phase 1.
@@ -55,8 +55,8 @@ NEW iter 62 entrance — Tea T4 first responder pilot 1 scuola con metric >30% l
 ### Carryover iter 58 A4.1e (3 voci):
 v3-cap9 orphan + capitoli pages + capitoli titles align.
 
-### NEW PRD ADDENDUM CORRECTION (Research finding 5):
-PRD §H Lino 5-step dfu-util command `0x40010000` ERRATO. Correct (Arduino official): `dfu-util --device 0x2341:0x0369 -a 0 -D <firmware.bin> -Q`. **Andrea ratify**: applico correzione iter 60 entrance OR docente Phase 4 (iter 70+) lookup official Arduino docs dfu-util at upload time.
+### RESEARCH FACTUAL CORRECTION (anti-inflation Pattern C-V catch):
+Research subagent correttamente invalidato dfu-util example cmd `0x40010000` (citato in MIO research prompt — NOT nel PRD doc). Actual Arduino official recipe: `dfu-util --device 0x2341:0x0369 -a 0 -D <firmware.bin> -Q` (NO `-s start-address`). PRD addendum doc stesso NON contiene cmd errato — grep CONFIRM zero hits `0x40010000` in docs/specs/. **NO Andrea ratify needed** — error transient nel prompt, persistent docs OK. **Anti-confabulation win**.
 
 ## NEW NON-GOALS iter 60+ (Research-driven additions)
 
@@ -127,7 +127,7 @@ Score brief synthesis ONESTO G45: **8.8/10** (raw 9.2 capped) — +0.3 vs iter 5
 
 - Phase 1 NO src code shipped yet (scaffold only, Andrea ratify Q1-Q3+Q3.5 pending).
 - Phase 4 WebSerial→RA4M1 DFU = 40-80h project Research-flagged → STRONGLY recommend DEFER iter 70+ or descope completely.
-- PRD addendum dfu-util cmd `0x40010000` ERRATO — Research correction PENDING Andrea decision.
+- ~~PRD addendum dfu-util cmd `0x40010000` ERRATO~~ → CORRECTED: error nel mio Research prompt (transient), PRD doc OK (grep CONFIRM zero `0x40010000` hits in docs/specs/). Pattern C-V via Research subagent catched MY confabulation. Anti-inflation WIN.
 - ADR-048 slug renumber 032→048 due collision Vertex EU ADR-032 existing.
 - Codex Pattern C-V final verify pendente pre-commit.
 - /ultrareview = USER-TRIGGERED only (Claude CANNOT launch).
