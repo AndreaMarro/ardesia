@@ -5,7 +5,7 @@
  * Andrea ratify Q-CODEMOD-1=a (PLURALE imperativo uniforme) + Q-CODEMOD-2 (teacher_message+teacher_response iter 62).
  *
  * Scope: scripts/sprint-u/linguaggio-codemod.mjs
- * - Verb map 40 entries singolare imperativo → plurale imperativo
+ * - Verb map 49+ entries singolare imperativo → plurale imperativo
  * - False positive guards: preceded-by (quando|se|dopo|prima|perché|mentre|finché|appena)
  * - Student speech inside '...' single quotes: preserve verbatim
  * - JSON path scope: phases[].teacher_tip + phases[].teacher_message + phases[].common_mistakes[].teacher_response
@@ -24,8 +24,8 @@ import {
 } from '../../scripts/sprint-u/linguaggio-codemod.mjs';
 
 describe('VERB_MAP', () => {
-  it('contains 40+ singolare→plurale mappings', () => {
-    expect(Object.keys(VERB_MAP).length).toBeGreaterThanOrEqual(40);
+  it('contains 49+ singolare→plurale mappings', () => {
+    expect(Object.keys(VERB_MAP).length).toBeGreaterThanOrEqual(49);
   });
 
   it.each([
@@ -57,6 +57,15 @@ describe('VERB_MAP', () => {
     ['Aiuta', 'Aiutate'],
     ['Sottolinea', 'Sottolineate'],
     ['Rafforza', 'Rafforzate'],
+    ['Ripeti', 'Ripetete'],
+    ['Segna', 'Segnate'],
+    ['Gira', 'Girate'],
+    ['Conta', 'Contate'],
+    ['Leggi', 'Leggete'],
+    ['Scrivi', 'Scrivete'],
+    ['Ascolta', 'Ascoltate'],
+    ['Calcola', 'Calcolate'],
+    ['Aspetta', 'Aspettate'],
   ])('maps singolare %s → plurale %s', (singolare, plurale) => {
     expect(VERB_MAP[singolare]).toBe(plurale);
   });
@@ -97,6 +106,34 @@ describe('transformText — verb map application', () => {
     const output = 'Chiedete prima.\nPoi Mostrate dopo.';
     expect(transformText(input)).toBe(output);
   });
+
+  it.each([
+    ["Ripeti l'esperimento.", "Ripetete l'esperimento."],
+    ['Segna sul quaderno.', 'Segnate sul quaderno.'],
+    ['Gira il potenziometro.', 'Girate il potenziometro.'],
+    ['Conta le pulsazioni.', 'Contate le pulsazioni.'],
+    ['Leggi il valore.', 'Leggete il valore.'],
+    ['Scrivi nel codice.', 'Scrivete nel codice.'],
+    ['Ascolta il segnale.', 'Ascoltate il segnale.'],
+    ['Calcola la corrente.', 'Calcolate la corrente.'],
+    ['Aspetta che si accenda.', 'Aspettate che si accenda.'],
+  ])('transforms new strict verb mapping: %s', (input, expected) => {
+    expect(transformText(input)).toBe(expected);
+  });
+
+  it.each([
+    "ripeti l'esperimento.",
+    'segna sul quaderno.',
+    'gira il potenziometro.',
+    'conta le pulsazioni.',
+    'leggi il valore.',
+    'scrivi nel codice.',
+    'ascolta il segnale.',
+    'calcola la corrente.',
+    'aspetta che si accenda.',
+  ])('preserves lowercase new strict verb as no-false-positive: %s', (input) => {
+    expect(transformText(input)).toBe(input);
+  });
 });
 
 describe('transformText — already-plurale guard (NO-OP)', () => {
@@ -133,6 +170,14 @@ describe('transformText — false positive guards (preceded-by SKIP)', () => {
     expect('se '.match(FALSE_POSITIVE_PRECEDED_BY)).toBeTruthy();
     expect('Quando '.match(FALSE_POSITIVE_PRECEDED_BY)).toBeTruthy();
     expect('chiedi '.match(FALSE_POSITIVE_PRECEDED_BY)).toBeFalsy();
+  });
+
+  it.each([
+    ['Quando ripeti il test, controlla.', 'Quando ripeti il test, controlla.'],
+    ['Se scrivi male, errore.', 'Se scrivi male, errore.'],
+    ['Dopo aver letto, premete.', 'Dopo aver letto, premete.'],
+  ])('preserves new verb false-positive guard case: %s', (input, expected) => {
+    expect(transformText(input)).toBe(expected);
   });
 });
 

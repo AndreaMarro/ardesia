@@ -77,7 +77,29 @@ export const VERB_MAP = Object.freeze({
   'Aiuta': 'Aiutate',
   'Sottolinea': 'Sottolineate',
   'Rafforza': 'Rafforzate',
+  // Iter 64 P0.8 — NEW strict case-sensitive imperativi (Andrea ratify gate)
+  'Ascolta': 'Ascoltate',
+  'Aspetta': 'Aspettate',
+  'Calcola': 'Calcolate',
+  'Conta': 'Contate',
+  'Gira': 'Girate',
+  'Leggi': 'Leggete',
+  'Ripeti': 'Ripetete',
+  'Scrivi': 'Scrivete',
+  'Segna': 'Segnate',
 });
+
+const STRICT_CASE_SENSITIVE_VERBS = Object.freeze(new Set([
+  'Ascolta',
+  'Aspetta',
+  'Calcola',
+  'Conta',
+  'Gira',
+  'Leggi',
+  'Ripeti',
+  'Scrivi',
+  'Segna',
+]));
 
 // ============================================================================
 // FALSE_POSITIVE_PRECEDED_BY — guard regex (subordinating conjunctions / interrogatives)
@@ -185,7 +207,10 @@ export function transformText(input, opts = {}) {
 
   for (const singolare of sortedKeys) {
     const plurale = VERB_MAP[singolare];
-    const pattern = buildVerbPattern(singolare, opts);
+    const caseInsensitive = opts.caseInsensitive === false
+      ? false
+      : !STRICT_CASE_SENSITIVE_VERBS.has(singolare);
+    const pattern = buildVerbPattern(singolare, { caseInsensitive });
     working = working.replace(pattern, (match) => preserveCase(match, plurale));
   }
 
@@ -394,7 +419,15 @@ async function cliMain() {
 
   if (args.mode === 'dry-run') {
     const targets = args.sample
-      ? listLessonPaths().slice(0, args.sample)
+      ? (() => {
+          const files = listLessonPaths();
+          const changedFiles = files.filter((f) => {
+            const fp = path.join(LESSON_PATHS_DIR, f);
+            const result = applyCodemod(fp, { dryRun: true });
+            return result.ok && result.changesCount > 0;
+          });
+          return (changedFiles.length > 0 ? changedFiles : files).slice(0, args.sample);
+        })()
       : args.file
       ? [`${args.file}.json`]
       : [];
