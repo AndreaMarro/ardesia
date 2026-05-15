@@ -1,11 +1,21 @@
 ---
 id: ADR-050
 title: Sense 1.6 GDPR Consent Flow design — Atom 0 prereq ADR-049 atomization
-status: PROPOSED
+status: ACCEPTED
+status_history:
+  - PROPOSED (2026-05-15 iter 64 entrance — Claude Opus 4.7 author design)
+  - ACCEPTED (2026-05-15 iter 64 entrance late — Andrea ratify gruppo 3 4/4 SI: D2 Consent UX 5 stati + D3 RTBF endpoint + D4 Open Q1-Q5 defaults all accepted)
+ratified_date: 2026-05-15
+q1_q5_resolved:
+  Q1_consent_timing: first_launch_modal (zero ambiguità GDPR Art. 7 informato + inequivocabile)
+  Q2_default_state: navy_solo_base_default_off (Art. 7 'libero', no nudge attivazione)
+  Q3_legal_review: self_cert_pilot_iter_66_67_then_avvocato_iter_68_pre_100_rollout
+  Q4_retention: 24_mesi (allinea anno scolastico Italian + nudge predittivo cross-anno)
+  Q5_sub_processor_trigger: commit_iter_65_with_status_pending_ui_deploy_flag
 date: 2026-05-15
 deciders:
   - Claude Opus 4.7 (iter 64 entrance — author Atom 0 design prereq ADR-049 atomization per Andrea Q1 delega "max qualità zero debito tecnico")
-  - Andrea Marro (final approver per consent flow UX + GDPR Art. 7 + L. 300/1970 Art. 4 compliance review)
+  - Andrea Marro (final approver iter 64 entrance — ratify gruppo 3 4/4 SI Q1-Q5 defaults + UX 5 stati + RTBF endpoint)
 extends:
   - ADR-049 (Sense 1.6 Morfismo extended runtime — 10 nuove dimensioni context, PROPOSED iter 63 entrance)
   - ADR-019 (Sense 1.5 Morfismo runtime — ACCEPTED iter 63 entrance)
