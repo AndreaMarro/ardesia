@@ -23,7 +23,7 @@ import { validatePrincipioZero, enforceItalianK12Opener, rewriteSingolareToPlura
 // Wire post-enforcer + pre-PZ-validator. Live smoke Q9 220V FAIL → safety_warning trigger.
 import { checkContentSafety } from '../_shared/content-safety-guard.ts';
 import { selectTemplate, executeTemplate } from '../_shared/clawbot-template-router.ts';
-import { aggregateOnniscenza } from '../_shared/onniscenza-bridge.ts';
+import { aggregateOnniscenza, aggregateOnniscenzaV2 } from '../_shared/onniscenza-bridge.ts';
 // iter 37 Phase 1 Atom A2 — pre-LLM regex classifier drives ENABLE_ONNISCENZA
 // conditional path: chit_chat skips aggregator (~500-1000ms saved), deep
 // questions / safety / citations preserve top-3, plurale ragazzi top-2.
@@ -173,8 +173,20 @@ serve(async (req: Request) => {
       debug_retrieval?: boolean;
       retrieval_mode?: 'hybrid' | 'dense' | 'auto';
       top_k?: number;
+      // iter 65 Atom 2.5 — ADR-049 Sense 1.6 V2 client-injected identifiers
+      // (existing iter 14 client localStorage convention: elab_anon_uuid + class_key).
+      // Optional, defensive: missing → V2 collectors return empty graceful.
+      teacher_anon_uuid?: string;
+      class_key?: string;
     };
     const { message, sessionId, circuitState, experimentId, simulatorContext, images, aiProfile: requestedAiProfile, aiDepth, unlimMode } = body;
+    // iter 65 Atom 2.5 — extract V2 identifiers (defensive: empty string treated as missing).
+    const teacherAnonUuid = typeof body.teacher_anon_uuid === 'string' && body.teacher_anon_uuid.trim().length > 0
+      ? body.teacher_anon_uuid.trim()
+      : undefined;
+    const classKey = typeof body.class_key === 'string' && body.class_key.trim().length > 0
+      ? body.class_key.trim()
+      : undefined;
     // Iter 10 P0 debug: surface retrieved chunks when bench/dev requests debug_retrieval=true
     const debugRetrieval = body.debug_retrieval === true;
     const retrievalModeReq = body.retrieval_mode;
@@ -566,39 +578,76 @@ serve(async (req: Request) => {
     // promptClass already computed above for live RAG retrieval gate.
     let onniscenzaSnapshot: unknown = null;
     let onniTopK = 3; // top-K used for prompt injection (default keeps existing behavior)
+    // iter 65 Atom 2.5 — V2 wire-up dispatch (ADR-049 Sense 1.6 EXTEND).
+    // Conditional path: when BOTH ENABLE_ONNISCENZA=true AND ENABLE_ONNISCENZA_V2=true
+    // we call aggregateOnniscenzaV2 to surface 4 NEW collectors (teacher_history +
+    // class_metadata + voice_movement + errore_pattern) + nudge_prediction STUB.
+    // V1 baseline always preserved inside V2 (Sense 1.5 unchanged). Defensive: on
+    // V2 throw OR null result we fall back to V1 path so chat flow NEVER breaks.
+    let onniscenzaV2Used = false;
+    const v2CollectorsStatus: Record<string, 'ok' | 'empty' | 'fail'> = {
+      teacher: 'empty',
+      class: 'empty',
+      voice: 'empty',
+      errore: 'empty',
+    };
     if ((Deno.env.get('ENABLE_ONNISCENZA') || 'false').toLowerCase() === 'true' && !promptClass.skipOnniscenza) {
       onniTopK = promptClass.topK;
       try {
         const supaUrl = (Deno.env.get('SUPABASE_URL') || '').trim();
         const supaKey = (Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '').trim();
-        // Lightweight inline supabase adapter (avoids extra import bloat)
+        // Lightweight inline supabase adapter (avoids extra import bloat).
+        // iter 65 Atom 2.5 — extended chain to support .order().eq().limit() pattern
+        // used by V2 collectors (D1 teacher_history_log, D2 class_session_metadata,
+        // D3 voice_movement_log, D4 errore_ricorrente_pattern). Each step returns
+        // the same chainable proxy; the terminal .limit(n) executes the fetch.
         let supaClient: unknown = null;
         if (supaUrl && supaKey) {
-          // Minimal fetch-based adapter compatible with onniscenza-bridge expectations
+          const baseHeaders = { 'apikey': supaKey, 'Authorization': `Bearer ${supaKey}` };
+          // deno-lint-ignore no-explicit-any
           supaClient = {
-            from: (table: string) => ({
-              select: (cols: string) => ({
-                eq: (col: string, val: unknown) => ({
-                  limit: (n: number) => fetch(
-                    `${supaUrl}/rest/v1/${table}?select=${cols}&${col}=eq.${val}&limit=${n}`,
-                    { headers: { 'apikey': supaKey, 'Authorization': `Bearer ${supaKey}` } },
-                  ).then((r) => r.ok ? r.json() : []),
-                  order: () => ({
-                    limit: (n: number) => fetch(
-                      `${supaUrl}/rest/v1/${table}?select=${cols}&${col}=eq.${val}&limit=${n}`,
-                      { headers: { 'apikey': supaKey, 'Authorization': `Bearer ${supaKey}` } },
-                    ).then((r) => r.ok ? r.json() : []),
-                  }),
-                }),
-              }),
-            }),
+            from: (table: string) => {
+              const filters: Array<{ col: string; val: unknown }> = [];
+              let orderClause = '';
+              const buildUrl = (cols: string, limitN: number) => {
+                const filterStr = filters.map(f => `${f.col}=eq.${encodeURIComponent(String(f.val))}`).join('&');
+                const orderStr = orderClause ? `&order=${orderClause}` : '';
+                const sep = filterStr ? '&' : '';
+                return `${supaUrl}/rest/v1/${table}?select=${cols}${sep}${filterStr}${orderStr}&limit=${limitN}`;
+              };
+              const buildChain = (cols: string) => {
+                const chain: any = {
+                  eq(col: string, val: unknown) { filters.push({ col, val }); return chain; },
+                  order(col: string, opts?: { ascending?: boolean }) {
+                    const dir = opts && opts.ascending === false ? 'desc' : 'asc';
+                    orderClause = `${col}.${dir}`;
+                    return chain;
+                  },
+                  limit(n: number) {
+                    return fetch(buildUrl(cols, n), { headers: baseHeaders })
+                      .then(async (r) => r.ok
+                        ? { data: await r.json(), error: null }
+                        : { data: [], error: { message: `http_${r.status}` } })
+                      .catch((e) => ({ data: [], error: { message: e instanceof Error ? e.message : String(e) } }));
+                  },
+                };
+                return chain;
+              };
+              return {
+                select(cols: string) { return buildChain(cols); },
+              };
+            },
           };
         }
         // iter 12 P0 fix #1 — caller history injection (audit P0 #3 chiuso).
         // loadRecentHistory carica ultimi 5 lesson_contexts assistant messages
         // → Onniscenza L6_chat_history popolata → memoria Q10 cross-msg PASS.
         const recentHistory = await loadRecentHistory(sessionId, 5).catch(() => []);
-        onniscenzaSnapshot = await aggregateOnniscenza({
+
+        // iter 65 Atom 2.5 — V2 conditional dispatch.
+        const onniscenzaV2Enabled =
+          (Deno.env.get('ENABLE_ONNISCENZA_V2') || 'false').toLowerCase() === 'true';
+        const sharedInput = {
           query: safeMessage,
           experiment_id: safeExperimentId,
           session_id: sessionId, // iter 35 fix Agent C audit: was undefined ref `safeSessionId` masked while ENABLE_ONNISCENZA off
@@ -608,7 +657,66 @@ serve(async (req: Request) => {
           // esclusi del tutto). Rimuovo opt-out per riabilitare. L1 RAG resta disabled
           // perché già fatto sopra (riga 298) — evita doppio retrieve.
           enable: { L1_rag: false /* already done above */ },
-        });
+        };
+
+        if (onniscenzaV2Enabled) {
+          // V2 path: baseline + 4 NEW collectors via Promise.all. Each collector
+          // is internally defensive (catches own errors → empty). Falls back to
+          // V1 path inside the same try/catch on outer V2 throw.
+          try {
+            const v2Snap = await aggregateOnniscenzaV2({
+              ...sharedInput,
+              teacher_anon_uuid: teacherAnonUuid,
+              class_key: classKey,
+              sense_1_6_enabled: true,
+            });
+            if (v2Snap && typeof v2Snap === 'object') {
+              onniscenzaSnapshot = v2Snap;
+              onniscenzaV2Used = true;
+              // Telemetry: per-collector status (ok = has data, empty = no data, fail handled in catch).
+              const teacherArr = (v2Snap as { teacher_history?: unknown[] }).teacher_history;
+              const classMeta = (v2Snap as { class_metadata?: unknown }).class_metadata;
+              const voiceSummary = (v2Snap as { voice_movement_summary?: unknown }).voice_movement_summary;
+              const erroreArr = (v2Snap as { errore_ricorrente_patterns?: unknown[] }).errore_ricorrente_patterns;
+              v2CollectorsStatus.teacher = Array.isArray(teacherArr) && teacherArr.length > 0 ? 'ok' : 'empty';
+              v2CollectorsStatus.class = classMeta && typeof classMeta === 'object' ? 'ok' : 'empty';
+              v2CollectorsStatus.voice = voiceSummary && typeof voiceSummary === 'object' ? 'ok' : 'empty';
+              v2CollectorsStatus.errore = Array.isArray(erroreArr) && erroreArr.length > 0 ? 'ok' : 'empty';
+            } else {
+              // Defensive fallback: null V2 result → V1 path.
+              v2CollectorsStatus.teacher = 'fail';
+              v2CollectorsStatus.class = 'fail';
+              v2CollectorsStatus.voice = 'fail';
+              v2CollectorsStatus.errore = 'fail';
+              onniscenzaSnapshot = await aggregateOnniscenza(sharedInput);
+            }
+          } catch (v2Err) {
+            // V2 threw → fallback V1 (defensive iter 64 close mandate).
+            console.warn(JSON.stringify({
+              level: 'warn', event: 'onniscenza_v2_fallback_to_v1',
+              error: v2Err instanceof Error ? v2Err.message : 'unknown',
+            }));
+            v2CollectorsStatus.teacher = 'fail';
+            v2CollectorsStatus.class = 'fail';
+            v2CollectorsStatus.voice = 'fail';
+            v2CollectorsStatus.errore = 'fail';
+            onniscenzaSnapshot = await aggregateOnniscenza(sharedInput);
+          }
+        } else {
+          // V2 flag off — preserve V1 path unchanged (Sprint S iter 31 prod LIVE).
+          onniscenzaSnapshot = await aggregateOnniscenza(sharedInput);
+        }
+
+        // iter 65 Atom 2.5 — telemetry log for canary observation.
+        console.info(JSON.stringify({
+          level: 'info',
+          event: 'onniscenza_v2_telemetry',
+          onniscenza_v2_used: onniscenzaV2Used,
+          v2_collectors_status: v2CollectorsStatus,
+          has_teacher_uuid: !!teacherAnonUuid,
+          has_class_key: !!classKey,
+          session_prefix: sessionId.slice(0, 8),
+        }));
       } catch (onniErr) {
         console.warn(JSON.stringify({
           level: 'warn', event: 'onniscenza_bridge_error',
