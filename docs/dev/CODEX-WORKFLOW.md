@@ -230,3 +230,73 @@ dump claude-mem altrove.
 - CLI reference: https://developers.openai.com/codex/cli/reference
 - Sandbox: https://developers.openai.com/codex/concepts/sandboxing
 - GPT-5.5: https://openai.com/index/introducing-gpt-5-5/
+
+---
+
+## iter 59 addendum — Andrea mandate "affina il workflow con codex" (2026-05-15)
+
+iter 59 entrance reaffirmed Pattern C-V default + codified reusable templates. Concrete deltas vs v2.0:
+
+### Reusable prompts library scaffold
+
+Directory `scripts/dev/codex-prompts/` created iter 59 entrance with parametric templates:
+
+| Template | Purpose | Parametric vars |
+|---|---|---|
+| `verify-anti-regression.txt` | post-commit pre-push 4-gate check | `$COMMIT_HASH`, `$BASELINE_COUNT` |
+| `verify-morfismo-compliance.txt` | palette + ToolSpec + lesson-paths Morfismo Sense 2 audit | `$SCOPE_FILES` |
+| `verify-codegen-output.txt` | scratchGenerator.js determinism AVR vs Renesas | `$BLOCK_TYPE`, `$BOARD_FQBN` |
+| `verify-lesson-path-edit.txt` | post-edit lesson-path/*.json chain integrity | `$LESSON_PATH_ID` |
+
+Pattern: `sed "s/\$VAR/value/g" template.txt | xargs -I{} bash codex-bg.sh task --profile verify "{}"`. Templates iterate iter 60+ as patterns emerge.
+
+### iter 58+iter 59 Codex track record
+
+| iter | Codex runs | All-PASS | Notable wins | Notable misses |
+|---|---|---|---|---|
+| 57 | 6 | 4/6 (2 reworked) | Caught 15th dangling ref; 5 Vol2 cap drifts validator masked | Sandbox heredoc block (run #1); ignored path restriction (run #2) — both reworked |
+| 58 | 2 | 2/2 | Cross-compile feasibility verdict + Phase 1 diff 3/3 CONFIRM zero regression | None |
+| 59 | 3 (so far) | 3/3 | Blockly cross-compile recon (CONFIRM keep generic Arduino C++) + iter 58 feasibility (SKIP live-terminal verdict) + UX blockers BG | Codex honestly noted §4 UX blockers couldn't answer under constraint — flagged, NOT fabricated |
+
+### Pattern C-V at every claim mandate (Andrea iter 59)
+
+- Every "done" / "verified" / "N tests pass" / "score X" claim is Pattern C-V verified.
+- Phase 1 commit b5d21c5b iter 58: Codex 3/3 CONFIRM cited file:line. Score 8.0/10 ONESTO not inflated.
+- iter 59 entrance commit (coming): will be Pattern C-V verified pre-push.
+
+### "NO live-terminal" decision codified
+
+iter 58 Codex feasibility BG `/tmp/codex-iter58-feasibility-claude-codex-live.txt` verdict:
+- Live-terminal feasible BUT high risk (focus stealing + OCR ambiguity + scrollback loss + no structured state).
+- `codex-bg.sh` already structured + auditable + reproducible — equivalent capability without fragility.
+- **Recommendation**: SKIP live-terminal, stick with `codex-bg.sh`. Reserve live-terminal only for macOS UI automation testing goal.
+
+### iter-aware task naming convention enforced
+
+Pattern: `iter{N}-{subsystem}-{action}-{optional-discriminator}`. Examples iter 58-59:
+- `iter58-feasibility-claude-codex-live`
+- `iter58-phase1-verify`
+- `iter59-blockly-cross-compile-recon`
+- `iter59-blockly-ux-blockers`
+
+Audit trail per iter = grep `/tmp/codex-iter58-*.txt` + `/tmp/codex-iter59-*.txt`.
+
+### Failure mode log update iter 59
+
+- Run #1 (cross-compile recon): PASS — Codex honest about UX blockers gap under constraint (didn't fabricate). New positive pattern: Codex flags "cannot answer under EXACTLY these commands" rather than confabulate.
+- Run #2 (Phase 1 verify): PASS — caught no regression but flagged intended side effect `percorsoGenerator.js:127` num ordering = Morfismo Sense 2 aligned, not regression.
+- Run #3 (UX blockers BG): **STUCK on stdin** — Codex CLI 0.128.0 read prompt arg as 39 bytes only then waited for stdin input. Likely cause: prompt contained `\|` escaped-pipe regex alternation in `grep -n 'aria-label\|tooltip\|title='` — parser may have interpreted as line continuation or escaped pipe input mode. **Mitigation iter 60+**: avoid `\|` in inline regex args within Codex prompts; use multi-grep on separate lines OR `grep -E '(a|b|c)'` ERE syntax OR pre-build pattern in env var. Killed via `pkill -f 'iter59-blockly-ux-blockers'`.
+
+### NEW failure mode added iter 59 (codex-cli prompt arg parsing)
+
+| Failure | Mitigation |
+|---|---|
+| Codex CLI 0.128.0 stuck on stdin reading 39 bytes of prompt arg when prompt contains `\\|` regex alternation | Use `grep -E '(pattern1|pattern2)'` ERE syntax in prompt, NOT `grep 'pattern1\|pattern2'` BRE syntax. Or split into separate grep commands. |
+
+### iter 60+ Codex roadmap
+
+- P0: complete `codex-prompts/` 5 templates (4 scaffolded + 1 cov-cycle pending).
+- P1: add `verify-spec-compliance.txt` (re-derive PRD acceptance criteria from code post-Phase implementation).
+- P2: add `verify-openapi-drift.txt` (n8n compile contract drift detection).
+- P2: integrate Codex per-gate in pre-push hook via 4-gate template (currently manual Pattern C-V).
+
