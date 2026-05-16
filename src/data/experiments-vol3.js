@@ -1017,6 +1017,19 @@ void loop() {
         }
       ],
       scratchXml: BLINK_SCRATCH,
+      // iter 71 TEAM C Vol3 first-vertical-slice — canonical Blink sketch reference Davide libro Vol.3 pag.5
+      // Single source of truth: src/data/vol3-blink-canonical-sketch.txt
+      // Pipeline: src/services/elab-agent/vol3-experiments-pipeline.js compileVol3Experiment("v3-cap5-esp1")
+      compiledSketchTemplate: {
+        pipelineId: "v3-cap5-esp1",
+        boardId: "arduino-nano-r4",
+        canonicalSketchPath: "src/data/vol3-blink-canonical-sketch.txt",
+        ledPin: 13,
+        serialBaud: 9600,
+        delayOnMs: 1000,
+        delayOffMs: 1000,
+        provenance: "Davide Fagherazzi Volume 3 cap.5 esp.1 pag.5 — Andrea iter 71 TEAM C 2026-05-16"
+      },
       steps: [
         "Collega l'Arduino Nano al computer con il cavo USB.",
         "Apri l'editor e scrivi il codice: pinMode(13, OUTPUT) nel setup(), poi digitalWrite e delay nel loop().",

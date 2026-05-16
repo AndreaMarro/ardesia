@@ -21,6 +21,7 @@ import path from 'node:path';
 import os from 'node:os';
 import crypto from 'node:crypto';
 import { loadBoardProfile } from './sketch-builder.js';
+import { translateArduinoCliError, translateSpawnError } from './error-translator.js';
 
 const ARDUINO_CLI = process.env.ELAB_ARDUINO_CLI || 'arduino-cli';
 const DEFAULT_BOARD_ID = 'arduino-nano-r4';
@@ -256,23 +257,25 @@ export async function handleCompile({ code, boardId = DEFAULT_BOARD_ID }) {
     ]);
 
     if (res.code !== 0) {
+      // iter 71 TEAM C PART 2: use error-translator.js (7 categories + compile_failed sub-hints)
       return {
         ok: false,
         jobId,
         sketchDir,
         buildDir,
-        error: buildDocenteError(categorizeError(res.stderr), res.stderr),
+        error: translateArduinoCliError(res.stderr, res.code, { operation: 'compile' }),
       };
     }
 
     return { ok: true, jobId, sketchDir, buildDir, stdout: res.stdout };
   } catch (err) {
+    // iter 71 TEAM C PART 2: spawn error (ENOENT) → translateSpawnError canonical
     return {
       ok: false,
       jobId,
       sketchDir,
       buildDir,
-      error: buildDocenteError(err.category || 'spawn_error', err.message || err.detail),
+      error: translateSpawnError(err),
     };
   }
 }
@@ -309,10 +312,11 @@ export async function handleUpload({ jobId, port, boardId = DEFAULT_BOARD_ID }) 
     ], { timeoutMs: 60000 });
 
     if (res.code !== 0) {
+      // iter 71 TEAM C PART 2: error-translator (operation: 'upload' disambig hint)
       return {
         ok: false,
         jobId,
-        error: buildDocenteError(categorizeError(res.stderr), res.stderr),
+        error: translateArduinoCliError(res.stderr, res.code, { operation: 'upload' }),
       };
     }
 
@@ -321,7 +325,7 @@ export async function handleUpload({ jobId, port, boardId = DEFAULT_BOARD_ID }) 
     return {
       ok: false,
       jobId,
-      error: buildDocenteError(err.category || 'spawn_error', err.message || err.detail),
+      error: translateSpawnError(err),
     };
   }
 }
