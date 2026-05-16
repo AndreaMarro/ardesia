@@ -1936,3 +1936,74 @@ Linee CLAUDE.md 736 + 1149 + 1174 + 1800 + 1871 (iter 5 P3 + iter 29 + iter 30 +
 ### Baseline sync iter 62 close
 
 `automa/baseline-tests.txt` 13106 → 13209 sync chore P0.2 done. Canonical: 13197 (iter 61 +79 codemod) + 12 iter 62 B1.5 NEW = 13209 vitest PASS verified prod fresh run (49s, 327 Test Files PASS).
+
+## Sprint U iter 66 close (2026-05-16 AM) — Drift fix + R5 banner + Galileo→UNLIM cleanup
+
+**Score iter 66 close ONESTO G45**: **9.0/10** (+0.3 vs iter 65 close 8.7/10).
+
+**Pattern**: Orchestrator inline + 2-subagent BG parallel (worktree isolation per iter 65 race-cond lesson). Pattern S race-cond fix VALIDATED **11th iter consecutive** (iter 5+6+8+11+12+19+36+37+38+43+**66**).
+
+**Iter 66 entrance truth recalibration vs iter 65 PARTIAL handoff STALE**:
+- Atom 2.5 onniscenza-bridge V2 ✅ ALREADY COMMITTED `9bfb2a85` Andrea 2026-05-15 23:05:48 PM (NOT pending recovery as PARTIAL claimed)
+- npm audit fix ✅ 0 vulns LIVE (`902a4cef` holds, NOT reverted)
+- Push origin ✅ CONFIRMED `a4276597` matches remote
+- Iter 65 real score 8.7/10 G45 (NOT downgrade 8.0)
+- Linguaggio codemod ✅ 0 violations remaining iter 61 B1 + iter 64 P0.8 (mandate CLOSED, NOT 200 pending)
+- /tmp recovery files LOST (Mac reboot) — non-impact since Atom 2.5 shipped
+
+**Deliverables iter 66 shipped**:
+- `314cb6e5` chore(P0.-1): drift fix `compileAgentDetect.js` mid-function copyright → JSDoc `@copyright` tag (orchestrator inline, 22/22 PASS preserved)
+- `2f7d7611` feat(P0.3): R5 HomePage `CompileAgentBanner.jsx` 276 LOC + `.module.css` 210 LOC + 14/14 unit tests + `HomePage.jsx +15` + `ElabIcons.jsx +38` (DownloadIcon + CheckIcon + DesktopIcon) — 4 platform states (Mac online/offline + Win/Linux + unknown) consume R4 `getCompileAgentStatus` + `getAgentInstallInstructions`. Subagent BG hit `vi.useFakeTimers()` test bug, orchestrator inline diagnosed + surgical fix (2 edits: remove fake from beforeEach + T10 selective `toFake: ['setInterval', 'clearInterval']`). Post-fix 14/14 stable 3x CoV 82-102ms (was 195s).
+- `0a2c35b5` feat(P0.0): Galileo→UNLIM source refactor mandate #14 — 83 → 35 refs ALL alias-only (preserved per Andrea explicit: `useGalileoChat.js` filename + `elab-galileo.onrender.com` external URL + asset paths + explanatory comments + legacy files on disk for dynamic string imports). 16 files (3 NEW `UnlimAdapter.jsx/css` + `UnlimResponsePanel.jsx`) + 13 MOD. Subagent BG clean completion 1387s + 111 tools.
+- `713a9d81` merge: `feat/iter-66-galileo-cleanup` → main work branch (post R5 fast-forward `314cb6e5` → `2f7d7611`)
+
+**CoV iter 66 post-merge full vitest**: **13428 PASS** + 15 skipped + 12 todo (13455 total) — 332 Test Files passed — 90.25s. Baseline math exact: 13411 (iter 65) + 14 R5 + 3 Galileo = 13428 ✅. Zero regressions.
+
+**Stash cleanup**: dropped iter-65 obsoleti `{2-6}` (5 entries, SUPERSEDED by Atom 2.5 commit `9bfb2a85`). Queue 20 → 15 entries. Preserved `stash@{0-1}` (legacy Galileo recovery superset, can drop iter 67 post verify) + `stash@{2-14}` legacy other branches.
+
+**Worktrees iter 66 lifecycle**:
+- Created: `../elab-builder-galileo` + `../elab-builder-r5` (base `314cb6e5`)
+- Disjoint physical paths + git index → zero race-cond risk
+- Both subagents shipped commits independently
+- Post-merge: `git worktree remove --force` + `git branch -d` (branches merged)
+- Final: 11 worktrees (main + codex + final + watchdog + 5 .claude legacy sprint agents)
+
+**Pattern S 5-pronged race-cond mitigation applied iter 66** (iter 65 lesson):
+1. Single-agent serial per file ownership cluster ✓
+2. Git worktree isolation per BG ✓
+3. Quick-regression delta scope test ✓
+4. Filesystem implicit lock per worktree ✓
+5. Process cleanup post-agent termination ✓
+
+**Subagent BG behavior iter 66**:
+- R5 (frontend-developer): died waiting Monitor event 483s + 28 tools, source quality ✅ MA test 13/14 FAIL → orchestrator inline surgical fix waitFor+fakeTimers compat
+- Galileo (legacy-modernizer): clean completion 1387s + 111 tools, commit + own message + CoV 3x ✓
+
+**Honest gaps iter 66 → iter 67**:
+1. Push origin iter 66 commits PENDING Andrea ratify (orchestrator no autonomous push)
+2. Iter 65 PARTIAL handoff STALE — archive iter 67 P0.10
+3. galileo-mcp drift origin NOT traced — monitor recurrence
+4. Galileo cleanup partial 35 refs alias-only — verify safe delete legacy files iter 67+ post dynamic import grep
+5. v55 deploy + canary + Atom 3 + R7 + Tea PLAN + Renesas purge + 94 esperimenti audit ALL DEFERRED iter 67+
+
+**Iter 67 priorities P0** (cascade target 9.0 → 9.3+/10):
+1. Andrea SQL push + v55 deploy + ENABLE_ONNISCENZA_V2 (~15min terminale)
+2. Canary rollout v55 gradient (raccomandato) OR direct 100%
+3. R7 Lavagna+IDE Blockly subagent (~6h consume R4 + ElabIcons banner pattern)
+4. Atom 3 system-prompt v3.2 Sense 1.6 inject (~4h post v55)
+5. Tea folder review scope decision Andrea (PLAN-unlim-prof-pilot-chatgpt multi-week)
+6. Renesas RA4M1 docs purge ~2h Andrea ratify scope first
+7. 94 esperimenti Playwright UNO PER UNO audit subagent ~8-10h
+8. Iter 65 PARTIAL handoff archive con STALE marker
+9. Codex plugin-cc install Andrea slash command sequence
+10. galileo-mcp drift mystery investigation if recurrent
+
+**Sprint U close projection iter 70+**: 9.5+/10 ONESTO conditional Onnipotenza Deno port + 94 esperimenti complete + Vol3 narrative refactor Davide co-author + grafica overhaul Impeccable+Fusion + Opus indipendente review G45 mandate.
+
+**Anti-inflation G45 mandate iter 66 enforced**: cap 9.0/10 honest. NO claim "v55 LIVE" (defer iter 67). NO claim "Sprint U close" (iter 70+ projection). NO claim above 9.5 senza Opus indipendente. CoV exact math 13411 + 17 = 13428 verified ✅.
+
+**Cross-link docs iter 66**:
+- Entrance truth recalibration: `docs/audits/2026-05-16-iter-66-ENTRANCE-truth-recalibration-audit.md`
+- PHASE 3 close audit: `docs/audits/2026-05-16-iter-66-PHASE3-CLOSE-audit.md`
+- Handoff iter 67: `docs/handoff/2026-05-16-iter-66-to-iter-67-handoff.md`
+- Iter 65 PARTIAL handoff (STALE archive iter 67): `docs/handoff/2026-05-15-iter-65-PARTIAL-to-iter-66-RECOVERY.md`
