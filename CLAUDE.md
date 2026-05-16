@@ -2077,8 +2077,51 @@ Linee CLAUDE.md 736 + 1149 + 1174 + 1800 + 1871 (iter 5 P3 + iter 29 + iter 30 +
 
 **Cross-link docs iter 67 entrance**:
 - Entrance PHASE 1 audit: `docs/audits/2026-05-16-iter-67-ENTRANCE-PHASE1-audit.md`
+- PHASE 2 deploy audit: `docs/audits/2026-05-16-iter-67-PHASE2-deploy-audit.md`
 - Handoff iter 68: `docs/handoff/2026-05-16-iter-67-to-iter-68-handoff.md`
 - Iter 65 PARTIAL archive STALE: `docs/handoff/archive/2026-05-15-iter-65-PARTIAL-STALE.md`
 - Tea PLAN: `/Users/andreamarro/VOLUME 3/TEA/PLAN-unlim-prof-pilot-chatgpt.md`
 - Brief Tea iter 58: `/Users/andreamarro/VOLUME 3/TEA/iter-58-brief-tea.md`
 - Brief Matteo iter 58: `/Users/andreamarro/VOLUME 3/TEA/iter-58-brief-matteo.md`
+
+## Sprint U iter 67 PHASE 2 DEPLOY close (2026-05-16 PM) — P0.1 LIVE PROD direct 100% boolean
+
+**Score iter 67 PHASE 2 close ONESTO G45**: **9.2/10** (+0.1 vs PHASE 1 close 9.1).
+
+**Pattern**: Andrea guided step-by-step + orchestrator ratify gate ogni destructive op. Boolean direct deploy (NON gradient) per code limit reveal Step 5 BLOCKER.
+
+**Steps execution iter 67 PHASE 2**:
+- Step 1 ✅ `git push origin` iter 67 PHASE 1 close commit `bc37cf7b` LANDED remote (pre-push hook gate 13428 PASS baseline 13118)
+- Step 3 ✅ `supabase migration list --linked` drift verify: 4 LOCAL `20260515174301-04` pending REMOTE
+- Step 4 ✅ `supabase db push --linked` apply 4 migrations ADR-049 Sense 1.6 Atom 1 PROD `euqpdueopmlllqjmqnyb` (teacher_history_log + class_session_metadata + voice_movement_log + errore_ricorrente_pattern, all CREATE TABLE IF NOT EXISTS idempotent + policy DROP-CREATE)
+- Step 5a ✅ `supabase secrets set ENABLE_ONNISCENZA_V2=true` PROD (hash `b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b` = sha256("true"))
+- Step 5b ✅ `supabase functions deploy unlim-chat` 17 asset upload v55+ LIVE PROD
+- Step 6 ⏸ smoke curl verify DEFERRED iter 68 entrance (ELAB_API_KEY plain non disponibile local; Andrea verifica Supabase Dashboard Logs visivamente)
+- Step 7 ⏸ 1000q matrix iter 41 v67 re-verify DEFERRED iter 68 entrance (script needs VITE_ELAB_API_KEY from /tmp/vercel.env wiped Mac reboot)
+
+**CRITICAL FINDING canary code limit**:
+Andrea ratified PHASE 1 canary gradient 5%→25%→100% (Recommended). Code analysis post-deploy revealed boolean-only flag `Deno.env.get('ENABLE_ONNISCENZA_V2') === 'true'` at line 649 `unlim-chat/index.ts`. **Gradient NON supportato**. Andrea Step 5 re-ratify chose Direct 100% boolean (atomic switch, NO gradient safety net). Iter 69+ task: implement % sampling OR keep boolean pattern. Dead secrets `CANARY_ONNISCENZA_V21_PERCENT` + `ENABLE_ONNISCENZA_V21` exist server-side ma codice NON le legge (V21 namespace orphan cleanup candidate).
+
+**Anti-inflation G45 PHASE 2 enforced**:
+- Cap 9.2/10 honest (raw 9.3 → verify gap deduction)
+- NO claim "canary gradient LIVE" (boolean direct 100% admitted)
+- NO claim "smoke verified LIVE" (Step 6 deferred)
+- NO claim "1000q matrix preserved" (Step 7 deferred)
+- ENABLE_ONNISCENZA_V2 secret LIVE PROD verified hash match secrets list + 4 migrations LOCAL==REMOTE verified
+
+**Iter 68 entrance priorities P0** (cascade target 9.2 → 9.5+/10):
+1. Andrea source ELAB_API_KEY + VITE_ELAB_API_KEY from Vercel Dashboard + paste /tmp/vercel.env + re-establish .env local
+2. Step 6 smoke curl verify telemetry prompt_class + onniscenza_v2_used
+3. Step 7 1000q matrix iter 41 v67 re-verify baseline preserve 1000/1000 PASS
+4. R7 Lavagna Compile+Upload subagent BG worktree dispatch (spec PHASE 1 audit §7 + handoff §4 ready)
+5. Atom 3 system-prompt v3.2 Sense 1.6 inject subagent BG (~4h post smoke verify)
+6. Renesas RA4M1 docs purge subagent post Andrea scope ratify 3 options
+7. Tea T1+T4 Mac Mini SSH ad-hoc delegate (Andrea attiva)
+8. Codex plugin-cc install slash command sequence
+9. CANARY_ONNISCENZA_V21_PERCENT + ENABLE_ONNISCENZA_V21 dead secrets cleanup OR implement % sampling code
+10. iter 69+ Matteo team integrate + 6 NEW Volume PDF folders OCR batch Mac Mini overnight
+
+**Cross-link PHASE 2**:
+- PHASE 2 audit: `docs/audits/2026-05-16-iter-67-PHASE2-deploy-audit.md`
+- PHASE 1 audit: `docs/audits/2026-05-16-iter-67-ENTRANCE-PHASE1-audit.md`
+- Edge Function Dashboard: https://supabase.com/dashboard/project/euqpdueopmlllqjmqnyb/functions/unlim-chat
