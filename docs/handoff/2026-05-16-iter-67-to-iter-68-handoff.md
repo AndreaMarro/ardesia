@@ -54,44 +54,50 @@ PATTERN S 5-PRONGED iter 68+ MANDATE (iter 65+66 race-cond lesson validated 11×
 - Process cleanup post-agent termination + completion msg emission CoV
 ```
 
-## §2 Setup steps Andrea iter 68 entrance (~30 min terminale)
+## §2 Setup steps Andrea iter 68 entrance — CORRECTED iter 67 PHASE 7 (Codex stop-time review)
+
+> ⚠️ **PASTE-BLOCK CORRETTO iter 67 PHASE 7 (post Codex review)**
+>
+> Versione ORIGINALE PHASE 1 = PERICOLOSA (recreates regression):
+> 1. Step 5b `supabase functions deploy unlim-chat` SENZA `--no-verify-jwt` → ricreava warmup_cron 401 regression iter 67 PHASE 2 (fix verified iter 67 PHASE 3)
+> 2. `ENABLE_ONNISCENZA_V2_PERCENT=5/25/100` canary SQL var **NON ESISTE code path** (boolean only verified PHASE 2 line 649 `unlim-chat/index.ts`). Set di V2=true ricrea volpag 23% + offtopic 88% regression iter 67 PHASE 6.
+>
+> Current PROD state post iter 67 PHASE 3+6:
+> - Edge Function `unlim-chat` v240+ deployed `--no-verify-jwt` (warmup_cron 200/200 verified)
+> - `ENABLE_ONNISCENZA_V2=false` (rollback iter 67 PHASE 6, volpag/offtopic root cause iter 68 fix pending)
+>
+> NO redeploy unlim-chat senza A-NEW-1 + A-NEW-2 fixes verified ≥98% matrix.
 
 ```bash
 # 1) Verify environment iter 68 entrance
 cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"
-git log --oneline -5  # Expect <iter 67 close SHA> + 6d7266fb (iter 66) on top
+git log --oneline -5  # Expect 7f524666 (iter 67 PHASE 6) HEAD
 git status --short    # Expect clean
-git fetch origin && git status -sb | head -3  # Verify no remote divergence
+git fetch origin && git status -sb | head -3
 
 # 2) Pre-flight CoV iter 68 entrance
+source ~/.elab-credentials/elab-keys.env  # ELAB_API_KEY + VITE_ELAB_API_KEY
 npx vitest run --reporter=basic 2>&1 | tail -10  # Target ≥13428 PASS
 
-# 3) Push iter 67 close to origin (Andrea ratify gate)
-git push origin feat/iter-41-sprint-u-cycle-2-real-user-fix
+# 3) (iter 67 push already done — skip)
 
-# 4) Andrea SQL push migrations
+# 4) Andrea SQL push migrations — only if new migrations LOCAL after iter 67 PHASE 2
 npx supabase migration list --linked  # Verify drift
-npx supabase db push --linked
+# If new migrations: npx supabase db push --linked
 
-# 5) Canary rollout v55 gradient 0 → 5%
-npx supabase secrets set ENABLE_ONNISCENZA_V2_PERCENT=5 --project-ref euqpdueopmlllqjmqnyb
-npx supabase functions deploy unlim-chat --project-ref euqpdueopmlllqjmqnyb
+# 5) ⚠️ NO REDEPLOY unlim-chat iter 68 entrance senza A-NEW-1 + A-NEW-2 fixes shipped
+#    NO ENABLE_ONNISCENZA_V2_PERCENT (NOT a code path — boolean only)
+#    NO ENABLE_ONNISCENZA_V2=true (causes volpag 23% + offtopic 88% regression iter 67 PHASE 6 baseline)
+#    Current state ENABLE_ONNISCENZA_V2=false (rollback verified PHASE 6, preserve)
 
-# 6) Smoke verify 5% canary telemetry
-curl -X POST "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat" \
-  -H "Authorization: Bearer $ELAB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"message":"Ragazzi, oggi accendiamo un LED","class_key":"test-iter68-canary5"}'
-# Verify telemetry onniscenza_v2_used:true OR false (5% sampling expected)
+# 6) Run baseline 1000q matrix (verify current state STILL 92.1% pre-fixes, NO further regression)
+python3 scripts/bench/run-1000-matrix.py 2>&1 | tail -10  # Expect 92.1% target current baseline
 
-# 7) Canary 5% → 25% (post 1h verify no errors)
-npx supabase secrets set ENABLE_ONNISCENZA_V2_PERCENT=25 --project-ref euqpdueopmlllqjmqnyb
-
-# 8) Canary 25% → 100% (post 6h verify no errors)
-npx supabase secrets set ENABLE_ONNISCENZA_V2_PERCENT=100 --project-ref euqpdueopmlllqjmqnyb
-
-# 9) Re-verify 1000-query matrix iter 41 v67 baseline post-100%
-node scripts/bench/run-1000-query-matrix.mjs  # Target 1000/1000 PASS preserved
+# 7) ⚠️ POST A-NEW-1 + A-NEW-2 FIXES SHIPPED iter 68 ONLY (NOT before):
+#    Redeploy command MUST include --no-verify-jwt to preserve warmup_cron 200 OK:
+#      npx supabase functions deploy unlim-chat --no-verify-jwt --project-ref euqpdueopmlllqjmqnyb
+#    PreToolUse hook scripts/agents/guard-deploy-unlim-chat.sh blocks deploy senza flag (iter 67 PHASE 4 verified)
+#    Re-run matrix verify ≥98% post-fixes target (then iter 68 close ratify)
 ```
 
 ## §3 Andrea ratify queue gruppo 7 iter 68 entrance (5 voci max)

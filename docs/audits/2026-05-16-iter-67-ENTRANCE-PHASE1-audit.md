@@ -235,38 +235,16 @@ Output: file system verified deliverables + completion msg automa/team-state/mes
 ## P0.1 deploy paste-block Andrea terminal iter 68 entrance (~30min canary gradient)
 
 ```bash
-# 1) Verify environment iter 68 entrance
-cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"
-git log --oneline -5  # Expect 6d7266fb HEAD + iter 67 close commit on top
-git status --short    # Expect clean
-
-# 2) Pre-flight CoV iter 68 entrance
-npx vitest run --reporter=basic 2>&1 | tail -10  # Target ≥13428 PASS
-
-# 3) Andrea SQL push migrations
-npx supabase migration list --linked  # Verify drift
-npx supabase db push --linked
-
-# 4) Canary rollout v55 gradient 0 → 5%
-npx supabase secrets set ENABLE_ONNISCENZA_V2_PERCENT=5 --project-ref euqpdueopmlllqjmqnyb
-npx supabase functions deploy unlim-chat --project-ref euqpdueopmlllqjmqnyb
-
-# 5) Smoke verify 5% canary telemetry
-curl -X POST "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat" \
-  -H "Authorization: Bearer $ELAB_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"message":"Ragazzi, oggi accendiamo un LED","class_key":"test-iter68-canary5"}'
-# Verify telemetry onniscenza_v2_used:true OR false (5% sampling expected)
-
-# 6) Canary 5% → 25% (post 1h verify no errors)
-npx supabase secrets set ENABLE_ONNISCENZA_V2_PERCENT=25 --project-ref euqpdueopmlllqjmqnyb
-
-# 7) Canary 25% → 100% (post 6h verify no errors)
-npx supabase secrets set ENABLE_ONNISCENZA_V2_PERCENT=100 --project-ref euqpdueopmlllqjmqnyb
-
-# 8) Re-verify 1000-query matrix iter 41 v67 baseline post-100%
-cd "/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder"
-node scripts/bench/run-1000-query-matrix.mjs  # Target 1000/1000 PASS preserved
+# ⚠️ PASTE-BLOCK ORIGINALE PHASE 1 = PERICOLOSA — vedi versione CORRETTA handoff iter 68 §2
+# Codex stop-time review iter 67 PHASE 7 flagged:
+# 1. Deploy SENZA --no-verify-jwt = ricrea warmup_cron 401 regression iter 67 PHASE 2 (resolved PHASE 3)
+# 2. ENABLE_ONNISCENZA_V2_PERCENT canary var NON ESISTE code path (boolean only verified PHASE 2 line 649)
+# 3. Set V2=true OR redeploy senza fixes A-NEW-1 + A-NEW-2 = ricrea volpag 23% + offtopic 88% regression iter 67 PHASE 6
+#
+# Per paste-block CORRETTO + canary strategy honest, vedi:
+#   docs/handoff/2026-05-16-iter-67-to-iter-68-handoff.md §2 (post Codex review fix)
+#
+# Iter 67 PHASE 5+6 atomization REFINED — A-NEW-1 + A-NEW-2 fix prima qualsiasi redeploy.
 ```
 
 ## CoV iter 67 entrance verified
