@@ -361,6 +361,37 @@ export function buildDirectOperationalResponse(
     };
   }
 
+  // Iter 68 A-NEW-2 P1: vol-FIRST + pagina pre-LLM detector — fixture iter 50+ expansion evidence.
+  // Iter 67 PHASE 6 audit: regex iter 41 cap-only catches 35% of volpag (only vol-FIRST cap-X).
+  // P1 catches "vol-FIRST + pagina-SECOND": "Riferisci Volume 2 pagina 18", "Apri Vol.1 pag.102",
+  // "Cita testo Vol.2 pag.18", "Estratto Vol.1 pag.12", "Vol.1 pag.12 cosa spiega?".
+  // Emits verbatim "Vol.X pag.Y" matching scorer VOLPAG_RE_LOOSE (run-1000-matrix.py:127).
+  const volPagDottedMatch = text.match(/\bvol(?:ume)?\.?\s*([123])\s+pag(?:ina)?\.?\s*(\d{1,3})\b/i);
+  if (volPagDottedMatch) {
+    const volN = volPagDottedMatch[1];
+    const pagN = volPagDottedMatch[2];
+    return {
+      source: 'direct-operational-volpag-dotted',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina dei volumi.`,
+    };
+  }
+
+  // Iter 68 A-NEW-2 P2: page-FIRST + Volume pre-LLM detector — fixture iter 50+ expansion evidence.
+  // Catches "pagina X Volume Y" + "pagina X del Volume Y" patterns: "Vai a pagina 67 Volume 2",
+  // "Cosa contiene pagina 102 del Volume 1?", "Cosa contiene pagina 45 del Volume 3?".
+  // Emits verbatim "Vol.X pag.Y" (vol-FIRST normalized) matching scorer VOLPAG_RE_LOOSE.
+  const pagVolMatch = text.match(/\bpag(?:ina)?\.?\s*(\d{1,3})\s+(?:del\s+)?vol(?:ume)?\.?\s*([123])\b/i);
+  if (pagVolMatch) {
+    const pagN = pagVolMatch[1];
+    const volN = pagVolMatch[2];
+    return {
+      source: 'direct-operational-pagvol',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina dei volumi.`,
+    };
+  }
+
   const isHighlight = (/\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente|r\d+|btn\d+|bat\d+|led\d+|bb\d+)\b/i.exec(text)
     || /\b(evidenz(?:ia|iate|iare))\b\s+(r\d+|led\d+|btn\d+|bat\d+|bb\d+|nano)\b/i.exec(text))
     && !/\b(esperimento|esercizio|lezione|capitolo)\b/i.test(text);

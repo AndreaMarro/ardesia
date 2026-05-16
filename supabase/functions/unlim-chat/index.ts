@@ -54,6 +54,7 @@ const ITER27_SAFETY_BROAD_RE = /\b(scossa|scoss[ae]|elettrocuzion[ei]|brucia(?:r
 // when the model didn't return parseable JSON (defensive).
 import { INTENT_TOOLS_SCHEMA, shouldUseIntentSchema, CANONICAL_INTENT_TOOLS } from '../_shared/intent-tools-schema.ts';
 import { buildDirectOperationalResponse, capWordsPreservingControlTags, UNLIM_MAX_VISIBLE_WORDS } from '../_shared/operational-response.ts';
+import { stripInvalidExperimentTags, validateExperimentIdExists } from '../_shared/experiment-registry.ts';
 import { selectUnlimAiProfile } from '../_shared/unlim-ai-profiles.ts';
 
 // CORS headers dynamically generated per-request via getCorsHeaders(req)
@@ -1233,8 +1234,25 @@ serve(async (req: Request) => {
     // browser whitelist case-insensitive accepts only `[azione:...]` so untranslated
     // tags get silently dropped. Translation in regex preserve order + payload.
     const translatedText = (result.text || '').replace(/\[ACTION:/gi, '[AZIONE:');
+
+    // Iter 68 A-NEW-1 — Post-LLM offtopic hallucination scrubber.
+    // Iter 67 PHASE 6 root cause: LLM hallucinates fake experiment IDs for offtopic
+    // queries ("Borsa Tokyo apertura" → [AZIONE:loadexp:borsa_tokyo_apertura]).
+    // Real user clicks → broken state (12 failures iter 67 PHASE 6 matrix V2 OFF).
+    // Strip AZIONE:loadexp + INTENT mountExperiment tags whose ID NOT in registry.
+    // Telemetry: log stripped IDs for offtopic hallucination tracking.
+    const { text: validatedText, stripped: invalidIds } = stripInvalidExperimentTags(translatedText);
+    if (invalidIds.length > 0) {
+      console.info(JSON.stringify({
+        level: 'info', event: 'invalid_experiment_ids_stripped',
+        count: invalidIds.length,
+        ids: invalidIds,
+        timestamp: new Date().toISOString(),
+      }));
+    }
+
     const cappedText = capWordsPreservingControlTags(
-      translatedText,
+      validatedText,
       Math.min(activeAiProfile.maxVisibleWords || UNLIM_MAX_VISIBLE_WORDS, UNLIM_MAX_VISIBLE_WORDS),
     );
 
@@ -1291,6 +1309,33 @@ serve(async (req: Request) => {
       console.warn('[Nanobot V2] intent-parser error (non-blocking):', intentErr);
       parsedIntents = [];
       cleanText = cappedText;
+    }
+
+    // Iter 68 A-NEW-1 post-parse mountExperiment ID validator (Codex Pattern C finding 1+2+3).
+    // Catches all INTENT variants that scrubber regex missed:
+    //   - schema-mode preparsedIntents (Mistral structured output bypasses text scrubber)
+    //   - parser-accepted shape variants (whitespace, action/params aliases, single quotes, extra fields)
+    // Filters mountExperiment intents whose args.id NOT in 79-entry registry.
+    // Defensive: catches all parsed shapes regardless of source path.
+    if (parsedIntents.length > 0) {
+      const droppedExperimentIds: string[] = [];
+      parsedIntents = parsedIntents.filter((intent) => {
+        if (intent.tool !== 'mountExperiment') return true;
+        const argsId = (intent.args as { id?: unknown } | undefined)?.id;
+        const idStr = typeof argsId === 'string' ? argsId : null;
+        if (idStr && validateExperimentIdExists(idStr)) return true;
+        droppedExperimentIds.push(idStr || '<missing>');
+        return false;
+      });
+      if (droppedExperimentIds.length > 0) {
+        console.info(JSON.stringify({
+          level: 'info', event: 'invalid_mountExperiment_intents_dropped',
+          count: droppedExperimentIds.length,
+          ids: droppedExperimentIds,
+          experimentId: safeExperimentId || null,
+          timestamp: new Date().toISOString(),
+        }));
+      }
     }
 
     // 6a-bis. 2026-05-10 iter 8 — apply enforcer AS LAST STEP.
