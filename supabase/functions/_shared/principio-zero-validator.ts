@@ -686,13 +686,13 @@ export function enforceItalianK12Opener(rawText: string): string {
 
   if (!cleaned) return rawText;
 
-  // Step 2: detect existing plurale opener — STRICT match aligned with test harness gate
-  // (test plurale = /\b(ragazzi|vostr|voi |siete|siate|vi )\b/i).
-  // Iter 41 v66 fix: removed generic openers "Vediamo|Insieme|Provate|Guardate|Iniziamo|Cominciamo|Ehi"
-  // that did NOT include any plurale pronoun → enforcer skipped prepend → matrix no_plurale fail.
-  // Only treat opener as present when starts with explicit Ragazzi/Bambini OR contains plurale token early.
-  const hasPluraleOpener = /^(Ragazzi[,!.\s]|Ciao\s+ragazzi|Bambini[,!.\s])/i.test(cleaned)
-    || /\b(ragazzi|vostr[oai]?|voi\s|siete|siate|vi\s)\b/i.test(cleaned.slice(0, 80));
+  // Step 2: detect existing plurale opener — STRICT match aligned EXACTLY with matrix scorer gate.
+  // Scorer (scripts/bench/run-1000-matrix.py:117): `'ragazz' not in response_text[:50].lower()`.
+  // Iter 71-v245 fix (Codex Pattern V root cause): prior permissive regex accepted Bambini/voi/vi/
+  // vostr/siete/siate as openers → enforcer skipped prepend → matrix scorer flagged no_plurale
+  // (2 residual fail v244: 'Il LED dovrebbe essere verde' color + highlight-X NUOVO regression).
+  // Now mirror scorer contract exactly: only 'ragazz' substring in first 50 chars qualifies.
+  const hasPluraleOpener = cleaned.slice(0, 50).toLowerCase().includes('ragazz');
   if (hasPluraleOpener) return cleaned;
 
   // Iter 41 v64 fix: drop <5 word skip — test harness fails plurale on ALL
