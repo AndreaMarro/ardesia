@@ -1,9 +1,9 @@
 # Iter 68 → Iter 69 Handoff — 2026-05-17
 
 **Date**: 2026-05-17
-**Iter 68 PHASE 3 close score**: **9.6/10 ONESTO G45 PROJECTED** (matrix re-verify Andrea deploy gate)
-**Branch**: `feat/iter-41-sprint-u-cycle-2-real-user-fix` HEAD pending Phase 4 commit
-**Iter 69 target**: 9.6 → **9.8+/10** conditional A-NEW-3 matrix ≥98% verified + A-SECURITY rotation + iter 63 ELAB Compile/Upload Agent A0+A1.5+A2+A3 atoms
+**Iter 68 PHASE 3 close score**: **9.4/10 ONESTO G45 POST-MATRIX RICALIBRATO** (96.8% PASS actual, target ≥98% missed, +4.7pp lift vs 92.1% baseline)
+**Branch**: `feat/iter-41-sprint-u-cycle-2-real-user-fix` HEAD `94429fc1` push origin LANDED
+**Iter 69 target**: 9.4 → **9.7+/10** conditional A-NEW-1b+1c+2c+2d NEW atoms close matrix gap to ≥98% + A-SECURITY rotation + iter 63 ELAB Compile/Upload Agent A0+A1.5+A2+A3 atoms
 
 ## §1 ACTIVATION STRING iter 69 (paste-ready)
 
@@ -110,8 +110,12 @@ openssl rand -hex 32  # generate new key
 | Atom | Scope | Effort | Priority |
 |---|---|---|---|
 | A-SECURITY | ELAB_API_KEY rotation iter 32 protocol | 30min Andrea | **P0 SECURITY** |
-| A-NEW-3 | 1000q matrix re-verify ≥98% (if iter 68 didn't run) | 5-10min Andrea+BG | **P0 verification gate** |
-| A0 | Audit iter 63 P0.5 ELAB Compile/Upload Agent status | 1h orchestrator | **P0 carryover iter 67 PHASE 5** |
+| **A-NEW-1b** | pre-LLM offtopic redirect detector (close 89→≥98%) | 3h orchestrator | **P0 matrix gap** |
+| **A-NEW-1c** | BASE_PROMPT offtopic redirect enforcement few-shot | 1h orchestrator | **P0 matrix gap** |
+| **A-NEW-2c** | page-only resolver session experimentId context | 2h orchestrator | **P0 matrix gap** |
+| **A-NEW-2d** | volume-only Riferimento detector | 1h orchestrator | **P0 matrix gap** |
+| A-NEW-3b | matrix re-verify post iter 69 fixes (target ≥98%) | 5min BG | P0 verification gate |
+| A0 | Audit iter 63 P0.5 ELAB Compile/Upload Agent status | 1h orchestrator | P0 carryover iter 67 PHASE 5 |
 | A1.5 | Create src/boards/arduino-nano-r4.json | 30min orchestrator | P0 |
 | A2 | HTTP server binding wrapper server.js | 2-3h orchestrator | P0 |
 | A3 | Lavagna CompileUploadButton wire to agent API | 4-6h subagent BG | P1 (post A2) |

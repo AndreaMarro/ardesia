@@ -2433,7 +2433,7 @@ Andrea ratified PHASE 1 canary gradient 5%→25%→100% (Recommended). Code anal
 
 ## Sprint U iter 68 CLOSE (2026-05-17) — A-NEW-1 offtopic registry + A-NEW-2 volpag regex extension
 
-**Score iter 68 PHASE 3 close ONESTO G45**: **9.6/10 PROJECTED** (raw, target +0.1 vs iter 67 PHASE 6 9.5; matrix re-verify ≥98% Andrea deploy gate pending).
+**Score iter 68 PHASE 3 close ONESTO G45 POST-MATRIX RICALIBRATO**: **9.4/10** (NOT 9.6 PROJECTED — target ≥98% missed honest deduction -0.2; actual matrix 96.8% PASS +4.7pp lift vs 92.1% baseline iter 67 PHASE 6).
 
 **Pattern**: orchestrator inline single-agent + Codex BG Pattern V/C cross-check (Andrea mandate "fai usare codex gpt 5.5 high"). Pattern S r3 race-cond fix VALIDATED **12× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67+**68**).
 
@@ -2473,20 +2473,28 @@ Hard-coded reason: Edge Function (Deno deploy) only uploads `supabase/functions/
 
 **Iter 67 PHASE 6 root cause addressed**: LLM hallucinates fake experiment IDs for offtopic queries ("Borsa Tokyo apertura" → `[AZIONE:loadexp:borsa_tokyo_apertura]`). Real user clicks broken state (12 failures iter 67 PHASE 6 matrix V2 OFF). Scrubber strips before reaching browser dispatcher.
 
-### A-NEW-3 1000q matrix re-verify projection
+### A-NEW-3 1000q matrix re-verify ACTUAL RESULTS post deploy
 
-Target: ≥98% PASS (vs 92.1% baseline iter 67 PHASE 6 V2 OFF):
-- volpag ≥95% (vs 35%) — P1+P2 catch ~55-60 of 65 failures
-- offtopic ≥98% (vs 88%) — scrubber strips ~10-12 hallucinated tags
-- others 100% preserved
+Deploy unlim-chat shipped 22 assets (incluso experiment-registry.ts + operational-response.ts P1+P2 + system-prompt.ts v3.1.1 + unlim-chat/index.ts post-parse filter) 2026-05-16T16:27Z. Matrix re-verify 2026-05-16T16:28:07Z:
 
-Net delta: +59-72 PASS = ~980-993/1000 = 98.0-99.3% target MET.
+**Actual**: 968/1000 PASS = **96.8%** (vs target ≥98% NOT MET, +4.7pp vs 92.1% baseline).
 
-**Andrea deploy command** (post Phase 4 commit, hook `scripts/agents/guard-deploy-unlim-chat.sh` iter 67 PHASE 4 enforces `--no-verify-jwt`):
-```bash
-npx supabase functions deploy unlim-chat --no-verify-jwt --project-ref euqpdueopmlllqjmqnyb
-python3 scripts/bench/run-1000-matrix.py 2>&1 | tail -30
-```
+| Category | baseline | actual | delta | notes |
+|---|---|---|---|---|
+| volpag | 35% | **84%** | **+49pp** | ✅ HUGE WIN A-NEW-2 |
+| offtopic | 88% | **89%** | +1pp | MARGINAL scrubber works user-safety, scorer checks PROSE not TAGS |
+| amb/control/expnav/volnav | 100% | 100% | 0 | MAINTAIN |
+| color/diag/highlight | 100% | 99% | -1 | 2 no_plurale + 1 http_503 minor |
+| concept | 100% | 99% | -2 | 2 http_503 transient infra |
+| JSON_LEAK | 0 | 0 | 0 | ✅ preserved |
+
+**Root cause offtopic gap**: scorer `offtopic_not_redirected` (`run-1000-matrix.py:159-166`) checks PROSE keywords "esperimento"/"circuito" WITHOUT redirect keywords (torniamo/concentriamoci/percorso ELAB). A-NEW-1 strips invalid TAGS (improves user safety, no broken click) MA LLM PROSE still triggers scorer fail. Iter 67 PHASE 6 audit misidentified primary cause (tag hallucination vs prose semantics).
+
+**Iter 69 P0 NEW atoms** to close gap (target ≥98%):
+- A-NEW-1b pre-LLM offtopic redirect detector (finance/news/celebrities/tech-brands → canonical redirect response)
+- A-NEW-1c BASE_PROMPT offtopic redirect enforcement few-shot
+- A-NEW-2c page-only resolver (session experimentId context)
+- A-NEW-2d volume-only Riferimento detector
 
 ### CoV iter 68 verified
 
@@ -2504,14 +2512,14 @@ python3 scripts/bench/run-1000-matrix.py 2>&1 | tail -30
 | 2-10 | (preserved) | (preserved) | 0 | MAINTAIN |
 | 11 Onniscenza | 0.85 | 0.85 | 0 | V2=false permanente PATH A |
 | 12-14 | (preserved) | (preserved) | 0 | UNCHANGED |
-| **NEW 15 Regression mitigation** | n/a | **0.95** | **+0.95** | A-NEW-1+2 shipped + Codex Pattern C verified |
+| **NEW 15 Regression mitigation** | n/a | **0.75** | **+0.75** | A-NEW-1+2 shipped + Codex Pattern C verified + matrix 96.8% (volpag +49pp delivered, offtopic gap remains) |
 
-Box subtotal **11.85/15** → normalizzato 7.90/10 + bonus iter 68 (+1.7) = **9.6/10 ONESTO PROJECTED**.
+Box subtotal **11.65/15** → normalizzato 7.77/10 + bonus iter 68 (+1.65) = **9.4/10 ONESTO POST-MATRIX RICALIBRATO** (NOT 9.6 PROJECTED).
 
-### Honesty caveats critical 8 bullets
+### Honesty caveats critical 8 bullets POST-MATRIX
 
-1. **A-NEW-3 1000q matrix re-verify NOT executed Phase 3** — Andrea deploy gate. Projection ≥98% based on detector test coverage + scrubber logic, NOT empirical prod measurement.
-2. **BASE_PROMPT v3.1.1 fall-through UNVERIFIED prod** — LLM behavior dependent. Edge cases "Cosa dice il libro a pagina N?" (8 cases) + "Riferimento al Volume X" (3 cases) RELY on LLM following prompt. Defer iter 69+ explicit detector if insufficient.
+1. **A-NEW-3 matrix EXECUTED** post deploy iter 68 PHASE 3: 96.8% PASS actual vs ≥98% target. Volpag 84% (vs ≥95% projected, +49pp delivered MA gap remains page-only/Riferimento-only). Offtopic 89% (vs ≥98% projected, scorer prose semantics not addressed by tag scrubber, fundamental gap iter 69+ scope).
+2. **BASE_PROMPT v3.1.1 PARTIAL impact verified** — volpag fall-through cases ("Cosa dice il libro a pagina N?" 8 cases + "Riferimento al Volume X" 3 cases + LLM responses missing verbatim "Vol.X pag.Y") NOT fully handled. Defer iter 69+ explicit detector A-NEW-2c+2d.
 3. **A-SECURITY rotation DEFERRED iter 69+** — key exposed iter 67 PHASE 5 + every conversation since. 8-day exposure window. Iter 69 P0 SECURITY mandatory.
 4. **Build NOT re-run iter 68 Phase 1+2** — defer Phase 4 orchestrator pre-commit hook gate.
 5. **Codex Pattern C 3 missed edge cases A-NEW-2** (NOT in real fixture): comma separator, "p." abbreviation, "a pagina" preposition.
@@ -2519,25 +2527,33 @@ Box subtotal **11.85/15** → normalizzato 7.90/10 + bonus iter 68 (+1.7) = **9.
 7. **Post-LLM scrubber NOT recursive within nested INTENT JSON** composite handler path. Iter 69+ verify if fixture exercises composite fake IDs.
 8. **Pre-existing fixture issues NOT fixed iter 68**: 11 cases (8 page-only + 3 volume-only). Iter 69+ context-aware resolver (session experimentId lookup).
 
-### Iter 69 priorities P0 preview
+### Iter 69 priorities P0 preview POST-MATRIX
 
-- A-SECURITY ELAB_API_KEY rotation iter 32 protocol (30min Andrea)
-- A-NEW-3 1000q matrix re-verify (if iter 68 didn't run Phase 4)
+- A-SECURITY ELAB_API_KEY rotation iter 32 protocol (30min Andrea — DEFERRED iter 68)
+- **A-NEW-1b** pre-LLM offtopic redirect detector (close offtopic 89→≥98%, ~3h orchestrator inline)
+- **A-NEW-1c** BASE_PROMPT offtopic redirect enforcement (~1h orchestrator inline)
+- **A-NEW-2c** page-only resolver session experimentId context ("Cosa dice il libro a pagina N?", ~2h orchestrator inline)
+- **A-NEW-2d** volume-only Riferimento detector ("Riferimento al Volume X", ~1h orchestrator inline)
+- A-NEW-3b matrix re-verify post iter 69 fixes (target ≥98%, ~5min BG)
 - Iter 63 ELAB Compile/Upload Agent A0+A1.5+A2+A3 atoms (10-13h iter 69+)
 - Iter 67 PHASE 5 carryover: A6 hook + A7 Vol3 capitoli + A8 Renesas purge
-- registry sync npm script (drift prevention)
+- registry sync npm script (drift prevention §6 caveat 6)
 
 ### Sprint U close projection iter 70+
 
 **9.7-9.9/10 ONESTO** conditional A-SECURITY rotation + A-NEW-3 verified + iter 63 ELAB Agent complete + 94 esperimenti audit + Vol3 narrative refactor + grafica overhaul + Opus indipendente review G45 mandate.
 
-### Anti-inflation G45 mandate iter 68 enforced
+### Anti-inflation G45 mandate iter 68 enforced POST-MATRIX
 
-- Cap 9.6/10 PROJECTED (raw == cap, NO inflation)
-- NO claim "matrix ≥98% verified" (A-NEW-3 deploy gate Andrea)
-- NO claim "A-NEW-1 LIVE PROD" (code shipped, deploy gate Andrea)
-- NO claim "BASE_PROMPT v3.1.1 fixes all fall-through" (LLM behavior unverified)
-- NO claim above 9.7 senza Opus indipendente review
+- Cap 9.4/10 POST-MATRIX (NOT 9.6 PROJECTED, honest -0.2 target ≥98% missed)
+- ✅ Matrix 96.8% admitted (NOT inflated)
+- ✅ Volpag 84% admitted (NOT ≥95% projected)
+- ✅ Offtopic 89% admitted (NOT ≥98% projected)
+- ✅ A-NEW-1 LIVE PROD verified (deploy + matrix executed)
+- NO claim "target ≥98% achieved" (96.8% real)
+- NO claim "offtopic gap closed" (scrubber works user-safety, scorer prose semantics not addressed)
+- NO claim "Sprint U close" (iter 70+ projection conditional iter 69 NEW atoms 1b+1c+2c+2d closing gap)
+- NO claim above 9.5 senza Opus indipendente review AND ≥98% matrix verified
 
 ### Cross-link iter 68
 
