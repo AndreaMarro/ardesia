@@ -2670,3 +2670,161 @@ Box subtotal **12.65/16** → normalizzato **7.91/10** + bonus cumulative iter 6
 - Codex Pattern V outputs: `/tmp/codex-verify-{offtopic-failures,volpag-gap}.txt`
 - Codex Pattern C output: `/tmp/codex-verify-iter69-detectors.txt` (1.08MB)
 - iter 63 BG subagent worktree: `/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder-iter63-A2A3` commit 328b16bb
+
+## Sprint U iter 70 CLOSE (2026-05-19) — 6 BG agents paralleli + iter63 merge + Codex Pattern C 6 verifies + TEAM F critical regex fix
+
+**Score iter 70 PHASE 4 close ONESTO G45**: **7.5/10** (RICALIBRATO POST CODEX FINDINGS — NOT 9.5-9.7 projected pre-Codex).
+
+**Pattern**: orchestrator inline + 6 BG subagents paralleli worktree isolati + Codex BG Pattern V/C 6 cross-checks + Mac Mini queue + session resume mid-iter recovery. Pattern S r3 race-cond fix VALIDATED **13× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67+68+69+**70**).
+
+### Andrea ratify queue gruppo 12 (iter 70 entrance dispatch decisions)
+
+| Voice | Decision | Status iter 70 |
+|---|---|---|
+| 1. A-SECURITY rotation | Defer iter 70 (still iter 71 P0) | ⏸ DEFERRED (13+ giorni exposure) |
+| 2. 6 BG agents dispatch | Worktree isolati paralleli (Pattern S r3) | ✅ 6/6 worktree merged mainwt |
+| 3. TEAM C Vol3 Blink + Error translator | Worktree creation post disk full recreate | ❌ CATASTROFICO FAIL re-dispatch iter 71 |
+| 4. Mac Mini queue 4 tasks | D1+D4+T1+T4 path MacBook | ❌ TUTTI FAILED (path mount + node missing) |
+
+### Major deliverables iter 70 (ricalibrato Codex Pattern C findings)
+
+**Merged mainwt HEAD `30b4b2c7`**:
+- iter63 A2+A3 merge `b88edd22` (HTTP server binding + Lavagna CompileUploadButton 1755 LOC)
+- npm install express+cors `5be2bfd6` (54 packages 0 vulns + http-server /health fix + cleanup elab-agent/package.json elevazione root)
+- 6 TEAM merge sequenziali (F+G+A+B+D+E)
+- TEAM F PHASE 4 critical fix `30b4b2c7` (regex `\x08` backspace literal → `\b` word boundary 6 bytes + remove aggressive fallback + remove `[ITER70_PROBE]` PII leak)
+
+**Cross-compilazione ELAB Tutor Arduino Nano R4 LIVE mainwt**:
+- Express HTTP server `src/services/elab-agent/http-server.js` 501 LOC
+- POST /compile + /upload + /compile-and-upload + GET /health + GET /jobs/:id/status
+- Lavagna CompileUploadButton wired ScratchCompileBar
+- 9 error categories docente-friendly
+- 30s timeout + AbortController + CORS strict whitelist
+- Touch 44px + ARIA + inline UploadIcon
+
+### CoV iter 70 close vitest
+
+- **14273 PASS + 15 FAIL + 15 skipped + 12 todo = 14315 total**
+- 4 Test Files failed (15 failures concentrate ChatbotOnly + others TBD)
+- Duration 1287s (21min)
+- Delta vs iter 69 baseline 13517: **+756 NEW tests passing** (+5.6%)
+- 15 fail residue iter 71 entrance verify (probabile TEAM D HomePage emoji wire-up regression + pre-existing flaky)
+- baseline-tests.txt PRESERVED 13517 iter 69 (NOT promoted 14273 con 15 fail residue)
+
+### Codex Pattern C 6 cross-check findings (BRUTAL HONEST)
+
+**4/6 team HIGH severity issues identificati**:
+
+**TEAM A Vol3 parità HIGH**:
+- cliffhanger-table.json wrapper format `{experiments: [...]}` NOT Tea-compat (Tea canonical 94-item array)
+- Vol3 runtime 14 IDs vs Tea narrative 29 IDs (missing v3-cap6-esp3 + v3-cap7-mini + v3-cap8-esp4 + capstones)
+- narrative-map-94.json claims 94 ma parsed 77 unique IDs
+- experiments-vol3.js header claims "26" ma 14 IDs
+- service comment claims uses schema MA NOT imported
+- Defer iter 71 ~2-3h rework
+
+**TEAM B 94 esperimenti HIGH**:
+- Coverage 79 NOT 94 (file naming misleading: 38+27+14=79)
+- 66/79 hardcoded count mismatches vs source data (stale)
+- Severity P1 too weak (any nonzero wire = P2_OK incorrect)
+- Spec NO assertion/throw on P0_BROKEN → Playwright exit 0 con broken esperimenti
+- `extractWireCount` helper imported MA unused
+- Defer iter 71 ~2h rework
+
+**TEAM D UI overhaul MED**:
+- HomePage emoji STILL present (CARDS field + footer `🐒` fallback)
+- Album SCAFFOLD only — no Supabase integration (rg found zero imports of `AlbumStudente` outside own file)
+- UnlimMascotte `onClick` MA no button semantics + keyboard handling
+- PASSES: fumetto schema byte-identical Tea + touch targets 44px verified
+- Defer iter 71 ~3h bibbia_stilistica deep apply
+
+**TEAM E Quality Harness MED**:
+- Lighthouse runner reports `success` if ANY route succeeds (not all 8)
+- UX probes warnings accepted + soft assertions = telemetry not validation
+- Promptfoo runner validates `ELAB_API_KEY` ma NOT `SUPABASE_ANON_KEY`
+- "main landmark" check tautological (`mainCount >= 0` always passes)
+- Defer iter 71 ~2h tightening enforcement
+
+**TEAM F page-only resolver HIGH (FIX APPLIED INLINE iter 70 PHASE 4)**:
+- 6 byte `\x08` backspace literal embedded in regex (was `\b` regex word boundary intent) → A-NEW-2c MAI matched in prod
+- Too-aggressive fallback regex `pag(\d+)` catched ANY page number anywhere
+- `console.log[ITER70_PROBE]` PII leak prod logs
+- Runtime wire derives experimentId solo da request body, NOT loadStudentContext memory (MED unresolved iter 71)
+- **FIX APPLIED commit `30b4b2c7`**: 6 bytes replaced + fallback removed + probe removed. 118/118 delta tests PASS.
+
+**TEAM G PreToolUse hook MED-FAIL**:
+- `src/data/blockly-blocks/*.js` path guard NON esiste filesystem
+- Edit/MultiEdit can BYPASS hook (only Write matcher in settings)
+- Compile defaults still point to AVR (api.js + simulator-api.js) — Renesas NOT full purge
+- PASSES: stdout JSON contract + preserves avr8js core
+- Defer iter 71 ~1h fix matcher + path
+
+### SPRINT_U_COMPLETE 17 boxes status post iter 70
+
+| Box | iter 69 | iter 70 | Delta | Notes |
+|---|---|---|---|---|
+| 1-14 | (preserved) | (preserved) | 0 | UNCHANGED |
+| 15 Regression mitigation | 0.85 | 0.90 | +0.05 | TEAM F page-only fix critical + 118/118 PASS |
+| 16 Automation infra | 0.80 | 0.85 | +0.05 | iter63 ELAB Agent LIVE mainwt + PreToolUse hook (bypassable iter 71 fix) |
+| 17 Tea materials integration | n/a | 0.50 | +0.50 | TEAM A+D parziale (HIGH gaps Vol3 14 vs 29 + HomePage emoji + Album scaffold) — ricalibrato post Codex 0.70 → 0.50 |
+
+Box subtotal **~7.0/10** + bonus iter 70 cumulative (+0.5 net) = **7.5/10 ONESTO G45 cap** post Codex.
+
+### NO debito tecnico cleanup iter 70
+
+- ✅ 7 worktree merged rimossi (6 iter70 + iter63-A2A3 dormant)
+- ✅ Mainwt 1 + 1 legacy locked rimanenti (disk 11Gi free 59% from 98%)
+- ✅ src/services/elab-agent/package.json separato rimosso (elevazione deps root)
+- ✅ Codex outputs `/tmp/codex-verify-iter69-detectors.txt` 1.08MB cleanup (5 vecchi)
+- ⏸ 1 .claude/worktrees/agent-a985cce2 locked (richiede git worktree unlock iter 71)
+- ⏸ Codex iter70 6 outputs `/tmp/codex-verify-iter70-team-*.txt` 113-362KB review iter 71 archive
+
+### Pattern S r3 race-cond fix VALIDATED 13× consecutive
+
+iter 5+6+8+11+12+19+36+37+38+43+67+68+69+**70**. 6 worktree isolati paralleli ZERO file ownership conflict + filesystem barrier completion msgs.
+
+### 5+ honesty caveats critical iter 70
+
+1. **Score 9.5-9.7/10 pre-Codex INFLATED 1.5-2 punti**. Score onesto 7.5/10 post 4/6 team HIGH findings.
+2. **TEAM C catastrofico FAIL** worktree corrupted post disk full recreate — re-dispatch iter 71 fresh.
+3. **6/6 BG agents output truncated** mid-action — orchestrator inline recovery committed sequential.
+4. **TEAM F regex critical bug `\x08`**: A-NEW-2c MAI matched prod (matrix re-verify iter 71 ne sarà conferma). Fix iter 70 PHASE 4 applied.
+5. **TEAM A+B HIGH issues UNRESOLVED**: Vol3 dataset 14 vs Tea 29 + spec 79 vs claim 94 + 66 count mismatches. Defer iter 71 ~5h rework totale.
+6. **Mac Mini autonomous loop NON eseguito alcun task iter 70**: 7 task TUTTI FAILED (path mount + node missing + repo stale). 51min idle heartbeat solo. Fix iter 71 Andrea install node + bash-native scripts.
+7. **15 vitest fail residue NON identificate name-by-name** (output stream truncated). Verify iter 71 entrance.
+8. **NO push origin autonomous** iter 70 (Andrea ratify mandate). 9 commits local-only HEAD 30b4b2c7.
+9. **A-SECURITY 13+ giorni exposure** ELAB_API_KEY rotation iter 32 protocol mandate iter 71 P0.
+10. **Matrix re-verify ≥98% NON eseguito iter 70**: Andrea deploy P0 iter 71 entrance.
+
+### Iter 71 entrance priorities P0 cascade target 7.5 → 8.5+/10
+
+1. Andrea A-SECURITY rotation iter 32 protocol (30min)
+2. Andrea A-NEW-3b deploy unlim-chat v241 + matrix re-verify ≥98% (15min — A-NEW-2c TEAM F fix ora prod LIVE)
+3. Andrea Sentry+PostHog OAuth + 3 dashboards seed (30min)
+4. Andrea push origin (Andrea ratify mandate) 9 commits iter 70 batch
+5. Identify 15 vitest fail names + surgical fix (~30min orchestrator inline)
+6. TEAM A rework Vol3 dataset 14 → 29 IDs + cliffhanger Tea-compat (~2-3h subagent OR inline)
+7. TEAM B rework 79 IDs + add P0 assertion + fix 66 count mismatches (~2h)
+8. TEAM C re-dispatch fresh worktree Vol3 Blink + Error translator (~5-6h subagent BG)
+9. TEAM D HomePage emoji removal + bibbia_stilistica deep apply + Album runtime (~3-4h)
+10. TEAM E Lighthouse hard gate + UX probes strict + Promptfoo SUPABASE check (~2h)
+11. TEAM G hook Edit/MultiEdit matcher + blockly-blocks path fix (~1h)
+12. Mac Mini node install + bash-native re-seed (~1h Andrea action)
+13. claude-mem CLI fix + corpus re-prime iter 60-70 (~1h)
+
+### Anti-inflation G45 mandate iter 70 enforced
+
+- Cap **7.5/10** ricalibrato Codex 4/6 HIGH findings
+- NO claim "Sprint U close" (iter 72+ projection)
+- NO claim "9.5+/10" (Codex Pattern C ha identificato HIGH gaps — score inflato pre-verify)
+- NO claim "Tea 70% integrated" (Vol3 14/29 = 48% + Album scaffold only + HomePage emoji = ~50% real)
+- NO claim "matrix verified ≥98%" (Andrea deploy pending)
+- NO claim "code-reviewer:code-reviewer Anthropic agent reviews completed" (NON eseguiti)
+
+### Cross-link docs iter 70
+
+- Close audit multi-agent: `docs/audits/2026-05-19-iter-70-CLOSE-multi-agent-audit.md` (151 LOC)
+- Handoff iter 71: `docs/handoff/2026-05-19-iter-70-to-iter-71-handoff.md` (167 LOC)
+- 6 Codex Pattern C outputs (1.1MB totali pending archive iter 71): `/tmp/codex-verify-iter70-team-{A,B,D,E,F,G}.txt`
+- iter63 ELAB Compile/Upload Agent spec: `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md` 13.4KB
+- Tea materials canonical Source: `/Users/andreamarro/VOLUME 3/TEA/Nuovo lavoro tea/` (~95% uncatalogued repo pre-iter-70, ~50% recovery post-iter-70)
