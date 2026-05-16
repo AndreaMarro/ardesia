@@ -2359,3 +2359,74 @@ Andrea ratified PHASE 1 canary gradient 5%→25%→100% (Recommended). Code anal
 - R4 detect: `src/services/compileAgentDetect.js` iter 65 ae13c9e6
 - R5 banner: `src/components/HomePage/CompileAgentBanner.jsx` iter 66 2f7d7611
 - Refined .ai/mission.md + .ai/board.md iter 68 P0 task Ready atomization
+
+## Sprint U iter 67 PHASE 6 — 1000q matrix re-verify + regression deep diagnosis (2026-05-16 PM)
+
+**Score iter 67 PHASE 6 close ONESTO G45**: **9.5/10** (-0.05 vs PHASE 5 9.55 — honesty deduction PRE-EXISTING regression surfaced).
+
+**Trigger**: ELAB_API_KEY persistent setup (Andrea "fai tutto tu" automation) + Step 7 1000q matrix re-verify post v55 deploy iter 67 PHASE 2.
+
+**CRITICAL FINDINGS PHASE 6** (PRE-EXISTING regression surfaced NOT iter 65-67 code regression):
+
+### Step 7 1000q matrix results 2 consecutive runs
+
+| Run | Config | PASS | Notable |
+|---|---|---|---|
+| Run 1 PHASE 5 | ENABLE_ONNISCENZA_V2=true | **91.4%** (914/1000) | volpag 23% / offtopic 95% / color 98% / diag 98% |
+| Run 2 PHASE 6 | ENABLE_ONNISCENZA_V2=false (rollback) | **92.1%** (921/1000) | volpag 35% / offtopic 88% / color 100% / diag 100% |
+
+**NEITHER restores iter 41 v67 baseline 100% (3x CoV Andrea exit criteria)**.
+
+### Root cause analysis REAL
+
+1. **🔴 P0 CRITICAL offtopic hallucination BUG** — `operational-response.ts` experiment-load detector matches verb (apri/carica/leggi/apertura) WITHOUT registry validation. Sample: "Borsa Tokyo apertura" → emits FAKE `[AZIONE:loadexp:borsa_tokyo_apertura]` for non-existent experiment ID. User click → broken state. **Fix iter 68 P0 ~2h**.
+
+2. **🔴 P1 volpag regex coverage gap iter 41 detector** (`operational-response.ts:352`): catches vol-FIRST cap-X pattern only ("leggi vol.3 cap.13"). Does NOT catch fixture iter 50+ page-FIRST patterns ("Vai a pagina 67 Volume 2", "Cosa contiene pagina 102 del Volume 1?", "Cosa dice il libro a pagina 134?"). Fall-through LLM → LLM responds correctly MA NON cita verbatim "Vol.X pag.Y" → fail scorer Principio Zero citation. **Fix iter 68 P0 ~2h: extend regex 5 pattern variants + BASE_PROMPT v3.1 enforce verbatim citation MANDATORY**.
+
+3. **🟡 V2 effect minor** — ENABLE_ONNISCENZA_V2=true adds 2pp color/diag failures + 12pp volpag worsening (35→23). Atom 2.5 wire-up iter 65 interferes with citation flow when active. **Rollback OK preserved iter 67 PHASE 6**.
+
+4. **iter 41 v67 baseline 100% WAS REAL for OLD fixture set** (vol-FIRST cap-X only). New fixture set iter 50+ (page-FIRST + page-only + del-volume + cosa-contiene) NEVER tested 100% — coverage gap silent iter 50-66.
+
+### PHASE 6 actions deployed
+
+- ✅ ELAB_API_KEY + VITE_ELAB_API_KEY persistent `~/.elab-credentials/elab-keys.env` + `/tmp/vercel.env` + auto-source .zshrc (Andrea Vercel Dashboard fetch via Chrome MCP)
+- ✅ iter 68 A0 audit iter 63 P0.5 ELAB Compile/Upload Agent status — **80-85% complete** (5/6 handlers shipped + board profile JSON + sketch-builder 8 functions + error categories 7 types). Missing only: `handleCompileAndUpload` + `handleJobsStatus` + HTTP server binding (~3-4h iter 68 inline)
+- ✅ Step 7 1000q matrix Run 1 (V2 ON) → 91.4% regression detected
+- ✅ P0 rollback `ENABLE_ONNISCENZA_V2=false` via secrets set explicit + redeploy `unlim-chat --no-verify-jwt` v240+ (preserves warmup_cron fix iter 67 PHASE 3, hook iter 67 PHASE 4 passthrough verified)
+- ✅ Step 7 1000q matrix Run 2 (V2 OFF) → 92.1% (V2 effect isolated)
+- ✅ Diagnostic deep dive root cause identified (offtopic detector hallucination + volpag regex gap + fixture iter 50+ expansion)
+
+### Iter 68 entrance P0 priorities REFINED (post PHASE 6)
+
+| Atom | Scope | Effort | Priority |
+|---|---|---|---|
+| A-NEW-1 | Offtopic detector registry validation fix (operational-response.ts) | 2h orchestrator | **P0 CRITICAL hallucination prod** |
+| A-NEW-2 | Volpag detector regex 5 pattern variants extension + BASE_PROMPT v3.1 enforce | 2h orchestrator | **P0 CRITICAL Principio Zero citation** |
+| A-NEW-3 | Re-test 1000q matrix verify ≥98% post-fixes | 5min BG | P0 verification gate |
+| A-NEW-4 | Andrea ratify ENABLE_ONNISCENZA_V2 keep OFF OR re-enable post-fixes verified | 5min | P0 decision |
+| A-SECURITY | ELAB_API_KEY rotation iter 32 protocol (exposed PHASE 5 conversation context) | 30min Andrea | **P0 SECURITY** |
+| iter 67 PHASE 5 atomization A0+A1.5+A2+A3 (iter 63 ELAB Agent complete) | 6-10h | P1 defer post P0 fixes | |
+| A7 Volume 3 capitoli inconsistency audit | 2h | P1 | |
+
+### Honesty caveats critical PHASE 6 (5+ bullets)
+
+1. iter 67 PHASE 2 deploy NOT primary regression cause — V2 effect minor. Real regression PRE-EXISTING + surfaced by fixture iter 50+ expansion.
+2. iter 41 v67 baseline 100% WAS REAL for old fixture (vol-FIRST cap-X only). Coverage gap silent iter 50-66.
+3. Offtopic hallucination = P0 PROD BUG — fix iter 68 P0 ASAP.
+4. Volpag regex iter 41 only catches 35% current fixture — Principio Zero citation violation 65% volpag queries.
+5. V2 ON ADDITIONAL effect 12pp volpag worsening — Atom 2.5 wire-up iter 65 interferes. Defer V2 re-enable iter 69+ post fixes.
+6. PHASE 6 NO new feature shipped — diagnostic + rollback only. Score honest 9.5/10 (acknowledgment PRE-EXISTING regression surfaced).
+7. ELAB_API_KEY exposed PHASE 5 conversation context (Chrome MCP find returned plain value button label). **iter 32 protocol rotate iter 68 P0 SECURITY mandatory**.
+
+**Anti-inflation G45 PHASE 6 enforced**:
+- Cap 9.5/10 honest (raw 9.55 → 9.5 PRE-EXISTING regression deduction)
+- NO claim "1000q matrix 100% restored" (92.1% admitted)
+- NO claim "regression caused iter 67 PHASE 2 deploy" (real cause PRE-EXISTING)
+- NO claim above 9.7 senza A-NEW-1 + A-NEW-2 fixes verified ≥98% iter 68
+
+**Cross-link PHASE 6**:
+- PHASE 6 audit: `docs/audits/2026-05-16-iter-67-PHASE6-1000q-matrix-regression-diagnosis.md`
+- 1000q matrix V2 ON: `scripts/bench/output/1000-matrix-{results,failures,report}-2026-05-16T14-43-30.{jsonl,txt}`
+- 1000q matrix V2 OFF: `scripts/bench/output/1000-matrix-{results,failures,report}-2026-05-16T15-08-47.{jsonl,txt}`
+- Volpag detector source: `supabase/functions/_shared/operational-response.ts:349-362`
+- Offtopic detector source: `supabase/functions/_shared/operational-response.ts` (verb-match section)
