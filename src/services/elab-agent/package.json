@@ -1,0 +1,35 @@
+{
+  "name": "@elab/compile-upload-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ELAB Tutor local Compile/Upload Agent — wraps Arduino CLI for Blockly -> Nano R4 flow (iter 63 P0.5 spec + iter 69 A2 HTTP binding).",
+  "type": "module",
+  "main": "./server.js",
+  "bin": {
+    "elab-agent": "./cli.js"
+  },
+  "exports": {
+    ".": "./server.js",
+    "./http-server": "./http-server.js",
+    "./sketch-builder": "./sketch-builder.js",
+    "./cli": "./cli.js"
+  },
+  "scripts": {
+    "start": "node ./cli.js",
+    "dev": "ELAB_AGENT_PORT=8765 node ./cli.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "license": "UNLICENSED",
+  "author": "Andrea Marro <marro.andrea96@gmail.com>",
+  "elabAgent": {
+    "iter": 69,
+    "scope": "A2-HTTP-server-binding",
+    "spec": "docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md",
+    "depsRatifyPending": "Andrea iter 70 — `npm install express` inside this folder OR elevate to root."
+  }
+}
