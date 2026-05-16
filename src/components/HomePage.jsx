@@ -60,6 +60,12 @@ const EasterModal = lazy(() => import('./easter/EasterModal'));
 // hanno già autorizzato il microfono nelle sessioni passate.
 const MicPermissionNudge = lazy(() => import('./common/MicPermissionNudge.jsx'));
 
+// Iter 66 P0.3 — R5 HomePage Compile Agent Banner widget (consume iter 65
+// R4 detection helper compileAgentDetect.js). Lazy-loaded: the widget polls
+// localhost:17852 on mount, so keep it out of the critical path until the
+// hero is painted.
+const CompileAgentBanner = lazy(() => import('./HomePage/CompileAgentBanner.jsx'));
+
 // Hash routes managed inline (NO react-router) — pattern consistent with
 // existing app routing convention.
 const HASH_ROUTES = {
@@ -924,6 +930,15 @@ export default function HomePage({ onNavigate, onActivate }) {
           </button>
         </div>
       </header>
+
+      {/* Iter 66 P0.3 — R5 Compile Agent Banner widget (between hero and
+          card grid). Lazy-mounted so the helper localhost probe never
+          blocks the hero paint. Self-managed visibility: returns null
+          during initial detection, then renders 1 of 4 platform states
+          (Mac online / Mac offline / Win-Linux / unknown). */}
+      <Suspense fallback={null}>
+        <CompileAgentBanner />
+      </Suspense>
 
       <section
         style={styles.grid}

@@ -581,6 +581,44 @@ export function GlossarioCardIcon({ size = 48, ...props }) {
   );
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   ITER 66 P0.3 — R5 HomePage Compile Agent Banner widget icons
+   Andrea iter 65/66 mandate: surface ELAB Compile Agent install status
+   on HomePage with platform-specific CTA (Mac primary, Win/Linux iter 67).
+   3 new icons: DownloadIcon (install CTA) + CheckIcon (agent online
+   confirmation) + DesktopIcon (platform context info banner).
+   Compliance: stroke-based, palette via currentColor (Lime success /
+   Orange warning / Navy info), no emoji, ARIA hidden by default.
+   ═══════════════════════════════════════════════════════════════════ */
+
+export function DownloadIcon(props) {
+  return (
+    <Icon {...props}>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </Icon>
+  );
+}
+
+export function CheckIcon(props) {
+  return (
+    <Icon {...props}>
+      <polyline points="20 6 9 17 4 12" />
+    </Icon>
+  );
+}
+
+export function DesktopIcon(props) {
+  return (
+    <Icon {...props}>
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </Icon>
+  );
+}
+
 export function CronologiaCardIcon({ size = 48, ...props }) {
   return (
     <svg
