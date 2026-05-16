@@ -22,6 +22,7 @@
  * File ownership iter 65 rigid: ONLY this module + its sibling unit test.
  *
  * @module services/compileAgentDetect
+ * @copyright © Andrea Marro — 2026 — ELAB Tutor — Tutti i diritti riservati
  */
 
 /** Canonical loopback agent endpoint (matches server.js + spec). */
