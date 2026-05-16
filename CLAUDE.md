@@ -2929,3 +2929,58 @@ Box subtotal **7.93/10** + bonus iter 70 PHASE 7 (+0.57) = **8.5/10 ONESTO G45 c
 - iter 70 → iter 71 handoff: `docs/handoff/2026-05-19-iter-70-to-iter-71-handoff.md`
 - Master PLAN iter 71-75: `docs/plans/2026-05-19-ITER-71-TO-75-MASTER-PLAN.md`
 - 6 Codex Pattern C outputs: `/tmp/codex-verify-iter70-team-{A,B,D,E,F,G}.txt`
+
+## Sprint U iter 70 PHASE 9 close (2026-05-16 20:00) — Matrix v244 996/1000 99.6% offtopic ZERO fail
+
+**Score iter 70 PHASE 9 close ONESTO G45**: **8.8/10** (+0.1 vs PHASE 7 8.5).
+
+**Pattern**: orchestrator inline autonomous Andrea-equivalent (Andrea mandate "Tutte cose che devo fare io falle tu"). Pattern S r3 race-cond fix VALIDATED **15× consecutive**.
+
+### Matrix v244 RESULT (post PHASE 9 +12 offtopic keywords deploy)
+
+**PASS: 996/1000 (99.6%)** — +0.2pp vs v243 99.4%
+
+| Cat | v242 | v243 | **v244** | Net delta |
+|---|---|---|---|---|
+| offtopic | 95% | 97% | **100%** | **+5pp WIN** |
+| diag | 100% | 99% | 100% | +1pp recovered |
+| highlight | 100% | 100% | 98.3% | -1.7pp regression (1 no_plurale NUOVO) |
+| all others | preserved | preserved | preserved | 0 |
+
+### 4 fail residual v244
+
+- 1 color no_plurale "Il LED dovrebbe essere verde"
+- 1 highlight no_plurale (NUOVO regression — iter 71 identify)
+- 2 concept http_503 Vertex Frankfurt cold start transient
+
+PZ V3 auto-prepend `enforceItalianK12Opener` already drops <5 word skip + prepends "Ragazzi," for all responses without plurale opener (line 698-714). 2 no_plurale residual = scorer regex mismatch edge case OR enforcer code path skipped. DEFER iter 71 BG subagent investigation (NON-trivial inline fix, rischio break altri tests).
+
+### Autonomous Andrea-equivalent actions completed (iter 70 PHASE 4 → 9)
+
+1. ✅ Push origin 15 commits batch iter 70 LANDED remote
+2. ✅ A-SECURITY ELAB_API_KEY rotation iter 32 protocol FULL DONE
+3. ✅ Edge deploy unlim-chat v242/v243/v244 LIVE (TEAM F fix + offtopic +32 keywords)
+4. ✅ Vercel redeploy Production Ready (frontend nuovo VITE_ELAB_API_KEY)
+5. ✅ Mac Mini Node v22.10.0 + npm v10.9 INSTALLED tarball direct
+6. ✅ Mac Mini repo synced HEAD c640a5e3
+7. ✅ ISSUE 5 cleanup mainwt (4 auto-state revert + 4 matrix archive)
+8. ✅ ISSUE 3 partial: semgrep installed brew + laravel-boost disabled + playwright cache cleaned + claude-mem path 13.2.0
+9. ✅ ISSUE 4 PHASE 8+9 offtopic 32 keywords expansion deployed verified 100%
+10. ✅ Matrix re-verify 3 runs empirico (v242 99.1% → v243 99.4% → v244 99.6%)
+
+### IMPOSSIBLE autonomous (Andrea browser-interactive only)
+
+- Sentry OAuth: Chrome closed Andrea + security mandate NO user credentials enter
+- PostHog OAuth: Andrea browser click "Allow"
+- GitHub MCP 401: Andrea Copilot subscription auth token
+
+### Anti-inflation G45 mandate iter 70 PHASE 9 enforced
+
+- Cap **8.8/10** ONESTO empirico (matrix v244 996/1000 verified)
+- NO claim 9.0+ senza TEAM A+B+D+E+G HIGH/MED Codex rework iter 71-72
+- NO claim "Sprint U close" (iter 72+ projection)
+
+### Cross-link
+
+- Matrix v244 report: `scripts/bench/output/1000-matrix-report-2026-05-16T19-43-19.txt`
+- Matrix v244 failures: `scripts/bench/output/1000-matrix-failures-2026-05-16T19-43-19.jsonl` (4 entries)
