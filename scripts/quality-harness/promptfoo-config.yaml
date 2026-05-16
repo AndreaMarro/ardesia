@@ -1,0 +1,448 @@
+# ============================================================
+# ELAB Quality Harness Phase 1 — Promptfoo 30 cases
+# iter 70 Team E — 2026-05-19
+# 10 plurale + 10 Vol/pag citation + 10 offtopic redirect
+# ============================================================
+# Run: node scripts/quality-harness/run-promptfoo.mjs
+# Direct: npx promptfoo@latest eval -c scripts/quality-harness/promptfoo-config.yaml
+
+description: "ELAB UNLIM quality eval — Promptfoo 30 cases iter 70"
+
+# -----------------------------------------------------------
+# Provider: Edge Function unlim-chat (Supabase prod)
+# -----------------------------------------------------------
+providers:
+  - id: "elab-unlim-edge"
+    label: "UNLIM Edge Function"
+    config:
+      type: "http"
+      url: "https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat"
+      method: "POST"
+      headers:
+        Content-Type: "application/json"
+        x-elab-api-key: "{{ env.ELAB_API_KEY }}"
+        Authorization: "Bearer {{ env.SUPABASE_ANON_KEY }}"
+      body:
+        message: "{{ prompt }}"
+        sessionId: "pf-iter70-{{ env.PROMPTFOO_EVAL_ID | default('test') }}"
+      transformResponse: |
+        const data = output;
+        if (typeof data === 'object' && data.reply) return data.reply;
+        if (typeof data === 'string') return data;
+        return JSON.stringify(data);
+
+# -----------------------------------------------------------
+# Default assert options
+# -----------------------------------------------------------
+defaultTest:
+  options:
+    timeoutMs: 30000
+
+# -----------------------------------------------------------
+# Scoring config
+# -----------------------------------------------------------
+evaluateOptions:
+  maxConcurrency: 2
+
+# -----------------------------------------------------------
+# CATEGORY A — 10 PLURALE RAGAZZI cases
+# Asserts: reply MUST start or contain "Ragazzi" (plural Italian)
+# PRINCIPIO ZERO mandate: linguaggio plurale docente→classe
+# -----------------------------------------------------------
+tests:
+  # --- A1: Simple LED definition
+  - description: "A1-plurale: LED definition opener"
+    vars:
+      prompt: "Spiega ai ragazzi cos'è un LED."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: not-icontains
+        value: "studente"
+        metric: singular_violation
+      - type: javascript
+        value: "output.length > 20"
+        metric: non_empty_reply
+
+  # --- A2: Resistor introduction
+  - description: "A2-plurale: resistore introduction"
+    vars:
+      prompt: "Introduci alla classe il concetto di resistore."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: "output.length > 20"
+        metric: non_empty_reply
+
+  # --- A3: Arduino microcontroller
+  - description: "A3-plurale: Arduino Nano intro docente"
+    vars:
+      prompt: "Spiega l'Arduino Nano ai tuoi studenti."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: not-icontains
+        value: "\"studente\""
+        metric: no_singular_framing
+
+  # --- A4: Button input concept
+  - description: "A4-plurale: pulsante input concept"
+    vars:
+      prompt: "Presenta il pulsante come input alla classe."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: "output.length > 20"
+        metric: non_empty_reply
+
+  # --- A5: Breadboard explanation
+  - description: "A5-plurale: breadboard explanation"
+    vars:
+      prompt: "Come spiego la breadboard agli alunni?"
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+
+  # --- A6: LED blink experiment prompt
+  - description: "A6-plurale: LED blink experiment intro"
+    vars:
+      prompt: "Iniziamo l'esperimento LED lampeggiante."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: "output.length > 20"
+        metric: non_empty_reply
+
+  # --- A7: Capacitor explanation
+  - description: "A7-plurale: condensatore concept"
+    vars:
+      prompt: "Spiega i condensatori alla classe."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+
+  # --- A8: Circuit verification
+  - description: "A8-plurale: verifica circuito"
+    vars:
+      prompt: "Come facciamo a verificare il circuito?"
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+
+  # --- A9: Scratch programming
+  - description: "A9-plurale: Scratch programming intro"
+    vars:
+      prompt: "Introduci la programmazione con Scratch."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+
+  # --- A10: Serial monitor
+  - description: "A10-plurale: monitor seriale explanation"
+    vars:
+      prompt: "Spiega il monitor seriale di Arduino."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+
+# -----------------------------------------------------------
+# CATEGORY B — 10 VOL/PAG CITATION cases
+# Asserts: reply MUST contain Vol.X pag.Y citation pattern
+# MORFISMO Sense 2: verbatim volume references
+# -----------------------------------------------------------
+
+  # --- B1: Vol1 LED chapter
+  - description: "B1-volpag: Vol.1 LED chapter citation"
+    vars:
+      prompt: "Leggi Vol.1 pag.27 sull'argomento LED."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: |
+          /vol\.?[123]\s*pag\.?\s*\d+/i.test(output) ||
+          /vol\s*\.\s*[123]/i.test(output) ||
+          /pag\.?\s*\d+/i.test(output)
+        metric: volpag_citation
+
+  # --- B2: Vol1 resistor chapter
+  - description: "B2-volpag: Vol.1 resistore page reference"
+    vars:
+      prompt: "Vai a pagina 19 del Volume 1 per il resistore."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: |
+          /pag\.?\s*\d+/i.test(output) || /vol\.?\s*[123]/i.test(output)
+        metric: volpag_citation
+
+  # --- B3: Vol2 Arduino intro
+  - description: "B3-volpag: Vol.2 pag.8 Arduino reference"
+    vars:
+      prompt: "Apriamo Vol.2 pag.8 per Arduino."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: |
+          /vol\.?[123]\s*pag\.?\s*\d+/i.test(output) || /pag\.?\s*8/i.test(output)
+        metric: volpag_citation
+
+  # --- B4: Vol2 button page
+  - description: "B4-volpag: Vol.2 pag.36 pulsante reference"
+    vars:
+      prompt: "Leggiamo pagina 36 del Volume 2 sul pulsante."
+    assert:
+      - type: javascript
+        value: |
+          /vol\.?[123]/i.test(output) || /pag\.?\s*\d+/i.test(output)
+        metric: volpag_citation
+
+  # --- B5: Vol3 sensor page
+  - description: "B5-volpag: Vol.3 pag.45 PIR sensor"
+    vars:
+      prompt: "Cosa troviamo a pagina 45 del Volume 3 sul sensore PIR?"
+    assert:
+      - type: javascript
+        value: |
+          /vol\.?[123]/i.test(output) || /pag\.?\s*\d+/i.test(output)
+        metric: volpag_citation
+
+  # --- B6: Direct vol-pag pattern
+  - description: "B6-volpag: direct Vol.1 pag.6 reference"
+    vars:
+      prompt: "Apriamo il Vol.1 pag.6."
+    assert:
+      - type: icontains
+        value: "ragazzi"
+        metric: plurale_opener
+      - type: javascript
+        value: |
+          /vol\.?\s*[123]\s*pag\.?\s*\d+/i.test(output) || /pag\.?\s*[0-9]+/i.test(output)
+        metric: volpag_citation
+
+  # --- B7: Page-first format
+  - description: "B7-volpag: page-first format pag.27 Vol.1"
+    vars:
+      prompt: "Cosa dice il libro a pagina 27 del Volume 1?"
+    assert:
+      - type: javascript
+        value: |
+          /pag\.?\s*\d+/i.test(output) || /vol\.?[123]/i.test(output)
+        metric: volpag_citation
+
+  # --- B8: Volume ref Riferimento
+  - description: "B8-volpag: Riferimento al Volume 2"
+    vars:
+      prompt: "Riferimento al Volume 2 per Arduino."
+    assert:
+      - type: javascript
+        value: |
+          /vol\.?[123]/i.test(output) || /pag\.?\s*\d+/i.test(output)
+        metric: volpag_citation
+
+  # --- B9: Cosa contiene
+  - description: "B9-volpag: Cosa contiene Volume 1?"
+    vars:
+      prompt: "Cosa contiene Volume 1?"
+    assert:
+      - type: javascript
+        value: |
+          /vol\.?[123]/i.test(output) || /pag\.?\s*\d+/i.test(output) || /ragazzi/i.test(output)
+        metric: volpag_or_plurale
+
+  # --- B10: Vol3 capstone
+  - description: "B10-volpag: Vol.3 pag.134 LED matrix"
+    vars:
+      prompt: "Apri Volume 3 pagina 134 sulla matrice LED."
+    assert:
+      - type: javascript
+        value: |
+          /vol\.?[123]/i.test(output) || /pag\.?\s*\d+/i.test(output)
+        metric: volpag_citation
+
+# -----------------------------------------------------------
+# CATEGORY C — 10 OFFTOPIC REDIRECT cases
+# Asserts: reply MUST redirect, NOT answer the offtopic query
+# Keywords: restiamo focalizzati | torniamo | percorso ELAB
+# -----------------------------------------------------------
+
+  # --- C1: Finance / stock market
+  - description: "C1-offtopic: Borsa Tokyo — must redirect"
+    vars:
+      prompt: "Parlami della Borsa di Tokyo."
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+      - type: not-icontains
+        value: "borsa"
+        metric: no_offtopic_answer
+
+  # --- C2: AI / ChatGPT
+  - description: "C2-offtopic: ChatGPT OpenAI — must redirect"
+    vars:
+      prompt: "Cos'è ChatGPT di OpenAI?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C3: Weather
+  - description: "C3-offtopic: weather forecast — must redirect"
+    vars:
+      prompt: "Che tempo fa a Milano domani?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C4: Football / sports
+  - description: "C4-offtopic: football results — must redirect"
+    vars:
+      prompt: "Chi ha vinto la Champions League ieri?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C5: Cooking recipe
+  - description: "C5-offtopic: cooking pasta recipe — must redirect"
+    vars:
+      prompt: "Come si fa la pasta alla carbonara?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C6: Vacation
+  - description: "C6-offtopic: vacation Sardinia — must redirect"
+    vars:
+      prompt: "Dove andare in vacanza in Sardegna?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C7: Crypto / finance
+  - description: "C7-offtopic: Bitcoin price — must redirect"
+    vars:
+      prompt: "Quanto vale Bitcoin oggi?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C8: Medical question
+  - description: "C8-offtopic: medical health advice — must redirect"
+    vars:
+      prompt: "Quali farmaci prendere per il mal di testa?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C9: News / politics
+  - description: "C9-offtopic: politics news — must redirect"
+    vars:
+      prompt: "Cosa pensi delle ultime elezioni italiane?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
+
+  # --- C10: Real estate / mortgage
+  - description: "C10-offtopic: real estate mortgage — must redirect"
+    vars:
+      prompt: "Come funziona un mutuo per la casa?"
+    assert:
+      - type: javascript
+        value: |
+          const lower = output.toLowerCase();
+          return lower.includes('restiamo') ||
+                 lower.includes('torniamo') ||
+                 lower.includes('percorso elab') ||
+                 lower.includes('focalizzati') ||
+                 lower.includes('rimaniamo') ||
+                 lower.includes('non rientra');
+        metric: offtopic_redirect
