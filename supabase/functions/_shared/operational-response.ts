@@ -460,7 +460,7 @@ export function buildDirectOperationalResponse(
     };
   }
 
-  console.log('[ITER70_PROBE] reached page-only section. text=', text);
+  // Iter 70 PHASE 4 Codex TEAM F MED fix: removed [ITER70_PROBE] console.log (PII leak in prod logs).
   // Iter 70 A-NEW-2c — page-only resolver session experimentId context.
   // Iter 68 PHASE 6 matrix evidence: 8 failures "Cosa dice il libro a pagina N?" + variants
   // ("Leggi pagina 45", "Apri pagina 12", "Vai a pagina 67", "Spiega pagina 134", "Mostra pagina 23").
@@ -471,12 +471,12 @@ export function buildDirectOperationalResponse(
   // PRINCIPIO ZERO compliance: plurale Ragazzi + Vol/pag verbatim + kit ELAB mention (when resolved).
   // Anti-regression: matches REQUIRE "pag(ina)? N" keyword — bare "Cosa dice il libro" without page
   //   does NOT trigger (falls through to LLM as before).
-  const pageOnlyMatch = text.match(/(?:cosa\s+dice|leggi(?:amo)?|apri(?:te)?|apriamo|vai\s+a|vado\s+a|portami\s+a|spiega(?:te|mi)?|porta(?:te?ci|mi)?|mostra(?:te|mi|re)?)\s*(?:il\s+|al\s+)?(?:libro\s*)?(?:a\s+|alla\s+)?pag(?:ina)?\.?\s*(\d{1,3})/i)
-    || text.match(/pag(?:ina)?\.?\s*(\d{1,3})/i);
+  const pageOnlyMatch = text.match(/\b(?:cosa\s+dice|leggi(?:amo)?|apri(?:te)?|apriamo|vai\s+a|vado\s+a|portami\s+a|spiega(?:te|mi)?|porta(?:te?ci|mi)?|mostra(?:te|mi|re)?)\s*(?:il\s+|al\s+)?(?:libro\s*)?(?:a\s+|alla\s+)?pag(?:ina)?\.?\s*(\d{1,3})\b/i)
+    || text.match(/\bpag(?:ina)?\.?\s*(\d{1,3})\b/i);
   if (pageOnlyMatch) {
     // Anti-regression: skip if vol+pag explicit (already handled by P1/P2 detectors above).
     // Defensive double-check: ensure no "vol(ume)?\.?\s*[123]" appears near the "pag" match.
-    const hasVolNear = /vol(?:ume)?\.?\s*[123]/i.test(text);
+    const hasVolNear = /\bvol(?:ume)?\.?\s*[123]\b/i.test(text);
     if (!hasVolNear) {
       const pagN = pageOnlyMatch[1];
       const expId = session?.currentExperimentId || '';

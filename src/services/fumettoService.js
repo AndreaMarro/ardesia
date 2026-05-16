@@ -198,6 +198,7 @@ export function generatePilotFumetto(input = {}) {
     );
   }
   const now = input.now || new Date('2026-05-16T10:00:00.000Z').toISOString();
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
   const fivemin = new Date(
     new Date(now).getTime() + 5 * 60 * 1000
   ).toISOString();
@@ -398,6 +399,7 @@ export function generatePilotFumetto(input = {}) {
 export function getFumettoSchemaMeta() {
   return {
     id: fumettoSchema.$id,
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
     version: fumettoSchema.version,
     title: fumettoSchema.title,
   };
