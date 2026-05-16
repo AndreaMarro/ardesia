@@ -2278,3 +2278,84 @@ Andrea ratified PHASE 1 canary gradient 5%→25%→100% (Recommended). Code anal
 - `scripts/agents/guard-deploy-unlim-chat.sh` — PreToolUse Bash matcher hook regression prevention
 - `.claude/settings.json` — hooks Stop + PreToolUse Edit|Write + PreToolUse Bash (NEW)
 - Andrea strategic input documento iter 67 PM — synthesized + adapted ELAB context
+
+## Sprint U iter 67 PHASE 5 — Volume 3 Blockly + Nano R4 strategic audit + iter 63 ground truth discovery (2026-05-16 PM)
+
+**Score iter 67 PHASE 5 close ONESTO G45**: **9.55/10** (+0.05 vs PHASE 4 9.5).
+
+**Trigger**: Andrea iter 67 PM secondo documento (26+ sezioni) Volume 3 Blockly + Arduino Nano R4 ELAB Compile/Upload Agent architecture. **Discovery NO COMPIACENZA**: 95% del documento = REDUNDANT con iter 63 P0.5 spec `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md` 13390B ALREADY EXISTS (Andrea mandate verbatim 2026-05-15 PM stesso!). Andrea documento questo turn scorda iter 63 lavoro pre-esistente.
+
+**Ground truth iter 67 close verified PHASE 5**:
+- ✅ ELAB-COMPILE-UPLOAD-AGENT.md spec EXISTS 13.4KB PROPOSED iter 62→63
+- ✅ `src/services/elab-agent/server.js` 11.8KB pure async handlers (spawn arduino-cli + 7 error categories)
+- ✅ `src/services/elab-agent/sketch-builder.js` 8.1KB SketchBuilder + `loadBoardProfile()`
+- ✅ Blockly `arduinoGenerator` C++ LIVE `src/components/simulator/panels/scratchGenerator.js` (full C++ precedence + custom blocks)
+- ✅ ScratchCompileBar + ScratchEditor + BoardSelector + NewElabSimulator LIVE
+- ✅ R4 `compileAgentDetect.js` browser-side iter 65 ae13c9e6 LIVE
+- ✅ R5 `CompileAgentBanner.jsx` iter 66 2f7d7611 LIVE 4 platform states
+- ✅ experiments-vol3.js 157KB + 14 esperimenti lesson-paths v3-cap5/6/7/8
+- ❌ HTTP server binding agent (deferred iter 63 MVP scope)
+- ❌ Lavagna UI wire to agent
+- ❌ Volume 3 first-vertical-slice Blink integration
+- ❌ src/boards/arduino-nano-r4.json (spec §3.1 — verify exists)
+- ❌ Error translator 7 categories implementation status (server.js audit needed)
+
+**Honest assessment Andrea documento (NO COMPIACENZA)**:
+1. ✅ 95% aligned iter 63 spec — NO custom toolchain + Arduino CLI ufficiale + FQBN canonical + forbidden AVR patterns + Web Serial limits + error translator + board profile + Blockly generator
+2. ❌ R7 stima "~6h subagent" iter 67 PHASE 1 §7 INSUFFICIENT — refined atomization iter 68-72 multi-iter (A0+A1.5+A2+A3+A6+A7 iter 68 ~10-13h + A4+A5+A8 iter 69 ~12-15h + A9 iter 70-72 10-15h subagent multi-iter)
+3. ❌ Cross-platform installer "iter 68 P0.10" SOTTOSTIMA — real 40-80h alone (Apple cert + Windows EV + notarization + dfu-util bundle + auto-update + crash reporting). Sprint V+ multi-week.
+4. ❌ Arduino CLI GPL-3.0 legal review obbligatorio prima distribution installer. PlatformIO Apache-2.0 alternativa (iter 63 spec Opzione D).
+5. ❌ Volume 3 capitoli "12 vs 10 sito pubblico" inconsistency Andrea §15.1 NOT applicabile mio ground truth iter 67 — repo state = 4 capitoli REALI (cap5/cap6/cap7/cap8) + 14 esperimenti. Andrea ratify canonical iter 68 A7.
+6. ❌ `elab-local` repository Andrea documento HALLUCINATED — NON ESISTE GitHub AndreaMarro OR filesystem. Real path = `src/services/elab-agent/` LIVE inside elab-tutor monorepo iter 63 P0.5.
+7. ❌ Documento 26+ sezioni risk scope creep — pick top 5-10 actionable + atomize iter 68-72.
+
+**Strategic plan iter 68-72 REFINED atomization** (vedi `docs/strategy/2026-05-16-iter-67-PHASE5-volume3-blockly-strategic-audit.md`):
+
+| Iter | Atom | Scope | Effort |
+|---|---|---|---|
+| 68 | A0 | Audit iter 63 P0.5 status | 1h orchestrator |
+| 68 | A1.5 | Create src/boards/arduino-nano-r4.json | 30min |
+| 68 | A2 | HTTP server binding Express/Fastify wrapper server.js | 2-3h |
+| 68 | A3 | Lavagna UI CompileUploadButton wire to agent HTTP API (R7 refined) | 4-6h subagent BG |
+| 68 | A6 | PreToolUse hook guard-forbidden-avr-patterns.sh extend | 1h |
+| 68 | A7 | Volume 3 capitoli inconsistency audit + Andrea ratify canonical | 2h |
+| 69 | A4 | Volume 3 first-vertical-slice Blink v3-cap5-esp1 full pipeline | 6h subagent BG |
+| 69 | A5 | Error translator 7 categories implementation | 4h |
+| 69 | A8 | Renesas RA4M1 docs purge 76 file Andrea ratify 3 options | 2-4h subagent |
+| 70-72 | A9 | Volume 3 esperimenti integration full 14 esperimenti | 10-15h subagent BG multi-iter |
+| 71 | A10 | Web Serial Monitor Seriale Chrome/Edge | 4-6h subagent BG |
+| 71 close | A11 | Manual Dream Protocol v1 prototype | 3h orchestrator |
+| Sprint V+ | A12+A13 | Cross-platform installer + GPL-3.0 legal review | 40-80h + Andrea/lawyer |
+| Sprint V+ | A14 | Mistral Vibe Red Team integration | per Andrea ratify iter 67 PHASE 4 |
+| Sprint V+ | A15 | ELAB Quality Harness Phase 1 | per Andrea ratify iter 67 PHASE 4 |
+
+**Honesty caveats critical PHASE 5**:
+1. Andrea documento iter 67 PM REDUNDANT 95% con iter 63 spec esistente — real iter 68+ = COMPLETE iter 63 NOT rebuild.
+2. `elab-local` repository Andrea documento HALLUCINATED — `src/services/elab-agent/` real path iter 63 P0.5 LIVE.
+3. R7 PHASE 1 §7 stima "6h" INSUFFICIENT — refined multi-iter atomization 68-72.
+4. Volume 3 capitoli mismatch = repo 4 capitoli canonical (cap5-8) — Andrea documento §15.1 sito 10/12 NOT applicabile ground truth iter 67.
+5. Cross-platform installer + GPL-3.0 legal review Sprint V+ blocker — NOT iter 68-72 scope.
+6. Real hardware Nano R4 testing Andrea/Tea action required — orchestrator inline NON può test fisico USB.
+7. PHASE 5 scope clarity + planning ONLY (NO new feature shipped — audit + strategic synthesis + atomization).
+
+**Anti-inflation G45 PHASE 5**:
+- Cap 9.55/10 honest (raw 9.6 → 9.55 acknowledgment NO feature ship, scope clarity only)
+- NO claim "ELAB Compile/Upload Agent LIVE" (iter 63 PROPOSED, iter 68+ COMPLETE work)
+- NO claim "Volume 3 Blockly→Nano R4 LIVE" (iter 69 A4 first-vertical-slice projection)
+- NO claim above 9.7 senza R7 ship hardware verified Andrea/Tea
+
+**Iter 68 entrance Andrea ratify queue gruppo 9 (5 voci max)**:
+1. A0 audit iter 63 P0.5 status — orchestrator inline 1h ora OR defer iter 68 entrance
+2. A7 Volume 3 capitoli canonical decision — repo 4 canonical (sito correggere) OR add cap1-4 lesson-paths
+3. A8 Renesas docs purge 3 options — ALL 36 OR SRC 11 OR defer iter 70+
+4. A12+A13 cross-platform installer + GPL-3.0 legal — Sprint V+ accept multi-week OR alternatives
+5. A2+A3 iter 68 BG dispatch — single subagent OR parallel 2 worktrees (HTTP binding + Lavagna wire)
+
+**Cross-link PHASE 5**:
+- PHASE 5 strategic audit: `docs/strategy/2026-05-16-iter-67-PHASE5-volume3-blockly-strategic-audit.md`
+- iter 63 spec: `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md` 13.4KB PROPOSED iter 62→63
+- ELAB Agent existing: `src/services/elab-agent/{server.js,sketch-builder.js}` iter 63 P0.5
+- Blockly Arduino generator: `src/components/simulator/panels/scratchGenerator.js`
+- R4 detect: `src/services/compileAgentDetect.js` iter 65 ae13c9e6
+- R5 banner: `src/components/HomePage/CompileAgentBanner.jsx` iter 66 2f7d7611
+- Refined .ai/mission.md + .ai/board.md iter 68 P0 task Ready atomization

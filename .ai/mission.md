@@ -45,13 +45,56 @@ Cascade lift iter 67 9.4/10 → 9.7+/10 ONESTO G45 via:
 - Honesty caveats critical 5+ bullets minimum
 - G45 anti-inflation cap NO claim above 9.5 senza Opus indipendente review
 
-## Task Ready iter 68 entrance
+## Task Ready iter 68 entrance (REFINED post iter 67 PHASE 5 strategic audit Andrea documento)
 
+### Carryover iter 67 → 68 P0
 1. Andrea provide ELAB_API_KEY plain (Vercel Dashboard fetch) + paste `/tmp/vercel.env`
 2. Step 7 1000q matrix `node scripts/bench/run-1000-matrix.py` → 1000/1000 PASS preserve verify
 3. Andrea Codex plugin-cc install slash command sequence (4 commands)
-4. PreToolUse hook Bash matcher add `.claude/settings.json` block `supabase functions deploy unlim-chat` senza `--no-verify-jwt`
+4. ✅ PreToolUse hook deploy unlim-chat SHIPPED iter 67 PHASE 4 (`guard-deploy-unlim-chat.sh`)
 5. Matteo integrate (CLAUDE.md team section + `TEA/iter-58-brief-matteo.md` vitest 13118 → 13428)
+
+### NEW iter 68 R7 refined atomization (post iter 67 PHASE 5 strategic ground truth)
+
+**Discovery iter 67 PHASE 5**: iter 63 P0.5 `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md` + `src/services/elab-agent/{server.js,sketch-builder.js}` ALREADY 70% implemented. R7 = COMPLETE iter 63, NOT rebuild.
+
+**A0** Audit iter 63 P0.5 status (1h orchestrator inline iter 68 entrance):
+- Verify spec `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md` PROPOSED → ACCEPTED OR REJECTED
+- Verify `server.js` 6 endpoint coverage vs spec §3.3 (/health /boards /compile /upload /compile-and-upload /jobs/:id)
+- Verify `sketch-builder.js` `loadBoardProfile()` + `validateNoForbidden()` impl
+- Verify `src/boards/arduino-nano-r4.json` exists OR create from spec §3.1
+
+**A1.5** Create `src/boards/arduino-nano-r4.json` from spec §3.1 (30min if missing)
+
+**A2** HTTP server binding Express/Fastify wrapper around server.js handlers (2-3h orchestrator inline):
+- Express simple route `/agent/*` → server.js handlers
+- Localhost-only 127.0.0.1:6789 (R4 compileAgentDetect port)
+- CORS allowlist + token handshake
+
+**A3** Lavagna UI Compile+Upload button wire to agent HTTP API (R7 refined, 4-6h subagent BG worktree isolato):
+- `src/components/lavagna/CompileUploadButton.jsx` consume R4 detect + R5 banner pattern
+- Click → POST `/agent/compile-and-upload` con Blockly arduinoGenerator output OR C++ editor
+- Fallback installer modal R5 pattern se agent offline
+
+**A6** PreToolUse hook forbidden patterns lint (1h extend iter 67 PHASE 4 hook):
+- `scripts/agents/guard-forbidden-avr-patterns.sh` block edit con PORTB/DDRD/TCCR/atmega328p/avr/
+
+**A7** Volume 3 capitoli inconsistency audit (2h):
+- Repo state = **4 capitoli** (cap5/cap6/cap7/cap8) + 14 esperimenti
+- Sito pubblico cita "10 capitoli" OR "12 capitoli" (Andrea documento §15.1)
+- Andrea ratify canonical: (a) repo = 4 canonical + correggere sito OR (b) add cap1-4 lesson-paths intro/hardware/setup/programming-concepts
+
+### Iter 69+ R7 continuum atomization (vedi docs/strategy/2026-05-16-iter-67-PHASE5-volume3-blockly-strategic-audit.md)
+
+- A4 Volume 3 first-vertical-slice Blink v3-cap5-esp1 full pipeline (iter 69, 6h subagent BG)
+- A5 Error translator 7 categories impl (iter 69, 4h)
+- A8 Renesas RA4M1 docs purge 76 file (iter 69, Andrea ratify 3 options)
+- A9 Volume 3 esperimenti integration full 14 esperimenti (iter 70-72, 10-15h subagent BG multi-iter)
+- A10 Web Serial Monitor Seriale Chrome/Edge (iter 71, 4-6h subagent BG)
+- A11 Manual Dream Protocol v1 prototype (iter 71 close, 3h orchestrator)
+- A12+A13 Cross-platform installer + GPL-3.0 legal review (Sprint V+ blocker)
+- A14 Mistral Vibe integration Red Team (Sprint V+ Andrea ratify)
+- A15 ELAB Quality Harness Phase 1 (Sprint V+ Playwright cleanup + UX probes + Promptfoo smoke)
 
 ## Cross-link
 

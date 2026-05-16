@@ -18,13 +18,26 @@
 - [ ] Hook PostToolUse vitest delta verify post-Edit src/ (iter 68+ P1 fast regression)
 - [ ] OpenRig topology evaluation experimental (Sprint V+ deferred)
 
-## Ready iter 68 entrance
+## Ready iter 68 entrance (REFINED post iter 67 PHASE 5)
 
+### Andrea-blocked
 - [ ] Andrea ELAB_API_KEY plain + paste /tmp/vercel.env
-- [ ] Step 7 1000q matrix re-verify post v55 deploy
 - [ ] Andrea Codex plugin-cc install 4 commands
-- [ ] PreToolUse hook block deploy senza --no-verify-jwt
-- [ ] Matteo team integrate CLAUDE.md + brief vitest update
+- [ ] Andrea ratify Volume 3 capitoli canonical (A7 — repo 4 vs sito 10/12)
+- [ ] Andrea ratify Renesas docs purge 3 options (A8 — ALL 36 OR SRC 11 OR defer iter 70+)
+- [ ] Andrea ratify cross-platform installer scope Sprint V+ (A12 — accept multi-week OR alternatives)
+
+### Orchestrator inline iter 68 entrance (~6-10h)
+- [ ] A0 audit iter 63 P0.5 ELAB Compile/Upload Agent status (1h)
+- [ ] A1.5 create src/boards/arduino-nano-r4.json from spec §3.1 (30min if missing)
+- [ ] A2 HTTP server binding Express/Fastify wrapper server.js (2-3h)
+- [ ] A6 PreToolUse hook guard-forbidden-avr-patterns.sh extend (1h)
+- [ ] A7 Volume 3 capitoli inconsistency audit (2h)
+- [ ] Matteo team integrate CLAUDE.md + brief vitest update (30min)
+- [ ] Step 7 1000q matrix re-verify post v55 deploy (Andrea provide ELAB_API_KEY)
+
+### Subagent BG iter 68 (max 1-2 worktree isolato Pattern S r3)
+- [ ] A3 Lavagna UI CompileUploadButton wire to agent HTTP (R7 refined, 4-6h)
 
 ## In Progress (WIP limit 3)
 
