@@ -1,0 +1,168 @@
+/* AlbumStudente.module.css — Tea iter 70 D scaffold styling.
+ *
+ * Palette canonica ELAB (Tea spec).
+ * Touch ≥44 px, font ≥13 px body, ≥10 px badge.
+ */
+
+.album {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  font-family: 'Open Sans', sans-serif;
+  color: #1E4D8C;
+  color: var(--elab-navy, #1E4D8C);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid rgba(30, 77, 140, 0.1);
+}
+
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  margin: 0;
+  color: #1E4D8C;
+  color: var(--elab-navy, #1E4D8C);
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #4A6080;
+}
+
+.empty {
+  padding: 60px 20px;
+  text-align: center;
+  background: white;
+  border: 1px dashed rgba(30, 77, 140, 0.2);
+  border-radius: 16px;
+}
+
+.emptyTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #1E4D8C;
+  color: var(--elab-navy, #1E4D8C);
+}
+
+.emptyHint {
+  font-size: 14px;
+  color: #5E7397;
+  margin: 0;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border: 1px solid rgba(30, 77, 140, 0.12);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 20px rgba(30, 77, 140, 0.12);
+  transform: translateY(-1px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  color: #1E4D8C;
+  color: var(--elab-navy, #1E4D8C);
+}
+
+.cardDate {
+  font-size: 11px;
+  color: #7A8AA8;
+  white-space: nowrap;
+}
+
+.cardCaption {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2A3A55;
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(74, 122, 37, 0.08);
+  border-left: 3px solid #4A7A25;
+  border-left-color: var(--elab-lime, #4A7A25);
+  border-radius: 4px;
+}
+
+.cardCaptionEmpty {
+  font-size: 13px;
+  font-style: italic;
+  color: #7A8AA8;
+  margin: 0;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(30, 77, 140, 0.08);
+}
+
+.panelCount {
+  font-size: 12px;
+  color: #5E7397;
+}
+
+.cardCta {
+  min-height: 44px;
+  padding: 8px 16px;
+  background: #1E4D8C;
+  background: var(--elab-navy, #1E4D8C);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cardCta:hover,
+.cardCta:focus-visible {
+  background: #0E2D5C;
+}
+
+.footer {
+  margin-top: 32px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(30, 77, 140, 0.08);
+  text-align: center;
+  color: #7A8AA8;
+  font-size: 11px;
+}
