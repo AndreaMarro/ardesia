@@ -381,7 +381,17 @@ serve(async (req: Request) => {
     // for ANY user query. Surgical fix: pass `userQueryStripped` (already computed line 283
     // via stripEnvelope) instead of `safeMessage`. Preserves detector behavior on REAL user
     // query, strips system-injected context words.
-    const directOperational = buildDirectOperationalResponse(userQueryStripped, safeCircuitState as CircuitState | null);
+    // Iter 70 A-NEW-2c — pass session context to enable page-only resolver.
+    // SessionContext.currentExperimentId derives volN via regex /^v([123])-/ when query
+    // mentions "pagina N" without explicit Vol.X (8 matrix failures iter 68 PHASE 6).
+    // classKey + ageBand reserved for iter 71+ context-aware routing (currently unused).
+    // safeExperimentId already validated line 240 via validateExperimentId guard.
+    const sessionContextForOp = {
+      currentExperimentId: safeExperimentId || null,
+      classKey: classKey || null,
+      ageBand: null,
+    };
+    const directOperational = buildDirectOperationalResponse(userQueryStripped, safeCircuitState as CircuitState | null, sessionContextForOp);
     if (directOperational) {
       // iter 20 P0 BUG FIX — direct-operational source bypassava enforcer + forceCitation*
       // → iter 19 stress 100q evidence: 5+ fail su categorie A/E/H (Arduino bypass canned string
