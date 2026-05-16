@@ -307,9 +307,9 @@ export async function createApp(opts = {}) {
     try {
       const payload = await handlers.health();
       res.json({
+        ...payload,
         agent: 'elab-compile-upload',
         version: process.env.ELAB_AGENT_VERSION || '0.1.0',
-        ...payload,
       });
     } catch (err) {
       res.status(500).json({
