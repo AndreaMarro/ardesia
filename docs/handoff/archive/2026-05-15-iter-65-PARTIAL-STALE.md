@@ -1,3 +1,23 @@
+> ⚠️ **STALE iter 66 entrance 2026-05-16** — iter 65 actual close 8.7/10 G45 verified.
+>
+> Atom 2.5 onniscenza-bridge V2 + npm audit fix + push origin all SHIPPED post-handoff write:
+> - Atom 2.5 wire-up commit `9bfb2a85` Andrea 2026-05-15 23:05:48 PM
+> - npm audit fix 0 vulns LIVE (`902a4cef` holds)
+> - Push origin VERIFIED `a4276597` matches remote
+>
+
+---
+
+> Replacement audit: `docs/audits/2026-05-16-iter-66-ENTRANCE-truth-recalibration-audit.md`
+
+
+
+
+
+
+
+---
+
 # Iter 65 PARTIAL → Iter 66 RECOVERY Handoff
 
 **Date**: 2026-05-15 23:00 CEST

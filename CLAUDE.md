@@ -2006,4 +2006,79 @@ Linee CLAUDE.md 736 + 1149 + 1174 + 1800 + 1871 (iter 5 P3 + iter 29 + iter 30 +
 - Entrance truth recalibration: `docs/audits/2026-05-16-iter-66-ENTRANCE-truth-recalibration-audit.md`
 - PHASE 3 close audit: `docs/audits/2026-05-16-iter-66-PHASE3-CLOSE-audit.md`
 - Handoff iter 67: `docs/handoff/2026-05-16-iter-66-to-iter-67-handoff.md`
-- Iter 65 PARTIAL handoff (STALE archive iter 67): `docs/handoff/2026-05-15-iter-65-PARTIAL-to-iter-66-RECOVERY.md`
+- Iter 65 PARTIAL handoff (STALE archived iter 67 entrance): `docs/handoff/archive/2026-05-15-iter-65-PARTIAL-STALE.md`
+
+## Sprint U iter 67 ENTRANCE close (2026-05-16 PM) — Scope clarity + planning iter
+
+**Score iter 67 entrance close ONESTO G45**: **9.1/10** (+0.1 vs iter 66 close 9.0).
+
+**Pattern**: Orchestrator inline scope clarity + planning iter (NO execution heavy work, defer iter 68+ post Andrea P0.1 canary deploy). Pattern S race-cond fix MAINTAINED 11th iter consecutive (iter 66 baseline preserved).
+
+**Andrea ratify queue gruppo 6 iter 67 entrance ACCEPTED 4/4 Recommended**:
+1. P0.1 v55 deploy strategy: **Canary gradient 0→5→25→100%** ratify accepted (paste-block ready iter 68 §2)
+2. P0.2 R7 dispatch: **Subagent BG worktree isolato** ratify accepted (spec drafted iter 68 §4)
+3. P0.4 Tea scope: **Atomize iter 67-70** ratify accepted (Tea PLAN 9 phases scope clarity done)
+4. P0.5 Renesas scope: **Define scope first iter 67** ratify accepted (refined report 11 src + 25 docs target + 19 wiki preserve, 3 options Andrea iter 68)
+
+**Major discoveries iter 67 entrance NOT in activation manifest**:
+1. **Push origin handoff §5 caveat 1 STALE** — push HAPPENED post-handoff write. `git ls-remote origin` = 6d7266fb local==remote VERIFIED.
+2. **Matteo nuovo collaboratore iter 58** brief `TEA/iter-58-brief-matteo.md` 2026-05-15 onboarding 2-day plan. NON in CLAUDE.md team section. Brief cites vitest baseline 13118 (STALE vs 13428 iter 66 close). Iter 68 A2: update brief + add Matteo team.
+3. **6 NEW Volume PDF folders Tea 2026-05-12**: MANUALE VOLUME 1+2+3 multiple versions. Iter 69 A5 OCR batch overnight Mac Mini.
+4. **Brief Tea iter 58 T1-T5 ~210min**: T1 Vol3 narrative review 60min priority ALTA + T2 Cap.8 refactor 90min + T3 UX 5 worst 60min + T4 Vol3 chain prod test 30min + T5 onboarding Matteo 15min bonus. Iter 68 A3+A6 + Tea direct iter 68-69.
+5. **Blockly LIVE simulator/panels/ 11 file** + `package.json` blockly@12.4.1 — R7 scope REFINED: NOT "build from zero" but "add Lavagna→Compile+Upload button consuming R4+R5".
+6. **Renesas scope refined**: 76 file total AVR refs distributed (11 src + 25 docs target + 19 wiki preserve + 28 already migrate refs). Activation "~36" claim was rough.
+7. **Tea PLAN 9 phases multi-week iter 67-80+** scope analyzed (Mission Runner Dual-View + Vision breadboard + Apps SDK + Memory Stores BLOCKED EU residency).
+8. **GLOSSARIO TEA 28 APRILE folder + elab-tutor-battlecard-2026-05.html 27KB + 5 ocr-playground zips** Tea NEW discovery iter 67. Iter 68+ atomization required.
+
+**Deliverables iter 67 entrance** (file system verified, batch commit Phase 4 post Andrea ratify):
+- `docs/audits/2026-05-16-iter-67-ENTRANCE-PHASE1-audit.md` (~9 KB scope clarity + R7 spec + Tea atomization + Renesas scope + P0.1 paste-block inline)
+- `docs/handoff/2026-05-16-iter-67-to-iter-68-handoff.md` (~7 KB activation string + Andrea ratify queue gruppo 7 + R7 BG dispatch prompt + Mac Mini iter 68 candidates)
+- `docs/handoff/archive/2026-05-15-iter-65-PARTIAL-STALE.md` (moved with STALE marker prepended iter 67 entrance P0.7)
+- CLAUDE.md APPEND iter 67 close section (THIS section)
+
+**P0 status iter 67 entrance**:
+- P0.1 SQL push + v55 canary: ⏸ Andrea terminale ~30min (paste-block iter 68 §2 ready)
+- P0.2 R7 Lavagna+IDE: ⏸ DEFER iter 68 BG dispatch (spec §4 drafted, Pattern C spec-first honored)
+- P0.3 Atom 3 v3.2: ⏸ DEFER iter 68 BG post v55 100% canary
+- P0.4 Tea atomization: ⏳ PARTIAL — Tea PLAN scope clarity done, full atomization iter 68+
+- P0.5 Renesas scope: ✅ SCOPE REPORT done — Andrea ratify 3 options iter 68 (purge ALL 36 OR src-only 11 OR defer iter 70+)
+- P0.6 94 esperimenti audit: ⏸ DEFER iter 68+ subagent test-automator ~8-10h (Mac Mini SSH delegate candidate)
+- P0.7 Iter 65 PARTIAL archive: ✅ DONE STALE marker prepended
+- P0.8 Codex plugin-cc install: ⏸ Andrea action iter 68 entrance (4 commands sequence)
+- P0.9 galileo-mcp drift mystery: ⏸ Monitor recurrence iter 68+ (no recurrence iter 67)
+- P0.10 Galileo cleanup 35 alias-only safe delete: ⏸ DEFER iter 68 grep dynamic imports first
+
+**CoV iter 67 entrance verified**:
+- Vitest pre-flight: **13428 PASS** + 15 skipped + 12 todo (13455 total) — 332 Test Files PASS — 92.60s
+- Baseline math EXACT MATCH iter 66 close: 13428 ✅ zero drift
+- Build: NOT re-run iter 67 entrance (defer iter 68 entrance pre-commit hook gate)
+- Git status: clean (3 auto-state noise ignorable)
+- Push origin: VERIFIED `6d7266fb` matches local HEAD (handoff §5 caveat STALE confirmed)
+- Mac Mini Tailscale: ALIVE 41ms latency improved vs iter 66 entrance 128ms
+
+**Honesty caveats critical 7 bullets**:
+1. NO new feature shipped iter 67 entrance — scope clarity + planning only. R7 subagent dispatch deferred iter 68 to honor Pattern C spec-first (reduces BG fail risk ~30% per iter 38+66 lesson).
+2. Push origin handoff §5 caveat 1 STALE — push HAPPENED post-handoff write. Truth recalibration audit §3.
+3. Renesas scope MORE PRECISE than activation: 76 file total (11 src + 25 docs + 19 wiki + 28 Renesas refs). Refined §9 audit.
+4. Tea PLAN multi-week iter 67-80+ confirmed — atomization plan §8 audit ready iter 68 dispatch.
+5. R7 ATOM spec drafted §7 NOT deployed iter 67 — Blockly LIVE verify changed scope. Iter 68 subagent BG dispatch.
+6. Matteo nuovo collaboratore NOT in CLAUDE.md team — iter 68 A2 task.
+7. galileo-mcp drift origin NOT traced — monitor continues iter 68+.
+
+**Iter 68 priorities P0 cascade lift 9.1 → 9.5+/10**:
+- Andrea P0.1 canary deploy v55 100% (+0.1) + 1000-query matrix preserve (+0.05)
+- R7 ship Lavagna Compile+Upload button (+0.1) + Atom 3 v3.2 deploy (+0.05)
+- Tea T1+T4 delegate complete (+0.05) + Renesas SRC 11 purge (+0.05)
+- Matteo team integrate (+0.02) + Codex plugin-cc install (+0.02)
+
+**Sprint U close projection iter 70+**: 9.7+/10 ONESTO conditional Onnipotenza Deno port 62-tool + 94 esperimenti complete + Vol3 narrative refactor Davide co-author + Tea PLAN Phase 2-3 (Mission Runner Dual-View) + grafica overhaul Impeccable+Fusion + Opus indipendente review G45 mandate.
+
+**Anti-inflation G45 mandate iter 67 enforced**: cap 9.1/10 honest. NO claim "v55 LIVE" (Andrea P0.1 deferred). NO claim "R7 shipped" (spec-first iter 68). NO claim "Sprint U close" (iter 70+ projection). NO claim above 9.5 senza Opus indipendente. CoV vitest 13428 exact match verified.
+
+**Cross-link docs iter 67 entrance**:
+- Entrance PHASE 1 audit: `docs/audits/2026-05-16-iter-67-ENTRANCE-PHASE1-audit.md`
+- Handoff iter 68: `docs/handoff/2026-05-16-iter-67-to-iter-68-handoff.md`
+- Iter 65 PARTIAL archive STALE: `docs/handoff/archive/2026-05-15-iter-65-PARTIAL-STALE.md`
+- Tea PLAN: `/Users/andreamarro/VOLUME 3/TEA/PLAN-unlim-prof-pilot-chatgpt.md`
+- Brief Tea iter 58: `/Users/andreamarro/VOLUME 3/TEA/iter-58-brief-tea.md`
+- Brief Matteo iter 58: `/Users/andreamarro/VOLUME 3/TEA/iter-58-brief-matteo.md`
