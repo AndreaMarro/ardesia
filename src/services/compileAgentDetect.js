@@ -2,10 +2,10 @@
  * compileAgentDetect.js — Iter 65 P0 Atom R4 (Public Distribution Mac-only MODIFY scope).
  *
  * Browser-side detection helper for the ELAB Compile Agent (iter 63/64 native
- * node:http server running on loopback `127.0.0.1:17852`).
+ * node:http server, iter 70+ Express factory on loopback `127.0.0.1:8765`).
  *
  * Responsibilities:
- *   1. Probe `GET http://localhost:17852/health` with a hard 2s timeout
+ *   1. Probe `GET http://localhost:8765/health` with a hard 2s timeout
  *      (AbortController). Even an HTTP 401 (token gated) is considered
  *      "available" — only network-level failure means agent_offline.
  *   2. De-dup concurrent probes via in-flight promise cache + 5s TTL on the
@@ -25,8 +25,16 @@
  * @copyright © Andrea Marro — 2026 — ELAB Tutor — Tutti i diritti riservati
  */
 
-/** Canonical loopback agent endpoint (matches server.js + spec). */
-export const COMPILE_AGENT_PORT = 17852;
+/**
+ * Canonical loopback agent endpoint.
+ * Iter 71-PORT-UNIFY fix (Codex Pattern V iter63 P0 finding 2026-05-16):
+ * Prior 17852 was iter 65 native node:http stale value never matched iter 70+
+ * Express factory (http-server.js:55 DEFAULT_AGENT_PORT=8765) NOR
+ * CompileUploadButton.jsx:51 AGENT_COMPILE_UPLOAD_URL. Browser detection
+ * MAI matched agent prod → R4 banner stuck "Agent not detected".
+ * Unified to 8765 matching agent default + button POST URL.
+ */
+export const COMPILE_AGENT_PORT = 8765;
 export const COMPILE_AGENT_HEALTH_URL = `http://localhost:${COMPILE_AGENT_PORT}/health`;
 
 /** Hard ceiling for a single probe (mandate spec: 2s). */

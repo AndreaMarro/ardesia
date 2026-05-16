@@ -32,9 +32,9 @@ afterEach(() => {
 });
 
 describe('compileAgentDetect — constants', () => {
-  it('binds to the canonical loopback port 17852', () => {
-    expect(COMPILE_AGENT_PORT).toBe(17852);
-    expect(COMPILE_AGENT_HEALTH_URL).toBe('http://localhost:17852/health');
+  it('binds to the canonical loopback port 8765', () => {
+    expect(COMPILE_AGENT_PORT).toBe(8765);
+    expect(COMPILE_AGENT_HEALTH_URL).toBe('http://localhost:8765/health');
   });
 
   it('enforces a 2s probe timeout and 5s cache TTL per spec', () => {
@@ -59,7 +59,7 @@ describe('detectCompileAgent — fetch success paths', () => {
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     expect(fetchImpl.mock.calls[0][0]).toBe(COMPILE_AGENT_HEALTH_URL);
     expect(res.available).toBe(true);
-    expect(res.port).toBe(17852);
+    expect(res.port).toBe(8765);
     expect(res.version).toBe('0.4.2');
     expect(res.error).toBeUndefined();
     expect(res.latencyMs).toBeGreaterThanOrEqual(0);
@@ -69,7 +69,7 @@ describe('detectCompileAgent — fetch success paths', () => {
     const fetchImpl = vi.fn().mockResolvedValue({ ok: false, status: 401, json: async () => ({}) });
     const res = await detectCompileAgent({ fetchImpl });
     expect(res.available).toBe(true);
-    expect(res.port).toBe(17852);
+    expect(res.port).toBe(8765);
     expect(res.error).toBeUndefined();
   });
 
@@ -102,7 +102,7 @@ describe('detectCompileAgent — failure paths', () => {
     const res = await detectCompileAgent({ fetchImpl });
     expect(res.available).toBe(false);
     expect(res.error).toBe('agent_offline');
-    expect(res.port).toBe(17852);
+    expect(res.port).toBe(8765);
   });
 
   it('returns error=timeout when fetch aborts', async () => {
@@ -125,7 +125,7 @@ describe('detectCompileAgent — failure paths', () => {
     const res = await detectCompileAgent({ fetchImpl: null });
     expect(res.available).toBe(false);
     expect(res.error).toBe('no_fetch');
-    expect(res.port).toBe(17852);
+    expect(res.port).toBe(8765);
     expect(res.latencyMs).toBe(0);
   });
 });
@@ -242,7 +242,7 @@ describe('result shape contract', () => {
     const fetchImpl = vi.fn().mockRejectedValue(new Error('boom'));
     const res = await detectCompileAgent({ fetchImpl });
     expect(res.available).toBe(false);
-    expect(res.port).toBe(17852);
+    expect(res.port).toBe(8765);
     expect(typeof res.error).toBe('string');
     expect(typeof res.latencyMs).toBe('number');
   });
