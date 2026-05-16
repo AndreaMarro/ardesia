@@ -35,6 +35,18 @@ export type DirectOperationalResponse = {
   dataProcessing: string;
 };
 
+// Iter 70 A-NEW-2c — SessionContext for page-only resolver.
+// Iter 68 PHASE 6 + iter 69 close: 8 failures "Cosa dice il libro a pagina N?" require
+// experimentId context to derive volN. SessionContext is passed optionally via 3rd arg of
+// buildDirectOperationalResponse — backward compat: existing callers (msg, circuit) still work.
+// currentExperimentId format: 'v[1-3]-cap{N}-esp{N}' or 'v[1-3]-...'; regex /^v([123])-/
+// extracts the volume number. classKey + ageBand reserved for iter 71+ context-aware routing.
+export type SessionContext = {
+  currentExperimentId?: string | null;
+  classKey?: string | null;
+  ageBand?: string | null;
+};
+
 const BLINK_CODE = `void setup() {
   pinMode(13, OUTPUT);
 }
@@ -243,6 +255,7 @@ function componentIdsForError(circuitState?: CircuitState | null): string {
 export function buildDirectOperationalResponse(
   message: string,
   circuitState?: CircuitState | null,
+  session?: SessionContext | null,
 ): DirectOperationalResponse | null {
   const text = String(message || '').toLowerCase();
   const hasErrors = (circuitState?.errors?.length ?? 0) > 0;
@@ -445,6 +458,43 @@ export function buildDirectOperationalResponse(
       dataProcessing: 'local-direct',
       response: `Ragazzi, apriamo il Volume ${volN} del kit ELAB. Iniziamo da Vol.${volN} pag.${defaultPag} (capitolo iniziale). Quale capitolo specifico volete approfondire insieme?`,
     };
+  }
+
+  console.log('[ITER70_PROBE] reached page-only section. text=', text);
+  // Iter 70 A-NEW-2c — page-only resolver session experimentId context.
+  // Iter 68 PHASE 6 matrix evidence: 8 failures "Cosa dice il libro a pagina N?" + variants
+  // ("Leggi pagina 45", "Apri pagina 12", "Vai a pagina 67", "Spiega pagina 134", "Mostra pagina 23").
+  // Detector ordered AFTER vol+pag (P1/P2) + volume-only detectors so explicit vol+pag still wins.
+  // If session.currentExperimentId present → derive volN via regex /^v([123])-/ → emit canonical
+  //   "Ragazzi, apriamo Vol.X pag.N sul kit ELAB. Vediamo insieme cosa spiega questa pagina."
+  // If session.currentExperimentId NOT present → emit plurale redirect asking which volume.
+  // PRINCIPIO ZERO compliance: plurale Ragazzi + Vol/pag verbatim + kit ELAB mention (when resolved).
+  // Anti-regression: matches REQUIRE "pag(ina)? N" keyword — bare "Cosa dice il libro" without page
+  //   does NOT trigger (falls through to LLM as before).
+  const pageOnlyMatch = text.match(/(?:cosa\s+dice|leggi(?:amo)?|apri(?:te)?|apriamo|vai\s+a|vado\s+a|portami\s+a|spiega(?:te|mi)?|porta(?:te?ci|mi)?|mostra(?:te|mi|re)?)\s*(?:il\s+|al\s+)?(?:libro\s*)?(?:a\s+|alla\s+)?pag(?:ina)?\.?\s*(\d{1,3})/i)
+    || text.match(/pag(?:ina)?\.?\s*(\d{1,3})/i);
+  if (pageOnlyMatch) {
+    // Anti-regression: skip if vol+pag explicit (already handled by P1/P2 detectors above).
+    // Defensive double-check: ensure no "vol(ume)?\.?\s*[123]" appears near the "pag" match.
+    const hasVolNear = /vol(?:ume)?\.?\s*[123]/i.test(text);
+    if (!hasVolNear) {
+      const pagN = pageOnlyMatch[1];
+      const expId = session?.currentExperimentId || '';
+      const volMatch = typeof expId === 'string' ? expId.match(/^v([123])-/) : null;
+      if (volMatch) {
+        const volN = volMatch[1];
+        return {
+          source: 'direct-operational-page-only-resolved',
+          dataProcessing: 'local-direct',
+          response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina.`,
+        };
+      }
+      return {
+        source: 'direct-operational-page-only-redirect',
+        dataProcessing: 'local-direct',
+        response: `Ragazzi, quale volume volete aprire? Specificate Vol.1, Vol.2 o Vol.3 pagina ${pagN}.`,
+      };
+    }
   }
 
   const isHighlight = (/\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente|r\d+|btn\d+|bat\d+|led\d+|bb\d+)\b/i.exec(text)
