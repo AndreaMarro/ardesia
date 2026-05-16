@@ -2178,3 +2178,103 @@ Andrea ratified PHASE 1 canary gradient 5%→25%→100% (Recommended). Code anal
 - CODEX-WORKFLOW.md v2.0: `docs/dev/CODEX-WORKFLOW.md` (4 patterns V/R/I/A + 4 ELAB profiles iter 42 setup)
 - Codex BG wrapper: `scripts/dev/codex-bg.sh`
 - Edge Function dashboard: https://supabase.com/dashboard/project/euqpdueopmlllqjmqnyb/functions/unlim-chat/invocations
+
+## Sprint U iter 67 PHASE 4 — Multi-agent war room scaffold + regression prevention hook (2026-05-16 PM)
+
+**Score iter 67 PHASE 4 close ONESTO G45**: **9.5/10** (+0.1 vs PHASE 3 9.4).
+
+**Trigger**: Andrea iter 67 PM strategic input documento (multi-agent war room + ELAB Quality Harness + Mistral Vibe + Manual Dream Protocol + Shape Up + Kanban + XP + cmux distinctions + Codex max setup). Andrea ratify 4/4 Recommended iter 67 PHASE 4: implement top 4 quick wins + coexist `.ai/` NEW + defer Mistral Vibe iter 70+ + ELAB Quality Harness Phase 1 iter 70-72.
+
+**Pattern**: orchestrator inline single-agent (Pattern S r3 11× consecutive PRESERVED iter 5+6+8+11+12+19+36+37+38+43+67).
+
+**Deliverables PHASE 4 shipped**:
+
+1. ✅ **`.ai/` scaffold workspace** (Andrea documento §4 + §5):
+   - `.ai/README.md` (1.7 KB) — scope + coexist con `automa/team-state/` legacy + cross-link
+   - `.ai/mission.md` (1.7 KB) — iter 68 entrance template (goal + appetite + non-obiettivi + agent roles + DoD + Task Ready)
+   - `.ai/board.md` (1.7 KB) — Kanban board WIP limit 3 + Backlog/Ready/InProgress/Blocked/Review/Done
+   - `.ai/handoffs/.gitkeep` — placeholder pattern handoffs cycle
+   - `.ai/dreams/.gitkeep` — Manual Dream Protocol candidate folders (Andrea documento §6 + §7 warning AutoDream GitHub issues)
+   - `.ai/reports/.gitkeep` — placeholder per ELAB Quality Harness Phase 1 iter 70+ artifacts
+
+2. ✅ **`scripts/agents/aiw.sh` v1 CLI** (Andrea documento §22):
+   - Commands: status / smoke / quality / handoffs / dream / baseline-check / worktrees / help
+   - Pattern S r3 enforcement docstring "1 agent = 1 branch = 1 worktree = 1 mission"
+   - Verify works iter 67 PHASE 4 (help output OK + executable)
+
+3. ✅ **PreToolUse Bash matcher hook `guard-deploy-unlim-chat`** (regression prevention iter 67 PHASE 2):
+   - `scripts/agents/guard-deploy-unlim-chat.sh` reads stdin JSON `tool_input.command` + regex match `supabase.*functions.*deploy.*unlim-chat`
+   - If `--no-verify-jwt` flag MISSING → returns `permissionDecision:"ask"` warning Andrea (PREVENT iter 67 PHASE 2 401 warmup_cron regression cost 17% free tier)
+   - If flag PRESENT → returns `permissionDecision:"allow"`
+   - If non-deploy command → returns `permissionDecision:"allow"` passthrough
+   - Wired `.claude/settings.json` PreToolUse Bash matcher, timeout 5s
+   - Verify 3/3 scenarios PASS iter 67 PHASE 4 (block + allow + passthrough)
+
+4. ✅ **CLAUDE.md APPEND multi-agent workflow section** (this section)
+
+**Coexist `.ai/` NEW + `automa/team-state/` legacy** (Andrea ratify):
+- `.ai/handoffs/` = NEW canonical war room cycle (mission → architect → builder → tester → reviewer → integrator) iter 68+ pattern
+- `automa/team-state/messages/{agent}-iter{N}-{phase}-completed.md` = Pattern S r3 inter-agent filesystem barrier PRESERVE (race-cond fix 11× validated, NO breaking)
+
+**Manual Dream Protocol design (iter 69+ prototype)**:
+- AutoDream / `/dream` Claude Code GitHub issues confirmed problematic (Andrea documento §6.3 cite): "Unknown skill" + file deletion + memory loss bugs
+- Manual protocol: end-of-session orchestrator produces `.ai/dreams/YYYY-MM-DD-{phase}/consolidated-memory-candidate.md` + `decisions-candidate.md` + `risks-candidate.md` + `next-cycle-plan.md`
+- Each insight classified: STABLE (CLAUDE.md/AGENTS.md candidate) / TEMPORARY (next session only) / DISCARD (noise) / VERIFY (test/read confirm needed)
+- Codex Pattern R review → `diff-check.md`
+- Mistral Red Team review (iter 70+ when integrated)
+- Andrea reviews + ratifies before apply CLAUDE.md/AGENTS.md
+- NEVER auto-apply dream candidate
+
+**Multi-agent workflow Pattern S r3 11× consecutive iter 5+6+8+11+12+19+36+37+38+43+67 + iter 68+ war room evolution**:
+- 1 agent = 1 branch = 1 worktree = 1 mission (file ownership rigid, NO write conflict)
+- Filesystem barrier completion msgs (Pattern S r3 legacy `automa/team-state/messages/` OR NEW `.ai/handoffs/`)
+- Max 1-2 BG agents stessa worktree (iter 65 race-cond lesson)
+- Pre-commit + pre-push hooks vitest 13428 gate (NEVER bypass `--no-verify`)
+- Codex Pattern C cross-check via `scripts/dev/codex-bg.sh verify` (Pattern V read-only sandbox, Pattern R review pre-PR, Pattern I implement worktree isolato)
+- Pre-push hook gate verifica baseline preserve
+
+**Strategic input deferred Sprint U+ (per Andrea ratify)**:
+- Mistral Vibe CLI install Mac Mini Red Team agent (Andrea documento §5 + §29) — iter 70+ post Codex Pattern C 11× validation sufficient
+- ELAB Quality Harness Phase 1 (Playwright cleanup + UX probes + Promptfoo smoke 30 cases) — iter 70-72 atomize
+- ELAB Quality Harness Phase 2 (Lighthouse CI + axe + BackstopJS + ZAP + Langfuse + Ragas + DeepEval + Unlighthouse + Crawlee + Pa11y) — Sprint V+ multi-week strategic
+- OpenRig topology evaluation experimental (Sprint V+)
+- GitHub Actions ELAB Quality Gate PR pipeline (iter 72+ post Phase 1 ROI verify)
+- Routes discovery crawler Crawlee SPA hash-route (iter 70+)
+- Hooks Claude Code Channels MCP CI events (Andrea documento §19)
+- Routines Claude Code nightly review (Andrea documento §20)
+- cmux terminal app evaluate (Mac Mini Screen Sharing future iter)
+
+**Honesty caveats critical 5 bullets PHASE 4**:
+1. **AutoDream NON enabled** — Manual Dream Protocol only (Andrea documento §6.3 + §7 GitHub issues warning).
+2. **`.ai/` NEW path coexist NON migration** `automa/team-state/messages/` — Pattern S r3 race-cond fix 11× validated PRESERVE (NO breaking).
+3. **AGENTS.md root NON modified** — currently auto-managed claude-mem context wrapper. Codex repo-level rules in `.codex/AGENTS.md` (4263B exists iter 54 setup).
+4. **Mistral Vibe DEFERRED iter 70+ Sprint U+** — Codex Pattern C 11× cross-check validation sufficient. NEW provider ADR-style cost analysis + Mac Mini install + 1-atom prototype prior production use.
+5. **ELAB Quality Harness DEFERRED Phase 1 iter 70-72 + Phase 2 Sprint V+** — comprehensive 20+ tools stack (Playwright + axe + Lighthouse + Promptfoo + DeepEval + Ragas + Langfuse + Crawlee + Unlighthouse + BackstopJS + ZAP + Pa11y + Semgrep + OpenRig) NOT iter 67-69 scope. Implement gradually atomize.
+
+**Anti-inflation G45 mandate PHASE 4 enforced**:
+- Cap 9.5/10 honest (raw 9.55 → 9.5 verify deferrals iter 68-72)
+- NO claim "war room operational" (scaffold only, iter 68 entrance actual use)
+- NO claim "Manual Dream Protocol implemented" (placeholder + design only)
+- NO claim "ELAB Quality Harness LIVE" (Phase 1 iter 70-72 projection, Phase 2 Sprint V+)
+- NO claim above 9.5 senza Opus indipendente review
+
+**Iter 68 entrance priorities P0 (cascade target 9.5 → 9.8+/10)**:
+1. Andrea provide ELAB_API_KEY plain + Step 7 1000q matrix re-verify
+2. Andrea Codex plugin-cc install slash command sequence
+3. PreToolUse hook tested LIVE iter 68 first deploy attempt (verify block works production)
+4. aiw CLI smoke/status iter 68 entrance daily use
+5. .ai/mission.md + .ai/board.md aggiornamenti iter 68 task Ready
+6. galileo-mcp drift investigate + legacy Galileo grep + safe delete
+7. Matteo team integrate CLAUDE.md
+8. R7 Lavagna Compile+Upload subagent BG dispatch
+9. Atom 3 system-prompt v3.2 inject (BG post v55)
+10. Manual Dream Protocol v1 prototype 1 cycle test (iter 69)
+
+**Cross-link PHASE 4**:
+- `.ai/README.md` — multi-agent workspace structure + coexist policy
+- `.ai/mission.md` — iter 68 entrance goal template
+- `.ai/board.md` — Kanban WIP limit 3
+- `scripts/agents/aiw.sh` v1 — agent ops CLI canonical
+- `scripts/agents/guard-deploy-unlim-chat.sh` — PreToolUse Bash matcher hook regression prevention
+- `.claude/settings.json` — hooks Stop + PreToolUse Edit|Write + PreToolUse Bash (NEW)
+- Andrea strategic input documento iter 67 PM — synthesized + adapted ELAB context
