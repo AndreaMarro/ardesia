@@ -6,8 +6,8 @@ export default function AppHeader({
   totalSteps = 0,
   currentStep = 0,
   onPickerOpen,
-  onGalileoToggle,
-  galileoOpen = false,
+  onUnlimToggle,
+  unlimOpen = false,
   onVideoToggle,
   videoOpen = false,
   onVolumeToggle,
@@ -100,12 +100,12 @@ export default function AppHeader({
       {/* Right: Manuale + Video */}
       <div className={css.right}>
         {/* Percorso button removed — now accessed via build mode selector (Percorso = ex Libero) */}
-        {onGalileoToggle && (
+        {onUnlimToggle && (
           <button
-            className={`${css.btn} ${css.btnLabeled} ${galileoOpen ? css.btnActive : ''}`}
-            onClick={onGalileoToggle}
-            aria-label={galileoOpen ? 'Nascondi chat UNLIM' : 'Mostra chat UNLIM'}
-            aria-pressed={galileoOpen}
+            className={`${css.btn} ${css.btnLabeled} ${unlimOpen ? css.btnActive : ''}`}
+            onClick={onUnlimToggle}
+            aria-label={unlimOpen ? 'Nascondi chat UNLIM' : 'Mostra chat UNLIM'}
+            aria-pressed={unlimOpen}
             title="Apri la chat UNLIM"
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">

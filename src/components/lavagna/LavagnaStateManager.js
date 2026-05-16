@@ -23,31 +23,31 @@ export const STATE_PANELS = {
   [STATES.CLEAN]: {
     leftPanel: false,
     bottomPanel: false,
-    galileo: false,
+    unlim: false,
     toolbar: true,
   },
   [STATES.BUILD]: {
     leftPanel: true,      // Componenti aperti per drag
     bottomPanel: false,    // Codice chiuso durante montaggio
-    galileo: false,
+    unlim: false,
     toolbar: true,
   },
   [STATES.CODE]: {
     leftPanel: false,      // Componenti chiusi
     bottomPanel: true,     // Editor codice aperto
-    galileo: false,
+    unlim: false,
     toolbar: false,        // Non serve durante coding
   },
   [STATES.RUN]: {
     leftPanel: false,
     bottomPanel: true,     // Monitor seriale visibile
-    galileo: false,
+    unlim: false,
     toolbar: false,
   },
   [STATES.STUCK]: {
     leftPanel: false,
     bottomPanel: false,
-    galileo: false,
+    unlim: false,
     toolbar: true,
   },
 };
@@ -71,7 +71,7 @@ export function deriveState(context) {
  * Calcola le azioni da applicare ai pannelli
  * Rispetta gli override manuali dell'utente
  * @param {string} newState - il nuovo stato
- * @param {Object} currentPanels - stato attuale pannelli { leftPanel, bottomPanel, galileo, toolbar }
+ * @param {Object} currentPanels - stato attuale pannelli { leftPanel, bottomPanel, unlim, toolbar }
  * @param {Object} manualOverrides - pannelli settati manualmente dall'utente (non toccare)
  * @returns {Object} - nuovo stato pannelli da applicare
  */

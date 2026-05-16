@@ -47,7 +47,7 @@ const ScratchEditor = lazy(() => import('./panels/ScratchEditor'));
 import PotOverlay from './overlays/PotOverlay';
 import LdrOverlay from './overlays/LdrOverlay';
 import PropertiesPanel from './panels/PropertiesPanel';
-import GalileoResponsePanel from './panels/GalileoResponsePanel';
+import UnlimResponsePanel from './panels/UnlimResponsePanel';
 import ExperimentGuide from './panels/ExperimentGuide';
 import BuildModeGuide from './panels/BuildModeGuide';
 import ComponentDrawer from './panels/ComponentDrawer';
@@ -1025,7 +1025,7 @@ const NewElabSimulator = ({
       </div>
 
       {/* OVERLAYS */}
-      <GalileoResponsePanel response={unlimResponse} isAsking={isAskingUNLIM} onAskAgain={() => { setUnlimResponse(null); window.dispatchEvent(new CustomEvent('elab-open-unlim-input')); }} onClose={() => setUnlimResponse(null)} />
+      <UnlimResponsePanel response={unlimResponse} isAsking={isAskingUNLIM} onAskAgain={() => { setUnlimResponse(null); window.dispatchEvent(new CustomEvent('elab-open-unlim-input')); }} onClose={() => setUnlimResponse(null)} />
       {potOverlay && (<PotOverlay value={potOverlay.value} onValueChange={handlePotValueChange} onClose={() => setPotOverlay(null)} />)}
       {ldrOverlay && (<LdrOverlay value={ldrOverlay.value} onValueChange={handleLdrValueChange} onClose={() => setLdrOverlay(null)} />)}
       {propsPanel && (<PropertiesPanel comp={propsPanel} onValueChange={handlePropChange} onClose={() => setPropsPanel(null)} />)}

@@ -58,11 +58,11 @@ async function renderMode(activeTab) {
     on: vi.fn(),
     off: vi.fn(),
   };
-  const { default: GalileoAdapter } = await import('../../../src/components/lavagna/GalileoAdapter.jsx');
-  return render(<GalileoAdapter visible activeTab={activeTab} onClose={() => {}} />);
+  const { default: UnlimAdapter } = await import('../../../src/components/lavagna/UnlimAdapter.jsx');
+  return render(<UnlimAdapter visible activeTab={activeTab} onClose={() => {}} />);
 }
 
-describe('GalileoAdapter mode tabs', () => {
+describe('UnlimAdapter mode tabs', () => {
   beforeEach(() => {
     cleanup();
     delete window.__ELAB_API;

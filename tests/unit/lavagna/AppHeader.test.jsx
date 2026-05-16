@@ -77,10 +77,10 @@ describe('AppHeader', () => {
   });
 
   it('renders UNLIM chat toggle when handler is provided', () => {
-    const onGalileoToggle = vi.fn();
-    render(<AppHeader onGalileoToggle={onGalileoToggle} galileoOpen={false} />);
+    const onUnlimToggle = vi.fn();
+    render(<AppHeader onUnlimToggle={onUnlimToggle} unlimOpen={false} />);
     const btn = screen.getByRole('button', { name: /mostra chat unlim/i });
     fireEvent.click(btn);
-    expect(onGalileoToggle).toHaveBeenCalledOnce();
+    expect(onUnlimToggle).toHaveBeenCalledOnce();
   });
 });
