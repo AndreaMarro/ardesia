@@ -53,6 +53,11 @@ const HomeCronologia = lazy(() => import('./HomeCronologia'));
 // Iter 37 Atom A6 — route hash routing chatbot-only + about-easter
 const ChatbotOnly = lazy(() => import('./chatbot/ChatbotOnly'));
 const EasterModal = lazy(() => import('./easter/EasterModal'));
+// Iter 70 Team D — Glossario route internal (replaces external Vercel link
+// per feedback_glossario_external_url.md carryover iter 41 PM). Lazy-loaded
+// because the 180-term JSON bundle is heavy; only hits the bundle when the
+// docente clicks the Glossario card or navigates directly to #glossario.
+const GlossarioRoute = lazy(() => import('./glossario/GlossarioRoute'));
 
 // Iter 38 Atom A11 — mic permission UX nudge (pre-emptive grant request).
 // Lazy-loaded: il banner appare solo se Permissions API segnala state='prompt',
@@ -71,6 +76,8 @@ const CompileAgentBanner = lazy(() => import('./HomePage/CompileAgentBanner.jsx'
 const HASH_ROUTES = {
   CHATBOT: '#chatbot-only',
   ABOUT: '#about-easter',
+  // Iter 70 Team D — Glossario internal route (Tea iter 41 carryover).
+  GLOSSARIO: '#glossario',
 };
 
 function readHash() {
@@ -767,6 +774,17 @@ export default function HomePage({ onNavigate, onActivate }) {
           onBackHome={handleChatbotBackHome}
           onOpenLavagna={handleChatbotOpenLavagna}
         />
+      </Suspense>
+    );
+  }
+
+  // Iter 70 Team D — Glossario internal route (Tea iter 41 carryover).
+  // Replaces external `https://elab-tutor-glossario.vercel.app` link.
+  // Mounts GlossarioRoute with onClose returning to homepage via '#home'.
+  if (hash === HASH_ROUTES.GLOSSARIO) {
+    return (
+      <Suspense fallback={<div data-testid="glossario-loading" style={{ padding: 24 }}>Caricamento glossario…</div>}>
+        <GlossarioRoute onClose={handleChatbotBackHome} />
       </Suspense>
     );
   }
