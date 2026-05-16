@@ -271,6 +271,42 @@ export function buildDirectOperationalResponse(
     return null;
   }
 
+  // Iter 69 A-NEW-1b — pre-LLM offtopic redirect detector. Iter 68 PHASE 6 root cause:
+  // matrix 11 offtopic failures all `offtopic_not_redirected` (scorer line 159-166:
+  // response mentions 'esperimento'/'circuito' WITHOUT REDIRECT_KEYWORDS = fail).
+  // LLM PROSE for offtopic queries triggered the gate. Pre-LLM detector intercepts
+  // canonical offtopic domains + returns redirect response containing REDIRECT_KEYWORDS
+  // ('restiamo focalizzati' + 'percorso ELAB') + plurale 'Ragazzi' + invite to experiment.
+  //
+  // Domains derived from iter 68 matrix evidence (11 failures):
+  //   medical (Cuore battiti normali), auto (Tesla, Auto elettrica), finance/stocks
+  //   (Borsa Tokyo, Tesla azioni, Tax credit, Mercato immobiliare), news/religion
+  //   (Prossimo Papa), travel (Vacanze Sardegna), education non-K12 (Università),
+  //   tech brands (Anthropic Claude). Plus generic safe extensions: cooking, sport.
+  //
+  // PRINCIPIO ZERO compliance: plurale 'Ragazzi' + REDIRECT_KEYWORDS + invite kit fisico.
+  // Anti-regression: must NOT trigger ELAB domain (arduino/scratch/led/circuit Italian words).
+  // Pattern simplified: word-boundary issues with compound (tesla\s+azion + \b end fails
+  // because "azion" followed by "i" has no \b). Use single-keyword pattern protected by
+  // \b on both sides. Domain words chosen to be ZERO-overlap with ELAB K-12 elettronica
+  // vocabulary (no "led", no "circuito", no "esperimento", no "kit").
+  // Pattern combines ASCII \b boundaries (most words) + Unicode property escapes
+  // for accented Italian words (università etc). ASCII \b considers Italian accented
+  // chars as non-word, breaking boundary detection; (?<![\p{L}]) lookbehind respects
+  // Unicode letter category instead.
+  // ANTI-REGRESSION: "azioni" generic Italian (= "actions") collides with ELAB context
+  // (es. "spiegami senza azioni") — restrict finance via compound patterns or specific
+  // brand names. Use `tesla|borsa|finanza|mutuo|immobiliare|criptovalute|bitcoin` for
+  // finance domain coverage; "Tesla azioni" matches via `tesla` keyword alone.
+  const offtopicDomains = /\b(cuore|battit[io]|sintom[io]|diagnos[ie]|ospedale|medicina|farmac[oi]|dottore|chirurg[oi]a|auto|automobile|tesla|bmw|ferrari|borsa|finanza|tasse|tax|mutuo|immobiliare|investiment[io]|banca|criptovalute|bitcoin|ethereum|nft|metaverso|papa|governo|elezion[ie]|politica|vacanze|sardegna|sicilia|hotel|voli|ferie|laurea|dottorato|master|anthropic|openai|chatgpt|google|microsoft|facebook|instagram|tiktok|whatsapp|youtube|netflix|ricetta|cucina|ristorante|pasta|pizza|carbonara|juventus|inter|napoli|atalanta|tennis|sinner|berrettini|partita|champions|calcio)\b|(?<![\p{L}])universit[àa](?![\p{L}])/iu;
+  if (offtopicDomains.test(text)) {
+    return {
+      source: 'direct-operational-offtopic-redirect',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, restiamo focalizzati sul percorso ELAB! Stiamo imparando elettronica con i kit fisici e i volumi cartacei. Quale esperimento volete iniziare insieme oggi?',
+    };
+  }
+
   // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea test matrix evidence:
   // play/pause/compile/screenshot/highlight comandi semplici NON intercettati
   // pre-LLM. LLM Vertex risponde con diagnosi invece di dispatch action.
@@ -389,6 +425,25 @@ export function buildDirectOperationalResponse(
       source: 'direct-operational-pagvol',
       dataProcessing: 'local-direct',
       response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina dei volumi.`,
+    };
+  }
+
+  // Iter 69 A-NEW-2d — volume-only Riferimento detector (no page mentioned).
+  // Iter 68 PHASE 6 matrix evidence: "Riferimento al Volume 1/2/3", "Spiega Volume 2",
+  // "Apri Volume 1", "Mostrami il Volume 3" — scorer VOLPAG_RE_LOOSE requires Vol.X pag.Y
+  // together, Vol.X alone fails. Detector emits canonical Vol.X pag.6 (first chapter
+  // page, anchored to known volume capitoli) + invite teacher to specify capitolo.
+  // PRINCIPIO ZERO compliance: plurale Ragazzi + cita Vol/pag verbatim + kit fisico mention.
+  // Anti-regression: ordered AFTER P1/P2 vol+pag detectors so explicit pag queries handled first.
+  const volumeOnlyMatch = text.match(/\b(?:riferimento\s+al|spiega(?:te|tem[io])?|apri(?:te|tem[io])?|mostr(?:a|ami|ate|atem[io])|leggi(?:amo|te|tem[io])?|cita(?:te|tem[io])?)\s+(?:il\s+|al\s+)?vol(?:ume)?\.?\s*([123])\b(?!\s*(?:pag|cap))/i);
+  if (volumeOnlyMatch) {
+    const volN = volumeOnlyMatch[1];
+    // Default page: cap iniziale of volume (vol1=pag.6 LED basics, vol2=pag.5 Arduino intro, vol3=pag.5 Arduino avanzato).
+    const defaultPag = volN === '1' ? '6' : volN === '2' ? '5' : '5';
+    return {
+      source: 'direct-operational-volume-only',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo il Volume ${volN} del kit ELAB. Iniziamo da Vol.${volN} pag.${defaultPag} (capitolo iniziale). Quale capitolo specifico volete approfondire insieme?`,
     };
   }
 

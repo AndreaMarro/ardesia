@@ -21,6 +21,8 @@
     "gate": "bash scripts/anti-regression-gate.sh",
     "gate:quick": "bash scripts/quick-regression-check.sh",
     "audit:honesty": "bash scripts/honesty-audit.sh",
+    "sync-experiment-registry": "node scripts/sync-experiment-registry.mjs",
+    "sync-experiment-registry:list": "node scripts/sync-experiment-registry.mjs --list",
     "postinstall": "node scripts/patch-blockly.js"
   },
   "keywords": [],
