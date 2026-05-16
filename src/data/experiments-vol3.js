@@ -973,7 +973,7 @@ const EXPERIMENTS_VOL3 = {
     // ═══════════════════════════════════════════════════
     {
       id: "v3-cap5-esp1",
-      title: "Cap. 5 Esp. 1 - Blink con LED_BUILTIN",
+      title: "Il programma Blink: accendi e spegni il LED",
       desc: "Il primo programma in assoluto! Facciamo lampeggiare il LED integrato sulla scheda Arduino, quello collegato al pin 13. Si accende per 1 secondo, si spegne per 1 secondo, e ripete all'infinito.",
       chapter: "Capitolo 5 - Il nostro primo programma",
       difficulty: 1,
@@ -1041,7 +1041,7 @@ void loop() {
     },
     {
       id: "v3-cap5-esp2",
-      title: "Cap. 5 Esp. 2 - Modifica tempi del Blink",
+      title: "Cambia la velocità del lampeggio",
       desc: "Cambiamo i tempi del Blink! Prova a modificare i valori dentro delay() per far lampeggiare il LED piu veloce o piu lento. Cosa succede con delay(100)? E con delay(2000)?",
       chapter: "Capitolo 5 - Il nostro primo programma",
       difficulty: 1,
@@ -1118,7 +1118,7 @@ void loop() {
       // ed è stato rimosso per preservare il parallelismo volumi ↔ simulatore.
       // ────────────────────────────────────────────────────────────
       id: "v3-cap6-esp1",
-      title: "Cap. 6 Esp. 1 - Colleghiamo la resistenza",
+      title: "Esperimento 1: accendi il primo LED sulla breadboard",
       bookRef: "Vol3 p.56 - ESPERIMENTO 1",
       desc: "Il primo LED esterno! Colleghiamo un LED + resistenza 470Ω al pin D13. Stesso sketch Blink del Cap. 5, ma ora il LED lampeggia sulla breadboard invece che sulla scheda.",
       chapter: "Capitolo 6 - I pin digitali",
@@ -1240,7 +1240,7 @@ void loop() {
       // digitale funziona come OUTPUT.
       // ────────────────────────────────────────────────────────────
       id: "v3-cap6-esp2",
-      title: "Cap. 6 Esp. 2 - Cambia il numero di pin",
+      title: "Esperimento 2: cambia il numero di pin",
       bookRef: "Vol3 p.57 - ESPERIMENTO 2",
       desc: "Stesso circuito LED + resistenza 470Ω, ma ora il LED è pilotato dal pin D8 invece di D13. Cambia il numero nel codice e sposta il filo: il LED lampeggia lo stesso!",
       chapter: "Capitolo 6 - I pin digitali",
@@ -1372,7 +1372,7 @@ void loop() {
     },
     {
       id: "v3-cap6-morse",
-      title: "Cap. 6 Esp. 3 - SOS in codice Morse",
+      title: "Esperimento 3: fai un SOS in codice Morse",
       bookRef: "Vol3 Cap6 ESPERIMENTO 3",
       desc: "Modifichiamo il programma Blink per far lampeggiare il LED in codice Morse! S = tre lampi brevi, O = tre lampi lunghi. Il nostro Arduino manda un messaggio SOS!",
       chapter: "Capitolo 6 - I pin digitali",
@@ -1527,7 +1527,7 @@ void loop() {
     },
     {
       id: "v3-cap6-esp4",
-      title: "Cap. 6 Esp. 4 - Due LED: effetto polizia",
+      title: "Esperimento 4: due LED, effetto polizia",
       bookRef: "Vol3 Cap6 ESPERIMENTO 4",
       desc: "Due LED che si alternano come le luci della polizia! Quando uno e acceso l'altro e spento. Usiamo due pin digitali per controllare due LED separatamente.",
       chapter: "Capitolo 6 - I pin digitali",
@@ -1697,7 +1697,7 @@ void loop() {
     },
     {
       id: "v3-cap6-semaforo",
-      title: "Cap. 6 Esp. 5 - Il semaforo",
+      title: "Esperimento 5: il semaforo",
       bookRef: "Vol3 Cap6 ESPERIMENTO 5",
       desc: "Un vero semaforo! Verde 3s, Giallo 1s, Rosso 3s. Pin D5, D6, D3 sul breakout wing.",
       chapter: "Capitolo 6 - I pin digitali",
@@ -1994,9 +1994,9 @@ void loop() {
     // ═══════════════════════════════════════════════════
     {
       id: "v3-cap7-esp1",
-      title: "Cap. 7 Esp. 1 - analogRead base",
+      title: "Il pulsante accende e spegne il LED",
       desc: "Leggiamo un trimmer (potenziometro) con analogRead! Se il valore supera 511, il LED si accende. Il trimmer restituisce valori da 0 a 1023.",
-      chapter: "Capitolo 7 - I pin analogici",
+      chapter: "Capitolo 7 - I pulsanti e le decisioni",
       difficulty: 2,
       icon: "\u{1F39B}",
       simulationMode: "avr",
@@ -2161,9 +2161,9 @@ void loop() {
     },
     {
       id: "v3-cap7-esp2",
-      title: "Cap. 7 Esp. 2 - analogRead con tensione",
+      title: "Mini-progetto: due LED, un pulsante (Arduino sceglie)",
       desc: "Convertiamo il valore del trimmer in Volt veri! Con una formula semplice, Arduino ci dice quanti Volt sta leggendo sul pin A0.",
-      chapter: "Capitolo 7 - I pin analogici",
+      chapter: "Capitolo 7 - I pulsanti e le decisioni",
       difficulty: 2,
       icon: "\u{26A1}",
       simulationMode: "avr",
@@ -2329,9 +2329,9 @@ void loop() {
     },
     {
       id: "v3-cap7-esp3",
-      title: "Cap. 7 Esp. 3 - Trimmer controlla 3 LED",
+      title: "Esercizio 7.3: collega il pulsante con INPUT_PULLUP",
       desc: "Il trimmer controlla 3 LED diversi! Poco girato = LED 1, a meta = LED 2, tutto girato = LED 3. Dividiamo il range 0-1023 in 3 zone.",
-      chapter: "Capitolo 7 - I pin analogici",
+      chapter: "Capitolo 7 - I pulsanti e le decisioni",
       difficulty: 2,
       icon: "\u{1F6A6}",
       simulationMode: "avr",
