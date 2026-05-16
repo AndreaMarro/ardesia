@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * hashUtils — iter 30 P2.3 consolidation (Agent T iter 29 tech-debt P0-3).
  *

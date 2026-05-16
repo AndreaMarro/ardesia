@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 export const COMIC_PROMPT_REQUIRED_FIELDS = [
   'volume',
   'chapter',

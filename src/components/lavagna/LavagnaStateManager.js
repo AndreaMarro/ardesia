@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * LavagnaStateManager — State machine per auto-gestione pannelli
  * 5 stati: CLEAN, BUILD, CODE, RUN, STUCK

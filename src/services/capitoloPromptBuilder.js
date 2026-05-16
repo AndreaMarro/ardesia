@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * capitoloPromptBuilder — Sprint Q3.C
  * Andrea Marro 2026-04-25

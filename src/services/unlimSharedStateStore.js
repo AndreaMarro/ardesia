@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 const MAX_EVENTS = 80;
 const MAX_SNAPSHOTS = 12;
 

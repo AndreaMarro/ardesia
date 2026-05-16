@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 export const LOCAL_TIKTOK_VIDEOS = [
   {
     id: 'tiktok-elab-1',

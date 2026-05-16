@@ -1,7 +1,16 @@
 /**
  * ELAB — Firma automatica nel codice sorgente
- * Inserisce "© Andrea Marro — DD/MM/YYYY" ogni 200 righe
- * in tutti i file .js, .jsx, .css sotto src/
+ * Iter 71-DRIFT-FIX (2026-05-16): prepend single signature at file TOP only.
+ *
+ * Prior behavior (every 200 lines) inserted comments mid-array literal +
+ * mid-JSDoc blocks → broke readability + risked tooling errors. Iter 71-C TEAM C
+ * files src/services/elab-agent/{error-translator.js,vol3-experiments-pipeline.js}
+ * suffered drift bug: signatures injected mid-PATTERNS_BY_CATEGORY array (line 198)
+ * + mid-JSDoc block (line 398). Revert applied iter 70 close (b2cf6981) + iter 71
+ * entrance (this commit) 2x same root cause.
+ *
+ * NEW behavior: idempotent TOP-prepend on first run, skip on repeat (marker check).
+ * Files only get 1 signature, at top of file, preserved across builds.
  *
  * Uso: node scripts/add-signatures.js
  * Aggiunto come prebuild in package.json
@@ -14,7 +23,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const SRC_DIR = path.resolve(__dirname, '..', 'src');
-const INTERVAL = 200;
 const DATE = new Date().toLocaleDateString('it-IT');
 
 const JS_SIGNATURE = `// © Andrea Marro — ${DATE} — ELAB Tutor — Tutti i diritti riservati`;
@@ -54,21 +62,11 @@ function addSignatures(filePath) {
         return false;
     }
 
-    const lines = content.split('\n');
-    const result = [];
-    for (let i = 0; i < lines.length; i++) {
-        result.push(lines[i]);
-        if ((i + 1) % INTERVAL === 0 && i + 1 < lines.length) {
-            result.push(signature);
-        }
-    }
-
-    const newContent = result.join('\n');
-    if (newContent !== content) {
-        fs.writeFileSync(filePath, newContent, 'utf-8');
-        return true;
-    }
-    return false;
+    // Iter 71-DRIFT-FIX: prepend single signature at file TOP only.
+    // Safe insertion point (no mid-array, no mid-JSDoc breakage).
+    const newContent = `${signature}\n${content}`;
+    fs.writeFileSync(filePath, newContent, 'utf-8');
+    return true;
 }
 
 // Main

@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * HEX Compilation Cache — Andrea Marro — 15/02/2026
  * Cache locale per evitare ricompilazione codice identico

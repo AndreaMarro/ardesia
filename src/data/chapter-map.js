@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 // src/data/chapter-map.js
 // Alias mapping: Tea's proposal for volume realignment
 // Internal IDs unchanged, display names follow new chapter numbering

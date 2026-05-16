@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * intentsDispatcher — iter 37 Atom B-NEW (Maker-1 backend-architect).
  *

@@ -198,6 +198,7 @@ export function isVol3ExperimentSupported(experimentId) {
  * Lista experimentId Vol.3 supportati iter 71 TEAM C.
  * @returns {string[]}
  */
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 export function listSupportedVol3Experiments() {
   return Object.keys(VOL3_TEMPLATES);
 }

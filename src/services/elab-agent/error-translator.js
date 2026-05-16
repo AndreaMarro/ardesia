@@ -198,6 +198,7 @@ const PATTERNS_BY_CATEGORY = [
       /operation not permitted/i,
       /eacces/i,
     ],
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
   },
   {
     category: CATEGORIES.UPLOAD_FAILED,
@@ -398,6 +399,7 @@ function buildResponse(category, technicalDetail, extras = {}) {
  * Use in server.js handleCompile/handleUpload catch block.
  *
  * @param {Error|object} err - thrown error from runArduinoCli
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
  * @returns {object} canonical translator response
  */
 export function translateSpawnError(err) {

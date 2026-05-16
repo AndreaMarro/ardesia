@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Antigravity: Parent-Child component grouping utilities.
  * Components can be "parented" to a breadboard via layout[compId].parentId.
