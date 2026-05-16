@@ -29,7 +29,7 @@ vi.mock('../../../src/components/simulator/NewElabSimulator', () => ({
   default: () => <div data-testid="mock-simulator">Simulator</div>,
 }));
 
-vi.mock('../../../src/components/lavagna/GalileoAdapter', () => ({
+vi.mock('../../../src/components/lavagna/UnlimAdapter', () => ({
   default: ({ visible }) => visible ? <aside data-testid="mock-unlim">UNLIM</aside> : null,
 }));
 

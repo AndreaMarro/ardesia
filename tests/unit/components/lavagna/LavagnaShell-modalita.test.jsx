@@ -20,7 +20,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
  * Replicates handleModalitaChange contract from LavagnaShell.jsx:621-665.
  * If src behavior changes, update this factory + tests in lockstep.
  */
-function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode = () => {}, setGalileoOpen = () => {}, setUnlimTab = () => {} }) {
+function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode = () => {}, setUnlimOpen = () => {}, setUnlimTab = () => {} }) {
   return function handleModalitaChange(nextMode) {
     // iter 48: 'libero' + 'guida-da-errore' silently migrate to 'percorso'
     if (nextMode === 'libero' || nextMode === 'guida-da-errore') {
@@ -46,7 +46,7 @@ function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode =
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
       }
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('chat');
     }
 
@@ -62,14 +62,14 @@ function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode =
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('chat');
     }
 
     if (nextMode === 'percorso') {
       const api = getApi();
       setBuildMode('sandbox');
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('percorso');
       if (api?.setBuildMode) {
         try { api.setBuildMode('sandbox'); } catch { /* noop */ }
@@ -178,17 +178,17 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
   });
 
   it('Già Montato click → opens UNLIM chat while diagnose backend stays enabled', () => {
-    const setGalileoOpen = vi.fn();
+    const setUnlimOpen = vi.fn();
     const setUnlimTab = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment: vi.fn(),
-      setGalileoOpen,
+      setUnlimOpen,
       setUnlimTab,
       getApi: () => ({ setBuildMode: vi.fn(), unlim: { setDiagnoseMode: vi.fn() } }),
     });
     handler('gia-montato');
-    expect(setGalileoOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimOpen).toHaveBeenCalledWith(true);
     expect(setUnlimTab).toHaveBeenCalledWith('chat');
   });
 
@@ -196,13 +196,13 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     const setBuildMode = vi.fn();
     const apiSetBuildMode = vi.fn();
     const setBuildStepIndex = vi.fn();
-    const setGalileoOpen = vi.fn();
+    const setUnlimOpen = vi.fn();
     const setUnlimTab = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment: vi.fn(),
       setBuildMode,
-      setGalileoOpen,
+      setUnlimOpen,
       setUnlimTab,
       getApi: () => ({ setBuildMode: apiSetBuildMode, setBuildStepIndex }),
     });
@@ -210,7 +210,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setBuildMode).toHaveBeenCalledWith('guided');
     expect(apiSetBuildMode).toHaveBeenCalledWith('guided');
     expect(setBuildStepIndex).toHaveBeenCalledWith(0);
-    expect(setGalileoOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimOpen).toHaveBeenCalledWith(true);
     expect(setUnlimTab).toHaveBeenCalledWith('chat');
   });
 
