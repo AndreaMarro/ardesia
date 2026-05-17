@@ -3740,3 +3740,109 @@ Box subtotal **9.55/10** + bonus cumulative iter 80 inline (+0.30 Codex Pattern 
 - 80.A6: `src/services/elab-agent/http-server.js:62-78`
 - 80.A2 BG worktree (in-flight): `elab-builder-iter-80-A2` branch `iter-80-A2-ide-1-codeeditor-tab`
 
+
+## Sprint U iter 80 FULL CLOSE (2026-05-17 PM) — 6 atoms shipped + 80.A2 BG subagent merged
+
+**Score iter 80 FULL close ONESTO G45 cap**: **9.2/10** (+0.1 vs inline 9.1 — 80.A2 IDE-1 CodeEditorCM6 tab HIGH closed + clean cherry-pick + vitest 14463 baseline)
+
+**Pattern**: orchestrator inline 5 atoms + BG subagent A2 worktree isolato (application-performance:frontend-developer, 420s elapsed vs 3h budget) + Codex Pattern V iter 79 + Codex Pattern C iter 80 batch. Pattern S r3 race-cond fix VALIDATED **26× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67-77 phases+78+79.0+79.A+80 inline+**80.A2**).
+
+### 80.A2 IDE-1 CodeEditorCM6 tab HomeCompileEntry (Codex HIGH IDE-1 closed)
+
+Commit `e250cf5b` cherry-pick from worktree branch `iter-80-A2-ide-1-codeeditor-tab` (3 files +351 -11 LOC):
+- `src/components/home/HomeCompileEntry.jsx` +CodeEditorCM6 import + WrenchIcon + DEFAULT_CPP_BLINK constant + tab state (editorMode 'blocks'|'code') + 2 role="tab" buttons (Blocchi inline puzzle SVG + Codice C++ WrenchIcon) + ARIA `aria-selected`/`aria-controls`/`tabIndex` roving + conditional render ScratchEditor vs CodeEditorCM6 + handleCompile editorMode-aware source selection (cppCode | scratchCode)
+- `src/components/home/HomeCompileEntry.module.css` +69 LOC tabBar flex + tabButton 44×44 touch target + tabActive Lime 3px border-bottom + bold + coarse-pointer 48×48 (LIM/iPad touch)
+- `tests/unit/components/home/HomeCompileEntry-tabs.test.jsx` NEW 190 LOC 5 tests (T1-T5: default blocks / click code / compile cppCode / ARIA semantics / Blink seed)
+
+**Cherry-pick conflict resolved**: worktree based pre-iter-80-inline `a2ff8864` collided with my 80.A3 compileButtonLabel="Compila" inline addition. Merged manually to combine both: `sketchCode={editorMode === 'code' ? cppCode : scratchCode}` + `compileButtonLabel="Compila"` preserved.
+
+**Subagent honesty caveats notable** (8 documented):
+1. React act() warning T3 (compile click async state) — cosmetic, tests PASS stable 3x CoV. Iter 81 81.A6 wrap fix.
+2. CodeEditorCM6 mocked — real CM6 (iter 73 P0.5 LIVE) reused from existing simulator panel, NOT independently tested here.
+3. compileButtonLabel prop STALE in agent — worktree base pre-iter-80-inline missed iter 80.A3 ScratchCompileBar prop addition. Cherry-pick conflict resolution combined both atoms cleanly.
+4. Tab keyboard nav NOT implemented (Arrow Left/Right) — iter 81 81.A1 inline fix accessibility WAI-ARIA pattern.
+5. Inline puzzle SVG vs PuzzleIcon component — iter 81 81.A2 ElabIcons extract.
+6. PreToolUse semgrep noise (no token) — non-blocking environmental.
+7. Branch reset hard worktree (no data loss).
+8. CoV only 2 test files (no full vitest) — orchestrator pre-push gate verified 14463 PASS post-merge.
+
+### CoV iter 80 FULL post-merge verified
+
+- Vitest full **14463 PASS** + 15 skipped + 11 todo (14489 total) — 130s
+- Delta vs iter 80 inline 14457: +6 NEW (5 tabs tests + 1 callback preserve)
+- Build PASS post-cherry-pick (15.51s)
+- Smoke 4/4 PASS HEAD `e250cf5b` post-rebuild (CORS noise residual until agent restart for 80.A6 fix effect)
+- Pre-push hook gate PASS 14457 baseline (now updated, 14463 future target)
+- No write conflicts post-resolution
+
+### SPRINT_U_COMPLETE 28 boxes status post iter 80 FULL close
+
+| Box | iter 80 inline | iter 80 FULL | Delta |
+|---|---|---|---|
+| 1-27 | (preserved) | (preserved) | 0 |
+| 19 HomePage cross-compile entry | 1.0 | **1.0** (now blocks + IDE both LIVE Andrea iter 79 PM mandate addressed) | 0 |
+| 28 Baseline + CORS hygiene | 0.85 | 0.85 | 0 |
+| **NEW 29 HomePage direct C++ IDE entry** | n/a | **0.85** | +0.85 (80.A2 CodeEditorCM6 tab + DEFAULT_CPP_BLINK seed + 5 NEW tests + Codex HIGH IDE-1 closed) |
+
+Box subtotal **10.40/11 normalized 9.45** + bonus cumulative iter 80 FULL (+0.40 BG agent 7min execute vs 3h budget + clean cherry-pick conflict + Codex iter 79 HIGH closed + Pattern S r3 26× consecutive) = raw **9.85 → G45 cap 9.2/10 ONESTO**.
+
+**Cap deductions honest 3 explicit**:
+- −0.3 Codex iter 79 6 LOW + iter 70 TEAM A+B+D+E+G HIGH/MED still deferred iter 81+ (Sprint U close gate)
+- −0.3 Hardware UAT Nano R4 USB pending Andrea/Tea/Riccardo (chain ready end-to-end iter 79.A A3 hexBase64 + iter 80.A2 IDE-1 + iter 80.A5 size shape correct, physical board action required)
+- −0.2 80.A6 CORS source-only fix effect pending agent restart + Vercel deploy verify Andrea ratify
+
+### 5 honesty caveats iter 80 FULL → iter 81 carryover
+
+1. **80.A2 5 caveats from BG agent**: 4 deferred iter 81 (keyboard nav 81.A1 + PuzzleIcon 81.A2 + act() warning 81.A6 + functional E2E for tab switch optional iter 82+) + 1 design (CodeEditorCM6 mocked, real LIVE via iter 73 simulator).
+2. **80.A2 cherry-pick from PRE-iter-80-inline base**: my A3 compileButtonLabel prop addition (iter 80.A3 inline shipped before BG agent dispatch) collided with agent's editorMode-aware sketchCode wire. Both combined cleanly in merge resolution — sketchCode={editorMode === 'code' ? cppCode : scratchCode} + compileButtonLabel="Compila".
+3. **CodeEditorCM6 stub vs real**: BG agent test mocks CodeMirror 6 component. Real CM6 reused from existing iter 73 P0.5 LIVE simulator panel. Functional E2E would verify real CodeMirror behavior — iter 82+ candidate.
+4. **80.A6 CORS source-only fix**: smoke spec still shows 2 console.error /#compile-home (CSP preflight block to agent:8765). Eliminate when Andrea restarts agent + Vercel redeploys post 80.A6 commit.
+5. **Iter 70 TEAM A+B HIGH unresolved 30+ days**: Vol3 dataset 14 vs Tea 29 narrative gap + 94 esperimenti Playwright assertion P0/P1 (iter 70 Codex Pattern C HIGH findings) — Sprint U close gate iter 82+ subagent BG rework ~5h total.
+
+### Iter 81 priorities P0 cascade target 9.2 → 9.5+/10
+
+**Andrea mandate auto-start iter 81 per "FINITO ITER X CREA ITER X+1 in completa autonomia"**
+
+**Inline atoms iter 81 (~2-3h orchestrator)**:
+1. **81.A1** Tab keyboard nav Arrow Left/Right + Home/End (~20 LOC HomeCompileEntry close BG agent A2 caveat #4 WAI-ARIA Tab pattern complete)
+2. **81.A2** PuzzleIcon ElabIcons extract (~30 LOC + inline puzzle SVG migration close BG agent A2 caveat #5)
+3. **81.A6** React act() warning T3 wrap (~10 LOC tests/unit/components/home/HomeCompileEntry-tabs.test.jsx close BG agent A2 caveat #1)
+4. **81.A5** Iter 79 LOW BLOCKLY-2 PWA Workbox include ScratchEditor precache (~10 LOC vite.config.js close iter 79 LOW)
+5. **81.A7** Codex Pattern C iter 81 batch verify post-fix BG
+
+**BG subagent atoms iter 81 (~10-12h budget total)**:
+6. **81.B1** iter 70 TEAM A Vol3 dataset 14 → 29 IDs + cliffhanger Tea-compat (~2-3h subagent BG worktree)
+7. **81.B2** iter 70 TEAM B 94 esperimenti Playwright P0/P1 assertion fix (~2h subagent BG)
+8. **81.B3** iter 70 TEAM D HomePage emoji removal + Album runtime + UnlimMascotte keyboard (~3-4h subagent BG)
+9. **81.B4** iter 70 TEAM E Lighthouse hard gate + UX strict + Promptfoo SUPABASE check (~2h subagent BG)
+10. **81.B5** iter 70 TEAM G PreToolUse hook Edit/MultiEdit matcher + blockly-blocks path (~1h subagent BG)
+
+**Andrea actions pending iter 81+**:
+- A-SECURITY status verify (rotation iter 32 protocol — last verified iter 70 PHASE 7 7+ days exposure window)
+- Agent restart 8765 + verify CORS 4173 noise eliminated
+- Vercel deploy verify 80.A6 CSP propagation
+- Hardware UAT Nano R4 USB schedule (Tea/Riccardo)
+- Render deploy verify Cloud Compile prod (BG iter 77 PHASE 4 carryover)
+- Sentry + PostHog OAuth + 3 dashboards seed (browser-interactive)
+
+**Sprint U close projection iter 82-84**: 9.5/10 ONESTO conditional 81.B1-B5 + hardware UAT + Opus indipendente review G45 mandate.
+
+### Anti-inflation G45 mandate iter 80 FULL enforced
+
+- Cap **9.2/10** post BG agent + cherry-pick + Codex iter 70+79 HIGH/MED carryover
+- NO claim "Sprint U close" (iter 82-84 projection)
+- NO claim "iter 70 TEAM A-G complete" (5/5 HIGH/MED rework iter 81 BG)
+- NO claim "Codex iter 79 14 findings closed" (5 MED CLOSED iter 80 inline+FULL, 1 HIGH IDE-1 CLOSED iter 80.A2, 6 LOW deferred iter 81+)
+- NO claim "Sprint U LIVE prod" (hardware UAT pending Andrea action)
+- 80.A1+A2+A3+A4+A5 v2+A6 verified empirico (vitest 14463 + Codex Pattern C iter 80 batch + build + smoke 4/4)
+
+### Cross-link docs iter 80 FULL
+
+- 80.A2 commit cherry-pick: `e250cf5b`
+- BG agent A2 worktree: `elab-builder/.claude/worktrees/agent-ab62b741f58c03587` (removed post-merge)
+- BG agent A2 branch: `iter-80-A2-ide-1-codeeditor-tab` (deleted post-cherry-pick)
+- 80.A2 deliverables: `src/components/home/HomeCompileEntry.jsx:30-67+74-78+146-213+217-222` + `HomeCompileEntry.module.css:99-167+213-217` + `tests/unit/components/home/HomeCompileEntry-tabs.test.jsx`
+- Codex Pattern V iter 79 audit (10094 LOC): `/tmp/codex-verify-cross-compile-iter79.txt`
+- Codex Pattern C iter 80 batch (2430 LOC): `/tmp/codex-verify-iter80-batch.txt`
+- Iter 81 mission: auto-start per Andrea "FINITO ITER X CREA ITER X+1" — 5 inline atoms + 5 BG atoms iter 81 atomization above
+
