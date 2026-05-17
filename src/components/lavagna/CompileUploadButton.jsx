@@ -155,6 +155,22 @@ function ensureSpinnerKeyframes() {
  * @param {Function} [props.fetchImpl]             - inject fetch (tests)
  * @param {Function} [props.statusImpl]            - inject status probe (tests)
  * @param {boolean} [props.compact]                - shrink padding
+ *
+ * Iter 74 B1-B narrative cliffhanger props (OPTIONAL — Morfismo Sense 2
+ * narrative continuity, mirror of LessonPathPanel.jsx:462-471 pattern):
+ *   - currentExperimentId: accepted for parent telemetry parity, unused
+ *     locally so a parent can pass it without prop drift
+ *   - nextExperiment: lesson-paths JSON `next_experiment {id,title,preview}`
+ *   - onLoadNextExperiment(id): callback to mount the next esperimento
+ *
+ * When ALL THREE conditions hold the cliffhanger CTA is rendered as a
+ * sibling block AFTER the upload button:
+ *   1) the upload completed successfully at least once this mount
+ *   2) `nextExperiment` is a non-empty object with a non-empty `id`
+ *   3) the caller didn't unmount the button after the success
+ *
+ * PRINCIPIO ZERO compliance: plurale "Ragazzi" + canonical kit fisico
+ * mention + Vol/pag carried in `preview` when parent supplies it.
  */
 export default function CompileUploadButton({
   sketchCode,
@@ -166,10 +182,17 @@ export default function CompileUploadButton({
   fetchImpl,
   statusImpl,
   compact = false,
+  // iter 74 B1-B narrative cliffhanger props (OPTIONAL)
+  currentExperimentId, // eslint-disable-line no-unused-vars
+  nextExperiment,
+  onLoadNextExperiment,
 }) {
   const [agentAvailable, setAgentAvailable] = useState(false);
   const [agentChecked, setAgentChecked] = useState(false);
   const [uploading, setUploading] = useState(false);
+  // iter 74 B1-B — track whether the last upload returned ok so the
+  // cliffhanger CTA can render as a persistent sibling block.
+  const [uploadSucceeded, setUploadSucceeded] = useState(false);
   const mountedRef = useRef(true);
 
   useEffect(() => {
@@ -214,6 +237,9 @@ export default function CompileUploadButton({
   const handleClick = useCallback(async () => {
     if (disabled) return;
     setUploading(true);
+    // iter 74 B1-B — hide stale cliffhanger from a previous upload while
+    // the new attempt is in-flight; re-set on success below.
+    setUploadSucceeded(false);
 
     const controller =
       typeof AbortController !== 'undefined' ? new AbortController() : null;
@@ -252,6 +278,9 @@ export default function CompileUploadButton({
       }
 
       if (res && res.ok && payload && payload.ok) {
+        // iter 74 B1-B — flag success so the cliffhanger CTA can mount.
+        // Guarded by mountedRef so we never call setState after unmount.
+        if (mountedRef.current) setUploadSucceeded(true);
         onSuccess?.({
           message:
             "Caricato sul kit fisico Nano R4! Ragazzi, ora osservate cosa succede.",
@@ -304,22 +333,99 @@ export default function CompileUploadButton({
     transition: 'background 0.18s ease, opacity 0.18s ease',
   };
 
+  // iter 74 B1-B — cliffhanger visible only when last upload succeeded AND
+  // parent supplied a valid `next_experiment` descriptor with an `id`. We
+  // require the `id` so a misconfigured parent never produces a dead CTA.
+  const showCliffhanger =
+    uploadSucceeded
+    && nextExperiment
+    && typeof nextExperiment === 'object'
+    && typeof nextExperiment.id === 'string'
+    && nextExperiment.id.length > 0;
+
+  const handleLoadNext = () => {
+    if (!showCliffhanger) return;
+    if (typeof onLoadNextExperiment === 'function') {
+      onLoadNextExperiment(nextExperiment.id);
+    }
+  };
+
+  const cliffhangerWrapStyle = {
+    display: 'inline-flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 8,
+  };
+
   return (
-    <button
-      type="button"
-      role="button"
-      aria-label="Carica il programma sul kit fisico Nano R4"
-      aria-disabled={disabled || undefined}
-      aria-busy={uploading || undefined}
-      title={tooltip}
-      onClick={handleClick}
-      disabled={disabled}
-      style={buttonStyle}
-      data-elab-component="compile-upload-button"
-      data-elab-agent-available={agentAvailable ? 'true' : 'false'}
-    >
-      {uploading ? <SpinnerIcon /> : <UploadIcon />}
-      <span>{label}</span>
-    </button>
+    <span style={cliffhangerWrapStyle} data-elab-compile-upload-wrap="true">
+      <button
+        type="button"
+        role="button"
+        aria-label="Carica il programma sul kit fisico Nano R4"
+        aria-disabled={disabled || undefined}
+        aria-busy={uploading || undefined}
+        title={tooltip}
+        onClick={handleClick}
+        disabled={disabled}
+        style={buttonStyle}
+        data-elab-component="compile-upload-button"
+        data-elab-agent-available={agentAvailable ? 'true' : 'false'}
+      >
+        {uploading ? <SpinnerIcon /> : <UploadIcon />}
+        <span>{label}</span>
+      </button>
+      {showCliffhanger && (
+        <span
+          role="region"
+          aria-label="Prossimo esperimento del percorso"
+          data-testid="compile-upload-cliffhanger"
+          style={{
+            display: 'inline-flex',
+            flexDirection: 'column',
+            gap: 6,
+            padding: '10px 14px',
+            border: '1px solid var(--color-accent, #4A7A25)',
+            borderRadius: 6,
+            background: 'var(--color-cliffhanger-bg, rgba(74, 122, 37, 0.08))',
+            color: 'var(--color-text, #1E4D8C)',
+            fontFamily: 'var(--font-sans, "Open Sans", sans-serif)',
+            maxWidth: 360,
+          }}
+        >
+          <span style={{ fontSize: 14, lineHeight: 1.4 }}>
+            Ragazzi, avete caricato sul kit ELAB. Pronti per
+            {' '}
+            <strong>{nextExperiment.title || nextExperiment.id}</strong>?
+          </span>
+          {nextExperiment.preview && (
+            <span style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.35 }}>
+              {nextExperiment.preview}
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={handleLoadNext}
+            aria-label={`Apri il prossimo esperimento: ${nextExperiment.title || nextExperiment.id}`}
+            data-testid="compile-upload-cliffhanger-cta"
+            style={{
+              alignSelf: 'flex-start',
+              minHeight: 44,
+              padding: '8px 16px',
+              border: 'none',
+              borderRadius: 6,
+              background: 'var(--color-accent, #4A7A25)',
+              color: 'var(--color-text-inverse, #ffffff)',
+              fontWeight: 700,
+              fontSize: 14,
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans, "Open Sans", sans-serif)',
+            }}
+          >
+            → Apri prossimo esperimento
+          </button>
+        </span>
+      )}
+    </span>
   );
 }

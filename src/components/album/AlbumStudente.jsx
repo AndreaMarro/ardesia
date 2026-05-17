@@ -167,7 +167,26 @@ function FumettoCard({ session, onOpenFumetto }) {
   );
 }
 
-function AlbumStudente({ sessions, onOpenFumetto, studentName, studentId }) {
+function AlbumStudente({
+  sessions,
+  onOpenFumetto,
+  studentName,
+  studentId,
+  // iter 74 B1-C — narrative cliffhanger props (OPTIONAL).
+  // When a parent has just saved a new Album entry it can pass:
+  //   - nextExperiment: {id, title, preview} from the saved entry's
+  //                     lesson-paths `next_experiment` field
+  //   - onLoadNextExperiment(id): callback to mount the next esperimento.
+  //                               If omitted we try `window.__ELAB_API.unlim.mountExperiment(id)`
+  //                               as a soft fallback (graceful when API not wired).
+  // Renders a persistent panel "Vai al prossimo esperimento" at the top of
+  // the Album so the docente sees the bridge to the next esperimento right
+  // after saving (Morfismo Sense 2 narrative continuity).
+  // currentExperimentId is accepted for telemetry parity but unused here.
+  currentExperimentId, // eslint-disable-line no-unused-vars
+  nextExperiment,
+  onLoadNextExperiment,
+}) {
   const safeName = (studentName || '').slice(0, 40);
 
   // Track fetched sessions when caller did NOT pass `sessions` prop
@@ -205,6 +224,37 @@ function AlbumStudente({ sessions, onOpenFumetto, studentName, studentId }) {
     Array.isArray(effectiveSessions) && effectiveSessions.length > 0;
   const isLoading = !propsHasSessions && fetchState === 'loading';
 
+  // iter 74 B1-C — cliffhanger visible only when a non-empty `next_experiment`
+  // descriptor was supplied. Guards against dead links.
+  const showCliffhanger =
+    nextExperiment
+    && typeof nextExperiment === 'object'
+    && typeof nextExperiment.id === 'string'
+    && nextExperiment.id.length > 0;
+
+  const handleLoadNext = () => {
+    if (!showCliffhanger) return;
+    if (typeof onLoadNextExperiment === 'function') {
+      onLoadNextExperiment(nextExperiment.id);
+      return;
+    }
+    // Soft fallback to the global ELAB API surface (per CLAUDE.md
+    // "API globale simulatore"). Wrapped in defensive try so a missing
+    // shim never crashes the Album render.
+    try {
+      if (
+        typeof window !== 'undefined'
+        && window.__ELAB_API
+        && window.__ELAB_API.unlim
+        && typeof window.__ELAB_API.unlim.mountExperiment === 'function'
+      ) {
+        window.__ELAB_API.unlim.mountExperiment(nextExperiment.id);
+      }
+    } catch {
+      /* ignore — fallback only, parent owns hard wiring */
+    }
+  };
+
   return (
     <section className={styles.album} data-testid="album-studente">
       <header className={styles.header}>
@@ -218,6 +268,58 @@ function AlbumStudente({ sessions, onOpenFumetto, studentName, studentId }) {
           </p>
         </div>
       </header>
+
+      {/* iter 74 B1-C — narrative cliffhanger panel after Album save */}
+      {showCliffhanger && (
+        <div
+          role="region"
+          aria-label="Prossimo esperimento del percorso"
+          data-testid="album-cliffhanger"
+          style={{
+            margin: '12px 0',
+            padding: '14px 18px',
+            border: '1px solid var(--color-accent, #4A7A25)',
+            borderRadius: 8,
+            background: 'var(--color-cliffhanger-bg, rgba(74, 122, 37, 0.08))',
+            color: 'var(--color-text, #1E4D8C)',
+            fontFamily: 'var(--font-sans, "Open Sans", sans-serif)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+          }}
+        >
+          <p style={{ margin: 0, fontSize: 14, lineHeight: 1.4 }}>
+            Ragazzi, salvato in album. Pronti per{' '}
+            <strong>{nextExperiment.title || nextExperiment.id}</strong>?
+          </p>
+          {nextExperiment.preview && (
+            <p style={{ margin: 0, fontSize: 13, opacity: 0.85, lineHeight: 1.35 }}>
+              {nextExperiment.preview}
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={handleLoadNext}
+            aria-label={`Vai al prossimo esperimento: ${nextExperiment.title || nextExperiment.id}`}
+            data-testid="album-cliffhanger-cta"
+            style={{
+              alignSelf: 'flex-start',
+              minHeight: 44,
+              padding: '10px 18px',
+              border: 'none',
+              borderRadius: 6,
+              background: 'var(--color-accent, #4A7A25)',
+              color: 'var(--color-text-inverse, #ffffff)',
+              fontWeight: 700,
+              fontSize: 14,
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans, "Open Sans", sans-serif)',
+            }}
+          >
+            Vai al prossimo esperimento →
+          </button>
+        </div>
+      )}
 
       {isLoading ? (
         <div className={styles.empty} data-testid="album-loading">
