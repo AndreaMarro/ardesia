@@ -42,6 +42,7 @@ import {
   TutorCardIcon,
   VideoLessonsCardIcon,
   ScimpanzeIcon,
+  CircuitIcon,
 } from './common/ElabIcons';
 import { VIDEO_COURSES } from '../data/video-courses';
 // Sprint V iter 1 Phase 3 WebDesigner-1 Atom A10 — ElabMascotte SVG
@@ -60,6 +61,8 @@ const EasterModal = lazy(() => import('./easter/EasterModal'));
 // because the 180-term JSON bundle is heavy; only hits the bundle when the
 // docente clicks the Glossario card or navigates directly to #glossario.
 const GlossarioRoute = lazy(() => import('./glossario/GlossarioRoute'));
+// Iter 73 CC-2 — HomePage Blockly+IDE cross-compile entry (iter 64 SPEC mandate).
+const HomeCompileEntry = lazy(() => import('./home/HomeCompileEntry'));
 
 // Iter 38 Atom A11 — mic permission UX nudge (pre-emptive grant request).
 // Lazy-loaded: il banner appare solo se Permissions API segnala state='prompt',
@@ -80,6 +83,8 @@ const HASH_ROUTES = {
   ABOUT: '#about-easter',
   // Iter 70 Team D — Glossario internal route (Tea iter 41 carryover).
   GLOSSARIO: '#glossario',
+  // Iter 73 CC-2 — Blockly+IDE cross-compile entry (iter 64 SPEC mandate).
+  COMPILE_HOME: '#compile-home',
 };
 
 function readHash() {
@@ -443,6 +448,22 @@ const CARDS = [
     target: 'inline-video',
     credit: null,
   },
+  // Iter 73 CC-2 — Cross-compile Arduino Nano R4 entry HomePage (iter 64 SPEC
+  // mandate Andrea: "deve essere disponibile dove ci sono esperimenti Arduino
+  // + disponibile in generale nella home ide+blockly"). Lazy mount via
+  // HomeCompileEntry component on #compile-home hash route. Reuses iter 72
+  // BG-A7 ScratchCompileBar wire + iter 66 R5 CompileAgentBanner.
+  {
+    id: 'compile-home',
+    IconComponent: CircuitIcon,
+    accent: PALETTE.red,
+    title: 'Compila Arduino',
+    text: 'Scrivete codice Arduino con i blocchi Blockly o in C++. Compila + carica sul Nano R4 del kit.',
+    cta: 'Apri editor',
+    href: '#compile-home',
+    target: 'internal',
+    credit: null,
+  },
 ];
 
 const HOME_VIDEO_ROW_HEIGHT = 56;
@@ -792,6 +813,18 @@ export default function HomePage({ onNavigate, onActivate }) {
     return (
       <Suspense fallback={<div data-testid="glossario-loading" style={{ padding: 24 }}>Caricamento glossario…</div>}>
         <GlossarioRoute onClose={handleChatbotBackHome} />
+      </Suspense>
+    );
+  }
+
+  // Iter 73 CC-2 — HomePage Blockly+IDE cross-compile entry (iter 64 SPEC mandate
+  // Andrea: "deve essere disponibile dove ci sono esperimenti Arduino +
+  // disponibile in generale nella home ide+blockly. Devono poterlo fare tutti
+  // in sicurezza. Zero debito tecnico"). Lazy-mounted from #compile-home hash.
+  if (hash === HASH_ROUTES.COMPILE_HOME) {
+    return (
+      <Suspense fallback={<div data-testid="compile-home-loading" style={{ padding: 24 }}>Caricamento editor Arduino…</div>}>
+        <HomeCompileEntry onBackHome={handleChatbotBackHome} />
       </Suspense>
     );
   }

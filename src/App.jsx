@@ -71,7 +71,7 @@ const HASH_PAGE_ALIASES = {
 // Without this, getPageFromHash returned null → setCurrentPage NOT called →
 // UI stuck on previous page (verified via Chrome MCP smoke prod 2026-05-06).
 // Sync test: tests/unit/navigation.test.js (49 cases).
-const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
+const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario', 'compile-home'];
 
 function getPageFromHash() {
     const raw = window.location.hash.replace('#', '').split('?')[0].toLowerCase();

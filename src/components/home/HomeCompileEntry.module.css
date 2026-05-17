@@ -1,0 +1,195 @@
+/**
+ * HomeCompileEntry — iter 73 CC-2 HomePage cross-compile entry layout.
+ * Palette Navy/Lime/Orange/Red (CLAUDE.md §Design 16).
+ * Responsive: mobile <768 stacked, desktop ≥1024 grid editor+compileBar.
+ */
+
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--elab-bg, #F0F4F8);
+  color: var(--elab-text, #1A1A1A);
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+}
+
+.header {
+  padding: 16px 24px 12px;
+  background: var(--elab-card-bg, #FFFFFF);
+  border-bottom: 2px solid var(--elab-navy, #1E4D8C);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.backBtn {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: center;
+  min-width: 88px;
+  min-height: 44px;
+  padding: 8px 14px;
+  background: var(--elab-card-bg, #FFFFFF);
+  border: 2px solid var(--elab-navy, #1E4D8C);
+  border-radius: 8px;
+  color: var(--elab-navy, #1E4D8C);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+.backBtn:hover,
+.backBtn:focus-visible {
+  background: var(--elab-navy, #1E4D8C);
+  color: #FFFFFF;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.title {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--elab-navy, #1E4D8C);
+  letter-spacing: 0.2px;
+}
+
+.subtitle {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--elab-text-muted, #5A6B7E);
+}
+
+.bannerSection {
+  padding: 12px 24px;
+  background: var(--elab-card-bg, #FFFFFF);
+  border-bottom: 1px solid var(--elab-border, #E0E6ED);
+}
+
+.editorGrid {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px 24px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.editorPanel {
+  background: var(--elab-card-bg, #FFFFFF);
+  border: 1px solid var(--elab-border, #E0E6ED);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorPanel > * {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.compileBarPanel {
+  background: var(--elab-card-bg, #FFFFFF);
+  border: 1px solid var(--elab-border, #E0E6ED);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  padding: 12px 24px 20px;
+  background: var(--elab-card-bg, #FFFFFF);
+  border-top: 1px solid var(--elab-border, #E0E6ED);
+}
+
+.footerNote {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--elab-text-muted, #5A6B7E);
+  text-align: center;
+}
+
+.footerNote a {
+  color: var(--elab-lime, #4A7A25);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.footerNote a:hover,
+.footerNote a:focus-visible {
+  color: var(--elab-orange, #E8941C);
+  outline: none;
+}
+
+/* Desktop ≥1024px — grid editor + compile bar sidebar */
+@media (min-width: 1024px) {
+  .editorGrid {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+/* LIM-mode ≥1280px — bigger typography for fondo-aula visibility */
+@media (min-width: 1280px) {
+  .title {
+    font-size: 26px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .footerNote {
+    font-size: 14px;
+  }
+}
+
+/* Mobile <768 — stacked layout with reduced padding */
+@media (max-width: 767px) {
+  .header {
+    padding: 12px 16px 8px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .backBtn {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+  .title {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 18px;
+  }
+  .subtitle {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 13px;
+  }
+  .editorGrid {
+    padding: 12px 16px;
+  }
+  .editorPanel {
+    min-height: 360px;
+  }
+}
+
+/* Touch coarse pointer — bigger touch targets */
+@media (pointer: coarse) {
+  .backBtn {
+    min-height: 48px;
+    min-width: 96px;
+    font-size: 15px;
+  }
+}
