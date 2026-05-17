@@ -3197,3 +3197,108 @@ Iter 72 ha shipped infrastructure tecnica MA NON ha rinforzato arco narrativo co
 ### Anti-inflation G45 mandate post correction
 
 Iter 72 close score 8.95/10 UNCHANGED (correction = post-doc audit, NON modifica deliverables iter 72). NON COMPIACERE applies to MY audit errors: admitted retroactively. Iter 73 priorities REALISTIC narrative gap (4 components + cliffhanger-table format + Passo Passo regression + Vol1/Vol2 titles) NON inflated false "15 missing Vol3".
+
+## Sprint U iter 73 CLOSE (2026-05-17 PM) — Andrea ratify queue 8 voci + Codex Pattern V REFUTE+fix + multi-agent orchestration validated
+
+**Score iter 73 close ONESTO G45 cap**: **9.0/10**
+
+**Pattern multi-agent orchestration validated**: orchestrator inline + Mac Mini SSH 4 parallel tasks + Codex BG Pattern V GPT-5.5 high. Pattern S r3 race-cond fix VALIDATED **17× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67+68+69+70+71+72+**73**).
+
+### Deliverables iter 73 (6 commits batch pushed origin)
+
+| Commit | Atom | Files | LOC |
+|---|---|---|---|
+| `73837404` | STEP 5 student_album schema | migration sql | +183 |
+| `85f32e24` | STEP 5b drop teacher_shared RLS recursion fix | migration sql | +13 |
+| `cdb37734` | Housekeeping .bak rename cleanup | rename | -182 |
+| `027d5e3e` | CC-2 HomePage Blockly+IDE compile entry | 5 files | +362 -1 |
+| `5ae782ad` | F1+F2+F3 Codex Pattern V REFUTE fixes | 4 files | +21 -4 |
+| `<this commit>` | Phase 4 close docs + baseline sync 13517→14358 | 4 files | TBD |
+
+### STEP 5+5b student_album schema applied prod elab-unlim
+
+`uuid_generate_v4()` → `gen_random_uuid()` switch (prod uuid-ossp in 'extensions' schema NOT default search_path). DROP `student_album_teacher_shared_select` policy (pre-existing infinite recursion in class_students RLS bug 42P17 surfaced). BG-A6 Album wire-up iter 72 UNBLOCKED prod (HTTP 200 verified).
+
+### CC-2 HomePage Blockly+IDE cross-compile entry — iter 64 SPEC mandate Andrea closed
+
+Cross-compile SOFTWARE chain end-to-end VERIFIED:
+- arduino-cli 1.4.1 + Renesas core 1.5.3 ≥ minCoreVersion 1.5.0 + dfu-util 0.11 installed
+- ELAB Compile Agent PID 16428 localhost:8765 + 6 endpoints
+- Direct Blink Nano R4 compile SUCCESS 39048 bytes flash (14%) + 3940 RAM (12%)
+- POST /compile via agent SUCCESS jobId 0c9e9ce9-...
+
+NEW `HomeCompileEntry.jsx` + `.module.css` (~295 LOC) lazy-mounted `#compile-home` hash route. Reuses ScratchEditor + ScratchCompileBar + R5 CompileAgentBanner (iter 66). boardId default `arduino-nano-r4`. PRINCIPIO ZERO plurale + kit fisico mention. Palette Navy/Lime/Orange/Red CSS vars + responsive mobile/desktop/LIM. CARDS array NEW entry CircuitIcon + red accent. HOMEPAGE_SUBROUTES + lazy import.
+
+Browser smoke verified: header + Blockly 12 categorie + ScratchCompileBar + R5 banner + ZERO console errors.
+
+### Codex Pattern V verify-iter73-cc2 REFUTE 2 HIGH + 4 MED + F1+F2+F3 fix
+
+Codex GPT-5.5 high BG PID 27031 single sequential dispatch ~6min 4042 LOC output caught 2 HIGH bugs invisible to self-review:
+
+**F1 HIGH**: CARD CLICK BROKEN — `onNavigate('compile-home')` BUT NOT in VALID_HASHES → currentPage set WITHOUT hash update → card NO mount. Solo direct URL works. Fix: `handleActivate` special-case include `compile-home`.
+
+**F2 HIGH**: COMPILE NOT NANO R4 default — `compileCode(code)` senza FQBN → api.js sanitize fallback AVR. Fix: `DEFAULT_FQBN='arduino:renesas_uno:nanor4'` + `compileCode(code, DEFAULT_FQBN)` explicit.
+
+**F3 MED**: navigation.test.js HOMEPAGE_SUBROUTES regression coverage add `compile-home` + NEW test guard.
+
+Browser smoke F1 verified post-fix: card click → hash `#compile-home` → HomeCompileEntry mount data-testid present.
+
+**4 MED Codex gaps DEFERRED iter 74+**: installer link 404 + footer a11y outline + ScratchCompileBar emoji status + tests coverage.
+
+### Mac Mini 4 tasks parallel — empirical findings iter 73
+
+- MM-1 git sync ✅
+- MM-2 Vol1/Vol2 33 drift CONFIRMED EXACT MATCH iter 57 close audit (65 files 38+27)
+- MM-3 `experimentNarrativeService.js` DEAD CODE finding (defined NON consumed UI)
+- MM-4 USB Web Serial ZERO refs src/ confirmed empirical
+
+### NEW discoveries iter 73
+
+1. experimentNarrativeService DEAD CODE — refactor option iter 74+: wire transitions OR remove
+2. R5 banner Playwright sandbox limitation — curl Origin works MA Playwright fetch loopback blocked (NOT production bug)
+3. CORS ELAB Agent http-server.js configured correctly verified curl `Access-Control-Allow-Origin: http://localhost:5173`
+
+### SPRINT_U_COMPLETE 20 boxes status post iter 73
+
+| Box | iter 72 | iter 73 | Delta |
+|---|---|---|---|
+| 1-18 | (preserved) | (preserved) | 0 |
+| **NEW 19 Cross-compile HomePage entry** | n/a | **0.95** | +0.95 (iter 64 SPEC closed) |
+| **NEW 20 Album wire-up unblock prod** | n/a | **0.85** | +0.85 (STEP 5+5b schema + RLS fix) |
+
+Box subtotal 9.35/10 + bonus iter 73 (+0.50 Codex workflow + Mac Mini orchestration + Pattern S r3 17th) = raw 9.85 → **G45 cap 9.0/10 ONESTO** (R5 + MED + Vol1/Vol2 honest deductions).
+
+### 8 honesty caveats iter 73 → iter 74 carryover
+
+1. R5 banner real Chrome unverified (Playwright sandbox limit)
+2. 4 MED Codex gaps DEFERRED iter 74+
+3. Vol1/Vol2 33 drift cleanup pending Mac Mini list ready
+4. experimentNarrativeService DEAD CODE refactor decision pending
+5. USB Web Serial port=null placeholder pending
+6. Real hardware UAT Nano R4 USB pending Andrea/Tea/Riccardo
+7. Vitest baseline file 13517 stale → SYNCED 14358 (this commit)
+8. mem-search corpus stale Apr 28 — defer iter 74+ post claude-mem CLI fix
+
+### Iter 74 mandate Andrea verbatim — MASSIMA AUTONOMIA 7 TRACKS
+
+> "in iter 74 lavora ancora su cross compilazione e in parallelo 6 narrative atoms + plugin impeccable UI/UX + finito tutto mappare il sito + fix + debug. Documenta tutto. NO COMPIACENZA + MASSIMA SCIENTIFICITà + NON MENTIRE + LAVORA IN COMPLETA AUTONOMIA + DOCUMENTA TUTTO + NO REGRESSIONI. FINITO ITER 74 CREA ITER 75 in completa autonomia. NO DEBITO TECNICO + MASSIMO ORDINE."
+
+**7 TRACKS parallel**:
+- A cross-compile follow-up Codex MED gaps + hardware UAT prep
+- B 6 narrative atoms (cliffhanger CTA wire + audit + Passo Passo + Vol1/Vol2 + Tea + USB Web Serial)
+- C UI/UX impeccable plugin suite (16+ skills)
+- D Mac Mini parallel tasks bash-native
+- E Codex BG Pattern V/C verify each major change
+- F site mapping comprehensive + debug systematic
+- G skill/plugin creator + eval new ELAB skills
+
+### Iter 75 auto-start Andrea mandate
+
+"FINITO ITER 74 CREA ITER 75 e fai tutto in completa autonomia basandoti sulle esigenze."
+
+### Cross-link docs iter 73
+
+- Close audit: `docs/audits/2026-05-17-iter-73-CLOSE-audit.md`
+- Handoff iter 74: `docs/handoff/2026-05-17-iter-73-to-iter-74-handoff.md`
+- Codex Pattern V output: `/tmp/codex-verify-iter73-cc2.txt` (4042 LOC)
+- Mac Mini outputs: `/tmp/mm-{cliffhanger-runtime.txt,usb-webserial.txt,vol12-drifts.json}`
