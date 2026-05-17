@@ -130,10 +130,18 @@
   text-decoration: underline;
 }
 
-.footerNote a:hover,
+.footerNote a:hover {
+  color: var(--elab-orange, #E8941C);
+}
+
+/* Iter 74 TRACK A2 fix (Codex iter 73 Pattern V MED #5): restore focus
+   outline for keyboard a11y — was 'outline: none' weakness flagged by
+   Codex. WCAG 2.4.7 Focus Visible requires visible focus indicator. */
 .footerNote a:focus-visible {
   color: var(--elab-orange, #E8941C);
-  outline: none;
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Desktop ≥1024px — grid editor + compile bar sidebar */
