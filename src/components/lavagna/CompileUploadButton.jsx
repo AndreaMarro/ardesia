@@ -341,6 +341,10 @@ export default function CompileUploadButton({
   });
   const [uploadErrorMsg, setUploadErrorMsg] = useState(null);
   const mountedRef = useRef(true);
+  // iter 78 STOP-HOOK fix (Codex stop-time review): retry path bypasses
+  // flash chain. Need shared compilePayload reference so handleRetryUsb
+  // can invoke same flash chain as primary handleDemoClick path.
+  const lastCompilePayloadRef = useRef(null);
 
   // Wrap state setter so external callers can react to transitions (telemetry
   // hook for parent Lavagna shell + e2e instrumentation iter 76 D.5).
@@ -464,6 +468,89 @@ export default function CompileUploadButton({
     }
   }, [disabled, endpoint, sketchCode, boardId, port, fetchImpl, onSuccess, onError]);
 
+  // iter 78 STOP-HOOK fix (Codex stop-time review): extract flash chain into
+  // shared helper invoked from BOTH primary handleDemoClick AND handleRetryUsb.
+  // Previous retry path stopped at HARDWARE_PICKED_AWAITING_FLASH bypassing
+  // entire dfu flash sequence — Codex caught dishonest dead-end remaining.
+  // MUST be declared BEFORE handleDemoClick (useCallback deps array reads
+  // eagerly at render — TDZ otherwise).
+  const invokeFlashChain = useCallback(async (device, compilePayload, pathLabel) => {
+    if (mountedRef.current) {
+      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
+    }
+
+    // Dynamic import to avoid loading dfu library bundle on every render.
+    const { flashDfuFirmware, flashResultMessage } = await import('../../services/webDfuFlash.js');
+    const { parseIntelHexBase64 } = await import('../../services/intelHexParser.js');
+
+    // Parse Intel HEX from Cloud Render compile response (OpenAPI 76-D.3).
+    let binary;
+    try {
+      if (!compilePayload?.hexBase64) {
+        throw new Error('hexBase64_missing_from_compile_response');
+      }
+      const parsed = parseIntelHexBase64(compilePayload.hexBase64);
+      binary = parsed.binary;
+    } catch (parseErr) {
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.FLASH_ERROR);
+      }
+      onError?.({
+        category: 'hex_parse_failed',
+        message: `Impossibile interpretare il file HEX (${pathLabel}): ${parseErr.message}`,
+        detail: parseErr.message,
+      });
+      return;
+    }
+
+    if (mountedRef.current) {
+      setDemoState(DEMO_STATES.FLASHING);
+    }
+
+    const flashResult = await flashDfuFirmware(device, binary, {
+      transferSize: 64,
+      manifestationTolerant: true,
+    });
+
+    if (mountedRef.current) {
+      setUploading(false);
+      if (flashResult.ok) {
+        if (flashResult.mode === 'real') {
+          setDemoState(DEMO_STATES.FLASH_SUCCESS_REAL);
+          setUploadSucceeded(true);
+        } else {
+          setDemoState(DEMO_STATES.FLASH_COMPLETE_SIMULATED);
+          // NOT setUploadSucceeded(true) for simulated — honest separation
+        }
+      } else {
+        setDemoState(DEMO_STATES.FLASH_ERROR);
+      }
+    }
+
+    if (flashResult.ok) {
+      onSuccess?.({
+        message: flashResultMessage(flashResult),
+        payload: {
+          jobId: compilePayload?.jobId,
+          device: 'webusb',
+          flashMode: flashResult.mode,
+          flashVerified: flashResult.verified,
+          bytesTransferred: flashResult.evidence.bytesTransferred,
+          durationMs: flashResult.evidence.durationMs,
+          flashStatus: flashResult.mode === 'real' ? 'flash_success_real' : 'flash_complete_simulated',
+          path: pathLabel,
+        },
+      });
+    } else {
+      onError?.({
+        category: 'flash_failed',
+        message: flashResultMessage(flashResult),
+        detail: flashResult.error,
+      });
+    }
+  }, [onSuccess, onError, setDemoState]);
+
   // iter 76 D.1 — demo-mode honest two-step handler. Used only when
   // `enableDemoMode` prop is true (opt-in). Splits compile and upload steps
   // so we can render `compile_only_no_board` when WebUSB returns null.
@@ -560,6 +647,10 @@ export default function CompileUploadButton({
       setCompileBytes(bytes);
       setDemoState(DEMO_STATES.COMPILE_SUCCESS);
     }
+    // iter 78 STOP-HOOK fix (Codex stop-time review): store compilePayload
+    // EARLY (post compile_success) so retry path can invoke flash chain even
+    // when initial picker returns null and user later retries successfully.
+    lastCompilePayloadRef.current = compilePayload;
 
     // ── Step 2: WebUSB device picker (may return null / NotFoundError).
     setDemoState(DEMO_STATES.CONNECTING_USB);
@@ -620,89 +711,16 @@ export default function CompileUploadButton({
 
     // ── Step 3: device picked → HARDWARE_PICKED_AWAITING_FLASH → FLASHING
     // (iter 78 B.2 web-dfu flash chain LIVE).
-    // Pre-flash honest state ack device acquired, then invoke flash adapter
-    // wired to dfu npm library (event-driven). Real-vs-simulated mode
-    // detected via __elabMockMode marker on device (mock returns 'simulated'
-    // for sandbox-safe verify, real navigator.usb device returns 'real').
-    if (mountedRef.current) {
-      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
-    }
-
-    // Dynamic import to avoid loading dfu library bundle on every render
-    // (only fetched when flash actually triggered).
-    const { flashDfuFirmware, flashResultMessage } = await import('../../services/webDfuFlash.js');
-    const { parseIntelHexBase64 } = await import('../../services/intelHexParser.js');
-
-    // Iter 78 B.2: parse Intel HEX from Cloud Render compile response.
-    // Cloud OpenAPI 3.1 contract: { ok, jobId, hexBase64, stdout, ... }
-    let binary;
-    try {
-      if (!compilePayload?.hexBase64) {
-        throw new Error('hexBase64_missing_from_compile_response');
-      }
-      const parsed = parseIntelHexBase64(compilePayload.hexBase64);
-      binary = parsed.binary;
-    } catch (parseErr) {
-      if (mountedRef.current) {
-        setUploading(false);
-        setDemoState(DEMO_STATES.FLASH_ERROR);
-      }
-      onError?.({
-        category: 'hex_parse_failed',
-        message: `Impossibile interpretare il file HEX: ${parseErr.message}`,
-        detail: parseErr.message,
-      });
-      return;
-    }
-
-    if (mountedRef.current) {
-      setDemoState(DEMO_STATES.FLASHING);
-    }
-
-    const flashResult = await flashDfuFirmware(device, binary, {
-      transferSize: 64,
-      manifestationTolerant: true,
-    });
-
-    if (mountedRef.current) {
-      setUploading(false);
-      if (flashResult.ok) {
-        if (flashResult.mode === 'real') {
-          setDemoState(DEMO_STATES.FLASH_SUCCESS_REAL);
-          setUploadSucceeded(true);
-        } else {
-          setDemoState(DEMO_STATES.FLASH_COMPLETE_SIMULATED);
-          // NOT setUploadSucceeded(true) for simulated — honest separation
-        }
-      } else {
-        setDemoState(DEMO_STATES.FLASH_ERROR);
-      }
-    }
-
-    if (flashResult.ok) {
-      onSuccess?.({
-        message: flashResultMessage(flashResult),
-        payload: {
-          jobId: compilePayload?.jobId,
-          device: 'webusb',
-          flashMode: flashResult.mode,
-          flashVerified: flashResult.verified,
-          bytesTransferred: flashResult.evidence.bytesTransferred,
-          durationMs: flashResult.evidence.durationMs,
-          flashStatus: flashResult.mode === 'real' ? 'flash_success_real' : 'flash_complete_simulated',
-        },
-      });
-    } else {
-      onError?.({
-        category: 'flash_failed',
-        message: flashResultMessage(flashResult),
-        detail: flashResult.error,
-      });
-    }
+    // Iter 78 STOP-HOOK fix (Codex stop-time review): store compilePayload in
+    // shared ref so retry path can invoke same flash chain.
+    lastCompilePayloadRef.current = compilePayload;
+    await invokeFlashChain(device, compilePayload, 'primary');
+    return;
   }, [
     enableDemoMode, uploading, sketchCode, compileEndpoint, fqbn,
-    fetchImpl, requestUsbDevice, onSuccess, onError, setDemoState,
+    fetchImpl, requestUsbDevice, onSuccess, onError, setDemoState, invokeFlashChain,
   ]);
+
 
   // Iter 76 D.1 — retry handler used by the compile_only_no_board CTA to
   // re-trigger the WebUSB device picker without re-running /compile.
@@ -745,24 +763,25 @@ export default function CompileUploadButton({
       return;
     }
 
-    // iter 77 P0.1b fix (Codex Pattern V iter 77 verify CRITICAL #1):
-    // retry path was missing HARDWARE_PICKED_AWAITING_FLASH transition,
-    // false-promoted to UPLOAD_SUCCESS + setUploadSucceeded(true) WITHOUT
-    // actual dfu-util flash. Mirror primary handler P0.1 honest state.
-    if (mountedRef.current) {
-      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
-      // Intentionally NOT setUploadSucceeded(true) — flash not yet executed.
+    // iter 78 STOP-HOOK fix (Codex stop-time review): retry path now invokes
+    // SAME flash chain as primary handleDemoClick via shared helper.
+    // Previously retry stopped at HARDWARE_PICKED_AWAITING_FLASH bypassing
+    // entire dfu sequence — Codex caught dishonest dead-end remaining.
+    // Reuse lastCompilePayloadRef (stored by handleDemoClick on compile success).
+    const cachedCompile = lastCompilePayloadRef.current;
+    if (!cachedCompile || !cachedCompile.hexBase64) {
+      // No prior compile available — fall back to honest awaiting state.
+      if (mountedRef.current) {
+        setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
+      }
+      onError?.({
+        category: 'no_compile_payload',
+        message: 'Compilazione precedente non disponibile per retry. Premete Compila prima di riprovare il caricamento.',
+      });
+      return;
     }
-    onSuccess?.({
-      message:
-        "Nano R4 rilevato via USB (retry). Iter 77+ collegheremo l'upload reale via dfu-util con il kit Omaric (Tea + Riccardo).",
-      payload: {
-        device: 'webusb',
-        flashStatus: 'awaiting_hardware_uat',
-        path: 'retry',
-      },
-    });
-  }, [enableDemoMode, requestUsbDevice, setDemoState, onSuccess]);
+    await invokeFlashChain(device, cachedCompile, 'retry');
+  }, [enableDemoMode, requestUsbDevice, setDemoState, onError, invokeFlashChain]);
 
   const label = uploading ? 'Caricamento sul kit...' : 'Carica sul kit fisico';
 

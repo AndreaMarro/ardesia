@@ -780,55 +780,69 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
     );
   });
 
-  // T11 — iter 77 P0.1b fix (Codex Pattern V iter 77 verify CRITICAL #1):
-  // retry path post compile_only_no_board with WebUSB picker SUCCESS must
-  // also transition HARDWARE_PICKED_AWAITING_FLASH (NOT UPLOAD_SUCCESS).
-  // Mirror primary handler P0.1 fix in retry handler.
-  it('T11 retry picker SUCCESS → HARDWARE_PICKED_AWAITING_FLASH (NO Caricato)', async () => {
-    // First click: compile OK + picker returns no device → compile_only_no_board
-    const compileFetch = makeCompileOk();
-    const usbPickerCancelFirst = vi.fn()
-      .mockResolvedValueOnce(null)        // first call: no device picked
-      .mockResolvedValueOnce({             // retry call: device acquired
-        productName: 'Arduino Nano R4',
-        vendorId: 0x2341,
-      });
+  // T11 — iter 78 STOP-HOOK fix (Codex stop-time review): retry path NOW
+  // invokes SAME flash chain as primary via shared invokeFlashChain helper.
+  // Previously retry stopped at HARDWARE_PICKED_AWAITING_FLASH dead-end.
+  // Reuses lastCompilePayloadRef stored by primary handleDemoClick.
+  it('T11 retry picker SUCCESS → flash chain invoked → FLASH_COMPLETE_SIMULATED (path=retry)', async () => {
+    // Cloud-compile response with valid Intel HEX (16 bytes + EOF)
+    const hexText = ':10010000214601360121470136007EFE09D2190140\n:00000001FF\n';
+    const hexBase64 = Buffer.from(hexText, 'ascii').toString('base64');
+    const compileFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({
+        ok: true,
+        jobId: 'retry-test-1',
+        hexBase64,
+        stdout: 'Sketch uses 16 bytes ...',
+      }),
+    });
+    // Mock USB picker: first call null (compile_only_no_board), second call mock DFU device
+    const { createMockDfuDevice } = await import('../../../../src/services/mockUsbDfuDevice.js');
+    const mockDevice = createMockDfuDevice();
+    const usbPickerRetry = vi.fn()
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(mockDevice);
     const onSuccess = vi.fn();
+    const onError = vi.fn();
     render(
       <CompileUploadButton
         enableDemoMode
         sketchCode="void setup(){}void loop(){}"
         statusImpl={statusOnline}
         fetchImpl={compileFetch}
-        requestUsbDevice={usbPickerCancelFirst}
+        requestUsbDevice={usbPickerRetry}
         onSuccess={onSuccess}
+        onError={onError}
       />,
     );
     const btn = await screen.findByRole('button');
     fireEvent.click(btn);
 
-    // Wait compile_only_no_board banner visible
+    // Wait compile_only_no_board banner visible (first picker returned null)
     const retryBtn = await screen.findByTestId('compile-only-no-board-retry');
     expect(retryBtn).toBeTruthy();
 
-    // Click retry → picker resolves with device this time
+    // Click retry → picker resolves with mock DFU device, flash chain executes
     fireEvent.click(retryBtn);
-    await waitFor(() => expect(usbPickerCancelFirst).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(usbPickerRetry).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled(), { timeout: 5000 });
 
-    // Verify retry path transitioned HARDWARE_PICKED_AWAITING_FLASH (NOT UPLOAD_SUCCESS)
+    const lastCall = onSuccess.mock.calls[onSuccess.mock.calls.length - 1][0];
+    // P0 mandate: NO false "Caricato sul kit" claim for simulated mode
+    expect(lastCall.message).not.toMatch(/Caricato sul kit/);
+    expect(lastCall.message).toMatch(/Simulazione scientifica/);
+    expect(lastCall.payload.flashMode).toBe('simulated');
+    expect(lastCall.payload.flashStatus).toBe('flash_complete_simulated');
+    expect(lastCall.payload.path).toBe('retry');
+    expect(lastCall.payload.bytesTransferred).toBeGreaterThan(0);
+
+    // Verify final state FLASH_COMPLETE_SIMULATED (retry invoked full chain)
     await waitFor(() =>
       expect(btn.getAttribute('data-elab-demo-state')).toBe(
-        'hardware_picked_awaiting_flash',
+        'flash_complete_simulated',
       ),
     );
-
-    // Verify onSuccess called with retry payload + honest message (NO Caricato)
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
-    const lastCall = onSuccess.mock.calls[onSuccess.mock.calls.length - 1][0];
-    expect(lastCall.message).not.toMatch(/Caricato/);
-    expect(lastCall.message).toMatch(/Nano R4 rilevato via USB/);
-    expect(lastCall.payload.flashStatus).toBe('awaiting_hardware_uat');
-    expect(lastCall.payload.path).toBe('retry');
   });
 
   // T12 — iter 77 STOP-HOOK fix (Codex stop-time review #6): Cloud Render
