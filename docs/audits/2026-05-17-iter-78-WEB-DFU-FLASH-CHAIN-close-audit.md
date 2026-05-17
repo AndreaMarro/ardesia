@@ -219,3 +219,83 @@ honest message:
 - Codex Pattern C review verdict: `/tmp/codex-review-iter78-web-dfu-flash-impl.txt` (BG `bo6oo4fxm` in flight)
 
 © Andrea Marro — 2026-05-17 — ELAB Tutor iter 78 B.2 Web-DFU Flash Chain — scientifically valid simulation
+
+---
+
+# PHASE 5 ADDENDUM — PROD REGRESSION 2026-05-17 20:08 GMT+2 (post-deploy)
+
+## Andrea segnalazione (3 screenshot WhatsApp/test)
+
+1. `#compile-home` → error boundary "Ops! Qualcosa è andato storto"
+2. Experiment picker modal aperto (UI corretto)
+3. `#lavagna` → error boundary "Ops! Qualcosa è andato storto"
+
+## Diagnosi via Claude in Chrome MCP (browser_batch + read_console_messages)
+
+Console error reale captured:
+
+```
+[ERROR] TypeError: Cannot read properties of undefined (reading 'title')
+    at https://www.elabtutor.school/assets/ScratchCompileBar-CeRziIi3.js:7:5768
+    at Zf (react-vendor) … at My … at Oy … at Yy
+```
+
+Root cause analysis (hypothesis verify):
+
+- Source: `ScratchCompileBar.jsx:236-251` cliffhanger CTA blocco JSX
+- Pattern colpevole: `{showCliffhanger && (<>...{nextExperiment.title}...</>)}`
+- React/Vite normal build: short-circuit `&&` impedisce accesso `nextExperiment.title` quando `showCliffhanger=false` (e quindi `nextExperiment` può essere `undefined`)
+- **`javascript-obfuscator` plugin** (vite.config.js) attivo in prod: applica **trasformazioni hoisting** che possono spostare l'accesso `.title` FUORI dalla short-circuit guard → undefined.title crash anche con guard `false`
+- Same issue per `CompileUploadButton.jsx` analoghe site
+
+Karpathy Goal-driven diagnosis: bug NON era in source code logico (TypeScript-style guard correct) — bug era in **build-time tooling transform** che invalidava la guard.
+
+## Fix 3-layer defense (commit `6e639e07`)
+
+1. **Defensive optional chaining**: `(nextExperiment?.title || nextExperiment?.id || '')` in 3 site `ScratchCompileBar.jsx` + 3 site `CompileUploadButton.jsx`
+2. **Obfuscator SKIP_PATTERNS**: aggiunto `ScratchCompileBar`, `CompileUploadButton` a vite.config.js exclude list — preserva semantica JSX short-circuit
+3. **Tests preserved**: 51/51 PASS (35 CompileUploadButton + 16 cliffhanger-cta) — vitest baseline 14452 ≥ 13118 ✓
+
+## Verify via Claude in Chrome MCP post-deploy
+
+Deploy: `dpl_HnkPEoZiWmcg5kmeUTr79J5zkbab` aliased `www.elabtutor.school` 2026-05-17 20:18:40 GMT+2 (3min)
+Nuovo bundle hash: `ScratchCompileBar-CYco0d1Y.js` (era `CeRziIi3` regression)
+
+| Surface | URL | hasErrorBoundary | bodyText preview | Console errors |
+|---------|-----|------------------|------------------|----------------|
+| `#compile-home` | `/?nocache=78fix&v=2#compile-home` | **false** | "Compila Arduino dal kit ELAB / Ragazzi, scrivete codice Arduino…" (Open Compilatore button visible) | 0 |
+| `#lavagna` | `/#lavagna` | **false** | "Lavagna ELAB — Scegli un esperimento… Volume 1/2/3 / Lavagna libera — breadboard vuota…" (1044 char content) | 0 |
+
+Service worker + cache cleared per browser-side guarantee fresh fetch.
+
+## Learning per iter 79+ priorities
+
+**CRITICAL gap iter 78 Codex Pattern V/C**: review source-only, **NO catch obfuscation-induced regression**.
+
+Codex Pattern V (design) + Pattern C (review) operano su source files → vedono `{guard && expr.title}` come safe (JS spec semantic correct). MA non simulano build pipeline transforms.
+
+Mitigation iter 79+:
+
+- **Built-bundle E2E Playwright** spec: navigate prod build (vite preview) before push → catch obfuscation/minification regressions vs source-only tests
+- **Mandatory smoke test post-deploy**: Claude in Chrome `read_console_messages` su ogni surface principale (`#compile-home`, `#lavagna`, `#tutor`, `#dashboard`) → fail-fast detection error boundary
+- **Obfuscator SKIP_PATTERNS audit periodico**: ogni componente JSX con short-circuit guard `{cond && (<>...{obj.prop}...</>)}` deve essere o (a) obfuscator-skipped o (b) defensively optional-chained
+- **Vite build production preview cycle** parte di iter close gate (non solo `npm run build` esce 0 — anche `npx vite preview` + smoke navigate)
+
+## Iter 78 PHASE 5 close gate
+
+| Gate | Status |
+|------|--------|
+| PROD regression diagnosed via Claude in Chrome (no guess) | ✓ |
+| Root cause documented (obfuscator hoisting + JSX short-circuit) | ✓ |
+| Fix 3-layer defense shipped (optional chaining + SKIP + tests) | ✓ |
+| Vitest 14452 PASS baseline 13118 (+1334) | ✓ |
+| Commit `6e639e07` pushed origin | ✓ |
+| Vercel deploy `dpl_HnkPEoZiWmcg5kmeUTr79J5zkbab` aliased prod | ✓ |
+| `#compile-home` smoke PASS (no error boundary, 500+ char content) | ✓ |
+| `#lavagna` smoke PASS (no error boundary, 1044 char content) | ✓ |
+| Console errors zero on both surfaces | ✓ |
+
+**Iter 78 score post-PHASE 5 update**: precedente 0.85 MVP web-DFU MANTIENE — questo bug fix è correttivo regressione, non new feature → no inflation.
+
+**Anti-G45**: NO claim "obfuscation-induced regressions caught preemptively" (NOT yet — solo questo specifico fix). Iter 79 deve implementare built-bundle E2E come **gate strutturale**.
+

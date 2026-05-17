@@ -231,3 +231,118 @@ Per Karpathy guidelines repo `forrestchang/andrej-karpathy-skills`:
 - HONEST: Render Standard $25/mo cost Andrea ratify iter 79+ keep OR optimize
 
 © Andrea Marro — 2026-05-17 — ELAB Tutor iter 78 close + iter 79-80+ future plan Karpathy-guided
+
+---
+
+# ADDENDUM 2026-05-17 20:30 GMT+2 — PROD regression iter 78 close + iter 79+ priority shift
+
+## Context
+
+Andrea PROD regression segnalazione iter 78 close (3 screenshot WhatsApp): `#compile-home` + `#lavagna` error boundary "Ops! Qualcosa è andato storto" post deploy iter 78.
+
+Root cause: `javascript-obfuscator` hoists `nextExperiment.title` access OUTSIDE JSX short-circuit guard `{showCliffhanger && (<>...{nextExperiment.title}...</>)}` → crash undefined.title anche con guard false.
+
+Fix shipped commit `6e639e07` + Vercel deploy `dpl_HnkPEoZiWmcg5kmeUTr79J5zkbab`:
+- 3-layer defense: optional chaining + obfuscator SKIP_PATTERNS + tests preserved
+- Both surfaces verified LIVE via Claude in Chrome MCP (no error boundary, console errors zero)
+
+## Iter 79+ PRIORITY SHIFT mandate
+
+**CRITICAL learning**: Codex Pattern V/C source-only review NON catched obfuscation regression. Solo Andrea PROD test caught. Iter 79+ MUST elevate built-bundle E2E to P0 close gate.
+
+### NEW Atom 79.0 — Built-bundle Playwright smoke spec (was P1 pre-PROD-regression, now **P0 BLOCKER**)
+
+**File**: `tests/e2e/build-preview-smoke.spec.js` NEW
+
+**Scope**:
+- `npm run build` (vite production build con obfuscator + minification)
+- `npx vite preview --port 4173` background
+- Playwright navigate `http://localhost:4173/#compile-home` + `#lavagna` + `#tutor` + `#dashboard`
+- Assert `hasErrorBoundary === false` per route
+- Assert `consoleErrors.length === 0` per route
+- Assert bodyLen > 200 chars (renders content not just shell)
+
+**Effort**: ~2-3h (1h Playwright setup with built bundle + 1h 4 surface tests + 0.5h CI integration)
+
+**Gate**: iter 79 close — `npm run test:build-smoke` MUST PASS before any push origin.
+
+**Why P0**: iter 78 PROD regression silently passed all unit + source-tests + Codex V/C. Solo Andrea visual confirmation prod prevented permanent breakage. iter 79+ this gate prevents recurrence.
+
+### NEW Atom 79.0b — Obfuscator SKIP_PATTERNS audit script
+
+**File**: `scripts/audit/obfuscator-skip-audit.mjs` NEW
+
+**Scope**:
+```
+grep -r "&&\s*(\s*<>\s*[^<]*{[a-zA-Z_$][a-zA-Z0-9_$]*\.[a-zA-Z_$][a-zA-Z0-9_$]*}"  src/components/
+```
+Identifies all JSX patterns `{cond && (<>...{obj.prop}...</>)}` at risk obfuscator hoisting.
+For each match:
+- If component in `vite.config.js` SKIP_PATTERNS → OK
+- If component uses optional chaining `obj?.prop` → OK
+- Otherwise → FLAG add to SKIP_PATTERNS OR refactor optional chaining
+
+**Effort**: ~1h (regex + audit + fix flagged)
+
+**Gate**: iter 79 close — audit script in pre-iter-close hook.
+
+### NEW Atom 79.0c — Vercel deploy script post-deploy smoke
+
+**File**: `scripts/deploy-vercel-prod.sh` MODIFY
+
+**Add post-deploy step**:
+```bash
+echo "Smoke test prod surfaces..."
+for hash in "#compile-home" "#lavagna" "#tutor" "#dashboard"; do
+  result=$(curl -s "https://www.elabtutor.school/${hash}" -A "ELAB-smoke-test/1.0")
+  if echo "$result" | grep -q "Ops! Qualcosa è andato storto"; then
+    echo "FAIL: error boundary on ${hash}"
+    exit 1
+  fi
+done
+```
+**Effort**: 30min
+
+**Gate**: iter 79 deploy script — automatic abort if error boundary detected post-deploy.
+
+## Atom priorities iter 79 REORDER post PROD regression
+
+| Old priority | NEW priority | Atom | Rationale |
+|---|---|---|---|
+| n/a | **P0.0** | 79.0 Built-bundle Playwright smoke spec | PROD regression prevention BLOCKER |
+| n/a | **P0.0b** | 79.0b Obfuscator SKIP audit script | preventive systemic fix |
+| n/a | **P0.0c** | 79.0c Deploy script post-smoke | safety net iter 79+ |
+| P0.1 | P0.1 | 79.1 Hardware UAT real Nano R4 | unchanged primary gate |
+| P0.2 | P0.2 | 79.2 Readback verify UPLOAD command | unchanged |
+| P0.3 | P0.3 | 79.3 WebUSB filter narrow productId | unchanged |
+| P0.4 | P0.4 | 79.4 Cloud LOCAL contract unify v2 | unchanged |
+| P0.5 | P0.5 | 79.5 Render warm-keep cron | unchanged |
+| P0.6 | P0.6 | 79.6 Visible badge UI flash mode | unchanged |
+
+## Sprint U+ implication
+
+Iter 79 effort budget +3.5h (3 NEW P0 atoms 79.0+79.0b+79.0c) — atom 79.7 OR 79.8 carryover iter 80 OK (still cumulative iter 79+80 complete 10 atoms target).
+
+Sprint U close gate REVISION:
+- ✅ Hardware UAT real Nano R4 verified iter 79.1
+- ✅ Readback verify shipped + tested iter 79.2
+- ✅ Built-bundle Playwright smoke gate iter 79.0 LIVE
+- ✅ Obfuscator SKIP audit clean iter 79.0b
+- ✅ Deploy script post-smoke iter 79.0c
+- ✅ Render warm-keep iter 79.5
+- ✅ Visible badge iter 79.6
+
+## Anti-inflation G45 mandate ADDENDUM
+
+- NO claim "obfuscation regressions caught preemptively" until iter 79.0+0b+0c shipped + verified PASS PROD round-trip
+- HONEST: iter 78 PROD regression = source-only review gap proven empirically — Codex Pattern V/C iter 78 design + impl reviews missed obfuscation hoisting transform
+- HONEST: Andrea visual PROD test was last line of defense iter 78 — iter 79+ MUST automate this gate
+
+## Iter 79 entrance gate post-regression
+
+Add to §2 Andrea action checklist:
+
+- [ ] **NEW**: Run `npx vite preview --port 4173 &` + manually navigate `#compile-home` + `#lavagna` → verify no error boundary BEFORE pushing iter 79 commits
+- [ ] **NEW**: Once Atom 79.0 shipped → CI runs `npm run test:build-smoke` automatically every PR
+
+© Andrea Marro — 2026-05-17 20:30 GMT+2 — iter 78 close PROD regression ADDENDUM + iter 79+ priority shift built-bundle E2E P0

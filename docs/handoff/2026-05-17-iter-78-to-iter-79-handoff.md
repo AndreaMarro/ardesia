@@ -212,3 +212,60 @@ Per Andrea iter 78 mandate "fai loop codex":
 - Codex BG outputs: `/tmp/codex-*.txt` (sandbox EPERM write — captured inline conversation)
 
 © Andrea Marro — 2026-05-17 — ELAB Tutor iter 78 web-dfu flash chain MVP close → iter 79 hardware UAT entrance
+
+---
+
+## §9 ADDENDUM PHASE 5 PROD regression learning (2026-05-17 20:08-20:30 GMT+2)
+
+**Andrea 3-screenshot WhatsApp segnalazione**: `#compile-home` + `#lavagna` mostravano error boundary "Ops! Qualcosa è andato storto" prod post-deploy iter 78.
+
+### Root cause diagnosed (Claude in Chrome MCP `read_console_messages`)
+
+`TypeError: Cannot read properties of undefined (reading 'title')` at `ScratchCompileBar-CeRziIi3.js:7:5768` — `javascript-obfuscator` hoists `nextExperiment.title` access OUTSIDE JSX short-circuit guard `{showCliffhanger && (<>...{nextExperiment.title}...</>)}` → crash anche con guard false.
+
+### Fix 3-layer defense (commit `6e639e07` + Vercel deploy `dpl_HnkPEoZiWmcg5kmeUTr79J5zkbab`)
+
+1. Optional chaining `(nextExperiment?.title || nextExperiment?.id || '')` in `ScratchCompileBar.jsx` + `CompileUploadButton.jsx` (6 sites)
+2. Obfuscator SKIP_PATTERNS add `ScratchCompileBar` + `CompileUploadButton` in `vite.config.js`
+3. Tests preserved 51/51 PASS + Vitest 14452 baseline 13118 (+1334)
+
+### Verify Claude in Chrome MCP post-deploy
+
+- `#compile-home` `/?nocache=78fix&v=2` → hasErrorBoundary FALSE, "Compila Arduino dal kit ELAB" + button "Apri il Compilatore"
+- `#lavagna` → hasErrorBoundary FALSE, bodyLen 1044 char "Volume 1/2/3" + esperimenti renderizzati
+- ServiceWorker + cache cleared garanzia fresh fetch
+- Console errors ZERO entrambe surfaces post-fix
+
+### Iter 79+ CRITICAL learning Codex Pattern V/C gap
+
+**Codex Pattern V (design) + Pattern C (review) operano source-only** — NON catch obfuscation-induced regressions perché non simulano build pipeline transforms (`javascript-obfuscator`, minification, tree-shaking).
+
+**Mitigation iter 79+ MANDATORY**:
+
+1. **Built-bundle E2E Playwright spec PRIORITY P0**: navigate `vite preview` production build BEFORE push origin — catches obfuscation/minification regressions vs source-only tests. iter 79 close gate.
+2. **Mandatory smoke test post-deploy**: Claude in Chrome `read_console_messages` su ogni surface principale (`#compile-home`, `#lavagna`, `#tutor`, `#dashboard`) → fail-fast detection error boundary. iter 79 add to deploy script.
+3. **Obfuscator SKIP_PATTERNS audit periodico**: ogni componente JSX con short-circuit guard `{cond && (<>...{obj.prop}...</>)}` deve essere o (a) obfuscator-skipped o (b) defensively optional-chained. iter 79 grep audit + add to lint rule.
+4. **Vite build preview cycle parte iter close gate**: NON solo `npm run build` esce 0 — anche `npx vite preview --port 4173` + Claude in Chrome smoke navigate + console errors zero. iter 79 add to `.claude/hooks/pre-iter-close.sh`.
+
+### Iter 78 PHASE 5 close gate validated 9/9
+
+| Gate | Status |
+|------|--------|
+| PROD regression diagnosed via Claude in Chrome (NO guess) | ✓ |
+| Root cause documented (obfuscator hoisting + JSX short-circuit) | ✓ |
+| Fix 3-layer defense shipped (optional chaining + SKIP + tests) | ✓ |
+| Vitest 14452 PASS baseline 13118 (+1334) | ✓ |
+| Commit `6e639e07` pushed origin | ✓ |
+| Vercel deploy `dpl_HnkPEoZiWmcg5kmeUTr79J5zkbab` aliased prod | ✓ |
+| `#compile-home` smoke PASS (no error boundary, 500+ char content) | ✓ |
+| `#lavagna` smoke PASS (no error boundary, 1044 char content) | ✓ |
+| Console errors zero on both surfaces post-deploy | ✓ |
+
+### Iter 79 entrance priorities ADDITION
+
+Add to §3 PRIORITY 0 (Critical) list:
+
+- **P0.0 NEW**: Built-bundle E2E Playwright spec — `tests/e2e/build-preview-smoke.spec.js` exec `npx vite preview` + navigate `#compile-home` + `#lavagna` + `#tutor` + assert no error boundary + console errors zero. Effort ~2h. Gate iter 79 close.
+- **P0.0b NEW**: Obfuscator SKIP_PATTERNS audit grep — script find all `{cond && (<>...{obj.prop}...</>)}` patterns + decide (skip OR optional-chain). Effort ~1h.
+
+© Andrea Marro — 2026-05-17 — iter 78 → iter 79 handoff PHASE 5 ADDENDUM
