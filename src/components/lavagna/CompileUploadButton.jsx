@@ -100,6 +100,11 @@ export const DEMO_STATES = Object.freeze({
   UPLOAD_SUCCESS: 'upload_success',
   UPLOAD_ERROR: 'upload_error',
   COMPILE_ONLY_NO_BOARD: 'compile_only_no_board',
+  // iter 76 PHASE 3 P0.1 fix (Codex Pattern V verdict #3):
+  // WebUSB device handle obtained MA real dfu-util flash NOT yet executed.
+  // Honest intermediate state. NO claim "Caricato". Iter 77+ hardware UAT
+  // Andrea/Tea/Riccardo wires real dfu-util binary transfer.
+  HARDWARE_PICKED_AWAITING_FLASH: 'hardware_picked_awaiting_flash',
 });
 
 /**
@@ -545,19 +550,24 @@ export default function CompileUploadButton({
       return;
     }
 
-    // ── Step 3: device picked → defer to legacy upload chain (best-effort).
+    // ── Step 3: device picked → HARDWARE_PICKED_AWAITING_FLASH (iter 76 P0.1 fix).
     // The dfu-util flash itself is iter 77+ scope (real Nano R4 hardware UAT
     // Andrea/Tea/Riccardo). For iter 76 demo we stop at "device acquired"
-    // and let the caller wire the actual flash via legacy handleClick.
+    // and DO NOT claim "Caricato" — would be false success per Codex Pattern V
+    // verdict #3. Honest intermediate state surfaced via banner.
     if (mountedRef.current) {
       setUploading(false);
-      setDemoState(DEMO_STATES.UPLOAD_SUCCESS);
-      setUploadSucceeded(true);
+      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
+      // Intentionally NOT setUploadSucceeded(true) — flash not yet executed.
     }
     onSuccess?.({
       message:
-        "Caricato sul kit fisico Nano R4! Ragazzi, ora osservate cosa succede.",
-      payload: { jobId: compilePayload?.jobId, device: 'webusb' },
+        "Nano R4 rilevato via USB. Iter 77+ collegheremo l'upload reale via dfu-util con il kit Omaric (Tea + Riccardo).",
+      payload: {
+        jobId: compilePayload?.jobId,
+        device: 'webusb',
+        flashStatus: 'awaiting_hardware_uat',
+      },
     });
   }, [
     enableDemoMode, uploading, sketchCode, compileEndpoint, fqbn,

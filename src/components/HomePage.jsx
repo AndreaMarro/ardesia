@@ -74,7 +74,18 @@ const MicPermissionNudge = lazy(() => import('./common/MicPermissionNudge.jsx'))
 // R4 detection helper compileAgentDetect.js). Lazy-loaded: the widget polls
 // localhost:17852 on mount, so keep it out of the critical path until the
 // hero is painted.
+//
+// iter 76 PHASE 3 P0.2 fix (Codex Pattern V verdict #4):
+// Default direction iter 76 ARCHITECTURAL PIVOT (Andrea 2026-05-17 PM)
+// = WebUSB direct dalla piattaforma (NO local agent download). Render
+// WebUsbBanner by default; legacy CompileAgentBanner gated env flag
+// VITE_USE_LOCAL_AGENT for dev fallback ONLY.
 const CompileAgentBanner = lazy(() => import('./HomePage/CompileAgentBanner.jsx'));
+const WebUsbBanner = lazy(() => import('./HomePage/WebUsbBanner.jsx'));
+const USE_LOCAL_AGENT_BANNER =
+  typeof import.meta !== 'undefined'
+    && import.meta.env
+    && import.meta.env.VITE_USE_LOCAL_AGENT === 'true';
 
 // Hash routes managed inline (NO react-router) — pattern consistent with
 // existing app routing convention.
@@ -997,7 +1008,7 @@ export default function HomePage({ onNavigate, onActivate }) {
           during initial detection, then renders 1 of 4 platform states
           (Mac online / Mac offline / Win-Linux / unknown). */}
       <Suspense fallback={null}>
-        <CompileAgentBanner />
+        {USE_LOCAL_AGENT_BANNER ? <CompileAgentBanner /> : <WebUsbBanner />}
       </Suspense>
 
       <section

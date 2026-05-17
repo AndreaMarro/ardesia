@@ -723,4 +723,46 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
     );
     expect(screen.queryByTestId('compile-only-no-board-banner')).toBeNull();
   });
+
+  // T10 — iter 76 PHASE 3 P0.1 fix (Codex Pattern V verdict #3):
+  // post WebUSB device picker SUCCESS, demo mode MUST NOT claim "Caricato"
+  // before actual dfu-util flash. Transition to HARDWARE_PICKED_AWAITING_FLASH
+  // honest intermediate state. Real flash iter 77+ hardware UAT Tea+Riccardo.
+  it('T10 device picked → HARDWARE_PICKED_AWAITING_FLASH (NO false Caricato claim)', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbDevice();
+    const onSuccess = vi.fn();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+        onSuccess={onSuccess}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    // WebUSB picker resolved with valid device handle.
+    await waitFor(() => expect(usbPicker).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
+
+    const arg = onSuccess.mock.calls[0][0];
+    // P0.1 mandate: message MUST NOT claim "Caricato" — only honest "rilevato".
+    expect(arg.message).not.toMatch(/Caricato/);
+    expect(arg.message).toMatch(/Nano R4 rilevato via USB/);
+    expect(arg.message).toMatch(/Iter 77\+|dfu-util|hardware UAT|Tea/);
+    // Payload includes flashStatus signaling awaiting hardware verify.
+    expect(arg.payload.flashStatus).toBe('awaiting_hardware_uat');
+    expect(arg.payload.device).toBe('webusb');
+
+    // Component data-attr reflects honest intermediate state.
+    await waitFor(() =>
+      expect(btn.getAttribute('data-elab-demo-state')).toBe(
+        'hardware_picked_awaiting_flash',
+      ),
+    );
+  });
 });

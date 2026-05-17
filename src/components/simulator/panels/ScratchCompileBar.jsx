@@ -184,7 +184,11 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
         <span style={{ flex: 1, fontSize: 14, color: statusColor, fontFamily: "var(--font-mono)" }}>
           {statusText}
         </span>
-        {/* iter 69 A3 — physical kit upload (only when sketchCode prop wired) */}
+        {/* iter 69 A3 — physical kit upload (only when sketchCode prop wired)
+          * iter 76 PHASE 3 P0.3 — enableDemoMode passed through (Codex #2 fix):
+          * surfaces compile_only_no_board + HARDWARE_PICKED_AWAITING_FLASH
+          * honest states when board absent OR picker dismissed. Demo mode
+          * is iter 76 default for Riccardo Omaric trust path. */}
         {showPhysicalUpload && (
           <CompileUploadButton
             sketchCode={sketchCode}
@@ -192,6 +196,7 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
             boardId={boardId}
             onSuccess={onPhysicalUploadSuccess}
             onError={onPhysicalUploadError}
+            enableDemoMode
             compact
           />
         )}

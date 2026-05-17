@@ -190,14 +190,25 @@ app.get('/boards', (_req, res) => {
 
 app.post('/compile', async (req, res) => {
   const t0 = Date.now();
-  const { sketchCode, fqbn, sessionId } = req.body || {};
+  // iter 76 PHASE 3 P0.4 fix (Codex Pattern V verdict #1 + OpenAPI 76-D.3
+  // HC-2/HC-3): accept both `fqbn` (canonical) AND `boardId` (LOCAL agent
+  // parity). Map boardId → fqbn via lookup. `fqbn` precedence when both.
+  const BOARD_ID_TO_FQBN = {
+    'arduino-nano-r4': 'arduino:renesas_uno:nanor4',
+    'arduino-uno': 'arduino:avr:uno',
+  };
+  const { sketchCode, fqbn, boardId, sessionId } = req.body || {};
   if (typeof sketchCode !== 'string' || sketchCode.length === 0) {
     return res.status(400).json({ error: 'sketchCode_required' });
   }
   if (sketchCode.length > SKETCH_SIZE_LIMIT_KB * 1024) {
     return res.status(413).json({ error: 'sketch_too_large', limit_kb: SKETCH_SIZE_LIMIT_KB });
   }
-  const targetFqbn = typeof fqbn === 'string' && fqbn ? fqbn : 'arduino:renesas_uno:nanor4';
+  let resolvedFqbn = typeof fqbn === 'string' && fqbn ? fqbn : null;
+  if (!resolvedFqbn && typeof boardId === 'string' && boardId) {
+    resolvedFqbn = BOARD_ID_TO_FQBN[boardId] || null;
+  }
+  const targetFqbn = resolvedFqbn || 'arduino:renesas_uno:nanor4';
   if (!ALLOWED_BOARDS.has(targetFqbn)) {
     return res.status(400).json({ error: 'fqbn_not_allowed', fqbn: targetFqbn, allowed: Array.from(ALLOWED_BOARDS) });
   }
@@ -281,9 +292,23 @@ app.post('/compile', async (req, res) => {
 
 app.use((req, res) => res.status(404).json({ error: 'not_found', path: req.path }));
 
+// iter 76 PHASE 3 P0.5 fix (Codex Pattern V verdict #5 + #6):
+// Refuse boot in production when ELAB_CLOUD_COMPILE_API_KEY is unset.
+// Dev mode (NODE_ENV !== 'production') retains permissive default for
+// localhost iteration. Render production env MUST provide API_KEY via
+// render.yaml `generateValue: true` — boot fails fast otherwise.
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+if (IS_PRODUCTION && !API_KEY) {
+  console.error('[cloud-compile] FATAL: ELAB_CLOUD_COMPILE_API_KEY not set in production');
+  console.error('[cloud-compile] Refuse to boot — set env var via Render dashboard');
+  console.error('[cloud-compile] render.yaml envVars[0] generateValue:true should auto-create');
+  process.exit(1);
+}
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`[cloud-compile] listening 0.0.0.0:${PORT}`);
-  console.log(`[cloud-compile] API_KEY ${API_KEY ? 'set' : 'NOT SET (DEV MODE)'}`);
+  console.log(`[cloud-compile] NODE_ENV=${process.env.NODE_ENV || 'undefined'} ${IS_PRODUCTION ? '(PRODUCTION mode)' : '(DEV mode)'}`);
+  console.log(`[cloud-compile] API_KEY ${API_KEY ? 'set (auth required)' : 'NOT SET (DEV permissive — refuse boot in PROD)'}`);
   console.log(`[cloud-compile] rate limit ${RATE_LIMIT_PER_MIN} req/min · sketch limit ${SKETCH_SIZE_LIMIT_KB}KB`);
   console.log('[cloud-compile] endpoints: GET /health, GET /boards, POST /compile');
 });

@@ -334,7 +334,20 @@ export async function createApp(opts = {}) {
   app.post('/compile', async (req, res) => {
     const body = req.body || {};
     const sketchCode = typeof body.sketchCode === 'string' ? body.sketchCode : body.code;
-    const boardId = body.boardId || 'arduino-nano-r4';
+    // iter 76 PHASE 3 P0.4 fix (Codex Pattern V verdict #1 + OpenAPI 76-D.3
+    // HC-2/HC-3): accept both `boardId` (legacy iter 70+) AND `fqbn`
+    // (canonical OpenAPI 76-D.3 + cloud parity). Map fqbn → boardId via
+    // reverse lookup of supported boards. `boardId` takes precedence when
+    // both supplied (explicit board name beats raw FQBN string).
+    const FQBN_TO_BOARD_ID = {
+      'arduino:renesas_uno:nanor4': 'arduino-nano-r4',
+      'arduino:avr:uno': 'arduino-uno',
+    };
+    let boardId = body.boardId;
+    if (!boardId && typeof body.fqbn === 'string' && body.fqbn) {
+      boardId = FQBN_TO_BOARD_ID[body.fqbn] || 'arduino-nano-r4';
+    }
+    if (!boardId) boardId = 'arduino-nano-r4';
 
     if (typeof sketchCode !== 'string' || !sketchCode.trim()) {
       return res.status(400).json({
