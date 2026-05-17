@@ -28,6 +28,11 @@ import SerialMonitor from './panels/SerialMonitor';
 import SerialPlotter from './panels/SerialPlotter';
 import CircuitSolver from './engine/CircuitSolver';
 import { findExperimentById, ALL_EXPERIMENTS } from '../../data/experiments-index';
+// Iter 75 75-B1-FIX (Codex Pattern V iter 74 REFUTE): lesson-path lookup
+// to wire next_experiment cliffhanger CTA into ScratchCompileBar +
+// CompileUploadButton (iter 74 B-1 components had props MA real callers
+// non passavano nextExperiment → CTAs invisibili runtime users).
+import { getLessonPath } from '../../data/lesson-paths';
 import { openReportWindow } from '../unlim/UnlimReport';
 import { compileCode as apiCompileCode } from '../../services/api';
 import { emitSimulatorEvent } from '../../services/simulator-api';
@@ -1017,7 +1022,30 @@ const NewElabSimulator = ({
                     </Suspense>
                   </ScratchErrorBoundary>
                 </div>
-                <ScratchCompileBar onCompile={() => handleCompile(scratchGeneratedCodeRef.current)} compilationStatus={compilationStatus} compilationErrors={compilationErrors} compilationWarnings={compilationWarnings} compilationSize={compilationSize} sketchCode={scratchGeneratedCode} boardId="arduino-nano-r4" port={null} />
+                <ScratchCompileBar
+                  onCompile={() => handleCompile(scratchGeneratedCodeRef.current)}
+                  compilationStatus={compilationStatus}
+                  compilationErrors={compilationErrors}
+                  compilationWarnings={compilationWarnings}
+                  compilationSize={compilationSize}
+                  sketchCode={scratchGeneratedCode}
+                  boardId="arduino-nano-r4"
+                  port={null}
+                  currentExperimentId={currentExperiment?.id}
+                  nextExperiment={(() => {
+                    // Iter 75 75-B1-FIX (Codex Pattern V iter 74 REFUTE): wire
+                    // iter 74 B-1 cliffhanger CTA through real runtime caller.
+                    // Lookup next_experiment from lesson-path of current exp.
+                    if (!currentExperiment?.id) return null;
+                    const lp = getLessonPath(currentExperiment.id);
+                    return lp?.next_experiment || null;
+                  })()}
+                  onLoadNextExperiment={(nextId) => {
+                    if (!nextId) return;
+                    const nextExp = findExperimentById(nextId);
+                    if (nextExp) setCurrentExperiment(nextExp);
+                  }}
+                />
               </div>
             )}
           </div>
