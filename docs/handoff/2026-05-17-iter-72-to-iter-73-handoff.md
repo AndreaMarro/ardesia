@@ -22,38 +22,87 @@
 | 7 | Disk cleanup decision 3 options (node_modules cache / /tmp archives / dormant worktrees) | 5min Andrea decide | ⏸ 5.5Gi stable threshold | Conditional <5Gi |
 | 8 | Iter 73 atom plan ratify (orchestrator drafts in `.ai/mission.md` iter 73 entrance) | 10min | ⏸ defer iter 73 entrance | Standard cadence |
 
-## Iter 73 P0 atoms preview (subagent BG dispatch candidates)
+## Iter 73 P0 atoms preview (RESTRUCTURE narrative-first 2026-05-17 Andrea principio richiamato)
 
-### P0.1 USB Web Serial port detection (~2h orchestrator inline OR subagent)
-**File ownership**: `src/components/simulator/NewElabSimulator.jsx` + `src/services/usbPortService.js` NEW + `tests/unit/services/usbPortService.test.js` NEW.
+**Andrea principio**: "Esperimenti = arco narrativo continuo, NON card flat scollegate. Ogni esperimento del software deve agganciarsi al precedente e al successivo nella stessa sequenza del libro stampato. Modalità Percorso + Passo Passo + transizioni fra esperimenti = principio guida."
 
-**Scope**: replace `port={null}` placeholder with real Web Serial enumeration:
-- `navigator.serial.requestPort()` user gesture flow
-- `navigator.serial.getPorts()` previously authorized
-- Port state management in NewElabSimulator
-- Pass detected port to ScratchCompileBar → CompileUploadButton
-- Graceful degradation if Web Serial unsupported (Safari fallback message)
+**Iter 73 priorities restructure narrative-first** (vedi `docs/strategy/2026-05-17-iter-72-NARRATIVE-ARC-AUDIT.md` audit completo):
 
-### P0.2 Vol3 dataset Davide co-author (~6-8h Davide direct)
-**Andrea ratify mandate**: NO orchestrator skeleton-first (BG-A5 abandon lesson).
+### P0.1 NARRATIVE schema unification + wire-up (~1.5h orchestrator inline)
 
-**Approach**: Davide writes full content 15 missing IDs (v3-cap6-esp3 + v3-cap7-mini + v3-cap8-esp4 + capstones) → Davide OR Andrea applies simultaneous:
-- `experiments-vol3.js` 14→29 entries (content + components + steps)
-- `cliffhanger-table.json` 14→29 entries (Tea-compat array format NOT wrapper)
-- `narrative-map-94.json` consolidate 77 unique → 94 IDs
+**File ownership**: `src/data/cliffhanger-table.json` + `src/data/lesson-paths/v*.json` (79 files) + `src/data/narrative-map-94.json` + consumer components.
+
+**Scope**:
+- `cliffhanger-table.json` wrapper `{experiments: [...]}` → Tea canonical flat array (Codex iter 70 TEAM A HIGH)
+- `lesson-paths/v*.json` 79 files ADD `prev_id` + `next_id` + `cliffhanger_in` + `cliffhanger_out` OR runtime-join with cliffhanger-table
+- `narrative-map-94.json` consolidate 77 unique → 79 (current registry) OR 94 (post Vol3 Davide P0.5)
+- Sync `automa/baseline-tests.txt` 13517 → 14357 (drift iter 72 close)
+
+### P0.2 PercorsoCapitoloView cliffhanger render (~2h)
+
+**Anti-pattern Andrea kill**: "card flat scollegate" → narrative continuity.
+
+**Scope**: tra ogni esperimento card render cliffhanger text (Tea-authored, source `cliffhanger-table.json`). Pattern "Hai fatto X → Prossimo Y perché Z" continuità narrativa visibile.
+
+### P0.3 BuildModeGuide passo-passo regression fix (~2h iter 36 PM carryover 9+ iter)
+
+**File ownership**: BuildModeGuide.jsx + LessonReader integration + activeLessonId state.
+
+**Scope**: fix iter 36 PM regression `feedback_passo_passo_regression_06may2026.md` (passo-passo wrongly uses LessonReader, activeLessonId hardcoded). Step preview NEXT + recap PREVIOUS narrative intra-esperimento.
+
+### P0.4 Narrative wire 3 components iter 72 follow-up (~2h)
+
+**File ownership**: `ScratchCompileBar.jsx` + `CompileUploadButton.jsx` + `AlbumStudente.jsx`.
+
+**Scope** (cliffhanger CTA su transizioni esperimento iter 72 GAP):
+- `ScratchCompileBar.jsx`: on compile success render "Ragazzi, pronto per [next_exp.title]? [→ Apri]" (cliffhanger CTA)
+- `CompileUploadButton.jsx`: on upload success render "Hai caricato! Vol/pag prossimo: [next_exp.cliffhanger]"
+- `AlbumStudente.jsx`: on save render "Vai al prossimo esperimento [→]"
+- Source: runtime join `cliffhanger-table.json` experiment_id → next_id + cliffhanger text
+
+### P0.5 Vol3 Davide co-author 14→29 WITH cliffhangers (~6-8h Davide direct, NO orchestrator skeleton-first)
+
+**Andrea ratify mandate**: BG-A5 abandon lesson + Andrea narrativa principio = SIMULTANEOUS content + narrative + tests update.
+
+**Davide responsibility**: scrive contenuto 15 missing experiments con cliffhanger_in (from prev) + cliffhanger_out (to next). Andrea/orchestrator wire schema + tests SIMULTANEAMENTE (NO skeleton-first commit, NO orphan tests).
+
+**Files**:
+- `experiments-vol3.js` 14→29 entries content + components + steps
+- `cliffhanger-table.json` 14→29 entries (flat array post P0.1 schema unification)
+- `narrative-map-94.json` consolidate 77 → 94
+- 15 NEW `lesson-paths/v3-*.json` with prev/next/cliffhanger fields
 - Update 66 hardcoded count references stale (sweep `grep -rn "= 14\|= 79"`)
-- 15 NEW lesson-paths JSON files `src/data/lesson-paths/v3-*.json`
 - Tests updated SIMULTANEOUS (no orphan skeleton)
 
-### P0.3 Blockly → SketchBuilder intent emit refactor (~3-4h subagent BG)
-**File ownership**: `src/components/simulator/panels/scratchGenerator.js`.
+### P0.6 92 esperimenti Playwright NARRATIVE audit (~10h subagent test-automator OR Mac Mini)
 
-**Scope**: replace raw Arduino C++ string return with structured SketchBuilder intentions per iter 63 spec. Enables board profile validation + forbidden AVR pattern check + cross-board compatibility (Renesas RA4M1 vs ATmega328).
-
-### P0.4 92 esperimenti Playwright UNO PER UNO audit (~8-10h subagent test-automator OR Mac Mini delegate)
 **Andrea iter 21+ carryover Sprint U close gate**.
 
-**Scope**: Playwright spec iterates 94 esperimenti, asserts mountExperiment + componentes + step-by-step + compile + Vol/pag citation. Document each broken/working honestly. NO mock data.
+**Scope NARRATIVE-FIRST** (NOT just standalone esperimento test):
+- Each esperimento spec verify entry from previous (state continuity from prev_id)
+- Verify exit to next (cliffhanger CTA present post-success transitions)
+- Document broken arcs honestly (NO mock data)
+- Sprint U close gate: ALL experiments verify narrative continuity
+
+### P0.7 Codex iter 70 TEAM A HIGH rework (~2-3h orchestrator inline)
+
+**Scope** (4 Codex findings deferred iter 70):
+- cliffhanger-table Tea canonical flat array (P0.1 covers)
+- narrative-map cleanup 77 → 79 (current) OR 94 (post P0.5)
+- 4 vol3 title/ID mismatches fix
+- v3-cap6-esp4 content mismatch (semaforo prompt vs "effetto polizia" title)
+
+### P0.8 USB Web Serial port detection (~2h, DOWNGRADED priorità post narrative)
+
+**File ownership**: `src/components/simulator/NewElabSimulator.jsx` + `src/services/usbPortService.js` NEW.
+
+**Scope**: replace `port={null}` placeholder con Web Serial enumeration (`navigator.serial.requestPort()` + `getPorts()` + graceful Safari fallback). Backend infra non-narrative.
+
+### P0.9 Blockly → SketchBuilder intent emit refactor (~3-4h subagent BG)
+
+**File ownership**: `src/components/simulator/panels/scratchGenerator.js`.
+
+**Scope**: replace raw Arduino C++ string con SketchBuilder intentions iter 63 spec. Backend infra non-narrative.
 
 ## Pattern S r3 mitigation lessons iter 72
 

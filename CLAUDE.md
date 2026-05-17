@@ -3084,3 +3084,74 @@ Box subtotal **8.45/10** + bonus iter 72 cumulative (+0.50 ORCH-A4 + A6 + A7 + P
 - ELAB Compile Agent spec: `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md`
 - Nano R4 board profile: `src/boards/arduino-nano-r4.json`
 - Matrix v246: `scripts/bench/output/1000-matrix-results-2026-05-17T09-10-54.jsonl`
+
+## NARRATIVE ARC CONTINUO — Andrea principio guida (richiamato 2026-05-17)
+
+**Andrea verbatim**:
+
+> "Gli esperimenti sono su un arco narrativo continuo, NON spezzettati come card flat scollegate. Significa che ogni esperimento del software deve agganciarsi al precedente e al successivo nella stessa sequenza del libro stampato. Se ti capita di lavorare su qualcosa che riguarda la modalità Percorso o la Modalità Passo Passo o le transizioni fra esperimenti, questo è il principio guida."
+
+### Principio applicato (3 livelli)
+
+1. **Data schema**: ogni esperimento ha `prev_id` + `next_id` + `cliffhanger_in` + `cliffhanger_out` references (libro fisico ordine sequenziale Morfismo Sense 2)
+2. **Componenti transizione**: dove esperimento finisce (compile success + upload success + Album save + Passo Passo step complete) — UI MUST render cliffhanger CTA + page reference next esperimento
+3. **Modalità rendering**:
+   - Percorso (default): card sequenziali + cliffhanger render TRA ogni card (NO flat list)
+   - Passo Passo: step preview NEXT + recap PREVIOUS (intra-esperimento narrative)
+   - Libero: quick-access tutti esperimenti, narrative optional
+   - Guida: narrative + on-error redirect
+
+### Anti-pattern verbatim Andrea ("card flat scollegate")
+
+= flat list rendering senza:
+- Cliffhanger preview NEXT
+- Recap micro PREVIOUS
+- Continuous navigation (NO esci-rientra fra esperimenti)
+- Page number visibile (volume/capitolo/pagina libro stampato — Morfismo Sense 2)
+
+### Audit empirico stato iter 72 close 2026-05-17
+
+**Schema esiste**:
+- ✅ `src/data/cliffhanger-table.json` 14 Vol3 entries Tea-authored con `cliffhanger` + `next_id`
+- ✅ `src/data/narrative-map-94.json` strutturato per-volume (`_meta + volumes`)
+- ✅ `src/data/lesson-paths/v*.json` 79 files (38 Vol1 + 27 Vol2 + 14 Vol3)
+
+**Wire-up UI mancante**:
+- ❌ `ScratchCompileBar.jsx`: compile success → NO next-exp cliffhanger CTA
+- ❌ `CompileUploadButton.jsx`: upload success → NO cliffhanger CTA
+- ❌ `AlbumStudente.jsx`: save → NO link prossimo esperimento (iter 72 BG-A6 GAP)
+- ❌ `PercorsoCapitoloView`: ZERO `cliffhanger|next_id` consume = flat card list anti-pattern
+- ❌ `BuildModeGuide` passo-passo: iter 36 PM regression + narrative MISSING
+- ❌ `lesson-paths/v*.json` schema MANCA `prev_id` + `next_id` + `cliffhanger_in` + `cliffhanger_out` fields
+
+**Vol3 narrative gap**: 14 IDs implementati vs 29 Tea narrative-map references → 15 esperimenti narrativi non implementati (BG-A5 skeleton-first abandon iter 72, Davide co-author iter 73-74 mandatory).
+
+### Iter 72 deliverables review narrative-lens (honest)
+
+| Atom | Tipo | Narrative impact | Gap |
+|---|---|---|---|
+| ORCH-A4 PZ V3 fix | language | NEUTRAL | none |
+| BG-A6 HomePage emoji | cosmetic | NEUTRAL | none |
+| BG-A6 Album Supabase | END-OF-EXP artifact | **CRITICAL** | save → NO next-exp link |
+| BG-A6 2 NEW ElabIcons | cosmetic | NEUTRAL | none |
+| BG-A7 api.js Nano R4 | backend | NEUTRAL | none |
+| BG-A7 ScratchCompileBar wire | END-OF-CODE artifact | **CRITICAL** | compile success → NO cliffhanger |
+
+Iter 72 ha shipped infrastructure tecnica MA NON ha rinforzato arco narrativo continuo. Andrea richiamo principio applies retroactively iter 73 P0.4 follow-up wire components transizione.
+
+### Sprint U close gate narrative
+
+- ALL 79 esperimenti correnti hanno cliffhanger consumed UI
+- Vol3 14→29 expanded con cliffhangers (Davide co-author iter 73-74)
+- PercorsoCapitoloView renders narrative continuity (NO flat)
+- Passo Passo fix iter 36 PM regression
+- 3 transition components wired (ScratchCompileBar + CompileUploadButton + AlbumStudente)
+- Playwright 79-94 esperimenti narrative spec PASS
+
+### Cross-link docs narrative
+
+- Strategy audit: `docs/strategy/2026-05-17-iter-72-NARRATIVE-ARC-AUDIT.md`
+- Cliffhanger source: `src/data/cliffhanger-table.json` (14 Vol3 entries Tea + iter-70-A)
+- Narrative map: `src/data/narrative-map-94.json` (per-volume structured)
+- Lesson-paths: `src/data/lesson-paths/v*.json` (79 files, schema MANCA prev/next)
+- Feedback regression Passo Passo iter 36 PM: `feedback_passo_passo_regression_06may2026.md`
