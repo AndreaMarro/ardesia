@@ -30,7 +30,16 @@
 import React, { useCallback, useState } from 'react';
 import { compileCode } from '../../services/api';
 import logger from '../../utils/logger';
+// iter 77 P0.2b fix (Codex Pattern V iter 77 verify MED #4): swap legacy
+// CompileAgentBanner → WebUsbBanner default per iter 76 ARCHITECTURAL
+// PIVOT Andrea verbatim "NO download docente, WebUSB direct". Legacy
+// banner gated env flag VITE_USE_LOCAL_AGENT for dev fallback ONLY.
 import CompileAgentBanner from '../HomePage/CompileAgentBanner';
+import WebUsbBanner from '../HomePage/WebUsbBanner';
+const USE_LOCAL_AGENT_BANNER =
+  typeof import.meta !== 'undefined'
+    && import.meta.env
+    && import.meta.env.VITE_USE_LOCAL_AGENT === 'true';
 import ScratchEditor from '../simulator/panels/ScratchEditor';
 import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/ScratchCompileBar';
 import styles from './HomeCompileEntry.module.css';
@@ -99,8 +108,8 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         </p>
       </header>
 
-      <section className={styles.bannerSection} aria-label="Stato Agent locale">
-        <CompileAgentBanner />
+      <section className={styles.bannerSection} aria-label="Stato browser cross-compile">
+        {USE_LOCAL_AGENT_BANNER ? <CompileAgentBanner /> : <WebUsbBanner />}
       </section>
 
       <main className={styles.editorGrid}>

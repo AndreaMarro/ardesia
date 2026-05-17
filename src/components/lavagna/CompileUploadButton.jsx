@@ -615,11 +615,24 @@ export default function CompileUploadButton({
       return;
     }
 
+    // iter 77 P0.1b fix (Codex Pattern V iter 77 verify CRITICAL #1):
+    // retry path was missing HARDWARE_PICKED_AWAITING_FLASH transition,
+    // false-promoted to UPLOAD_SUCCESS + setUploadSucceeded(true) WITHOUT
+    // actual dfu-util flash. Mirror primary handler P0.1 honest state.
     if (mountedRef.current) {
-      setDemoState(DEMO_STATES.UPLOAD_SUCCESS);
-      setUploadSucceeded(true);
+      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
+      // Intentionally NOT setUploadSucceeded(true) — flash not yet executed.
     }
-  }, [enableDemoMode, requestUsbDevice, setDemoState]);
+    onSuccess?.({
+      message:
+        "Nano R4 rilevato via USB (retry). Iter 77+ collegheremo l'upload reale via dfu-util con il kit Omaric (Tea + Riccardo).",
+      payload: {
+        device: 'webusb',
+        flashStatus: 'awaiting_hardware_uat',
+        path: 'retry',
+      },
+    });
+  }, [enableDemoMode, requestUsbDevice, setDemoState, onSuccess]);
 
   const label = uploading ? 'Caricamento sul kit...' : 'Carica sul kit fisico';
 

@@ -47,6 +47,10 @@ info:
     email: marro.andrea96@gmail.com
   license:
     name: UNLICENSED
+    # iter 77 P0.6 OpenAPI 3.1 machine validation fix: license MUST have
+    # identifier (SPDX) OR url per spec. SPDX "LicenseRef-" prefix is
+    # SPDX-compliant custom identifier for proprietary licenses.
+    identifier: LicenseRef-Proprietary-ELAB-Tutor-Andrea-Marro-2026
 
 servers:
   - url: http://localhost:8765

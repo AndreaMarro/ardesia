@@ -765,4 +765,55 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
       ),
     );
   });
+
+  // T11 — iter 77 P0.1b fix (Codex Pattern V iter 77 verify CRITICAL #1):
+  // retry path post compile_only_no_board with WebUSB picker SUCCESS must
+  // also transition HARDWARE_PICKED_AWAITING_FLASH (NOT UPLOAD_SUCCESS).
+  // Mirror primary handler P0.1 fix in retry handler.
+  it('T11 retry picker SUCCESS → HARDWARE_PICKED_AWAITING_FLASH (NO Caricato)', async () => {
+    // First click: compile OK + picker returns no device → compile_only_no_board
+    const compileFetch = makeCompileOk();
+    const usbPickerCancelFirst = vi.fn()
+      .mockResolvedValueOnce(null)        // first call: no device picked
+      .mockResolvedValueOnce({             // retry call: device acquired
+        productName: 'Arduino Nano R4',
+        vendorId: 0x2341,
+      });
+    const onSuccess = vi.fn();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPickerCancelFirst}
+        onSuccess={onSuccess}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    // Wait compile_only_no_board banner visible
+    const retryBtn = await screen.findByTestId('compile-only-no-board-retry');
+    expect(retryBtn).toBeTruthy();
+
+    // Click retry → picker resolves with device this time
+    fireEvent.click(retryBtn);
+    await waitFor(() => expect(usbPickerCancelFirst).toHaveBeenCalledTimes(2));
+
+    // Verify retry path transitioned HARDWARE_PICKED_AWAITING_FLASH (NOT UPLOAD_SUCCESS)
+    await waitFor(() =>
+      expect(btn.getAttribute('data-elab-demo-state')).toBe(
+        'hardware_picked_awaiting_flash',
+      ),
+    );
+
+    // Verify onSuccess called with retry payload + honest message (NO Caricato)
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    const lastCall = onSuccess.mock.calls[onSuccess.mock.calls.length - 1][0];
+    expect(lastCall.message).not.toMatch(/Caricato/);
+    expect(lastCall.message).toMatch(/Nano R4 rilevato via USB/);
+    expect(lastCall.payload.flashStatus).toBe('awaiting_hardware_uat');
+    expect(lastCall.payload.path).toBe('retry');
+  });
 });

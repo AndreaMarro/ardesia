@@ -339,9 +339,14 @@ export async function createApp(opts = {}) {
     // (canonical OpenAPI 76-D.3 + cloud parity). Map fqbn → boardId via
     // reverse lookup of supported boards. `boardId` takes precedence when
     // both supplied (explicit board name beats raw FQBN string).
+    // iter 77 P0.4c fix (Codex Pattern V iter 77 verify HIGH #2): LOCAL
+    // agent ships ONLY arduino-nano-r4.json profile (verified
+    // `src/boards/` dir listing). Mapping arduino:avr:uno → arduino-uno
+    // would fail at sketch-builder.js:40-45 loadBoardProfile. Narrow
+    // FQBN_TO_BOARD_ID to actually-supported boards. Profile JSONs for
+    // arduino:avr:uno + nano-atmega328-legacy iter 78+ scope when needed.
     const FQBN_TO_BOARD_ID = {
       'arduino:renesas_uno:nanor4': 'arduino-nano-r4',
-      'arduino:avr:uno': 'arduino-uno',
     };
     let boardId = body.boardId;
     if (!boardId && typeof body.fqbn === 'string' && body.fqbn) {

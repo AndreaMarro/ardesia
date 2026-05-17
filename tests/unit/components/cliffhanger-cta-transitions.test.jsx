@@ -199,6 +199,11 @@ describe('iter74 B1 — CompileUploadButton cliffhanger CTA', () => {
     });
 
   it('T4 renders cliffhanger CTA after upload success', async () => {
+    // iter 77 P0.3a fix (BG aafb0d68 audit MED-1): T4 dead assertion
+    // resolved. Spy is bound BEFORE render so click on cliffhanger CTA
+    // actually invokes onLoadNextExperiment with the next experiment ID
+    // (was: spy declared post-render + never asserted called → tautology).
+    const onLoad = vi.fn();
     render(
       <CompileUploadButton
         sketchCode="void setup() {} void loop() {}"
@@ -207,7 +212,7 @@ describe('iter74 B1 — CompileUploadButton cliffhanger CTA', () => {
         statusImpl={statusOnline}
         fetchImpl={fetchOk()}
         nextExperiment={NEXT_EXP_FIXTURE}
-        onLoadNextExperiment={() => {}}
+        onLoadNextExperiment={onLoad}
       />
     );
 
@@ -221,26 +226,26 @@ describe('iter74 B1 — CompileUploadButton cliffhanger CTA', () => {
 
     // No cliffhanger yet (pre-upload).
     expect(screen.queryByTestId('compile-upload-cliffhanger')).toBeNull();
+    expect(onLoad).not.toHaveBeenCalled();
 
-    // Click → POST resolves ok → uploadSucceeded flips true.
+    // Click upload button → POST resolves ok → uploadSucceeded flips true.
     fireEvent.click(
       screen.getByRole('button', {
         name: /Carica il programma sul kit fisico Nano R4/i,
       })
     );
 
+    // Cliffhanger CTA mounts post-success.
     await waitFor(() => {
       expect(screen.getByTestId('compile-upload-cliffhanger')).toBeTruthy();
+      expect(screen.getByTestId('compile-upload-cliffhanger-cta')).toBeTruthy();
     });
 
-    // CTA wired to onLoadNextExperiment.
-    const onLoad = vi.fn();
-    // Re-render with callback bound now that cliffhanger is mounted.
-    // (Easier than spying after the fact: assert CTA text + button exists.)
-    expect(
-      screen.getByTestId('compile-upload-cliffhanger-cta')
-    ).toBeTruthy();
-    expect(onLoad).not.toHaveBeenCalled();
+    // T4.c iter 77 — actually click the CTA and assert callback invoked
+    // with the next experiment ID (real regression coverage, not tautology).
+    fireEvent.click(screen.getByTestId('compile-upload-cliffhanger-cta'));
+    await waitFor(() => expect(onLoad).toHaveBeenCalledTimes(1));
+    expect(onLoad).toHaveBeenCalledWith(NEXT_EXP_FIXTURE.id);
   });
 
   it('T4.b cliffhanger NOT rendered when nextExperiment missing post-success', async () => {
@@ -351,10 +356,15 @@ describe('iter74 B1 — PRINCIPIO ZERO plurale "Ragazzi" gate', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// T7 — ARIA region role on all three cliffhangers (a11y guard)
+// T7 — ARIA region role on cliffhangers (a11y guard).
+// iter 77 P0.3b scope clarity (BG aafb0d68 audit MED-2): this suite covers
+// ScratchCompileBar + AlbumStudente surfaces ONLY. CompileUploadButton ARIA
+// coverage is in dedicated `tests/unit/components/lavagna/CompileUploadButton.test.jsx`
+// (iter 76 D.1 13 NEW + iter 76 PHASE 3 T10 NEW state assertion). Splitting
+// avoids duplication and respects file ownership rigid Pattern S r3.
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('iter74 B1 — ARIA region role on cliffhangers', () => {
+describe('iter74 B1 — ARIA region role on cliffhangers (Scratch + Album scope)', () => {
   it('T7.a ScratchCompileBar cliffhanger has role="region" + aria-label', () => {
     render(
       <ScratchCompileBar

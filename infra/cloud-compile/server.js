@@ -193,9 +193,13 @@ app.post('/compile', async (req, res) => {
   // iter 76 PHASE 3 P0.4 fix (Codex Pattern V verdict #1 + OpenAPI 76-D.3
   // HC-2/HC-3): accept both `fqbn` (canonical) AND `boardId` (LOCAL agent
   // parity). Map boardId → fqbn via lookup. `fqbn` precedence when both.
+  // iter 77 P0.4c fix (Codex Pattern V iter 77 verify HIGH #2): board maps
+  // must cover ALL ALLOWED_BOARDS entries (3 FQBN). Was 2/3 missing
+  // arduino-nano-atmega328-legacy (arduino:avr:nano:cpu=atmega328old).
   const BOARD_ID_TO_FQBN = {
     'arduino-nano-r4': 'arduino:renesas_uno:nanor4',
     'arduino-uno': 'arduino:avr:uno',
+    'arduino-nano-atmega328-legacy': 'arduino:avr:nano:cpu=atmega328old',
   };
   const { sketchCode, fqbn, boardId, sessionId } = req.body || {};
   if (typeof sketchCode !== 'string' || sketchCode.length === 0) {
@@ -266,6 +270,12 @@ app.post('/compile', async (req, res) => {
     }
 
     res.json({
+      // iter 77 P0.4b fix (Codex Pattern V iter 77 verify MED #3):
+      // frontend demo mode requires `ok:true` (CompileUploadButton:461) AND
+      // canonical OpenAPI 76-D.3 contract documents `ok` field. Cloud and
+      // LOCAL responses now share consistent envelope. `status` retained
+      // for backward-compat clients while `ok` is canonical demo-mode gate.
+      ok: true,
       jobId,
       sessionId,
       status: 'success',
@@ -278,6 +288,7 @@ app.post('/compile', async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({
+      ok: false,
       jobId,
       sessionId,
       status: 'server_error',

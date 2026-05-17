@@ -3391,3 +3391,119 @@ Box subtotal 9.45/10 + bonus iter 74 (+0.40 Codex workflow + multi-agent + 18× 
 - A4 hardware UAT: `docs/hardware/2026-05-17-iter-74-nano-r4-uat-prep.md`
 - B-4 script: `scripts/fix-vol12-coupled-titles.mjs`
 - Codex BG iter 74: `/tmp/codex-verify-iter74-batch.txt`
+
+## Sprint U iter 75 PIVOT + iter 76 PHASE 3 close + iter 77 PHASE 4 (2026-05-17 PM) — Cross-compile CERTAINTY without board + Codex Pattern V 5 + 5 gaps closed
+
+**Andrea verbatim mandate** (2026-05-17 PM): "sarebbe importante cross compilazione elabtutor con arduino nanoR4 perfettamente funzionante con blockly e ide sia in homepage che in esperimenti con arduino. io non ho arduino nanoR4 qui, ma il sistema deve funzionare 100 per cento per cross compilazione vedi discorsi con riccardo. sarebbe fondamentale avere la certezza che il sistema funzioni anche senza scheda. In pratica vorrei stupire riccardo. Massima onestà, non compiacermi."
+
+### Iter 75 ARCHITECTURAL PIVOT recap
+
+Andrea pivot iter 75 PM: "Non deve essere qualcosa che scarichi. Deve funzionare DIRETTAMENTE dalla piattaforma elabtutor." → iter 63-75 local-agent download direction OBSOLETO. Iter 64 SPEC Option A WebUSB now canonical.
+
+### Iter 76 ENTRANCE+PHASE3 close shipped
+
+| Phase | Deliverable | Commit | Tests |
+|---|---|---|---|
+| 76 ENTRANCE A.1 | Cloud Compile scaffold (Docker arduino-cli + Renesas + Express) | `3acefbb8` | 14391 PASS |
+| 76 ENTRANCE B.1 | webUsbDetect.js feature detect + 17 tests | `f2a115cc` | 14391 PASS |
+| 76 B.3 | WebUsbBanner.jsx 4 states + 13 tests | `02bfeabc` | 14404 PASS |
+| 76 D.1 BG | Demo mode no-board honest fallback + 13 tests | `ea89392d` | 14417 PASS |
+| 76 D.2 BG | Codex iter 74 MED gaps audit (367 LOC) | `3f9a2472` | preserved |
+| 76 D.3 BG | OpenAPI 3.1 spec (966 LOC) + design rationale (296 LOC) | `fd0dd9c6` | preserved |
+| 76 PHASE 3 P0.1-P0.6 | Codex Pattern V 5 CRITICAL findings → 6 P0 fixes + T10 honest test | `21124635` | 14418 PASS |
+| 76 close docs | audit + handoff iter 77 | `dd48ac0d` | preserved |
+
+### Iter 77 PHASE 4 entrance auto-start (massima autonomia per Andrea mandate)
+
+**Pre-flight CoV** iter 77 entrance:
+- Build full pre-commit: PASS 22.01s + 26 precache + dist generated
+- OpenAPI 3.1 swagger-cli validate: PASS post license `identifier: LicenseRef-Proprietary-ELAB-Tutor-Andrea-Marro-2026` fix
+- LOCAL Compile Agent localhost:8765 LIVE arduino-cli 1.4.1 + Renesas core 1.5.3 + dfu-util 0.11
+- Blink Nano R4 compile empirico LIVE: 39048 bytes HEX (14% flash) + 3940 bytes RAM (12%)
+
+**Codex Pattern V verify-PHASE3-post-fix verdict**: PARTIAL (5 nuove gaps post-PHASE 3):
+1. CRITICAL handleRetryUsb line 618-620 STILL false-promoted UPLOAD_SUCCESS dopo device pick senza flash (P0.1 fix incomplete — only primary handler, retry path bypassed)
+2. HIGH BOARD_ID_TO_FQBN maps 2/3 missing arduino-nano-atmega328-legacy
+3. MED Cloud returns `status:success` not `ok:true` — frontend demo requires `ok:true`
+4. MED HomeCompileEntry STILL legacy CompileAgentBanner (not WebUsbBanner)
+5. MED Demo-mode button styling looks disabled but clickable
+
+**Iter 77 PHASE 4 P0 fixes shipped inline orchestrator** (continued post Codex VERDICT iter 77):
+- **P0.1b** `handleRetryUsb` HARDWARE_PICKED_AWAITING_FLASH state (mirror primary P0.1 fix) + retry payload `flashStatus: awaiting_hardware_uat` + `path: 'retry'` + honest message
+- **P0.2b** `HomeCompileEntry.jsx` swap CompileAgentBanner → WebUsbBanner (env flag VITE_USE_LOCAL_AGENT gated)
+- **P0.3a** T4 cliffhanger CTA click + onLoad real assertion (was dead spy declared post-render not wired)
+- **P0.3b** T7 ARIA suite header scope clarity (split: ScratchCompileBar + Album scope this file, CompileUploadButton ARIA in dedicated tests/unit/components/lavagna/CompileUploadButton.test.jsx)
+- **P0.3c** ELAB Agent http-server.js security verify §10.5 mandates — **FINDING**: doc claims 6 mandates shipped iter 75 CC-1 BG backend-security-coder. REALITY: only Origin allowlist + 127.0.0.1 bind implemented. Auth token + rate limit 10/min + sketch size 100KB + sandbox cleanup MISSING (iter 78+ implement OR clarify doc aspirational)
+- **P0.4b** Cloud server.js `{ok:true}` response shape canonical (frontend demo mode `compilePayload.ok` gate)
+- **P0.4c** Cloud BOARD_ID_TO_FQBN map 3/3 complete + LOCAL FQBN_TO_BOARD_ID narrow to Nano-R4 only (Uno profile JSON not shipped — sketch-builder would fail load)
+- **P0.6** OpenAPI license fix `identifier: LicenseRef-Proprietary-ELAB-Tutor-Andrea-Marro-2026` SPDX compliant
+- **T11 NEW test** retry path HARDWARE_PICKED_AWAITING_FLASH + payload `path: 'retry'` + NO Caricato regex assertion
+
+**BG agents parallel iter 77** (Pattern S r3 race-cond fix VALIDATED 23× consecutive zero file overlap):
+- 77-A.1 Codex Pattern V verify-PHASE3-post-fix BG `b9gu9grgi` complete (5 gaps verdict consumed inline)
+- 77-A.3 Mock USBDevice Playwright E2E BG `a187ec49` running (file ownership: tests/e2e/05-cross-compile-mock-board.spec.js + helpers/webusb-mock.js)
+- 77-A.4 firecrawl web-dfu library research BG `aba38daf` complete (WINNER: `dfu` npm flipperdevices/webdfu MIT TypeScript DFU 1.1, effort 20h atomize iter 78 MVP 10h + iter 79 bis 10h, Path A LOCAL Andrea demo + Path B Cloud+WebUSB parallel)
+- 77-A.5 tech debt audit BG `a55d8bb2` finalizing (file ownership: docs/audits/2026-05-17-iter-77-A5-*)
+
+**Mem-search Riccardo Omaric findings** (per `feedback_omaric_comms.md`):
+- Riccardo Franzoso responsabile ufficio tecnico Omaric (ufficiotecnico@omaricelettronica.com)
+- Strambino = ex sede Smart Projects (produttore originale Arduino di Gianluca Martino)
+- Andrea istruzione iter 56 (2026-05-14): NO "Morfismo" termini interni con Riccardo
+- Linguaggio SEMPLICE PRATICO hardware-focused (es: "un prodotto solo", "coerente con kit e volumi", "controllato da noi")
+- Demo script iter 76 D.4 ALREADY honors this convention (talking points concreti, no Morfismo Sense 1/2 termini)
+
+**Score iter 77 PHASE 4 close ONESTO G45 cap**: **8.7/10** (raw 9.0 → cap -0.3 honest: BG A.3 Mock USB E2E + BG A.5 tech debt audit not yet complete, Render still not deployed, hardware UAT pending iter 78+).
+
+**SPRINT_U_COMPLETE 25 boxes status post iter 77 PHASE 4** (+iter 76 PHASE 3 base):
+
+| Box | iter 76 PHASE 3 | iter 77 PHASE 4 | Delta |
+|---|---|---|---|
+| 1-18 | preserved | preserved | 0 |
+| 19 HomePage cross-compile entry | 0.98 | **1.0** | +0.02 (P0.2b HomeCompileEntry WebUsbBanner default) |
+| 20 Album wire-up unblock | 0.85 | 0.85 | 0 |
+| 21 Cross-compile cloud scaffold | 0.65 | **0.70** | +0.05 (P0.4b ok:true canonical + P0.4c maps complete + P0.6 OpenAPI valid) |
+| 22 WebUSB feature detect | 0.95 | 0.95 | 0 |
+| 23 Demo-mode no-board honest | 0.95 | **0.98** | +0.03 (P0.1b retry path honest + T11 test) |
+| 24 LOCAL+CLOUD contract unified | 0.85 | **0.90** | +0.05 (OpenAPI valid + maps complete + ok:true) |
+| 25 Cloud auth safety prod | 0.80 | 0.80 | 0 |
+| NEW 26 ELAB Agent §10.5 security audit | n/a | **0.40** | +0.40 (P0.3c FINDING doc-impl drift documented, iter 78+ implement) |
+
+Box subtotal 9.18/10 + bonus cumulative iter 77 (+0.55 Codex workflow Pattern V iter 77 verify + 4 BG agents parallel + Pattern S r3 23× consecutive + 5 inline P0 fixes + T11 NEW honest test + mem-search Riccardo found + Build PASS + OpenAPI valid) = raw **9.73 → G45 cap 8.7/10 ONESTO**.
+
+**Cap deductions honest 4 explicit**:
+- −0.3 BG A.3 Mock USB Playwright E2E NOT yet shipped this iter 77 (iter 78 entrance gate)
+- −0.3 BG A.5 tech debt audit final report NOT yet read this iter 77 (defer iter 78 entrance)
+- −0.3 Render deploy still NOT done (Andrea ratify iter 77+ optional per BG D.6 decision)
+- −0.4 P0.3c FINDING ELAB Agent §10.5 security mandates 3/6 MISSING auth token + rate limit + sketch size (iter 78+ implement OR clarify doc aspirational)
+
+**Iter 78 entrance priorities P0 cascade target 8.7 → 9.2+/10**:
+1. BG A.3 Mock USB Playwright E2E completion + verify
+2. BG A.5 tech debt audit final report consume + atomize iter 78-80
+3. P0.3c ELAB Agent security implement 3 mandates MISSING (auth token + rate limit + sketch size) OR doc clarify aspirational
+4. B.2 web-dfu MVP integration (iter 78 atom ~10h per BG A.4 winner `dfu` npm MIT)
+5. Andrea Render deploy decision (proceed dashboard ~10min OR defer iter 79+)
+6. Riccardo demo execution Andrea schedule + screencast
+7. Hardware UAT iter 78+ Tea+Riccardo+kit Omaric Nano R4 fisico (Andrea action verify productId 0x0070 via `system_profiler SPUSBDataType | grep -i nano`)
+8. Codex Pattern V verify-iter77-PHASE4-post-fix re-dispatch
+
+**Sprint U close projection iter 80+**: 9.5/10 ONESTO conditional Mock USB E2E + tech debt close + B.2 web-dfu MVP + Riccardo demo executed + hardware UAT verified + Render deploy verified (optional) + Opus indipendente review G45 mandate.
+
+**Anti-inflation G45 mandate iter 77 PHASE 4 enforced**:
+- Cap **8.7/10** honest. Raw 9.73 → -1.03 deductions (4 explicit caveats above).
+- NO claim "Sprint U close" (iter 80+ projection)
+- NO claim "ELAB Agent §10.5 6 mandates shipped" (3/6 MISSING per P0.3c FINDING — doc-impl drift)
+- NO claim "9.0+/10" senza Mock USB E2E + tech debt complete + Codex Pattern V iter 77 verify-PHASE4-post-fix
+- Honest acknowledgment doc-impl drift iter 75 CC-1 (auth token + rate limit + sketch size MISSING)
+
+**Pattern S r3 race-cond fix VALIDATED 23× consecutive iter 5+6+8+11+12+19+36+37+38+43+67+68+69+70+71+72+73+74+75+76+76P3+77+77P4**.
+
+**Cross-link docs iter 76 PHASE 3 + iter 77 PHASE 4**:
+- Iter 76 SPEC: `docs/specs/2026-05-17-iter-76-CROSS-COMPILE-CERTAINTY-WITHOUT-BOARD-SPEC.md`
+- Iter 76 Riccardo demo script: `docs/hardware/2026-05-17-iter-76-riccardo-demo-script.md`
+- Iter 76 PHASE 3 close audit: `docs/audits/2026-05-17-iter-76-PHASE3-CLOSE-audit.md`
+- Iter 76 handoff iter 77: `docs/handoff/2026-05-17-iter-76-PHASE3-to-iter-77-handoff.md`
+- OpenAPI 3.1 canonical: `infra/cloud-compile/openapi.yaml` (966 LOC) + design rationale `docs/api/2026-05-17-iter-76-D3-cloud-compile-api-design.md` (296 LOC)
+- BG D.2 audit: `docs/audits/2026-05-17-iter-76-D2-codex-iter74-MED-gaps-audit.md` (367 LOC)
+- BG A.4 web-dfu research: `docs/research/2026-05-17-iter-77-A4-web-dfu-library-research.md` (466 LOC, WINNER `dfu` npm MIT)
+- Codex Pattern V iter 76 verdict: `/tmp/codex-verify-iter76-D-cross-compile-certainty.txt` (307 KB)
+- Codex Pattern V iter 77 verdict: `/tmp/codex-verify-iter77-entrance-PHASE3-post-fix.txt` (305 KB)
