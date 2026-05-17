@@ -267,7 +267,45 @@ export async function handleCompile({ code, boardId = DEFAULT_BOARD_ID }) {
       };
     }
 
-    return { ok: true, jobId, sketchDir, buildDir, stdout: res.stdout };
+    // iter 79.A A3 fix (Codex Pattern V HIGH COMPILE-3): WebUSB DFU flash
+    // chain in CompileUploadButton.jsx:486-504 requires `compilePayload.hexBase64`.
+    // Previously server returned only { ok, jobId, sketchDir, buildDir, stdout },
+    // forcing `hexBase64_missing_from_compile_response` throw → flash impossible
+    // even after successful compile. Now locate compiled .hex inside buildDir,
+    // base64-encode, return alongside metadata for downstream Intel HEX parser.
+    let hexFilename = null;
+    let hexBase64 = null;
+    let hexSize = 0;
+    try {
+      const buildFiles = await fs.readdir(buildDir);
+      // arduino-cli emits `<sketchName>.ino.hex` for both AVR (Intel HEX) and
+      // Renesas RA4M1 (Intel HEX bootloader image consumed by DFU). Prefer the
+      // explicit `.ino.hex` to skip intermediate `.with_bootloader.hex` (which
+      // includes the bootloader region — NOT what user-flash wants).
+      hexFilename =
+        buildFiles.find((f) => f.endsWith('.ino.hex')) ||
+        buildFiles.find((f) => f.endsWith('.hex'));
+      if (hexFilename) {
+        const hexBuffer = await fs.readFile(path.join(buildDir, hexFilename));
+        hexBase64 = hexBuffer.toString('base64');
+        hexSize = hexBuffer.byteLength;
+      }
+    } catch {
+      // Failing to read the HEX is non-fatal — the compile already succeeded;
+      // the absence of hexBase64 will surface a precise error in the WebUSB
+      // chain rather than masking the compile success.
+    }
+
+    return {
+      ok: true,
+      jobId,
+      sketchDir,
+      buildDir,
+      stdout: res.stdout,
+      hexFilename,
+      hexBase64,
+      hexSize,
+    };
   } catch (err) {
     // iter 71 TEAM C PART 2: spawn error (ENOENT) → translateSpawnError canonical
     return {

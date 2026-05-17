@@ -58,7 +58,13 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [compileWarnings, setCompileWarnings] = useState(null);
   const [compileSize, setCompileSize] = useState(null);
 
-  const handleScratchCodeChange = useCallback((code) => {
+  // iter 79.A A1 fix (Codex Pattern V HIGH IDE-2 + HOMEPAGE-2): ScratchEditor
+  // emits onChange(xmlText, generatedCppCode) per ScratchEditor.jsx:407-412+
+  // 421-425+491. Previous handler stored xmlText as scratchCode → compile
+  // received raw <xml>...</xml> instead of C++ → arduino-cli "Error during
+  // build: exit status 1" (empirically reproduced 2026-05-17). Fix: ignore
+  // first arg, store second (generated C++).
+  const handleScratchCodeChange = useCallback((_xml, code) => {
     setScratchCode(code || '');
   }, []);
 

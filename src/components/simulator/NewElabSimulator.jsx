@@ -410,6 +410,12 @@ const NewElabSimulator = ({
   const [compilationSize, setCompilationSize] = useState(null);
 
   // ─── Compile Only (solo verifica) ───
+  // iter 79.A A2 ROLLBACK (Codex Pattern C HIGH regression caught
+  // 2026-05-17): pinning NANO_R4_FQBN here would return ARM HEX, but the
+  // simulator AVRBridge (avr8js ATmega328 emulator) cannot execute Renesas
+  // RA4M1 bytecode. All Vol3 experiments have `simulationMode: "avr"`. Keep
+  // board undefined so api.js:1300 default AVR fallback fires. Physical
+  // Nano R4 flash routes via CompileUploadButton + local agent (A3 fix).
   const handleCompileOnly = useCallback(async () => {
     const codeToCompile = editorModeRef.current === 'scratch' ? scratchGeneratedCodeRef.current : editorCodeRef.current;
     if (!codeToCompile || compilingRef.current) return;

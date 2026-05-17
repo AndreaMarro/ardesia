@@ -842,6 +842,14 @@ export default function useCircuitHandlers({
   /* ═══════════════════════════════════════════════════════════════
      Arduino compilation handler (with cache)
      ═══════════════════════════════════════════════════════════════ */
+  // iter 79.A A2 ROLLBACK (Codex Pattern C iter 79.A post-fix verify HIGH):
+  // initial A2 fix forced NANO_R4_FQBN here, but the resulting HEX is loaded
+  // into AVRBridge (line ~888-907) which only runs ATmega328p AVR firmware,
+  // NOT Renesas RA4M1 ARM Cortex-M4. Hardcoded Nano R4 FQBN broke ALL
+  // simulationMode==='avr' Vol3 experiments. Revert: leave board undefined
+  // so api.js default AVR fires for the in-browser simulator path. The
+  // PHYSICAL Nano R4 cross-compile path runs via CompileUploadButton →
+  // local agent (iter 79.A A3 returns hexBase64), independent of this hook.
   const handleCompile = useCallback(async (code) => {
     if (compilingRef.current) {
       return { success: false, status: 'busy', errors: 'Compilazione gia in corso' };
