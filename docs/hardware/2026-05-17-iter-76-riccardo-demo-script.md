@@ -230,4 +230,25 @@ Talking points roadmap:
 
 ---
 
-© Andrea Marro — 2026-05-17 — ELAB Tutor iter 76 D.4 — demo-grade transparency Riccardo Omaric trust
+## ADDENDUM iter 77 STOP-HOOK fix (Codex stop-time review #6)
+
+**Codex flagged**: "WebUSB/no-download path is not actually wired"
+
+**Diagnosis honest**: WebUsbBanner mostra "WebUSB pronto" su HomePage MA il compile call andava a `http://localhost:8765/compile` (LOCAL agent) ESCLUSIVAMENTE. Per end-user no-download path serviva Cloud Render endpoint wired in fallback chain.
+
+**Fix shipped commit TBD post-vitest verify**:
+- `src/components/lavagna/CompileUploadButton.jsx` env-driven `CLOUD_COMPILE_URL` from `VITE_ELAB_CLOUD_COMPILE_URL` + `resolveCompileEndpoint()` fallback chain (Cloud → LOCAL)
+- `src/services/api.js` `compileCode` chain priority 0 `CLOUD_COMPILE_URL` Cloud Render → existing Supabase Edge → COMPILE_URL → webhook → LOCAL
+- T12 unit test cloud endpoint POST verify (34/34 PASS)
+
+**Honest current state demo Riccardo**:
+- Iter 77 PHASE 4 close: env `VITE_ELAB_CLOUD_COMPILE_URL` UNSET → fallback LOCAL agent ATTUALMENTE
+- Iter 78+ Andrea Render deploy populates env → no-download path LIVE end-users
+- WebUsbBanner UI promise NOW reflects actual chain when env set
+- Demo Riccardo: LOCAL path Andrea Mac agent OK (iter 77 sufficient). Cloud path iter 79+ deploy verified.
+
+**No false claim**: WebUsbBanner shows correctly per browser detection (Chrome/Edge supported). Compile chain transparent: Cloud env wired OR LOCAL fallback (development mode).
+
+---
+
+© Andrea Marro — 2026-05-17 — ELAB Tutor iter 76 D.4 + iter 77 STOP-HOOK addendum — demo-grade transparency Riccardo Omaric trust

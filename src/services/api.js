@@ -32,6 +32,12 @@ const RENDER_FALLBACK = 'https://elab-galileo.onrender.com'; // Fallback se Edge
 const CHAT_WEBHOOK = (import.meta.env.VITE_N8N_CHAT_URL || '').trim();
 const COMPILE_URL = (import.meta.env.VITE_COMPILE_URL || '').trim() || null; // Server standalone (priorità)
 const COMPILE_WEBHOOK = (import.meta.env.VITE_COMPILE_WEBHOOK_URL || '').trim() || null; // Backend fallback
+// iter 77 STOP-HOOK fix (Codex): Cloud Render cross-compile endpoint per
+// Andrea pivot iter 75 PM "no download" path. Env unset until iter 78+
+// Andrea Render deploy. When set, takes priority over Supabase Edge +
+// COMPILE_URL chain for cross-compile flow (Cloud Render scaffold
+// `infra/cloud-compile/server.js` shipped iter 76 A.1, deploy pending).
+const CLOUD_COMPILE_URL = (import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL || '').trim().replace(/\/$/, '') || null;
 const COMPILE_PROXY_URL = (import.meta.env.VITE_COMPILE_PROXY_URL || `${_SUPABASE_EDGE}/compile-proxy`).trim();
 const LOCAL_API = (import.meta.env.VITE_LOCAL_API_URL || '').trim() || null;
 const LOCAL_URL = (import.meta.env.VITE_LOCAL_COMPILE_URL || '').trim() || null; // Dev locale
@@ -1348,6 +1354,15 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     }
 
     const httpsBrowser = isHttpsBrowserOrigin();
+
+    // iter 77 STOP-HOOK fix priority 0 (Codex): Cloud Render cross-compile
+    // endpoint per Andrea iter 75 PM "no download" pivot. Takes priority
+    // over all other paths when env wired. Iter 78+ Andrea Render deploy
+    // populates VITE_ELAB_CLOUD_COMPILE_URL. Currently null fallback chain.
+    if (CLOUD_COMPILE_URL) {
+        const result = await tryCompile(`${CLOUD_COMPILE_URL}/compile`, 'Cloud Render cross-compile');
+        if (result) return result;
+    }
 
     // 1. Production/preview HTTPS: same-origin-safe Supabase proxy first.
     // Direct n8n compile endpoints fail browser CORS on www.elabtutor.school.

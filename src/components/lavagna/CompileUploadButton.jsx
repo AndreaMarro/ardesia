@@ -74,8 +74,46 @@ const AGENT_COMPILE_UPLOAD_URL = 'http://localhost:8765/compile-and-upload';
 /** Default loopback URL for the agent's compile-only endpoint (iter 76 D.1). */
 const AGENT_COMPILE_URL = 'http://localhost:8765/compile';
 
+/**
+ * iter 77 STOP-HOOK fix (Codex stop-time review #6): wire Cloud Render
+ * endpoint so WebUsbBanner "no-download" promise reflects actual compile
+ * destination. Env `VITE_ELAB_CLOUD_COMPILE_URL` overrides hardcoded fallback.
+ * When Cloud reachable → no LOCAL agent download required for end-users.
+ * When Cloud unreachable AND LOCAL agent present → transparent fallback dev
+ * mode. When BOTH unavailable → honest error state (no fake success).
+ *
+ * Iter 78 Andrea Render deploy expected to populate `elab-cloud-compile.onrender.com`.
+ * Until then env unset OR returns 404 → fallback chain triggers LOCAL agent.
+ */
+const CLOUD_COMPILE_URL =
+  (typeof import.meta !== 'undefined'
+    && import.meta.env
+    && typeof import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL === 'string'
+    && import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL.trim().length > 0)
+    ? import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL.trim().replace(/\/$/, '') + '/compile'
+    : null; // null = no Cloud env wired → LOCAL agent only (dev fallback)
+
 /** Default board FQBN for cross-compile to Nano R4 (iter 76 D.1). */
 const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
+
+/**
+ * Resolve compile endpoint with fallback chain: Cloud Render → LOCAL agent.
+ *
+ * Honest behavior:
+ * - When VITE_ELAB_CLOUD_COMPILE_URL set → Cloud endpoint canonical (no-download path)
+ * - When env unset → LOCAL agent (requires Mac install — DEV/Andrea path)
+ * - When prop `compileEndpoint` explicit → override both (tests/Andrea ratify)
+ *
+ * Iter 78+ enhancement: HEAD probe Cloud /health on mount, fallback LOCAL on 5xx.
+ * Current behavior: trust env config, no runtime probe (avoid premature optimization).
+ */
+function resolveCompileEndpoint(overrideEndpoint) {
+  if (typeof overrideEndpoint === 'string' && overrideEndpoint.length > 0) {
+    return overrideEndpoint;
+  }
+  if (CLOUD_COMPILE_URL) return CLOUD_COMPILE_URL;
+  return AGENT_COMPILE_URL;
+}
 
 /**
  * State machine values for the iter 76 D.1 demo-mode flow.
@@ -270,8 +308,11 @@ export default function CompileUploadButton({
   nextExperiment,
   onLoadNextExperiment,
   // iter 76 D.1 demo-mode honest fallback props (OPTIONAL)
+  // iter 77 STOP-HOOK fix: default now `resolveCompileEndpoint(undefined)`
+  // which picks Cloud Render env first (VITE_ELAB_CLOUD_COMPILE_URL), then
+  // LOCAL agent loopback fallback. Tests can still override explicit.
   enableDemoMode = false,
-  compileEndpoint = AGENT_COMPILE_URL,
+  compileEndpoint = resolveCompileEndpoint(undefined),
   fqbn = DEFAULT_FQBN,
   requestUsbDevice,
   onDemoStateChange,

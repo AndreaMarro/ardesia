@@ -816,4 +816,42 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
     expect(lastCall.payload.flashStatus).toBe('awaiting_hardware_uat');
     expect(lastCall.payload.path).toBe('retry');
   });
+
+  // T12 — iter 77 STOP-HOOK fix (Codex stop-time review #6): Cloud Render
+  // endpoint wire verification. When `compileEndpoint` prop explicit cloud
+  // URL, demo mode POSTs there (no-download path Andrea pivot iter 75).
+  // When env unset + no prop, fallback LOCAL agent loopback (dev/Andrea path).
+  it('T12 explicit compileEndpoint cloud URL → demo mode POSTs Cloud', async () => {
+    const cloudUrl = 'https://elab-cloud-compile.onrender.com/compile';
+    const cloudFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({
+        ok: true,
+        jobId: 'cloud-job-1',
+        stdout: 'Lo sketch usa 12345 byte (4%) ...\nLe variabili globali usano 678 byte (2%) ...',
+      }),
+    });
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        compileEndpoint={cloudUrl}
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={cloudFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    // Verify fetch hit Cloud Render URL (NOT localhost:8765)
+    await waitFor(() => expect(cloudFetch).toHaveBeenCalledTimes(1));
+    expect(cloudFetch.mock.calls[0][0]).toBe(cloudUrl);
+    expect(cloudFetch.mock.calls[0][0]).not.toMatch(/localhost:8765/);
+
+    // Cloud response shape `{ok: true}` triggers compile_only_no_board state
+    const banner = await screen.findByTestId('compile-only-no-board-banner');
+    expect(banner.textContent).toMatch(/Compilazione completata/);
+  });
 });

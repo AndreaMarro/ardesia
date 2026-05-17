@@ -315,11 +315,23 @@ export async function routeCompileAndUploadMock(page) {
  * Also route the agent status/health endpoint so `getCompileAgentStatus()`
  * (polled on mount) returns "available: true" allowing the button to enable.
  *
+ * Uses BOTH `page.route` (network-level interception) AND `page.addInitScript`
+ * (JS-level fetch interceptor) because `compileAgentDetect.js` uses the
+ * Fetch API with `mode: 'cors'` which may bypass network-level interception
+ * in some Playwright configurations.
+ *
+ * Fix A (iter 77 A.3): The JS-level fetch interceptor installed via
+ * `page.addInitScript` patches `window.fetch` BEFORE any application
+ * script runs. This ensures `compileAgentDetect.js`'s module-level
+ * `_state` cache gets populated with `available: true` on first probe,
+ * clearing `aria-disabled` from the CompileUploadButton.
+ *
  * @param {import('@playwright/test').Page} page
  * @param {boolean} [available=true]
  * @returns {Promise<void>}
  */
 export async function routeAgentStatusMock(page, available = true) {
+  // Network-level interception (fallback for non-JS fetch paths)
   await page.route('http://localhost:8765/health', async (route) => {
     await route.fulfill({
       status: 200,
@@ -332,4 +344,139 @@ export async function routeAgentStatusMock(page, available = true) {
       }),
     });
   });
+
+  // JS-level fetch interceptor — more reliable for compileAgentDetect.js
+  // which uses `fetch` with AbortController and module-level cache.
+  // Must be installed via addInitScript so it fires BEFORE React boots.
+  await page.addInitScript(({ _available }) => {
+    const _origFetch = window.fetch;
+    window.fetch = async function fetchInterceptor(url, opts) {
+      const urlStr =
+        typeof url === 'string'
+          ? url
+          : url && typeof url === 'object' && url.url
+            ? url.url
+            : String(url || '');
+      if (
+        urlStr.includes('localhost:8765/health') ||
+        urlStr.includes('127.0.0.1:8765/health')
+      ) {
+        return new Response(
+          JSON.stringify({
+            status: _available ? 'ok' : 'offline',
+            available: _available,
+            port: 8765,
+            version: 'mock-iter-77',
+          }),
+          {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          },
+        );
+      }
+      return _origFetch.call(this, url, opts);
+    };
+  }, { _available: available });
+}
+
+/**
+ * Inject sketch code into the React state of `HomeCompileEntry` after
+ * navigation, so the `sketchCode` prop is non-empty and the demo-mode
+ * CompileUploadButton's HTML `disabled` attribute is cleared.
+ *
+ * Fix B (iter 77 A.3): `HomeCompileEntry` starts with `scratchCode = ''`
+ * via `useState('')`. The ScratchEditor (Blockly) is empty on mount, so
+ * `sketchCode=''` → `disabled = uploading || !sketchCode = true` → button
+ * HTML-disabled. Injecting via React fiber traversal sets the state before
+ * any click attempt.
+ *
+ * MUST be called after `page.goto(...)` and after the React tree is
+ * hydrated (i.e. after `bypassWelcomeGate` + `waitForTimeout`).
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} sketchText  Non-empty Arduino C++ sketch source code
+ * @returns {Promise<boolean>} true if injection succeeded
+ */
+export async function seedSketchCode(page, sketchText) {
+  const injected = await page.evaluate(({ _sketch }) => {
+    // Strategy 1: find the ScratchEditor textarea / CodeMirror editor
+    // and dispatch a programmatic input event. ScratchEditor exposes
+    // an onChange prop that HomeCompileEntry wires to setScratchCode.
+    const editorSelectors = [
+      '[data-testid="scratch-editor"] textarea',
+      '[data-testid="scratch-editor"] .cm-content',
+      '[data-testid="scratch-editor"] .CodeMirror-code',
+      '.scratch-editor textarea',
+      '.cm-content[contenteditable="true"]',
+    ];
+    for (const sel of editorSelectors) {
+      const el = document.querySelector(sel);
+      if (el) {
+        // For CodeMirror 6 (contenteditable div)
+        if (el.getAttribute('contenteditable')) {
+          el.focus();
+          el.textContent = _sketch;
+          el.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: _sketch }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+          return 'contenteditable';
+        }
+        // For plain textarea / CodeMirror 5
+        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+          HTMLTextAreaElement.prototype, 'value'
+        ) || Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+        if (nativeInputValueSetter && nativeInputValueSetter.set) {
+          nativeInputValueSetter.set.call(el, _sketch);
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+          return 'textarea';
+        }
+      }
+    }
+
+    // Strategy 2: React fiber traversal to find HomeCompileEntry's
+    // setScratchCode state setter and call it directly.
+    // This bypasses the DOM entirely and directly updates React state.
+    function findReactFiber(el) {
+      if (!el) return null;
+      const key = Object.keys(el).find(
+        (k) => k.startsWith('__reactFiber') || k.startsWith('__reactInternalInstance'),
+      );
+      return key ? el[key] : null;
+    }
+    function traverseFibers(fiber, depth) {
+      if (!fiber || depth > 200) return null;
+      // Look for fiber whose memoizedState chain contains the empty string
+      // (the scratchCode initial state in HomeCompileEntry)
+      if (fiber.memoizedState && typeof fiber.memoizedState.queue === 'object') {
+        const queue = fiber.memoizedState.queue;
+        if (queue && typeof queue.dispatch === 'function') {
+          // Check if current state is the empty-string scratchCode
+          const stateVal = fiber.memoizedState.memoizedState;
+          if (typeof stateVal === 'string' && stateVal === '') {
+            queue.dispatch(_sketch);
+            return 'fiber_dispatch';
+          }
+        }
+      }
+      const child = traverseFibers(fiber.child, depth + 1);
+      if (child) return child;
+      return traverseFibers(fiber.sibling, depth + 1);
+    }
+
+    // Find any compile-home container element to start traversal
+    const root = document.querySelector('[data-elab-mode="compile-home"]')
+      || document.querySelector('[data-testid="home-compile-entry"]')
+      || document.querySelector('#root');
+    if (root) {
+      const fiber = findReactFiber(root);
+      if (fiber) {
+        const result = traverseFibers(fiber, 0);
+        if (result) return result;
+      }
+    }
+
+    return false; // injection failed
+  }, { _sketch: sketchText });
+
+  return Boolean(injected);
 }
