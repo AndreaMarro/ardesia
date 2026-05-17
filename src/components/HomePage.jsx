@@ -40,6 +40,8 @@ import React, { lazy, Suspense, useState, useCallback, useEffect, useMemo } from
 import {
   LavagnaCardIcon,
   TutorCardIcon,
+  VideoLessonsCardIcon,
+  ScimpanzeIcon,
 } from './common/ElabIcons';
 import { VIDEO_COURSES } from '../data/video-courses';
 // Sprint V iter 1 Phase 3 WebDesigner-1 Atom A10 — ElabMascotte SVG
@@ -390,7 +392,9 @@ const styles = {
 const CARDS = [
   {
     id: 'lavagna',
-    emoji: '⚡',
+    // iter 72 TEAM D — Codex D2 audit: emoji field removed (unused fallback;
+    // IconComponent always renders LavagnaCardIcon SVG). CLAUDE.md regola 11
+    // ban emoji icone. Field kept absent for compat with optional ?. lookup.
     IconComponent: LavagnaCardIcon,
     accent: PALETTE.navy,
     title: 'Lavagna libera',
@@ -405,7 +409,8 @@ const CARDS = [
   },
   {
     id: 'tutor',
-    emoji: '📚',
+    // iter 72 TEAM D — emoji field removed per Codex D2 audit (unused
+    // fallback; TutorCardIcon always rendered). CLAUDE.md regola 11 ban.
     IconComponent: TutorCardIcon,
     accent: PALETTE.lime,
     title: 'ELAB Tutor completo',
@@ -426,8 +431,10 @@ const CARDS = [
   // Href placeholder YouTube channel — Andrea ratify URL specifico.
   {
     id: 'videolezioni',
-    emoji: '🎬',
-    IconComponent: null,
+    // iter 72 TEAM D — Codex D2 fix: was emoji '🎬' rendered runtime due
+    // IconComponent: null. NEW VideoLessonsCardIcon SVG ElabIcons (film
+    // strip + Orange play triangle) replaces emoji. CLAUDE.md regola 11.
+    IconComponent: VideoLessonsCardIcon,
     accent: PALETTE.orange,
     title: 'Videolezioni',
     text: 'I due video TikTok del kit, caricati qui dentro senza uscire dalla home.',
@@ -1074,16 +1081,20 @@ export default function HomePage({ onNavigate, onActivate }) {
               if (sib) sib.style.display = 'inline-block';
             }}
           />
+          {/* iter 72 TEAM D — was emoji '🐒' fallback. Now ScimpanzeIcon
+              SVG ElabIcons (Navy primary + Lime ear accent + Orange
+              smile, ELAB mascot identity). CLAUDE.md regola 11 ban
+              emoji. Triggered when /easter/scimpanze-N.gif 404 (Andrea
+              GIFs not yet dropped public/easter/). */}
           <span
             aria-hidden="true"
             style={{
               display: 'none',
-              fontSize: 40,
               lineHeight: 1,
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
             }}
           >
-            🐒
+            <ScimpanzeIcon size={40} />
           </span>
         </button>
       </footer>

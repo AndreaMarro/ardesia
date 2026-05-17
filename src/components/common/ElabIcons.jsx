@@ -639,3 +639,88 @@ export function CronologiaCardIcon({ size = 48, ...props }) {
     </svg>
   );
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ITER 72 TEAM D — HomePage emoji removal mandate (Codex D2 audit
+   2026-05-16). Replace 4 RUNTIME-visible emoji (HomePage.jsx:393 ⚡
+   / 408 📚 / 429 🎬 / 1086 🐒) per CLAUDE.md regola 11 ban emoji
+   icone (comments-only refs preserved per Codex scope).
+
+   2 NEW icons:
+   - VideoLessonsCardIcon — replaces 🎬 line 429 (videolezioni card,
+     IconComponent: null actually renders emoji at runtime).
+     Identity: video player frame + play triangle + film strip strip
+     suggesting "videolezioni" (kit Omaric video tutorial).
+     Palette: Navy frame + Lime accent + Orange play triangle (3
+     volumi triplet preserved, contrast WCAG AA).
+   - ScimpanzeIcon — replaces 🐒 line 1086 footer fallback
+     (scimpanzè easter chi siamo). Stylized chimp silhouette
+     reference ELAB mascot identity. Palette Navy primary + Lime
+     accent eye.
+
+   Both icons fixed-viewBox 48x48 wrapped svg, accept size prop
+   default 48, role=img + aria-hidden by default for decorative
+   use, support {...props} pass-through (className/aria-label).
+   ═══════════════════════════════════════════════════════════════════ */
+
+export function VideoLessonsCardIcon({ size = 48, ...props }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 48 48" fill="none"
+      role="img" aria-hidden="true"
+      style={{ filter: 'drop-shadow(0 2px 3px rgba(30, 77, 140, 0.18))' }}
+      {...props}
+    >
+      {/* Video player body — Navy frame UNLIM brand */}
+      <rect x="6" y="11" width="36" height="26" rx="2.5" fill="#FFFEF5" stroke="#1E4D8C" strokeWidth="3" strokeLinejoin="round" />
+      {/* Top film-strip band — Navy with perforations white */}
+      <rect x="6" y="11" width="36" height="4" fill="#1E4D8C" />
+      <circle cx="11" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="17" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="23" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="29" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="35" cy="13" r="0.9" fill="#FFF" />
+      {/* Bottom film-strip band */}
+      <rect x="6" y="33" width="36" height="4" fill="#1E4D8C" />
+      <circle cx="11" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="17" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="23" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="29" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="35" cy="35" r="0.9" fill="#FFF" />
+      {/* Play triangle — Orange (Vol 2) primary CTA + Lime backing halo */}
+      <circle cx="24" cy="24" r="7.5" fill="#4A7A25" opacity="0.22" />
+      <polygon points="21,19 21,29 30,24" fill="#E8941C" stroke="#1E4D8C" strokeWidth="2" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ScimpanzeIcon({ size = 48, ...props }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 48 48" fill="none"
+      role="img" aria-hidden="true"
+      style={{ filter: 'drop-shadow(0 2px 3px rgba(30, 77, 140, 0.20))' }}
+      {...props}
+    >
+      {/* Outer ears — Navy primary brand */}
+      <circle cx="11" cy="20" r="6.5" fill="#1E4D8C" stroke="#0E2D5C" strokeWidth="2.2" />
+      <circle cx="37" cy="20" r="6.5" fill="#1E4D8C" stroke="#0E2D5C" strokeWidth="2.2" />
+      {/* Inner ears — Lime accent */}
+      <circle cx="11" cy="20" r="2.4" fill="#4A7A25" />
+      <circle cx="37" cy="20" r="2.4" fill="#4A7A25" />
+      {/* Head — Navy primary, asymmetric soft shape */}
+      <ellipse cx="24" cy="24" rx="12" ry="13" fill="#1E4D8C" stroke="#0E2D5C" strokeWidth="2.5" />
+      {/* Face — cream/light fill */}
+      <ellipse cx="24" cy="29" rx="9.5" ry="9" fill="#FFFEF5" stroke="#0E2D5C" strokeWidth="2" />
+      {/* Brow ridge — Navy band */}
+      <path d="M16 22 Q24 18 32 22" fill="none" stroke="#0E2D5C" strokeWidth="2.2" strokeLinecap="round" />
+      {/* Eyes — Navy dots */}
+      <circle cx="20" cy="27" r="1.6" fill="#0E2D5C" />
+      <circle cx="28" cy="27" r="1.6" fill="#0E2D5C" />
+      {/* Nose — small Lime dot */}
+      <circle cx="24" cy="31" r="1.1" fill="#4A7A25" />
+      {/* Smile — Orange curve (accogliente, kit Omaric warm) */}
+      <path d="M20 34 Q24 36.5 28 34" fill="none" stroke="#E8941C" strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  );
+}
