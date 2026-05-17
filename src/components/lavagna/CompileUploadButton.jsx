@@ -726,6 +726,13 @@ export default function CompileUploadButton({
   // re-trigger the WebUSB device picker without re-running /compile.
   const handleRetryUsb = useCallback(async () => {
     if (!enableDemoMode) return;
+    // iter 78 STOP-HOOK #2 fix (Codex stop-time review #7):
+    // 'retry flash can run while UI remains idle/enabled'.
+    // Guard against concurrent retry clicks + disable button via uploading=true.
+    // Was missing: button stayed enabled during retry flash → multiple clicks
+    // could spawn parallel flash sequences (race + USB device conflict).
+    if (uploading) return;
+    setUploading(true);
     setUploadErrorMsg(null);
     setDemoState(DEMO_STATES.CONNECTING_USB);
 
@@ -738,7 +745,10 @@ export default function CompileUploadButton({
         : null);
 
     if (!usbPicker) {
-      if (mountedRef.current) setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      }
       return;
     }
 
@@ -747,6 +757,7 @@ export default function CompileUploadButton({
       device = await usbPicker({ filters: [] });
     } catch (err) {
       const name = err && err.name;
+      if (mountedRef.current) setUploading(false);
       if (name === 'NotFoundError' || name === 'AbortError' || name === 'SecurityError') {
         if (mountedRef.current) setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
         return;
@@ -759,7 +770,10 @@ export default function CompileUploadButton({
     }
 
     if (!device) {
-      if (mountedRef.current) setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      }
       return;
     }
 
@@ -772,6 +786,7 @@ export default function CompileUploadButton({
     if (!cachedCompile || !cachedCompile.hexBase64) {
       // No prior compile available — fall back to honest awaiting state.
       if (mountedRef.current) {
+        setUploading(false);
         setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
       }
       onError?.({
@@ -780,8 +795,9 @@ export default function CompileUploadButton({
       });
       return;
     }
+    // invokeFlashChain handles setUploading(false) on completion (both ok + error).
     await invokeFlashChain(device, cachedCompile, 'retry');
-  }, [enableDemoMode, requestUsbDevice, setDemoState, onError, invokeFlashChain]);
+  }, [enableDemoMode, uploading, requestUsbDevice, setDemoState, onError, invokeFlashChain]);
 
   const label = uploading ? 'Caricamento sul kit...' : 'Carica sul kit fisico';
 
