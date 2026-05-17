@@ -1015,17 +1015,17 @@ export default function CompileUploadButton({
           <span style={{ fontSize: 14, lineHeight: 1.4 }}>
             Ragazzi, avete caricato sul kit ELAB. Pronti per
             {' '}
-            <strong>{nextExperiment.title || nextExperiment.id}</strong>?
+            <strong>{(nextExperiment?.title || nextExperiment?.id || '')}</strong>?
           </span>
-          {nextExperiment.preview && (
+          {nextExperiment?.preview && (
             <span style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.35 }}>
-              {nextExperiment.preview}
+              {nextExperiment?.preview}
             </span>
           )}
           <button
             type="button"
             onClick={handleLoadNext}
-            aria-label={`Apri il prossimo esperimento: ${nextExperiment.title || nextExperiment.id}`}
+            aria-label={`Apri il prossimo esperimento: ${(nextExperiment?.title || nextExperiment?.id || '')}`}
             data-testid="compile-upload-cliffhanger-cta"
             style={{
               alignSelf: 'flex-start',

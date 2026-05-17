@@ -12,6 +12,8 @@ function obfuscateChunks(obfuscatorOptions = {}) {
         'html2canvas', 'react-pdf', 'DashboardGestionale',
         'ElabTutorV4',  // S47: RC4+CFG causes TDZ crash on this 3.5MB chunk — still minified by Vite
         'ScratchEditor', // S112: Blockly is already Closure-compiled — 2nd obfuscator breaks internal refs (removeElem$module$ ReferenceError)
+        'ScratchCompileBar', // iter 78 STOP-HOOK: obfuscator hoists nextExperiment.title access outside JSX conditional short-circuit → undefined.title crash. Defensive optional chaining shipped CompileUploadButton + ScratchCompileBar, MA skipping obfuscator on this chunk eliminates entire class of obfuscation-induced regression iter 78+ web-dfu wire.
+        'CompileUploadButton', // iter 78: same obfuscator concern; CompileUploadButton wires web-dfu flash chain with dfu npm + lazy imports; protect from obfuscation-induced control flow corruption
         'recharts', 'd3-vendor', 'supabase', 'experiments-vol', // Vendor/data chunks — no obfuscation needed
     ];
 

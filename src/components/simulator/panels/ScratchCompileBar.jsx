@@ -234,17 +234,17 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
           }}
         >
           <p style={{ margin: 0, fontSize: 14, lineHeight: 1.4 }}>
-            Ragazzi, pronti per <strong>{nextExperiment.title || nextExperiment.id}</strong>?
+            Ragazzi, pronti per <strong>{(nextExperiment?.title || nextExperiment?.id || '')}</strong>?
           </p>
-          {nextExperiment.preview && (
+          {nextExperiment?.preview && (
             <p style={{ margin: 0, fontSize: 13, opacity: 0.85, lineHeight: 1.35 }}>
-              {nextExperiment.preview}
+              {nextExperiment?.preview}
             </p>
           )}
           <button
             type="button"
             onClick={handleLoadNext}
-            aria-label={`Apri il prossimo esperimento: ${nextExperiment.title || nextExperiment.id}`}
+            aria-label={`Apri il prossimo esperimento: ${(nextExperiment?.title || nextExperiment?.id || '')}`}
             data-testid="scratch-compile-cliffhanger-cta"
             style={{
               alignSelf: 'flex-start',
