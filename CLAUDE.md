@@ -3507,3 +3507,137 @@ Box subtotal 9.18/10 + bonus cumulative iter 77 (+0.55 Codex workflow Pattern V 
 - BG A.4 web-dfu research: `docs/research/2026-05-17-iter-77-A4-web-dfu-library-research.md` (466 LOC, WINNER `dfu` npm MIT)
 - Codex Pattern V iter 76 verdict: `/tmp/codex-verify-iter76-D-cross-compile-certainty.txt` (307 KB)
 - Codex Pattern V iter 77 verdict: `/tmp/codex-verify-iter77-entrance-PHASE3-post-fix.txt` (305 KB)
+
+## Sprint U iter 79.0 + 79.A close (2026-05-17 PM) — Built-bundle smoke spec + cross-compile A1+A3+A4 fixes
+
+**Score iter 79.0 + 79.A close ONESTO G45 cap**: **9.0/10** (raw 9.2 → cap -0.2 honest A2 rollback + 4 MED Codex deferrals iter 80)
+
+**Pattern**: orchestrator inline + Codex Pattern V verify-cross-compile (10094 LOC findings) + Codex Pattern C verify-iter79A-post-fix (caught HIGH A2 regression) + Playwright MCP live reproduce. Pattern S r3 race-cond fix VALIDATED **24× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67-77 phases+78+**79.0+79.A**).
+
+### Iter 79.0 Atom — Built-bundle Playwright smoke spec gate (P0 BLOCKER iter 78 ADDENDUM)
+
+Commit `9a2d4796` 5 files +347 LOC:
+- `tests/e2e/build-preview-smoke.spec.js` NEW 167 LOC — 4 routes × 3 asserts
+- `tests/e2e/playwright.build-smoke.config.js` NEW 35 LOC
+- `scripts/run-build-smoke.sh` NEW 67 LOC wrapper (webServer config flaky vite preview 7.x)
+- `README.md` +60 LOC docs section (when-to-run + debug + limits)
+- `package.json` +1 `"test:build-smoke"` npm script
+
+**Routes coverage**: `#compile-home` (HomePage cross-compile entry iter 73) + `#lavagna` (highest obfuscator surface) + `#tutor` (iter 78 regression site) + `#dashboard` (auth gate render, threshold 100 vs 200)
+
+**Per route asserts**: hasErrorBoundary === false (no "Ops! Qualcosa è andato storto") + pageErrors.length === 0 (uncaught exceptions = iter 78 signature) + bodyText.length > minBodyLen
+
+**HEAD `168496b5` verify**: 4/4 PASS in 16s (build 33s + spec 14.5s ≈ 48s total)
+
+### Iter 79.A — Cross-compile A1+A3+A4 fixes (Andrea iter 79 PM mandate)
+
+Commit `237add86` 8 files +302 -3 LOC:
+
+**A1 HomeCompileEntry callback signature** (HIGH IDE-2 + HOMEPAGE-2 Codex):
+- File: `src/components/home/HomeCompileEntry.jsx` +7 -3
+- Bug: ScratchEditor onChange(xmlText, code) → previous `(code) => setScratchCode(code)` stored xmlText → compile API received `<xml>...</xml>` → arduino-cli "Error during build: exit status 1"
+- Fix: `(_xml, code) => setScratchCode(code || '')`
+- Empirical reproduce: Playwright /#compile-home click → bodyTail era "Error during build" + AVR fallback. Post-fix → "Compilazione OK"
+
+**A3 ELAB Agent server.js hexBase64 return** (HIGH COMPILE-3 Codex):
+- File: `src/services/elab-agent/server.js` +37 -2
+- Bug: handleCompile returned `{ok, jobId, sketchDir, buildDir, stdout}` only. CompileUploadButton.jsx:486-504 WebUSB DFU flash requires `compilePayload.hexBase64` → throw `hexBase64_missing_from_compile_response`
+- Fix: post-compile fs.readdir(buildDir) → prefer ElabSketch.ino.hex over .with_bootloader.hex → base64 encode → include hexBase64 + hexFilename + hexSize
+- Empirical verify: arduino-cli Nano R4 Blink → 109863 bytes HEX → 146484 char base64 → decoded `:1040000000...` valid Intel HEX
+
+**A4 vercel.json CSP localhost:8765** (HIGH COMPILE-4 Codex):
+- File: `vercel.json` +1 -1
+- Bug: index.html + public/_headers had `localhost:8765` but vercel.json missing → R5 banner offline in prod
+- Fix: add `http://localhost:8765 http://127.0.0.1:8765` to connect-src
+
+**A2 ROLLBACK — Codex Pattern C HIGH regression caught**:
+- Files: `src/components/simulator/NewElabSimulator.jsx` + `src/components/simulator/hooks/useCircuitHandlers.js` (rollback comments)
+- Initial A2 fix forced NANO_R4_FQBN in handleCompile + handleCompileOnly
+- Codex caught: useCircuitHandlers.js:888-907 loads result.hex into AVRBridge (avr8js ATmega328 emulator) — cannot execute Renesas RA4M1 ARM Cortex-M4 bytecode
+- All Vol3 experiments have `simulationMode:"avr"` (experiments-vol3.js:981+) → simulator path MUST keep AVR HEX
+- Physical Nano R4 flash = SEPARATE path via CompileUploadButton → local agent (A3 fix returns Nano R4 hexBase64)
+- Rolled back both files. Comments document the gotcha for future iter.
+
+### Test coverage iter 79.A (5/5 PASS 3x CoV)
+
+- `tests/unit/components/home/HomeCompileEntry-callback.test.jsx` 89 LOC 1 test — verifies onChange(xml, code) → setScratchCode gets generated C++ NOT XML
+- `tests/unit/services/compiler-nano-r4-fqbn.test.js` 66 LOC 2 tests — documents compileArduinoCode wrapper board option propagation
+- `tests/unit/services/elab-agent/server-hexBase64.test.js` 98 LOC 2 tests — verifies handleCompile returns hexBase64 + prefers .ino.hex over .with_bootloader.hex
+
+### CoV iter 79.0 + 79.A verified
+
+- Vitest full: **14457 PASS** + 15 skipped + 11 todo (zero regression vs iter 78 14374 baseline + 5 NEW iter 79.A + iter 78 deltas)
+- 3x CoV delta scope: stable
+- Build PASS 33s (vite + obfuscator + iter 78 SKIP_PATTERNS preserved)
+- Smoke 4/4 PASS HEAD `9a2d4796` post-rebuild
+- Pre-commit hook PASS 14457 baseline 13118 (both commits)
+- Pre-push hook PASS (push `168496b5..237add86`)
+- Live Playwright /#compile-home click: "Compilazione OK" (was "Errore")
+- Curl agent /compile Nano R4 Blink: hexBase64 length 146484 valid
+
+### SPRINT_U_COMPLETE 27 boxes status post iter 79.A
+
+| Box | iter 77 PHASE 4 | iter 78 | iter 79.0+79.A | Delta |
+|---|---|---|---|---|
+| 1-26 | (preserved) | (preserved) | (preserved) | 0 |
+| **NEW 27 Built-bundle regression gate** | n/a | n/a | **0.95** | +0.95 (iter 79.0 smoke spec 4/4 PASS HEAD 168496b5 + 9a2d4796) |
+| 19 HomePage cross-compile entry | 1.0 | 1.0 | **1.0** (LIVE prod A1 fix) | 0 |
+| 21 Cross-compile cloud scaffold | 0.70 | 0.70 | 0.70 | 0 |
+| 22 WebUSB feature detect | 0.95 | 0.95 | 0.95 | 0 |
+| 23 Demo-mode no-board honest | 0.98 | 0.98 | 0.98 | 0 |
+| 24 LOCAL+CLOUD contract unified | 0.90 | 0.90 | **0.95** | +0.05 (A3 hexBase64 + A4 CSP) |
+
+Box subtotal **9.48/10** + bonus cumulative iter 79.0+79.A (+0.45 Codex workflow Pattern V/C dual + Playwright MCP live + 24× Pattern S r3 + 2 atomic commits + push origin + Andrea mandate addressed) = raw **9.93 → G45 cap 9.0/10 ONESTO**.
+
+**Cap deductions honest 4 explicit**:
+- −0.3 A2 rollback acknowledgment (initial direction wrong, Codex caught HIGH regression pre-deploy)
+- −0.3 4 MED Codex iter 79 deferred iter 80 (IDE-1 Add CodeEditorCM6 to HomeCompileEntry + IDE-3 split Compila labels + COMPILE-5 test auth header + COMPILE-6 size mapping)
+- −0.2 Hardware UAT Nano R4 USB pending Andrea/Tea/Riccardo (cannot verify physical flash without board)
+- −0.2 Sentry/PostHog OAuth still pending Andrea browser-interactive (telemetry pipeline not LIVE)
+
+### 7 honesty caveats iter 79.0+79.A → iter 80 carryover
+
+1. **A2 ROLLBACK**: simulator handleCompile + handleCompileOnly stay AVR (preserves AVRBridge). Vol3 Arduino experiments compile for AVR in browser simulator. Physical Nano R4 flash via CompileUploadButton + local agent (A3 returns Nano R4 hexBase64 there).
+2. **4 MED Codex findings DEFERRED iter 80**: IDE-1 (HomeCompileEntry add CodeEditorCM6 tab for direct C++ entry, ~100 LOC) + IDE-3 (split "Compila" vs "Compila & Carica" labels Home) + COMPILE-5 (CompileUploadButton.test auth header assert) + COMPILE-6 (Home result.size derive from hex length).
+3. **Hardware UAT pending**: Andrea/Tea/Riccardo Nano R4 USB physical flash verify iter 80+ (chain ready end-to-end via A3 hexBase64 + WebUSB iter 76+ + CompileUploadButton iter 70).
+4. **Console CSP error noise iter 79.0 smoke**: `localhost:8765/health` CORS preflight block from preview:4173 (separate iter, not part of 79.A scope). Agent CORS allow-origin upstream patch needed iter 80.
+5. **iter 78 PROD regression class addressed but not eliminated**: smoke spec catches error boundary + pageerror — does NOT catch silent functional regressions (e.g., wrong text rendered). Functional E2E separate scope (tests/e2e/01-04*.spec.js).
+6. **Codex Pattern C 14 findings total**: 4 HIGH addressed (A1+A3+A4 + A2 rollback documented) + 4 MED iter 80 + 6 LOW deferred iter 80+ (BLOCKLY-1+2+3 Blockly patch postinstall risk + HOMEPAGE-1 docs path typo + HOMEPAGE-3 route test parser-only).
+7. **CLAUDE.md baseline 13118 vs vitest 14457**: pre-commit hook reads `automa/baseline-tests.txt` 13118 (iter 67 sync). Real vitest 14457. Iter 80 P0 sync `automa/baseline-tests.txt` 13118 → 14457 (delta +1339 across iter 67-79).
+
+### Iter 80 priorities P0 cascade target 9.0 → 9.3+/10
+
+1. Andrea ratify push iter 79 commits (DONE `237add86` pushed origin)
+2. baseline-tests.txt sync 13118 → 14457 (5min orchestrator inline)
+3. Codex MED findings ship 4 atoms (~6h: IDE-1 100 LOC + IDE-3 15 LOC + COMPILE-5 15 LOC + COMPILE-6 10 LOC)
+4. Hardware UAT Nano R4 USB Andrea/Tea/Riccardo schedule + execute
+5. Vercel deploy verify A4 CSP fix (Andrea ratify deploy ~5min)
+6. ELAB Agent CORS allow-origin localhost:4173 (smoke spec noise eliminate, ~5min)
+7. Sentry + PostHog OAuth (Andrea browser interactive)
+8. iter 80+ atoms iter 77 PHASE 4 carryover (5 atoms: BG A.3 Mock USB E2E + BG A.5 tech debt audit + P0.3c security mandates + B.2 web-dfu MVP + Render deploy)
+9. CLAUDE.md baseline sync chore
+
+**Sprint U close projection iter 82+**: 9.5/10 ONESTO conditional MED findings ship + hardware UAT verified + Codex Pattern V re-run + Opus indipendente review G45 mandate.
+
+### Anti-inflation G45 mandate iter 79.0+79.A enforced
+
+- Cap **9.0/10** post A2 rollback + 4 MED deferrals
+- NO claim "Sprint U close" (iter 82+ projection)
+- NO claim "cross-compile end-to-end LIVE prod" (physical Nano R4 flash pending hardware UAT)
+- NO claim "Codex Pattern V 14 findings closed" (4 MED + 6 LOW deferred iter 80+)
+- NO claim "A2 simulator FQBN fix shipped" (ROLLBACK admitted)
+- A1 + A3 + A4 + smoke spec verified empirico (Playwright + curl + build + vitest)
+
+### Cross-link docs iter 79.0+79.A
+
+- Iter 79 future plan ADDENDUM (Atom 79.0 spec): `docs/plans/2026-05-17-iter-79-80-FUTURE-PLAN.md` lines 237-348
+- Codex Pattern V output (10094 LOC): `/tmp/codex-verify-cross-compile-iter79.txt`
+- Codex Pattern C post-fix output (HIGH A2 regression caught): `/tmp/codex-verify-iter79A-post-fix.txt`
+- Smoke spec: `tests/e2e/build-preview-smoke.spec.js`
+- Smoke wrapper: `scripts/run-build-smoke.sh`
+- Smoke config: `tests/e2e/playwright.build-smoke.config.js`
+- A1 fix: `src/components/home/HomeCompileEntry.jsx:54-70`
+- A3 fix: `src/services/elab-agent/server.js:271-307`
+- A4 fix: `vercel.json:15`
+- A2 rollback comments: `src/components/simulator/hooks/useCircuitHandlers.js:845-852` + `src/components/simulator/NewElabSimulator.jsx:412-420`
+
