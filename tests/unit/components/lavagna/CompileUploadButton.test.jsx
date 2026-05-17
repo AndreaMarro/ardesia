@@ -724,13 +724,26 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
     expect(screen.queryByTestId('compile-only-no-board-banner')).toBeNull();
   });
 
-  // T10 — iter 76 PHASE 3 P0.1 fix (Codex Pattern V verdict #3):
-  // post WebUSB device picker SUCCESS, demo mode MUST NOT claim "Caricato"
-  // before actual dfu-util flash. Transition to HARDWARE_PICKED_AWAITING_FLASH
-  // honest intermediate state. Real flash iter 77+ hardware UAT Tea+Riccardo.
-  it('T10 device picked → HARDWARE_PICKED_AWAITING_FLASH (NO false Caricato claim)', async () => {
-    const compileFetch = makeCompileOk();
-    const usbPicker = makeUsbDevice();
+  // T10 — iter 78 B.2.5 wire (Codex design verdict):
+  // Real flash chain via dfu npm + Mock DFU device → FLASH_COMPLETE_SIMULATED.
+  // Honest contract: mode='simulated' visible, NO "Caricato sul kit" claim.
+  it('T10 device picked + mock DFU + hexBase64 → FLASH_COMPLETE_SIMULATED (NO false Caricato)', async () => {
+    // Minimal Intel HEX with valid checksum (16 bytes payload + EOF)
+    const hexText = ':10010000214601360121470136007EFE09D2190140\n:00000001FF\n';
+    const hexBase64 = Buffer.from(hexText, 'ascii').toString('base64');
+    const compileFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({
+        ok: true,
+        jobId: 'flash-test-1',
+        hexBase64,
+        stdout: 'Sketch uses 16 bytes ...',
+      }),
+    });
+    // Lazy import mock to avoid top-level loading
+    const { createMockDfuDevice } = await import('../../../../src/services/mockUsbDfuDevice.js');
+    const mockDevice = createMockDfuDevice();
+    const usbPicker = vi.fn().mockResolvedValue(mockDevice);
     const onSuccess = vi.fn();
     render(
       <CompileUploadButton
@@ -745,23 +758,24 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
     const btn = await screen.findByRole('button');
     fireEvent.click(btn);
 
-    // WebUSB picker resolved with valid device handle.
     await waitFor(() => expect(usbPicker).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
+    // Flash chain takes async time (parse HEX + dfu init/connect/write)
+    await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1), { timeout: 3000 });
 
     const arg = onSuccess.mock.calls[0][0];
-    // P0.1 mandate: message MUST NOT claim "Caricato" — only honest "rilevato".
-    expect(arg.message).not.toMatch(/Caricato/);
-    expect(arg.message).toMatch(/Nano R4 rilevato via USB/);
-    expect(arg.message).toMatch(/Iter 77\+|dfu-util|hardware UAT|Tea/);
-    // Payload includes flashStatus signaling awaiting hardware verify.
-    expect(arg.payload.flashStatus).toBe('awaiting_hardware_uat');
-    expect(arg.payload.device).toBe('webusb');
+    // Iter 78 mandate: NEVER claim "Caricato sul kit" for simulated mode
+    expect(arg.message).not.toMatch(/Caricato sul kit/);
+    expect(arg.message).toMatch(/Simulazione scientifica/);
+    expect(arg.message).toMatch(/nessuna scheda fisica scritta/);
+    expect(arg.payload.flashMode).toBe('simulated');
+    expect(arg.payload.flashVerified).toBe(false); // No readback iter 78 MVP
+    expect(arg.payload.flashStatus).toBe('flash_complete_simulated');
+    expect(arg.payload.bytesTransferred).toBeGreaterThan(0);
 
-    // Component data-attr reflects honest intermediate state.
+    // Final state data-attr reflects flash_complete_simulated
     await waitFor(() =>
       expect(btn.getAttribute('data-elab-demo-state')).toBe(
-        'hardware_picked_awaiting_flash',
+        'flash_complete_simulated',
       ),
     );
   });

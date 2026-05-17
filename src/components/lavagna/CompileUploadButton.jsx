@@ -143,6 +143,15 @@ export const DEMO_STATES = Object.freeze({
   // Honest intermediate state. NO claim "Caricato". Iter 77+ hardware UAT
   // Andrea/Tea/Riccardo wires real dfu-util binary transfer.
   HARDWARE_PICKED_AWAITING_FLASH: 'hardware_picked_awaiting_flash',
+  // iter 78 B.2.5 (Codex design verdict iter 78): real-vs-simulated honest
+  // state machine. FLASHING = dfu write in progress. FLASH_SUCCESS_REAL =
+  // dfu 'end' event observed with REAL Nano R4 hardware. FLASH_COMPLETE_SIMULATED
+  // = mock USB DFU protocol completed (scientifically valid simulation, NO
+  // physical board written). FLASH_ERROR = adapter returned ok:false.
+  FLASHING: 'flashing',
+  FLASH_SUCCESS_REAL: 'flash_success_real',
+  FLASH_COMPLETE_SIMULATED: 'flash_complete_simulated',
+  FLASH_ERROR: 'flash_error',
 });
 
 /**
@@ -609,25 +618,87 @@ export default function CompileUploadButton({
       return;
     }
 
-    // ── Step 3: device picked → HARDWARE_PICKED_AWAITING_FLASH (iter 76 P0.1 fix).
-    // The dfu-util flash itself is iter 77+ scope (real Nano R4 hardware UAT
-    // Andrea/Tea/Riccardo). For iter 76 demo we stop at "device acquired"
-    // and DO NOT claim "Caricato" — would be false success per Codex Pattern V
-    // verdict #3. Honest intermediate state surfaced via banner.
+    // ── Step 3: device picked → HARDWARE_PICKED_AWAITING_FLASH → FLASHING
+    // (iter 78 B.2 web-dfu flash chain LIVE).
+    // Pre-flash honest state ack device acquired, then invoke flash adapter
+    // wired to dfu npm library (event-driven). Real-vs-simulated mode
+    // detected via __elabMockMode marker on device (mock returns 'simulated'
+    // for sandbox-safe verify, real navigator.usb device returns 'real').
+    if (mountedRef.current) {
+      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
+    }
+
+    // Dynamic import to avoid loading dfu library bundle on every render
+    // (only fetched when flash actually triggered).
+    const { flashDfuFirmware, flashResultMessage } = await import('../../services/webDfuFlash.js');
+    const { parseIntelHexBase64 } = await import('../../services/intelHexParser.js');
+
+    // Iter 78 B.2: parse Intel HEX from Cloud Render compile response.
+    // Cloud OpenAPI 3.1 contract: { ok, jobId, hexBase64, stdout, ... }
+    let binary;
+    try {
+      if (!compilePayload?.hexBase64) {
+        throw new Error('hexBase64_missing_from_compile_response');
+      }
+      const parsed = parseIntelHexBase64(compilePayload.hexBase64);
+      binary = parsed.binary;
+    } catch (parseErr) {
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.FLASH_ERROR);
+      }
+      onError?.({
+        category: 'hex_parse_failed',
+        message: `Impossibile interpretare il file HEX: ${parseErr.message}`,
+        detail: parseErr.message,
+      });
+      return;
+    }
+
+    if (mountedRef.current) {
+      setDemoState(DEMO_STATES.FLASHING);
+    }
+
+    const flashResult = await flashDfuFirmware(device, binary, {
+      transferSize: 64,
+      manifestationTolerant: true,
+    });
+
     if (mountedRef.current) {
       setUploading(false);
-      setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
-      // Intentionally NOT setUploadSucceeded(true) — flash not yet executed.
+      if (flashResult.ok) {
+        if (flashResult.mode === 'real') {
+          setDemoState(DEMO_STATES.FLASH_SUCCESS_REAL);
+          setUploadSucceeded(true);
+        } else {
+          setDemoState(DEMO_STATES.FLASH_COMPLETE_SIMULATED);
+          // NOT setUploadSucceeded(true) for simulated — honest separation
+        }
+      } else {
+        setDemoState(DEMO_STATES.FLASH_ERROR);
+      }
     }
-    onSuccess?.({
-      message:
-        "Nano R4 rilevato via USB. Iter 77+ collegheremo l'upload reale via dfu-util con il kit Omaric (Tea + Riccardo).",
-      payload: {
-        jobId: compilePayload?.jobId,
-        device: 'webusb',
-        flashStatus: 'awaiting_hardware_uat',
-      },
-    });
+
+    if (flashResult.ok) {
+      onSuccess?.({
+        message: flashResultMessage(flashResult),
+        payload: {
+          jobId: compilePayload?.jobId,
+          device: 'webusb',
+          flashMode: flashResult.mode,
+          flashVerified: flashResult.verified,
+          bytesTransferred: flashResult.evidence.bytesTransferred,
+          durationMs: flashResult.evidence.durationMs,
+          flashStatus: flashResult.mode === 'real' ? 'flash_success_real' : 'flash_complete_simulated',
+        },
+      });
+    } else {
+      onError?.({
+        category: 'flash_failed',
+        message: flashResultMessage(flashResult),
+        detail: flashResult.error,
+      });
+    }
   }, [
     enableDemoMode, uploading, sketchCode, compileEndpoint, fqbn,
     fetchImpl, requestUsbDevice, onSuccess, onError, setDemoState,

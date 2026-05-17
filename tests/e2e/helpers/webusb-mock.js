@@ -238,8 +238,19 @@ export async function removeWebUSBFromNavigator(page) {
 }
 
 /**
- * Route `POST http://localhost:8765/compile` via `page.route` so tests do
- * not depend on a real local Compile Agent process.
+ * Route `POST http://localhost:8765/compile` via `page.route` AND
+ * `page.addInitScript` so tests do not depend on a real local Compile Agent.
+ *
+ * Uses BOTH interception layers (same dual pattern as `routeAgentStatusMock`):
+ * - `page.route`: network-level interception (fallback)
+ * - `page.addInitScript`: JS-level `window.fetch` patch installed BEFORE React
+ *   boots, ensuring `CompileUploadButton.handleDemoClick`'s `fetch()` call is
+ *   intercepted reliably even when AbortController / CORS / mode flags are set.
+ *
+ * Fix E (iter 77 A.3): Without the JS-level interceptor, `page.route` alone
+ * may miss the `POST /compile` call made by `handleDemoClick`, causing the
+ * state machine to receive a connection-refused error and land on `upload_error`
+ * instead of the expected state (compile_only_no_board / hardware_picked_awaiting_flash).
  *
  * @param {import('@playwright/test').Page} page
  * @param {'success'|'compile-failed'|'agent-offline'} outcome
@@ -247,6 +258,7 @@ export async function removeWebUSBFromNavigator(page) {
  * @returns {Promise<void>}
  */
 export async function routeCompileMock(page, outcome = 'success', overrides = {}) {
+  // Network-level interception (fallback for non-JS fetch paths)
   await page.route('http://localhost:8765/compile', async (route) => {
     switch (outcome) {
       case 'success':
@@ -291,6 +303,73 @@ export async function routeCompileMock(page, outcome = 'success', overrides = {}
         });
     }
   });
+
+  // JS-level fetch interceptor — Fix E (iter 77 A.3): more reliable for
+  // handleDemoClick's fetch() which may use AbortController/CORS mode that
+  // bypasses network-level interception. Installed via addInitScript so it
+  // fires BEFORE React boots and before any module-level fetch call.
+  await page.addInitScript(({ _outcome, _overrides }) => {
+    const _origFetch = window.fetch;
+    window.fetch = async function fetchInterceptorCompile(url, opts) {
+      const urlStr =
+        typeof url === 'string'
+          ? url
+          : url && typeof url === 'object' && url.url
+            ? url.url
+            : String(url || '');
+      // Match POST /compile but NOT /compile-and-upload (different endpoint)
+      if (
+        (urlStr.includes('localhost:8765/compile') ||
+          urlStr.includes('127.0.0.1:8765/compile')) &&
+        !urlStr.includes('/compile-and-upload') &&
+        opts &&
+        typeof opts.method === 'string' &&
+        opts.method.toUpperCase() === 'POST'
+      ) {
+        if (_outcome === 'success') {
+          return new Response(
+            JSON.stringify(Object.assign({
+              ok: true,
+              jobId: 'mock-job-77-A3',
+              stdout:
+                'Lo sketch usa 39048 byte (14%) dello spazio disponibile per i programmi. Il massimo è 262144 byte.\nLe variabili globali usano 3940 byte (12%) di memoria dinamica, lasciando 28644 byte liberi per le variabili locali. Il massimo è 32768 byte.',
+              stderr: '',
+            }, _overrides)),
+            {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            },
+          );
+        } else if (_outcome === 'compile-failed') {
+          return new Response(
+            JSON.stringify(Object.assign({
+              ok: false,
+              error: {
+                category: 'compile_failed',
+                message: 'mock compile error — iter 77 sandbox',
+              },
+            }, _overrides)),
+            {
+              status: 422,
+              headers: { 'Content-Type': 'application/json' },
+            },
+          );
+        } else if (_outcome === 'agent-offline') {
+          // Simulate connection refused — same as route.abort('connectionrefused')
+          throw new TypeError('Failed to fetch');
+        }
+        // Unknown outcome — return 500
+        return new Response(
+          JSON.stringify({ ok: false, error: { category: 'unknown' } }),
+          {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+          },
+        );
+      }
+      return _origFetch.call(this, url, opts);
+    };
+  }, { _outcome: outcome, _overrides: overrides });
 }
 
 /**

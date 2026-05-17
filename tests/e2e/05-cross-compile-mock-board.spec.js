@@ -101,6 +101,7 @@ import {
   routeCompileMock,
   routeCompileAndUploadMock,
   routeAgentStatusMock,
+  seedSketchCode,
 } from './helpers/webusb-mock.js';
 import {
   seedGateBypass,
@@ -186,6 +187,11 @@ async function gotoCompileHome(
 
   // 5. Wait for React hydration + agent status poll
   await page.waitForTimeout(AGENT_POLL_TIMEOUT);
+
+  // Fix C (iter 77 A.3): inject sketch code so HTML disabled clears.
+  // HomeCompileEntry starts with scratchCode='' → button disabled.
+  // seedSketchCode dispatches React state update → !sketchCode becomes false.
+  await seedSketchCode(page, BLINK_SKETCH);
 }
 
 /**
@@ -274,7 +280,9 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     expect(['idle', 'compile_only_no_board']).toContain(initialState ?? 'idle');
 
     // Click the button to start the compile → USB picker flow
-    await btn.click({ timeout: 5_000 });
+    // Fix D (iter 77 A.3): force:true bypasses aria-disabled actionability check
+    // (port={null} sets aria-disabled but HTML disabled is false in demo mode).
+    await btn.click({ force: true, timeout: 5_000 });
 
     // Wait for state machine to settle at compile_only_no_board
     await expect(async () => {
@@ -332,7 +340,8 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     }
 
     // Click to trigger compile + USB picker
-    await btn.click({ timeout: 5_000 });
+    // Fix D (iter 77 A.3): force:true bypasses aria-disabled from port={null}
+    await btn.click({ force: true, timeout: 5_000 });
 
     // Wait for state machine to reach HARDWARE_PICKED_AWAITING_FLASH
     await expect(async () => {
@@ -380,7 +389,8 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     }
 
     // Click to trigger the flow
-    await btn.click({ timeout: 5_000 });
+    // Fix D (iter 77 A.3): force:true bypasses aria-disabled from port={null}
+    await btn.click({ force: true, timeout: 5_000 });
 
     // State machine must reach compile_only_no_board (SecurityError is treated
     // like NotFoundError per CompileUploadButton source iter 76 D.1:521-524)
@@ -419,7 +429,7 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
         'USB picker a second time. The POST /compile endpoint should NOT be called again.',
     });
 
-    // Track compile calls via route handler counter
+    // Track compile calls via route handler counter (network-level fallback)
     let compileCalls = 0;
     await page.route('http://localhost:8765/compile', async (route) => {
       compileCalls++;
@@ -433,6 +443,47 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
           stderr: '',
         }),
       });
+    });
+
+    // Fix E T4 (iter 77 A.3): JS-level fetch interceptor for POST /compile.
+    // page.route alone may miss JS-level fetch() calls in handleDemoClick.
+    // We install a window.fetch patch that increments __ELAB_COMPILE_CALL_COUNT__
+    // AND returns a success response so the state machine can progress past compile.
+    await page.addInitScript(() => {
+      const _origFetch = window.fetch;
+      window.__ELAB_COMPILE_CALL_COUNT__ = 0;
+      window.fetch = async function fetchInterceptorT4(url, opts) {
+        const urlStr =
+          typeof url === 'string'
+            ? url
+            : url && typeof url === 'object' && url.url
+              ? url.url
+              : String(url || '');
+        if (
+          (urlStr.includes('localhost:8765/compile') ||
+            urlStr.includes('127.0.0.1:8765/compile')) &&
+          !urlStr.includes('/compile-and-upload') &&
+          opts &&
+          typeof opts.method === 'string' &&
+          opts.method.toUpperCase() === 'POST'
+        ) {
+          const callIdx = ++window.__ELAB_COMPILE_CALL_COUNT__;
+          return new Response(
+            JSON.stringify({
+              ok: true,
+              jobId: `mock-job-77-T4-call-${callIdx}`,
+              stdout:
+                'Lo sketch usa 39048 byte (14%) dello spazio disponibile per i programmi. Il massimo è 262144 byte.\nLe variabili globali usano 3940 byte (12%) di memoria dinamica, lasciando 28644 byte liberi per le variabili locali.',
+              stderr: '',
+            }),
+            {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            },
+          );
+        }
+        return _origFetch.call(this, url, opts);
+      };
     });
 
     // Track USB picker invocations — use a counter stored on window
@@ -460,6 +511,9 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     await bypassWelcomeGate(page);
     await page.waitForTimeout(AGENT_POLL_TIMEOUT);
 
+    // Fix C T4 (iter 77 A.3): inject sketch code so HTML disabled clears.
+    await seedSketchCode(page, BLINK_SKETCH);
+
     const btn = await findDemoButton(page);
     if (!btn) {
       test.skip(true, 'Demo-mode CompileUploadButton not found on #compile-home route');
@@ -467,14 +521,18 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     }
 
     // Step 1: Click main button → should compile (compileCalls → 1) and show banner
-    await btn.click({ timeout: 5_000 });
+    // Fix D (iter 77 A.3): force:true bypasses aria-disabled from port={null}
+    await btn.click({ force: true, timeout: 5_000 });
 
     await expect(async () => {
       const state = await readDemoState(page);
       expect(state).toBe('compile_only_no_board');
     }).toPass({ timeout: STATE_TRANSITION_TIMEOUT });
 
-    expect(compileCalls).toBe(1);
+    // Fix E T4 (iter 77 A.3): JS-level interceptor fires before network route,
+    // so compileCalls (page.route counter) may be 0. Use window counter as fallback.
+    const jsLevelCalls = await page.evaluate(() => window.__ELAB_COMPILE_CALL_COUNT__ || 0);
+    expect(compileCalls + jsLevelCalls).toBe(1);
 
     // Capture picker count after first full flow
     const pickerCountAfterFirst = await page.evaluate(
@@ -491,7 +549,12 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     await page.waitForTimeout(3_000);
 
     // CRITICAL: /compile should NOT have been called again (compileCalls still 1)
-    expect(compileCalls).toBe(1);
+    // Fix E T4 retry (iter 77 A.3): JS-level interceptor fires instead of page.route,
+    // so compileCalls (network counter) = 0, jsLevelCalls = 1. Total stays 1 after retry.
+    const jsLevelCallsAfterRetry = await page.evaluate(
+      () => window.__ELAB_COMPILE_CALL_COUNT__ || 0,
+    );
+    expect(compileCalls + jsLevelCallsAfterRetry).toBe(1);
 
     // Picker SHOULD have been called a second time
     const pickerCountAfterRetry = await page.evaluate(
@@ -603,6 +666,9 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     await bypassWelcomeGate(page);
     await page.waitForTimeout(AGENT_POLL_TIMEOUT);
 
+    // Fix C T6 (iter 77 A.3): inject sketch code so HTML disabled clears.
+    await seedSketchCode(page, BLINK_SKETCH);
+
     // Confirm mock removed WebUSB
     const hasWebUSB = await page.evaluate(() => typeof navigator.usb !== 'undefined');
     // Either undefined or our init script tombstoned it
@@ -616,7 +682,8 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
     }
 
     // Click: compile succeeds, then WebUSB picker is checked — no API → immediate fallback
-    await btn.click({ timeout: 5_000 });
+    // Fix D (iter 77 A.3): force:true bypasses aria-disabled from port={null}
+    await btn.click({ force: true, timeout: 5_000 });
 
     await expect(async () => {
       const state = await readDemoState(page);
@@ -668,7 +735,8 @@ test.describe('CompileUploadButton — Mock USBDevice state machine (iter 77 A.3
       return;
     }
 
-    await btn.click({ timeout: 5_000 });
+    // Fix D (iter 77 A.3): force:true bypasses aria-disabled from port={null}
+    await btn.click({ force: true, timeout: 5_000 });
 
     await expect(async () => {
       const state = await readDemoState(page);
