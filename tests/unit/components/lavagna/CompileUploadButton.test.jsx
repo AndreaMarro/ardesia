@@ -22,6 +22,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import CompileUploadButton, {
   getDocenteErrorMessage,
+  parseCompileStdout,
+  DEMO_STATES,
 } from '../../../../src/components/lavagna/CompileUploadButton.jsx';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -355,5 +357,370 @@ describe('CompileUploadButton — click flow', () => {
     fireEvent.click(btn);
     // Disabled button should not invoke fetch
     expect(fetchSpy).not.toHaveBeenCalled();
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. Iter 76 D.1 — Demo-mode honest fallback (compile_only_no_board)
+//
+// Andrea iter 76 mandate (Riccardo Omaric demo without physical Nano R4).
+// Verifies the state machine transitions, the honest HEX-bytes message
+// render, the retry CTA, ARIA assertions (Codex iter 74 MED gap close),
+// PRINCIPIO ZERO plurale, and the zero-emoji + ElabIcons guarantee.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Build a fake /compile JSON response with a realistic arduino-cli stdout. */
+function makeCompileOk({
+  hexBytes = 39048,
+  ramBytes = 3940,
+  jobId = 'mock-compile-1',
+} = {}) {
+  return vi.fn().mockResolvedValue({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      ok: true,
+      jobId,
+      sketchDir: '/tmp/sketch',
+      buildDir: '/tmp/build',
+      stdout:
+        `Lo sketch usa ${hexBytes} byte (14%) dello spazio di archiviazione del programma. Il massimo e' 262144 byte.\n`
+        + `Le variabili globali usano ${ramBytes} byte (12%) di memoria dinamica, lasciando 28828 byte per le variabili locali.`,
+    }),
+  });
+}
+
+/** Build a fake /compile JSON error response. */
+function makeCompileErr(category = 'compile_failed') {
+  return vi.fn().mockResolvedValue({
+    ok: false,
+    status: 422,
+    json: async () => ({ ok: false, error: { category, message: 'mock' } }),
+  });
+}
+
+/** WebUSB shim that simulates the user closing the picker (NotFoundError). */
+function makeUsbNotFound() {
+  const err = new Error('No device selected.');
+  err.name = 'NotFoundError';
+  return vi.fn().mockRejectedValue(err);
+}
+
+/** WebUSB shim that resolves to null (defensive — some browsers). */
+function makeUsbNull() {
+  return vi.fn().mockResolvedValue(null);
+}
+
+/** WebUSB shim that resolves to a stub device descriptor. */
+function makeUsbDevice() {
+  return vi.fn().mockResolvedValue({
+    productName: 'Arduino Nano R4',
+    vendorId: 0x2341,
+  });
+}
+
+describe('parseCompileStdout (iter 76 D.1)', () => {
+  it('extracts HEX bytes and RAM bytes from Italian arduino-cli stdout', () => {
+    const stdout =
+      "Lo sketch usa 39048 byte (14%) ...\nLe variabili globali usano 3940 byte (12%) ...";
+    const r = parseCompileStdout(stdout);
+    expect(r.hexBytes).toBe(39048);
+    expect(r.ramBytes).toBe(3940);
+  });
+
+  it('extracts HEX bytes and RAM bytes from English arduino-cli stdout', () => {
+    const stdout =
+      "Sketch uses 12345 bytes (4%) of program storage space.\n"
+      + "Global variables use 678 bytes (2%) of dynamic memory.";
+    const r = parseCompileStdout(stdout);
+    expect(r.hexBytes).toBe(12345);
+    expect(r.ramBytes).toBe(678);
+  });
+
+  it('returns nulls for empty / undefined stdout', () => {
+    expect(parseCompileStdout(undefined)).toEqual({ hexBytes: null, ramBytes: null });
+    expect(parseCompileStdout('')).toEqual({ hexBytes: null, ramBytes: null });
+    expect(parseCompileStdout(null)).toEqual({ hexBytes: null, ramBytes: null });
+  });
+});
+
+describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => {
+  beforeEach(() => {
+    vi.useRealTimers();
+  });
+
+  // T1 — state transitions: compile_success → null device → compile_only_no_board
+  it('T1 transitions compile_success → compile_only_no_board when WebUSB returns null', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbNull();
+    const transitions = [];
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){pinMode(13,OUTPUT);}void loop(){digitalWrite(13,HIGH);delay(500);digitalWrite(13,LOW);delay(500);}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+        compileEndpoint="http://localhost:8765/compile"
+        onDemoStateChange={(s) => transitions.push(s)}
+      />,
+    );
+
+    const btn = await screen.findByRole('button', {
+      name: /Carica il programma sul kit fisico Nano R4/i,
+    });
+    fireEvent.click(btn);
+
+    await waitFor(() => expect(usbPicker).toHaveBeenCalledTimes(1));
+    const banner = await screen.findByTestId('compile-only-no-board-banner');
+    expect(banner).toBeTruthy();
+
+    // State machine ordering: COMPILING → COMPILE_SUCCESS → CONNECTING_USB → COMPILE_ONLY_NO_BOARD
+    expect(transitions).toContain(DEMO_STATES.COMPILING);
+    expect(transitions).toContain(DEMO_STATES.COMPILE_SUCCESS);
+    expect(transitions).toContain(DEMO_STATES.CONNECTING_USB);
+    expect(transitions[transitions.length - 1]).toBe(
+      DEMO_STATES.COMPILE_ONLY_NO_BOARD,
+    );
+    // POST /compile was hit exactly once (no /upload attempt).
+    expect(compileFetch).toHaveBeenCalledTimes(1);
+    expect(compileFetch.mock.calls[0][0]).toBe('http://localhost:8765/compile');
+  });
+
+  it('T1b transitions to compile_only_no_board on NotFoundError (user cancelled picker)', async () => {
+    const compileFetch = makeCompileOk({ hexBytes: 1234, ramBytes: 56 });
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    const banner = await screen.findByTestId('compile-only-no-board-banner');
+    expect(banner).toBeTruthy();
+  });
+
+  // T2 — honest message renders verbatim HEX bytes count
+  it('T2 renders honest message with verbatim HEX bytes count from stdout', async () => {
+    const compileFetch = makeCompileOk({ hexBytes: 39048, ramBytes: 3940 });
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    const message = await screen.findByTestId('compile-only-no-board-message');
+    expect(message.textContent).toMatch(/Compilazione completata/);
+    expect(message.textContent).toMatch(/39048 byte/);
+    expect(message.textContent).toMatch(/Nano R4/);
+    expect(message.textContent).toMatch(/USB/);
+
+    // Bytes line shows both HEX and RAM.
+    const hex = await screen.findByTestId('hex-bytes');
+    const ram = await screen.findByTestId('ram-bytes');
+    expect(hex.textContent).toMatch(/HEX:\s*39048/);
+    expect(ram.textContent).toMatch(/RAM:\s*3940/);
+  });
+
+  // T3 — retry CTA re-triggers the WebUSB device picker
+  it('T3 retry CTA re-triggers WebUSB device picker', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+    await screen.findByTestId('compile-only-no-board-banner');
+
+    expect(usbPicker).toHaveBeenCalledTimes(1);
+    const retry = await screen.findByTestId('compile-only-no-board-retry');
+    fireEvent.click(retry);
+
+    await waitFor(() => expect(usbPicker).toHaveBeenCalledTimes(2));
+    // /compile was NOT called a second time — retry only re-runs the WebUSB step.
+    expect(compileFetch).toHaveBeenCalledTimes(1);
+  });
+
+  // T4 — ARIA assertions (Codex iter 74 MED gap close)
+  it('T4 banner exposes role="status", aria-live="polite", and CTA aria-label', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    const banner = await screen.findByTestId('compile-only-no-board-banner');
+    expect(banner.getAttribute('role')).toBe('status');
+    expect(banner.getAttribute('aria-live')).toBe('polite');
+    expect(banner.getAttribute('aria-label')).toMatch(/Nano R4/);
+
+    const retry = await screen.findByTestId('compile-only-no-board-retry');
+    expect(retry.getAttribute('aria-label')).toMatch(
+      /Riprova caricamento sul kit Nano R4/,
+    );
+    // Touch target ≥44×44 (LIM compatibility, regola CLAUDE.md 9).
+    expect(retry.style.minHeight).toBe('44px');
+    expect(retry.style.minWidth).toBe('44px');
+  });
+
+  // T5 — zero emoji + ElabIcons usage verify
+  it('T5 banner contains zero emoji and uses ElabIcons SVG (role=img stroke-based)', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbNotFound();
+    const { container } = render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    const banner = await screen.findByTestId('compile-only-no-board-banner');
+    // Zero emoji guarantee — scan the visible text for the most common
+    // forbidden icon emoji that previously slipped into the codebase.
+    const text = banner.textContent || '';
+    const FORBIDDEN_EMOJI = /[\u{1F300}-\u{1FAFF}✅⚠✨\u{1F441}]/u;
+    expect(FORBIDDEN_EMOJI.test(text)).toBe(false);
+
+    // ElabIcons SVG are present (CheckIcon + WarningIcon, both role="img").
+    const svgs = banner.querySelectorAll('svg[role="img"]');
+    expect(svgs.length).toBeGreaterThanOrEqual(2);
+    // Stroke-based icons (CLAUDE.md ElabIcons contract).
+    svgs.forEach((svg) => {
+      // SVG defaults set stroke="currentColor" via Icon wrapper; we only
+      // need to assert no inline fill on the wrapper svg (children may use
+      // fill="currentColor" for solid shapes — that's allowed).
+      const stroke = svg.getAttribute('stroke');
+      expect(stroke === 'currentColor' || stroke === null).toBe(true);
+    });
+    // Ensure container ref is sane (compiler smoke).
+    expect(container).toBeTruthy();
+  });
+
+  // T6 — PRINCIPIO ZERO plurale text assertion
+  it('T6 honest message uses plurale "Collegate" register (PRINCIPIO ZERO)', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    const message = await screen.findByTestId('compile-only-no-board-message');
+    // Plurale "Collegate" present (NOT singolare imperative "collega").
+    expect(message.textContent).toMatch(/\bCollegate\b/);
+    expect(message.textContent).not.toMatch(/\bcollega\s/i);
+    // CTA copy "Riprova caricamento" is neutral imperative present plural-safe.
+    const retry = await screen.findByTestId('compile-only-no-board-retry');
+    expect(retry.textContent).toMatch(/Riprova caricamento/);
+  });
+
+  // T7 — never claims "Caricato" while in compile_only_no_board
+  it('T7 banner never claims "Caricato" — only honest "Compilazione completata"', async () => {
+    const compileFetch = makeCompileOk();
+    const usbPicker = makeUsbNotFound();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+
+    const banner = await screen.findByTestId('compile-only-no-board-banner');
+    expect(banner.textContent).not.toMatch(/Caricato/);
+    expect(banner.textContent).toMatch(/Compilazione completata/);
+  });
+
+  // T8 — compile failure goes to upload_error (NOT compile_only_no_board)
+  it('T8 compile failure → upload_error, no no-board banner rendered', async () => {
+    const compileFetch = makeCompileErr('compile_failed');
+    const usbPicker = makeUsbDevice();
+    const onError = vi.fn();
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="invalid sketch"
+        statusImpl={statusOnline}
+        fetchImpl={compileFetch}
+        requestUsbDevice={usbPicker}
+        onError={onError}
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    fireEvent.click(btn);
+    await waitFor(() => expect(onError).toHaveBeenCalledTimes(1));
+    expect(onError.mock.calls[0][0].category).toBe('compile_failed');
+    // No no-board banner rendered.
+    expect(screen.queryByTestId('compile-only-no-board-banner')).toBeNull();
+    // WebUSB picker was never invoked (compile gates the step).
+    expect(usbPicker).not.toHaveBeenCalled();
+  });
+
+  // T9 — legacy single-shot path (enableDemoMode=false) still uses /compile-and-upload
+  it('T9 legacy single-shot path unchanged when enableDemoMode is false', async () => {
+    const fetchSpy = makeFetchOk({ ok: true, jobId: 'legacy-1' });
+    render(
+      <CompileUploadButton
+        sketchCode="void setup(){}void loop(){}"
+        port="/dev/cu.usb"
+        statusImpl={statusOnline}
+        fetchImpl={fetchSpy}
+        endpoint="http://localhost:8765/compile-and-upload"
+      />,
+    );
+    const btn = await screen.findByRole('button');
+    await waitFor(() =>
+      expect(btn.getAttribute('data-elab-agent-available')).toBe('true'),
+    );
+    fireEvent.click(btn);
+    await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(1));
+    expect(fetchSpy.mock.calls[0][0]).toBe(
+      'http://localhost:8765/compile-and-upload',
+    );
+    expect(screen.queryByTestId('compile-only-no-board-banner')).toBeNull();
   });
 });

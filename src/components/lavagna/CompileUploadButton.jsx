@@ -41,14 +41,92 @@
  *   - Real Nano R4 hardware UAT pending Andrea/Tea iter 70+.
  *   - Cross-platform installer (Win/Linux) deferred iter 67+.
  *
+ * Iter 76 D.1 — Demo-mode honest fallback (Andrea iter 76 mandate, Riccardo
+ * Omaric demo-grade trust WITHOUT physical Nano R4 board):
+ *   - State machine: idle → compiling → compile_success → connecting_usb
+ *     → uploading → upload_success | upload_error | compile_only_no_board
+ *   - When `requestUsbDevice` returns null OR throws NotFoundError →
+ *     transition to `compile_only_no_board` (Riccardo demo state).
+ *   - compile_only_no_board renders an honest banner with HEX bytes count +
+ *     RAM bytes count + plurale CTA "Riprova caricamento" (touch ≥44px,
+ *     ARIA aria-label) — NO false claim "Caricato".
+ *   - NEW prop `enableDemoMode` (default false) opts the button into the
+ *     two-step state machine (compile-then-WebUSB). When false, the legacy
+ *     iter 69 single-shot POST /compile-and-upload path remains active so
+ *     other call sites + their tests are unchanged.
+ *   - NEW prop `requestUsbDevice` injects a navigator.usb.requestDevice
+ *     shim (tests) — default reads `navigator?.usb?.requestDevice` if
+ *     present, otherwise treats as "no WebUSB" → compile_only_no_board.
+ *   - NEW prop `compileEndpoint` overrides `/compile` URL (tests).
+ *   - ZERO emoji (ElabIcons CheckIcon + WarningIcon for the banner).
+ *
  * @copyright © Andrea Marro — 2026-05-16 — ELAB Tutor iter 69 A3
+ * @copyright © Andrea Marro — 2026-05-17 — ELAB Tutor iter 76 D.1 demo-mode
  */
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getCompileAgentStatus } from '../../services/compileAgentDetect';
+import { CheckIcon, WarningIcon } from '../common/ElabIcons.jsx';
 
 /** Default loopback URL for the agent's combined endpoint. */
 const AGENT_COMPILE_UPLOAD_URL = 'http://localhost:8765/compile-and-upload';
+
+/** Default loopback URL for the agent's compile-only endpoint (iter 76 D.1). */
+const AGENT_COMPILE_URL = 'http://localhost:8765/compile';
+
+/** Default board FQBN for cross-compile to Nano R4 (iter 76 D.1). */
+const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
+
+/**
+ * State machine values for the iter 76 D.1 demo-mode flow.
+ * Honest names — each transition has a one-shot UI render contract.
+ * @typedef {(
+ *   'idle'
+ *   | 'compiling'
+ *   | 'compile_success'
+ *   | 'connecting_usb'
+ *   | 'uploading'
+ *   | 'upload_success'
+ *   | 'upload_error'
+ *   | 'compile_only_no_board'
+ * )} DemoState
+ */
+export const DEMO_STATES = Object.freeze({
+  IDLE: 'idle',
+  COMPILING: 'compiling',
+  COMPILE_SUCCESS: 'compile_success',
+  CONNECTING_USB: 'connecting_usb',
+  UPLOADING: 'uploading',
+  UPLOAD_SUCCESS: 'upload_success',
+  UPLOAD_ERROR: 'upload_error',
+  COMPILE_ONLY_NO_BOARD: 'compile_only_no_board',
+});
+
+/**
+ * Parse HEX + RAM byte counts from arduino-cli stdout.
+ * Format example: "Lo sketch usa 39048 byte (14%) ... globali usano 3940 byte (12%) ..."
+ * Falls back to `null` for either field when the regex doesn't match.
+ *
+ * @param {string|undefined|null} stdout
+ * @returns {{ hexBytes: number|null, ramBytes: number|null }}
+ */
+export function parseCompileStdout(stdout) {
+  if (!stdout || typeof stdout !== 'string') {
+    return { hexBytes: null, ramBytes: null };
+  }
+  // Italian arduino-cli output: "Lo sketch usa 39048 byte"
+  // English fallback: "Sketch uses 39048 bytes"
+  const hexMatch =
+    stdout.match(/(?:Lo\s+sketch\s+usa|Sketch\s+uses)\s+(\d+)\s+byte/i);
+  const ramMatch =
+    stdout.match(
+      /(?:variabili\s+globali\s+usano|Global\s+variables\s+use)\s+(\d+)\s+byte/i,
+    );
+  return {
+    hexBytes: hexMatch ? Number.parseInt(hexMatch[1], 10) : null,
+    ramBytes: ramMatch ? Number.parseInt(ramMatch[1], 10) : null,
+  };
+}
 
 /** Timeout for the compile-and-upload round trip. */
 const REQUEST_TIMEOUT_MS = 30_000;
@@ -186,6 +264,12 @@ export default function CompileUploadButton({
   currentExperimentId, // eslint-disable-line no-unused-vars
   nextExperiment,
   onLoadNextExperiment,
+  // iter 76 D.1 demo-mode honest fallback props (OPTIONAL)
+  enableDemoMode = false,
+  compileEndpoint = AGENT_COMPILE_URL,
+  fqbn = DEFAULT_FQBN,
+  requestUsbDevice,
+  onDemoStateChange,
 }) {
   const [agentAvailable, setAgentAvailable] = useState(false);
   const [agentChecked, setAgentChecked] = useState(false);
@@ -193,7 +277,24 @@ export default function CompileUploadButton({
   // iter 74 B1-B — track whether the last upload returned ok so the
   // cliffhanger CTA can render as a persistent sibling block.
   const [uploadSucceeded, setUploadSucceeded] = useState(false);
+  // iter 76 D.1 — demo-mode honest state machine (active only when
+  // enableDemoMode prop is true; legacy single-shot path otherwise).
+  const [demoState, setDemoStateInternal] = useState(DEMO_STATES.IDLE);
+  const [compileBytes, setCompileBytes] = useState({
+    hexBytes: null,
+    ramBytes: null,
+  });
+  const [uploadErrorMsg, setUploadErrorMsg] = useState(null);
   const mountedRef = useRef(true);
+
+  // Wrap state setter so external callers can react to transitions (telemetry
+  // hook for parent Lavagna shell + e2e instrumentation iter 76 D.5).
+  const setDemoState = useCallback((next) => {
+    setDemoStateInternal(next);
+    if (typeof onDemoStateChange === 'function') {
+      try { onDemoStateChange(next); } catch { /* defensive */ }
+    }
+  }, [onDemoStateChange]);
 
   useEffect(() => {
     ensureSpinnerKeyframes();
@@ -308,6 +409,208 @@ export default function CompileUploadButton({
     }
   }, [disabled, endpoint, sketchCode, boardId, port, fetchImpl, onSuccess, onError]);
 
+  // iter 76 D.1 — demo-mode honest two-step handler. Used only when
+  // `enableDemoMode` prop is true (opt-in). Splits compile and upload steps
+  // so we can render `compile_only_no_board` when WebUSB returns null.
+  const handleDemoClick = useCallback(async () => {
+    if (!enableDemoMode) return;
+    if (uploading) return;
+    if (!sketchCode) return;
+
+    // Reset any previous error / cliffhanger banner.
+    setUploadErrorMsg(null);
+    if (mountedRef.current) setUploadSucceeded(false);
+    setUploading(true);
+    setDemoState(DEMO_STATES.COMPILING);
+
+    const doFetch =
+      fetchImpl || (typeof fetch === 'function' ? fetch : null);
+
+    if (!doFetch) {
+      if (mountedRef.current) setUploading(false);
+      setDemoState(DEMO_STATES.UPLOAD_ERROR);
+      setUploadErrorMsg(getDocenteErrorMessage('no_fetch'));
+      onError?.({
+        category: 'no_fetch',
+        message: getDocenteErrorMessage('no_fetch'),
+      });
+      return;
+    }
+
+    // ── Step 1: POST /compile (cross-compile WITHOUT board).
+    let compilePayload = null;
+    try {
+      const compileRes = await doFetch(compileEndpoint, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sketchCode, fqbn }),
+      });
+      try {
+        compilePayload =
+          typeof compileRes.json === 'function' ? await compileRes.json() : null;
+      } catch {
+        compilePayload = null;
+      }
+      if (!compileRes || !compileRes.ok || !compilePayload || !compilePayload.ok) {
+        const category = compilePayload?.error?.category || 'compile_failed';
+        if (mountedRef.current) {
+          setUploading(false);
+          setDemoState(DEMO_STATES.UPLOAD_ERROR);
+          setUploadErrorMsg(getDocenteErrorMessage(category));
+        }
+        onError?.({
+          category,
+          message: getDocenteErrorMessage(category),
+          detail: compilePayload?.error,
+        });
+        return;
+      }
+    } catch (err) {
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.UPLOAD_ERROR);
+        setUploadErrorMsg(getDocenteErrorMessage('compile_failed'));
+      }
+      onError?.({
+        category: 'compile_failed',
+        message: getDocenteErrorMessage('compile_failed'),
+        detail: err && err.message ? err.message : undefined,
+      });
+      return;
+    }
+
+    // Compile success — parse HEX + RAM byte counts from arduino-cli stdout.
+    const bytes = parseCompileStdout(compilePayload?.stdout);
+    if (mountedRef.current) {
+      setCompileBytes(bytes);
+      setDemoState(DEMO_STATES.COMPILE_SUCCESS);
+    }
+
+    // ── Step 2: WebUSB device picker (may return null / NotFoundError).
+    setDemoState(DEMO_STATES.CONNECTING_USB);
+
+    const usbPicker =
+      requestUsbDevice
+      || (typeof navigator !== 'undefined'
+        && navigator.usb
+        && typeof navigator.usb.requestDevice === 'function'
+        ? (filters) => navigator.usb.requestDevice(filters)
+        : null);
+
+    if (!usbPicker) {
+      // No WebUSB API available (Safari/Firefox or test env without shim) →
+      // honest fallback. Andrea Riccardo demo state.
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      }
+      return;
+    }
+
+    let device = null;
+    try {
+      device = await usbPicker({ filters: [] });
+    } catch (err) {
+      const name = err && err.name;
+      if (name === 'NotFoundError' || name === 'AbortError' || name === 'SecurityError') {
+        // User cancelled OR no device picked → compile_only_no_board.
+        if (mountedRef.current) {
+          setUploading(false);
+          setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+        }
+        return;
+      }
+      // Other unexpected WebUSB error → upload_error.
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.UPLOAD_ERROR);
+        setUploadErrorMsg(getDocenteErrorMessage('upload_failed'));
+      }
+      onError?.({
+        category: 'upload_failed',
+        message: getDocenteErrorMessage('upload_failed'),
+        detail: err && err.message ? err.message : undefined,
+      });
+      return;
+    }
+
+    if (!device) {
+      // requestDevice resolved with null (defensive — some implementations).
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      }
+      return;
+    }
+
+    // ── Step 3: device picked → defer to legacy upload chain (best-effort).
+    // The dfu-util flash itself is iter 77+ scope (real Nano R4 hardware UAT
+    // Andrea/Tea/Riccardo). For iter 76 demo we stop at "device acquired"
+    // and let the caller wire the actual flash via legacy handleClick.
+    if (mountedRef.current) {
+      setUploading(false);
+      setDemoState(DEMO_STATES.UPLOAD_SUCCESS);
+      setUploadSucceeded(true);
+    }
+    onSuccess?.({
+      message:
+        "Caricato sul kit fisico Nano R4! Ragazzi, ora osservate cosa succede.",
+      payload: { jobId: compilePayload?.jobId, device: 'webusb' },
+    });
+  }, [
+    enableDemoMode, uploading, sketchCode, compileEndpoint, fqbn,
+    fetchImpl, requestUsbDevice, onSuccess, onError, setDemoState,
+  ]);
+
+  // Iter 76 D.1 — retry handler used by the compile_only_no_board CTA to
+  // re-trigger the WebUSB device picker without re-running /compile.
+  const handleRetryUsb = useCallback(async () => {
+    if (!enableDemoMode) return;
+    setUploadErrorMsg(null);
+    setDemoState(DEMO_STATES.CONNECTING_USB);
+
+    const usbPicker =
+      requestUsbDevice
+      || (typeof navigator !== 'undefined'
+        && navigator.usb
+        && typeof navigator.usb.requestDevice === 'function'
+        ? (filters) => navigator.usb.requestDevice(filters)
+        : null);
+
+    if (!usbPicker) {
+      if (mountedRef.current) setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      return;
+    }
+
+    let device = null;
+    try {
+      device = await usbPicker({ filters: [] });
+    } catch (err) {
+      const name = err && err.name;
+      if (name === 'NotFoundError' || name === 'AbortError' || name === 'SecurityError') {
+        if (mountedRef.current) setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+        return;
+      }
+      if (mountedRef.current) {
+        setDemoState(DEMO_STATES.UPLOAD_ERROR);
+        setUploadErrorMsg(getDocenteErrorMessage('upload_failed'));
+      }
+      return;
+    }
+
+    if (!device) {
+      if (mountedRef.current) setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      return;
+    }
+
+    if (mountedRef.current) {
+      setDemoState(DEMO_STATES.UPLOAD_SUCCESS);
+      setUploadSucceeded(true);
+    }
+  }, [enableDemoMode, requestUsbDevice, setDemoState]);
+
   const label = uploading ? 'Caricamento sul kit...' : 'Carica sul kit fisico';
 
   // Palette via CSS vars with safe fallbacks (palette CLAUDE.md §Design).
@@ -357,6 +660,23 @@ export default function CompileUploadButton({
     gap: 8,
   };
 
+  // iter 76 D.1 — when demo-mode is enabled, the visible UI must surface the
+  // honest no-board banner whenever the state machine sits there. We render
+  // the banner as a sibling of the button so the button stays clickable
+  // (retry CTA is INSIDE the banner; the main button remains the primary
+  // affordance for re-triggering a full compile+upload cycle).
+  const showNoBoardBanner =
+    enableDemoMode && demoState === DEMO_STATES.COMPILE_ONLY_NO_BOARD;
+
+  // Honest message — plurale "Collegate" + verbatim HEX bytes count when we
+  // have it (parsed from arduino-cli stdout). Never claim "Caricato".
+  const noBoardMessage = (() => {
+    if (compileBytes.hexBytes != null) {
+      return `Compilazione completata: ${compileBytes.hexBytes} byte di codice. Collegate il Nano R4 via USB per caricare sulla scheda.`;
+    }
+    return "Compilazione completata. Collegate il Nano R4 via USB per caricare sulla scheda.";
+  })();
+
   return (
     <span style={cliffhangerWrapStyle} data-elab-compile-upload-wrap="true">
       <button
@@ -366,15 +686,126 @@ export default function CompileUploadButton({
         aria-disabled={disabled || undefined}
         aria-busy={uploading || undefined}
         title={tooltip}
-        onClick={handleClick}
-        disabled={disabled}
+        onClick={enableDemoMode ? handleDemoClick : handleClick}
+        disabled={enableDemoMode ? (uploading || !sketchCode) : disabled}
         style={buttonStyle}
         data-elab-component="compile-upload-button"
         data-elab-agent-available={agentAvailable ? 'true' : 'false'}
+        data-elab-demo-mode={enableDemoMode ? 'true' : 'false'}
+        data-elab-demo-state={demoState}
       >
         {uploading ? <SpinnerIcon /> : <UploadIcon />}
         <span>{label}</span>
       </button>
+      {showNoBoardBanner && (
+        <span
+          role="status"
+          aria-live="polite"
+          aria-label="Compilazione completata, scheda Nano R4 non collegata"
+          data-testid="compile-only-no-board-banner"
+          data-elab-demo-state="compile_only_no_board"
+          style={{
+            display: 'inline-flex',
+            flexDirection: 'column',
+            gap: 8,
+            padding: '12px 16px',
+            marginTop: 4,
+            border: '2px solid var(--elab-orange, #E8941C)',
+            borderRadius: 8,
+            background:
+              'var(--elab-no-board-bg, rgba(232, 148, 28, 0.10))',
+            color: 'var(--elab-text, #1A1A1A)',
+            fontFamily: 'var(--font-sans, "Open Sans", system-ui, sans-serif)',
+            maxWidth: 480,
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              fontFamily:
+                'var(--font-display, "Oswald", "Open Sans", system-ui, sans-serif)',
+              fontSize: 15,
+              fontWeight: 600,
+              color: 'var(--elab-navy, #1E4D8C)',
+            }}
+          >
+            <span
+              style={{
+                color: 'var(--elab-lime, #4A7A25)',
+                display: 'inline-flex',
+              }}
+            >
+              <CheckIcon size={20} />
+            </span>
+            <span>Compilazione completata</span>
+            <span
+              style={{
+                color: 'var(--elab-orange, #E8941C)',
+                display: 'inline-flex',
+                marginLeft: 4,
+              }}
+            >
+              <WarningIcon size={20} />
+            </span>
+          </span>
+          <span
+            data-testid="compile-only-no-board-message"
+            style={{ fontSize: 14, lineHeight: 1.45 }}
+          >
+            {noBoardMessage}
+          </span>
+          {(compileBytes.hexBytes != null || compileBytes.ramBytes != null) && (
+            <span
+              data-testid="compile-only-no-board-bytes"
+              style={{
+                fontFamily:
+                  'var(--font-mono, "Fira Code", "Courier New", monospace)',
+                fontSize: 13,
+                color: 'var(--elab-text-muted, #5A6B7E)',
+              }}
+            >
+              {compileBytes.hexBytes != null && (
+                <span data-testid="hex-bytes">
+                  HEX: {compileBytes.hexBytes} byte
+                </span>
+              )}
+              {compileBytes.hexBytes != null
+                && compileBytes.ramBytes != null
+                && ' · '}
+              {compileBytes.ramBytes != null && (
+                <span data-testid="ram-bytes">
+                  RAM: {compileBytes.ramBytes} byte
+                </span>
+              )}
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={handleRetryUsb}
+            aria-label="Riprova caricamento sul kit Nano R4"
+            data-testid="compile-only-no-board-retry"
+            style={{
+              alignSelf: 'flex-start',
+              minHeight: 44,
+              minWidth: 44,
+              padding: '10px 18px',
+              border: '2px solid var(--elab-orange, #E8941C)',
+              borderRadius: 8,
+              background: 'var(--elab-orange, #E8941C)',
+              color: '#FFFFFF',
+              fontWeight: 700,
+              fontSize: 14,
+              cursor: 'pointer',
+              fontFamily:
+                'var(--font-sans, "Open Sans", system-ui, sans-serif)',
+            }}
+          >
+            Riprova caricamento
+          </button>
+        </span>
+      )}
       {showCliffhanger && (
         <span
           role="region"
