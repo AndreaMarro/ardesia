@@ -3302,3 +3302,92 @@ Box subtotal 9.35/10 + bonus iter 73 (+0.50 Codex workflow + Mac Mini orchestrat
 - Handoff iter 74: `docs/handoff/2026-05-17-iter-73-to-iter-74-handoff.md`
 - Codex Pattern V output: `/tmp/codex-verify-iter73-cc2.txt` (4042 LOC)
 - Mac Mini outputs: `/tmp/mm-{cliffhanger-runtime.txt,usb-webserial.txt,vol12-drifts.json}`
+
+## Sprint U iter 74 CLOSE (2026-05-17 PM) — Andrea massima autonomia 7 TRACKS parallel multi-agent orchestration
+
+**Score iter 74 close ONESTO G45 cap**: **9.2/10** (raw 9.4 → cap -0.2 3 atoms deferred + 6 P0 UI/UX findings + Codex verify pending)
+
+**Pattern multi-agent orchestration VALIDATED**:
+- Orchestrator inline 5 atoms
+- BG subagent B-1 frontend-developer cliffhanger CTA wire (worktree isolato 17min vs 2h budget)
+- BG subagent C ui-designer UI/UX impeccable audit (worktree isolato 9min vs 3h budget)
+- Mac Mini SSH 4 parallel tasks bash-native
+- Codex BG Pattern V verify-iter74-batch RUNNING
+
+Pattern S r3 race-cond fix VALIDATED **18× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67+68+69+70+71+72+73+**74**).
+
+### Deliverables iter 74 (5 commits batch pushed origin range 61ce27b5..1fa5a973)
+
+| Commit | Atom | Files | LOC |
+|---|---|---|---|
+| `3892543c` | A2+B2+B4 (footer a11y + cliffhanger audit + Vol1/Vol2 33 drift fix script) | 36 files | +249 -35 |
+| `a4654449` | A1+A4 (installer link 404 fix + Nano R4 hardware UAT prep docs) | 2 files | +163 -5 |
+| `337ae0ee` | B-1 cliffhanger CTA wire 3 components cherry-pick | 4 files | +693 -17 |
+| `4d02c8ab` | C UI/UX impeccable audit Phase 1 cherry-pick (415 LOC) | 1 file | +415 |
+| `1fa5a973` | B-3 Passo Passo audit (RESOLVED iter 45 no action) | 1 file | +72 |
+
+### TRACK A cross-compile follow-up
+✅ A1 installer link 404 fix + ✅ A2 footer a11y outline + ⏸ A3 emoji→SVG iter 75 + ✅ A4 hardware UAT prep + ⏸ A5 R5 verify iter 75
+
+### TRACK B 6 narrative atoms
+✅ B-1 cliffhanger CTA 3 components SHIPPED + ✅ B-2 audit (Option C iter 75) + ✅ B-3 audit (resolved iter 45) + ✅ B-4 33 drift fix CLEAN (iter 57 close §gap #1 CLOSED) + ⏸ B-5 Tea iter 75 + ⏸ B-6 USB Web Serial iter 75
+
+### TRACK C UI/UX impeccable
+✅ C audit 415 LOC: 6 P0 + 18 P1 + ~40 P2 + ~30 P3 + 10 quick wins iter 75. 6 dimensions audited (WCAG + design system + Morfismo + PZ + LIM responsive + perf bundle). Top P0: Diario "In arrivo" + Toast WCAG fail + breakpoints + LandingPNRR 28K LOC + z-index entropy + Mascotte PNG hack.
+
+### TRACK D Mac Mini 4 tasks parallel done
+MM-iter74-1 drift list + MM-iter74-2 Vol3 chain verify + MM-iter74-3 fumetto schema + MM-iter74-4 Tea status (TEA dir NOT on Mac Mini = Andrea direct ping iter 75)
+
+### TRACK E Codex BG verify
+verify-iter74-batch PID 64165 GPT-5.5 high single sequential RUNNING — verdict consume iter 75 entrance gate
+
+### CoV iter 74 verified
+Vitest 14358 → 14374 PASS (+16 NEW B-1 cliffhanger tests). ZERO regression. Pre-commit + pre-push hooks PASSED 5 commits + push. B-4 idempotent verify clean.
+
+### SPRINT_U_COMPLETE 21 boxes status post iter 74
+
+| Box | iter 73 | iter 74 | Delta |
+|---|---|---|---|
+| 1-20 | (preserved) | (preserved) | 0 |
+| **NEW 21 Narrative cliffhanger CTA wire 3 components** | n/a | **0.85** | +0.85 (B-1 shipped + 16 NEW tests, iter 75 Option C enhancement) |
+
+Box subtotal 9.45/10 + bonus iter 74 (+0.40 Codex workflow + multi-agent + 18× Pattern S r3 + Mac Mini) = raw 9.85 → **G45 cap 9.2/10 ONESTO**.
+
+### 8 honesty caveats iter 74 → iter 75 carryover
+
+1. A3 ScratchCompileBar emoji → SVG DEFERRED iter 75 (post B-1 merge no collision)
+2. A5 R5 banner real Chrome verify DEFERRED iter 75 (control_chrome + Andrea)
+3. B-5 Tea T1-T5 review DEFERRED iter 75 (Andrea ping OR Mac Mini)
+4. B-6 USB Web Serial port detection DEFERRED iter 75
+5. TRACK C 6 P0 + 18 P1 UI/UX findings ship iter 75 fix cascade
+6. Codex BG verify-iter74-batch RUNNING — verdict consume iter 75 entrance
+7. Memory `feedback_passo_passo_regression_06may2026.md` update iter 75 resolved
+8. `experimentNarrativeService.js` DEAD CODE refactor decision iter 75 post B-1 baseline
+
+### Iter 75 mandate Andrea AUTO-START completa autonomia
+
+"FINITO ITER 74 CREA ITER 75 e fai tutto in completa autonomia basandoti sulle esigenze. NO DEBITO TECNICO, MASSIMO ORDINE."
+
+→ Iter 75 entrance: orchestrator inline auto-start TRACK 75-E.1 Codex verdict consume + TRACK 75-B.1-B.6 6 P0 UI/UX ship + TRACK 75-A.1 emoji → SVG sequence GSD-2 atomization.
+
+### Iter 75 atom plan ATOMIZATION 8 TRACKS
+
+- 75-A cross-compile finalization (emoji + R5 + USB Web Serial)
+- 75-B UI/UX impeccable Phase 2 SHIP 6 P0 + 10 quick wins
+- 75-C narrative enhancement (Option C + memory update)
+- 75-D Mac Mini parallel tasks (Lighthouse + axe + stress + Tea)
+- 75-E Codex BG Pattern V/C continuous verify
+- 75-F site mapping comprehensive + debug systematic
+- 75-G skill/plugin creator new ELAB skills (4 NEW skills + eval)
+- 75-H hardware UAT prep iter 76+ Andrea/Tea/Riccardo Nano R4 USB
+
+### Cross-link docs iter 74
+
+- Close audit: `docs/audits/2026-05-17-iter-74-CLOSE-audit.md`
+- Handoff iter 75: `docs/handoff/2026-05-17-iter-74-to-iter-75-handoff.md`
+- B-2 audit: `docs/audits/2026-05-17-iter-74-B2-cliffhanger-table-runtime-audit.md`
+- B-3 audit: `docs/audits/2026-05-17-iter-74-B3-passo-passo-regression-RESOLVED-iter45.md`
+- C UI/UX audit: `docs/audits/2026-05-17-iter-74-TRACK-C-uiux-impeccable-audit.md`
+- A4 hardware UAT: `docs/hardware/2026-05-17-iter-74-nano-r4-uat-prep.md`
+- B-4 script: `scripts/fix-vol12-coupled-titles.mjs`
+- Codex BG iter 74: `/tmp/codex-verify-iter74-batch.txt`
