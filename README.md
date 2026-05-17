@@ -124,6 +124,63 @@ Leggi CONTRIBUTING.md per le regole complete. In breve:
 5. Target: bambini 8-14 — testi semplici, bottoni grandi (44x44px min)
 6. WCAG AA: contrasto minimo 4.5:1, font minimo 13px
 
+## Built-bundle smoke test (iter 79 Atom 79.0 — P0 BLOCKER)
+
+```bash
+npm run test:build-smoke
+```
+
+Compila la build di produzione (`vite build` + obfuscator), avvia `vite preview`
+sulla porta 4173, e verifica con Playwright che i 4 route critici (`#compile-home`,
+`#lavagna`, `#tutor`, `#dashboard`) renderizzino senza error boundary e senza
+eccezioni JavaScript non catturate.
+
+### Quando eseguire
+
+- **OBBLIGATORIO** prima di ogni `git push origin` su branch principali.
+- Prima di ogni deploy Vercel (`npx vercel --prod`).
+- Dopo modifiche a file in `SKIP_PATTERNS` dentro `vite.config.js`.
+- Dopo refactor JSX che usano short-circuit + property access
+  (es. `{cond && <>{obj.prop}</>}`).
+
+### Perché esiste
+
+Iter 78 PROD regression (commit `6e639e07`) ha rivelato che il revisore Codex
+Pattern V/C sorgente non rileva le regressioni indotte dall'obfuscator perché
+il bug compare solo DOPO il passaggio `javascript-obfuscator` (hoisting di
+property access fuori dal guard JSX). I test unitari + i test source-level
+passano comunque. Solo il rendering del bundle compilato in browser cattura
+questa classe di bug.
+
+### Debug failure
+
+Se il comando fallisce:
+
+1. **Identifica il route che ha fallito** nell'output (es. `/#lavagna`).
+2. **Leggi pageErrors / consoleErrors** nel messaggio di assertion — contengono
+   stack trace troncato delle eccezioni reali.
+3. **Riproduci localmente**:
+   ```bash
+   npm run build && npx vite preview --port 4173
+   # poi apri http://localhost:4173/#<route> in Chrome DevTools
+   ```
+4. **Verifica obfuscation**: se il bug NON si riproduce in `npm run dev` ma SI in
+   `npm run build`, è un'interazione con l'obfuscator. Aggiungi il chunk a
+   `SKIP_PATTERNS` in `vite.config.js` come hotfix, e refactora il JSX per usare
+   optional chaining defensive.
+5. **Artifacts** in `results/artifacts-build-smoke/` (screenshot + trace
+   Playwright on failure).
+
+### Limitazioni note
+
+- Solo Chromium (Firefox/Webkit fuori scope iter 79). Le regressioni di
+  obfuscation sono browser-agnostic, quindi Chromium è sufficiente come
+  primo livello di difesa.
+- Porta 4173 hardcoded. Liberala prima con
+  `lsof -ti:4173 | xargs kill -9 2>/dev/null || true` se necessario.
+- Build cache vite (`node_modules/.vite/`) può servire chunk obsoleti in CI —
+  pulire con `rm -rf node_modules/.vite dist` per garantire fresh.
+
 ## Documentazione approfondita
 
 | Doc | Descrizione |

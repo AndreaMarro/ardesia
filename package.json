@@ -16,6 +16,7 @@
     "coverage": "vitest run --coverage",
     "test:e2e": "npx playwright test --config tests/e2e/playwright.config.js",
     "test:e2e:smoke": "npx playwright test --config tests/e2e/playwright.config.js tests/e2e/01-homepage-load.spec.js tests/e2e/02-simulator-open.spec.js tests/e2e/10-deploy-verify.spec.js",
+    "test:build-smoke": "npm run build && bash scripts/run-build-smoke.sh",
     "test:harness-real": "ELAB_PROD_URL=https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app npx playwright test --config tests/e2e/playwright.harness-real.config.js",
     "test:all": "npx vitest run && npx playwright test --config tests/e2e/playwright.config.js",
     "gate": "bash scripts/anti-regression-gate.sh",
