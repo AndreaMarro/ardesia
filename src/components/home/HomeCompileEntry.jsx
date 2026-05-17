@@ -42,6 +42,15 @@ const USE_LOCAL_AGENT_BANNER =
     && import.meta.env.VITE_USE_LOCAL_AGENT === 'true';
 import ScratchEditor from '../simulator/panels/ScratchEditor';
 import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/ScratchCompileBar';
+// iter 80.A2 fix (Codex Pattern V iter 79 HIGH IDE-1): add direct C++
+// editor tab. HomePage copy line 112 promises "scrivete codice Arduino con
+// i blocchi Blockly oppure direttamente in C++" — previously only Blockly
+// mounted, breaking PRINCIPIO ZERO mandate Andrea verbatim iter 79 PM.
+// CodeEditorCM6 consumed AS-IS from existing simulator panel (iter 73 P0.5
+// LIVE: CodeMirror 6 + cpp lang + Arduino autocomplete + friendly error
+// translator). NO modify simulator file — pure consumer wire-up.
+import CodeEditorCM6 from '../simulator/panels/CodeEditorCM6';
+import { WrenchIcon } from '../common/ElabIcons';
 import styles from './HomeCompileEntry.module.css';
 
 const DEFAULT_BOARD_ID = 'arduino-nano-r4';
@@ -51,8 +60,22 @@ const DEFAULT_BOARD_ID = 'arduino-nano-r4';
 // src/boards/arduino-nano-r4.json:6 + api.js:64 whitelist (iter 72 BG-A7).
 const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
 
+// iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): default Blink starter
+// sketch for "Codice C++" tab. Mirrors Vol3 Cap.6 Esp.1 introduction —
+// pin 13 LED standard didattico (PRINCIPIO ZERO triplet coerenza: kit
+// Omaric + volumi Davide + software ELAB Tutor). Plurale comment intro.
+const DEFAULT_CPP_BLINK = '// Vol3 Cap.6 Esp.1 — Blink sul pin 13 del Nano R4 ELAB\nvoid setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}\n';
+
 const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [scratchCode, setScratchCode] = useState('');
+  // iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): direct C++ editor
+  // state. Default seeded Blink Vol3 Cap.6 Esp.1 sketch so docente vede
+  // codice già compilabile (Karpathy "Simple": no empty-editor friction).
+  const [cppCode, setCppCode] = useState(DEFAULT_CPP_BLINK);
+  // iter 80.A2 editor mode tab state — 'blocks' default (preserves iter 73
+  // CC-2 Blockly experience) vs 'code' direct C++ entry. Switching tab
+  // changes which source feeds handleCompile (see ScratchCompileBar wire).
+  const [editorMode, setEditorMode] = useState('blocks');
   const [compileStatus, setCompileStatus] = useState('idle');
   const [compileErrors, setCompileErrors] = useState(null);
   const [compileWarnings, setCompileWarnings] = useState(null);
@@ -153,24 +176,90 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
 
       <main className={styles.editorGrid}>
         <section className={styles.editorPanel} aria-label="Editor Blockly + IDE">
-          <ScratchErrorBoundary>
-            <ScratchEditor onChange={handleScratchCodeChange} />
-          </ScratchErrorBoundary>
+          {/* iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1) — tab switch
+              Blockly vs C++ diretto. Labels Italian plurale (PRINCIPIO
+              ZERO non-negoziabile). Icone ElabIcons SVG no emoji
+              (CLAUDE.md §Regole tecniche 11). ARIA tablist semantica
+              WAI-ARIA Authoring Practices Tab pattern (role tablist/tab
+              + aria-selected runtime). Touch target ≥44×44 (CLAUDE.md
+              §Qualita 9). */}
+          <div className={styles.tabBar} role="tablist" aria-label="Modalità editor">
+            <button
+              type="button"
+              role="tab"
+              id="home-compile-tab-blocks"
+              aria-selected={editorMode === 'blocks'}
+              aria-controls="home-compile-tabpanel-editor"
+              tabIndex={editorMode === 'blocks' ? 0 : -1}
+              className={`${styles.tabButton} ${editorMode === 'blocks' ? styles.tabActive : ''}`}
+              onClick={() => setEditorMode('blocks')}
+              data-testid="home-compile-tab-blocks"
+            >
+              <svg
+                width="20" height="20" viewBox="0 0 24 24" fill="none"
+                role="img" aria-hidden="true"
+                className={styles.tabIcon}
+              >
+                {/* Puzzle/Blocchi simple inline SVG — Lime fill matches
+                    Blockly identity + Navy stroke for contrast WCAG AA. */}
+                <path
+                  d="M5 5h6v3a2 2 0 0 0 4 0V5h4v6h-3a2 2 0 0 0 0 4h3v4h-6v-3a2 2 0 0 0-4 0v3H5v-6h3a2 2 0 0 0 0-4H5z"
+                  fill="#4A7A25" stroke="#1E4D8C" strokeWidth="1.5" strokeLinejoin="round"
+                />
+              </svg>
+              Blocchi
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="home-compile-tab-code"
+              aria-selected={editorMode === 'code'}
+              aria-controls="home-compile-tabpanel-editor"
+              tabIndex={editorMode === 'code' ? 0 : -1}
+              className={`${styles.tabButton} ${editorMode === 'code' ? styles.tabActive : ''}`}
+              onClick={() => setEditorMode('code')}
+              data-testid="home-compile-tab-code"
+            >
+              <WrenchIcon size={20} className={styles.tabIcon} />
+              Codice C++
+            </button>
+          </div>
+
+          <div
+            className={styles.editorSurface}
+            role="tabpanel"
+            id="home-compile-tabpanel-editor"
+            aria-labelledby={editorMode === 'blocks' ? 'home-compile-tab-blocks' : 'home-compile-tab-code'}
+          >
+            {editorMode === 'blocks' ? (
+              <ScratchErrorBoundary>
+                <ScratchEditor onChange={handleScratchCodeChange} />
+              </ScratchErrorBoundary>
+            ) : (
+              <CodeEditorCM6
+                code={cppCode}
+                onChange={setCppCode}
+                readOnly={false}
+              />
+            )}
+          </div>
         </section>
 
         <aside className={styles.compileBarPanel} aria-label="Pannello compilazione">
           <ScratchCompileBar
-            onCompile={() => handleCompile(scratchCode)}
+            onCompile={() => handleCompile(editorMode === 'code' ? cppCode : scratchCode)}
             compilationStatus={compileStatus}
             compilationErrors={compileErrors}
             compilationWarnings={compileWarnings}
             compilationSize={compileSize}
-            sketchCode={scratchCode}
-            // iter 80 80.A3 fix (Codex Pattern V MED IDE-3): Home handler
-            // calls compileCode only — physical upload routes via separate
-            // CompileUploadButton (rendered when sketchCode + boardId props
-            // present). Override default "Compila & Carica" label to "Compila"
-            // for honest UX (no false-promote upload from main button).
+            // iter 80 80.A2 (Codex Pattern V iter 79 HIGH IDE-1) + 80.A3
+            // (MED IDE-3) combined: editorMode-aware source selection +
+            // honest label. Source = cppCode when "Codice C++" tab active
+            // (CodeEditorCM6 direct entry), scratchCode when Blockly tab
+            // (ScratchEditor onChange xml/code → C++ via scratchGenerator).
+            // Label override "Compila" because Home handler calls compileCode
+            // only — physical upload routes via separate CompileUploadButton.
+            sketchCode={editorMode === 'code' ? cppCode : scratchCode}
             compileButtonLabel="Compila"
             boardId={DEFAULT_BOARD_ID}
             port={null}
