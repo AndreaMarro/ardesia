@@ -675,7 +675,18 @@ export function enforceItalianK12Opener(rawText: string): string {
   // Maintenance: NEW leak pattern = add 1 RegExp to array vs chained .replace insertion.
   // Test isolatable: each pattern unit-testable solo.
   // Whitespace + line collapse applicato ONCE at end (post-strip).
-  let cleaned = rawText;
+  //
+  // Iter 72-ORCH-A4 fix (Codex Pattern V root cause matrix v245 color-026 fail):
+  // When response contains [RISPOSTA UNLIM] marker (envelope artifact from tool-call
+  // context prefix injection), LEAKED_CONTEXT_PATTERNS strip with /[^\n]+/ regex
+  // (e.g. /stato\s+simulatore:\s*[^\n]+/gi line ~424) consumes WHOLE single-line
+  // response → cleaned becomes empty → returns rawText unmodified → matrix scorer
+  // fails no_plurale (no Ragazzi prepend opportunity). Extract marker text BEFORE
+  // strip loop ensures real UNLIM response preserved + opener enforcement works.
+  // Risk: LOW — only activates if [RISPOSTA UNLIM] marker present (envelope artifact,
+  // not user-facing prose).
+  const responseMarkerMatch = rawText.match(/\[RISPOSTA\s+UNLIM\]\s*([\s\S]+)$/i);
+  let cleaned = responseMarkerMatch?.[1]?.trim() || rawText;
   for (const re of LEAKED_CONTEXT_PATTERNS) {
     cleaned = cleaned.replace(re, '');
   }
