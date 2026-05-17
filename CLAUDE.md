@@ -3150,8 +3150,50 @@ Iter 72 ha shipped infrastructure tecnica MA NON ha rinforzato arco narrativo co
 
 ### Cross-link docs narrative
 
-- Strategy audit: `docs/strategy/2026-05-17-iter-72-NARRATIVE-ARC-AUDIT.md`
-- Cliffhanger source: `src/data/cliffhanger-table.json` (14 Vol3 entries Tea + iter-70-A)
+- Strategy audit ORIGINAL: `docs/strategy/2026-05-17-iter-72-NARRATIVE-ARC-AUDIT.md`
+- Strategy audit CORRECTION post Tea: `docs/strategy/2026-05-17-iter-72.5-NARRATIVE-AUDIT-CORRECTION.md`
+- Cliffhanger source: `src/data/cliffhanger-table.json` (14 Vol3 entries wrapper format) + Tea canonical `/VOLUME 3/TEA/Nuovo lavoro tea/cliffhanger_table.json` (94 flat array)
 - Narrative map: `src/data/narrative-map-94.json` (per-volume structured)
-- Lesson-paths: `src/data/lesson-paths/v*.json` (79 files, schema MANCA prev/next)
+- Lesson-paths: `src/data/lesson-paths/v*.json` (79 files, schema HAS `next_experiment {id,title,preview}` validated iter 57)
 - Feedback regression Passo Passo iter 36 PM: `feedback_passo_passo_regression_06may2026.md`
+- Iter 57 close audit (Vol3 narrative arc shipped): `docs/audits/2026-05-14-iter-57-close-audit.md`
+- Tea brief iter 58 (T1-T5 PENDING): `/VOLUME 3/TEA/iter-58-brief-tea.md`
+
+### CORRECTION iter 72.5 audit (Tea materials read 2026-05-17 PM)
+
+3 errori fattuali iter 72.5 audit precedente corretti post Tea folder + iter 57 close audit empirical read:
+
+| Mia claim iter 72.5 | Realtà empirica | Status |
+|---|---|---|
+| "PercorsoCapitoloView ZERO cliffhanger consume = card flat scollegate" | renders `narrative_flow.transitions` line 40-43 + `intro_text` 216 + `closing_text` 298 | ❌ MY ERROR (grep too narrow) |
+| "lesson-paths schema MANCA prev_id+next_id+cliffhanger" | HAS `next_experiment {id,title,preview}` object validated iter 57 `validate-lesson-paths.mjs` 94/94 pass | ❌ MY ERROR |
+| "Vol3 14 vs Tea 29 = 15 missing requires Davide co-author" | Vol3 14 = iter 57 INTENTIONAL pedagogical chain Andrea+Tea ratified. Tea 29 = canonical SUPERSET reference (15 esclusi consapevolmente) | ❌ MY ERROR |
+
+### Valid gaps iter 72.5 confirmed empirical post-correction
+
+1. ScratchCompileBar.jsx ZERO `next_experiment` consume — compile success NO cliffhanger CTA
+2. CompileUploadButton.jsx ZERO narrative consume — upload success NO cliffhanger CTA
+3. AlbumStudente.jsx ZERO link to next experiment — iter 72 BG-A6 real gap
+4. cliffhanger-table.json wrapper format vs Tea canonical flat array — Codex iter 70 TEAM A HIGH (audit runtime usage iter 73)
+5. BuildModeGuide passo-passo regression iter 36 PM — 9+ iter carryover
+
+### Iter 73 P0 RESTRUCTURE POST-CORRECTION (realistic)
+
+1. Components transition cliffhanger CTA wire (~2h) — ScratchCompileBar + CompileUploadButton + AlbumStudente, pattern LessonPathPanel:462-471
+2. cliffhanger-table audit decide runtime usage (~30min)
+3. BuildModeGuide passo-passo regression fix (~2h iter 36 PM carryover)
+4. Vol1/Vol2 coupled-title cleanup 33 drifts (~2h iter 57 deferred)
+5. Tea T1-T5 review status check (Andrea ask OR Mac Mini delegate)
+6. USB Web Serial port detection (~2h iter 72 BG-A7 follow-up)
+7. Andrea ratify queue iter 72 close 8 voci
+
+### REMOVED iter 73 P0 post correction
+
+- ~~Vol3 Davide co-author 14→29~~ (iter 57 INTENTIONAL chain, Tea SUPERSET reference)
+- ~~PercorsoCapitoloView cliffhanger render~~ (ALREADY renders narrative_flow)
+- ~~lesson-paths schema add prev/next~~ (HAS next_experiment iter 57)
+- ~~"94 esperimenti Playwright narrative audit"~~ (79 canonical iter 57 NOT 94 Tea SUPERSET)
+
+### Anti-inflation G45 mandate post correction
+
+Iter 72 close score 8.95/10 UNCHANGED (correction = post-doc audit, NON modifica deliverables iter 72). NON COMPIACERE applies to MY audit errors: admitted retroactively. Iter 73 priorities REALISTIC narrative gap (4 components + cliffhanger-table format + Passo Passo regression + Vol1/Vol2 titles) NON inflated false "15 missing Vol3".
