@@ -3846,3 +3846,112 @@ Box subtotal **10.40/11 normalized 9.45** + bonus cumulative iter 80 FULL (+0.40
 - Codex Pattern C iter 80 batch (2430 LOC): `/tmp/codex-verify-iter80-batch.txt`
 - Iter 81 mission: auto-start per Andrea "FINITO ITER X CREA ITER X+1" — 5 inline atoms + 5 BG atoms iter 81 atomization above
 
+
+## Sprint U iter 81 inline close (2026-05-17 PM) — Close BG agent A2 caveats + Codex iter 79 LOW BLOCKLY-2
+
+**Score iter 81 inline close ONESTO G45 cap**: **9.3/10** (+0.1 vs iter 80 FULL 9.2 — 3 BG agent A2 caveats closed + 1 Codex iter 79 LOW closed + 81.A5 v2 fix verified empirically)
+
+**Pattern**: orchestrator inline 4 atoms + Codex BG Pattern C iter 81 batch verify (caught 81.A5 v1 MED → fix v2 globPatterns add). Pattern S r3 race-cond fix VALIDATED **27× consecutive**.
+
+### Deliverables iter 81 inline batch (commit `c881c238` pushed origin)
+
+| Atom | Codex severity | File | LOC | Notes |
+|---|---|---|---|---|
+| 81.A1 keyboard nav | LOW WAI-ARIA | `HomeCompileEntry.jsx` | +24 LOC | onKeyDown tablist Arrow Left/Right + Home/End + requestAnimationFrame focus |
+| 81.A2 PuzzleIcon | LOW family pattern | `ElabIcons.jsx` + `HomeCompileEntry.jsx` | +21 NEW -13 inline | Extract inline SVG to ElabIcons family pattern |
+| 81.A5 v1 globIgnores remove | MED Codex C caught | `vite.config.js` | -1 LOC | Removed ScratchEditor from blacklist — INSUFFICIENT (globPatterns IS whitelist) |
+| 81.A5 v2 globPatterns add | LOW post-fix | `vite.config.js` | +20 LOC | Added 'assets/ScratchEditor-*.js' to whitelist → precache 26 → 27 entries +714 KiB verified `dist/sw.js` |
+| 81.A6 act() wrap T3 | LOW cosmetic close | `HomeCompileEntry-tabs.test.jsx` | +13 -8 LOC | `await act(async () => ...)` wrap compile click + microtask wait |
+
+### CoV iter 81 inline verified
+
+- Vitest delta scope tabs+callback: **6/6 PASS** post all 4 atoms (213ms)
+- Build PASS x2 (~33s each, 2nd verifies 81.A5 v2 globPatterns add effect)
+- dist/sw.js precache: **26 → 27 entries** + **1238 → 1952 KiB** (+ScratchEditor-CJ9thAbx.js 731KB inline)
+- Smoke 4/4 PASS HEAD `06f19f17` post-rebuild
+- Pre-push hook gate PASS 14457 baseline (14463 future target post-merge)
+- Codex Pattern C iter 81 batch verify: A1+A2+A6 LOW, A5 v1 MED (FIXED v2) — ship recommendation post-v2 GREEN
+
+### Codex Pattern C iter 81 batch findings (post-v2 verdict)
+
+| Atom | Codex severity | Detail |
+|---|---|---|
+| 81.A1 | LOW + test gap | keydown bubble correct, roving tabIndex preserved, MA test doesn't assert keyboard movement — defer iter 82 |
+| 81.A2 | LOW | family pattern consistent (RobotIcon/CircuitIcon/BookIcon), no title semantics MA decorative aria-hidden OK |
+| 81.A5 v1 | MED ⚠️ | globIgnores remove alone INSUFFICIENT — globPatterns IS whitelist, sw.js precache count UNCHANGED 26 entries — FIXED v2 |
+| 81.A5 v2 | LOW post-fix | ScratchEditor-CJ9thAbx.js verified in sw.js precache 27 entries 1952 KiB, under 2.5MB maximumFileSizeToCacheInBytes limit |
+| 81.A6 | LOW | async act wrap correct, fireEvent already wraps switch click cleanly |
+
+### BG agent A2 iter 80 caveats status post iter 81
+
+- ✅ #1 React act() warning T3 — CLOSED 81.A6
+- ✅ #4 tab keyboard nav Arrow Left/Right — CLOSED 81.A1
+- ✅ #5 PuzzleIcon ElabIcons — CLOSED 81.A2
+- ⏸ #2 CodeEditorCM6 mocked — defer iter 82+ functional E2E (Playwright)
+- ⏸ #3 compileButtonLabel prop stale base — RESOLVED iter 80 cherry-pick (combined both atoms)
+
+### SPRINT_U_COMPLETE 30 boxes status post iter 81 inline
+
+| Box | iter 80 FULL | iter 81 inline | Delta |
+|---|---|---|---|
+| 1-28 | (preserved) | (preserved) | 0 |
+| 29 HomePage direct C++ IDE entry | 0.85 | **0.95** (+0.10 keyboard nav + PuzzleIcon + act test guard) | +0.10 |
+| **NEW 30 PWA offline Blockly precache** | n/a | **0.85** | +0.85 (81.A5 v2 ScratchEditor in precache verified empirico) |
+
+Box subtotal **10.80/11 normalized 9.81** + bonus iter 81 inline (+0.40 Codex iter 81 v2 catch + 4 inline atoms + Pattern S r3 27× consecutive) = raw **9.96 → G45 cap 9.3/10 ONESTO**.
+
+**Cap deductions honest 3 explicit**:
+- −0.3 BG subagents 81.B1+B3 NOT dispatched iter 81 (iter 70 TEAM A+D rework deferred iter 82+)
+- −0.3 Hardware UAT Nano R4 USB pending Andrea action (chain ready end-to-end)
+- −0.1 81.A1 keyboard movement test coverage gap (assertion missing, defer iter 82)
+
+### 5 honesty caveats iter 81 inline → iter 82 carryover
+
+1. **81.A5 v1 → v2 fix demonstrates Codex Pattern C value**: caught precache count UNCHANGED post v1 (globIgnores blacklist NOT whitelist). v2 globPatterns explicit add LIVE verified `dist/sw.js` 27 entries + ScratchEditor-CJ9thAbx.js present. Without Codex cross-check, would have shipped non-functional v1.
+2. **81.A1 keyboard movement test NOT added**: Codex LOW gap — current tab tests only assert role + aria-selected. Defer iter 82 add 6th test T6 keyboard nav assertion (Arrow Right → editorMode switches + focus moves).
+3. **CORS noise residual /#compile-home**: 80.A6 source-only fix unchanged effect post iter 81 (smoke spec 2 console.error CSP block). Eliminates only after Andrea restarts agent:8765 + Vercel redeploys 80.A6 commit.
+4. **iter 70 TEAM A+B+D+E+G HIGH/MED still deferred 30+ days**: Vol3 dataset (Davide co-author) + 94 esperimenti P0 assertion + UnlimMascotte keyboard + Lighthouse hard gate + PreToolUse hook matcher. Iter 82+ subagent BG rework ~5-6h total (excluding TEAM A Davide dependency).
+5. **Sprint U close GATE clear iter 82-84 projection**: iter 70 TEAM + Codex iter 79 6 LOW + hardware UAT + Opus indipendente review G45 mandate. Each gate ~1-3 iter incremental.
+
+### Iter 82 priorities P0 cascade target 9.3 → 9.5+/10
+
+**Inline atoms iter 82 (~2-3h orchestrator)**:
+1. **82.A1** Keyboard movement T6 assertion (Codex 81.A1 LOW gap, ~10 LOC HomeCompileEntry-tabs.test.jsx)
+2. **82.A2** Codex iter 79 LOW BLOCKLY-1 Blockly disposal patch runtime guard (~30 LOC ScratchEditor.jsx OR pin patched package)
+3. **82.A3** Codex iter 79 LOW HOMEPAGE-1 docs path typo fix (~5 LOC docs)
+4. **82.A4** Codex iter 79 LOW HOMEPAGE-3 navigation test add rendering assert (~20 LOC tests/unit/navigation.test.js)
+
+**BG subagent atoms iter 82 (~5-6h budget)**:
+5. **82.B1** iter 70 TEAM B 94 esperimenti Playwright P0 assertion fix (~2h subagent BG)
+6. **82.B2** iter 70 TEAM E Lighthouse hard gate + UX strict + Promptfoo SUPABASE (~2h subagent BG)
+7. **82.B3** iter 70 TEAM G PreToolUse hook Edit/MultiEdit matcher + blockly-blocks path (~1h subagent BG)
+8. **82.B4** Functional E2E Playwright spec HomeCompileEntry tab switch (close BG agent A2 caveat #2, ~2h subagent BG)
+
+**Andrea actions pending iter 82+**:
+- A-SECURITY rotation status verify (last iter 70 PHASE 7, ~7+ days exposure)
+- Agent restart 8765 → verify CORS 4173 noise eliminated
+- Vercel deploy verify 80.A6 + 81.A5 CSP propagation
+- Hardware UAT Nano R4 USB schedule (Tea/Riccardo)
+- Render deploy Cloud Compile prod (iter 77 PHASE 4 carryover)
+- Sentry + PostHog OAuth + 3 dashboards seed (browser-interactive)
+
+**Sprint U close projection iter 83-85**: 9.5/10 ONESTO conditional 82.B1-B4 + hardware UAT + Opus indipendente review G45 mandate.
+
+### Anti-inflation G45 mandate iter 81 inline enforced
+
+- Cap **9.3/10** post 81.A5 v2 Codex catch + BG agents deferred + hardware UAT pending
+- NO claim "Sprint U close" (iter 83-85 projection)
+- NO claim "iter 70 TEAM A-G complete" (5/5 rework iter 82+ BG)
+- NO claim "Codex iter 79 14 findings closed" (6 MED + 1 HIGH IDE-1 closed iter 80, 1 LOW BLOCKLY-2 closed iter 81, 6 LOW deferred iter 82+)
+- NO claim "PWA offline Blockly LIVE prod" (verified empirico dist/sw.js, MA needs Vercel deploy + Andrea verify real device offline test)
+- 81.A1+A2+A5 v2+A6 verified empirico (vitest 6/6 + Codex Pattern C iter 81 batch + build x2 + smoke 4/4)
+
+### Cross-link docs iter 81 inline
+
+- Commit: `c881c238` pushed origin
+- Codex Pattern C iter 81 batch (2430 LOC): `/tmp/codex-verify-iter81-batch.txt`
+- 81.A1 keyboard nav: `src/components/home/HomeCompileEntry.jsx:186-211`
+- 81.A2 PuzzleIcon: `src/components/common/ElabIcons.jsx:137-156` + `HomeCompileEntry.jsx:53`
+- 81.A5 v2 PWA precache: `vite.config.js:226-244`
+- 81.A6 act() wrap: `tests/unit/components/home/HomeCompileEntry-tabs.test.jsx:23+124`
+
