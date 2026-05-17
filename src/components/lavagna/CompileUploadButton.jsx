@@ -486,11 +486,29 @@ export default function CompileUploadButton({
     // ── Step 1: POST /compile (cross-compile WITHOUT board).
     let compilePayload = null;
     try {
+      // iter 77 STOP-HOOK #3 fix (Codex stop-time review #8):
+      // 'Cloud demo compile path still omits required auth header'.
+      // Cloud Render server.js:93-107 authMiddleware requires
+      // X-Elab-Api-Key header → 401 prod without. Detect Cloud endpoint
+      // via CLOUD_COMPILE_URL match. Env VITE_ELAB_API_KEY surfaced via
+      // import.meta.env (build-time inject, .trim() per CLAUDE.md regola).
+      const headers = { 'Content-Type': 'application/json' };
+      const isCloudEndpoint =
+        CLOUD_COMPILE_URL && compileEndpoint.startsWith(CLOUD_COMPILE_URL.replace(/\/compile$/, ''));
+      const cloudApiKey =
+        typeof import.meta !== 'undefined'
+          && import.meta.env
+          && typeof import.meta.env.VITE_ELAB_API_KEY === 'string'
+          ? import.meta.env.VITE_ELAB_API_KEY.trim()
+          : '';
+      if (isCloudEndpoint && cloudApiKey) {
+        headers['X-Elab-Api-Key'] = cloudApiKey;
+      }
       const compileRes = await doFetch(compileEndpoint, {
         method: 'POST',
         mode: 'cors',
         credentials: 'omit',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ sketchCode, fqbn }),
       });
       try {
