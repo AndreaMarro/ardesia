@@ -67,11 +67,14 @@ export class ScratchErrorBoundary extends React.Component {
 }
 
 /* ─── S93: Compile bar for Scratch mode (no code visible) ─── */
+// Iter 75 CC-2 (Codex iter 74 Regola 11): hourglass ⌛ emoji removed.
+// statusColor 'var(--color-status-compiling)' lime tint conveys progress
+// + animated ellipsis "..." cycle via setInterval line 105 conveys activity.
 const SCRATCH_COMPILE_MSGS = [
-  '⌛ Compilazione...',
-  '⌛ Controllo i blocchi...',
-  '⌛ Quasi fatto...',
-  '⌛ Traduco in Arduino...',
+  'Compilazione...',
+  'Controllo i blocchi...',
+  'Quasi fatto...',
+  'Traduco in Arduino...',
 ];
 
 const ScratchCompileBar = React.memo(function ScratchCompileBar({
@@ -111,10 +114,13 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
     : compilationStatus === 'error' ? 'var(--color-vol3)'
     : compilationStatus === 'compiling' ? 'var(--color-status-compiling)' : 'var(--color-muted)';
 
-  const localIndicator = compilationStatus === 'success-local' ? ' ⚡' : '';
+  // Iter 75 CC-2 (Codex iter 74 Regola 11): emoji status glyphs removed.
+  // Color semantics statusColor (green success / red error / lime compile)
+  // + plain text labels convey status WCAG-friendly + a11y screen reader.
+  const localIndicator = compilationStatus === 'success-local' ? ' (locale)' : '';
   const statusText = isSuccess
-    ? (compilationSize ? `✅${localIndicator} ${compilationSize.bytes}/${compilationSize.total} bytes (${compilationSize.percent}%)` : `✅ Compilazione OK${localIndicator}`)
-    : compilationStatus === 'error' ? '❌ Errore'
+    ? (compilationSize ? `OK${localIndicator} — ${compilationSize.bytes}/${compilationSize.total} bytes (${compilationSize.percent}%)` : `Compilazione OK${localIndicator}`)
+    : compilationStatus === 'error' ? 'Errore'
     : compilationStatus === 'compiling' ? SCRATCH_COMPILE_MSGS[compileMsg]
     : 'Pronto';
 
@@ -151,7 +157,7 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
       {/* Warning panel */}
       {compilationWarnings && (
         <div style={{ padding: 'var(--space-1-5) var(--space-2-5)', borderTop: '2px solid var(--color-warning-panel-border)', background: 'var(--color-warning-panel-bg)' }}>
-          <span style={{ color: 'var(--color-warning-panel-text)', fontWeight: 700, fontSize: 15 }}>{'⚠'} Avvisi</span>
+          <span style={{ color: 'var(--color-warning-panel-text)', fontWeight: 700, fontSize: 15 }}>Avvisi</span>
           <pre style={{ margin: 'var(--space-1) 0 0', fontSize: 14, color: 'var(--color-warning-panel-text)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontFamily: "var(--font-mono)" }}>
             {compilationWarnings}
           </pre>
@@ -161,12 +167,12 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
       {showErrors && compilationErrors && (
         <div style={{ padding: 'var(--space-1-5) var(--space-2-5)', borderTop: '2px solid var(--color-vol3)', background: 'var(--color-error-bg)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ color: 'var(--color-vol3)', fontWeight: 700, fontSize: 15 }}>{'❌'} Errori di compilazione</span>
+            <span style={{ color: 'var(--color-vol3)', fontWeight: 700, fontSize: 15 }}>Errori di compilazione</span>
             <button
               onClick={() => setShowErrors(false)}
               style={{ background: 'none', border: 'none', color: 'var(--color-muted)', cursor: 'pointer', fontSize: 16, padding: 0, minWidth: 56, minHeight: 44, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               aria-label="Chiudi pannello errori"
-            >{'✕'}</button>
+            >×</button>
           </div>
           <pre style={{ margin: 'var(--space-1) 0 0', fontSize: 14, color: 'var(--color-vol3)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontFamily: "var(--font-mono)" }}>
             {friendlyError(compilationErrors)}
@@ -200,7 +206,7 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
             fontFamily: "var(--font-sans)",
           }}
         >
-          {compilationStatus === 'compiling' ? '⌛ Compilazione...' : '▶ Compila & Carica'}
+          {compilationStatus === 'compiling' ? 'Compilazione...' : 'Compila & Carica'}
         </button>
       </div>
       {/* iter 74 B1-A — narrative cliffhanger CTA on compile success */}
