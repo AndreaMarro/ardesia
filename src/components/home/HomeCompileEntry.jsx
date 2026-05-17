@@ -83,7 +83,40 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       const result = await compileCode(code, DEFAULT_FQBN);
       if (result && result.success) {
         setCompileStatus('success');
-        if (result.size) setCompileSize(result.size);
+        // iter 80 80.A5 fix (Codex Pattern V iter 79 MED COMPILE-6 +
+        // Codex Pattern C iter 80 batch MED shape match): api.js compileCode
+        // never returns result.size — Cloud Render branch (api.js:1362-1369)
+        // maps hexBase64 → result.hex without size; legacy branch (api.js:
+        // 1372-1378) maps data.hex → result.hex similarly. Derive bytes from
+        // result.hex content: base64 atob length for Cloud (HomeCompileEntry
+        // default FQBN = Renesas Nano R4 → isCloudRender=true), Intel HEX
+        // hex-digit count / 2 fallback for legacy. Wrap in {bytes,total,
+        // percent} object matching ScratchCompileBar:127 render contract
+        // (`compilationSize.bytes`/`.total`/`.percent`). Nano R4 flash
+        // = 256KB = 262144 bytes per src/boards/arduino-nano-r4.json:12.
+        const derivedBytes = (() => {
+          if (typeof result.size === 'number') return result.size;
+          if (!result.hex) return null;
+          const trimmed = String(result.hex).trimStart();
+          // Intel HEX heuristic: trimmed starts with ':' (record marker)
+          if (trimmed.charAt(0) === ':') {
+            return Math.floor(trimmed.replace(/[^0-9a-fA-F]/g, '').length / 2);
+          }
+          // Base64 path (Cloud Render canonical for Nano R4 FQBN)
+          try {
+            return atob(trimmed).length;
+          } catch {
+            return null;
+          }
+        })();
+        if (derivedBytes != null) {
+          const FLASH_TOTAL_NANO_R4 = 262144; // 256KB Renesas RA4M1
+          setCompileSize({
+            bytes: derivedBytes,
+            total: FLASH_TOTAL_NANO_R4,
+            percent: Math.round((derivedBytes / FLASH_TOTAL_NANO_R4) * 100),
+          });
+        }
         if (result.warnings) setCompileWarnings(result.warnings);
       } else {
         setCompileStatus('error');
@@ -133,6 +166,12 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             compilationWarnings={compileWarnings}
             compilationSize={compileSize}
             sketchCode={scratchCode}
+            // iter 80 80.A3 fix (Codex Pattern V MED IDE-3): Home handler
+            // calls compileCode only — physical upload routes via separate
+            // CompileUploadButton (rendered when sketchCode + boardId props
+            // present). Override default "Compila & Carica" label to "Compila"
+            // for honest UX (no false-promote upload from main button).
+            compileButtonLabel="Compila"
             boardId={DEFAULT_BOARD_ID}
             port={null}
           />

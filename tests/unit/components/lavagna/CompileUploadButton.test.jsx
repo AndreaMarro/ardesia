@@ -358,6 +358,77 @@ describe('CompileUploadButton — click flow', () => {
     // Disabled button should not invoke fetch
     expect(fetchSpy).not.toHaveBeenCalled();
   });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Iter 80 80.A4 fix (Codex Pattern V iter 79 MED COMPILE-5):
+  // Implementation adds X-Elab-Api-Key header only when (isCloudEndpoint &&
+  // cloudApiKey) per CompileUploadButton.jsx:591-602 — previous tests
+  // asserted body shape + content-type but NOT auth header → 401 prod
+  // regression could silently pass. This test forces a Cloud endpoint URL via
+  // explicit compileEndpoint prop matching CLOUD_COMPILE_URL pattern and
+  // stubs VITE_ELAB_API_KEY, then asserts the header is present on the POST.
+  // ───────────────────────────────────────────────────────────────────────────
+  it('sends X-Elab-Api-Key header when cloud endpoint + API key configured', async () => {
+    // Stub Vite env BEFORE dynamic import so module-level CLOUD_COMPILE_URL +
+    // api key constants resolve to test values. Vitest stubEnv works for
+    // import.meta.env at module evaluation time when component is re-imported.
+    vi.stubEnv('VITE_ELAB_CLOUD_COMPILE_URL', 'https://elab-cloud-test.example.com');
+    vi.stubEnv('VITE_ELAB_API_KEY', 'test-api-key-iter-80-a4');
+
+    // Reset module registry so the dynamic import re-evaluates module-level
+    // constants (CLOUD_COMPILE_URL + cloudApiKey) with the freshly stubbed
+    // env. Without this, the cached module retains pre-stub values.
+    vi.resetModules();
+    const { default: ReloadedButton } = await import(
+      '../../../../src/components/lavagna/CompileUploadButton.jsx'
+    );
+
+    const fetchSpy = makeFetchOk({
+      ok: true,
+      jobId: 'cloud-auth-test',
+      hexBase64: 'AAA=',
+      hexFilename: 'ElabSketch.ino.hex',
+      hexSize: 1,
+    });
+
+    // enableDemoMode=true activates handleDemoClick (line 557+) which is the
+    // path with the auth header logic. Demo mode triggers Cloud compile via
+    // compileEndpoint, then WebUSB picker — stub picker to return null so
+    // we settle in compile_only_no_board without firing WebUSB.
+    render(
+      <ReloadedButton
+        sketchCode="void setup(){}void loop(){}"
+        port="/dev/cu.usb"
+        boardId="arduino-nano-r4"
+        statusImpl={statusOnline}
+        fetchImpl={fetchSpy}
+        compileEndpoint="https://elab-cloud-test.example.com/compile"
+        enableDemoMode={true}
+        requestUsbDevice={async () => null}
+      />,
+    );
+
+    const btn = await screen.findByRole('button');
+    await waitFor(() =>
+      expect(btn.getAttribute('data-elab-agent-available')).toBe('true'),
+    );
+
+    fireEvent.click(btn);
+    await waitFor(() => expect(fetchSpy).toHaveBeenCalled());
+
+    // Find the POST /compile call (not any subsequent /upload).
+    const compileCall = fetchSpy.mock.calls.find(
+      (c) => c[0] === 'https://elab-cloud-test.example.com/compile',
+    );
+    expect(compileCall, 'compile POST captured').toBeTruthy();
+    const [, init] = compileCall;
+    expect(init.method).toBe('POST');
+    expect(init.headers).toBeDefined();
+    expect(init.headers['Content-Type']).toBe('application/json');
+    expect(init.headers['X-Elab-Api-Key']).toBe('test-api-key-iter-80-a4');
+
+    vi.unstubAllEnvs();
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

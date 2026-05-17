@@ -62,6 +62,13 @@ export const DEFAULT_AGENT_PORT = 8765;
 export const ALLOWED_ORIGINS = Object.freeze([
   'http://localhost:5173',
   'http://127.0.0.1:5173',
+  // iter 80 80.A6 fix: vite preview default port (npm run preview + smoke
+  // spec iter 79.0 build-preview-smoke.spec.js) MUST reach agent /health
+  // for R5 banner online detection. Previously CSP/CORS blocked → smoke
+  // spec recorded 2 console.error per /#compile-home run (non-fatal MA
+  // noisy + R5 banner stuck offline in preview).
+  'http://localhost:4173',
+  'http://127.0.0.1:4173',
   'https://www.elabtutor.school',
   'https://elabtutor.school',
 ]);

@@ -84,6 +84,11 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
   // have not yet wired board detection still render the legacy bar unchanged.
   sketchCode, port, boardId,
   onPhysicalUploadSuccess, onPhysicalUploadError,
+  // iter 80 80.A3 fix (Codex Pattern V iter 79 MED IDE-3): default button
+  // label "Compila & Carica" overpromises in HomeCompileEntry where handler
+  // only calls compileCode (NO upload). Allow caller override (e.g. Home
+  // passes "Compila" honest). Lavagna keeps full "Compila & Carica" default.
+  compileButtonLabel = 'Compila & Carica',
   // iter 74 B1-A — narrative cliffhanger CTA props (OPTIONAL).
   // When `nextExperiment` is provided AND compilationStatus === 'success',
   // render a cliffhanger card below the status row that invites the docente
@@ -211,7 +216,7 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
             fontFamily: "var(--font-sans)",
           }}
         >
-          {compilationStatus === 'compiling' ? 'Compilazione...' : 'Compila & Carica'}
+          {compilationStatus === 'compiling' ? 'Compilazione...' : compileButtonLabel}
         </button>
       </div>
       {/* iter 74 B1-A — narrative cliffhanger CTA on compile success */}
