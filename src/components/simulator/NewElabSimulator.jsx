@@ -1017,7 +1017,7 @@ const NewElabSimulator = ({
                     </Suspense>
                   </ScratchErrorBoundary>
                 </div>
-                <ScratchCompileBar onCompile={() => handleCompile(scratchGeneratedCodeRef.current)} compilationStatus={compilationStatus} compilationErrors={compilationErrors} compilationWarnings={compilationWarnings} compilationSize={compilationSize} />
+                <ScratchCompileBar onCompile={() => handleCompile(scratchGeneratedCodeRef.current)} compilationStatus={compilationStatus} compilationErrors={compilationErrors} compilationWarnings={compilationWarnings} compilationSize={compilationSize} sketchCode={scratchGeneratedCode} boardId="arduino-nano-r4" port={null} />
               </div>
             )}
           </div>

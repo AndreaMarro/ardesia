@@ -61,6 +61,7 @@ const DEFAULT_BOARD = 'arduino:avr:nano:cpu=atmega328old';
 const ALLOWED_COMPILE_BOARDS = new Set([
     'arduino:avr:nano:cpu=atmega328old',
     'arduino:avr:uno',
+    'arduino:renesas_uno:nanor4',
 ]);
 const SOCRATIC_INSTRUCTION = [
     '[AUTOCOSCIENZA — Chi sei e cosa puoi fare]',
