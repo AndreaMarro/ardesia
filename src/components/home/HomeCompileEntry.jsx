@@ -127,10 +127,17 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       <footer className={styles.footer}>
         <p className={styles.footerNote}>
           Cross-compile per Arduino Nano R4 (Renesas RA4M1). Per caricare sul kit,
-          installate l'<a href="/scripts/setup-elab-compile-agent.sh" download>ELAB Compile Agent</a> locale
-          (banner sopra mostra lo stato).
+          installate l'ELAB Compile Agent locale (banner sopra mostra lo stato).
+          Istruzioni d'installazione disponibili nella documentazione tecnica.
         </p>
       </footer>
+      {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso
+          link diretto <a href="/scripts/setup-elab-compile-agent.sh"> perché
+          script MAI shipped (404 prod confermato empirical). Distribuzione
+          packaging Tauri signed installer = iter 64 SPEC Option B
+          ($300/yr Apple Dev ID + cross-platform pipeline) defer iter 75+
+          scope. Per ora docente legge istruzioni manuale OR Andrea/Tea
+          installa via SSH ad-hoc. */}
     </div>
   );
 });
