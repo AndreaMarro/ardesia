@@ -144,11 +144,36 @@ Documenta `docs/uat/2026-05-XX-nano-r4-uat-report.md`:
 
 ## 10. Knownissues iter 74 entrance + workaround
 
-- **R5 banner mostra "Installa Agent" anche se Agent running**: Playwright sandbox issue likely (curl Origin works). Real Chrome dovrebbe work. Se NON work real Chrome → ELAB Agent bind `0.0.0.0:8765` invece `127.0.0.1:8765` per allow all interfaces.
+- **R5 banner mostra "Installa Agent" anche se Agent running**: Playwright sandbox limit (curl Origin works iter 73 CC-1 verify). Real Chrome verify iter 75 CC-3 control_chrome. **NON bind `0.0.0.0:8765`** (Codex iter 74 security #3): mantiene `127.0.0.1` + aggiungere auth token + strict Origin allowlist (iter 75 CC-1 harden ELAB Agent backend-security-coder BG subagent).
 - **Vol3 14 esperimenti pedagogical chain iter 57** (NON 29 Tea SUPERSET) — iter 73 close audit conferma intentional Andrea+Tea ratify.
-- **USB Web Serial port detection NewElabSimulator port=null placeholder** iter 72 BG-A7 — iter 74 B-6 implement OR use arduino-cli board list bridge.
-- **Installer script `setup-elab-compile-agent.sh` MAI shipped** — iter 74 A1 link rimosso, distribuzione packaging Tauri signed iter 75+ ($300/yr Apple Dev ID).
+- **USB Web Serial port detection NewElabSimulator port=null placeholder** iter 72 BG-A7 — iter 75 CC-4 implement `navigator.serial.requestPort()` integration (BG frontend-developer worktree isolato).
+- **Installer script `setup-elab-compile-agent.sh` MAI shipped** — iter 74 A1 link rimosso, distribuzione packaging Tauri signed Sprint V+ ($300/yr Apple Dev ID + 40-80h cross-platform pipeline).
 - **dfu-util install required** — `brew install dfu-util` (iter 73 CC-1.1 verified).
+- **ScratchCompileBar status icons emoji**: iter 75 CC-2 rimossi 5 emoji glyphs (✅❌⚠⌛▶⚡) sostituiti con plain text labels (statusColor green/red/lime conveys status WCAG-friendly). Codex iter 74 Regola 11 finding chiuso.
+
+## 10.5 Iter 75 cross-compile security hardening (CC-1 BG dispatch)
+
+iter 75 CC-1 BG backend-security-coder ship:
+
+- **Auth token mandatory**: header `X-Elab-Agent-Token` validation (reject 401 except `/health` probe). Token generated boot-time `openssl rand -hex 32` saved `~/.elab-agent-token` 0600 permissions. Frontend send token via header (compileAgentDetect.js + CompileUploadButton + HomeCompileEntry + api.js).
+- **Strict Origin allowlist**: verify `ALLOWED_ORIGINS` localhost:5173 dev + elabtutor.school prod (iter 70 P0.5 implementation tightened).
+- **Rate limiting**: max 10 req/min per origin (in-memory Map TTL).
+- **Request size limit**: max sketch 100KB.
+- **Sandbox compile**: temp dir auto-cleanup 5min idle.
+- **NO `0.0.0.0` bind**: mantieni `127.0.0.1` loopback-only (Codex iter 74 security #3 finding).
+
+## 10.6 Iter 75 cross-compile E2E test (CC-5 BG dispatch)
+
+iter 75 CC-5 BG test-automator ship `tests/e2e/cross-compile-flow.spec.js`:
+
+1. Fixture beforeAll: start ELAB Agent localhost:8765
+2. Test 1: navigate `#compile-home` → R5 banner "Agent rilevato" green state
+3. Test 2: navigate `#tutor` → Esperimento Vol3 → ScratchEditor → drag Blink blocks → Compila button → success status (color green plain text "OK")
+4. Test 3: POST /compile directly via fetch with `X-Elab-Agent-Token` → HEX bytes returned + jobId
+5. Test 4: cliffhanger CTA appears post compile success + click navigates next experiment (iter 75-B1-FIX wire verified)
+6. Fixture afterAll: stop ELAB Agent
+
+Run: `npx playwright test tests/e2e/cross-compile-flow.spec.js`.
 
 ## 11. Sprint U close gate cross-compile
 
