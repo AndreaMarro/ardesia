@@ -1314,13 +1314,28 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         if (url.includes('supabase.co/functions') && _ELAB_API_KEY) {
             headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
         }
+        // iter 77 STOP-HOOK #2 fix (Codex stop-time review #7): Cloud Render
+        // cross-compile endpoint requires X-Elab-Api-Key auth (per
+        // infra/cloud-compile/server.js:93-107 authMiddleware). Detect via
+        // CLOUD_COMPILE_URL env match. Without auth header → 401 prod.
+        const isCloudRender = CLOUD_COMPILE_URL && url.startsWith(CLOUD_COMPILE_URL);
+        if (isCloudRender && _ELAB_API_KEY) {
+            headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
+        }
 
         try {
+            // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render expects canonical
+            // OpenAPI 76-D.3 body shape `{sketchCode, fqbn}` (per server.js:200
+            // + cloud P0.4 boardId+fqbn dual-accept). Legacy n8n + Supabase
+            // proxy chain uses `{code, board}` historical shape. Branch body.
+            const body = isCloudRender
+                ? JSON.stringify({ sketchCode: code, fqbn: safeBoard })
+                : JSON.stringify({ code, board: safeBoard });
             const res = await fetch(url, {
                 method: 'POST',
                 headers,
                 signal: controller.signal,
-                body: JSON.stringify({ code, board: safeBoard }),
+                body,
             });
             clearTimeout(timeoutId);
 
@@ -1338,6 +1353,20 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
                 }
             } catch {
                 throw new Error('Risposta non valida dal compilatore');
+            }
+
+            // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render returns canonical
+            // `{ok, jobId, hexFilename, hexSize, hexBase64, stdout, stderr,
+            // latencyMs}` (server.js:268-278). Map to legacy contract for
+            // downstream consumers (CompilationStatus + simulator HEX consumer).
+            if (isCloudRender) {
+                return {
+                    success: !!data.ok,
+                    hex: data.hexBase64 || null,
+                    errors: data.stderr || data.error || null,
+                    output: data.stdout || null,
+                    result: data.ok ? 'success' : 'error',
+                };
             }
 
             return {
