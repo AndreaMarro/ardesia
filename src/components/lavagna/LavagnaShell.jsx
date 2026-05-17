@@ -1655,9 +1655,13 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         </RetractablePanel>
       )}
 
-      {/* Tool feedback toast */}
+      {/* Tool feedback toast — iter 75 75-B.2 fix (TRACK C audit P0 +
+          Codex iter 74 verdict): color #fff on var(--elab-orange)
+          contrast 2.4:1 WCAG AA FAIL. Switched to var(--elab-text,
+          #1A1A1A) contrast ~7.8:1 PASS AA + AAA. Andrea regola 10
+          "Contrasto WCAG AA 4.5:1 testo". */}
       {toolToast && (
-        <div role="status" aria-live="polite" style={{ position: 'fixed', bottom: 120, left: '50%', transform: 'translateX(-50%)', background: 'var(--elab-orange)', color: '#fff', padding: '10px 20px', borderRadius: 10, fontSize: 15, fontWeight: 600, fontFamily: 'var(--font-sans)', boxShadow: '0 4px 16px rgba(0,0,0,0.15)', zIndex: 9999, pointerEvents: 'none' }}>
+        <div role="status" aria-live="polite" style={{ position: 'fixed', bottom: 120, left: '50%', transform: 'translateX(-50%)', background: 'var(--elab-orange)', color: 'var(--elab-text, #1A1A1A)', padding: '10px 20px', borderRadius: 10, fontSize: 15, fontWeight: 600, fontFamily: 'var(--font-sans)', boxShadow: '0 4px 16px rgba(0,0,0,0.15)', zIndex: 9999, pointerEvents: 'none' }}>
           {toolToast}
         </div>
       )}

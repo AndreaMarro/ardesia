@@ -1053,7 +1053,11 @@ export default function HomePage({ onNavigate, onActivate }) {
             lineHeight: 1.55,
           }}
         >
-          <strong style={{ color: PALETTE.navy }}>In arrivo:</strong> spazio per i pensieri sulla classe, gli appunti delle lezioni, i piccoli successi dei ragazzi. UNLIM rielabora le sessioni passate e scrive brevi riassunti — voi li rileggete prima di entrare in classe.
+          {/* Iter 75 75-B.1 fix (TRACK C audit P0 + Codex iter 74 verdict):
+              rimosso "In arrivo:" demo placeholder per CLAUDE.md regola 12
+              "MAI dati finti o demo — tutto deve funzionare con dati reali".
+              Diario docente feature live attesa Sprint V+ — sezione hidden
+              fino a wire-up reale Supabase + UI editor pensieri. */}
         </div>
       </section>
 
