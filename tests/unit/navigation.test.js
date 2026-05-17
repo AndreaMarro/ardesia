@@ -18,7 +18,7 @@ const HASH_PAGE_ALIASES = {
     'lavagna-solo': 'lavagna',
 };
 
-const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
+const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario', 'compile-home'];
 
 function getPageFromHash(hash = window.location.hash) {
     const raw = hash.replace('#', '').split('?')[0].toLowerCase();
@@ -242,10 +242,19 @@ describe('VALID_HASHES completeness', () => {
         }
     });
 
-    it('HOMEPAGE_SUBROUTES contains chatbot-only + about-easter + glossario', () => {
+    it('HOMEPAGE_SUBROUTES contains chatbot-only + about-easter + glossario + compile-home', () => {
         expect(HOMEPAGE_SUBROUTES).toContain('chatbot-only');
         expect(HOMEPAGE_SUBROUTES).toContain('about-easter');
         expect(HOMEPAGE_SUBROUTES).toContain('glossario');
+        // Iter 73 CC-2 fix F3 (Codex Pattern V REFUTE coverage): regression
+        // guard for compile-home HomePage sub-route. Without this entry,
+        // direct nav from non-HomePage pages would lose the route + show
+        // null → stuck-page bug (iter 44 fix protocol).
+        expect(HOMEPAGE_SUBROUTES).toContain('compile-home');
+    });
+
+    it('returns "home" for #compile-home (HomePage internal sub-route iter 73 CC-2)', () => {
+        expect(getPageFromHash('#compile-home')).toBe('home');
     });
 
     it('has no duplicate entries', () => {

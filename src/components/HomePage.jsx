@@ -701,7 +701,9 @@ export default function HomePage({ onNavigate, onActivate }) {
       // gestite tramite hash: aggiorniamo window.location.hash e lasciamo
       // che il listener hashchange aggiorni `hash` state per montare
       // <ChatbotOnly /> o <EasterModal /> sotto.
-      if (page === 'chatbot-only' || page === 'about-easter') {
+      // Iter 73 CC-2 fix F1 (Codex Pattern V REFUTE): include compile-home
+      // qui — same hash-route pattern, lazy-mounts <HomeCompileEntry />.
+      if (page === 'chatbot-only' || page === 'about-easter' || page === 'compile-home') {
         if (typeof window !== 'undefined') {
           window.location.hash = href;
           setHash(href);

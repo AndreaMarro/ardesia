@@ -36,6 +36,11 @@ import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/Scr
 import styles from './HomeCompileEntry.module.css';
 
 const DEFAULT_BOARD_ID = 'arduino-nano-r4';
+// Iter 73 CC-2 fix F2 (Codex Pattern V REFUTE): canonical FQBN passed
+// explicit to compileCode — without this, api.js fallback to AVR Nano old
+// bootloader (api.js:1294 ALLOWED_COMPILE_BOARDS sanitize). Matches
+// src/boards/arduino-nano-r4.json:6 + api.js:64 whitelist (iter 72 BG-A7).
+const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
 
 const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [scratchCode, setScratchCode] = useState('');
@@ -60,7 +65,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     setCompileWarnings(null);
     setCompileSize(null);
     try {
-      const result = await compileCode(code);
+      const result = await compileCode(code, DEFAULT_FQBN);
       if (result && result.success) {
         setCompileStatus('success');
         if (result.size) setCompileSize(result.size);
