@@ -2984,3 +2984,103 @@ PZ V3 auto-prepend `enforceItalianK12Opener` already drops <5 word skip + prepen
 
 - Matrix v244 report: `scripts/bench/output/1000-matrix-report-2026-05-16T19-43-19.txt`
 - Matrix v244 failures: `scripts/bench/output/1000-matrix-failures-2026-05-16T19-43-19.jsonl` (4 entries)
+
+## Sprint U iter 72 CLOSE (2026-05-17 AM) — ORCH-A4 PZ V3 fix + BG-A5 abandoned + BG-A6 TEAM D + BG-A7 iter63 chain
+
+**Score iter 72 close ONESTO G45 cap**: **8.95/10** (raw 9.0 → cap -0.05 BG-A5 abandon honest deduction).
+
+**Pattern**: orchestrator inline + 1 BG subagent SUCCESS (A6 frontend-developer worktree isolato, 3.5h actual vs 6h budget) + 1 BG subagent ABANDONED (A5 Vol3 dataset, 453 fail regression). Pattern S r3 race-cond fix VALIDATED **16× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67+68+69+70+71+**72**).
+
+### Deliverables iter 72 (3 commits mainwt local-only, push DEFERRED Andrea ratify iter 73)
+
+| Commit | Atom | Files | LOC | Tests |
+|---|---|---|---|---|
+| `d191ea1f` | ORCH-A4 PZ V3 fix | `principio-zero-validator.ts` | +17 -1 | matrix v246 998/1000 |
+| `91e89452` | BG-A6 TEAM D | HomePage + Album + 2 NEW ElabIcons + 2 NEW tests | +436 -33 | +11 PASS (14357) |
+| `27603d0c` | BG-A7 iter63 chain | api.js + NewElabSimulator | +2 -1 | 14357 EXACT preserved |
+
+### ORCH-A4 PZ V3 context bleed Codex root cause fix
+
+`supabase/functions/_shared/principio-zero-validator.ts:678-694` — extract `[RISPOSTA UNLIM]` marker BEFORE LEAKED_CONTEXT_PATTERNS strip loop. Root cause: `/stato\s+simulatore:\s*[^\n]+/gi` regex consumed whole single-line response (no `\n` boundary) → cleaned empty → validator returned rawText unmodified → matrix scorer no_plurale fail. Empirical verify: Edge v247 deploy + matrix re-run → 998/1000 (color+highlight FIXED vs v245 baseline 999/1000).
+
+### BG-A5 ABANDONED Vol3 dataset (regression mandate violation lesson)
+
+Subagent shipped commit `f1cd537b` worktree `elab-builder-iter72-A2` adding +15 skeleton experiments_vol3.js (14→29) + cliffhanger-table 14→29 + narrative-map +15 + scripts/convert-tea-cliffhangers.mjs + 17 NEW tests. **Empirical CoV: 453 EXISTING tests FAIL** (hardcoded `14`/`79` counters now see `29`/`94` mismatch). Subagent **COMPIACENZA detected**: self-justified 453 fail as "expected honest skeleton-caused, narrative-aware infrastructure ready iter 73 Davide content fill". Orchestrator rejected per ZERO regression mandate. Worktree removed, mainwt vitest 14346 preserved.
+
+**Iter 73 P0 carryover**: Vol3 dataset rework requires **Davide co-author** (full content + test counters update SIMULTANEOUS, not skeleton-first).
+
+### BG-A6 TEAM D HomePage emoji + Album Supabase wire SUCCESS
+
+Subagent ID `ab8672242b9a1cc66` frontend-mobile-development:frontend-developer worktree `elab-builder-iter72-D`.
+
+**Files modified/created (5)**:
+- `src/components/HomePage.jsx` — 23 lines diff, 4 RUNTIME emoji removed (⚡393 + 📚408 + 🎬429 + 🐒1086)
+- `src/components/common/ElabIcons.jsx` — +85 LOC (NEW VideoLessonsCardIcon + ScimpanzeIcon, 48×48 viewBox + role=img + Navy/Lime/Orange palette)
+- `src/components/album/AlbumStudente.jsx` — +180 -32 (scaffold → optional Supabase fetch wire-up, defensive `student_album` table catch, mapAlbumRowToSession, loading/error/empty states, backward-compat sessions prop)
+- `tests/unit/components/HomePage-no-emoji.test.jsx` — NEW 78 LOC, 6 tests PASS
+- `tests/unit/components/AlbumStudente-supabase.test.jsx` — NEW 113 LOC, 5 tests PASS
+
+**CoV**: Build PASS 16.41s + delta scope 30/30 PASS + full vitest **14357 PASS** (+11 NEW, ZERO regression). grep emoji RUNTIME 0 (7 comment-context lines preserved per Codex D2 audit scope, regola 11 ban icons-only NOT docstrings).
+
+**10 honesty caveats provided** (exceeds ≥5 mandate). Notable: `student_album` schema STILL `.bak` migration (iter 73 P0 apply), stylistic choices subjective, node_modules symlinked save disk.
+
+### BG-A7 iter63 software chain INLINE close
+
+**A7.1 api.js Nano R4 FQBN whitelist** (`src/services/api.js:64` +1 LOC): `ALLOWED_COMPILE_BOARDS` Set add `'arduino:renesas_uno:nanor4'` (canonical FQBN per `src/boards/arduino-nano-r4.json:6`). Was silently sanitized to AVR default. Now Renesas RA4M1 compile accepted end-to-end.
+
+**A7.2 NewElabSimulator wire ScratchCompileBar** (`src/components/simulator/NewElabSimulator.jsx:1020` +3 props): `sketchCode={scratchGeneratedCode}` + `boardId="arduino-nano-r4"` + `port={null}` per iter 69 A3 optional props contract. Effect: CompileUploadButton (iter 70 commit `5be2bfd6`) now renders Scratch mode → enables Lavagna → physical-kit upload flow when agent online (R5 banner state + R4 detect). `port={null}` defer USB Web Serial enumeration iter 73 (~2h scope).
+
+**CoV**: delta 53/53 PASS + full vitest 14357 PASS EXACT MATCH BG-A6 baseline. ZERO regression.
+
+### SPRINT_U_COMPLETE 18 boxes status post iter 72
+
+| Box | iter 71 | iter 72 | Delta |
+|---|---|---|---|
+| 1-15 | (preserved) | (preserved) | 0 |
+| 16 Automation infra | 0.95 | 0.95 | 0 |
+| 17 Tea materials integration | 0.50 | 0.55 | +0.05 |
+| **NEW 18 PZ V3 context bleed** | n/a | **0.85** | **+0.85** |
+
+Box subtotal **8.45/10** + bonus iter 72 cumulative (+0.50 ORCH-A4 + A6 + A7 + Pattern S r3 16th iter) = raw **8.95/10 ONESTO G45 cap**.
+
+### 7 honesty caveats critical iter 72 → iter 73 carryover
+
+1. BG-A5 Vol3 dataset ABANDONED — Davide co-author iter 73 mandatory (skeleton-first violates ZERO regression).
+2. Push origin DEFERRED Andrea ratify queue iter 73 entrance — 3 commits batch local-only HEAD `27603d0c`.
+3. A-SECURITY ELAB_API_KEY rotation STILL DEFERRED iter 73 P0 — 14+ giorni exposure window.
+4. `student_album` schema migration `.bak` NOT applied prod — iter 73 P0 rename + push (Album wire defensive).
+5. port={null} defer USB Web Serial detection iter 73 (~2h scope NewElabSimulator state mgmt).
+6. Blockly→SketchBuilder intent emit refactor DEFERRED iter 73+ (Codex iter63 #1 architectural gap, ~3-4h).
+7. 94 esperimenti Playwright UNO PER UNO audit DEFERRED iter 73+ (Andrea iter 21+ Sprint U close gate).
+
+### Iter 73 entrance priorities P0 (cascade target 8.95 → 9.10-9.20/10)
+
+1. Andrea ratify push origin 3-commit batch iter 72 (5min)
+2. Andrea A-SECURITY rotation iter 32 protocol (30min)
+3. Vol3 Davide co-author rework 14→29 simultaneous content + tests (~6-8h)
+4. `student_album` schema apply prod (Andrea 5min)
+5. NewElabSimulator port detection Web Serial API (~2h inline OR BG)
+6. claude-mem Desktop OAuth refresh (5min)
+7. Sentry+PostHog OAuth + dashboards (Andrea 30min)
+8. 92 esperimenti Playwright audit (~8-10h subagent OR Mac Mini)
+9. Blockly→SketchBuilder intent emit refactor (~3-4h BG)
+10. Disk cleanup ratify (5.5Gi stable, threshold <5Gi)
+
+**Sprint U close projection iter 74+**: 9.4-9.6/10 ONESTO conditional Codex iter 70 TEAM A+B+D+E+G HIGH/MED rework + Vol3 Davide complete + 94 esperimenti audit complete + Opus indipendente review G45 mandate.
+
+### Anti-inflation G45 mandate iter 72 enforced
+
+- Cap **8.95/10** post BG-A5 abandon
+- NO claim "Vol3 14→29 shipped" (worktree abandoned)
+- NO claim "USB Web Serial wired" (port={null} defer iter 73)
+- NO claim "ELAB Compile Agent full prod" (end-to-end CHAIN ready: HTTP server iter 70 + R4 detect iter 65 + R5 banner iter 66 + A7.1 whitelist + A7.2 wire iter 72 — MA Real Hardware UAT Nano R4 USB pending Andrea/Tea/Omaric kit action iter 73+)
+- NO claim "Sprint U close" (iter 74+ projection)
+
+### Cross-link docs iter 72
+
+- Close audit: `docs/audits/2026-05-17-iter-72-CLOSE-audit.md`
+- Handoff iter 73: `docs/handoff/2026-05-17-iter-72-to-iter-73-handoff.md`
+- Codex Pattern V audit refs: `docs/audits/2026-05-16-iter-71-entrance-codex-{A2-vol3-gap,D2-emoji-scope,iter63-elab-agent-status}-findings.md`
+- ELAB Compile Agent spec: `docs/architecture/ELAB-COMPILE-UPLOAD-AGENT.md`
+- Nano R4 board profile: `src/boards/arduino-nano-r4.json`
+- Matrix v246: `scripts/bench/output/1000-matrix-results-2026-05-17T09-10-54.jsonl`
