@@ -3641,3 +3641,102 @@ Box subtotal **9.48/10** + bonus cumulative iter 79.0+79.A (+0.45 Codex workflow
 - A4 fix: `vercel.json:15`
 - A2 rollback comments: `src/components/simulator/hooks/useCircuitHandlers.js:845-852` + `src/components/simulator/NewElabSimulator.jsx:412-420`
 
+
+## Sprint U iter 80 inline atoms close (2026-05-17 PM) — 4 MED Codex iter 79 closed + baseline sync + CORS
+
+**Score iter 80 inline close ONESTO G45 cap**: **9.1/10** (+0.1 vs iter 79.A 9.0 — 4 MED Codex closed + Codex Pattern C iter 80 MED shape match caught + fixed pre-commit)
+
+**Pattern**: orchestrator inline 5 atoms + 1 BG subagent A2 worktree isolato (in-flight) + Codex Pattern V iter 79 inflight finds + Codex Pattern C iter 80 batch verify post-fix. Pattern S r3 race-cond fix VALIDATED **25× consecutive** (iter 5+6+8+11+12+19+36+37+38+43+67-77 phases+78+79.0+79.A+**80 inline**).
+
+### Deliverables iter 80 inline batch (commit `7bb52c7a` pushed origin)
+
+| Atom | Codex severity | File | LOC | Notes |
+|---|---|---|---|---|
+| 80.A1 baseline sync | HIGH ergonomics | `.test-count-baseline.json` + `automa/baseline-tests.txt` | +9 -2 | total 13118 → 14457 + localTotal 12081 → 14457 + date + commit + test_files 198 → 363 |
+| 80.A3 label prop | MED IDE-3 | `ScratchCompileBar.jsx` + `HomeCompileEntry.jsx` | +12 -1 | default "Compila & Carica" preserved + Home override "Compila" honest |
+| 80.A4 auth header test | MED COMPILE-5 | `CompileUploadButton.test.jsx` | +62 NEW | vi.stubEnv + dynamic import + assert X-Elab-Api-Key |
+| 80.A5 size derive shape | MED COMPILE-6 + Codex C MED catch | `HomeCompileEntry.jsx` | +22 -3 | base64 atob + Intel HEX trimStart + {bytes,total,percent} 262144 Nano R4 |
+| 80.A6 CORS 4173 | MED smoke noise | `http-server.js` | +9 -0 | ALLOWED_ORIGINS add localhost:4173 + 127.0.0.1:4173 |
+
+### CoV iter 80 inline verified
+
+- Vitest delta scope **41/41 PASS** (4 files: HomeCompileEntry-callback + compiler-nano-r4-fqbn + server-hexBase64 + CompileUploadButton 36/36)
+- Build PASS post-atoms (~33s)
+- Smoke 4/4 PASS HEAD `7bb52c7a` post-rebuild (CORS noise residual until agent restart)
+- Pre-push hook gate PASS 14457 baseline
+- Codex Pattern C iter 80 batch verify: A1+A3+A6 LOW + A5 MED catch (FIXED v2 shape match)
+
+### Codex Pattern C iter 80 batch findings (post-fix verdict)
+
+| Atom | Codex severity | Status |
+|---|---|---|
+| 80.A1 | LOW | shape preserved, readers (benchmark.cjs:45 + retroactive-regression-scan.sh:74 + feature-parity-snapshot.sh:62) read automa/baseline-tests.txt (NOT json), no schema break |
+| 80.A6 | LOW | NO security regression, additions IS local-only NOT 0.0.0.0, server bind 127.0.0.1 loopback, denied origins hard 403 no echo |
+| 80.A5 v1 | MED ⚠️ | bare number vs ScratchCompileBar:127 object `.bytes/.total/.percent` shape mismatch → "OK — undefined/undefined bytes (undefined%)" — FIXED v2 inline |
+| 80.A5 v2 | LOW post-fix | {bytes,total,percent} shape + trimStart() defensive Intel HEX leading whitespace |
+| 80.A3 | LOW | default preserved, NewElabSimulator (lavagna) untouched, only Home explicit override "Compila" |
+
+**Codex ship recommendation post-v2 fix**: A5 MED resolved + A1+A3+A6 ship-ready. Iter 80 inline batch SHIP CLEAN.
+
+### SPRINT_U_COMPLETE 28 boxes status post iter 80 inline
+
+| Box | iter 79.A | iter 80 inline | Delta |
+|---|---|---|---|
+| 1-27 | (preserved) | (preserved) | 0 |
+| 19 HomePage cross-compile entry | 1.0 | **1.0** (Home label + size shape now correct) | 0 |
+| 23 Demo-mode no-board honest | 0.98 | **1.0** (+0.02 80.A4 auth header test guard) | +0.02 |
+| 24 LOCAL+CLOUD contract unified | 0.95 | **0.97** (+0.02 80.A6 CORS 4173 + size shape) | +0.02 |
+| 26 ELAB Agent §10.5 security audit | 0.40 | 0.40 (DEFER iter 81+) | 0 |
+| 27 Built-bundle regression gate | 0.95 | **0.97** (+0.02 baseline sync + smoke verify) | +0.02 |
+| **NEW 28 Baseline + CORS hygiene** | n/a | **0.85** | +0.85 (80.A1 sync + 80.A6 CORS + 80.A4 auth test guard) |
+
+Box subtotal **9.55/10** + bonus cumulative iter 80 inline (+0.30 Codex Pattern C v2 catch + 5 inline atoms shipped + push origin clean) = raw **9.85 → G45 cap 9.1/10 ONESTO**.
+
+**Cap deductions honest 3 explicit**:
+- −0.3 80.A2 IDE-1 BG subagent in-flight (NOT shipped this commit, ~3h budget separate commit)
+- −0.3 Codex iter 79 6 LOW + iter 70 TEAM A+B+D+E+G HIGH/MED still deferred iter 81+ (Sprint U close gate)
+- −0.2 Hardware UAT Nano R4 USB pending Andrea/Tea/Riccardo (chain ready, physical board action required)
+
+### 5 honesty caveats iter 80 inline → iter 81 carryover
+
+1. **80.A6 CORS source-only fix**: takes effect only after local agent process restart. Smoke spec residual CORS noise (2 console.error /#compile-home) will eliminate when Andrea restarts `localhost:8765` agent OR redeploys.
+2. **80.A2 BG subagent in-flight**: application-performance:frontend-developer worktree `elab-builder-iter-80-A2` ~3h budget. Will commit separately when complete (Codex IDE-1 HIGH close).
+3. **80.A1 sync mandate iter 81 onwards**: pre-commit + pre-push hooks now correctly use 14457 baseline. Future regression detection thresholds aligned with reality.
+4. **80.A5 v2 fix derived from Codex Pattern C iter 80 batch verdict**: shape mismatch invisible in unit test (mocked ScratchCompileBar). Real prod render would have shown "OK — undefined/undefined bytes". Caught pre-deploy by Codex 4-dimension check.
+5. **80.A4 test uses dynamic import + vi.stubEnv**: somewhat brittle pattern for module-level constants (CLOUD_COMPILE_URL + cloudApiKey resolved at import time). If component refactor moves constants to function-level, test may need rework.
+
+### Iter 81 priorities P0 cascade target 9.1 → 9.5+/10
+
+1. 80.A2 BG agent merge + commit + push (CodeEditorCM6 tab close Codex HIGH IDE-1)
+2. Andrea agent restart 8765 → verify CORS 4173 noise eliminated via smoke
+3. Vercel deploy verify 80.A6 CSP propagate prod (Andrea ratify)
+4. Andrea hardware UAT Nano R4 USB schedule (chain ready iter 79.A A3 hexBase64 + iter 80 size shape correct)
+5. iter 70 TEAM A+B+D+E+G Codex HIGH/MED rework (~10-12h subagent BG total)
+6. iter 79 6 LOW Codex findings (BLOCKLY-1+2+3 + HOMEPAGE-1+3 + COMPILE various)
+7. Sentry + PostHog OAuth Andrea browser-interactive
+8. Render deploy verify (Cloud Compile prod) iter 77 PHASE 4 carryover
+9. iter 77 PHASE 4 carryover: BG A.5 tech debt audit consume + atomize
+10. iter 67 PHASE 5 atomization remaining (Renesas docs purge + Vol3 capitoli audit)
+
+**Sprint U close projection iter 82-84**: 9.5/10 ONESTO conditional 80.A2 + hardware UAT + iter 70 TEAM A+B rework + Opus indipendente review G45 mandate.
+
+### Anti-inflation G45 mandate iter 80 inline enforced
+
+- Cap **9.1/10** post 80.A2 BG in-flight + 80.A5 v2 fix + Codex iter 79+70 HIGH/MED carryover
+- NO claim "Sprint U close" (iter 82-84 projection)
+- NO claim "iter 80 full complete" (80.A2 BG agent in-flight separate commit)
+- NO claim "all Codex iter 79 14 findings closed" (4 MED CLOSED iter 80, 6 LOW + 1 HIGH IDE-1 BG in-flight)
+- NO claim "Sprint U LIVE prod" (hardware UAT pending Andrea action)
+- A1 + A3 + A4 + A5 v2 + A6 verified empirico (vitest 41/41 + Codex Pattern C v2 catch + build + smoke)
+
+### Cross-link docs iter 80 inline
+
+- Codex Pattern V iter 79 audit (10094 LOC): `/tmp/codex-verify-cross-compile-iter79.txt`
+- Codex Pattern C iter 80 batch verify (2430 LOC): `/tmp/codex-verify-iter80-batch.txt`
+- 80.A1: `.test-count-baseline.json:1-7` + `automa/baseline-tests.txt:1`
+- 80.A3: `src/components/simulator/panels/ScratchCompileBar.jsx:80-95+219`
+- 80.A4: `tests/unit/components/lavagna/CompileUploadButton.test.jsx:363-445`
+- 80.A5 v2: `src/components/home/HomeCompileEntry.jsx:84-115`
+- 80.A6: `src/services/elab-agent/http-server.js:62-78`
+- 80.A2 BG worktree (in-flight): `elab-builder-iter-80-A2` branch `iter-80-A2-ide-1-codeeditor-tab`
+
