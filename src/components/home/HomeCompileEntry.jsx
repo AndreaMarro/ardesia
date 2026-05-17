@@ -50,7 +50,9 @@ import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/Scr
 // LIVE: CodeMirror 6 + cpp lang + Arduino autocomplete + friendly error
 // translator). NO modify simulator file — pure consumer wire-up.
 import CodeEditorCM6 from '../simulator/panels/CodeEditorCM6';
-import { WrenchIcon } from '../common/ElabIcons';
+// iter 81 81.A2 (close BG agent A2 caveat #5): extract inline puzzle SVG to
+// ElabIcons.PuzzleIcon — reusable + central palette discipline.
+import { WrenchIcon, PuzzleIcon } from '../common/ElabIcons';
 import styles from './HomeCompileEntry.module.css';
 
 const DEFAULT_BOARD_ID = 'arduino-nano-r4';
@@ -183,7 +185,34 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
               WAI-ARIA Authoring Practices Tab pattern (role tablist/tab
               + aria-selected runtime). Touch target ≥44×44 (CLAUDE.md
               §Qualita 9). */}
-          <div className={styles.tabBar} role="tablist" aria-label="Modalità editor">
+          {/* iter 81 81.A1 (close BG agent A2 caveat #4): WAI-ARIA Tab
+              pattern complete keyboard nav. Arrow Left/Right cycle tabs,
+              Home/End jump first/last. Roving tabIndex (iter 80.A2) preserved.
+              Pattern: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/ */}
+          <div
+            className={styles.tabBar}
+            role="tablist"
+            aria-label="Modalità editor"
+            onKeyDown={(e) => {
+              const TAB_ORDER = ['blocks', 'code'];
+              const currentIdx = TAB_ORDER.indexOf(editorMode);
+              let nextIdx = null;
+              if (e.key === 'ArrowRight') nextIdx = (currentIdx + 1) % TAB_ORDER.length;
+              else if (e.key === 'ArrowLeft') nextIdx = (currentIdx - 1 + TAB_ORDER.length) % TAB_ORDER.length;
+              else if (e.key === 'Home') nextIdx = 0;
+              else if (e.key === 'End') nextIdx = TAB_ORDER.length - 1;
+              if (nextIdx !== null) {
+                e.preventDefault();
+                const nextMode = TAB_ORDER[nextIdx];
+                setEditorMode(nextMode);
+                // Move focus to the newly-active tab (WAI-ARIA mandate).
+                requestAnimationFrame(() => {
+                  const nextBtn = document.getElementById(`home-compile-tab-${nextMode}`);
+                  if (nextBtn) nextBtn.focus();
+                });
+              }
+            }}
+          >
             <button
               type="button"
               role="tab"
@@ -195,18 +224,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
               onClick={() => setEditorMode('blocks')}
               data-testid="home-compile-tab-blocks"
             >
-              <svg
-                width="20" height="20" viewBox="0 0 24 24" fill="none"
-                role="img" aria-hidden="true"
-                className={styles.tabIcon}
-              >
-                {/* Puzzle/Blocchi simple inline SVG — Lime fill matches
-                    Blockly identity + Navy stroke for contrast WCAG AA. */}
-                <path
-                  d="M5 5h6v3a2 2 0 0 0 4 0V5h4v6h-3a2 2 0 0 0 0 4h3v4h-6v-3a2 2 0 0 0-4 0v3H5v-6h3a2 2 0 0 0 0-4H5z"
-                  fill="#4A7A25" stroke="#1E4D8C" strokeWidth="1.5" strokeLinejoin="round"
-                />
-              </svg>
+              <PuzzleIcon size={20} className={styles.tabIcon} />
               Blocchi
             </button>
             <button

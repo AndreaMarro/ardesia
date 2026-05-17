@@ -20,7 +20,7 @@
  * verifichiamo SOLO il nuovo comportamento tab.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, act } from '@testing-library/react';
 import React from 'react';
 
 // Stub ScratchEditor — visibile solo quando blocks attivo. NON emette
@@ -116,11 +116,17 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     // Switch a code mode.
     fireEvent.click(screen.getByTestId('home-compile-tab-code'));
 
-    // Trigger compile via ScratchCompileBar stub (onClick=onCompile).
-    fireEvent.click(screen.getByTestId('compile-bar-stub'));
-
-    // Aspetto un tick microtask per await dentro handleCompile.
-    await new Promise((r) => setTimeout(r, 0));
+    // iter 81 81.A6 fix (close BG agent A2 caveat #1): wrap async compile
+    // click + microtask wait inside `act()` so React batches the state
+    // updates from setCompileStatus/setCompileSize/etc within the assertion
+    // window. Prevents the "An update to HomeCompileEntry inside a test was
+    // not wrapped in act(...)" stderr warning the BG agent flagged cosmetic.
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('compile-bar-stub'));
+      // Microtask tick lets the awaited compileCodeMock resolve and the
+      // subsequent state setters run before assertion.
+      await new Promise((r) => setTimeout(r, 0));
+    });
 
     // compileCode chiamato con cppCode default Blink (NON stringa vuota
     // di scratchCode iniziale). Verify firma + contenuto.

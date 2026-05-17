@@ -228,18 +228,36 @@ export default defineConfig(({ mode }) => ({
                     // CodeMirror excluded from precache — runtime cached on first use (saves ~460KB)
                     // 'assets/codemirror-*.js',
                     'assets/avr-*.js',             // AVR emulation (if separate)
+                    // iter 81 81.A5 (Codex Pattern V iter 79 LOW BLOCKLY-2): explicitly
+                    // include ScratchEditor chunk in precache whitelist. globPatterns IS
+                    // the whitelist — removing from globIgnores alone (the blacklist)
+                    // does nothing if pattern not whitelisted. ScratchEditor 731KB
+                    // gzipped ~190KB stays under maximumFileSizeToCacheInBytes 2.5MB
+                    // line 209. Required for offline Blockly mount (Andrea iter 79 PM
+                    // mandate "blocchi E IDE in homepage" + iter 80.A2 IDE-1 tab).
+                    'assets/ScratchEditor-*.js',
                     // VitePWA virtual register module is now bundled as a lazy
                     // JS chunk; there is no public registerSW.js file to precache.
                     'fonts/*.woff2',
                     'hex/*.hex',               // G40: pre-compiled HEX for offline use
                 ],
                 // Exclude heavy chunks from precache
+                // iter 81 81.A5 (Codex Pattern V iter 79 LOW BLOCKLY-2): removed
+                // `assets/ScratchEditor*` from globIgnores. Andrea iter 79 PM
+                // mandate "blocchi E IDE in homepage" + iter 80.A2 IDE-1 tab
+                // require ScratchEditor mount LIVE first paint. PWA exclusion
+                // forced runtime-only network fetch → first offline classroom
+                // use would fail block render. Precache now ensures Blockly
+                // works offline (typical classroom scenario: spotty wifi).
+                // Chunk size ~731KB gzip ~190KB acceptable for educational
+                // priority. Other heavy chunks (react-pdf 1.9MB + mammoth +
+                // html2canvas + admin/teacher dashboards) STAY excluded —
+                // not on critical path for student/docente lesson flow.
                 globIgnores: [
                     'assets/react-pdf*',
                     'assets/mammoth*',
                     'assets/html2canvas*',
                     'assets/DashboardGestionale*',
-                    'assets/ScratchEditor*',
                     'assets/GestionalePage*',
                     'assets/Admin*',
                     'assets/Fatturazione*',

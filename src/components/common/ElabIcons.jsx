@@ -134,6 +134,28 @@ export function RobotIcon(props) {
   );
 }
 
+// iter 81 81.A2 (close BG agent A2 caveat #5): extract PuzzleIcon previously
+// inline in HomeCompileEntry.jsx tab Blocchi. Matches Blockly identity (Lime
+// fill + Navy stroke for WCAG AA contrast on light background). 24×24 viewBox
+// consistent with ElabIcons family. Reusable for any "Blocks" Blockly UI surface.
+export function PuzzleIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 24 24" fill="none"
+      role="img" aria-hidden="true" {...rest}
+    >
+      <path
+        d="M5 5h6v3a2 2 0 0 0 4 0V5h4v6h-3a2 2 0 0 0 0 4h3v4h-6v-3a2 2 0 0 0-4 0v3H5v-6h3a2 2 0 0 0 0-4H5z"
+        fill={color || '#4A7A25'}
+        stroke="#1E4D8C"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function CircuitIcon(props) {
   // Iter 35 Q2 /impeccable:bolder — dual-tone Navy + Lime (Vol 1 base
   // elettronica). Was monochrome stroke-only; new: filled IC chip body
