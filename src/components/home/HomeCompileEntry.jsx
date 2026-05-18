@@ -337,9 +337,11 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
 
       <footer className={styles.footer}>
         <p className={styles.footerNote}>
-          Cross-compile per Arduino Nano R4 (Renesas RA4M1). Per caricare sul kit,
-          installate l'ELAB Compile Agent locale (banner sopra mostra lo stato).
-          Istruzioni d'installazione disponibili nella documentazione tecnica.
+          Cross-compile cloud per Arduino Nano R4 (Renesas RA4M1) direttamente dal
+          browser. Premete "Compila" per generare l'eseguibile sul nostro server.
+          Per caricare sul kit fisico, collegate Nano R4 via USB-C e premete
+          "Carica sul kit fisico" — il browser flasha la scheda via WebUSB
+          (Chrome/Edge desktop). Nessun download richiesto.
         </p>
       </footer>
       {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso
