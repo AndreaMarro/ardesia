@@ -82,12 +82,15 @@ function normalizePlatform(channel) {
  *
  * @param {object} [props]
  * @param {string} [props.openCompilerUrl] Override target for the
- *   "Apri il Compilatore" secondary CTA (default '#lavagna').
+ *   "Apri il Compilatore" secondary CTA (default '#compile-home' iter 87 PHASE 4 —
+ *   Andrea reported HomePage CTA "non fa fare nulla"; root cause: legacy banner CTA
+ *   misrouted to #lavagna instead of #compile-home iter 73 cross-compile entry;
+ *   reproduced Chrome MCP prod 2026-05-18).
  * @param {Function} [props.onInstallClick] Optional analytics hook.
  * @returns {JSX.Element|null}
  */
 export default function CompileAgentBanner({
-  openCompilerUrl = '#lavagna',
+  openCompilerUrl = '#compile-home',
   onInstallClick,
 } = {}) {
   const [status, setStatus] = useState(null); // null = still loading

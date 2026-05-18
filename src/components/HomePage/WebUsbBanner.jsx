@@ -40,10 +40,12 @@ import styles from './CompileAgentBanner.module.css';
  * cross-compile readiness on HomePage between hero and 4-card grid.
  *
  * @param {object} [props]
- * @param {string} [props.openCompilerUrl] Override CTA URL (default '#lavagna').
+ * @param {string} [props.openCompilerUrl] Override CTA URL (default '#compile-home' iter 87 PHASE 4
+ *   — Andrea reported HomePage CTA "non fa fare nulla"; root cause: banner CTA misrouted to
+ *   #lavagna instead of #compile-home iter 73 cross-compile entry; reproduced Chrome MCP prod).
  * @returns {JSX.Element|null}
  */
-export default function WebUsbBanner({ openCompilerUrl = '#lavagna' } = {}) {
+export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {}) {
   const [cap, setCap] = useState(null);
 
   useEffect(() => {
