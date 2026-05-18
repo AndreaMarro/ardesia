@@ -93,68 +93,106 @@ const HomeCompileOnboarding = React.memo(function HomeCompileOnboarding({ onComp
     if (typeof onComplete === 'function') onComplete();
   }, [onComplete]);
 
-  // Esc keydown — close tour (Andrea WCAG mandate + spec §88.UX-3).
+  // iter 88 PHASE 3 HIGH-2 fix (comprehensive-review subagent verdict):
+  // Esc keydown attached to dialogRef.current (NOT window) — window scope
+  // would swallow Esc from CodeMirror/Blockly autocomplete close + search
+  // overlay close beneath the dialog. Dialog already has focus per trap so
+  // bubbles naturally. Andrea WCAG mandate + spec §88.UX-3 preserved.
   useEffect(() => {
+    const node = dialogRef.current;
+    if (!node) return;
     const handleKey = (e) => {
       if (e.key === 'Escape') {
         e.preventDefault();
         dismiss();
       }
     };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    node.addEventListener('keydown', handleKey);
+    return () => node.removeEventListener('keydown', handleKey);
   }, [dismiss]);
 
-  // Focus trap — Tab cycles within dialog (FloatingWindow pattern).
+  // iter 88 PHASE 3 HIGH-3 fix: Focus trap with backdrop-click focus restore.
+  // Pattern: window-level keydown + activeElement guard (must be inside dialog).
+  // If user clicks backdrop (focus escapes to body), Tab afterward re-focuses
+  // dialog first focusable. Mitigates trap break per review HIGH-3.
   useEffect(() => {
-    const node = dialogRef.current;
-    if (!node) return;
     const onKey = (e) => {
       if (e.key !== 'Tab') return;
+      const node = dialogRef.current;
+      if (!node) return;
       const focusable = node.querySelectorAll(FOCUSABLE_SEL);
       if (!focusable.length) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
+      // Guard: only trap when focus is inside dialog. If body got focus
+      // via backdrop click, restore to first focusable on Tab.
+      const inside = document.activeElement && node.contains(document.activeElement);
+      if (!inside) {
+        e.preventDefault();
+        first.focus();
+        return;
+      }
       if (e.shiftKey) {
         if (document.activeElement === first) { e.preventDefault(); last.focus(); }
       } else {
         if (document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     };
-    node.addEventListener('keydown', onKey);
-    return () => node.removeEventListener('keydown', onKey);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Highlight active target via data-onboard-active attr — toggle on
-  // matched element. Reset on step change + cleanup unmount. Defensive:
-  // selector may not find element (component lazy mount race) — skip silently.
+  // iter 88 PHASE 3 HIGH-4 fix: Track mutated elements in a ref Set so
+  // cleanup always strips data-onboard-active even if React 19 strict mode
+  // double-renders OR if step?.targetSelector flips undefined briefly.
+  // useLayoutEffect runs synchronously pre-paint to avoid Lime outline flash.
+  // CSS drops :global !important + lowers z-index 10499→10399 (under
+  // backdrop 10500). See HomeCompileOnboarding.module.css PHASE 3 fix.
+  const activeTargetsRef = useRef(new Set());
   useEffect(() => {
     if (typeof document === 'undefined') return;
-    const targets = document.querySelectorAll('[data-onboard-target]');
-    targets.forEach((el) => el.removeAttribute('data-onboard-active'));
-    if (!step?.targetSelector) return;
+    // Strip prior step's marks via ref tracking (guarantees no orphan).
+    activeTargetsRef.current.forEach((el) => {
+      try { el.removeAttribute('data-onboard-active'); } catch (_) { /* defensive */ }
+    });
+    activeTargetsRef.current.clear();
+    if (!step?.targetSelector) {
+      // Still return cleanup to ensure unmount strips defensively.
+      return () => {
+        activeTargetsRef.current.forEach((el) => {
+          try { el.removeAttribute('data-onboard-active'); } catch (_) { /* defensive */ }
+        });
+        activeTargetsRef.current.clear();
+      };
+    }
     const active = document.querySelector(step.targetSelector);
-    if (active) active.setAttribute('data-onboard-active', 'true');
+    if (active) {
+      active.setAttribute('data-onboard-active', 'true');
+      activeTargetsRef.current.add(active);
+    }
     return () => {
-      // Cleanup on step change / unmount — strip all active attrs.
-      if (typeof document === 'undefined') return;
-      const all = document.querySelectorAll('[data-onboard-target]');
-      all.forEach((el) => el.removeAttribute('data-onboard-active'));
+      activeTargetsRef.current.forEach((el) => {
+        try { el.removeAttribute('data-onboard-active'); } catch (_) { /* defensive */ }
+      });
+      activeTargetsRef.current.clear();
     };
   }, [step?.targetSelector]);
 
-  // Auto-focus first focusable (Avanti btn primary CTA) on mount + step change
-  // for keyboard-only docente flow (LIM remote keyboard pattern).
+  // iter 88 PHASE 3 HIGH-1 fix: Auto-focus ONLY on initial mount (deps [],
+  // NOT [stepIdx]). Per-step transition no longer steals focus mid-flow
+  // (e.g. docente Shift+Tab to Indietro retains focus). Screen readers
+  // announce new step content via aria-live updates from h2 + p re-render.
+  // LIM keyboard scenario explicit Andrea mandate preserved.
   useEffect(() => {
     const node = dialogRef.current;
     if (!node) return;
     const focusable = node.querySelectorAll(FOCUSABLE_SEL);
-    // Focus "Avanti" / "Inizia" primary CTA (last focusable in row).
     if (focusable.length) {
       const primary = focusable[focusable.length - 1];
       primary.focus();
     }
-  }, [stepIdx]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleNext = useCallback(() => {
     if (isLast) {

@@ -119,9 +119,11 @@ describe('HomeCompileOnboarding — 88.UX-3 /onboard 5-step tour', () => {
     const onComplete = vi.fn();
     render(<HomeCompileOnboarding onComplete={onComplete} />);
     expect(window.localStorage.getItem('elab.compile.onboarded')).toBeNull();
-    // Dispatch Escape on window (handler attached at window-level per
-    // component impl — see HomeCompileOnboarding.jsx useEffect Esc).
-    fireEvent.keyDown(window, { key: 'Escape' });
+    // iter 88 PHASE 3 HIGH-2 fix (comprehensive-review subagent): Esc handler
+    // now scoped to dialogRef (NOT window) to avoid swallowing CodeMirror /
+    // Blockly Esc events beneath overlay. Dispatch keydown on the dialog node.
+    const dialog = screen.getByTestId('home-compile-onboarding-dialog');
+    fireEvent.keyDown(dialog, { key: 'Escape' });
     expect(window.localStorage.getItem('elab.compile.onboarded')).toBe('true');
     expect(onComplete).toHaveBeenCalledTimes(1);
   });

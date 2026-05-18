@@ -190,17 +190,20 @@
   box-shadow: 0 0 0 3px rgba(74, 122, 37, 0.35);
 }
 
-/* Highlight target sibling — Lime 3px outline via data-attr toggle.
-   Applied to HomeCompileEntry [data-onboard-target] children. Selector
-   :global() escape CSS modules scoping so it works on HomeCompileEntry
-   elements (different module). */
+/* iter 88 PHASE 3 HIGH-4 fix (comprehensive-review subagent):
+   Highlight target sibling — Lime 3px outline via data-attr toggle.
+   Drop !important (was leaking via specificity battles iter 67 cron regression
+   pattern) — outline shorthand alone has sufficient specificity for transient
+   tour overlay. Z-index lowered 10499 → 10399 (well under backdrop 10500 but
+   above siblings). Position relative kept for stacking context. Cleanup
+   guaranteed via JS ref Set tracking (see HomeCompileOnboarding.jsx). */
 :global([data-onboard-active="true"]) {
-  outline: 3px solid var(--elab-lime, #4A7A25) !important;
+  outline: 3px solid var(--elab-lime, #4A7A25);
   outline-offset: 4px;
   border-radius: 4px;
   transition: outline-color 180ms ease;
   position: relative;
-  z-index: 10499; /* sotto backdrop ma sopra siblings */
+  z-index: 10399; /* sotto backdrop 10500 ma sopra siblings */
 }
 
 /* Mobile <768 — fullscreen modal less padding. */
