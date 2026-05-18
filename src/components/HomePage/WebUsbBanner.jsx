@@ -82,16 +82,18 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
             necessario.
           </p>
         </div>
-        <div className={styles.actions}>
-          <a
-            href={openCompilerUrl}
-            className={styles.buttonSecondary}
-            data-testid="webusb-open-compiler"
-            aria-label="Apri il Compilatore ELAB"
-          >
-            Apri il Compilatore
-          </a>
-        </div>
+        {openCompilerUrl ? (
+          <div className={styles.actions}>
+            <a
+              href={openCompilerUrl}
+              className={styles.buttonSecondary}
+              data-testid="webusb-open-compiler"
+              aria-label="Apri il Compilatore ELAB"
+            >
+              Apri il Compilatore
+            </a>
+          </div>
+        ) : null}
       </aside>
     );
   }

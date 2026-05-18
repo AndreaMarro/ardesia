@@ -247,7 +247,13 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       </header>
 
       <section className={styles.bannerSection} aria-label="Stato browser cross-compile">
-        {USE_LOCAL_AGENT_BANNER ? <CompileAgentBanner /> : <WebUsbBanner />}
+        {/* iter 87 PHASE 4c UX (Andrea feedback 2026-05-18): hide redundant
+            "Apri il Compilatore" CTA when banner rendered INSIDE compiler page
+            (sei già nel compilatore). Status part still useful (WebUSB ready
+            indicator). openCompilerUrl=null hides only the CTA button. */}
+        {USE_LOCAL_AGENT_BANNER
+          ? <CompileAgentBanner openCompilerUrl={null} />
+          : <WebUsbBanner openCompilerUrl={null} />}
       </section>
 
       <main className={styles.editorGrid}>
@@ -308,6 +314,11 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                 code={cppCode}
                 onChange={setCppCode}
                 readOnly={false}
+                // iter 87 PHASE 4c UX: hide duplicate "▶ Compila & Carica" footer
+                // button. Canonical compile entry = ScratchCompileBar aside (right
+                // panel). Andrea feedback 2026-05-18 PM: 3 compile buttons (header
+                // banner CTA + green editor footer + side panel) confondevano.
+                hideCompileButton
               />
             )}
           </div>

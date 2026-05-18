@@ -322,6 +322,12 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
   readOnly = false,
   title = 'Editor Codice',
   onExplainCode,
+  // iter 87 PHASE 4c — UX cleanup Andrea feedback "non si capisce come usare".
+  // Hide the duplicate "▶ Compila & Carica" footer button when parent already
+  // renders an external compile entry point (e.g. HomeCompileEntry has a
+  // ScratchCompileBar in the right aside that is the canonical compile +
+  // upload controller). Keeping both confuses users (3 compile buttons total).
+  hideCompileButton = false,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -557,21 +563,23 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
         </div>
       )}
 
-      {/* Compile button */}
-      <div style={codeEditorStyles.footer}>
-        <button
-          onClick={() => onCompile && onCompile(viewRef.current ? viewRef.current.state.doc.toString() : code)}
-          disabled={compilationStatus === 'compiling'}
-          style={{
-            ...codeEditorStyles.compileBtn,
-            opacity: compilationStatus === 'compiling' ? 0.5 : 1,
-          }}
-        >
-          {compilationStatus === 'compiling'
-            ? <><span style={{ display: 'inline-block', animation: 'spin 0.8s linear infinite' }}>{'\u25CB'}</span> Compilazione...</>
-            : '\u25B6 Compila & Carica'}
-        </button>
-      </div>
+      {/* Compile button \u2014 hidden when parent owns canonical compile entry (iter 87 PHASE 4c) */}
+      {!hideCompileButton && (
+        <div style={codeEditorStyles.footer}>
+          <button
+            onClick={() => onCompile && onCompile(viewRef.current ? viewRef.current.state.doc.toString() : code)}
+            disabled={compilationStatus === 'compiling'}
+            style={{
+              ...codeEditorStyles.compileBtn,
+              opacity: compilationStatus === 'compiling' ? 0.5 : 1,
+            }}
+          >
+            {compilationStatus === 'compiling'
+              ? <><span style={{ display: 'inline-block', animation: 'spin 0.8s linear infinite' }}>{'\u25CB'}</span> Compilazione...</>
+              : '\u25B6 Compila & Carica'}
+          </button>
+        </div>
+      )}
     </div>
   );
 });

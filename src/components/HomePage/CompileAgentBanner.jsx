@@ -176,16 +176,18 @@ export default function CompileAgentBanner({
             Caricamento diretto sul Nano R4 abilitato.
           </p>
         </div>
-        <div className={styles.actions}>
-          <a
-            href={openCompilerUrl}
-            className={styles.buttonSecondary}
-            data-testid="compile-agent-open-compiler"
-            aria-label="Apri il Compilatore ELAB"
-          >
-            Apri il Compilatore
-          </a>
-        </div>
+        {openCompilerUrl ? (
+          <div className={styles.actions}>
+            <a
+              href={openCompilerUrl}
+              className={styles.buttonSecondary}
+              data-testid="compile-agent-open-compiler"
+              aria-label="Apri il Compilatore ELAB"
+            >
+              Apri il Compilatore
+            </a>
+          </div>
+        ) : null}
       </aside>
     );
   }

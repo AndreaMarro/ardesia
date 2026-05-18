@@ -123,8 +123,17 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
   // Color semantics statusColor (green success / red error / lime compile)
   // + plain text labels convey status WCAG-friendly + a11y screen reader.
   const localIndicator = compilationStatus === 'success-local' ? ' (locale)' : '';
+  // iter 87 PHASE 4c UX: human-friendly KB display instead of jargon "1219/262144 bytes (0%)"
+  // Andrea feedback 2026-05-18 PM: "non si capisce bene come usare. UX e UI fanno schifo".
+  // Format: "Compilato ✓ — 1.2 KB / 256 KB (uso 0.5%)" → readable LIM-friendly.
+  const formatKB = (bytes) => {
+    if (bytes >= 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${bytes} byte`;
+  };
   const statusText = isSuccess
-    ? (compilationSize ? `OK${localIndicator} — ${compilationSize.bytes}/${compilationSize.total} bytes (${compilationSize.percent}%)` : `Compilazione OK${localIndicator}`)
+    ? (compilationSize
+        ? `Compilato${localIndicator} — ${formatKB(compilationSize.bytes)} / ${formatKB(compilationSize.total)} (${compilationSize.percent}%)`
+        : `Compilato${localIndicator}`)
     : compilationStatus === 'error' ? 'Errore'
     : compilationStatus === 'compiling' ? SCRATCH_COMPILE_MSGS[compileMsg]
     : 'Pronto';
