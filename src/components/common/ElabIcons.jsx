@@ -746,3 +746,43 @@ export function ScimpanzeIcon({ size = 48, ...props }) {
     </svg>
   );
 }
+
+export function UndoIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <path d="M3 8h10a5 5 0 0 1 0 10H7" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M7 4L3 8l4 4" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function RedoIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <path d="M21 8H11a5 5 0 0 0 0 10h6" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M17 4l4 4-4 4" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function TrashIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <path d="M5 7h14M9 7V4h6v3M6 7l1 13h10l1-13" stroke={color || '#E54B3D'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function HelpIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <circle cx="12" cy="12" r="10" stroke={color || '#1E4D8C'} strokeWidth="2.5" fill="none" />
+      <path d="M9 9a3 3 0 1 1 4.5 2.5c-1 0.5-1.5 1-1.5 2.5" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <circle cx="12" cy="17.5" r="1" fill={color || '#1E4D8C'} />
+    </svg>
+  );
+}
