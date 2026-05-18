@@ -105,6 +105,13 @@ function authMiddleware(req, res, next) {
 }
 
 function rateLimitMiddleware(req, res, next) {
+  // iter 87 PHASE 2 MOSSA 4 fix (Codex Pro 2nd verdetto Test 4 invalid fqbn
+  // returns HTML 502 cycling): rate limit was counting /health + /boards
+  // requests. /health hit every 30s by Supabase pg_cron warmup (iter 67
+  // PHASE 3) + Andrea browser probe + smoke tests. Easily 10/min cap.
+  // Exclude read-only public endpoints from rate limit count. Only
+  // /compile + /upload (work-generating endpoints) need throttle.
+  if (req.path === '/health' || req.path === '/boards') return next();
   const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
   if (isRateLimited(ip)) {
     res.setHeader('Retry-After', '60');
