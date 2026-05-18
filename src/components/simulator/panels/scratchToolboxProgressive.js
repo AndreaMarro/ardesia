@@ -1,6 +1,35 @@
+// © Andrea Marro — 18/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Progressive Blockly toolbox 3-level reveal for ELAB Tutor kids 8-14.
+ *
+ * ⚠️ iter 82 PHASE 5.5 — NOT FUNCTIONAL UNTIL iter 83+ AUDIT ⚠️
+ *
+ * Block IDs (digital_write, led_on_pin, delay, tone, analog_read, etc.)
+ * are FABRICATED — NOT registered in scratchBlocks.js. Real registry
+ * uses arduino_* prefix (arduino_digital_write, arduino_delay, arduino_tone,
+ * arduino_analog_read, ...). If wired into Blockly.inject() WITHOUT block
+ * ID rename, flyout throws "Unknown block type" errors at mount time.
+ *
+ * Codex Pattern V (iter 82 BLOCK-PUSH MED-2) + code-reviewer (CRITICAL-3)
+ * both flagged this. Tests T1-T5 (5/5 PASS) measure array shape ONLY, NOT
+ * Blockly compatibility. ScratchEditor.jsx does NOT import this file in
+ * iter 82 — TOOLBOX_XML legacy preserved per Phase 2 honest deferral.
+ *
+ * iter 83+ atom MANDATORY: audit + rename all block IDs to scratchBlocks.js
+ * canonical names + add integration test asserting Blockly.Blocks[type]
+ * exists for every toolbox entry BEFORE wiring into ScratchEditor.
+ *
+ * Level 1 (default): 4 categories — Eventi + LED + Movimento + Aspetta.
+ * Level 2: +3 — Variabili + Logica + Numeri.
+ * Level 3: full 12 — Funzioni + Liste + Sensori + Suono + Seriale.
  */
+
+if (typeof console !== 'undefined' && typeof console.warn === 'function') {
+  console.warn(
+    '[scratchToolboxProgressive] NOT WIRED — block IDs fabricated. ' +
+    'Do not use until iter 83+ audit (Codex Pattern V + code-reviewer iter 82 close).'
+  );
+}
 
 const LIVELLO_1_CATEGORIES = [
   { kind: 'category', name: 'Eventi', colour: '#FFD700', contents: [

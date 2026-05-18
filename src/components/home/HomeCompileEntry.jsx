@@ -253,7 +253,9 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
               <ScratchErrorBoundary>
                 <ScratchEditor
                   onChange={handleScratchCodeChange}
-                  compileError={compileErrors}
+                  // iter 82 PHASE 5.5 fix Codex MED-5: gate compileError by editorMode.
+                  // Without gate, C++ compile error shows in Blockly overlay after tab switch.
+                  compileError={editorMode === 'blocks' ? compileErrors : null}
                   onCompileErrorDismiss={() => setCompileErrors(null)}
                 />
               </ScratchErrorBoundary>

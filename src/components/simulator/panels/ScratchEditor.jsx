@@ -6,7 +6,13 @@ import './scratchBlocks';
 import ScratchOnboarding from './ScratchOnboarding';
 import ScratchToolbar from './ScratchToolbar';
 import ScratchErrorOverlay from './ScratchErrorOverlay';
-import '../../../styles/elab-blockly-theme.css';
+// iter 82 PHASE 5.5 fix CRITICAL-2: elab-blockly-theme.css NOT imported.
+// Both Codex Pattern V + code-reviewer found conflict with existing dark
+// inline ELAB_BLOCKLY_CSS (lines 193-331) — both !important on same selectors,
+// would cause Navy-on-dark contrast regression (~2:1 vs WCAG 4.5:1 target).
+// File preserved for iter 83+ refactor atom: consolidate into single theme
+// path OR scope to .blockly-light-mode parent class. Block name audit also
+// needed (see Codex MED-1+MED-2). NOT functional without integration.
 
 // ─── Blockly 12.4.1 safe-disposal patch ─────────────────────────────────
 // Blockly 12.4.1 has an InsertionMarkerPreviewer bug: workspace.dispose()
@@ -470,6 +476,9 @@ const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDism
             resizeObserver?.disconnect();
             if (workspace) {
                 workspace.removeChangeListener(onChangeHandler);
+                // iter 82 PHASE 5.5 fix CRITICAL-1: undoRedoListener was never removed
+                // → memory leak on ScratchEditor remount (Codex Pattern C + code-reviewer findings)
+                workspace.removeChangeListener(undoRedoListener);
                 // Safe to dispose — patched by scripts/patch-blockly.js
                 try { workspace.dispose(); } catch (_) { /* ignore residual */ }
             }
@@ -521,7 +530,19 @@ const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDism
         try { workspaceRef.current?.undo(true); } catch (_) { /* defensive */ }
     }, []);
     const handleClear = useCallback(() => {
-        try { workspaceRef.current?.clear(); } catch (_) { /* defensive */ }
+        // iter 82 PHASE 5.5 fix Codex HIGH-1: workspace.clear() deletes the protected
+        // arduino_base block → generateArduinoCode() emits empty setup/loop afterwards.
+        // Preserve arduino_base: collect deletable top-blocks, remove only those.
+        try {
+            const ws = workspaceRef.current;
+            if (!ws) return;
+            const topBlocks = ws.getTopBlocks(false) || [];
+            topBlocks.forEach((block) => {
+                if (block?.type !== 'arduino_base' && block?.isDeletable?.()) {
+                    block.dispose(false);
+                }
+            });
+        } catch (_) { /* defensive */ }
     }, []);
     const handleHelp = useCallback(() => setShowOnboarding(true), []);
 

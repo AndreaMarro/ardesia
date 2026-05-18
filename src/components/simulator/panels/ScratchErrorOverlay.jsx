@@ -43,6 +43,19 @@ function translateError(rawError) {
   return DEFAULT_TRANSLATION;
 }
 
+// iter 82 PHASE 5.5 fix Codex HIGH-3: sanitize PII (file paths + usernames +
+// emails + bearer tokens) from raw error before kid 8-14 can see via <details>.
+function sanitizeRawError(rawError) {
+  if (typeof rawError !== 'string') return String(rawError ?? '');
+  return rawError
+    .replace(/\/Users\/[^/\s]+/g, '/Users/<utente>')
+    .replace(/\/home\/[^/\s]+/g, '/home/<utente>')
+    .replace(/\/private\/var\/folders\/[^\s]+/g, '/tmp/<sandbox>')
+    .replace(/\/var\/folders\/[^\s]+/g, '/tmp/<sandbox>')
+    .replace(/Bearer\s+[A-Za-z0-9._-]+/g, 'Bearer <redacted>')
+    .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '<email>');
+}
+
 export default function ScratchErrorOverlay({ error, onDismiss }) {
   if (!error) return null;
   const translation = translateError(error);
@@ -64,7 +77,7 @@ export default function ScratchErrorOverlay({ error, onDismiss }) {
         )}
         <details className={styles.rawError}>
           <summary>Dettaglio tecnico (per il docente)</summary>
-          <pre>{error}</pre>
+          <pre>{sanitizeRawError(error)}</pre>
         </details>
         <button
           type="button"
