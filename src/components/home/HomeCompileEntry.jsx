@@ -251,7 +251,11 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           >
             {editorMode === 'blocks' ? (
               <ScratchErrorBoundary>
-                <ScratchEditor onChange={handleScratchCodeChange} />
+                <ScratchEditor
+                  onChange={handleScratchCodeChange}
+                  compileError={compileErrors}
+                  onCompileErrorDismiss={() => setCompileErrors(null)}
+                />
               </ScratchErrorBoundary>
             ) : (
               <CodeEditorCM6

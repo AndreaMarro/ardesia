@@ -1,8 +1,12 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import * as Blockly from 'blockly';
 import { arduinoGenerator, generateArduinoCode } from './scratchGenerator';
 import logger from '../../../utils/logger';
 import './scratchBlocks';
+import ScratchOnboarding from './ScratchOnboarding';
+import ScratchToolbar from './ScratchToolbar';
+import ScratchErrorOverlay from './ScratchErrorOverlay';
+import '../../../styles/elab-blockly-theme.css';
 
 // ─── Blockly 12.4.1 safe-disposal patch ─────────────────────────────────
 // Blockly 12.4.1 has an InsertionMarkerPreviewer bug: workspace.dispose()
@@ -326,12 +330,20 @@ const ELAB_BLOCKLY_CSS = `
 }
 `;
 
-const ScratchEditor = ({ onChange, initialCode }) => {
+const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDismiss }) => {
     const blocklyDiv = useRef(null);
     const workspaceRef = useRef(null);
     const onChangeRef = useRef(onChange);
     const isMountedRef = useRef(false);
     const isReloadingRef = useRef(false); // S112: Guard against onChange during programmatic workspace reloads
+
+    // iter 82 Task 6: Blockly UX overhaul overlays state
+    const [showOnboarding, setShowOnboarding] = useState(
+        () => typeof window !== 'undefined' && !localStorage.getItem('elab-blockly-onboarded')
+    );
+    const [canUndo, setCanUndo] = useState(false);
+    const [canRedo, setCanRedo] = useState(false);
+
     useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
 
     // Inject ELAB CSS overrides once
@@ -436,6 +448,15 @@ const ScratchEditor = ({ onChange, initialCode }) => {
 
         workspace.addChangeListener(onChangeHandler);
 
+        // iter 82 Task 6: undo/redo state tracking for ScratchToolbar buttons
+        const undoRedoListener = () => {
+            try {
+                setCanUndo(workspace.undoStack_?.length > 0);
+                setCanRedo(workspace.redoStack_?.length > 0);
+            } catch (_) { /* defensive — undoStack_ private API may change */ }
+        };
+        workspace.addChangeListener(undoRedoListener);
+
         // S83: ResizeObserver — recalculate Blockly layout when container resizes
         let resizeObserver;
         if (blocklyDiv.current) {
@@ -492,12 +513,39 @@ const ScratchEditor = ({ onChange, initialCode }) => {
         } catch (_) { /* ignore */ }
     }, [initialCode]);
 
+    // iter 82 Task 6: ScratchToolbar handlers wired to Blockly workspace API
+    const handleUndo = useCallback(() => {
+        try { workspaceRef.current?.undo(false); } catch (_) { /* defensive */ }
+    }, []);
+    const handleRedo = useCallback(() => {
+        try { workspaceRef.current?.undo(true); } catch (_) { /* defensive */ }
+    }, []);
+    const handleClear = useCallback(() => {
+        try { workspaceRef.current?.clear(); } catch (_) { /* defensive */ }
+    }, []);
+    const handleHelp = useCallback(() => setShowOnboarding(true), []);
+
     return (
-        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            {showOnboarding && (
+                <ScratchOnboarding onComplete={() => setShowOnboarding(false)} />
+            )}
+            <ScratchToolbar
+                onUndo={handleUndo}
+                onRedo={handleRedo}
+                onClear={handleClear}
+                onHelp={handleHelp}
+                canUndo={canUndo}
+                canRedo={canRedo}
+            />
             <div
                 ref={blocklyDiv}
                 style={{ flex: 1, width: '100%', minHeight: '200px' }}
                 className="blockly-container"
+            />
+            <ScratchErrorOverlay
+                error={compileError}
+                onDismiss={() => onCompileErrorDismiss?.()}
             />
         </div>
     );

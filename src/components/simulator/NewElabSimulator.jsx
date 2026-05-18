@@ -1024,7 +1024,7 @@ const NewElabSimulator = ({
                 <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
                   <ScratchErrorBoundary>
                     <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-accent, var(--elab-lime))', fontFamily: "var(--font-sans)", fontSize: 14, gap: 8, background: 'var(--color-editor-active-bg, #1E2530)' }}><span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>...</span>Caricamento editor blocchi...</div>}>
-                      <ScratchEditor initialCode={scratchXml} onChange={(xml, generatedCode) => { setScratchXml(xml); setScratchGeneratedCode(generatedCode); codeNeedsCompileRef.current = true; if (currentExperiment?.id) { localStorage.setItem(`elab_scratch_${currentExperiment.id}`, xml); if (generatedCode) localStorage.setItem(`elab_scratch_code_${currentExperiment.id}`, generatedCode); } }} />
+                      <ScratchEditor initialCode={scratchXml} compileError={compilationErrors} onCompileErrorDismiss={() => setCompilationErrors(null)} onChange={(xml, generatedCode) => { setScratchXml(xml); setScratchGeneratedCode(generatedCode); codeNeedsCompileRef.current = true; if (currentExperiment?.id) { localStorage.setItem(`elab_scratch_${currentExperiment.id}`, xml); if (generatedCode) localStorage.setItem(`elab_scratch_code_${currentExperiment.id}`, generatedCode); } }} />
                     </Suspense>
                   </ScratchErrorBoundary>
                 </div>
