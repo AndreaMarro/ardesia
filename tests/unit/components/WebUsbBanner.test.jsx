@@ -74,8 +74,10 @@ describe('WebUsbBanner — Safari unsupported state', () => {
   });
 
   it('shows Safari-specific recommendation to open Chrome/Edge', () => {
+    // iter 88 88.UX-2 /clarify: copy rewritten "Safari non va bene per il
+    // Compilatore" (was "Safari NON supporta WebUSB" jargon iter 76 B-3).
     render(<WebUsbBanner />);
-    expect(screen.getByText(/Safari NON supporta WebUSB/i)).toBeTruthy();
+    expect(screen.getByText(/Safari non va bene per il Compilatore/i)).toBeTruthy();
   });
 
   it('has data-browser="safari" attribute for diagnostics', () => {
@@ -97,8 +99,10 @@ describe('WebUsbBanner — Firefox unsupported state', () => {
   });
 
   it('shows Firefox-specific recommendation', () => {
+    // iter 88 88.UX-2 /clarify: copy rewritten "Firefox non va bene per il
+    // Compilatore" (was "Firefox NON supporta WebUSB" jargon iter 76 B-3).
     render(<WebUsbBanner />);
-    expect(screen.getByText(/Firefox NON supporta WebUSB/i)).toBeTruthy();
+    expect(screen.getByText(/Firefox non va bene per il Compilatore/i)).toBeTruthy();
   });
 
   it('has data-browser="firefox" attribute', () => {

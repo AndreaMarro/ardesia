@@ -1,3 +1,4 @@
+// © Andrea Marro — 18/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * starterTemplates — XML pre-built Blockly programs Sub-project A iter 84 atom 6.
  * Andrea spec FASE 3.2: "Accendi un LED" + "Leggi un pulsante" + "Leggi un sensore".

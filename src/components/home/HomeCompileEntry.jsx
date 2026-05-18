@@ -66,6 +66,18 @@ import { getStarterXml } from '../../features/elabBlocks/starterTemplates.js';
 import * as Blockly from 'blockly';
 import styles from './HomeCompileEntry.module.css';
 
+// iter 88 88.UX-3 /onboard — lazy mount 5-step overlay tour first-render
+// per docente non-tech (target Sprint U Riccardo demo). Lazy import keeps
+// bundle small (~150 LOC + ~120 LOC CSS module). Mount gated by localStorage
+// `elab.compile.onboarded === 'true'` — second visit no auto-mount.
+const HomeCompileOnboarding = React.lazy(() => import('./HomeCompileOnboarding'));
+
+// iter 88 88.UX-7 /extract — collapsible "Cosa fa questo programma?" panel.
+// Plain Italian docente explainer per-template (blink-led/read-button/read-sensor).
+// localStorage persist `elab.compile.explainer.collapsed`. PRINCIPIO ZERO
+// plurale + Vol3 Cap.6 Esp.1 reference. Lazy import bundle small (~175 LOC).
+const ProgramExplainer = React.lazy(() => import('./ProgramExplainer'));
+
 // iter 85 close integration Sub-project A: localStorage persistence key
 // Andrea ratify gruppo 17 voce 2 verbose explicit naming
 // (vs short 'elab_mode' — IT plurale explicit per Sense 1.5 morfismo).
@@ -113,6 +125,21 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [compileErrors, setCompileErrors] = useState(null);
   const [compileWarnings, setCompileWarnings] = useState(null);
   const [compileSize, setCompileSize] = useState(null);
+
+  // iter 88 88.UX-3 /onboard — first-render tour mount gate. Read
+  // localStorage at lazy init time (NOT useEffect) so we never render
+  // overlay then dismiss = flicker. Defensive try/catch private mode +
+  // SSR (typeof window === 'undefined' guard). Default false NOT true on
+  // throw — safer to skip tour than block compile entry behind broken
+  // localStorage.
+  const [showOnboarding, setShowOnboarding] = useState(() => {
+    try {
+      return typeof window !== 'undefined'
+        && window.localStorage.getItem('elab.compile.onboarded') !== 'true';
+    } catch (_) {
+      return false;
+    }
+  });
 
   // iter 85 close integration Sub-project A: ModeToggle handler — persists
   // preference localStorage (defensive try/catch — quota OR private mode).
@@ -257,7 +284,14 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       </section>
 
       <main className={styles.editorGrid}>
-        <section className={styles.editorPanel} aria-label="Editor Blockly + IDE">
+        {/* iter 88 88.UX-3 /onboard — data-onboard-target attrs identify
+            highlight zones for 5-step tour overlay (HomeCompileOnboarding).
+            "starter-buttons" wraps editorPanel containing StarterButtons
+            overlay (atom 7 ElabScratchModeShell, mounts inside ScratchEditor
+            when workspace empty). "editor" wraps the editor surface, "compile-bar"
+            wraps the ScratchCompileBar aside. NO functional change — pure attr
+            additions for tour outline targeting. */}
+        <section className={styles.editorPanel} aria-label="Editor Blockly + IDE" data-onboard-target="starter-buttons">
           {/* iter 85 close integration Sub-project A — ModeToggle iter 84
               atom 8 (Andrea ratify gruppo 16 voce 3) replaces inline
               tab bar (iter 80.A2 + iter 81.A1) for canonical 2-state
@@ -274,11 +308,23 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             <ModeToggle activeMode={editorMode} onModeChange={handleModeChange} />
           </div>
 
+          {/* iter 88 88.UX-7 /extract — ProgramExplainer collapsible panel
+              above editor first-render. Plain Italian "Cosa fa questo
+              programma?" per current loaded template (default blink-led
+              maps Vol3 Cap.6 Esp.1 Blink). NO functional wiring to editor
+              state — pure presentational. Mounts both Blockly + C++ tabs
+              (templateKey static "blink-led" until iter 89+ dynamic detect
+              via volume-references.js wire-up). */}
+          <React.Suspense fallback={null}>
+            <ProgramExplainer templateKey="blink-led" />
+          </React.Suspense>
+
           <div
             className={styles.editorSurface}
             role="tabpanel"
             id="home-compile-tabpanel-editor"
             aria-labelledby="mode-toggle-active"
+            data-onboard-target="editor"
           >
             {/* iter 85 close integration Sub-project A — anti-regression
                 MANDATORY: editorMode === 'blocks' gate. ElabScratchModeShell
@@ -319,12 +365,19 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                 // panel). Andrea feedback 2026-05-18 PM: 3 compile buttons (header
                 // banner CTA + green editor footer + side panel) confondevano.
                 hideCompileButton
+                // iter 88 88.UX-1 /distill — hide decorative "Editor Codice"
+                // title + A-/13/A+ font zoom toolbar. Status preserved
+                // (role="status" aria-live) accessibility. Reduces ≤5 elem
+                // first-render per Andrea verdetto iter 87 PHASE 4c
+                // "ux ui fanno schifo" + critique Nielsen 22/40 mediocre.
+                // ScratchCompileBar aside already shows canonical status.
+                compact
               />
             )}
           </div>
         </section>
 
-        <aside className={styles.compileBarPanel} aria-label="Pannello compilazione">
+        <aside className={styles.compileBarPanel} aria-label="Pannello compilazione" data-onboard-target="compile-bar">
           <ScratchCompileBar
             onCompile={() => handleCompile(editorMode === MODE_CODE ? cppCode : scratchCode)}
             compilationStatus={compileStatus}
@@ -347,12 +400,18 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       </main>
 
       <footer className={styles.footer}>
+        {/* iter 88 88.UX-2 /clarify — Andrea verdetto iter 87 PHASE 4c critique
+            Nielsen #2 Match real world 2/4. Rewrite jargon scuola pubblica:
+            "Renesas RA4M1" → "Arduino Nano R4 del kit ELAB"; "ARM Cortex-M4"
+            rimosso; "WebUSB (Chrome/Edge desktop)" → "Chrome o Edge (computer,
+            non tablet)"; "Carica sul kit fisico" → "Carica sul kit Arduino";
+            "flasha" → "carica". Docente non-tech 8-14 anni studenti target. */}
         <p className={styles.footerNote}>
-          Cross-compile cloud per Arduino Nano R4 (Renesas RA4M1) direttamente dal
-          browser. Premete "Compila" per generare l'eseguibile sul nostro server.
-          Per caricare sul kit fisico, collegate Nano R4 via USB-C e premete
-          "Carica sul kit fisico" — il browser flasha la scheda via WebUSB
-          (Chrome/Edge desktop). Nessun download richiesto.
+          Compila il programma per l'Arduino Nano R4 del kit ELAB direttamente
+          dal browser. Premete "Compila" per preparare il programma. Per caricarlo
+          sul kit, collegate il Nano R4 via USB-C e premete "Carica sul kit
+          Arduino". Funziona con browser Chrome o Edge (su computer, non tablet).
+          Nessun download necessario.
         </p>
       </footer>
       {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso
@@ -362,6 +421,19 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           ($300/yr Apple Dev ID + cross-platform pipeline) defer iter 75+
           scope. Per ora docente legge istruzioni manuale OR Andrea/Tea
           installa via SSH ad-hoc. */}
+
+      {/* iter 88 88.UX-3 /onboard — first-render 5-step tour overlay.
+          Mount only if localStorage `elab.compile.onboarded !== 'true'`
+          (gated by useState lazy init top). Suspense fallback=null per
+          spec — no skeleton, just instant mount on chunk load (~150 LOC
+          + ~120 LOC CSS module, loads <30ms typical). On dismiss
+          (skip/Esc/complete step 5) → setShowOnboarding(false) +
+          localStorage.setItem 'true' (set internally by component). */}
+      {showOnboarding && (
+        <React.Suspense fallback={null}>
+          <HomeCompileOnboarding onComplete={() => setShowOnboarding(false)} />
+        </React.Suspense>
+      )}
     </div>
   );
 });

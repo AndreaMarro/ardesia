@@ -227,6 +227,32 @@
   }
 }
 
+/* iter 88 UX-5 — LIM-first 4-col horizontal sequence ≥1600px.
+   Aspirational redesign: StarterButtons (col 1) → Editor (col 2)
+   → Compila+status (col 3) → Kit Arduino+Carica (col 4).
+   Gated @media 1600px (NOT 1280px) to AVOID breaking existing
+   1280-1600 desktop sidebar layout (.editorGrid 1fr 320px).
+   Orchestrator iter 88 P0.10+ will wire StarterButtons col 1 +
+   CompileStatus col 3 + KitArduinoCarica col 4 as siblings to
+   editorPanel/compileBarPanel. Until wired, only editorPanel +
+   compileBarPanel render — extra cols collapse gracefully (auto). */
+@media (min-width: 1600px) {
+  .editorGrid {
+    grid-template-columns: minmax(200px, 240px) 1fr minmax(220px, 280px) minmax(220px, 280px);
+    grid-template-areas: "starter editor status kit";
+    gap: 20px;
+  }
+  .editorPanel {
+    grid-area: editor;
+  }
+  .compileBarPanel {
+    grid-area: status;
+  }
+  /* Future LIM-only siblings (iter 88 P0.10+ orchestrator wire):
+     .starterPanel  { grid-area: starter; }
+     .kitPanel      { grid-area: kit; } */
+}
+
 /* Mobile <768 — stacked layout with reduced padding */
 @media (max-width: 767px) {
   .header {

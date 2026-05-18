@@ -31,8 +31,15 @@
   box-shadow: 0 2px 6px rgba(30, 77, 140, 0.08);
 }
 
-/* State: agent ONLINE on Mac — Lime success banner */
+/* State: agent ONLINE on Mac — Lime success banner.
+ * iter 88 88.UX-4 /quieter: soften border-width 2px → 1px + icon bg
+ * 0.14 → 0.08 to reduce competing Lime accent stack vs Compila CTA
+ * (Andrea verdetto iter 87 PHASE 4c critique §6 P1 "3 elementi green
+ * stessa weight"). Background gradient already pastel iter 66 P0.3
+ * (0.08→0.02). Border thickness reduction visual hierarchy fix WITHOUT
+ * breaking color identity (Morfismo Sense 2 palette preserved). */
 .bannerOnline {
+  border-width: 1px;
   border-color: var(--elab-lime, #4A7A25);
   background: linear-gradient(
     90deg,
@@ -72,9 +79,10 @@
   background: var(--elab-bg, #F0F4F8);
 }
 
+/* iter 88 88.UX-4 /quieter — icon bg 0.14 → 0.08 less saturated. */
 .iconOnline {
   color: var(--elab-lime, #4A7A25);
-  background: rgba(74, 122, 37, 0.14);
+  background: rgba(74, 122, 37, 0.08);
 }
 
 .iconCta {

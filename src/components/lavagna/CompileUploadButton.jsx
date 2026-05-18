@@ -67,6 +67,80 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getCompileAgentStatus } from '../../services/compileAgentDetect';
 import { CheckIcon, WarningIcon } from '../common/ElabIcons.jsx';
+import styles from './CompileUploadButton.module.css';
+
+/**
+ * iter 88 UX-6 — visual upload state for explicit consumers (Lavagna shell,
+ * HomeCompileEntry sidebar). MAPS to CSS module class + ARIA tooltip +
+ * aria-live status announcement. OPTIONAL prop `uploadState` overrides the
+ * internal `disabled`/`uploading` derivation — when present, the button
+ * surfaces a richer 6-state machine independent of `enableDemoMode` flow.
+ * - idle:      grey, disabled, tooltip "Compilate prima il programma"
+ * - armed:     pulsing Lime breath, tooltip "Collegate Arduino USB"
+ * - ready:     solid Lime, enabled, tooltip "Pronti! Premete per caricare"
+ * - uploading: spinner + Italian copy "Caricamento..."
+ * - success:   checkmark celebration, tooltip "Caricato!"
+ * - error:     red border + retry CTA + friendly error tooltip
+ *
+ * Pulsing breath animation respects @media (prefers-reduced-motion: reduce)
+ * via .module.css — no JS check needed.
+ *
+ * @typedef {('idle'|'armed'|'ready'|'uploading'|'success'|'error')} UploadState
+ */
+export const UPLOAD_STATES = Object.freeze({
+  IDLE: 'idle',
+  ARMED: 'armed',
+  READY: 'ready',
+  UPLOADING: 'uploading',
+  SUCCESS: 'success',
+  ERROR: 'error',
+});
+
+/**
+ * Resolve an `uploadState` value to the canonical tooltip + ARIA live label.
+ * Default fallback: "Carica sul kit fisico Nano R4" (legacy behavior).
+ * @param {UploadState} state
+ * @returns {{ tooltip: string, ariaLive: string }}
+ */
+export function getUploadStateLabels(state) {
+  switch (state) {
+    case UPLOAD_STATES.IDLE:
+      return {
+        tooltip: 'Compilate prima il programma',
+        ariaLive: 'Ragazzi, compilate prima il programma sul kit.',
+      };
+    case UPLOAD_STATES.ARMED:
+      return {
+        tooltip: 'Collegate Arduino USB',
+        ariaLive: 'Ragazzi, collegate la scheda Arduino via USB.',
+      };
+    case UPLOAD_STATES.READY:
+      return {
+        tooltip: 'Pronti! Premete per caricare',
+        ariaLive: 'Ragazzi, siamo pronti. Premete per caricare sul kit.',
+      };
+    case UPLOAD_STATES.UPLOADING:
+      return {
+        tooltip: 'Caricamento...',
+        ariaLive: 'Caricamento in corso, ragazzi.',
+      };
+    case UPLOAD_STATES.SUCCESS:
+      return {
+        tooltip: 'Caricato!',
+        ariaLive: 'Caricato sul kit fisico Nano R4!',
+      };
+    case UPLOAD_STATES.ERROR:
+      return {
+        tooltip: 'Riprovate',
+        ariaLive: 'Ragazzi, qualcosa e andato storto. Riprovate.',
+      };
+    default:
+      return {
+        tooltip: 'Carica il programma sulla Nano R4 fisica del kit ELAB',
+        ariaLive: '',
+      };
+  }
+}
 
 /** Default loopback URL for the agent's combined endpoint. */
 const AGENT_COMPILE_UPLOAD_URL = 'http://localhost:8765/compile-and-upload';
@@ -325,6 +399,14 @@ export default function CompileUploadButton({
   fqbn = DEFAULT_FQBN,
   requestUsbDevice,
   onDemoStateChange,
+  // iter 88 UX-6 OPTIONAL visual state override — when provided, surfaces
+  // a 6-state machine (idle|armed|ready|uploading|success|error) via CSS
+  // module classes + tooltip + aria-live announcement. Independent from
+  // internal `disabled`/`uploading` derivation so callers (Lavagna shell,
+  // HomeCompileEntry sidebar) can drive presentation from outside while
+  // legacy + demo-mode flows continue to work unchanged. When unset (the
+  // default), the button preserves its iter 69/74/76/77 behavior 1:1.
+  uploadState,
 }) {
   const [agentAvailable, setAgentAvailable] = useState(false);
   const [agentChecked, setAgentChecked] = useState(false);
@@ -865,26 +947,78 @@ export default function CompileUploadButton({
     return "Compilazione completata. Collegate il Nano R4 via USB per caricare sulla scheda.";
   })();
 
+  // iter 88 UX-6 — when uploadState prop is supplied, surface a richer
+  // 6-state visual via CSS module class + override tooltip + aria-live.
+  // Otherwise preserve iter 69/74/76/77 inline tooltip + style behavior.
+  const hasUploadStateOverride =
+    typeof uploadState === 'string' && uploadState.length > 0;
+  const uploadStateLabels = hasUploadStateOverride
+    ? getUploadStateLabels(uploadState)
+    : null;
+  const uploadStateClass = hasUploadStateOverride
+    ? `${styles.btn || ''} ${styles[`state_${uploadState}`] || ''}`.trim()
+    : '';
+  const effectiveTooltip = hasUploadStateOverride
+    ? uploadStateLabels.tooltip
+    : tooltip;
+
   return (
     <span style={cliffhangerWrapStyle} data-elab-compile-upload-wrap="true">
       <button
         type="button"
         role="button"
         aria-label="Carica il programma sul kit fisico Nano R4"
-        aria-disabled={disabled || undefined}
-        aria-busy={uploading || undefined}
-        title={tooltip}
+        aria-disabled={
+          (hasUploadStateOverride
+            ? uploadState === UPLOAD_STATES.IDLE
+            : disabled) || undefined
+        }
+        aria-busy={
+          (hasUploadStateOverride
+            ? uploadState === UPLOAD_STATES.UPLOADING
+            : uploading) || undefined
+        }
+        title={effectiveTooltip}
         onClick={enableDemoMode ? handleDemoClick : handleClick}
-        disabled={enableDemoMode ? (uploading || !sketchCode) : disabled}
+        disabled={
+          hasUploadStateOverride
+            ? uploadState === UPLOAD_STATES.IDLE
+              || uploadState === UPLOAD_STATES.UPLOADING
+            : (enableDemoMode ? (uploading || !sketchCode) : disabled)
+        }
         style={buttonStyle}
+        className={uploadStateClass}
         data-elab-component="compile-upload-button"
         data-elab-agent-available={agentAvailable ? 'true' : 'false'}
         data-elab-demo-mode={enableDemoMode ? 'true' : 'false'}
         data-elab-demo-state={demoState}
+        data-elab-upload-state={hasUploadStateOverride ? uploadState : undefined}
       >
-        {uploading ? <SpinnerIcon /> : <UploadIcon />}
+        {(hasUploadStateOverride
+          ? uploadState === UPLOAD_STATES.UPLOADING
+          : uploading) ? <SpinnerIcon /> : <UploadIcon />}
         <span>{label}</span>
       </button>
+      {hasUploadStateOverride && (
+        <span
+          role="status"
+          aria-live="polite"
+          data-testid="compile-upload-state-announcer"
+          style={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            padding: 0,
+            margin: -1,
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
+          {uploadStateLabels.ariaLive}
+        </span>
+      )}
       {showNoBoardBanner && (
         <span
           role="status"

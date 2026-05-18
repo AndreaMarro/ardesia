@@ -65,7 +65,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
         className={`${styles.banner} ${styles.bannerOnline}`}
         role="status"
         aria-live="polite"
-        aria-label="WebUSB supportato — Compila e Carica pronto su Nano R4"
+        aria-label="Browser pronto — Compila e Carica funzionano sul kit Arduino Nano R4"
         data-testid="webusb-banner"
         data-state="supported"
         data-browser={cap.browser}
@@ -106,7 +106,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
         className={`${styles.banner} ${styles.bannerCta}`}
         role="status"
         aria-live="polite"
-        aria-label={`${browserLabel} non supporta WebUSB. Aprite Chrome o Edge.`}
+        aria-label={`${browserLabel} non supporta il caricamento dal browser. Aprite Chrome o Edge su computer.`}
         data-testid="webusb-banner"
         data-state="unsupported"
         data-browser={cap.browser}
@@ -116,10 +116,11 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
         </span>
         <div className={styles.body}>
           <p className={styles.title}>
-            {browserLabel} NON supporta WebUSB
+            {browserLabel} non va bene per il Compilatore
           </p>
           <p className={styles.subtitle}>
-            Aprite Chrome OR Edge per programmare la scheda Nano R4 dal browser.
+            Aprite Chrome o Edge (su computer, non tablet) per programmare il
+            Nano R4 del kit ELAB direttamente dal browser.
           </p>
         </div>
       </aside>
@@ -145,8 +146,8 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
           Browser non riconosciuto
         </p>
         <p className={styles.subtitle}>
-          Aprite Chrome OR Edge (versione recente) per programmare il Nano R4
-          dal browser.
+          Aprite Chrome o Edge (versione recente, su computer) per programmare
+          il Nano R4 del kit ELAB direttamente dal browser.
         </p>
       </div>
     </aside>
