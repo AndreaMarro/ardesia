@@ -14,6 +14,7 @@ function obfuscateChunks(obfuscatorOptions = {}) {
         'ScratchEditor', // S112: Blockly is already Closure-compiled — 2nd obfuscator breaks internal refs (removeElem$module$ ReferenceError)
         'ScratchCompileBar', // iter 78 STOP-HOOK: obfuscator hoists nextExperiment.title access outside JSX conditional short-circuit → undefined.title crash. Defensive optional chaining shipped CompileUploadButton + ScratchCompileBar, MA skipping obfuscator on this chunk eliminates entire class of obfuscation-induced regression iter 78+ web-dfu wire.
         'CompileUploadButton', // iter 78: same obfuscator concern; CompileUploadButton wires web-dfu flash chain with dfu npm + lazy imports; protect from obfuscation-induced control flow corruption
+        'HomeCompileEntry', // iter 86 PREEMPTIVE iter 78 PRECEDENT: iter 85 close integration JSX conditional render `editorMode === MODE_BLOCKS ? <ElabScratchModeShell><ScratchEditor/></ElabScratchModeShell> : <CodeEditorCM6/>` simile pattern obfuscator hoisting risk workspaceBlockCount + onWorkspaceReady prop access. PROD bundle 36696B (3.2x preview 11279B) obfuscator string array indirection confirmed. Skip eliminates entire iter 78-style regression class. iter 79+ Atom 79.0 built-bundle E2E mandate aware, this is preemptive defense-in-depth.
         'recharts', 'd3-vendor', 'supabase', 'experiments-vol', // Vendor/data chunks — no obfuscation needed
     ];
 
