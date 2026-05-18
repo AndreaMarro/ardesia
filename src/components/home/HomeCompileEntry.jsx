@@ -27,7 +27,7 @@
  *   - boardId default `arduino-nano-r4` matching kit Omaric
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { compileCode } from '../../services/api';
 import logger from '../../utils/logger';
 // iter 77 P0.2b fix (Codex Pattern V iter 77 verify MED #4): swap legacy
@@ -50,10 +50,26 @@ import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/Scr
 // LIVE: CodeMirror 6 + cpp lang + Arduino autocomplete + friendly error
 // translator). NO modify simulator file — pure consumer wire-up.
 import CodeEditorCM6 from '../simulator/panels/CodeEditorCM6';
-// iter 81 81.A2 (close BG agent A2 caveat #5): extract inline puzzle SVG to
-// ElabIcons.PuzzleIcon — reusable + central palette discipline.
-import { WrenchIcon, PuzzleIcon } from '../common/ElabIcons';
+// iter 85 close integration Sub-project A: WrenchIcon + PuzzleIcon ElabIcons
+// imports removed — inline tab bar (iter 80.A2 + iter 81.A1) replaced by
+// ModeToggle (iter 84 atom 8) which provides its own canonical IT plurale
+// label "Blocchi"/"C++" senza icon dependency (palette-only styling).
+// iter 85 close integration Sub-project A: wire iter 84 standalone atoms
+// 6 (StarterButtons + starterTemplates) + 7 (ElabScratchModeShell) + 8
+// (ModeToggle) into production path. PROD user vede ModeToggle top bar +
+// ElabScratchModeShell wrap StarterButtons overlay quando workspace empty.
+// Anti-regression CRITICAL: editorMode === 'blocks' gate MANDATORY —
+// 'code' path NO mount ElabScratchModeShell (Blockly-only crash prevention).
+import { ModeToggle, MODE_BLOCKS, MODE_CODE } from '../../features/elabBlocks/ui/ModeToggle.jsx';
+import { ElabScratchModeShell } from '../../features/elabBlocks/ui/ElabScratchModeShell.jsx';
+import { getStarterXml } from '../../features/elabBlocks/starterTemplates.js';
+import * as Blockly from 'blockly';
 import styles from './HomeCompileEntry.module.css';
+
+// iter 85 close integration Sub-project A: localStorage persistence key
+// Andrea ratify gruppo 17 voce 2 verbose explicit naming
+// (vs short 'elab_mode' — IT plurale explicit per Sense 1.5 morfismo).
+const EDITOR_MODE_STORAGE_KEY = 'elab_editor_mode_preference';
 
 const DEFAULT_BOARD_ID = 'arduino-nano-r4';
 // Iter 73 CC-2 fix F2 (Codex Pattern V REFUTE): canonical FQBN passed
@@ -74,14 +90,72 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   // state. Default seeded Blink Vol3 Cap.6 Esp.1 sketch so docente vede
   // codice già compilabile (Karpathy "Simple": no empty-editor friction).
   const [cppCode, setCppCode] = useState(DEFAULT_CPP_BLINK);
-  // iter 80.A2 editor mode tab state — 'blocks' default (preserves iter 73
-  // CC-2 Blockly experience) vs 'code' direct C++ entry. Switching tab
-  // changes which source feeds handleCompile (see ScratchCompileBar wire).
-  const [editorMode, setEditorMode] = useState('blocks');
+  // iter 85 close integration Sub-project A: editorMode state ora consume
+  // localStorage preference Andrea ratify gruppo 17 voce 2. Default 'blocks'
+  // preserves iter 73 CC-2 Blockly first-impression (vs 'code' direct C++).
+  const [editorMode, setEditorMode] = useState(() => {
+    try {
+      if (typeof window === 'undefined') return MODE_BLOCKS;
+      const saved = window.localStorage.getItem(EDITOR_MODE_STORAGE_KEY);
+      if (saved === MODE_CODE || saved === MODE_BLOCKS) return saved;
+    } catch (_) { /* defensive — localStorage may throw (private mode, quota) */ }
+    return MODE_BLOCKS;
+  });
+  // iter 85 close integration Sub-project A: workspace lifecycle state for
+  // ElabScratchModeShell. workspaceRef stores Blockly workspace instance for
+  // starter XML load. workspaceReady toggles skeleton loading (F4 mitigation
+  // 4/6 personas fail audit). workspaceBlockCount drives StarterButtons
+  // overlay visibility (isEmpty when ≤1 = arduino_base alone).
+  const workspaceRef = useRef(null);
+  const [workspaceReady, setWorkspaceReady] = useState(false);
+  const [workspaceBlockCount, setWorkspaceBlockCount] = useState(0);
   const [compileStatus, setCompileStatus] = useState('idle');
   const [compileErrors, setCompileErrors] = useState(null);
   const [compileWarnings, setCompileWarnings] = useState(null);
   const [compileSize, setCompileSize] = useState(null);
+
+  // iter 85 close integration Sub-project A: ModeToggle handler — persists
+  // preference localStorage (defensive try/catch — quota OR private mode).
+  const handleModeChange = useCallback((mode) => {
+    if (mode !== MODE_BLOCKS && mode !== MODE_CODE) return;
+    setEditorMode(mode);
+    try {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(EDITOR_MODE_STORAGE_KEY, mode);
+      }
+    } catch (_) { /* defensive — localStorage may throw (private mode, quota) */ }
+  }, []);
+
+  // iter 85 close integration Sub-project A: ScratchEditor optional callback
+  // onWorkspaceReady — captures Blockly workspace ref for starter XML load
+  // + flips workspaceReady true → ElabScratchModeShell dismiss skeleton.
+  const handleWorkspaceReady = useCallback((workspace) => {
+    workspaceRef.current = workspace;
+    setWorkspaceReady(true);
+  }, []);
+
+  // iter 85 close integration Sub-project A: StarterButtons callback —
+  // parent loads pre-built Blockly XML via getStarterXml + domToWorkspace.
+  // Defensive: validate workspace ref + Blockly Xml utils available before
+  // dispatch. Clear workspace first to avoid stacking with arduino_base.
+  const handleStarterClick = useCallback((key) => {
+    const xml = getStarterXml(key);
+    if (!xml || !workspaceRef.current) {
+      logger.warn('[HomeCompileEntry] starter load skipped: missing xml or workspace ref');
+      return;
+    }
+    try {
+      const dom = Blockly?.utils?.xml?.textToDom?.(xml);
+      if (!dom) {
+        logger.warn('[HomeCompileEntry] Blockly.utils.xml.textToDom unavailable');
+        return;
+      }
+      workspaceRef.current.clear();
+      Blockly.Xml.domToWorkspace(dom, workspaceRef.current);
+    } catch (err) {
+      logger.warn('[HomeCompileEntry] starter load failed:', err?.message);
+    }
+  }, []);
 
   // iter 79.A A1 fix (Codex Pattern V HIGH IDE-2 + HOMEPAGE-2): ScratchEditor
   // emits onChange(xmlText, generatedCppCode) per ScratchEditor.jsx:407-412+
@@ -178,86 +252,56 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
 
       <main className={styles.editorGrid}>
         <section className={styles.editorPanel} aria-label="Editor Blockly + IDE">
-          {/* iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1) — tab switch
-              Blockly vs C++ diretto. Labels Italian plurale (PRINCIPIO
-              ZERO non-negoziabile). Icone ElabIcons SVG no emoji
-              (CLAUDE.md §Regole tecniche 11). ARIA tablist semantica
-              WAI-ARIA Authoring Practices Tab pattern (role tablist/tab
-              + aria-selected runtime). Touch target ≥44×44 (CLAUDE.md
-              §Qualita 9). */}
-          {/* iter 81 81.A1 (close BG agent A2 caveat #4): WAI-ARIA Tab
-              pattern complete keyboard nav. Arrow Left/Right cycle tabs,
-              Home/End jump first/last. Roving tabIndex (iter 80.A2) preserved.
-              Pattern: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/ */}
-          <div
-            className={styles.tabBar}
-            role="tablist"
-            aria-label="Modalità editor"
-            onKeyDown={(e) => {
-              const TAB_ORDER = ['blocks', 'code'];
-              const currentIdx = TAB_ORDER.indexOf(editorMode);
-              let nextIdx = null;
-              if (e.key === 'ArrowRight') nextIdx = (currentIdx + 1) % TAB_ORDER.length;
-              else if (e.key === 'ArrowLeft') nextIdx = (currentIdx - 1 + TAB_ORDER.length) % TAB_ORDER.length;
-              else if (e.key === 'Home') nextIdx = 0;
-              else if (e.key === 'End') nextIdx = TAB_ORDER.length - 1;
-              if (nextIdx !== null) {
-                e.preventDefault();
-                const nextMode = TAB_ORDER[nextIdx];
-                setEditorMode(nextMode);
-                // Move focus to the newly-active tab (WAI-ARIA mandate).
-                requestAnimationFrame(() => {
-                  const nextBtn = document.getElementById(`home-compile-tab-${nextMode}`);
-                  if (nextBtn) nextBtn.focus();
-                });
-              }
-            }}
-          >
-            <button
-              type="button"
-              role="tab"
-              id="home-compile-tab-blocks"
-              aria-selected={editorMode === 'blocks'}
-              aria-controls="home-compile-tabpanel-editor"
-              tabIndex={editorMode === 'blocks' ? 0 : -1}
-              className={`${styles.tabButton} ${editorMode === 'blocks' ? styles.tabActive : ''}`}
-              onClick={() => setEditorMode('blocks')}
-              data-testid="home-compile-tab-blocks"
-            >
-              <PuzzleIcon size={20} className={styles.tabIcon} />
-              Blocchi
-            </button>
-            <button
-              type="button"
-              role="tab"
-              id="home-compile-tab-code"
-              aria-selected={editorMode === 'code'}
-              aria-controls="home-compile-tabpanel-editor"
-              tabIndex={editorMode === 'code' ? 0 : -1}
-              className={`${styles.tabButton} ${editorMode === 'code' ? styles.tabActive : ''}`}
-              onClick={() => setEditorMode('code')}
-              data-testid="home-compile-tab-code"
-            >
-              <WrenchIcon size={20} className={styles.tabIcon} />
-              Codice C++
-            </button>
+          {/* iter 85 close integration Sub-project A — ModeToggle iter 84
+              atom 8 (Andrea ratify gruppo 16 voce 3) replaces inline
+              tab bar (iter 80.A2 + iter 81.A1) for canonical 2-state
+              Blocchi/C++ toggle. Same WAI-ARIA Tab pattern
+              (tablist + tab + aria-selected + Arrow Left/Right + Space/Enter)
+              + WCAG touch 44+ + IT plurale label preserved. Top bar
+              position visibile LIM 4K + iPad. localStorage persist via
+              handleModeChange. */}
+          {/* iter 85 close integration Sub-project A: reuse styles.tabBar
+              wrapper (defined HomeCompileEntry.module.css:102 — flex 0 0 auto +
+              bg + border-bottom + padding 0 8px + gap 4px). NO modify CSS
+              module (file ownership rigid per Sub-project A mandate). */}
+          <div className={styles.tabBar}>
+            <ModeToggle activeMode={editorMode} onModeChange={handleModeChange} />
           </div>
 
           <div
             className={styles.editorSurface}
             role="tabpanel"
             id="home-compile-tabpanel-editor"
-            aria-labelledby={editorMode === 'blocks' ? 'home-compile-tab-blocks' : 'home-compile-tab-code'}
+            aria-labelledby="mode-toggle-active"
           >
-            {editorMode === 'blocks' ? (
+            {/* iter 85 close integration Sub-project A — anti-regression
+                MANDATORY: editorMode === 'blocks' gate. ElabScratchModeShell
+                (atom 7) wraps ScratchEditor con StarterButtons (atom 6)
+                overlay quando workspace empty + skeleton loading mount.
+                editorMode === 'code' path NO mount ElabScratchModeShell
+                (Blockly-only crash prevention — workspaceRef nullable
+                outside Blockly mount). */}
+            {editorMode === MODE_BLOCKS ? (
               <ScratchErrorBoundary>
-                <ScratchEditor
-                  onChange={handleScratchCodeChange}
-                  // iter 82 PHASE 5.5 fix Codex MED-5: gate compileError by editorMode.
-                  // Without gate, C++ compile error shows in Blockly overlay after tab switch.
-                  compileError={editorMode === 'blocks' ? compileErrors : null}
-                  onCompileErrorDismiss={() => setCompileErrors(null)}
-                />
+                <ElabScratchModeShell
+                  workspaceReady={workspaceReady}
+                  workspaceBlockCount={workspaceBlockCount}
+                  onStarterClick={handleStarterClick}
+                  title="ELAB Scratch Arduino"
+                >
+                  <ScratchEditor
+                    onChange={handleScratchCodeChange}
+                    // iter 82 PHASE 5.5 fix Codex MED-5: gate compileError by editorMode.
+                    // Without gate, C++ compile error shows in Blockly overlay after tab switch.
+                    compileError={editorMode === MODE_BLOCKS ? compileErrors : null}
+                    onCompileErrorDismiss={() => setCompileErrors(null)}
+                    // iter 85 close integration Sub-project A: optional callback
+                    // wire-up — ScratchEditor emits workspace ref + top-block count
+                    // for ElabScratchModeShell skeleton + StarterButtons overlay.
+                    onWorkspaceReady={handleWorkspaceReady}
+                    onBlockCountChange={setWorkspaceBlockCount}
+                  />
+                </ElabScratchModeShell>
               </ScratchErrorBoundary>
             ) : (
               <CodeEditorCM6
@@ -271,7 +315,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
 
         <aside className={styles.compileBarPanel} aria-label="Pannello compilazione">
           <ScratchCompileBar
-            onCompile={() => handleCompile(editorMode === 'code' ? cppCode : scratchCode)}
+            onCompile={() => handleCompile(editorMode === MODE_CODE ? cppCode : scratchCode)}
             compilationStatus={compileStatus}
             compilationErrors={compileErrors}
             compilationWarnings={compileWarnings}
@@ -283,7 +327,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             // (ScratchEditor onChange xml/code → C++ via scratchGenerator).
             // Label override "Compila" because Home handler calls compileCode
             // only — physical upload routes via separate CompileUploadButton.
-            sketchCode={editorMode === 'code' ? cppCode : scratchCode}
+            sketchCode={editorMode === MODE_CODE ? cppCode : scratchCode}
             compileButtonLabel="Compila"
             boardId={DEFAULT_BOARD_ID}
             port={null}

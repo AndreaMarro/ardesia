@@ -336,12 +336,17 @@ const ELAB_BLOCKLY_CSS = `
 }
 `;
 
-const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDismiss }) => {
+const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDismiss, onWorkspaceReady, onBlockCountChange }) => {
     const blocklyDiv = useRef(null);
     const workspaceRef = useRef(null);
     const onChangeRef = useRef(onChange);
     const isMountedRef = useRef(false);
     const isReloadingRef = useRef(false); // S112: Guard against onChange during programmatic workspace reloads
+    // iter 85 close integration Sub-project A: optional callbacks ref pattern
+    // (defensive backward-compat — existing callers without props see ZERO change).
+    // Stored in refs to avoid useEffect re-running on every parent re-render.
+    const onWorkspaceReadyRef = useRef(onWorkspaceReady);
+    const onBlockCountChangeRef = useRef(onBlockCountChange);
 
     // iter 82 Task 6: Blockly UX overhaul overlays state
     const [showOnboarding, setShowOnboarding] = useState(
@@ -351,6 +356,10 @@ const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDism
     const [canRedo, setCanRedo] = useState(false);
 
     useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
+    // iter 85 close integration Sub-project A: keep callback refs current without
+    // forcing Blockly re-init useEffect to re-run.
+    useEffect(() => { onWorkspaceReadyRef.current = onWorkspaceReady; }, [onWorkspaceReady]);
+    useEffect(() => { onBlockCountChangeRef.current = onBlockCountChange; }, [onBlockCountChange]);
 
     // Inject ELAB CSS overrides once
     useEffect(() => {
@@ -463,6 +472,39 @@ const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDism
         };
         workspace.addChangeListener(undoRedoListener);
 
+        // iter 85 close integration Sub-project A: optional callback wire-up.
+        // Emit workspace ref + initial block count post-mount so parent
+        // (HomeCompileEntry) can render ElabScratchModeShell with workspaceReady
+        // + workspaceBlockCount props. Backward-compat: callbacks omitted = NO-OP.
+        try {
+            if (typeof onWorkspaceReadyRef.current === 'function') {
+                onWorkspaceReadyRef.current(workspace);
+            }
+        } catch (err) {
+            logger.warn('[ScratchEditor] onWorkspaceReady callback error:', err?.message);
+        }
+        let blockCountListener = null;
+        if (typeof onBlockCountChangeRef.current === 'function') {
+            const emitBlockCount = () => {
+                try {
+                    const count = workspace.getTopBlocks(false).length;
+                    if (typeof onBlockCountChangeRef.current === 'function') {
+                        onBlockCountChangeRef.current(count);
+                    }
+                } catch (_) { /* defensive — workspace may be disposed mid-event */ }
+            };
+            // Initial emit (post arduino_base load).
+            emitBlockCount();
+            blockCountListener = (event) => {
+                if (!event) return;
+                // Use string literals (Blockly Events constants may differ across versions)
+                if (event.type === 'create' || event.type === 'delete' || event.type === 'finished_loading') {
+                    emitBlockCount();
+                }
+            };
+            workspace.addChangeListener(blockCountListener);
+        }
+
         // S83: ResizeObserver — recalculate Blockly layout when container resizes
         let resizeObserver;
         if (blocklyDiv.current) {
@@ -479,6 +521,10 @@ const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDism
                 // iter 82 PHASE 5.5 fix CRITICAL-1: undoRedoListener was never removed
                 // → memory leak on ScratchEditor remount (Codex Pattern C + code-reviewer findings)
                 workspace.removeChangeListener(undoRedoListener);
+                // iter 85 close integration Sub-project A: cleanup blockCount listener
+                if (blockCountListener) {
+                    try { workspace.removeChangeListener(blockCountListener); } catch (_) { /* defensive workspace dispose */ }
+                }
                 // Safe to dispose — patched by scripts/patch-blockly.js
                 try { workspace.dispose(); } catch (_) { /* ignore residual */ }
             }

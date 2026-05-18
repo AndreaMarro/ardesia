@@ -2,10 +2,16 @@
  * tests/unit/components/home/HomeCompileEntry-tabs.test.jsx
  *
  * iter 80.A2 — IDE-1 close (Codex Pattern V iter 79 HIGH).
+ * iter 85 close integration Sub-project A — selector update: inline tab
+ * buttons (data-testid="home-compile-tab-{blocks,code}") REPLACED by
+ * iter 84 atom 8 ModeToggle (data-mode="{blocks,code}"). Same WAI-ARIA
+ * Tab pattern + same compile flow + same default Blink seed — selector
+ * surface updated, semantics preserved. Documents canonical migration
+ * path inline tabs → ModeToggle.
  *
- * Verifica tab "Blocchi" / "Codice C++" su HomeCompileEntry:
+ * Verifica tab "Blocchi" / "Codice C++" (or "C++") su HomeCompileEntry:
  *   - default editorMode='blocks' → ScratchEditor mounted, CodeEditorCM6 NOT
- *   - click "Codice C++" → CodeEditorCM6 mounted, ScratchEditor NOT
+ *   - click "C++" → CodeEditorCM6 mounted, ScratchEditor NOT
  *   - editorMode='code' + compile click → handleCompile receives cppCode
  *   - ARIA tab semantics (role/aria-selected/tablist)
  *   - default cppCode seeded Blink "pinMode(13, OUTPUT)"
@@ -73,6 +79,13 @@ vi.mock('../../../../src/utils/logger', () => ({
   default: { error: vi.fn(), warn: vi.fn(), info: vi.fn() },
 }));
 
+// iter 85 selector helper — real iter 84 ModeToggle exposes data-mode
+// attribute on each tab button. Replaces previous getByTestId('home-compile-tab-*')
+// which targeted inline tab buttons removed during iter 85 ModeToggle wire-up.
+function getModeTabByName(mode) {
+  return document.querySelector(`button[data-mode="${mode}"]`);
+}
+
 describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
   beforeEach(() => {
     compileCodeMock.mockClear();
@@ -98,7 +111,7 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     const { default: HomeCompileEntry } = await import('../../../../src/components/home/HomeCompileEntry');
     render(React.createElement(HomeCompileEntry, { onBackHome: () => {} }));
 
-    const codeTab = screen.getByTestId('home-compile-tab-code');
+    const codeTab = getModeTabByName('code');
     fireEvent.click(codeTab);
 
     expect(screen.queryByTestId('code-editor-cm6-stub')).not.toBeNull();
@@ -114,7 +127,7 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     render(React.createElement(HomeCompileEntry, { onBackHome: () => {} }));
 
     // Switch a code mode.
-    fireEvent.click(screen.getByTestId('home-compile-tab-code'));
+    fireEvent.click(getModeTabByName('code'));
 
     // iter 81 81.A6 fix (close BG agent A2 caveat #1): wrap async compile
     // click + microtask wait inside `act()` so React batches the state
@@ -146,8 +159,8 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     const { default: HomeCompileEntry } = await import('../../../../src/components/home/HomeCompileEntry');
     render(React.createElement(HomeCompileEntry, { onBackHome: () => {} }));
 
-    const blocksTab = screen.getByTestId('home-compile-tab-blocks');
-    const codeTab = screen.getByTestId('home-compile-tab-code');
+    const blocksTab = getModeTabByName('blocks');
+    const codeTab = getModeTabByName('code');
 
     expect(blocksTab.getAttribute('role')).toBe('tab');
     expect(codeTab.getAttribute('role')).toBe('tab');
@@ -175,7 +188,7 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     render(React.createElement(HomeCompileEntry, { onBackHome: () => {} }));
 
     // Switch a code mode per esporre il seed a CM6.
-    fireEvent.click(screen.getByTestId('home-compile-tab-code'));
+    fireEvent.click(getModeTabByName('code'));
 
     const cm6 = screen.getByTestId('code-editor-cm6-stub');
     const code = cm6.getAttribute('data-code') || '';
