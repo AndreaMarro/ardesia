@@ -1,0 +1,118 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 77, 140, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.iconWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--elab-navy, #1E4D8C);
+}
+
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  color: var(--elab-navy, #1E4D8C);
+  margin: 0 0 12px 0;
+}
+
+.body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.stepIndicator {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  min-width: 100px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  border: 2px solid var(--elab-navy, #1E4D8C);
+  transition: all 120ms ease;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--elab-orange, #E8941C);
+  outline-offset: 2px;
+}
+
+.buttonPrimary {
+  background: var(--elab-navy, #1E4D8C);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  background: #163A6C;
+}
+
+.buttonSecondary {
+  background: white;
+  color: var(--elab-navy, #1E4D8C);
+}
+
+.buttonSecondary:hover {
+  background: var(--elab-lime-light, #E8F0DC);
+}
+
+.buttonGhost {
+  background: transparent;
+  border-color: transparent;
+  color: #666;
+}
+
+.buttonGhost:hover {
+  color: var(--elab-navy, #1E4D8C);
+}
+
+@media (pointer: coarse) {
+  .button {
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: slideIn 240ms ease-out;
+  }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
