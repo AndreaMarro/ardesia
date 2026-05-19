@@ -25,6 +25,7 @@ import { defaultKeymap, indentWithTab, history, historyKeymap } from '@codemirro
 import { searchKeymap, highlightSelectionMatches } from '@codemirror/search';
 import { tags } from '@lezer/highlight';
 import { autocompletion, completeFromList } from '@codemirror/autocomplete';
+import { createPaletteDropExtension, insertPaletteSnippet } from '../../ide/CodePalette/DragDropHandler';
 
 /* ═══════════════════════════════════════════════════════════════════
    ELAB Palette constants (shared with NES)
@@ -378,6 +379,7 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
         fontSizeComp.current.of(EditorView.theme({ '&': { fontSize: '14px' }, '.cm-content': { fontSize: '14px' } })),
         onUpdate,
         autocompletion({ override: [arduinoCompletionSource] }),
+        createPaletteDropExtension(),
         EditorView.lineWrapping,
       ],
     });
@@ -395,6 +397,21 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run once on mount
+
+  // ── Palette click-to-insert fallback (tablet/touch) ───────────────
+  useEffect(() => {
+    function handlePaletteInsert(event) {
+      const snippet = event?.detail?.snippet;
+      const view = viewRef.current;
+      if (!view || typeof snippet !== 'string' || !snippet) return;
+      insertPaletteSnippet(view, snippet);
+    }
+
+    window.addEventListener('elab:insert-palette-snippet', handlePaletteInsert);
+    return () => {
+      window.removeEventListener('elab:insert-palette-snippet', handlePaletteInsert);
+    };
+  }, []);
 
   // ── Sync external code changes ────────────────────────────────────
   useEffect(() => {

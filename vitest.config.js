@@ -71,7 +71,7 @@ export default defineConfig({
                 'src/components/simulator/engine/PlacementEngine.js',
             ],
         },
-        include: ['tests/**/*.{test,spec}.{js,jsx}'],
+        include: ['tests/**/*.{test,spec}.{js,jsx,ts,tsx}'],
         exclude: ['node_modules', 'dist', '.idea', '.git', '.cache', 'tests/e2e', 'tests/persona-sim'],
     },
 });

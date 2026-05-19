@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PaletteIcon, RobotIcon } from '../common/ElabIcons';
+import { RobotIcon } from '../common/ElabIcons';
+import CodePalette from './CodePalette/CodePalette';
 import CompileButton from './CompileButton';
 import EditorPane from './EditorPane';
 import ModeSwitcher, { type IdeMode } from './ModeSwitcher';
@@ -136,11 +137,7 @@ export default function IdeShell({ initialCpp = DEFAULT_CPP }: IdeShellProps) {
       </header>
 
       <aside className={styles.palettePane} aria-label="Palette componenti">
-        <div className={styles.placeholderHeader}>
-          <PaletteIcon size={18} />
-          <span>Palette</span>
-        </div>
-        <p>Area pronta per i blocchi componenti.</p>
+        <CodePalette />
       </aside>
 
       <main className={styles.centerPane}>
