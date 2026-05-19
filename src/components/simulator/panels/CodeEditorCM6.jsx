@@ -322,6 +322,7 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
   readOnly = false,
   title = 'Editor Codice',
   onExplainCode,
+  hideFooter = false,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -557,21 +558,22 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
         </div>
       )}
 
-      {/* Compile button */}
-      <div style={codeEditorStyles.footer}>
-        <button
-          onClick={() => onCompile && onCompile(viewRef.current ? viewRef.current.state.doc.toString() : code)}
-          disabled={compilationStatus === 'compiling'}
-          style={{
-            ...codeEditorStyles.compileBtn,
-            opacity: compilationStatus === 'compiling' ? 0.5 : 1,
-          }}
-        >
-          {compilationStatus === 'compiling'
-            ? <><span style={{ display: 'inline-block', animation: 'spin 0.8s linear infinite' }}>{'\u25CB'}</span> Compilazione...</>
-            : '\u25B6 Compila & Carica'}
-        </button>
-      </div>
+      {!hideFooter && (
+        <div style={codeEditorStyles.footer}>
+          <button
+            onClick={() => onCompile && onCompile(viewRef.current ? viewRef.current.state.doc.toString() : code)}
+            disabled={compilationStatus === 'compiling'}
+            style={{
+              ...codeEditorStyles.compileBtn,
+              opacity: compilationStatus === 'compiling' ? 0.5 : 1,
+            }}
+          >
+            {compilationStatus === 'compiling'
+              ? <><span style={{ display: 'inline-block', animation: 'spin 0.8s linear infinite' }}>{'\u25CB'}</span> Compilazione...</>
+              : '\u25B6 Compila & Carica'}
+          </button>
+        </div>
+      )}
     </div>
   );
 });

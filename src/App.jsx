@@ -35,6 +35,7 @@ const UnlimWrapper = lazy(() => import('./components/unlim/UnlimWrapper'));
 const LavagnaShell = lazy(() => import('./components/lavagna/LavagnaShell'));
 const VetrinaV2 = lazy(() => import('./components/lavagna/VetrinaV2'));
 const DashboardShell = lazy(() => import('./components/dashboard'));
+const CompileHomeV2 = lazy(() => import('./pages/CompileHomeV2'));
 // iter 35 P0 — Tea HomePage integrata main app (5 card hero + cronologia)
 const HomePage = lazy(() => import('./components/HomePage'));
 
@@ -60,7 +61,7 @@ function LoadingFallback() {
 
 // Hash-based routing: maps hash fragments to page names (P0-6)
 // iter 35 P0: 'home' added as new default landing (Tea-style 5 card grid + cronologia)
-const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
+const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna', 'compile-home-v2'];
 const HASH_PAGE_ALIASES = {
     'lavagna-solo': 'lavagna',
 };
@@ -184,6 +185,14 @@ function AppRouter() {
         return (
             <Suspense fallback={<LoadingFallback />}>
                 <LandingPNRR onNavigate={navigate} />
+            </Suspense>
+        );
+    }
+
+    if (currentPage === 'compile-home-v2') {
+        return (
+            <Suspense fallback={<LoadingFallback />}>
+                <CompileHomeV2 />
             </Suspense>
         );
     }
@@ -419,6 +428,7 @@ const CONSENT_SKIP_HASHES = new Set([
     'account',
     'login',
     'register',
+    'compile-home-v2',
 ]);
 
 function isConsentRouteAllowed() {
