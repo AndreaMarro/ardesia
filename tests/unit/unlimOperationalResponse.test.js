@@ -57,7 +57,14 @@ describe('UNLIM operational response contracts', () => {
   it('still triggers direct-operational-arduino for action queries (regression: keep legitimate path)', () => {
     const actionQueries = [
       'Apri Arduino e prepara blink',
-      'Compila il codice Arduino',
+      // iter 41 cleanup — original prompt 'Compila il codice Arduino' routes
+      // to direct-operational-compile by design (v67): the bare 'compila il
+      // codice' phrase is matched by the isCompile regex (operational-response
+      // line 272) BEFORE reaching the arduino detector (line 472). Compile
+      // routing is the correct semantics for that prompt; the arduino path is
+      // still validated by the three remaining queries below. Replacement asks
+      // Arduino code prep without bare compile semantics.
+      'Scrivi codice Arduino per blink',
       'Carica programma blink Arduino',
       'Prepara sketch Arduino lampeggio LED',
     ];

@@ -183,6 +183,14 @@ describe('gamificationService', () => {
   });
 
   describe('Orchestration', () => {
+    it('does not play celebration audio or show confetti on experiment completion', () => {
+      const result = gamification.onExperimentCompleted('v1-cap6-esp1', true);
+      expect(result.total).toBe(20);
+      expect(globalThis.AudioContext).not.toHaveBeenCalled();
+      expect(document.getElementById('elab-confetti-keyframes')).toBeNull();
+      expect(document.body.querySelector('[aria-hidden="true"]')).toBeNull();
+    });
+
     it('onExperimentCompleted returns total, newBadges, streak', () => {
       const result = gamification.onExperimentCompleted('v1-cap6-esp1', true);
       expect(result.total).toBe(20); // firstExperiment = 20

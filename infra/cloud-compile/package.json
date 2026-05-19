@@ -1,0 +1,20 @@
+{
+  "name": "elab-cloud-compile",
+  "version": "1.0.0",
+  "description": "ELAB Cloud Compile Service — arduino-cli + Renesas Nano R4 + Express POST /compile. WebUSB direct dalla piattaforma elabtutor (Andrea iter 75 PM pivot).",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "author": "Andrea Marro <marro.andrea96@gmail.com>"
+}

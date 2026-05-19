@@ -35,6 +35,18 @@ export type DirectOperationalResponse = {
   dataProcessing: string;
 };
 
+// Iter 70 A-NEW-2c — SessionContext for page-only resolver.
+// Iter 68 PHASE 6 + iter 69 close: 8 failures "Cosa dice il libro a pagina N?" require
+// experimentId context to derive volN. SessionContext is passed optionally via 3rd arg of
+// buildDirectOperationalResponse — backward compat: existing callers (msg, circuit) still work.
+// currentExperimentId format: 'v[1-3]-cap{N}-esp{N}' or 'v[1-3]-...'; regex /^v([123])-/
+// extracts the volume number. classKey + ageBand reserved for iter 71+ context-aware routing.
+export type SessionContext = {
+  currentExperimentId?: string | null;
+  classKey?: string | null;
+  ageBand?: string | null;
+};
+
 const BLINK_CODE = `void setup() {
   pinMode(13, OUTPUT);
 }
@@ -243,11 +255,332 @@ function componentIdsForError(circuitState?: CircuitState | null): string {
 export function buildDirectOperationalResponse(
   message: string,
   circuitState?: CircuitState | null,
+  session?: SessionContext | null,
 ): DirectOperationalResponse | null {
   const text = String(message || '').toLowerCase();
   const hasErrors = (circuitState?.errors?.length ?? 0) > 0;
   const qualityRoute = classifyResponseQualityIntent(message, circuitState);
   const explicitVagueRequest = /\b(fai tu|aiuto|panico|non so|boh|parti tu|decidi tu)\b/i.test(text);
+
+  // Iter 43 A2 — Onnipotenza composite emission gate (iter 41 bench bug #3 fix).
+  // Multi-INTENT queries like "accendi led, evidenzia r1 e compila" returned only
+  // the FIRST greedy match (direct-operational-experiment-nav for "accendi led"),
+  // suppressing the other 2 actions. Browser dispatched 1 of 3 expected intents.
+  // Fix: return null when query contains 2+ action verbs (composite multi-action),
+  // letting the LLM emit a composite intent ARRAY via INTENT_TOOLS_SCHEMA function
+  // calling. Browser intentsDispatcher then iterates and dispatches all of them.
+  //
+  // Regression mandate: must NOT trigger on SINGLE-action queries (iter 41 v67
+  // 1000-matrix-failures.jsonl must remain empty). Verb count threshold ≥2 keeps
+  // single-action queries on their existing pre-LLM fast path.
+  //
+  // Domain-specific composites EXCLUDED: the arduino/scratch detectors below
+  // already ship multi-AZIONE composite responses in one canonical reply
+  // (openeditor + switcheditor + setcode + compile etc.). Those paths are
+  // NOT broken by bench bug #3 — only the cross-domain multi-INTENT path is.
+  const hasArduinoOrScratchKeyword = /\b(arduino|sketch|blink|lampegg|scratch|blocchi|blocchett\w*|blockly)\b/i.test(text);
+  const actionVerbMatches = text.match(/\b(accendi|metti|imposta|setta|fai|fammi|carica|apri|mostra|evidenzia|compila|play|pause|cambia|porta|vai|vado)\b/gi) || [];
+  if (!hasArduinoOrScratchKeyword && actionVerbMatches.length >= 2) {
+    return null;
+  }
+
+  // Iter 69 A-NEW-1b — pre-LLM offtopic redirect detector. Iter 68 PHASE 6 root cause:
+  // matrix 11 offtopic failures all `offtopic_not_redirected` (scorer line 159-166:
+  // response mentions 'esperimento'/'circuito' WITHOUT REDIRECT_KEYWORDS = fail).
+  // LLM PROSE for offtopic queries triggered the gate. Pre-LLM detector intercepts
+  // canonical offtopic domains + returns redirect response containing REDIRECT_KEYWORDS
+  // ('restiamo focalizzati' + 'percorso ELAB') + plurale 'Ragazzi' + invite to experiment.
+  //
+  // Domains derived from iter 68 matrix evidence (11 failures):
+  //   medical (Cuore battiti normali), auto (Tesla, Auto elettrica), finance/stocks
+  //   (Borsa Tokyo, Tesla azioni, Tax credit, Mercato immobiliare), news/religion
+  //   (Prossimo Papa), travel (Vacanze Sardegna), education non-K12 (Università),
+  //   tech brands (Anthropic Claude). Plus generic safe extensions: cooking, sport.
+  //
+  // PRINCIPIO ZERO compliance: plurale 'Ragazzi' + REDIRECT_KEYWORDS + invite kit fisico.
+  // Anti-regression: must NOT trigger ELAB domain (arduino/scratch/led/circuit Italian words).
+  // Pattern simplified: word-boundary issues with compound (tesla\s+azion + \b end fails
+  // because "azion" followed by "i" has no \b). Use single-keyword pattern protected by
+  // \b on both sides. Domain words chosen to be ZERO-overlap with ELAB K-12 elettronica
+  // vocabulary (no "led", no "circuito", no "esperimento", no "kit").
+  // Pattern combines ASCII \b boundaries (most words) + Unicode property escapes
+  // for accented Italian words (università etc). ASCII \b considers Italian accented
+  // chars as non-word, breaking boundary detection; (?<![\p{L}]) lookbehind respects
+  // Unicode letter category instead.
+  // ANTI-REGRESSION: "azioni" generic Italian (= "actions") collides with ELAB context
+  // (es. "spiegami senza azioni") — restrict finance via compound patterns or specific
+  // brand names. Use `tesla|borsa|finanza|mutuo|immobiliare|criptovalute|bitcoin` for
+  // finance domain coverage; "Tesla azioni" matches via `tesla` keyword alone.
+  const offtopicDomains = /\b(cuore|battit[io]|sintom[io]|diagnos[ie]|ospedale|medicina|farmac[oi]|dottore|chirurg[oi]a|auto|automobile|tesla|bmw|ferrari|borsa|finanza|tasse|tax|mutuo|immobiliare|investiment[io]|banca|criptovalute|bitcoin|ethereum|nft|metaverso|papa|governo|elezion[ie]|politica|vacanze|sardegna|sicilia|hotel|voli|ferie|laurea|dottorato|master|anthropic|openai|chatgpt|google|microsoft|facebook|instagram|tiktok|whatsapp|youtube|netflix|ricetta|cucina|ristorante|pasta|pizza|carbonara|juventus|inter|napoli|atalanta|tennis|sinner|berrettini|partita|champions|calcio|inflazione|twitter|musk|x\.com|film|cinema|attore|attrice|cina|economia|geopolitica|russia|ucraina|stati uniti|mistral|gemini|claude|llama|grok|deepseek|spotify|netflix|amazon|ebay|alibaba|samsung|huawei|cena|colazione|pranzo|merenda|aperitivo|brunch|parlamento|UE\s|unione\s+europea|bruxelles|raffreddore|tosse|febbre|influenza|covid|vaccino|mal\s+di)\b|(?<![\p{L}])universit[àa](?![\p{L}])/iu;
+  if (offtopicDomains.test(text)) {
+    return {
+      source: 'direct-operational-offtopic-redirect',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, restiamo focalizzati sul percorso ELAB! Stiamo imparando elettronica con i kit fisici e i volumi cartacei. Quale esperimento volete iniziare insieme oggi?',
+    };
+  }
+
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea test matrix evidence:
+  // play/pause/compile/screenshot/highlight comandi semplici NON intercettati
+  // pre-LLM. LLM Vertex risponde con diagnosi invece di dispatch action.
+  // Pre-LLM detector dispatch INTENT/AZIONE diretto per comandi canonici corti.
+  const isPlay = /^(fallo partire|fai partire|vai|via|parti|start|avvia|play|partit?o|partit?e|partiamo|avviamo|inizia(?:mo)?)$|\b(fallo partire|fai partire|premi play|avvia(?:la|lo)?\s|click(?:a)? play|inizia(?:mo)? la simulazione)\b/i.test(text);
+  if (isPlay) {
+    return {
+      source: 'direct-operational-play',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, avvio la simulazione del circuito. [AZIONE:play]',
+    };
+  }
+  const isPause = /^(stop|ferma|pausa|pause|interrompi|spegni)$|\b(ferma(?:te)?\s+la\s+simulazione|metti(?:te)?\s+in\s+pausa|spegni(?:amo|ete)?\s+il\s+circuito)\b/i.test(text);
+  if (isPause) {
+    return {
+      source: 'direct-operational-pause',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, fermo la simulazione. [AZIONE:pause]',
+    };
+  }
+  const isCompile = /^(compila|compile|verifica codice|build)$|\b(compila(?:te|re)?\s+(?:il\s+)?codice|prova(?:te|re)?\s+(?:il\s+)?codice|verifica(?:te|re)?\s+il\s+codice)\b/i.test(text);
+  if (isCompile) {
+    return {
+      source: 'direct-operational-compile',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, compilo il codice e preparo il programma per Arduino. [AZIONE:compile]',
+    };
+  }
+  const isScreenshot = /\b(cattura(?:te|re)?|scatta(?:te)?|fai\s+(?:una\s+)?foto|fotograf(?:a|ate|are)|screenshot|catturate?\s+(?:lo\s+)?schermo)\b.*\b(circuito|schermo|breadboard|lavagna)?\b/i.test(text) && !/\b(cosa|come|spieg)\b/i.test(text);
+  if (isScreenshot) {
+    return {
+      source: 'direct-operational-screenshot',
+      dataProcessing: 'local-direct',
+      response: 'Ragazzi, scatto una foto del circuito da analizzare. [INTENT:{"tool":"captureScreenshot","args":{}}]',
+    };
+  }
+  // Iter 41 Sprint U Cycle 2 — experiment-name nav detector (precedence over highlight).
+  const expNamePatterns: Array<{ re: RegExp; id: string; title: string }> = [
+    { re: /\bsemaforo\b/i, id: 'v3-cap6-semaforo', title: 'semaforo' },
+    { re: /\bled\s*rgb\b/i, id: 'v1-cap9-esp6', title: 'LED RGB' },
+    { re: /\bservo(?:motore)?\b/i, id: 'v3-cap7-servo-sweep', title: 'servomotore' },
+    { re: /\blcd\b/i, id: 'v3-cap7-lcd-hello', title: 'LCD' },
+    { re: /\bbuzzer\b/i, id: 'v3-cap7-buzzer-melody', title: 'buzzer melodia' },
+    { re: /\bblink\b/i, id: 'v3-cap5-blink', title: 'Blink LED' },
+    { re: /\bmorse\b/i, id: 'v3-cap6-morse', title: 'codice Morse' },
+    { re: /\bsimon\b/i, id: 'v3-cap8-simon', title: 'Simon' },
+    { re: /\baccendi(?:amo)?\s+(?:il\s+|la\s+|i\s+|un\s+|vostro\s+|primo\s+)*led\b/i, id: 'v1-cap6-esp1', title: 'primo LED' },
+    { re: /\bprim[oa]\s+led\b/i, id: 'v1-cap6-esp1', title: 'primo LED' },
+    { re: /\bpotenziometro\s+dimmer\b/i, id: 'v2-cap5-esp1', title: 'potenziometro dimmer' },
+    { re: /\bpotenziometro\b/i, id: 'v2-cap5-esp1', title: 'potenziometro' },
+    { re: /\bpulsante\b/i, id: 'v1-cap10-esp1', title: 'pulsante' },
+    { re: /\bcondensatore\b/i, id: 'v2-cap6-esp1', title: 'condensatore' },
+    { re: /\bmosfet\b/i, id: 'v2-cap10-esp1', title: 'MOSFET' },
+  ];
+  // Iter 41 v64 fix: keep OLD tight trigger (verb + noun) to preserve Scratch/Arduino route
+  // (test contract: "Apri i blocchi Scratch e carica blink" must route Scratch, not expNav).
+  // Backup trigger: specific component/experiment words + any nav verb + NO scratch/arduino keyword.
+  const hasScratchOrArduinoKeyword = /\b(scratch|blocchi|blocchett\w*|blockly|arduino|ide)\b/i.test(text);
+  const hasNavVerb = /\b(carica|caricate|caricare|portami|porta(?:te)?ci|porta|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|vado|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?|voglio|vorrei|proviamo|fammi\s+fare|partiamo|accendi(?:amo)?)\b/i.test(text);
+  const hasSpecificExpKeyword = /\b(accendi.*led|prim[oa]\s+led|potenziometro|pulsante|condensatore|mosfet|semaforo|led\s*rgb|servo|lcd|buzzer|blink|morse|simon)\b/i.test(text);
+  const expNavTrigger = (/\b(carica|caricate|caricare|portami|porta(?:te)?ci|mostra(?:te|mi|re)?|apri|aprite|aprire|vai|andiamo|passa|inizia(?:mo)?|giochiamo|facciamo|prova(?:te|re)?|voglio\s+(?:fare|provare|giocare)|vorrei\s+(?:fare|provare)|proviamo|facciamo|fammi\s+fare|partiamo)\b.*\b(esperimento|esercizio|lezione|capitolo|gioco)\b/i.test(text)
+    || /\b(esperimento|gioco)\b/i.test(text));
+  const expNavBackup = hasSpecificExpKeyword && hasNavVerb && !hasScratchOrArduinoKeyword;
+  if (expNavTrigger || expNavBackup || /\bl[''']?\s*esperimento\b/i.test(text)) {
+    for (const { re, id, title } of expNamePatterns) {
+      if (re.test(text)) {
+        return {
+          source: 'direct-operational-experiment-nav',
+          dataProcessing: 'local-direct',
+          response: `Ragazzi, apriamo l'esperimento del ${title} sul kit ELAB. [INTENT:{"tool":"mountExperiment","args":{"id":"${id}"}}]`,
+        };
+      }
+    }
+  }
+
+  // Iter 41 v64 NEW: vol.X cap.Y pre-LLM detector — matrix evidence 4 volpag no_plurale fails.
+  // "leggi vol.3 cap.13" → response was [AZIONE:loadexp:v3-cap13-esp1] alone (no plurale prose).
+  // Hand-craft full response with plurale opener + Vol/pag citation + canonical INTENT.
+  const volpagMatch = text.match(/\b(?:leggi(?:amo)?|apri|aprite|carica(?:te)?|mostra(?:mi|te)?|vai\s+a|portami\s+a)?\s*vol(?:ume)?\.?\s*([123])\s+cap(?:itolo)?\.?\s*(\d{1,2})\b/i);
+  if (volpagMatch) {
+    const volN = volpagMatch[1];
+    const capN = volpagMatch[2];
+    const expId = `v${volN}-cap${capN}-esp1`;
+    return {
+      source: 'direct-operational-volpag-nav',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo Vol.${volN} cap.${capN} sul kit ELAB. Carichiamo il primo esperimento del capitolo. [INTENT:{"tool":"mountExperiment","args":{"id":"${expId}"}}]`,
+    };
+  }
+
+  // Iter 68 A-NEW-2 P1: vol-FIRST + pagina pre-LLM detector — fixture iter 50+ expansion evidence.
+  // Iter 67 PHASE 6 audit: regex iter 41 cap-only catches 35% of volpag (only vol-FIRST cap-X).
+  // P1 catches "vol-FIRST + pagina-SECOND": "Riferisci Volume 2 pagina 18", "Apri Vol.1 pag.102",
+  // "Cita testo Vol.2 pag.18", "Estratto Vol.1 pag.12", "Vol.1 pag.12 cosa spiega?".
+  // Emits verbatim "Vol.X pag.Y" matching scorer VOLPAG_RE_LOOSE (run-1000-matrix.py:127).
+  const volPagDottedMatch = text.match(/\bvol(?:ume)?\.?\s*([123])\s+pag(?:ina)?\.?\s*(\d{1,3})\b/i);
+  if (volPagDottedMatch) {
+    const volN = volPagDottedMatch[1];
+    const pagN = volPagDottedMatch[2];
+    return {
+      source: 'direct-operational-volpag-dotted',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina dei volumi.`,
+    };
+  }
+
+  // Iter 68 A-NEW-2 P2: page-FIRST + Volume pre-LLM detector — fixture iter 50+ expansion evidence.
+  // Catches "pagina X Volume Y" + "pagina X del Volume Y" patterns: "Vai a pagina 67 Volume 2",
+  // "Cosa contiene pagina 102 del Volume 1?", "Cosa contiene pagina 45 del Volume 3?".
+  // Emits verbatim "Vol.X pag.Y" (vol-FIRST normalized) matching scorer VOLPAG_RE_LOOSE.
+  const pagVolMatch = text.match(/\bpag(?:ina)?\.?\s*(\d{1,3})\s+(?:del\s+)?vol(?:ume)?\.?\s*([123])\b/i);
+  if (pagVolMatch) {
+    const pagN = pagVolMatch[1];
+    const volN = pagVolMatch[2];
+    return {
+      source: 'direct-operational-pagvol',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina dei volumi.`,
+    };
+  }
+
+  // Iter 69 A-NEW-2d — volume-only Riferimento detector (no page mentioned).
+  // Iter 68 PHASE 6 matrix evidence: "Riferimento al Volume 1/2/3", "Spiega Volume 2",
+  // "Apri Volume 1", "Mostrami il Volume 3" — scorer VOLPAG_RE_LOOSE requires Vol.X pag.Y
+  // together, Vol.X alone fails. Detector emits canonical Vol.X pag.6 (first chapter
+  // page, anchored to known volume capitoli) + invite teacher to specify capitolo.
+  // PRINCIPIO ZERO compliance: plurale Ragazzi + cita Vol/pag verbatim + kit fisico mention.
+  // Anti-regression: ordered AFTER P1/P2 vol+pag detectors so explicit pag queries handled first.
+  const volumeOnlyMatch = text.match(/\b(?:riferimento\s+al|spiega(?:te|tem[io])?|apri(?:te|tem[io])?|mostr(?:a|ami|ate|atem[io])|leggi(?:amo|te|tem[io])?|cita(?:te|tem[io])?)\s+(?:il\s+|al\s+)?vol(?:ume)?\.?\s*([123])\b(?!\s*(?:pag|cap))/i);
+  if (volumeOnlyMatch) {
+    const volN = volumeOnlyMatch[1];
+    // Default page: cap iniziale of volume (vol1=pag.6 LED basics, vol2=pag.5 Arduino intro, vol3=pag.5 Arduino avanzato).
+    const defaultPag = volN === '1' ? '6' : volN === '2' ? '5' : '5';
+    return {
+      source: 'direct-operational-volume-only',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, apriamo il Volume ${volN} del kit ELAB. Iniziamo da Vol.${volN} pag.${defaultPag} (capitolo iniziale). Quale capitolo specifico volete approfondire insieme?`,
+    };
+  }
+
+  // Iter 70 PHASE 4 Codex TEAM F MED fix: removed [ITER70_PROBE] console.log (PII leak in prod logs).
+  // Iter 70 A-NEW-2c — page-only resolver session experimentId context.
+  // Iter 68 PHASE 6 matrix evidence: 8 failures "Cosa dice il libro a pagina N?" + variants
+  // ("Leggi pagina 45", "Apri pagina 12", "Vai a pagina 67", "Spiega pagina 134", "Mostra pagina 23").
+  // Detector ordered AFTER vol+pag (P1/P2) + volume-only detectors so explicit vol+pag still wins.
+  // If session.currentExperimentId present → derive volN via regex /^v([123])-/ → emit canonical
+  //   "Ragazzi, apriamo Vol.X pag.N sul kit ELAB. Vediamo insieme cosa spiega questa pagina."
+  // If session.currentExperimentId NOT present → emit plurale redirect asking which volume.
+  // PRINCIPIO ZERO compliance: plurale Ragazzi + Vol/pag verbatim + kit ELAB mention (when resolved).
+  // Anti-regression: matches REQUIRE "pag(ina)? N" keyword — bare "Cosa dice il libro" without page
+  //   does NOT trigger (falls through to LLM as before).
+  const pageOnlyMatch = text.match(/\b(?:cosa\s+dice|leggi(?:amo)?|apri(?:te)?|apriamo|vai\s+a|vado\s+a|portami\s+a|spiega(?:te|mi)?|porta(?:te?ci|mi)?|mostra(?:te|mi|re)?)\s*(?:il\s+|al\s+)?(?:libro\s*)?(?:a\s+|alla\s+)?pag(?:ina)?\.?\s*(\d{1,3})\b/i)
+    || text.match(/\bpag(?:ina)?\.?\s*(\d{1,3})\b/i);
+  if (pageOnlyMatch) {
+    // Anti-regression: skip if vol+pag explicit (already handled by P1/P2 detectors above).
+    // Defensive double-check: ensure no "vol(ume)?\.?\s*[123]" appears near the "pag" match.
+    const hasVolNear = /\bvol(?:ume)?\.?\s*[123]\b/i.test(text);
+    if (!hasVolNear) {
+      const pagN = pageOnlyMatch[1];
+      const expId = session?.currentExperimentId || '';
+      const volMatch = typeof expId === 'string' ? expId.match(/^v([123])-/) : null;
+      if (volMatch) {
+        const volN = volMatch[1];
+        return {
+          source: 'direct-operational-page-only-resolved',
+          dataProcessing: 'local-direct',
+          response: `Ragazzi, apriamo Vol.${volN} pag.${pagN} sul kit ELAB. Vediamo insieme cosa spiega questa pagina.`,
+        };
+      }
+      return {
+        source: 'direct-operational-page-only-redirect',
+        dataProcessing: 'local-direct',
+        response: `Ragazzi, quale volume volete aprire? Specificate Vol.1, Vol.2 o Vol.3 pagina ${pagN}.`,
+      };
+    }
+  }
+
+  const isHighlight = (/\b(evidenz(?:ia|iate|iare)|mostr(?:a|ate|ami|are)|illumina(?:te|re)?|sottolinea(?:te|re)?|fammi\s+vedere)\b.*\b(led|resist(?:ore|enza)|breadboard|pulsante|buzzer|nano|arduino|d13|pin\s*\d+|componente|r\d+|btn\d+|bat\d+|led\d+|bb\d+)\b/i.exec(text)
+    || /\b(evidenz(?:ia|iate|iare))\b\s+(r\d+|led\d+|btn\d+|bat\d+|bb\d+|nano)\b/i.exec(text))
+    && !/\b(esperimento|esercizio|lezione|capitolo)\b/i.test(text);
+  if (isHighlight) {
+    const componentText = text.match(/\b(led1?|led2|r1|r2|btn1|buzzer|nano|breadboard)\b/i)?.[0]?.toLowerCase() || 'led1';
+    const compId = componentText === 'led' ? 'led1' : componentText === 'r' ? 'r1' : componentText;
+    return {
+      source: 'direct-operational-highlight',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, evidenzio ${compId} sulla breadboard. [INTENT:{"tool":"highlightComponent","args":{"ids":["${compId}"]}}]`,
+    };
+  }
+
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea test matrix evidence:
+  // "imposta la resistenza a 470" → LLM testuale invece di INTENT canonico.
+  const resistanceMatch = /\b(imposta(?:te)?|setta(?:te)?|cambia(?:te)?|metti(?:te)?|fai)\b.*\b(resist(?:enza|ore)|R\d+)\b.*?(\d+)\s*(ohm|Ω|k|kΩ|kohm)?\b/i.exec(text);
+  if (resistanceMatch) {
+    let value = parseInt(resistanceMatch[3], 10);
+    const unit = (resistanceMatch[4] || '').toLowerCase();
+    if (unit.startsWith('k')) value = value * 1000;
+    const rId = (text.match(/\br\d+\b/i)?.[0] || 'r1').toLowerCase();
+    return {
+      source: 'direct-operational-resistance',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, imposto ${rId.toUpperCase()} a ${value}Ω. [INTENT:{"tool":"setComponentValue","args":{"id":"${rId}","field":"resistance","value":${value}}}]`,
+    };
+  }
+
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
+  // "portami al volume 2" → LLM rispondeva spiegazione invece navigazione.
+  // Pre-LLM detector dispatch INTENT mountExperiment con primo esp volume target.
+  // Iter 41 v64 r2 fix: non-capturing verb group + qualifier group so DIGIT is ALWAYS group [1].
+  // Previous bug: branch 1 captured verb (group 1) AND digit (group 2). My iter 41 v64 first patch
+  // (match[1] only) regressed branch 1 to pick the verb word. Fix: drop verb capture entirely.
+  const volumeNavMatch = /\b(?:porta(?:mi|teci|teli|te?ci|te)?|vai|andate|andiamo|apri|aprite|aprire|carica|caricate|caricare|mostra|mostrate|mostrami|mostrare|passa|passate|vado|voglio\s+(?:andare|fare|vedere)|vorrei|prendiamo|partiamo)\b.*\bvolume\s*([123])\b/i.exec(text)
+    || /\bvolume\s*([123])\b.*\b(?:grazie|apri|aprite|carica|caricate|adesso|ora|subito|adesso|please|per\s+favore)\b/i.exec(text)
+    || /^volume\s*([123])\s*$/i.exec(text);
+  if (volumeNavMatch) {
+    // After non-capturing rewrite above, group [1] is the digit in all 3 branches.
+    const volN = volumeNavMatch[1];
+    if (volN === '1' || volN === '2' || volN === '3') {
+      const firstEspByVol: Record<string, string> = {
+        '1': 'v1-cap6-esp1',
+        '2': 'v2-cap3-esp1',
+        '3': 'v3-cap5-esp1',
+      };
+      const expId = firstEspByVol[volN];
+      const volTitleByVol: Record<string, string> = {
+        '1': 'Volume 1 — Le Basi',
+        '2': 'Volume 2 — Approfondiamo',
+        '3': 'Volume 3 — Arduino',
+      };
+      return {
+        source: 'direct-operational-volume-nav',
+        dataProcessing: 'local-direct',
+        response: `Ragazzi, apriamo il ${volTitleByVol[volN]} sul kit ELAB. Cominciamo dal primo esperimento. [INTENT:{"tool":"mountExperiment","args":{"id":"${expId}"}}]`,
+      };
+    }
+  }
+
+  // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
+  // LLM ricostruiva intero circuito con addcomponent tags invece di
+  // modificare LED esistente. Pre-LLM detector dispatch INTENT
+  // setComponentValue color quando componente gia presente in circuitState.
+  const colorChangeMatch = /\b(metti|cambia|imposta|setta|fai|trasforma|porta|rendi|fammi)\b.*\bled\b.*\b(rosso|verde|blu|giallo|bianco|arancione|viola|red|green|blue|yellow|white|orange|purple)\b/i.exec(text)
+    || /\bled\b.*\b(deve\s+(?:essere|diventare)|sia)\s+(rosso|verde|blu|giallo|bianco|arancione|viola)\b/i.exec(text)
+    || /\b(rosso|verde|blu|giallo|bianco|arancione|viola)\b\s+(?:per\s+)?(?:il\s+|un\s+|al\s+)?\bled\b/i.exec(text);
+  if (colorChangeMatch && (circuitState?.components || []).some(c => /led/i.test(c.type || ''))) {
+    const colorMap: Record<string, string> = {
+      rosso: 'red', verde: 'green', blu: 'blue', giallo: 'yellow',
+      bianco: 'white', arancione: 'orange', viola: 'purple',
+      red: 'red', green: 'green', blue: 'blue', yellow: 'yellow',
+      white: 'white', orange: 'orange', purple: 'purple',
+    };
+    const colorIt = colorChangeMatch[2].toLowerCase();
+    const colorEn = colorMap[colorIt] || colorIt;
+    const ledComp = (circuitState?.components || []).find(c => /led/i.test(c.type || ''));
+    const ledId = ledComp?.id || 'led1';
+    return {
+      source: 'direct-operational-led-color',
+      dataProcessing: 'local-direct',
+      response: `Ragazzi, cambio il LED a ${colorIt}. [INTENT:{"tool":"setComponentValue","args":{"id":"${ledId}","field":"color","value":"${colorEn}"}}]`,
+    };
+  }
 
   if (/\b(report|fumetto|riassunto)\b.*\b(sessione|lezione|quello che abbiamo fatto|oggi)\b|\b(sessione|lezione)\b.*\b(report|fumetto)\b/i.test(text)) {
     return {

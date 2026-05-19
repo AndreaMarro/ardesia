@@ -88,7 +88,9 @@ export interface ClassificationResult {
  * boundaries to avoid false positives ("ciao" inside "ciaologico" must NOT
  * trigger). Italian-only because the product is Italian-K-12 (PRINCIPIO ZERO).
  */
-const GREETING_RE = /\b(ciao|salve|grazie|buongiorno|buonasera|buonanotte|ehi|hey|hola)\b/i;
+// Iter 41 v64 expand: matrix evidence "ok"/"bene"/"no"/"che bello" ambiguous responses
+// fall to default category + skip plurale opener → no_plurale fail. Include in chit_chat.
+const GREETING_RE = /\b(ciao|salve|grazie|buongiorno|buonasera|buonanotte|ehi|hey|hola|ok|okay|bene|va\s+bene|certo|certamente|capito|si|sì|no|nope|perfetto|ottimo|che\s+bello|fantastico|forte)\b/i;
 
 /**
  * Safety keywords. These imply potentially dangerous student/circuit context

@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * ELAB Code Protection — Runtime anti-tampering
  * (c) Andrea Marro — Solo produzione

@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /* Andrea Marro — 12/02/2026 */
 /**
  * GCC Error Translator — Kid-friendly compilation error messages.

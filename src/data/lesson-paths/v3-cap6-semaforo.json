@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap6-semaforo",
   "volume": 3,
   "chapter": 6,
-  "title": "Semaforo 3 LED",
+  "title": "Esperimento 5: il semaforo",
   "chapter_title": "I pin digitali",
   "difficulty": 2,
   "duration_minutes": 45,
@@ -87,9 +87,9 @@
     "v2-cap12-esp1"
   ],
   "next_experiment": {
-    "id": "v3-cap6-esp6",
-    "title": "2 LED + Pulsante (toggle)",
-    "preview": "Nel capitolo 7 scoprirete come usare i pin di INPUT: un pulsante che alterna due LED!"
+    "id": "v3-cap7-esp1",
+    "title": "Il pulsante accende e spegne il LED",
+    "preview": "Nel Capitolo 7 Arduino impara ad ascoltare: un pulsante che accende e spegne il LED."
   },
   "phases": [
     {
@@ -97,7 +97,7 @@
       "icon": "📋",
       "duration_minutes": 6,
       "teacher_message": "Ragazzi, oggi costruiamo un semaforo vero con Arduino! Tre LED colorati, un programma che li regola in sequenza: verde, giallo, rosso. Esattamente come i semafori della strada!",
-      "teacher_tip": "Chiedi ai ragazzi: 'Avete mai visto un semaforo? Quanto tempo rimane verde? E rosso?' Questo aggancia subito la realtà al progetto. Spiega che Arduino è il 'cervello' del semaforo: il programma dice a ogni LED quando accendersi e per quanto tempo.",
+      "teacher_tip": "Chiedete ai ragazzi: 'Avete mai visto un semaforo? Quanto tempo rimane verde? E rosso?' Questo aggancia subito la realtà al progetto. Spiegate che Arduino è il 'cervello' del semaforo: il programma dice a ogni LED quando accendersi e per quanto tempo.",
       "components_list": "Ti servono: 1 breadboard half-size, 1 Arduino Nano R4 con breakout wing, 3 LED (verde, giallo, rosso), 3 resistori 470Ω, fili di collegamento.",
       "class_hook": "Sapete come funziona un semaforo? Chi decide quando si accende il verde? Oggi costruiamo noi il 'cervello' del semaforo con Arduino e un piccolo programma!",
       "action_tags": [],
@@ -107,8 +107,8 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 12,
-      "teacher_message": "Il circuito ha tre rami identici: Arduino manda il segnale al resistore, il resistore al LED, e il LED scarica a massa (GND). I tre pin usati sono D5 (verde), D6 (giallo), D3 (rosso) sul breakout wing. Il codice viene caricato automaticamente dal simulatore!",
-      "teacher_tip": "Mentre il circuito si monta, spiega concettualmente il codice: 'Il setup() configura i tre pin come OUTPUT. Il loop() è diviso in tre blocchi: verde ON + gli altri OFF per 3 secondi, poi giallo ON + gli altri OFF per 1 secondo, poi rosso ON + gli altri OFF per 3 secondi. Poi ricomincia!' Non entrare nella sintassi C++, concentrati sul COSA fa il codice.",
+      "teacher_message": "Ragazzi, Il circuito ha tre rami identici: Arduino manda il segnale al resistore, il resistore al LED, e il LED scarica a massa (GND). I tre pin usati sono D5 (verde), D6 (giallo), D3 (rosso) sul breakout wing. Il codice viene caricato automaticamente dal simulatore!",
+      "teacher_tip": "Mentre il circuito si montate, spiegate concettualmente il codice: 'Il setup() configura i tre pin come OUTPUT. Il loop() è diviso in tre blocchi: verde ON + gli altri OFF per 3 secondi, poi giallo ON + gli altri OFF per 1 secondo, poi rosso ON + gli altri OFF per 3 secondi. Poi ricomincia!' Non entrare nella sintassi C++, concentrati sul COSA fa il codice.",
       "components_list": null,
       "class_hook": null,
       "action_tags": [
@@ -218,8 +218,8 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il semaforo è montato! Prima di premere Play, facciamo delle domande. Il codice fa accendere un solo LED alla volta: perché gli altri devono essere spenti esplicitamente?",
-      "teacher_tip": "Guida i ragazzi a capire che i pin OUTPUT rimangono nell'ultimo stato impostato finché il codice non li cambia. Se non scrivo LOW su un pin, resta HIGH da prima!",
+      "teacher_message": "Ragazzi, Il semaforo è montato! Prima di premere Play, facciamo delle domande. Il codice fa accendere un solo LED alla volta: perché gli altri devono essere spenti esplicitamente?",
+      "teacher_tip": "Guidate i ragazzi a capire che i pin OUTPUT rimangono nell'ultimo stato impostato finché il codice non li cambia. Se non scrivo LOW su un pin, resta HIGH da prima!",
       "provocative_question": "Se il programma accende il verde e poi accende il giallo, ma NON dice mai di spegnere il verde, cosa succede? Il giallo e il verde restano accesi insieme o no?",
       "components_list": null,
       "class_hook": null,
@@ -233,7 +233,7 @@
         },
         {
           "mistake": "Il LED non si accende affatto o è molto fioco",
-          "teacher_response": "Regolate i collegamenti: il resistore è tra il pin Arduino e il LED? Il catodo del LED va a GND? Ricorda che il LED ha una direzione!",
+          "teacher_response": "Regolate i collegamenti: il resistore è tra il pin Arduino e il LED? Il catodo del LED va a GND? Ricordate che il LED ha una direzione!",
           "analogy": null
         }
       ]
@@ -242,8 +242,8 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 12,
-      "teacher_message": "Premete Play! Il semaforo prende vita: verde 3 secondi, giallo 1 secondo, rosso 3 secondi. Guardate come il programma regola ogni LED in modo preciso e ripetuto all'infinito!",
-      "teacher_tip": "Evidenzia i tre LED e i tre pin. Chiedi: 'Quanto dura il giallo rispetto al verde? Perché è più corto?' Fate notare che il loop() ripete il ciclo all'infinito — esattamente come i semafori reali che non si spengono mai.",
+      "teacher_message": "Ragazzi, Premete Play! Il semaforo prende vita: verde 3 secondi, giallo 1 secondo, rosso 3 secondi. Guardate come il programma regola ogni LED in modo preciso e ripetuto all'infinito!",
+      "teacher_tip": "Evidenziate i tre LED e i tre pin. Chiedete: 'Quanto dura il giallo rispetto al verde? Perché è più corto?' Fate notare che il loop() ripete il ciclo all'infinito — esattamente come i semafori reali che non si spengono mai.",
       "components_list": null,
       "class_hook": null,
       "action_tags": [
@@ -271,7 +271,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Ottimo lavoro! Avete costruito il vostro primo progetto Arduino con sequenza di stati. Il semaforo usa tre pin OUTPUT, delay() per il timing, e un loop infinito che non si ferma mai.",
+      "teacher_message": "Ragazzi, Ottimo lavoro! Avete costruito il vostro primo progetto Arduino con sequenza di stati. Il semaforo usa tre pin OUTPUT, delay() per il timing, e un loop infinito che non si ferma mai.",
       "teacher_tip": "Fate un recap veloce: 'setup() = configuriamo i pin una volta sola. loop() = ripetiamo la sequenza per sempre. digitalWrite HIGH = accendiamo. digitalWrite LOW = spegniamo. delay(3000) = aspettiamo 3 secondi.' Questi quattro concetti sono la base di TUTTI i programmi Arduino!",
       "components_list": null,
       "class_hook": null,
@@ -301,7 +301,7 @@
       "sequenza_stati",
       "loop_infinito"
     ],
-    "next_suggested": "v3-cap6-esp6",
+    "next_suggested": "v3-cap7-esp1",
     "resume_message": "Avete costruito il semaforo con Arduino! Prossimo passo: i pin di INPUT e i pulsanti."
   }
 }

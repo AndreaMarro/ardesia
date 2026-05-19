@@ -24,8 +24,8 @@ describe('BuildSteps Structure — All Volumes', () => {
   const all = getAllExperiments();
   const withBuildSteps = all.filter(e => e.buildSteps && e.buildSteps.length > 0);
 
-  test('at least 80 experiments have buildSteps', () => {
-    expect(withBuildSteps.length).toBeGreaterThanOrEqual(80);
+  test('at least 78 experiments have buildSteps', () => {
+    expect(withBuildSteps.length).toBeGreaterThanOrEqual(78);
   });
 
   test('every buildStep has step number and text', () => {

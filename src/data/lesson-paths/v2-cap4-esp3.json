@@ -65,7 +65,7 @@
   ],
   "next_experiment": {
     "id": "v2-cap5-esp1",
-    "title": "Batterie in serie",
+    "title": "Esperimento 1: batterie in serie (più \"spinta\"!)",
     "preview": "Nel prossimo capitolo collegheremo piu batterie insieme: le tensioni si sommano!"
   },
   "phases": [
@@ -74,7 +74,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, oggi facciamo un esperimento elegante: con 3 resistori da 1kohm in serie e una batteria da 9V, creiamo 3 punti a tensione diversa: 3V, 6V e 9V. E il partitore di tensione!",
-      "teacher_tip": "Il partitore e fondamentale in elettronica: e il modo piu semplice per ottenere una tensione diversa da quella della batteria. Si usa ovunque!",
+      "teacher_tip": "Il partitore e fondamentale in elettronica: e il modo piu semplice per ottenere una tensione diversa da quella della batteria. Si usate ovunque!",
       "components_list": "Ti servono: 1 batteria 9V, 1 breadboard mezza, 3 resistori da 1kohm, 1 multimetro.",
       "class_hook": "Immaginate un palazzo di 9 piani (9 Volt). Con 3 scale uguali, potete fermarvi al piano 3, al piano 6, o salire fino al 9. I resistori dividono la tensione come le scale dividono i piani!",
       "action_tags": [],
@@ -84,7 +84,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito: batteria 9V → R1 (1kohm) → R2 (1kohm) → R3 (1kohm) → massa. Tra ogni resistore c'e un punto con una tensione diversa. Misuriamo con il voltmetro!",
+      "teacher_message": "Ragazzi, Il circuito: batteria 9V → R1 (1kohm) → R2 (1kohm) → R3 (1kohm) → massa. Tra ogni resistore c'e un punto con una tensione diversa. Misuriamo con il voltmetro!",
       "teacher_tip": "Identifica i 4 nodi: 9V (prima di R1), 6V (tra R1 e R2), 3V (tra R2 e R3), 0V (dopo R3). Il multimetro in modalita voltmetro, puntale nero a massa.",
       "components_list": null,
       "class_hook": null,
@@ -133,7 +133,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 10,
-      "teacher_message": "9V diviso equamente tra 3 resistori uguali: quanta tensione cade su ciascuno? E se un resistore fosse da 2kohm e gli altri da 1kohm, come cambierebbe la divisione?",
+      "teacher_message": "Ragazzi, 9V diviso equamente tra 3 resistori uguali: quanta tensione cade su ciascuno? E se un resistore fosse da 2kohm e gli altri da 1kohm, come cambierebbe la divisione?",
       "teacher_tip": "Con resistori uguali: 9V/3 = 3V ciascuno. Con uno da 2k e due da 1k (totale 4k): il 2k prende 4.5V, ciascun 1k prende 2.25V. La tensione si divide in proporzione alla resistenza.",
       "provocative_question": "Possiamo ottenere esattamente 5V dalla nostra batteria da 9V usando solo resistori? Come scegliereste i valori?",
       "components_list": null,
@@ -143,7 +143,7 @@
       "common_mistakes": [
         {
           "mistake": "Misurare la tensione ai capi di un solo resistore con i puntali invertiti",
-          "teacher_response": "Per misurare la caduta su R2, il puntale rosso va al nodo superiore di R2 e il nero al nodo inferiore. Se leggi un valore negativo, inverti i puntali!",
+          "teacher_response": "Per misurare la caduta su R2, il puntale rosso va al nodo superiore di R2 e il nero al nodo inferiore. Se leggete un valore negativo, inverti i puntali!",
           "analogy": null
         }
       ]
@@ -152,8 +152,8 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 12,
-      "teacher_message": "Misurate le tensioni in ogni punto! Tra batteria+ e massa: 9V. Tra R1-R2 e massa: circa 6V. Tra R2-R3 e massa: circa 3V. Ogni resistore 'mangia' 3V!",
-      "teacher_tip": "Fate compilare una tabella: Punto | Tensione attesa | Tensione misurata. I valori dovrebbero corrispondere quasi esattamente.",
+      "teacher_message": "Ragazzi, Misurate le tensioni in ogni punto! Tra batteria+ e massa: 9V. Tra R1-R2 e massa: circa 6V. Tra R2-R3 e massa: circa 3V. Ogni resistore 'mangia' 3V!",
+      "teacher_tip": "Fate compilate una tabella: Punto | Tensione attesa | Tensione misurata. I valori dovrebbero corrispondere quasi esattamente.",
       "action_tags": [
         "[AZIONE:play]",
         "[AZIONE:highlight:r1]",
@@ -174,7 +174,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 5,
-      "teacher_message": "Il partitore di tensione e uno dei circuiti piu importanti dell'elettronica! Con resistori in serie, potete creare qualsiasi tensione intermedia dalla vostra batteria.",
+      "teacher_message": "Ragazzi, Il partitore di tensione e uno dei circuiti piu importanti dell'elettronica! Con resistori in serie, potete creare qualsiasi tensione intermedia dalla vostra batteria.",
       "teacher_tip": "Formula: Vout = Vin * R2/(R1+R2) per un partitore a 2 resistori. Usata ovunque: sensori, interfacce, alimentatori.",
       "components_list": null,
       "class_hook": null,

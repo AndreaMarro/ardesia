@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * lavagnaSounds — Lightweight feedback sounds for the Lavagna
  * Uses Web Audio API (no external files). All sounds are optional and toggleable.

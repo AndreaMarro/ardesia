@@ -29,12 +29,12 @@ const getLessonPath = lessonPathsModule.getLessonPath;
 describe('Lesson Paths Completeness', () => {
   const experimentIds = getExperimentIds();
 
-  test('at least 85 experiments have lesson paths', () => {
+  test('at least 78 experiments have lesson paths', () => {
     const withPath = experimentIds.filter(id => {
       if (getLessonPath) return getLessonPath(id) !== null;
       return LESSON_PATHS[id] !== undefined;
     });
-    expect(withPath.length).toBeGreaterThanOrEqual(85);
+    expect(withPath.length).toBeGreaterThanOrEqual(78);
   });
 
   test('lesson paths have required fields', () => {

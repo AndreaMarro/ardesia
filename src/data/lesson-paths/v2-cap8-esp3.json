@@ -96,7 +96,7 @@
   ],
   "next_experiment": {
     "id": "v2-cap9-esp1",
-    "title": "Sensore di luce",
+    "title": "Fototransistor come sensore",
     "preview": "Nel Capitolo 9 scoprirete un componente controllato dalla luce invece che dalla tensione!"
   },
   "phases": [
@@ -115,8 +115,8 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 12,
-      "teacher_message": "Il circuito ha il MOSFET con LED e resistore, più il potenziometro che regola la tensione al Gate. Il multimetro misura la tensione al Gate in tempo reale.",
-      "teacher_tip": "Spiega la connessione del potenziometro: 'VCC del pot va alla riga +, GND alla riga -, e il pin Signal (uscita centrale) va direttamente al Gate. Girando la manopola, il Signal varia da 0V a 9V.'",
+      "teacher_message": "Ragazzi, Il circuito ha il MOSFET con LED e resistore, più il potenziometro che regola la tensione al Gate. Il multimetro misura la tensione al Gate in tempo reale.",
+      "teacher_tip": "Spiegate la connessione del potenziometro: 'VCC del pot va alla riga +, GND alla riga -, e il pin Signal (uscita centrale) va direttamente al Gate. Girando la manopola, il Signal varia da 0V a 9V.'",
       "components_list": null,
       "class_hook": null,
       "action_tags": [
@@ -219,7 +219,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Parta da zero (potenziometro tutto a sinistra). Il LED è spento. Girate lentamente la manopola. A che tensione (V) pensi che il LED si accenda? Fate una scommessa!",
+      "teacher_message": "Ragazzi, Parta da zero (potenziometro tutto a sinistra). Il LED è spento. Girate lentamente la manopola. A che tensione (V) pensi che il LED si accenda? Fate una scommessa!",
       "teacher_tip": "Fate scrivere le previsioni sulla lavagna: 1V? 2V? 5V? 9V? Poi fate l'esperimento. La risposta (circa 2V) sorprende sempre! 'È molto meno di 9V: il MOSFET è molto sensibile.'",
       "provocative_question": "La batteria fornisce 9V. Il MOSFET si accende a tutta la tensione della batteria, oppure si attiva a una tensione più bassa? Fate una previsione: a quanti volt si accende il LED?",
       "components_list": null,
@@ -243,8 +243,8 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 12,
-      "teacher_message": "Premete Play. Girate il potenziometro lentamente da 0 verso destra. Guardate il multimetro: la tensione al Gate sale. A circa 2V il LED inizia ad accendersi debolmente. A 4V+ è completamente acceso!",
-      "teacher_tip": "Evidenzia il potenziometro, il Gate e il multimetro. 'Il LED non si accende di colpo: prima è debole, poi aumenta. Questo è il MOSFET nella zona di transizione, tra completamente spento e completamente acceso!'",
+      "teacher_message": "Ragazzi, Premete Play. Girate il potenziometro lentamente da 0 verso destra. Guardate il multimetro: la tensione al Gate sale. A circa 2V il LED inizia ad accendersi debolmente. A 4V+ è completamente acceso!",
+      "teacher_tip": "Evidenziate il potenziometro, il Gate e il multimetro. 'Il LED non si accende di colpo: prima è debole, poi aumenta. Questo è il MOSFET nella zona di transizione, tra completamente spento e completamente acceso!'",
       "components_list": null,
       "class_hook": null,
       "action_tags": [
@@ -273,7 +273,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete trovato sperimentalmente Vth ≈ 2V! Sotto Vth il MOSFET è spento, sopra si accende gradualmente, a 4V+ è completamente aperto. Il potenziometro ci ha permesso di controllare la transizione con precisione.",
+      "teacher_message": "Ragazzi, Avete trovato sperimentalmente Vth ≈ 2V! Sotto Vth il MOSFET è spento, sopra si accende gradualmente, a 4V+ è completamente aperto. Il potenziometro ci ha permesso di controllare la transizione con precisione.",
       "teacher_tip": "Questo conclude il Capitolo 8. Riepiloga i 3 esperimenti: 'Esp.1: Gate a 9V = ON/OFF. Esp.2: Gate flottante e carica del dito. Esp.3: trovare Vth con il potenziometro.' Il Capitolo 9 introduce un sensore controllato dalla luce!",
       "components_list": null,
       "class_hook": null,

@@ -13,8 +13,8 @@ describe('experiments-index — exports base', () => {
     expect(Array.isArray(ALL_EXPERIMENTS)).toBe(true);
   });
 
-  it('contiene 92 esperimenti totali', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(94);
+  it('contiene 79 esperimenti totali', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(79);
   });
 
   it('VOLUMES e un array di 3 volumi', () => {
@@ -22,8 +22,8 @@ describe('experiments-index — exports base', () => {
     expect(VOLUMES.length).toBe(3);
   });
 
-  it('getTotalExperiments ritorna 92', () => {
-    expect(getTotalExperiments()).toBe(94);
+  it('getTotalExperiments ritorna 79', () => {
+    expect(getTotalExperiments()).toBe(79);
   });
 
   it('Volume 1 ha 38 esperimenti', () => {
@@ -34,8 +34,8 @@ describe('experiments-index — exports base', () => {
     expect(EXPERIMENTS_VOL2.experiments.length).toBe(27);
   });
 
-  it('Volume 3 ha 27 esperimenti', () => {
-    expect(EXPERIMENTS_VOL3.experiments.length).toBe(29);
+  it('Volume 3 ha 14 esperimenti', () => {
+    expect(EXPERIMENTS_VOL3.experiments.length).toBe(14);
   });
 });
 
@@ -112,7 +112,7 @@ describe('Ogni esperimento — campi obbligatori', () => {
 
   it('la maggior parte degli esperimenti ha icon non null', () => {
     const withIcon = ALL_EXPERIMENTS.filter(e => typeof e.icon === 'string' && e.icon.length > 0);
-    expect(withIcon.length).toBeGreaterThan(80);
+    expect(withIcon.length).toBeGreaterThan(78);
   });
 
   it('ogni esperimento ha simulationMode (circuit o avr)', () => {
@@ -153,7 +153,7 @@ describe('Ogni esperimento — pinAssignments', () => {
   });
 
   it('la maggior parte degli esperimenti ha pinAssignments', () => {
-    expect(withPinAssignments.length).toBeGreaterThan(70);
+    expect(withPinAssignments.length).toBeGreaterThan(68);
   });
 
   it('pinAssignment keys sono nel formato componentId:pinName', () => {
@@ -306,8 +306,8 @@ describe('getExperimentsByVolume', () => {
     expect(getExperimentsByVolume(2).length).toBe(27);
   });
 
-  it('ritorna 27 esperimenti per Volume 3', () => {
-    expect(getExperimentsByVolume(3).length).toBe(29);
+  it('ritorna 14 esperimenti per Volume 3', () => {
+    expect(getExperimentsByVolume(3).length).toBe(14);
   });
 
   it('ritorna array vuoto per volume inesistente', () => {

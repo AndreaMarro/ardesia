@@ -1,0 +1,27 @@
+ELAB UNLIM 1000-query matrix — iter 50 v78
+Timestamp: 2026-05-16T20-32-04
+Endpoint: https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1/unlim-chat
+Workers: 10
+Total queries: 1000
+Elapsed: 132s
+
+PASS: 999/1000 (99.9%)
+FAIL: 1
+
+Global counters:
+  JSON_LEAK:   0
+  NO_PLURALE:  1
+  HTTP_ERRORS: 0
+
+Per category breakdown:
+  amb         :  100/ 100 (100.0%)
+  color       :   99/ 100 ( 99.0%)
+      - no_plurale: 1
+  concept     :  200/ 200 (100.0%)
+  control     :   80/  80 (100.0%)
+  diag        :  100/ 100 (100.0%)
+  expnav      :   80/  80 (100.0%)
+  highlight   :   60/  60 (100.0%)
+  offtopic    :  100/ 100 (100.0%)
+  volnav      :   80/  80 (100.0%)
+  volpag      :  100/ 100 (100.0%)

@@ -211,18 +211,18 @@ afterAll(() => {
 
 describe('Harness 2.0 — enumeration 92 esperimenti (Sprint T iter 19)', () => {
   it('enumera tutti i lesson-paths v1/v2/v3 senza errore di parsing', () => {
-    expect(allLessonPaths.length).toBeGreaterThanOrEqual(90);
+    expect(allLessonPaths.length).toBeGreaterThanOrEqual(78);
     const parseErrors = allLessonPaths.filter((lp) => lp.parseError);
     expect(parseErrors).toEqual([]);
   });
 
-  it('conta v1=38 + v2=27 + v3>=27 lesson-paths (target ADR-024 §8)', () => {
+  it('conta v1=38 + v2=27 + v3>=14 lesson-paths (EPIC 1 A4.1b)', () => {
     const v1 = allLessonPaths.filter((lp) => lp.filename.startsWith('v1-'));
     const v2 = allLessonPaths.filter((lp) => lp.filename.startsWith('v2-'));
     const v3 = allLessonPaths.filter((lp) => lp.filename.startsWith('v3-'));
     expect(v1.length).toBeGreaterThanOrEqual(38);
     expect(v2.length).toBeGreaterThanOrEqual(27);
-    expect(v3.length).toBeGreaterThanOrEqual(27);
+    expect(v3.length).toBeGreaterThanOrEqual(14);
   });
 });
 

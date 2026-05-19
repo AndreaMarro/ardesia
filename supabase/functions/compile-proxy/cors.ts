@@ -32,9 +32,31 @@ export const CORS_ALLOWED_ORIGINS = [
 export const VERCEL_PREVIEW_REGEX =
   /^https:\/\/elab-tutor-.*-andreas-projects-6d4e9791\.vercel\.app$/;
 
+export function isLoopbackDevOrigin(origin: string | null | undefined): boolean {
+  if (!origin) return false;
+
+  try {
+    const url = new URL(origin);
+    const port = Number.parseInt(url.port, 10);
+    const isLoopbackHost =
+      url.hostname === 'localhost' || url.hostname === '127.0.0.1';
+
+    return (
+      url.protocol === 'http:' &&
+      isLoopbackHost &&
+      Number.isInteger(port) &&
+      port >= 1024 &&
+      port <= 65535
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function isOriginAllowed(origin: string | null | undefined): boolean {
   if (!origin) return false;
   if (CORS_ALLOWED_ORIGINS.includes(origin)) return true;
+  if (isLoopbackDevOrigin(origin)) return true;
   if (VERCEL_PREVIEW_REGEX.test(origin)) return true;
   return false;
 }

@@ -1,6 +1,6 @@
 /**
  * lessonGroups.test.js — Test per lesson-groups.js
- * Verifica struttura 25 lezioni, helper functions, copertura esperimenti
+ * Verifica struttura 24 lezioni, helper functions, copertura esperimenti
  */
 import { describe, it, expect } from 'vitest';
 import LESSON_GROUPS, {
@@ -19,8 +19,8 @@ describe('LESSON_GROUPS — struttura base', () => {
     expect(entries.length).toBeGreaterThan(0);
   });
 
-  it('contiene esattamente 25 lezioni', () => {
-    expect(entries.length).toBe(25);
+  it('contiene esattamente 24 lezioni', () => {
+    expect(entries.length).toBe(24);
   });
 
   it('ogni lessonId inizia con v1-, v2- o v3-', () => {
@@ -89,9 +89,9 @@ describe('LESSON_GROUPS — struttura base', () => {
     expect(unique.size).toBe(allExpIds.length);
   });
 
-  it('contiene esattamente 92 esperimenti totali', () => {
+  it('contiene esattamente 79 esperimenti totali', () => {
     const allExpIds = entries.flatMap(([, l]) => l.experiments);
-    expect(allExpIds.length).toBe(94);
+    expect(allExpIds.length).toBe(79);
   });
 });
 
@@ -108,9 +108,9 @@ describe('LESSON_GROUPS — distribuzione volumi', () => {
     expect(v2.length).toBe(9);
   });
 
-  it('Volume 3 ha 6 lezioni', () => {
+  it('Volume 3 ha 5 lezioni', () => {
     const v3 = entries.filter(([, l]) => l.volume === 3);
-    expect(v3.length).toBe(6);
+    expect(v3.length).toBe(5);
   });
 
   it('Volume 1 contiene 38 esperimenti', () => {
@@ -123,9 +123,9 @@ describe('LESSON_GROUPS — distribuzione volumi', () => {
     expect(v2Exps.length).toBe(27);
   });
 
-  it('Volume 3 contiene 27 esperimenti', () => {
+  it('Volume 3 contiene 14 esperimenti', () => {
     const v3Exps = entries.filter(([, l]) => l.volume === 3).flatMap(([, l]) => l.experiments);
-    expect(v3Exps.length).toBe(29);
+    expect(v3Exps.length).toBe(14);
   });
 
   it('experiment IDs del Volume 1 iniziano con v1-', () => {
@@ -168,12 +168,6 @@ describe('findLessonForExperiment', () => {
     expect(result).not.toBeNull();
     expect(result.lessonId).toBe('v3-primi-passi');
     expect(result.lesson.volume).toBe(3);
-  });
-
-  it('trova la lezione per esperimento extra Vol3', () => {
-    const result = findLessonForExperiment('v3-extra-simon');
-    expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-progetti-extra');
   });
 
   it('ritorna null per ID inesistente', () => {
@@ -219,9 +213,9 @@ describe('getLessonsForVolume', () => {
     expect(result.length).toBe(9);
   });
 
-  it('ritorna 6 lezioni per Volume 3', () => {
+  it('ritorna 5 lezioni per Volume 3', () => {
     const result = getLessonsForVolume(3);
-    expect(result.length).toBe(6);
+    expect(result.length).toBe(5);
   });
 
   it('lezioni ordinate per chapter crescente', () => {
@@ -240,8 +234,8 @@ describe('getLessonsForVolume', () => {
 });
 
 describe('getLessonCount', () => {
-  it('ritorna 25', () => {
-    expect(getLessonCount()).toBe(25);
+  it('ritorna 24', () => {
+    expect(getLessonCount()).toBe(24);
   });
 
   it('ritorna un numero', () => {
@@ -262,9 +256,5 @@ describe('LESSON_GROUPS — proprieta opzionali', () => {
 
   it('lessonId del v1-accendi-led ha chapter 6', () => {
     expect(LESSON_GROUPS['v1-accendi-led'].chapter).toBe(6);
-  });
-
-  it('lessonId del v3-progetti-extra ha chapter 99', () => {
-    expect(LESSON_GROUPS['v3-progetti-extra'].chapter).toBe(99);
   });
 });

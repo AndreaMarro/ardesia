@@ -12,6 +12,9 @@ function obfuscateChunks(obfuscatorOptions = {}) {
         'html2canvas', 'react-pdf', 'DashboardGestionale',
         'ElabTutorV4',  // S47: RC4+CFG causes TDZ crash on this 3.5MB chunk — still minified by Vite
         'ScratchEditor', // S112: Blockly is already Closure-compiled — 2nd obfuscator breaks internal refs (removeElem$module$ ReferenceError)
+        'ScratchCompileBar', // iter 78 STOP-HOOK: obfuscator hoists nextExperiment.title access outside JSX conditional short-circuit → undefined.title crash. Defensive optional chaining shipped CompileUploadButton + ScratchCompileBar, MA skipping obfuscator on this chunk eliminates entire class of obfuscation-induced regression iter 78+ web-dfu wire.
+        'CompileUploadButton', // iter 78: same obfuscator concern; CompileUploadButton wires web-dfu flash chain with dfu npm + lazy imports; protect from obfuscation-induced control flow corruption
+        'HomeCompileEntry', // iter 86 PREEMPTIVE iter 78 PRECEDENT: iter 85 close integration JSX conditional render `editorMode === MODE_BLOCKS ? <ElabScratchModeShell><ScratchEditor/></ElabScratchModeShell> : <CodeEditorCM6/>` simile pattern obfuscator hoisting risk workspaceBlockCount + onWorkspaceReady prop access. PROD bundle 36696B (3.2x preview 11279B) obfuscator string array indirection confirmed. Skip eliminates entire iter 78-style regression class. iter 79+ Atom 79.0 built-bundle E2E mandate aware, this is preemptive defense-in-depth.
         'recharts', 'd3-vendor', 'supabase', 'experiments-vol', // Vendor/data chunks — no obfuscation needed
     ];
 
@@ -226,18 +229,36 @@ export default defineConfig(({ mode }) => ({
                     // CodeMirror excluded from precache — runtime cached on first use (saves ~460KB)
                     // 'assets/codemirror-*.js',
                     'assets/avr-*.js',             // AVR emulation (if separate)
+                    // iter 81 81.A5 (Codex Pattern V iter 79 LOW BLOCKLY-2): explicitly
+                    // include ScratchEditor chunk in precache whitelist. globPatterns IS
+                    // the whitelist — removing from globIgnores alone (the blacklist)
+                    // does nothing if pattern not whitelisted. ScratchEditor 731KB
+                    // gzipped ~190KB stays under maximumFileSizeToCacheInBytes 2.5MB
+                    // line 209. Required for offline Blockly mount (Andrea iter 79 PM
+                    // mandate "blocchi E IDE in homepage" + iter 80.A2 IDE-1 tab).
+                    'assets/ScratchEditor-*.js',
                     // VitePWA virtual register module is now bundled as a lazy
                     // JS chunk; there is no public registerSW.js file to precache.
                     'fonts/*.woff2',
                     'hex/*.hex',               // G40: pre-compiled HEX for offline use
                 ],
                 // Exclude heavy chunks from precache
+                // iter 81 81.A5 (Codex Pattern V iter 79 LOW BLOCKLY-2): removed
+                // `assets/ScratchEditor*` from globIgnores. Andrea iter 79 PM
+                // mandate "blocchi E IDE in homepage" + iter 80.A2 IDE-1 tab
+                // require ScratchEditor mount LIVE first paint. PWA exclusion
+                // forced runtime-only network fetch → first offline classroom
+                // use would fail block render. Precache now ensures Blockly
+                // works offline (typical classroom scenario: spotty wifi).
+                // Chunk size ~731KB gzip ~190KB acceptable for educational
+                // priority. Other heavy chunks (react-pdf 1.9MB + mammoth +
+                // html2canvas + admin/teacher dashboards) STAY excluded —
+                // not on critical path for student/docente lesson flow.
                 globIgnores: [
                     'assets/react-pdf*',
                     'assets/mammoth*',
                     'assets/html2canvas*',
                     'assets/DashboardGestionale*',
-                    'assets/ScratchEditor*',
                     'assets/GestionalePage*',
                     'assets/Admin*',
                     'assets/Fatturazione*',

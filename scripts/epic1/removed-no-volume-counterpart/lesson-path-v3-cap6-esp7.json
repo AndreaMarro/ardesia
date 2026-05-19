@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-04",
+    "source": "PDR auto-generated from experiments-vol3.js"
+  },
+  "experiment_id": "v3-cap6-esp7",
+  "volume": 3,
+  "chapter": 6,
+  "title": "Codice Morse con LED",
+  "chapter_title": "I pin digitali",
+  "difficulty": 3,
+  "duration_minutes": 40,
+  "target_age": "10-14 anni",
+  "objective": "Programmare il messaggio SOS in codice Morse usando il LED: punti brevi e linee lunghe. Applicare i concetti di timing preciso e sequenze di istruzioni per comunicare un messaggio.",
+  "components_needed": [
+    {
+      "name": "Arduino Nano R4 (breakout wing)",
+      "quantity": 1,
+      "icon": "🤖"
+    },
+    {
+      "name": "Breadboard half-size",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "LED rosso",
+      "quantity": 1,
+      "icon": "❤️"
+    },
+    {
+      "name": "Resistore 470ohm",
+      "quantity": 1,
+      "icon": "⚡"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 4,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "Arduino",
+      "LED",
+      "Morse",
+      "SOS",
+      "punto",
+      "linea",
+      "delay",
+      "timing",
+      "messaggio",
+      "codice",
+      "segnale",
+      "breve",
+      "lungo",
+      "pausa"
+    ],
+    "forbidden": [
+      "array",
+      "string",
+      "char",
+      "funzione",
+      "switch case",
+      "ASCII"
+    ],
+    "note": "Focus sul timing e sulle sequenze. SOS e perfetto: 3 punti, 3 linee, 3 punti. Simmetrico e memorizzabile."
+  },
+  "prerequisites": [
+    "v3-cap6-esp3"
+  ],
+  "next_experiment": {
+    "id": "v3-cap7-esp1",
+    "title": "Pulsante accende LED",
+    "preview": "Nel prossimo capitolo Arduino impara a leggere: un pulsante gli dice se e premuto o no."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, il codice Morse e stato inventato nel 1836 per comunicare con il telegrafo. Ogni lettera e fatta di punti (brevi) e linee (lunghe). SOS, il segnale di emergenza, e tre punti, tre linee, tre punti.",
+      "teacher_tip": "Scrivere SOS alla lavagna in Morse: ... --- ... Far battere le mani alla classe: tre colpi veloci, tre lenti, tre veloci.",
+      "class_hook": "SOS non significa 'Save Our Souls'. E stato scelto perche e facile da trasmettere e riconoscere. Tre corti, tre lunghi, tre corti.",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Carichiamo il programma. Un punto e un flash breve di 200ms. Una linea e un flash lungo di 600ms. Tra un simbolo e l'altro, pausa di 200ms. Tra le lettere, pausa di 600ms.",
+      "teacher_tip": "Le regole standard Morse: linea = 3x punto, pausa tra simboli = 1x punto, pausa tra lettere = 3x punto, pausa tra parole = 7x punto. Semplificare per i ragazzi.",
+      "action_tags": [
+        "[AZIONE:loadexp:v3-cap6-esp7]"
+      ],
+      "auto_action": "load_experiment"
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, Se raddoppio tutti i tempi, il messaggio cambia o resta lo stesso SOS ma piu lento? E se dimezziamo solo i punti ma non le linee?",
+      "teacher_tip": "Far capire che nel Morse conta il rapporto tra breve e lungo, non il tempo assoluto. Se cambio le proporzioni, il messaggio diventa illeggibile.",
+      "provocative_question": "Se qualcuno vi manda un messaggio Morse con il LED ma voi non conoscete il codice, come fate a capire almeno quante lettere ci sono?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premiamo Play e osserviamo il LED. Tre flash brevi, tre lunghi, tre brevi, pausa lunga, e ricomincia. Provate a decodificarlo contando la durata dei flash.",
+      "teacher_tip": "Sfida avanzata: chi vuole provare a scrivere il proprio nome in Morse? Fornire la tabella Morse per le lettere piu comuni (A-Z).",
+      "action_tags": [
+        "[AZIONE:play]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Riuscite a riconoscere dove finisce una lettera e inizia la successiva guardando le pause?"
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Con il timing preciso di Arduino possiamo trasmettere messaggi in codice Morse. Il segreto e il rapporto tra punti brevi e linee lunghe. Lo stesso principio del telegrafo del 1836.",
+      "teacher_tip": "Collegare alla storia della comunicazione: dal telegrafo al WiFi, il concetto di codificare informazioni in segnali on/off e lo stesso.",
+      "summary_for_class": "Il codice Morse usa flash brevi (punti) e lunghi (linee) per codificare lettere. SOS e tre punti, tre linee, tre punti. Il timing preciso di delay() lo rende possibile.",
+      "concepts_learned": [
+        "codice Morse base",
+        "timing preciso con delay",
+        "rapporto punto/linea",
+        "pause tra simboli e lettere",
+        "codifica dell'informazione"
+      ],
+      "next_preview": "Nel prossimo capitolo Arduino impara a leggere: useremo un pulsante per mandare segnali ad Arduino tramite i pin di input."
+    }
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "codice Morse",
+      "SOS",
+      "timing delay",
+      "codifica informazione"
+    ],
+    "next_suggested": "v3-cap7-esp1",
+    "resume_message": "L'ultima volta avete trasmesso SOS in Morse con il LED. Oggi Arduino impara a leggere un pulsante."
+  }
+}

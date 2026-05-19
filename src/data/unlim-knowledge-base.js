@@ -312,9 +312,9 @@ const KNOWLEDGE_BASE = [
     answer: 'La lavagna ti permette di disegnare schemi e annotazioni sopra il simulatore:\n\n**Strumenti:**\n-  **Matita** — Disegno libero\n-  **Gomma** — Cancella parti del disegno\n- **T** **Testo** — Aggiungi etichette e note\n-  **Rettangolo, cerchio, freccia, linea** — Forme geometriche\n\n**Funzioni:**\n- **Annulla/Ripeti** (Ctrl+Z / Ctrl+Y)\n- **6 colori** + spessore regolabile\n- **Salva PNG** — Esporta il disegno come immagine\n- **Salvataggio automatico** — Il disegno si salva per ogni esperimento\n\nUsa la lavagna per annotare i tuoi circuiti, segnare le tensioni, o fare schizzi prima di costruire!',
   },
   {
-    keywords: ['galileo', 'chat', 'tutor', 'chiedere', 'domanda'],
+    keywords: ['unlim', 'chat', 'tutor', 'chiedere', 'domanda'],
     question: 'Come posso usare UNLIM?',
-    answer: 'Io sono UNLIM, il tuo tutor di elettronica! Ecco cosa posso fare:\n\n **Rispondi alle tue domande** — Chiedimi qualsiasi cosa su elettronica e Arduino\n **Ti guido nel manuale** — Ti indico le pagine giuste per approfondire\n **Ti suggerisco esperimenti** — Posso proporti sfide e progetti\n **Ti aiuto col debug** — Descrivi il problema e ti aiuto a risolverlo\n **Analizzo i tuoi disegni** — Puoi mandarmi una foto della lavagna!\n\n**Suggerimenti:**\n- Fai domande specifiche: "Perché il LED non si accende?" è meglio di "Non funziona"\n- Descrivi il tuo circuito: componenti, collegamento, codice\n- Non aver paura di chiedere! Non esistono domande stupide.',
+    answer: 'Io sono UNLIM, il tuo tutor di elettronica! Pensa a me come a un assistente sempre pronto ad aiutarti. Ecco cosa posso fare:\n\n **Rispondi alle tue domande** — Chiedimi qualsiasi cosa su elettronica e Arduino\n **Ti guido nel manuale** — Ti indico le pagine giuste per approfondire\n **Ti suggerisco esperimenti** — Posso proporti sfide e progetti\n **Ti aiuto col debug** — Descrivi il problema e ti aiuto a risolverlo\n **Analizzo i tuoi disegni** — Puoi mandarmi una foto della lavagna!\n\n**Suggerimenti:**\n- Fai domande specifiche: "Perché il LED non si accende?" è meglio di "Non funziona"\n- Descrivi il tuo circuito: componenti, collegamento, codice\n- Non aver paura di chiedere! Non esistono domande stupide.',
   },
 
   // ── SICUREZZA ──────────────────────────────────

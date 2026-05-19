@@ -1,0 +1,104 @@
+/* © Andrea Marro — 18/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/**
+ * CompileUploadButton.module.css — iter 88 UX-6.
+ *
+ * 6-state visual machine for the Lavagna "Carica sul kit fisico" CTA when
+ * the parent passes the optional `uploadState` prop. State semantics:
+ *
+ *   idle      → grey, disabled, tooltip "Compilate prima il programma"
+ *   armed     → pulsing Lime breath, tooltip "Collegate Arduino USB"
+ *   ready     → solid Lime, enabled, tooltip "Pronti! Premete per caricare"
+ *   uploading → spinner + "Caricamento..."
+ *   success   → checkmark celebration tooltip "Caricato!"
+ *   error     → red border + retry CTA + friendly error tooltip
+ *
+ * Animation accessibility: breath + celebration keyframes wrapped in
+ * @media (prefers-reduced-motion: no-preference) so users who request
+ * reduced motion get instant state transitions (WCAG 2.3.3 + browser pref).
+ *
+ * Palette ELAB CSS vars Navy/Lime/Orange/Red with sane fallbacks.
+ */
+
+.btn {
+  position: relative;
+  transition: background 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+/* ─── idle ───────────────────────────────────────────────────────────── */
+.state_idle {
+  background: var(--elab-muted, #8c8c8c) !important;
+  color: var(--elab-text-inverse, #ffffff) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+/* ─── armed: pulsing Lime breath ─────────────────────────────────────── */
+.state_armed {
+  background: var(--elab-lime, #4A7A25) !important;
+  color: var(--elab-text-inverse, #ffffff) !important;
+  cursor: pointer !important;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .state_armed {
+    animation: elab-upload-breath 2s ease-in-out infinite;
+  }
+}
+
+@keyframes elab-upload-breath {
+  0%   { opacity: 0.70; transform: scale(1.00); }
+  50%  { opacity: 1.00; transform: scale(1.02); }
+  100% { opacity: 0.70; transform: scale(1.00); }
+}
+
+/* ─── ready ──────────────────────────────────────────────────────────── */
+.state_ready {
+  background: var(--elab-lime, #4A7A25) !important;
+  color: var(--elab-text-inverse, #ffffff) !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+
+/* ─── uploading ──────────────────────────────────────────────────────── */
+.state_uploading {
+  background: var(--elab-lime, #4A7A25) !important;
+  color: var(--elab-text-inverse, #ffffff) !important;
+  cursor: progress !important;
+  opacity: 0.85 !important;
+}
+
+/* ─── success: celebration check pulse ───────────────────────────────── */
+.state_success {
+  background: var(--elab-lime, #4A7A25) !important;
+  color: var(--elab-text-inverse, #ffffff) !important;
+  border: 2px solid var(--elab-lime, #4A7A25) !important;
+  cursor: default !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .state_success {
+    animation: elab-upload-celebrate 600ms ease-out 1;
+  }
+}
+
+@keyframes elab-upload-celebrate {
+  0%   { transform: scale(1.00); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1.00); }
+}
+
+/* ─── error ──────────────────────────────────────────────────────────── */
+.state_error {
+  background: var(--elab-card-bg, #FFFFFF) !important;
+  color: var(--elab-red, #E54B3D) !important;
+  border: 2px solid var(--elab-red, #E54B3D) !important;
+  cursor: pointer !important;
+}
+
+/* Visual focus ring WCAG 2.4.7 for all states (Navy outline). */
+.btn:focus-visible {
+  outline: 3px solid var(--elab-navy, #1E4D8C);
+  outline-offset: 2px;
+  border-radius: 6px;
+}

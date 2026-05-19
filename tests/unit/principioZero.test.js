@@ -83,8 +83,8 @@ describe('Principio Zero / 1. unlimPrompt — nessun jargon tecnico da sviluppat
   it('sanity check: abbiamo esperimenti da tutti e 3 i volumi', () => {
     expect(EXPERIMENTS_VOL1.experiments.length).toBeGreaterThanOrEqual(38);
     expect(EXPERIMENTS_VOL2.experiments.length).toBeGreaterThanOrEqual(27);
-    expect(EXPERIMENTS_VOL3.experiments.length).toBeGreaterThanOrEqual(26);
-    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(91);
+    expect(EXPERIMENTS_VOL3.experiments.length).toBeGreaterThanOrEqual(14);
+    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(79);
   });
 
   // Un test per ogni termine proibito — questo mostra esattamente quale

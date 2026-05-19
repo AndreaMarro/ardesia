@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elabtutor.school/schemas/standard-experiment-v1.json",
+  "title": "ELAB Tutor — Standard Experiment Schema (Punto 1 della roadmap)",
+  "description": "Schema canonico a 7 step pedagogici per ciascuno dei 94 esperimenti del corpus ELAB Tutor. Conforme PRINCIPIO ZERO + Morfismo Sense 2. Compatibile con Mistral function calling (response_format: json_schema). I 7 step sono ferrei nella struttura, morfici nel contenuto.",
+  "version": "1.0",
+  "type": "object",
+  "required": ["experiment_id", "metadata", "steps", "principio_zero_compliance"],
+  "additionalProperties": false,
+  "properties": {
+
+    "experiment_id": {
+      "type": "string",
+      "pattern": "^v[1-3]-(cap[0-9]+-esp[0-9]+|cap[0-9]+-[a-z]+|extra-[a-z-]+)$",
+      "description": "ID canonico (es. v1-cap6-esp1). Deve coincidere con lesson-paths/{id}.json."
+    },
+
+    "metadata": {
+      "type": "object",
+      "required": ["title", "volume", "chapter", "chapter_title", "page", "target_age", "duration_min", "components_needed"],
+      "properties": {
+        "title": { "type": "string", "description": "Titolo canonico esperimento, copia esatta del libro." },
+        "volume": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "chapter": { "type": "integer", "minimum": 1 },
+        "chapter_title": { "type": "string" },
+        "page": { "type": "integer", "minimum": 1, "description": "Pagina canonica nel volume cartaceo." },
+        "target_age": { "enum": ["8-10 anni", "10-12 anni", "10-14 anni", "11-13 anni", "13+ anni"] },
+        "duration_min": { "type": "integer", "minimum": 15, "maximum": 120 },
+        "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "components_needed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "kit_id", "quantity"],
+            "properties": {
+              "name": { "type": "string", "description": "Nome canonico kit Omaric (es. 'Resistore 470Ω')." },
+              "kit_id": { "type": "string", "description": "Riferimento componenti.js (es. 'omaric.led.red.5mm')." },
+              "quantity": { "type": "integer", "minimum": 1 },
+              "color": { "type": "string", "description": "Colore canonico se applicabile." }
+            }
+          }
+        }
+      }
+    },
+
+    "steps": {
+      "type": "object",
+      "description": "I 7 step canonici. La struttura è ferrea (tutti gli esperimenti hanno tutti e 7), il contenuto è morfico per esperimento.",
+      "required": ["setup", "ipotesi", "costruzione", "misura", "variazione", "conclusione", "trasferimento"],
+      "additionalProperties": false,
+      "properties": {
+
+        "setup": {
+          "type": "object",
+          "description": "STEP 1 — Allestimento iniziale: cosa serve, contesto, hook motivazionale per la classe.",
+          "required": ["class_hook", "prerequisites", "components_visible", "duration_estimate_min"],
+          "properties": {
+            "class_hook": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Frase iniziale del docente alla classe in plurale 'Ragazzi'. Aggancia curiosità senza spoilerare il risultato. Es. 'Avete mai provato ad accendere una lampadina con una pila?'"
+            },
+            "prerequisites": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Concetti che lo studente deve già avere (da esperimenti precedenti). Es. ['polarità del LED', 'circuito chiuso']."
+            },
+            "components_visible": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Componenti che il docente mostra fisicamente all'inizio (anche prima di costruire). Es. ['LED rosso', 'breadboard', 'batteria 9V']."
+            },
+            "duration_estimate_min": { "type": "integer", "minimum": 1, "maximum": 10, "description": "Durata stimata dello step." },
+            "teacher_tip": { "type": "string", "maxLength": 250, "description": "Suggerimento didattico al docente per condurre lo step. NO imperativi, sempre 'Possiamo / Vediamo'." }
+          }
+        },
+
+        "ipotesi": {
+          "type": "object",
+          "description": "STEP 2 — Domanda aperta: i ragazzi propongono soluzioni PRIMA di costruire. Mai dire la risposta giusta qui.",
+          "required": ["open_question", "expected_student_hypotheses", "duration_estimate_min"],
+          "properties": {
+            "open_question": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Domanda aperta al plurale. Es. 'Come pensate che il LED si accenderà?'."
+            },
+            "expected_student_hypotheses": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 5,
+              "items": {
+                "type": "object",
+                "required": ["hypothesis", "is_correct"],
+                "properties": {
+                  "hypothesis": { "type": "string", "maxLength": 150 },
+                  "is_correct": { "type": "boolean" },
+                  "validation_method": { "type": "string", "description": "Come verificare l'ipotesi durante l'esperimento." }
+                }
+              }
+            },
+            "duration_estimate_min": { "type": "integer", "minimum": 2, "maximum": 8 }
+          }
+        },
+
+        "costruzione": {
+          "type": "object",
+          "description": "STEP 3 — Lo studente costruisce il circuito sul kit fisico Omaric. Sequenza canonica + errori da prevenire.",
+          "required": ["assembly_sequence", "common_mistakes", "duration_estimate_min"],
+          "properties": {
+            "circuit_diagram_ref": { "type": "string", "description": "Path SVG del diagramma canonico (es. 'circuits/v1-cap6-esp1.svg')." },
+            "assembly_sequence": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 12,
+              "items": {
+                "type": "object",
+                "required": ["order", "action", "component"],
+                "properties": {
+                  "order": { "type": "integer", "minimum": 1 },
+                  "action": { "type": "string", "description": "Azione canonica al plurale. Es. 'Inseriamo il LED rosso nei fori B5 e B7 della breadboard.'" },
+                  "component": { "type": "string", "description": "Componente coinvolto." },
+                  "checkpoint": { "type": "string", "description": "Verifica visiva che il docente può fare. Es. 'Il LED dovrebbe avere la gambetta lunga (anodo) verso il polo +.'" }
+                }
+              }
+            },
+            "common_mistakes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["mistake", "diagnosis", "pedagogy"],
+                "properties": {
+                  "mistake": { "type": "string", "description": "Errore tipico. Es. 'LED inserito al contrario.'" },
+                  "diagnosis": { "type": "string", "description": "Sintomo osservabile. Es. 'Il LED non si accende.'" },
+                  "pedagogy": { "type": "string", "description": "Risposta UNLIM/docente, mai correttiva imperativa. Es. 'Non correggerli. Chiedere: \\'Cosa succede se lo girate?\\''" }
+                }
+              }
+            },
+            "kit_protagonista": {
+              "type": "boolean",
+              "const": true,
+              "description": "Invariante PRINCIPIO ZERO: il kit fisico è SEMPRE protagonista. Mai 'proviamo nel simulatore' come sostituto."
+            },
+            "duration_estimate_min": { "type": "integer", "minimum": 5, "maximum": 25 }
+          }
+        },
+
+        "misura": {
+          "type": "object",
+          "description": "STEP 4 — Cosa misurare/osservare. Genera dati per la telemetria pedagogica (sblocca punto 1.b/1.c della roadmap).",
+          "required": ["observable", "expected_values", "telemetry_events", "duration_estimate_min"],
+          "properties": {
+            "observable": {
+              "type": "string",
+              "description": "Cosa lo studente osserva/misura. Es. 'Il LED si accende? Con che luminosità?'"
+            },
+            "measurement_tool": {
+              "enum": ["nessuno (osservazione visiva)", "multimetro", "fotoresistenza", "timer", "monitor seriale", "altro"],
+              "description": "Strumento usato per la misurazione."
+            },
+            "expected_values": {
+              "type": "object",
+              "description": "Valori canonici attesi se l'esperimento è eseguito correttamente. Es. tensione 9V, corrente 19mA.",
+              "additionalProperties": { "type": ["string", "number"] }
+            },
+            "telemetry_events": {
+              "type": "array",
+              "items": { "enum": ["step_started", "step_completed", "measurement_logged", "help_requested", "mistake_made", "mistake_overcome", "experiment_abandoned"] },
+              "description": "Eventi che il client emette durante questo step (sblocca dashboard heatmap docente, punto 1.c)."
+            },
+            "duration_estimate_min": { "type": "integer", "minimum": 2, "maximum": 10 }
+          }
+        },
+
+        "variazione": {
+          "type": "object",
+          "description": "STEP 5 — Cosa cambiare per esplorare. Stesso circuito, parametri diversi. È il pattern di transizione canonico (71.8% degli esperimenti reali secondo l'audit narrativo).",
+          "required": ["suggested_variations", "duration_estimate_min"],
+          "properties": {
+            "suggested_variations": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "items": {
+                "type": "object",
+                "required": ["variation", "expected_outcome"],
+                "properties": {
+                  "variation": { "type": "string", "description": "Variazione concreta. Es. 'Sostituite il resistore da 470Ω con uno da 1kΩ.'" },
+                  "expected_outcome": { "type": "string", "description": "Cosa cambia. Es. 'Il LED si accende meno.'" },
+                  "concept_explored": { "type": "string", "description": "Concetto pedagogico toccato. Es. 'corrente inversamente proporzionale alla resistenza'." }
+                }
+              }
+            },
+            "free_exploration_allowed": {
+              "type": "boolean",
+              "default": true,
+              "description": "Se true, lo studente può proporre varianti spontanee (registrate in telemetry come variations_tried_spontaneously)."
+            },
+            "duration_estimate_min": { "type": "integer", "minimum": 3, "maximum": 15 }
+          }
+        },
+
+        "conclusione": {
+          "type": "object",
+          "description": "STEP 6 — Cosa abbiamo imparato. Sintesi + citazione Vol/pag verbatim.",
+          "required": ["concepts_learned", "summary", "vol_page_citation", "duration_estimate_min"],
+          "properties": {
+            "concepts_learned": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" },
+              "description": "Concetti pedagogici acquisiti, formulati come tag canonici. Es. ['circuito_chiuso', 'polarita_LED']."
+            },
+            "summary": {
+              "type": "string",
+              "maxLength": 250,
+              "description": "Frase di chiusura del docente al plurale. Es. 'Il LED è come una porta girevole: funziona solo in un verso! Il piedino lungo (anodo) va al polo +.'"
+            },
+            "vol_page_citation": {
+              "type": "object",
+              "required": ["volume", "page", "verbatim_text"],
+              "properties": {
+                "volume": { "type": "integer", "minimum": 1, "maximum": 3 },
+                "page": { "type": "integer", "minimum": 1 },
+                "verbatim_text": { "type": "string", "description": "Citazione verbatim dal volume-references.js. NO parafrasi." }
+              }
+            },
+            "analogy": {
+              "type": "object",
+              "description": "Analogia concreta dal mondo dei ragazzi. Una tra: porte, tubi, strade, squadra, food.",
+              "properties": {
+                "kind": { "enum": ["porte", "tubi", "strade", "squadra", "food"] },
+                "text": { "type": "string", "maxLength": 200 }
+              }
+            },
+            "duration_estimate_min": { "type": "integer", "minimum": 2, "maximum": 8 }
+          }
+        },
+
+        "trasferimento": {
+          "type": "object",
+          "description": "STEP 7 — Ponte verso esperimento successivo. Domanda aperta che apre la prossima storia. Vuoto solo per i 9 capstone (next_id=null).",
+          "required": ["cliffhanger", "next_experiment_id", "concept_generalization"],
+          "properties": {
+            "cliffhanger": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Domanda aperta in plurale. Es. 'E se togliamo il resistore? Lo scopriamo nel prossimo esperimento... ma attenti: il LED sarà in pericolo!'"
+            },
+            "next_experiment_id": {
+              "type": ["string", "null"],
+              "description": "ID dell'esperimento successivo o null se è un capstone (chiusura volume/sezione)."
+            },
+            "concept_generalization": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Come il concetto appreso si applica fuori da questo esperimento. Es. 'Tutti i diodi (non solo i LED) hanno polarità.'"
+            },
+            "is_capstone": {
+              "type": "boolean",
+              "default": false,
+              "description": "True se è una chiusura ufficiale (next_experiment_id = null). UI mostra overlay celebrativo invece del banner cliffhanger."
+            }
+          }
+        }
+      }
+    },
+
+    "principio_zero_compliance": {
+      "type": "object",
+      "description": "Audit gate: il payload non è valido se anche solo una di queste regole fallisce.",
+      "required": ["pz_v3_score", "rules_passed"],
+      "properties": {
+        "pz_v3_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "rules_passed": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" },
+          "properties": {
+            "plurale_ragazzi": { "type": "boolean", "description": "Tutti i testi rivolti alla classe sono in plurale 'Ragazzi/Vediamo/Provate'." },
+            "no_imperative_to_teacher": { "type": "boolean", "description": "Zero imperativi del tipo 'Distribuisci/Premi/Fai' rivolti al docente." },
+            "kit_omaric_protagonista": { "type": "boolean", "description": "Mai 'proviamo nel simulatore' come sostituto del kit fisico." },
+            "verbatim_book_citation": { "type": "boolean", "description": "Citazione Vol/pag in conclusione è verbatim, non parafrasi." },
+            "max_60_words_per_text": { "type": "boolean", "description": "Tutti i testi narrativi (hook, summary, ecc.) ≤60 parole." },
+            "elab_palette_only": { "type": "boolean", "description": "Solo Navy/Lime/Orange/Red + neutri." },
+            "no_galileo_name": { "type": "boolean", "description": "Mascotte sempre 'UNLIM', mai 'Galileo'." },
+            "all_7_steps_present": { "type": "boolean", "description": "Tutti e 7 gli step sono compilati (anche capstone ha 'trasferimento' con next_id=null)." },
+            "components_canonical": { "type": "boolean", "description": "Componenti coincidono con kit Omaric (es. resistore 470Ω canonico)." },
+            "analogy_required": { "type": "boolean", "description": "Almeno una analogia presente nel pannello conclusione." },
+            "concepts_learned_tagged": { "type": "boolean", "description": "concepts_learned è popolato come array di tag." },
+            "duration_within_class_period": { "type": "boolean", "description": "Somma duration_estimate_min dei 7 step ≤ duration_min metadata (tipico 45 min)." }
+          }
+        }
+      }
+    },
+
+    "fumetto_mapping": {
+      "type": "object",
+      "description": "Mappatura tra i 7 step pedagogici e le 6 vignette del fumetto canonico (Punto 6).",
+      "properties": {
+        "setup": { "const": "vignetta_1_problema" },
+        "ipotesi": { "const": "vignetta_2_ipotesi" },
+        "costruzione_misura": { "const": "vignetta_3_errore_o_costruzione" },
+        "click_pedagogico": { "const": "vignetta_4_click" },
+        "conclusione": { "const": "vignetta_5_successo" },
+        "trasferimento": { "const": "vignetta_6_ponte" }
+      }
+    }
+  }
+}

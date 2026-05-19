@@ -32,6 +32,12 @@ const RENDER_FALLBACK = 'https://elab-galileo.onrender.com'; // Fallback se Edge
 const CHAT_WEBHOOK = (import.meta.env.VITE_N8N_CHAT_URL || '').trim();
 const COMPILE_URL = (import.meta.env.VITE_COMPILE_URL || '').trim() || null; // Server standalone (priorità)
 const COMPILE_WEBHOOK = (import.meta.env.VITE_COMPILE_WEBHOOK_URL || '').trim() || null; // Backend fallback
+// iter 77 STOP-HOOK fix (Codex): Cloud Render cross-compile endpoint per
+// Andrea pivot iter 75 PM "no download" path. Env unset until iter 78+
+// Andrea Render deploy. When set, takes priority over Supabase Edge +
+// COMPILE_URL chain for cross-compile flow (Cloud Render scaffold
+// `infra/cloud-compile/server.js` shipped iter 76 A.1, deploy pending).
+const CLOUD_COMPILE_URL = (import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL || '').trim().replace(/\/$/, '') || null;
 const COMPILE_PROXY_URL = (import.meta.env.VITE_COMPILE_PROXY_URL || `${_SUPABASE_EDGE}/compile-proxy`).trim();
 const LOCAL_API = (import.meta.env.VITE_LOCAL_API_URL || '').trim() || null;
 const LOCAL_URL = (import.meta.env.VITE_LOCAL_COMPILE_URL || '').trim() || null; // Dev locale
@@ -61,6 +67,7 @@ const DEFAULT_BOARD = 'arduino:avr:nano:cpu=atmega328old';
 const ALLOWED_COMPILE_BOARDS = new Set([
     'arduino:avr:nano:cpu=atmega328old',
     'arduino:avr:uno',
+    'arduino:renesas_uno:nanor4',
 ]);
 const SOCRATIC_INSTRUCTION = [
     '[AUTOCOSCIENZA — Chi sei e cosa puoi fare]',
@@ -607,6 +614,9 @@ function friendlyError(error) {
     if (msg.includes('500') || msg.includes('502') || msg.includes('503')) {
         return 'Ops! Qualcosa non funziona. Riprova tra un momento!';
     }
+    if (msg.includes('400') || msg.includes('message too long') || msg.includes('invalid')) {
+        return 'Il messaggio è troppo lungo o non valido. Riprova con una domanda più breve.';
+    }
     if (msg.includes('429')) {
         return 'Troppe richieste! Aspetta qualche secondo e riprova.';
     }
@@ -1071,8 +1081,18 @@ export async function sendChat(message, images = [], options = {}) {
             }
         }
 
-        // Fallback a knowledge base locale (risposte curate offline)
-        if (images.length === 0) {
+        // Sprint U Cycle 2 iter 41 — Andrea live test 2026-05-12 PM evidence:
+        // `searchKnowledgeBase` fallback served stale canned responses ("Il LED
+        // è una lucina speciale che funziona come una porta girevole...") that
+        // bypassed Edge Function Vertex + linguaggio rewriter + Onniscenza +
+        // anti-invenzione. Result: singolare violations ("metti", "se lo metti
+        // al contrario", "tranquillo") + RGB memory leak on Vol.1 cap.6 LED.
+        // Mitigation: gate behind `VITE_ENABLE_LOCAL_KNOWLEDGE_FALLBACK` env
+        // flag (default OFF). When Edge Function unreachable, surface honest
+        // failure (`friendlyError`) instead of canned content with violations.
+        // Re-enable when knowledge-base entries rewritten Sprint U Cycle 2+ scope.
+        const enableLocalKnowledge = (import.meta.env.VITE_ENABLE_LOCAL_KNOWLEDGE_FALLBACK || 'false').toString().toLowerCase() === 'true';
+        if (enableLocalKnowledge && images.length === 0) {
             const kbResult = searchKnowledgeBase(message);
             if (kbResult) {
                 const actions = extractActions(kbResult.answer, message);
@@ -1294,13 +1314,28 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         if (url.includes('supabase.co/functions') && _ELAB_API_KEY) {
             headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
         }
+        // iter 77 STOP-HOOK #2 fix (Codex stop-time review #7): Cloud Render
+        // cross-compile endpoint requires X-Elab-Api-Key auth (per
+        // infra/cloud-compile/server.js:93-107 authMiddleware). Detect via
+        // CLOUD_COMPILE_URL env match. Without auth header → 401 prod.
+        const isCloudRender = CLOUD_COMPILE_URL && url.startsWith(CLOUD_COMPILE_URL);
+        if (isCloudRender && _ELAB_API_KEY) {
+            headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
+        }
 
         try {
+            // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render expects canonical
+            // OpenAPI 76-D.3 body shape `{sketchCode, fqbn}` (per server.js:200
+            // + cloud P0.4 boardId+fqbn dual-accept). Legacy n8n + Supabase
+            // proxy chain uses `{code, board}` historical shape. Branch body.
+            const body = isCloudRender
+                ? JSON.stringify({ sketchCode: code, fqbn: safeBoard })
+                : JSON.stringify({ code, board: safeBoard });
             const res = await fetch(url, {
                 method: 'POST',
                 headers,
                 signal: controller.signal,
-                body: JSON.stringify({ code, board: safeBoard }),
+                body,
             });
             clearTimeout(timeoutId);
 
@@ -1320,6 +1355,20 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
                 throw new Error('Risposta non valida dal compilatore');
             }
 
+            // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render returns canonical
+            // `{ok, jobId, hexFilename, hexSize, hexBase64, stdout, stderr,
+            // latencyMs}` (server.js:268-278). Map to legacy contract for
+            // downstream consumers (CompilationStatus + simulator HEX consumer).
+            if (isCloudRender) {
+                return {
+                    success: !!data.ok,
+                    hex: data.hexBase64 || null,
+                    errors: data.stderr || data.error || null,
+                    output: data.stdout || null,
+                    result: data.ok ? 'success' : 'error',
+                };
+            }
+
             return {
                 success: !!data.success,
                 hex: data.hex || null,
@@ -1334,6 +1383,15 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     }
 
     const httpsBrowser = isHttpsBrowserOrigin();
+
+    // iter 77 STOP-HOOK fix priority 0 (Codex): Cloud Render cross-compile
+    // endpoint per Andrea iter 75 PM "no download" pivot. Takes priority
+    // over all other paths when env wired. Iter 78+ Andrea Render deploy
+    // populates VITE_ELAB_CLOUD_COMPILE_URL. Currently null fallback chain.
+    if (CLOUD_COMPILE_URL) {
+        const result = await tryCompile(`${CLOUD_COMPILE_URL}/compile`, 'Cloud Render cross-compile');
+        if (result) return result;
+    }
 
     // 1. Production/preview HTTPS: same-origin-safe Supabase proxy first.
     // Direct n8n compile endpoints fail browser CORS on www.elabtutor.school.

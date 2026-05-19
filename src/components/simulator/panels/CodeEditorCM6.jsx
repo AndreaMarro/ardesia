@@ -25,7 +25,6 @@ import { defaultKeymap, indentWithTab, history, historyKeymap } from '@codemirro
 import { searchKeymap, highlightSelectionMatches } from '@codemirror/search';
 import { tags } from '@lezer/highlight';
 import { autocompletion, completeFromList } from '@codemirror/autocomplete';
-import { createPaletteDropExtension, insertPaletteSnippet } from '../../ide/CodePalette/DragDropHandler';
 
 /* ═══════════════════════════════════════════════════════════════════
    ELAB Palette constants (shared with NES)
@@ -323,7 +322,18 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
   readOnly = false,
   title = 'Editor Codice',
   onExplainCode,
-  hideFooter = false,
+  // iter 87 PHASE 4c — UX cleanup Andrea feedback "non si capisce come usare".
+  // Hide the duplicate "▶ Compila & Carica" footer button when parent already
+  // renders an external compile entry point (e.g. HomeCompileEntry has a
+  // ScratchCompileBar in the right aside that is the canonical compile +
+  // upload controller). Keeping both confuses users (3 compile buttons total).
+  hideCompileButton = false,
+  // iter 88 88.UX-1 /distill — when true, hide decorative title + font zoom
+  // toolbar (A-/13/A+) from header. Keeps status text (role="status" aria-live)
+  // accessible. Used by HomeCompileEntry to reduce surface noise per Nielsen
+  // #8 Aesthetic + Cognitive Load progressive disclosure (Andrea verdetto
+  // iter 87 PHASE 4c "ux ui fanno schifo" + critique 22/40 mediocre).
+  compact = false,
 }) {
   const containerRef = useRef(null);
   const viewRef = useRef(null);
@@ -379,7 +389,6 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
         fontSizeComp.current.of(EditorView.theme({ '&': { fontSize: '14px' }, '.cm-content': { fontSize: '14px' } })),
         onUpdate,
         autocompletion({ override: [arduinoCompletionSource] }),
-        createPaletteDropExtension(),
         EditorView.lineWrapping,
       ],
     });
@@ -397,21 +406,6 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run once on mount
-
-  // ── Palette click-to-insert fallback (tablet/touch) ───────────────
-  useEffect(() => {
-    function handlePaletteInsert(event) {
-      const snippet = event?.detail?.snippet;
-      const view = viewRef.current;
-      if (!view || typeof snippet !== 'string' || !snippet) return;
-      insertPaletteSnippet(view, snippet);
-    }
-
-    window.addEventListener('elab:insert-palette-snippet', handlePaletteInsert);
-    return () => {
-      window.removeEventListener('elab:insert-palette-snippet', handlePaletteInsert);
-    };
-  }, []);
 
   // ── Sync external code changes ────────────────────────────────────
   useEffect(() => {
@@ -495,40 +489,45 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
 
   return (
     <div style={codeEditorStyles.root}>
-      {/* Header */}
+      {/* Header — iter 88 88.UX-1 /distill: compact mode hides decorative
+          title + font zoom (A-/13/A+) cluster. Status row preserved for
+          accessibility (role="status" aria-live). Reduces ≤5 elem first-render
+          per Nielsen #8 + critique 22/40 iter 87 PHASE 4c. */}
       <div style={codeEditorStyles.header}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1-5)' }}>
-          <span style={codeEditorStyles.title}>{title}</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginLeft: 4 }}>
-            <button
-              onClick={() => setFontSize(s => Math.max(9, s - 1))}
-              style={codeEditorStyles.fontSizeBtn}
-              title="Rimpicciolisci testo"
-            >A-</button>
-            <span style={{ fontSize: 14, color: 'var(--color-text-gray-300, #737373)', fontFamily: FONT_CODE, minWidth: 18, textAlign: 'center' }}>{fontSize}</span>
-            <button
-              onClick={() => setFontSize(s => Math.min(22, s + 1))}
-              style={codeEditorStyles.fontSizeBtn}
-              title="Ingrandisci testo"
-            >A+</button>
+        {!compact && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1-5)' }}>
+            <span style={codeEditorStyles.title}>{title}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginLeft: 4 }}>
+              <button
+                onClick={() => setFontSize(s => Math.max(9, s - 1))}
+                style={codeEditorStyles.fontSizeBtn}
+                title="Rimpicciolisci testo"
+              >A-</button>
+              <span style={{ fontSize: 14, color: 'var(--color-text-gray-300, #737373)', fontFamily: FONT_CODE, minWidth: 18, textAlign: 'center' }}>{fontSize}</span>
+              <button
+                onClick={() => setFontSize(s => Math.min(22, s + 1))}
+                style={codeEditorStyles.fontSizeBtn}
+                title="Ingrandisci testo"
+              >A+</button>
+            </div>
+            {onExplainCode && !readOnly && (
+              <button
+                onClick={() => onExplainCode(code)}
+                style={{
+                  ...codeEditorStyles.fontSizeBtn,
+                  marginLeft: 6,
+                  fontSize: 14,
+                  padding: '4px 12px',
+                  color: 'var(--color-accent, var(--elab-lime))',
+                  borderColor: 'var(--color-accent, var(--elab-lime))',
+                }}
+                title="Chiedi a UNLIM di spiegare il codice"
+                aria-label="Spiega il codice"
+              >? Spiega</button>
+            )}
           </div>
-          {onExplainCode && !readOnly && (
-            <button
-              onClick={() => onExplainCode(code)}
-              style={{
-                ...codeEditorStyles.fontSizeBtn,
-                marginLeft: 6,
-                fontSize: 14,
-                padding: '4px 12px',
-                color: 'var(--color-accent, var(--elab-lime))',
-                borderColor: 'var(--color-accent, var(--elab-lime))',
-              }}
-              title="Chiedi a UNLIM di spiegare il codice"
-              aria-label="Spiega il codice"
-            >? Spiega</button>
-          )}
-        </div>
-        <span role="status" aria-live="polite" style={{ ...codeEditorStyles.status, color: statusColor }}>
+        )}
+        <span role="status" aria-live="polite" style={{ ...codeEditorStyles.status, color: statusColor, marginLeft: compact ? 'auto' : 0 }}>
           {compilationStatus === 'compiling' && (
             <span style={{ marginRight: 4, animation: 'spin 1s linear infinite', display: 'inline-block' }} aria-hidden="true">&#x2699;</span>
           )}
@@ -575,7 +574,8 @@ const CodeEditorCM6 = React.memo(function CodeEditorCM6({
         </div>
       )}
 
-      {!hideFooter && (
+      {/* Compile button \u2014 hidden when parent owns canonical compile entry (iter 87 PHASE 4c) */}
+      {!hideCompileButton && (
         <div style={codeEditorStyles.footer}>
           <button
             onClick={() => onCompile && onCompile(viewRef.current ? viewRef.current.state.doc.toString() : code)}

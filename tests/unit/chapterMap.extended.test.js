@@ -82,18 +82,6 @@ describe('chapter-map — Tea alias mapping', () => {
       expect(info.title).toContain('OUTPUT');
     });
 
-    it('Vol3 cap6 INPUT experiments (esp5, esp6, esp7)', () => {
-      const info = getDisplayInfo('v3-cap6-esp5');
-      expect(info).not.toBeNull();
-      expect(info.title).toContain('INPUT');
-    });
-
-    it('Vol3 extra projects', () => {
-      const info = getDisplayInfo('v3-extra-simon');
-      expect(info).not.toBeNull();
-      expect(info.title).toContain('Progetti');
-    });
-
     it('returns null for null input', () => {
       expect(getDisplayInfo(null)).toBeNull();
     });

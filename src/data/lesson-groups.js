@@ -193,7 +193,7 @@ const LESSON_GROUPS = {
     volume: 3,
     chapter: 6,
     icon: '💡',
-    experiments: ['v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp3', 'v3-cap6-esp4', 'v3-cap6-esp5', 'v3-cap6-esp6', 'v3-cap6-esp7']
+    experiments: ['v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp4']
   },
   'v3-progetti-led': {
     title: 'Progetti LED: semaforo e Morse',
@@ -210,7 +210,7 @@ const LESSON_GROUPS = {
     volume: 3,
     chapter: 7,
     icon: '📊',
-    experiments: ['v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp4', 'v3-cap7-esp5', 'v3-cap7-esp6', 'v3-cap7-esp7', 'v3-cap7-esp8', 'v3-cap7-mini']
+    experiments: ['v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp6']
   },
   'v3-output-avanzato': {
     title: 'Output avanzato',
@@ -218,15 +218,7 @@ const LESSON_GROUPS = {
     volume: 3,
     chapter: 8,
     icon: '🎵',
-    experiments: ['v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3', 'v3-cap8-esp4', 'v3-cap8-esp5', 'v3-cap8-serial']
-  },
-  'v3-progetti-extra': {
-    title: 'Progetti Extra',
-    concept: 'LCD, servo, Simon Says',
-    volume: 3,
-    chapter: 99,
-    icon: '🌟',
-    experiments: ['v3-extra-lcd-hello', 'v3-extra-servo-sweep', 'v3-extra-simon']
+    experiments: ['v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3']
   }
 };
 

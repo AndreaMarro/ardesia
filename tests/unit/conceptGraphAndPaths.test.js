@@ -221,8 +221,8 @@ describe('concept-graph', () => {
 
   // -- EXPERIMENT_CONCEPTS structure --
   describe('EXPERIMENT_CONCEPTS structure', () => {
-    it('has at least 60 experiments', () => {
-      expect(ALL_EXPERIMENT_IDS.length).toBeGreaterThanOrEqual(60);
+    it('has at least 55 experiments', () => {
+      expect(ALL_EXPERIMENT_IDS.length).toBeGreaterThanOrEqual(55);
     });
 
     it('every experiment has teaches and requires arrays', () => {
@@ -320,11 +320,6 @@ describe('lesson-paths', () => {
       expect(path).not.toBeNull();
     });
 
-    it('returns data for v3-extra-simon', () => {
-      const path = getLessonPath('v3-extra-simon');
-      expect(path).not.toBeNull();
-    });
-
     it('returns null for unknown experiment ID', () => {
       expect(getLessonPath('nonexistent-id')).toBeNull();
     });
@@ -359,8 +354,8 @@ describe('lesson-paths', () => {
       }
     });
 
-    it('has at least 90 lesson paths', () => {
-      expect(availablePaths.length).toBeGreaterThanOrEqual(90);
+    it('has at least 78 lesson paths', () => {
+      expect(availablePaths.length).toBeGreaterThanOrEqual(78);
     });
   });
 
@@ -485,7 +480,7 @@ describe('lesson-paths', () => {
     });
 
     it('sample Vol3 experiments have lesson paths', () => {
-      const v3Sample = ['v3-cap6-semaforo', 'v3-cap8-esp3', 'v3-extra-simon', 'v3-extra-lcd-hello'];
+      const v3Sample = ['v3-cap6-semaforo', 'v3-cap8-esp3', 'v3-cap6-morse', 'v3-cap7-esp6'];
       for (const id of v3Sample) {
         expect(hasLessonPath(id)).toBe(true);
       }

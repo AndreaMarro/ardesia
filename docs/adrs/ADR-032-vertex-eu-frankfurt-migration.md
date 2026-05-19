@@ -1,13 +1,36 @@
 # ADR-032 — Vertex AI Frankfurt EU Migration (Phase 0 GDPR Pure Gemini)
 
-**Status:** PROPOSED (Andrea ratify pending Phase 0 GCP setup ~2h)
-**Date:** 2026-05-12
-**Sprint:** Sprint U iter 39 Phase 0
+**Status:** ACCEPTED (iter 45 2026-05-13 — Phase 0 7/9 complete, LIVE prod verified, post-v72 envelope strip + bundle redeploy)
+**Date:** 2026-05-12 (proposed) → 2026-05-13 (accepted iter 45)
+**Sprint:** Sprint U iter 39 Phase 0 → iter 44 v72 hotfix → iter 45 formal ratify
 **Authors:** Andrea + orchestrator
 **Supersedes:** AI Studio `GEMINI_API_KEY` path (not EU-resident)
 **Decision impl:** `supabase/functions/_shared/vertex-client.ts` NEW + `llm-client.ts` conditional Vertex routing
 **Reference plan:** `docs/audits/2026-05-12-combo-c-phase-0-gdpr-vertex-migration.md`
 **Decision ratify:** `docs/decisions/2026-05-12-pure-gemini-chat-evidence-based.md`
+
+## Phase 0 GCP setup status iter 45 ACCEPTED
+
+| Step | Status iter 45 | Evidence |
+|------|----------------|----------|
+| 1. Code shipped (vertex-client.ts + llm-client.ts + 19/19 tests) | ✅ DONE | iter 39 commits |
+| 2. GCP project Frankfurt created `elab-tutor-prod-eu` | ✅ DONE | Supabase secret `GCP_VERTEX_PROJECT_ID` set |
+| 3. Service Account created + role `roles/aiplatform.user` | ✅ DONE | `GCP_VERTEX_SA_JSON_B64` configured |
+| 4. SA key downloaded JSON + chmod 600 | ✅ DONE | b64 encoded in Supabase secret |
+| 5. Supabase secrets 4 vars set | ✅ DONE | `ENABLE_VERTEX_EU=true` + 3 GCP vars |
+| 6. Edge Function deploy with Vertex code | ✅ DONE | v50→v51→...→v72 LIVE prod |
+| 7. `ENABLE_VERTEX_EU=true` flag flip | ✅ DONE | Smoke curl returns `source: vertex-gemini-2.5-flash-lite` |
+| 8. LIVE smoke verify | ✅ DONE iter 41+44 | source `vertex` + latency 2.2-2.5s p50 |
+| 9. Phase 2 bench R5 60q × 3-run post-migration | ⏳ iter 45 R5 re-bench in flight | scripts/bench/run-sprint-r5-stress.mjs |
+
+**Acceptance evidence iter 45 2026-05-13**:
+- Vertex Frankfurt EU primary chat 100% traffic (Pure Gemini iter 39)
+- 6 Edge Function endpoints deployed prod (chat + vision + tts + stt + imagegen + session-description)
+- GDPR EU residency 100% (Vertex + Mistral EU FR + CF Whisper EU edge)
+- Smoke test iter 44 real-keyboard via Claude_in_Chrome.computer DOM evidence
+- Codex Pattern C verify dist/assets bundle B-36oJRu post-deploy
+
+**Known issue iter 45**: Vertex Gemini Pro returns 503 at 15s when `thinkingLevel:medium` set. Root cause iter 45 A1 audit pending — likely `thinkingConfig.thinkingLevel` (string) vs Vertex API expected `thinkingConfig.thinkingBudget` (integer 0-32768) param mismatch. Iter 43 v70 hotfix routes deep-thinking queries to Flash instead of Pro until iter 45 fix.
 
 ---
 

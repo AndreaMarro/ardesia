@@ -53,6 +53,29 @@ describe('unlimMemory — buildMemoryContext', () => {
     unlimMemory.trackExperimentCompletion('v1-cap6-esp1', 'success');
     const ctx = unlimMemory.buildMemoryContext();
     expect(ctx).toContain('[MEMORIA STUDENTE]');
+    expect(ctx).toContain('MEMORIA PASSATA PERSISTENTE');
+    expect(ctx).toContain('non e stato live attuale');
+  });
+
+  it('builds a persistent context with present and past clearly separated', async () => {
+    unlimMemory.trackExperimentCompletion('v1-cap6-esp1', 'success');
+    unlimMemory.saveSessionSummary('Ieri LED e resistore funzionavano');
+    await unlimMemory.saveContext('classe-a', 'v1-cap6-esp1', {
+      summary: 'La classe ha invertito il LED due volte',
+      concepts_covered: ['polarita', 'resistore'],
+    });
+
+    const ctx = await unlimMemory.buildPersistentContext('classe-a', {
+      experimentId: 'v1-cap6-led-rosso',
+      liveState: 'Ora LED spento sul simulatore',
+      visibleScreen: 'Lavagna aperta in modalita passo passo',
+    });
+
+    expect(ctx).toContain('[PRESENTE LIVE]');
+    expect(ctx).toContain('Ora LED spento sul simulatore');
+    expect(ctx).toContain('[MEMORIA PASSATA PERSISTENTE]');
+    expect(ctx).toContain('Ieri LED e resistore funzionavano');
+    expect(ctx).toContain('Non trattare questa memoria come stato visibile ora');
   });
 
   it('shows completed count out of 69', () => {

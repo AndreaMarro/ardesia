@@ -1,11 +1,17 @@
 ---
 id: ADR-019
 title: Sense 1.5 Morfismo runtime — adattabilità docente + classe + UI/funzioni/finestre
-status: PROPOSED
+status: ACCEPTED
+status_history:
+  - PROPOSED (2026-04-28 iter 12 PHASE 1)
+  - ACCEPTED (2026-05-15 iter 63 entrance — `aggregateOnniscenza` LIVE prod iter 31 commit b0c2a96 via `supabase/functions/_shared/onniscenza-bridge.ts:299`; ratify de jure aligning status with de facto production state, debito documentale chiuso)
 date: 2026-04-28
+ratified_date: 2026-05-15
 deciders:
-  - architect-opus (Sprint S iter 12 PHASE 1, Pattern S 5-agent OPUS)
-  - Andrea Marro (final approver per teacher_memory + class_memory schema Supabase + LIM resolution detection runtime)
+  - architect-opus (Sprint S iter 12 PHASE 1, Pattern S 5-agent OPUS) — design
+  - Andrea Marro (final approver iter 63 entrance — Sense 1.5 already LIVE prod via aggregateOnniscenza wire-up iter 31, formal ratify closes status mismatch)
+extended_by:
+  - ADR-049 (Sense 1.6 — 10 nuove dimensioni context Andrea mandate iter 62 PM: insegnante storico + sessioni passate + chat + voce + movimenti lavagna + errori ricorrenti + tempo disponibile + esperimento scelto + livello autonomia + materiale presente classe)
 context-tags:
   - sprint-s-iter-12
   - morfismo-sense-1.5

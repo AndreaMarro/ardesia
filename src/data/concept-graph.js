@@ -282,11 +282,7 @@ export const EXPERIMENT_CONCEPTS = {
   'v2-cap10-esp4': { teaches: [], requires: ['lcd-display'] },
   'v2-cap12-esp1': { teaches: [], requires: ['condizione-if', 'ciclo-loop'] },
   'v3-cap6-semaforo': { teaches: ['semaforo'], requires: ['condizione-if', 'ciclo-loop', 'led-rgb'] },
-  'v3-cap6-esp6': { teaches: [], requires: ['condizione-if', 'pwm'] },
   'v3-cap8-esp3': { teaches: ['comunicazione-seriale'], requires: ['serial-monitor', 'variabile'] },
-  'v3-extra-lcd-hello': { teaches: [], requires: ['lcd-display'] },
-  'v3-extra-servo-sweep': { teaches: [], requires: ['servo-motore', 'ciclo-loop'] },
-  'v3-extra-simon': { teaches: [], requires: ['buzzer', 'digitalread', 'condizione-if', 'led-rgb'] },
 };
 
 /**

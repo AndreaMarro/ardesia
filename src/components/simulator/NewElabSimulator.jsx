@@ -28,6 +28,11 @@ import SerialMonitor from './panels/SerialMonitor';
 import SerialPlotter from './panels/SerialPlotter';
 import CircuitSolver from './engine/CircuitSolver';
 import { findExperimentById, ALL_EXPERIMENTS } from '../../data/experiments-index';
+// Iter 75 75-B1-FIX (Codex Pattern V iter 74 REFUTE): lesson-path lookup
+// to wire next_experiment cliffhanger CTA into ScratchCompileBar +
+// CompileUploadButton (iter 74 B-1 components had props MA real callers
+// non passavano nextExperiment → CTAs invisibili runtime users).
+import { getLessonPath } from '../../data/lesson-paths';
 import { openReportWindow } from '../unlim/UnlimReport';
 import { compileCode as apiCompileCode } from '../../services/api';
 import { emitSimulatorEvent } from '../../services/simulator-api';
@@ -47,7 +52,7 @@ const ScratchEditor = lazy(() => import('./panels/ScratchEditor'));
 import PotOverlay from './overlays/PotOverlay';
 import LdrOverlay from './overlays/LdrOverlay';
 import PropertiesPanel from './panels/PropertiesPanel';
-import GalileoResponsePanel from './panels/GalileoResponsePanel';
+import UnlimResponsePanel from './panels/UnlimResponsePanel';
 import ExperimentGuide from './panels/ExperimentGuide';
 import BuildModeGuide from './panels/BuildModeGuide';
 import ComponentDrawer from './panels/ComponentDrawer';
@@ -405,6 +410,12 @@ const NewElabSimulator = ({
   const [compilationSize, setCompilationSize] = useState(null);
 
   // ─── Compile Only (solo verifica) ───
+  // iter 79.A A2 ROLLBACK (Codex Pattern C HIGH regression caught
+  // 2026-05-17): pinning NANO_R4_FQBN here would return ARM HEX, but the
+  // simulator AVRBridge (avr8js ATmega328 emulator) cannot execute Renesas
+  // RA4M1 bytecode. All Vol3 experiments have `simulationMode: "avr"`. Keep
+  // board undefined so api.js:1300 default AVR fallback fires. Physical
+  // Nano R4 flash routes via CompileUploadButton + local agent (A3 fix).
   const handleCompileOnly = useCallback(async () => {
     const codeToCompile = editorModeRef.current === 'scratch' ? scratchGeneratedCodeRef.current : editorCodeRef.current;
     if (!codeToCompile || compilingRef.current) return;
@@ -1013,11 +1024,34 @@ const NewElabSimulator = ({
                 <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
                   <ScratchErrorBoundary>
                     <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-accent, var(--elab-lime))', fontFamily: "var(--font-sans)", fontSize: 14, gap: 8, background: 'var(--color-editor-active-bg, #1E2530)' }}><span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>...</span>Caricamento editor blocchi...</div>}>
-                      <ScratchEditor initialCode={scratchXml} onChange={(xml, generatedCode) => { setScratchXml(xml); setScratchGeneratedCode(generatedCode); codeNeedsCompileRef.current = true; if (currentExperiment?.id) { localStorage.setItem(`elab_scratch_${currentExperiment.id}`, xml); if (generatedCode) localStorage.setItem(`elab_scratch_code_${currentExperiment.id}`, generatedCode); } }} />
+                      <ScratchEditor initialCode={scratchXml} compileError={compilationErrors} onCompileErrorDismiss={() => setCompilationErrors(null)} onChange={(xml, generatedCode) => { setScratchXml(xml); setScratchGeneratedCode(generatedCode); codeNeedsCompileRef.current = true; if (currentExperiment?.id) { localStorage.setItem(`elab_scratch_${currentExperiment.id}`, xml); if (generatedCode) localStorage.setItem(`elab_scratch_code_${currentExperiment.id}`, generatedCode); } }} />
                     </Suspense>
                   </ScratchErrorBoundary>
                 </div>
-                <ScratchCompileBar onCompile={() => handleCompile(scratchGeneratedCodeRef.current)} compilationStatus={compilationStatus} compilationErrors={compilationErrors} compilationWarnings={compilationWarnings} compilationSize={compilationSize} />
+                <ScratchCompileBar
+                  onCompile={() => handleCompile(scratchGeneratedCodeRef.current)}
+                  compilationStatus={compilationStatus}
+                  compilationErrors={compilationErrors}
+                  compilationWarnings={compilationWarnings}
+                  compilationSize={compilationSize}
+                  sketchCode={scratchGeneratedCode}
+                  boardId="arduino-nano-r4"
+                  port={null}
+                  currentExperimentId={currentExperiment?.id}
+                  nextExperiment={(() => {
+                    // Iter 75 75-B1-FIX (Codex Pattern V iter 74 REFUTE): wire
+                    // iter 74 B-1 cliffhanger CTA through real runtime caller.
+                    // Lookup next_experiment from lesson-path of current exp.
+                    if (!currentExperiment?.id) return null;
+                    const lp = getLessonPath(currentExperiment.id);
+                    return lp?.next_experiment || null;
+                  })()}
+                  onLoadNextExperiment={(nextId) => {
+                    if (!nextId) return;
+                    const nextExp = findExperimentById(nextId);
+                    if (nextExp) setCurrentExperiment(nextExp);
+                  }}
+                />
               </div>
             )}
           </div>
@@ -1025,7 +1059,7 @@ const NewElabSimulator = ({
       </div>
 
       {/* OVERLAYS */}
-      <GalileoResponsePanel response={unlimResponse} isAsking={isAskingUNLIM} onAskAgain={() => { setUnlimResponse(null); window.dispatchEvent(new CustomEvent('elab-open-unlim-input')); }} onClose={() => setUnlimResponse(null)} />
+      <UnlimResponsePanel response={unlimResponse} isAsking={isAskingUNLIM} onAskAgain={() => { setUnlimResponse(null); window.dispatchEvent(new CustomEvent('elab-open-unlim-input')); }} onClose={() => setUnlimResponse(null)} />
       {potOverlay && (<PotOverlay value={potOverlay.value} onValueChange={handlePotValueChange} onClose={() => setPotOverlay(null)} />)}
       {ldrOverlay && (<LdrOverlay value={ldrOverlay.value} onValueChange={handleLdrValueChange} onClose={() => setLdrOverlay(null)} />)}
       {propsPanel && (<PropertiesPanel comp={propsPanel} onValueChange={handlePropChange} onClose={() => setPropsPanel(null)} />)}

@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap8-esp3",
   "volume": 3,
   "chapter": 8,
-  "title": "analogRead + Serial Monitor",
+  "title": "Esercizio 8: trova il pin A0",
   "chapter_title": "I pin analogici",
   "difficulty": 2,
   "duration_minutes": 45,
@@ -64,12 +64,12 @@
     "note": "Cap 8 Vol 3 — pin analogici, analogRead, Serial Monitor, ADC 10 bit."
   },
   "prerequisites": [
-    "v3-cap6-esp6"
+    "v3-cap7-esp2"
   ],
   "next_experiment": {
-    "id": "v3-extra-lcd-hello",
-    "title": "LCD Hello World",
-    "preview": "Nell'Extra scoprirete come scrivere messaggi su un display LCD 16x2!"
+    "id": "v3-cap8-esp1",
+    "title": "Il primo programma analogico: prepariamo il Monitor Seriale",
+    "preview": "Nella prossima lezione scriverete il primo programma analogico e preparerete il Monitor Seriale per leggere i valori."
   },
   "phases": [
     {
@@ -87,8 +87,8 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito è semplice: il potenziometro ha tre pin (VCC, segnale, GND). Il pin di segnale va ad A0 di Arduino. Il codice ha due parti: Serial.begin(9600) nel setup apre la comunicazione con il computer, e nel loop analogRead(A0) legge il valore e Serial.println() lo stampa. Il codice viene caricato automaticamente!",
-      "teacher_tip": "Concentrati sul concetto di ADC: 'Arduino misura la tensione su A0 (da 0V a 5V) e la trasforma in un numero da 0 a 1023. Questo si chiama ADC — convertitore analogico-digitale. Con 10 bit si possono rappresentare 1024 valori diversi (da 0 a 1023).' Non serve spiegare i bit in dettaglio.",
+      "teacher_message": "Ragazzi, Il circuito è semplice: il potenziometro ha tre pin (VCC, segnale, GND). Il pin di segnale va ad A0 di Arduino. Il codice ha due parti: Serial.begin(9600) nel setup apre la comunicazione con il computer, e nel loop analogRead(A0) legge il valore e Serial.println() lo stampa. Il codice viene caricato automaticamente!",
+      "teacher_tip": "Concentrati sul concetto di ADC: 'Arduino misura la tensione su A0 (da 0V a 5V) e la trasforma in un numero da 0 a 1023. Questo si chiama ADC — convertitore analogico-digitale. Con 10 bit si possono rappresentare 1024 valori diversi (da 0 a 1023).' Non serve spiegate i bit in dettaglio.",
       "components_list": null,
       "class_hook": null,
       "action_tags": [
@@ -148,8 +148,8 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il potenziometro è collegato e il codice è pronto. Prima di vedere i valori sul Serial Monitor, ragioniamo: se giro la manopola esattamente a metà, che valore ci aspettiamo? E se aggiungo un delay(200) nel loop, a cosa serve?",
-      "teacher_tip": "Guida: 'Metà corsa = metà tensione (2.5V) = metà del range 0-1023 = circa 512. Il delay(200) evita di stampare migliaia di valori al secondo che non si potrebbero leggere.' Queste domande preparano i ragazzi a capire cosa vedranno.",
+      "teacher_message": "Ragazzi, Il potenziometro è collegato e il codice è pronto. Prima di vedere i valori sul Serial Monitor, ragioniamo: se giro la manopola esattamente a metà, che valore ci aspettiamo? E se aggiungo un delay(200) nel loop, a cosa serve?",
+      "teacher_tip": "Guidate: 'Metà corsa = metà tensione (2.5V) = metà del range 0-1023 = circa 512. Il delay(200) evita di stampare migliaia di valori al secondo che non si potrebbero leggere.' Queste domande preparano i ragazzi a capire cosa vedranno.",
       "provocative_question": "Se il codice non avesse il delay(200), cosa succederebbe sul Serial Monitor? Riuscireste a leggere i valori? Provate a immaginare...",
       "components_list": null,
       "class_hook": null,
@@ -172,8 +172,8 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 14,
-      "teacher_message": "Premete Play e aprite il Serial Monitor! Girate la manopola del potenziometro e osservate i numeri che cambiano in tempo reale. Provate a trovare esattamente il valore 512 fermandovi a metà corsa!",
-      "teacher_tip": "Evidenzia il potenziometro e il pin A0. Chiedi: 'Cosa succede ai numeri quando giro veloce? E quando giro lento? Riesci a trovare esattamente 512?' Fate notare che i valori cambiano in modo GRADUALE, non a salti — questa è la differenza fondamentale con il digitale.",
+      "teacher_message": "Ragazzi, Premete Play e aprite il Serial Monitor! Girate la manopola del potenziometro e osservate i numeri che cambiano in tempo reale. Provate a trovare esattamente il valore 512 fermandovi a metà corsa!",
+      "teacher_tip": "Evidenziate il potenziometro e il pin A0. Chiedete: 'Cosa succede ai numeri quando giro veloce? E quando giro lento? Riesci a trovare esattamente 512?' Fate notare che i valori cambiano in modo GRADUALE, non a salti — questa è la differenza fondamentale con il digitale.",
       "components_list": null,
       "class_hook": null,
       "action_tags": [
@@ -199,7 +199,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Eccellente! Avete scoperto i pin analogici e il Serial Monitor. Questi due strumenti insieme sono potentissimi: possiamo leggere qualsiasi sensore del mondo reale (temperatura, luce, suono) e vedere i dati in tempo reale!",
+      "teacher_message": "Ragazzi, Eccellente! Avete scoperto i pin analogici e il Serial Monitor. Questi due strumenti insieme sono potentissimi: possiamo leggere qualsiasi sensore del mondo reale (temperatura, luce, suono) e vedere i dati in tempo reale!",
       "teacher_tip": "Recap: 'analogRead(A0) = leggi il valore analogico (0-1023). Serial.begin(9600) = apri la comunicazione col computer. Serial.println() = stampa il valore e vai a capo. delay(200) = aspetta 200ms tra una lettura e l'altra.' Con questi quattro comandi si costruisce qualsiasi sistema di monitoraggio.",
       "components_list": null,
       "class_hook": null,
@@ -230,7 +230,7 @@
       "Serial_begin",
       "Serial_println"
     ],
-    "next_suggested": "v3-extra-lcd-hello",
+    "next_suggested": "v3-cap8-esp1",
     "resume_message": "Avete scoperto i pin analogici e il Serial Monitor! Prossimo passo: il display LCD."
   }
 }

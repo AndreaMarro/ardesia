@@ -178,6 +178,16 @@
   border: none;
 }
 
+.localVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: contain;
+  background: #000;
+}
+
 .backBtn {
   display: flex;
   align-items: center;
@@ -215,6 +225,28 @@
   flex-direction: column;
   gap: 6px;
   -webkit-overflow-scrolling: touch;
+}
+
+.virtualList {
+  flex: 1;
+  height: 260px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.virtualSpacer {
+  position: relative;
+  min-height: 100%;
+}
+
+.virtualRow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding-bottom: 6px;
+  box-sizing: border-box;
 }
 
 .card {
@@ -383,6 +415,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.youtubeThumbPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, rgba(30, 77, 140, 0.92), rgba(74, 122, 37, 0.78)),
+    radial-gradient(circle at 22% 24%, rgba(255,255,255,0.28), transparent 28%);
 }
 
 /* ── YouTube search button ── */

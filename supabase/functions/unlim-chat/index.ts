@@ -8,7 +8,7 @@
 
 import { serve } from 'https://deno.land/std@0.208.0/http/server.ts';
 import { callLLM, callBrainFallback, getMetrics } from '../_shared/llm-client.ts';
-import { routeModel, modelDisplayName } from '../_shared/router.ts';
+import { routeModel, routeThinkingLevel, modelDisplayName } from '../_shared/router.ts';
 import { buildSystemPrompt } from '../_shared/system-prompt.ts';
 import { loadStudentContext, saveInteraction, saveMessageHistory, checkConsent, loadRecentHistory, extractVolCapFromMessage } from '../_shared/memory.ts';
 import { buildOfftopicGentleBridge, type OfftopicType } from '../_shared/offtopic-template-response.ts';
@@ -23,7 +23,7 @@ import { validatePrincipioZero, enforceItalianK12Opener, rewriteSingolareToPlura
 // Wire post-enforcer + pre-PZ-validator. Live smoke Q9 220V FAIL → safety_warning trigger.
 import { checkContentSafety } from '../_shared/content-safety-guard.ts';
 import { selectTemplate, executeTemplate } from '../_shared/clawbot-template-router.ts';
-import { aggregateOnniscenza } from '../_shared/onniscenza-bridge.ts';
+import { aggregateOnniscenza, aggregateOnniscenzaV2 } from '../_shared/onniscenza-bridge.ts';
 // iter 37 Phase 1 Atom A2 — pre-LLM regex classifier drives ENABLE_ONNISCENZA
 // conditional path: chit_chat skips aggregator (~500-1000ms saved), deep
 // questions / safety / citations preserve top-3, plurale ragazzi top-2.
@@ -54,6 +54,7 @@ const ITER27_SAFETY_BROAD_RE = /\b(scossa|scoss[ae]|elettrocuzion[ei]|brucia(?:r
 // when the model didn't return parseable JSON (defensive).
 import { INTENT_TOOLS_SCHEMA, shouldUseIntentSchema, CANONICAL_INTENT_TOOLS } from '../_shared/intent-tools-schema.ts';
 import { buildDirectOperationalResponse, capWordsPreservingControlTags, UNLIM_MAX_VISIBLE_WORDS } from '../_shared/operational-response.ts';
+import { stripInvalidExperimentTags, validateExperimentIdExists } from '../_shared/experiment-registry.ts';
 import { selectUnlimAiProfile } from '../_shared/unlim-ai-profiles.ts';
 
 // CORS headers dynamically generated per-request via getCorsHeaders(req)
@@ -173,8 +174,20 @@ serve(async (req: Request) => {
       debug_retrieval?: boolean;
       retrieval_mode?: 'hybrid' | 'dense' | 'auto';
       top_k?: number;
+      // iter 65 Atom 2.5 — ADR-049 Sense 1.6 V2 client-injected identifiers
+      // (existing iter 14 client localStorage convention: elab_anon_uuid + class_key).
+      // Optional, defensive: missing → V2 collectors return empty graceful.
+      teacher_anon_uuid?: string;
+      class_key?: string;
     };
     const { message, sessionId, circuitState, experimentId, simulatorContext, images, aiProfile: requestedAiProfile, aiDepth, unlimMode } = body;
+    // iter 65 Atom 2.5 — extract V2 identifiers (defensive: empty string treated as missing).
+    const teacherAnonUuid = typeof body.teacher_anon_uuid === 'string' && body.teacher_anon_uuid.trim().length > 0
+      ? body.teacher_anon_uuid.trim()
+      : undefined;
+    const classKey = typeof body.class_key === 'string' && body.class_key.trim().length > 0
+      ? body.class_key.trim()
+      : undefined;
     // Iter 10 P0 debug: surface retrieved chunks when bench/dev requests debug_retrieval=true
     const debugRetrieval = body.debug_retrieval === true;
     const retrievalModeReq = body.retrieval_mode;
@@ -268,6 +281,40 @@ serve(async (req: Request) => {
       });
     }
 
+    // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence:
+    // OFFTOPIC_QUERY_RE matchava "storia" all'interno del template envelope
+    // `[GERARCHIA CONTESTO] ... esperimenti/storia come cose visibili ora.`
+    // di api.js:783 → ON-TOPIC user query (legge Ohm, LED, etc.) classificata
+    // erroneamente off-topic. Strip envelope blocks before regex test.
+    // Iter 44 P0 Andrea 2026-05-13 prod screenshot evidence: pre-LLM detector
+    // matched expNamePatterns words ("semaforo", "primo LED") INSIDE system-injected
+    // context blocks like [GERARCHIA CONTESTO]/[RIFERIMENTO LIBRO FISICO]. Previous
+    // regex required `\n\n` paragraph terminator — failed on SINGLE-LINE envelopes
+    // from frontend api.js:783 envelope-builder. Surgical fix: strip ALL square-bracket
+    // UPPERCASE system-tag content from `[TAG ...]` until next `[AZIONE`/`[INTENT` OR EOF
+    // OR another `[UPPERCASE_TAG]` block. Strip envelope tags whitelist-style.
+    const SYSTEM_TAG_RE = /\[(?:GERARCHIA\s+CONTESTO|PRESENTE\s+LIVE|CONTESTO\s+CAPITOLO|NARRAZIONE\s+LIVE|RIFERIMENTO\s+LIBRO\s+FISICO|STORIA\s+SESSIONI|MEMORIA\s+(?:STUDENTE|PASSATA)|REGIA\s+(?:MULTI-AI|PARALLELA)|PROFILO\s+ATTIVO|AGENT_DECISION_JSON|AUTOCOSCIENZA|CITAZIONE\s+VOL|CONOSCENZA\s+DAI\s+VOLUMI|CONTESTO|Hybrid\s+RAG|FONTE|wiki|rag|glossario|docs)\b[\s\S]*?(?=\[(?:AZIONE|INTENT|GERARCHIA|PRESENTE|CONTESTO|NARRAZIONE|RIFERIMENTO|STORIA|MEMORIA|REGIA|PROFILO|AGENT|AUTOCOSCIENZA|CITAZIONE|CONOSCENZA|Hybrid|FONTE|wiki|rag|glossario|docs)\b|$)/gi;
+    const stripEnvelope = (s: string): string => String(s || '')
+      .replace(SYSTEM_TAG_RE, ' ')
+      .replace(/REGOLA:[\s\S]*?(?:\n\n|$)/gi, ' ')
+      .replace(/\{[\s\S]{200,}?\}/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    // Iter 52 v80 fix Andrea screenshot 2026-05-13 — off-topic template fires
+    // on on-topic queries because envelope from api.js:783 contains literal
+    // "storia" word ("Non trattare esperimenti/storia come cose visibili ora.")
+    // SYSTEM_TAG_RE strips [GERARCHIA CONTESTO]…EOF (lookahead fails when no
+    // closing tag), so stripEnvelope returns empty → fallback `|| safeMessage`
+    // returns ORIGINAL envelope WITH "storia" → OFFTOPIC_QUERY_RE matches
+    // `storia\s+(?!del…)`. Bug live since iter 39 envelope add.
+    //
+    // Fix: extract user message via "Messaggio studente:" anchor BEFORE strip
+    // fallback. api.js:863 appends user msg with this canonical marker.
+    const STUDENT_MSG_RE = /Messaggio\s+studente\s*:\s*\n?([\s\S]+?)$/i;
+    const studentMsgMatch = safeMessage.match(STUDENT_MSG_RE);
+    const extractedUserMsg = studentMsgMatch ? studentMsgMatch[1].trim() : null;
+    const userQueryStripped = extractedUserMsg || stripEnvelope(safeMessage) || safeMessage;
+
     // iter 11 PATCH B — PRE-LLM off-topic detector (matematica/aritmetica/capitali/sport/cinema/etc.)
     // Live smoke Q8 "Quanto fa 2+2?" → UNLIM rispondeva "Fa 4." senza redirect ELAB.
     // Hard-redirect pre-LLM con plurale Ragazzi + invito kit ELAB.
@@ -275,8 +322,9 @@ serve(async (req: Request) => {
     // iter 20 baseline added: presidente/squadre calcio/Serie A/partita/gol/campionato.
     // iter 22 add: math operators (5x7/5+7) + "capitale X" (no preposition) + guerra mondiale +
     // teorema/formula/equazione + Marvel/Disney/Hollywood/Netflix/Amazon film/serie.
-    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d+(?:\s*[+\-*x×÷/]\s*\d+)?|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|teorema(?!\s+di\s+kirchhoff)|formula\s+(?:matematica|chimica|fisica\s+(?!del\s+circuito))|equazione\s+(?!circuito|elettrica)|capitale\s+\w+|presidente(?:\s+(di|del|della))?|chi\s+è\s+il\s+presidente|geografia|storia\s+(?!del|della|dei|degli|elettronica|arduino)|guerra\s+(?:mondiale|prima|seconda)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|risultato\s+(inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a)|risultato\s+sportivo|film\s+(?:Marvel|Disney|Hollywood|nuovo|recente|ultimo)|serie\s+(?:Netflix|Amazon|HBO|TV)|Marvel|Disney(?!\s+land)|Hollywood|canzone\s+(?:tiktok|virale|nuova)|Pitagora|Pitagorica)\b/i;
-    if (OFFTOPIC_QUERY_RE.test(safeMessage)) {
+    // Iter 41 Sprint U Cycle 2 — extend cooking + historical figures detection.
+    const OFFTOPIC_QUERY_RE = /\b(quanto\s+fa\s+\d+(?:\s*[+\-*x×÷/]\s*\d+)?|matematica\s+(?!del|della|dei|degli|del\s+LED|del\s+circuito)|aritmetica|teorema(?!\s+di\s+kirchhoff)|formula\s+(?:matematica|chimica|fisica\s+(?!del\s+circuito))|equazione\s+(?!circuito|elettrica)|capitale\s+\w+|presidente(?:\s+(di|del|della))?|chi\s+è\s+il\s+presidente|geografia|storia\s+(?!del|della|dei|degli|elettronica|arduino)|guerra\s+(?:mondiale|prima|seconda)|sport(?!ello)|cinema|musica|videogioc|tiktok|instagram|youtube|pokemon|calcio|basket|tennis|Inter|Juventus|Milan(?!\s+città)|Roma(?!\s+città)|Napoli(?!\s+città)|Lazio|Atalanta|Serie\s+A|Champions|partita|gol|campionato|risultato\s+(inter|juventus|milan|roma|napoli|lazio|atalanta|serie\s+a)|risultato\s+sportivo|film\s+(?:Marvel|Disney|Hollywood|nuovo|recente|ultimo)|serie\s+(?:Netflix|Amazon|HBO|TV)|Marvel|Disney(?!\s+land)|Hollywood|canzone\s+(?:tiktok|virale|nuova)|Pitagora|Pitagorica|cuoc\w*|cuccere|bollire|friggere|condire|impastare|ricett\w*|ingredient\w*|Napoleone|Cesare|Garibaldi|Mussolini|Hitler|Stalin|imperatore|imperat(?:rice|rici)|antichi\s+romani|antichi\s+greci|medioevo|rinascimento|rivoluzione\s+francese|rivoluzione\s+industriale|Netflix|Fortnite|Sanremo|TikTok|YouTube|Instagram|pasta\s+(?:al\s+pomodoro|alla?|in\s+bianco|carbonara)|pizza\s+margherita|tiramisu|lasagne|risotto|carbonara|amatriciana|traduci\b|come\s+si\s+dice|in\s+inglese|in\s+francese|in\s+spagnolo|in\s+tedesco|translation|translate)\b/i;
+    if (OFFTOPIC_QUERY_RE.test(userQueryStripped)) {
       // iter 21 Andrea mandate "deve riportare al focus del discorso LENTAMENTE" — NON brutal rejection.
       // Acknowledge brief + gentle bridge + recall session lastExperimentId se disponibile.
       // 3-step pattern: (1) acknowledge curiosità (2) bridge dolce a ELAB context (3) recall/proposta.
@@ -324,7 +372,26 @@ serve(async (req: Request) => {
       });
     }
 
-    const directOperational = buildDirectOperationalResponse(safeMessage, safeCircuitState as CircuitState | null);
+    // Iter 44 P0 hotfix Andrea 2026-05-13 prod screenshot evidence: pre-LLM detector
+    // was receiving FULL envelope `safeMessage` containing [GERARCHIA CONTESTO]
+    // system narrative with experiment context words like "semaforo", "primo LED".
+    // Detector matched expNamePatterns inside CONTEXT blocks → returned mount-experiment
+    // template regardless of actual user query. Verified prod: envelope containing
+    // "esperimenti/semaforo come template" → returned "Ragazzi, apriamo esperimento del semaforo"
+    // for ANY user query. Surgical fix: pass `userQueryStripped` (already computed line 283
+    // via stripEnvelope) instead of `safeMessage`. Preserves detector behavior on REAL user
+    // query, strips system-injected context words.
+    // Iter 70 A-NEW-2c — pass session context to enable page-only resolver.
+    // SessionContext.currentExperimentId derives volN via regex /^v([123])-/ when query
+    // mentions "pagina N" without explicit Vol.X (8 matrix failures iter 68 PHASE 6).
+    // classKey + ageBand reserved for iter 71+ context-aware routing (currently unused).
+    // safeExperimentId already validated line 240 via validateExperimentId guard.
+    const sessionContextForOp = {
+      currentExperimentId: safeExperimentId || null,
+      classKey: classKey || null,
+      ageBand: null,
+    };
+    const directOperational = buildDirectOperationalResponse(userQueryStripped, safeCircuitState as CircuitState | null, sessionContextForOp);
     if (directOperational) {
       // iter 20 P0 BUG FIX — direct-operational source bypassava enforcer + forceCitation*
       // → iter 19 stress 100q evidence: 5+ fail su categorie A/E/H (Arduino bypass canned string
@@ -405,7 +472,8 @@ serve(async (req: Request) => {
     // + hybridRetrieve. Previously sequential ~250ms + 2000ms = 2250ms. Now
     // parallel, max(250, 2000) = 2000ms = -250ms p95 lift. Onniscenza aggregator
     // remains sequential (depends on classifier output already computed).
-    const promptClass = classifyPrompt(safeMessage);
+    // Reuse stripped query computed above (line ~272) per Andrea iter 41 fix.
+    const promptClass = classifyPrompt(userQueryStripped);
 
     // iter 25 P0-C — off-topic Cat D regression fix (vs iter 5 P3 91.80% baseline, dim-1 measured 37.5%).
     // Classifier off_topic category triggers template response WITHOUT LLM call (deterministic).
@@ -521,39 +589,76 @@ serve(async (req: Request) => {
     // promptClass already computed above for live RAG retrieval gate.
     let onniscenzaSnapshot: unknown = null;
     let onniTopK = 3; // top-K used for prompt injection (default keeps existing behavior)
+    // iter 65 Atom 2.5 — V2 wire-up dispatch (ADR-049 Sense 1.6 EXTEND).
+    // Conditional path: when BOTH ENABLE_ONNISCENZA=true AND ENABLE_ONNISCENZA_V2=true
+    // we call aggregateOnniscenzaV2 to surface 4 NEW collectors (teacher_history +
+    // class_metadata + voice_movement + errore_pattern) + nudge_prediction STUB.
+    // V1 baseline always preserved inside V2 (Sense 1.5 unchanged). Defensive: on
+    // V2 throw OR null result we fall back to V1 path so chat flow NEVER breaks.
+    let onniscenzaV2Used = false;
+    const v2CollectorsStatus: Record<string, 'ok' | 'empty' | 'fail'> = {
+      teacher: 'empty',
+      class: 'empty',
+      voice: 'empty',
+      errore: 'empty',
+    };
     if ((Deno.env.get('ENABLE_ONNISCENZA') || 'false').toLowerCase() === 'true' && !promptClass.skipOnniscenza) {
       onniTopK = promptClass.topK;
       try {
         const supaUrl = (Deno.env.get('SUPABASE_URL') || '').trim();
         const supaKey = (Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '').trim();
-        // Lightweight inline supabase adapter (avoids extra import bloat)
+        // Lightweight inline supabase adapter (avoids extra import bloat).
+        // iter 65 Atom 2.5 — extended chain to support .order().eq().limit() pattern
+        // used by V2 collectors (D1 teacher_history_log, D2 class_session_metadata,
+        // D3 voice_movement_log, D4 errore_ricorrente_pattern). Each step returns
+        // the same chainable proxy; the terminal .limit(n) executes the fetch.
         let supaClient: unknown = null;
         if (supaUrl && supaKey) {
-          // Minimal fetch-based adapter compatible with onniscenza-bridge expectations
+          const baseHeaders = { 'apikey': supaKey, 'Authorization': `Bearer ${supaKey}` };
+          // deno-lint-ignore no-explicit-any
           supaClient = {
-            from: (table: string) => ({
-              select: (cols: string) => ({
-                eq: (col: string, val: unknown) => ({
-                  limit: (n: number) => fetch(
-                    `${supaUrl}/rest/v1/${table}?select=${cols}&${col}=eq.${val}&limit=${n}`,
-                    { headers: { 'apikey': supaKey, 'Authorization': `Bearer ${supaKey}` } },
-                  ).then((r) => r.ok ? r.json() : []),
-                  order: () => ({
-                    limit: (n: number) => fetch(
-                      `${supaUrl}/rest/v1/${table}?select=${cols}&${col}=eq.${val}&limit=${n}`,
-                      { headers: { 'apikey': supaKey, 'Authorization': `Bearer ${supaKey}` } },
-                    ).then((r) => r.ok ? r.json() : []),
-                  }),
-                }),
-              }),
-            }),
+            from: (table: string) => {
+              const filters: Array<{ col: string; val: unknown }> = [];
+              let orderClause = '';
+              const buildUrl = (cols: string, limitN: number) => {
+                const filterStr = filters.map(f => `${f.col}=eq.${encodeURIComponent(String(f.val))}`).join('&');
+                const orderStr = orderClause ? `&order=${orderClause}` : '';
+                const sep = filterStr ? '&' : '';
+                return `${supaUrl}/rest/v1/${table}?select=${cols}${sep}${filterStr}${orderStr}&limit=${limitN}`;
+              };
+              const buildChain = (cols: string) => {
+                const chain: any = {
+                  eq(col: string, val: unknown) { filters.push({ col, val }); return chain; },
+                  order(col: string, opts?: { ascending?: boolean }) {
+                    const dir = opts && opts.ascending === false ? 'desc' : 'asc';
+                    orderClause = `${col}.${dir}`;
+                    return chain;
+                  },
+                  limit(n: number) {
+                    return fetch(buildUrl(cols, n), { headers: baseHeaders })
+                      .then(async (r) => r.ok
+                        ? { data: await r.json(), error: null }
+                        : { data: [], error: { message: `http_${r.status}` } })
+                      .catch((e) => ({ data: [], error: { message: e instanceof Error ? e.message : String(e) } }));
+                  },
+                };
+                return chain;
+              };
+              return {
+                select(cols: string) { return buildChain(cols); },
+              };
+            },
           };
         }
         // iter 12 P0 fix #1 — caller history injection (audit P0 #3 chiuso).
         // loadRecentHistory carica ultimi 5 lesson_contexts assistant messages
         // → Onniscenza L6_chat_history popolata → memoria Q10 cross-msg PASS.
         const recentHistory = await loadRecentHistory(sessionId, 5).catch(() => []);
-        onniscenzaSnapshot = await aggregateOnniscenza({
+
+        // iter 65 Atom 2.5 — V2 conditional dispatch.
+        const onniscenzaV2Enabled =
+          (Deno.env.get('ENABLE_ONNISCENZA_V2') || 'false').toLowerCase() === 'true';
+        const sharedInput = {
           query: safeMessage,
           experiment_id: safeExperimentId,
           session_id: sessionId, // iter 35 fix Agent C audit: was undefined ref `safeSessionId` masked while ENABLE_ONNISCENZA off
@@ -563,7 +668,66 @@ serve(async (req: Request) => {
           // esclusi del tutto). Rimuovo opt-out per riabilitare. L1 RAG resta disabled
           // perché già fatto sopra (riga 298) — evita doppio retrieve.
           enable: { L1_rag: false /* already done above */ },
-        });
+        };
+
+        if (onniscenzaV2Enabled) {
+          // V2 path: baseline + 4 NEW collectors via Promise.all. Each collector
+          // is internally defensive (catches own errors → empty). Falls back to
+          // V1 path inside the same try/catch on outer V2 throw.
+          try {
+            const v2Snap = await aggregateOnniscenzaV2({
+              ...sharedInput,
+              teacher_anon_uuid: teacherAnonUuid,
+              class_key: classKey,
+              sense_1_6_enabled: true,
+            });
+            if (v2Snap && typeof v2Snap === 'object') {
+              onniscenzaSnapshot = v2Snap;
+              onniscenzaV2Used = true;
+              // Telemetry: per-collector status (ok = has data, empty = no data, fail handled in catch).
+              const teacherArr = (v2Snap as { teacher_history?: unknown[] }).teacher_history;
+              const classMeta = (v2Snap as { class_metadata?: unknown }).class_metadata;
+              const voiceSummary = (v2Snap as { voice_movement_summary?: unknown }).voice_movement_summary;
+              const erroreArr = (v2Snap as { errore_ricorrente_patterns?: unknown[] }).errore_ricorrente_patterns;
+              v2CollectorsStatus.teacher = Array.isArray(teacherArr) && teacherArr.length > 0 ? 'ok' : 'empty';
+              v2CollectorsStatus.class = classMeta && typeof classMeta === 'object' ? 'ok' : 'empty';
+              v2CollectorsStatus.voice = voiceSummary && typeof voiceSummary === 'object' ? 'ok' : 'empty';
+              v2CollectorsStatus.errore = Array.isArray(erroreArr) && erroreArr.length > 0 ? 'ok' : 'empty';
+            } else {
+              // Defensive fallback: null V2 result → V1 path.
+              v2CollectorsStatus.teacher = 'fail';
+              v2CollectorsStatus.class = 'fail';
+              v2CollectorsStatus.voice = 'fail';
+              v2CollectorsStatus.errore = 'fail';
+              onniscenzaSnapshot = await aggregateOnniscenza(sharedInput);
+            }
+          } catch (v2Err) {
+            // V2 threw → fallback V1 (defensive iter 64 close mandate).
+            console.warn(JSON.stringify({
+              level: 'warn', event: 'onniscenza_v2_fallback_to_v1',
+              error: v2Err instanceof Error ? v2Err.message : 'unknown',
+            }));
+            v2CollectorsStatus.teacher = 'fail';
+            v2CollectorsStatus.class = 'fail';
+            v2CollectorsStatus.voice = 'fail';
+            v2CollectorsStatus.errore = 'fail';
+            onniscenzaSnapshot = await aggregateOnniscenza(sharedInput);
+          }
+        } else {
+          // V2 flag off — preserve V1 path unchanged (Sprint S iter 31 prod LIVE).
+          onniscenzaSnapshot = await aggregateOnniscenza(sharedInput);
+        }
+
+        // iter 65 Atom 2.5 — telemetry log for canary observation.
+        console.info(JSON.stringify({
+          level: 'info',
+          event: 'onniscenza_v2_telemetry',
+          onniscenza_v2_used: onniscenzaV2Used,
+          v2_collectors_status: v2CollectorsStatus,
+          has_teacher_uuid: !!teacherAnonUuid,
+          has_class_key: !!classKey,
+          session_prefix: sessionId.slice(0, 8),
+        }));
       } catch (onniErr) {
         console.warn(JSON.stringify({
           level: 'warn', event: 'onniscenza_bridge_error',
@@ -673,15 +837,21 @@ serve(async (req: Request) => {
       + imagePiiGuard;
 
     // 3.5 ClawBot L2 template short-circuit (Sprint T iter 26).
-    // Try keyword/category match BEFORE invoking the LLM. If a template fits,
-    // execute it server-side, return [AZIONE:...] tags + speakTTS text. This
-    // gives a deterministic morphic path for the 20 documented patterns
-    // (introduce/explain/diagnose/guide/celebrate/recap/critique/debug/
-    // reroute) and falls back to the LLM otherwise.
+    // Sprint U iter 41 — Andrea live test 2026-05-12 PM evidence: L2 templates
+    // serve hardcoded narrative ("Vol.1 pag.45 'Approfondimento...'") for ANY
+    // matching experimentId regardless of actual query. Bypasses Vertex Edge
+    // Function entirely → linguaggio rewriter + anti-invenzione + memoria
+    // contextualized SKIPPED. Real user gets stale RGB context on Vol.1 LED
+    // query because L2 template content hardcoded shared.
+    // Mitigation: gate behind `ENABLE_L2_TEMPLATES` env (default OFF). Edge
+    // Function handles ALL educational queries via Vertex Gemini Flash-Lite
+    // + Onniscenza + RAG + linguaggio rewriter post-LLM. Re-enable when L2
+    // template content rewritten per-experiment Sprint U Cycle 2+ scope.
+    const l2TemplatesEnabled = (Deno.env.get('ENABLE_L2_TEMPLATES') || 'false').toLowerCase() === 'true';
     try {
-      const tpl = selectTemplate(safeMessage, {
+      const tpl = l2TemplatesEnabled ? selectTemplate(safeMessage, {
         experimentId: safeExperimentId ?? undefined,
-      });
+      }) : null;
       if (tpl) {
         // iter-RALPH-2 (2026-05-12): wire real hybridRetrieve so L2 templates
         // surface real Vol/pag citation from RAG instead of empty "Vol.1 pag.''".
@@ -753,8 +923,13 @@ serve(async (req: Request) => {
       ? 'gemini-2.5-flash'
       : routedModel;
 
-    // 4. Determine thinking level for Pro model
-    const thinkingLevel = model === 'gemini-2.5-pro' ? 'medium' : undefined;
+    // 4. Determine thinking level (iter 46 v75 architectural pivot):
+    //   - Pro model → 'medium' (legacy retained for explicit Pro paths / offline audit)
+    //   - Flash + THINKING_KEYWORDS → 'medium' (educational deep-thinking, cheaper than Pro)
+    //   - Otherwise undefined (Flash-Lite + vision + diagnostic Flash → no thinking)
+    // Andrea iter 46 mandate "9681ms troppo lungo" → Flash + thinkingBudget=2048
+    // (vertex-client.ts:thinkingLevelToBudget) targets ~3-4s vs Pro 8-9s LIVE.
+    const thinkingLevel = routeThinkingLevel(model, safeMessage, hasImages);
 
     // 5. Call LLM (Together default, Gemini fallback, Brain last resort)
     // Sprint S iter 5: Andrea decision — Together AI primary, Gemini fallback
@@ -794,7 +969,11 @@ serve(async (req: Request) => {
       // I1 mount 503 timeout (Onniscenza + Mistral schema gen overflow 8s).
       // Schema mode + vision + thinkingLevel routinely need 8-12s structured
       // generation. Default 8s preserved for fast chat path.
-      const llmCapMs = (useIntentSchema || hasImages || thinkingLevel) ? 12000 : 8000;
+      // Iter 43 A1 hotfix: Vertex Pro + thinkingLevel:medium routinely exceeds 12s
+      // (live v68 smoke "approfondisci nel dettaglio..." → 503 timeout 13.7s elapsed).
+      // Raise thinking cap 12s→25s to accommodate Pro thinking budget. Other paths
+      // (schema/vision) keep 12s. Cost: slower 503 detection on Pro fail (acceptable).
+      const llmCapMs = thinkingLevel ? 25000 : ((useIntentSchema || hasImages) ? 12000 : 8000);
       const timeoutPromise = new Promise<never>((_, rej) => {
         setTimeout(() => rej(new Error(`llm_timeout_${llmCapMs}ms`)), llmCapMs);
       });
@@ -827,6 +1006,162 @@ serve(async (req: Request) => {
             level: 'info', event: 'intent_schema_parse_fallback',
             timestamp: new Date().toISOString(),
           }));
+        }
+      }
+
+      // Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea screenshot evidence
+      // multiple bugs: LLM occasionally emits `Ragazzi, {"text":"...","intents":[]}`
+      // with PREFIX before JSON envelope, OR multiple concatenated envelopes
+      // `{...}{...}{...}`, OR markdown code-fence `json {...}` blocks.
+      // startsWith('{') gate fails on prefix → raw JSON literal leaks to chat UI.
+      // Universal post-process: extract text fields from ANY JSON envelope leak,
+      // concat clean text, drop literal. Idempotent if no envelope present.
+      // Iter 41 v66: strip markdown code-fence FIRST (catches `\`\`\`json {tool...} \`\`\`` leak even
+      // without `"text":` envelope match — matrix evidence concept run 2/3 LLM emit code-fence
+      // with intent_tools array literal NOT wrapped in {text:..} envelope).
+      if (result && typeof result.text === 'string' && /```/.test(result.text)) {
+        const stripped = result.text
+          .replace(/```json[\s\S]*?```/gi, ' ')
+          .replace(/```[\s\S]*?```/g, ' ')
+          .replace(/```json[\s\S]*$/gi, ' ') // unterminated fence salvage
+          .replace(/\s+/g, ' ')
+          .trim();
+        if (stripped && stripped !== result.text) {
+          result = { ...result, text: stripped };
+          console.info(JSON.stringify({
+            level: 'info', event: 'markdown_codefence_scrubbed',
+            timestamp: new Date().toISOString(),
+          }));
+        }
+      }
+      if (result && typeof result.text === 'string' && /\{\s*"text"\s*:/i.test(result.text)) {
+        try {
+          const envelopeRe = /\{\s*"text"\s*:\s*"((?:[^"\\]|\\.)*)"\s*(?:,\s*"intents"\s*:\s*\[[\s\S]*?\])?\s*\}/g;
+          const extracted: string[] = [];
+          let stripped = result.text;
+          let m: RegExpExecArray | null;
+          envelopeRe.lastIndex = 0;
+          // eslint-disable-next-line no-cond-assign
+          while ((m = envelopeRe.exec(result.text)) !== null) {
+            const cleanText = m[1]
+              .replace(/\\"/g, '"')
+              .replace(/\\n/g, '\n')
+              .replace(/\\t/g, ' ')
+              .replace(/\\\\/g, '\\');
+            extracted.push(cleanText);
+          }
+          if (extracted.length > 0) {
+            stripped = result.text
+              .replace(/```json[\s\S]*?```/gi, ' ')
+              .replace(/```[\s\S]*?```/g, ' ')
+              .replace(envelopeRe, ' ')
+              .replace(/^\s*Ragazzi,?\s*$/gim, ' ')
+              .trim();
+            const cleanResponse = (stripped + ' ' + extracted.join(' ')).replace(/\s+/g, ' ').trim();
+            result = { ...result, text: cleanResponse };
+            console.info(JSON.stringify({
+              level: 'info', event: 'json_envelope_leak_scrubbed',
+              envelopeCount: extracted.length,
+              timestamp: new Date().toISOString(),
+            }));
+          } else {
+            // Iter 41 v64 NEW fallback: closed-envelope regex didn't match (truncated mid-JSON
+            // due to maxOutputTokens cap). Andrea matrix 1/1000 evidence:
+            // `Ragazzi, {"text":"Ragazzi, il terminale 'drain'...` (200-char log slice).
+            // Salvage: find first `{"text":"` opening, extract substring until EOF or
+            // closing quote heuristically, decode escapes, drop wrapper prefix.
+            const openIdx = result.text.search(/\{\s*"text"\s*:\s*"/);
+            if (openIdx >= 0) {
+              const opener = result.text.slice(openIdx).match(/\{\s*"text"\s*:\s*"/);
+              const afterOpen = openIdx + (opener ? opener[0].length : 0);
+              let tail = result.text.slice(afterOpen);
+              // Truncate at unescaped closing quote if present.
+              const closeMatch = tail.match(/(?<!\\)"\s*(?:,\s*"intents"|\})/);
+              if (closeMatch && typeof closeMatch.index === 'number') {
+                tail = tail.slice(0, closeMatch.index);
+              }
+              const decoded = tail
+                .replace(/\\"/g, '"')
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, ' ')
+                .replace(/\\\\/g, '\\')
+                .trim();
+              const before = result.text.slice(0, openIdx).replace(/Ragazzi,?\s*$/i, '').trim();
+              const merged = (before ? before + ' ' : '') + decoded;
+              const cleanResponse = merged.replace(/\s+/g, ' ').trim();
+              if (cleanResponse) {
+                result = { ...result, text: cleanResponse };
+                console.info(JSON.stringify({
+                  level: 'info', event: 'json_envelope_truncated_salvaged',
+                  charsExtracted: decoded.length,
+                  timestamp: new Date().toISOString(),
+                }));
+              }
+            }
+          }
+        } catch (_scrubErr) {
+          console.warn(JSON.stringify({
+            level: 'warn', event: 'json_envelope_scrub_failed',
+            error: _scrubErr instanceof Error ? _scrubErr.message : 'unknown',
+            timestamp: new Date().toISOString(),
+          }));
+        }
+      }
+
+      // ── Iter 50 v79 — H1 fix [CONTESTO OPERATIVO] envelope echo scrubber ──
+      // Andrea 2026-05-13 1000-q matrix evidence color-036/046/076 + diag-068:
+      // Vertex Gemini Flash plain (iter 46 v78 architectural pivot from Pro→Flash,
+      // no thinkingBudget) occasionally verbalizes the `[CONTESTO OPERATIVO ...]`
+      // (or `[CONTESTO OPERATIVO ELAB]` / `[- STATO SIMULATORE]` / `[UNLIM]` variants)
+      // bracket-prefix envelope back as user-facing response. BASE_PROMPT v3.1 has
+      // no explicit "MAI ripetere" rule for this variant (rule exists only for
+      // [CONTESTO CAPITOLO LIBRO] at system-prompt.ts:257). H1 agent confidence 6/10.
+      // Surgical post-LLM regex strip + defensive fallback to neutral Ragazzi opener.
+      if (result && typeof result.text === 'string' && /\[CONTESTO\s+OPERATIVO/i.test(result.text)) {
+        const stripped = result.text.replace(/\[CONTESTO\s+OPERATIVO[^\]]*\][^\n]*\n?/gi, '').trim();
+        if (stripped.length === 0) {
+          // Entire response was envelope echo — substitute polite retry message.
+          result = { ...result, text: 'Ragazzi, riprovate la domanda — un momento di confusione.' };
+          console.warn(JSON.stringify({
+            level: 'warn', event: 'contesto_operativo_full_echo_substituted',
+            timestamp: new Date().toISOString(),
+          }));
+        } else {
+          result = { ...result, text: stripped };
+          console.warn(JSON.stringify({
+            level: 'warn', event: 'contesto_operativo_envelope_scrubbed',
+            originalLen: result.text.length,
+            strippedLen: stripped.length,
+            timestamp: new Date().toISOString(),
+          }));
+        }
+      }
+
+      // ── Iter 50 v79 — H2 fix bare {"intents":[ JSON literal scrubber ──
+      // Andrea 2026-05-13 1000-q matrix evidence control-065 "Stop simulazione":
+      // Mistral/Gemini structured output schema mode (ENABLE_INTENT_TOOLS_SCHEMA iter 38+)
+      // with token cap (120-520 maxOutputTokens) can emit prose then open `{"intents":[`
+      // and EOF mid-JSON. Iter 41 v66 envelope scrubber only catches `{"text":"..."}`
+      // shape requiring "text" key (line 907 regex), blind to bare `{"intents":[`.
+      // H2 agent confidence 7/10. Strip from first `{"intents":[` substring onwards
+      // outside `[INTENT:...]` brackets (server intent-parser handles those separately).
+      if (result && typeof result.text === 'string' && /\{\s*"intents"\s*:\s*\[/.test(result.text)) {
+        const match = result.text.match(/\{\s*"intents"\s*:\s*\[/);
+        const idx = match ? result.text.indexOf(match[0]) : -1;
+        if (idx >= 0) {
+          const before = result.text.slice(0, idx).trim();
+          // Defensive: only strip if there's natural language prose before the JSON.
+          // (Avoid emitting empty response if the entire result was bare JSON.)
+          if (before && before.length >= 10) {
+            const slicedLen = result.text.length - idx;
+            result = { ...result, text: before };
+            console.warn(JSON.stringify({
+              level: 'warn', event: 'bare_intents_literal_scrubbed',
+              sliceLen: slicedLen,
+              prefixLen: before.length,
+              timestamp: new Date().toISOString(),
+            }));
+          }
         }
       }
     } catch (llmError) {
@@ -909,8 +1244,25 @@ serve(async (req: Request) => {
     // browser whitelist case-insensitive accepts only `[azione:...]` so untranslated
     // tags get silently dropped. Translation in regex preserve order + payload.
     const translatedText = (result.text || '').replace(/\[ACTION:/gi, '[AZIONE:');
+
+    // Iter 68 A-NEW-1 — Post-LLM offtopic hallucination scrubber.
+    // Iter 67 PHASE 6 root cause: LLM hallucinates fake experiment IDs for offtopic
+    // queries ("Borsa Tokyo apertura" → [AZIONE:loadexp:borsa_tokyo_apertura]).
+    // Real user clicks → broken state (12 failures iter 67 PHASE 6 matrix V2 OFF).
+    // Strip AZIONE:loadexp + INTENT mountExperiment tags whose ID NOT in registry.
+    // Telemetry: log stripped IDs for offtopic hallucination tracking.
+    const { text: validatedText, stripped: invalidIds } = stripInvalidExperimentTags(translatedText);
+    if (invalidIds.length > 0) {
+      console.info(JSON.stringify({
+        level: 'info', event: 'invalid_experiment_ids_stripped',
+        count: invalidIds.length,
+        ids: invalidIds,
+        timestamp: new Date().toISOString(),
+      }));
+    }
+
     const cappedText = capWordsPreservingControlTags(
-      translatedText,
+      validatedText,
       Math.min(activeAiProfile.maxVisibleWords || UNLIM_MAX_VISIBLE_WORDS, UNLIM_MAX_VISIBLE_WORDS),
     );
 
@@ -967,6 +1319,33 @@ serve(async (req: Request) => {
       console.warn('[Nanobot V2] intent-parser error (non-blocking):', intentErr);
       parsedIntents = [];
       cleanText = cappedText;
+    }
+
+    // Iter 68 A-NEW-1 post-parse mountExperiment ID validator (Codex Pattern C finding 1+2+3).
+    // Catches all INTENT variants that scrubber regex missed:
+    //   - schema-mode preparsedIntents (Mistral structured output bypasses text scrubber)
+    //   - parser-accepted shape variants (whitespace, action/params aliases, single quotes, extra fields)
+    // Filters mountExperiment intents whose args.id NOT in 79-entry registry.
+    // Defensive: catches all parsed shapes regardless of source path.
+    if (parsedIntents.length > 0) {
+      const droppedExperimentIds: string[] = [];
+      parsedIntents = parsedIntents.filter((intent) => {
+        if (intent.tool !== 'mountExperiment') return true;
+        const argsId = (intent.args as { id?: unknown } | undefined)?.id;
+        const idStr = typeof argsId === 'string' ? argsId : null;
+        if (idStr && validateExperimentIdExists(idStr)) return true;
+        droppedExperimentIds.push(idStr || '<missing>');
+        return false;
+      });
+      if (droppedExperimentIds.length > 0) {
+        console.info(JSON.stringify({
+          level: 'info', event: 'invalid_mountExperiment_intents_dropped',
+          count: droppedExperimentIds.length,
+          ids: droppedExperimentIds,
+          experimentId: safeExperimentId || null,
+          timestamp: new Date().toISOString(),
+        }));
+      }
     }
 
     // 6a-bis. 2026-05-10 iter 8 — apply enforcer AS LAST STEP.
@@ -1133,6 +1512,7 @@ serve(async (req: Request) => {
         : result.provider === 'together' ? `together-${result.model}`
         : result.provider === 'brain' ? 'brain'
         : result.provider === 'vertex' ? `vertex-${result.model}`
+        : result.provider === 'vertex-claude' ? `vertex-claude-${result.model}`
         : modelDisplayName(model) || result.model,
       audio: audioUrl || undefined,
       // Sprint U iter 39 Phase 0 — Vertex EU label for GDPR Art.8 minori

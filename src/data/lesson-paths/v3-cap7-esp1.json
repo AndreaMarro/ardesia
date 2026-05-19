@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap7-esp1",
   "volume": 3,
   "chapter": 7,
-  "title": "Pulsante accende LED",
+  "title": "Il pulsante accende e spegne il LED",
   "chapter_title": "I pin di input",
   "difficulty": 1,
   "duration_minutes": 40,
@@ -78,12 +78,12 @@
     "note": "Primo INPUT e primo if. Spiegare il pull-down come necessita pratica: senza resistore il pin 'fluttua' e legge valori a caso."
   },
   "prerequisites": [
-    "v3-cap6-esp2"
+    "v3-cap6-semaforo"
   ],
   "next_experiment": {
-    "id": "v3-cap7-esp2",
-    "title": "Pulsante con conteggio",
-    "preview": "Nella prossima lezione il pulsante contera quante volte viene premuto e mostrera il numero."
+    "id": "v3-cap7-esp3",
+    "title": "Esercizio 7.3: collega il pulsante con INPUT_PULLUP",
+    "preview": "Nella prossima lezione collegherete il pulsante con INPUT_PULLUP: la resistenza è già dentro Arduino, bastano un filo e GND."
   },
   "phases": [
     {
@@ -100,8 +100,8 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Carichiamo il circuito: pulsante collegato al pin 2 con resistore pull-down, LED sul pin 7. Nel codice, il pin 2 e INPUT e il pin 7 e OUTPUT. Con if leggiamo il pulsante e decidiamo.",
-      "teacher_tip": "Spiegare il resistore pull-down in modo semplice: senza di lui, quando il pulsante non e premuto, il pin non sa se e HIGH o LOW. Il resistore lo tiene a LOW finche non premiamo.",
+      "teacher_message": "Ragazzi, Carichiamo il circuito: pulsante collegato al pin 2 con resistore pull-down, LED sul pin 7. Nel codice, il pin 2 e INPUT e il pin 7 e OUTPUT. Con if leggiamo il pulsante e decidiamo.",
+      "teacher_tip": "Spiegate il resistore pull-down in modo semplice: senza di lui, quando il pulsante non e premuto, il pin non sa se e HIGH o LOW. Il resistore lo tiene a LOW finche non premiamo.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp1]"
       ],
@@ -111,8 +111,8 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Il codice dice: se il pulsante e premuto, accendi il LED. Altrimenti, spegnilo. Cosa succede se tolgo la parte 'altrimenti'? Il LED resta acceso per sempre dopo la prima pressione?",
-      "teacher_tip": "Lasciare provare. Senza l'else, il LED si accende quando premete ma si spegne al giro di loop successivo se non si preme. Il loop e cosi veloce che sembra funzionare comunque.",
+      "teacher_message": "Ragazzi, Il codice dice: se il pulsante e premuto, accendi il LED. Altrimenti, spegnilo. Cosa succede se tolgo la parte 'altrimenti'? Il LED resta acceso per sempre dopo la prima pressione?",
+      "teacher_tip": "Lasciate provare. Senza l'else, il LED si accende quando premete ma si spegne al giro di loop successivo se non si preme. Il loop e cosi veloce che sembra funzionare comunque.",
       "provocative_question": "Se il loop gira migliaia di volte al secondo, Arduino regola il pulsante migliaia di volte al secondo. Spreca energia o e utile?",
       "action_tags": [],
       "auto_action": null
@@ -121,7 +121,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premiamo Play. Ora premete il pulsante nel simulatore: il LED si accende. Rilasciate: si spegne. Arduino legge il pulsante e reagisce in tempo reale.",
+      "teacher_message": "Ragazzi, Premiamo Play. Ora premete il pulsante nel simulatore: il LED si accende. Rilasciate: si spegne. Arduino legge il pulsante e reagisce in tempo reale.",
       "teacher_tip": "Far notare la reattivita: non c'e ritardo visibile. Il loop e cosi veloce che la risposta sembra istantanea. Questo e il polling.",
       "action_tags": [
         "[AZIONE:play]"
@@ -133,9 +133,9 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Oggi Arduino ha imparato ad ascoltare. Con digitalRead legge HIGH o LOW dal pulsante. Con if decide cosa fare. Questa e la base di ogni programma interattivo: leggere, decidere, agire.",
+      "teacher_message": "Ragazzi, Oggi Arduino ha imparato ad ascoltare. Con digitalRead legge HIGH o LOW dal pulsante. Con if decide cosa fare. Questa e la base di ogni programma interattivo: leggere, decidere, agire.",
       "teacher_tip": "Il pattern INPUT-DECISIONE-OUTPUT e il cuore di quasi tutti i programmi. Sottolinearlo: sensore legge, codice decide, attuatore agisce.",
-      "summary_for_class": "Con digitalRead Arduino legge lo stato del pulsante. Con if decide se accendere il LED. Il pattern e: leggi l'ingresso, prendi una decisione, controllate l'uscita.",
+      "summary_for_class": "Con digitalRead Arduino legge lo stato del pulsante. Con if decide se accendere il LED. Il pattern e: leggete l'ingresso, prendi una decisione, controllate l'uscita.",
       "concepts_learned": [
         "pin INPUT e digitalRead",
         "istruzione if-else",
@@ -154,7 +154,7 @@
       "pull-down",
       "interazione"
     ],
-    "next_suggested": "v3-cap7-esp2",
+    "next_suggested": "v3-cap7-esp3",
     "resume_message": "L'ultima volta avete usato il pulsante per accendere un LED con digitalRead e if. Oggi aggiungiamo il conteggio delle pressioni."
   }
 }

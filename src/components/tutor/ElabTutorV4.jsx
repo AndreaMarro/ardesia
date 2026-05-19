@@ -1490,7 +1490,7 @@ REGOLE CRITICHE PER QUESTA RISPOSTA:
 6. PER RIMUOVERE TUTTI I FILI: Se fili=N, emetti N tag [AZIONE:removewire:i] per i da N-1 a 0 (partendo dall'ultimo).
 7. LINGUAGGIO 10-14 ANNI: Max 120 parole ben formattate (feedback 2026-05-10). Plurale "Ragazzi/e" o "voi". Mai termini come "dispositivo a semiconduttore", "diodo a emissione di luce", "componente elettronico passivo". Analogie utili quando rendono chiaro: LED="lampadina minuscola", resistore="tubo stretto per l'acqua", corrente="acqua che scorre", tensione="pressione dell'acqua".
 8. ANALOGIA OPZIONALE: Usa analogie quando aggiungono valore, non sempre obbligatorie. Cita Vol N pag NN concordato quando rilevante.
-9. MONTA CIRCUITO: Se l'utente dice "monta il semaforo" o simile → usa [AZIONE:loadexp:v3-cap6-semaforo]. ID formato: v{vol}-cap{cap}-esp{num} o v3-cap6-semaforo, v3-extra-lcd-hello, v3-extra-servo-sweep, v3-extra-simon.
+9. MONTA CIRCUITO: Se l'utente dice "monta il semaforo" o simile → usa [AZIONE:loadexp:v3-cap6-semaforo]. ID formato: v{vol}-cap{cap}-esp{num} o v3-cap6-semaforo.
 10. PREPARA LEZIONE: Se il docente chiede di preparare la lezione → usa il contesto attuale + memoria sessioni per suggerire l'esperimento giusto e caricarlo.${memoryContext ? `\n\n${memoryContext}` : ''}`;
     }, [activeTab, activeExperiment, activeVolume, selectedVolume, currentDocPage,
         currentVideoId, meetActive, disclosureLevel,

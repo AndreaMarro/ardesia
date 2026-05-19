@@ -136,7 +136,7 @@ export default function FloatingWindow({
     bringToFront();
     const clientX = e.clientX ?? 0;
     const clientY = e.clientY ?? 0;
-    resizeState.current = { dir, startX: clientX, startY: clientY, startW: size.w, startH: size.h };
+    resizeState.current = { dir, startX: clientX, startY: clientY, startW: size.w, startH: size.h, startLeft: pos.x, startTop: pos.y };
 
     const handleMove = (ev) => {
       if (!resizeState.current) return;
@@ -144,14 +144,37 @@ export default function FloatingWindow({
       const cy = ev.clientY ?? 0;
       const dx = cx - resizeState.current.startX;
       const dy = cy - resizeState.current.startY;
-      setSize((prev) => ({
-        w: resizeState.current.dir !== 'bottom'
-          ? Math.max(280, Math.min(window.innerWidth * 0.8, resizeState.current.startW + dx))
-          : prev.w,
-        h: resizeState.current.dir !== 'right'
-          ? Math.max(200, Math.min(window.innerHeight * 0.8, resizeState.current.startH + dy))
-          : prev.h,
-      }));
+      const state = resizeState.current;
+      const minW = 280;
+      const minH = 200;
+      const maxW = Math.max(minW, window.innerWidth - 24);
+      const maxH = Math.max(minH, window.innerHeight - 64);
+      let nextW = state.startW;
+      let nextH = state.startH;
+      let nextX = state.startLeft;
+      let nextY = state.startTop;
+
+      if (state.dir.includes('e')) {
+        nextW = Math.max(minW, Math.min(maxW, state.startW + dx));
+      }
+      if (state.dir.includes('s')) {
+        nextH = Math.max(minH, Math.min(maxH, state.startH + dy));
+      }
+      if (state.dir.includes('w')) {
+        const proposedW = Math.max(minW, Math.min(maxW, state.startW - dx));
+        nextX = state.startLeft + (state.startW - proposedW);
+        nextW = proposedW;
+      }
+      if (state.dir.includes('n')) {
+        const proposedH = Math.max(minH, Math.min(maxH, state.startH - dy));
+        nextY = state.startTop + (state.startH - proposedH);
+        nextH = proposedH;
+      }
+
+      nextX = Math.max(0, Math.min(nextX, window.innerWidth - minW));
+      nextY = Math.max(48, Math.min(nextY, window.innerHeight - minH));
+      setPos({ x: nextX, y: nextY });
+      setSize({ w: nextW, h: nextH });
     };
     const handleUp = () => {
       resizeState.current = null;
@@ -160,7 +183,7 @@ export default function FloatingWindow({
     };
     window.addEventListener('pointermove', handleMove);
     window.addEventListener('pointerup', handleUp);
-  }, [size, maximized, bringToFront]);
+  }, [pos, size, maximized, bringToFront]);
 
   const classNames = [
     css.window,
@@ -175,6 +198,7 @@ export default function FloatingWindow({
 
   return (
     <div
+      id={id}
       ref={winRef}
       className={classNames}
       style={windowStyle}
@@ -229,9 +253,14 @@ export default function FloatingWindow({
       {/* Resize handles (hidden when maximized) */}
       {!maximized && (
         <>
-          <div className={`${css.resizeHandle} ${css.resizeRight}`} onPointerDown={(e) => handleResizeStart('right', e)} />
-          <div className={`${css.resizeHandle} ${css.resizeBottom}`} onPointerDown={(e) => handleResizeStart('bottom', e)} />
-          <div className={`${css.resizeHandle} ${css.resizeCorner}`} onPointerDown={(e) => handleResizeStart('corner', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeTop}`} role="separator" aria-label={`Ridimensiona ${title} sopra`} onPointerDown={(e) => handleResizeStart('n', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeRight}`} role="separator" aria-label={`Ridimensiona ${title} destra`} onPointerDown={(e) => handleResizeStart('e', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeBottom}`} role="separator" aria-label={`Ridimensiona ${title} sotto`} onPointerDown={(e) => handleResizeStart('s', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeLeft}`} role="separator" aria-label={`Ridimensiona ${title} sinistra`} onPointerDown={(e) => handleResizeStart('w', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeCorner} ${css.resizeNE}`} role="separator" aria-label={`Ridimensiona ${title} alto destra`} onPointerDown={(e) => handleResizeStart('ne', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeCorner} ${css.resizeSE}`} role="separator" aria-label={`Ridimensiona ${title} basso destra`} onPointerDown={(e) => handleResizeStart('se', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeCorner} ${css.resizeSW}`} role="separator" aria-label={`Ridimensiona ${title} basso sinistra`} onPointerDown={(e) => handleResizeStart('sw', e)} />
+          <div className={`${css.resizeHandle} ${css.resizeCorner} ${css.resizeNW}`} role="separator" aria-label={`Ridimensiona ${title} alto sinistra`} onPointerDown={(e) => handleResizeStart('nw', e)} />
         </>
       )}
     </div>

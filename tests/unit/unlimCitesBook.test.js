@@ -3,6 +3,7 @@ import {
   alreadyCitesBook,
   buildCitationSuffix,
   ensureBookCitation,
+  shouldAppendBookCitation,
 } from '../../src/services/bookCitation';
 
 describe('bookCitation — UNLIM cites the ELAB book for known experiments', () => {
@@ -16,12 +17,12 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
       expect(alreadyCitesBook('Vedi pag. 45 del volume.')).toBe(true);
     });
 
-    it('detects "Vol. N"', () => {
-      expect(alreadyCitesBook('Nel Vol. 2 trovi il transistor.')).toBe(true);
+    it('does not accept "Vol. N" without an exact page', () => {
+      expect(alreadyCitesBook('Nel Vol. 2 trovi il transistor.')).toBe(false);
     });
 
-    it('detects "volume N"', () => {
-      expect(alreadyCitesBook('Il volume 3 parla di Arduino.')).toBe(true);
+    it('detects complete volume + page citations', () => {
+      expect(alreadyCitesBook('Il volume 3 a pagina 18 parla di Arduino.')).toBe(true);
     });
 
     it('detects the V1P45 shorthand used by RAG citations', () => {
@@ -76,24 +77,27 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
       expect(ensureBookCitation(reply, 'v1-cap6-esp1')).toBe(reply);
     });
 
-    it('appends a citation when the reply does NOT cite the book', () => {
+    it('does not append citations automatically for conceptual explanations', () => {
       const reply = 'Il LED si accende quando la corrente scorre dal + al -.';
       const out = ensureBookCitation(reply, 'v1-cap6-esp1');
-      expect(out).toContain(reply.trimEnd());
-      expect(out).toContain('Vol. 1');
-      expect(out).toContain('pag. 29');
-      expect(alreadyCitesBook(out)).toBe(true);
+      expect(out).toBe(reply);
+      expect(alreadyCitesBook(out)).toBe(false);
     });
 
-    it('keeps a single space when the reply ends with sentence punctuation', () => {
+    it('does not append citations to short confirmations', () => {
       const out = ensureBookCitation('Perfetto!', 'v1-cap6-esp1');
-      expect(out).toBe('Perfetto! (Riferimento: Vol. 1, pag. 29 del libro ELAB.)');
+      expect(out).toBe('Perfetto!');
     });
 
-    it('adds a period when the reply does not end with punctuation', () => {
+    it('does not append citations to operational diagnosis or direct instructions', () => {
       const out = ensureBookCitation('Controlla il verso del LED', 'v1-cap6-esp1');
-      expect(out.startsWith('Controlla il verso del LED. ')).toBe(true);
-      expect(out).toContain('Vol. 1');
+      expect(out).toBe('Controlla il verso del LED');
+      expect(alreadyCitesBook(out)).toBe(false);
+    });
+
+    it('does not append citations to hidden action-tag responses', () => {
+      const reply = 'Apro il semaforo e compilo il codice.\n[AZIONE:loadexp:v3-cap6-semaforo]\n[AZIONE:compile]';
+      expect(ensureBookCitation(reply, 'v3-cap6-led-blink')).toBe(reply);
     });
 
     it('does not crash on non-string input (pass-through)', () => {
@@ -107,24 +111,29 @@ describe('bookCitation — UNLIM cites the ELAB book for known experiments', () 
       expect(ensureBookCitation(reply, 'unknown-id-xyz')).toBe(reply);
     });
 
-    it('achieves >=80% citation rate on 10 simulated replies for v1-cap6-esp1 (PDR target)', () => {
+    it('separates conceptual replies from operational replies instead of citing everything', () => {
       const replies = [
-        'Il LED si accende quando la corrente fluisce.',
-        'Prova a girare il LED: la gamba lunga va verso il +.',
-        'La resistenza è come un tubo stretto per la corrente.',
-        'Controlla il collegamento della breadboard.',
-        'Serve la batteria da 9 volt.',
-        'Il circuito è pronto, ora compila il codice!',
-        'Perfetto! Adesso il LED dovrebbe lampeggiare.',
-        'Attenzione, potresti aver invertito il LED.',
-        'digitalWrite(13, HIGH) accende il pin 13.',
-        'Non funziona? Prova a rimettere il cavo sul bus +.',
+        ['Il LED si accende quando la corrente fluisce.', false],
+        ['La resistenza è come un tubo stretto per la corrente.', false],
+        ['digitalWrite(13, HIGH) mette il pin 13 a 5V e accende il LED.', false],
+        ['Prova a girare il LED: la gamba lunga va verso il +.', false],
+        ['Controlla il collegamento della breadboard.', false],
+        ['Il circuito è pronto, ora compila il codice!', false],
+        ['Perfetto! Adesso il LED dovrebbe lampeggiare.', false],
+        ['Attenzione, potresti aver invertito il LED.', false],
+        ['Non funziona? Prova a rimettere il cavo sul bus +.', false],
       ];
-      const cited = replies
-        .map(r => ensureBookCitation(r, 'v1-cap6-esp1'))
-        .filter(r => alreadyCitesBook(r));
-      expect(cited.length).toBeGreaterThanOrEqual(8); // PDR TASK 7 target
-      expect(cited.length).toBe(10); // In fact 10/10 because the helper is deterministic
+      for (const [reply, expected] of replies) {
+        const out = ensureBookCitation(reply, 'v1-cap6-esp1');
+        expect(alreadyCitesBook(out)).toBe(expected);
+      }
+    });
+
+    it('exposes the citation decision as a small, testable policy', () => {
+      expect(shouldAppendBookCitation('La corrente scorre dal positivo al negativo.')).toBe(false);
+      expect(shouldAppendBookCitation('Compilo il codice adesso.')).toBe(false);
+      expect(shouldAppendBookCitation('Perfetto!')).toBe(false);
+      expect(shouldAppendBookCitation('[AZIONE:compile]')).toBe(false);
     });
   });
 });

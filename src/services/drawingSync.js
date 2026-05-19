@@ -93,6 +93,17 @@ function _normalizeExpId(experimentId) {
   return 'paths';
 }
 
+function _isLocalSupabaseDisabled() {
+  try {
+    if (import.meta.env?.MODE === 'test' || import.meta.env?.VITEST) return false;
+    const host = window.location.hostname;
+    const isLocalHost = ['localhost', '127.0.0.1', '::1'].includes(host);
+    return isLocalHost && import.meta.env.VITE_ENABLE_SUPABASE_REALTIME !== 'true';
+  } catch {
+    return false;
+  }
+}
+
 // ─── Public API ───
 
 /**
@@ -104,6 +115,7 @@ function _normalizeExpId(experimentId) {
  */
 export async function loadPaths(experimentId, sessionId = null) {
   if (!isSupabaseConfigured()) return null;
+  if (_isLocalSupabaseDisabled()) return null;
 
   const expId = _normalizeExpId(experimentId);
   const userId = _getAnonUserId();
@@ -156,6 +168,9 @@ export async function savePaths(experimentId, paths, sessionId = null) {
   if (!isSupabaseConfigured()) {
     return { success: false, error: 'Supabase non configurato' };
   }
+  if (_isLocalSupabaseDisabled()) {
+    return { success: false, error: 'Supabase disabilitato in locale' };
+  }
   if (!Array.isArray(paths)) {
     return { success: false, error: 'paths must be an array' };
   }
@@ -199,6 +214,9 @@ export async function savePaths(experimentId, paths, sessionId = null) {
  */
 export function subscribePaths(experimentId, onChange) {
   if (!isSupabaseConfigured() || typeof onChange !== 'function') {
+    return () => {};
+  }
+  if (_isLocalSupabaseDisabled()) {
     return () => {};
   }
 

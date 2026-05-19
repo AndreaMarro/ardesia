@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * ELAB Simulator — Export PNG utility
  * Serializes the SVG canvas to a PNG image and triggers download.

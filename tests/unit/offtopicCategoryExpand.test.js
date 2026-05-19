@@ -238,7 +238,7 @@ describe('buildOfftopicGentleBridge — PRINCIPIO ZERO compliance', () => {
     const allTypes = ['sport', 'math', 'history', 'culture', 'cooking', 'translation', 'celebrity', 'generic'];
     for (const t of allTypes) {
       const out = buildOfftopicGentleBridge(t, {
-        lastExperimentId: 'v3-cap8-serial',
+        lastExperimentId: 'v3-cap8-esp3',
         currentVolume: 3,
         currentChapter: 8,
       });

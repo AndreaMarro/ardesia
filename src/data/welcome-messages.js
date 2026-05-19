@@ -101,14 +101,10 @@ const WELCOME_MESSAGES = {
   'v2-cap12-esp1': 'Robot che segue la luce — il progetto più ambizioso!',
 
   // ═══════════════════════════════════════════════════
-  // VOLUME 3 — Arduino Programmato (6 esperimenti)
+  // VOLUME 3 — Arduino Programmato (2 esperimenti)
   // ═══════════════════════════════════════════════════
   'v3-cap6-semaforo': 'Semaforo a 3 LED con Arduino — il codice controlla tutto!',
-  'v3-cap6-esp6': 'Due LED e un pulsante: toggle con il codice Arduino.',
   'v3-cap8-esp3': 'analogRead + Serial Monitor: i numeri raccontano il circuito.',
-  'v3-extra-lcd-hello': 'LCD scrive "Hello World" — il display comunica con voi!',
-  'v3-extra-servo-sweep': 'Il servo si muove da solo — sweep avanti e indietro.',
-  'v3-extra-simon': 'Simon Says! Gioco di memoria con LED e pulsanti.',
 };
 
 /**

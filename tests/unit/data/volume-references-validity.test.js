@@ -259,8 +259,8 @@ describe('getBookPage', () => {
   });
 
   it('returns page for Vol3 experiment', () => {
-    const page = getBookPage('v3-extra-simon');
-    expect(page).toBe(92);
+    const page = getBookPage('v3-cap8-esp3');
+    expect(page).toBe(85);
   });
 });
 

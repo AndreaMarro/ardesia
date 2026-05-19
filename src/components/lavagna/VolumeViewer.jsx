@@ -228,35 +228,31 @@ export default function VolumeViewer({
           {loading && <div className={css.loadingOverlay}><div className={css.spinner} /><span>Caricamento volume...</span></div>}
           {error && <div className={css.errorOverlay}><span>{error}</span><button className={css.retryBtn} onClick={() => { setError(null); setLoading(true); }}>Riprova</button></div>}
 
-          <div style={{ position: 'relative', display: 'inline-block' }}>
+          <div className={css.pdfStage}>
             <Document file={filePath} onLoadSuccess={onDocumentLoadSuccess} onLoadError={onDocumentLoadError} options={documentOptions} loading="">
               <Page pageNumber={pageNumber} scale={zoom} renderTextLayer={!drawingEnabled} renderAnnotationLayer={!drawingEnabled} className={css.pdfPage} loading="" />
             </Document>
-
-            {/* SVG annotation overlay — same size as PDF page */}
-            <svg
-              ref={svgRef}
-              style={{
-                position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                cursor: drawingEnabled ? 'crosshair' : 'default',
-                pointerEvents: drawingEnabled ? 'auto' : 'none',
-                touchAction: 'none',
-              }}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onPointerLeave={handlePointerUp}
-            >
-              {/* Saved annotations */}
-              {paths.map((p, i) => (
-                <path key={i} d={p.d} stroke={p.color} strokeWidth={p.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              ))}
-              {/* Current stroke */}
-              {currentStroke && currentStroke.points.length > 1 && (
-                <path d={pointsToPath(currentStroke.points)} stroke={currentStroke.color} strokeWidth={currentStroke.width} fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
-              )}
-            </svg>
           </div>
+
+          {/* SVG annotation overlay — covers the whole visible manual work area, not only the PDF page. */}
+          <svg
+            ref={svgRef}
+            className={css.annotationLayer}
+            style={{ cursor: drawingEnabled ? 'crosshair' : 'default', pointerEvents: drawingEnabled ? 'auto' : 'none' }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
+          >
+            {/* Saved annotations */}
+            {paths.map((p, i) => (
+              <path key={i} d={p.d} stroke={p.color} strokeWidth={p.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            ))}
+            {/* Current stroke */}
+            {currentStroke && currentStroke.points.length > 1 && (
+              <path d={pointsToPath(currentStroke.points)} stroke={currentStroke.color} strokeWidth={currentStroke.width} fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
+            )}
+          </svg>
         </div>
       </div>
     </FloatingWindow>

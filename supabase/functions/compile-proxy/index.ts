@@ -27,11 +27,12 @@ import { serve } from 'https://deno.land/std@0.208.0/http/server.ts';
 import {
   CORS_ALLOWED_ORIGINS,
   VERCEL_PREVIEW_REGEX,
+  isLoopbackDevOrigin,
   isOriginAllowed,
 } from './cors.ts';
 
 // Re-export for vitest integration test (`tests/integration/compile-proxy-cors.test.js`).
-export { CORS_ALLOWED_ORIGINS, VERCEL_PREVIEW_REGEX, isOriginAllowed };
+export { CORS_ALLOWED_ORIGINS, VERCEL_PREVIEW_REGEX, isLoopbackDevOrigin, isOriginAllowed };
 
 // ── n8n upstream ──────────────────────────────────────────────────────────
 const N8N_COMPILE_URL =

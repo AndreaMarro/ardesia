@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap8-esp1",
   "volume": 3,
   "chapter": 8,
-  "title": "Serial.println in setup",
+  "title": "Il primo programma analogico: prepariamo il Monitor Seriale",
   "chapter_title": "Comunicazione seriale",
   "difficulty": 1,
   "duration_minutes": 40,
@@ -56,12 +56,12 @@
     "note": "Cap 8 Vol 3 — Serial.begin, Serial.println, baud rate, Serial Monitor. Solo nel setup."
   },
   "prerequisites": [
-    "v3-cap7-esp8"
+    "v3-cap8-esp3"
   ],
   "next_experiment": {
     "id": "v3-cap8-esp2",
-    "title": "Serial.println in loop",
-    "preview": "Nel prossimo esperimento il messaggio si ripete all'infinito nel loop! Aggiungiamo un contatore per numerare ogni riga stampata."
+    "title": "Leggi il potenziometro e stampalo sul Monitor Seriale",
+    "preview": "Nella prossima lezione leggerete il potenziometro e vedrete i suoi valori scorrere sul Monitor Seriale."
   },
   "phases": [
     {
@@ -78,8 +78,8 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Non serve nessun circuito! Solo Arduino e il cavo USB. Il codice ha due righe nel setup: Serial.begin(9600) apre la comunicazione a velocita 9600 baud, e Serial.println scrive il messaggio. Tutto nel setup, quindi il messaggio appare una sola volta.",
-      "teacher_tip": "Spiega il baud rate con una analogia: e la velocita della conversazione. Se Arduino parla a 9600 baud e il monitor ascolta a 9600, si capiscono. Se le velocita sono diverse, vedrai caratteri strani (come parlare italiano a qualcuno che ascolta in francese). 9600 e lo standard per principianti.",
+      "teacher_message": "Ragazzi, Non serve nessun circuito! Solo Arduino e il cavo USB. Il codice ha due righe nel setup: Serial.begin(9600) apre la comunicazione a velocita 9600 baud, e Serial.println scrive il messaggio. Tutto nel setup, quindi il messaggio appare una sola volta.",
+      "teacher_tip": "Spiegate il baud rate con una analogia: e la velocita della conversazione. Se Arduino parla a 9600 baud e il monitor ascolta a 9600, si capiscono. Se le velocita sono diverse, vedrai caratteri strani (come parlare italiano a qualcuno che ascolta in francese). 9600 e lo standard per principianti.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap8-esp1]"
       ],
@@ -89,7 +89,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Serial.println e nel setup, non nel loop. Cosa significa? Il messaggio apparira una sola volta o si ripetera? E se volessimo che si ripeta all'infinito, dove dovremmo spostarlo?",
+      "teacher_message": "Ragazzi, Serial.println e nel setup, non nel loop. Cosa significa? Il messaggio apparira una sola volta o si ripetera? E se volessimo che si ripeta all'infinito, dove dovremmo spostarlo?",
       "teacher_tip": "Rinforza la differenza setup/loop: setup gira UNA volta all'accensione, loop gira all'infinito. Serial.begin deve stare nel setup (si apre la comunicazione una volta sola). Serial.println puo stare in entrambi: nel setup per un messaggio singolo, nel loop per messaggi ripetuti.",
       "provocative_question": "Se dimentichiamo Serial.begin(9600) e scriviamo solo Serial.println, cosa succede? Il messaggio appare lo stesso o no?",
       "action_tags": [],
@@ -99,7 +99,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play e aprite il Serial Monitor! Vedete il messaggio che appare una sola volta. Arduino lo ha scritto nel setup e poi non ha piu nulla da dire. Provate a premere il pulsante Reset nel simulatore: il messaggio riappare perche il setup si riesegue!",
+      "teacher_message": "Ragazzi, Premete Play e aprite il Serial Monitor! Vedete il messaggio che appare una sola volta. Arduino lo ha scritto nel setup e poi non ha piu nulla da dire. Provate a premere il pulsante Reset nel simulatore: il messaggio riappare perche il setup si riesegue!",
       "teacher_tip": "Il pulsante Reset e una scoperta importante: resetta Arduino ed esegue di nuovo il setup. E come riavviare il programma. Se il messaggio non appare, verifica che il baud rate del monitor sia 9600. Fate notare che dopo il messaggio, Arduino non fa nulla: il loop e vuoto.",
       "action_tags": [
         "[AZIONE:play]"
@@ -111,8 +111,8 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Avete aperto il primo canale di comunicazione tra Arduino e il computer! Serial.begin apre la porta, Serial.println manda il messaggio. Da oggi Arduino non e piu muto: puo dirci cosa sta facendo, che valori legge, se qualcosa non funziona.",
-      "teacher_tip": "Recap: Serial.begin(9600) nel setup apre la comunicazione. Serial.println('testo') invia una riga di testo. Il Serial Monitor mostra i messaggi ricevuti. Il baud rate deve corrispondere (9600 su entrambi i lati). Questa e la base del debug: quando qualcosa non funziona, stampi i valori per capire cosa succede.",
+      "teacher_message": "Ragazzi, Avete aperto il primo canale di comunicazione tra Arduino e il computer! Serial.begin apre la porta, Serial.println manda il messaggio. Da oggi Arduino non e piu muto: puo dirci cosa sta facendo, che valori legge, se qualcosa non funziona.",
+      "teacher_tip": "Recap: Serial.begin(9600) nel setup apre la comunicazione. Serial.println('testo') invia una riga di testo. Il Serial Monitor mostrate i messaggi ricevuti. Il baud rate deve corrispondere (9600 su entrambi i lati). Questa e la base del debug: quando qualcosa non funziona, stampi i valori per capire cosa succede.",
       "summary_for_class": "La comunicazione seriale e il modo in cui Arduino parla col computer. Serial.begin apre il canale, Serial.println invia un messaggio. Nel setup il messaggio appare una sola volta. Il Serial Monitor e la finestra dove leggiamo i messaggi. Da oggi Arduino puo dirci cosa sta succedendo nel suo codice!",
       "concepts_learned": [
         "Serial.begin() e baud rate 9600",

@@ -16,8 +16,8 @@ const ALL = [
 const VALID_DURATIONS = [15, 30, 45, 60];
 
 describe('estimatedMinutes — all experiments', () => {
-  it('has 92 total experiments', () => {
-    expect(ALL.length).toBe(94);
+  it('has 79 total experiments', () => {
+    expect(ALL.length).toBe(79);
   });
 
   for (const exp of ALL) {
@@ -56,7 +56,7 @@ describe('estimatedMinutes — all experiments', () => {
 
   it('capstone experiments have 45+ min duration', () => {
     const capstones = ALL.filter(e => e.advancedProject);
-    expect(capstones.length).toBeGreaterThanOrEqual(4);
+    expect(capstones.length).toBeGreaterThanOrEqual(3);
     for (const c of capstones) {
       expect(c.estimatedMinutes).toBeGreaterThanOrEqual(45);
     }

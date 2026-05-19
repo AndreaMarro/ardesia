@@ -649,9 +649,9 @@ describe('Principio Zero / 5. Parita tra i 3 volumi', () => {
     expect(ids.length).toBeGreaterThanOrEqual(24);
   });
 
-  it('Vol 3 ha almeno 24 esperimenti in VOLUME_REFERENCES', () => {
+  it('Vol 3 ha almeno 14 esperimenti in VOLUME_REFERENCES', () => {
     const ids = Object.keys(VOLUME_REFERENCES).filter((id) => id.startsWith('v3-cap'));
-    expect(ids.length).toBeGreaterThanOrEqual(20);
+    expect(ids.length).toBeGreaterThanOrEqual(14);
   });
 
   // 5a — tutti gli esperimenti hanno bookText non vuoto

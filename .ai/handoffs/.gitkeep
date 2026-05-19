@@ -1,0 +1,10 @@
+# Placeholder — keep empty .ai/handoffs/ directory tracked
+
+# Pattern: .ai/handoffs/{iter-N-agent-name}-{phase}.md
+# Example: .ai/handoffs/iter-68-claude-architect-entrance.md
+#          .ai/handoffs/iter-68-codex-builder-r7-implement.md
+#          .ai/handoffs/iter-68-codex-tester-r7-verify.md
+#          .ai/handoffs/iter-68-mistral-reviewer-r7-red-team.md (iter 70+ when Mistral integrated)
+#          .ai/handoffs/iter-68-claude-integrator-close.md
+
+# Coexists with automa/team-state/messages/ (Pattern S r3 inter-agent completion msgs filesystem barrier, PRESERVE 11× race-cond fix validated)

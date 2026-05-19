@@ -25,6 +25,7 @@ import { captureWhiteboardScreenshot } from '../utils/whiteboardScreenshot';
 import * as voiceService from './voiceService';
 import { sendNudge } from './nudgeService';
 import projectHistoryService from './projectHistoryService';
+import { recordUnlimEvent } from './unlimSharedStateStore';
 
 /**
  * Internal reference to the simulator instance (set by NewElabSimulator)
@@ -177,7 +178,7 @@ function createPublicAPI() {
      * @param {string} toPin - format "componentId:pinId"
      */
     addWire(fromPin, toPin) {
-      _simulatorRef?.addWire?.(fromPin, toPin);
+      return _simulatorRef?.addWire?.(fromPin, toPin) || null;
     },
 
     /**
@@ -354,6 +355,15 @@ function createPublicAPI() {
     },
 
     /**
+     * Get full structured circuit state.
+     * Top-level alias required by UNLIM live awareness and Playwright QA.
+     * @returns {Object}
+     */
+    getCircuitState() {
+      return _simulatorRef?.getCircuitState?.() || _simulatorRef?.getComponentStates?.() || {};
+    },
+
+    /**
      * Get positions of all components in current experiment
      * @returns {Object} componentId -> { x, y, type }
      */
@@ -450,7 +460,11 @@ function createPublicAPI() {
      * @returns {Promise<Object>} { success, hex, errors, output }
      */
     async compile(code, board = 'arduino:avr:nano:cpu=atmega328old') {
-      const result = await compileCode(code, board);
+      const liveCode = code ?? _simulatorRef?.getEditorCode?.() ?? '';
+      const result = (typeof _simulatorRef?.compileAndLoad === 'function'
+        ? await _simulatorRef.compileAndLoad(liveCode, board)
+        : await compileCode(liveCode, board))
+        || { success: false, errors: 'Compilazione senza risultato', output: null };
       if (!result.success && result.errors) {
         logError('compilation', result.errors);
       }
@@ -518,7 +532,9 @@ function createPublicAPI() {
      * @param {string} xml - Blockly workspace XML
      */
     loadScratchWorkspace(xml) {
-      _simulatorRef?.loadScratchWorkspace?.(xml);
+      if (!_simulatorRef?.loadScratchWorkspace) return false;
+      _simulatorRef.loadScratchWorkspace(xml);
+      return true;
     },
 
     // ─── S115: UNLIM Onnipotente v2 — Extended Control ───
@@ -570,6 +586,15 @@ function createPublicAPI() {
 
     /** Go back to previous build step (Passo Passo) */
     prevStep() { _simulatorRef?.prevStep?.(); },
+
+    /**
+     * Set current build step index (Passo Passo)
+     * @param {number} index - -1 intro/base only, 0..n progressive steps, Infinity complete
+     */
+    setBuildStepIndex(index) { _simulatorRef?.setBuildStepIndex?.(index); },
+
+    /** Reset guided build to intro/base-only state */
+    resetBuildSteps() { _simulatorRef?.resetBuildSteps?.(); },
 
     /** @returns {number} Current build step index */
     getBuildStepIndex() { return _simulatorRef?.getBuildStepIndex?.() ?? -1; },
@@ -712,6 +737,17 @@ function createPublicAPI() {
       clearHighlights() {
         _simulatorRef?.setHighlightedComponents?.([]);
         _simulatorRef?.setHighlightedPins?.([]);
+      },
+
+      /**
+       * Toggle diagnostic mode used by Già Montato / UNLIM checks.
+       * Defensive no-op when the mounted simulator does not implement it yet.
+       * @param {boolean|{enabled?: boolean, on?: boolean}} arg
+       */
+      setDiagnoseMode(arg) {
+        const enabled = typeof arg === 'object' ? Boolean(arg.enabled ?? arg.on) : Boolean(arg);
+        _simulatorRef?.setDiagnoseMode?.(enabled);
+        return { ok: true, enabled };
       },
 
       /**
@@ -975,6 +1011,7 @@ function createPublicAPI() {
  * @param {*} data
  */
 export function emitSimulatorEvent(event, data) {
+  try { recordUnlimEvent(event, data); } catch { /* shared state is best effort */ }
   if (typeof window !== 'undefined' && window.__ELAB_EVENTS?.[event]) {
     window.__ELAB_EVENTS[event].forEach(cb => {
       try { cb(data); } catch { /* event handler error — silent */ }

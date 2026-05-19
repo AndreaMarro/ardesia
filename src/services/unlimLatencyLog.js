@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * unlimLatencyLog.js — lightweight ring-buffer latency logger for UNLIM chat.
  *

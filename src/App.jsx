@@ -35,7 +35,6 @@ const UnlimWrapper = lazy(() => import('./components/unlim/UnlimWrapper'));
 const LavagnaShell = lazy(() => import('./components/lavagna/LavagnaShell'));
 const VetrinaV2 = lazy(() => import('./components/lavagna/VetrinaV2'));
 const DashboardShell = lazy(() => import('./components/dashboard'));
-const CompileHomeV2 = lazy(() => import('./pages/CompileHomeV2'));
 // iter 35 P0 — Tea HomePage integrata main app (5 card hero + cronologia)
 const HomePage = lazy(() => import('./components/HomePage'));
 
@@ -61,7 +60,7 @@ function LoadingFallback() {
 
 // Hash-based routing: maps hash fragments to page names (P0-6)
 // iter 35 P0: 'home' added as new default landing (Tea-style 5 card grid + cronologia)
-const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna', 'compile-home-v2'];
+const VALID_HASHES = ['home', 'tutor', 'admin', 'teacher', 'vetrina', 'vetrina2', 'login', 'register', 'dashboard', 'dashboard-v2', 'showcase', 'prova', 'lavagna'];
 const HASH_PAGE_ALIASES = {
     'lavagna-solo': 'lavagna',
 };
@@ -72,7 +71,7 @@ const HASH_PAGE_ALIASES = {
 // Without this, getPageFromHash returned null → setCurrentPage NOT called →
 // UI stuck on previous page (verified via Chrome MCP smoke prod 2026-05-06).
 // Sync test: tests/unit/navigation.test.js (49 cases).
-const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario'];
+const HOMEPAGE_SUBROUTES = ['chatbot-only', 'about-easter', 'glossario', 'compile-home'];
 
 function getPageFromHash() {
     const raw = window.location.hash.replace('#', '').split('?')[0].toLowerCase();
@@ -185,14 +184,6 @@ function AppRouter() {
         return (
             <Suspense fallback={<LoadingFallback />}>
                 <LandingPNRR onNavigate={navigate} />
-            </Suspense>
-        );
-    }
-
-    if (currentPage === 'compile-home-v2') {
-        return (
-            <Suspense fallback={<LoadingFallback />}>
-                <CompileHomeV2 />
             </Suspense>
         );
     }
@@ -428,7 +419,6 @@ const CONSENT_SKIP_HASHES = new Set([
     'account',
     'login',
     'register',
-    'compile-home-v2',
 ]);
 
 function isConsentRouteAllowed() {

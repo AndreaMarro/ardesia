@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-05-09T22:57:14.060Z",
+  "baseUrl": "https://elab-tutor-mvrg7h18w-andreas-projects-6d4e9791.vercel.app",
+  "thresholds": {
+    "apiReadyMs": 10000,
+    "voxtralTtsMs": 10000,
+    "kokoroTtsMs": 10000,
+    "edgeTtsMs": 15000,
+    "minAudioBytes": 1500,
+    "voiceUiReadyMs": 10000
+  },
+  "apiReadyMs": 7804,
+  "browserVoice": {
+    "speechSynthesis": true,
+    "audioConstructor": true,
+    "mediaDevices": true,
+    "getUserMedia": true,
+    "mediaRecorder": true,
+    "autoplayMedia": 0
+  },
+  "ui": {
+    "recordVisible": true,
+    "disabledVoiceMessage": false
+  },
+  "endpoints": {
+    "voxtral": {
+      "ok": true,
+      "status": 200,
+      "contentType": "audio/mpeg",
+      "provider": "voxtral",
+      "voice": "9234f1b6-766a-485f-acc4-e2cf6dc42327",
+      "model": "voxtral-mini-tts-2603",
+      "providerLatencyMs": 1673,
+      "bytes": 54068,
+      "latencyMs": 2848.899999999907
+    },
+    "kokoro": {
+      "ok": true,
+      "status": 200,
+      "contentType": "audio/mpeg",
+      "provider": "",
+      "voice": "",
+      "model": "",
+      "providerLatencyMs": 0,
+      "bytes": 74924,
+      "latencyMs": 3839.8000000000466
+    },
+    "edgeTts": {
+      "ok": true,
+      "status": 200,
+      "contentType": "audio/mpeg",
+      "provider": "voxtral",
+      "voice": "9234f1b6-766a-485f-acc4-e2cf6dc42327",
+      "model": "voxtral-mini-tts-2603",
+      "providerLatencyMs": 1698,
+      "bytes": 45201,
+      "latencyMs": 2436.5999999998603
+    }
+  },
+  "console": {
+    "errors": [],
+    "warnings": []
+  },
+  "networkFailures": [],
+  "warnings": [
+    {
+      "name": "realMicrophoneHardwareLog",
+      "value": "NOT_PROVEN",
+      "reason": "Headless browser endpoint/UI checks do not prove real microphone capture or classroom audio playback."
+    }
+  ],
+  "verdict": "PASS",
+  "failures": []
+}

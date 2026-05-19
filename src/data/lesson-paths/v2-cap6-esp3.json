@@ -82,7 +82,7 @@
   ],
   "next_experiment": {
     "id": "v2-cap6-esp4",
-    "title": "Misurare Vf con multimetro",
+    "title": "Misurare Vf con il multimetro",
     "preview": "Usate il multimetro per misurare con precisione la tensione forward di ogni LED!"
   },
   "phases": [
@@ -101,7 +101,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Tre LED rossi in serie: resistore in e3-e10, LED1 (d10-d11), LED2 (d17-d18), LED3 (d22-d23). I fili intermedi collegano catodo-anodo-catodo-anodo come una catena!",
+      "teacher_message": "Ragazzi, Tre LED rossi in serie: resistore in e3-e10, LED1 (d10-d11), LED2 (d17-d18), LED3 (d22-d23). I fili intermedi collegano catodo-anodo-catodo-anodo come una catena!",
       "teacher_tip": "Mostrate la catena visivamente: puntate il dito su ogni LED e seguite il percorso catodo→filo→anodo→LED successivo. Poi highlight del resistore: 'Questo sta tenendo a bada la corrente — se lo togliamo, bruciamo i LED!'",
       "components_list": null,
       "class_hook": null,
@@ -182,7 +182,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "I tre LED si accendono tutti. Ora proviamo a sostituire il resistore da 330Ω con uno da 220Ω. Prima di farlo: qualcuno sa predire cosa succederà alla luminosità?",
+      "teacher_message": "Ragazzi, I tre LED si accendono tutti. Ora proviamo a sostituire il resistore da 330Ω con uno da 220Ω. Prima di farlo: qualcuno sa predire cosa succederà alla luminosità?",
       "teacher_tip": "Lasciate 1 minuto per le previsioni. Poi fate il calcolo: con R=220Ω la corrente aumenta (I = 3.6/220 ≈ 16mA vs 11mA con 330Ω). Più corrente = più luce. Ma attenzione: troppa corrente può bruciare i LED!",
       "provocative_question": "Abbiamo 9V e 3 LED da 1.8V ciascuno. Quanta tensione rimane per il resistore? E se usassimo 5 LED in serie — funzionerebbe ancora?",
       "components_list": null,
@@ -206,7 +206,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Guardate tutti e tre i LED accesi! Notate la luminosità con R=330Ω. Ora nella realtà potreste cambiare il resistore con uno da 220Ω: i LED brillerebbero di più perché passa più corrente.",
+      "teacher_message": "Ragazzi, Guardate tutti e tre i LED accesi! Notate la luminosità con R=330Ω. Ora nella realtà potreste cambiare il resistore con uno da 220Ω: i LED brillerebbero di più perché passa più corrente.",
       "teacher_tip": "Evidenziate tutti e tre i LED e il resistore. Fate notare il filo giallo (catodo LED1 → anodo LED2) e il filo verde (catodo LED2 → anodo LED3): questi sono i 'ponti' della catena serie. Ogni LED riceve circa 1.8V, il resistore prende 3.6V.",
       "action_tags": [
         "[AZIONE:play]",
@@ -234,7 +234,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 6,
-      "teacher_message": "Tre LED in serie funzionano con 9V perché la somma delle Vf (5.4V) è inferiore ai 9V disponibili. Cambiare il resistore da 330Ω a 220Ω aumenta la corrente e la luminosità.",
+      "teacher_message": "Ragazzi, Tre LED in serie funzionano con 9V perché la somma delle Vf (5.4V) è inferiore ai 9V disponibili. Cambiare il resistore da 330Ω a 220Ω aumenta la corrente e la luminosità.",
       "teacher_tip": "Recap formule: Vresistore = Vbatteria - (n × Vf_LED); I = Vresistore / R. Queste due formule permettono di progettare qualsiasi circuito LED in serie! Fate esercitare la classe con un esempio numerico.",
       "components_list": null,
       "class_hook": null,

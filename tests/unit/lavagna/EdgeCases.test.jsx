@@ -77,13 +77,13 @@ describe('LavagnaStateManager edge cases', () => {
   });
 
   it('computePanelActions preserves ALL manual overrides', () => {
-    const current = { leftPanel: true, bottomPanel: true, galileo: true, toolbar: false };
-    const overrides = { leftPanel: true, bottomPanel: true, galileo: true, toolbar: true };
+    const current = { leftPanel: true, bottomPanel: true, unlim: true, toolbar: false };
+    const overrides = { leftPanel: true, bottomPanel: true, unlim: true, toolbar: true };
     const result = computePanelActions(STATES.CLEAN, current, overrides);
     // All overridden = all keep current values
     expect(result.leftPanel).toBe(true);
     expect(result.bottomPanel).toBe(true);
-    expect(result.galileo).toBe(true);
+    expect(result.unlim).toBe(true);
     expect(result.toolbar).toBe(false);
   });
 

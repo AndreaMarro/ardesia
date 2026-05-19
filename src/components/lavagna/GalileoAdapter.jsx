@@ -27,6 +27,34 @@ import { sanitizeOutput } from '../../utils/contentFilter';
 import logger from '../../utils/logger';
 import css from './GalileoAdapter.module.css';
 
+function formatPercorsoExtra(value) {
+  const items = Array.isArray(value) ? value : [value];
+  return items
+    .map((item) => {
+      if (item == null) return '';
+      if (typeof item === 'string' || typeof item === 'number') return String(item);
+      if (typeof item !== 'object') return String(item);
+      const ordered = [
+        item.text,
+        item.error,
+        item.mistake,
+        item.title,
+        item.fix,
+        item.correction,
+        item.explanation,
+        item.why,
+        item.analogy,
+      ].filter(Boolean);
+      if (ordered.length > 0) return ordered.map(String).join(' — ');
+      return Object.entries(item)
+        .filter(([, v]) => v != null && typeof v !== 'object')
+        .map(([k, v]) => `${k}: ${v}`)
+        .join(' — ');
+    })
+    .filter(Boolean)
+    .join(' • ');
+}
+
 /** Embedded Percorso — 5 phases one at a time (PREPARA/MOSTRA/CHIEDI/OSSERVA/CONCLUDI). Principio Zero. */
 function EmbeddedPercorso({ experiment, onAskUNLIM }) {
   const path = getLessonPath(experiment?.id);
@@ -64,6 +92,7 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
   const totalPages = phases.length;
   const isFirst = currentPhase === 0;
   const isLast = currentPhase === totalPages - 1;
+  const componentsNeeded = Array.isArray(path.components_needed) ? path.components_needed : [];
 
   const PHASE_COLORS = {
     PREPARA: { bg: 'linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)', border: '#93c5fd', accent: 'var(--elab-navy)' },
@@ -99,6 +128,13 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
     },
     tipLabel: { fontFamily: "'Oswald', sans-serif", fontSize: 12, fontWeight: 600, color: colors.accent, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 4 },
     extra: { fontSize: 15, lineHeight: 1.6, color: '#444', marginTop: 10, fontStyle: 'italic' },
+    componentGrid: { display: 'flex', flexWrap: 'wrap', gap: 8, margin: '10px 0 14px' },
+    componentChip: {
+      display: 'inline-flex', alignItems: 'center', gap: 6,
+      padding: '7px 10px', borderRadius: 10, background: 'rgba(255,255,255,0.78)',
+      border: `1px solid ${colors.accent}24`, color: 'var(--elab-navy)',
+      fontFamily: "'Open Sans', sans-serif", fontSize: 13, fontWeight: 700,
+    },
     nav: { display: 'flex', gap: 10, padding: '10px 0 4px', flexShrink: 0 },
     navBtn: (primary) => ({
       flex: 1, padding: '14px 16px', border: primary ? 'none' : `2px solid ${colors.accent}40`, borderRadius: 14,
@@ -119,11 +155,11 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
   // Get extra content for the current phase
   const extras = [];
   if (phase.provocative_question) extras.push({ label: 'Domanda per la classe', text: phase.provocative_question });
-  if (phase.common_mistakes?.length) extras.push({ label: 'Errori comuni', text: phase.common_mistakes.join(' • ') });
+  if (phase.common_mistakes?.length) extras.push({ label: 'Errori comuni', text: formatPercorsoExtra(phase.common_mistakes) });
   if (phase.observation_prompt) extras.push({ label: 'Cosa osservare', text: phase.observation_prompt });
-  if (phase.analogies?.length) extras.push({ label: 'Analogia', text: phase.analogies.join(' ') });
+  if (phase.analogies?.length) extras.push({ label: 'Analogia', text: formatPercorsoExtra(phase.analogies) });
   if (phase.summary_for_class) extras.push({ label: 'Riepilogo', text: phase.summary_for_class });
-  if (phase.concepts_learned?.length) extras.push({ label: 'Concetti', text: phase.concepts_learned.join(', ') });
+  if (phase.concepts_learned?.length) extras.push({ label: 'Concetti', text: formatPercorsoExtra(phase.concepts_learned) });
   if (phase.next_preview) extras.push({ label: 'Prossima volta', text: phase.next_preview });
 
   return (
@@ -162,6 +198,26 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
               }
             </div>
           )}
+          {currentPhase === 0 && componentsNeeded.length > 0 && (
+            <div style={PS.tip} data-testid="percorso-components-needed">
+              <div style={PS.tipLabel}>Componenti</div>
+              <div style={PS.componentGrid}>
+                {componentsNeeded.map((component, index) => (
+                  <span key={`${component.name || index}-${index}`} style={PS.componentChip}>
+                    {component.icon && <span aria-hidden="true">{component.icon}</span>}
+                    <span>{component.name}</span>
+                    {Number(component.quantity) > 1 && <span>× {component.quantity}</span>}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          {currentPhase === 0 && !componentsNeeded.length && phase.components_list && (
+            <div style={PS.tip} data-testid="percorso-components-needed">
+              <div style={PS.tipLabel}>Componenti</div>
+              {phase.components_list}
+            </div>
+          )}
           <div style={PS.message}>{phase.teacher_message}</div>
           {phase.teacher_tip && (
             <div style={PS.tip}>
@@ -189,11 +245,15 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
           aria-label="Chiedi a UNLIM"
         >?</button>
         {!isLast && <button style={PS.navBtn(true)} onClick={() => setCurrentPhase(p => p + 1)}>Avanti</button>}
-        {isLast && <button style={PS.navBtn(true)} onClick={() => onAskUNLIM?.('Riepilogo della lezione')}>Riepilogo</button>}
+        {isLast && <button style={PS.navBtn(true)} onClick={() => onAskUNLIM?.(`Riepilogo della lezione "${path.title}". Sintetizza cosa abbiamo costruito, cosa osservare, errori comuni e riferimento Vol./pag.`)}>Riepilogo</button>}
       </div>
     </div>
   );
 }
+
+export const __test__ = {
+  formatPercorsoExtra,
+};
 
 /** Embedded step-by-step guide — ONE step at a time, Avanti/Indietro buttons. Principio Zero. */
 function EmbeddedGuide({ experiment, onAskUNLIM }) {
@@ -221,7 +281,7 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
   const nudge = useUnlimNudge({
     currentExperimentId: experiment?.id || null,
     currentStepIndex: currentStep,
-    totalSteps,
+    totalSteps: steps.length,
     enabled: !!experiment?.id,
   });
 
@@ -435,15 +495,100 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
   );
 }
 
+function EmbeddedDiagnose({ experiment, onAskUNLIM }) {
+  const [description, setDescription] = React.useState('');
+
+  React.useEffect(() => {
+    try {
+      const api = typeof window !== 'undefined' && window.__ELAB_API;
+      setDescription(api?.getCircuitDescription?.() || '');
+    } catch {
+      setDescription('');
+    }
+  }, [experiment?.id]);
+
+  return (
+    <div style={{
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 14,
+      padding: 18,
+      fontFamily: "'Open Sans', sans-serif",
+      color: 'var(--elab-navy)',
+      background: 'linear-gradient(135deg, #f8fafc 0%, #eef6ff 100%)',
+    }}>
+      <div style={{
+        border: '1px solid rgba(30, 77, 140, 0.14)',
+        borderRadius: 16,
+        background: '#fff',
+        padding: 18,
+        boxShadow: '0 8px 24px rgba(30, 77, 140, 0.08)',
+      }}>
+        <div style={{
+          fontFamily: "'Oswald', sans-serif",
+          fontSize: 13,
+          fontWeight: 700,
+          letterSpacing: 1.2,
+          textTransform: 'uppercase',
+          color: 'var(--elab-lime)',
+          marginBottom: 8,
+        }}>
+          Già montato
+        </div>
+        <h3 style={{ margin: '0 0 10px', fontSize: 22, lineHeight: 1.2 }}>
+          Ragazzi, osservate il circuito pronto.
+        </h3>
+        <p style={{ margin: '0 0 12px', fontSize: 16, lineHeight: 1.55, color: '#334155' }}>
+          Spiegate il percorso della corrente: da dove parte, cosa attraversa, dove torna.
+        </p>
+        <div style={{
+          borderLeft: '4px solid var(--elab-lime)',
+          padding: '10px 12px',
+          borderRadius: '0 8px 8px 0',
+          background: 'rgba(74, 122, 37, 0.08)',
+          color: '#1f2937',
+          fontSize: 14,
+          lineHeight: 1.5,
+        }}>
+          {description || 'Circuito pronto: chiedete a UNLIM di descriverlo e controllarlo.'}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => onAskUNLIM?.(`Guida i ragazzi nella diagnosi del circuito già montato "${experiment?.title || ''}". Fai domande difficili ma adatte alla classe: percorso della corrente, polarità LED, ruolo del resistore, possibili errori.`)}
+        style={{
+          minHeight: 44,
+          border: '1px solid rgba(30,77,140,0.22)',
+          borderRadius: 12,
+          background: 'var(--elab-navy)',
+          color: '#fff',
+          fontFamily: "'Oswald', sans-serif",
+          fontWeight: 700,
+          fontSize: 15,
+          cursor: 'pointer',
+        }}
+      >
+        Chiedi diagnosi a UNLIM
+      </button>
+    </div>
+  );
+}
+
 export default function GalileoAdapter({ visible, onClose, onSpeakingChange, activeTab: initialTab = 'chat' }) {
   const chat = useGalileoChat();
-  // Iter 34 P0 fix crash: tabs PERCORSO + GUIDA rimosse iter 34. Force activeTab='chat'
-  // ALWAYS to prevent crash when localStorage saved 'percorso'/'guida' → renders broken section.
   const [activeTab, setActiveTab] = useState('chat');
   const [currentExperiment, setCurrentExperiment] = useState(null);
 
-  // Sync initial tab when prop changes (e.g. Percorso button in header)
-  useEffect(() => { if (visible) setActiveTab(initialTab); }, [initialTab, visible]);
+  // Sync initial tab when prop changes.
+  // Passo Passo is only the ComponentDrawer that mounts the circuit; requests for
+  // legacy "guida"/"diagnosi" panels fall back to chat so UNLIM never becomes a
+  // second, competing step-by-step UI.
+  useEffect(() => {
+    if (!visible) return;
+    setActiveTab(['chat', 'percorso'].includes(initialTab) ? initialTab : 'chat');
+  }, [initialTab, visible]);
 
   // Get current experiment for Percorso tab — with polling fallback for race condition
   useEffect(() => {
@@ -472,6 +617,19 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
   // ── FloatingWindow state ──
   const [maximized, setMaximized] = useState(false);
   const containerRef = useRef(null);
+  const handleAskUNLIM = useCallback((prompt) => {
+    if (!prompt) return;
+    setActiveTab('chat');
+    chat.handleSend?.(String(prompt));
+  }, [chat]);
+  const handlePercorsoSubmit = useCallback((event) => {
+    event?.preventDefault?.();
+    const prompt = String(chat.input || '').trim();
+    if (!prompt || chat.isLoading) return;
+    chat.setInput('');
+    setActiveTab('chat');
+    chat.handleSend?.(prompt);
+  }, [chat]);
 
   // ── Emit speaking state to parent (drives MascotPresence animation) ──
   useEffect(() => {
@@ -500,7 +658,14 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
 
   // ── Voice toggle ──
   const handleVoiceToggle = useCallback(async (enabled) => {
-    if (enabled && !voiceAvailable) return;
+    if (enabled && !voiceAvailable) {
+      chat.setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        role: 'assistant',
+        content: 'La voce non e disponibile in questo browser o manca il permesso microfono. Su iPad usate Safari aggiornato e consentite il microfono.',
+      }]);
+      return;
+    }
     const v = await getVoice();
     if (enabled) v.unlockAudioPlayback();
     setVoiceEnabled(enabled);
@@ -527,7 +692,17 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
 
       try {
         const audioBlob = await v.stopRecording();
-        if (!audioBlob || audioBlob.size < 100) return;
+        if (!audioBlob || audioBlob.size < 100) {
+          chat.setMessages(prev => {
+            const last = [...prev];
+            const voiceIdx = (() => { for (let i = last.length - 1; i >= 0; i--) { if (last[i].isVoice && last[i].content === 'Messaggio vocale in elaborazione...') return i; } return -1; })();
+            if (voiceIdx >= 0) {
+              last[voiceIdx] = { ...last[voiceIdx], content: 'Audio troppo breve. Riprova con una frase intera.' };
+            }
+            return last;
+          });
+          return;
+        }
 
         const api = typeof window !== 'undefined' && window.__ELAB_API;
         let simulatorCtx = null;
@@ -535,7 +710,7 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
 
         const result = await v.sendVoiceChat(audioBlob, {
           sessionId: localStorage.getItem('elab_tutor_session') || '',
-          experimentId: api?.getActiveExperiment?.()?.id || '',
+          experimentId: api?.getCurrentExperiment?.()?.id || '',
           circuitState: chat.circuitStateRef.current,
           simulatorContext: simulatorCtx,
         });
@@ -569,7 +744,7 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
             try {
               await v.playTracked(result.audio, result.audioFormat || 'audio/mpeg');
             } catch (e) {
-              logger.error('[Lavagna Voice] Playback failed:', e);
+              logger.warn('[Lavagna Voice] Playback failed:', e);
             }
             setVoicePlaying(false);
           }
@@ -585,10 +760,21 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
         }
       } catch (err) {
         logger.error('[Lavagna Voice] Error:', err);
-        chat.setMessages(prev => [...prev, {
-          id: Date.now() + 1, role: 'assistant',
-          content: 'C\'e stato un problema con la voce. Provate a scrivere!',
-        }]);
+        const detail = /stt|401|403|microfono|permission|timeout|abort/i.test(String(err?.message || ''))
+          ? String(err?.message || '').slice(0, 90)
+          : '';
+        chat.setMessages(prev => {
+          const last = [...prev];
+          const voiceIdx = (() => { for (let i = last.length - 1; i >= 0; i--) { if (last[i].isVoice && last[i].content === 'Messaggio vocale in elaborazione...') return i; } return -1; })();
+          const content = detail
+            ? `Voce non completata: ${detail}. Scrivimi qui o riprova.`
+            : 'Voce non completata. Scrivimi qui o riprova.';
+          if (voiceIdx >= 0) {
+            last[voiceIdx] = { ...last[voiceIdx], content };
+            return last;
+          }
+          return [...last, { id: Date.now() + 1, role: 'assistant', content }];
+        });
       }
     } else {
       const started = await v.startRecording();
@@ -621,7 +807,7 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
         const audioData = await v.synthesizeSpeech(lastMsg.content);
         await v.playTracked(audioData, 'audio/mpeg');
       } catch (e) {
-        logger.error('[Lavagna Voice] Auto-speak failed:', e);
+        logger.warn('[Lavagna Voice] Auto-speak failed:', e);
       } finally {
         setVoicePlaying(false);
       }
@@ -648,14 +834,14 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
     <FloatingWindow
       id="unlim-v3"
       title="UNLIM"
-      defaultPosition={{ x: typeof window !== 'undefined' ? window.innerWidth - 420 : 800, y: 56 }}
+      defaultPosition={{ x: 16, y: 96 }}
       defaultSize={{
-        // Atom A6 iter 36 H1 fix: responsive width min(90vw, 400px) prevents mobile overflow.
-        // Z-index hierarchy: lavagna/FloatingWindow dynamic 1010+ (normal), 10000 maximized;
-        // common/FloatingWindow Passo Passo: 10001 > UNLIM maximized.
-        // H4 mitigated: PercorsoCapitoloView no explicit z-index → browser stacking 0 < UNLIM 1010+.
-        w: typeof window !== 'undefined' ? Math.min(400, Math.round(window.innerWidth * 0.9)) : 400,
-        h: Math.min(580, typeof window !== 'undefined' ? window.innerHeight - 140 : 580),
+        // Andrea 2026-05-08: UNLIM e imprescindibile, ma non deve coprire
+        // il pannello Passo Passo che monta fisicamente il circuito.
+        w: typeof window !== 'undefined'
+          ? Math.min(360, Math.max(300, Math.round(window.innerWidth * 0.34)))
+          : 340,
+        h: Math.min(520, typeof window !== 'undefined' ? window.innerHeight - 180 : 520),
       }}
       maximized={maximized}
       onMaximize={() => setMaximized(m => !m)}
@@ -665,10 +851,6 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
       className={css.galileoWindow}
     >
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        {/* Iter 34 P0 fix: removed PERCORSO + GUIDA tabs — duplicates with
-             ModalitaSwitch top + GUIDA legacy iter 26 ADR-025 deprecated.
-             UNLIM panel now CHAT only (single primary interaction). */}
-
         {/* Tab content */}
         <div style={{ flex: 1, overflow: 'hidden', position: 'relative', minHeight: 0 }}>
           {activeTab === 'chat' && (
@@ -687,21 +869,62 @@ export default function GalileoAdapter({ visible, onClose, onSpeakingChange, act
               socraticMode={true}
               onToggleSocraticMode={null}
               onScreenshot={chat.handleScreenshot}
-              /* Iter 35 fix Andrea mandate: NO voice buttons UI — wake word "Ehi UNLIM" only.
-                 Pass undefined onVoiceToggle + onVoiceRecord → ChatOverlay nasconde pulsanti.
-                 voicePlaying mantenuto per audio playback feedback (NON pulsante record).
-                 Voice capabilities ancora detect on mount (caps.stt+tts+microphone) per wake-word listener. */
-              voiceEnabled={false}
-              onVoiceToggle={undefined}
-              voiceRecording={false}
-              onVoiceRecord={undefined}
+              voiceEnabled={voiceEnabled}
+              onVoiceToggle={handleVoiceToggle}
+              voiceRecording={voiceRecording}
+              onVoiceRecord={handleVoiceRecord}
               voicePlaying={voicePlaying}
             />
           )}
-          {/* Iter 34 P0 fix crash: removed PERCORSO + GUIDA render blocks
-              (tab bar removed earlier commit 7f963c4, blocks not removed
-              caused crash when localStorage saved activeTab='percorso'/'guida').
-              UNLIM panel ora CHAT only (single primary interaction). */}
+          {activeTab === 'percorso' && (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
+              <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+                <EmbeddedPercorso
+                  experiment={currentExperiment}
+                  onAskUNLIM={handleAskUNLIM}
+                />
+              </div>
+              <form
+                onSubmit={handlePercorsoSubmit}
+                aria-label="Scrivi a UNLIM nel percorso"
+                style={{ display: 'flex', gap: 8, padding: 10, borderTop: '1px solid #e5e7eb', background: '#fff' }}
+              >
+                <input
+                  value={chat.input}
+                  onChange={(e) => chat.setInput(e.target.value)}
+                  aria-label="Scrivi messaggio a UNLIM nel percorso"
+                  placeholder="Scrivi a UNLIM..."
+                  disabled={chat.isLoading}
+                  style={{
+                    flex: 1,
+                    minWidth: 0,
+                    border: '1px solid #d1d5db',
+                    borderRadius: 8,
+                    padding: '10px 12px',
+                    fontSize: 14,
+                    fontFamily: 'Open Sans, sans-serif',
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={chat.isLoading || !String(chat.input || '').trim()}
+                  aria-label="Invia messaggio a UNLIM dal percorso"
+                  style={{
+                    border: 'none',
+                    borderRadius: 8,
+                    padding: '0 14px',
+                    background: chat.isLoading ? '#9ca3af' : 'var(--elab-navy)',
+                    color: '#fff',
+                    fontFamily: "'Oswald', sans-serif",
+                    fontWeight: 700,
+                    cursor: chat.isLoading ? 'not-allowed' : 'pointer',
+                  }}
+                >
+                  Invia
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </div>
     </FloatingWindow>
