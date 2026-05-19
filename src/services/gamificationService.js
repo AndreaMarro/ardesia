@@ -1,12 +1,14 @@
 /**
- * Gamification Service — Suoni, Confetti, Punti, Badge, Streak
- * Leggero, zero dipendenze esterne. Suoni via Web Audio API.
+ * Gamification Service — Punti, Badge, Streak
+ * Gli effetti celebrativi audio/visivi sono disattivati: in lavagna disturbano
+ * e possono partire quando una sessione viene solo aperta/ripristinata.
  * © Andrea Marro — 01/04/2026
  */
 
 const POINTS_KEY = 'elab_gamification_points';
 const STREAK_KEY = 'elab_gamification_streak';
 const BADGES_KEY = 'elab_gamification_badges';
+const CELEBRATION_EFFECTS_ENABLED = false;
 
 // ─── Points system ───────────────────────────────
 const POINT_VALUES = {
@@ -104,6 +106,7 @@ function getAllBadges() {
 let _audioCtx = null;
 
 function _getAudioCtx() {
+  if (!CELEBRATION_EFFECTS_ENABLED) return null;
   if (!_audioCtx) {
     try { _audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
     catch { return null; }
@@ -191,6 +194,7 @@ let _badgeUnlockTimer = null;
 
 // ─── Confetti ──────────────────────────────────
 function showConfetti(container) {
+  if (!CELEBRATION_EFFECTS_ENABLED) return;
   if (typeof document === 'undefined') return;
   const el = container || document.body;
   const colors = ['#1E4D8C', '#4A7A25', '#E8941C', '#E54B3D', '#FFD700'];
@@ -228,8 +232,6 @@ function showConfetti(container) {
 
 // ─── Orchestration: call these from components ──
 function onExperimentCompleted(experimentId, isFirst = false) {
-  playFanfare();
-  showConfetti();
   const pts = isFirst ? POINT_VALUES.firstExperiment : POINT_VALUES.experimentCompleted;
   const total = addPoints(pts, `Esperimento ${experimentId}`);
   const streak = updateStreak();
@@ -238,11 +240,6 @@ function onExperimentCompleted(experimentId, isFirst = false) {
     streak: streak.current,
     quizzes: getPoints().history.filter(h => h.reason.startsWith('Quiz')).length,
   });
-  if (newBadges.length > 0) {
-    // Clear previous badge unlock timer if re-called quickly
-    if (_badgeUnlockTimer) clearTimeout(_badgeUnlockTimer);
-    _badgeUnlockTimer = setTimeout(() => { playBadgeUnlock(); _badgeUnlockTimer = null; }, 600);
-  }
   return { total, newBadges, streak };
 }
 
@@ -257,8 +254,6 @@ function onQuizWrong() {
 }
 
 function onGameWon(gameId) {
-  playSuccess();
-  showConfetti();
   const total = addPoints(POINT_VALUES.gameWon, `Gioco ${gameId}`);
   return total;
 }
@@ -282,6 +277,7 @@ export default {
   getPoints,
   addPoints,
   POINT_VALUES,
+  CELEBRATION_EFFECTS_ENABLED,
   // Streak
   getStreak,
   updateStreak,

@@ -31,7 +31,6 @@ describe('compiler service', () => {
   it('hasPrecompiledHex returns true for known experiments', () => {
     expect(hasPrecompiledHex('v3-cap6-semaforo')).toBe(true);
     expect(hasPrecompiledHex('v3-cap6-blink')).toBe(true);
-    expect(hasPrecompiledHex('v3-extra-simon')).toBe(true);
   });
 
   it('hasPrecompiledHex returns false for unknown experiments', () => {

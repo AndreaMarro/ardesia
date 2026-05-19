@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap7-esp3",
   "volume": 3,
   "chapter": 7,
-  "title": "Pulsante con INPUT_PULLUP",
+  "title": "Esercizio 7.3: collega il pulsante con INPUT_PULLUP",
   "chapter_title": "I pin di input",
   "difficulty": 2,
   "duration_minutes": 40,
@@ -75,12 +75,12 @@
     "note": "Cap 7 Vol 3 — INPUT_PULLUP, resistenza interna, logica invertita."
   },
   "prerequisites": [
-    "v3-cap7-esp2"
+    "v3-cap7-esp1"
   ],
   "next_experiment": {
-    "id": "v3-cap7-esp4",
-    "title": "PWM: luminosita variabile",
-    "preview": "Nel prossimo esperimento il LED non sara solo acceso o spento: controlleremo la luminosita con valori da 0 a 255 usando il PWM!"
+    "id": "v3-cap7-esp6",
+    "title": "Esercizio: cambia un numero, cambia il circuito",
+    "preview": "Nel prossimo esercizio scoprirete che basta cambiare un numero nel codice per spostare il LED su un altro pin."
   },
   "phases": [
     {
@@ -88,7 +88,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, nell'esperimento precedente il pulsante aveva bisogno di un resistore esterno. Arduino ha un trucco: una resistenza nascosta dentro al chip chiamata pullup. Oggi la attiviamo con INPUT_PULLUP e risparmiamo un componente!",
-      "teacher_tip": "Usa l'analogia dell'elastico: immagina un muretto (il pin) tenuto su da un elastico (la resistenza interna). Di default il muretto sta su (HIGH). Quando premete il pulsante, lo abbatti (LOW). Senza elastico il muretto potrebbe cadere da solo (valore casuale).",
+      "teacher_tip": "Usate l'analogia dell'elastico: immagina un muretto (il pin) tenuto su da un elastico (la resistenza interna). Di default il muretto sta su (HIGH). Quando premete il pulsante, lo abbatti (LOW). Senza elastico il muretto potrebbe cadere da solo (valore casuale).",
       "class_hook": "Sapete che dentro Arduino ci sono delle resistenze nascoste? Come un paracadute di emergenza: se non c'e nient'altro collegato al pin, la resistenza interna lo tiene a un valore sicuro. Oggi la usiamo!",
       "action_tags": [],
       "auto_action": null
@@ -97,7 +97,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Il circuito e quasi uguale al precedente, ma il pulsante va da un pin di Arduino direttamente a GND, senza resistore esterno. Con pinMode(pin, INPUT_PULLUP) Arduino attiva la resistenza interna da 20k ohm. Il pin legge HIGH quando rilasciato, LOW quando premuto.",
+      "teacher_message": "Ragazzi, Il circuito e quasi uguale al precedente, ma il pulsante va da un pin di Arduino direttamente a GND, senza resistore esterno. Con pinMode(pin, INPUT_PULLUP) Arduino attiva la resistenza interna da 20k ohm. Il pin legge HIGH quando rilasciato, LOW quando premuto.",
       "teacher_tip": "Disegnate alla lavagna il circuito equivalente: pin --- [R interna 20k] --- 5V e pin --- [pulsante] --- GND. Quando il pulsante e aperto, la resistenza tira il pin verso 5V (HIGH). Quando e chiuso, la corrente va a GND (LOW). La logica e invertita rispetto all'intuizione.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp3]"
@@ -108,8 +108,8 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Attenzione: con INPUT_PULLUP quando il pulsante NON e premuto, il pin legge HIGH. Quando lo premiamo, legge LOW. E il contrario di quello che ci aspetteremmo! Perche la logica e invertita?",
-      "teacher_tip": "Questa e la domanda chiave. Spiega che la resistenza interna 'tira su' il pin verso 5V (HIGH). Il pulsante, quando premuto, collega il pin direttamente a GND (0V = LOW). GND vince sempre sulla resistenza perche e un collegamento diretto. E come un braccio di ferro dove GND e piu forte.",
+      "teacher_message": "Ragazzi, Attenzione: con INPUT_PULLUP quando il pulsante NON e premuto, il pin legge HIGH. Quando lo premiamo, legge LOW. E il contrario di quello che ci aspetteremmo! Perche la logica e invertita?",
+      "teacher_tip": "Questa e la domanda chiave. Spiegate che la resistenza interna 'tira su' il pin verso 5V (HIGH). Il pulsante, quando premuto, collegate il pin direttamente a GND (0V = LOW). GND vince sempre sulla resistenza perche e un collegamento diretto. E come un braccio di ferro dove GND e piu forte.",
       "provocative_question": "Se scriviamo if(digitalRead(pin) == HIGH) per accendere il LED, il LED si accende quando premiamo o quando rilasciamo il pulsante? Attenzione, non e intuitivo!",
       "action_tags": [],
       "auto_action": null
@@ -118,7 +118,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premete Play! Il LED si comporta come prima, ma il circuito e piu semplice. Notate: non c'e piu il resistore esterno per il pulsante. Arduino fa tutto da solo con INPUT_PULLUP. Premete e rilasciate il pulsante.",
+      "teacher_message": "Ragazzi, Premete Play! Il LED si comporta come prima, ma il circuito e piu semplice. Notate: non c'e piu il resistore esterno per il pulsante. Arduino fa tutto da solo con INPUT_PULLUP. Premete e rilasciate il pulsante.",
       "teacher_tip": "Fate confrontare mentalmente i due circuiti: quello precedente (resistore esterno) e questo (INPUT_PULLUP). Il risultato e lo stesso, ma il circuito e piu pulito. Nella pratica, quasi tutti usano INPUT_PULLUP per i pulsanti perche e piu comodo e affidabile.",
       "action_tags": [
         "[AZIONE:play]",
@@ -131,7 +131,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "INPUT_PULLUP e un trucco fondamentale di Arduino. Da oggi in poi, ogni volta che usate un pulsante, potete usare INPUT_PULLUP e risparmiare un resistore. Ricordate solo che la logica e invertita: premuto = LOW!",
+      "teacher_message": "Ragazzi, INPUT_PULLUP e un trucco fondamentale di Arduino. Da oggi in poi, ogni volta che usate un pulsante, potete usare INPUT_PULLUP e risparmiare un resistore. Ricordate solo che la logica e invertita: premuto = LOW!",
       "teacher_tip": "Recap: INPUT_PULLUP attiva una resistenza interna da 20k ohm. Il pin legge HIGH di default. Premendo il pulsante (collegato a GND) il pin va a LOW. Nella pratica e lo standard per collegare pulsanti ad Arduino.",
       "summary_for_class": "INPUT_PULLUP e una resistenza nascosta dentro Arduino che tiene il pin a HIGH quando il pulsante non e premuto. Premendo si va a LOW. Vantaggio: un componente in meno nel circuito! Lo svantaggio e che la logica e invertita: bisogna ricordarselo nel codice.",
       "concepts_learned": [
@@ -150,7 +150,7 @@
       "logica_invertita",
       "pulsante_senza_resistore"
     ],
-    "next_suggested": "v3-cap7-esp4",
+    "next_suggested": "v3-cap7-esp6",
     "resume_message": "Avete scoperto INPUT_PULLUP e la logica invertita! Prossimo: PWM e luminosita variabile."
   }
 }

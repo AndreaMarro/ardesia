@@ -61,6 +61,37 @@ const ERASER_WIDTH = 18;
  * @param {string} pointsStr - space-separated "x,y" pairs
  * @returns {string} SVG path data
  */
+/**
+ * Parse a stored points string "x1,y1 x2,y2 ..." into an array of {x,y}.
+ * Pure helper, no DOM. iter 41 cleanup.
+ */
+function parsePointsString(pointsStr) {
+  if (!pointsStr || typeof pointsStr !== 'string') return [];
+  return pointsStr.trim().split(/\s+/).map(p => {
+    const [x, y] = p.split(',').map(Number);
+    return { x, y };
+  }).filter(p => !isNaN(p.x) && !isNaN(p.y));
+}
+
+/**
+ * Hit-test: returns true if any sample point in `a` is within `threshold`
+ * pixels of any sample point in `b`. Cheap O(n*m) check sufficient for
+ * typical stroke lengths (LIM annotations rarely exceed a few hundred pts).
+ */
+function pointsHit(a, b, threshold) {
+  if (!a || !b || a.length === 0 || b.length === 0) return false;
+  const t2 = threshold * threshold;
+  for (let i = 0; i < a.length; i++) {
+    const ax = a[i].x, ay = a[i].y;
+    for (let j = 0; j < b.length; j++) {
+      const dx = ax - b[j].x;
+      const dy = ay - b[j].y;
+      if (dx * dx + dy * dy <= t2) return true;
+    }
+  }
+  return false;
+}
+
 function pointsToSmoothPath(pointsStr) {
   const pts = pointsStr.trim().split(/\s+/).map(p => {
     const [x, y] = p.split(',').map(Number);
@@ -287,11 +318,30 @@ export default function DrawingOverlay({
   const handlePointerUp = useCallback(() => {
     if (!isDrawing || !currentPath) return;
     setIsDrawing(false);
-    const newPath = { ...currentPath };
-    // Push current state to undo stack before adding new path
+    const finishedPath = { ...currentPath };
+    // Push current state to undo stack before mutating paths
     undoStackRef.current = [...undoStackRef.current.slice(-MAX_UNDO + 1), paths];
     redoStackRef.current = []; // Clear redo on new action
-    const updatedPaths = [...paths, newPath];
+
+    // iter 41 cleanup — eraser must REMOVE hit strokes (filter), not append a
+    // white/transparent paint stroke on top of them. Hit-test: any eraser sample
+    // point within (eraser.width + path.width) / 2 of any segment point of a
+    // saved path counts as a hit. Plain paint strokes still append as before.
+    let updatedPaths;
+    if (finishedPath.isEraser) {
+      const eraserPts = parsePointsString(finishedPath.points);
+      const hitRadius = (finishedPath.width || ERASER_WIDTH) / 2;
+      updatedPaths = paths.filter((existing) => {
+        if (!existing || !existing.points) return true;
+        const exPts = parsePointsString(existing.points);
+        const exRadius = (existing.width || 2) / 2;
+        const threshold = hitRadius + exRadius;
+        return !pointsHit(eraserPts, exPts, threshold);
+      });
+    } else {
+      updatedPaths = [...paths, finishedPath];
+    }
+
     setPaths(updatedPaths);
     saveDrawingPaths(updatedPaths, experimentId);
     lastLocalSaveAtRef.current = Date.now(); // iter 35 fix Bug 2 persistence: track local write timestamp for remote-vs-local race condition
@@ -376,7 +426,54 @@ export default function DrawingOverlay({
     return () => window.removeEventListener('keydown', handleKey);
   }, [drawingEnabled, handleUndo, handleRedo, handleClose]);
 
-  if (!drawingEnabled) return null;
+  const renderPath = (path, key, opacity = 1) => {
+    const d = path.isEraser
+      ? `M ${path.points}` // eraser stays as polyline for performance
+      : pointsToSmoothPath(path.points);
+    return (
+      <path
+        key={key}
+        d={d}
+        stroke={path.isEraser ? 'white' : path.color}
+        strokeWidth={path.width || 2}
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={path.isEraser ? 0.85 : opacity}
+      />
+    );
+  };
+
+  // iter 41 cleanup — when drawing mode is off we still must paint any
+  // previously saved strokes so the LIM keeps showing the teacher's
+  // annotations until they explicitly clear them. Only the interactive
+  // toolbar + pointer handlers are stripped; the SVG layer renders as a
+  // non-interactive overlay.
+  if (!drawingEnabled) {
+    if (!paths || paths.length === 0) return null;
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: canvasWidth,
+          height: canvasHeight,
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        <svg
+          width={canvasWidth}
+          height={canvasHeight}
+          style={{ position: 'absolute', top: 0, left: 0, background: 'transparent' }}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {paths.map((path, i) => renderPath(path, i))}
+        </svg>
+      </div>
+    );
+  }
 
   // In fullscreen mode: cover entire viewport with position:fixed
   const containerStyle = isFullscreen
@@ -403,24 +500,6 @@ export default function DrawingOverlay({
 
   const svgW = isFullscreen ? '100vw' : canvasWidth;
   const svgH = isFullscreen ? '100vh' : canvasHeight;
-
-  const renderPath = (path, key, opacity = 1) => {
-    const d = path.isEraser
-      ? `M ${path.points}` // eraser stays as polyline for performance
-      : pointsToSmoothPath(path.points);
-    return (
-      <path
-        key={key}
-        d={d}
-        stroke={path.isEraser ? 'white' : path.color}
-        strokeWidth={path.width || 2}
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity={path.isEraser ? 0.85 : opacity}
-      />
-    );
-  };
 
   return (
     <div style={containerStyle}>

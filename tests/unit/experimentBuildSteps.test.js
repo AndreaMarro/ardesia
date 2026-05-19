@@ -14,8 +14,8 @@ const ALL_EXPERIMENTS = [
 ];
 
 describe('experimentBuildSteps — structural validation', () => {
-  it('all 92 experiments are loaded', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(94);
+  it('all 79 experiments are loaded', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(79);
   });
 
   it('every experiment has a buildSteps array', () => {

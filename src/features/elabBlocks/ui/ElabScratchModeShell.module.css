@@ -1,0 +1,108 @@
+/* © Andrea Marro — 18/05/2026 — ELAB Tutor — ElabScratchModeShell module */
+.shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--elab-bg, #ffffff);
+  border: 1px solid var(--elab-border, #d4dee8);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--elab-navy, #1E4D8C);
+  color: var(--elab-bg, #ffffff);
+  border-bottom: 2px solid var(--elab-lime, #4A7A25);
+}
+
+.title {
+  margin: 0;
+  font-family: 'Oswald', system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.loadingPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--elab-orange, #E8941C);
+  color: var(--elab-bg, #ffffff);
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.workspace {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: var(--elab-bg-secondary, #f0f4f8);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.skeletonToolbox {
+  width: 120px;
+  background: linear-gradient(90deg, #e1e8f0 25%, #f0f4f8 50%, #e1e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+.skeletonCanvas {
+  flex: 1 1 auto;
+  background: linear-gradient(90deg, #e1e8f0 25%, #f0f4f8 50%, #e1e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite 0.2s;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.starterOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.97);
+  z-index: 2;
+  gap: 16px;
+}
+
+.starterPrompt {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--elab-navy, #1E4D8C);
+  text-align: center;
+  max-width: 600px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonToolbox,
+  .skeletonCanvas {
+    animation: none;
+  }
+}

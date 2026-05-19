@@ -98,7 +98,12 @@ export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClic
       });
       // Guard: skip setState se aborted o unmounted
       if (ctrl.signal.aborted || !isMountedRef.current) return;
-      const text = typeof reply === 'string' ? reply : (reply?.content || reply?.message || JSON.stringify(reply).slice(0, 1200));
+      const text = typeof reply === 'string'
+        ? reply
+        : (reply?.response || reply?.content || reply?.message || '');
+      if (!text) {
+        throw new Error(reply?.error || 'Risposta UNLIM vuota');
+      }
       setLezioneProposta(text);
     } catch (err) {
       if (ctrl.signal.aborted || !isMountedRef.current) return;

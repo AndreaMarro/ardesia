@@ -116,9 +116,9 @@ describe('Systematic experiment wiring checks', () => {
       { x: 130, y: 20 },
     ];
 
-    // Sprint T iter 37 Phase 3 — Maker-3 atom A9-FIX:
-    // v3-cap8-serial = USB only (Cap 8 ESERCIZIO 8.1 'Arduino parla al PC') — niente breadboard, niente componenti
-    const USB_ONLY_EXPERIMENTS = new Set(['v3-cap8-serial']);
+    // USB-only experiments (no breadboard, no components) are excluded from
+    // the breadboard layout standard. Currently none in the Vol3 inventory.
+    const USB_ONLY_EXPERIMENTS = new Set();
 
     for (const exp of EXPERIMENTS_VOL3.experiments || []) {
       // USB-only experiments are excluded from breadboard layout standard

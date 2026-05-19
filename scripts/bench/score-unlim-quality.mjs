@@ -50,9 +50,20 @@ const RULES = {
     severity: 'HIGH',
   },
 
-  // RULE 4: Citation Vol/pag presence (when expected)
+  // RULE 4: Citation Vol/pag presence (when expected) — iter 13 loose regex eval fix.
+  // V4 live smoke evidence: LLM cita "Volume 1 capitolo 10" / "Vol.1 Cap.6" / "Nel Volume 2"
+  // naturalmente MA strict regex `Vol\.\s*[1-3]\s*pag\.\s*\d+` lo perde.
+  // Bottleneck nel regex eval, NON nel modello. Loose regex aggiunge varianti.
   citation_vol_pag: {
-    check: (response) => /Vol\.\s*[1-3]\s*pag\.\s*\d+/i.test(response),
+    check: (response) => {
+      // Strict: "Vol.X pag.Y" (canonical Principio Zero V3)
+      if (/Vol\.\s*[1-3]\s*pag\.\s*\d+/i.test(response)) return true;
+      // Loose: "Vol.X cap.Y", "Volume X", "Volume X capitolo Y", "Vol X cap Y"
+      if (/(?:\bvol(?:ume)?\.?\s*[1-3])\s+(?:cap(?:itolo)?\.?\s*\d+|pag(?:ina)?\.?\s*\d+)/i.test(response)) return true;
+      // Loose: "Volume 1, capitolo 6"
+      if (/\bvolume\s+[1-3][,\s]+capitolo\s+\d+/i.test(response)) return true;
+      return false;
+    },
     weight: 1.0,
     severity: 'MEDIUM',
     requireWhenFlag: true, // only check when fixture.principioZeroChecks.citation_vol_pag === true

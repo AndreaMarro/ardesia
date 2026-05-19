@@ -41,28 +41,30 @@ describe('LavagnaStateManager', () => {
       const result = computePanelActions(STATES.CLEAN, {}, {});
       expect(result.leftPanel).toBe(false);
       expect(result.bottomPanel).toBe(false);
-      expect(result.galileo).toBe(false); // P0: UNLIM parte chiuso, mascotte per accesso
+      expect(result.unlim).toBe(false);
       expect(result.toolbar).toBe(true);
     });
 
     it('opens left panel in BUILD state', () => {
       const result = computePanelActions(STATES.BUILD, {}, {});
       expect(result.leftPanel).toBe(true);
+      expect(result.unlim).toBe(false);
     });
 
     it('opens bottom panel in CODE state', () => {
       const result = computePanelActions(STATES.CODE, {}, {});
       expect(result.bottomPanel).toBe(true);
       expect(result.leftPanel).toBe(false);
+      expect(result.unlim).toBe(false);
     });
 
-    it('opens galileo in STUCK state', () => {
+    it('does not auto-open unlim in STUCK state', () => {
       const result = computePanelActions(STATES.STUCK, {}, {});
-      expect(result.galileo).toBe(true);
+      expect(result.unlim).toBe(false);
     });
 
     it('respects manual overrides', () => {
-      const current = { leftPanel: true, bottomPanel: false, galileo: false, toolbar: true };
+      const current = { leftPanel: true, bottomPanel: false, unlim: false, toolbar: true };
       const overrides = { leftPanel: true }; // User manually opened left panel
       const result = computePanelActions(STATES.CODE, current, overrides);
       // CODE state suggests leftPanel=false, but user overrode it to true
@@ -83,7 +85,7 @@ describe('LavagnaStateManager', () => {
       for (const config of Object.values(STATE_PANELS)) {
         expect(config).toHaveProperty('leftPanel');
         expect(config).toHaveProperty('bottomPanel');
-        expect(config).toHaveProperty('galileo');
+        expect(config).toHaveProperty('unlim');
         expect(config).toHaveProperty('toolbar');
       }
     });

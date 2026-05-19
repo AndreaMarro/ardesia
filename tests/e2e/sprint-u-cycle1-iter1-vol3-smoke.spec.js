@@ -1,7 +1,7 @@
 /**
  * Sprint U Cycle 1 Iter 1 — Vol3 Smoke Tests (LiveTest-2)
  *
- * 8 representative vol3 experiments smoke-tested against prod.
+ * 6 representative vol3 experiments smoke-tested against prod.
  * Vol3 uses simulationMode: "avr" (Arduino AVR emulation) — NOT circuit mode.
  *
  * License gate bypass: elab-license-key = ELAB2026 (localStorage)
@@ -21,7 +21,7 @@ import { test, expect } from '@playwright/test';
 const PROD_URL = 'https://www.elabtutor.school';
 const SCREENSHOT_DIR = 'docs/audits/sprint-u-screenshots';
 
-// ── 8 representative vol3 experiments ─────────────────────────────────────
+// ── 6 representative vol3 experiments ─────────────────────────────────────
 const VOL3_SMOKE_EXPERIMENTS = [
   {
     id: 'v3-cap5-esp1',
@@ -59,25 +59,11 @@ const VOL3_SMOKE_EXPERIMENTS = [
     notes: 'ADC analog read experiment',
   },
   {
-    id: 'v3-cap7-mini',
-    title: 'Cap. 7 Mini - Potenziometro ADC + LED PWM',
-    chapter: 'Cap7',
-    expectedComponents: 2,
-    notes: 'NEW iter37 — mini progetto potenziometro',
-  },
-  {
     id: 'v3-cap8-esp1',
     title: 'Cap. 8 Esp. 1 - Serial Monitor',
     chapter: 'Cap8',
     expectedComponents: 1, // nano only (no breadboard needed)
     notes: 'Serial communication — Arduino sends message',
-  },
-  {
-    id: 'v3-cap8-serial',
-    title: 'Cap. 8 Serial - Comunicazione seriale',
-    chapter: 'Cap8',
-    expectedComponents: 1,
-    notes: 'NEW iter37 — serial experiment',
   },
 ];
 

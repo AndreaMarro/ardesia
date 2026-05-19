@@ -55,7 +55,7 @@ describe('getPrecompiledCount', () => {
     expect(getPrecompiledCount()).toBeGreaterThan(0);
   });
   it('returns exact count of PRECOMPILED_HEX entries', () => {
-    expect(getPrecompiledCount()).toBe(12);
+    expect(getPrecompiledCount()).toBe(8);
   });
 });
 

@@ -16,11 +16,14 @@
     "coverage": "vitest run --coverage",
     "test:e2e": "npx playwright test --config tests/e2e/playwright.config.js",
     "test:e2e:smoke": "npx playwright test --config tests/e2e/playwright.config.js tests/e2e/01-homepage-load.spec.js tests/e2e/02-simulator-open.spec.js tests/e2e/10-deploy-verify.spec.js",
+    "test:build-smoke": "npm run build && bash scripts/run-build-smoke.sh",
     "test:harness-real": "ELAB_PROD_URL=https://elab-tutor-git-e2e-bypass-preview-andreas-projects-6d4e9791.vercel.app npx playwright test --config tests/e2e/playwright.harness-real.config.js",
     "test:all": "npx vitest run && npx playwright test --config tests/e2e/playwright.config.js",
     "gate": "bash scripts/anti-regression-gate.sh",
     "gate:quick": "bash scripts/quick-regression-check.sh",
     "audit:honesty": "bash scripts/honesty-audit.sh",
+    "sync-experiment-registry": "node scripts/sync-experiment-registry.mjs",
+    "sync-experiment-registry:list": "node scripts/sync-experiment-registry.mjs --list",
     "postinstall": "node scripts/patch-blockly.js"
   },
   "keywords": [],
@@ -47,7 +50,10 @@
     "buffer": "^6.0.3",
     "clsx": "^2.1.1",
     "codemirror": "^6.0.2",
+    "cors": "^2.8.6",
+    "dfu": "^0.1.5",
     "events": "^3.3.0",
+    "express": "^4.22.2",
     "fast-xml-parser": "^5.3.6",
     "html2canvas": "^1.4.1",
     "mammoth": "^1.11.0",
@@ -60,6 +66,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4.1.18",
     "@testing-library/jest-dom": "^6.6.3",

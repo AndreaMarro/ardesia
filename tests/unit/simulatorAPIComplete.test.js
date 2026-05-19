@@ -60,6 +60,7 @@ import {
   unregisterSimulatorInstance,
   emitSimulatorEvent,
 } from '../../src/services/simulator-api';
+import { compileCode } from '../../src/services/api';
 
 // ─── Helper: create a mock simulator instance ───
 
@@ -126,6 +127,8 @@ function createMockSimulator(overrides = {}) {
     getToolMode: vi.fn().mockReturnValue('select'),
     nextStep: vi.fn(),
     prevStep: vi.fn(),
+    setBuildStepIndex: vi.fn(),
+    resetBuildSteps: vi.fn(),
     getBuildStepIndex: vi.fn().mockReturnValue(2),
     showBom: vi.fn(),
     hideBom: vi.fn(),
@@ -148,6 +151,7 @@ beforeEach(() => {
   // Clean slate
   delete window.__ELAB_API;
   delete window.__ELAB_EVENTS;
+  vi.clearAllMocks();
 });
 
 afterEach(() => {
@@ -189,7 +193,8 @@ describe('1. API Initialization', () => {
       'setEditorMode', 'getEditorMode', 'isEditorVisible', 'loadScratchWorkspace',
       'undo', 'redo', 'canUndo', 'canRedo',
       'highlightPin', 'serialWrite', 'setBuildMode', 'getBuildMode',
-      'setToolMode', 'getToolMode', 'nextStep', 'prevStep', 'getBuildStepIndex',
+      'setToolMode', 'getToolMode', 'nextStep', 'prevStep', 'setBuildStepIndex',
+      'resetBuildSteps', 'getBuildStepIndex',
       'showBom', 'hideBom', 'showSerialMonitor',
       'isSimulating', 'getSimulationStatus',
       'appendEditorCode', 'resetEditorCode', 'getExperimentOriginalCode',
@@ -247,6 +252,28 @@ describe('1. API Initialization', () => {
   it('unlim.version is set', () => {
     registerSimulatorInstance(createMockSimulator());
     expect(window.__ELAB_API.unlim.version).toBe('1.1.0');
+  });
+});
+
+describe('simulatorAPI compile bridge', () => {
+  it('delegates compile to the live simulator compileAndLoad bridge when available', async () => {
+    const compileAndLoad = vi.fn().mockResolvedValue({ success: true, status: 'success-local', hex: 'BEEF' });
+    registerSimulatorInstance(createMockSimulator({ compileAndLoad }));
+
+    const result = await window.__ELAB_API.compile('void setup(){}');
+
+    expect(compileAndLoad).toHaveBeenCalledWith('void setup(){}', 'arduino:avr:nano:cpu=atmega328old');
+    expect(compileCode).not.toHaveBeenCalled();
+    expect(result).toMatchObject({ success: true, status: 'success-local', hex: 'BEEF' });
+  });
+
+  it('falls back to compileCode when no live compile bridge exists', async () => {
+    registerSimulatorInstance(createMockSimulator());
+
+    const result = await window.__ELAB_API.compile('void loop(){}');
+
+    expect(compileCode).toHaveBeenCalledWith('void loop(){}', 'arduino:avr:nano:cpu=atmega328old');
+    expect(result).toMatchObject({ success: true, hex: 'AABB' });
   });
 });
 
@@ -954,6 +981,13 @@ describe('10. Build Mode, Tool Mode, Simulator Context', () => {
     window.__ELAB_API.prevStep();
     expect(sim.nextStep).toHaveBeenCalledOnce();
     expect(sim.prevStep).toHaveBeenCalledOnce();
+  });
+
+  it('setBuildStepIndex/resetBuildSteps delegate', () => {
+    window.__ELAB_API.setBuildStepIndex(0);
+    window.__ELAB_API.resetBuildSteps();
+    expect(sim.setBuildStepIndex).toHaveBeenCalledWith(0);
+    expect(sim.resetBuildSteps).toHaveBeenCalledOnce();
   });
 
   it('getSimulatorContext returns structured snapshot', () => {

@@ -7,7 +7,26 @@
 
 import logger from '../utils/logger';
 
-const NANOBOT_URL = (import.meta.env.VITE_NANOBOT_URL || '').trim() || null;
+const SUPABASE_EDGE_URL = (import.meta.env.VITE_SUPABASE_EDGE_URL || 'https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1').trim();
+const NANOBOT_URL = (import.meta.env.VITE_NANOBOT_URL || '').trim() || SUPABASE_EDGE_URL;
+const PUBLIC_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
+function isValidElabAnonJwt(value) {
+    try {
+        const token = String(value || '').trim();
+        const payload = token.split('.')[1];
+        if (!payload) return false;
+        const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+        return decoded.ref === 'euqpdueopmlllqjmqnyb' && decoded.role === 'anon';
+    } catch {
+        return false;
+    }
+}
+const ENV_SUPABASE_EDGE_KEY = (import.meta.env.VITE_SUPABASE_EDGE_KEY || '').trim();
+const SUPABASE_EDGE_KEY = isValidElabAnonJwt(ENV_SUPABASE_EDGE_KEY)
+    ? ENV_SUPABASE_EDGE_KEY
+    : PUBLIC_SUPABASE_ANON_KEY;
+const ELAB_API_KEY = (import.meta.env.VITE_ELAB_API_KEY || '').trim();
+const isSupabaseEdge = () => !!NANOBOT_URL && NANOBOT_URL.includes('supabase.co/functions');
 
 // Audio recording state
 let mediaRecorder = null;
@@ -30,28 +49,11 @@ export async function checkVoiceCapabilities() {
         result.microphone = false;
     }
 
-    // Check Edge TTS (VPS) first — skipped on HTTPS origins because the VPS
-    // is plain HTTP and the CSP `connect-src` blocks mixed content with a
-    // noisy console error. In HTTPS produzione la voce passa comunque dal
-    // proxy `/api/tts` → se il proxy e' deployato, assumiamo tts disponibile.
-    const isHttps = typeof window !== 'undefined' && window.location?.protocol === 'https:';
-    if (isHttps) {
-        // In prod HTTPS assumiamo che TTS sia coperto da Kokoro + Edge proxy
-        // (vedi synthesizeSpeech fallback chain); ultimo fallback sempre
-        // speechSynthesis browser.
-        result.tts = true;
-        result.stt = result.microphone;
-    } else {
-        try {
-            const edgeResp = await fetch(`${EDGE_TTS_URL}/health`, {
-                signal: AbortSignal.timeout(3000),
-            });
-            if (edgeResp.ok) {
-                result.tts = true;
-                result.stt = result.microphone; // STT uses browser SpeechRecognition
-            }
-        } catch { /* Edge TTS not available */ }
-    }
+    // Do not probe the raw HTTP VPS from the browser: the app CSP intentionally
+    // blocks direct IP connections and the failed probe pollutes console health.
+    // Runtime synthesis uses same-origin proxies first, then backend fallbacks.
+    result.tts = typeof speechSynthesis !== 'undefined';
+    result.stt = result.microphone;
 
     // Fallback: check nanobot voice endpoints
     if (!result.tts && NANOBOT_URL) {
@@ -95,10 +97,19 @@ export function unlockAudioPlayback() {
         src.connect(ctx.destination);
         src.start(0);
 
-        // Also unlock HTMLAudioElement path
-        const silent = new Audio('data:audio/mp3;base64,SUQzBAAAAAA=');
+        // Also unlock HTMLAudioElement path. Use a blob URL because the
+        // production CSP intentionally blocks data: media.
+        const silentWav = new Uint8Array([
+            82, 73, 70, 70, 38, 0, 0, 0, 87, 65, 86, 69, 102, 109, 116, 32,
+            16, 0, 0, 0, 1, 0, 1, 0, 64, 31, 0, 0, 64, 31, 0, 0,
+            1, 0, 8, 0, 100, 97, 116, 97, 2, 0, 0, 0, 128, 128,
+        ]);
+        const url = URL.createObjectURL(new Blob([silentWav], { type: 'audio/wav' }));
+        const silent = new Audio(url);
         silent.volume = 0;
-        silent.play().catch(() => {});
+        silent.onended = () => URL.revokeObjectURL(url);
+        silent.onerror = () => URL.revokeObjectURL(url);
+        silent.play().catch(() => URL.revokeObjectURL(url));
 
         audioUnlocked = true;
         logger.debug('[Voice] Audio playback unlocked');
@@ -230,6 +241,65 @@ export async function sendVoiceChat(audioBlob, options = {}, signal = null) {
         formData.append('simulatorContext', JSON.stringify(options.simulatorContext));
     }
 
+    if (isSupabaseEdge()) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 45000);
+        let abortHandler = null;
+        if (signal) {
+            if (signal.aborted) {
+                clearTimeout(timeoutId);
+                throw new DOMException('Aborted', 'AbortError');
+            }
+            abortHandler = () => controller.abort();
+            signal.addEventListener('abort', abortHandler, { once: true });
+        }
+        formData.append('language', 'it');
+        const headers = {};
+        if (SUPABASE_EDGE_KEY) {
+            headers.apikey = SUPABASE_EDGE_KEY;
+            headers.Authorization = `Bearer ${SUPABASE_EDGE_KEY}`;
+        }
+        if (ELAB_API_KEY) headers['X-Elab-Api-Key'] = ELAB_API_KEY;
+
+        try {
+            const sttResp = await fetch(`${NANOBOT_URL}/unlim-stt`, {
+                method: 'POST',
+                headers,
+                body: formData,
+                signal: controller.signal,
+            });
+            const sttData = await sttResp.json().catch(() => ({}));
+            if (!sttResp.ok || !sttData.success || !sttData.text) {
+                throw new Error(sttData.error || sttData.details || `STT error: ${sttResp.status}`);
+            }
+
+            const { sendChat } = await import('./api');
+            const chatResult = await sendChat(sttData.text, [], {
+                experimentId: options.experimentId || null,
+                circuitState: options.circuitState || null,
+                simulatorContext: options.simulatorContext || null,
+                socraticMode: true,
+                signal: controller.signal,
+            });
+            const response = chatResult?.response || chatResult?.message || '';
+            let audio = null;
+            if (response) {
+                try { audio = await synthesizeSpeech(response); } catch { audio = null; }
+            }
+            return {
+                success: true,
+                userText: sttData.text,
+                response,
+                audio,
+                audioFormat: 'audio/mpeg',
+                source: 'unlim-stt+unlim-chat',
+            };
+        } finally {
+            clearTimeout(timeoutId);
+            if (signal && abortHandler) signal.removeEventListener('abort', abortHandler);
+        }
+    }
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s max
 
@@ -257,38 +327,28 @@ export async function sendVoiceChat(audioBlob, options = {}, signal = null) {
     }
 }
 
-// TTS endpoints — Kokoro VPS (best quality IT, OpenAI-compat) → Edge TTS VPS → fallback
-// (17/04/2026) Kokoro-FastAPI deployato come container Docker su VPS porta 8881.
-// Espone API OpenAI-compat POST /v1/audio/speech. Voce if_sara italiana femminile.
-const KOKORO_VPS_URL = 'http://72.60.129.50:8881';
+// TTS endpoints — same-origin Voxtral clone proxy → Kokoro → Edge → fallback
 const KOKORO_VOICE = 'if_sara'; // Italian female Sara
-const EDGE_TTS_URL = 'http://72.60.129.50:8880';
 
 /**
  * Pick the right TTS endpoint for the current environment.
- * HTTPS origin (produzione elabtutor.school): il VPS plain-HTTP e' bloccato
- * come mixed content → usiamo i proxy same-origin Vercel `/api/kokoro` (primario)
- * e `/api/tts` (fallback Edge). Su localhost HTTP dev hit diretto VPS.
+ * HTTPS origin (produzione elabtutor.school): raw HTTP engines are blocked as
+ * mixed content, so voice always goes through same-origin Vercel proxies.
  */
-function isHttpsOrigin() {
-    try {
-        return typeof window !== 'undefined' && window.location?.protocol === 'https:';
-    } catch {
-        return false;
-    }
+function getVoxtralUrl() {
+    return '/api/voxtral';
 }
 
 function getKokoroUrl() {
-    return isHttpsOrigin() ? '/api/kokoro' : `${KOKORO_VPS_URL}/v1/audio/speech`;
+    return '/api/kokoro';
 }
 
 function getEdgeTtsUrl(encodedText) {
-    if (isHttpsOrigin()) return `/api/tts?text=${encodedText}`;
-    return `${EDGE_TTS_URL}/tts?text=${encodedText}`;
+    return `/api/tts?text=${encodedText}`;
 }
 
 /**
- * Send text to TTS. Chain: Kokoro VPS → Edge TTS VPS → Nanobot → browser fallback.
+ * Send text to TTS. Chain: Voxtral cloned voice → Kokoro → Edge TTS → Nanobot → browser fallback.
  * @param {string} text - text to synthesize
  * @returns {Promise<ArrayBuffer>} audio data (MP3)
  */
@@ -297,7 +357,25 @@ export async function synthesizeSpeech(text) {
     if (!clipped) throw new Error('Empty text for TTS');
     const encoded = encodeURIComponent(clipped);
 
-    // 1. Kokoro VPS (OpenAI-compat, voce italiana naturale)
+    // 1. Voxtral primary: configured Andrea cloned voice via Supabase unlim-tts.
+    try {
+        const resp = await fetch(getVoxtralUrl(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input: clipped, provider: 'voxtral', response_format: 'mp3' }),
+            signal: AbortSignal.timeout(10000),
+        });
+        const provider = resp.headers?.get?.('x-tts-provider') || '';
+        const contentType = resp.headers?.get?.('content-type') || '';
+        if (resp.ok && contentType.startsWith('audio/') && (!provider || provider === 'voxtral')) {
+            logger.debug('[Voice] Voxtral cloned TTS success');
+            return await resp.arrayBuffer();
+        }
+    } catch (e) {
+        logger.debug('[Voice] Voxtral not available:', e.message);
+    }
+
+    // 2. Kokoro VPS (OpenAI-compat, voce italiana naturale)
     try {
         const resp = await fetch(getKokoroUrl(), {
             method: 'POST',
@@ -317,7 +395,7 @@ export async function synthesizeSpeech(text) {
         logger.debug('[Voice] Kokoro not available:', e.message);
     }
 
-    // 2. Try Edge TTS — goes through /api/tts proxy on HTTPS origins to
+    // 3. Try Edge TTS — goes through /api/tts proxy on HTTPS origins to
     //    avoid mixed-content blocks, or direct to VPS on localhost.
     try {
         const resp = await fetch(getEdgeTtsUrl(encoded), {

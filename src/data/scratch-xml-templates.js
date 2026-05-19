@@ -7,8 +7,6 @@
  * Non tutti gli esperimenti possono avere scratchXml:
  * - v3-cap6-esp1: circuito puro (code: null) → NO scratchXml
  * - v3-cap6-morse: usa funzioni custom (punto/linea) → versione semplificata
- * - v3-cap6-esp7: usa while(digitalRead) → versione semplificata
- * - v3-cap7-esp8: usa analogWriteResolution(10) → non supportato in Blockly
  *
  * © Andrea Marro — 10/04/2026
  */

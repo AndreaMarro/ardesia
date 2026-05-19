@@ -11,8 +11,8 @@
  * + clearAll()) — this REVERSES iter 26 ADR-025 §4.4 auto-Percorso. Source
  * lines 657-664 confirm. Test asserts CURRENT behavior.
  *
- * Sprint V iter 1 Atom A5: Percorso click triggers __ELAB_API.unlim.aggregateContext
- * with {lesson, class_key, recent_sessions_limit:5}. NO canvas mutation.
+ * 2026-05-08: Percorso click now starts from an empty sandbox canvas and
+ * triggers __ELAB_API.unlim.aggregateContext.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
@@ -20,7 +20,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
  * Replicates handleModalitaChange contract from LavagnaShell.jsx:621-665.
  * If src behavior changes, update this factory + tests in lockstep.
  */
-function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode = () => {}, setGalileoOpen = () => {}, setUnlimTab = () => {} }) {
+function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode = () => {}, setUnlimOpen = () => {}, setUnlimTab = () => {} }) {
   return function handleModalitaChange(nextMode) {
     // iter 48: 'libero' + 'guida-da-errore' silently migrate to 'percorso'
     if (nextMode === 'libero' || nextMode === 'guida-da-errore') {
@@ -31,15 +31,23 @@ function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode =
     }
     setModalita(nextMode);
 
-    // iter 48 wire-up: passo-passo → buildMode='guided' + UNLIM guida tab
+    // iter 49 wire-up: passo-passo → buildMode='guided' + solo ComponentDrawer; UNLIM resta chat
     if (nextMode === 'passo-passo') {
       const api = getApi();
       setBuildMode('guided');
       if (api?.setBuildMode) {
         try { api.setBuildMode('guided'); } catch { /* noop */ }
       }
-      setGalileoOpen(true);
-      setUnlimTab('guida');
+      if (api?.setBuildStepIndex) {
+        try { api.setBuildStepIndex(0); } catch { /* noop */ }
+      } else if (api?.nextStep && (api?.getBuildStepIndex?.() ?? -1) < 0) {
+        try { api.nextStep(); } catch { /* noop */ }
+      }
+      if (api?.unlim?.setDiagnoseMode) {
+        try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
+      }
+      setUnlimOpen(true);
+      setUnlimTab('chat');
     }
 
     if (nextMode === 'gia-montato') {
@@ -48,13 +56,33 @@ function makeHandler({ setModalita, setCurrentExperiment, getApi, setBuildMode =
       if (api?.setBuildMode) {
         try { api.setBuildMode('complete'); } catch { /* noop */ }
       }
+      if (api?.setBuildStepIndex) {
+        try { api.setBuildStepIndex(Number.POSITIVE_INFINITY); } catch { /* noop */ }
+      }
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
+      setUnlimOpen(true);
+      setUnlimTab('chat');
     }
 
     if (nextMode === 'percorso') {
       const api = getApi();
+      setBuildMode('sandbox');
+      setUnlimOpen(true);
+      setUnlimTab('percorso');
+      if (api?.setBuildMode) {
+        try { api.setBuildMode('sandbox'); } catch { /* noop */ }
+      }
+      if (api?.setBuildStepIndex) {
+        try { api.setBuildStepIndex(-1); } catch { /* noop */ }
+      }
+      if (api?.clearAll) {
+        try { api.clearAll(); } catch { /* noop */ }
+      }
+      if (api?.unlim?.setDiagnoseMode) {
+        try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
+      }
       if (api?.unlim?.aggregateContext) {
         try {
           api.unlim.aggregateContext({
@@ -86,16 +114,25 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
 
   it.todo('Percorso click → aggregateContext called with payload — Sprint V iter 2 fix mock setup (getApi vs window.__ELAB_API resolve path)');
 
-  it('Percorso click → does NOT mutate currentExperiment (preserve canvas mandate)', () => {
+  it('Percorso click → starts empty sandbox and clears custom canvas state', () => {
     const setCurrentExperiment = vi.fn();
+    const setBuildMode = vi.fn();
+    const apiSetBuildMode = vi.fn();
+    const setBuildStepIndex = vi.fn();
+    const clearAll = vi.fn();
     const aggregateContext = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment,
-      getApi: () => ({ unlim: { aggregateContext } }),
+      setBuildMode,
+      getApi: () => ({ setBuildMode: apiSetBuildMode, setBuildStepIndex, clearAll, unlim: { aggregateContext, setDiagnoseMode: vi.fn() } }),
     });
     handler('percorso');
     expect(setCurrentExperiment).not.toHaveBeenCalled();
+    expect(setBuildMode).toHaveBeenCalledWith('sandbox');
+    expect(apiSetBuildMode).toHaveBeenCalledWith('sandbox');
+    expect(setBuildStepIndex).toHaveBeenCalledWith(-1);
+    expect(clearAll).toHaveBeenCalled();
   });
 
   it('Libero click → silently migrated to percorso (Sprint V iter 3 merge)', () => {
@@ -109,7 +146,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     });
     handler('libero');
     expect(setModalita).toHaveBeenCalledWith('percorso');
-    expect(clearAll).not.toHaveBeenCalled();
+    expect(clearAll).toHaveBeenCalled();
     expect(setCurrentExperiment).not.toHaveBeenCalled();
   });
 
@@ -127,35 +164,54 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
   it('Già Montato click → setBuildMode("complete") + api.setBuildMode("complete") (iter 48 wire-up)', () => {
     const setBuildMode = vi.fn();
     const apiSetBuildMode = vi.fn();
+    const setBuildStepIndex = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment: vi.fn(),
       setBuildMode,
-      getApi: () => ({ setBuildMode: apiSetBuildMode, unlim: { setDiagnoseMode: vi.fn() } }),
+      getApi: () => ({ setBuildMode: apiSetBuildMode, setBuildStepIndex, unlim: { setDiagnoseMode: vi.fn() } }),
     });
     handler('gia-montato');
     expect(setBuildMode).toHaveBeenCalledWith('complete');
     expect(apiSetBuildMode).toHaveBeenCalledWith('complete');
+    expect(setBuildStepIndex).toHaveBeenCalledWith(Number.POSITIVE_INFINITY);
   });
 
-  it('Passo Passo click → setBuildMode("guided") + api.setBuildMode("guided") + UNLIM guida tab (iter 48 wire-up)', () => {
+  it('Già Montato click → opens UNLIM chat while diagnose backend stays enabled', () => {
+    const setUnlimOpen = vi.fn();
+    const setUnlimTab = vi.fn();
+    const handler = makeHandler({
+      setModalita: vi.fn(),
+      setCurrentExperiment: vi.fn(),
+      setUnlimOpen,
+      setUnlimTab,
+      getApi: () => ({ setBuildMode: vi.fn(), unlim: { setDiagnoseMode: vi.fn() } }),
+    });
+    handler('gia-montato');
+    expect(setUnlimOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimTab).toHaveBeenCalledWith('chat');
+  });
+
+  it('Passo Passo click → setBuildMode("guided") + api.setBuildMode("guided") + UNLIM chat tab (iter 49 single Passo Passo)', () => {
     const setBuildMode = vi.fn();
     const apiSetBuildMode = vi.fn();
-    const setGalileoOpen = vi.fn();
+    const setBuildStepIndex = vi.fn();
+    const setUnlimOpen = vi.fn();
     const setUnlimTab = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment: vi.fn(),
       setBuildMode,
-      setGalileoOpen,
+      setUnlimOpen,
       setUnlimTab,
-      getApi: () => ({ setBuildMode: apiSetBuildMode }),
+      getApi: () => ({ setBuildMode: apiSetBuildMode, setBuildStepIndex }),
     });
     handler('passo-passo');
     expect(setBuildMode).toHaveBeenCalledWith('guided');
     expect(apiSetBuildMode).toHaveBeenCalledWith('guided');
-    expect(setGalileoOpen).toHaveBeenCalledWith(true);
-    expect(setUnlimTab).toHaveBeenCalledWith('guida');
+    expect(setBuildStepIndex).toHaveBeenCalledWith(0);
+    expect(setUnlimOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimTab).toHaveBeenCalledWith('chat');
   });
 
   it('Passo Passo click with no __ELAB_API → setBuildMode("guided") still called + graceful no-op for api.setBuildMode (defensive)', () => {

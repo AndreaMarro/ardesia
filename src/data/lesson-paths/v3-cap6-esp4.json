@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap6-esp4",
   "volume": 3,
   "chapter": 6,
-  "title": "Due LED: effetto polizia",
+  "title": "Esperimento 4: due LED, effetto polizia",
   "chapter_title": "I pin digitali",
   "difficulty": 2,
   "duration_minutes": 35,
@@ -69,12 +69,12 @@
     "note": "Primo esperimento con DUE pin OUTPUT: enfatizzare che si possono controllare più componenti contemporaneamente"
   },
   "prerequisites": [
-    "v3-cap6-esp3"
+    "v3-cap6-morse"
   ],
   "next_experiment": {
-    "id": "v3-cap6-esp5",
-    "title": "Pulsante con INPUT_PULLUP",
-    "preview": "Nella prossima lezione aggiungeremo un pulsante e useremo INPUT_PULLUP per leggerlo."
+    "id": "v3-cap6-semaforo",
+    "title": "Esperimento 5: il semaforo",
+    "preview": "Nella prossima lezione costruirete un semaforo vero: tre LED colorati che si accendono in sequenza, come quelli della strada."
   },
   "phases": [
     {
@@ -82,7 +82,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, finora abbiamo sempre acceso un solo LED alla volta. Oggi ne usiamo DUE che si alternano come le luci della polizia! Uno rosso, uno blu — quando uno è acceso l'altro è spento.",
-      "teacher_tip": "Mostrare un video di 5 secondi di auto della polizia con luci lampeggianti. L'idea di 'alternanza' è immediata per i ragazzi.",
+      "teacher_tip": "Mostrate un video di 5 secondi di auto della polizia con luci lampeggianti. L'idea di 'alternanza' è immediata per i ragazzi.",
       "class_hook": "Come funzionano le luci dei mezzi di emergenza? Non si accendono tutte insieme, si alternano in sequenza precisa.",
       "action_tags": [],
       "auto_action": null
@@ -102,7 +102,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 7,
-      "teacher_message": "Se cambiamo delay(200) con delay(500), le luci lampeggiano più veloci o più lente? E se mettiamo delay(50)?",
+      "teacher_message": "Ragazzi, Se cambiamo delay(200) con delay(500), le luci lampeggiano più veloci o più lente? E se mettiamo delay(50)?",
       "teacher_tip": "Regolate semplice: numero grande = più lento, numero piccolo = più veloce. Far indovinare prima di testare.",
       "provocative_question": "Cosa succede se togliamo del tutto il delay? Arduino è così veloce che i LED sembrerebbero tutti accesi contemporaneamente!",
       "action_tags": [],
@@ -112,8 +112,8 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 8,
-      "teacher_message": "Premete Play! I due LED si alternano: rosso acceso blu spento, poi rosso spento blu acceso. Modificate il valore del delay nel codice e osservate come cambia la velocità del lampeggio.",
-      "teacher_tip": "Far provare valori molto piccoli (50ms) e molto grandi (1000ms). Chiedere: a quanti ms non si vede più la differenza tra i due stati?",
+      "teacher_message": "Ragazzi, Premete Play! I due LED si alternano: rosso acceso blu spento, poi rosso spento blu acceso. Modificate il valore del delay nel codice e osservate come cambia la velocità del lampeggio.",
+      "teacher_tip": "Far provare valori molto piccoli (50ms) e molto grandi (1000ms). Chiedete: a quanti ms non si vede più la differenza tra i due stati?",
       "action_tags": [
         "[AZIONE:play]"
       ],
@@ -143,7 +143,7 @@
       "delay timing",
       "loop infinito"
     ],
-    "next_suggested": "v3-cap6-esp5",
+    "next_suggested": "v3-cap6-semaforo",
     "resume_message": "L'ultima volta avete creato l'effetto polizia con due LED alternati. Oggi aggiungiamo un pulsante da leggere come INPUT."
   }
 }

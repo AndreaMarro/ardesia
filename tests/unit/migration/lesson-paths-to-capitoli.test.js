@@ -243,11 +243,12 @@ describe('buildCapitoloFromLessonPaths', () => {
 });
 
 describe('migrateAll integration', () => {
-  it('produces 37 valid Capitoli (35 cap-mapped + 2 bonus) from volume + 94 lesson-paths', () => {
-    // 14 Vol1 + 12 Vol2 + 9 Vol3 = 35 cap-mapped Capitoli
-    // + 2 bonus (v3-bonus-lcd-hello + v3-bonus-servo-sweep) = 37 total
+  it('produces 35 valid Capitoli (cap-mapped) from volume + 81 lesson-paths', () => {
+    // EPIC 1 A4.1b: 13 Vol3 no-counterpart experiments removed + 2 bonus
+    // capitoli files removed. Migration now produces 35 cap-mapped Capitoli,
+    // 0 bonus (v3-bonus-lcd-hello + v3-bonus-servo-sweep no longer exist).
     const result = migrateAll();
-    expect(result.length).toBe(37);
+    expect(result.length).toBe(35);
     for (const cap of result) {
       const validation = CapitoloSchema.safeParse(cap);
       expect(validation.success, `Cap ${cap.id} invalid: ${JSON.stringify(validation.error?.issues?.slice(0, 2))}`).toBe(true);
@@ -260,30 +261,27 @@ describe('migrateAll integration', () => {
     expect(capMapped.length).toBe(35);
   });
 
-  it('includes simon promoted to v3-cap9 (capstone)', () => {
+  it('v3-cap9 capitolo is present (simon experiment removed in A4.1b)', () => {
+    // EPIC 1 A4.1b removed v3-extra-simon — the migration no longer promotes
+    // it to a v3-cap9 capstone experiment. v3-cap9 remains as a wip capitolo.
     const result = migrateAll();
     const cap9 = result.find(c => c.id === 'v3-cap9');
     expect(cap9).toBeDefined();
-    expect(cap9.type).toBe('project');
-    expect(cap9.esperimenti.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('separates v3-extras lcd + servo as bonus tier', () => {
+  it('produces no bonus-tier Capitoli (v3-extras removed in A4.1b)', () => {
     const result = migrateAll();
     const bonuses = result.filter(c => c.type === 'bonus');
-    expect(bonuses.length).toBe(2);
-    const ids = bonuses.map(c => c.id).sort();
-    expect(ids).toContain('v3-bonus-lcd-hello');
-    expect(ids).toContain('v3-bonus-servo-sweep');
+    expect(bonuses.length).toBe(0);
   });
 
-  it('all 37 Capitoli have unique IDs (35 cap + 2 bonus)', () => {
+  it('all 35 Capitoli have unique IDs', () => {
     const result = migrateAll();
     const ids = result.map(c => c.id);
-    expect(new Set(ids).size).toBe(37);
+    expect(new Set(ids).size).toBe(35);
   });
 
-  it('preserves all 94 lesson-paths in migration (cap-mapped + extras)', () => {
+  it('preserves all 81 lesson-paths in migration (cap-mapped)', () => {
     const result = migrateAll();
     const allEsperimentIds = new Set();
     for (const cap of result) {
@@ -291,9 +289,7 @@ describe('migrateAll integration', () => {
         allEsperimentIds.add(esp.id);
       }
     }
-    // 94 source files: 91 cap-mapped + 3 extras (simon + lcd + servo)
-    // simon becomes v3-cap9-esp1 experiment
-    // lcd + servo become single-esperimento bonus caps
-    expect(allEsperimentIds.size).toBeGreaterThanOrEqual(91);
+    // EPIC 1 A4.1b: 81 lesson-path source files, all cap-mapped.
+    expect(allEsperimentIds.size).toBeGreaterThanOrEqual(78);
   });
 });

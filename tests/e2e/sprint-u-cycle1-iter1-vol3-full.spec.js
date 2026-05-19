@@ -1,7 +1,7 @@
 /**
  * Sprint U Cycle 1 Iter 1 — Vol3 FULL Spec (LiveTest-2)
  *
- * All 29 vol3 experiments (27 base + 2 NEW iter37: v3-cap7-mini + v3-cap8-serial).
+ * All 16 vol3 experiments (EPIC 1 A4.1b — 13 Vol3 no-counterpart experiments removed).
  * Intended for Cycle 2+ comprehensive audits — each experiment fully verified.
  *
  * Vol3 simulationMode: "avr" — Arduino Nano R4, AVR emulation.
@@ -27,7 +27,7 @@ import { test, expect } from '@playwright/test';
 const PROD_URL = 'https://www.elabtutor.school';
 const SCREENSHOT_DIR = 'docs/audits/sprint-u-screenshots/full';
 
-// ── All 29 vol3 experiments ────────────────────────────────────────────────
+// ── All 16 vol3 experiments ────────────────────────────────────────────────
 // Ordered as per experiments-vol3.js (cap5 → cap6 → cap7 → cap8 → extra → new)
 const ALL_VOL3_EXPERIMENTS = [
   // ── Capitolo 5: Il nostro primo programma ─────────────────────────────
@@ -79,15 +79,6 @@ const ALL_VOL3_EXPERIMENTS = [
     isNew: false,
   },
   {
-    id: 'v3-cap6-esp3',
-    title: 'Cap. 6 Esp. 3 - SOS Morse (duplicate slot)',
-    chapter: 'Capitolo 6',
-    difficulty: 1,
-    expectedComponents: 3,
-    notes: 'Morse variant in esp3 slot',
-    isNew: false,
-  },
-  {
     id: 'v3-cap6-esp4',
     title: 'Cap. 6 Esp. 4 - Due LED: effetto polizia',
     chapter: 'Capitolo 6',
@@ -103,33 +94,6 @@ const ALL_VOL3_EXPERIMENTS = [
     difficulty: 2,
     expectedComponents: 5, // bb + nano + 3 LEDs
     notes: 'Traffic light — 3 LEDs red/yellow/green',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap6-esp5',
-    title: 'Cap. 7 Ese. 7.3 - Pulsante con INPUT_PULLUP',
-    chapter: 'Capitolo 6',
-    difficulty: 2,
-    expectedComponents: 4, // bb + nano + LED + button
-    notes: 'Button INPUT_PULLUP (cross-chapter reference)',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap6-esp6',
-    title: 'Cap. 7 Mini-progetto - Due LED, un pulsante',
-    chapter: 'Capitolo 6',
-    difficulty: 2,
-    expectedComponents: 5,
-    notes: 'Mini project: 2 LEDs + button',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap6-esp7',
-    title: 'Cap. 6 Esp. 7 - Debounce del pulsante',
-    chapter: 'Capitolo 6',
-    difficulty: 2,
-    expectedComponents: 4,
-    notes: 'Button debounce technique',
     isNew: false,
   },
 
@@ -162,24 +126,6 @@ const ALL_VOL3_EXPERIMENTS = [
     isNew: false,
   },
   {
-    id: 'v3-cap7-esp4',
-    title: 'Cap. 7 Esp. 4 - analogWrite (PWM fade)',
-    chapter: 'Capitolo 7',
-    difficulty: 2,
-    expectedComponents: 3, // bb + nano + LED
-    notes: 'PWM analogWrite fade effect',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap7-esp5',
-    title: 'Cap. 7 Esp. 5 - PWM con valori manuali',
-    chapter: 'Capitolo 7',
-    difficulty: 1,
-    expectedComponents: 3,
-    notes: 'Manual PWM values via Serial',
-    isNew: false,
-  },
-  {
     id: 'v3-cap7-esp6',
     title: 'Cap. 7 Esp. 6 - Fade up/down con for',
     chapter: 'Capitolo 7',
@@ -187,33 +133,6 @@ const ALL_VOL3_EXPERIMENTS = [
     expectedComponents: 3,
     notes: 'Fade LED up/down using for loop',
     isNew: false,
-  },
-  {
-    id: 'v3-cap7-esp7',
-    title: 'Cap. 7 Esp. 7 - Trimmer controlla luminosita',
-    chapter: 'Capitolo 7',
-    difficulty: 2,
-    expectedComponents: 4, // bb + nano + pot + LED
-    notes: 'Pot controls LED brightness via analogWrite',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap7-esp8',
-    title: 'Cap. 7 Esp. 8 - DAC reale (10 bit)',
-    chapter: 'Capitolo 7',
-    difficulty: 3,
-    expectedComponents: 3,
-    notes: 'True DAC output — Arduino R4 specific',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap7-mini',
-    title: 'Cap. 7 Mini - Potenziometro ADC + LED PWM',
-    chapter: 'Capitolo 7',
-    difficulty: 2,
-    expectedComponents: 2,
-    notes: 'NEW iter37 — mini project: read A0, light LED above 512',
-    isNew: true,
   },
 
   // ── Capitolo 8: Comunicazione Seriale ────────────────────────────────
@@ -242,62 +161,6 @@ const ALL_VOL3_EXPERIMENTS = [
     difficulty: 2,
     expectedComponents: 3, // bb + nano + pot
     notes: 'Read pot value, print to Serial Monitor',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap8-esp4',
-    title: 'Cap. 8 Esp. 4 - Serial Plotter con 2 pot',
-    chapter: 'Capitolo 8',
-    difficulty: 2,
-    expectedComponents: 4, // bb + nano + 2 pots
-    notes: 'Two pots, Serial Plotter mode',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap8-esp5',
-    title: 'Cap. 8 Esp. 5 - Pot + 3 LED + Serial',
-    chapter: 'Capitolo 8',
-    difficulty: 3,
-    expectedComponents: 6, // bb + nano + pot + 3 LEDs
-    notes: 'Pot controls LED range, Serial output',
-    isNew: false,
-  },
-  {
-    id: 'v3-cap8-serial',
-    title: 'Cap. 8 Serial - Comunicazione seriale: primo messaggio',
-    chapter: 'Capitolo 8',
-    difficulty: 1,
-    expectedComponents: 1, // nano only
-    notes: 'NEW iter37 — Serial.begin + println hello',
-    isNew: true,
-  },
-
-  // ── Extra (capstone) ──────────────────────────────────────────────────
-  {
-    id: 'v3-extra-lcd-hello',
-    title: 'Extra - LCD Hello World',
-    chapter: 'Extra',
-    difficulty: 2,
-    expectedComponents: 3, // bb + nano + LCD
-    notes: 'LCD I2C display hello world',
-    isNew: false,
-  },
-  {
-    id: 'v3-extra-servo-sweep',
-    title: 'Extra - Servo Sweep',
-    chapter: 'Extra',
-    difficulty: 2,
-    expectedComponents: 3, // bb + nano + servo
-    notes: 'Servo motor sweep 0-180 degrees',
-    isNew: false,
-  },
-  {
-    id: 'v3-extra-simon',
-    title: 'Simon Says — Gioco di Memoria',
-    chapter: 'Extra',
-    difficulty: 3,
-    expectedComponents: 7, // bb + nano + 4 LEDs + buzzer + buttons
-    notes: 'Capstone Simon game — Scratch steps + full circuit',
     isNew: false,
   },
 ];
@@ -388,7 +251,7 @@ async function getPageState(page) {
 
 // ── Full Test Suite ────────────────────────────────────────────────────────
 
-test.describe('Vol3 Full Audit — All 29 Experiments (Sprint U Cycle 2+)', () => {
+test.describe('Vol3 Full Audit — All 16 Experiments (Sprint U Cycle 2+)', () => {
   test.describe.configure({ mode: 'serial' });
   test.setTimeout(60_000);
 
@@ -474,65 +337,5 @@ test.describe('Vol3 Chapter Summary — Cap5 (2 experiments)', () => {
     }
 
     await page.screenshot({ path: `${SCREENSHOT_DIR}/cap5-summary.png` }).catch(() => {});
-  });
-});
-
-test.describe('Vol3 Chapter Summary — NEW iter37 experiments', () => {
-  test.setTimeout(30_000);
-
-  test('v3-cap7-mini mounts without error', async ({ page }) => {
-    const errors = [];
-    page.on('console', msg => {
-      if (msg.type() === 'error') {
-        const t = msg.text();
-        if (!isInfraError(t)) errors.push(t);
-      }
-    });
-    page.on('pageerror', e => errors.push('[pageerror] ' + e.message));
-
-    seedLicense(page);
-    await page.goto(PROD_URL + '/#tutor');
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
-    await page.waitForTimeout(2_000);
-
-    await page.evaluate(() => window.__ELAB_API?.mountExperiment('v3-cap7-mini'));
-    await page.waitForTimeout(3_000);
-
-    const svgCount = await page.locator('svg').count();
-    console.log('[cap7-mini] SVG count:', svgCount);
-    console.log('[cap7-mini] Errors:', errors.length);
-
-    await page.screenshot({ path: `${SCREENSHOT_DIR}/v3-cap7-mini-new.png` }).catch(() => {});
-
-    expect(svgCount, 'v3-cap7-mini: no SVG rendered').toBeGreaterThan(0);
-    expect(errors.length, `v3-cap7-mini errors: ${errors.join(' | ')}`).toBe(0);
-  });
-
-  test('v3-cap8-serial mounts without error', async ({ page }) => {
-    const errors = [];
-    page.on('console', msg => {
-      if (msg.type() === 'error') {
-        const t = msg.text();
-        if (!isInfraError(t)) errors.push(t);
-      }
-    });
-    page.on('pageerror', e => errors.push('[pageerror] ' + e.message));
-
-    seedLicense(page);
-    await page.goto(PROD_URL + '/#tutor');
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
-    await page.waitForTimeout(2_000);
-
-    await page.evaluate(() => window.__ELAB_API?.mountExperiment('v3-cap8-serial'));
-    await page.waitForTimeout(3_000);
-
-    const svgCount = await page.locator('svg').count();
-    console.log('[cap8-serial] SVG count:', svgCount);
-    console.log('[cap8-serial] Errors:', errors.length);
-
-    await page.screenshot({ path: `${SCREENSHOT_DIR}/v3-cap8-serial-new.png` }).catch(() => {});
-
-    expect(svgCount, 'v3-cap8-serial: no SVG rendered').toBeGreaterThan(0);
-    expect(errors.length, `v3-cap8-serial errors: ${errors.join(' | ')}`).toBe(0);
   });
 });

@@ -1,0 +1,23 @@
+GOAL: post-codemod verify lesson-path $LESSON_PATH_ID teacher_tip transform PLURALE imperativo CORRECT — Andrea ratify Q-CODEMOD-1=a (PLURALE imperativo uniforme) + Q-CODEMOD-3=a (per-file Codex C-V). Q-CODEMOD-2 teacher_messages DISMISSED iter 61 OUT-OF-SCOPE.
+
+CONTEXT: ELAB Tutor B1 P0 PRIMARIO iter 61. scripts/sprint-u/linguaggio-codemod.mjs transforms .phases[].teacher_tip ONLY. Preserves: teacher_messages, objective, chapter_title, unlimPrompt. Preserves student speech inside single quotes '...'. Preserves Italian apostrophe elisions (L', dell', un', etc.).
+
+CONSTRAINTS:
+- Do NOT read any SKILL.md or CLAUDE.md files.
+- Cite file:line for every finding.
+- Run EXACTLY these commands (no broader scans, ERE regex):
+  1) git diff --stat src/data/lesson-paths/$LESSON_PATH_ID.json
+  2) git diff src/data/lesson-paths/$LESSON_PATH_ID.json | head -80
+  3) python3 -c "import json; d=json.load(open('src/data/lesson-paths/$LESSON_PATH_ID.json')); print('phases_count:', len(d.get('phases',[]))); print('teacher_tip_count:', sum(1 for p in d.get('phases',[]) if isinstance(p.get('teacher_tip'),str)))"
+  4) grep -cE '\b(Premi|Fai|Clicca|Monta|Collega|Prendi|Prova|Inserisci|Apri|Chiudi|Cerca|Vedi|Usa|Chiedi|Mostra|Evidenzia|Lascia|Spiega|Dai|Anticipa|Stimola|Celebra|Guida|Porta|Inizia|Aiuta|Sottolinea|Rafforza)\b' src/data/lesson-paths/$LESSON_PATH_ID.json
+  5) grep -cE '\b(Premete|Fate|Cliccate|Montate|Collegate|Prendete|Provate|Inserite|Aprite|Chiudete|Cercate|Vedete|Usate|Chiedete|Mostrate|Evidenziate|Lasciate|Spiegate|Date|Anticipate|Stimolate|Celebrate|Guidate|Portate|Iniziate|Aiutate|Sottolineate|Rafforzate)\b' src/data/lesson-paths/$LESSON_PATH_ID.json
+- Cap output 50 lines.
+
+DONE: 5-section verdict structure:
+1) Transform applied — git diff stat lines added/removed + sample 2-3 changed teacher_tip values. 3-4 lines.
+2) Scope strict respected — teacher_messages + objective + chapter_title + unlimPrompt NOT in diff. Cite git diff regions. 2-3 lines.
+3) Student speech preserved — sample at least 1 '...' quoted region in diff: must show quote CONTENT unchanged (only surrounding verbo if any). 2-3 lines.
+4) Singolare violation count drop — count4 (singolare grep) vs count5 (plurale grep). Singolare should DECREASE, plurale should INCREASE. Cite numbers. 2-3 lines.
+5) JSON parse valid + structural integrity — phases_count + teacher_tip_count from cmd 3 confirms structure intact. 2-3 lines.
+
+Final verdict: CONFIRM (transform correct + scope respected + speech preserved + violation drop + JSON valid) OR REFUTE (cite which check failed).

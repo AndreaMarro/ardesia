@@ -238,7 +238,12 @@ export function checkRateLimitInMemory(sessionId: string): boolean {
 
 // ── Input Validation ──
 
-const MAX_MESSAGE_LENGTH = 2000;
+// Iter 41 Sprint U Cycle 2 2026-05-12 PM — Andrea live test root cause: frontend
+// wraps user message in REGOLA + GERARCHIA CONTESTO + full circuit JSON state
+// (>5000 chars typical). Old 2000 cap rejected ALL real frontend chats with HTTP
+// 400 "Message too long" → surfaced as fake timeout "ci sta mettendo un po'".
+// Raised to 16000 (well below Gemini 1M + Mistral 128K context windows).
+const MAX_MESSAGE_LENGTH = 16000;
 const MAX_IMAGE_SIZE = 5_000_000; // 5MB base64
 const MAX_IMAGES = 3;
 

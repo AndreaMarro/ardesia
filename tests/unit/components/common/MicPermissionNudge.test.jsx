@@ -69,4 +69,13 @@ describe('MicPermissionNudge — TTL 24h dismiss (Sprint V iter 1 A13.2)', () =>
       expect(screen.getByText(/Ragazzi/i)).toBeTruthy();
     });
   });
+
+  it('banner shell lets lavagna controls underneath receive pointer events', async () => {
+    render(<MicPermissionNudge />);
+
+    const banner = await screen.findByTestId('mic-permission-nudge');
+    expect(banner).toHaveStyle({ pointerEvents: 'none' });
+    expect(screen.getByTestId('mic-permission-nudge-cta')).toHaveStyle({ pointerEvents: 'auto' });
+    expect(screen.getByTestId('mic-permission-nudge-dismiss')).toHaveStyle({ pointerEvents: 'auto' });
+  });
 });

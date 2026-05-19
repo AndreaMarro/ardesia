@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Map experimentId → photo filename relative to /brand/foto-esperimenti/
  * Photos sourced from TRES JOLIE folders ("/ELAB - TRES JOLIE/FOTO/N FOTO VOL N/").

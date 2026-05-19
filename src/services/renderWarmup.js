@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * renderWarmup.js — T1-003 Render cold start warmup scheduler (client-side).
  * Pings RENDER_HEALTH_URL every DEFAULT_INTERVAL_MS to keep the Render

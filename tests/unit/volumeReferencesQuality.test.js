@@ -1,7 +1,7 @@
 /**
  * volumeReferencesQuality.test.js — Qualità contenuti VOLUME_REFERENCES
  *
- * Verifica che tutti i 92 esperimenti abbiano campi di qualità completi:
+ * Verifica che tutti gli 81 esperimenti abbiano campi di qualità completi:
  * - bookQuote: citazione/frase del libro
  * - bookContext: contesto narrativo dell'esperimento
  * - chapter: titolo del capitolo
@@ -35,13 +35,13 @@ describe('Volume References — Distribuzione per volume', () => {
     expect(v2.length).toBe(27);
   });
 
-  it('Vol. 3 ha esattamente 27 esperimenti', () => {
+  it('Vol. 3 ha esattamente 14 esperimenti', () => {
     const v3 = ALL_REFS.filter(([, r]) => r.volume === 3);
-    expect(v3.length).toBe(29);
+    expect(v3.length).toBe(14);
   });
 
-  it('totale esperimenti è 92', () => {
-    expect(ALL_IDS.length).toBe(94);
+  it('totale esperimenti è 79', () => {
+    expect(ALL_IDS.length).toBe(79);
   });
 
   it('tutti gli ID iniziano con v1-, v2- o v3-', () => {
@@ -85,7 +85,7 @@ describe('Volume References — bookQuote', () => {
 
   it('almeno il 30% degli esperimenti ha bookQuote (coverage check)', () => {
     const withQuote = ALL_REFS.filter(([, r]) => typeof r.bookQuote === 'string' && r.bookQuote.trim().length > 0);
-    expect(withQuote.length).toBeGreaterThanOrEqual(Math.floor(92 * 0.3));
+    expect(withQuote.length).toBeGreaterThanOrEqual(Math.floor(79 * 0.3));
   });
 
   it('primo esperimento v1-cap6-esp1 ha bookQuote del libro', () => {

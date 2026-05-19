@@ -28,7 +28,7 @@ describe('welcome-messages', () => {
 
     it('has Vol3 messages (v3-*)', () => {
       const vol3 = Object.keys(WELCOME_MESSAGES).filter(k => k.startsWith('v3-'));
-      expect(vol3.length).toBeGreaterThanOrEqual(4);
+      expect(vol3.length).toBeGreaterThanOrEqual(2);
     });
 
     it('all messages are non-empty strings', () => {

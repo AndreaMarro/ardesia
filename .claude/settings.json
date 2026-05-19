@@ -12,20 +12,32 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "CMD=\"$TOOL_INPUT\"; case \"$CMD\" in *'rm -rf'*|*'git push --force'*|*'git push -f'*|*'git reset --hard'*|*'git clean -fd'*|*'DROP TABLE'*|*'npx vercel --prod'*) echo \"DENY: Comando pericoloso bloccato: $CMD\" >&2; exit 2;; esac; exit 0"
-          }
-        ]
-      },
-      {
         "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "FILE=\"$TOOL_INPUT_PATH\"; case \"$FILE\" in */CircuitSolver.js|*/AVRBridge.js|*/avrWorker.js|*/SimulationManager.js|*/pinComponentMap.js|*/orchestrator.py) echo 'DENY: File protetto — core engine + orchestrator. Solo Andrea puo modificarlo.' >&2; exit 2;; */package.json) echo 'ASK: Modifica a package.json — verificare che non aggiunga dipendenze non necessarie.' >&2; exit 0;; *.env*|*credentials*|*secret*) echo 'DENY: File sensibile bloccato.' >&2; exit 2;; esac; exit 0"
+            "command": "FILE=$(cat | jq -r '.tool_input.file_path // empty' 2>/dev/null); case \"$FILE\" in */CircuitSolver.js|*/AVRBridge.js|*/avrWorker.js|*/SimulationManager.js|*/pinComponentMap.js|*/orchestrator.py) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"BLOCCATO: file protetto core engine + orchestrator. Solo Andrea puo modificarlo.\"}}';; *.env*|*credentials*|*secret*) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"BLOCCATO: file sensibile.\"}}';; */package.json) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"ASK: modifica package.json — verificare che non aggiunga dipendenze non necessarie.\"}}';; esac",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/agents/guard-forbidden-avr-patterns.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/agents/guard-deploy-unlim-chat.sh\"",
+            "timeout": 5
           }
         ]
       }

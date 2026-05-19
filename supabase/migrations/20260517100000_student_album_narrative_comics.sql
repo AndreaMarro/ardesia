@@ -1,0 +1,185 @@
+-- Student album + narrative comics metadata.
+-- Runtime reads pre-generated comic assets; generation stays in admin/editorial pipeline.
+-- iter 73 fix: explicit uuid-ossp extension (prod missing iter 72 push attempt FAIL gen_random_uuid()).
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+ALTER TABLE student_progress
+  ADD COLUMN IF NOT EXISTS volume INTEGER,
+  ADD COLUMN IF NOT EXISTS chapter INTEGER,
+  ADD COLUMN IF NOT EXISTS narrative_map_id TEXT,
+  ADD COLUMN IF NOT EXISTS story_arc TEXT,
+  ADD COLUMN IF NOT EXISTS comic_asset_url TEXT,
+  ADD COLUMN IF NOT EXISTS album_entry_id UUID,
+  ADD COLUMN IF NOT EXISTS teacher_shared BOOLEAN NOT NULL DEFAULT false,
+  ADD COLUMN IF NOT EXISTS teacher_shared_at TIMESTAMPTZ;
+
+CREATE TABLE IF NOT EXISTS badges_catalog (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  icon TEXT NOT NULL DEFAULT 'star',
+  rule JSONB NOT NULL DEFAULT '{}'::JSONB,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS student_album (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  student_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  experiment_id TEXT NOT NULL,
+  narrative_map_id TEXT NOT NULL,
+  volume INTEGER NOT NULL,
+  chapter INTEGER NOT NULL,
+  chapter_title TEXT,
+  story_arc TEXT,
+  timeline_position INTEGER,
+  status TEXT NOT NULL DEFAULT 'unlocked'
+    CHECK (status IN ('locked', 'unlocked', 'in_progress', 'completed')),
+  comic_asset_url TEXT,
+  comic_metadata JSONB NOT NULL DEFAULT '{}'::JSONB,
+  session_screenshot_url TEXT,
+  session_context JSONB NOT NULL DEFAULT '{}'::JSONB,
+  session_messages JSONB NOT NULL DEFAULT '[]'::JSONB,
+  unlim_memory JSONB NOT NULL DEFAULT '{}'::JSONB,
+  teacher_shared BOOLEAN NOT NULL DEFAULT false,
+  teacher_shared_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(student_id, experiment_id)
+);
+
+CREATE TABLE IF NOT EXISTS comic_assets (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  experiment_id TEXT NOT NULL,
+  narrative_map_id TEXT NOT NULL,
+  storage_provider TEXT NOT NULL DEFAULT 'supabase-storage'
+    CHECK (storage_provider IN ('supabase-storage', 'vercel-blob', 's3-like')),
+  generation_provider TEXT NOT NULL DEFAULT 'leonardo-ai',
+  asset_url TEXT NOT NULL,
+  metadata JSONB NOT NULL DEFAULT '{}'::JSONB,
+  runtime_policy TEXT NOT NULL DEFAULT 'read-pre-generated-asset-only',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(experiment_id, asset_url)
+);
+
+CREATE TABLE IF NOT EXISTS student_badges (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  student_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  badge_id TEXT NOT NULL REFERENCES badges_catalog(id) ON DELETE CASCADE,
+  source TEXT NOT NULL DEFAULT 'server-trigger',
+  awarded_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  metadata JSONB NOT NULL DEFAULT '{}'::JSONB,
+  UNIQUE(student_id, badge_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_student_album_student ON student_album(student_id);
+CREATE INDEX IF NOT EXISTS idx_student_album_experiment ON student_album(experiment_id);
+CREATE INDEX IF NOT EXISTS idx_student_album_narrative ON student_album(narrative_map_id);
+CREATE INDEX IF NOT EXISTS idx_student_album_teacher_shared ON student_album(teacher_shared) WHERE teacher_shared = true;
+CREATE INDEX IF NOT EXISTS idx_comic_assets_experiment ON comic_assets(experiment_id);
+CREATE INDEX IF NOT EXISTS idx_student_badges_student ON student_badges(student_id);
+
+ALTER TABLE badges_catalog ENABLE ROW LEVEL SECURITY;
+ALTER TABLE student_album ENABLE ROW LEVEL SECURITY;
+ALTER TABLE comic_assets ENABLE ROW LEVEL SECURITY;
+ALTER TABLE student_badges ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS badges_catalog_read ON badges_catalog;
+CREATE POLICY badges_catalog_read ON badges_catalog
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS comic_assets_read ON comic_assets;
+CREATE POLICY comic_assets_read ON comic_assets
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS student_album_owner_select ON student_album;
+CREATE POLICY student_album_owner_select ON student_album
+  FOR SELECT USING (student_id = auth.uid());
+DROP POLICY IF EXISTS student_album_owner_insert ON student_album;
+CREATE POLICY student_album_owner_insert ON student_album
+  FOR INSERT WITH CHECK (student_id = auth.uid());
+DROP POLICY IF EXISTS student_album_owner_update ON student_album;
+CREATE POLICY student_album_owner_update ON student_album
+  FOR UPDATE USING (student_id = auth.uid());
+
+DROP POLICY IF EXISTS student_album_teacher_shared_select ON student_album;
+CREATE POLICY student_album_teacher_shared_select ON student_album
+  FOR SELECT USING (
+    teacher_shared = true
+    AND student_id IN (
+      SELECT cs.student_id FROM class_students cs
+      JOIN classes c ON cs.class_id = c.id
+      WHERE c.teacher_id = auth.uid()
+    )
+  );
+
+DROP POLICY IF EXISTS student_badges_owner_select ON student_badges;
+CREATE POLICY student_badges_owner_select ON student_badges
+  FOR SELECT USING (student_id = auth.uid());
+
+DROP POLICY IF EXISTS student_badges_teacher_select ON student_badges;
+CREATE POLICY student_badges_teacher_select ON student_badges
+  FOR SELECT USING (
+    student_id IN (
+      SELECT cs.student_id FROM class_students cs
+      JOIN classes c ON cs.class_id = c.id
+      WHERE c.teacher_id = auth.uid()
+    )
+  );
+
+INSERT INTO badges_catalog (id, name, description, icon, rule)
+VALUES
+  ('first-experiment', 'Primo Passo', 'Completa il primo esperimento', 'star', '{"completed_experiments":1}'::JSONB),
+  ('exp-5', 'Esploratore', 'Completa 5 esperimenti', 'flask', '{"completed_experiments":5}'::JSONB),
+  ('exp-10', 'Scienziato', 'Completa 10 esperimenti', 'medal', '{"completed_experiments":10}'::JSONB),
+  ('exp-25', 'Inventore', 'Completa 25 esperimenti', 'trophy', '{"completed_experiments":25}'::JSONB),
+  ('exp-50', 'Maestro', 'Completa 50 esperimenti', 'crown', '{"completed_experiments":50}'::JSONB),
+  ('volume-1', 'Custode delle basi', 'Completa almeno un esperimento del Volume 1', 'book', '{"volume":1}'::JSONB),
+  ('volume-2', 'Costruttore logico', 'Completa almeno un esperimento del Volume 2', 'circuit-board', '{"volume":2}'::JSONB),
+  ('volume-3', 'Maker Arduino', 'Completa almeno un esperimento del Volume 3', 'cpu', '{"volume":3}'::JSONB)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  description = EXCLUDED.description,
+  icon = EXCLUDED.icon,
+  rule = EXCLUDED.rule,
+  updated_at = now();
+
+CREATE OR REPLACE FUNCTION elab_award_progress_badges()
+RETURNS TRIGGER AS $$
+DECLARE
+  completed_count INTEGER;
+BEGIN
+  IF NEW.completed IS DISTINCT FROM true THEN
+    RETURN NEW;
+  END IF;
+
+  SELECT COUNT(*) INTO completed_count
+  FROM student_progress
+  WHERE student_id = NEW.student_id
+    AND completed = true;
+
+  INSERT INTO student_badges (student_id, badge_id, metadata)
+  SELECT NEW.student_id, b.id, jsonb_build_object('completed_experiments', completed_count, 'source_experiment_id', NEW.experiment_id)
+  FROM badges_catalog b
+  WHERE COALESCE((b.rule->>'completed_experiments')::INTEGER, 2147483647) <= completed_count
+  ON CONFLICT (student_id, badge_id) DO NOTHING;
+
+  IF NEW.volume IS NOT NULL THEN
+    INSERT INTO student_badges (student_id, badge_id, metadata)
+    SELECT NEW.student_id, b.id, jsonb_build_object('volume', NEW.volume, 'source_experiment_id', NEW.experiment_id)
+    FROM badges_catalog b
+    WHERE (b.rule->>'volume')::INTEGER = NEW.volume
+    ON CONFLICT (student_id, badge_id) DO NOTHING;
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS trg_award_progress_badges ON student_progress;
+CREATE TRIGGER trg_award_progress_badges
+AFTER INSERT OR UPDATE OF completed, volume ON student_progress
+FOR EACH ROW
+EXECUTE FUNCTION elab_award_progress_badges();

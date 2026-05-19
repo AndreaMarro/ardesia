@@ -1,8 +1,18 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import * as Blockly from 'blockly';
 import { arduinoGenerator, generateArduinoCode } from './scratchGenerator';
 import logger from '../../../utils/logger';
 import './scratchBlocks';
+import ScratchOnboarding from './ScratchOnboarding';
+import ScratchToolbar from './ScratchToolbar';
+import ScratchErrorOverlay from './ScratchErrorOverlay';
+// iter 82 PHASE 5.5 fix CRITICAL-2: elab-blockly-theme.css NOT imported.
+// Both Codex Pattern V + code-reviewer found conflict with existing dark
+// inline ELAB_BLOCKLY_CSS (lines 193-331) — both !important on same selectors,
+// would cause Navy-on-dark contrast regression (~2:1 vs WCAG 4.5:1 target).
+// File preserved for iter 83+ refactor atom: consolidate into single theme
+// path OR scope to .blockly-light-mode parent class. Block name audit also
+// needed (see Codex MED-1+MED-2). NOT functional without integration.
 
 // ─── Blockly 12.4.1 safe-disposal patch ─────────────────────────────────
 // Blockly 12.4.1 has an InsertionMarkerPreviewer bug: workspace.dispose()
@@ -19,36 +29,36 @@ const ELAB_THEME = Blockly.Theme.defineTheme('elab', {
     base: Blockly.Themes.Classic,
     blockStyles: {
         // ELAB palette: Navy=control, Lime=digital I/O, Orange=analog, Red=comms
-        logic_blocks:    { colourPrimary: 'var(--elab-navy)', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
+        logic_blocks:    { colourPrimary: '#1E4D8C', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
         loop_blocks:     { colourPrimary: '#2e7d50', colourSecondary: '#246840', colourTertiary: '#1a5330' }, // palette
         math_blocks:     { colourPrimary: '#3a8a9e', colourSecondary: '#2e7688', colourTertiary: '#226272' }, // palette
         text_blocks:     { colourPrimary: '#5a8dbe', colourSecondary: '#4a7aa8', colourTertiary: '#3a6892' }, // palette
         colour_blocks:   { colourPrimary: '#9e5ac0', colourSecondary: '#8848a8', colourTertiary: '#723890' }, // palette
-        variable_blocks: { colourPrimary: 'var(--elab-orange)', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
-        list_blocks:     { colourPrimary: 'var(--elab-red)', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
+        variable_blocks: { colourPrimary: '#F5A623', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
+        list_blocks:     { colourPrimary: '#E54B3D', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
         // Arduino ELAB categories — Lime for digital, Orange for analog, Red for comms
-        arduino_io:      { colourPrimary: 'var(--elab-lime)', colourSecondary: '#3D6820', colourTertiary: '#30561A' },
+        arduino_io:      { colourPrimary: '#4A7A25', colourSecondary: '#3D6820', colourTertiary: '#30561A' },
         arduino_sound:   { colourPrimary: '#9e5ac0', colourSecondary: '#8848a8', colourTertiary: '#723890' }, // palette
         arduino_servo:   { colourPrimary: '#0ea87b', colourSecondary: '#0c9068', colourTertiary: '#0a7855' }, // palette
-        arduino_time:    { colourPrimary: 'var(--elab-orange)', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
-        arduino_serial:  { colourPrimary: 'var(--elab-red)', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
+        arduino_time:    { colourPrimary: '#F5A623', colourSecondary: '#D08018', colourTertiary: '#B86C14' },
+        arduino_serial:  { colourPrimary: '#E54B3D', colourSecondary: '#CC3A30', colourTertiary: '#B32A22' },
         arduino_lcd:     { colourPrimary: '#6e4ca8', colourSecondary: '#5e3e92', colourTertiary: '#4e307c' }, // palette
         // ELAB high-level blocks
-        arduino_elab:    { colourPrimary: 'var(--elab-navy)', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
+        arduino_elab:    { colourPrimary: '#1E4D8C', colourSecondary: '#163B6E', colourTertiary: '#0F2A50' },
     },
     categoryStyles: {
-        logic_category:    { colour: 'var(--elab-navy)' },
+        logic_category:    { colour: '#1E4D8C' },
         loop_category:     { colour: '#2e7d50' }, // palette
         math_category:     { colour: '#3a8a9e' }, // palette
         text_category:     { colour: '#5a8dbe' }, // palette
-        variable_category: { colour: 'var(--elab-orange)' },
-        arduino_io_cat:    { colour: 'var(--elab-lime)' },
+        variable_category: { colour: '#F5A623' },
+        arduino_io_cat:    { colour: '#4A7A25' },
         arduino_sound_cat: { colour: '#9e5ac0' }, // palette
         arduino_servo_cat: { colour: '#0ea87b' }, // palette
-        arduino_time_cat:  { colour: 'var(--elab-orange)' },
-        arduino_serial_cat:{ colour: 'var(--elab-red)' },
+        arduino_time_cat:  { colour: '#F5A623' },
+        arduino_serial_cat:{ colour: '#E54B3D' },
         arduino_lcd_cat:   { colour: '#6e4ca8' }, // palette
-        arduino_elab_cat:  { colour: 'var(--elab-navy)' },
+        arduino_elab_cat:  { colour: '#1E4D8C' },
     },
     componentStyles: {
         workspaceBackgroundColour: '#1e2530', // palette
@@ -59,9 +69,9 @@ const ELAB_THEME = Blockly.Theme.defineTheme('elab', {
         flyoutOpacity: 0.95,
         scrollbarColour: '#3a4050', // palette
         scrollbarOpacity: 0.6,
-        insertionMarkerColour: 'var(--elab-lime)',
+        insertionMarkerColour: '#4A7A25',
         insertionMarkerOpacity: 0.4,
-        cursorColour: 'var(--elab-lime)',
+        cursorColour: '#4A7A25',
     },
     fontStyle: {
         family: "'Open Sans', 'Helvetica Neue', sans-serif",
@@ -326,13 +336,30 @@ const ELAB_BLOCKLY_CSS = `
 }
 `;
 
-const ScratchEditor = ({ onChange, initialCode }) => {
+const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDismiss, onWorkspaceReady, onBlockCountChange }) => {
     const blocklyDiv = useRef(null);
     const workspaceRef = useRef(null);
     const onChangeRef = useRef(onChange);
     const isMountedRef = useRef(false);
     const isReloadingRef = useRef(false); // S112: Guard against onChange during programmatic workspace reloads
+    // iter 85 close integration Sub-project A: optional callbacks ref pattern
+    // (defensive backward-compat — existing callers without props see ZERO change).
+    // Stored in refs to avoid useEffect re-running on every parent re-render.
+    const onWorkspaceReadyRef = useRef(onWorkspaceReady);
+    const onBlockCountChangeRef = useRef(onBlockCountChange);
+
+    // iter 82 Task 6: Blockly UX overhaul overlays state
+    const [showOnboarding, setShowOnboarding] = useState(
+        () => typeof window !== 'undefined' && !localStorage.getItem('elab-blockly-onboarded')
+    );
+    const [canUndo, setCanUndo] = useState(false);
+    const [canRedo, setCanRedo] = useState(false);
+
     useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
+    // iter 85 close integration Sub-project A: keep callback refs current without
+    // forcing Blockly re-init useEffect to re-run.
+    useEffect(() => { onWorkspaceReadyRef.current = onWorkspaceReady; }, [onWorkspaceReady]);
+    useEffect(() => { onBlockCountChangeRef.current = onBlockCountChange; }, [onBlockCountChange]);
 
     // Inject ELAB CSS overrides once
     useEffect(() => {
@@ -436,6 +463,48 @@ const ScratchEditor = ({ onChange, initialCode }) => {
 
         workspace.addChangeListener(onChangeHandler);
 
+        // iter 82 Task 6: undo/redo state tracking for ScratchToolbar buttons
+        const undoRedoListener = () => {
+            try {
+                setCanUndo(workspace.undoStack_?.length > 0);
+                setCanRedo(workspace.redoStack_?.length > 0);
+            } catch (_) { /* defensive — undoStack_ private API may change */ }
+        };
+        workspace.addChangeListener(undoRedoListener);
+
+        // iter 85 close integration Sub-project A: optional callback wire-up.
+        // Emit workspace ref + initial block count post-mount so parent
+        // (HomeCompileEntry) can render ElabScratchModeShell with workspaceReady
+        // + workspaceBlockCount props. Backward-compat: callbacks omitted = NO-OP.
+        try {
+            if (typeof onWorkspaceReadyRef.current === 'function') {
+                onWorkspaceReadyRef.current(workspace);
+            }
+        } catch (err) {
+            logger.warn('[ScratchEditor] onWorkspaceReady callback error:', err?.message);
+        }
+        let blockCountListener = null;
+        if (typeof onBlockCountChangeRef.current === 'function') {
+            const emitBlockCount = () => {
+                try {
+                    const count = workspace.getTopBlocks(false).length;
+                    if (typeof onBlockCountChangeRef.current === 'function') {
+                        onBlockCountChangeRef.current(count);
+                    }
+                } catch (_) { /* defensive — workspace may be disposed mid-event */ }
+            };
+            // Initial emit (post arduino_base load).
+            emitBlockCount();
+            blockCountListener = (event) => {
+                if (!event) return;
+                // Use string literals (Blockly Events constants may differ across versions)
+                if (event.type === 'create' || event.type === 'delete' || event.type === 'finished_loading') {
+                    emitBlockCount();
+                }
+            };
+            workspace.addChangeListener(blockCountListener);
+        }
+
         // S83: ResizeObserver — recalculate Blockly layout when container resizes
         let resizeObserver;
         if (blocklyDiv.current) {
@@ -449,6 +518,13 @@ const ScratchEditor = ({ onChange, initialCode }) => {
             resizeObserver?.disconnect();
             if (workspace) {
                 workspace.removeChangeListener(onChangeHandler);
+                // iter 82 PHASE 5.5 fix CRITICAL-1: undoRedoListener was never removed
+                // → memory leak on ScratchEditor remount (Codex Pattern C + code-reviewer findings)
+                workspace.removeChangeListener(undoRedoListener);
+                // iter 85 close integration Sub-project A: cleanup blockCount listener
+                if (blockCountListener) {
+                    try { workspace.removeChangeListener(blockCountListener); } catch (_) { /* defensive workspace dispose */ }
+                }
                 // Safe to dispose — patched by scripts/patch-blockly.js
                 try { workspace.dispose(); } catch (_) { /* ignore residual */ }
             }
@@ -492,12 +568,51 @@ const ScratchEditor = ({ onChange, initialCode }) => {
         } catch (_) { /* ignore */ }
     }, [initialCode]);
 
+    // iter 82 Task 6: ScratchToolbar handlers wired to Blockly workspace API
+    const handleUndo = useCallback(() => {
+        try { workspaceRef.current?.undo(false); } catch (_) { /* defensive */ }
+    }, []);
+    const handleRedo = useCallback(() => {
+        try { workspaceRef.current?.undo(true); } catch (_) { /* defensive */ }
+    }, []);
+    const handleClear = useCallback(() => {
+        // iter 82 PHASE 5.5 fix Codex HIGH-1: workspace.clear() deletes the protected
+        // arduino_base block → generateArduinoCode() emits empty setup/loop afterwards.
+        // Preserve arduino_base: collect deletable top-blocks, remove only those.
+        try {
+            const ws = workspaceRef.current;
+            if (!ws) return;
+            const topBlocks = ws.getTopBlocks(false) || [];
+            topBlocks.forEach((block) => {
+                if (block?.type !== 'arduino_base' && block?.isDeletable?.()) {
+                    block.dispose(false);
+                }
+            });
+        } catch (_) { /* defensive */ }
+    }, []);
+    const handleHelp = useCallback(() => setShowOnboarding(true), []);
+
     return (
-        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            {showOnboarding && (
+                <ScratchOnboarding onComplete={() => setShowOnboarding(false)} />
+            )}
+            <ScratchToolbar
+                onUndo={handleUndo}
+                onRedo={handleRedo}
+                onClear={handleClear}
+                onHelp={handleHelp}
+                canUndo={canUndo}
+                canRedo={canRedo}
+            />
             <div
                 ref={blocklyDiv}
                 style={{ flex: 1, width: '100%', minHeight: '200px' }}
                 className="blockly-container"
+            />
+            <ScratchErrorOverlay
+                error={compileError}
+                onDismiss={() => onCompileErrorDismiss?.()}
             />
         </div>
     );

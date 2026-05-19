@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Curriculum Data — Teacher-facing pedagogy for lesson paths
  * Converted from automa/curriculum/*.yaml — curated by Andrea Marro

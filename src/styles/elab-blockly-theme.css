@@ -1,0 +1,111 @@
+/* © Andrea Marro — 18/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/* ELAB Blockly Theme — WCAG 2.2 AA compliant override.
+   Contrast verified: text 4.5:1 minimum, graphics 3:1 minimum.
+   Typography: Oswald headers + Open Sans body + Fira Code mono. */
+
+.blocklyToolboxDiv {
+  background: var(--elab-bg-light, #F8F9FA) !important;
+  border-right: 2px solid var(--elab-navy, #1E4D8C) !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.blocklyTreeRow {
+  min-height: 44px !important; /* WCAG 2.5.5 touch target */
+  padding: 8px 12px !important;
+  font-size: 15px !important; /* >=14px floor */
+  color: var(--elab-navy, #1E4D8C) !important;
+}
+
+.blocklyTreeRow:hover {
+  background: var(--elab-lime-light, #E8F0DC) !important;
+}
+
+.blocklyTreeSelected {
+  background: var(--elab-lime, #4A7A25) !important;
+  color: white !important;
+}
+
+.blocklyTreeLabel {
+  font-weight: 600 !important;
+}
+
+.blocklyText {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.blocklyFlyout {
+  background: var(--elab-bg-light, #F8F9FA) !important;
+  border-right: 1px solid #DDD !important;
+}
+
+.blocklyScrollbarBackground {
+  fill: #E0E0E0 !important;
+}
+
+.blocklyScrollbarHandle {
+  fill: var(--elab-navy, #1E4D8C) !important;
+}
+
+.blocklyHighlightedConnectionPath {
+  stroke: var(--elab-orange, #E8941C) !important;
+  stroke-width: 4px !important;
+}
+
+.blocklyWidgetDiv {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.blocklyWidgetDiv input,
+.blocklyWidgetDiv select,
+.blocklyWidgetDiv textarea {
+  font-size: 15px !important;
+  padding: 8px !important;
+  min-height: 44px !important;
+}
+
+.blocklyWidgetDiv button {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  font-size: 15px !important;
+  padding: 8px 16px !important;
+}
+
+/* Focus visible for keyboard nav */
+.blocklyTreeRow:focus-visible,
+.blocklyText:focus-visible {
+  outline: 3px solid var(--elab-orange, #E8941C) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .blocklySvg * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode boost */
+@media (prefers-contrast: more) {
+  .blocklyText {
+    font-weight: 700 !important;
+  }
+  .blocklyTreeRow {
+    border-bottom: 1px solid var(--elab-navy, #1E4D8C) !important;
+  }
+}
+
+/* LIM/iPad coarse pointer larger targets */
+@media (pointer: coarse) {
+  .blocklyTreeRow {
+    min-height: 48px !important;
+  }
+  .blocklyWidgetDiv input,
+  .blocklyWidgetDiv select,
+  .blocklyWidgetDiv button {
+    min-height: 48px !important;
+    font-size: 16px !important;
+  }
+}

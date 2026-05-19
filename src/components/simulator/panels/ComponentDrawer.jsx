@@ -11,23 +11,23 @@ import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { getComponentsByVolume, getComponent } from '../components/registry';
 
 const STEP_ICONS = {
-  resistor: '\u{1F50C}',
-  led: '\u{1F4A1}',
-  'push-button': '\u{1F518}',
-  'rgb-led': '\u{1F308}',
-  'buzzer-piezo': '\u{1F50A}',
-  capacitor: '\u{26A1}',
-  'motor-dc': '\u{1F504}',
-  potentiometer: '\u{1F39B}\uFE0F',
-  'photo-resistor': '\u{2600}\uFE0F',
-  phototransistor: '\u{1F526}',
-  'reed-switch': '\u{1F9F2}',
-  'mosfet-n': '\u{1F4A0}',
-  diode: '\u{27A1}\uFE0F',
-  servo: '\u{1F3AF}',
-  lcd16x2: '\u{1F4DF}',
-  wire: '\u{1FA9F}',
-  battery9v: '\u{1F50B}',
+  resistor: 'R',
+  led: 'LED',
+  'push-button': 'SW',
+  'rgb-led': 'RGB',
+  'buzzer-piezo': 'BZ',
+  capacitor: 'C',
+  'motor-dc': 'M',
+  potentiometer: 'POT',
+  'photo-resistor': 'LDR',
+  phototransistor: 'PT',
+  'reed-switch': 'REED',
+  'mosfet-n': 'MOS',
+  diode: 'D',
+  servo: 'SV',
+  lcd16x2: 'LCD',
+  wire: 'Filo',
+  battery9v: '9V',
 };
 
 /* ─── Short labels for sandbox chips (full names, no truncation) ─── */
@@ -184,17 +184,23 @@ const ComponentDrawer = ({
     return null;
   });
   const isResizingRef = useRef(false);
-  const resizeStartRef = useRef({ x: 0, y: 0, w: 0, h: 0 });
+  const resizeStartRef = useRef({ dir: 'se', x: 0, y: 0, w: 0, h: 0, left: 0, top: 0, parentW: 800, parentH: 600 });
 
-  const handleResizeStart = useCallback((e) => {
+  const handleResizeStart = useCallback((dir, e) => {
     if (mode !== 'guided' || !panelRef.current) return;
     e.preventDefault();
     e.stopPropagation();
     isResizingRef.current = true;
     const rect = panelRef.current.getBoundingClientRect();
+    const parentRect = panelRef.current.offsetParent?.getBoundingClientRect() || { left: 0, top: 0, width: 800, height: 600 };
     resizeStartRef.current = {
+      dir,
       x: e.clientX, y: e.clientY,
       w: rect.width, h: rect.height,
+      left: rect.left - parentRect.left,
+      top: rect.top - parentRect.top,
+      parentW: parentRect.width,
+      parentH: parentRect.height,
     };
     if (e.pointerId !== undefined) {
       e.target.setPointerCapture?.(e.pointerId);
@@ -203,10 +209,32 @@ const ComponentDrawer = ({
 
   const handleResizeMove = useCallback((e) => {
     if (!isResizingRef.current) return;
-    const dx = e.clientX - resizeStartRef.current.x;
-    const dy = e.clientY - resizeStartRef.current.y;
-    const newW = Math.max(240, Math.min(600, resizeStartRef.current.w + dx));
-    const newH = Math.max(260, Math.min(720, resizeStartRef.current.h + dy));
+    const state = resizeStartRef.current;
+    const dx = e.clientX - state.x;
+    const dy = e.clientY - state.y;
+    const minW = 240;
+    const minH = 260;
+    const maxW = Math.min(720, Math.max(minW, state.parentW - 16));
+    const maxH = Math.min(760, Math.max(minH, state.parentH - 16));
+    let newW = state.w;
+    let newH = state.h;
+    let newLeft = state.left;
+    let newTop = state.top;
+
+    if (state.dir.includes('e')) newW = Math.max(minW, Math.min(maxW, state.w + dx));
+    if (state.dir.includes('s')) newH = Math.max(minH, Math.min(maxH, state.h + dy));
+    if (state.dir.includes('w')) {
+      newW = Math.max(minW, Math.min(maxW, state.w - dx));
+      newLeft = state.left + (state.w - newW);
+    }
+    if (state.dir.includes('n')) {
+      newH = Math.max(minH, Math.min(maxH, state.h - dy));
+      newTop = state.top + (state.h - newH);
+    }
+
+    newLeft = Math.max(0, Math.min(newLeft, state.parentW - newW));
+    newTop = Math.max(0, Math.min(newTop, state.parentH - newH));
+    setDragPos({ x: newLeft, y: newTop });
     setSize({ w: newW, h: newH });
   }, []);
 
@@ -399,10 +427,10 @@ const ComponentDrawer = ({
         onPointerUp={mode === 'guided' ? handlePanelDragEnd : undefined}
         onPointerCancel={mode === 'guided' ? handlePanelDragEnd : undefined}
       >
-        {mode === 'guided' && <div style={styles.dragHandle} />}
+          {mode === 'guided' && <div style={styles.dragHandle} />}
         {mode !== 'guided' && <div style={styles.dragHandle} />}
         <span style={mode === 'guided' ? styles.floatingHeaderTitle : styles.headerTitle}>
-          {mode === 'guided' ? '\u{1F527} Passo Passo' : '\u{1F9E9} Percorso'}
+          {mode === 'guided' ? 'Passo Passo' : '\u{1F9E9} Percorso'}
         </span>
         <button
           onClick={(e) => { e.stopPropagation(); setCollapsed(true); }}
@@ -429,8 +457,8 @@ const ComponentDrawer = ({
                 : isComplete
                 ? `Completato!`
                 : isScratchStep
-                ? `\u{1F9E9} Codice ${scratchIndex + 1} di ${scratchSteps.length}`
-                : `\u{1F527} Passo ${currentStep + 1} di ${buildSteps.length}`
+                ? `Codice ${scratchIndex + 1} di ${scratchSteps.length}`
+                : `Passo ${currentStep + 1} di ${buildSteps.length}`
               }
             </div>
 
@@ -438,13 +466,11 @@ const ComponentDrawer = ({
             <div style={styles.stepContent}>
               {isIntro ? (
                 <div style={styles.introText}>
-                  <span style={{ fontSize: 22 }}>{'\u{1F9F0}'}</span>
-                  <span>Banco vuoto: breadboard e batteria pronti. Premete <strong>Avanti</strong> per iniziare!</span>
+                  <span>Il banco parte pulito: vedete solo breadboard e batteria. Premete <strong>Avanti</strong>: a ogni passo ELAB aggiunge il pezzo giusto sul circuito.</span>
                 </div>
               ) : isComplete ? (
                 /* S86: Completion card with compile+play button */
                 <div style={styles.completionCard}>
-                  <span style={{ fontSize: 26 }}>{'\u{1F389}'}</span>
                   <div style={{ flex: 1 }}>
                     <div style={styles.completionTitle}>
                       {hasScratch ? 'Circuito e codice pronti!' : 'Circuito completato!'}
@@ -471,12 +497,12 @@ const ComponentDrawer = ({
                       <div style={styles.stepText}>{scratchStepText}</div>
                       {scratchStepHint && (
                         <div style={styles.scratchHint}>
-                          {'\u{1F4BB}'} {scratchStepHint}
+                          {scratchStepHint}
                         </div>
                       )}
                       {scratchStepExplanation && (
                         <div style={styles.scratchExplanation}>
-                          {'\u{1F4A1}'} {scratchStepExplanation}
+                          {scratchStepExplanation}
                         </div>
                       )}
                     </div>
@@ -492,16 +518,16 @@ const ComponentDrawer = ({
                         label={SHORT_LABELS[step.componentType] || step.componentType}
                         icon={STEP_ICONS[step.componentType] || '\u{1F9E9}'}
                       />
-                      <span style={{ fontSize: 16, color: 'var(--color-text-gray-400, #666)', fontFamily: 'var(--font-sans)', fontWeight: 600, letterSpacing: '0.3px' }}>trascina</span>
+                      <span style={{ fontSize: 16, color: 'var(--color-text-gray-400, #666)', fontFamily: 'var(--font-sans)', fontWeight: 600, letterSpacing: '0' }}>si monta</span>
                     </div>
                   ) : (
-                    <span style={{ fontSize: 20, flexShrink: 0 }}>{stepIcon}</span>
+                    <span style={styles.stepBadge}>{stepIcon}</span>
                   )}
                   <div style={{ flex: 1 }}>
                     <div style={styles.stepText}>{step.text}</div>
                     {step.hint && (
                       <div style={styles.hint}>
-                        {'\u{1F4A1}'} {step.hint}
+                        {step.hint}
                       </div>
                     )}
                   </div>
@@ -564,7 +590,7 @@ const ComponentDrawer = ({
                       borderColor: isLast ? 'var(--color-success)' : 'var(--color-primary)',
                     }}
                   >
-                    {isLast ? '\u{2714} Finito!' : isScratchStep ? '\u{1F9E9} Avanti' : 'Avanti \u{2192}'}
+                    {isLast ? 'Finito' : 'Avanti \u{2192}'}
                   </button>
                 )
               )}
@@ -596,7 +622,7 @@ const ComponentDrawer = ({
           role="separator"
           aria-label="Ridimensiona pannello passo passo"
           aria-orientation="diagonal"
-          onPointerDown={handleResizeStart}
+          onPointerDown={(e) => handleResizeStart('se', e)}
           onPointerMove={handleResizeMove}
           onPointerUp={handleResizeEnd}
           onPointerCancel={handleResizeEnd}
@@ -622,6 +648,35 @@ const ComponentDrawer = ({
           </svg>
         </div>
       )}
+      {mode === 'guided' && (
+        <>
+          {[
+            ['n', { top: 0, left: 0, right: 0, height: 12, cursor: 'ns-resize' }],
+            ['s', { bottom: 0, left: 0, right: 0, height: 12, cursor: 'ns-resize' }],
+            ['w', { left: 0, top: 0, bottom: 0, width: 12, cursor: 'ew-resize' }],
+            ['e', { right: 0, top: 0, bottom: 0, width: 12, cursor: 'ew-resize' }],
+            ['nw', { top: 0, left: 0, width: 24, height: 24, cursor: 'nwse-resize' }],
+            ['ne', { top: 0, right: 0, width: 24, height: 24, cursor: 'nesw-resize' }],
+            ['sw', { bottom: 0, left: 0, width: 24, height: 24, cursor: 'nesw-resize' }],
+          ].map(([dir, edgeStyle]) => (
+            <div
+              key={dir}
+              role="separator"
+              aria-label={`Ridimensiona pannello passo passo ${dir}`}
+              onPointerDown={(e) => handleResizeStart(dir, e)}
+              onPointerMove={handleResizeMove}
+              onPointerUp={handleResizeEnd}
+              onPointerCancel={handleResizeEnd}
+              style={{
+                position: 'absolute',
+                zIndex: 30,
+                touchAction: 'none',
+                ...edgeStyle,
+              }}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 };
@@ -633,7 +688,7 @@ const styles = {
     position: 'absolute',
     top: 12,
     right: 12,
-    width: 'clamp(270px, 28vw, 340px)',
+    width: 'clamp(320px, 34vw, 460px)',
     maxWidth: 'calc(100% - 24px)', // Safety: prevent overflow on narrow viewports (iPad slide-over)
     background: 'var(--color-bg, #FFFFFF)',
     borderRadius: 'var(--radius-lg, 14px)',
@@ -641,7 +696,7 @@ const styles = {
     zIndex: 30,
     display: 'flex',
     flexDirection: 'column',
-    maxHeight: 'clamp(200px, 48vh, 360px)',
+    maxHeight: 'clamp(320px, 58vh, 560px)',
     fontFamily: "var(--font-sans, 'Open Sans', sans-serif)",
     overflow: 'hidden',
     touchAction: 'none', // S89: prevent scroll interference when dragging
@@ -668,7 +723,7 @@ const styles = {
     fontFamily: "var(--font-display, 'Oswald', sans-serif)",
     color: 'var(--color-primary, var(--elab-navy))',
     textTransform: 'uppercase',
-    letterSpacing: '0.5px',
+    letterSpacing: 0,
     flex: 1,
   },
 
@@ -815,7 +870,7 @@ const styles = {
     color: 'var(--color-primary, var(--elab-navy))',
     fontFamily: "var(--font-display, 'Oswald', sans-serif)",
     textTransform: 'uppercase',
-    letterSpacing: '0.8px',
+    letterSpacing: 0,
     marginBottom: 6,
     flexShrink: 0, // Don't compress in flex column
   },
@@ -840,6 +895,23 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start',
     gap: 8,
+  },
+
+  stepBadge: {
+    minWidth: 44,
+    minHeight: 32,
+    padding: '4px 8px',
+    borderRadius: 'var(--radius-sm, 6px)',
+    background: 'rgba(30, 77, 140, 0.08)',
+    color: 'var(--color-primary, var(--elab-navy))',
+    fontSize: '14px',
+    fontWeight: 800,
+    fontFamily: "var(--font-sans, 'Open Sans', sans-serif)",
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    letterSpacing: 0,
   },
 
   stepText: {

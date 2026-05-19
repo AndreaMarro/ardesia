@@ -150,12 +150,6 @@ describe('findLessonForExperiment', () => {
     expect(result.lessonId).toBe('v3-progetti-led');
   });
 
-  it('finds correct lesson for v3-extra-simon', () => {
-    const result = findLessonForExperiment('v3-extra-simon');
-    expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-progetti-extra');
-  });
-
   it('returns null for unknown ID "v4-cap1-esp1"', () => {
     expect(findLessonForExperiment('v4-cap1-esp1')).toBeNull();
   });
@@ -191,9 +185,9 @@ describe('getLessonsForVolume', () => {
     expect(lessons).toHaveLength(9);
   });
 
-  it('Vol 3 returns 6 lessons', () => {
+  it('Vol 3 returns 5 lessons', () => {
     const lessons = getLessonsForVolume(3);
-    expect(lessons).toHaveLength(6);
+    expect(lessons).toHaveLength(5);
   });
 
   it('Vol 1 lessons are sorted by chapter', () => {
@@ -222,8 +216,8 @@ describe('getLessonsForVolume', () => {
 // 4. getLessonCount — 2 tests
 // ============================================================
 describe('getLessonCount', () => {
-  it('returns correct total count of 25', () => {
-    expect(getLessonCount()).toBe(25);
+  it('returns correct total count of 24', () => {
+    expect(getLessonCount()).toBe(24);
   });
 
   it('matches sum of per-volume counts', () => {
@@ -240,12 +234,12 @@ describe('getLessonCount', () => {
 describe('Cross-validation with experiments-index', () => {
   const experimentIndexIds = new Set(ALL_EXPERIMENTS.map(e => e.id));
 
-  it('ALL_EXPERIMENTS has at least 90 experiments', () => {
-    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(90);
+  it('ALL_EXPERIMENTS has at least 78 experiments', () => {
+    expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(78);
   });
 
-  it('LESSON_GROUPS contains exactly 92 experiment IDs', () => {
-    expect(ALL_LESSON_EXP_IDS.length).toBe(94);
+  it('LESSON_GROUPS contains exactly 79 experiment IDs', () => {
+    expect(ALL_LESSON_EXP_IDS.length).toBe(79);
   });
 
   it('every experiment in LESSON_GROUPS exists in experiments-index', () => {

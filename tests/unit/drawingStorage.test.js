@@ -28,7 +28,7 @@ describe('drawingStorage — per-experiment persistence', () => {
 
     it('scopes the storage key by experiment id', () => {
       expect(getDrawingStorageKey('v1-cap6-esp1')).toBe(DRAWING_STORAGE_PREFIX + 'v1-cap6-esp1');
-      expect(getDrawingStorageKey('v3-cap7-esp5')).toBe(DRAWING_STORAGE_PREFIX + 'v3-cap7-esp5');
+      expect(getDrawingStorageKey('v3-cap7-esp6')).toBe(DRAWING_STORAGE_PREFIX + 'v3-cap7-esp6');
     });
 
     it('non-string experimentId falls back to legacy bucket (defensive)', () => {

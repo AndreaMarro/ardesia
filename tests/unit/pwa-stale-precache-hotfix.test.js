@@ -78,13 +78,10 @@ describe('P0 hotfix — PWA stale precache safety net', () => {
     describe('Layer 1: workbox config in vite.config.js', () => {
         const cfg = readFileSync(join(ROOT, 'vite.config.js'), 'utf8');
 
-        // iter 38 Atom A12 (WebDesigner-1): registerType passa a 'prompt' +
-        // skipWaiting:false così docenti vedono toast UpdatePrompt prima di
-        // ricaricare. Layer 3 inline reload guard rimane intatto come safety
-        // net per il caso edge "modulo SW failed to register" (vedi
-        // describe "Layer 3" sotto).
-        it('disables skipWaiting so the new SW waits for explicit updateSW(true) from UpdatePrompt', () => {
-            expect(cfg).toMatch(/skipWaiting:\s*false/);
+        // iter 49: autoUpdate + skipWaiting:true. L'aula/iPad non deve restare
+        // su UI stale dopo deploy (Capitoli/Video legacy).
+        it('enables skipWaiting so the new SW can replace stale UI immediately', () => {
+            expect(cfg).toMatch(/skipWaiting:\s*true/);
         });
 
         it('enables clientsClaim so the new SW takes over existing tabs once activated', () => {
@@ -95,8 +92,8 @@ describe('P0 hotfix — PWA stale precache safety net', () => {
             expect(cfg).toMatch(/cleanupOutdatedCaches:\s*true/);
         });
 
-        it("uses registerType 'prompt' so docenti see UpdatePrompt toast before reload", () => {
-            expect(cfg).toMatch(/registerType:\s*['"]prompt['"]/);
+        it("uses registerType 'autoUpdate' so stale PWA tabs do not keep old bundles", () => {
+            expect(cfg).toMatch(/registerType:\s*['"]autoUpdate['"]/);
         });
     });
 

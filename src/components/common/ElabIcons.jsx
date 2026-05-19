@@ -134,6 +134,28 @@ export function RobotIcon(props) {
   );
 }
 
+// iter 81 81.A2 (close BG agent A2 caveat #5): extract PuzzleIcon previously
+// inline in HomeCompileEntry.jsx tab Blocchi. Matches Blockly identity (Lime
+// fill + Navy stroke for WCAG AA contrast on light background). 24×24 viewBox
+// consistent with ElabIcons family. Reusable for any "Blocks" Blockly UI surface.
+export function PuzzleIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 24 24" fill="none"
+      role="img" aria-hidden="true" {...rest}
+    >
+      <path
+        d="M5 5h6v3a2 2 0 0 0 4 0V5h4v6h-3a2 2 0 0 0 0 4h3v4h-6v-3a2 2 0 0 0-4 0v3H5v-6h3a2 2 0 0 0 0-4H5z"
+        fill={color || '#4A7A25'}
+        stroke="#1E4D8C"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function CircuitIcon(props) {
   // Iter 35 Q2 /impeccable:bolder — dual-tone Navy + Lime (Vol 1 base
   // elettronica). Was monochrome stroke-only; new: filled IC chip body
@@ -581,6 +603,44 @@ export function GlossarioCardIcon({ size = 48, ...props }) {
   );
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   ITER 66 P0.3 — R5 HomePage Compile Agent Banner widget icons
+   Andrea iter 65/66 mandate: surface ELAB Compile Agent install status
+   on HomePage with platform-specific CTA (Mac primary, Win/Linux iter 67).
+   3 new icons: DownloadIcon (install CTA) + CheckIcon (agent online
+   confirmation) + DesktopIcon (platform context info banner).
+   Compliance: stroke-based, palette via currentColor (Lime success /
+   Orange warning / Navy info), no emoji, ARIA hidden by default.
+   ═══════════════════════════════════════════════════════════════════ */
+
+export function DownloadIcon(props) {
+  return (
+    <Icon {...props}>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </Icon>
+  );
+}
+
+export function CheckIcon(props) {
+  return (
+    <Icon {...props}>
+      <polyline points="20 6 9 17 4 12" />
+    </Icon>
+  );
+}
+
+export function DesktopIcon(props) {
+  return (
+    <Icon {...props}>
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </Icon>
+  );
+}
+
 export function CronologiaCardIcon({ size = 48, ...props }) {
   return (
     <svg
@@ -598,6 +658,131 @@ export function CronologiaCardIcon({ size = 48, ...props }) {
       <circle cx="24" cy="24" r="1.5" fill="#0E2D5C" />
       <path d="M10 8 L10 14 L16 14" fill="none" stroke="#4A7A25" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M10 14 C10 9 14 6 18 6" fill="none" stroke="#4A7A25" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ITER 72 TEAM D — HomePage emoji removal mandate (Codex D2 audit
+   2026-05-16). Replace 4 RUNTIME-visible emoji (HomePage.jsx:393 ⚡
+   / 408 📚 / 429 🎬 / 1086 🐒) per CLAUDE.md regola 11 ban emoji
+   icone (comments-only refs preserved per Codex scope).
+
+   2 NEW icons:
+   - VideoLessonsCardIcon — replaces 🎬 line 429 (videolezioni card,
+     IconComponent: null actually renders emoji at runtime).
+     Identity: video player frame + play triangle + film strip strip
+     suggesting "videolezioni" (kit Omaric video tutorial).
+     Palette: Navy frame + Lime accent + Orange play triangle (3
+     volumi triplet preserved, contrast WCAG AA).
+   - ScimpanzeIcon — replaces 🐒 line 1086 footer fallback
+     (scimpanzè easter chi siamo). Stylized chimp silhouette
+     reference ELAB mascot identity. Palette Navy primary + Lime
+     accent eye.
+
+   Both icons fixed-viewBox 48x48 wrapped svg, accept size prop
+   default 48, role=img + aria-hidden by default for decorative
+   use, support {...props} pass-through (className/aria-label).
+   ═══════════════════════════════════════════════════════════════════ */
+
+export function VideoLessonsCardIcon({ size = 48, ...props }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 48 48" fill="none"
+      role="img" aria-hidden="true"
+      style={{ filter: 'drop-shadow(0 2px 3px rgba(30, 77, 140, 0.18))' }}
+      {...props}
+    >
+      {/* Video player body — Navy frame UNLIM brand */}
+      <rect x="6" y="11" width="36" height="26" rx="2.5" fill="#FFFEF5" stroke="#1E4D8C" strokeWidth="3" strokeLinejoin="round" />
+      {/* Top film-strip band — Navy with perforations white */}
+      <rect x="6" y="11" width="36" height="4" fill="#1E4D8C" />
+      <circle cx="11" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="17" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="23" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="29" cy="13" r="0.9" fill="#FFF" />
+      <circle cx="35" cy="13" r="0.9" fill="#FFF" />
+      {/* Bottom film-strip band */}
+      <rect x="6" y="33" width="36" height="4" fill="#1E4D8C" />
+      <circle cx="11" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="17" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="23" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="29" cy="35" r="0.9" fill="#FFF" />
+      <circle cx="35" cy="35" r="0.9" fill="#FFF" />
+      {/* Play triangle — Orange (Vol 2) primary CTA + Lime backing halo */}
+      <circle cx="24" cy="24" r="7.5" fill="#4A7A25" opacity="0.22" />
+      <polygon points="21,19 21,29 30,24" fill="#E8941C" stroke="#1E4D8C" strokeWidth="2" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ScimpanzeIcon({ size = 48, ...props }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 48 48" fill="none"
+      role="img" aria-hidden="true"
+      style={{ filter: 'drop-shadow(0 2px 3px rgba(30, 77, 140, 0.20))' }}
+      {...props}
+    >
+      {/* Outer ears — Navy primary brand */}
+      <circle cx="11" cy="20" r="6.5" fill="#1E4D8C" stroke="#0E2D5C" strokeWidth="2.2" />
+      <circle cx="37" cy="20" r="6.5" fill="#1E4D8C" stroke="#0E2D5C" strokeWidth="2.2" />
+      {/* Inner ears — Lime accent */}
+      <circle cx="11" cy="20" r="2.4" fill="#4A7A25" />
+      <circle cx="37" cy="20" r="2.4" fill="#4A7A25" />
+      {/* Head — Navy primary, asymmetric soft shape */}
+      <ellipse cx="24" cy="24" rx="12" ry="13" fill="#1E4D8C" stroke="#0E2D5C" strokeWidth="2.5" />
+      {/* Face — cream/light fill */}
+      <ellipse cx="24" cy="29" rx="9.5" ry="9" fill="#FFFEF5" stroke="#0E2D5C" strokeWidth="2" />
+      {/* Brow ridge — Navy band */}
+      <path d="M16 22 Q24 18 32 22" fill="none" stroke="#0E2D5C" strokeWidth="2.2" strokeLinecap="round" />
+      {/* Eyes — Navy dots */}
+      <circle cx="20" cy="27" r="1.6" fill="#0E2D5C" />
+      <circle cx="28" cy="27" r="1.6" fill="#0E2D5C" />
+      {/* Nose — small Lime dot */}
+      <circle cx="24" cy="31" r="1.1" fill="#4A7A25" />
+      {/* Smile — Orange curve (accogliente, kit Omaric warm) */}
+      <path d="M20 34 Q24 36.5 28 34" fill="none" stroke="#E8941C" strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function UndoIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <path d="M3 8h10a5 5 0 0 1 0 10H7" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M7 4L3 8l4 4" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function RedoIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <path d="M21 8H11a5 5 0 0 0 0 10h6" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d="M17 4l4 4-4 4" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function TrashIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <path d="M5 7h14M9 7V4h6v3M6 7l1 13h10l1-13" stroke={color || '#E54B3D'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function HelpIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true" {...rest}>
+      <circle cx="12" cy="12" r="10" stroke={color || '#1E4D8C'} strokeWidth="2.5" fill="none" />
+      <path d="M9 9a3 3 0 1 1 4.5 2.5c-1 0.5-1.5 1-1.5 2.5" stroke={color || '#1E4D8C'} strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <circle cx="12" cy="17.5" r="1" fill={color || '#1E4D8C'} />
     </svg>
   );
 }

@@ -1,0 +1,94 @@
+/* © Andrea Marro — 18/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+.overlay {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 420px;
+  z-index: 9999;
+}
+
+.card {
+  background: white;
+  border: 3px solid var(--elab-red, #E54B3D);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.iconWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  color: var(--elab-red, #E54B3D);
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--elab-lime-light, #E8F0DC);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--elab-navy, #1E4D8C);
+  margin-bottom: 12px;
+}
+
+.rawError {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.rawError pre {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  background: #F8F9FA;
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  background: var(--elab-navy, #1E4D8C);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--elab-orange, #E8941C);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: slideInRight 240ms ease-out;
+  }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

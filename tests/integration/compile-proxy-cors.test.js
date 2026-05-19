@@ -21,12 +21,14 @@ import { describe, it, expect, beforeAll } from 'vitest';
 
 let CORS_ALLOWED_ORIGINS;
 let VERCEL_PREVIEW_REGEX;
+let isLoopbackDevOrigin;
 let isOriginAllowed;
 
 beforeAll(async () => {
   const mod = await import('../../supabase/functions/compile-proxy/cors.ts');
   CORS_ALLOWED_ORIGINS = mod.CORS_ALLOWED_ORIGINS;
   VERCEL_PREVIEW_REGEX = mod.VERCEL_PREVIEW_REGEX;
+  isLoopbackDevOrigin = mod.isLoopbackDevOrigin;
   isOriginAllowed = mod.isOriginAllowed;
 });
 
@@ -86,9 +88,20 @@ describe('compile-proxy CORS allowlist (BUG-29-01)', () => {
       expect(isOriginAllowed(previewUrl)).toBe(true);
     });
 
+    it('allows loopback dev origins on arbitrary Vite ports', () => {
+      expect(isLoopbackDevOrigin('http://127.0.0.1:5177')).toBe(true);
+      expect(isLoopbackDevOrigin('http://localhost:5177')).toBe(true);
+      expect(isOriginAllowed('http://127.0.0.1:5177')).toBe(true);
+      expect(isOriginAllowed('http://localhost:4173')).toBe(true);
+    });
+
     it('blocks hostile origins', () => {
       expect(isOriginAllowed('https://evil.example.com')).toBe(false);
       expect(isOriginAllowed('https://elabtutor.school.attacker.com')).toBe(false);
+      expect(isOriginAllowed('http://127.0.0.1.evil.com:5177')).toBe(false);
+      expect(isOriginAllowed('http://localhost.attacker.test:5177')).toBe(false);
+      expect(isOriginAllowed('https://127.0.0.1:5177')).toBe(false);
+      expect(isOriginAllowed('http://127.0.0.1:80')).toBe(false);
     });
 
     it('blocks null/empty/undefined inputs', () => {

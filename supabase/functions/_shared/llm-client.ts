@@ -9,6 +9,7 @@
 import type { GeminiModel, ImageData } from './types.ts';
 import { callGemini, callBrainFallback, GeminiError, ErrorCode } from './gemini.ts';
 import { callVertexGemini, isVertexEUEnabled, VertexError } from './vertex-client.ts';
+import { callVertexClaude } from './vertex-claude-client.ts';
 import {
   canUseTogether,
   anonymizePayload,
@@ -389,13 +390,58 @@ export async function callLLM(options: LLMOptions): Promise<LLMResult> {
   // (backward-compatible safety net during Phase 0 rollout).
   // Evidence-based: empirical R5 2026-05-11 1877ms avg p50, Andrea Pure G
   // ratify iter 39 (docs/decisions/2026-05-12-pure-gemini-chat-evidence-based.md).
+  // ── Iter 47 Opzione B — Claude on Vertex AI EU multi-region branch ──
+  // When upstream router selects 'claude-haiku-4-5' (THINKING_KEYWORDS + flag
+  // ENABLE_VERTEX_CLAUDE_THINKING=true), dispatch via vertex-claude-client.
+  // GDPR EU residency preserved (multi-region `eu` endpoint), reuses existing
+  // SA token from vertex-client.ts (Karpathy Simple: no AWS Bedrock complexity).
+  // Falls through to Vertex Gemini on Claude failure (safety net).
+  if (typeof options.model === 'string' && options.model.startsWith('claude-')) {
+    try {
+      const r = await callVertexClaude({
+        systemPrompt: options.systemPrompt,
+        message: options.message,
+        maxTokens: options.maxOutputTokens,
+        temperature: options.temperature,
+        model: `${options.model}@20251001`,
+      });
+      return {
+        text: r.text,
+        model: r.model,
+        provider: 'vertex-claude',
+        tokensUsed: { input: r.tokensUsed.input, output: r.tokensUsed.output },
+        latencyMs: r.latencyMs,
+      };
+    } catch (e) {
+      console.warn(JSON.stringify({
+        level: 'warn',
+        event: 'vertex_claude_fallthrough',
+        error_code: e instanceof VertexError ? e.code : 'unknown',
+        error_message: e instanceof Error ? e.message.slice(0, 200) : String(e).slice(0, 200),
+        hint: 'Vertex Gemini fallback active',
+      }));
+      // Fall through to Vertex Gemini path below.
+    }
+  }
+
   if (isVertexEUEnabled()) {
     try {
-      // Model selection: thinking mode → Pro; vision (images) → Flash (vision
-      // capable); else → Flash-Lite (default fast chat ~1877ms p50 empirical).
-      const vertexModel = options.thinkingLevel
+      // Model selection (iter 46 v77 architectural pivot — respect router):
+      //   - options.model from router (THINKING_KEYWORDS → Flash) is the source of truth.
+      //   - Vision (images): force Flash (vision capable, override Flash-Lite if upstream routed).
+      //   - Fall back to Flash-Lite when options.model missing AND no vision (legacy callers).
+      // Iter 39 prior behavior hardcoded Flash-Lite for non-Pro non-vision — that ignored
+      // router output. Iter 46 v77: trust router decision (Flash for deep-thinking promote).
+      // Andrea iter 46 directive "9681ms troppo lungo": Flash without thinking ~3-4s typical,
+      // quality preserved via system-prompt v3.1 + RAG inject (no thinkingBudget overhead).
+      const upstreamModel = options.model as GeminiModel | undefined;
+      const vertexModel: GeminiModel = upstreamModel === 'gemini-2.5-pro'
         ? 'gemini-2.5-pro'
-        : (hasImages ? 'gemini-2.5-flash' : 'gemini-2.5-flash-lite');
+        : hasImages
+        ? 'gemini-2.5-flash'
+        : upstreamModel === 'gemini-2.5-flash'
+        ? 'gemini-2.5-flash'
+        : 'gemini-2.5-flash-lite';
       const r = await callVertexGemini({ ...options, model: vertexModel });
       return {
         text: r.text,

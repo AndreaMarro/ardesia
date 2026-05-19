@@ -5,8 +5,6 @@ import { Buffer } from 'buffer'
 import App from './App.jsx'
 import { initCodeProtection } from './utils/codeProtection.js'
 import studentTracker from './services/studentTracker.js'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
 import './index.css'
 import './styles/design-system.css'
 import './styles/accessibility-fixes.css'  // WCAG 2.1 AA — DO NOT REMOVE
@@ -63,14 +61,6 @@ initCodeProtection()
 // Student activity tracker — persiste dati reali in localStorage
 studentTracker.init()
 
-// Vercel Pro instrumentation (2026-04-26):
-// - Analytics: page views + custom events (privacy-friendly, no cookies)
-// - SpeedInsights: Core Web Vitals (LCP, FID, CLS, TTFB) per route
-// Both auto-disable in dev (only collect data on Vercel deployments)
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <>
-        <App />
-        <Analytics />
-        <SpeedInsights />
-    </>
+    <App />
 )

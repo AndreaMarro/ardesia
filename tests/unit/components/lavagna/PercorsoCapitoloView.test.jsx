@@ -13,8 +13,13 @@
  */
 
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import PercorsoCapitoloView from '../../../../src/components/lavagna/PercorsoCapitoloView.jsx';
+import { sendChat } from '../../../../src/services/api.js';
+
+vi.mock('../../../../src/services/api.js', () => ({
+  sendChat: vi.fn(),
+}));
 
 const SAMPLE_CAPITOLO_EXP = {
   id: 'v1-cap6',
@@ -197,5 +202,26 @@ describe('PercorsoCapitoloView', () => {
     render(<PercorsoCapitoloView capitolo={SAMPLE_CAPITOLO_EXP} />);
     // docente_sidebar.step_corrente of esp1 phase 1 = "Distribuzione kit"
     expect(screen.getByText('Distribuzione kit')).toBeInTheDocument();
+  });
+
+  it('Lezione personalizzata displays sendChat.response, not the raw JSON envelope', async () => {
+    sendChat.mockResolvedValueOnce({
+      success: true,
+      response: 'Ragazzi, partiamo dal LED come porta girevole. (Riferimento: Vol. 1, pag. 29 del libro ELAB.)',
+      source: 'test',
+    });
+
+    render(<PercorsoCapitoloView capitolo={SAMPLE_CAPITOLO_EXP} />);
+    fireEvent.click(screen.getByTestId('btn-lezione-personalizzata'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('lezione-proposta')).toHaveTextContent(/porta girevole/);
+    });
+    expect(screen.getByTestId('lezione-proposta')).not.toHaveTextContent('"success"');
+    expect(sendChat).toHaveBeenCalledWith(
+      expect.stringMatching(/lezione personalizzata/i),
+      [],
+      expect.objectContaining({ experimentId: 'v1-cap6-esp1' })
+    );
   });
 });

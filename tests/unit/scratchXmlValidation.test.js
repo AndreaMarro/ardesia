@@ -38,8 +38,8 @@ describe('ScratchXml Validation', () => {
   const experiments = getVol3Experiments();
   const withScratch = experiments.filter(e => e.scratchXml);
 
-  test('at least 25 Vol3 experiments have scratchXml', () => {
-    expect(withScratch.length).toBeGreaterThanOrEqual(25);
+  test('at least 12 Vol3 experiments have scratchXml', () => {
+    expect(withScratch.length).toBeGreaterThanOrEqual(12);
   });
 
   test('every scratchXml is valid XML', () => {

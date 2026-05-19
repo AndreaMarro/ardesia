@@ -92,8 +92,8 @@ const jsonFiles = readdirSync(LESSON_PATHS_DIR)
   .sort();
 
 describe('Sprint U Cycle 2 Fix #2 — lesson-paths plurale linguaggio', () => {
-  it('lesson-paths directory contains 94 JSON files', () => {
-    expect(jsonFiles.length).toBe(94);
+  it('lesson-paths directory contains 79 JSON files', () => {
+    expect(jsonFiles.length).toBe(79);
   });
 
   it('every lesson-path JSON parses cleanly', () => {

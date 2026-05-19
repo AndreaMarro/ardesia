@@ -6,11 +6,14 @@
  */
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import { sendChat, analyzeImage, checkRateLimit } from '../../services/api';
 import { validateMessage, sanitizeOutput } from '../../utils/contentFilter';
 import { isLessonPrepCommand, getLessonSummary, prepareLesson } from '../../services/lessonPrepService';
-import { collectFullContext } from '../../services/unlimContextCollector';
+import { collectFullContext, getLatestVisualSnapshotImage } from '../../services/unlimContextCollector';
+import { logLatency } from '../../services/unlimLatencyLog';
 import { executeServerIntents } from './intentsDispatcher';
+import { buildDirectOperationalResponse } from '../../../supabase/functions/_shared/operational-response.ts';
 import logger from '../../utils/logger';
 
 // ── Welcome message ──
@@ -31,6 +34,306 @@ const QUICK_ACTION_MESSAGES = {
   hint: 'Dammi solo un indizio breve per andare avanti, senza spoiler della soluzione. Linguaggio semplice per 8-14 anni.',
 };
 
+const COMPONENT_TYPE_ALIASES = {
+  buzzer: 'buzzer-piezo',
+  cicalino: 'buzzer-piezo',
+  pulsante: 'push-button',
+  pushbutton: 'push-button',
+  fotoresistenza: 'photo-resistor',
+  photoresistor: 'photo-resistor',
+  ldr: 'photo-resistor',
+  batteria: 'battery9v',
+  battery: 'battery9v',
+  arduino: 'nano-r4',
+  nano: 'nano-r4',
+};
+
+function normalizeActionComponentType(type) {
+  const raw = String(type || '').trim();
+  if (!raw) return '';
+  return COMPONENT_TYPE_ALIASES[raw.toLowerCase()] || raw;
+}
+
+function normalizeActionWirePins(parts) {
+  if (!Array.isArray(parts)) return null;
+  const rest = parts.slice(1).map(s => String(s || '').trim()).filter(Boolean);
+  if (rest.length >= 4) return [`${rest[0]}:${rest[1]}`, `${rest[2]}:${rest[3]}`];
+  if (rest.length >= 2 && rest[0].includes(':') && rest[1].includes(':')) {
+    return [rest[0], rest[1]];
+  }
+  return null;
+}
+
+function actionReturnedFailure(result) {
+  if (result === false || result === null) return true;
+  if (result && typeof result === 'object' && typeof result.then !== 'function') {
+    return result.success === false || result.ok === false || result.status === 'error';
+  }
+  return false;
+}
+
+function actionFailureReason(result, fallback = 'tool rejected the action') {
+  if (result === false) return fallback;
+  if (result === null) return 'tool returned null';
+  if (result && typeof result === 'object') {
+    if (typeof result.error === 'string') return result.error;
+    if (typeof result.reason === 'string') return result.reason;
+    if (Array.isArray(result.errors) && result.errors.length > 0) return result.errors.join('; ');
+    if (result.success === false) return fallback;
+    if (result.ok === false) return fallback;
+    if (result.status === 'error') return fallback;
+  }
+  return fallback;
+}
+
+async function settleActionResult(result) {
+  try {
+    return { value: await result };
+  } catch (err) {
+    return {
+      value: { ok: false, error: err?.message || 'tool threw an error' },
+      thrown: err,
+    };
+  }
+}
+
+function makeVerificationRecord(command, label, ok, details = {}) {
+  return {
+    command,
+    label,
+    ok: Boolean(ok),
+    reason: ok ? null : (details.reason || 'verification failed'),
+    observed: details.observed || null,
+    expected: details.expected || null,
+  };
+}
+
+function shouldUseVisualNarrative(message) {
+  const text = String(message || '');
+  const asksForVisualRead = /\b(guarda|analizza|controlla|vedi|vedere|vederlo|osserva|screenshot|foto|immagine|schermata)\b.*\b(circuito|schema|breadboard|simulatore|lavagna|schermo|mio|questo|errore)\b|\b(circuito|schema|breadboard)\b.*\b(guarda|analizza|controlla|vedi|vedere|vederlo|osserva|errore|giusto|corretto)\b/i.test(text);
+  const asksForAction = /\b(avvia|parti|play|stop|ferma|pausa|compila|carica|monta|aggiungi|collega|togli|rimuovi|cancella|pulisci|apri|chiudi|evidenzia|mostra)\b/i.test(text);
+  return asksForVisualRead && !asksForAction;
+}
+
+function buildVisionUnavailableMessage() {
+  const api = typeof window !== 'undefined' && window.__ELAB_API;
+  let description = '';
+  try {
+    description = String(api?.getCircuitDescription?.() || '').trim();
+  } catch { /* silent */ }
+  if (description) {
+    return `Riesco a leggere lo stato del simulatore, ma non ho una schermata visiva affidabile adesso. Da qui vedo: ${description.slice(0, 220)}`;
+  }
+  return 'Non riesco a leggere lo screenshot del circuito in questo momento. Premi il pulsante fotocamera o riprova tra un secondo.';
+}
+
+async function readEditorCode(api) {
+  if (!api?.getEditorCode) return undefined;
+  const settled = await settleActionResult(api.getEditorCode());
+  return settled.value;
+}
+
+async function executeActionTagsVerified(rawResponse) {
+  const api = typeof window !== 'undefined' && window.__ELAB_API;
+  if (!api) return { executed: [], records: [] };
+
+  const executed = [];
+  const records = [];
+  const re = /\[azione:([^\]]+)\]/gi;
+  let match;
+  let pendingEditorCode = null;
+
+  async function recordTool(command, label, toolResult, verifier) {
+    const settled = await settleActionResult(toolResult);
+    if (actionReturnedFailure(settled.value)) {
+      const record = makeVerificationRecord(command, label, false, {
+        reason: actionFailureReason(settled.value),
+        observed: settled.value,
+      });
+      records.push(record);
+      return record;
+    }
+    if (verifier) {
+      const verified = await verifier(settled.value);
+      const record = makeVerificationRecord(command, label, verified.ok, verified);
+      records.push(record);
+      if (record.ok) executed.push(label);
+      return record;
+    }
+    const record = makeVerificationRecord(command, label, true, { observed: settled.value });
+    records.push(record);
+    executed.push(label);
+    return record;
+  }
+
+  function recordUnavailable(command, label) {
+    const record = makeVerificationRecord(command, label, false, { reason: 'tool unavailable' });
+    records.push(record);
+    return record;
+  }
+
+  async function callVoidTool(command, label, fn) {
+    if (typeof fn !== 'function') return recordUnavailable(command, label);
+    return recordTool(command, label, fn());
+  }
+
+  while ((match = re.exec(rawResponse)) !== null) {
+    const full = match[1].trim();
+    const parts = full.split(':').map(s => s.trim());
+    const cmd = parts[0].toLowerCase();
+
+    try {
+      switch (cmd) {
+        case 'play':
+          await callVoidTool(cmd, 'play', api.play);
+          break;
+        case 'pause':
+          await callVoidTool(cmd, 'pause', api.pause);
+          break;
+        case 'reset':
+          await callVoidTool(cmd, 'reset', api.reset);
+          break;
+        case 'loadexp':
+          if (parts[1] && api.loadExperiment) {
+            await recordTool(cmd, `loadexp:${parts[1]}`, api.loadExperiment(parts[1]));
+          }
+          break;
+        case 'addcomponent': {
+          if (parts[1] && api.addComponent) {
+            const x = parseInt(parts[2], 10) || 200;
+            const y = parseInt(parts[3], 10) || 150;
+            const type = normalizeActionComponentType(parts[1]);
+            const toolResult = api.addComponent(type, { x, y });
+            await recordTool(cmd, `addcomponent:${type}`, toolResult, async (addedId) => {
+              if (!addedId) return { ok: false, reason: 'component id missing after add', observed: addedId };
+              const layout = api.getLayout ? (await settleActionResult(api.getLayout())).value : null;
+              if (layout?.components && !layout.components.some(c => c.id === addedId || c.type === type)) {
+                return {
+                  ok: false,
+                  reason: 'component not visible in layout after add',
+                  expected: { type, id: addedId },
+                  observed: layout.components,
+                };
+              }
+              return { ok: true, observed: { id: addedId, type } };
+            });
+          }
+          break;
+        }
+        case 'removecomponent':
+          if (parts[1] && api.removeComponent) {
+            await recordTool(cmd, `removecomponent:${parts[1]}`, api.removeComponent(parts[1]));
+          }
+          break;
+        case 'addwire': {
+          if (api.addWire) {
+            const pins = normalizeActionWirePins(parts);
+            if (pins) {
+              await recordTool(cmd, `addwire:${pins[0]}->${pins[1]}`, api.addWire(pins[0], pins[1]));
+            } else {
+              records.push(makeVerificationRecord(cmd, 'addwire', false, { reason: 'invalid wire pins', observed: parts }));
+            }
+          }
+          break;
+        }
+        case 'compile': {
+          if (api.compile) {
+            const code = pendingEditorCode ?? await readEditorCode(api);
+            await recordTool(cmd, 'compile', api.compile(code), async (compileResult) => {
+              if (actionReturnedFailure(compileResult)) {
+                return { ok: false, reason: actionFailureReason(compileResult), observed: compileResult };
+              }
+              return { ok: true, observed: compileResult };
+            });
+          }
+          break;
+        }
+        case 'clearall':
+          await callVoidTool(cmd, 'clearall', api.clearAll);
+          break;
+        case 'undo':
+          await callVoidTool(cmd, 'undo', api.undo);
+          break;
+        case 'redo':
+          await callVoidTool(cmd, 'redo', api.redo);
+          break;
+        case 'setcode': {
+          const code = parts.slice(1).join(':');
+          if (code && api.setEditorCode) {
+            pendingEditorCode = code;
+            await recordTool(cmd, 'setcode', api.setEditorCode(code), async () => {
+              if (!api.getEditorCode) return { ok: true, observed: 'no editor readback available' };
+              const observed = await readEditorCode(api);
+              return observed === code
+                ? { ok: true, expected: code, observed }
+                : { ok: false, reason: 'editor code readback mismatch', expected: code, observed };
+            });
+          }
+          break;
+        }
+        case 'appendcode': {
+          const code = parts.slice(1).join(':');
+          if (code && api.appendEditorCode) {
+            await recordTool(cmd, 'appendcode', api.appendEditorCode(code));
+          }
+          break;
+        }
+        case 'loadblocks': {
+          const xml = parts.slice(1).join(':');
+          if (xml && api.loadScratchWorkspace) {
+            await recordTool(cmd, 'loadblocks', api.loadScratchWorkspace(xml));
+          }
+          break;
+        }
+        case 'exportfumetto':
+        case 'fumetto':
+        case 'report': {
+          if (api.unlim?.exportFumetto) {
+            const format = parts[1] || 'pdf';
+            await recordTool(cmd, 'exportfumetto', api.unlim.exportFumetto({ format, source: 'unlim-action' }));
+          }
+          break;
+        }
+        case 'switcheditor':
+          if (parts[1] && api.setEditorMode) {
+            await recordTool(cmd, `switcheditor:${parts[1]}`, api.setEditorMode(parts[1] === 'scratch' ? 'scratch' : 'arduino'));
+          }
+          break;
+        case 'openeditor':
+          await callVoidTool(cmd, 'openeditor', api.showEditor);
+          break;
+        case 'closeeditor':
+          await callVoidTool(cmd, 'closeeditor', api.hideEditor);
+          break;
+        case 'highlightpin': {
+          if (parts[1]) {
+            const pinArg = parts.slice(1).join(':');
+            const pins = pinArg.split(',').map(s => s.trim());
+            await recordTool(cmd, `highlightpin:${pinArg}`, api.highlightPin?.(pins));
+            setTimeout(() => api.unlim?.clearHighlights?.(), 4000);
+          }
+          break;
+        }
+        default: {
+          const syncExecuted = executeActionTags(`[AZIONE:${full}]`);
+          for (const label of syncExecuted) {
+            records.push(makeVerificationRecord(cmd, label, true, { observed: 'legacy bridge executed' }));
+            executed.push(label);
+          }
+          if (syncExecuted.length === 0) {
+            records.push(makeVerificationRecord(cmd, full, false, { reason: 'no executable tool or verifier available' }));
+          }
+        }
+      }
+    } catch (err) {
+      records.push(makeVerificationRecord(cmd, full, false, { reason: err?.message || 'tool threw an error' }));
+      logger.warn('[Lavagna] Verified action error:', cmd, err.message);
+    }
+  }
+
+  return { executed, records };
+}
+
 // ── AZIONE tag parser — handles common simulator commands via __ELAB_API ──
 function executeActionTags(rawResponse) {
   const api = typeof window !== 'undefined' && window.__ELAB_API;
@@ -39,6 +342,7 @@ function executeActionTags(rawResponse) {
   const executed = [];
   const re = /\[azione:([^\]]+)\]/gi;
   let match;
+  let pendingEditorCode = null;
 
   while ((match = re.exec(rawResponse)) !== null) {
     const full = match[1].trim();
@@ -59,16 +363,17 @@ function executeActionTags(rawResponse) {
           break;
         case 'loadexp':
           if (parts[1] && api.loadExperiment) {
-            api.loadExperiment(parts[1]);
-            executed.push('loadexp:' + parts[1]);
+            const loaded = api.loadExperiment(parts[1]);
+            if (!actionReturnedFailure(loaded)) executed.push('loadexp:' + parts[1]);
           }
           break;
         case 'addcomponent':
           if (parts[1] && api.addComponent) {
             const x = parseInt(parts[2], 10) || 200;
             const y = parseInt(parts[3], 10) || 150;
-            api.addComponent(parts[1], { x, y });
-            executed.push('addcomponent:' + parts[1]);
+            const type = normalizeActionComponentType(parts[1]);
+            const addedId = api.addComponent(type, { x, y });
+            if (addedId) executed.push('addcomponent:' + addedId);
           }
           break;
         case 'removecomponent':
@@ -78,12 +383,22 @@ function executeActionTags(rawResponse) {
           }
           break;
         case 'addwire':
-          if (parts.length >= 5 && api.addWire) {
-            api.addWire(parts[1], parts[2], parts[3], parts[4]);
-            executed.push('addwire');
+          if (api.addWire) {
+            const pins = normalizeActionWirePins(parts);
+            if (pins) {
+              const result = api.addWire(pins[0], pins[1]);
+              if (!actionReturnedFailure(result)) executed.push(`addwire:${pins[0]}->${pins[1]}`);
+            }
           }
           break;
-        case 'compile': api.compile?.(); executed.push('compile'); break;
+        case 'compile': {
+          if (api.compile) {
+            const code = pendingEditorCode ?? api.getEditorCode?.();
+            const result = api.compile(code);
+            if (!actionReturnedFailure(result)) executed.push('compile');
+          }
+          break;
+        }
         case 'undo': api.undo?.(); executed.push('undo'); break;
         case 'redo': api.redo?.(); executed.push('redo'); break;
         case 'interact':
@@ -105,6 +420,16 @@ function executeActionTags(rawResponse) {
             executed.push('screenshot');
           }
           break;
+        case 'exportfumetto':
+        case 'fumetto':
+        case 'report': {
+          if (api.unlim?.exportFumetto) {
+            const format = parts[1] || 'pdf';
+            const result = api.unlim.exportFumetto({ format, source: 'unlim-action' });
+            if (!actionReturnedFailure(result)) executed.push('exportfumetto');
+          }
+          break;
+        }
         case 'describe':
           if (api.getCircuitDescription) {
             const desc = api.getCircuitDescription();
@@ -153,7 +478,8 @@ function executeActionTags(rawResponse) {
           break;
         case 'setcode':
           if (parts.slice(1).join(':') && api.setEditorCode) {
-            api.setEditorCode(parts.slice(1).join(':'));
+            pendingEditorCode = parts.slice(1).join(':');
+            api.setEditorCode(pendingEditorCode);
             executed.push('setcode');
           }
           break;
@@ -176,8 +502,8 @@ function executeActionTags(rawResponse) {
           break;
         case 'loadblocks':
           if (parts.slice(1).join(':') && api.loadScratchWorkspace) {
-            api.loadScratchWorkspace(parts.slice(1).join(':'));
-            executed.push('loadblocks');
+            const loaded = api.loadScratchWorkspace(parts.slice(1).join(':'));
+            if (!actionReturnedFailure(loaded)) executed.push('loadblocks');
           }
           break;
         case 'fullscreenscratch':
@@ -202,8 +528,8 @@ function executeActionTags(rawResponse) {
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
         case 'openvolume': {
           const vol = parseInt(parts[1], 10);
-          const pag = parseInt(parts[2], 10);
-          if (vol && pag) {
+          const pag = parseInt(parts[2], 10) || 1;
+          if (vol) {
             window.dispatchEvent(new CustomEvent('elab-navigate', { detail: { tab: 'manuale', volume: vol, page: pag } }));
             executed.push('openvolume:' + vol + ':' + pag);
           }
@@ -264,10 +590,11 @@ function executeActionTags(rawResponse) {
           break;
         case 'highlightpin':
           if (parts[1]) {
-            const pins = parts[1].split(',').map(s => s.trim());
+            const pinArg = parts.slice(1).join(':');
+            const pins = pinArg.split(',').map(s => s.trim());
             api.highlightPin?.(pins);
             setTimeout(() => api.unlim?.clearHighlights?.(), 4000);
-            executed.push('highlightpin:' + parts[1]);
+            executed.push('highlightpin:' + pinArg);
           }
           break;
         // ── Special ──
@@ -357,8 +684,9 @@ async function executeIntentTags(rawResponse) {
             if (action.type === 'addcomponent') {
               const tagMatch = action.tag.match(/addcomponent:([^:]+):(-?\d+):(-?\d+)/);
               if (tagMatch && api.addComponent) {
-                api.addComponent(tagMatch[1], { x: parseInt(tagMatch[2], 10), y: parseInt(tagMatch[3], 10) });
-                executed.push('addcomponent:' + tagMatch[1]);
+                const type = normalizeActionComponentType(tagMatch[1]);
+                const addedId = api.addComponent(type, { x: parseInt(tagMatch[2], 10), y: parseInt(tagMatch[3], 10) });
+                if (addedId) executed.push('addcomponent:' + addedId);
               }
             }
           }
@@ -369,9 +697,10 @@ async function executeIntentTags(rawResponse) {
             if (action.type === 'addwire') {
               const inner = action.tag.slice(action.tag.indexOf(':') + 1, -1);
               const parts = inner.split(':').map(s => s.trim());
-              if (parts[1] && parts[2] && parts[3] && parts[4] && api.addWire) {
-                api.addWire(parts[1], parts[2], parts[3], parts[4]);
-                executed.push('addwire');
+              const pins = normalizeActionWirePins(parts);
+              if (pins && api.addWire) {
+                const result = api.addWire(pins[0], pins[1]);
+                if (!actionReturnedFailure(result)) executed.push(`addwire:${pins[0]}->${pins[1]}`);
               }
             }
           }
@@ -465,16 +794,13 @@ function stripTagsForDisplay(text) {
     .trim();
 }
 
-// ── Word count cap (G25 — max 80 words for display) ──
-const MAX_WORDS = 60;
-function capWords(text) {
-  const words = text.split(/\s+/).filter(Boolean);
-  if (words.length <= MAX_WORDS) return text;
-  const truncated = words.slice(0, MAX_WORDS).join(' ');
-  const lastSentence = truncated.search(/[.!?][^.!?]*$/);
-  return lastSentence > 20
-    ? truncated.substring(0, lastSentence + 1)
-    : truncated + '\u2026';
+// ── Display text policy ─────────────────────────────────────────────
+// Non tronchiamo il testo generato: in sessioni reali il taglio lato client
+// può eliminare la citazione Vol./pag. aggiunta dal post-processor o perdere
+// un passaggio diagnostico importante. La brevità resta responsabilità del
+// prompt/server; la UI mostra la risposta intera e pulita dai tag di controllo.
+function prepareDisplayText(text) {
+  return String(text || '').trim();
 }
 
 // ── Build tutor context for API calls ──
@@ -532,6 +858,25 @@ function buildTutorContext() {
 // ══════════════════════════════════════
 const CHAT_STORAGE_KEY = 'elab-unlim-chat-history-v1';
 const CHAT_MAX_MESSAGES = 100;
+const THINKING_INDICATOR_DELAY_MS = 0;
+
+function waitForUiFrame() {
+  if (typeof window === 'undefined') return Promise.resolve();
+  return new Promise(resolve => {
+    if (typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(() => resolve());
+    } else {
+      setTimeout(resolve, 0);
+    }
+  });
+}
+
+function normalizeCircuitStateForDirectPath(circuitState) {
+  if (!circuitState) return null;
+  if (circuitState.structured) return circuitState.structured;
+  if (circuitState.raw) return circuitState.raw;
+  return circuitState;
+}
 
 function loadChatHistory() {
   try {
@@ -539,7 +884,7 @@ function loadChatHistory() {
     if (!raw) return [WELCOME_MSG];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed) || parsed.length === 0) return [WELCOME_MSG];
-    return parsed.slice(-CHAT_MAX_MESSAGES);
+    return parsed.filter(m => !m?.isSlowIndicator).slice(-CHAT_MAX_MESSAGES);
   } catch { return [WELCOME_MSG]; }
 }
 
@@ -549,6 +894,16 @@ function saveChatHistory(messages) {
     localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(capped));
   } catch { /* storage full */ }
 }
+
+export const __test__ = {
+  executeActionTags,
+  executeActionTagsVerified,
+  normalizeActionWirePins,
+  normalizeActionComponentType,
+  shouldUseVisualNarrative,
+  normalizeCircuitStateForDirectPath,
+  THINKING_INDICATOR_DELAY_MS,
+};
 
 // ══════════════════════════════════════
 // HOOK: useGalileoChat
@@ -598,8 +953,13 @@ export default function useGalileoChat() {
       return;
     }
 
+    const directOperationalCandidate = buildDirectOperationalResponse(
+      userMessage,
+      normalizeCircuitStateForDirectPath(circuitStateRef.current),
+    );
+
     const rateCheck = checkRateLimit();
-    if (!rateCheck.allowed) {
+    if (!directOperationalCandidate && !rateCheck.allowed) {
       setMessages(prev => [...prev,
         { id: Date.now(), role: 'user', content: userMessage },
         { id: Date.now() + 1, role: 'assistant', content: rateCheck.message, isRateLimit: true },
@@ -609,39 +969,126 @@ export default function useGalileoChat() {
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
     }
 
-    if (!messageOverride) setInput('');
-    setMessages(prev => [...prev, { id: Date.now(), role: 'user', content: userMessage }]);
-    setIsLoading(true);
+    const requestStartedAt = Date.now();
+    const clearSlowIndicator = () => {
+      setMessages(prev => prev.filter(m => !m.isSlowIndicator));
+    };
+    flushSync(() => {
+      if (!messageOverride) setInput('');
+      setMessages(prev => [...prev.filter(m => !m.isSlowIndicator), {
+        id: requestStartedAt,
+        role: 'user',
+        content: userMessage,
+      }]);
+      setIsLoading(true);
+    });
+    await waitForUiFrame();
+
+    const directOperational = directOperationalCandidate;
+    if (directOperational) {
+      const aiResponse = sanitizeOutput(directOperational.response);
+      const displayText = prepareDisplayText(stripTagsForDisplay(aiResponse));
+      const msgId = Date.now() + 1;
+
+      setMessages(prev => [...prev, {
+        id: msgId,
+        role: 'assistant',
+        content: displayText || aiResponse,
+        source: directOperational.source,
+        _executedActions: [],
+      }]);
+      clearSlowIndicator();
+      setIsLoading(false);
+      logLatency({
+        latency_ms: Date.now() - requestStartedAt,
+        ok: true,
+        query_hash: userMessage.slice(0, 16),
+        source: directOperational.source,
+      });
+
+      void (async () => {
+        await waitForUiFrame();
+        const actionVerification = await executeActionTagsVerified(aiResponse);
+        const intentResults = await executeIntentTags(aiResponse);
+        const allActions = [...actionVerification.executed, ...intentResults];
+        if (allActions.length > 0) {
+          setMessages(prev => prev.map(m =>
+            m.id === msgId
+              ? { ...m, _executedActions: allActions, _actionVerification: actionVerification.records }
+              : m
+          ));
+        }
+        const failedActions = actionVerification.records.filter(r => !r.ok);
+        if (failedActions.length > 0) {
+          const failedText = failedActions
+            .slice(0, 2)
+            .map(r => `${r.command}: ${r.reason}`)
+            .join('; ');
+          setMessages(prev => [...prev, {
+            id: Date.now() + 2,
+            role: 'assistant',
+            content: `Ho provato l'azione, ma non la dichiaro eseguita: ${failedText}.`,
+            isError: true,
+            _actionVerification: actionVerification.records,
+          }]);
+        }
+      })();
+      return;
+    }
 
     // ── Vision trigger: "guarda il circuito", "analizza", "cosa vedi", "controlla" ──
-    const visionPatterns = /\b(guarda|analizza|controlla|vedi|osserva|screenshot|foto|immagine)\b.*\b(circuito|schema|breadboard|simulatore|lavagna|mio)\b|\b(circuito|schema|breadboard)\b.*\b(guarda|analizza|controlla|vedi|osserva)\b/i;
-    if (visionPatterns.test(userMessage)) {
+    if (shouldUseVisualNarrative(userMessage)) {
       try {
         const api = typeof window !== 'undefined' && window.__ELAB_API;
-        if (api?.captureScreenshot) {
-          const dataUrl = await api.captureScreenshot();
-          if (dataUrl) {
-            const base64 = dataUrl.replace(/^data:image\/\w+;base64,/, '');
-            const images = [{ base64, mimeType: 'image/png' }];
-            const visionResult = await analyzeImage(images, userMessage, {
-              circuitState: circuitStateRef.current,
+        const latestVisual = getLatestVisualSnapshotImage();
+        const dataUrl = latestVisual?.dataUrl || await api?.captureScreenshot?.();
+        if (dataUrl) {
+          const simulatorContext = collectFullContext();
+          const visionResult = await analyzeImage(dataUrl, userMessage, {
+            circuitState: circuitStateRef.current,
+            simulatorContext,
+            preferProvider: 'pixtral',
+            aiProfile: 'pixtral_total',
+            aiDepth: 'total',
+          });
+          if (visionResult.success) {
+            const cleaned = sanitizeOutput(typeof visionResult.response === 'string' ? visionResult.response : JSON.stringify(visionResult.response));
+            setMessages(prev => [...prev, {
+              id: Date.now() + 1, role: 'assistant',
+              content: prepareDisplayText(stripTagsForDisplay(cleaned)),
+              hasVision: true,
+            }]);
+            logLatency({
+              latency_ms: Date.now() - requestStartedAt,
+              ok: true,
+              query_hash: userMessage.slice(0, 16),
+              source: visionResult.source || 'vision',
             });
-            if (visionResult.success) {
-              const cleaned = sanitizeOutput(typeof visionResult.response === 'string' ? visionResult.response : JSON.stringify(visionResult.response));
-              setMessages(prev => [...prev, {
-                id: Date.now() + 1, role: 'assistant',
-                content: capWords(stripTagsForDisplay(cleaned)),
-                hasVision: true,
-              }]);
-              setIsLoading(false);
-              return;
-            }
+            clearSlowIndicator();
+            setIsLoading(false);
+            return;
           }
         }
       } catch (err) {
-        logger.warn('[useGalileoChat] Vision analysis failed, falling through to normal chat:', err);
+        logger.warn('[useGalileoChat] Vision analysis failed:', err);
       }
-      // Fall through to normal chat if vision fails
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        role: 'assistant',
+        content: buildVisionUnavailableMessage(),
+        hasVision: false,
+        isError: true,
+        retryMessage: userMessage,
+      }]);
+      logLatency({
+        latency_ms: Date.now() - requestStartedAt,
+        ok: false,
+        query_hash: userMessage.slice(0, 16),
+        source: 'vision-unavailable',
+      });
+      clearSlowIndicator();
+      setIsLoading(false);
+      return;
     }
 
     // ── Lesson preparation command (Principio Zero: Lavagna = interfaccia docente) ──
@@ -656,6 +1103,7 @@ export default function useGalileoChat() {
             id: Date.now() + 1, role: 'assistant',
             content: 'Scegli prima un esperimento, poi ti preparo la lezione! [AZIONE:loadexp:picker]',
           }]);
+          clearSlowIndicator();
           setIsLoading(false);
           return;
         }
@@ -708,6 +1156,7 @@ export default function useGalileoChat() {
           }]);
         }
 
+        clearSlowIndicator();
         setIsLoading(false);
         return;
       } catch (err) {
@@ -715,16 +1164,6 @@ export default function useGalileoChat() {
         // Fall through to normal chat
       }
     }
-
-    // Slow response indicator
-    const slowMsgId = Date.now() + 999;
-    const slowTimer = setTimeout(() => {
-      setMessages(prev => [...prev, {
-        id: slowMsgId, role: 'assistant',
-        content: 'UNLIM sta cercando la risposta migliore...',
-        isSlowIndicator: true,
-      }]);
-    }, 5000);
 
     const experimentContext = buildTutorContext();
     const api = typeof window !== 'undefined' && window.__ELAB_API;
@@ -746,11 +1185,17 @@ export default function useGalileoChat() {
     });
 
     if (result.success) {
+      logLatency({
+        latency_ms: Date.now() - requestStartedAt,
+        ok: true,
+        query_hash: userMessage.slice(0, 16),
+        source: result.source || 'unknown',
+      });
       const rawResponse = typeof result.response === 'string'
         ? result.response
         : (result.response ? JSON.stringify(result.response) : 'Errore: risposta non valida.');
       const aiResponse = sanitizeOutput(rawResponse);
-      const displayText = capWords(stripTagsForDisplay(aiResponse));
+      const displayText = prepareDisplayText(stripTagsForDisplay(aiResponse));
       const msgId = Date.now() + 1;
 
       setMessages(prev => [...prev, {
@@ -765,7 +1210,8 @@ export default function useGalileoChat() {
       // iter 37 Atom B-NEW: also dispatch server-parsed `intents_parsed` from
       // the Edge Function (ADR-028 §14 surface-to-browser pivot). Each entry
       // is whitelisted + dispatched via __ELAB_API with error isolation.
-      const actionResults = executeActionTags(aiResponse);
+      const actionVerification = await executeActionTagsVerified(aiResponse);
+      const actionResults = actionVerification.executed;
       const intentResults = await executeIntentTags(aiResponse);
       const serverIntentResults = await executeServerIntents(result.intentsParsed || []);
       const serverIntentLabels = serverIntentResults
@@ -783,8 +1229,28 @@ export default function useGalileoChat() {
             : m
         ));
       }
+      const failedActions = actionVerification.records.filter(r => !r.ok);
+      if (failedActions.length > 0) {
+        const failedText = failedActions
+          .slice(0, 2)
+          .map(r => `${r.command}: ${r.reason}`)
+          .join('; ');
+        setMessages(prev => [...prev, {
+          id: Date.now() + 2,
+          role: 'assistant',
+          content: `Ho provato l'azione, ma non la dichiaro eseguita: ${failedText}.`,
+          isError: true,
+          _actionVerification: actionVerification.records,
+        }]);
+      }
     } else {
-      const errorMsg = result.error || 'Errore sconosciuto';
+      logLatency({
+        latency_ms: Date.now() - requestStartedAt,
+        ok: false,
+        query_hash: userMessage.slice(0, 16),
+        source: result.source || 'unknown',
+      });
+      const errorMsg = result.error || result.response || 'Qualcosa non ha funzionato. Riprova tra qualche secondo.';
       let friendly = errorMsg;
       if (errorMsg.includes('Timeout') || errorMsg.includes('timeout')) {
         friendly = 'UNLIM ci sta mettendo un po\'. Riprova tra qualche secondo.';
@@ -797,8 +1263,7 @@ export default function useGalileoChat() {
       }]);
     }
 
-    clearTimeout(slowTimer);
-    setMessages(prev => prev.filter(m => m.id !== slowMsgId));
+    clearSlowIndicator();
     setIsLoading(false);
   }, [input, isLoading]);
 
@@ -827,13 +1292,13 @@ export default function useGalileoChat() {
       const result = await analyzeImage(
         images,
         userMessage || 'Analizza questa schermata del simulatore e dimmi se vedi qualcosa di sbagliato o se va tutto bene.',
-        { circuitState: circuitStateRef.current }
+        { circuitState: circuitStateRef.current, simulatorContext: collectFullContext(), preferProvider: 'pixtral', aiProfile: 'pixtral_total', aiDepth: 'total' }
       );
 
       if (result.success) {
         const cleaned = sanitizeOutput(typeof result.response === 'string' ? result.response : JSON.stringify(result.response));
         setMessages(prev => [...prev, {
-          id: Date.now() + 1, role: 'assistant', content: capWords(stripTagsForDisplay(cleaned)),
+          id: Date.now() + 1, role: 'assistant', content: prepareDisplayText(stripTagsForDisplay(cleaned)),
         }]);
       } else {
         setMessages(prev => [...prev, {

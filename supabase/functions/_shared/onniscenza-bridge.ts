@@ -386,3 +386,289 @@ export const ONNISCENZA_LAYER_STATUS: Record<LayerName, 'LIVE' | 'STUB' | 'TODO'
   L6_llm: 'LIVE',       // chat history rolling window from request context
   L7_onthefly: 'LIVE',  // circuit_state injected by caller
 };
+
+// ────────────────────────────────────────────────────────────────────────────
+// ADR-049 Sense 1.6 Atom 2 — aggregateOnniscenzaV2 EXTEND (iter 65)
+// ────────────────────────────────────────────────────────────────────────────
+//
+// Sense 1.5 baseline `aggregateOnniscenza` LIVE iter 31 prod commit b0c2a96.
+// Sense 1.6 adds 4 NEW context dimensions over Promise.all parallel collectors:
+//   D1 teacher_history_log  (dim 1+2+3 storia/competenza/stile docente)
+//   D2 class_session_metadata (dim 7+8+9+10 tempo/autonomia/materiale/scelto)
+//   D3 voice_movement_log    (dim 4+5 voce STT + movimenti SVG)
+//   D4 errore_ricorrente_pattern (dim 6 errori ricorrenti docente)
+// Plus predicted_nudges (proactive iter 65 STUB; full algo iter 65+ Atom 6 morphic-predictor.js).
+//
+// Gate: `input.sense_1_6_enabled === true` mandatory before V2 path.
+// Without gate, falls back to V1 baseline (Sprint S iter 31 preservation).
+//
+// Defensive: collectors return empty array on error, NEVER throw. Preserves chat flow.
+// Promise.all parallel: 4 collectors fire concurrently to minimize p95 latency cost.
+//
+// ────────────────────────────────────────────────────────────────────────────
+
+import type {
+  TeacherHistoryItem,
+  ClassSessionMetadata,
+  VoiceMovementSummary,
+  ErrorePattern,
+  NudgePrediction,
+} from './types.ts';
+
+export interface OnniscenzaInputV2 extends OnniscenzaInput {
+  /** Stable anonymous UUID for the docente (existing iter 14 client localStorage convention). */
+  teacher_anon_uuid?: string;
+  /** Stable anonymous class key (existing iter 14 client localStorage convention). */
+  class_key?: string;
+  /** Gate ADR-049 §4.1 — when false/missing, function falls back to V1 baseline. */
+  sense_1_6_enabled?: boolean;
+}
+
+export interface OnniscenzaSnapshotV2 extends OnniscenzaSnapshot {
+  /** Top-N teacher history rows (most recent first). */
+  teacher_history?: TeacherHistoryItem[];
+  /** Single class session metadata row (when class_key provided). */
+  class_metadata?: ClassSessionMetadata | null;
+  /** Aggregated voice + movement summary derived from event log. */
+  voice_movement_summary?: VoiceMovementSummary | null;
+  /** Top-N errori ricorrenti by detected_count. */
+  errore_ricorrente_patterns?: ErrorePattern[];
+  /** Predicted next nudges (iter 65 STUB; full algo Atom 6). */
+  predicted_nudges?: NudgePrediction[];
+}
+
+/**
+ * Collector D1 — teacher_history_log top-10 most recent rows.
+ * Defensive: returns [] on missing uuid / missing supabase / error.
+ */
+// deno-lint-ignore no-explicit-any
+export async function queryTeacherHistoryLog(supabase: any, teacherAnonUuid?: string): Promise<TeacherHistoryItem[]> {
+  if (!supabase || !teacherAnonUuid) return [];
+  try {
+    const { data, error } = await supabase
+      .from('teacher_history_log')
+      .select('id, teacher_anon_uuid, session_id, experiment_id, chapter, vol, pag, started_at, ended_at, duration_seconds, concepts_explained, errors_encountered, ragazzi_count_estimated, device_mode, consent_version')
+      .eq('teacher_anon_uuid', teacherAnonUuid)
+      .order('started_at', { ascending: false })
+      .limit(10);
+    if (error || !Array.isArray(data)) {
+      if (error) {
+        console.warn(JSON.stringify({ level: 'warn', event: 'd1_teacher_history_query_fail', error: String(error?.message || error) }));
+      }
+      return [];
+    }
+    return data as TeacherHistoryItem[];
+  } catch (e) {
+    console.warn(JSON.stringify({ level: 'warn', event: 'd1_teacher_history_exception', error: String(e) }));
+    return [];
+  }
+}
+
+/**
+ * Collector D2 — class_session_metadata single row by class_key (most recent).
+ * Defensive: returns null on missing key / missing supabase / error.
+ */
+// deno-lint-ignore no-explicit-any
+export async function queryClassSessionMetadata(supabase: any, classKey?: string): Promise<ClassSessionMetadata | null> {
+  if (!supabase || !classKey) return null;
+  try {
+    const { data, error } = await supabase
+      .from('class_session_metadata')
+      .select('id, class_key, session_id, tempo_disponibile_min, livello_autonomia, materiale_presente, esperimento_scelto, narrative_position, created_at, updated_at')
+      .eq('class_key', classKey)
+      .order('updated_at', { ascending: false })
+      .limit(1);
+    if (error || !Array.isArray(data) || data.length === 0) {
+      if (error) {
+        console.warn(JSON.stringify({ level: 'warn', event: 'd2_class_metadata_query_fail', error: String(error?.message || error) }));
+      }
+      return null;
+    }
+    return data[0] as ClassSessionMetadata;
+  } catch (e) {
+    console.warn(JSON.stringify({ level: 'warn', event: 'd2_class_metadata_exception', error: String(e) }));
+    return null;
+  }
+}
+
+/**
+ * Collector D3 — voice_movement_log aggregated summary by session_id.
+ * Reads up to 50 recent events, derives counts + zones + intensity avg.
+ * Defensive: returns null on missing session / missing supabase / error.
+ */
+// deno-lint-ignore no-explicit-any
+export async function queryVoiceMovementLog(supabase: any, sessionId?: string): Promise<VoiceMovementSummary | null> {
+  if (!supabase || !sessionId) return null;
+  try {
+    const { data, error } = await supabase
+      .from('voice_movement_log')
+      .select('voice_event_type, voice_payload, movement_intensity, zone_preferred, created_at')
+      .eq('session_id', sessionId)
+      .order('created_at', { ascending: false })
+      .limit(50);
+    if (error || !Array.isArray(data)) {
+      if (error) {
+        console.warn(JSON.stringify({ level: 'warn', event: 'd3_voice_movement_query_fail', error: String(error?.message || error) }));
+      }
+      return null;
+    }
+    if (data.length === 0) {
+      return {
+        session_id: sessionId,
+        events_count: 0,
+        event_types: [],
+        movement_intensity_avg: null,
+        zones_preferred: [],
+        recent_events: [],
+      };
+    }
+
+    // Aggregate.
+    const eventTypes = new Set<string>();
+    const zones = new Set<string>();
+    let intensitySum = 0;
+    let intensityCount = 0;
+    for (const row of data as Array<{ voice_event_type?: string; movement_intensity?: number | null; zone_preferred?: string[] | null; voice_payload?: unknown; created_at?: string }>) {
+      if (row.voice_event_type) eventTypes.add(row.voice_event_type);
+      if (Array.isArray(row.zone_preferred)) for (const z of row.zone_preferred) zones.add(z);
+      if (typeof row.movement_intensity === 'number' && Number.isFinite(row.movement_intensity)) {
+        intensitySum += row.movement_intensity;
+        intensityCount += 1;
+      }
+    }
+
+    const recentEvents = (data as Array<{ voice_event_type?: string; voice_payload?: unknown; created_at?: string }>)
+      .slice(0, 10)
+      .map((row) => ({
+        event_type: row.voice_event_type || 'unknown',
+        payload: (row.voice_payload && typeof row.voice_payload === 'object') ? row.voice_payload as Record<string, unknown> : null,
+        created_at: row.created_at,
+      }));
+
+    return {
+      session_id: sessionId,
+      events_count: data.length,
+      event_types: Array.from(eventTypes),
+      movement_intensity_avg: intensityCount > 0 ? intensitySum / intensityCount : null,
+      zones_preferred: Array.from(zones),
+      recent_events: recentEvents,
+    };
+  } catch (e) {
+    console.warn(JSON.stringify({ level: 'warn', event: 'd3_voice_movement_exception', error: String(e) }));
+    return null;
+  }
+}
+
+/**
+ * Collector D4 — errore_ricorrente_pattern top-5 by detected_count.
+ * Defensive: returns [] on missing uuid / missing supabase / error.
+ */
+// deno-lint-ignore no-explicit-any
+export async function queryErrorePattern(supabase: any, teacherAnonUuid?: string): Promise<ErrorePattern[]> {
+  if (!supabase || !teacherAnonUuid) return [];
+  try {
+    const { data, error } = await supabase
+      .from('errore_ricorrente_pattern')
+      .select('id, teacher_anon_uuid, pattern_signature, detected_count, first_detected_at, last_detected_at, capitolo_context, remediation_suggested')
+      .eq('teacher_anon_uuid', teacherAnonUuid)
+      .order('detected_count', { ascending: false })
+      .limit(5);
+    if (error || !Array.isArray(data)) {
+      if (error) {
+        console.warn(JSON.stringify({ level: 'warn', event: 'd4_errore_pattern_query_fail', error: String(error?.message || error) }));
+      }
+      return [];
+    }
+    return data as ErrorePattern[];
+  } catch (e) {
+    console.warn(JSON.stringify({ level: 'warn', event: 'd4_errore_pattern_exception', error: String(e) }));
+    return [];
+  }
+}
+
+/**
+ * STUB iter 65 — predictNextNudge.
+ * Returns empty array. Full algorithm shipped in Atom 6 morphic-predictor.js
+ * which fuses signals: teacher_history recency, class_meta autonomy/time,
+ * errore_pattern detected_count weighted by recency, current experiment_id.
+ *
+ * Exported as helper for unit-test mocking in Atom 6 entrance.
+ */
+export function predictNextNudgeStub(_args: {
+  history: TeacherHistoryItem[];
+  currentExperiment?: string;
+  classMeta: ClassSessionMetadata | null;
+  errorePatterns: ErrorePattern[];
+}): NudgePrediction[] {
+  // Intentional NO-OP stub. Iter 65 ships the wire-up surface only.
+  // Atom 6 (iter 65+) replaces with weighted-fusion algorithm.
+  return [];
+}
+
+/**
+ * ADR-049 §4.1 — Main entry V2.
+ *
+ * Behavior:
+ *   - `sense_1_6_enabled !== true`  → returns V1 baseline (full Sprint S iter 31 prod path).
+ *   - `sense_1_6_enabled === true`  → fires V1 baseline + 4 NEW collectors in Promise.all
+ *                                     parallel, then computes predicted_nudges via STUB.
+ *
+ * Defensive: any collector failure isolates (catch returns empty). Baseline aggregator
+ * already wraps each layer in `timed()` race against 200ms timeout (iter 34).
+ *
+ * NOTE: NOT yet wired into `unlim-chat` dispatch — Andrea ratify gate iter 65+ entrance
+ * (Atom 2.5 wire-up dispatch).
+ */
+export async function aggregateOnniscenzaV2(input: OnniscenzaInputV2): Promise<OnniscenzaSnapshotV2> {
+  // Baseline always runs (Sense 1.5 preserved).
+  const baselinePromise = aggregateOnniscenza(input);
+
+  if (!input.sense_1_6_enabled) {
+    // Gate OFF — return V1 baseline unchanged, no Sense 1.6 fields surfaced.
+    return await baselinePromise;
+  }
+
+  // Parallel fan-out: baseline + 4 new collectors. Each collector is
+  // defensive (catches own errors) so Promise.all never short-circuits.
+  const [
+    baseline,
+    teacherHistory,
+    classMetadata,
+    voiceMovement,
+    errorePatterns,
+  ] = await Promise.all([
+    baselinePromise,
+    queryTeacherHistoryLog(input.supabase, input.teacher_anon_uuid),
+    queryClassSessionMetadata(input.supabase, input.class_key),
+    queryVoiceMovementLog(input.supabase, input.session_id),
+    queryErrorePattern(input.supabase, input.teacher_anon_uuid),
+  ]);
+
+  // Sequential post-fan-out: predict nudges from collected signals (STUB iter 65).
+  const predictedNudges = predictNextNudgeStub({
+    history: teacherHistory,
+    currentExperiment: input.experiment_id,
+    classMeta: classMetadata,
+    errorePatterns: errorePatterns,
+  });
+
+  return {
+    ...baseline,
+    teacher_history: teacherHistory,
+    class_metadata: classMetadata,
+    voice_movement_summary: voiceMovement,
+    errore_ricorrente_patterns: errorePatterns,
+    predicted_nudges: predictedNudges,
+  };
+}
+
+/** Iter 65 marker — Sense 1.6 onniscenza-bridge V2 EXTEND. Wire-up dispatch deferred Atom 2.5. */
+export const ONNISCENZA_BRIDGE_V2_ITER = 65;
+export const ONNISCENZA_BRIDGE_V2_IS_WIRED = false; // wire-up unlim-chat dispatch Atom 2.5+ post Andrea ratify
+export const ONNISCENZA_V2_COLLECTORS_STATUS: Record<'D1_teacher_history' | 'D2_class_metadata' | 'D3_voice_movement' | 'D4_errore_pattern' | 'predicted_nudges', 'LIVE' | 'STUB' | 'TODO'> = {
+  D1_teacher_history: 'LIVE',       // teacher_history_log query when supabase + uuid present
+  D2_class_metadata: 'LIVE',        // class_session_metadata query when supabase + class_key present
+  D3_voice_movement: 'LIVE',        // voice_movement_log aggregate when supabase + session_id present
+  D4_errore_pattern: 'LIVE',        // errore_ricorrente_pattern query when supabase + uuid present
+  predicted_nudges: 'STUB',         // empty array iter 65; full algorithm Atom 6 morphic-predictor.js
+};

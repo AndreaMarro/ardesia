@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * memoryWriter — Sprint Q5
  * Andrea Marro 2026-04-25

@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * sessionRestore — Iter 36 SessionSave Atom SS5
  *

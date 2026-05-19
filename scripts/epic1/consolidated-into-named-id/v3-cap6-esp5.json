@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "generated": "2026-04-04",
+    "source": "PDR auto-generated from experiments-vol3.js"
+  },
+  "experiment_id": "v3-cap6-esp5",
+  "volume": 3,
+  "chapter": 6,
+  "title": "Sirena con Buzzer",
+  "chapter_title": "I pin digitali",
+  "difficulty": 2,
+  "duration_minutes": 40,
+  "target_age": "10-14 anni",
+  "objective": "Creare una sirena che cambia frequenza usando un ciclo for. Il buzzer sale e scende di nota, simulando la sirena di un'auto della polizia. Primo contatto con il ciclo for.",
+  "components_needed": [
+    {
+      "name": "Arduino Nano R4 (breakout wing)",
+      "quantity": 1,
+      "icon": "🤖"
+    },
+    {
+      "name": "Breadboard half-size",
+      "quantity": 1,
+      "icon": "🔲"
+    },
+    {
+      "name": "Buzzer piezoelettrico",
+      "quantity": 1,
+      "icon": "🔔"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 3,
+      "icon": "🔌"
+    }
+  ],
+  "vocabulary": {
+    "allowed": [
+      "Arduino",
+      "buzzer",
+      "tone",
+      "frequenza",
+      "hertz",
+      "ciclo",
+      "for",
+      "variabile",
+      "sale",
+      "scende",
+      "sirena",
+      "ripetere"
+    ],
+    "forbidden": [
+      "while",
+      "do-while",
+      "ricorsione",
+      "array",
+      "funzione",
+      "interrupt"
+    ],
+    "note": "Primo ciclo for del volume. Spiegarlo come 'ripeti questa cosa cambiando un numero ogni volta'"
+  },
+  "prerequisites": [
+    "v3-cap6-esp4"
+  ],
+  "next_experiment": {
+    "id": "v3-cap6-semaforo",
+    "title": "Semaforo 3 LED",
+    "preview": "Nella prossima lezione costruiamo un semaforo completo con 3 LED colorati che si alternano."
+  },
+  "phases": [
+    {
+      "name": "PREPARA",
+      "icon": "📋",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, la sirena della polizia non suona una nota sola: sale e scende continuamente. Per farla servono tante note in sequenza, una dopo l'altra. Ma scrivere 100 righe di tone() sarebbe assurdo.",
+      "teacher_tip": "Questo e il momento perfetto per introdurre il ciclo for come soluzione a un problema reale: ripetere qualcosa con un numero che cambia.",
+      "class_hook": "Se la sirena va da 400 a 800 hertz salendo di 10 ogni volta, quante righe di codice servirebbero senza il ciclo for?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "MOSTRA",
+      "icon": "🔧",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Carichiamo il programma. Il ciclo for parte da 400, arriva a 800, e ogni giro aggiunge 10 alla frequenza. Sono 40 note in 3 righe di codice invece di 40 righe.",
+      "teacher_tip": "Leggere il for ad alta voce come una frase: 'parti da 400, finche sei sotto 800, aggiungi 10 ogni volta'. Non insistere sulla sintassi con i punto e virgola.",
+      "action_tags": [
+        "[AZIONE:loadexp:v3-cap6-esp5]"
+      ],
+      "auto_action": "load_experiment"
+    },
+    {
+      "name": "CHIEDI",
+      "icon": "❓",
+      "duration_minutes": 8,
+      "teacher_message": "Ragazzi, La sirena adesso sale. Come facciamo a farla anche scendere? Serve un secondo ciclo for che parte da 800 e torna a 400. Cosa cambia rispetto al primo?",
+      "teacher_tip": "Far ragionare sulla simmetria: il secondo for deve sottrarre invece di aggiungere. i++ diventa i--, e il confronto cambia verso.",
+      "provocative_question": "Se cambio il passo da 10 a 50, la sirena suona piu fluida o a scatti? Perche?",
+      "action_tags": [],
+      "auto_action": null
+    },
+    {
+      "name": "OSSERVA",
+      "icon": "👀",
+      "duration_minutes": 10,
+      "teacher_message": "Ragazzi, Premiamo Play. Sentite la sirena che sale e poi scende. Provate a cambiare la frequenza minima, la massima e il passo per creare sirene diverse.",
+      "teacher_tip": "Suggerire di provare: ambulanza (passo 5, delay 20), pompieri (range 600-1200), allarme (range 1000-2000). Ogni combinazione da un effetto diverso.",
+      "action_tags": [
+        "[AZIONE:play]"
+      ],
+      "auto_action": "play_and_highlight",
+      "observation_prompt": "Provate 3 combinazioni diverse di frequenza minima, massima e passo. Quale suona piu come una sirena vera?"
+    },
+    {
+      "name": "CONCLUDI",
+      "icon": "✅",
+      "duration_minutes": 7,
+      "teacher_message": "Ragazzi, Il ciclo for ci permette di ripetere un'azione cambiando un numero ogni volta. Con 3 righe facciamo il lavoro di 40. E il superpotere della programmazione: la ripetizione automatica.",
+      "teacher_tip": "Il concetto di ciclo e fondamentale. Assicurarsi che tutti abbiano capito l'idea, anche se la sintassi esatta non e chiara.",
+      "summary_for_class": "Il ciclo for ripete le istruzioni cambiando una variabile ogni giro. Con due cicli for creiamo una sirena che sale e scende di frequenza.",
+      "concepts_learned": [
+        "ciclo for base",
+        "variabile contatore",
+        "incremento e decremento",
+        "sirena con frequenza variabile",
+        "efficienza del codice"
+      ],
+      "next_preview": "Nella prossima lezione costruiamo un semaforo completo con 3 LED: verde, giallo e rosso, con tempi realistici."
+    }
+  ],
+  "session_save": {
+    "concepts_covered": [
+      "ciclo for",
+      "variabile contatore",
+      "frequenza variabile",
+      "sirena"
+    ],
+    "next_suggested": "v3-cap6-semaforo",
+    "resume_message": "L'ultima volta avete creato una sirena con il ciclo for. Oggi costruiamo un semaforo a 3 LED."
+  }
+}

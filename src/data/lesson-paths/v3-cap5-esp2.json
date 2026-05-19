@@ -7,7 +7,7 @@
   "experiment_id": "v3-cap5-esp2",
   "volume": 3,
   "chapter": 5,
-  "title": "Modifica tempi del Blink",
+  "title": "Cambia la velocità del lampeggio",
   "chapter_title": "Il nostro primo programma",
   "difficulty": 1,
   "duration_minutes": 40,
@@ -57,8 +57,8 @@
   ],
   "next_experiment": {
     "id": "v3-cap6-esp1",
-    "title": "Circuito AND/OR con pulsanti",
-    "preview": "Nel prossimo capitolo collegheremo pulsanti per creare circuiti logici senza codice."
+    "title": "Esperimento 1: accendi il primo LED sulla breadboard",
+    "preview": "Nel prossimo capitolo accenderete il vostro primo LED su una breadboard, con una resistenza che lo protegge."
   },
   "phases": [
     {
@@ -66,7 +66,7 @@
       "icon": "📋",
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, l'ultima volta abbiamo fatto lampeggiare il LED ogni secondo. Oggi diventiamo registi del tempo: decidiamo noi quanto resta acceso e quanto spento.",
-      "teacher_tip": "Scrivere alla lavagna: 1000ms = 1 secondo. Chiedere alla classe quanto fanno 500ms, 2000ms, 100ms.",
+      "teacher_tip": "Scrivere alla lavagna: 1000ms = 1 secondo. Chiedete alla classe quanto fanno 500ms, 2000ms, 100ms.",
       "class_hook": "Se metto delay(1), il LED lampeggia cosi veloce che sembra sempre acceso. Ci credete?",
       "action_tags": [],
       "auto_action": null
@@ -75,7 +75,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Carichiamo il Blink e cambiamo il primo delay da 1000 a 200. Solo quel numero. Poi proviamo a cambiare anche il secondo delay a un valore diverso.",
+      "teacher_message": "Ragazzi, Carichiamo il Blink e cambiamo il primo delay da 1000 a 200. Solo quel numero. Poi proviamo a cambiare anche il secondo delay a un valore diverso.",
       "teacher_tip": "Far cambiare UN solo numero alla volta. Questo insegna il metodo scientifico: una variabile per volta.",
       "action_tags": [
         "[AZIONE:loadexp:v3-cap5-esp2]"
@@ -86,7 +86,7 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Se il primo delay e 200 e il secondo e 1000, il LED sta acceso poco e spento tanto. Come vi sembra? Assomiglia a qualcosa che conoscete nella vita reale?",
+      "teacher_message": "Ragazzi, Se il primo delay e 200 e il secondo e 1000, il LED sta acceso poco e spento tanto. Come vi sembra? Assomiglia a qualcosa che conoscete nella vita reale?",
       "teacher_tip": "Guidare verso analogie: lampeggiante auto (flash breve, pausa lunga), battito cardiaco, intermittenza frecce.",
       "provocative_question": "Riuscite a inventare un ritmo che sembra un battito del cuore? Che numeri mettereste?",
       "action_tags": [],
@@ -96,7 +96,7 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 10,
-      "teacher_message": "Premiamo Play con i nuovi tempi. Guardate come cambia il comportamento del LED. Poi provate voi: scegliete due numeri e osservate il risultato.",
+      "teacher_message": "Ragazzi, Premiamo Play con i nuovi tempi. Guardate come cambia il comportamento del LED. Poi provate voi: scegliete due numeri e osservate il risultato.",
       "teacher_tip": "Dare 3 minuti di esplorazione libera. I ragazzi che finiscono prima possono provare delay sotto 50ms per vedere l'effetto 'LED sempre acceso'.",
       "action_tags": [
         "[AZIONE:play]"
@@ -108,7 +108,7 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 7,
-      "teacher_message": "Cambiando un numero nel codice, cambia il comportamento. Questo e il bello della programmazione: ogni riga ha un effetto preciso e prevedibile.",
+      "teacher_message": "Ragazzi, Cambiando un numero nel codice, cambia il comportamento. Questo e il bello della programmazione: ogni riga ha un effetto preciso e prevedibile.",
       "teacher_tip": "Far condividere a 2-3 ragazzi i valori che hanno scelto e perche. Valorizzare la creativita nei ritmi.",
       "summary_for_class": "I numeri dentro delay() controllano il tempo in millisecondi. Cambiando quei numeri creiamo ritmi diversi: veloci, lenti, asimmetrici.",
       "concepts_learned": [

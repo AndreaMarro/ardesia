@@ -80,9 +80,9 @@ vi.mock('../../../src/components/lavagna/VolumeViewer', () => ({ default: () => 
 vi.mock('../../../src/components/lavagna/PercorsoPanel', () => ({ default: () => null }));
 vi.mock('../../../src/components/simulator/canvas/DrawingOverlay', () => ({ default: () => null }));
 vi.mock('../../../src/components/lavagna/ExperimentPicker', () => ({ default: () => null }));
-vi.mock('../../../src/components/lavagna/GalileoAdapter', () => ({
+vi.mock('../../../src/components/lavagna/UnlimAdapter', () => ({
   default: ({ visible }) => React.createElement('div', {
-    'data-testid': 'galileo-adapter',
+    'data-testid': 'unlim-adapter',
     'data-visible': String(!!visible),
   }),
 }));
@@ -122,9 +122,9 @@ describe('LavagnaShell × wakeWord — Sprint T iter 28 integration', () => {
     expect(typeof wakeWordState.onWake).toBe('function');
   });
 
-  it('opens UNLIM (galileoOpen=true) when wake-word detected', () => {
+  it('opens UNLIM (unlimOpen=true) when wake-word detected', () => {
     render(<LavagnaShell />);
-    const adapter = screen.getByTestId('galileo-adapter');
+    const adapter = screen.getByTestId('unlim-adapter');
     expect(adapter.getAttribute('data-visible')).toBe('false');
     act(() => { wakeWordState.onWake?.(); });
     expect(adapter.getAttribute('data-visible')).toBe('true');
@@ -142,12 +142,12 @@ describe('LavagnaShell × wakeWord — Sprint T iter 28 integration', () => {
     render(<LavagnaShell />);
     expect(wakeWordState.startCount).toBe(0);
     // No throw, component still renders
-    expect(screen.getByTestId('galileo-adapter')).toBeInTheDocument();
+    expect(screen.getByTestId('unlim-adapter')).toBeInTheDocument();
   });
 
   it('does not re-open UNLIM when wake detected while UNLIM already open (no-op)', () => {
     render(<LavagnaShell />);
-    const adapter = screen.getByTestId('galileo-adapter');
+    const adapter = screen.getByTestId('unlim-adapter');
     // First wake → opens UNLIM
     act(() => { wakeWordState.onWake?.(); });
     expect(adapter.getAttribute('data-visible')).toBe('true');
@@ -158,7 +158,7 @@ describe('LavagnaShell × wakeWord — Sprint T iter 28 integration', () => {
 
   it('debounces multiple wake detections within 1500ms window', () => {
     render(<LavagnaShell />);
-    const adapter = screen.getByTestId('galileo-adapter');
+    const adapter = screen.getByTestId('unlim-adapter');
     // Sequential rapid wakes — first opens, others ignored by debounce
     // (anche se UNLIM viene chiuso in mezzo, il debounce timestamp blocca
     //  la riapertura entro 1.5s).

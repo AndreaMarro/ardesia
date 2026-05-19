@@ -1,6 +1,6 @@
 /**
  * LavagnaShell — Main shell for the ELAB Lavagna (digital whiteboard)
- * Assembles: AppHeader + simulator + FloatingToolbar + GalileoAdapter + RetractablePanel
+ * Assembles: AppHeader + simulator + FloatingToolbar + UnlimAdapter + RetractablePanel
  * Strangler Fig: wraps existing components without modifying them.
  * (c) Andrea Marro — 01/04/2026
  */
@@ -18,7 +18,7 @@ import { useSessionTracker } from '../../hooks/useSessionTracker';
 import AppHeader from './AppHeader';
 import FloatingToolbar from './FloatingToolbar';
 import RetractablePanel from './RetractablePanel';
-import GalileoAdapter from './GalileoAdapter';
+import UnlimAdapter from './UnlimAdapter';
 import VideoFloat from './VideoFloat';
 import ExperimentPicker from './ExperimentPicker';
 import { deriveState, computePanelActions, STATES } from './LavagnaStateManager';
@@ -409,7 +409,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   });
   const [activeTool, setActiveTool] = useState('select');
   const [toolToast, setToolToast] = useState(null);
-  const [galileoOpen, setGalileoOpen] = useState(false);
+  const [unlimOpen, setUnlimOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [videoMinimized, setVideoMinimized] = useState(false);
   const [leftPanelOpen, setLeftPanelOpen] = useState(false);
@@ -546,8 +546,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // Refs for wake-word callback — avoid re-mounting listener on state change.
   // The wakeWord service holds module-level singleton state, so re-mounting
   // would risk double-listener leaks. Refs read latest values without redep.
-  const galileoOpenRef = useRef(galileoOpen);
-  useEffect(() => { galileoOpenRef.current = galileoOpen; }, [galileoOpen]);
+  const unlimOpenRef = useRef(unlimOpen);
+  useEffect(() => { unlimOpenRef.current = unlimOpen; }, [unlimOpen]);
   const lastWakeAtRef = useRef(0);
 
   useEffect(() => {
@@ -595,7 +595,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
 
   useEffect(() => {
     if (!freeMode) return;
-    setGalileoOpen(false);
+    setUnlimOpen(false);
     setUnlimTab('chat');
     setPickerOpen(false);
     setCapitoloPickerOpen(false);
@@ -662,7 +662,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
                 const now = Date.now();
                 if (now - lastWakeAtRef.current < 1500) return;
                 lastWakeAtRef.current = now;
-                setGalileoOpen(true);
+                setUnlimOpen(true);
                 setUnlimTab('chat');
                 setToolToast('Ti ascolto!');
                 setTimeout(() => setToolToast(null), 2000);
@@ -687,7 +687,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         const now = Date.now();
         if (now - lastWakeAtRef.current < 1500) return;
         lastWakeAtRef.current = now;
-        setGalileoOpen(true);
+        setUnlimOpen(true);
         setUnlimTab('chat');
         setToolToast('Ti ascolto!');
         setTimeout(() => setToolToast(null), 2000);
@@ -765,9 +765,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       const api = window.__ELAB_API;
       ensureDefaultExperimentForMode(api);
       setBuildMode('guided');
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('chat');
-      manualOverridesRef.current.galileo = true;
+      manualOverridesRef.current.unlim = true;
       if (api?.setBuildMode) {
         try { api.setBuildMode('guided'); } catch { /* noop */ }
       }
@@ -785,9 +785,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       const api = window.__ELAB_API;
       ensureDefaultExperimentForMode(api);
       setBuildMode('complete');
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('chat');
-      manualOverridesRef.current.galileo = true;
+      manualOverridesRef.current.unlim = true;
       if (api?.setBuildMode) {
         try { api.setBuildMode('complete'); } catch { /* noop */ }
       }
@@ -808,9 +808,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       // preserviamo il circuito: mettiamo il simulatore in sandbox vuota e
       // lasciamo a UNLIM la lettura narrativa/morfica.
       setBuildMode('sandbox');
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('percorso');
-      manualOverridesRef.current.galileo = true;
+      manualOverridesRef.current.unlim = true;
       const api = window.__ELAB_API;
       if (api?.setBuildMode) {
         try { api.setBuildMode('sandbox'); } catch { /* noop */ }
@@ -941,9 +941,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   }, []);
 
   // Track current panel values in refs (avoids putting them in useEffect deps)
-  const panelStateRef = useRef({ leftPanel: false, bottomPanel: false, galileo: false });
+  const panelStateRef = useRef({ leftPanel: false, bottomPanel: false, unlim: false });
   useEffect(() => {
-    panelStateRef.current = { leftPanel: leftPanelOpen, bottomPanel: bottomPanelOpen, galileo: galileoOpen };
+    panelStateRef.current = { leftPanel: leftPanelOpen, bottomPanel: bottomPanelOpen, unlim: unlimOpen };
   });
 
   // ── State machine: auto-manage panels ──
@@ -958,7 +958,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       );
       setLeftPanelOpen(panels.leftPanel);
       setBottomPanelOpen(panels.bottomPanel);
-      setGalileoOpen(panels.galileo);
+      setUnlimOpen(panels.unlim);
     }
   }, [hasExperiment, isPlaying, isEditing, lavagnaState]);
 
@@ -980,9 +980,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     if (mode === 'guided') {
       return;
     } else if (mode === 'sandbox') {
-      setGalileoOpen(true);
+      setUnlimOpen(true);
       setUnlimTab('percorso');
-      manualOverridesRef.current.galileo = true;
+      manualOverridesRef.current.unlim = true;
     }
   }, []);
 
@@ -1237,9 +1237,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   }, []);
 
   // ── UNLIM toggle (also from header) ──
-  const toggleGalileo = useCallback(() => {
-    manualOverridesRef.current.galileo = true;
-    setGalileoOpen(prev => !prev);
+  const toggleUnlim = useCallback(() => {
+    manualOverridesRef.current.unlim = true;
+    setUnlimOpen(prev => !prev);
   }, []);
 
   // ── Volume viewer toggle ──
@@ -1407,8 +1407,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         totalSteps={totalSteps}
         currentStep={currentStep}
         onPickerOpen={freeMode ? undefined : handlePickerOpen}
-        onGalileoToggle={undefined}
-        galileoOpen={galileoOpen}
+        onUnlimToggle={undefined}
+        unlimOpen={unlimOpen}
         onVideoToggle={freeMode ? undefined : toggleVideo}
         videoOpen={videoOpen}
         onVolumeToggle={toggleVolume}
@@ -1433,16 +1433,16 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         } : undefined}
         onPercorsoToggle={() => {
           // Open UNLIM with Percorso tab instead of separate panel
-          if (galileoOpen && unlimTab === 'percorso') {
+          if (unlimOpen && unlimTab === 'percorso') {
             // Already showing percorso — switch back to chat
             setUnlimTab('chat');
           } else {
-            setGalileoOpen(true);
+            setUnlimOpen(true);
             setUnlimTab('percorso');
-            manualOverridesRef.current.galileo = true;
+            manualOverridesRef.current.unlim = true;
           }
         }}
-        percorsoOpen={galileoOpen && unlimTab === 'percorso'}
+        percorsoOpen={unlimOpen && unlimTab === 'percorso'}
         onFumettoOpen={freeMode ? undefined : handleFumettoOpen}
         activeTab={activeTab}
         onTabChange={setActiveTab}
@@ -1511,9 +1511,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           </main>
 
           {/* Right — UNLIM AI in FloatingWindow */}
-          <GalileoAdapter
-            visible={galileoOpen}
-            onClose={() => { manualOverridesRef.current.galileo = true; setGalileoOpen(false); }}
+          <UnlimAdapter
+            visible={unlimOpen}
+            onClose={() => { manualOverridesRef.current.unlim = true; setUnlimOpen(false); }}
             onSpeakingChange={setUnlimSpeaking}
             activeTab={unlimTab}
           />
@@ -1655,9 +1655,13 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         </RetractablePanel>
       )}
 
-      {/* Tool feedback toast */}
+      {/* Tool feedback toast — iter 75 75-B.2 fix (TRACK C audit P0 +
+          Codex iter 74 verdict): color #fff on var(--elab-orange)
+          contrast 2.4:1 WCAG AA FAIL. Switched to var(--elab-text,
+          #1A1A1A) contrast ~7.8:1 PASS AA + AAA. Andrea regola 10
+          "Contrasto WCAG AA 4.5:1 testo". */}
       {toolToast && (
-        <div role="status" aria-live="polite" style={{ position: 'fixed', bottom: 120, left: '50%', transform: 'translateX(-50%)', background: 'var(--elab-orange)', color: '#fff', padding: '10px 20px', borderRadius: 10, fontSize: 15, fontWeight: 600, fontFamily: 'var(--font-sans)', boxShadow: '0 4px 16px rgba(0,0,0,0.15)', zIndex: 9999, pointerEvents: 'none' }}>
+        <div role="status" aria-live="polite" style={{ position: 'fixed', bottom: 120, left: '50%', transform: 'translateX(-50%)', background: 'var(--elab-orange)', color: 'var(--elab-text, #1A1A1A)', padding: '10px 20px', borderRadius: 10, fontSize: 15, fontWeight: 600, fontFamily: 'var(--font-sans)', boxShadow: '0 4px 16px rgba(0,0,0,0.15)', zIndex: 9999, pointerEvents: 'none' }}>
           {toolToast}
         </div>
       )}
@@ -1679,20 +1683,20 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       {/* Error-to-UNLIM bridge — toast when circuit/compilation errors occur */}
       <ErrorToast
         onAskUnlim={(msg) => {
-          setGalileoOpen(true);
+          setUnlimOpen(true);
           const api = typeof window !== 'undefined' && window.__ELAB_API;
           if (api?.unlim?.sendMessage) api.unlim.sendMessage(msg);
         }}
       />
 
-      {/* Percorso lezione — integrato dentro UNLIM (GalileoAdapter tab Percorso) */}
+      {/* Percorso lezione — integrato dentro UNLIM (UnlimAdapter tab Percorso) */}
 
       {/* Mascotte ELAB — draggable, click apre UNLIM */}
       <MascotPresence
         speaking={unlimSpeaking}
         onClick={() => {
-          manualOverridesRef.current.galileo = true;
-          setGalileoOpen(open => !open);
+          manualOverridesRef.current.unlim = true;
+          setUnlimOpen(open => !open);
         }}
         mascotSrc="/assets/mascot/logo-senza-sfondo.png"
       />
@@ -1711,7 +1715,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         onClose={handlePickerClose}
         onSelect={handleExperimentSelect}
         onAskUnlim={(msg) => {
-          setGalileoOpen(true);
+          setUnlimOpen(true);
           const api = typeof window !== 'undefined' && window.__ELAB_API;
           if (api?.unlim?.sendMessage) api.unlim.sendMessage(msg);
         }}

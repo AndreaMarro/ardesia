@@ -1,3 +1,4 @@
+// © Andrea Marro — 16/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Activity Ring Buffer — Sprint 1 Context Mastery
  * Tracks the last N user actions for UNLIM's contextual awareness.

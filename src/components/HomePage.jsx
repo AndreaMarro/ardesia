@@ -40,6 +40,9 @@ import React, { lazy, Suspense, useState, useCallback, useEffect, useMemo } from
 import {
   LavagnaCardIcon,
   TutorCardIcon,
+  VideoLessonsCardIcon,
+  ScimpanzeIcon,
+  CircuitIcon,
 } from './common/ElabIcons';
 import { VIDEO_COURSES } from '../data/video-courses';
 // Sprint V iter 1 Phase 3 WebDesigner-1 Atom A10 — ElabMascotte SVG
@@ -53,6 +56,13 @@ const HomeCronologia = lazy(() => import('./HomeCronologia'));
 // Iter 37 Atom A6 — route hash routing chatbot-only + about-easter
 const ChatbotOnly = lazy(() => import('./chatbot/ChatbotOnly'));
 const EasterModal = lazy(() => import('./easter/EasterModal'));
+// Iter 70 Team D — Glossario route internal (replaces external Vercel link
+// per feedback_glossario_external_url.md carryover iter 41 PM). Lazy-loaded
+// because the 180-term JSON bundle is heavy; only hits the bundle when the
+// docente clicks the Glossario card or navigates directly to #glossario.
+const GlossarioRoute = lazy(() => import('./glossario/GlossarioRoute'));
+// Iter 73 CC-2 — HomePage Blockly+IDE cross-compile entry (iter 64 SPEC mandate).
+const HomeCompileEntry = lazy(() => import('./home/HomeCompileEntry'));
 
 // Iter 38 Atom A11 — mic permission UX nudge (pre-emptive grant request).
 // Lazy-loaded: il banner appare solo se Permissions API segnala state='prompt',
@@ -60,11 +70,32 @@ const EasterModal = lazy(() => import('./easter/EasterModal'));
 // hanno già autorizzato il microfono nelle sessioni passate.
 const MicPermissionNudge = lazy(() => import('./common/MicPermissionNudge.jsx'));
 
+// Iter 66 P0.3 — R5 HomePage Compile Agent Banner widget (consume iter 65
+// R4 detection helper compileAgentDetect.js). Lazy-loaded: the widget polls
+// localhost:17852 on mount, so keep it out of the critical path until the
+// hero is painted.
+//
+// iter 76 PHASE 3 P0.2 fix (Codex Pattern V verdict #4):
+// Default direction iter 76 ARCHITECTURAL PIVOT (Andrea 2026-05-17 PM)
+// = WebUSB direct dalla piattaforma (NO local agent download). Render
+// WebUsbBanner by default; legacy CompileAgentBanner gated env flag
+// VITE_USE_LOCAL_AGENT for dev fallback ONLY.
+const CompileAgentBanner = lazy(() => import('./HomePage/CompileAgentBanner.jsx'));
+const WebUsbBanner = lazy(() => import('./HomePage/WebUsbBanner.jsx'));
+const USE_LOCAL_AGENT_BANNER =
+  typeof import.meta !== 'undefined'
+    && import.meta.env
+    && import.meta.env.VITE_USE_LOCAL_AGENT === 'true';
+
 // Hash routes managed inline (NO react-router) — pattern consistent with
 // existing app routing convention.
 const HASH_ROUTES = {
   CHATBOT: '#chatbot-only',
   ABOUT: '#about-easter',
+  // Iter 70 Team D — Glossario internal route (Tea iter 41 carryover).
+  GLOSSARIO: '#glossario',
+  // Iter 73 CC-2 — Blockly+IDE cross-compile entry (iter 64 SPEC mandate).
+  COMPILE_HOME: '#compile-home',
 };
 
 function readHash() {
@@ -377,7 +408,9 @@ const styles = {
 const CARDS = [
   {
     id: 'lavagna',
-    emoji: '⚡',
+    // iter 72 TEAM D — Codex D2 audit: emoji field removed (unused fallback;
+    // IconComponent always renders LavagnaCardIcon SVG). CLAUDE.md regola 11
+    // ban emoji icone. Field kept absent for compat with optional ?. lookup.
     IconComponent: LavagnaCardIcon,
     accent: PALETTE.navy,
     title: 'Lavagna libera',
@@ -392,7 +425,8 @@ const CARDS = [
   },
   {
     id: 'tutor',
-    emoji: '📚',
+    // iter 72 TEAM D — emoji field removed per Codex D2 audit (unused
+    // fallback; TutorCardIcon always rendered). CLAUDE.md regola 11 ban.
     IconComponent: TutorCardIcon,
     accent: PALETTE.lime,
     title: 'ELAB Tutor completo',
@@ -413,14 +447,32 @@ const CARDS = [
   // Href placeholder YouTube channel — Andrea ratify URL specifico.
   {
     id: 'videolezioni',
-    emoji: '🎬',
-    IconComponent: null,
+    // iter 72 TEAM D — Codex D2 fix: was emoji '🎬' rendered runtime due
+    // IconComponent: null. NEW VideoLessonsCardIcon SVG ElabIcons (film
+    // strip + Orange play triangle) replaces emoji. CLAUDE.md regola 11.
+    IconComponent: VideoLessonsCardIcon,
     accent: PALETTE.orange,
     title: 'Videolezioni',
     text: 'I due video TikTok del kit, caricati qui dentro senza uscire dalla home.',
     cta: 'Guarda nella card',
     href: null,
     target: 'inline-video',
+    credit: null,
+  },
+  // Iter 73 CC-2 — Cross-compile Arduino Nano R4 entry HomePage (iter 64 SPEC
+  // mandate Andrea: "deve essere disponibile dove ci sono esperimenti Arduino
+  // + disponibile in generale nella home ide+blockly"). Lazy mount via
+  // HomeCompileEntry component on #compile-home hash route. Reuses iter 72
+  // BG-A7 ScratchCompileBar wire + iter 66 R5 CompileAgentBanner.
+  {
+    id: 'compile-home',
+    IconComponent: CircuitIcon,
+    accent: PALETTE.red,
+    title: 'Compila Arduino',
+    text: 'Scrivete codice Arduino con i blocchi Blockly o in C++. Compila + carica sul Nano R4 del kit.',
+    cta: 'Apri editor',
+    href: '#compile-home',
+    target: 'internal',
     credit: null,
   },
 ];
@@ -660,7 +712,9 @@ export default function HomePage({ onNavigate, onActivate }) {
       // gestite tramite hash: aggiorniamo window.location.hash e lasciamo
       // che il listener hashchange aggiorni `hash` state per montare
       // <ChatbotOnly /> o <EasterModal /> sotto.
-      if (page === 'chatbot-only' || page === 'about-easter') {
+      // Iter 73 CC-2 fix F1 (Codex Pattern V REFUTE): include compile-home
+      // qui — same hash-route pattern, lazy-mounts <HomeCompileEntry />.
+      if (page === 'chatbot-only' || page === 'about-easter' || page === 'compile-home') {
         if (typeof window !== 'undefined') {
           window.location.hash = href;
           setHash(href);
@@ -761,6 +815,29 @@ export default function HomePage({ onNavigate, onActivate }) {
           onBackHome={handleChatbotBackHome}
           onOpenLavagna={handleChatbotOpenLavagna}
         />
+      </Suspense>
+    );
+  }
+
+  // Iter 70 Team D — Glossario internal route (Tea iter 41 carryover).
+  // Replaces external `https://elab-tutor-glossario.vercel.app` link.
+  // Mounts GlossarioRoute with onClose returning to homepage via '#home'.
+  if (hash === HASH_ROUTES.GLOSSARIO) {
+    return (
+      <Suspense fallback={<div data-testid="glossario-loading" style={{ padding: 24 }}>Caricamento glossario…</div>}>
+        <GlossarioRoute onClose={handleChatbotBackHome} />
+      </Suspense>
+    );
+  }
+
+  // Iter 73 CC-2 — HomePage Blockly+IDE cross-compile entry (iter 64 SPEC mandate
+  // Andrea: "deve essere disponibile dove ci sono esperimenti Arduino +
+  // disponibile in generale nella home ide+blockly. Devono poterlo fare tutti
+  // in sicurezza. Zero debito tecnico"). Lazy-mounted from #compile-home hash.
+  if (hash === HASH_ROUTES.COMPILE_HOME) {
+    return (
+      <Suspense fallback={<div data-testid="compile-home-loading" style={{ padding: 24 }}>Caricamento editor Arduino…</div>}>
+        <HomeCompileEntry onBackHome={handleChatbotBackHome} />
       </Suspense>
     );
   }
@@ -925,6 +1002,15 @@ export default function HomePage({ onNavigate, onActivate }) {
         </div>
       </header>
 
+      {/* Iter 66 P0.3 — R5 Compile Agent Banner widget (between hero and
+          card grid). Lazy-mounted so the helper localhost probe never
+          blocks the hero paint. Self-managed visibility: returns null
+          during initial detection, then renders 1 of 4 platform states
+          (Mac online / Mac offline / Win-Linux / unknown). */}
+      <Suspense fallback={null}>
+        {USE_LOCAL_AGENT_BANNER ? <CompileAgentBanner /> : <WebUsbBanner />}
+      </Suspense>
+
       <section
         style={styles.grid}
         role="region"
@@ -978,7 +1064,11 @@ export default function HomePage({ onNavigate, onActivate }) {
             lineHeight: 1.55,
           }}
         >
-          <strong style={{ color: PALETTE.navy }}>In arrivo:</strong> spazio per i pensieri sulla classe, gli appunti delle lezioni, i piccoli successi dei ragazzi. UNLIM rielabora le sessioni passate e scrive brevi riassunti — voi li rileggete prima di entrare in classe.
+          {/* Iter 75 75-B.1 fix (TRACK C audit P0 + Codex iter 74 verdict):
+              rimosso "In arrivo:" demo placeholder per CLAUDE.md regola 12
+              "MAI dati finti o demo — tutto deve funzionare con dati reali".
+              Diario docente feature live attesa Sprint V+ — sezione hidden
+              fino a wire-up reale Supabase + UI editor pensieri. */}
         </div>
       </section>
 
@@ -1041,16 +1131,20 @@ export default function HomePage({ onNavigate, onActivate }) {
               if (sib) sib.style.display = 'inline-block';
             }}
           />
+          {/* iter 72 TEAM D — was emoji '🐒' fallback. Now ScimpanzeIcon
+              SVG ElabIcons (Navy primary + Lime ear accent + Orange
+              smile, ELAB mascot identity). CLAUDE.md regola 11 ban
+              emoji. Triggered when /easter/scimpanze-N.gif 404 (Andrea
+              GIFs not yet dropped public/easter/). */}
           <span
             aria-hidden="true"
             style={{
               display: 'none',
-              fontSize: 40,
               lineHeight: 1,
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
             }}
           >
-            🐒
+            <ScimpanzeIcon size={40} />
           </span>
         </button>
       </footer>

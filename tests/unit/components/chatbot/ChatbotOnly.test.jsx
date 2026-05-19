@@ -7,7 +7,14 @@
  * useGalileoChat hook is mocked to keep the unit test fast/isolated and avoid
  * pulling in services/api + Supabase + RAG dependencies that depend on env.
  *
- * Andrea Marro — iter 37 — 2026-04-30
+ * Iter 64 T2 Lighthouse perf optim (Sprint U):
+ *   Chat panel is now React.lazy() + Suspense, so chat-internal selectors
+ *   (chatbot-bubble-assistant, chatbot-input, chatbot-send-btn) require
+ *   `findBy*` async API to wait for the lazy chunk to resolve. The mocked
+ *   hook resolves synchronously inside the lazy module so the wait is just
+ *   a microtask flush — total runtime delta < 5ms.
+ *
+ * Andrea Marro — iter 37 — 2026-04-30 — iter 64 lazy split 2026-05-15
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
@@ -97,22 +104,22 @@ describe('ChatbotOnly', () => {
     expect(onOpenLavagna).toHaveBeenCalledTimes(1);
   });
 
-  it('renders welcome assistant bubble from useGalileoChat', () => {
+  it('renders welcome assistant bubble from useGalileoChat', async () => {
     render(<ChatbotOnly />);
-    const bubble = screen.getByTestId('chatbot-bubble-assistant');
+    const bubble = await screen.findByTestId('chatbot-bubble-assistant');
     expect(bubble.textContent).toMatch(/Ciao Ragazzi/);
   });
 
-  it('renders chat input with plurale + kit ELAB placeholder', () => {
+  it('renders chat input with plurale + kit ELAB placeholder', async () => {
     render(<ChatbotOnly />);
-    const input = screen.getByTestId('chatbot-input');
+    const input = await screen.findByTestId('chatbot-input');
     expect(input.getAttribute('placeholder')).toMatch(/Ragazzi/);
     expect(input.getAttribute('placeholder')).toMatch(/kit ELAB/i);
   });
 
-  it('renders Send button disabled when input is empty', () => {
+  it('renders Send button disabled when input is empty', async () => {
     render(<ChatbotOnly />);
-    const sendBtn = screen.getByTestId('chatbot-send-btn');
+    const sendBtn = await screen.findByTestId('chatbot-send-btn');
     expect(sendBtn).toBeDisabled();
   });
 

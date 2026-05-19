@@ -125,11 +125,11 @@ describe('percorsoService', () => {
 });
 
 describe('percorsoService — real data integration', () => {
-  it('default instance loads 37 Capitoli from src/data/capitoli/', async () => {
+  it('default instance loads 35 Capitoli from src/data/capitoli/', async () => {
     const mod = await import('../../../src/services/percorsoService.js');
     const all = mod.default?.listAllCapitoli?.() ?? mod.listAllCapitoli?.();
     expect(Array.isArray(all)).toBe(true);
-    expect(all.length).toBe(37);
+    expect(all.length).toBe(35);
   });
 
   it('default instance finds v1-cap6 LED', async () => {
