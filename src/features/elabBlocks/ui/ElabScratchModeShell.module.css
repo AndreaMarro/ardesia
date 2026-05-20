@@ -78,6 +78,12 @@
   100% { background-position: 200% 0; }
 }
 
+/* Iter 97 atom 2 (Andrea iter 97 PM screenshot feedback "blocchi è incomprensibile"):
+   bump z-index 2 → 100 to render above Blockly toolbox/flyout (Blockly default
+   internal z-index ~70 for flyout). Without this fix, starterOverlay rendered
+   UNDER Blockly toolbox → docente sees confusing mixed UI (toolbox categories
+   "Decisioni/Ripeti/Numeri" partially visible behind starter buttons). Now
+   overlay fully covers Blockly canvas + toolbox when workspace empty. */
 .starterOverlay {
   position: absolute;
   inset: 0;
@@ -87,7 +93,7 @@
   justify-content: center;
   padding: 24px;
   background: rgba(255, 255, 255, 0.97);
-  z-index: 2;
+  z-index: 100;
   gap: 16px;
 }
 

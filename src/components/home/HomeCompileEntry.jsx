@@ -50,6 +50,12 @@ import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/Scr
 // LIVE: CodeMirror 6 + cpp lang + Arduino autocomplete + friendly error
 // translator). NO modify simulator file — pure consumer wire-up.
 import CodeEditorCM6 from '../simulator/panels/CodeEditorCM6';
+// Iter 97 atom C — UnlimCompileHelper right-panel mascot per Andrea iter 97 PM
+// screenshot feedback "qui sarebbe bello unlim animato che ti spiega cosa fare
+// in base alle domande". V1 static scaffold (mascot + speech bubble + 3 quick
+// question buttons). V2 animation iter 98+. V3 unlimScreenAgent wire iter 99+
+// (post-fix 5 HIGH per code-reviewer atom 34 verdict).
+import UnlimCompileHelper from './UnlimCompileHelper';
 // Iter 95 SP3 T3 — Virtual Serial Monitor panel rendering predicted Serial.*
 // output from user C++ Arduino sketch. Andrea iter 94 PM mandate: "Monitor
 // Seriale Virtuale che analizza Serial.begin/print/println + mostra output
@@ -402,6 +408,12 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             boardId={DEFAULT_BOARD_ID}
             port={null}
           />
+          {/* Iter 97 atom C — UnlimCompileHelper static mascot scaffold per
+              Andrea iter 97 PM screenshot feedback "qui sarebbe bello unlim
+              animato che ti spiega cosa fare in base alle domande". V1 fills
+              previously empty right-panel area below ScratchCompileBar.
+              V2 iter 98+ wire onAskQuestion to HomePage UNLIM chat surface. */}
+          <UnlimCompileHelper compileStatus={compileStatus} />
         </aside>
       </main>
 

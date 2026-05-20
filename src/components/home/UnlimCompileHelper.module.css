@@ -1,0 +1,147 @@
+/* © Andrea Marro — 19/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/**
+ * Iter 97 atom C — UnlimCompileHelper styling
+ * Palette ELAB Navy + Lime + Open Sans body + Oswald accent
+ * WCAG AA contrast: Navy #1E4D8C on white = 9.78:1 PASS
+ */
+
+.helper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--elab-card-bg, #FFFFFF);
+  border-top: 1px solid var(--elab-border, #E0E6ED);
+}
+
+.mascotRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.mascot {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(74, 122, 37, 0.08);
+  border: 2px solid var(--elab-lime, #4A7A25);
+  border-radius: 50%;
+  /* Iter 98+ animation hook: pulse on compileStatus change */
+}
+
+.speech {
+  flex: 1;
+  position: relative;
+  padding: 10px 12px;
+  background: var(--elab-bg-secondary, #F5F7FA);
+  border: 1px solid var(--elab-border, #E0E6ED);
+  border-radius: 12px;
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--elab-text, #1A1A1A);
+}
+
+/* Speech bubble tail pointing to mascot (left side) */
+.speech::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent var(--elab-border, #E0E6ED) transparent transparent;
+}
+
+.speech::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent var(--elab-bg-secondary, #F5F7FA) transparent transparent;
+}
+
+.questionsLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--elab-text-muted, #5A6B7E);
+  margin-top: 4px;
+}
+
+.questions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.questionBtn {
+  /* Touch target ≥44px per CLAUDE.md §Qualita 9 */
+  min-height: 44px;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--elab-card-bg, #FFFFFF);
+  border: 1.5px solid var(--elab-navy, #1E4D8C);
+  border-radius: 8px;
+  color: var(--elab-navy, #1E4D8C);
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.questionBtn:hover,
+.questionBtn:focus-visible {
+  background: var(--elab-navy, #1E4D8C);
+  color: #FFFFFF;
+  outline: none;
+  transform: translateX(2px);
+}
+
+.questionBtn:focus-visible {
+  box-shadow: 0 0 0 2px var(--elab-lime, #4A7A25);
+}
+
+/* Compact mobile <768px */
+@media (max-width: 767px) {
+  .helper {
+    padding: 12px;
+    gap: 10px;
+  }
+  .mascot {
+    width: 40px;
+    height: 40px;
+  }
+  .speech {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .questionBtn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* Touch coarse pointer — bigger touch targets */
+@media (pointer: coarse) {
+  .questionBtn {
+    min-height: 48px;
+    font-size: 14px;
+  }
+}
