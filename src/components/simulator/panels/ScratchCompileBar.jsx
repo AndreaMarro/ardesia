@@ -146,7 +146,10 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
   // is provided. The button itself self-disables when the local agent is
   // offline; this guard avoids mounting an interval-poller when the caller
   // hasn't opted in to physical-kit upload at all.
-  const showPhysicalUpload = typeof sketchCode === 'string' && sketchCode.length > 0;
+  const showPhysicalUpload =
+    typeof sketchCode === 'string'
+    && sketchCode.length > 0
+    && !isLegacyVerified;
 
   // iter 74 B1-A — render cliffhanger only when compile succeeded AND a
   // next esperimento descriptor was supplied by the parent (lesson-paths

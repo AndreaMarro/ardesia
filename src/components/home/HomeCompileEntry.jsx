@@ -276,6 +276,8 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     }
   }, [scratchCode]);
 
+  const isLegacyVerified = compileStatus === 'verified-legacy';
+
   return (
     <div className={styles.root} data-testid="home-compile-entry" data-elab-mode="compile-home">
       <header className={styles.header}>
@@ -290,7 +292,17 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         <h1 className={styles.title}>Compila Arduino dal kit ELAB</h1>
         <p className={styles.subtitle}>
           Ragazzi, scrivete codice Arduino con i blocchi Blockly oppure direttamente in C++.
-          Poi premete <strong>Compila</strong> e caricate sul vostro Nano R4 del kit.
+          {isLegacyVerified ? (
+            <>
+              {' '}Poi premete <strong>Compila</strong>: se vedete “codice verificato”,
+              è solo una verifica legacy, non un programma pronto da caricare sul Nano R4.
+            </>
+          ) : (
+            <>
+              {' '}Poi premete <strong>Compila</strong>: il caricamento sul Nano R4 si abilita
+              solo dopo una compilazione reale per il kit.
+            </>
+          )}
         </p>
       </header>
 
@@ -453,11 +465,9 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             non tablet)"; "Carica sul kit fisico" → "Carica sul kit Arduino";
             "flasha" → "carica". Docente non-tech 8-14 anni studenti target. */}
         <p className={styles.footerNote}>
-          Compila il programma per l'Arduino Nano R4 del kit ELAB direttamente
-          dal browser. Premete "Compila" per preparare il programma. Per caricarlo
-          sul kit, collegate il Nano R4 via USB-C e premete "Carica sul kit
-          Arduino". Funziona con browser Chrome o Edge (su computer, non tablet).
-          Nessun download necessario.
+          {isLegacyVerified
+            ? 'Codice verificato dal compilatore legacy: il compilatore Nano R4 non è ancora attivo, quindi questo risultato non abilita il caricamento sul kit fisico.'
+            : 'Compila il programma per l\'Arduino Nano R4 del kit ELAB dal browser. Il caricamento sul kit fisico sarà disponibile solo dopo una compilazione Nano R4 reale. Funziona con browser Chrome o Edge (su computer, non tablet).'}
         </p>
       </footer>
       {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso

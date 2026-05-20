@@ -19,6 +19,7 @@ describe('ScratchCompileBar — provider honesty', () => {
         compilationStatus="verified-legacy"
         compilationSize={{ bytes: 1200, total: 262144, percent: 0 }}
         compileButtonLabel="Compila"
+        sketchCode="void setup(){}void loop(){}"
       />,
     );
 
@@ -27,5 +28,6 @@ describe('ScratchCompileBar — provider honesty', () => {
     expect(screen.queryByText(/1\.2 KB/i)).toBeNull();
     expect(screen.queryByText(/256/i)).toBeNull();
     expect(screen.queryByText(/Compilato(?:\s|—|$)/i)).toBeNull();
+    expect(screen.queryByRole('button', { name: /Carica/i })).toBeNull();
   });
 });

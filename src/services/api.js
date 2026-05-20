@@ -32,12 +32,6 @@ const RENDER_FALLBACK = 'https://elab-galileo.onrender.com'; // Fallback se Edge
 const CHAT_WEBHOOK = (import.meta.env.VITE_N8N_CHAT_URL || '').trim();
 const COMPILE_URL = (import.meta.env.VITE_COMPILE_URL || '').trim() || null; // Server standalone (priorità)
 const COMPILE_WEBHOOK = (import.meta.env.VITE_COMPILE_WEBHOOK_URL || '').trim() || null; // Backend fallback
-// iter 77 STOP-HOOK fix (Codex): Cloud Render cross-compile endpoint per
-// Andrea pivot iter 75 PM "no download" path. Env unset until iter 78+
-// Andrea Render deploy. When set, takes priority over Supabase Edge +
-// COMPILE_URL chain for cross-compile flow (Cloud Render scaffold
-// `infra/cloud-compile/server.js` shipped iter 76 A.1, deploy pending).
-const CLOUD_COMPILE_URL = (import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL || '').trim().replace(/\/$/, '') || null;
 const COMPILE_PROXY_URL = (import.meta.env.VITE_COMPILE_PROXY_URL || `${_SUPABASE_EDGE}/compile-proxy`).trim();
 const LOCAL_API = (import.meta.env.VITE_LOCAL_API_URL || '').trim() || null;
 const LOCAL_URL = (import.meta.env.VITE_LOCAL_COMPILE_URL || '').trim() || null; // Dev locale
@@ -1314,21 +1308,13 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         if (url.includes('supabase.co/functions') && _ELAB_API_KEY) {
             headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
         }
-        // iter 77 STOP-HOOK #2 fix (Codex stop-time review #7): Cloud Render
-        // cross-compile endpoint requires X-Elab-Api-Key auth (per
-        // infra/cloud-compile/server.js:93-107 authMiddleware). Detect via
-        // CLOUD_COMPILE_URL env match. Without auth header → 401 prod.
-        const isCloudRender = CLOUD_COMPILE_URL && url.startsWith(CLOUD_COMPILE_URL);
-        if (isCloudRender && _ELAB_API_KEY) {
-            headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
-        }
         // iter 98 Atom E — Vercel serverless proxy /api/compile/nanor4 returns
         // the SAME cloud-compile canonical shape {ok, hexBase64, stdout, stderr}
         // as Cloud Render direct. Server-side injects x-elab-api-key (no client
         // key needed — secure proxy Andrea iter 94 mandate). isCloudShape gates
-        // body shape + response mapping for BOTH direct Render AND the proxy.
+        // body shape + response mapping for the same-origin proxy.
         const isVercelProxy = url === '/api/compile/nanor4' || url.endsWith('/api/compile/nanor4');
-        const isCloudShape = isCloudRender || isVercelProxy;
+        const isCloudShape = isVercelProxy;
 
         try {
             // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render expects canonical
@@ -1407,16 +1393,6 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     // (no Vercel functions) → would just fall through, gate avoids dev noise.
     if (httpsBrowser) {
         const result = await tryCompile('/api/compile/nanor4', 'Vercel cross-compile proxy', 'cloud-renesas');
-        if (result) return result;
-    }
-
-    // iter 77 STOP-HOOK fix priority 0 (Codex): Cloud Render cross-compile
-    // endpoint per Andrea iter 75 PM "no download" pivot. Iter 98 Atom E
-    // demoted to priority 1 — the Vercel proxy above is the canonical secure
-    // path. This direct path remains for legacy VITE_ELAB_CLOUD_COMPILE_URL
-    // env (client-key) configs. Both reach the same Cloud Render service.
-    if (CLOUD_COMPILE_URL) {
-        const result = await tryCompile(`${CLOUD_COMPILE_URL}/compile`, 'Cloud Render cross-compile', 'cloud-renesas');
         if (result) return result;
     }
 
