@@ -68,10 +68,13 @@ export function ElabScratchModeShell({
         {children}
         {showStarters && (
           <div className={styles.starterOverlay}>
-            <p className={styles.starterPrompt}>
-              Ragazzi, da dove cominciamo? Scegliete un programma di partenza:
-            </p>
-            <StarterButtons onStarterClick={handleStarterClick} disabled={!workspaceReady} />
+            <div className={styles.starterCard}>
+              <p className={styles.starterPrompt}>
+                Ragazzi, da dove cominciamo? Scegliete un programma di partenza,
+                oppure trascinate i blocchi dalla cassetta colorata a sinistra.
+              </p>
+              <StarterButtons onStarterClick={handleStarterClick} disabled={!workspaceReady} />
+            </div>
           </div>
         )}
       </div>

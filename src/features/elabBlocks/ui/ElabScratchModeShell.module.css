@@ -78,12 +78,16 @@
   100% { background-position: 200% 0; }
 }
 
-/* Iter 97 atom 2 (Andrea iter 97 PM screenshot feedback "blocchi è incomprensibile"):
-   bump z-index 2 → 100 to render above Blockly toolbox/flyout (Blockly default
-   internal z-index ~70 for flyout). Without this fix, starterOverlay rendered
-   UNDER Blockly toolbox → docente sees confusing mixed UI (toolbox categories
-   "Decisioni/Ripeti/Numeri" partially visible behind starter buttons). Now
-   overlay fully covers Blockly canvas + toolbox when workspace empty. */
+/* iter-102 fix (Andrea "deve esserci blockly drag and drop. no scuse"):
+   the iter-97 overlay was opaque (background 0.97) + z-index 100 + NO
+   pointer-events:none → it fully covered the Blockly toolbox + canvas
+   whenever the workspace was empty (the default state). Drag-and-drop from
+   the toolbox was therefore impossible — the only interaction was the 3
+   starter cards. Now the overlay is a transparent, click-through centering
+   layer: the Blockly toolbox + canvas stay fully visible and draggable.
+   Only the starter card (.starterCard) catches pointer events, as a
+   non-blocking shortcut. z-index below the Blockly flyout (~70) so an open
+   category flyout renders cleanly above the card. */
 .starterOverlay {
   position: absolute;
   inset: 0;
@@ -92,9 +96,29 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.97);
-  z-index: 100;
-  gap: 16px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 5;
+  gap: 12px;
+}
+
+/* The starter card is the ONLY interactive part of the overlay — a floating
+   shortcut. Dragging blocks from the toolbox still works because the overlay
+   around it is pointer-events:none. The card vanishes after the first block
+   lands on the canvas (workspaceBlockCount > 1). */
+.starterCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 560px;
+  padding: 20px 24px;
+  background: var(--elab-bg, #ffffff);
+  border: 1px solid var(--elab-border, #d4dee8);
+  border-left: 4px solid var(--elab-lime, #4A7A25);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(30, 77, 140, 0.18);
+  pointer-events: auto;
 }
 
 .starterPrompt {
