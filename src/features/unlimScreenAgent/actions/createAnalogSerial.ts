@@ -1,13 +1,21 @@
 import { z } from 'zod';
-import type { ActionDef, AstProgram } from '../types';
+import type { ArduinoProgram } from '../../elabArduinoAst';
+import type { ActionDef } from '../types';
 import { ok, setEditorProgram } from './utils';
 
-const program: AstProgram = {
-  setup: [{ kind: 'SerialBegin', baud: 9600 }],
+const program: ArduinoProgram = {
+  type: 'Program',
+  globals: [],
+  setup: [{ type: 'SerialBegin', baud: '9600' }],
   loop: [
-    { kind: 'Raw', code: 'int valore = analogRead(A0);', blockType: 'arduino_analog_read' },
-    { kind: 'Raw', code: 'Serial.println(valore);', blockType: 'arduino_serial_print' },
-    { kind: 'Delay', ms: 200 },
+    {
+      type: 'Variable',
+      varType: 'int',
+      name: 'valore',
+      init: { type: 'AnalogRead', pin: 'A0' },
+    },
+    { type: 'SerialPrint', value: 'valore', newline: true },
+    { type: 'Delay', ms: '200' },
   ],
 };
 

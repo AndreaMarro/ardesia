@@ -1,5 +1,5 @@
-import type { ActionResult, AstProgram } from '../types';
-import { astToBlockly, astToCpp } from './ast';
+import { arduinoAstToBlockly, astToCpp, type ArduinoProgram } from '../../elabArduinoAst';
+import type { ActionResult } from '../types';
 
 type LooseWindow = Window & {
   __ELAB_API?: {
@@ -61,9 +61,9 @@ export function getBlocklyWorkspace(): BlocklyWorkspace | null {
   }
 }
 
-export function setEditorProgram(program: AstProgram): { cpp: string; xml: string } {
+export function setEditorProgram(program: ArduinoProgram): { cpp: string; xml: string } {
   const cpp = astToCpp(program);
-  const xml = astToBlockly(program);
+  const xml = arduinoAstToBlockly(program);
   const win = getWindow();
   win?.__ELAB_API?.setEditorCode?.(cpp);
   win?.__ELAB_API?.loadScratchWorkspace?.(xml);

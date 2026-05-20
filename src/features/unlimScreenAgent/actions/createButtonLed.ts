@@ -1,15 +1,23 @@
 import { z } from 'zod';
-import type { ActionDef, AstProgram } from '../types';
+import type { ArduinoProgram } from '../../elabArduinoAst';
+import type { ActionDef } from '../types';
 import { ok, setEditorProgram } from './utils';
 
-const program: AstProgram = {
+const program: ArduinoProgram = {
+  type: 'Program',
+  globals: [],
   setup: [
-    { kind: 'PinMode', pin: 2, mode: 'INPUT_PULLUP' },
-    { kind: 'PinMode', pin: 13, mode: 'OUTPUT' },
+    { type: 'PinMode', pin: '2', mode: 'INPUT_PULLUP' },
+    { type: 'PinMode', pin: '13', mode: 'OUTPUT' },
   ],
   loop: [
-    { kind: 'Raw', code: 'int statoPulsante = digitalRead(2);', blockType: 'arduino_digital_read' },
-    { kind: 'Raw', code: 'digitalWrite(13, statoPulsante == LOW ? HIGH : LOW);', blockType: 'arduino_digital_write' },
+    {
+      type: 'Variable',
+      varType: 'int',
+      name: 'statoPulsante',
+      init: { type: 'DigitalRead', pin: '2' },
+    },
+    { type: 'DigitalWrite', pin: '13', value: 'statoPulsante == LOW ? HIGH : LOW' },
   ],
 };
 

@@ -1,8 +1,4 @@
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-};
+import { getCorsHeaders, getSecurityHeaders } from '../_shared/guards.ts';
 
 const responseSchema = {
   type: 'OBJECT',
@@ -25,13 +21,10 @@ const responseSchema = {
   required: ['intent', 'nl', 'params'],
 };
 
-function json(body: unknown, status = 200) {
+function json(body: unknown, req: Request, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: {
-      ...corsHeaders,
-      'Content-Type': 'application/json',
-    },
+    headers: getSecurityHeaders(req),
   });
 }
 
@@ -55,22 +48,22 @@ function fallbackIntent(prompt: string) {
 }
 
 Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
-  if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
+  if (req.method === 'OPTIONS') return new Response('ok', { headers: getCorsHeaders(req) });
+  if (req.method !== 'POST') return json({ error: 'Method not allowed' }, req, 405);
 
   let body: { prompt?: unknown };
   try {
     body = await req.json();
   } catch {
-    return json({ error: 'Invalid JSON body' }, 400);
+    return json({ error: 'Invalid JSON body' }, req, 400);
   }
 
   const prompt = String(body.prompt || '').trim();
-  if (!prompt) return json({ error: 'prompt is required' }, 400);
-  if (prompt.length > 500) return json({ error: 'prompt must be 500 chars or less' }, 400);
+  if (!prompt) return json({ error: 'prompt is required' }, req, 400);
+  if (prompt.length > 500) return json({ error: 'prompt must be 500 chars or less' }, req, 400);
 
   const apiKey = Deno.env.get('GEMINI_API_KEY') || Deno.env.get('GOOGLE_GENERATIVE_AI_API_KEY');
-  if (!apiKey) return json({ intent: fallbackIntent(prompt), source: 'fallback' });
+  if (!apiKey) return json({ intent: fallbackIntent(prompt), source: 'fallback' }, req);
 
   const systemPrompt = [
     'Converti una richiesta in italiano o inglese in un JSON intent per Blockly Arduino ELAB.',
@@ -115,17 +108,17 @@ Deno.serve(async (req) => {
         intent: fallbackIntent(prompt),
         source: 'fallback',
         warning: geminiJson?.error?.message || `Gemini HTTP ${geminiResponse.status}`,
-      });
+      }, req);
     }
 
     const text = geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text;
     const intent = JSON.parse(text);
-    return json({ intent: { ...intent, nl: intent.nl || prompt }, source: 'gemini' });
+    return json({ intent: { ...intent, nl: intent.nl || prompt }, source: 'gemini' }, req);
   } catch (error) {
     return json({
       intent: fallbackIntent(prompt),
       source: 'fallback',
       warning: error instanceof Error ? error.message : String(error),
-    });
+    }, req);
   }
 });

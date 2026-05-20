@@ -10,8 +10,6 @@ export type {
   ActionDef,
   ActionId,
   ActionResult,
-  AstProgram,
-  AstStatement,
   CompileStatus,
   ScreenContext,
   UploadState,

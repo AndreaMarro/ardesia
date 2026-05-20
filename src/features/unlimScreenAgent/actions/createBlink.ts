@@ -1,14 +1,17 @@
 import { z } from 'zod';
-import type { ActionDef, AstProgram } from '../types';
+import type { ArduinoProgram } from '../../elabArduinoAst';
+import type { ActionDef } from '../types';
 import { ok, setEditorProgram } from './utils';
 
-const program: AstProgram = {
-  setup: [{ kind: 'PinMode', pin: 13, mode: 'OUTPUT' }],
+const program: ArduinoProgram = {
+  type: 'Program',
+  globals: [],
+  setup: [{ type: 'PinMode', pin: '13', mode: 'OUTPUT' }],
   loop: [
-    { kind: 'DW', pin: 13, value: 'HIGH' },
-    { kind: 'Delay', ms: 1000 },
-    { kind: 'DW', pin: 13, value: 'LOW' },
-    { kind: 'Delay', ms: 1000 },
+    { type: 'DigitalWrite', pin: '13', value: 'HIGH' },
+    { type: 'Delay', ms: '1000' },
+    { type: 'DigitalWrite', pin: '13', value: 'LOW' },
+    { type: 'Delay', ms: '1000' },
   ],
 };
 

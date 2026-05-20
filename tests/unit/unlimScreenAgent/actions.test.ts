@@ -78,8 +78,10 @@ describe('unlimScreenAgent actions registry', () => {
 
   test('astToCpp emits Arduino setup and loop functions', () => {
     const cpp = astToCpp({
-      setup: [{ kind: 'PinMode', pin: 13, mode: 'OUTPUT' }],
-      loop: [{ kind: 'Delay', ms: 1000 }],
+      type: 'Program',
+      globals: [],
+      setup: [{ type: 'PinMode', pin: '13', mode: 'OUTPUT' }],
+      loop: [{ type: 'Delay', ms: '1000' }],
     });
 
     expect(cpp).toContain('void setup()');
@@ -90,8 +92,10 @@ describe('unlimScreenAgent actions registry', () => {
 
   test('astToBlockly emits Blockly XML for pinMode and delay blocks', () => {
     const xml = astToBlockly({
-      setup: [{ kind: 'PinMode', pin: 13, mode: 'OUTPUT' }],
-      loop: [{ kind: 'Delay', ms: 1000 }],
+      type: 'Program',
+      globals: [],
+      setup: [{ type: 'PinMode', pin: '13', mode: 'OUTPUT' }],
+      loop: [{ type: 'Delay', ms: '1000' }],
     });
 
     expect(xml).toContain('<xml');
@@ -99,30 +103,36 @@ describe('unlimScreenAgent actions registry', () => {
     expect(xml).toContain('arduino_delay');
   });
 
-  test('astToBlockly escapes Raw.code C++ in Blockly field text', () => {
+  test('astToBlockly escapes raw C++ payload in Blockly field text', () => {
     const xml = astToBlockly({
+      type: 'Program',
+      globals: [],
       setup: [],
-      loop: [{ kind: 'Raw', code: 'if (x < 10 && y > 3) Serial.print("&");' }],
+      loop: [{ type: 'UnsupportedCppBlock', raw: 'if (x < 10 && y > 3) Serial.print("&");' }],
     });
 
     expect(xml).toContain('if (x &lt; 10 &amp;&amp; y &gt; 3) Serial.print(&quot;&amp;&quot;);');
     expect(xml).not.toContain('if (x < 10 && y > 3)');
   });
 
-  test('astToBlockly escapes unsupported raw C++ block type payload', () => {
+  test('astToBlockly escapes unsupported raw C++ block payload', () => {
     const xml = astToBlockly({
+      type: 'Program',
+      globals: [],
       setup: [],
-      loop: [{ kind: 'Raw', code: "Serial.print('<&>\"\\'');", blockType: 'unsupported_cpp_block' }],
+      loop: [{ type: 'UnsupportedCppBlock', raw: "Serial.print('<&>\"\\'');" }],
     });
 
     expect(xml).toContain('Serial.print(&apos;&lt;&amp;&gt;&quot;\\&apos;&apos;);');
     expect(xml).toContain('type="unsupported_cpp_block"');
   });
 
-  test('astToBlockly escapes UnsupportedCppBlock rawText payload', () => {
+  test('astToBlockly escapes UnsupportedCppBlock raw payload into RAW_TEXT field', () => {
     const xml = astToBlockly({
+      type: 'Program',
+      globals: [],
       setup: [],
-      loop: [{ kind: 'UnsupportedCppBlock', rawText: 'if (x < 10) Serial.print("&");' }],
+      loop: [{ type: 'UnsupportedCppBlock', raw: 'if (x < 10) Serial.print("&");' }],
     });
 
     expect(xml).toContain('if (x &lt; 10) Serial.print(&quot;&amp;&quot;);');
@@ -131,11 +141,16 @@ describe('unlimScreenAgent actions registry', () => {
 
   test('astToBlockly escapes identifier-like digital write values serialized as fields', () => {
     const xml = astToBlockly({
+      type: 'Program',
+      globals: [],
       setup: [],
-      loop: [{ kind: 'DW', pin: 13, value: 'state < threshold && label == "on"' }],
+      loop: [{ type: 'DigitalWrite', pin: '13', value: 'state < threshold && label == "on"' }],
     });
 
     expect(xml).toContain('state &lt; threshold &amp;&amp; label == &quot;on&quot;');
+    // HIGH-2: arduino_digital_write block field is STATE (scratchBlocks.js:61), not VALUE
+    expect(xml).toContain('name="STATE"');
+    expect(xml).not.toContain('name="VALUE"');
   });
 
   test('createBlink sets editor content and switches to dual mode', async () => {
