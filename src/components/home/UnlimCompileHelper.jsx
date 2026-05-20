@@ -10,8 +10,8 @@
  * per code-reviewer verdict; refactor needed canonical elabArduinoAst integration).
  *
  * Props:
- *   compileStatus: 'idle' | 'compiling' | 'success' | 'error' (matches
- *     ScratchCompileBar canonical state). Adapts message + future animation.
+ *   compileStatus: 'idle' | 'compiling' | 'success' | 'verified-legacy' | 'error'
+ *     (matches ScratchCompileBar canonical state). Adapts message + future animation.
  *   onAskQuestion: (question: string) => void — callback when quick question
  *     clicked. Wires to UNLIM chat (HomePage UNLIM panel) in iter 98+ atom.
  *
@@ -33,6 +33,8 @@ function getStatusMessage(compileStatus) {
       return 'Ragazzi, sto preparando il programma per il vostro Nano R4. Aspettate un attimo!';
     case 'success':
       return 'Compilazione riuscita ragazzi! Ora potete caricare il programma sul vostro kit ELAB.';
+    case 'verified-legacy':
+      return 'Ragazzi, il codice è stato verificato dal compilatore legacy, ma il compilatore Nano R4 non è ancora attivo. Non usiamo questo risultato per il kit fisico.';
     case 'error':
       return 'C\'è un errore nel programma, ragazzi. Aprite la sezione errori per capire cosa correggere.';
     default:

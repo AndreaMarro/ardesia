@@ -220,6 +220,14 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     try {
       const result = await compileCode(code, DEFAULT_FQBN);
       if (result && result.success) {
+        const provider = result.provider || 'cloud-renesas';
+        if (provider !== 'cloud-renesas') {
+          setCompileStatus('verified-legacy');
+          setCompileSize(null);
+          if (result.warnings) setCompileWarnings(result.warnings);
+          return;
+        }
+
         setCompileStatus('success');
         // iter 80 80.A5 fix (Codex Pattern V iter 79 MED COMPILE-6 +
         // Codex Pattern C iter 80 batch MED shape match): api.js compileCode
@@ -233,6 +241,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         // (`compilationSize.bytes`/`.total`/`.percent`). Nano R4 flash
         // = 256KB = 262144 bytes per src/boards/arduino-nano-r4.json:12.
         const derivedBytes = (() => {
+          if (typeof result.artifactSizeBytes === 'number') return result.artifactSizeBytes;
           if (typeof result.size === 'number') return result.size;
           if (!result.hex) return null;
           const trimmed = String(result.hex).trimStart();

@@ -1295,7 +1295,7 @@ export async function analyzeImage(imageData, question = "Analizza questa immagi
  *
  * @param {string} code — il codice Arduino (.ino)
  * @param {string} board — FQBN board (default: arduino:avr:nano:cpu=atmega328old)
- * @returns {{ success: boolean, hex: string|null, errors: string|null, output: string|null, result: string|null }}
+ * @returns {{ success: boolean, hex: string|null, errors: string|null, output: string|null, result: string|null, provider: string, targetFqbn: string }}
  */
 export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328old') {
     const safeBoard = ALLOWED_COMPILE_BOARDS.has(board) ? board : DEFAULT_BOARD;
@@ -1303,7 +1303,7 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     /**
      * Helper: chiama un endpoint di compilazione e ritorna il risultato
      */
-    async function tryCompile(url, label) {
+    async function tryCompile(url, label, provider) {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), COMPILE_TIMEOUT);
         const headers = { 'Content-Type': 'application/json' };
@@ -1373,6 +1373,9 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
                     errors: data.stderr || data.error || null,
                     output: data.stdout || null,
                     result: data.ok ? 'success' : 'error',
+                    provider,
+                    targetFqbn: data.fqbn || safeBoard,
+                    artifactSizeBytes: typeof data.hexSize === 'number' ? data.hexSize : null,
                 };
             }
 
@@ -1382,6 +1385,8 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
                 errors: data.errors || data.error || null,
                 output: data.output || data.stdout || null,
                 result: data.result || data.output || data.stdout || data.errors || data.error || null,
+                provider,
+                targetFqbn: safeBoard,
             };
         } catch {
             clearTimeout(timeoutId);
@@ -1401,7 +1406,7 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     // Gated httpsBrowser: in Vite dev (localhost) the serverless route 404s
     // (no Vercel functions) → would just fall through, gate avoids dev noise.
     if (httpsBrowser) {
-        const result = await tryCompile('/api/compile/nanor4', 'Vercel cross-compile proxy');
+        const result = await tryCompile('/api/compile/nanor4', 'Vercel cross-compile proxy', 'cloud-renesas');
         if (result) return result;
     }
 
@@ -1411,33 +1416,33 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     // path. This direct path remains for legacy VITE_ELAB_CLOUD_COMPILE_URL
     // env (client-key) configs. Both reach the same Cloud Render service.
     if (CLOUD_COMPILE_URL) {
-        const result = await tryCompile(`${CLOUD_COMPILE_URL}/compile`, 'Cloud Render cross-compile');
+        const result = await tryCompile(`${CLOUD_COMPILE_URL}/compile`, 'Cloud Render cross-compile', 'cloud-renesas');
         if (result) return result;
     }
 
     // 1. Production/preview HTTPS: same-origin-safe Supabase proxy first.
     // Direct n8n compile endpoints fail browser CORS on www.elabtutor.school.
     if (httpsBrowser && COMPILE_PROXY_URL) {
-        const result = await tryCompile(COMPILE_PROXY_URL, 'Supabase compile proxy');
+        const result = await tryCompile(COMPILE_PROXY_URL, 'Supabase compile proxy', 'n8n-avr-legacy');
         if (result) return result;
     }
 
     // 2. Server standalone (compile-server.js sul VPS). In HTTPS, never call
     // the known n8n compile URL directly from the browser: it creates CORS noise.
     if (COMPILE_URL && !(httpsBrowser && isDirectN8nCompileUrl(COMPILE_URL))) {
-        const result = await tryCompile(`${COMPILE_URL}/compile`, 'Standalone server');
+        const result = await tryCompile(`${COMPILE_URL}/compile`, 'Standalone server', 'standalone-compile');
         if (result) return result;
     }
 
     // 3. Fallback: backend webhook, but not direct n8n from HTTPS browser.
     if (COMPILE_WEBHOOK && !(httpsBrowser && isDirectN8nCompileUrl(COMPILE_WEBHOOK))) {
-        const result = await tryCompile(COMPILE_WEBHOOK, 'Backend webhook');
+        const result = await tryCompile(COMPILE_WEBHOOK, 'Backend webhook', 'n8n-avr-legacy');
         if (result) return result;
     }
 
     // 4. Fallback: server locale only in dev/non-HTTPS.
     if (!httpsBrowser && LOCAL_URL) {
-        const result = await tryCompile(`${LOCAL_URL}/compile`, 'Local server');
+        const result = await tryCompile(`${LOCAL_URL}/compile`, 'Local server', 'local-agent');
         if (result) return result;
     }
 
@@ -1447,6 +1452,8 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         errors: 'Il traduttore del codice non risponde. Controlla che internet funzioni e riprova.',
         output: null,
         result: 'Compilatore non disponibile',
+        provider: 'none',
+        targetFqbn: safeBoard,
     };
 }
 

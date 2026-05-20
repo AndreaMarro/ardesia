@@ -115,9 +115,12 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
   }, [compilationStatus]);
 
   const isSuccess = compilationStatus === 'success' || compilationStatus === 'success-local';
+  const isLegacyVerified = compilationStatus === 'verified-legacy';
   const statusColor = isSuccess ? 'var(--color-accent)'
     : compilationStatus === 'error' ? 'var(--color-vol3)'
-    : compilationStatus === 'compiling' ? 'var(--color-status-compiling)' : 'var(--color-muted)';
+    : compilationStatus === 'compiling' ? 'var(--color-status-compiling)'
+    : isLegacyVerified ? 'var(--color-vol2)'
+    : 'var(--color-muted)';
 
   // Iter 75 CC-2 (Codex iter 74 Regola 11): emoji status glyphs removed.
   // Color semantics statusColor (green success / red error / lime compile)
@@ -134,6 +137,7 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
     ? (compilationSize
         ? `Compilato${localIndicator} — ${formatKB(compilationSize.bytes)} / ${formatKB(compilationSize.total)} (${compilationSize.percent}%)`
         : `Compilato${localIndicator}`)
+    : isLegacyVerified ? 'Codice verificato — compilatore Nano R4 non ancora attivo'
     : compilationStatus === 'error' ? 'Errore'
     : compilationStatus === 'compiling' ? SCRATCH_COMPILE_MSGS[compileMsg]
     : 'Pronto';
