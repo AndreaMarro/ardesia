@@ -11,6 +11,14 @@ const repoRoot = path.resolve(process.cwd(), '..', '..');
 const teaRoot = process.env.ELAB_TEA_PACKAGE_DIR
   || path.join(repoRoot, 'TEA', 'elab-fumetti-consegna-v2');
 
+// Iter 99 CI gate: the TEA fumetti v2 package is vendored only on Andrea's Mac
+// (~150 MB PDFs). The CI runner has no /home/runner/work/TEA/ path, so these
+// audit tests must SKIP cleanly instead of ENOENT-failing the whole vitest run.
+// Local run with the package present runs as before. Override: ELAB_TEA_PACKAGE_DIR.
+const teaNarrativeMapPath = path.join(teaRoot, '05-Punto-2-Mapping-Narrativo', 'narrative_map.json');
+const teaPackageAvailable = fs.existsSync(teaRoot) && fs.existsSync(teaNarrativeMapPath);
+const describeIfTeaAvailable = teaPackageAvailable ? describe : describe.skip;
+
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(teaRoot, relativePath), 'utf8'));
 }
@@ -25,7 +33,7 @@ function narrativeIds(narrativeMap) {
   return ids;
 }
 
-describe('Tea narrative and fumetti v2 package audit', () => {
+describeIfTeaAvailable('Tea narrative and fumetti v2 package audit', () => {
   it('has readable Tea package files; repo experiment IDs are a subset with matching pages', () => {
     // EPIC 1 A4.1b removed 13 Vol3 no-counterpart experiments from the repo.
     // The Tea fumetti v2 package (TEA/elab-fumetti-consegna-v2/) still carries
