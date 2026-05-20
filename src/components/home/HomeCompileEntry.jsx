@@ -50,6 +50,12 @@ import ScratchCompileBar, { ScratchErrorBoundary } from '../simulator/panels/Scr
 // LIVE: CodeMirror 6 + cpp lang + Arduino autocomplete + friendly error
 // translator). NO modify simulator file — pure consumer wire-up.
 import CodeEditorCM6 from '../simulator/panels/CodeEditorCM6';
+// Iter 95 SP3 T3 — Virtual Serial Monitor panel rendering predicted Serial.*
+// output from user C++ Arduino sketch. Andrea iter 94 PM mandate: "Monitor
+// Seriale Virtuale che analizza Serial.begin/print/println + mostra output
+// previsto" + mandatory disclaimer "Seriale prevista dal programma. Per
+// leggere la seriale reale collega una Nano R4 via USB."
+import VirtualSerialMonitor from '../simulator/panels/VirtualSerialMonitor';
 // iter 85 close integration Sub-project A: WrenchIcon + PuzzleIcon ElabIcons
 // imports removed — inline tab bar (iter 80.A2 + iter 81.A1) replaced by
 // ModeToggle (iter 84 atom 8) which provides its own canonical IT plurale
@@ -398,6 +404,25 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           />
         </aside>
       </main>
+
+      {/* Iter 95 SP3 T3 — Virtual Serial Monitor section. Mounted below editor
+          + compile bar. Shows predicted Serial.* output from current editor
+          source (cppCode for C++ tab, scratchCode for Blockly tab). Andrea
+          iter 94 PM mandate "Monitor Seriale Virtuale" + mandatory disclaimer
+          "Seriale prevista dal programma. Per leggere la seriale reale
+          collega una Nano R4 via USB." Empty state graceful when no Serial
+          calls detected OR no code yet (defensive UX). */}
+      <section
+        className={styles.virtualSerialSection}
+        aria-label="Monitor Seriale Virtuale"
+        data-onboard-target="virtual-serial"
+      >
+        <VirtualSerialMonitor
+          cppCode={editorMode === MODE_CODE ? cppCode : scratchCode}
+          boardConnected={false}
+          maxIterations={10}
+        />
+      </section>
 
       <footer className={styles.footer}>
         {/* iter 88 88.UX-2 /clarify — Andrea verdetto iter 87 PHASE 4c critique

@@ -173,6 +173,20 @@
   flex-direction: column;
 }
 
+/* Iter 95 SP3 T3 — Virtual Serial Monitor section below main editor grid.
+   Andrea iter 94 PM mandate "Basso: Monitor Seriale Virtuale + stato
+   compilazione". Padding matches editorGrid horizontal. */
+.virtualSerialSection {
+  padding: 0 24px 16px;
+  background: var(--elab-bg-secondary, #F5F7FA);
+}
+
+@media (max-width: 768px) {
+  .virtualSerialSection {
+    padding: 0 12px 12px;
+  }
+}
+
 .footer {
   padding: 12px 24px 20px;
   background: var(--elab-card-bg, #FFFFFF);
