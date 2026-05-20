@@ -30,6 +30,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { compileCode } from '../../services/api';
 import logger from '../../utils/logger';
+import { resolveCompileFlash } from '../../utils/compileSizeParse';
 // iter 77 P0.2b fix (Codex Pattern V iter 77 verify MED #4): swap legacy
 // CompileAgentBanner → WebUsbBanner default per iter 76 ARCHITECTURAL
 // PIVOT Andrea verbatim "NO download docente, WebUSB direct". Legacy
@@ -229,40 +230,16 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         }
 
         setCompileStatus('success');
-        // iter 80 80.A5 fix (Codex Pattern V iter 79 MED COMPILE-6 +
-        // Codex Pattern C iter 80 batch MED shape match): api.js compileCode
-        // never returns result.size — Cloud Render branch (api.js:1362-1369)
-        // maps hexBase64 → result.hex without size; legacy branch (api.js:
-        // 1372-1378) maps data.hex → result.hex similarly. Derive bytes from
-        // result.hex content: base64 atob length for Cloud (HomeCompileEntry
-        // default FQBN = Renesas Nano R4 → isCloudRender=true), Intel HEX
-        // hex-digit count / 2 fallback for legacy. Wrap in {bytes,total,
-        // percent} object matching ScratchCompileBar:127 render contract
-        // (`compilationSize.bytes`/`.total`/`.percent`). Nano R4 flash
-        // = 256KB = 262144 bytes per src/boards/arduino-nano-r4.json:12.
-        const derivedBytes = (() => {
-          if (typeof result.artifactSizeBytes === 'number') return result.artifactSizeBytes;
-          if (typeof result.size === 'number') return result.size;
-          if (!result.hex) return null;
-          const trimmed = String(result.hex).trimStart();
-          // Intel HEX heuristic: trimmed starts with ':' (record marker)
-          if (trimmed.charAt(0) === ':') {
-            return Math.floor(trimmed.replace(/[^0-9a-fA-F]/g, '').length / 2);
-          }
-          // Base64 path (Cloud Render canonical for Nano R4 FQBN)
-          try {
-            return atob(trimmed).length;
-          } catch {
-            return null;
-          }
-        })();
-        if (derivedBytes != null) {
-          const FLASH_TOTAL_NANO_R4 = 262144; // 256KB Renesas RA4M1
-          setCompileSize({
-            bytes: derivedBytes,
-            total: FLASH_TOTAL_NANO_R4,
-            percent: Math.round((derivedBytes / FLASH_TOTAL_NANO_R4) * 100),
-          });
+        // iter-102 fix (Codex iter-101 review + live Chrome debug 2026-05-20):
+        // iter-80.A5 reported result.artifactSizeBytes (= hexSize, the Intel
+        // HEX *file* size) and atob(hexBase64).length (the same HEX text) as
+        // the flash figure → the panel showed "42%" for a Blink that really
+        // uses ~14%. resolveCompileFlash parses arduino-cli stdout
+        // (result.output, authoritative) with an Intel HEX data-record
+        // fallback. See src/utils/compileSizeParse.js.
+        const flash = resolveCompileFlash(result);
+        if (flash) {
+          setCompileSize(flash);
         }
         if (result.warnings) setCompileWarnings(result.warnings);
       } else {
