@@ -134,24 +134,31 @@ export function RobotIcon(props) {
   );
 }
 
-// iter 81 81.A2 (close BG agent A2 caveat #5): extract PuzzleIcon previously
-// inline in HomeCompileEntry.jsx tab Blocchi. Matches Blockly identity (Lime
-// fill + Navy stroke for WCAG AA contrast on light background). 24×24 viewBox
-// consistent with ElabIcons family. Reusable for any "Blocks" Blockly UI surface.
+// iter 94 A2 — redesign PuzzleIcon: original path (iter 80.A2 inline + iter 81.A2
+// extract) had 4 protrusions placed at offset positions (top→right, right→down,
+// bottom→left, left→up) creating a 4-fold rotational asymmetry that visually
+// resembled a windmill/swastika pattern. Andrea iter 94 PM flagged. Replaced with
+// 2×2 grid of rounded squares — clear "blocks/Blockly" semantic, Lego-like,
+// fully symmetric (true 4-fold rotational symmetry + mirror symmetry), zero
+// rotational asymmetry. Preserves Lime fill + Navy stroke (Blockly identity +
+// WCAG AA contrast on light bg). 24×24 viewBox consistent with ElabIcons family.
 export function PuzzleIcon(props) {
   const { size = 24, color, ...rest } = props || {};
+  const fillColor = color || '#4A7A25';
   return (
     <svg
       width={size} height={size} viewBox="0 0 24 24" fill="none"
       role="img" aria-hidden="true" {...rest}
     >
-      <path
-        d="M5 5h6v3a2 2 0 0 0 4 0V5h4v6h-3a2 2 0 0 0 0 4h3v4h-6v-3a2 2 0 0 0-4 0v3H5v-6h3a2 2 0 0 0 0-4H5z"
-        fill={color || '#4A7A25'}
-        stroke="#1E4D8C"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
+      {/* 4 rounded squares in 2×2 grid — symbolic Blockly blocks */}
+      <rect x="4" y="4" width="7" height="7" rx="1.2"
+            fill={fillColor} stroke="#1E4D8C" strokeWidth="1.5" />
+      <rect x="13" y="4" width="7" height="7" rx="1.2"
+            fill={fillColor} stroke="#1E4D8C" strokeWidth="1.5" />
+      <rect x="4" y="13" width="7" height="7" rx="1.2"
+            fill={fillColor} stroke="#1E4D8C" strokeWidth="1.5" />
+      <rect x="13" y="13" width="7" height="7" rx="1.2"
+            fill={fillColor} stroke="#1E4D8C" strokeWidth="1.5" />
     </svg>
   );
 }

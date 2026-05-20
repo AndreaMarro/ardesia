@@ -45,10 +45,29 @@ function StepsIcon() {
   );
 }
 
+// iter 94 A2 — redesign "Già Montato" icon: original PuzzleIcon path (3 puzzle
+// bumps + 1 straight side) had asymmetric protrusion placement (top-left,
+// right-up, bottom-left) similar enough to rotational windmill to be flagged
+// alongside ElabIcons.jsx PuzzleIcon (true offset rotational asymmetry). Andrea
+// iter 94 PM flagged. Replaced with breadboard-with-components icon — symmetric,
+// semantically accurate for "Già Montato" (circuit pre-assembled on breadboard),
+// zero rotational asymmetry.
 function PuzzleIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={css.modeSvg}>
-      <path d="M9.1 4.8h4.1v3h1.5a1.8 1.8 0 1 1 0 3h-1.5v2.4h-2.4v1.5a1.8 1.8 0 1 1-3 0v-1.5h-3v-4.1h3V7.6a1.8 1.8 0 1 1 3 0v1.5h2.4V4.8H9.1Z" />
+      {/* Breadboard outline (rounded rect) */}
+      <rect x="3" y="6" width="18" height="12" rx="1.5"
+            fill="none" stroke="currentColor" strokeWidth="1.5" />
+      {/* Horizontal divider (power rail) */}
+      <line x1="3" y1="12" x2="21" y2="12"
+            stroke="currentColor" strokeWidth="1" />
+      {/* 6 component holes — symmetric 3+3 grid */}
+      <circle cx="7" cy="9" r="0.9" fill="currentColor" />
+      <circle cx="12" cy="9" r="0.9" fill="currentColor" />
+      <circle cx="17" cy="9" r="0.9" fill="currentColor" />
+      <circle cx="7" cy="15" r="0.9" fill="currentColor" />
+      <circle cx="12" cy="15" r="0.9" fill="currentColor" />
+      <circle cx="17" cy="15" r="0.9" fill="currentColor" />
     </svg>
   );
 }
