@@ -1322,13 +1322,20 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         if (isCloudRender && _ELAB_API_KEY) {
             headers['X-Elab-Api-Key'] = _ELAB_API_KEY;
         }
+        // iter 98 Atom E — Vercel serverless proxy /api/compile/nanor4 returns
+        // the SAME cloud-compile canonical shape {ok, hexBase64, stdout, stderr}
+        // as Cloud Render direct. Server-side injects x-elab-api-key (no client
+        // key needed — secure proxy Andrea iter 94 mandate). isCloudShape gates
+        // body shape + response mapping for BOTH direct Render AND the proxy.
+        const isVercelProxy = url === '/api/compile/nanor4' || url.endsWith('/api/compile/nanor4');
+        const isCloudShape = isCloudRender || isVercelProxy;
 
         try {
             // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render expects canonical
             // OpenAPI 76-D.3 body shape `{sketchCode, fqbn}` (per server.js:200
             // + cloud P0.4 boardId+fqbn dual-accept). Legacy n8n + Supabase
             // proxy chain uses `{code, board}` historical shape. Branch body.
-            const body = isCloudRender
+            const body = isCloudShape
                 ? JSON.stringify({ sketchCode: code, fqbn: safeBoard })
                 : JSON.stringify({ code, board: safeBoard });
             const res = await fetch(url, {
@@ -1359,7 +1366,7 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
             // `{ok, jobId, hexFilename, hexSize, hexBase64, stdout, stderr,
             // latencyMs}` (server.js:268-278). Map to legacy contract for
             // downstream consumers (CompilationStatus + simulator HEX consumer).
-            if (isCloudRender) {
+            if (isCloudShape) {
                 return {
                     success: !!data.ok,
                     hex: data.hexBase64 || null,
@@ -1384,10 +1391,25 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
 
     const httpsBrowser = isHttpsBrowserOrigin();
 
+    // iter 98 Atom E — same-origin Vercel serverless proxy /api/compile/nanor4.
+    // PRIORITY 0: secure proxy (server-side ELAB_CLOUD_COMPILE_API_KEY injection,
+    // NO client key exposure) per Andrea iter 94 PM mandate "/api/compile/nanor4
+    // o proxy sicuro". Same-origin → no CORS preflight. Returns honest 503
+    // (cloud_compile_not_configured) when Render not yet deployed → tryCompile
+    // sees !res.ok → returns null → falls through to legacy chain. ZERO regression
+    // until Andrea deploys infra/cloud-compile + sets ELAB_CLOUD_COMPILE_URL.
+    // Gated httpsBrowser: in Vite dev (localhost) the serverless route 404s
+    // (no Vercel functions) → would just fall through, gate avoids dev noise.
+    if (httpsBrowser) {
+        const result = await tryCompile('/api/compile/nanor4', 'Vercel cross-compile proxy');
+        if (result) return result;
+    }
+
     // iter 77 STOP-HOOK fix priority 0 (Codex): Cloud Render cross-compile
-    // endpoint per Andrea iter 75 PM "no download" pivot. Takes priority
-    // over all other paths when env wired. Iter 78+ Andrea Render deploy
-    // populates VITE_ELAB_CLOUD_COMPILE_URL. Currently null fallback chain.
+    // endpoint per Andrea iter 75 PM "no download" pivot. Iter 98 Atom E
+    // demoted to priority 1 — the Vercel proxy above is the canonical secure
+    // path. This direct path remains for legacy VITE_ELAB_CLOUD_COMPILE_URL
+    // env (client-key) configs. Both reach the same Cloud Render service.
     if (CLOUD_COMPILE_URL) {
         const result = await tryCompile(`${CLOUD_COMPILE_URL}/compile`, 'Cloud Render cross-compile');
         if (result) return result;
