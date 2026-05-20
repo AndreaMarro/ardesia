@@ -18,8 +18,12 @@
  * © Andrea Marro — iter 97 atom C — 2026-05-19
  */
 import React from 'react';
-import { RobotIcon } from '../common/ElabIcons';
 import css from './UnlimCompileHelper.module.css';
+
+// iter-102 (Andrea "il robottino deve essere la mascotte animata"): la
+// mascotte ufficiale ELAB (Vera) al posto dell'icona SVG grezza. PNG servito
+// da public/. L'animazione (idle + reazioni allo stato) è in CSS.
+const MASCOT_SRC = '/assets/mascot/elab-mascot-vera.png';
 
 const QUICK_QUESTIONS = [
   { id: 'whatis', label: 'Che cosa è una compilazione?' },
@@ -59,7 +63,7 @@ export default function UnlimCompileHelper({
     >
       <div className={css.mascotRow}>
         <span className={css.mascot} aria-hidden="true">
-          <RobotIcon size={48} color="#1E4D8C" />
+          <img src={MASCOT_SRC} alt="" className={css.mascotImg} draggable="false" />
         </span>
         <div className={css.speech} role="status" aria-live="polite">
           {message}

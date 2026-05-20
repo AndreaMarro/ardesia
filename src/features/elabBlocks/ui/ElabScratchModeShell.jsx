@@ -1,17 +1,17 @@
 /**
- * ElabScratchModeShell — Sub-project A iter 84 atom 7 wrapper.
+ * ElabScratchModeShell — wrapper dell'editor Blockly su #compile-home.
  *
- * Andrea spec FASE 3:
- *  - Schermata iniziale MAI vuota: StarterButtons overlay when workspace empty.
- *  - Skeleton loading durante Blockly mount (F4 gap audit 4/6 personas fail).
- *  - Progressive disclosure: starter overlay dismisses post first program load.
+ * iter-102 ridisegno (Andrea "tutta la composizione... non ha senso"):
+ *  - Rimosso l'header blu ridondante "ELAB Scratch Arduino" — la pagina ha
+ *    già il suo titolo + il tab "Blocchi": era la terza intestazione uguale.
+ *  - Gli starter NON sono più un overlay opaco sopra la canvas Blockly
+ *    (causava la composizione confusa, toolbox sbiadita dietro): ora una
+ *    striscia pulita SOPRA l'editor, visibile solo a workspace vuoto, che
+ *    sparisce al primo blocco.
+ *  - La canvas Blockly + la toolbox restano sempre pulite e leggibili.
  *
- * Workspace lifecycle integration:
- *  - Parent (iter 84 close atom OR HomeCompileEntry.jsx) passa workspaceRef
- *    + workspaceReady boolean + onWorkspaceChange callback (Blockly events).
- *  - Shell rende children (ScratchEditor) + StarterButtons overlay when isEmpty.
- *
- * No direct Blockly import — workspace operations delegate parent via onStarterClick.
+ * Workspace lifecycle: il parent passa workspaceReady + workspaceBlockCount
+ * (da eventi Blockly) + onStarterClick (carica lo starter XML).
  */
 import React, { useCallback, useMemo } from 'react';
 import { StarterButtons } from './StarterButtons.jsx';
@@ -19,12 +19,11 @@ import styles from './ElabScratchModeShell.module.css';
 
 /**
  * @param {Object} props
- * @param {React.ReactNode} props.children — ScratchEditor OR child wrap
- * @param {boolean} props.workspaceReady — true post Blockly inject + onWorkspaceChange ready
- * @param {number} props.workspaceBlockCount — top-block count (parent provides via Blockly events)
- * @param {(key: 'blink'|'button'|'sensor') => void} props.onStarterClick — parent loads starter XML
- * @param {boolean} [props.disableAutoStarters=false] — opt-out auto-show (iter 85+ teacher mode)
- * @param {string} [props.title='ELAB Scratch Arduino'] — heading
+ * @param {React.ReactNode} props.children — ScratchEditor (Blockly)
+ * @param {boolean} props.workspaceReady — true post Blockly inject
+ * @param {number} props.workspaceBlockCount — top-block count (eventi Blockly)
+ * @param {(key: 'blink'|'button'|'sensor') => void} props.onStarterClick
+ * @param {boolean} [props.disableAutoStarters=false] — opt-out striscia starter
  */
 export function ElabScratchModeShell({
   children,
@@ -32,10 +31,9 @@ export function ElabScratchModeShell({
   workspaceBlockCount = 0,
   onStarterClick,
   disableAutoStarters = false,
-  title = 'ELAB Scratch Arduino',
 }) {
   const isEmpty = useMemo(
-    () => workspaceReady && workspaceBlockCount <= 1, // tolerance: arduino_base alone counts as empty
+    () => workspaceReady && workspaceBlockCount <= 1, // arduino_base da solo = vuoto
     [workspaceReady, workspaceBlockCount]
   );
 
@@ -49,14 +47,15 @@ export function ElabScratchModeShell({
 
   return (
     <div className={styles.shell} data-testid="elab-scratch-mode-shell">
-      <div className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
-        {!workspaceReady && (
-          <span className={styles.loadingPill} role="status" aria-live="polite">
-            Ragazzi, sto preparando i blocchi...
-          </span>
-        )}
-      </div>
+      {showStarters && (
+        <div className={styles.starterStrip}>
+          <p className={styles.starterPrompt}>
+            Ragazzi, da dove cominciamo? Partite da un programma pronto qui sotto,
+            oppure trascinate i blocchi dalla cassetta colorata.
+          </p>
+          <StarterButtons onStarterClick={handleStarterClick} disabled={!workspaceReady} />
+        </div>
+      )}
 
       <div className={styles.workspace}>
         {!workspaceReady && (
@@ -66,17 +65,6 @@ export function ElabScratchModeShell({
           </div>
         )}
         {children}
-        {showStarters && (
-          <div className={styles.starterOverlay}>
-            <div className={styles.starterCard}>
-              <p className={styles.starterPrompt}>
-                Ragazzi, da dove cominciamo? Scegliete un programma di partenza,
-                oppure trascinate i blocchi dalla cassetta colorata a sinistra.
-              </p>
-              <StarterButtons onStarterClick={handleStarterClick} disabled={!workspaceReady} />
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -349,7 +349,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                   workspaceReady={workspaceReady}
                   workspaceBlockCount={workspaceBlockCount}
                   onStarterClick={handleStarterClick}
-                  title="ELAB Scratch Arduino"
                 >
                   <ScratchEditor
                     onChange={handleScratchCodeChange}
