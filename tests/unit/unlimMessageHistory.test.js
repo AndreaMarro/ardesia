@@ -105,7 +105,7 @@ globalThis.Deno = {
 
 // Import after mocks (memory.ts module-level createClient runs lazily inside getClient()).
 const memoryModule = await import(
-  '/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/supabase/functions/_shared/memory.ts'
+  '../../supabase/functions/_shared/memory.ts'
 );
 const { loadRecentHistory, saveMessageHistory } = memoryModule;
 
@@ -320,7 +320,7 @@ describe('saveMessageHistory — atomic RPC insert_message_history', () => {
     // Re-import to force getClient() re-evaluation with new env.
     vi.resetModules();
     const freshModule = await import(
-      '/Users/andreamarro/VOLUME 3/PRODOTTO/elab-builder/supabase/functions/_shared/memory.ts'
+      '../../supabase/functions/_shared/memory.ts'
     );
     const result = await freshModule.saveMessageHistory('s', null, null, null, 't', 'u', 'r', 'm');
     expect(result).toBeNull();
