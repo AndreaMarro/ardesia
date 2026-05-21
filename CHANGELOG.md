@@ -19,6 +19,26 @@ Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduc
 
 ---
 
+## [feat(percorso) — Modalità Percorso morfica runtime (Sense 1.5)] — 2026-05-21
+
+Modalità Percorso morfica runtime per la Lavagna (PR #132). Il pannello Percorso del capitolo diventa MORFICO a tempo di esecuzione (Morfismo Sense 1.5): l'adapter `percorsoMorphicAdapter.js` risolve un contesto per-docente / per-classe / per-sessione e `PercorsoCapitoloView` lo applica in tempo reale (polling 750ms + eventi `storage` / `elab:percorso-morphic-context-changed` / `elab:percorso-live-signal`). Cambia la regia — quantità di testo, numero di slide, segnali di regia live — mentre il canone Principio Zero (apertura "Ragazzi,", kit fisico ELAB, citazione Vol.X pag.Y verbatim) resta INVARIANTE.
+
+### Added
+- `src/services/percorsoMorphicAdapter.js` — resolver morfico Sense 1.5: `resolveDocenteContext` / `resolveClasseContext` / `resolvePercorsoMorphicContext` (aggregano profilo locale + Supabase `teacher_history_log`, `errore_ricorrente_pattern`, `class_session_metadata`, `voice_movement_log`), `adaptPercorsoRender` (rendering adattivo + filtro componenti per kit), `getModalitaMorphicCue` (cue di modalità). Path difensivi: client Supabase null tollerato, query in errore/eccezione non propagate.
+- `src/components/lavagna/PercorsoCapitoloView.jsx` — pannello Percorso realtime morfico: regia live da segnali aula (scrittura, montaggio, latenza, screenshot, audio, lezioni passate), budget morfico di frasi/slide, "Lezione personalizzata" via `unlim-chat`.
+- `src/components/lavagna/ModalitaSwitch.jsx` — switch 3 modalità canoniche con cue morfico per la modalità Percorso.
+- `tests/unit/services/percorsoMorphicRuntime.test.js` — 16 test del runtime morfico: `getModalitaMorphicCue`, `resolveUiContext` (4k/touch + sanitizzazione stato sessione), `transitionEmphasis`, `nextExperiment` (stringa/oggetto/null), mapping `capitolo.id` → `ragChapterFocus`, `voiceFocus` da `voice_movement_log`, inferenza kit da materiale, ramo `concepts.size >= 6`.
+- `tests/unit/services/percorsoMorphicAdapter.test.js`, `tests/unit/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/lavagna/ModalitaSwitch.test.jsx`, `tests/e2e/08-percorso-morfica-flow.spec.js` — copertura unit + E2E del flusso Percorso morfico.
+
+### Verifica
+- `percorsoMorphicRuntime.test.js` 16/16 PASS. Suite Percorso aggregata (`percorsoMorphicAdapter` + `percorsoMorphicRuntime` + `PercorsoCapitoloView` + `ModalitaSwitch`) 48/48 PASS. Build PASS.
+
+### Notes
+- Morfismo Sense 1.5: cambia la regia (testo/slide/segnali), il canone Principio Zero resta invariante.
+- I nuovi test esercitano percorsi del runtime morfico non coperti dalla suite precedente (export `getModalitaMorphicCue`, contesto UI, emfasi transizioni, prossimo esperimento, focus RAG capitolo) — nessun test vuoto o fittizio.
+
+---
+
 ## [fix(iter-103) — #compile-home: rail overflow-y + cross-compile librerie Arduino] — 2026-05-21
 
 Due fix da audit iter-103. (1) Codex adversarial review: il rail `.compileBarPanel` aveva `overflow:hidden` — su schermi desktop bassi o zoom 200% gli errori di compilazione lunghi venivano troncati senza scroll. (2) Audit cross-compile: `/api/compile/nanor4` in produzione falliva per ogni sketch con `#include <Servo.h>` o `<LiquidCrystal.h>` ("No such file or directory") — il Dockerfile del servizio cloud-compile installava i core Arduino ma nessuna libreria.

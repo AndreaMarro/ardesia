@@ -188,6 +188,16 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
   };
 }
 const DRAWING_SYNC_ENABLED = import.meta.env.VITE_ENABLE_DRAWING_SYNC === 'true';
+const PERCORSO_SESSION_STATES = ['intro', 'costruzione', 'verifica', 'report'];
+
+function readPercorsoSessionState() {
+  try {
+    const value = window.localStorage?.getItem?.('elab-percorso-session-state');
+    return PERCORSO_SESSION_STATES.includes(value) ? value : 'intro';
+  } catch {
+    return 'intro';
+  }
+}
 
 // Component quick-add buttons for left panel (uses __ELAB_API)
 // Realistic component icons — recognizable by a 10-year-old
@@ -638,6 +648,19 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     try { return localStorage.getItem('elab-lavagna-wake-word') !== 'off'; } catch { return true; }
   });
   const [wakeWordActive, setWakeWordActive] = useState(false);
+
+  // Codex MED#1 fix (Phase 1 sub-iter 83.6): derive + persist sessionState morfico per ModalitaSwitch cue.
+  // Mappa stato lavagna → fase canonica: intro (default), costruzione (mode=passo-passo/libero/gia-montato attivo).
+  // Persiste in localStorage 'elab-percorso-session-state' per consumare adapter percorsoMorphicAdapter.
+  const [storedPercorsoSessionState, setStoredPercorsoSessionState] = useState(readPercorsoSessionState);
+  const derivedSessionState = React.useMemo(() => {
+    if (typeof modalita === 'string' && (modalita === 'passo-passo' || modalita === 'libero' || modalita === 'gia-montato')) return 'costruzione';
+    return PERCORSO_SESSION_STATES.includes(storedPercorsoSessionState) ? storedPercorsoSessionState : 'intro';
+  }, [modalita, storedPercorsoSessionState]);
+  React.useEffect(() => {
+    try { window.localStorage?.setItem?.('elab-percorso-session-state', derivedSessionState); } catch { /* noop */ }
+    setStoredPercorsoSessionState((current) => (current === derivedSessionState ? current : derivedSessionState));
+  }, [derivedSessionState]);
   // F2.B: serializzazione primo-accesso. ConsentBanner (se presente) ha
   // priorità su Bentornati/Picker. ExperimentPicker parte ultimo.
   const bentornatiAllowed = useOverlayQueue('bentornati');
@@ -1601,7 +1624,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso) */}
           {!freeMode && (
             <div className={css.modalitaSwitchSlot} data-testid="modalita-switch-slot">
-              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange} />
+              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange}
+          sessionState={derivedSessionState}
+        />
             </div>
           )}
 
