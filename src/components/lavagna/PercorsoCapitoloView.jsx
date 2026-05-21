@@ -23,6 +23,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import VolumeCitation from '../common/VolumeCitation.jsx';
 import DocenteSidebar from './DocenteSidebar.jsx';
 import css from './PercorsoCapitoloView.module.css';
+import { getLessonPath } from '../../data/lesson-paths';
 // iter 45 Andrea video2 06/05/2026 + ADR-019 Sense 1.5: pulsante "Lezione personalizzata"
 // chiama unlim-chat con context onniscenza aggregator (L1 RAG + L2 Wiki + L4 Sessione +
 // L5 Lesson + L6 Chat history, già LIVE iter 24 onniscenza-bridge.ts) + Mistral routing
@@ -43,6 +44,20 @@ function findTransitionFromPrev(capitolo, espIndex) {
   return capitolo.narrative_flow.transitions.find(
     (t) => t.between?.[0] === prevId && t.between?.[1] === currId
   ) ?? null;
+}
+
+function findTransitionToNext(capitolo, espIndex) {
+  if (!capitolo?.narrative_flow?.transitions) return null;
+  const currId = capitolo.esperimenti[espIndex]?.id;
+  const nextId = capitolo.esperimenti[espIndex + 1]?.id;
+  if (!currId || !nextId) return null;
+  return capitolo.narrative_flow.transitions.find(
+    (t) => t.between?.[0] === currId && t.between?.[1] === nextId
+  ) ?? null;
+}
+
+function getNextExperimentForCard(esp) {
+  return esp?.next_experiment || getLessonPath(esp?.id)?.next_experiment || null;
 }
 
 export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClick }) {
@@ -220,25 +235,21 @@ export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClic
         )}
 
         {capitolo.esperimenti?.map((esp, idx) => {
-          const transition = findTransitionFromPrev(capitolo, idx);
+          const transitionFromPrev = findTransitionFromPrev(capitolo, idx);
+          const transitionToNext = findTransitionToNext(capitolo, idx);
+          const nextExperiment = getNextExperimentForCard(esp);
           const incrementalHint =
             esp.build_circuit?.mode === 'incremental_from_prev'
-              ? `Costruzione incremental partendo dal circuito precedente (${INCREMENTAL_LABEL[transition?.incremental_mode] ?? 'modifica'})`
+              ? `Costruzione incremental partendo dal circuito precedente (${INCREMENTAL_LABEL[transitionFromPrev?.incremental_mode] ?? 'modifica'})`
               : null;
 
           return (
-            <article
-              key={esp.id}
-              className={`${css.experimentSection} ${idx === activeExpIndex ? css.activeExp : ''}`}
-              onClick={() => { setActiveExpIndex(idx); setActivePhaseIndex(0); }}
-              aria-label={`Esperimento ${esp.num}: ${esp.title_classe}`}
-            >
-              {transition && (
-                <div className={css.transition}>
-                  <span className={css.transitionLabel}>Transizione</span>
-                  <p className={css.transitionText}>{transition.text_classe}</p>
-                </div>
-              )}
+            <React.Fragment key={esp.id}>
+              <article
+                className={`${css.experimentSection} ${idx === activeExpIndex ? css.activeExp : ''}`}
+                onClick={() => { setActiveExpIndex(idx); setActivePhaseIndex(0); }}
+                aria-label={`Esperimento ${esp.num}: ${esp.title_classe}`}
+              >
 
               <header className={css.expHeader}>
                 <div className={css.expNum}>Esperimento {esp.num}</div>
@@ -291,7 +302,28 @@ export default function PercorsoCapitoloView({ capitolo, onClose, onCitationClic
                   </ol>
                 </div>
               )}
-            </article>
+              </article>
+              {idx < (capitolo.esperimenti?.length ?? 0) - 1 && (transitionToNext || nextExperiment) && (
+                <section
+                  className={css.nextTransition}
+                  data-testid={`percorso-next-transition-${esp.id}`}
+                  aria-label={`Passaggio al prossimo esperimento da ${esp.title_classe}`}
+                >
+                  <span className={css.transitionLabel}>Prossimo passaggio</span>
+                  {transitionToNext?.text_classe && (
+                    <p className={css.transitionText}>{transitionToNext.text_classe}</p>
+                  )}
+                  {nextExperiment && (
+                    <div className={css.nextExperimentPreview}>
+                      <strong>Prossimo:</strong> {nextExperiment.title || nextExperiment.id}
+                      {nextExperiment.preview && (
+                        <p className={css.nextPreviewText}>{nextExperiment.preview}</p>
+                      )}
+                    </div>
+                  )}
+                </section>
+              )}
+            </React.Fragment>
           );
         })}
 

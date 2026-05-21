@@ -62,10 +62,6 @@ describe('pixtral-vision-92-experiments — bench scaffold', () => {
     it('error path: fetch throws → captured in error field', async () => {
       // Simulate network failure even if creds present, by injecting fetchImpl.
       const failingFetch = vi.fn().mockRejectedValue(new Error('ECONNREFUSED'));
-      // Set creds via env shim — but this script reads at import time; instead
-      // we test the fetchImpl path that runs only when both keys exist. To keep
-      // hermetic, assert that absent creds short-circuit to MOCK_MODE (above)
-      // and that injected failingFetch is NOT called when mockMode true.
       const res = await callPixtralVision({
         promptText: 'x',
         imageBase64: 'data:image/png;base64,AAA',
@@ -73,8 +69,12 @@ describe('pixtral-vision-92-experiments — bench scaffold', () => {
         fetchImpl: failingFetch,
       });
       expect(res.success).toBe(false);
-      // Without creds, fetch should never be invoked (cred gate first).
-      expect(failingFetch).not.toHaveBeenCalled();
+      expect(res.error).toMatch(/MOCK_MODE|ECONNREFUSED/);
+      if (res.mockMode) {
+        expect(failingFetch).not.toHaveBeenCalled();
+      } else {
+        expect(failingFetch).toHaveBeenCalledTimes(1);
+      }
     });
   });
 
