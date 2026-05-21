@@ -42,7 +42,11 @@
 .workspace {
   position: relative;
   flex: 1 1 auto;
-  min-height: 320px;
+  /* iter-102 (Andrea "allarga l'editor"): floor raised 320 → 520. The Blockly
+     editor was pinned near this minimum (~258px usable canvas, toolbox showing
+     only 4/12 categories). 520 gives a real editor (~470px Blockly canvas,
+     ~8-9 categories visible); the page scrolls on shorter viewports. */
+  min-height: 520px;
   overflow: hidden;
 }
 
