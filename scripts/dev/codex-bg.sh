@@ -83,12 +83,14 @@ echo "[codex-bg] Output:   $OUTPUT_FILE"
 echo "[codex-bg] Started:  $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 EXIT_CODE=0
+# < /dev/null: codex exec hangs reading stdin otherwise — prompt is passed as an arg
 "$CODEX_BIN" exec \
   --skip-git-repo-check \
   "${PROFILE_ARGS[@]}" \
   "${CONFIG_OVERRIDES[@]}" \
   --cd "$CD_DIR" \
   "$TASK_DESC" \
+  < /dev/null \
   > "$OUTPUT_FILE" 2>&1 || EXIT_CODE=$?
 
 echo "[codex-bg] Finished: $(date -u +%Y-%m-%dT%H:%M:%SZ)"

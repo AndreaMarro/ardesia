@@ -6,9 +6,14 @@
  */
 
 .root {
-  min-height: 100vh;
+  /* iter-103 app-shell: HomePage monta #compile-home dentro un wrapper
+     height:100vh + overflow:hidden → il root DEVE stare nella viewport
+     e gestire lo scroll internamente (vedi .editorGrid overflow-y).
+     Vale a TUTTE le risoluzioni: il wrapper non offre scroll di pagina. */
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   background: var(--elab-bg, #F0F4F8);
   color: var(--elab-text, #1A1A1A);
   font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
@@ -20,6 +25,7 @@
    compact single-row grid + smaller padding + title 18px + subtitle inline
    muted = ~46px vertical (-30px saving). Mobile breakpoint preserved. */
 .header {
+  flex: 0 0 auto;
   padding: 8px 16px 6px;
   background: var(--elab-card-bg, #FFFFFF);
   border-bottom: 1px solid var(--elab-navy, #1E4D8C);
@@ -87,25 +93,35 @@
    (-12px vertical). Banner content (CompileAgentBanner OR WebUsbBanner)
    itself remains intact. Border 1px preserved. */
 .bannerSection {
+  flex: 0 0 auto;
   padding: 6px 16px;
   background: var(--elab-card-bg, #FFFFFF);
   border-bottom: 1px solid var(--elab-border, #E0E6ED);
 }
 
+/* iter-103 layout refactor (Andrea iter 103 PM ratify): #compile-home deve
+   riempire lo schermo. Mobile-first single column; desktop ≥1024 → griglia
+   2 colonne con il Monitor Seriale come cella "serial" sotto l'editor (vedi
+   @media 1024). Sostituisce il layout iter-102 dove il Monitor Seriale era
+   una banda a tutta larghezza FUORI dalla griglia e ≥1600px aggiungeva due
+   colonne vuote (starter/kit mai cablate = spazio morto). */
 .editorGrid {
   flex: 1 1 auto;
   display: grid;
   grid-template-columns: 1fr;
-  /* iter-102 (Andrea "allarga l'editor"): fill the available vertical space.
-     Without an explicit row track the implicit row was content-sized, so the
-     editorPanel never stretched and the Blockly editor stayed pinned at its
-     ~258px minimum. minmax(0,1fr) makes the panel claim the full flex height
-     → editorSurface (flex:1) → Blockly editor gets real room. */
-  grid-template-rows: minmax(0, 1fr);
+  /* grid-auto-rows max-content: su mobile/tablet (colonna singola, righe
+     implicite) ogni riga prende l'altezza del contenuto e NON collassa
+     a 0 quando l'editorGrid è un contenitore di scroll vincolato —
+     l'area scrolla internamente mostrando editor → barra compila →
+     monitor. Desktop ≥1024 usa grid-template-rows esplicito (@media). */
+  grid-auto-rows: max-content;
   gap: 16px;
-  padding: 16px 24px;
-  overflow: hidden;
+  padding: 16px;
+  /* min-height:0 → l'editorGrid può flex-shrink fino allo spazio
+     residuo del root; overflow-y:auto → l'area editor scrolla da sola
+     (header/banner/footer restano fissi, app-shell). */
   min-height: 0;
+  overflow-y: auto;
 }
 
 .editorPanel {
@@ -113,7 +129,7 @@
   border: 1px solid var(--elab-border, #E0E6ED);
   border-radius: 12px;
   overflow: hidden;
-  min-height: 480px;
+  min-height: 360px;
   display: flex;
   flex-direction: column;
 }
@@ -195,21 +211,22 @@
   flex-direction: column;
 }
 
-/* Iter 95 SP3 T3 — Virtual Serial Monitor section below main editor grid.
-   Andrea iter 94 PM mandate "Basso: Monitor Seriale Virtuale + stato
-   compilazione". Padding matches editorGrid horizontal. */
+/* iter-103 — Monitor Seriale ora è una cella della griglia (grid-area:
+   serial, vedi @media 1024) direttamente sotto l'editor, non più una banda
+   a tutta larghezza. Flex column così il VirtualSerialMonitor interno
+   riempie l'altezza della cella. */
 .virtualSerialSection {
-  padding: 0 24px 16px;
-  background: var(--elab-bg-secondary, #F5F7FA);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
-@media (max-width: 768px) {
-  .virtualSerialSection {
-    padding: 0 12px 12px;
-  }
+.virtualSerialSection > * {
+  flex: 1 1 auto;
 }
 
 .footer {
+  flex: 0 0 auto;
   padding: 12px 24px 20px;
   background: var(--elab-card-bg, #FFFFFF);
   border-top: 1px solid var(--elab-border, #E0E6ED);
@@ -243,10 +260,28 @@
   border-radius: 2px;
 }
 
-/* Desktop ≥1024px — grid editor + compile bar sidebar */
 @media (min-width: 1024px) {
+  /* Desktop ≥1024: 2 colonne — editor + Monitor Seriale sotto a
+     sinistra, barra Compila + mascotte UNLIM a destra (span 2 righe).
+     Row 1 minmax(360px,1fr) → l'editor riempie lo spazio; row 2 clamp
+     → Monitor Seriale riproporzionato (~220-260px, non più banda).
+     App-shell height/overflow è già nel .root base. */
   .editorGrid {
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 340px;
+    grid-template-rows: minmax(360px, 1fr) clamp(200px, 22vh, 260px);
+    grid-template-areas:
+      "editor rail"
+      "serial rail";
+    padding: 16px 24px;
+  }
+  .editorPanel {
+    grid-area: editor;
+  }
+  .compileBarPanel {
+    grid-area: rail;
+  }
+  .virtualSerialSection {
+    grid-area: serial;
   }
 }
 
@@ -261,32 +296,6 @@
   .footerNote {
     font-size: 14px;
   }
-}
-
-/* iter 88 UX-5 — LIM-first 4-col horizontal sequence ≥1600px.
-   Aspirational redesign: StarterButtons (col 1) → Editor (col 2)
-   → Compila+status (col 3) → Kit Arduino+Carica (col 4).
-   Gated @media 1600px (NOT 1280px) to AVOID breaking existing
-   1280-1600 desktop sidebar layout (.editorGrid 1fr 320px).
-   Orchestrator iter 88 P0.10+ will wire StarterButtons col 1 +
-   CompileStatus col 3 + KitArduinoCarica col 4 as siblings to
-   editorPanel/compileBarPanel. Until wired, only editorPanel +
-   compileBarPanel render — extra cols collapse gracefully (auto). */
-@media (min-width: 1600px) {
-  .editorGrid {
-    grid-template-columns: minmax(200px, 240px) 1fr minmax(220px, 280px) minmax(220px, 280px);
-    grid-template-areas: "starter editor status kit";
-    gap: 20px;
-  }
-  .editorPanel {
-    grid-area: editor;
-  }
-  .compileBarPanel {
-    grid-area: status;
-  }
-  /* Future LIM-only siblings (iter 88 P0.10+ orchestrator wire):
-     .starterPanel  { grid-area: starter; }
-     .kitPanel      { grid-area: kit; } */
 }
 
 /* Mobile <768 — stacked layout with reduced padding */
@@ -313,9 +322,6 @@
   }
   .editorGrid {
     padding: 12px 16px;
-  }
-  .editorPanel {
-    min-height: 360px;
   }
 }
 

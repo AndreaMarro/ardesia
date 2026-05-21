@@ -584,6 +584,40 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
     expect(compileFetch.mock.calls[0][0]).toBe('http://localhost:8765/compile');
   });
 
+  // iter 103 regression guard — Andrea imperative "'Carica sul kit fisico'
+  // deve funzionare". Demo-mode (#compile-home) compiles + flashes via WebUSB
+  // straight from the browser, so the button must be LIVE even with the local
+  // ELAB Compile Agent offline and NO serial port. Before the iter 103 fix
+  // buttonStyle / aria-disabled / tooltip read the legacy `disabled` (which
+  // hard-requires both) and painted the button dead though it was clickable.
+  it('T1c demo-mode button is presented enabled when agent offline + no port', async () => {
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){pinMode(13,OUTPUT);}void loop(){}"
+        statusImpl={statusOffline}
+        fetchImpl={makeCompileOk()}
+      />,
+    );
+    const btn = await screen.findByRole('button', {
+      name: /Carica il programma sul kit fisico Nano R4/i,
+    });
+    // Wait for the agent poll to resolve "offline" — the legacy path would
+    // disable the button here; demo-mode must not.
+    await waitFor(() =>
+      expect(btn.getAttribute('data-elab-agent-available')).toBe('false'),
+    );
+    // Functionally clickable.
+    expect(btn).not.toBeDisabled();
+    // Not announced disabled to assistive tech.
+    expect(btn.getAttribute('aria-disabled')).not.toBe('true');
+    // Painted live — not grey / not-allowed.
+    expect(btn.style.cursor).toBe('pointer');
+    expect(btn.style.opacity).toBe('1');
+    // Tooltip must not mislead with the legacy "agente offline" copy.
+    expect(btn.getAttribute('title')).not.toMatch(/agente locale/i);
+  });
+
   it('T1b transitions to compile_only_no_board on NotFoundError (user cancelled picker)', async () => {
     const compileFetch = makeCompileOk({ hexBytes: 1234, ramBytes: 56 });
     const usbPicker = makeUsbNotFound();
