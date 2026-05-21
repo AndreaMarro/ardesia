@@ -80,8 +80,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap9-esp4",
-    "title": "Esperimento 4: regola l'intensità di un LED RGB con il potenziometro",
-    "preview": "Un solo potenziometro regola due colori insieme — crea il ciano!"
+    "title": "Dimmer RGB azzurrino",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.63 intitolata \"Dimmer RGB azzurrino\"."
   },
   "phases": [
     {
@@ -108,8 +108,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito dimmer con LED verde",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED di colore diverso con pot seguendo Vol.1 pag.63.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -238,7 +238,7 @@
         "soglia diversa per colore LED",
         "confronto tra LED"
       ],
-      "next_preview": "La prossima volta colleghiamo il potenziometro a DUE colori del LED RGB — creiamo il ciano!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.63 intitolata \"Dimmer RGB azzurrino\"."
     }
   ],
   "assessment_invisible": [
@@ -253,5 +253,16 @@
     ],
     "next_suggested": "v1-cap9-esp4",
     "resume_message": "L'ultima volta avete scoperto che il verde si accende dopo il rosso! Ora creiamo un colore nuovo con il potenziometro."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 63,
+    "label": "Vol.1 pag.63"
   }
 }

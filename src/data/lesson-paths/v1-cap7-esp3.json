@@ -80,7 +80,7 @@
   "next_experiment": {
     "id": "v1-cap7-esp4",
     "title": "Mescola 2 colori: il viola!",
-    "preview": "Ora che sai accendere ogni colore... cosa succede se ne accendi DUE insieme?"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.39 intitolata \"Mescola 2 colori: il viola!\"."
   },
   "phases": [
     {
@@ -107,8 +107,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito RGB — canale blu",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Accendi il blu del RGB seguendo Vol.1 pag.39.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -230,7 +230,7 @@
         "soglia energetica per colore",
         "pin blu del LED RGB"
       ],
-      "next_preview": "Ora il bello: cosa succede se accendiamo rosso E blu insieme? Si crea un colore nuovo!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.39 intitolata \"Mescola 2 colori: il viola!\"."
     }
   ],
   "assessment_invisible": [
@@ -245,5 +245,16 @@
     ],
     "next_suggested": "v1-cap7-esp4",
     "resume_message": "L'ultima volta avete acceso tutti e 3 i colori del LED RGB. Ora li mescoliamo!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 39,
+    "label": "Vol.1 pag.39"
   }
 }

@@ -10,16 +10,20 @@
  * per code-reviewer verdict; refactor needed canonical elabArduinoAst integration).
  *
  * Props:
- *   compileStatus: 'idle' | 'compiling' | 'success' | 'error' (matches
- *     ScratchCompileBar canonical state). Adapts message + future animation.
+ *   compileStatus: 'idle' | 'compiling' | 'success' | 'verified-legacy' | 'error'
+ *     (matches ScratchCompileBar canonical state). Adapts message + future animation.
  *   onAskQuestion: (question: string) => void — callback when quick question
  *     clicked. Wires to UNLIM chat (HomePage UNLIM panel) in iter 98+ atom.
  *
  * © Andrea Marro — iter 97 atom C — 2026-05-19
  */
 import React from 'react';
-import { RobotIcon } from '../common/ElabIcons';
 import css from './UnlimCompileHelper.module.css';
+
+// iter-102 (Andrea "il robottino deve essere la mascotte animata"): la
+// mascotte ufficiale ELAB (Vera) al posto dell'icona SVG grezza. PNG servito
+// da public/. L'animazione (idle + reazioni allo stato) è in CSS.
+const MASCOT_SRC = '/assets/mascot/elab-mascot-vera.png';
 
 const QUICK_QUESTIONS = [
   { id: 'whatis', label: 'Che cosa è una compilazione?' },
@@ -33,6 +37,8 @@ function getStatusMessage(compileStatus) {
       return 'Ragazzi, sto preparando il programma per il vostro Nano R4. Aspettate un attimo!';
     case 'success':
       return 'Compilazione riuscita ragazzi! Ora potete caricare il programma sul vostro kit ELAB.';
+    case 'verified-legacy':
+      return 'Ragazzi, il codice è stato verificato dal compilatore legacy, ma il compilatore Nano R4 non è ancora attivo. Non usiamo questo risultato per il kit fisico.';
     case 'error':
       return 'C\'è un errore nel programma, ragazzi. Aprite la sezione errori per capire cosa correggere.';
     default:
@@ -57,7 +63,7 @@ export default function UnlimCompileHelper({
     >
       <div className={css.mascotRow}>
         <span className={css.mascot} aria-hidden="true">
-          <RobotIcon size={48} color="#1E4D8C" />
+          <img src={MASCOT_SRC} alt="" className={css.mascotImg} draggable="false" />
         </span>
         <div className={css.speech} role="status" aria-live="polite">
           {message}

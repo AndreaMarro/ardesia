@@ -98,7 +98,7 @@
   "next_experiment": {
     "id": "v1-cap9-esp1",
     "title": "Dimmer LED con potenziometro",
-    "preview": "I pulsanti sono acceso/spento. E se potessi regolare la luminosità gradualmente? Un nuovo componente!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.58 intitolata \"Dimmer LED con potenziometro\"."
   },
   "phases": [
     {
@@ -125,8 +125,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito RGB con resistori diversi",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Mix avanzato con resistori diversi seguendo Vol.1 pag.56.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -292,7 +292,7 @@
         "resistore regola luminosità",
         "sfumature con resistori diversi"
       ],
-      "next_preview": "I pulsanti sono acceso o spento. E se esistesse un componente con una MANOPOLA per regolare gradualmente? Lo scoprirete nel prossimo capitolo!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.58 intitolata \"Dimmer LED con potenziometro\"."
     }
   ],
   "assessment_invisible": [
@@ -307,5 +307,16 @@
     ],
     "next_suggested": "v1-cap9-esp1",
     "resume_message": "L'ultima volta avete scoperto che resistori diversi creano sfumature diverse. Ora scopriamo un componente che cambia resistenza da solo!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 56,
+    "label": "Vol.1 pag.56"
   }
 }

@@ -93,8 +93,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap12-esp3",
-    "title": "Esperimento 3: accendi un LED RGB con l'interruttore magnetico",
-    "preview": "Sfida! Collegate il reed switch al LED RGB — il magnete accende i colori!"
+    "title": "Sfida: RGB + reed switch",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.101 intitolata \"Sfida: RGB + reed switch\"."
   },
   "phases": [
     {
@@ -121,8 +121,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito reed switch + LED con resistore variabile",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Cambia luminosità con magnete seguendo Vol.1 pag.100.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -247,7 +247,7 @@
         "doppio controllo reed+resistore",
         "sperimentazione con valori diversi"
       ],
-      "next_preview": "Sfida! Colleghiamo il reed switch al LED RGB. Il magnete accenderà i COLORI!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.101 intitolata \"Sfida: RGB + reed switch\"."
     }
   ],
   "assessment_invisible": [
@@ -263,5 +263,16 @@
     ],
     "next_suggested": "v1-cap12-esp3",
     "resume_message": "Avete scoperto il doppio controllo: magnete + resistore! Ora la sfida: reed switch + RGB!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 100,
+    "label": "Vol.1 pag.100"
   }
 }
