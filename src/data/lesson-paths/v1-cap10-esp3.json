@@ -87,7 +87,7 @@
   "next_experiment": {
     "id": "v1-cap10-esp4",
     "title": "LED bianco illumina LDR → LED blu",
-    "preview": "Un LED illumina una fotoresistenza che accende un altro LED. Una catena di luce!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.88 intitolata \"LED bianco illumina LDR → LED blu\"."
   },
   "phases": [
     {
@@ -114,8 +114,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito 3 LDR + RGB",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di 3 LDR controllano RGB seguendo Vol.1 pag.85.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -137,21 +137,6 @@
             {
               "type": "photo-resistor",
               "id": "ldr3"
-            },
-            {
-              "type": "resistor",
-              "id": "r1",
-              "value": 220
-            },
-            {
-              "type": "resistor",
-              "id": "r2",
-              "value": 220
-            },
-            {
-              "type": "resistor",
-              "id": "r3",
-              "value": 220
             },
             {
               "type": "rgb-led",
@@ -181,31 +166,16 @@
             },
             {
               "from": "bb1:a4",
-              "to": "bb1:a5",
-              "color": "orange"
-            },
-            {
-              "from": "bb1:a6",
               "to": "bb1:a19",
               "color": "orange"
             },
             {
               "from": "bb1:a8",
-              "to": "bb1:a9",
-              "color": "green"
-            },
-            {
-              "from": "bb1:a10",
               "to": "bb1:a21",
               "color": "green"
             },
             {
               "from": "bb1:a12",
-              "to": "bb1:a13",
-              "color": "blue"
-            },
-            {
-              "from": "bb1:a14",
               "to": "bb1:a22",
               "color": "blue"
             },
@@ -291,7 +261,7 @@
         "multi-sensore indipendente",
         "controllo RGB con sensori"
       ],
-      "next_preview": "La prossima volta: un LED illumina una fotoresistenza che accende un altro LED. Luce → sensore → luce!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.88 intitolata \"LED bianco illumina LDR → LED blu\"."
     }
   ],
   "assessment_invisible": [
@@ -306,5 +276,16 @@
     ],
     "next_suggested": "v1-cap10-esp4",
     "resume_message": "L'ultima volta avete usato 3 sensori per 3 colori! Ora: catena di luce, un LED ne accende un altro."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 85,
+    "label": "Vol.1 pag.85"
   }
 }

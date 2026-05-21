@@ -77,8 +77,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap7-esp3",
-    "title": "Accendi il blu del RGB",
-    "preview": "Ora proviamo il terzo colore — il blu! Scopriremo qualcosa di diverso..."
+    "title": "Accendete il blu del RGB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.39 intitolata \"Accendete il blu del RGB\"."
   },
   "phases": [
     {
@@ -105,8 +105,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito RGB — canale verde",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Accendi il verde del RGB seguendo Vol.1 pag.38.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -228,7 +228,7 @@
         "canali RGB indipendenti",
         "pin verde del LED RGB"
       ],
-      "next_preview": "Ora proviamo il blu — ma scopriremo che ha qualcosa di diverso..."
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.39 intitolata \"Accendete il blu del RGB\"."
     }
   ],
   "assessment_invisible": [
@@ -242,5 +242,16 @@
     ],
     "next_suggested": "v1-cap7-esp3",
     "resume_message": "L'ultima volta avete acceso il verde del LED RGB. Ora proviamo il blu!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 38,
+    "label": "Vol.1 pag.38"
   }
 }

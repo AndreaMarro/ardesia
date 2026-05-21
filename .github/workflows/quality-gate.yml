@@ -42,7 +42,10 @@ jobs:
           # Use --reporter=json for reliable test count (not file count).
           # Previous regex '[0-9]+ passed | head -1' matched "Test Files N passed"
           # instead of "Tests M passed" and produced false-positive REGRESSION.
-          npx vitest run --reporter=json > /tmp/vitest-output.json 2>&1 || true
+          # --outputFile writes ONLY clean JSON to the file; the old
+          # `> file 2>&1` redirect mixed stderr/console noise into it,
+          # making it invalid JSON -> jq returned 0 -> false TEST REGRESSION.
+          npx vitest run --reporter=json --outputFile=/tmp/vitest-output.json || true
           PASSED=$(jq -r '.numPassedTests // 0' /tmp/vitest-output.json 2>/dev/null || echo 0)
           FAILED=$(jq -r '.numFailedTests // 0' /tmp/vitest-output.json 2>/dev/null || echo 0)
           if [ "$PASSED" = "0" ] || [ -z "$PASSED" ]; then

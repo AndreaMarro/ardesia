@@ -79,7 +79,7 @@
   "next_experiment": {
     "id": "v1-cap7-esp6",
     "title": "Crea il tuo colore!",
-    "preview": "Ora che sai come funziona la mescolanza, provate a creare il TUO colore cambiando i resistori!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.42 intitolata \"Crea il tuo colore!\"."
   },
   "phases": [
     {
@@ -106,8 +106,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito RGB completo — R+G+B",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Tutti e 3: bianco! seguendo Vol.1 pag.41.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -259,7 +259,7 @@
         "R+G+B = bianco",
         "come funzionano gli schermi"
       ],
-      "next_preview": "E se cambiassimo i resistori? Più rosso e meno blu... che colore verrà? Creerai il TUO colore!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.42 intitolata \"Crea il tuo colore!\"."
     }
   ],
   "assessment_invisible": [
@@ -274,5 +274,16 @@
     ],
     "next_suggested": "v1-cap7-esp6",
     "resume_message": "L'ultima volta avete scoperto che R+G+B fa bianco! Ora create il VOSTRO colore!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 41,
+    "label": "Vol.1 pag.41"
   }
 }

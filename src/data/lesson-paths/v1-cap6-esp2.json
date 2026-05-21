@@ -77,8 +77,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap6-esp3",
-    "title": "Cambia luminosità con resistenze diverse",
-    "preview": "E se mettiamo qualcosa che frena la corrente? Il LED cambia luminosità!"
+    "title": "Cambiate luminosità con resistenze diverse",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.33 intitolata \"Cambiate luminosità con resistenze diverse\"."
   },
   "phases": [
     {
@@ -105,8 +105,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito sulla breadboard (SENZA resistore!)",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED senza resistore (cosa NON fare!) seguendo Vol.1 pag.32.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -229,7 +229,7 @@
         "corrente eccessiva brucia il LED",
         "necessità di protezione (resistore)"
       ],
-      "next_preview": "La prossima volta scopriremo cosa cambia se usiamo resistenze diverse... il LED cambierà luminosità! 💡"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.33 intitolata \"Cambiate luminosità con resistenze diverse\"."
     }
   ],
   "assessment_invisible": [
@@ -245,5 +245,16 @@
     ],
     "next_suggested": "v1-cap6-esp3",
     "resume_message": "L'ultima volta abbiamo visto che il LED si brucia senza protezione! Oggi scopriamo cosa succede con resistenze diverse..."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 32,
+    "label": "Vol.1 pag.32"
   }
 }

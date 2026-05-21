@@ -99,8 +99,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap12-esp4",
-    "title": "Esperimento 4: potenziometro, LED RGB e interruttore magnetico insieme",
-    "preview": "La sfida finale: magnete + manopola + colori! Il circuito più complesso del capitolo!"
+    "title": "Sfida: pot + RGB + reed switch",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.101 intitolata \"Sfida: pot + RGB + reed switch\"."
   },
   "phases": [
     {
@@ -127,8 +127,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito sfida RGB + reed switch",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Sfida: RGB + reed switch seguendo Vol.1 pag.101.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -256,7 +256,7 @@
         "controllo centralizzato",
         "progettazione circuiti"
       ],
-      "next_preview": "Sfida finale del capitolo: aggiungiamo anche il potenziometro! Magnete + manopola + colori — il circuito più complesso!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.101 intitolata \"Sfida: pot + RGB + reed switch\"."
     }
   ],
   "assessment_invisible": [
@@ -272,5 +272,16 @@
     ],
     "next_suggested": "v1-cap12-esp4",
     "resume_message": "Avete combinato reed switch e RGB! Ora la sfida finale: aggiungiamo il potenziometro!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 101,
+    "label": "Vol.1 pag.101"
   }
 }

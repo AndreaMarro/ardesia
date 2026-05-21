@@ -80,7 +80,7 @@
   "next_experiment": {
     "id": "v1-cap8-esp3",
     "title": "RGB + pulsante = viola",
-    "preview": "E se un pulsante potesse controllare più colori contemporaneamente? Scopriamolo!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.47 intitolata \"RGB + pulsante = viola\"."
   },
   "phases": [
     {
@@ -107,8 +107,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito LED verde + pulsante + R 220Ω",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Cambia colore e luminosità seguendo Vol.1 pag.47.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -245,7 +245,7 @@
         "variazione componenti nello stesso circuito",
         "conferma relazione resistenza/luminosità"
       ],
-      "next_preview": "E se potessi cambiare la luminosità girando una manopola? Scopriamo un nuovo componente — un resistore con la rotella!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.47 intitolata \"RGB + pulsante = viola\"."
     }
   ],
   "assessment_invisible": [
@@ -257,7 +257,18 @@
       "variazione_circuito",
       "conferma_resistenza_luminosita"
     ],
-    "next_suggested": "v1-cap9-esp1",
+    "next_suggested": "v1-cap8-esp3",
     "resume_message": "L'ultima volta avete visto come cambiare LED e resistore cambia il risultato. Ora scopriamo un componente con la manopola!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 47,
+    "label": "Vol.1 pag.47"
   }
 }

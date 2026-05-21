@@ -82,8 +82,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap9-esp5",
-    "title": "Esperimento 5: miscela blu e rosso con il potenziometro",
-    "preview": "E se il potenziometro MISCELASSE tra due colori? Da un lato tutto blu, dall'altro tutto rosso!"
+    "title": "Pot miscelatore blu  rosso",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.67 intitolata \"Pot miscelatore blu  rosso\"."
   },
   "phases": [
     {
@@ -110,8 +110,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito dimmer RGB ciano",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Dimmer RGB azzurrino seguendo Vol.1 pag.63.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -133,11 +133,6 @@
               "value": 470
             },
             {
-              "type": "resistor",
-              "id": "r2",
-              "value": 470
-            },
-            {
               "type": "rgb-led",
               "id": "rgb1"
             }
@@ -155,21 +150,11 @@
             },
             {
               "from": "bb1:a4",
-              "to": "bb1:a8",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:a4",
-              "to": "bb1:f8",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:a15",
               "to": "bb1:a21",
               "color": "blue"
             },
             {
-              "from": "bb1:f15",
+              "from": "bb1:a4",
               "to": "bb1:a20",
               "color": "green"
             },
@@ -179,8 +164,8 @@
               "color": "black"
             },
             {
-              "from": "bb1:a19",
-              "to": "bb1:bus-top-minus-19",
+              "from": "bb1:a15",
+              "to": "bb1:bus-top-minus-15",
               "color": "black"
             },
             {
@@ -259,7 +244,7 @@
         "potenziometro multi-canale",
         "sintesi ciano"
       ],
-      "next_preview": "La prossima volta il potenziometro farà da MISCELATORE: da un lato tutto blu, dall'altro tutto rosso, nel mezzo il viola!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.67 intitolata \"Pot miscelatore blu  rosso\"."
     }
   ],
   "assessment_invisible": [
@@ -274,5 +259,16 @@
     ],
     "next_suggested": "v1-cap9-esp5",
     "resume_message": "L'ultima volta avete creato il ciano! Ora il potenziometro diventa un miscelatore di colori."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 63,
+    "label": "Vol.1 pag.63"
   }
 }
