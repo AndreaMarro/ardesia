@@ -1,3 +1,24 @@
+## [feat(unlim) — modulo awareness-flags (Slice 1A consapevolezza)] — 2026-05-21
+
+Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduce un modulo puro che calcola i "flag di consapevolezza" della lavagna: segnali strutturati che instradano la pipeline e vengono iniettati nel contesto LLM come segnali di attenzione espliciti. Nessuna chiamata LLM, nessun accesso a Deno.env / DB / rete — solo logica pura e difensiva (non lancia mai: su input degenere torna i flag a default). Modulo isolato, nessun consumatore ancora: verrà cablato nella pipeline `unlim-chat` nello Slice 1B → zero rischio di regressione.
+
+### Added
+- `supabase/functions/_shared/awareness-flags.ts` — funzione `computeAwarenessFlags(current, previous, userMessage, hasClassMemory)` che calcola 8 flag (`circuit_changed`, `drawing_changed`, `vision_needed`, `circuit_error`, `experiment_changed`, `step_changed`, `compile_status`, `returning_class`) da uno snapshot della lavagna confrontato col turno precedente; `renderAwarenessFlags(flags, current)` rende i flag narrabili in un blocco italiano per il contesto LLM (`vision_needed` resta routing-only, non viene reso); export `AWARENESS_FLAGS_VERSION`.
+- `tests/unit/awareness-flags.test.js` — 24 test scaffold (input degeneri, flag confronto-col-precedente, flag stato-corrente, `vision_needed`, `renderAwarenessFlags`).
+- `tests/unit/awareness-flags-coverage.test.js` — 22 test di copertura aggiuntiva sui rami non esercitati dallo scaffold: firma circuito sul lato connessioni, confronto con `circuit:null`, guardia asimmetrica di `drawing_changed` (disegno cancellato), equivalenza nullish di `experimentId`/`step` (incluso step 0), copertura per-parola di `VISION_MENTION_RE` + case-insensitività, rendering dettagli (esperimento/step/compile), troncamento errori a 3, ramo difensivo `circuit.errors` non-array.
+- `docs/superpowers/specs/2026-05-21-unlim-context-engineering-overhaul-design.md` — spec dell'overhaul context-engineering UNLIM (§7.2 awareness-flags).
+- `docs/superpowers/plans/2026-05-21-unlim-slice-1a-awareness-flags.md` — piano Slice 1A.
+
+### Verifica
+- `awareness-flags.test.js` + `awareness-flags-coverage.test.js` = **46/46 PASS**, CoV 3/3 (3 esecuzioni consecutive stabili).
+- `npm run build` PASS.
+
+### Notes
+- Modulo puro senza side-effect: nessun consumatore runtime in questa slice. Il cablaggio nella pipeline `unlim-chat` è esplicitamente rimandato allo Slice 1B.
+- `vision_needed` è un flag di routing interno e per scelta NON viene reso nel testo iniettato nel contesto LLM.
+
+---
+
 ## [fix(iter-103) — allarga editor Blockly su #compile-home (hotfix prod)] — 2026-05-21
 
 Hotfix produzione: l'editor Blockly su `#compile-home` era schiacciato a ~258px — la toolbox mostrava solo 4 categorie su 12, sembravano "blocchi/toolbox mancanti" (segnalato da Andrea iter 103). Il fix esisteva già nel commit `5b4205e5 fix(iter-102): allarga l'editor Blockly` sul branch `feature/volume-1-experiment-overhaul`, mai mergiato → mai deployato in produzione. Questo PR fa cherry-pick di `5b4205e5` su `main` come hotfix mirato (4 file, nessun codice nuovo).
