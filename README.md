@@ -20,12 +20,12 @@ ELAB e' un prodotto completo per l'insegnamento dell'elettronica nelle scuole:
 ## Quick Start
 
 ```bash
-git clone https://github.com/AndreaMarro/elabtutor.git
-cd elabtutor
+git clone https://github.com/AndreaMarro/elab-tutor.git
+cd elab-tutor
 npm install
 npm run dev        # http://localhost:5173
-npm run test:ci    # 12498+ test (baseline post Sprint Q 2026-04-25)
-npm run build      # Build produzione (32 precache 4.8MB)
+npm run test:ci    # 14834 test (vitest, verificato 2026-05-20)
+npm run build      # Build produzione (27 precache ~2MB)
 ```
 
 ## Stack
@@ -33,7 +33,7 @@ npm run build      # Build produzione (32 precache 4.8MB)
 | Tecnologia | Ruolo |
 |-----------|-------|
 | React 19 + Vite 7 | Frontend |
-| Vitest | Test (12498+) |
+| Vitest | Test (14834) |
 | Zod 4.3 | Schema validation (Capitolo + Wiki) |
 | Vercel | Deploy produzione |
 | Supabase | Backend (DB + Edge Functions) |
@@ -181,21 +181,49 @@ Se il comando fallisce:
 - Build cache vite (`node_modules/.vite/`) può servire chunk obsoleti in CI —
   pulire con `rm -rf node_modules/.vite dist` per garantire fresh.
 
-## Documentazione approfondita
+## Mappa repository
 
-| Doc | Descrizione |
-|-----|-------------|
-| [CLAUDE.md](CLAUDE.md) | Contesto Claude Code + regole immutabili |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Guida sviluppatori |
-| [docs/HISTORY.md](docs/HISTORY.md) | Storia progetto sprint history |
-| [docs/sprint-q/SPRINT-Q-HISTORY-COMPREHENSIVE.md](docs/sprint-q/SPRINT-Q-HISTORY-COMPREHENSIVE.md) | Sprint Q dettagliato Q0-Q6 (2026-04-25) |
-| [docs/pdr/PDR-MASTER-NEXT-DAYS-2026-04-26.md](docs/pdr/PDR-MASTER-NEXT-DAYS-2026-04-26.md) | PDR Master prossimi giorni |
-| [docs/pdr/PDR-MAC-MINI.md](docs/pdr/PDR-MAC-MINI.md) | Setup Mac Mini infrastructure |
-| [docs/pdr/PDR-AGENT-ORCHESTRATION.md](docs/pdr/PDR-AGENT-ORCHESTRATION.md) | Multi-agent strategy |
-| [docs/handoff/2026-04-26/00-NEXT-SESSION-PROMPT.md](docs/handoff/2026-04-26/00-NEXT-SESSION-PROMPT.md) | Prompt next session + activation string |
-| [docs/data/volume-structure.json](docs/data/volume-structure.json) | Schema 35 Cap reali Tresjolie |
-| [docs/audits/](docs/audits/) | Audit doc per sprint (Q0-Q6 + storici) |
-| [docs/unlim-wiki/](docs/unlim-wiki/) | Wiki LLM L2 (30 concept md) |
+Front-door unica per orientarsi. Aggiornata 2026-05-20.
+
+### Top-level
+
+| Dir | Contenuto |
+|-----|-----------|
+| `src/` | Sorgente app (vedi "Struttura progetto" sopra) |
+| `tests/` | Unit (Vitest) + E2E (Playwright) |
+| `supabase/` | Edge Functions + migrations |
+| `scripts/` | Build, bench, utility |
+| `public/` | Asset statici |
+| `automa/` | Stato orchestrazione multi-agente, `baseline-tests.txt` |
+| `docs/` | Documentazione tecnica — mappa sotto |
+
+### Documentazione (`docs/`)
+
+`docs/` ha ~70 sottocartelle accumulate in 80+ iterazioni di sviluppo. Aree principali:
+
+| Area | Contenuto | Entry point |
+|------|-----------|-------------|
+| `docs/audits/` | Audit qualità + iterazione | `2026-05-20-quality-audit.md` (ultimo) |
+| `docs/handoff/` | Handoff fra iterazioni | il file più recente = stato corrente del progetto |
+| `docs/adrs/` | Architecture Decision Records | `ADR-001` … `ADR-031` |
+| `docs/plans/`, `docs/pdr/` | Piani e PDR | — |
+| `docs/unlim-wiki/` | Wiki concetti UNLIM | `index.md` |
+| `docs/superpowers/plans/` | Piani feature TDD | — |
+
+### Doc canonici (root)
+
+| File | Ruolo |
+|------|-------|
+| `CLAUDE.md` | Contesto + regole immutabili (Principio Zero, Morfismo, stack, file critici) + storia sprint |
+| `CONTRIBUTING.md` | Guida sviluppatori |
+| `README.md` | Questo file — front-door |
+| `CHANGELOG.md` | Changelog |
+
+### Debito documentazione noto (cleanup raccomandato — NON eseguito qui)
+
+- `docs/` ha cartelle duplicate/near-duplicate: `audits`/`audit`, `adrs`/`adr`, `architecture`/`architectures`, `strategy`/`strategia`, `sprint`/`sprints`, `presentazione`/`presentation`.
+- `STRUTTURA.md` (feb 2026, sessione 43) e `INDEX.md` (è il doc di un dataset di training, non un indice del repo) sono **stale** — superati da questo README.
+- Dettaglio + score card: `docs/audits/2026-05-20-quality-audit.md`.
 
 ## Licenza
 
