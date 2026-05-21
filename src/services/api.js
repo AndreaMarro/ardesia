@@ -392,6 +392,14 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
             body: JSON.stringify(payload),
         });
 
+        // iter 103: a 401/403 means this build's bundled VITE_ELAB_API_KEY no
+        // longer matches the Edge secret (stale PWA-cached build after a key
+        // rotation). No fallback can fix it -- signal so sendChat surfaces a
+        // "reload the page" message instead of a 25s timeout on the dead
+        // fallback chain. tryNanobot never throws: return a sentinel.
+        if (res.status === 401 || res.status === 403) {
+            return { authStale: true, status: res.status };
+        }
         if (!res.ok) return null;
 
         const data = await res.json();
@@ -881,6 +889,16 @@ export async function sendChat(message, images = [], options = {}) {
             ...options,
             aiProfile: options.aiProfile || inferAiProfileHint(message, images, simulatorContext, options),
         });
+        // iter 103: stale-build 401/403 — the bundled API key is outdated.
+        // Skip the dead Render/n8n fallbacks (would only add a 25s timeout)
+        // and tell the user to reload onto the current build.
+        if (nanobotResult?.authStale) {
+            return {
+                success: false,
+                response: friendlyError(new Error(`stale build auth ${nanobotResult.status}`)),
+                source: 'error',
+            };
+        }
         if (nanobotResult) return nanobotResult;
     }
 
