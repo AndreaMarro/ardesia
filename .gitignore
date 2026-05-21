@@ -9,6 +9,10 @@ node_modules/
 dist/
 build/
 
+# Root output dir + stray iter baseline snapshots (regenerable — iter-103 A-ii)
+output/
+.iter*-baseline-*.json
+
 # Dataset output and large training files (regenerable via brain factory)
 datasets/output/
 datasets/*.jsonl

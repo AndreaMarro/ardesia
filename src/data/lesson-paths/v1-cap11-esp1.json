@@ -82,8 +82,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap11-esp2",
-    "title": "Esperimento 2: il cicalino suona quando premi il pulsante",
-    "preview": "E se aggiungiamo un pulsante? Il buzzer suona solo quando premete — come un campanello!"
+    "title": "Campanello con pulsante",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.95 intitolata \"Campanello con pulsante\"."
   },
   "phases": [
     {
@@ -110,8 +110,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito buzzer continuo sulla breadboard",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Buzzer suona continuo seguendo Vol.1 pag.94.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -229,7 +229,7 @@
         "polarità dei componenti",
         "corrente → suono"
       ],
-      "next_preview": "E se aggiungiamo un pulsante? Il buzzer suonerà solo quando premete — come un vero campanello di casa!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.95 intitolata \"Campanello con pulsante\"."
     }
   ],
   "assessment_invisible": [
@@ -245,5 +245,16 @@
     ],
     "next_suggested": "v1-cap11-esp2",
     "resume_message": "Avete scoperto il cicalino! Ora aggiungiamo un pulsante per controllare quando suona."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 94,
+    "label": "Vol.1 pag.94"
   }
 }

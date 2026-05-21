@@ -25,30 +25,80 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F4A1}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "red" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "led1:anode": "bb1:f9",
-        "led1:cathode": "bb1:f10"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:f10"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:b2", color: "red" },
-        { from: "bb1:e9", to: "bb1:f9", color: "green" },
-        { from: "bb1:j10", to: "bb1:bus-bot-minus-10", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-1", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:b2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e9",
+                      "to": "bb1:f9",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j10",
+                      "to": "bb1:bus-bot-minus-10",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 43.75 },
-        "led1": { x: 181.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 181.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il resistore da 470\u03A9 nella fila A, colonne 2-9",
@@ -66,70 +116,90 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Inserisci il resistore da 470Ω nei fori A2 e A9 (fila A, sezione superiore)",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" },
-          hint: "Il resistore protegge il LED dalla troppa corrente. Mettilo nella fila A, colonne 2 e 9."
-        },
-        {
-          step: 2,
-          text: "Inserisci il LED rosso nei fori F9 (anodo) e F10 (catodo), sotto il gap centrale!",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:f9", "led1:cathode": "bb1:f10" },
-          hint: "Il LED va nella sezione inferiore (f-j). L'anodo (+, più lungo) in F9, il catodo (−) in F10."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal bus + (colonna 2) al foro B2",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:b2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al resistore tramite la colonna 2."
-        },
-        {
-          step: 4,
-          text: "Collega un filo VERDE dal foro E9 al foro F9 (attraversa il gap centrale!)",
-          wireFrom: "bb1:e9",
-          wireTo: "bb1:f9",
-          wireColor: "green",
-          hint: "Questo filo collega il resistore (sezione a-e) all'anodo del LED (sezione f-j)."
-        },
-        {
-          step: 5,
-          text: "Collega un filo NERO dal foro J10 al bus − inferiore (colonna 10)",
-          wireFrom: "bb1:j10",
-          wireTo: "bb1:bus-bot-minus-10",
-          wireColor: "black",
-          hint: "Questo filo porta la corrente dal catodo del LED al bus negativo inferiore."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal bus − inferiore al bus − superiore (ponte tra le due strisce)",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-1",
-          wireColor: "black",
-          hint: "Questo ponte collega il bus negativo inferiore a quello superiore."
-        },
-        {
-          step: 7,
-          text: "Collega la batteria 9V: filo rosso al bus + e filo nero al bus −",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "La batteria alimenta il circuito: rosso al +, nero al −."
-        },
-        {
-          step: 8,
-          text: "Collega il filo NERO dalla batteria al bus − superiore",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Il polo negativo della batteria chiude il circuito. Il LED si accende!"
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori A2, A9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED red nei fori F9, F10.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:f9",
+                              "led1:cathode": "bb1:f10"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:b2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:b2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo GREEN da bb1:e9 a bb1:f9.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f9",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:j10 a bb1:bus-bot-minus-10.",
+                      "wireFrom": "bb1:j10",
+                      "wireTo": "bb1:bus-bot-minus-10",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -155,26 +225,69 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u26A0\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "led", id: "led1", color: "blue" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "blue"
+              }
       ],
       pinAssignments: {
-        "led1:anode": "bb1:f2",
-        "led1:cathode": "bb1:f3"
+              "led1:anode": "bb1:f2",
+              "led1:cathode": "bb1:f3"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:e2", to: "bb1:f2", color: "red" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-1", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "led1": { x: 129, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "led1": {
+                      "x": 129,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il LED blu nei fori F2 (anodo) e F3 (catodo), sotto il gap centrale",
@@ -192,63 +305,79 @@ const EXPERIMENTS_VOL1 = {
       note: "Il simulatore mostrerà il LED che si brucia! Troppa corrente senza resistore.",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Prendi il LED blu e posizionalo nei fori F2 (anodo) e F3 (catodo), sotto il gap centrale. SENZA resistore!",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:f2", "led1:cathode": "bb1:f3" },
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          hint: "L'anodo (+) va in F2, il catodo (−) va in F3. Nella sezione inferiore della breadboard!"
-        },
-        {
-          step: 2,
-          text: "Collega un filo ROSSO dal polo positivo della batteria al bus + (colonna 1)",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta i 9V della batteria al bus positivo."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal bus + (colonna 2) al foro A2",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "La corrente arriva alla colonna 2, sezione superiore."
-        },
-        {
-          step: 4,
-          text: "Collega un filo ROSSO dal foro E2 al foro F2 (attraversa il gap centrale!)",
-          wireFrom: "bb1:e2",
-          wireTo: "bb1:f2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla sezione superiore all'anodo del LED nella sezione inferiore."
-        },
-        {
-          step: 5,
-          text: "Collega un filo NERO dal foro J3 al bus − inferiore (colonna 3)",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Il catodo del LED si collega al bus negativo inferiore."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal bus − inferiore al bus − superiore (ponte)",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-1",
-          wireColor: "black",
-          hint: "Il ponte collega i due bus negativi."
-        },
-        {
-          step: 7,
-          text: "Collega un filo NERO dal bus − superiore al polo negativo della batteria. ATTENZIONE: il LED si brucerà!",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Premi Play e osserva: 9V diretti su un LED da 2V = troppa corrente!"
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona LED blue nei fori F2, F3.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:f2",
+                              "led1:cathode": "bb1:f3"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:e2 a bb1:f2.",
+                      "wireFrom": "bb1:e2",
+                      "wireTo": "bb1:f2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -275,30 +404,80 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F4A1}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "green" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "led1:anode": "bb1:f9",
-        "led1:cathode": "bb1:f10"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:f10"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:b2", color: "red" },
-        { from: "bb1:e9", to: "bb1:f9", color: "green" },
-        { from: "bb1:j10", to: "bb1:bus-bot-minus-10", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-1", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:b2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e9",
+                      "to": "bb1:f9",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j10",
+                      "to": "bb1:bus-bot-minus-10",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 43.75 },
-        "led1": { x: 181.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 181.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il resistore da 220\u03A9 nella fila A, colonne 2-9",
@@ -316,70 +495,90 @@ const EXPERIMENTS_VOL1 = {
       note: "Cambia il valore del resistore nel simulatore: 220Ω, 470Ω, 1kΩ. Osserva la differenza!",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Inserisci il resistore da 220Ω nei fori A2 e A9 (fila A, sezione superiore)",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" },
-          hint: "Il resistore da 220Ω farà passare più corrente rispetto a uno da 470Ω."
-        },
-        {
-          step: 2,
-          text: "Inserisci il LED verde nei fori F9 (anodo) e F10 (catodo), sotto il gap centrale!",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:f9", "led1:cathode": "bb1:f10" },
-          hint: "L'anodo (+, più lungo) in F9, il catodo (−) in F10. Nella sezione inferiore della breadboard!"
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo positivo della batteria al bus + (colonna 1)",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta i 9V della batteria al bus positivo."
-        },
-        {
-          step: 4,
-          text: "Collega un filo ROSSO dal bus + (colonna 2) al foro B2",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:b2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al resistore tramite la colonna 2."
-        },
-        {
-          step: 5,
-          text: "Collega un filo VERDE dal foro E9 al foro F9 (attraversa il gap centrale!)",
-          wireFrom: "bb1:e9",
-          wireTo: "bb1:f9",
-          wireColor: "green",
-          hint: "Questo filo collega il resistore (sezione a-e) all'anodo del LED (sezione f-j)."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal foro J10 al bus − inferiore (colonna 10)",
-          wireFrom: "bb1:j10",
-          wireTo: "bb1:bus-bot-minus-10",
-          wireColor: "black",
-          hint: "Il catodo del LED si collega al bus negativo inferiore."
-        },
-        {
-          step: 7,
-          text: "Collega un filo NERO dal bus − inferiore al bus − superiore (ponte)",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-1",
-          wireColor: "black",
-          hint: "Il ponte collega i due bus negativi."
-        },
-        {
-          step: 8,
-          text: "Collega un filo NERO dal bus − superiore al polo negativo della batteria. Prova poi a cambiare il resistore!",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito completo! Prova a cambiare il valore del resistore: 220Ω, 470Ω, 1kΩ."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 220 ohm nei fori A2, A9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED green nei fori F9, F10.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:f9",
+                              "led1:cathode": "bb1:f10"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:b2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:b2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo GREEN da bb1:e9 a bb1:f9.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f9",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:j10 a bb1:bus-bot-minus-10.",
+                      "wireFrom": "bb1:j10",
+                      "wireTo": "bb1:bus-bot-minus-10",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -410,32 +609,81 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F534}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "rgb1:red": "bb1:f2",
-        "rgb1:common": "bb1:f3",
-        "rgb1:green": "bb1:f4",
-        "rgb1:blue": "bb1:f5"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "rgb1:red": "bb1:f2",
+              "rgb1:common": "bb1:f3",
+              "rgb1:green": "bb1:f4",
+              "rgb1:blue": "bb1:f5"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-9", to: "bb1:b9", color: "red" },
-        { from: "bb1:e2", to: "bb1:f2", color: "red" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-9",
+                      "to": "bb1:b9",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 43.75 },
-        "rgb1": { x: 136.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "rgb1": {
+                      "x": 136.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il LED RGB nella sezione inferiore della breadboard, fila f colonne 2-5 (Rosso=F2, Catodo=F3, Verde=F4, Blu=F5)",
@@ -452,70 +700,92 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Prendi il LED RGB e posizionalo nei fori F2, F3, F4 ed F5 (sezione inferiore)",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f2", "rgb1:common": "bb1:f3", "rgb1:green": "bb1:f4", "rgb1:blue": "bb1:f5" },
-          hint: "LED RGB: 4 piedini Rosso/Catodo/Verde/Blu (F2-F5). Va nella sezione inferiore."
-        },
-        {
-          step: 2,
-          text: "Prendi il resistore da 470\u03A9 e posizionalo nei fori A2 e A9",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" },
-          hint: "Il resistore protegge il canale rosso del LED RGB. Copre 7 fori nella fila a."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (colonna 1)",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Il filo rosso porta i 9V dalla batteria."
-        },
-        {
-          step: 4,
-          text: "Collega un filo ROSSO dal bus + (colonna 9) al foro B9",
-          wireFrom: "bb1:bus-top-plus-9",
-          wireTo: "bb1:b9",
-          wireColor: "red",
-          hint: "Questo porta la corrente al resistore tramite la strip della colonna 9."
-        },
-        {
-          step: 5,
-          text: "Collega un filo ROSSO dal foro E2 al foro F2 (attraverso il canale)",
-          wireFrom: "bb1:e2",
-          wireTo: "bb1:f2",
-          wireColor: "red",
-          hint: "Questo collega il lato del resistore (colonna 2) al pin rosso del LED RGB nella sezione inferiore."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal foro J3 (catodo comune) al bus \u2212",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Il catodo comune va collegato al negativo."
-        },
-        {
-          step: 7,
-          text: "Collega un filo NERO dal bus \u2212 in basso al bus \u2212 in alto (colonna 1-2)",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Questo filo ponte collega i due bus negativi della breadboard per chiudere il circuito."
-        },
-        {
-          step: 8,
-          text: "Collega un filo NERO dal bus \u2212 (colonna 1) al polo negativo della batteria",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito completo! Solo il canale rosso sar\u00e0 acceso."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori A2, A9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED RGB nei fori F2, F3, F4, F5.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f2",
+                              "rgb1:common": "bb1:f3",
+                              "rgb1:green": "bb1:f4",
+                              "rgb1:blue": "bb1:f5"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-9 a bb1:b9.",
+                      "wireFrom": "bb1:bus-top-plus-9",
+                      "wireTo": "bb1:b9",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:e2 a bb1:f2.",
+                      "wireFrom": "bb1:e2",
+                      "wireTo": "bb1:f2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -541,32 +811,81 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F7E2}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a4",
-        "r1:pin2": "bb1:a11",
-        "rgb1:red": "bb1:f2",
-        "rgb1:common": "bb1:f3",
-        "rgb1:green": "bb1:f4",
-        "rgb1:blue": "bb1:f5"
+              "r1:pin1": "bb1:a4",
+              "r1:pin2": "bb1:a11",
+              "rgb1:red": "bb1:f2",
+              "rgb1:common": "bb1:f3",
+              "rgb1:green": "bb1:f4",
+              "rgb1:blue": "bb1:f5"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-11", to: "bb1:b11", color: "red" },
-        { from: "bb1:e4", to: "bb1:f4", color: "green" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-11",
+                      "to": "bb1:b11",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e4",
+                      "to": "bb1:f4",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 166.5, y: 43.75 },
-        "rgb1": { x: 136.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 166.5,
+                      "y": 43.75
+              },
+              "rgb1": {
+                      "x": 136.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il LED RGB nella sezione inferiore, fila f colonne 2-5 (Rosso=F2, Catodo=F3, Verde=F4, Blu=F5)",
@@ -583,71 +902,92 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Prendi il LED RGB e posizionalo nei fori F2, F3, F4 ed F5 (sezione inferiore)",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f2", "rgb1:common": "bb1:f3", "rgb1:green": "bb1:f4", "rgb1:blue": "bb1:f5" },
-          hint: "Il LED RGB ha 4 piedini: Rosso (F2), Catodo comune (F3), Verde (F4), Blu (F5)."
-        },
-        {
-          step: 2,
-          text: "Prendi il resistore da 470\u03A9 e posizionalo nei fori A4 e A11",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a4", "r1:pin2": "bb1:a11" },
-          hint: "Il resistore protegge il canale verde del LED RGB. Copre 7 fori nella fila a."
-        },
-        {
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (colonna 1)",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Il filo rosso porta i 9V dalla batteria."
-        },
-        {
-          step: 4,
-          text: "Collega un filo ROSSO dal bus + (colonna 11) al foro B11",
-          wireFrom: "bb1:bus-top-plus-11",
-          wireTo: "bb1:b11",
-          wireColor: "red",
-          hint: "Questo porta la corrente al resistore tramite la strip della colonna 11."
-        },
-        {
-          step: 5,
-          text: "Collega un filo VERDE dal foro E4 al foro F4 (attraverso il canale)",
-          wireFrom: "bb1:e4",
-          wireTo: "bb1:f4",
-          wireColor: "green",
-          hint: "Questo collega il lato del resistore (colonna 4) al pin verde del LED RGB."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal foro J3 (catodo comune) al bus \u2212",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Il catodo comune va sempre al negativo, indipendentemente dal colore acceso."
-        },
-        {
-          step: 7,
-          text: "Collega un filo NERO dal bus \u2212 in basso al bus \u2212 in alto (colonna 1-2)",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Questo filo ponte collega i due bus negativi della breadboard per chiudere il circuito."
-        },
-        {
-          step: 8,
-          text: "Collega un filo NERO dal bus \u2212 (colonna 1) al polo negativo della batteria",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito completo! Questa volta si accenderà il VERDE."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori A4, A11.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a4",
+                              "r1:pin2": "bb1:a11"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED RGB nei fori F2, F3, F4, F5.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f2",
+                              "rgb1:common": "bb1:f3",
+                              "rgb1:green": "bb1:f4",
+                              "rgb1:blue": "bb1:f5"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-11 a bb1:b11.",
+                      "wireFrom": "bb1:bus-top-plus-11",
+                      "wireTo": "bb1:b11",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo GREEN da bb1:e4 a bb1:f4.",
+                      "wireFrom": "bb1:e4",
+                      "wireTo": "bb1:f4",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -673,32 +1013,81 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F535}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a5",
-        "r1:pin2": "bb1:a12",
-        "rgb1:red": "bb1:f2",
-        "rgb1:common": "bb1:f3",
-        "rgb1:green": "bb1:f4",
-        "rgb1:blue": "bb1:f5"
+              "r1:pin1": "bb1:a5",
+              "r1:pin2": "bb1:a12",
+              "rgb1:red": "bb1:f2",
+              "rgb1:common": "bb1:f3",
+              "rgb1:green": "bb1:f4",
+              "rgb1:blue": "bb1:f5"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-12", to: "bb1:b12", color: "red" },
-        { from: "bb1:e5", to: "bb1:f5", color: "blue" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:b12",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e5",
+                      "to": "bb1:f5",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 174.0, y: 43.75 },
-        "rgb1": { x: 136.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 174,
+                      "y": 43.75
+              },
+              "rgb1": {
+                      "x": 136.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il LED RGB nella sezione inferiore, fila f colonne 2-5 (Rosso=F2, Catodo=F3, Verde=F4, Blu=F5)",
@@ -715,70 +1104,92 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Prendi il LED RGB e posizionalo nei fori F2, F3, F4 ed F5 (sezione inferiore)",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f2", "rgb1:common": "bb1:f3", "rgb1:green": "bb1:f4", "rgb1:blue": "bb1:f5" },
-          hint: "Il LED RGB ha 4 piedini: Rosso (F2), Catodo comune (F3), Verde (F4), Blu (F5)."
-        },
-        {
-          step: 2,
-          text: "Prendi il resistore da 470\u03A9 e posizionalo nei fori A5 e A12",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a5", "r1:pin2": "bb1:a12" },
-          hint: "Il resistore protegge il canale blu del LED RGB. Copre 7 fori nella fila a."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (colonna 1)",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Il filo rosso porta i 9V dalla batteria."
-        },
-        {
-          step: 4,
-          text: "Collega un filo ROSSO dal bus + (colonna 12) al foro B12",
-          wireFrom: "bb1:bus-top-plus-12",
-          wireTo: "bb1:b12",
-          wireColor: "red",
-          hint: "Questo porta la corrente al resistore tramite la strip della colonna 12."
-        },
-        {
-          step: 5,
-          text: "Collega un filo BLU dal foro E5 al foro F5 (attraverso il canale)",
-          wireFrom: "bb1:e5",
-          wireTo: "bb1:f5",
-          wireColor: "blue",
-          hint: "Questo collega il lato del resistore (colonna 5) al pin blu del LED RGB."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal foro J3 (catodo comune) al bus \u2212",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Il catodo comune va collegato al negativo."
-        },
-        {
-          step: 7,
-          text: "Collega un filo NERO dal bus \u2212 in basso al bus \u2212 in alto (colonna 1-2)",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Questo filo ponte collega i due bus negativi della breadboard per chiudere il circuito."
-        },
-        {
-          step: 8,
-          text: "Collega un filo NERO dal bus \u2212 (colonna 1) al polo negativo della batteria",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito completo! Questa volta si accenderà il BLU."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori A5, A12.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a5",
+                              "r1:pin2": "bb1:a12"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED RGB nei fori F2, F3, F4, F5.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f2",
+                              "rgb1:common": "bb1:f3",
+                              "rgb1:green": "bb1:f4",
+                              "rgb1:blue": "bb1:f5"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-12 a bb1:b12.",
+                      "wireFrom": "bb1:bus-top-plus-12",
+                      "wireTo": "bb1:b12",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo BLUE da bb1:e5 a bb1:f5.",
+                      "wireFrom": "bb1:e5",
+                      "wireTo": "bb1:f5",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -805,38 +1216,102 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u26A0\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:e8",
-        "r1:pin2": "bb1:e2",
-        "r2:pin1": "bb1:e12",
-        "r2:pin2": "bb1:e6",
-        "rgb1:red": "bb1:f2",
-        "rgb1:common": "bb1:f3",
-        "rgb1:green": "bb1:f4",
-        "rgb1:blue": "bb1:f5"
+              "r1:pin1": "bb1:e8",
+              "r1:pin2": "bb1:e2",
+              "r2:pin1": "bb1:e12",
+              "r2:pin2": "bb1:e6",
+              "rgb1:red": "bb1:f2",
+              "rgb1:common": "bb1:f3",
+              "rgb1:green": "bb1:f4",
+              "rgb1:blue": "bb1:f5"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-8", to: "bb1:a8", color: "red" },
-        { from: "bb1:bus-top-plus-12", to: "bb1:a12", color: "red" },
-        { from: "bb1:e2", to: "bb1:f2", color: "orange" },
-        { from: "bb1:e6", to: "bb1:f5", color: "blue" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-8",
+                      "to": "bb1:a8",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:e6",
+                      "to": "bb1:f5",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 73.75 },
-        "r2": { x: 181.5, y: 73.75 },
-        "rgb1": { x: 136.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 73.75
+              },
+              "r2": {
+                      "x": 181.5,
+                      "y": 73.75
+              },
+              "rgb1": {
+                      "x": 136.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il LED RGB nei fori F2-F5 (R, catodo comune, G, B)",
@@ -853,94 +1328,119 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Inserisci il LED RGB nei fori F2, F3, F4 e F5",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f2", "rgb1:common": "bb1:f3", "rgb1:green": "bb1:f4", "rgb1:blue": "bb1:f5" },
-          hint: "Il catodo comune è il secondo pin (F3)."
-        },
-        {
-          step: 2,
-          text: "Posiziona R1 (470Ω) tra E8 ed E2",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e8", "r1:pin2": "bb1:e2" },
-          hint: "R1 limita la corrente del canale rosso."
-        },
-        {
-          step: 3,
-          text: "Posiziona R2 (470Ω) tra E12 ed E6",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:e12", "r2:pin2": "bb1:e6" },
-          hint: "R2 limita la corrente del canale blu."
-        },
-        {
-          step: 4,
-          text: "Collega il positivo della batteria al bus +",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Il bus + distribuisce il positivo."
-        },
-        {
-          step: 5,
-          text: "Collega un filo ROSSO dal bus + (col. 8) ad A8, per alimentare R1",
-          wireFrom: "bb1:bus-top-plus-8",
-          wireTo: "bb1:a8",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale rosso."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal bus + (col. 12) ad A12, per alimentare R2",
-          wireFrom: "bb1:bus-top-plus-12",
-          wireTo: "bb1:a12",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale blu."
-        },
-        {
-          step: 7,
-          text: "Collega E2→F2 (canale rosso)",
-          wireFrom: "bb1:e2",
-          wireTo: "bb1:f2",
-          wireColor: "orange",
-          hint: "Dal resistore al pin rosso del LED RGB."
-        },
-        {
-          step: 8,
-          text: "Collega E6→F5 (canale blu)",
-          wireFrom: "bb1:e6",
-          wireTo: "bb1:f5",
-          wireColor: "blue",
-          hint: "Dal resistore al pin blu del LED RGB."
-        },
-        {
-          step: 9,
-          text: "Collega J3 al bus −",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Il catodo comune torna al negativo."
-        },
-        {
-          step: 10,
-          text: "Collega i due bus − tra loro",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Ponte tra i due bus negativi."
-        },
-        {
-          step: 11,
-          text: "Collega il bus − alla batteria",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito completo: il LED appare viola."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori E8, E2.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e8",
+                              "r1:pin2": "bb1:e2"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E12, E6.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:e12",
+                              "r2:pin2": "bb1:e6"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED RGB nei fori F2, F3, F4, F5.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f2",
+                              "rgb1:common": "bb1:f3",
+                              "rgb1:green": "bb1:f4",
+                              "rgb1:blue": "bb1:f5"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-8 a bb1:a8.",
+                      "wireFrom": "bb1:bus-top-plus-8",
+                      "wireTo": "bb1:a8",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-12 a bb1:a12.",
+                      "wireFrom": "bb1:bus-top-plus-12",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo ORANGE da bb1:e2 a bb1:f2.",
+                      "wireFrom": "bb1:e2",
+                      "wireTo": "bb1:f2",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLUE da bb1:e6 a bb1:f5.",
+                      "wireFrom": "bb1:e6",
+                      "wireTo": "bb1:f5",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -967,45 +1467,123 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u26A0\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "resistor", id: "r3", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:e8",
-        "r1:pin2": "bb1:e2",
-        "r2:pin1": "bb1:e10",
-        "r2:pin2": "bb1:e4",
-        "r3:pin1": "bb1:e12",
-        "r3:pin2": "bb1:e6",
-        "rgb1:red": "bb1:f2",
-        "rgb1:common": "bb1:f3",
-        "rgb1:green": "bb1:f4",
-        "rgb1:blue": "bb1:f5"
+              "r1:pin1": "bb1:e8",
+              "r1:pin2": "bb1:e2",
+              "r2:pin1": "bb1:e10",
+              "r2:pin2": "bb1:e4",
+              "r3:pin1": "bb1:e12",
+              "r3:pin2": "bb1:e6",
+              "rgb1:red": "bb1:f2",
+              "rgb1:common": "bb1:f3",
+              "rgb1:green": "bb1:f4",
+              "rgb1:blue": "bb1:f5"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-8", to: "bb1:a8", color: "red" },
-        { from: "bb1:bus-top-plus-10", to: "bb1:a10", color: "red" },
-        { from: "bb1:bus-top-plus-12", to: "bb1:a12", color: "red" },
-        { from: "bb1:e2", to: "bb1:f2", color: "red" },
-        { from: "bb1:e4", to: "bb1:f4", color: "green" },
-        { from: "bb1:e6", to: "bb1:f5", color: "blue" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-8",
+                      "to": "bb1:a8",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e4",
+                      "to": "bb1:f4",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:e6",
+                      "to": "bb1:f5",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 73.75 },
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        "r2": { x: 166.5, y: 73.75 },
-        "r3": { x: 181.5, y: 73.75 },
-        "rgb1": { x: 136.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 73.75
+              },
+              "r2": {
+                      "x": 166.5,
+                      "y": 73.75
+              },
+              "r3": {
+                      "x": 181.5,
+                      "y": 73.75
+              },
+              "rgb1": {
+                      "x": 136.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Inserisci il LED RGB nei fori F2-F5",
@@ -1022,118 +1600,146 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Inserisci il LED RGB nei fori F2, F3, F4 e F5",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f2", "rgb1:common": "bb1:f3", "rgb1:green": "bb1:f4", "rgb1:blue": "bb1:f5" },
-          hint: "Tre colori + catodo comune."
-        },
-        {
-          step: 2,
-          text: "Posiziona R1 (470Ω) tra E8 ed E2",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e8", "r1:pin2": "bb1:e2" },
-          hint: "Canale rosso."
-        },
-        {
-          step: 3,
-          text: "Posiziona R2 (470Ω) tra E10 ed E4",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:e10", "r2:pin2": "bb1:e4" },
-          hint: "Canale verde."
-        },
-        {
-          step: 4,
-          text: "Posiziona R3 (470Ω) tra E12 ed E6",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:e12", "r3:pin2": "bb1:e6" },
-          hint: "Canale blu."
-        },
-        {
-          step: 5,
-          text: "Collega il positivo della batteria al bus +",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Alimentazione principale."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal bus + (col. 8) ad A8, per alimentare R1",
-          wireFrom: "bb1:bus-top-plus-8",
-          wireTo: "bb1:a8",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale rosso."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal bus + (col. 10) ad A10, per alimentare R2",
-          wireFrom: "bb1:bus-top-plus-10",
-          wireTo: "bb1:a10",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale verde."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal bus + (col. 12) ad A12, per alimentare R3",
-          wireFrom: "bb1:bus-top-plus-12",
-          wireTo: "bb1:a12",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale blu."
-        },
-        {
-          step: 9,
-          text: "Collega E2→F2 (canale rosso)",
-          wireFrom: "bb1:e2",
-          wireTo: "bb1:f2",
-          wireColor: "red",
-          hint: "Dal resistore al pin rosso del LED RGB."
-        },
-        {
-          step: 10,
-          text: "Collega E4→F4 (canale verde)",
-          wireFrom: "bb1:e4",
-          wireTo: "bb1:f4",
-          wireColor: "green",
-          hint: "Dal resistore al pin verde del LED RGB."
-        },
-        {
-          step: 11,
-          text: "Collega E6→F5 (canale blu)",
-          wireFrom: "bb1:e6",
-          wireTo: "bb1:f5",
-          wireColor: "blue",
-          hint: "Dal resistore al pin blu del LED RGB."
-        },
-        {
-          step: 12,
-          text: "Collega J3 al bus −",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Catodo comune a massa."
-        },
-        {
-          step: 13,
-          text: "Collega i bus − tra loro",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Ponte tra i due bus negativi."
-        },
-        {
-          step: 14,
-          text: "Collega il bus − al polo negativo della batteria",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito completo: il LED appare bianco!"
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori E8, E2.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e8",
+                              "r1:pin2": "bb1:e2"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E10, E4.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:e10",
+                              "r2:pin2": "bb1:e4"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori E12, E6.",
+                      "componentId": "r3",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r3:pin1": "bb1:e12",
+                              "r3:pin2": "bb1:e6"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED RGB nei fori F2, F3, F4, F5.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f2",
+                              "rgb1:common": "bb1:f3",
+                              "rgb1:green": "bb1:f4",
+                              "rgb1:blue": "bb1:f5"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-8 a bb1:a8.",
+                      "wireFrom": "bb1:bus-top-plus-8",
+                      "wireTo": "bb1:a8",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-10 a bb1:a10.",
+                      "wireFrom": "bb1:bus-top-plus-10",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-12 a bb1:a12.",
+                      "wireFrom": "bb1:bus-top-plus-12",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo RED da bb1:e2 a bb1:f2.",
+                      "wireFrom": "bb1:e2",
+                      "wireTo": "bb1:f2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo GREEN da bb1:e4 a bb1:f4.",
+                      "wireFrom": "bb1:e4",
+                      "wireTo": "bb1:f4",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLUE da bb1:e6 a bb1:f5.",
+                      "wireFrom": "bb1:e6",
+                      "wireTo": "bb1:f5",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -1161,44 +1767,123 @@ const EXPERIMENTS_VOL1 = {
       simulationMode: "circuit",
       code: null,
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 220 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "resistor", id: "r3", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:e8",
-        "r1:pin2": "bb1:e2",
-        "r2:pin1": "bb1:e10",
-        "r2:pin2": "bb1:e4",
-        "r3:pin1": "bb1:e12",
-        "r3:pin2": "bb1:e6",
-        "rgb1:red": "bb1:f2",
-        "rgb1:common": "bb1:f3",
-        "rgb1:green": "bb1:f4",
-        "rgb1:blue": "bb1:f5"
+              "r1:pin1": "bb1:e8",
+              "r1:pin2": "bb1:e2",
+              "r2:pin1": "bb1:e10",
+              "r2:pin2": "bb1:e4",
+              "r3:pin1": "bb1:e12",
+              "r3:pin2": "bb1:e6",
+              "rgb1:red": "bb1:f2",
+              "rgb1:common": "bb1:f3",
+              "rgb1:green": "bb1:f4",
+              "rgb1:blue": "bb1:f5"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-8", to: "bb1:a8", color: "red" },
-        { from: "bb1:bus-top-plus-10", to: "bb1:a10", color: "red" },
-        { from: "bb1:bus-top-plus-12", to: "bb1:a12", color: "red" },
-        { from: "bb1:e2", to: "bb1:f2", color: "red" },
-        { from: "bb1:e4", to: "bb1:f4", color: "green" },
-        { from: "bb1:e6", to: "bb1:f5", color: "blue" },
-        { from: "bb1:j3", to: "bb1:bus-bot-minus-3", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-8",
+                      "to": "bb1:a8",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e4",
+                      "to": "bb1:f4",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:e6",
+                      "to": "bb1:f5",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 73.75 },
-        "r2": { x: 166.5, y: 73.75 },
-        "r3": { x: 181.5, y: 73.75 },
-        "rgb1": { x: 136.5, y: 68.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 73.75
+              },
+              "r2": {
+                      "x": 166.5,
+                      "y": 73.75
+              },
+              "r3": {
+                      "x": 181.5,
+                      "y": 73.75
+              },
+              "rgb1": {
+                      "x": 136.5,
+                      "y": 68.75
+              }
       },
       steps: [
         "Ripeti il circuito RGB dell'esperimento 5",
@@ -1214,118 +1899,146 @@ const EXPERIMENTS_VOL1 = {
       note: "Prova varianti di resistori (mai sotto 100Ω).",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Inserisci il LED RGB nei fori F2, F3, F4 e F5",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f2", "rgb1:common": "bb1:f3", "rgb1:green": "bb1:f4", "rgb1:blue": "bb1:f5" },
-          hint: "Posizione identica agli esperimenti precedenti."
-        },
-        {
-          step: 2,
-          text: "Posiziona R1 da 220Ω tra E8 ed E2 (rosso)",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e8", "r1:pin2": "bb1:e2" },
-          hint: "Resistenza più bassa = rosso più intenso."
-        },
-        {
-          step: 3,
-          text: "Posiziona R2 da 470Ω tra E10 ed E4 (verde)",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:e10", "r2:pin2": "bb1:e4" },
-          hint: "Canale verde standard."
-        },
-        {
-          step: 4,
-          text: "Posiziona R3 da 470Ω tra E12 ed E6 (blu)",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:e12", "r3:pin2": "bb1:e6" },
-          hint: "Canale blu standard."
-        },
-        {
-          step: 5,
-          text: "Collega il positivo della batteria al bus +",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Alimentazione del circuito."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal bus + (col. 8) ad A8, per alimentare R1",
-          wireFrom: "bb1:bus-top-plus-8",
-          wireTo: "bb1:a8",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale rosso (220Ω)."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal bus + (col. 10) ad A10, per alimentare R2",
-          wireFrom: "bb1:bus-top-plus-10",
-          wireTo: "bb1:a10",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale verde (470Ω)."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal bus + (col. 12) ad A12, per alimentare R3",
-          wireFrom: "bb1:bus-top-plus-12",
-          wireTo: "bb1:a12",
-          wireColor: "red",
-          hint: "Alimenta il resistore del canale blu (470Ω)."
-        },
-        {
-          step: 9,
-          text: "Collega E2→F2 (canale rosso)",
-          wireFrom: "bb1:e2",
-          wireTo: "bb1:f2",
-          wireColor: "red",
-          hint: "Dal resistore al pin rosso del LED RGB."
-        },
-        {
-          step: 10,
-          text: "Collega E4→F4 (canale verde)",
-          wireFrom: "bb1:e4",
-          wireTo: "bb1:f4",
-          wireColor: "green",
-          hint: "Dal resistore al pin verde del LED RGB."
-        },
-        {
-          step: 11,
-          text: "Collega E6→F5 (canale blu)",
-          wireFrom: "bb1:e6",
-          wireTo: "bb1:f5",
-          wireColor: "blue",
-          hint: "Dal resistore al pin blu del LED RGB."
-        },
-        {
-          step: 12,
-          text: "Collega il catodo comune J3 al bus −",
-          wireFrom: "bb1:j3",
-          wireTo: "bb1:bus-bot-minus-3",
-          wireColor: "black",
-          hint: "Ritorno al negativo."
-        },
-        {
-          step: 13,
-          text: "Collega i due bus −",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Ponte negativo."
-        },
-        {
-          step: 14,
-          text: "Collega il bus − alla batteria",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito chiuso: osserva il colore!"
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 220 ohm nei fori E8, E2.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e8",
+                              "r1:pin2": "bb1:e2"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E10, E4.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:e10",
+                              "r2:pin2": "bb1:e4"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori E12, E6.",
+                      "componentId": "r3",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r3:pin1": "bb1:e12",
+                              "r3:pin2": "bb1:e6"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED RGB nei fori F2, F3, F4, F5.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f2",
+                              "rgb1:common": "bb1:f3",
+                              "rgb1:green": "bb1:f4",
+                              "rgb1:blue": "bb1:f5"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-8 a bb1:a8.",
+                      "wireFrom": "bb1:bus-top-plus-8",
+                      "wireTo": "bb1:a8",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-10 a bb1:a10.",
+                      "wireFrom": "bb1:bus-top-plus-10",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-12 a bb1:a12.",
+                      "wireFrom": "bb1:bus-top-plus-12",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo RED da bb1:e2 a bb1:f2.",
+                      "wireFrom": "bb1:e2",
+                      "wireTo": "bb1:f2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo GREEN da bb1:e4 a bb1:f4.",
+                      "wireFrom": "bb1:e4",
+                      "wireTo": "bb1:f4",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLUE da bb1:e6 a bb1:f5.",
+                      "wireFrom": "bb1:e6",
+                      "wireTo": "bb1:f5",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -1352,36 +2065,100 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F518}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "push-button", id: "btn1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "blue" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "blue"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "led1:anode": "bb1:f9",
-        "led1:cathode": "bb1:f10",
-        "btn1:pin1": "bb1:e11",
-        "btn1:pin2": "bb1:f13"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:f10",
+              "btn1:pin1": "bb1:e11",
+              "btn1:pin2": "bb1:f13"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:e9", to: "bb1:f9", color: "orange" },
-        { from: "bb1:f10", to: "bb1:e10", color: "yellow" },
-        { from: "bb1:e10", to: "bb1:e11", color: "yellow" },
-        { from: "bb1:j13", to: "bb1:bus-bot-minus-13", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e9",
+                      "to": "bb1:f9",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:f10",
+                      "to": "bb1:e10",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:e10",
+                      "to": "bb1:e11",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j13",
+                      "to": "bb1:bus-bot-minus-13",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 43.75 },
-        "led1": { x: 181.5, y: 68.75 },
-        "btn1": { x: 200.25, y: 82.5 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 181.5,
+                      "y": 68.75
+              },
+              "btn1": {
+                      "x": 200.25,
+                      "y": 82.5
+              }
       },
       steps: [
         "Collega il positivo della batteria alla striscia rossa (bus +)",
@@ -1399,109 +2176,117 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (striscia rossa).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω e posizionalo nei fori A2 e A9.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" },
-          hint: "Il resistore limita la corrente per proteggere il LED."
-        },
-        {
-          step: 5,
-          text: "Collega un filo ROSSO dal bus + (col. 2) al foro A2, per alimentare il resistore.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta il positivo dalla striscia rossa al resistore."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED e inserisci la gambetta lunga (anodo) in F9, verso il resistore, e la gambetta corta (catodo) in F10.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:f9", "led1:cathode": "bb1:f10" },
-          hint: "La gambetta lunga (+) va in F9 e quella corta (−) in F10."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ARANCIONE dal foro E9 al foro F9 per collegare il resistore al LED attraverso il canale.",
-          wireFrom: "bb1:e9",
-          wireTo: "bb1:f9",
-          wireColor: "orange",
-          hint: "Questo filo porta la corrente dal resistore (sezione superiore) al LED (sezione inferiore)."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro F10 al foro E10 per portare il catodo del LED al lato superiore.",
-          wireFrom: "bb1:f10",
-          wireTo: "bb1:e10",
-          wireColor: "yellow",
-          hint: "Il catodo è in F10 (sezione inferiore). Questo filo lo porta a E10 per collegarlo al pulsante."
-        },
-        {
-          step: 9,
-          text: "Inserisci il pulsante a cavallo della scanalatura centrale, accanto al LED (E11/F13).",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e11", "btn1:pin2": "bb1:f13" },
-          hint: "Il pulsante va a cavallo del canale, a destra del LED."
-        },
-        {
-          step: 10,
-          text: "Collega un filo GIALLO dal foro E10 al foro E11 per collegare il catodo del LED al pulsante.",
-          wireFrom: "bb1:e10",
-          wireTo: "bb1:e11",
-          wireColor: "yellow",
-          hint: "Questo filo collega il catodo del LED al pin del pulsante."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro J13 al bus − in basso per collegare il pulsante al negativo.",
-          wireFrom: "bb1:j13",
-          wireTo: "bb1:bus-bot-minus-13",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito verso il negativo quando premi il pulsante."
-        },
-        {
-          step: 12,
-          text: "Collega un filo NERO dal bus − in basso al bus − in alto (col. 1-2).",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Questo ponte collega i due bus negativi della breadboard."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal bus − in alto (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona pulsante nei fori E11, F13.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e11",
+                              "btn1:pin2": "bb1:f13"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori A2, A9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED blue nei fori F9, F10.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:f9",
+                              "led1:cathode": "bb1:f10"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo ORANGE da bb1:e9 a bb1:f9.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f9",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo YELLOW da bb1:f10 a bb1:e10.",
+                      "wireFrom": "bb1:f10",
+                      "wireTo": "bb1:e10",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo YELLOW da bb1:e10 a bb1:e11.",
+                      "wireFrom": "bb1:e10",
+                      "wireTo": "bb1:e11",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:j13 a bb1:bus-bot-minus-13.",
+                      "wireFrom": "bb1:j13",
+                      "wireTo": "bb1:bus-bot-minus-13",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -1527,36 +2312,100 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F308}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "push-button", id: "btn1" },
-        { type: "resistor", id: "r1", value: 220 },
-        { type: "led", id: "led1", color: "green" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "led1:anode": "bb1:f9",
-        "led1:cathode": "bb1:f10",
-        "btn1:pin1": "bb1:e11",
-        "btn1:pin2": "bb1:f13"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:f10",
+              "btn1:pin1": "bb1:e11",
+              "btn1:pin2": "bb1:f13"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:e9", to: "bb1:f9", color: "orange" },
-        { from: "bb1:f10", to: "bb1:e10", color: "yellow" },
-        { from: "bb1:e10", to: "bb1:e11", color: "yellow" },
-        { from: "bb1:j13", to: "bb1:bus-bot-minus-13", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e9",
+                      "to": "bb1:f9",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:f10",
+                      "to": "bb1:e10",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:e10",
+                      "to": "bb1:e11",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j13",
+                      "to": "bb1:bus-bot-minus-13",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 43.75 },
-        "led1": { x: 181.5, y: 68.75 },
-        "btn1": { x: 200.25, y: 82.5 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 181.5,
+                      "y": 68.75
+              },
+              "btn1": {
+                      "x": 200.25,
+                      "y": 82.5
+              }
       },
       steps: [
         "Stessa disposizione dell'esperimento 1, ma con LED verde e resistore da 220\u03A9",
@@ -1573,109 +2422,117 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (striscia rossa).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 220Ω e posizionalo nei fori A2 e A9.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" },
-          hint: "Il resistore da 220Ω limita la corrente (più corrente = LED più luminoso!)."
-        },
-        {
-          step: 5,
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          text: "Collega un filo ROSSO dal bus + (col. 2) al foro A2, per alimentare il resistore.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta il positivo dalla striscia rossa al resistore."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED verde e inserisci la gambetta lunga (anodo) in F9 e la gambetta corta (catodo) in F10.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:f9", "led1:cathode": "bb1:f10" },
-          hint: "La gambetta lunga (+) va in F9 e quella corta (−) in F10."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ARANCIONE dal foro E9 al foro F9 per collegare il resistore al LED attraverso il canale.",
-          wireFrom: "bb1:e9",
-          wireTo: "bb1:f9",
-          wireColor: "orange",
-          hint: "Questo filo porta la corrente dal resistore (sezione superiore) al LED (sezione inferiore)."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro F10 al foro E10 per portare il catodo del LED al lato superiore.",
-          wireFrom: "bb1:f10",
-          wireTo: "bb1:e10",
-          wireColor: "yellow",
-          hint: "Il catodo è in F10 (sezione inferiore). Questo filo lo porta a E10 per collegarlo al pulsante."
-        },
-        {
-          step: 9,
-          text: "Inserisci il pulsante a cavallo della scanalatura centrale, accanto al LED (E11/F13).",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e11", "btn1:pin2": "bb1:f13" },
-          hint: "Il pulsante va a cavallo del canale, a destra del LED."
-        },
-        {
-          step: 10,
-          text: "Collega un filo GIALLO dal foro E10 al foro E11 per collegare il catodo del LED al pulsante.",
-          wireFrom: "bb1:e10",
-          wireTo: "bb1:e11",
-          wireColor: "yellow",
-          hint: "Questo filo collega il catodo del LED al pin del pulsante."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro J13 al bus − in basso per collegare il pulsante al negativo.",
-          wireFrom: "bb1:j13",
-          wireTo: "bb1:bus-bot-minus-13",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito verso il negativo quando premi il pulsante."
-        },
-        {
-          step: 12,
-          text: "Collega un filo NERO dal bus − in basso al bus − in alto (col. 1-2).",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Questo ponte collega i due bus negativi della breadboard."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal bus − in alto (col. 1) al polo − della batteria. Premi il pulsante: il LED verde è più luminoso!",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "220Ω < 470Ω = più corrente = LED più luminoso!"
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona pulsante nei fori E11, F13.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e11",
+                              "btn1:pin2": "bb1:f13"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 220 ohm nei fori A2, A9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED green nei fori F9, F10.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:f9",
+                              "led1:cathode": "bb1:f10"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo ORANGE da bb1:e9 a bb1:f9.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f9",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo YELLOW da bb1:f10 a bb1:e10.",
+                      "wireFrom": "bb1:f10",
+                      "wireTo": "bb1:e10",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo YELLOW da bb1:e10 a bb1:e11.",
+                      "wireFrom": "bb1:e10",
+                      "wireTo": "bb1:e11",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:j13 a bb1:bus-bot-minus-13.",
+                      "wireFrom": "bb1:j13",
+                      "wireTo": "bb1:bus-bot-minus-13",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -1701,44 +2558,122 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F7E3}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "rgb-led", id: "rgb1" },
-        { type: "push-button", id: "btn1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "r2:pin1": "bb1:a11",
-        "r2:pin2": "bb1:a18",
-        "rgb1:red": "bb1:f15",
-        "rgb1:common": "bb1:f16",
-        "rgb1:green": "bb1:f17",
-        "rgb1:blue": "bb1:f18",
-        "btn1:pin1": "bb1:e20",
-        "btn1:pin2": "bb1:f22"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "r2:pin1": "bb1:a11",
+              "r2:pin2": "bb1:a18",
+              "rgb1:red": "bb1:f15",
+              "rgb1:common": "bb1:f16",
+              "rgb1:green": "bb1:f17",
+              "rgb1:blue": "bb1:f18",
+              "btn1:pin1": "bb1:e20",
+              "btn1:pin2": "bb1:f22"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:bus-top-plus-11", to: "bb1:a11", color: "red" },
-        { from: "bb1:e9", to: "bb1:f15", color: "orange" },
-        { from: "bb1:e18", to: "bb1:f18", color: "blue" },
-        { from: "bb1:j16", to: "bb1:j20", color: "yellow" },
-        { from: "bb1:f20", to: "bb1:e20", color: "yellow" },
-        { from: "bb1:j22", to: "bb1:bus-bot-minus-22", color: "black" },
-        { from: "bb1:bus-bot-minus-1", to: "bb1:bus-top-minus-2", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-11",
+                      "to": "bb1:a11",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:e9",
+                      "to": "bb1:f15",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:e18",
+                      "to": "bb1:f18",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:j16",
+                      "to": "bb1:j20",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:f20",
+                      "to": "bb1:e20",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j22",
+                      "to": "bb1:bus-bot-minus-22",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-2",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 151.5, y: 43.75 },
-        "r2": { x: 219, y: 43.75 },
-        "rgb1": { x: 234, y: 68.75 },
-        "btn1": { x: 275.25, y: 82.5 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "r2": {
+                      "x": 219,
+                      "y": 43.75
+              },
+              "rgb1": {
+                      "x": 234,
+                      "y": 68.75
+              },
+              "btn1": {
+                      "x": 275.25,
+                      "y": 82.5
+              }
       },
       steps: [
         "Collega il positivo della batteria al bus + (striscia rossa)",
@@ -1759,133 +2694,146 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (striscia rossa).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore R1 (470\u03A9) e posizionalo nei fori A2 e A9. Serve per il canale ROSSO.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" },
-          hint: "Il resistore protegge il LED limitando la corrente del canale rosso."
-        },
-        {
-          step: 5,
-          text: "Collega un filo ROSSO dal bus + (col. 2) al foro A2, per alimentare R1.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta il positivo dalla striscia rossa al resistore R1."
-        },
-        {
-          step: 6,
-          text: "Prendi il resistore R2 (470\u03A9) e posizionalo nei fori A11 e A18. Serve per il canale BLU.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:a11", "r2:pin2": "bb1:a18" },
-          hint: "Il resistore protegge il LED limitando la corrente del canale blu."
-        },
-        {
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          step: 7,
-          text: "Collega un filo ROSSO dal bus + (col. 11) al foro A11, per alimentare R2.",
-          wireFrom: "bb1:bus-top-plus-11",
-          wireTo: "bb1:a11",
-          wireColor: "red",
-          hint: "Questo filo porta il positivo dalla striscia rossa al resistore R2."
-        },
-        {
-          step: 8,
-          text: "Inserisci il LED RGB nella sezione inferiore: Rosso in F15, Catodo in F16, Verde in F17, Blu in F18.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:f15", "rgb1:common": "bb1:f16", "rgb1:green": "bb1:f17", "rgb1:blue": "bb1:f18" },
-          hint: "I 4 piedini: Rosso in F15, Catodo (gambetta lunga) in F16, Verde in F17, Blu in F18."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ARANCIONE da E9 a F15 per collegare R1 al pin rosso del LED RGB.",
-          wireFrom: "bb1:e9",
-          wireTo: "bb1:f15",
-          wireColor: "orange",
-          hint: "Questo filo porta la corrente dal resistore R1 al canale rosso dell'RGB."
-        },
-        {
-          step: 10,
-          text: "Collega un filo BLU da E18 a F18 per collegare R2 al pin blu del LED RGB.",
-          wireFrom: "bb1:e18",
-          wireTo: "bb1:f18",
-          wireColor: "blue",
-          hint: "Questo filo porta la corrente dal resistore R2 al canale blu dell'RGB."
-        },
-        {
-          step: 11,
-          text: "Inserisci il pulsante a cavallo del canale (E20/F22), a destra del LED RGB.",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e20", "btn1:pin2": "bb1:f22" },
-          hint: "Il pulsante controlla il catodo: quando lo premi, il circuito si chiude!"
-        },
-        {
-          step: 12,
-          text: "Collega un filo GIALLO da J16 a J20 per collegare il catodo RGB al pulsante.",
-          wireFrom: "bb1:j16",
-          wireTo: "bb1:j20",
-          wireColor: "yellow",
-          hint: "Questo filo porta il catodo (comune) del LED RGB al pulsante."
-        },
-        {
-          step: 13,
-          text: "Collega un filo GIALLO dal foro F20 al foro E20 per collegare il catodo al pin del pulsante.",
-          wireFrom: "bb1:f20",
-          wireTo: "bb1:e20",
-          wireColor: "yellow",
-          hint: "Questo filo attraversa il canale per portare il catodo RGB al pin del pulsante (E20)."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO da J22 al bus − (striscia blu) per collegare il pulsante al negativo.",
-          wireFrom: "bb1:j22",
-          wireTo: "bb1:bus-bot-minus-22",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito verso il negativo quando premi il pulsante."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal bus − in basso al bus − in alto (col. 1-2).",
-          wireFrom: "bb1:bus-bot-minus-1",
-          wireTo: "bb1:bus-top-minus-2",
-          wireColor: "black",
-          hint: "Questo ponte collega i due bus negativi della breadboard."
-        },
-        {
-          step: 16,
-          text: "Collega un filo NERO dal bus − in alto (col. 1) al polo − della batteria. Premi il pulsante: VIOLA!",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Rosso + Blu = Viola! La sintesi additiva della luce è diversa dai colori a tempera."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori A2, A9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori A11, A18.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:a11",
+                              "r2:pin2": "bb1:a18"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED RGB nei fori F15, F16, F17, F18.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:f15",
+                              "rgb1:common": "bb1:f16",
+                              "rgb1:green": "bb1:f17",
+                              "rgb1:blue": "bb1:f18"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona pulsante nei fori E20, F22.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e20",
+                              "btn1:pin2": "bb1:f22"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-11 a bb1:a11.",
+                      "wireFrom": "bb1:bus-top-plus-11",
+                      "wireTo": "bb1:a11",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo ORANGE da bb1:e9 a bb1:f15.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f15",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLUE da bb1:e18 a bb1:f18.",
+                      "wireFrom": "bb1:e18",
+                      "wireTo": "bb1:f18",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo YELLOW da bb1:j16 a bb1:j20.",
+                      "wireFrom": "bb1:j16",
+                      "wireTo": "bb1:j20",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo YELLOW da bb1:f20 a bb1:e20.",
+                      "wireFrom": "bb1:f20",
+                      "wireTo": "bb1:e20",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:j22 a bb1:bus-bot-minus-22.",
+                      "wireFrom": "bb1:j22",
+                      "wireTo": "bb1:bus-bot-minus-22",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-2.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-2",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -1911,55 +2859,148 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3AE}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "push-button", id: "btn1" },
-        { type: "push-button", id: "btn2" },
-        { type: "push-button", id: "btn3" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "resistor", id: "r3", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn2"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn3"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "btn1:pin1": "bb1:e2",
-        "btn1:pin2": "bb1:f4",
-        "btn2:pin1": "bb1:e6",
-        "btn2:pin2": "bb1:f8",
-        "btn3:pin1": "bb1:e10",
-        "btn3:pin2": "bb1:f12",
-        "r1:pin1": "bb1:a16",
-        "r1:pin2": "bb1:a23",
-        "r2:pin1": "bb1:b18",
-        "r2:pin2": "bb1:b25",
-        "r3:pin1": "bb1:c19",
-        "r3:pin2": "bb1:c26",
-        "rgb1:red": "bb1:d23",
-        "rgb1:common": "bb1:d24",
-        "rgb1:green": "bb1:d25",
-        "rgb1:blue": "bb1:d26"
+              "btn1:pin1": "bb1:e2",
+              "btn1:pin2": "bb1:f4",
+              "btn2:pin1": "bb1:e6",
+              "btn2:pin2": "bb1:f8",
+              "btn3:pin1": "bb1:e10",
+              "btn3:pin2": "bb1:f12",
+              "r1:pin1": "bb1:a16",
+              "r1:pin2": "bb1:a23",
+              "r2:pin1": "bb1:b18",
+              "r2:pin2": "bb1:b25",
+              "r3:pin1": "bb1:c19",
+              "r3:pin2": "bb1:c26",
+              "rgb1:red": "bb1:d23",
+              "rgb1:common": "bb1:d24",
+              "rgb1:green": "bb1:d25",
+              "rgb1:blue": "bb1:d26"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:bus-top-plus-6", to: "bb1:a6", color: "red" },
-        { from: "bb1:bus-top-plus-10", to: "bb1:a10", color: "red" },
-        { from: "bb1:j4", to: "bb1:a16", color: "orange" },
-        { from: "bb1:j8", to: "bb1:a18", color: "green" },
-        { from: "bb1:j12", to: "bb1:a19", color: "blue" },
-        { from: "bb1:a24", to: "bb1:bus-top-minus-24", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-6",
+                      "to": "bb1:a6",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j4",
+                      "to": "bb1:a16",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:j8",
+                      "to": "bb1:a18",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j12",
+                      "to": "bb1:a19",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a24",
+                      "to": "bb1:bus-top-minus-24",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "btn1": { x: 140.25, y: 82.5 },
-        "btn2": { x: 170.25, y: 82.5 },
-        "btn3": { x: 200.25, y: 82.5 },
-        "r1": { x: 256.5, y: 43.75 },
-        "r2": { x: 271.5, y: 51.25 },
-        "r3": { x: 279, y: 58.75 },
-        "rgb1": { x: 294, y: 43.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "btn1": {
+                      "x": 140.25,
+                      "y": 82.5
+              },
+              "btn2": {
+                      "x": 170.25,
+                      "y": 82.5
+              },
+              "btn3": {
+                      "x": 200.25,
+                      "y": 82.5
+              },
+              "r1": {
+                      "x": 256.5,
+                      "y": 43.75
+              },
+              "r2": {
+                      "x": 271.5,
+                      "y": 51.25
+              },
+              "r3": {
+                      "x": 279,
+                      "y": 58.75
+              },
+              "rgb1": {
+                      "x": 294,
+                      "y": 43.75
+              }
       },
       steps: [
         "Collega il positivo della batteria al bus + e il negativo al bus \u2212",
@@ -1978,149 +3019,171 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + (striscia rossa).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo."
-        },
-        {
-          step: 4,
-          text: "Inserisci il pulsante BTN1 (rosso) a cavallo del canale nei fori E2/F4.",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e2", "btn1:pin2": "bb1:f4" },
-          hint: "BTN1 controllerà il canale ROSSO del LED RGB."
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        },
-        {
-          step: 5,
-          text: "Inserisci il pulsante BTN2 (verde) a cavallo del canale nei fori E6/F8.",
-          componentId: "btn2",
-          componentType: "push-button",
-          targetPins: { "btn2:pin1": "bb1:e6", "btn2:pin2": "bb1:f8" },
-          hint: "BTN2 controllerà il canale VERDE del LED RGB."
-        },
-        {
-          step: 6,
-          text: "Inserisci il pulsante BTN3 (blu) a cavallo del canale nei fori E10/F12.",
-          componentId: "btn3",
-          componentType: "push-button",
-          targetPins: { "btn3:pin1": "bb1:e10", "btn3:pin2": "bb1:f12" },
-          hint: "BTN3 controllerà il canale BLU del LED RGB."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal bus + (col. 2) ad A2, per alimentare BTN1.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Il bus + porta la corrente al primo pulsante."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal bus + (col. 6) ad A6, per alimentare BTN2.",
-          wireFrom: "bb1:bus-top-plus-6",
-          wireTo: "bb1:a6",
-          wireColor: "red",
-          hint: "Il bus + porta la corrente al secondo pulsante."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ROSSO dal bus + (col. 10) ad A10, per alimentare BTN3.",
-          wireFrom: "bb1:bus-top-plus-10",
-          wireTo: "bb1:a10",
-          wireColor: "red",
-          hint: "Il bus + porta la corrente al terzo pulsante."
-        },
-        {
-          step: 10,
-          text: "Inserisci il LED RGB nella sezione superiore: Rosso D23, Catodo D24, Verde D25, Blu D26.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d23", "rgb1:common": "bb1:d24", "rgb1:green": "bb1:d25", "rgb1:blue": "bb1:d26" },
-          hint: "I 4 piedini: Rosso in D23, Catodo (gambetta lunga) in D24, Verde in D25, Blu in D26."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal catodo (A24) al bus \u2212 per collegare il LED RGB al negativo.",
-          wireFrom: "bb1:a24",
-          wireTo: "bb1:bus-top-minus-24",
-          wireColor: "black",
-          hint: "Il catodo comune va direttamente al bus negativo."
-        },
-        {
-          step: 12,
-          text: "Inserisci R1 (470\u03A9) nei fori A16\u2192A23: collega BTN1 al pin rosso dell'RGB.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a16", "r1:pin2": "bb1:a23" },
-          hint: "R1 limita la corrente del canale rosso."
-        },
-        {
-          step: 13,
-          text: "Inserisci R2 (470\u03A9) nei fori B18\u2192B25: collega BTN2 al pin verde dell'RGB.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:b18", "r2:pin2": "bb1:b25" },
-          hint: "R2 limita la corrente del canale verde."
-        },
-        {
-          step: 14,
-          text: "Inserisci R3 (470\u03A9) nei fori C19\u2192C26: collega BTN3 al pin blu dell'RGB.",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:c19", "r3:pin2": "bb1:c26" },
-          hint: "R3 limita la corrente del canale blu."
-        },
-        {
-          step: 15,
-          text: "Collega un filo ARANCIONE da J4 ad A16: porta l'uscita di BTN1 a R1 (rosso).",
-          wireFrom: "bb1:j4",
-          wireTo: "bb1:a16",
-          wireColor: "orange",
-          hint: "Questo filo collega il pulsante rosso al suo resistore."
-        },
-        {
-          step: 16,
-          text: "Collega un filo VERDE da J8 ad A18: porta l'uscita di BTN2 a R2 (verde).",
-          wireFrom: "bb1:j8",
-          wireTo: "bb1:a18",
-          wireColor: "green",
-          hint: "Questo filo collega il pulsante verde al suo resistore."
-        },
-        {
-          step: 17,
-          text: "Collega un filo BLU da J12 ad A19: porta l'uscita di BTN3 a R3 (blu).",
-          wireFrom: "bb1:j12",
-          wireTo: "bb1:a19",
-          wireColor: "blue",
-          hint: "Questo filo collega il pulsante blu al suo resistore."
-        },
-        {
-          step: 18,
-          text: "Collega un filo NERO dal bus \u2212 (col. 1) al polo \u2212 della batteria. Prova a premere i pulsanti!",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Ogni pulsante accende un colore: R+G=giallo, R+B=viola, G+B=ciano, tutti=bianco!"
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona pulsante nei fori E2, F4.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e2",
+                              "btn1:pin2": "bb1:f4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona pulsante nei fori E6, F8.",
+                      "componentId": "btn2",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn2:pin1": "bb1:e6",
+                              "btn2:pin2": "bb1:f8"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona pulsante nei fori E10, F12.",
+                      "componentId": "btn3",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn3:pin1": "bb1:e10",
+                              "btn3:pin2": "bb1:f12"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona resistore da 470 ohm nei fori A16, A23.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a16",
+                              "r1:pin2": "bb1:a23"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona resistore da 470 ohm nei fori B18, B25.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:b18",
+                              "r2:pin2": "bb1:b25"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Posiziona resistore da 470 ohm nei fori C19, C26.",
+                      "componentId": "r3",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r3:pin1": "bb1:c19",
+                              "r3:pin2": "bb1:c26"
+                      }
+              },
+              {
+                      "step": 9,
+                      "text": "Posiziona LED RGB nei fori D23, D24, D25, D26.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d23",
+                              "rgb1:common": "bb1:d24",
+                              "rgb1:green": "bb1:d25",
+                              "rgb1:blue": "bb1:d26"
+                      }
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-6 a bb1:a6.",
+                      "wireFrom": "bb1:bus-top-plus-6",
+                      "wireTo": "bb1:a6",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-10 a bb1:a10.",
+                      "wireFrom": "bb1:bus-top-plus-10",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo ORANGE da bb1:j4 a bb1:a16.",
+                      "wireFrom": "bb1:j4",
+                      "wireTo": "bb1:a16",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo GREEN da bb1:j8 a bb1:a18.",
+                      "wireFrom": "bb1:j8",
+                      "wireTo": "bb1:a18",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLUE da bb1:j12 a bb1:a19.",
+                      "wireFrom": "bb1:j12",
+                      "wireTo": "bb1:a19",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo BLACK da bb1:a24 a bb1:bus-top-minus-24.",
+                      "wireFrom": "bb1:a24",
+                      "wireTo": "bb1:bus-top-minus-24",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -2146,55 +3209,148 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3A8}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "push-button", id: "btn1" },
-        { type: "push-button", id: "btn2" },
-        { type: "push-button", id: "btn3" },
-        { type: "resistor", id: "r1", value: 220 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "resistor", id: "r3", value: 1000 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn2"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn3"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 1000
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "btn1:pin1": "bb1:e2",
-        "btn1:pin2": "bb1:f4",
-        "btn2:pin1": "bb1:e6",
-        "btn2:pin2": "bb1:f8",
-        "btn3:pin1": "bb1:e10",
-        "btn3:pin2": "bb1:f12",
-        "r1:pin1": "bb1:a16",
-        "r1:pin2": "bb1:a23",
-        "r2:pin1": "bb1:b18",
-        "r2:pin2": "bb1:b25",
-        "r3:pin1": "bb1:c19",
-        "r3:pin2": "bb1:c26",
-        "rgb1:red": "bb1:d23",
-        "rgb1:common": "bb1:d24",
-        "rgb1:green": "bb1:d25",
-        "rgb1:blue": "bb1:d26"
+              "btn1:pin1": "bb1:e2",
+              "btn1:pin2": "bb1:f4",
+              "btn2:pin1": "bb1:e6",
+              "btn2:pin2": "bb1:f8",
+              "btn3:pin1": "bb1:e10",
+              "btn3:pin2": "bb1:f12",
+              "r1:pin1": "bb1:a16",
+              "r1:pin2": "bb1:a23",
+              "r2:pin1": "bb1:b18",
+              "r2:pin2": "bb1:b25",
+              "r3:pin1": "bb1:c19",
+              "r3:pin2": "bb1:c26",
+              "rgb1:red": "bb1:d23",
+              "rgb1:common": "bb1:d24",
+              "rgb1:green": "bb1:d25",
+              "rgb1:blue": "bb1:d26"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:bus-top-plus-6", to: "bb1:a6", color: "red" },
-        { from: "bb1:bus-top-plus-10", to: "bb1:a10", color: "red" },
-        { from: "bb1:j4", to: "bb1:a16", color: "orange" },
-        { from: "bb1:j8", to: "bb1:a18", color: "green" },
-        { from: "bb1:j12", to: "bb1:a19", color: "blue" },
-        { from: "bb1:a24", to: "bb1:bus-top-minus-24", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-6",
+                      "to": "bb1:a6",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-10",
+                      "to": "bb1:a10",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j4",
+                      "to": "bb1:a16",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:j8",
+                      "to": "bb1:a18",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j12",
+                      "to": "bb1:a19",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a24",
+                      "to": "bb1:bus-top-minus-24",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 30, y: 55 },
-        "bb1": { x: 100, y: 10 },
-        "btn1": { x: 140.25, y: 82.5 },
-        "btn2": { x: 170.25, y: 82.5 },
-        "btn3": { x: 200.25, y: 82.5 },
-        "r1": { x: 256.5, y: 43.75 },
-        "r2": { x: 271.5, y: 51.25 },
-        "r3": { x: 279, y: 58.75 },
-        "rgb1": { x: 294, y: 43.75 }
+              "bat1": {
+                      "x": 30,
+                      "y": 55
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "btn1": {
+                      "x": 140.25,
+                      "y": 82.5
+              },
+              "btn2": {
+                      "x": 170.25,
+                      "y": 82.5
+              },
+              "btn3": {
+                      "x": 200.25,
+                      "y": 82.5
+              },
+              "r1": {
+                      "x": 256.5,
+                      "y": 43.75
+              },
+              "r2": {
+                      "x": 271.5,
+                      "y": 51.25
+              },
+              "r3": {
+                      "x": 279,
+                      "y": 58.75
+              },
+              "rgb1": {
+                      "x": 294,
+                      "y": 43.75
+              }
       },
       steps: [
         "Stessa disposizione dell'esperimento 4, ma con resistori di valori diversi!",
@@ -2213,148 +3369,171 @@ const EXPERIMENTS_VOL1 = {
       note: "R diversi cambiano l'intensità di ogni colore. Sperimenta!",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il pulsante dalla palette e posizionalo nei fori E2 e F4. Controlla il ROSSO!",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e2", "btn1:pin2": "bb1:f4" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 4,
-          text: "Prendi il secondo pulsante e posizionalo nei fori E6 e F8. Controlla il VERDE!",
-          componentId: "btn2",
-          componentType: "push-button",
-          targetPins: { "btn2:pin1": "bb1:e6", "btn2:pin2": "bb1:f8" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 5,
-          text: "Prendi il terzo pulsante e posizionalo nei fori E10 e F12. Controlla il BLU!",
-          componentId: "btn3",
-          componentType: "push-button",
-          targetPins: { "btn3:pin1": "bb1:e10", "btn3:pin2": "bb1:f12" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 6,
-          text: "Prendi il resistore da 220Ω dalla palette e posizionalo nei fori A16 e A23. Questo darà il ROSSO più luminoso!",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:a16", "r1:pin2": "bb1:a23" },
-          hint: "220Ω = resistenza piccola = più corrente = colore più luminoso!"
-        },
-        {
-          step: 7,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori B18 e B25. Il VERDE sarà medio!",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:b18", "r2:pin2": "bb1:b25" },
-          hint: "470Ω = resistenza media = corrente media = luminosità media."
-        },
-        {
-          step: 8,
-          text: "Prendi il resistore da 1kΩ dalla palette e posizionalo nei fori C19 e C26. Il BLU sarà il più fioco!",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:c19", "r3:pin2": "bb1:c26" },
-          hint: "1000Ω = resistenza grande = meno corrente = colore più fioco."
-        },
-        {
-          step: 9,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D23, D24, D25 e D26.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d23", "rgb1:common": "bb1:d24", "rgb1:green": "bb1:d25", "rgb1:blue": "bb1:d26" },
-          hint: "I 4 piedini: Rosso in D23, Catodo comune in D24, Verde in D25, Blu in D26."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ROSSO dal polo + della batteria al bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ROSSO dal bus + (col. 2) al foro A2. Alimenta il primo pulsante!",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al pulsante del rosso."
-        },
-        {
-          step: 12,
-          text: "Collega un filo ROSSO dal bus + (col. 6) al foro A6. Alimenta il secondo pulsante!",
-          wireFrom: "bb1:bus-top-plus-6",
-          wireTo: "bb1:a6",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al pulsante del verde."
-        },
-        {
-          step: 13,
-          text: "Collega un filo ROSSO dal bus + (col. 10) al foro A10. Alimenta il terzo pulsante!",
-          wireFrom: "bb1:bus-top-plus-10",
-          wireTo: "bb1:a10",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al pulsante del blu."
-        },
-        {
-          step: 14,
-          text: "Collega un filo ARANCIONE dal foro J4 al foro A16. Collega pulsante rosso → resistore 220Ω!",
-          wireFrom: "bb1:j4",
-          wireTo: "bb1:a16",
-          wireColor: "orange",
-          hint: "Questo filo porta il segnale dal pulsante al resistore del canale rosso."
-        },
-        {
-          step: 15,
-          text: "Collega un filo VERDE dal foro J8 al foro A18. Collega pulsante verde → resistore 470Ω!",
-          wireFrom: "bb1:j8",
-          wireTo: "bb1:a18",
-          wireColor: "green",
-          hint: "Questo filo porta il segnale dal pulsante al resistore del canale verde."
-        },
-        {
-          step: 16,
-          text: "Collega un filo BLU dal foro J12 al foro A19. Collega pulsante blu → resistore 1kΩ!",
-          wireFrom: "bb1:j12",
-          wireTo: "bb1:a19",
-          wireColor: "blue",
-          hint: "Questo filo porta il segnale dal pulsante al resistore del canale blu."
-        },
-        {
-          step: 17,
-          text: "Collega un filo NERO dal foro A24 al bus − superiore (col. 24). Il catodo va a massa!",
-          wireFrom: "bb1:a24",
-          wireTo: "bb1:bus-top-minus-24",
-          wireColor: "black",
-          hint: "Il catodo comune del LED RGB va al bus negativo."
-        },
-        {
-          step: 18,
-          text: "Collega un filo NERO dal bus − superiore (col. 1) al polo − della batteria. Circuito chiuso!",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona pulsante nei fori E2, F4.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e2",
+                              "btn1:pin2": "bb1:f4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona pulsante nei fori E6, F8.",
+                      "componentId": "btn2",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn2:pin1": "bb1:e6",
+                              "btn2:pin2": "bb1:f8"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona pulsante nei fori E10, F12.",
+                      "componentId": "btn3",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn3:pin1": "bb1:e10",
+                              "btn3:pin2": "bb1:f12"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona resistore da 220 ohm nei fori A16, A23.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:a16",
+                              "r1:pin2": "bb1:a23"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona resistore da 470 ohm nei fori B18, B25.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:b18",
+                              "r2:pin2": "bb1:b25"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Posiziona resistore da 1000 ohm nei fori C19, C26.",
+                      "componentId": "r3",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r3:pin1": "bb1:c19",
+                              "r3:pin2": "bb1:c26"
+                      }
+              },
+              {
+                      "step": 9,
+                      "text": "Posiziona LED RGB nei fori D23, D24, D25, D26.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d23",
+                              "rgb1:common": "bb1:d24",
+                              "rgb1:green": "bb1:d25",
+                              "rgb1:blue": "bb1:d26"
+                      }
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-6 a bb1:a6.",
+                      "wireFrom": "bb1:bus-top-plus-6",
+                      "wireTo": "bb1:a6",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-10 a bb1:a10.",
+                      "wireFrom": "bb1:bus-top-plus-10",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo ORANGE da bb1:j4 a bb1:a16.",
+                      "wireFrom": "bb1:j4",
+                      "wireTo": "bb1:a16",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo GREEN da bb1:j8 a bb1:a18.",
+                      "wireFrom": "bb1:j8",
+                      "wireTo": "bb1:a18",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLUE da bb1:j12 a bb1:a19.",
+                      "wireFrom": "bb1:j12",
+                      "wireTo": "bb1:a19",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo BLACK da bb1:a24 a bb1:bus-top-minus-24.",
+                      "wireFrom": "bb1:a24",
+                      "wireTo": "bb1:bus-top-minus-24",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -2384,36 +3563,92 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F39B}\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "red" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e5",
-        "pot1:signal": "bb1:e6",
-        "pot1:gnd": "bb1:e7",
-        "r1:pin1": "bb1:e10",
-        "r1:pin2": "bb1:e17",
-        "led1:anode": "bb1:d17",
-        "led1:cathode": "bb1:d18"
+              "pot1:vcc": "bb1:e5",
+              "pot1:signal": "bb1:e6",
+              "pot1:gnd": "bb1:e7",
+              "r1:pin1": "bb1:e10",
+              "r1:pin2": "bb1:e17",
+              "led1:anode": "bb1:d17",
+              "led1:cathode": "bb1:d18"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a6", to: "bb1:a10", color: "yellow" },
-        { from: "bb1:a7", to: "bb1:bus-top-minus-7", color: "black" },
-        { from: "bb1:a18", to: "bb1:bus-top-minus-18", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a6",
+                      "to": "bb1:a10",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a7",
+                      "to": "bb1:bus-top-minus-7",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a18",
+                      "to": "bb1:bus-top-minus-18",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 155.25, y: 51.25 },
-        "r1": { x: 211.5, y: 73.75 },
-        "led1": { x: 241.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 155.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 211.5,
+                      "y": 73.75
+              },
+              "led1": {
+                      "x": 241.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il potenziometro con i 3 pin nella fila e, colonne 5-6-7",
@@ -2431,92 +3666,102 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E5, E6 e E7.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e5", "pot1:signal": "bb1:e6", "pot1:gnd": "bb1:e7" },
-          hint: "I 3 pin: VCC in E5, Signal in E6, GND in E7."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E10 e E17.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e10", "r1:pin2": "bb1:e17" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D17 e D18.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d17", "led1:cathode": "bb1:d18" },
-          hint: "L'anodo (+, gamba lunga) va in D17 e il catodo (−, gamba corta) in D18."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A6 al foro A10.",
-          wireFrom: "bb1:a6",
-          wireTo: "bb1:a10",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 9,
-          text: "Collega un filo NERO dal foro A7 al foro bus − superiore (col. 7).",
-          wireFrom: "bb1:a7",
-          wireTo: "bb1:bus-top-minus-7",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro A18 al foro bus − superiore (col. 18).",
-          wireFrom: "bb1:a18",
-          wireTo: "bb1:bus-top-minus-18",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E5, E6, E7.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e5",
+                              "pot1:signal": "bb1:e6",
+                              "pot1:gnd": "bb1:e7"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E10, E17.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e10",
+                              "r1:pin2": "bb1:e17"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED red nei fori D17, D18.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d17",
+                              "led1:cathode": "bb1:d18"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo YELLOW da bb1:a6 a bb1:a10.",
+                      "wireFrom": "bb1:a6",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:a7 a bb1:bus-top-minus-7.",
+                      "wireFrom": "bb1:a7",
+                      "wireTo": "bb1:bus-top-minus-7",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:a18 a bb1:bus-top-minus-18.",
+                      "wireFrom": "bb1:a18",
+                      "wireTo": "bb1:bus-top-minus-18",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -2542,35 +3787,92 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F504}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "red" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e5",
-        "pot1:signal": "bb1:e6",
-        "pot1:gnd": "bb1:e7",
-        "r1:pin1": "bb1:e10",
-        "r1:pin2": "bb1:e17",
-        "led1:anode": "bb1:d17",
-        "led1:cathode": "bb1:d18"
+              "pot1:vcc": "bb1:e5",
+              "pot1:signal": "bb1:e6",
+              "pot1:gnd": "bb1:e7",
+              "r1:pin1": "bb1:e10",
+              "r1:pin2": "bb1:e17",
+              "led1:anode": "bb1:d17",
+              "led1:cathode": "bb1:d18"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-7", to: "bb1:a7", color: "red" },
-        { from: "bb1:a6", to: "bb1:a10", color: "yellow" },
-        { from: "bb1:a5", to: "bb1:bus-top-minus-5", color: "black" },
-        { from: "bb1:a18", to: "bb1:bus-top-minus-18", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a6",
+                      "to": "bb1:a10",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a5",
+                      "to": "bb1:bus-top-minus-5",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a18",
+                      "to": "bb1:bus-top-minus-18",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 155.25, y: 51.25 },
-        "r1": { x: 211.5, y: 73.75 },
-        "led1": { x: 241.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 155.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 211.5,
+                      "y": 73.75
+              },
+              "led1": {
+                      "x": 241.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il potenziometro con i 3 pin nella fila e, colonne 5-6-7",
@@ -2587,93 +3889,102 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E5, E6 e E7.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e5", "pot1:signal": "bb1:e6", "pot1:gnd": "bb1:e7" },
-          hint: "I 3 pin: VCC in E5, Signal in E6, GND in E7."
-        },
-        {
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E10 e E17.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e10", "r1:pin2": "bb1:e17" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D17 e D18.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d17", "led1:cathode": "bb1:d18" },
-          hint: "L'anodo (+, gamba lunga) va in D17 e il catodo (−, gamba corta) in D18."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 7) al foro A7.",
-          wireFrom: "bb1:bus-top-plus-7",
-          wireTo: "bb1:a7",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A6 al foro A10.",
-          wireFrom: "bb1:a6",
-          wireTo: "bb1:a10",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 9,
-          text: "Collega un filo NERO dal foro A5 al foro bus − superiore (col. 5).",
-          wireFrom: "bb1:a5",
-          wireTo: "bb1:bus-top-minus-5",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro A18 al foro bus − superiore (col. 18).",
-          wireFrom: "bb1:a18",
-          wireTo: "bb1:bus-top-minus-18",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E5, E6, E7.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e5",
+                              "pot1:signal": "bb1:e6",
+                              "pot1:gnd": "bb1:e7"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E10, E17.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e10",
+                              "r1:pin2": "bb1:e17"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED red nei fori D17, D18.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d17",
+                              "led1:cathode": "bb1:d18"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-7 a bb1:a7.",
+                      "wireFrom": "bb1:bus-top-plus-7",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo YELLOW da bb1:a6 a bb1:a10.",
+                      "wireFrom": "bb1:a6",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:a5 a bb1:bus-top-minus-5.",
+                      "wireFrom": "bb1:a5",
+                      "wireTo": "bb1:bus-top-minus-5",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:a18 a bb1:bus-top-minus-18.",
+                      "wireFrom": "bb1:a18",
+                      "wireTo": "bb1:bus-top-minus-18",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -2699,35 +4010,92 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F7E2}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "green" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e5",
-        "pot1:signal": "bb1:e6",
-        "pot1:gnd": "bb1:e7",
-        "r1:pin1": "bb1:e10",
-        "r1:pin2": "bb1:e17",
-        "led1:anode": "bb1:d17",
-        "led1:cathode": "bb1:d18"
+              "pot1:vcc": "bb1:e5",
+              "pot1:signal": "bb1:e6",
+              "pot1:gnd": "bb1:e7",
+              "r1:pin1": "bb1:e10",
+              "r1:pin2": "bb1:e17",
+              "led1:anode": "bb1:d17",
+              "led1:cathode": "bb1:d18"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a6", to: "bb1:a10", color: "yellow" },
-        { from: "bb1:a7", to: "bb1:bus-top-minus-7", color: "black" },
-        { from: "bb1:a18", to: "bb1:bus-top-minus-18", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a6",
+                      "to": "bb1:a10",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a7",
+                      "to": "bb1:bus-top-minus-7",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a18",
+                      "to": "bb1:bus-top-minus-18",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 155.25, y: 51.25 },
-        "r1": { x: 211.5, y: 73.75 },
-        "led1": { x: 241.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 155.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 211.5,
+                      "y": 73.75
+              },
+              "led1": {
+                      "x": 241.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il potenziometro con i 3 pin nella fila e, colonne 5-6-7",
@@ -2744,93 +4112,102 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E5, E6 e E7.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e5", "pot1:signal": "bb1:e6", "pot1:gnd": "bb1:e7" },
-          hint: "I 3 pin: VCC in E5, Signal in E6, GND in E7."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E10 e E17.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e10", "r1:pin2": "bb1:e17" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED verde dalla palette e posizionalo nei fori D17 e D18.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d17", "led1:cathode": "bb1:d18" },
-          hint: "L'anodo (+, gamba lunga) va in D17 e il catodo (−, gamba corta) in D18."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A6 al foro A10.",
-          wireFrom: "bb1:a6",
-          wireTo: "bb1:a10",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 9,
-          text: "Collega un filo NERO dal foro A7 al foro bus − superiore (col. 7).",
-          wireFrom: "bb1:a7",
-          wireTo: "bb1:bus-top-minus-7",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro A18 al foro bus − superiore (col. 18).",
-          wireFrom: "bb1:a18",
-          wireTo: "bb1:bus-top-minus-18",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E5, E6, E7.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e5",
+                              "pot1:signal": "bb1:e6",
+                              "pot1:gnd": "bb1:e7"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E10, E17.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e10",
+                              "r1:pin2": "bb1:e17"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED green nei fori D17, D18.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d17",
+                              "led1:cathode": "bb1:d18"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo YELLOW da bb1:a6 a bb1:a10.",
+                      "wireFrom": "bb1:a6",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:a7 a bb1:bus-top-minus-7.",
+                      "wireFrom": "bb1:a7",
+                      "wireTo": "bb1:bus-top-minus-7",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:a18 a bb1:bus-top-minus-18.",
+                      "wireFrom": "bb1:a18",
+                      "wireTo": "bb1:bus-top-minus-18",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -2856,39 +4233,102 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F4A7}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e3",
-        "pot1:signal": "bb1:e4",
-        "pot1:gnd": "bb1:e5",
-        "r1:pin1": "bb1:c15",
-        "r1:pin2": "bb1:c19",
-        "rgb1:red": "bb1:d18",
-        "rgb1:common": "bb1:d19",
-        "rgb1:green": "bb1:d20",
-        "rgb1:blue": "bb1:d21"
+              "pot1:vcc": "bb1:e3",
+              "pot1:signal": "bb1:e4",
+              "pot1:gnd": "bb1:e5",
+              "r1:pin1": "bb1:c15",
+              "r1:pin2": "bb1:c19",
+              "rgb1:red": "bb1:d18",
+              "rgb1:common": "bb1:d19",
+              "rgb1:green": "bb1:d20",
+              "rgb1:blue": "bb1:d21"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-3", to: "bb1:a3", color: "red" },
-        { from: "bb1:a4", to: "bb1:a21", color: "blue" },
-        { from: "bb1:a4", to: "bb1:a20", color: "green" },
-        { from: "bb1:a5", to: "bb1:bus-top-minus-5", color: "black" },
-        { from: "bb1:a15", to: "bb1:bus-top-minus-15", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a4",
+                      "to": "bb1:a21",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a4",
+                      "to": "bb1:a20",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:a5",
+                      "to": "bb1:bus-top-minus-5",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a15",
+                      "to": "bb1:bus-top-minus-15",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 140.25, y: 51.25 },
-        "r1": { x: 196.5, y: 58.75 },
-        "r2": { x: 196.5, y: 98.75 },
-        "rgb1": { x: 256.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 140.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 196.5,
+                      "y": 58.75
+              },
+              "r2": {
+                      "x": 196.5,
+                      "y": 98.75
+              },
+              "rgb1": {
+                      "x": 256.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il potenziometro nella fila e, colonne 3-4-5",
@@ -2906,125 +4346,112 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E3, E4 e E5.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e3", "pot1:signal": "bb1:e4", "pot1:gnd": "bb1:e5" },
-          hint: "I 3 pin: VCC in E3, Signal in E4, GND in E5."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori C8 e C15.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:c8", "r1:pin2": "bb1:c15" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori G8 e G15.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:g8", "r2:pin2": "bb1:g15" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D18, D19, D20 e D21.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d18", "rgb1:common": "bb1:d19", "rgb1:green": "bb1:d20", "rgb1:blue": "bb1:d21" },
-          hint: "I 4 piedini: Rosso in D18, Catodo comune in D19, Verde in D20, Blu in D21."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 3) al foro A3.",
-          wireFrom: "bb1:bus-top-plus-3",
-          wireTo: "bb1:a3",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro A4 al foro A8.",
-          wireFrom: "bb1:a4",
-          wireTo: "bb1:a8",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 10,
-          text: "Collega un filo GIALLO dal foro A4 al foro F8.",
-          wireFrom: "bb1:a4",
-          wireTo: "bb1:f8",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 11,
-          text: "Collega un filo BLU dal foro A15 al foro A21.",
-          wireFrom: "bb1:a15",
-          wireTo: "bb1:a21",
-          wireColor: "blue",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo VERDE dal foro F15 al foro A20.",
-          wireFrom: "bb1:f15",
-          wireTo: "bb1:a20",
-          wireColor: "green",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal foro A5 al foro bus − superiore (col. 5).",
-          wireFrom: "bb1:a5",
-          wireTo: "bb1:bus-top-minus-5",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro A19 al foro bus − superiore (col. 19).",
-          wireFrom: "bb1:a19",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          wireTo: "bb1:bus-top-minus-19",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E3, E4, E5.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e3",
+                              "pot1:signal": "bb1:e4",
+                              "pot1:gnd": "bb1:e5"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori C15, C19.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c15",
+                              "r1:pin2": "bb1:c19"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED RGB nei fori D18, D19, D20, D21.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d18",
+                              "rgb1:common": "bb1:d19",
+                              "rgb1:green": "bb1:d20",
+                              "rgb1:blue": "bb1:d21"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-3 a bb1:a3.",
+                      "wireFrom": "bb1:bus-top-plus-3",
+                      "wireTo": "bb1:a3",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLUE da bb1:a4 a bb1:a21.",
+                      "wireFrom": "bb1:a4",
+                      "wireTo": "bb1:a21",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo GREEN da bb1:a4 a bb1:a20.",
+                      "wireFrom": "bb1:a4",
+                      "wireTo": "bb1:a20",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:a5 a bb1:bus-top-minus-5.",
+                      "wireFrom": "bb1:a5",
+                      "wireTo": "bb1:bus-top-minus-5",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:a15 a bb1:bus-top-minus-15.",
+                      "wireFrom": "bb1:a15",
+                      "wireTo": "bb1:bus-top-minus-15",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -3050,38 +4477,97 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3A8}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e3",
-        "pot1:signal": "bb1:e4",
-        "pot1:gnd": "bb1:e5",
-        "r1:pin1": "bb1:c15",
-        "r1:pin2": "bb1:c19",
-        "rgb1:red": "bb1:d18",
-        "rgb1:common": "bb1:d19",
-        "rgb1:green": "bb1:d20",
-        "rgb1:blue": "bb1:d21"
+              "pot1:vcc": "bb1:e3",
+              "pot1:signal": "bb1:e4",
+              "pot1:gnd": "bb1:e5",
+              "r1:pin1": "bb1:c15",
+              "r1:pin2": "bb1:c19",
+              "rgb1:red": "bb1:d18",
+              "rgb1:common": "bb1:d19",
+              "rgb1:green": "bb1:d20",
+              "rgb1:blue": "bb1:d21"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-4", to: "bb1:a4", color: "red" },
-        { from: "bb1:a3", to: "bb1:a21", color: "blue" },
-        { from: "bb1:a5", to: "bb1:a18", color: "orange" },
-        { from: "bb1:a15", to: "bb1:bus-top-minus-15", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-4",
+                      "to": "bb1:a4",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a3",
+                      "to": "bb1:a21",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a5",
+                      "to": "bb1:a18",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a15",
+                      "to": "bb1:bus-top-minus-15",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 140.25, y: 51.25 },
-        "r1": { x: 196.5, y: 58.75 },
-        "r2": { x: 196.5, y: 98.75 },
-        "rgb1": { x: 256.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 140.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 196.5,
+                      "y": 58.75
+              },
+              "r2": {
+                      "x": 196.5,
+                      "y": 98.75
+              },
+              "rgb1": {
+                      "x": 256.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il potenziometro nella fila e, colonne 3-4-5",
@@ -3098,116 +4584,104 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E3, E4 e E5.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e3", "pot1:signal": "bb1:e4", "pot1:gnd": "bb1:e5" },
-          hint: "I 3 pin: VCC in E3, Signal in E4, GND in E5."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori C8 e C15.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:c8", "r1:pin2": "bb1:c15" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori G8 e G15.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:g8", "r2:pin2": "bb1:g15" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D18, D19, D20 e D21.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d18", "rgb1:common": "bb1:d19", "rgb1:green": "bb1:d20", "rgb1:blue": "bb1:d21" },
-          hint: "I 4 piedini: Rosso in D18, Catodo comune in D19, Verde in D20, Blu in D21."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 4) al foro A4.",
-          wireFrom: "bb1:bus-top-plus-4",
-          wireTo: "bb1:a4",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro A3 al foro A8.",
-          wireFrom: "bb1:a3",
-          wireTo: "bb1:a8",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 10,
-          text: "Collega un filo GIALLO dal foro A5 al foro F8.",
-          wireFrom: "bb1:a5",
-          wireTo: "bb1:f8",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 11,
-          text: "Collega un filo BLU dal foro A15 al foro A21.",
-          wireFrom: "bb1:a15",
-          wireTo: "bb1:a21",
-          wireColor: "blue",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo ARANCIONE dal foro F15 al foro A18.",
-          wireFrom: "bb1:f15",
-          wireTo: "bb1:a18",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal foro A19 al foro bus − superiore (col. 19).",
-          wireFrom: "bb1:a19",
-          wireTo: "bb1:bus-top-minus-19",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E3, E4, E5.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e3",
+                              "pot1:signal": "bb1:e4",
+                              "pot1:gnd": "bb1:e5"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori C15, C19.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c15",
+                              "r1:pin2": "bb1:c19"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED RGB nei fori D18, D19, D20, D21.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d18",
+                              "rgb1:common": "bb1:d19",
+                              "rgb1:green": "bb1:d20",
+                              "rgb1:blue": "bb1:d21"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-4 a bb1:a4.",
+                      "wireFrom": "bb1:bus-top-plus-4",
+                      "wireTo": "bb1:a4",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLUE da bb1:a3 a bb1:a21.",
+                      "wireFrom": "bb1:a3",
+                      "wireTo": "bb1:a21",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo ORANGE da bb1:a5 a bb1:a18.",
+                      "wireFrom": "bb1:a5",
+                      "wireTo": "bb1:a18",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:a15 a bb1:bus-top-minus-15.",
+                      "wireFrom": "bb1:a15",
+                      "wireTo": "bb1:bus-top-minus-15",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -3234,65 +4708,189 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F4A1}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "potentiometer", id: "pot2", value: 10000 },
-        { type: "potentiometer", id: "pot3", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "resistor", id: "r3", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot2",
+                      "value": 10000
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot3",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e2",
-        "pot1:signal": "bb1:e3",
-        "pot1:gnd": "bb1:e4",
-        "pot2:vcc": "bb1:e7",
-        "pot2:signal": "bb1:e8",
-        "pot2:gnd": "bb1:e9",
-        "pot3:vcc": "bb1:e12",
-        "pot3:signal": "bb1:e13",
-        "pot3:gnd": "bb1:e14",
-        "r1:pin1": "bb1:b17",
-        "r1:pin2": "bb1:b24",
-        "r2:pin1": "bb1:e19",
-        "r2:pin2": "bb1:e26",
-        "r3:pin1": "bb1:h17",
-        "r3:pin2": "bb1:h24",
-        "rgb1:red": "bb1:d27",
-        "rgb1:common": "bb1:d28",
-        "rgb1:green": "bb1:d29",
-        "rgb1:blue": "bb1:d30"
+              "pot1:vcc": "bb1:e2",
+              "pot1:signal": "bb1:e3",
+              "pot1:gnd": "bb1:e4",
+              "pot2:vcc": "bb1:e7",
+              "pot2:signal": "bb1:e8",
+              "pot2:gnd": "bb1:e9",
+              "pot3:vcc": "bb1:e12",
+              "pot3:signal": "bb1:e13",
+              "pot3:gnd": "bb1:e14",
+              "r1:pin1": "bb1:b17",
+              "r1:pin2": "bb1:b24",
+              "r2:pin1": "bb1:e19",
+              "r2:pin2": "bb1:e26",
+              "r3:pin1": "bb1:h17",
+              "r3:pin2": "bb1:h24",
+              "rgb1:red": "bb1:d27",
+              "rgb1:common": "bb1:d28",
+              "rgb1:green": "bb1:d29",
+              "rgb1:blue": "bb1:d30"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:bus-top-plus-7", to: "bb1:a7", color: "red" },
-        { from: "bb1:bus-top-plus-12", to: "bb1:a12", color: "red" },
-        { from: "bb1:a3", to: "bb1:a17", color: "yellow" },
-        { from: "bb1:a8", to: "bb1:c19", color: "yellow" },
-        { from: "bb1:a13", to: "bb1:f17", color: "yellow" },
-        { from: "bb1:bus-top-plus-1", to: "bb1:bus-bot-plus-1", color: "red" },
-        { from: "bb1:a24", to: "bb1:a27", color: "orange" },
-        { from: "bb1:c26", to: "bb1:c29", color: "green" },
-        { from: "bb1:f24", to: "bb1:a30", color: "blue" },
-        { from: "bb1:a4", to: "bb1:bus-top-minus-4", color: "black" },
-        { from: "bb1:a9", to: "bb1:bus-top-minus-9", color: "black" },
-        { from: "bb1:a14", to: "bb1:bus-top-minus-14", color: "black" },
-        { from: "bb1:a28", to: "bb1:bus-top-minus-28", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-12",
+                      "to": "bb1:a12",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a3",
+                      "to": "bb1:a17",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:c19",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a13",
+                      "to": "bb1:f17",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a24",
+                      "to": "bb1:a27",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:c26",
+                      "to": "bb1:c29",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:f24",
+                      "to": "bb1:a30",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a4",
+                      "to": "bb1:bus-top-minus-4",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a14",
+                      "to": "bb1:bus-top-minus-14",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a28",
+                      "to": "bb1:bus-top-minus-28",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 132.75, y: 51.25 },
-        "pot2": { x: 170.25, y: 51.25 },
-        "pot3": { x: 207.75, y: 51.25 },
-        "r1": { x: 264, y: 51.25 },
-        "r2": { x: 279, y: 73.75 },
-        "r3": { x: 264, y: 106.25 },
-        "rgb1": { x: 324, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 132.75,
+                      "y": 51.25
+              },
+              "pot2": {
+                      "x": 170.25,
+                      "y": 51.25
+              },
+              "pot3": {
+                      "x": 207.75,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 264,
+                      "y": 51.25
+              },
+              "r2": {
+                      "x": 279,
+                      "y": 73.75
+              },
+              "r3": {
+                      "x": 264,
+                      "y": 106.25
+              },
+              "rgb1": {
+                      "x": 324,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci i 3 potenziometri nella fila e: pot1 col 2-4, pot2 col 7-9, pot3 col 12-14",
@@ -3311,205 +4909,230 @@ const EXPERIMENTS_VOL1 = {
       advancedProject: true,
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E2, E3 e E4.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e2", "pot1:signal": "bb1:e3", "pot1:gnd": "bb1:e4" },
-          hint: "I 3 pin: VCC in E2, Signal in E3, GND in E4."
-        },
-        {
-          step: 4,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E7, E8 e E9.",
-          componentId: "pot2",
-          componentType: "potentiometer",
-          targetPins: { "pot2:vcc": "bb1:e7", "pot2:signal": "bb1:e8", "pot2:gnd": "bb1:e9" },
-          hint: "I 3 pin: VCC in E7, Signal in E8, GND in E9."
-        },
-        {
-          step: 5,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E12, E13 e E14.",
-          componentId: "pot3",
-          componentType: "potentiometer",
-          targetPins: { "pot3:vcc": "bb1:e12", "pot3:signal": "bb1:e13", "pot3:gnd": "bb1:e14" },
-          hint: "I 3 pin: VCC in E12, Signal in E13, GND in E14."
-        },
-        {
-          step: 6,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori B17 e B24.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:b17", "r1:pin2": "bb1:b24" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 7,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E19 e E26.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:e19", "r2:pin2": "bb1:e26" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 8,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori H17 e H24.",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:h17", "r3:pin2": "bb1:h24" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 9,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D27, D28, D29 e D30.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d27", "rgb1:common": "bb1:d28", "rgb1:green": "bb1:d29", "rgb1:blue": "bb1:d30" },
-          hint: "I 4 piedini: Rosso in D27, Catodo comune in D28, Verde in D29, Blu in D30."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 2) al foro A2.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 12,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 7) al foro A7.",
-          wireFrom: "bb1:bus-top-plus-7",
-          wireTo: "bb1:a7",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 13,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 12) al foro A12.",
-          wireFrom: "bb1:bus-top-plus-12",
-          wireTo: "bb1:a12",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          step: 14,
-          text: "Collega un filo GIALLO dal foro A3 al foro A17.",
-          wireFrom: "bb1:a3",
-          wireTo: "bb1:a17",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 15,
-          text: "Collega un filo GIALLO dal foro A8 al foro C19.",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:c19",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 16,
-          text: "Collega un filo GIALLO dal foro A13 al foro F17.",
-          wireFrom: "bb1:a13",
-          wireTo: "bb1:f17",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 17,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 1) al foro bus + inferiore (col. 1).",
-          wireFrom: "bb1:bus-top-plus-1",
-          wireTo: "bb1:bus-bot-plus-1",
-          wireColor: "red",
-          hint: "Questo filo collega i due bus della breadboard."
-        },
-        {
-          step: 18,
-          text: "Collega un filo ARANCIONE dal foro A24 al foro A27.",
-          wireFrom: "bb1:a24",
-          wireTo: "bb1:a27",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 19,
-          text: "Collega un filo VERDE dal foro C26 al foro C29.",
-          wireFrom: "bb1:c26",
-          wireTo: "bb1:c29",
-          wireColor: "green",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 20,
-          text: "Collega un filo BLU dal foro F24 al foro A30.",
-          wireFrom: "bb1:f24",
-          wireTo: "bb1:a30",
-          wireColor: "blue",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 21,
-          text: "Collega un filo NERO dal foro A4 al foro bus − superiore (col. 4).",
-          wireFrom: "bb1:a4",
-          wireTo: "bb1:bus-top-minus-4",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 22,
-          text: "Collega un filo NERO dal foro A9 al foro bus − superiore (col. 9).",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:bus-top-minus-9",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 23,
-          text: "Collega un filo NERO dal foro A14 al foro bus − superiore (col. 14).",
-          wireFrom: "bb1:a14",
-          wireTo: "bb1:bus-top-minus-14",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 24,
-          text: "Collega un filo NERO dal foro A28 al foro bus − superiore (col. 28).",
-          wireFrom: "bb1:a28",
-          wireTo: "bb1:bus-top-minus-28",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 25,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E2, E3, E4.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e2",
+                              "pot1:signal": "bb1:e3",
+                              "pot1:gnd": "bb1:e4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E7, E8, E9.",
+                      "componentId": "pot2",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot2:vcc": "bb1:e7",
+                              "pot2:signal": "bb1:e8",
+                              "pot2:gnd": "bb1:e9"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E12, E13, E14.",
+                      "componentId": "pot3",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot3:vcc": "bb1:e12",
+                              "pot3:signal": "bb1:e13",
+                              "pot3:gnd": "bb1:e14"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona resistore da 470 ohm nei fori B17, B24.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:b17",
+                              "r1:pin2": "bb1:b24"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona resistore da 470 ohm nei fori E19, E26.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:e19",
+                              "r2:pin2": "bb1:e26"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Posiziona resistore da 470 ohm nei fori H17, H24.",
+                      "componentId": "r3",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r3:pin1": "bb1:h17",
+                              "r3:pin2": "bb1:h24"
+                      }
+              },
+              {
+                      "step": 9,
+                      "text": "Posiziona LED RGB nei fori D27, D28, D29, D30.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d27",
+                              "rgb1:common": "bb1:d28",
+                              "rgb1:green": "bb1:d29",
+                              "rgb1:blue": "bb1:d30"
+                      }
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-7 a bb1:a7.",
+                      "wireFrom": "bb1:bus-top-plus-7",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-12 a bb1:a12.",
+                      "wireFrom": "bb1:bus-top-plus-12",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo YELLOW da bb1:a3 a bb1:a17.",
+                      "wireFrom": "bb1:a3",
+                      "wireTo": "bb1:a17",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo YELLOW da bb1:a8 a bb1:c19.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:c19",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo YELLOW da bb1:a13 a bb1:f17.",
+                      "wireFrom": "bb1:a13",
+                      "wireTo": "bb1:f17",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-1 a bb1:bus-bot-plus-1.",
+                      "wireFrom": "bb1:bus-top-plus-1",
+                      "wireTo": "bb1:bus-bot-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo ORANGE da bb1:a24 a bb1:a27.",
+                      "wireFrom": "bb1:a24",
+                      "wireTo": "bb1:a27",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 19,
+                      "text": "Collega un filo GREEN da bb1:c26 a bb1:c29.",
+                      "wireFrom": "bb1:c26",
+                      "wireTo": "bb1:c29",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 20,
+                      "text": "Collega un filo BLUE da bb1:f24 a bb1:a30.",
+                      "wireFrom": "bb1:f24",
+                      "wireTo": "bb1:a30",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 21,
+                      "text": "Collega un filo BLACK da bb1:a4 a bb1:bus-top-minus-4.",
+                      "wireFrom": "bb1:a4",
+                      "wireTo": "bb1:bus-top-minus-4",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 22,
+                      "text": "Collega un filo BLACK da bb1:a9 a bb1:bus-top-minus-9.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:bus-top-minus-9",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 23,
+                      "text": "Collega un filo BLACK da bb1:a14 a bb1:bus-top-minus-14.",
+                      "wireFrom": "bb1:a14",
+                      "wireTo": "bb1:bus-top-minus-14",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 24,
+                      "text": "Collega un filo BLACK da bb1:a28 a bb1:bus-top-minus-28.",
+                      "wireFrom": "bb1:a28",
+                      "wireTo": "bb1:bus-top-minus-28",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 25,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -3535,44 +5158,118 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3C6}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "push-button", id: "btn1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "btn1:pin1": "bb1:e2",
-        "btn1:pin2": "bb1:f4",
-        "pot1:vcc": "bb1:e7",
-        "pot1:signal": "bb1:e8",
-        "pot1:gnd": "bb1:e9",
-        "r1:pin1": "bb1:e12",
-        "r1:pin2": "bb1:e19",
-        "rgb1:red": "bb1:d22",
-        "rgb1:common": "bb1:d23",
-        "rgb1:green": "bb1:d24",
-        "rgb1:blue": "bb1:d25"
+              "btn1:pin1": "bb1:e2",
+              "btn1:pin2": "bb1:f4",
+              "pot1:vcc": "bb1:e7",
+              "pot1:signal": "bb1:e8",
+              "pot1:gnd": "bb1:e9",
+              "r1:pin1": "bb1:e12",
+              "r1:pin2": "bb1:e19",
+              "rgb1:red": "bb1:d22",
+              "rgb1:common": "bb1:d23",
+              "rgb1:green": "bb1:d24",
+              "rgb1:blue": "bb1:d25"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:j4", to: "bb1:j7", color: "yellow" },
-        { from: "bb1:j7", to: "bb1:a7", color: "yellow" },
-        { from: "bb1:a8", to: "bb1:a12", color: "yellow" },
-        { from: "bb1:a19", to: "bb1:a22", color: "orange" },
-        { from: "bb1:a9", to: "bb1:bus-top-minus-9", color: "black" },
-        { from: "bb1:a23", to: "bb1:bus-top-minus-23", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j4",
+                      "to": "bb1:j7",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j7",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:a12",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a19",
+                      "to": "bb1:a22",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a23",
+                      "to": "bb1:bus-top-minus-23",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "btn1": { x: 140.25, y: 82.5 },
-        "pot1": { x: 170.25, y: 51.25 },
-        "r1": { x: 226.5, y: 73.75 },
-        "rgb1": { x: 286.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "btn1": {
+                      "x": 140.25,
+                      "y": 82.5
+              },
+              "pot1": {
+                      "x": 170.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 226.5,
+                      "y": 73.75
+              },
+              "rgb1": {
+                      "x": 286.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il pulsante a cavallo della scanalatura (pin1 in e2, pin2 in f4)",
@@ -3592,125 +5289,139 @@ const EXPERIMENTS_VOL1 = {
       solutionHint: "Schema finale: 3 pulsanti (uno per canale R/G/B) collegati ciascuno a un potenziometro da 10k\u03A9, poi a un resistore da 470\u03A9, e infine al pin corrispondente del LED RGB. Tutti i GND vanno alla riga - della breadboard. Prova prima a disegnarlo su carta!",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E7, E8 e E9.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e7", "pot1:signal": "bb1:e8", "pot1:gnd": "bb1:e9" },
-          hint: "I 3 pin: VCC in E7, Signal in E8, GND in E9."
-        },
-        {
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          step: 4,
-          text: "Prendi il pulsante dalla palette e posizionalo nei fori E2 e F4.",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e2", "btn1:pin2": "bb1:f4" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 5,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E12 e E19.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e12", "r1:pin2": "bb1:e19" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D22, D23, D24 e D25.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d22", "rgb1:common": "bb1:d23", "rgb1:green": "bb1:d24", "rgb1:blue": "bb1:d25" },
-          hint: "I 4 piedini: Rosso in D22, Catodo comune in D23, Verde in D24, Blu in D25."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 2) al foro A2.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro J4 al foro J7.",
-          wireFrom: "bb1:j4",
-          wireTo: "bb1:j7",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 10,
-          text: "Collega un filo GIALLO dal foro J7 al foro A7.",
-          wireFrom: "bb1:j7",
-          wireTo: "bb1:a7",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 11,
-          text: "Collega un filo GIALLO dal foro A8 al foro A12.",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:a12",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo ARANCIONE dal foro A19 al foro A22.",
-          wireFrom: "bb1:a19",
-          wireTo: "bb1:a22",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal foro A9 al foro bus − superiore (col. 9).",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:bus-top-minus-9",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro A23 al foro bus − superiore (col. 23).",
-          wireFrom: "bb1:a23",
-          wireTo: "bb1:bus-top-minus-23",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E7, E8, E9.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e7",
+                              "pot1:signal": "bb1:e8",
+                              "pot1:gnd": "bb1:e9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona pulsante nei fori E2, F4.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e2",
+                              "btn1:pin2": "bb1:f4"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori E12, E19.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e12",
+                              "r1:pin2": "bb1:e19"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED RGB nei fori D22, D23, D24, D25.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d22",
+                              "rgb1:common": "bb1:d23",
+                              "rgb1:green": "bb1:d24",
+                              "rgb1:blue": "bb1:d25"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo YELLOW da bb1:j4 a bb1:j7.",
+                      "wireFrom": "bb1:j4",
+                      "wireTo": "bb1:j7",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo YELLOW da bb1:j7 a bb1:a7.",
+                      "wireFrom": "bb1:j7",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo YELLOW da bb1:a8 a bb1:a12.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo ORANGE da bb1:a19 a bb1:a22.",
+                      "wireFrom": "bb1:a19",
+                      "wireTo": "bb1:a22",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLACK da bb1:a9 a bb1:bus-top-minus-9.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:bus-top-minus-9",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:a23 a bb1:bus-top-minus-23.",
+                      "wireFrom": "bb1:a23",
+                      "wireTo": "bb1:bus-top-minus-23",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -3736,51 +5447,141 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3C6}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "potentiometer", id: "pot2", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot2",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e2",
-        "pot1:signal": "bb1:e3",
-        "pot1:gnd": "bb1:e4",
-        "pot2:vcc": "bb1:e7",
-        "pot2:signal": "bb1:e8",
-        "pot2:gnd": "bb1:e9",
-        "r1:pin1": "bb1:c12",
-        "r1:pin2": "bb1:c19",
-        "r2:pin1": "bb1:g12",
-        "r2:pin2": "bb1:g19",
-        "rgb1:red": "bb1:d22",
-        "rgb1:common": "bb1:d23",
-        "rgb1:green": "bb1:d24",
-        "rgb1:blue": "bb1:d25"
+              "pot1:vcc": "bb1:e2",
+              "pot1:signal": "bb1:e3",
+              "pot1:gnd": "bb1:e4",
+              "pot2:vcc": "bb1:e7",
+              "pot2:signal": "bb1:e8",
+              "pot2:gnd": "bb1:e9",
+              "r1:pin1": "bb1:c12",
+              "r1:pin2": "bb1:c19",
+              "r2:pin1": "bb1:g12",
+              "r2:pin2": "bb1:g19",
+              "rgb1:red": "bb1:d22",
+              "rgb1:common": "bb1:d23",
+              "rgb1:green": "bb1:d24",
+              "rgb1:blue": "bb1:d25"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:bus-top-plus-7", to: "bb1:a7", color: "red" },
-        { from: "bb1:a3", to: "bb1:a12", color: "yellow" },
-        { from: "bb1:a8", to: "bb1:f12", color: "yellow" },
-        { from: "bb1:a19", to: "bb1:a22", color: "orange" },
-        { from: "bb1:f19", to: "bb1:a25", color: "blue" },
-        { from: "bb1:a4", to: "bb1:bus-top-minus-4", color: "black" },
-        { from: "bb1:a9", to: "bb1:bus-top-minus-9", color: "black" },
-        { from: "bb1:a23", to: "bb1:bus-top-minus-23", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a3",
+                      "to": "bb1:a12",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:f12",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a19",
+                      "to": "bb1:a22",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:f19",
+                      "to": "bb1:a25",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a4",
+                      "to": "bb1:bus-top-minus-4",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a23",
+                      "to": "bb1:bus-top-minus-23",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 132.75, y: 51.25 },
-        "pot2": { x: 170.25, y: 51.25 },
-        "r1": { x: 226.5, y: 58.75 },
-        "r2": { x: 226.5, y: 98.75 },
-        "rgb1": { x: 286.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 132.75,
+                      "y": 51.25
+              },
+              "pot2": {
+                      "x": 170.25,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 226.5,
+                      "y": 58.75
+              },
+              "r2": {
+                      "x": 226.5,
+                      "y": 98.75
+              },
+              "rgb1": {
+                      "x": 286.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci pot1 nella fila e col 2-4 e pot2 nella fila e col 7-9",
@@ -3800,149 +5601,167 @@ const EXPERIMENTS_VOL1 = {
       solutionHint: "Schema finale: 3 potenziometri (uno per R, uno per G, uno per B), ciascuno collegato attraverso un resistore da 470\u03A9 al pin corrispondente del LED RGB. Il catodo comune va a GND. Prova a farlo prima con 2 colori, poi aggiungi il terzo!",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E2, E3 e E4.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e2", "pot1:signal": "bb1:e3", "pot1:gnd": "bb1:e4" },
-          hint: "I 3 pin: VCC in E2, Signal in E3, GND in E4."
-        },
-        {
-          step: 4,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E7, E8 e E9.",
-          componentId: "pot2",
-          componentType: "potentiometer",
-          targetPins: { "pot2:vcc": "bb1:e7", "pot2:signal": "bb1:e8", "pot2:gnd": "bb1:e9" },
-          hint: "I 3 pin: VCC in E7, Signal in E8, GND in E9."
-        },
-        {
-          step: 5,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori C12 e C19.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:c12", "r1:pin2": "bb1:c19" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 6,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori G12 e G19.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:g12", "r2:pin2": "bb1:g19" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 7,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D22, D23, D24 e D25.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d22", "rgb1:common": "bb1:d23", "rgb1:green": "bb1:d24", "rgb1:blue": "bb1:d25" },
-          hint: "I 4 piedini: Rosso in D22, Catodo comune in D23, Verde in D24, Blu in D25."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 2) al foro A2.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 7) al foro A7.",
-          wireFrom: "bb1:bus-top-plus-7",
-          wireTo: "bb1:a7",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 11,
-          text: "Collega un filo GIALLO dal foro A3 al foro A12.",
-          wireFrom: "bb1:a3",
-          wireTo: "bb1:a12",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo GIALLO dal foro A8 al foro F12.",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:f12",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 13,
-          text: "Collega un filo ARANCIONE dal foro A19 al foro A22.",
-          wireFrom: "bb1:a19",
-          wireTo: "bb1:a22",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 14,
-          text: "Collega un filo BLU dal foro F19 al foro A25.",
-          wireFrom: "bb1:f19",
-          wireTo: "bb1:a25",
-          wireColor: "blue",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal foro A4 al foro bus − superiore (col. 4).",
-          wireFrom: "bb1:a4",
-          wireTo: "bb1:bus-top-minus-4",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 16,
-          text: "Collega un filo NERO dal foro A9 al foro bus − superiore (col. 9).",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:bus-top-minus-9",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 17,
-          text: "Collega un filo NERO dal foro A23 al foro bus − superiore (col. 23).",
-          wireFrom: "bb1:a23",
-          wireTo: "bb1:bus-top-minus-23",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 18,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E2, E3, E4.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e2",
+                              "pot1:signal": "bb1:e3",
+                              "pot1:gnd": "bb1:e4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E7, E8, E9.",
+                      "componentId": "pot2",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot2:vcc": "bb1:e7",
+                              "pot2:signal": "bb1:e8",
+                              "pot2:gnd": "bb1:e9"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori C12, C19.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c12",
+                              "r1:pin2": "bb1:c19"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona resistore da 470 ohm nei fori G12, G19.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:g12",
+                              "r2:pin2": "bb1:g19"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona LED RGB nei fori D22, D23, D24, D25.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d22",
+                              "rgb1:common": "bb1:d23",
+                              "rgb1:green": "bb1:d24",
+                              "rgb1:blue": "bb1:d25"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-7 a bb1:a7.",
+                      "wireFrom": "bb1:bus-top-plus-7",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo YELLOW da bb1:a3 a bb1:a12.",
+                      "wireFrom": "bb1:a3",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo YELLOW da bb1:a8 a bb1:f12.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:f12",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo ORANGE da bb1:a19 a bb1:a22.",
+                      "wireFrom": "bb1:a19",
+                      "wireTo": "bb1:a22",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLUE da bb1:f19 a bb1:a25.",
+                      "wireFrom": "bb1:f19",
+                      "wireTo": "bb1:a25",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:a4 a bb1:bus-top-minus-4.",
+                      "wireFrom": "bb1:a4",
+                      "wireTo": "bb1:bus-top-minus-4",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:a9 a bb1:bus-top-minus-9.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:bus-top-minus-9",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo BLACK da bb1:a23 a bb1:bus-top-minus-23.",
+                      "wireFrom": "bb1:a23",
+                      "wireTo": "bb1:bus-top-minus-23",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -3968,47 +5787,156 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3C6}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "potentiometer", id: "pot2", value: 10000 },
-        { type: "push-button", id: "btn1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "resistor", id: "r2", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot2",
+                      "value": 10000
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "btn1:pin1": "bb1:e2",
-        "btn1:pin2": "bb1:f4",
-        "pot1:vcc": "bb1:e7",
-        "pot1:signal": "bb1:e8",
-        "pot1:gnd": "bb1:e9",
-        "r1:pin1": "bb1:e12",
-        "r1:pin2": "bb1:e19",
-        "led1:anode": "bb1:d20",
-        "led1:cathode": "bb1:d21"
+              "btn1:pin1": "bb1:e2",
+              "btn1:pin2": "bb1:f4",
+              "pot1:vcc": "bb1:e7",
+              "pot1:signal": "bb1:e8",
+              "pot1:gnd": "bb1:e9",
+              "pot2:vcc": "bb1:e12",
+              "pot2:signal": "bb1:e13",
+              "pot2:gnd": "bb1:e14",
+              "r1:pin1": "bb1:c17",
+              "r1:pin2": "bb1:c24",
+              "r2:pin1": "bb1:g17",
+              "r2:pin2": "bb1:g24",
+              "rgb1:red": "bb1:d27",
+              "rgb1:common": "bb1:d28",
+              "rgb1:green": "bb1:d29",
+              "rgb1:blue": "bb1:d30"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:j4", to: "bb1:j7", color: "yellow" },
-        { from: "bb1:j7", to: "bb1:a7", color: "yellow" },
-        { from: "bb1:a8", to: "bb1:a12", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:bus-top-minus-9", color: "black" },
-        { from: "bb1:a19", to: "bb1:a20", color: "orange" },
-        { from: "bb1:a21", to: "bb1:bus-top-minus-21", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j4",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j4",
+                      "to": "bb1:a12",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:a17",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a13",
+                      "to": "bb1:f17",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a24",
+                      "to": "bb1:a27",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:f24",
+                      "to": "bb1:a30",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:bus-top-minus-9",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a14",
+                      "to": "bb1:bus-top-minus-14",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a28",
+                      "to": "bb1:bus-top-minus-28",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "btn1": { x: 140.25, y: 82.5 },
-        "pot1": { x: 170.25, y: 51.25 },
-        "r1": { x: 226.5, y: 73.75 },
-        "led1": { x: 264, y: 43.75 },
-        "pot2": { x: 211.5, y: 51.25 },
-        "r2": { x: 245, y: 73.75 },
-        "rgb1": { x: 283.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "btn1": {
+                      "x": 140.25,
+                      "y": 82.5
+              },
+              "pot1": {
+                      "x": 170.25,
+                      "y": 51.25
+              },
+              "pot2": {
+                      "x": 207.75,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 264,
+                      "y": 51.25
+              },
+              "r2": {
+                      "x": 264,
+                      "y": 106.25
+              },
+              "rgb1": {
+                      "x": 324,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il pulsante a cavallo della scanalatura (pin1 in e2, pin2 in f4)",
@@ -4029,124 +5957,186 @@ const EXPERIMENTS_VOL1 = {
       solutionHint: "Schema finale: Batteria 9V \u2192 Pulsante (ON/OFF) \u2192 Potenziometro (regola luminosit\u00E0) \u2192 Resistore 470\u03A9 \u2192 LED. Prova anche l'alternativa: metti il pulsante DOPO il potenziometro. Funziona uguale? Perch\u00E9?",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E7, E8 e E9.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e7", "pot1:signal": "bb1:e8", "pot1:gnd": "bb1:e9" },
-          hint: "I 3 pin: VCC in E7, Signal in E8, GND in E9."
-        },
-        {
-          step: 4,
-          text: "Prendi il pulsante dalla palette e posizionalo nei fori E2 e F4.",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e2", "btn1:pin2": "bb1:f4" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 5,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E12 e E19.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e12", "r1:pin2": "bb1:e19" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D20 e D21.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d20", "led1:cathode": "bb1:d21" },
-          hint: "L'anodo (+, gamba lunga) va in D20 e il catodo (−, gamba corta) in D21."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 2) al foro A2.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro J4 al foro J7.",
-          wireFrom: "bb1:j4",
-          wireTo: "bb1:j7",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 10,
-          text: "Collega un filo GIALLO dal foro J7 al foro A7.",
-          wireFrom: "bb1:j7",
-          wireTo: "bb1:a7",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 11,
-          text: "Collega un filo GIALLO dal foro A8 al foro A12.",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:a12",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo NERO dal foro A9 al foro bus − superiore (col. 9).",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:bus-top-minus-9",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 13,
-          text: "Collega un filo ARANCIONE dal foro A19 al foro A20 (ponte).",
-          wireFrom: "bb1:a19",
-          wireTo: "bb1:a20",
-          wireColor: "orange",
-          hint: "Questo filo ponte collega il resistore al LED."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro A21 al foro bus − superiore (col. 21).",
-          wireFrom: "bb1:a21",
-          wireTo: "bb1:bus-top-minus-21",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E7, E8, E9.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e7",
+                              "pot1:signal": "bb1:e8",
+                              "pot1:gnd": "bb1:e9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E12, E13, E14.",
+                      "componentId": "pot2",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot2:vcc": "bb1:e12",
+                              "pot2:signal": "bb1:e13",
+                              "pot2:gnd": "bb1:e14"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona pulsante nei fori E2, F4.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e2",
+                              "btn1:pin2": "bb1:f4"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona resistore da 470 ohm nei fori C17, C24.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c17",
+                              "r1:pin2": "bb1:c24"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona resistore da 470 ohm nei fori G17, G24.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:g17",
+                              "r2:pin2": "bb1:g24"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Posiziona LED RGB nei fori D27, D28, D29, D30.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d27",
+                              "rgb1:common": "bb1:d28",
+                              "rgb1:green": "bb1:d29",
+                              "rgb1:blue": "bb1:d30"
+                      }
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo YELLOW da bb1:j4 a bb1:a7.",
+                      "wireFrom": "bb1:j4",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo YELLOW da bb1:j4 a bb1:a12.",
+                      "wireFrom": "bb1:j4",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo YELLOW da bb1:a8 a bb1:a17.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:a17",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo YELLOW da bb1:a13 a bb1:f17.",
+                      "wireFrom": "bb1:a13",
+                      "wireTo": "bb1:f17",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo ORANGE da bb1:a24 a bb1:a27.",
+                      "wireFrom": "bb1:a24",
+                      "wireTo": "bb1:a27",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLUE da bb1:f24 a bb1:a30.",
+                      "wireFrom": "bb1:f24",
+                      "wireTo": "bb1:a30",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo BLACK da bb1:a9 a bb1:bus-top-minus-9.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:bus-top-minus-9",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo BLACK da bb1:a14 a bb1:bus-top-minus-14.",
+                      "wireFrom": "bb1:a14",
+                      "wireTo": "bb1:bus-top-minus-14",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 19,
+                      "text": "Collega un filo BLACK da bb1:a28 a bb1:bus-top-minus-28.",
+                      "wireFrom": "bb1:a28",
+                      "wireTo": "bb1:bus-top-minus-28",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 20,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -4176,29 +6166,74 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u2600\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "photo-resistor", id: "ldr1" },
-        { type: "led", id: "led1", color: "red" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+              }
       ],
       pinAssignments: {
-        "ldr1:pin1": "bb1:d5",
-        "ldr1:pin2": "bb1:d8",
-        "led1:anode": "bb1:d9",
-        "led1:cathode": "bb1:d10"
+              "ldr1:pin1": "bb1:d5",
+              "ldr1:pin2": "bb1:d8",
+              "led1:anode": "bb1:d9",
+              "led1:cathode": "bb1:d10"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a8", to: "bb1:a9", color: "yellow" },
-        { from: "bb1:a10", to: "bb1:bus-top-minus-10", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:a9",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a10",
+                      "to": "bb1:bus-top-minus-10",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "ldr1": { x: 151.5, y: 43.75 },
-        "led1": { x: 189, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "ldr1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 189,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il fotoresistore (LDR) nella fila d, colonne 5-8",
@@ -4217,76 +6252,82 @@ const EXPERIMENTS_VOL1 = {
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D5 e D8.",
-          componentId: "ldr1",
-          componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:d5", "ldr1:pin2": "bb1:d8" },
-          hint: "La fotoresistenza cambia valore con la luce."
-        },
-        {
-          step: 4,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D9 e D10.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d9", "led1:cathode": "bb1:d10" },
-          hint: "L'anodo (+, gamba lunga) va in D9 e il catodo (−, gamba corta) in D10."
-        },
-        {
-          step: 5,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al fotoresistore."
-        },
-        {
-          step: 7,
-          text: "Collega un filo GIALLO dal foro A8 al foro A9 (dal fotoresistore all'anodo del LED).",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:a9",
-          wireColor: "yellow",
-          hint: "Niente resistore: l'LDR stesso limita la corrente e protegge il LED quando illuminato."
-        },
-        {
-          step: 8,
-          text: "Collega un filo NERO dal foro A10 al foro bus − superiore (col. 10).",
-          wireFrom: "bb1:a10",
-          wireTo: "bb1:bus-top-minus-10",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 9,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona fotoresistore nei fori D5, D8.",
+                      "componentId": "ldr1",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr1:pin1": "bb1:d5",
+                              "ldr1:pin2": "bb1:d8"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED red nei fori D9, D10.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d9",
+                              "led1:cathode": "bb1:d10"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo YELLOW da bb1:a8 a bb1:a9.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:a9",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:a10 a bb1:bus-top-minus-10.",
+                      "wireFrom": "bb1:a10",
+                      "wireTo": "bb1:bus-top-minus-10",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -4312,31 +6353,78 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F7E2}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "photo-resistor", id: "ldr1" },
-        { type: "led", id: "led1", color: "blue" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "blue"
+              }
       ],
       pinAssignments: {
-        "ldr1:pin1": "bb1:d5",
-        "ldr1:pin2": "bb1:d8",
-        "led1:anode": "bb1:d9",
-        "led1:cathode": "bb1:d10"
+              "ldr1:pin1": "bb1:d5",
+              "ldr1:pin2": "bb1:d8",
+              "led1:anode": "bb1:d9",
+              "led1:cathode": "bb1:d10"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a6", to: "bb1:a7", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:a10", color: "yellow" },
-        { from: "bb1:a11", to: "bb1:bus-top-minus-11", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:a9",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a10",
+                      "to": "bb1:bus-top-minus-10",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "ldr1": { x: 151.5, y: 43.75 },
-        "r1": { x: 170, y: 43.75 },
-        "led1": { x: 189, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "ldr1": {
+                      "x": 151.5,
+                      "y": 43.75
+              },
+              "r1": {
+                      "x": 170,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 189,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il fotoresistore (LDR) nella fila d, colonne 5-6",
@@ -4353,93 +6441,82 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D5 e D6.",
-          componentId: "ldr1",
-          componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:d5", "ldr1:pin2": "bb1:d6" },
-          hint: "La fotoresistenza cambia valore con la luce."
-        },
-        {
-          step: 4,
-          text: "Inserisci il resistore da 220Ω nei fori D7 e D9. Protegge il LED dalla troppa corrente!",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:d7", "r1:pin2": "bb1:d9" },
-          hint: "Il resistore limita la corrente: anche con tanta luce sull'LDR, il LED non si brucia."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED blu dalla palette e posizionalo nei fori D10 e D11.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d10", "led1:cathode": "bb1:d11" },
-          hint: "L'anodo (+, gamba lunga) va in D10 e il catodo (−, gamba corta) in D11."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al fotoresistore."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A6 al foro A7 (dal fotoresistore al resistore).",
-          wireFrom: "bb1:a6",
-          wireTo: "bb1:a7",
-          wireColor: "yellow",
-          hint: "Questo filo collega l'uscita dell'LDR all'ingresso del resistore di protezione."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro A9 al foro A10 (dal resistore al LED).",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a10",
-          wireColor: "yellow",
-          hint: "Questo filo collega l'uscita del resistore all'anodo del LED."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro A11 al foro bus − superiore (col. 11).",
-          wireFrom: "bb1:a11",
-          wireTo: "bb1:bus-top-minus-11",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona fotoresistore nei fori D5, D8.",
+                      "componentId": "ldr1",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr1:pin1": "bb1:d5",
+                              "ldr1:pin2": "bb1:d8"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED blue nei fori D9, D10.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d9",
+                              "led1:cathode": "bb1:d10"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo YELLOW da bb1:a8 a bb1:a9.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:a9",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:a10 a bb1:bus-top-minus-10.",
+                      "wireFrom": "bb1:a10",
+                      "wireTo": "bb1:bus-top-minus-10",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -4465,43 +6542,115 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F308}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "photo-resistor", id: "ldr1" },
-        { type: "photo-resistor", id: "ldr2" },
-        { type: "photo-resistor", id: "ldr3" },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr2"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr3"
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "ldr1:pin1": "bb1:d3",
-        "ldr1:pin2": "bb1:d4",
-        "ldr2:pin1": "bb1:d7",
-        "ldr2:pin2": "bb1:d8",
-        "ldr3:pin1": "bb1:d11",
-        "ldr3:pin2": "bb1:d12",
-        "rgb1:red": "bb1:d19",
-        "rgb1:common": "bb1:d20",
-        "rgb1:green": "bb1:d21",
-        "rgb1:blue": "bb1:d22"
+              "ldr1:pin1": "bb1:d3",
+              "ldr1:pin2": "bb1:d4",
+              "ldr2:pin1": "bb1:d7",
+              "ldr2:pin2": "bb1:d8",
+              "ldr3:pin1": "bb1:d11",
+              "ldr3:pin2": "bb1:d12",
+              "rgb1:red": "bb1:d19",
+              "rgb1:common": "bb1:d20",
+              "rgb1:green": "bb1:d21",
+              "rgb1:blue": "bb1:d22"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-3", to: "bb1:a3", color: "red" },
-        { from: "bb1:bus-top-plus-7", to: "bb1:a7", color: "red" },
-        { from: "bb1:bus-top-plus-11", to: "bb1:a11", color: "red" },
-        { from: "bb1:a4", to: "bb1:a19", color: "orange" },
-        { from: "bb1:a8", to: "bb1:a21", color: "green" },
-        { from: "bb1:a12", to: "bb1:a22", color: "blue" },
-        { from: "bb1:a20", to: "bb1:bus-top-minus-20", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-11",
+                      "to": "bb1:a11",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a4",
+                      "to": "bb1:a19",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a8",
+                      "to": "bb1:a21",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:a12",
+                      "to": "bb1:a22",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a20",
+                      "to": "bb1:bus-top-minus-20",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "ldr1": { x: 136.5, y: 43.75 },
-        "ldr2": { x: 166.5, y: 43.75 },
-        "ldr3": { x: 196.5, y: 43.75 },
-        "rgb1": { x: 234, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "ldr1": {
+                      "x": 136.5,
+                      "y": 43.75
+              },
+              "ldr2": {
+                      "x": 166.5,
+                      "y": 43.75
+              },
+              "ldr3": {
+                      "x": 196.5,
+                      "y": 43.75
+              },
+              "rgb1": {
+                      "x": 234,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci 3 fotoresistori nella fila d alle colonne 3-4, 7-8 e 11-12",
@@ -4519,125 +6668,138 @@ const EXPERIMENTS_VOL1 = {
       layer: "cielo",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D3 e D4.",
-          componentId: "ldr1",
-          componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:d3", "ldr1:pin2": "bb1:d4" },
-          hint: "Questo LDR controllerà il canale rosso del LED RGB."
-        },
-        {
-          step: 4,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D7 e D8.",
-          componentId: "ldr2",
-          componentType: "photo-resistor",
-          targetPins: { "ldr2:pin1": "bb1:d7", "ldr2:pin2": "bb1:d8" },
-          hint: "Questo LDR controllerà il canale verde del LED RGB."
-        },
-        {
-          step: 5,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D11 e D12.",
-          componentId: "ldr3",
-          componentType: "photo-resistor",
-          targetPins: { "ldr3:pin1": "bb1:d11", "ldr3:pin2": "bb1:d12" },
-          hint: "Questo LDR controllerà il canale blu del LED RGB."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D19, D20, D21 e D22.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d19", "rgb1:common": "bb1:d20", "rgb1:green": "bb1:d21", "rgb1:blue": "bb1:d22" },
-          hint: "I 4 piedini: Rosso in D19, Catodo comune in D20, Verde in D21, Blu in D22."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + (col. 3) al foro A3.",
-          wireFrom: "bb1:bus-top-plus-3",
-          wireTo: "bb1:a3",
-          wireColor: "red",
-          hint: "Alimenta LDR1 (canale rosso)."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ROSSO dal foro bus + (col. 7) al foro A7.",
-          wireFrom: "bb1:bus-top-plus-7",
-          wireTo: "bb1:a7",
-          wireColor: "red",
-          hint: "Alimenta LDR2 (canale verde)."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ROSSO dal foro bus + (col. 11) al foro A11.",
-          wireFrom: "bb1:bus-top-plus-11",
-          wireTo: "bb1:a11",
-          wireColor: "red",
-          hint: "Alimenta LDR3 (canale blu)."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ARANCIONE dal foro A4 al foro A19 (LDR1 → rosso RGB direct).",
-          wireFrom: "bb1:a4",
-          wireTo: "bb1:a19",
-          wireColor: "orange",
-          hint: "Niente resistore: LDR1 alimenta direttamente il canale rosso."
-        },
-        {
-          step: 12,
-          text: "Collega un filo VERDE dal foro A8 al foro A21 (LDR2 → verde RGB direct).",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:a21",
-          wireColor: "green",
-          hint: "Niente resistore: LDR2 alimenta direttamente il canale verde."
-        },
-        {
-          step: 13,
-          text: "Collega un filo BLU dal foro A12 al foro A22 (LDR3 → blu RGB direct).",
-          wireFrom: "bb1:a12",
-          wireTo: "bb1:a22",
-          wireColor: "blue",
-          hint: "Niente resistore: LDR3 alimenta direttamente il canale blu."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro A20 al foro bus − superiore (col. 20).",
-          wireFrom: "bb1:a20",
-          wireTo: "bb1:bus-top-minus-20",
-          wireColor: "black",
-          hint: "Il catodo comune del LED RGB torna al negativo."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona fotoresistore nei fori D3, D4.",
+                      "componentId": "ldr1",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr1:pin1": "bb1:d3",
+                              "ldr1:pin2": "bb1:d4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona fotoresistore nei fori D7, D8.",
+                      "componentId": "ldr2",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr2:pin1": "bb1:d7",
+                              "ldr2:pin2": "bb1:d8"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona fotoresistore nei fori D11, D12.",
+                      "componentId": "ldr3",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr3:pin1": "bb1:d11",
+                              "ldr3:pin2": "bb1:d12"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED RGB nei fori D19, D20, D21, D22.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d19",
+                              "rgb1:common": "bb1:d20",
+                              "rgb1:green": "bb1:d21",
+                              "rgb1:blue": "bb1:d22"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-3 a bb1:a3.",
+                      "wireFrom": "bb1:bus-top-plus-3",
+                      "wireTo": "bb1:a3",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-7 a bb1:a7.",
+                      "wireFrom": "bb1:bus-top-plus-7",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-11 a bb1:a11.",
+                      "wireFrom": "bb1:bus-top-plus-11",
+                      "wireTo": "bb1:a11",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo ORANGE da bb1:a4 a bb1:a19.",
+                      "wireFrom": "bb1:a4",
+                      "wireTo": "bb1:a19",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo GREEN da bb1:a8 a bb1:a21.",
+                      "wireFrom": "bb1:a8",
+                      "wireTo": "bb1:a21",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLUE da bb1:a12 a bb1:a22.",
+                      "wireFrom": "bb1:a12",
+                      "wireTo": "bb1:a22",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:a20 a bb1:bus-top-minus-20.",
+                      "wireFrom": "bb1:a20",
+                      "wireTo": "bb1:bus-top-minus-20",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -4663,42 +6825,121 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F526}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "white" },
-        { type: "photo-resistor", id: "ldr1" },
-        { type: "led", id: "led2", color: "blue" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+              },
+              {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "blue"
+              }
       ],
       pinAssignments: {
-        "r1:pin1": "bb1:c5",
-        "r1:pin2": "bb1:c12",
-        "led1:anode": "bb1:b14",
-        "led1:cathode": "bb1:b15",
-        "ldr1:pin1": "bb1:h5",
-        "ldr1:pin2": "bb1:h6",
-        "led2:anode": "bb1:h14",
-        "led2:cathode": "bb1:h15"
+              "r1:pin1": "bb1:c5",
+              "r1:pin2": "bb1:c12",
+              "led1:anode": "bb1:b14",
+              "led1:cathode": "bb1:b15",
+              "ldr1:pin1": "bb1:h5",
+              "ldr1:pin2": "bb1:h6",
+              "led2:anode": "bb1:h14",
+              "led2:cathode": "bb1:h15"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:bus-bot-plus-5", to: "bb1:j5", color: "red" },
-        { from: "bb1:bus-top-plus-1", to: "bb1:bus-bot-plus-1", color: "red" },
-        { from: "bb1:a12", to: "bb1:a14", color: "orange" },
-        { from: "bb1:a15", to: "bb1:bus-top-minus-15", color: "black" },
-        { from: "bb1:j6", to: "bb1:j14", color: "yellow" },
-        { from: "bb1:j15", to: "bb1:bus-bot-minus-15", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bb1:bus-bot-minus-1", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-bot-plus-5",
+                      "to": "bb1:j5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a12",
+                      "to": "bb1:a14",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a15",
+                      "to": "bb1:bus-top-minus-15",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:j6",
+                      "to": "bb1:j14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j15",
+                      "to": "bb1:bus-bot-minus-15",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-bot-minus-1",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "r1": { x: 174, y: 58.75 },
-        "led1": { x: 219, y: 28.75 },
-        "ldr1": { x: 151.5, y: 83.75 },
-        "led2": { x: 219, y: 83.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "r1": {
+                      "x": 174,
+                      "y": 58.75
+              },
+              "led1": {
+                      "x": 219,
+                      "y": 28.75
+              },
+              "ldr1": {
+                      "x": 151.5,
+                      "y": 83.75
+              },
+              "led2": {
+                      "x": 219,
+                      "y": 83.75
+              }
       },
       steps: [
         "Circuito 1 (sopra): inserisci r1 (470\u03A9) nella fila c, col 5-12",
@@ -4716,133 +6957,144 @@ const EXPERIMENTS_VOL1 = {
       layer: "cielo",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori C5 e C12.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:c5", "r1:pin2": "bb1:c12" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 4,
-          text: "Prendi il LED bianco dalla palette e posizionalo nei fori B14 e B15.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:b14", "led1:cathode": "bb1:b15" },
-          hint: "L'anodo (+, gamba lunga) va in B14 e il catodo (−, gamba corta) in B15."
-        },
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        {
-          step: 5,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori H5 e H6.",
-          componentId: "ldr1",
-          componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:h5", "ldr1:pin2": "bb1:h6" },
-          hint: "La fotoresistenza cambia valore con la luce."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED blu dalla palette e posizionalo nei fori H14 e H15.",
-          componentId: "led2",
-          componentType: "led",
-          targetPins: { "led2:anode": "bb1:h14", "led2:cathode": "bb1:h15" },
-          hint: "L'anodo (+, gamba lunga) va in H14 e il catodo (−, gamba corta) in H15."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ROSSO dal foro bus + inferiore (col. 5) al foro J5.",
-          wireFrom: "bb1:bus-bot-plus-5",
-          wireTo: "bb1:j5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 1) al foro bus + inferiore (col. 1).",
-          wireFrom: "bb1:bus-top-plus-1",
-          wireTo: "bb1:bus-bot-plus-1",
-          wireColor: "red",
-          hint: "Questo filo collega i due bus della breadboard."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ARANCIONE dal foro A12 al foro A14.",
-          wireFrom: "bb1:a12",
-          wireTo: "bb1:a14",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo NERO dal foro A15 al foro bus − superiore (col. 15).",
-          wireFrom: "bb1:a15",
-          wireTo: "bb1:bus-top-minus-15",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 13,
-          text: "Collega un filo GIALLO dal foro J6 al foro J14.",
-          wireFrom: "bb1:j6",
-          wireTo: "bb1:j14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro J15 al foro bus − inferiore (col. 15).",
-          wireFrom: "bb1:j15",
-          wireTo: "bb1:bus-bot-minus-15",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 15,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        },
-        {
-          step: 16,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al foro bus − inferiore (col. 1).",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bb1:bus-bot-minus-1",
-          wireColor: "black",
-          hint: "Questo filo collega i due bus della breadboard."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona resistore da 470 ohm nei fori C5, C12.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c5",
+                              "r1:pin2": "bb1:c12"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED white nei fori B14, B15.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:b14",
+                              "led1:cathode": "bb1:b15"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona fotoresistore nei fori H5, H6.",
+                      "componentId": "ldr1",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr1:pin1": "bb1:h5",
+                              "ldr1:pin2": "bb1:h6"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED blue nei fori H14, H15.",
+                      "componentId": "led2",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led2:anode": "bb1:h14",
+                              "led2:cathode": "bb1:h15"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-bot-plus-5 a bb1:j5.",
+                      "wireFrom": "bb1:bus-bot-plus-5",
+                      "wireTo": "bb1:j5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-1 a bb1:bus-bot-plus-1.",
+                      "wireFrom": "bb1:bus-top-plus-1",
+                      "wireTo": "bb1:bus-bot-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo ORANGE da bb1:a12 a bb1:a14.",
+                      "wireFrom": "bb1:a12",
+                      "wireTo": "bb1:a14",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:a15 a bb1:bus-top-minus-15.",
+                      "wireFrom": "bb1:a15",
+                      "wireTo": "bb1:bus-top-minus-15",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo YELLOW da bb1:j6 a bb1:j14.",
+                      "wireFrom": "bb1:j6",
+                      "wireTo": "bb1:j14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:j15 a bb1:bus-bot-minus-15.",
+                      "wireFrom": "bb1:j15",
+                      "wireTo": "bb1:bus-bot-minus-15",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bb1:bus-bot-minus-1.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bb1:bus-bot-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -4868,49 +7120,143 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F39B}\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "white" },
-        { type: "photo-resistor", id: "ldr1" },
-        { type: "led", id: "led2", color: "blue" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+              },
+              {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "blue"
+              }
       ],
       pinAssignments: {
-        "pot1:vcc": "bb1:e2",
-        "pot1:signal": "bb1:e3",
-        "pot1:gnd": "bb1:e4",
-        "r1:pin1": "bb1:c7",
-        "r1:pin2": "bb1:c14",
-        "led1:anode": "bb1:b16",
-        "led1:cathode": "bb1:b17",
-        "ldr1:pin1": "bb1:h5",
-        "ldr1:pin2": "bb1:h6",
-        "led2:anode": "bb1:h14",
-        "led2:cathode": "bb1:h15"
+              "pot1:vcc": "bb1:e2",
+              "pot1:signal": "bb1:e3",
+              "pot1:gnd": "bb1:e4",
+              "r1:pin1": "bb1:c7",
+              "r1:pin2": "bb1:c14",
+              "led1:anode": "bb1:b16",
+              "led1:cathode": "bb1:b17",
+              "ldr1:pin1": "bb1:h5",
+              "ldr1:pin2": "bb1:h6",
+              "led2:anode": "bb1:h14",
+              "led2:cathode": "bb1:h15"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:bus-bot-plus-5", to: "bb1:j5", color: "red" },
-        { from: "bb1:bus-top-plus-1", to: "bb1:bus-bot-plus-1", color: "red" },
-        { from: "bb1:a3", to: "bb1:a7", color: "yellow" },
-        { from: "bb1:a14", to: "bb1:a16", color: "orange" },
-        { from: "bb1:a17", to: "bb1:bus-top-minus-17", color: "black" },
-        { from: "bb1:j6", to: "bb1:j14", color: "yellow" },
-        { from: "bb1:j15", to: "bb1:bus-bot-minus-15", color: "black" },
-        { from: "bb1:a4", to: "bb1:bus-top-minus-4", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bb1:bus-bot-minus-1", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-bot-plus-5",
+                      "to": "bb1:j5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a3",
+                      "to": "bb1:a7",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a14",
+                      "to": "bb1:a16",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a17",
+                      "to": "bb1:bus-top-minus-17",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:j6",
+                      "to": "bb1:j14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j15",
+                      "to": "bb1:bus-bot-minus-15",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a4",
+                      "to": "bb1:bus-top-minus-4",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-bot-minus-1",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "pot1": { x: 132.75, y: 51.25 },
-        "r1": { x: 189, y: 58.75 },
-        "led1": { x: 234, y: 28.75 },
-        "ldr1": { x: 151.5, y: 83.75 },
-        "led2": { x: 219, y: 83.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "pot1": {
+                      "x": 132.75,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 189,
+                      "y": 58.75
+              },
+              "led1": {
+                      "x": 234,
+                      "y": 28.75
+              },
+              "ldr1": {
+                      "x": 151.5,
+                      "y": 83.75
+              },
+              "led2": {
+                      "x": 219,
+                      "y": 83.75
+              }
       },
       steps: [
         "Inserisci il potenziometro nella fila e, colonne 2-3-4",
@@ -4928,157 +7274,172 @@ const EXPERIMENTS_VOL1 = {
       layer: "cielo",
       estimatedMinutes: 45,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E2, E3 e E4.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          targetPins: { "pot1:vcc": "bb1:e2", "pot1:signal": "bb1:e3", "pot1:gnd": "bb1:e4" },
-          hint: "I 3 pin: VCC in E2, Signal in E3, GND in E4."
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori C7 e C14.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:c7", "r1:pin2": "bb1:c14" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED bianco dalla palette e posizionalo nei fori B16 e B17.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:b16", "led1:cathode": "bb1:b17" },
-          hint: "L'anodo (+, gamba lunga) va in B16 e il catodo (−, gamba corta) in B17."
-        },
-        {
-          step: 6,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori H5 e H6.",
-          componentId: "ldr1",
-          componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:h5", "ldr1:pin2": "bb1:h6" },
-          hint: "La fotoresistenza cambia valore con la luce."
-        },
-        {
-          step: 7,
-          text: "Prendi il LED blu dalla palette e posizionalo nei fori H14 e H15.",
-          componentId: "led2",
-          componentType: "led",
-          targetPins: { "led2:anode": "bb1:h14", "led2:cathode": "bb1:h15" },
-          hint: "L'anodo (+, gamba lunga) va in H14 e il catodo (−, gamba corta) in H15."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 2) al foro A2.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ROSSO dal foro bus + inferiore (col. 5) al foro J5.",
-          wireFrom: "bb1:bus-bot-plus-5",
-          wireTo: "bb1:j5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 1) al foro bus + inferiore (col. 1).",
-          wireFrom: "bb1:bus-top-plus-1",
-          wireTo: "bb1:bus-bot-plus-1",
-          wireColor: "red",
-          hint: "Questo filo collega i due bus della breadboard."
-        },
-        {
-          step: 12,
-          text: "Collega un filo GIALLO dal foro A3 al foro A7.",
-          wireFrom: "bb1:a3",
-          wireTo: "bb1:a7",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 13,
-          text: "Collega un filo ARANCIONE dal foro A14 al foro A16.",
-          wireFrom: "bb1:a14",
-          wireTo: "bb1:a16",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro A17 al foro bus − superiore (col. 17).",
-          wireFrom: "bb1:a17",
-          wireTo: "bb1:bus-top-minus-17",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 15,
-          text: "Collega un filo GIALLO dal foro J6 al foro J14.",
-          wireFrom: "bb1:j6",
-          wireTo: "bb1:j14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 16,
-          text: "Collega un filo NERO dal foro J15 al foro bus − inferiore (col. 15).",
-          wireFrom: "bb1:j15",
-          wireTo: "bb1:bus-bot-minus-15",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 17,
-          text: "Collega un filo NERO dal foro A4 al foro bus − superiore (col. 4).",
-          wireFrom: "bb1:a4",
-          wireTo: "bb1:bus-top-minus-4",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 18,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        },
-        {
-          step: 19,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al foro bus − inferiore (col. 1).",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bb1:bus-bot-minus-1",
-          wireColor: "black",
-          hint: "Questo filo collega i due bus della breadboard."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E2, E3, E4.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e2",
+                              "pot1:signal": "bb1:e3",
+                              "pot1:gnd": "bb1:e4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori C7, C14.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c7",
+                              "r1:pin2": "bb1:c14"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED white nei fori B16, B17.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:b16",
+                              "led1:cathode": "bb1:b17"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona fotoresistore nei fori H5, H6.",
+                      "componentId": "ldr1",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr1:pin1": "bb1:h5",
+                              "ldr1:pin2": "bb1:h6"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona LED blue nei fori H14, H15.",
+                      "componentId": "led2",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led2:anode": "bb1:h14",
+                              "led2:cathode": "bb1:h15"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo RED da bb1:bus-bot-plus-5 a bb1:j5.",
+                      "wireFrom": "bb1:bus-bot-plus-5",
+                      "wireTo": "bb1:j5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-1 a bb1:bus-bot-plus-1.",
+                      "wireFrom": "bb1:bus-top-plus-1",
+                      "wireTo": "bb1:bus-bot-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo YELLOW da bb1:a3 a bb1:a7.",
+                      "wireFrom": "bb1:a3",
+                      "wireTo": "bb1:a7",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo ORANGE da bb1:a14 a bb1:a16.",
+                      "wireFrom": "bb1:a14",
+                      "wireTo": "bb1:a16",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:a17 a bb1:bus-top-minus-17.",
+                      "wireFrom": "bb1:a17",
+                      "wireTo": "bb1:bus-top-minus-17",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo YELLOW da bb1:j6 a bb1:j14.",
+                      "wireFrom": "bb1:j6",
+                      "wireTo": "bb1:j14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:j15 a bb1:bus-bot-minus-15.",
+                      "wireFrom": "bb1:j15",
+                      "wireTo": "bb1:bus-bot-minus-15",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo BLACK da bb1:a4 a bb1:bus-top-minus-4.",
+                      "wireFrom": "bb1:a4",
+                      "wireTo": "bb1:bus-top-minus-4",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 19,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bb1:bus-bot-minus-1.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bb1:bus-bot-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -5104,43 +7465,126 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F518}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "push-button", id: "btn1" },
-        { type: "photo-resistor", id: "ldr1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "white" },
-        { type: "led", id: "led2", color: "blue" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "photo-resistor",
+                      "id": "ldr1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+              },
+              {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "blue"
+              }
       ],
       pinAssignments: {
-        "btn1:pin1": "bb1:e2",
-        "btn1:pin2": "bb1:f4",
-        "r1:pin1": "bb1:d6",
-        "r1:pin2": "bb1:d9",
-        "led1:anode": "bb1:d10",
-        "led1:cathode": "bb1:d11",
-        "ldr1:pin1": "bb1:d14",
-        "ldr1:pin2": "bb1:d17",
-        "led2:anode": "bb1:d18",
-        "led2:cathode": "bb1:d19"
+              "btn1:pin1": "bb1:e2",
+              "btn1:pin2": "bb1:f4",
+              "r1:pin1": "bb1:d6",
+              "r1:pin2": "bb1:d9",
+              "led1:anode": "bb1:d10",
+              "led1:cathode": "bb1:d11",
+              "ldr1:pin1": "bb1:d14",
+              "ldr1:pin2": "bb1:d17",
+              "led2:anode": "bb1:d18",
+              "led2:cathode": "bb1:d19"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-2", to: "bb1:a2", color: "red" },
-        { from: "bb1:j4", to: "bb1:a7", color: "yellow" },
-        { from: "bb1:a8", to: "bb1:a9", color: "orange" },
-        { from: "bb1:a11", to: "bb1:a12", color: "orange" },
-        { from: "bb1:a13", to: "bb1:bus-top-minus-13", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j4",
+                      "to": "bb1:a14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a17",
+                      "to": "bb1:a18",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a19",
+                      "to": "bb1:bus-top-minus-19",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-plus-6",
+                      "to": "bb1:a6",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:a10",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a11",
+                      "to": "bb1:bus-top-minus-11",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "btn1": { x: 140.25, y: 82.5 },
-        "ldr1": { x: 166.5, y: 43.75 },
-        "r1": { x: 185, y: 43.75 },
-        "led1": { x: 204, y: 43.75 },
-        "led2": { x: 224, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "btn1": {
+                      "x": 140.25,
+                      "y": 82.5
+              },
+              "ldr1": {
+                      "x": 166.5,
+                      "y": 43.75
+              },
+              "r1": {
+                      "x": 185,
+                      "y": 43.75
+              },
+              "led1": {
+                      "x": 204,
+                      "y": 43.75
+              },
+              "led2": {
+                      "x": 224,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il pulsante a cavallo della scanalatura (pin1 in e2, pin2 in f4)",
@@ -5159,108 +7603,147 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il pulsante dalla palette e posizionalo nei fori E2 e F4.",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e2", "btn1:pin2": "bb1:f4" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 4,
-          text: "Prendi il fotoresistore (LDR) dalla palette e posizionalo nei fori D7 e D8.",
-          componentId: "ldr1",
-          componentType: "photo-resistor",
-          targetPins: { "ldr1:pin1": "bb1:d7", "ldr1:pin2": "bb1:d8" },
-          hint: "La fotoresistenza cambia valore con la luce."
-        },
-        {
-          step: 5,
-          text: "Inserisci il resistore da 220Ω nei fori D9 e D11. Protegge il LED dalla troppa corrente!",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:d9", "r1:pin2": "bb1:d11" },
-          hint: "Il resistore limita la corrente: anche con tanta luce sull'LDR, il LED non si brucia."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D12 e D13.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d12", "led1:cathode": "bb1:d13" },
-          hint: "L'anodo (+, gamba lunga) va in D12 e il catodo (−, gamba corta) in D13."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 2) al foro A2.",
-          wireFrom: "bb1:bus-top-plus-2",
-          wireTo: "bb1:a2",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al pulsante."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro J4 al foro A7 (dal pulsante al fotoresistore).",
-          wireFrom: "bb1:j4",
-          wireTo: "bb1:a7",
-          wireColor: "yellow",
-          hint: "Questo filo collega il pulsante al fotoresistore."
-        },
-        {
-          step: 10,
-          text: "Collega un filo ARANCIONE dal foro A8 al foro A9 (dal fotoresistore al resistore).",
-          wireFrom: "bb1:a8",
-          wireTo: "bb1:a9",
-          wireColor: "orange",
-          hint: "Questo filo collega l'uscita dell'LDR all'ingresso del resistore di protezione."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ARANCIONE dal foro A11 al foro A12 (dal resistore al LED).",
-          wireFrom: "bb1:a11",
-          wireTo: "bb1:a12",
-          wireColor: "orange",
-          hint: "Questo filo collega l'uscita del resistore all'anodo del LED."
-        },
-        {
-          step: 12,
-          text: "Collega un filo NERO dal foro A13 al foro bus − superiore (col. 13).",
-          wireFrom: "bb1:a13",
-          wireTo: "bb1:bus-top-minus-13",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona pulsante nei fori E2, F4.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e2",
+                              "btn1:pin2": "bb1:f4"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona fotoresistore nei fori D14, D17.",
+                      "componentId": "ldr1",
+                      "componentType": "photo-resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "ldr1:pin1": "bb1:d14",
+                              "ldr1:pin2": "bb1:d17"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori D6, D9.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:d6",
+                              "r1:pin2": "bb1:d9"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED white nei fori D10, D11.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d10",
+                              "led1:cathode": "bb1:d11"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona LED blue nei fori D18, D19.",
+                      "componentId": "led2",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led2:anode": "bb1:d18",
+                              "led2:cathode": "bb1:d19"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo YELLOW da bb1:j4 a bb1:a14.",
+                      "wireFrom": "bb1:j4",
+                      "wireTo": "bb1:a14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo YELLOW da bb1:a17 a bb1:a18.",
+                      "wireFrom": "bb1:a17",
+                      "wireTo": "bb1:a18",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:a19 a bb1:bus-top-minus-19.",
+                      "wireFrom": "bb1:a19",
+                      "wireTo": "bb1:bus-top-minus-19",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-6 a bb1:a6.",
+                      "wireFrom": "bb1:bus-top-plus-6",
+                      "wireTo": "bb1:a6",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo ORANGE da bb1:a9 a bb1:a10.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:a10",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo BLACK da bb1:a11 a bb1:bus-top-minus-11.",
+                      "wireFrom": "bb1:a11",
+                      "wireTo": "bb1:bus-top-minus-11",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -5290,26 +7773,68 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F50A}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "buzzer-piezo", id: "buz1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "buzzer-piezo",
+                      "id": "buz1"
+              }
       ],
       pinAssignments: {
-        "buz1:positive": "bb1:bus-bot-plus-27",
-        "buz1:negative": "bb1:bus-top-minus-27"
+              "buz1:positive": "bb1:bus-bot-plus-27",
+              "buz1:negative": "bb1:bus-top-minus-27"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-bot-plus-1", color: "red" },
-        { from: "bat1:negative", to: "bb1:bus-top-minus-1", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bb1:bus-top-minus-27", color: "black" },
-        { from: "bb1:bus-bot-plus-1", to: "bb1:bus-bot-plus-27", color: "red" },
-        { from: "bb1:bus-bot-plus-27", to: "buz1:positive", color: "red" },
-        { from: "bb1:bus-top-minus-27", to: "buz1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bat1:negative",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-top-minus-27",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-plus-1",
+                      "to": "bb1:bus-bot-plus-27",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-bot-plus-27",
+                      "to": "buz1:positive",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-minus-27",
+                      "to": "buz1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "buz1": { x: 350, y: 88 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "buz1": {
+                      "x": 350,
+                      "y": 88
+              }
       },
       steps: [
         "Collega il positivo e il negativo della batteria ai bus + e − della breadboard",
@@ -5325,77 +7850,79 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Posiziona il buzzer a destra della breadboard (fuori dalla zona fori).",
-          componentId: "buz1",
-          componentType: "buzzer-piezo",
-          targetPins: { "buz1:positive": "bb1:bus-bot-plus-27", "buz1:negative": "bb1:bus-top-minus-27" },
-          hint: "Nel libro il cicalino è rappresentato esterno alla breadboard."
-        },
-        {
-          step: 4,
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + inferiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-bot-plus-1",
-          wireColor: "red",
-          hint: "Alimentazione positiva della breadboard."
-        },
-        {
-          step: 5,
-          text: "Collega un filo NERO dal polo − della batteria al foro bus − superiore (col. 1).",
-          wireFrom: "bat1:negative",
-          wireTo: "bb1:bus-top-minus-1",
-          wireColor: "black",
-          hint: "Alimentazione negativa della breadboard."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO lungo tra bus + inferiore sinistro e bus + inferiore destro.",
-          wireFrom: "bb1:bus-bot-plus-1",
-          wireTo: "bb1:bus-bot-plus-27",
-          wireColor: "red",
-          hint: "Ponte del bus positivo come da figura."
-        },
-        {
-          step: 7,
-          text: "Collega un filo NERO lungo tra bus − superiore sinistro e bus − superiore destro.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bb1:bus-top-minus-27",
-          wireColor: "black",
-          hint: "Ponte del bus negativo come da figura."
-        },
-        {
-          step: 8,
-          text: "Collega il buzzer: bus + destro al pin positivo e bus − destro al pin negativo.",
-          wireFrom: "bb1:bus-bot-plus-27",
-          wireTo: "buz1:positive",
-          wireColor: "red",
-          hint: "Se inverti polarità il cicalino non suona correttamente."
-        },
-        {
-          step: 9,
-          text: "Completa il secondo filo del buzzer verso il bus − destro.",
-          wireFrom: "bb1:bus-top-minus-27",
-          wireTo: "buz1:negative",
-          wireColor: "black",
-          hint: "Circuito continuo: il buzzer suona."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona cicalino nei fori BUS-BOT-PLUS-27, BUS-TOP-MINUS-27.",
+                      "componentId": "buz1",
+                      "componentType": "buzzer-piezo",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "buz1:positive": "bb1:bus-bot-plus-27",
+                              "buz1:negative": "bb1:bus-top-minus-27"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-bot-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-bot-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo BLACK da bat1:negative a bb1:bus-top-minus-1.",
+                      "wireFrom": "bat1:negative",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bb1:bus-top-minus-27.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bb1:bus-top-minus-27",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-bot-plus-1 a bb1:bus-bot-plus-27.",
+                      "wireFrom": "bb1:bus-bot-plus-1",
+                      "wireTo": "bb1:bus-bot-plus-27",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-bot-plus-27 a buz1:positive.",
+                      "wireFrom": "bb1:bus-bot-plus-27",
+                      "wireTo": "buz1:positive",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-27 a buz1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-27",
+                      "wireTo": "buz1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -5421,29 +7948,81 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F514}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "push-button", id: "btn1" },
-        { type: "buzzer-piezo", id: "buz1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "push-button",
+                      "id": "btn1"
+              },
+              {
+                      "type": "buzzer-piezo",
+                      "id": "buz1"
+              }
       ],
       pinAssignments: {
-        "btn1:pin1": "bb1:e14",
-        "btn1:pin2": "bb1:f16"
+              "btn1:pin1": "bb1:e14",
+              "btn1:pin2": "bb1:f16"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-bot-plus-1", color: "red" },
-        { from: "bat1:negative", to: "bb1:bus-top-minus-1", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bb1:bus-top-minus-27", color: "black" },
-        { from: "bb1:bus-bot-plus-1", to: "bb1:bus-bot-plus-27", color: "red" },
-        { from: "bb1:bus-bot-plus-24", to: "buz1:positive", color: "red" },
-        { from: "buz1:negative", to: "bb1:j16", color: "black" },
-        { from: "bb1:bus-top-minus-14", to: "bb1:e14", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-bot-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bat1:negative",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bb1:bus-top-minus-27",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-bot-plus-1",
+                      "to": "bb1:bus-bot-plus-27",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-bot-plus-24",
+                      "to": "buz1:positive",
+                      "color": "red"
+              },
+              {
+                      "from": "buz1:negative",
+                      "to": "bb1:j16",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-14",
+                      "to": "bb1:e14",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "btn1": { x: 230.25, y: 81.25 },
-        "buz1": { x: 350, y: 88 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "btn1": {
+                      "x": 230.25,
+                      "y": 81.25
+              },
+              "buz1": {
+                      "x": 350,
+                      "y": 88
+              }
       },
       steps: [
         "Parti dalla base dell'esperimento 1 (bus + e bus − ponticellati)",
@@ -5460,91 +8039,94 @@ const EXPERIMENTS_VOL1 = {
       layer: "terra",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il pulsante dalla palette e posizionalo nei fori E14 e F16.",
-          componentId: "btn1",
-          componentType: "push-button",
-          targetPins: { "btn1:pin1": "bb1:e14", "btn1:pin2": "bb1:f16" },
-          hint: "Il pulsante va a cavallo della scanalatura centrale della breadboard."
-        },
-        {
-          step: 4,
-          text: "Posiziona il buzzer a destra della breadboard (fuori dalla zona fori).",
-          componentId: "buz1",
-          componentType: "buzzer-piezo",
-          hint: "Nel libro il cicalino è rappresentato esterno alla breadboard."
-        },
-        {
-          step: 5,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + inferiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-bot-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 6,
-          text: "Collega un filo NERO dal polo − della batteria al foro bus − superiore (col. 1).",
-          wireFrom: "bat1:negative",
-          wireTo: "bb1:bus-top-minus-1",
-          wireColor: "black",
-          hint: "Alimentazione negativa della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega il ponte rosso del bus + inferiore da col.1 a col.27.",
-          wireFrom: "bb1:bus-bot-plus-1",
-          wireTo: "bb1:bus-bot-plus-27",
-          wireColor: "red",
-          hint: "Replica il collegamento lungo mostrato nel libro."
-        },
-        {
-          step: 8,
-          text: "Collega il ponte nero del bus − superiore da col.1 a col.27.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bb1:bus-top-minus-27",
-          wireColor: "black",
-          hint: "Porta il negativo verso il lato destro della breadboard."
-        },
-        {
-          step: 9,
-          text: "Collega il bus + destro al pin positivo del buzzer.",
-          wireFrom: "bb1:bus-bot-plus-24",
-          wireTo: "buz1:positive",
-          wireColor: "red",
-          hint: "Ingresso positivo del cicalino."
-        },
-        {
-          step: 10,
-          text: "Collega il pin negativo del buzzer alla colonna 16.",
-          wireFrom: "buz1:negative",
-          wireTo: "bb1:j16",
-          wireColor: "black",
-          hint: "Il ritorno passa dal pulsante."
-        },
-        {
-          step: 11,
-          text: "Collega la colonna 14 al bus −: il buzzer suona solo premendo il pulsante.",
-          wireFrom: "bb1:bus-top-minus-14",
-          wireTo: "bb1:e14",
-          wireColor: "black",
-          hint: "Con pulsante rilasciato il circuito resta aperto."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona pulsante nei fori E14, F16.",
+                      "componentId": "btn1",
+                      "componentType": "push-button",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "btn1:pin1": "bb1:e14",
+                              "btn1:pin2": "bb1:f16"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona cicalino.",
+                      "componentId": "buz1",
+                      "componentType": "buzzer-piezo",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-bot-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-bot-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo BLACK da bat1:negative a bb1:bus-top-minus-1.",
+                      "wireFrom": "bat1:negative",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bb1:bus-top-minus-27.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bb1:bus-top-minus-27",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-bot-plus-1 a bb1:bus-bot-plus-27.",
+                      "wireFrom": "bb1:bus-bot-plus-1",
+                      "wireTo": "bb1:bus-bot-plus-27",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo RED da bb1:bus-bot-plus-24 a buz1:positive.",
+                      "wireFrom": "bb1:bus-bot-plus-24",
+                      "wireTo": "buz1:positive",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da buz1:negative a bb1:j16.",
+                      "wireFrom": "buz1:negative",
+                      "wireTo": "bb1:j16",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-14 a bb1:e14.",
+                      "wireFrom": "bb1:bus-top-minus-14",
+                      "wireTo": "bb1:e14",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -5575,33 +8157,85 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F9F2}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "reed-switch", id: "reed1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "red" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "reed-switch",
+                      "id": "reed1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+              }
       ],
       pinAssignments: {
-        "reed1:pin1": "bb1:c5",
-        "reed1:pin2": "bb1:c11",
-        "r1:pin1": "bb1:e14",
-        "r1:pin2": "bb1:e21",
-        "led1:anode": "bb1:d21",
-        "led1:cathode": "bb1:d22"
+              "reed1:pin1": "bb1:c5",
+              "reed1:pin2": "bb1:c11",
+              "r1:pin1": "bb1:e14",
+              "r1:pin2": "bb1:e21",
+              "led1:anode": "bb1:d21",
+              "led1:cathode": "bb1:d22"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a11", to: "bb1:a14", color: "yellow" },
-        { from: "bb1:a22", to: "bb1:bus-top-minus-22", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a11",
+                      "to": "bb1:a14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a22",
+                      "to": "bb1:bus-top-minus-22",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "reed1": { x: 170.25, y: 58.75 },
-        "r1": { x: 241.5, y: 73.75 },
-        "led1": { x: 271.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "reed1": {
+                      "x": 170.25,
+                      "y": 58.75
+              },
+              "r1": {
+                      "x": 241.5,
+                      "y": 73.75
+              },
+              "led1": {
+                      "x": 271.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il reed switch nella fila c, col 5-11 (attraversa molte colonne!)",
@@ -5620,84 +8254,93 @@ const EXPERIMENTS_VOL1 = {
       note: "Nel simulatore: clicca il magnete per avvicinarlo/allontanarlo",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il reed switch dalla palette e posizionalo nei fori C5 e C11.",
-          componentId: "reed1",
-          componentType: "reed-switch",
-          targetPins: { "reed1:pin1": "bb1:c5", "reed1:pin2": "bb1:c11" },
-          hint: "Il reed switch si chiude con il magnete. Come un interruttore invisibile!"
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E14 e E21.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e14", "r1:pin2": "bb1:e21" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D21 e D22.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d21", "led1:cathode": "bb1:d22" },
-          hint: "L'anodo (+, gamba lunga) va in D21 e il catodo (−, gamba corta) in D22."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A11 al foro A14.",
-          wireFrom: "bb1:a11",
-          wireTo: "bb1:a14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 9,
-          text: "Collega un filo NERO dal foro A22 al foro bus − superiore (col. 22).",
-          wireFrom: "bb1:a22",
-          wireTo: "bb1:bus-top-minus-22",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona interruttore magnetico nei fori C5, C11.",
+                      "componentId": "reed1",
+                      "componentType": "reed-switch",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "reed1:pin1": "bb1:c5",
+                              "reed1:pin2": "bb1:c11"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E14, E21.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e14",
+                              "r1:pin2": "bb1:e21"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED red nei fori D21, D22.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d21",
+                              "led1:cathode": "bb1:d22"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo YELLOW da bb1:a11 a bb1:a14.",
+                      "wireFrom": "bb1:a11",
+                      "wireTo": "bb1:a14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:a22 a bb1:bus-top-minus-22.",
+                      "wireFrom": "bb1:a22",
+                      "wireTo": "bb1:bus-top-minus-22",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -5723,33 +8366,85 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F9F2}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "reed-switch", id: "reed1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "led", id: "led1", color: "red" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "reed-switch",
+                      "id": "reed1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "red"
+              }
       ],
       pinAssignments: {
-        "reed1:pin1": "bb1:c5",
-        "reed1:pin2": "bb1:c11",
-        "r1:pin1": "bb1:e14",
-        "r1:pin2": "bb1:e21",
-        "led1:anode": "bb1:d21",
-        "led1:cathode": "bb1:d22"
+              "reed1:pin1": "bb1:c5",
+              "reed1:pin2": "bb1:c11",
+              "r1:pin1": "bb1:e14",
+              "r1:pin2": "bb1:e21",
+              "led1:anode": "bb1:d21",
+              "led1:cathode": "bb1:d22"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a11", to: "bb1:a14", color: "yellow" },
-        { from: "bb1:a22", to: "bb1:bus-top-minus-22", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a11",
+                      "to": "bb1:a14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a22",
+                      "to": "bb1:bus-top-minus-22",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "reed1": { x: 170.25, y: 58.75 },
-        "r1": { x: 241.5, y: 73.75 },
-        "led1": { x: 271.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "reed1": {
+                      "x": 170.25,
+                      "y": 58.75
+              },
+              "r1": {
+                      "x": 241.5,
+                      "y": 73.75
+              },
+              "led1": {
+                      "x": 271.5,
+                      "y": 43.75
+              }
       },
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
       steps: [
@@ -5766,84 +8461,93 @@ const EXPERIMENTS_VOL1 = {
       layer: "schema",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il reed switch dalla palette e posizionalo nei fori C5 e C11.",
-          componentId: "reed1",
-          componentType: "reed-switch",
-          targetPins: { "reed1:pin1": "bb1:c5", "reed1:pin2": "bb1:c11" },
-          hint: "Il reed switch si chiude con il magnete. Come un interruttore invisibile!"
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E14 e E21.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e14", "r1:pin2": "bb1:e21" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED rosso dalla palette e posizionalo nei fori D21 e D22.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:d21", "led1:cathode": "bb1:d22" },
-          hint: "L'anodo (+, gamba lunga) va in D21 e il catodo (−, gamba corta) in D22."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A11 al foro A14.",
-          wireFrom: "bb1:a11",
-          wireTo: "bb1:a14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 9,
-          text: "Collega un filo NERO dal foro A22 al foro bus − superiore (col. 22).",
-          wireFrom: "bb1:a22",
-          wireTo: "bb1:bus-top-minus-22",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona interruttore magnetico nei fori C5, C11.",
+                      "componentId": "reed1",
+                      "componentType": "reed-switch",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "reed1:pin1": "bb1:c5",
+                              "reed1:pin2": "bb1:c11"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E14, E21.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e14",
+                              "r1:pin2": "bb1:e21"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED red nei fori D21, D22.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:d21",
+                              "led1:cathode": "bb1:d22"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo YELLOW da bb1:a11 a bb1:a14.",
+                      "wireFrom": "bb1:a11",
+                      "wireTo": "bb1:a14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:a22 a bb1:bus-top-minus-22.",
+                      "wireFrom": "bb1:a22",
+                      "wireTo": "bb1:bus-top-minus-22",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -5869,36 +8573,91 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3C6}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "reed-switch", id: "reed1" },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "reed-switch",
+                      "id": "reed1"
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "reed1:pin1": "bb1:c5",
-        "reed1:pin2": "bb1:c11",
-        "r1:pin1": "bb1:e14",
-        "r1:pin2": "bb1:e21",
-        "rgb1:red": "bb1:d24",
-        "rgb1:common": "bb1:d25",
-        "rgb1:green": "bb1:d26",
-        "rgb1:blue": "bb1:d27"
+              "reed1:pin1": "bb1:c5",
+              "reed1:pin2": "bb1:c11",
+              "r1:pin1": "bb1:e14",
+              "r1:pin2": "bb1:e21",
+              "rgb1:red": "bb1:d24",
+              "rgb1:common": "bb1:d25",
+              "rgb1:green": "bb1:d26",
+              "rgb1:blue": "bb1:d27"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-5", to: "bb1:a5", color: "red" },
-        { from: "bb1:a11", to: "bb1:a14", color: "yellow" },
-        { from: "bb1:a21", to: "bb1:a24", color: "orange" },
-        { from: "bb1:a25", to: "bb1:bus-top-minus-25", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-5",
+                      "to": "bb1:a5",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a11",
+                      "to": "bb1:a14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a21",
+                      "to": "bb1:a24",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a25",
+                      "to": "bb1:bus-top-minus-25",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "reed1": { x: 170.25, y: 58.75 },
-        "r1": { x: 241.5, y: 73.75 },
-        "rgb1": { x: 301.5, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "reed1": {
+                      "x": 170.25,
+                      "y": 58.75
+              },
+              "r1": {
+                      "x": 241.5,
+                      "y": 73.75
+              },
+              "rgb1": {
+                      "x": 301.5,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il reed switch nella fila c, col 5-11",
@@ -5917,93 +8676,103 @@ const EXPERIMENTS_VOL1 = {
       note: "Sfida aperta: progetta il circuito completo!",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il reed switch dalla palette e posizionalo nei fori C5 e C11.",
-          componentId: "reed1",
-          componentType: "reed-switch",
-          targetPins: { "reed1:pin1": "bb1:c5", "reed1:pin2": "bb1:c11" },
-          hint: "Il reed switch si chiude con il magnete. Come un interruttore invisibile!"
-        },
-        {
-          step: 4,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E14 e E21.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e14", "r1:pin2": "bb1:e21" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 5,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D24, D25, D26 e D27.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-          targetPins: { "rgb1:red": "bb1:d24", "rgb1:common": "bb1:d25", "rgb1:green": "bb1:d26", "rgb1:blue": "bb1:d27" },
-          hint: "I 4 piedini: Rosso in D24, Catodo comune in D25, Verde in D26, Blu in D27."
-        },
-        {
-          step: 6,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
-          wireFrom: "bb1:bus-top-plus-5",
-          wireTo: "bb1:a5",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 8,
-          text: "Collega un filo GIALLO dal foro A11 al foro A14.",
-          wireFrom: "bb1:a11",
-          wireTo: "bb1:a14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 9,
-          text: "Collega un filo ARANCIONE dal foro A21 al foro A24.",
-          wireFrom: "bb1:a21",
-          wireTo: "bb1:a24",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 10,
-          text: "Collega un filo NERO dal foro A25 al foro bus − superiore (col. 25).",
-          wireFrom: "bb1:a25",
-          wireTo: "bb1:bus-top-minus-25",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 11,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona interruttore magnetico nei fori C5, C11.",
+                      "componentId": "reed1",
+                      "componentType": "reed-switch",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "reed1:pin1": "bb1:c5",
+                              "reed1:pin2": "bb1:c11"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona resistore da 470 ohm nei fori E14, E21.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e14",
+                              "r1:pin2": "bb1:e21"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona LED RGB nei fori D24, D25, D26, D27.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d24",
+                              "rgb1:common": "bb1:d25",
+                              "rgb1:green": "bb1:d26",
+                              "rgb1:blue": "bb1:d27"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-5 a bb1:a5.",
+                      "wireFrom": "bb1:bus-top-plus-5",
+                      "wireTo": "bb1:a5",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo YELLOW da bb1:a11 a bb1:a14.",
+                      "wireFrom": "bb1:a11",
+                      "wireTo": "bb1:a14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo ORANGE da bb1:a21 a bb1:a24.",
+                      "wireFrom": "bb1:a21",
+                      "wireTo": "bb1:a24",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:a25 a bb1:bus-top-minus-25.",
+                      "wireFrom": "bb1:a25",
+                      "wireTo": "bb1:bus-top-minus-25",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -6029,43 +8798,113 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F3C6}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-half", id: "bb1" },
-        { type: "reed-switch", id: "reed1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "resistor", id: "r1", value: 470 },
-        { type: "rgb-led", id: "rgb1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-half",
+                      "id": "bb1"
+              },
+              {
+                      "type": "reed-switch",
+                      "id": "reed1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 470
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              }
       ],
       pinAssignments: {
-        "reed1:pin1": "bb1:c3",
-        "reed1:pin2": "bb1:c9",
-        "pot1:vcc": "bb1:e12",
-        "pot1:signal": "bb1:e13",
-        "pot1:gnd": "bb1:e14",
-        "r1:pin1": "bb1:e17",
-        "r1:pin2": "bb1:e24",
-        "rgb1:red": "bb1:d27",
-        "rgb1:common": "bb1:d28",
-        "rgb1:green": "bb1:d29",
-        "rgb1:blue": "bb1:d30"
+              "reed1:pin1": "bb1:c3",
+              "reed1:pin2": "bb1:c9",
+              "pot1:vcc": "bb1:e12",
+              "pot1:signal": "bb1:e13",
+              "pot1:gnd": "bb1:e14",
+              "r1:pin1": "bb1:e17",
+              "r1:pin2": "bb1:e24",
+              "rgb1:red": "bb1:d27",
+              "rgb1:common": "bb1:d28",
+              "rgb1:green": "bb1:d29",
+              "rgb1:blue": "bb1:d30"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-top-plus-1", color: "red" },
-        { from: "bb1:bus-top-plus-3", to: "bb1:a3", color: "red" },
-        { from: "bb1:a9", to: "bb1:a12", color: "yellow" },
-        { from: "bb1:a13", to: "bb1:a17", color: "green" },
-        { from: "bb1:a24", to: "bb1:a27", color: "orange" },
-        { from: "bb1:a14", to: "bb1:bus-top-minus-14", color: "black" },
-        { from: "bb1:a28", to: "bb1:bus-top-minus-28", color: "black" },
-        { from: "bb1:bus-top-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-top-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-top-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:a12",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a13",
+                      "to": "bb1:a17",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:a24",
+                      "to": "bb1:a27",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a14",
+                      "to": "bb1:bus-top-minus-14",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a28",
+                      "to": "bb1:bus-top-minus-28",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 100, y: 10 },
-        "reed1": { x: 155.25, y: 58.75 },
-        "pot1": { x: 207.75, y: 51.25 },
-        "r1": { x: 264, y: 73.75 },
-        "rgb1": { x: 324, y: 43.75 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 100,
+                      "y": 10
+              },
+              "reed1": {
+                      "x": 155.25,
+                      "y": 58.75
+              },
+              "pot1": {
+                      "x": 207.75,
+                      "y": 51.25
+              },
+              "r1": {
+                      "x": 264,
+                      "y": 73.75
+              },
+              "rgb1": {
+                      "x": 324,
+                      "y": 43.75
+              }
       },
       steps: [
         "Inserisci il reed switch nella fila c, col 3-9",
@@ -6084,117 +8923,131 @@ const EXPERIMENTS_VOL1 = {
       note: "Sfida finale del capitolo!",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-half",
-          hint: "La breadboard collega i componenti senza saldature."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il reed switch dalla palette e posizionalo nei fori C3 e C9.",
-          componentId: "reed1",
-          componentType: "reed-switch",
-          targetPins: { "reed1:pin1": "bb1:c3", "reed1:pin2": "bb1:c9" },
-          hint: "Il reed switch si chiude con il magnete. Come un interruttore invisibile!"
-        },
-        {
-          step: 4,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E12, E13 e E14.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e12", "pot1:signal": "bb1:e13", "pot1:gnd": "bb1:e14" },
-          hint: "I 3 pin: VCC in E12, Signal in E13, GND in E14."
-        },
-        {
-          step: 5,
-          text: "Prendi il resistore da 470Ω dalla palette e posizionalo nei fori E17 e E24.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:e17", "r1:pin2": "bb1:e24" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 6,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D27, D28, D29 e D30.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d27", "rgb1:common": "bb1:d28", "rgb1:green": "bb1:d29", "rgb1:blue": "bb1:d30" },
-          hint: "I 4 piedini: Rosso in D27, Catodo comune in D28, Verde in D29, Blu in D30."
-        },
-        {
-          step: 7,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-top-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 8,
-          text: "Collega un filo ROSSO dal foro bus + superiore (col. 3) al foro A3.",
-          wireFrom: "bb1:bus-top-plus-3",
-          wireTo: "bb1:a3",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 9,
-          text: "Collega un filo GIALLO dal foro A9 al foro A12.",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a12",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        },
-        {
-          step: 10,
-          text: "Collega un filo VERDE dal foro A13 al foro A17.",
-          wireFrom: "bb1:a13",
-          wireTo: "bb1:a17",
-          wireColor: "green",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 11,
-          text: "Collega un filo ARANCIONE dal foro A24 al foro A27.",
-          wireFrom: "bb1:a24",
-          wireTo: "bb1:a27",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 12,
-          text: "Collega un filo NERO dal foro A14 al foro bus − superiore (col. 14).",
-          wireFrom: "bb1:a14",
-          wireTo: "bb1:bus-top-minus-14",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 13,
-          text: "Collega un filo NERO dal foro A28 al foro bus − superiore (col. 28).",
-          wireFrom: "bb1:a28",
-          wireTo: "bb1:bus-top-minus-28",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 14,
-          text: "Collega un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-top-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona interruttore magnetico nei fori C3, C9.",
+                      "componentId": "reed1",
+                      "componentType": "reed-switch",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "reed1:pin1": "bb1:c3",
+                              "reed1:pin2": "bb1:c9"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E12, E13, E14.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e12",
+                              "pot1:signal": "bb1:e13",
+                              "pot1:gnd": "bb1:e14"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona resistore da 470 ohm nei fori E17, E24.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:e17",
+                              "r1:pin2": "bb1:e24"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona LED RGB nei fori D27, D28, D29, D30.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d27",
+                              "rgb1:common": "bb1:d28",
+                              "rgb1:green": "bb1:d29",
+                              "rgb1:blue": "bb1:d30"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-top-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo RED da bb1:bus-top-plus-3 a bb1:a3.",
+                      "wireFrom": "bb1:bus-top-plus-3",
+                      "wireTo": "bb1:a3",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo YELLOW da bb1:a9 a bb1:a12.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:a12",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo GREEN da bb1:a13 a bb1:a17.",
+                      "wireFrom": "bb1:a13",
+                      "wireTo": "bb1:a17",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 11,
+                      "text": "Collega un filo ORANGE da bb1:a24 a bb1:a27.",
+                      "wireFrom": "bb1:a24",
+                      "wireTo": "bb1:a27",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 12,
+                      "text": "Collega un filo BLACK da bb1:a14 a bb1:bus-top-minus-14.",
+                      "wireFrom": "bb1:a14",
+                      "wireTo": "bb1:bus-top-minus-14",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 13,
+                      "text": "Collega un filo BLACK da bb1:a28 a bb1:bus-top-minus-28.",
+                      "wireFrom": "bb1:a28",
+                      "wireTo": "bb1:bus-top-minus-28",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -6226,20 +9079,41 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u26A0\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "led", id: "led1", color: "white" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+              }
       ],
       pinAssignments: {
-        "led1:anode": "bat1:positive",
-        "led1:cathode": "bat1:negative"
+              "led1:anode": "bat1:positive",
+              "led1:cathode": "bat1:negative"
       },
       connections: [
-        { from: "bat1:positive", to: "led1:anode", color: "red" },
-        { from: "led1:cathode", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "led1:anode",
+                      "color": "red"
+              },
+              {
+                      "from": "led1:cathode",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 70, y: 80 },
-        "led1": { x: 280, y: 95 }
+              "bat1": {
+                      "x": 30,
+                      "y": 70
+              },
+              "led1": {
+                      "x": 210,
+                      "y": 70
+              }
       },
       steps: [
         "Forma due strisce di elettropongo separate",
@@ -6256,37 +9130,40 @@ const EXPERIMENTS_VOL1 = {
       note: "Esperimento senza breadboard.",
       estimatedMinutes: 15,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la batteria 9V a sinistra della breadboard",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria alimenta il circuito."
-        },
-        {
-          step: 2,
-          text: "Posiziona il LED (anodo e catodo) separando bene i due piedini",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bat1:positive", "led1:cathode": "bat1:negative" },
-          hint: "Anodo = piedino lungo, catodo = piedino corto."
-        },
-        {
-          step: 3,
-          text: "Collega il polo positivo della batteria all'anodo del LED",
-          wireFrom: "bat1:positive",
-          wireTo: "led1:anode",
-          wireColor: "red",
-          hint: "Questa connessione rappresenta una striscia di elettropongo."
-        },
-        {
-          step: 4,
-          text: "Collega il catodo del LED al polo negativo della batteria",
-          wireFrom: "led1:cathode",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Seconda striscia di elettropongo: circuito chiuso."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona LED white nei fori BAT1:POSITIVE, BAT1:NEGATIVE.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bat1:positive",
+                              "led1:cathode": "bat1:negative"
+                      }
+              },
+              {
+                      "step": 3,
+                      "text": "Collega un filo RED da bat1:positive a led1:anode.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "led1:anode",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 4,
+                      "text": "Collega un filo BLACK da led1:cathode a bat1:negative.",
+                      "wireFrom": "led1:cathode",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -6315,32 +9192,83 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u26A0\uFE0F",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "led", id: "led1", color: "white" },
-        { type: "led", id: "led2", color: "white" },
-        { type: "led", id: "led3", color: "white" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "white"
+              },
+              {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "white"
+              },
+              {
+                      "type": "led",
+                      "id": "led3",
+                      "color": "white"
+              }
       ],
       pinAssignments: {
-        "led1:anode": "bat1:positive",
-        "led1:cathode": "bat1:negative",
-        "led2:anode": "bat1:positive",
-        "led2:cathode": "bat1:negative",
-        "led3:anode": "bat1:positive",
-        "led3:cathode": "bat1:negative"
+              "led1:anode": "bat1:positive",
+              "led1:cathode": "bat1:negative",
+              "led2:anode": "bat1:positive",
+              "led2:cathode": "bat1:negative",
+              "led3:anode": "bat1:positive",
+              "led3:cathode": "bat1:negative"
       },
       connections: [
-        { from: "bat1:positive", to: "led1:anode", color: "red" },
-        { from: "bat1:positive", to: "led2:anode", color: "red" },
-        { from: "bat1:positive", to: "led3:anode", color: "red" },
-        { from: "led1:cathode", to: "bat1:negative", color: "black" },
-        { from: "led2:cathode", to: "bat1:negative", color: "black" },
-        { from: "led3:cathode", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "led1:anode",
+                      "color": "red"
+              },
+              {
+                      "from": "bat1:positive",
+                      "to": "led2:anode",
+                      "color": "red"
+              },
+              {
+                      "from": "bat1:positive",
+                      "to": "led3:anode",
+                      "color": "red"
+              },
+              {
+                      "from": "led1:cathode",
+                      "to": "bat1:negative",
+                      "color": "black"
+              },
+              {
+                      "from": "led2:cathode",
+                      "to": "bat1:negative",
+                      "color": "black"
+              },
+              {
+                      "from": "led3:cathode",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 60, y: 95 },
-        "led1": { x: 255, y: 70 },
-        "led2": { x: 300, y: 100 },
-        "led3": { x: 345, y: 130 }
+              "bat1": {
+                      "x": 30,
+                      "y": 75
+              },
+              "led1": {
+                      "x": 190,
+                      "y": 45
+              },
+              "led2": {
+                      "x": 230,
+                      "y": 75
+              },
+              "led3": {
+                      "x": 270,
+                      "y": 105
+              }
       },
       steps: [
         "Crea una zona positiva e una zona negativa con l'elettropongo",
@@ -6358,85 +9286,94 @@ const EXPERIMENTS_VOL1 = {
       note: "Circuito creativo senza breadboard.",
       estimatedMinutes: 30,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la batteria 9V a sinistra della breadboard",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "Definisce la polarità del circuito artistico."
-        },
-        {
-          step: 2,
-          text: "Posiziona il primo LED bianco nella composizione",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bat1:positive", "led1:cathode": "bat1:negative" },
-          hint: "Mantieni separati anodo e catodo."
-        },
-        {
-          step: 3,
-          text: "Posiziona il secondo LED bianco nella composizione",
-          componentId: "led2",
-          componentType: "led",
-          targetPins: { "led2:anode": "bat1:positive", "led2:cathode": "bat1:negative" },
-          hint: "Mantieni separati anodo e catodo."
-        },
-        {
-          step: 4,
-          text: "Posiziona il terzo LED bianco nella composizione",
-          componentId: "led3",
-          componentType: "led",
-          targetPins: { "led3:anode": "bat1:positive", "led3:cathode": "bat1:negative" },
-          hint: "Mantieni separati anodo e catodo."
-        },
-        {
-          step: 5,
-          text: "Collega il polo positivo all'anodo del primo LED",
-          wireFrom: "bat1:positive",
-          wireTo: "led1:anode",
-          wireColor: "red",
-          hint: "Tutti gli anodi vanno nella stessa zona positiva."
-        },
-        {
-          step: 6,
-          text: "Collega il polo positivo all'anodo del secondo LED",
-          wireFrom: "bat1:positive",
-          wireTo: "led2:anode",
-          wireColor: "red",
-          hint: "Secondo ramo in parallelo."
-        },
-        {
-          step: 7,
-          text: "Collega il polo positivo all'anodo del terzo LED",
-          wireFrom: "bat1:positive",
-          wireTo: "led3:anode",
-          wireColor: "red",
-          hint: "Terzo ramo in parallelo."
-        },
-        {
-          step: 8,
-          text: "Collega il catodo del primo LED al polo negativo",
-          wireFrom: "led1:cathode",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Ritorno al negativo."
-        },
-        {
-          step: 9,
-          text: "Collega il catodo del secondo LED al polo negativo",
-          wireFrom: "led2:cathode",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Secondo ritorno al negativo."
-        },
-        {
-          step: 10,
-          text: "Collega il catodo del terzo LED al polo negativo",
-          wireFrom: "led3:cathode",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Circuito artistico completo in parallelo."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona LED white nei fori BAT1:POSITIVE, BAT1:NEGATIVE.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bat1:positive",
+                              "led1:cathode": "bat1:negative"
+                      }
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona LED white nei fori BAT1:POSITIVE, BAT1:NEGATIVE.",
+                      "componentId": "led2",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led2:anode": "bat1:positive",
+                              "led2:cathode": "bat1:negative"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona LED white nei fori BAT1:POSITIVE, BAT1:NEGATIVE.",
+                      "componentId": "led3",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led3:anode": "bat1:positive",
+                              "led3:cathode": "bat1:negative"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Collega un filo RED da bat1:positive a led1:anode.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "led1:anode",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 6,
+                      "text": "Collega un filo RED da bat1:positive a led2:anode.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "led2:anode",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 7,
+                      "text": "Collega un filo RED da bat1:positive a led3:anode.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "led3:anode",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da led1:cathode a bat1:negative.",
+                      "wireFrom": "led1:cathode",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da led2:cathode a bat1:negative.",
+                      "wireFrom": "led2:cathode",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da led3:cathode a bat1:negative.",
+                      "wireFrom": "led3:cathode",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {
@@ -6465,86 +9402,257 @@ const EXPERIMENTS_VOL1 = {
       icon: "\u{1F916}",
       simulationMode: "circuit",
       components: [
-        { type: "battery9v", id: "bat1" },
-        { type: "breadboard-full", id: "bb1" },
-        { type: "potentiometer", id: "pot1", value: 10000 },
-        { type: "potentiometer", id: "pot2", value: 10000 },
-        { type: "potentiometer", id: "pot3", value: 10000 },
-        { type: "resistor", id: "r1", value: 220 },
-        { type: "resistor", id: "r2", value: 220 },
-        { type: "resistor", id: "r3", value: 220 },
-        { type: "resistor", id: "r4", value: 220 },
-        { type: "led", id: "led1", color: "green" },
-        { type: "led", id: "led2", color: "green" },
-        { type: "rgb-led", id: "rgb1" },
-        { type: "reed-switch", id: "reed1" }
+              {
+                      "type": "battery9v",
+                      "id": "bat1"
+              },
+              {
+                      "type": "breadboard-full",
+                      "id": "bb1"
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot1",
+                      "value": 10000
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot2",
+                      "value": 10000
+              },
+              {
+                      "type": "potentiometer",
+                      "id": "pot3",
+                      "value": 10000
+              },
+              {
+                      "type": "resistor",
+                      "id": "r1",
+                      "value": 220
+              },
+              {
+                      "type": "resistor",
+                      "id": "r2",
+                      "value": 220
+              },
+              {
+                      "type": "resistor",
+                      "id": "r3",
+                      "value": 220
+              },
+              {
+                      "type": "resistor",
+                      "id": "r4",
+                      "value": 220
+              },
+              {
+                      "type": "led",
+                      "id": "led1",
+                      "color": "green"
+              },
+              {
+                      "type": "led",
+                      "id": "led2",
+                      "color": "green"
+              },
+              {
+                      "type": "rgb-led",
+                      "id": "rgb1"
+              },
+              {
+                      "type": "reed-switch",
+                      "id": "reed1"
+              }
       ],
       pinAssignments: {
-        "reed1:pin1": "bb1:c3",
-        "reed1:pin2": "bb1:c9",
-        "r1:pin1": "bb1:c14",
-        "r1:pin2": "bb1:c21",
-        "r2:pin1": "bb1:g14",
-        "r2:pin2": "bb1:g21",
-        "led1:anode": "bb1:b21",
-        "led1:cathode": "bb1:b22",
-        "led2:anode": "bb1:h23",
-        "led2:cathode": "bb1:h24",
-        "pot1:vcc": "bb1:e28",
-        "pot1:signal": "bb1:e29",
-        "pot1:gnd": "bb1:e30",
-        "pot2:vcc": "bb1:e33",
-        "pot2:signal": "bb1:e34",
-        "pot2:gnd": "bb1:e35",
-        "pot3:vcc": "bb1:e38",
-        "pot3:signal": "bb1:e39",
-        "pot3:gnd": "bb1:e40",
-        "r3:pin1": "bb1:b43",
-        "r3:pin2": "bb1:b50",
-        "r4:pin1": "bb1:g43",
-        "r4:pin2": "bb1:g50",
-        "rgb1:red": "bb1:d53",
-        "rgb1:common": "bb1:d54",
-        "rgb1:green": "bb1:d55",
-        "rgb1:blue": "bb1:d56"
+              "reed1:pin1": "bb1:c3",
+              "reed1:pin2": "bb1:c9",
+              "r1:pin1": "bb1:c14",
+              "r1:pin2": "bb1:c21",
+              "r2:pin1": "bb1:g14",
+              "r2:pin2": "bb1:g21",
+              "led1:anode": "bb1:b21",
+              "led1:cathode": "bb1:b22",
+              "led2:anode": "bb1:h23",
+              "led2:cathode": "bb1:h24",
+              "pot1:vcc": "bb1:e28",
+              "pot1:signal": "bb1:e29",
+              "pot1:gnd": "bb1:e30",
+              "pot2:vcc": "bb1:e33",
+              "pot2:signal": "bb1:e34",
+              "pot2:gnd": "bb1:e35",
+              "pot3:vcc": "bb1:e38",
+              "pot3:signal": "bb1:e39",
+              "pot3:gnd": "bb1:e40",
+              "r3:pin1": "bb1:b43",
+              "r3:pin2": "bb1:b50",
+              "r4:pin1": "bb1:g43",
+              "r4:pin2": "bb1:g50",
+              "rgb1:red": "bb1:d53",
+              "rgb1:common": "bb1:d54",
+              "rgb1:green": "bb1:d55",
+              "rgb1:blue": "bb1:d56"
       },
       connections: [
-        { from: "bat1:positive", to: "bb1:bus-plus-1", color: "red" },
-        { from: "bb1:bus-plus-3", to: "bb1:a3", color: "red" },
-        { from: "bb1:a9", to: "bb1:a14", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:f14", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:a28", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:a33", color: "yellow" },
-        { from: "bb1:a9", to: "bb1:a38", color: "yellow" },
-        { from: "bb1:a22", to: "bb1:bus-minus-22", color: "black" },
-        { from: "bb1:g21", to: "bb1:g23", color: "yellow" },
-        { from: "bb1:j24", to: "bb1:bus-minus-24", color: "black" },
-        { from: "bb1:a29", to: "bb1:a43", color: "orange" },
-        { from: "bb1:a50", to: "bb1:a53", color: "orange" },
-        { from: "bb1:a34", to: "bb1:f43", color: "green" },
-        { from: "bb1:f50", to: "bb1:a55", color: "green" },
-        { from: "bb1:a39", to: "bb1:f53", color: "blue" },
-        { from: "bb1:f60", to: "bb1:a56", color: "blue" },
-        { from: "bb1:a30", to: "bb1:bus-minus-30", color: "black" },
-        { from: "bb1:a35", to: "bb1:bus-minus-35", color: "black" },
-        { from: "bb1:a40", to: "bb1:bus-minus-40", color: "black" },
-        { from: "bb1:a54", to: "bb1:bus-minus-54", color: "black" },
-        { from: "bb1:bus-minus-1", to: "bat1:negative", color: "black" }
+              {
+                      "from": "bat1:positive",
+                      "to": "bb1:bus-plus-1",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:bus-plus-3",
+                      "to": "bb1:a3",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:a14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:f14",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:a28",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:a33",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a9",
+                      "to": "bb1:a38",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:a22",
+                      "to": "bb1:bus-minus-22",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:g21",
+                      "to": "bb1:g23",
+                      "color": "yellow"
+              },
+              {
+                      "from": "bb1:j24",
+                      "to": "bb1:bus-minus-24",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a29",
+                      "to": "bb1:a43",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a50",
+                      "to": "bb1:a53",
+                      "color": "orange"
+              },
+              {
+                      "from": "bb1:a34",
+                      "to": "bb1:f43",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:f50",
+                      "to": "bb1:a55",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:a39",
+                      "to": "bb1:f53",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:f60",
+                      "to": "bb1:a56",
+                      "color": "blue"
+              },
+              {
+                      "from": "bb1:a30",
+                      "to": "bb1:bus-minus-30",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a35",
+                      "to": "bb1:bus-minus-35",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a40",
+                      "to": "bb1:bus-minus-40",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:a54",
+                      "to": "bb1:bus-minus-54",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-minus-1",
+                      "to": "bat1:negative",
+                      "color": "black"
+              }
       ],
       layout: {
-        "bat1": { x: 15, y: 60 },
-        "bb1": { x: 80, y: 10 },
-        "reed1": { x: 130.25, y: 81.3 },
-        "r1": { x: 212.47, y: 81.3 },
-        "r2": { x: 212.47, y: 121.65 },
-        "led1": { x: 241.07, y: 60.15 },
-        "led2": { x: 255.38, y: 114.8 },
-        "pot1": { x: 294.7, y: 86.6 },
-        "pot2": { x: 330.45, y: 86.6 },
-        "pot3": { x: 366.2, y: 86.6 },
-        "r3": { x: 419.83, y: 74.15 },
-        "r4": { x: 419.83, y: 121.65 },
-        "rgb1": { x: 477.02, y: 65.95 }
+              "bat1": {
+                      "x": 15,
+                      "y": 60
+              },
+              "bb1": {
+                      "x": 80,
+                      "y": 10
+              },
+              "reed1": {
+                      "x": 130.25,
+                      "y": 81.3
+              },
+              "r1": {
+                      "x": 212.47,
+                      "y": 81.3
+              },
+              "r2": {
+                      "x": 212.47,
+                      "y": 121.65
+              },
+              "led1": {
+                      "x": 241.07,
+                      "y": 60.15
+              },
+              "led2": {
+                      "x": 255.38,
+                      "y": 114.8
+              },
+              "pot1": {
+                      "x": 294.7,
+                      "y": 86.6
+              },
+              "pot2": {
+                      "x": 330.45,
+                      "y": 86.6
+              },
+              "pot3": {
+                      "x": 366.2,
+                      "y": 86.6
+              },
+              "r3": {
+                      "x": 419.83,
+                      "y": 74.15
+              },
+              "r4": {
+                      "x": 419.83,
+                      "y": 121.65
+              },
+              "rgb1": {
+                      "x": 477.02,
+                      "y": 65.95
+              }
       },
       steps: [
         "Questo \u00e8 il progetto finale! Usa la breadboard grande (full-size)",
@@ -6567,277 +9675,314 @@ const EXPERIMENTS_VOL1 = {
       advancedProject: true,
       estimatedMinutes: 60,
       buildSteps: [
-        {
-          step: 1,
-          text: "Posiziona la breadboard (full-size) al centro del piano di lavoro. Sarà la base del tuo circuito!",
-          componentId: "bb1",
-          componentType: "breadboard-full",
-          hint: "La breadboard full-size ha più spazio per i componenti."
-        },
-        {
-          step: 2,
-          text: "Posiziona la batteria 9V accanto alla breadboard. È la fonte di energia del circuito!",
-          componentId: "bat1",
-          componentType: "battery9v",
-          hint: "La batteria 9V alimenta il circuito."
-        },
-        {
-          step: 3,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E28, E29 e E30.",
-          componentId: "pot1",
-          componentType: "potentiometer",
-          targetPins: { "pot1:vcc": "bb1:e28", "pot1:signal": "bb1:e29", "pot1:gnd": "bb1:e30" },
-          hint: "I 3 pin: VCC in E28, Signal in E29, GND in E30."
-        },
-        {
-          step: 4,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E33, E34 e E35.",
-          componentId: "pot2",
-          componentType: "potentiometer",
-          targetPins: { "pot2:vcc": "bb1:e33", "pot2:signal": "bb1:e34", "pot2:gnd": "bb1:e35" },
-          hint: "I 3 pin: VCC in E33, Signal in E34, GND in E35."
-        },
-        {
-          step: 5,
-          text: "Prendi il potenziometro da 10kΩ dalla palette e posizionalo nei fori E38, E39 e E40.",
-          componentId: "pot3",
-          componentType: "potentiometer",
-          targetPins: { "pot3:vcc": "bb1:e38", "pot3:signal": "bb1:e39", "pot3:gnd": "bb1:e40" },
-          hint: "I 3 pin: VCC in E38, Signal in E39, GND in E40."
-        },
-        {
-          step: 6,
-          text: "Prendi il resistore da 220Ω dalla palette e posizionalo nei fori C14 e C21.",
-          componentId: "r1",
-          componentType: "resistor",
-          targetPins: { "r1:pin1": "bb1:c14", "r1:pin2": "bb1:c21" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 7,
-          text: "Prendi il resistore da 220Ω dalla palette e posizionalo nei fori G14 e G21.",
-          componentId: "r2",
-          componentType: "resistor",
-          targetPins: { "r2:pin1": "bb1:g14", "r2:pin2": "bb1:g21" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 8,
-          text: "Prendi il resistore da 220Ω dalla palette e posizionalo nei fori B43 e B50.",
-          componentId: "r3",
-          componentType: "resistor",
-          targetPins: { "r3:pin1": "bb1:b43", "r3:pin2": "bb1:b50" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 9,
-          text: "Prendi il resistore da 220Ω dalla palette e posizionalo nei fori G43 e G50.",
-          componentId: "r4",
-          componentType: "resistor",
-          targetPins: { "r4:pin1": "bb1:g43", "r4:pin2": "bb1:g50" },
-          hint: "Il resistore limita la corrente nel circuito."
-        },
-        {
-          step: 10,
-          text: "Prendi il LED verde dalla palette e posizionalo nei fori B21 e B22.",
-          componentId: "led1",
-          componentType: "led",
-          targetPins: { "led1:anode": "bb1:b21", "led1:cathode": "bb1:b22" },
-          hint: "L'anodo (+, gamba lunga) va in B21 e il catodo (−, gamba corta) in B22."
-        },
-        {
-          step: 12,
-          text: "Prendi il LED verde dalla palette e posizionalo nei fori H23 e H24.",
-          componentId: "led2",
-          componentType: "led",
-          targetPins: { "led2:anode": "bb1:h23", "led2:cathode": "bb1:h24" },
-          hint: "L'anodo (+, gamba lunga) va in H23 e il catodo (−, gamba corta) in H24."
-        },
-        {
-          step: 13,
-          text: "Prendi il LED RGB dalla palette e posizionalo nei fori D53, D54, D55 e D56.",
-          componentId: "rgb1",
-          componentType: "rgb-led",
-          targetPins: { "rgb1:red": "bb1:d53", "rgb1:common": "bb1:d54", "rgb1:green": "bb1:d55", "rgb1:blue": "bb1:d56" },
-          hint: "I 4 piedini: Rosso in D53, Catodo comune in D54, Verde in D55, Blu in D56."
-        },
-        {
-          step: 14,
-          text: "Prendi il reed switch dalla palette e posizionalo nei fori C3 e C9.",
-          componentId: "reed1",
-          componentType: "reed-switch",
-          targetPins: { "reed1:pin1": "bb1:c3", "reed1:pin2": "bb1:c9" },
-          hint: "Il reed switch si chiude con il magnete. Come un interruttore invisibile!"
-        },
-        {
-          step: 15,
-          text: "Collega un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
-          wireFrom: "bat1:positive",
-          wireTo: "bb1:bus-plus-1",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
-        },
-        {
-          step: 16,
-          text: "Collega un filo ROSSO dal foro bus + (riga 3) al foro A3.",
-          wireFrom: "bb1:bus-plus-3",
-          wireTo: "bb1:a3",
-          wireColor: "red",
-          hint: "Questo filo porta la corrente dal bus positivo al componente."
-        },
-        {
-          step: 17,
-          text: "Collega un filo GIALLO dal foro A9 al foro A14.",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 18,
-          text: "Collega un filo GIALLO dal foro A9 al foro F14.",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:f14",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 19,
-          text: "Collega un filo GIALLO dal foro A9 al foro A28.",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a28",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 20,
-          text: "Collega un filo GIALLO dal foro A9 al foro A33.",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a33",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 21,
-          text: "Collega un filo GIALLO dal foro A9 al foro A38.",
-          wireFrom: "bb1:a9",
-          wireTo: "bb1:a38",
-          wireColor: "yellow",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 22,
-          text: "Collega un filo NERO dal foro A22 al foro bus − (riga 22).",
-          wireFrom: "bb1:a22",
-          wireTo: "bb1:bus-minus-22",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 23,
-          text: "Collega un filo GIALLO dal foro G21 al foro G23 (ponte verso il LED).",
-          wireFrom: "bb1:g21",
-          wireTo: "bb1:g23",
-          wireColor: "yellow",
-          hint: "Questo filo collega il resistore al LED."
-        },
-        {
-          step: 24,
-          text: "Collega un filo NERO dal foro J24 al foro bus − (riga 24).",
-          wireFrom: "bb1:j24",
-          wireTo: "bb1:bus-minus-24",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 25,
-          text: "Collega un filo ARANCIONE dal foro A29 al foro A43.",
-          wireFrom: "bb1:a29",
-          wireTo: "bb1:a43",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-        },
-        {
-          step: 26,
-          text: "Collega un filo ARANCIONE dal foro A50 al foro A53.",
-          wireFrom: "bb1:a50",
-          wireTo: "bb1:a53",
-          wireColor: "orange",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 27,
-          text: "Collega un filo VERDE dal foro A34 al foro F43.",
-          wireFrom: "bb1:a34",
-          wireTo: "bb1:f43",
-          wireColor: "green",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 28,
-          text: "Collega un filo VERDE dal foro F50 al foro A55.",
-          wireFrom: "bb1:f50",
-          wireTo: "bb1:a55",
-          wireColor: "green",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 29,
-          text: "Collega un filo BLU dal foro A39 al foro F53.",
-          wireFrom: "bb1:a39",
-          wireTo: "bb1:f53",
-          wireColor: "blue",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 30,
-          text: "Collega un filo BLU dal foro F60 al foro A56.",
-          wireFrom: "bb1:f60",
-          wireTo: "bb1:a56",
-          wireColor: "blue",
-          hint: "Questo filo collega due parti del circuito."
-        },
-        {
-          step: 31,
-          text: "Collega un filo NERO dal foro A30 al foro bus − (riga 30).",
-          wireFrom: "bb1:a30",
-          wireTo: "bb1:bus-minus-30",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 32,
-          text: "Collega un filo NERO dal foro A35 al foro bus − (riga 35).",
-          wireFrom: "bb1:a35",
-          wireTo: "bb1:bus-minus-35",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 33,
-          text: "Collega un filo NERO dal foro A40 al foro bus − (riga 40).",
-          wireFrom: "bb1:a40",
-          wireTo: "bb1:bus-minus-40",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 34,
-          text: "Collega un filo NERO dal foro A54 al foro bus − (riga 54).",
-          wireFrom: "bb1:a54",
-          wireTo: "bb1:bus-minus-54",
-          wireColor: "black",
-          hint: "Questo filo riporta la corrente al bus negativo."
-        },
-        {
-          step: 35,
-          text: "Collega un filo NERO dal foro bus − (riga 1) al polo − della batteria.",
-          wireFrom: "bb1:bus-minus-1",
-          wireTo: "bat1:negative",
-          wireColor: "black",
-          hint: "Questo filo chiude il circuito riportando la corrente alla batteria."
-        }
+              {
+                      "step": 1,
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 2,
+                      "text": "Posiziona breadboard grande.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-full",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
+              },
+              {
+                      "step": 3,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E28, E29, E30.",
+                      "componentId": "pot1",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot1:vcc": "bb1:e28",
+                              "pot1:signal": "bb1:e29",
+                              "pot1:gnd": "bb1:e30"
+                      }
+              },
+              {
+                      "step": 4,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E33, E34, E35.",
+                      "componentId": "pot2",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot2:vcc": "bb1:e33",
+                              "pot2:signal": "bb1:e34",
+                              "pot2:gnd": "bb1:e35"
+                      }
+              },
+              {
+                      "step": 5,
+                      "text": "Posiziona potenziometro da 10k ohm nei fori E38, E39, E40.",
+                      "componentId": "pot3",
+                      "componentType": "potentiometer",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "pot3:vcc": "bb1:e38",
+                              "pot3:signal": "bb1:e39",
+                              "pot3:gnd": "bb1:e40"
+                      }
+              },
+              {
+                      "step": 6,
+                      "text": "Posiziona resistore da 220 ohm nei fori C14, C21.",
+                      "componentId": "r1",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r1:pin1": "bb1:c14",
+                              "r1:pin2": "bb1:c21"
+                      }
+              },
+              {
+                      "step": 7,
+                      "text": "Posiziona resistore da 220 ohm nei fori G14, G21.",
+                      "componentId": "r2",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r2:pin1": "bb1:g14",
+                              "r2:pin2": "bb1:g21"
+                      }
+              },
+              {
+                      "step": 8,
+                      "text": "Posiziona resistore da 220 ohm nei fori B43, B50.",
+                      "componentId": "r3",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r3:pin1": "bb1:b43",
+                              "r3:pin2": "bb1:b50"
+                      }
+              },
+              {
+                      "step": 9,
+                      "text": "Posiziona resistore da 220 ohm nei fori G43, G50.",
+                      "componentId": "r4",
+                      "componentType": "resistor",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "r4:pin1": "bb1:g43",
+                              "r4:pin2": "bb1:g50"
+                      }
+              },
+              {
+                      "step": 10,
+                      "text": "Posiziona LED green nei fori B21, B22.",
+                      "componentId": "led1",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led1:anode": "bb1:b21",
+                              "led1:cathode": "bb1:b22"
+                      }
+              },
+              {
+                      "step": 11,
+                      "text": "Posiziona LED green nei fori H23, H24.",
+                      "componentId": "led2",
+                      "componentType": "led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "led2:anode": "bb1:h23",
+                              "led2:cathode": "bb1:h24"
+                      }
+              },
+              {
+                      "step": 12,
+                      "text": "Posiziona LED RGB nei fori D53, D54, D55, D56.",
+                      "componentId": "rgb1",
+                      "componentType": "rgb-led",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "rgb1:red": "bb1:d53",
+                              "rgb1:common": "bb1:d54",
+                              "rgb1:green": "bb1:d55",
+                              "rgb1:blue": "bb1:d56"
+                      }
+              },
+              {
+                      "step": 13,
+                      "text": "Posiziona interruttore magnetico nei fori C3, C9.",
+                      "componentId": "reed1",
+                      "componentType": "reed-switch",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
+                      "targetPins": {
+                              "reed1:pin1": "bb1:c3",
+                              "reed1:pin2": "bb1:c9"
+                      }
+              },
+              {
+                      "step": 14,
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-plus-1.",
+                      "wireFrom": "bat1:positive",
+                      "wireTo": "bb1:bus-plus-1",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 15,
+                      "text": "Collega un filo RED da bb1:bus-plus-3 a bb1:a3.",
+                      "wireFrom": "bb1:bus-plus-3",
+                      "wireTo": "bb1:a3",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 16,
+                      "text": "Collega un filo YELLOW da bb1:a9 a bb1:a14.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:a14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 17,
+                      "text": "Collega un filo YELLOW da bb1:a9 a bb1:f14.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:f14",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 18,
+                      "text": "Collega un filo YELLOW da bb1:a9 a bb1:a28.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:a28",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 19,
+                      "text": "Collega un filo YELLOW da bb1:a9 a bb1:a33.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:a33",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 20,
+                      "text": "Collega un filo YELLOW da bb1:a9 a bb1:a38.",
+                      "wireFrom": "bb1:a9",
+                      "wireTo": "bb1:a38",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 21,
+                      "text": "Collega un filo BLACK da bb1:a22 a bb1:bus-minus-22.",
+                      "wireFrom": "bb1:a22",
+                      "wireTo": "bb1:bus-minus-22",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 22,
+                      "text": "Collega un filo YELLOW da bb1:g21 a bb1:g23.",
+                      "wireFrom": "bb1:g21",
+                      "wireTo": "bb1:g23",
+                      "wireColor": "yellow",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 23,
+                      "text": "Collega un filo BLACK da bb1:j24 a bb1:bus-minus-24.",
+                      "wireFrom": "bb1:j24",
+                      "wireTo": "bb1:bus-minus-24",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 24,
+                      "text": "Collega un filo ORANGE da bb1:a29 a bb1:a43.",
+                      "wireFrom": "bb1:a29",
+                      "wireTo": "bb1:a43",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 25,
+                      "text": "Collega un filo ORANGE da bb1:a50 a bb1:a53.",
+                      "wireFrom": "bb1:a50",
+                      "wireTo": "bb1:a53",
+                      "wireColor": "orange",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 26,
+                      "text": "Collega un filo GREEN da bb1:a34 a bb1:f43.",
+                      "wireFrom": "bb1:a34",
+                      "wireTo": "bb1:f43",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 27,
+                      "text": "Collega un filo GREEN da bb1:f50 a bb1:a55.",
+                      "wireFrom": "bb1:f50",
+                      "wireTo": "bb1:a55",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 28,
+                      "text": "Collega un filo BLUE da bb1:a39 a bb1:f53.",
+                      "wireFrom": "bb1:a39",
+                      "wireTo": "bb1:f53",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 29,
+                      "text": "Collega un filo BLUE da bb1:f60 a bb1:a56.",
+                      "wireFrom": "bb1:f60",
+                      "wireTo": "bb1:a56",
+                      "wireColor": "blue",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 30,
+                      "text": "Collega un filo BLACK da bb1:a30 a bb1:bus-minus-30.",
+                      "wireFrom": "bb1:a30",
+                      "wireTo": "bb1:bus-minus-30",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 31,
+                      "text": "Collega un filo BLACK da bb1:a35 a bb1:bus-minus-35.",
+                      "wireFrom": "bb1:a35",
+                      "wireTo": "bb1:bus-minus-35",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 32,
+                      "text": "Collega un filo BLACK da bb1:a40 a bb1:bus-minus-40.",
+                      "wireFrom": "bb1:a40",
+                      "wireTo": "bb1:bus-minus-40",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 33,
+                      "text": "Collega un filo BLACK da bb1:a54 a bb1:bus-minus-54.",
+                      "wireFrom": "bb1:a54",
+                      "wireTo": "bb1:bus-minus-54",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 34,
+                      "text": "Collega un filo BLACK da bb1:bus-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-minus-1",
+                      "wireTo": "bat1:negative",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              }
       ],
       quiz: [
         {

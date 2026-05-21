@@ -94,7 +94,7 @@
   "next_experiment": {
     "id": "v1-cap6-esp2",
     "title": "LED senza resistore (cosa NON fare!)",
-    "preview": "Cosa succede se togliamo il resistore? Il LED è in pericolo!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.32 intitolata \"LED senza resistore (cosa NON fare!)\"."
   },
   "phases": [
     {
@@ -121,8 +121,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito sulla breadboard",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Accendi il tuo primo LED seguendo Vol.1 pag.29.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -250,7 +250,7 @@
         "circuito chiuso",
         "polarità LED (anodo/catodo)"
       ],
-      "next_preview": "La prossima volta scopriremo cosa succede se togliamo il resistore... il LED è in pericolo! 😱"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.32 intitolata \"LED senza resistore (cosa NON fare!)\"."
     }
   ],
   "assessment_invisible": [
@@ -266,5 +266,10 @@
     ],
     "next_suggested": "v1-cap6-esp2",
     "resume_message": "L'ultima volta avete acceso il vostro primo LED! Oggi scopriamo cosa succede senza il resistore..."
+  },
+  "book_reference": {
+    "volume": 1,
+    "page": 29,
+    "label": "Vol.1 pag.29"
   }
 }

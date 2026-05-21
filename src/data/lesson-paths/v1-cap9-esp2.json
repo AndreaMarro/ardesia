@@ -84,7 +84,7 @@
   "next_experiment": {
     "id": "v1-cap9-esp3",
     "title": "LED di colore diverso con pot",
-    "preview": "Provate con un LED verde: si accende allo stesso punto della manopola?"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.63 intitolata \"LED di colore diverso con pot\"."
   },
   "phases": [
     {
@@ -111,8 +111,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito dimmer invertito",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Inverti la rotazione seguendo Vol.1 pag.62.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -241,7 +241,7 @@
         "simmetria del potenziometro",
         "inversione rotazione"
       ],
-      "next_preview": "La prossima volta proviamo con un LED di colore diverso — si accenderà allo stesso punto della manopola?"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.63 intitolata \"LED di colore diverso con pot\"."
     }
   ],
   "assessment_invisible": [
@@ -256,5 +256,16 @@
     ],
     "next_suggested": "v1-cap9-esp3",
     "resume_message": "L'ultima volta avete invertito la rotazione del potenziometro! Ora proviamo con un LED di colore diverso."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 62,
+    "label": "Vol.1 pag.62"
   }
 }

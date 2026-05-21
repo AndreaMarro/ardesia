@@ -3,12 +3,12 @@
  *
  * iter 88 UX-7 — empty-state explainer card on HomePage cross-compile entry.
  *
- * Renders a collapsible "Cosa fa questo programma?" panel beneath the
- * editor surface. Default visible (expanded) on first-render so docente
- * who has never opened the cross-compile flow immediately sees what the
- * loaded template does. Once the docente collapses it explicitly, the
- * choice persists in localStorage so subsequent visits keep the toolbar
- * clean.
+ * Renders a collapsible "Cosa fa questo programma?" panel above the
+ * editor surface. iter-102 (Andrea "allarga l'editor"): default COLLAPSED
+ * so the Blockly editor gets the vertical room it needs — the expanded
+ * panel ate ~210px and squeezed the editor to ~258px. The panel is one
+ * click away; the docente's expand/collapse choice persists in
+ * localStorage ('true'/'false') across visits.
  *
  * Spec contract per docs/specs/2026-05-18-iter-88-ux-cleanup-cross-compile-spec.md §88.UX-7:
  *   - Collapsed: button label "Cosa fa questo programma?" + chevron down
@@ -99,15 +99,16 @@ function ChevronInline({ expanded }) {
 }
 
 /**
- * Read initial collapsed flag from localStorage. SAFE on SSR/test envs
- * where window/localStorage may be absent — returns false (expanded).
+ * Read initial collapsed flag from localStorage. iter-102: default COLLAPSED
+ * (true) — the panel only stays open when the docente explicitly expanded it
+ * (stored 'false'). SAFE on SSR/test envs where window/localStorage absent.
  */
 function readInitialCollapsed() {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') return true;
   try {
-    return window.localStorage.getItem(STORAGE_KEY) === 'true';
+    return window.localStorage.getItem(STORAGE_KEY) !== 'false';
   } catch {
-    return false;
+    return true;
   }
 }
 
@@ -118,16 +119,12 @@ function readInitialCollapsed() {
 export default function ProgramExplainer({ templateKey = 'blink-led' }) {
   const [collapsed, setCollapsed] = useState(readInitialCollapsed);
 
-  // Persist collapse choice — only writes 'true' string when collapsed,
-  // removes the key entirely when expanded so the storage stays clean.
+  // iter-102: persist BOTH states. Default is collapsed, so an explicit
+  // 'false' is required to remember the docente chose to keep it open.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      if (collapsed) {
-        window.localStorage.setItem(STORAGE_KEY, 'true');
-      } else {
-        window.localStorage.removeItem(STORAGE_KEY);
-      }
+      window.localStorage.setItem(STORAGE_KEY, collapsed ? 'true' : 'false');
     } catch {
       /* defensive — localStorage may throw in private mode */
     }

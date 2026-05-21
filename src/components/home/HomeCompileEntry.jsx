@@ -30,6 +30,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { compileCode } from '../../services/api';
 import logger from '../../utils/logger';
+import { resolveCompileFlash } from '../../utils/compileSizeParse';
 // iter 77 P0.2b fix (Codex Pattern V iter 77 verify MED #4): swap legacy
 // CompileAgentBanner → WebUsbBanner default per iter 76 ARCHITECTURAL
 // PIVOT Andrea verbatim "NO download docente, WebUSB direct". Legacy
@@ -220,40 +221,25 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     try {
       const result = await compileCode(code, DEFAULT_FQBN);
       if (result && result.success) {
+        const provider = result.provider || 'cloud-renesas';
+        if (provider !== 'cloud-renesas') {
+          setCompileStatus('verified-legacy');
+          setCompileSize(null);
+          if (result.warnings) setCompileWarnings(result.warnings);
+          return;
+        }
+
         setCompileStatus('success');
-        // iter 80 80.A5 fix (Codex Pattern V iter 79 MED COMPILE-6 +
-        // Codex Pattern C iter 80 batch MED shape match): api.js compileCode
-        // never returns result.size — Cloud Render branch (api.js:1362-1369)
-        // maps hexBase64 → result.hex without size; legacy branch (api.js:
-        // 1372-1378) maps data.hex → result.hex similarly. Derive bytes from
-        // result.hex content: base64 atob length for Cloud (HomeCompileEntry
-        // default FQBN = Renesas Nano R4 → isCloudRender=true), Intel HEX
-        // hex-digit count / 2 fallback for legacy. Wrap in {bytes,total,
-        // percent} object matching ScratchCompileBar:127 render contract
-        // (`compilationSize.bytes`/`.total`/`.percent`). Nano R4 flash
-        // = 256KB = 262144 bytes per src/boards/arduino-nano-r4.json:12.
-        const derivedBytes = (() => {
-          if (typeof result.size === 'number') return result.size;
-          if (!result.hex) return null;
-          const trimmed = String(result.hex).trimStart();
-          // Intel HEX heuristic: trimmed starts with ':' (record marker)
-          if (trimmed.charAt(0) === ':') {
-            return Math.floor(trimmed.replace(/[^0-9a-fA-F]/g, '').length / 2);
-          }
-          // Base64 path (Cloud Render canonical for Nano R4 FQBN)
-          try {
-            return atob(trimmed).length;
-          } catch {
-            return null;
-          }
-        })();
-        if (derivedBytes != null) {
-          const FLASH_TOTAL_NANO_R4 = 262144; // 256KB Renesas RA4M1
-          setCompileSize({
-            bytes: derivedBytes,
-            total: FLASH_TOTAL_NANO_R4,
-            percent: Math.round((derivedBytes / FLASH_TOTAL_NANO_R4) * 100),
-          });
+        // iter-102 fix (Codex iter-101 review + live Chrome debug 2026-05-20):
+        // iter-80.A5 reported result.artifactSizeBytes (= hexSize, the Intel
+        // HEX *file* size) and atob(hexBase64).length (the same HEX text) as
+        // the flash figure → the panel showed "42%" for a Blink that really
+        // uses ~14%. resolveCompileFlash parses arduino-cli stdout
+        // (result.output, authoritative) with an Intel HEX data-record
+        // fallback. See src/utils/compileSizeParse.js.
+        const flash = resolveCompileFlash(result);
+        if (flash) {
+          setCompileSize(flash);
         }
         if (result.warnings) setCompileWarnings(result.warnings);
       } else {
@@ -266,6 +252,8 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       setCompileErrors(err?.message || 'Errore di rete. Verificate la connessione.');
     }
   }, [scratchCode]);
+
+  const isLegacyVerified = compileStatus === 'verified-legacy';
 
   return (
     <div className={styles.root} data-testid="home-compile-entry" data-elab-mode="compile-home">
@@ -281,7 +269,17 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         <h1 className={styles.title}>Compila Arduino dal kit ELAB</h1>
         <p className={styles.subtitle}>
           Ragazzi, scrivete codice Arduino con i blocchi Blockly oppure direttamente in C++.
-          Poi premete <strong>Compila</strong> e caricate sul vostro Nano R4 del kit.
+          {isLegacyVerified ? (
+            <>
+              {' '}Poi premete <strong>Compila</strong>: se vedete “codice verificato”,
+              è solo una verifica legacy, non un programma pronto da caricare sul Nano R4.
+            </>
+          ) : (
+            <>
+              {' '}Poi premete <strong>Compila</strong>: il caricamento sul Nano R4 si abilita
+              solo dopo una compilazione reale per il kit.
+            </>
+          )}
         </p>
       </header>
 
@@ -351,7 +349,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                   workspaceReady={workspaceReady}
                   workspaceBlockCount={workspaceBlockCount}
                   onStarterClick={handleStarterClick}
-                  title="ELAB Scratch Arduino"
                 >
                   <ScratchEditor
                     onChange={handleScratchCodeChange}
@@ -444,11 +441,9 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             non tablet)"; "Carica sul kit fisico" → "Carica sul kit Arduino";
             "flasha" → "carica". Docente non-tech 8-14 anni studenti target. */}
         <p className={styles.footerNote}>
-          Compila il programma per l'Arduino Nano R4 del kit ELAB direttamente
-          dal browser. Premete "Compila" per preparare il programma. Per caricarlo
-          sul kit, collegate il Nano R4 via USB-C e premete "Carica sul kit
-          Arduino". Funziona con browser Chrome o Edge (su computer, non tablet).
-          Nessun download necessario.
+          {isLegacyVerified
+            ? 'Codice verificato dal compilatore legacy: il compilatore Nano R4 non è ancora attivo, quindi questo risultato non abilita il caricamento sul kit fisico.'
+            : 'Compila il programma per l\'Arduino Nano R4 del kit ELAB dal browser. Il caricamento sul kit fisico sarà disponibile solo dopo una compilazione Nano R4 reale. Funziona con browser Chrome o Edge (su computer, non tablet).'}
         </p>
       </footer>
       {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso

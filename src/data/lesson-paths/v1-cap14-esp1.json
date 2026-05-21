@@ -111,11 +111,7 @@
   "prerequisites": [
     "v1-cap13-esp2"
   ],
-  "next_experiment": {
-    "id": "v2-cap6-esp1",
-    "title": "LED in serie con 1 resistore",
-    "preview": "Nel Volume 2 scoprirete nuovi componenti e sfide ancora più avvincenti!"
-  },
+  "next_experiment": null,
   "phases": [
     {
       "name": "PREPARA",
@@ -141,8 +137,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il Primo Robot ELAB sulla breadboard grande",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Il Primo Robot ELAB seguendo Vol.1 pag.107.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -186,11 +182,6 @@
             {
               "type": "resistor",
               "id": "r4",
-              "value": 220
-            },
-            {
-              "type": "resistor",
-              "id": "r5",
               "value": 220
             },
             {
@@ -396,7 +387,7 @@
         "reed switch come interruttore generale",
         "RGB controllato da potenziometri"
       ],
-      "next_preview": "Nel Volume 2 scoprirete componenti nuovi e sfide ancora più avvincenti! Il vostro viaggio nell'elettronica continua!"
+      "next_preview": "Ragazzi, il Volume 1 si chiude con il robot ELAB: la storia resta pronta per i volumi successivi."
     }
   ],
   "assessment_invisible": [
@@ -410,7 +401,18 @@
       "integrazione_volume1",
       "reed_pot_RGB_LED"
     ],
-    "next_suggested": "v2-cap6-esp1",
+    "next_suggested": null,
     "resume_message": "Avete completato il Volume 1 e costruito un robot! Il Volume 2 vi aspetta con nuove avventure!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 107,
+    "label": "Vol.1 pag.107"
   }
 }

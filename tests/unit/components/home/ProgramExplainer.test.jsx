@@ -4,11 +4,11 @@
  * iter 88 UX-7 — empty-state explainer panel for HomeCompileEntry.
  *
  * Coverage (6 tests T1-T6):
- *   T1 default render templateKey="blink-led" → toggle button "Cosa fa
- *      questo programma?" present + correct title rendered.
+ *   T1 default render templateKey="blink-led" → toggle present + panel
+ *      COLLAPSED by default (iter-102 Andrea "allarga l'editor").
  *   T2 click expand reveals 3-4 sentence text containing plurale "Ragazzi"
  *      (PRINCIPIO ZERO regola 14).
- *   T3 click collapse hides text + sets localStorage 'true'.
+ *   T3 expand then collapse — persists both 'false'/'true' in localStorage.
  *   T4 localStorage 'elab.compile.explainer.collapsed' === 'true' renders
  *      collapsed initially.
  *   T5 templateKey="read-button" shows different explainer text.
@@ -55,14 +55,17 @@ describe('ProgramExplainer (iter 88 UX-7)', () => {
     store.delete(STORAGE_KEY);
   });
 
-  it('T1 default render templateKey="blink-led" shows toggle + correct title', () => {
+  it('T1 default render templateKey="blink-led" shows toggle, collapsed by default', () => {
     render(<ProgramExplainer templateKey="blink-led" />);
     const toggle = screen.getByTestId('program-explainer-toggle');
     expect(toggle).toBeTruthy();
     expect(toggle.textContent).toMatch(/Cosa fa questo programma\?/);
-    // Expanded by default on first render → title visible.
-    const title = screen.getByTestId('program-explainer-title');
-    expect(title.textContent).toMatch(/LED che lampeggia/);
+    // iter-102: COLLAPSED by default → body NOT in DOM, aria-expanded false.
+    expect(screen.queryByTestId('program-explainer-body')).toBeNull();
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    // Expanding reveals the correct title.
+    fireEvent.click(toggle);
+    expect(screen.getByTestId('program-explainer-title').textContent).toMatch(/LED che lampeggia/);
   });
 
   it('T2 click expand reveals 3-4 sentence text containing plurale "Ragazzi"', () => {
@@ -82,14 +85,16 @@ describe('ProgramExplainer (iter 88 UX-7)', () => {
     expect(periods).toBeLessThanOrEqual(5);
   });
 
-  it('T3 click collapse hides text + sets localStorage', () => {
+  it('T3 expand then collapse persists both states in localStorage', () => {
     render(<ProgramExplainer templateKey="blink-led" />);
-    // Starts expanded.
+    const toggle = screen.getByTestId('program-explainer-toggle');
+    // iter-102: collapsed by default — expand first, persists 'false'.
+    fireEvent.click(toggle);
     expect(screen.getByTestId('program-explainer-body')).toBeTruthy();
-    // Click toggles to collapsed.
-    fireEvent.click(screen.getByTestId('program-explainer-toggle'));
+    expect(window.localStorage.getItem(STORAGE_KEY)).toBe('false');
+    // Collapse again — persists 'true'.
+    fireEvent.click(toggle);
     expect(screen.queryByTestId('program-explainer-body')).toBeNull();
-    // localStorage set 'true'.
     expect(window.localStorage.getItem(STORAGE_KEY)).toBe('true');
   });
 
@@ -105,6 +110,8 @@ describe('ProgramExplainer (iter 88 UX-7)', () => {
 
   it('T5 templateKey="read-button" shows different explainer text', () => {
     render(<ProgramExplainer templateKey="read-button" />);
+    // iter-102: collapsed by default — expand to read the body.
+    fireEvent.click(screen.getByTestId('program-explainer-toggle'));
     const title = screen.getByTestId('program-explainer-title');
     expect(title.textContent).toMatch(/pulsante/i);
     const body = screen.getByTestId('program-explainer-body');
@@ -117,6 +124,8 @@ describe('ProgramExplainer (iter 88 UX-7)', () => {
 
   it('T6 PRINCIPIO ZERO asserts: body contains "Ragazzi" + Vol/cap reference', () => {
     render(<ProgramExplainer templateKey="blink-led" />);
+    // iter-102: collapsed by default — expand to inspect the body.
+    fireEvent.click(screen.getByTestId('program-explainer-toggle'));
     const body = screen.getByTestId('program-explainer-body');
     // Plurale opener required.
     expect(body.textContent).toMatch(/Ragazzi/);

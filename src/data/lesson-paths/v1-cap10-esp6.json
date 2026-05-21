@@ -90,8 +90,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap11-esp1",
-    "title": "Esperimento 1: il cicalino suona collegato alla batteria",
-    "preview": "Il prossimo capitolo: il suono! Colleghiamo un cicalino alla batteria."
+    "title": "Buzzer suona continuo",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.94 intitolata \"Buzzer suona continuo\"."
   },
   "phases": [
     {
@@ -118,8 +118,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito pulsante + LDR + LED",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Aggiungi pulsante al circuito LDR seguendo Vol.1 pag.92.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -141,12 +141,17 @@
             {
               "type": "resistor",
               "id": "r1",
-              "value": 220
+              "value": 470
             },
             {
               "type": "led",
               "id": "led1",
-              "color": "red"
+              "color": "white"
+            },
+            {
+              "type": "led",
+              "id": "led2",
+              "color": "blue"
             }
           ],
           "wires": [
@@ -162,22 +167,32 @@
             },
             {
               "from": "bb1:j4",
-              "to": "bb1:a7",
+              "to": "bb1:a14",
               "color": "yellow"
             },
             {
-              "from": "bb1:a8",
-              "to": "bb1:a9",
+              "from": "bb1:a17",
+              "to": "bb1:a18",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a19",
+              "to": "bb1:bus-top-minus-19",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-plus-6",
+              "to": "bb1:a6",
+              "color": "red"
+            },
+            {
+              "from": "bb1:a9",
+              "to": "bb1:a10",
               "color": "orange"
             },
             {
               "from": "bb1:a11",
-              "to": "bb1:a12",
-              "color": "orange"
-            },
-            {
-              "from": "bb1:a13",
-              "to": "bb1:bus-top-minus-13",
+              "to": "bb1:bus-top-minus-11",
               "color": "black"
             },
             {
@@ -258,7 +273,7 @@
         "doppio controllo",
         "integrazione sensore e pulsante"
       ],
-      "next_preview": "Il prossimo capitolo: il SUONO! Colleghiamo un cicalino e facciamo suonare il circuito!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.94 intitolata \"Buzzer suona continuo\"."
     }
   ],
   "assessment_invisible": [
@@ -273,5 +288,16 @@
     ],
     "next_suggested": "v1-cap11-esp1",
     "resume_message": "Avete completato il capitolo della fotoresistenza! Ora: il SUONO con il cicalino."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 92,
+    "label": "Vol.1 pag.92"
   }
 }

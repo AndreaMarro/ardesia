@@ -52,9 +52,11 @@ vi.mock('../../../../src/components/simulator/panels/CodeEditorCM6', () => ({
 // Stub ScratchCompileBar — espone sketchCode prop ricevuto + cattura
 // onCompile callback per T3 trigger.
 vi.mock('../../../../src/components/simulator/panels/ScratchCompileBar', () => ({
-  default: ({ sketchCode, onCompile }) => React.createElement('button', {
+  default: ({ sketchCode, onCompile, compilationStatus, compilationSize }) => React.createElement('button', {
     'data-testid': 'compile-bar-stub',
     'data-sketch-code': sketchCode || '',
+    'data-compilation-status': compilationStatus || '',
+    'data-compilation-size': compilationSize ? JSON.stringify(compilationSize) : '',
     onClick: onCompile,
     type: 'button',
   }, 'Compila Stub'),
@@ -198,5 +200,56 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     expect(code).toContain('Vol3 Cap.6 Esp.1'); // PRINCIPIO ZERO Vol reference
     expect(cm6.getAttribute('data-readonly')).toBe('false');
     expect(cm6.getAttribute('data-has-onchange')).toBe('true');
+  });
+
+  // -----------------------------------------------------------------
+  // T6 — fallback AVR/n8n success is syntax verification, NOT Nano R4 success.
+  // -----------------------------------------------------------------
+  it('T6: legacy n8n provider does not set success status or fake Nano R4 size', async () => {
+    cleanup();
+    compileCodeMock.mockResolvedValueOnce({
+      success: true,
+      provider: 'n8n-avr-legacy',
+      hex: ':100000000C945C000C946E000C946E000C946E00',
+      output: 'AVR compile ok',
+    });
+    const { default: HomeCompileEntry } = await import('../../../../src/components/home/HomeCompileEntry');
+    render(React.createElement(HomeCompileEntry, { onBackHome: () => {} }));
+
+    fireEvent.click(getModeTabByName('code'));
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('compile-bar-stub'));
+      await new Promise((r) => setTimeout(r, 0));
+    });
+
+    const bar = screen.getByTestId('compile-bar-stub');
+    expect(bar.getAttribute('data-compilation-status')).toBe('verified-legacy');
+    expect(bar.getAttribute('data-compilation-size')).toBe('');
+  });
+
+  // -----------------------------------------------------------------
+  // T7 — legacy verification must not leave static upload instructions visible.
+  // -----------------------------------------------------------------
+  it('T7: legacy n8n provider replaces static upload copy with honest no-kit copy', async () => {
+    cleanup();
+    compileCodeMock.mockResolvedValueOnce({
+      success: true,
+      provider: 'n8n-avr-legacy',
+      hex: ':100000000C945C000C946E000C946E000C946E00',
+      output: 'AVR compile ok',
+    });
+    const { default: HomeCompileEntry } = await import('../../../../src/components/home/HomeCompileEntry');
+    const { container } = render(React.createElement(HomeCompileEntry, { onBackHome: () => {} }));
+
+    fireEvent.click(getModeTabByName('code'));
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('compile-bar-stub'));
+      await new Promise((r) => setTimeout(r, 0));
+    });
+
+    expect(container.textContent).toContain('Codice verificato dal compilatore legacy');
+    expect(container.textContent).toContain('non abilita il caricamento sul kit fisico');
+    expect(container.textContent).not.toContain('Carica sul kit Arduino');
+    expect(container.textContent).not.toContain('Ora potete caricare il programma');
   });
 });
