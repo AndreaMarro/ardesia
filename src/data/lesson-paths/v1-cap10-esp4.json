@@ -87,8 +87,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap10-esp5",
-    "title": "Esperimento 5: aggiungi un potenziometro per il LED bianco",
-    "preview": "Aggiungete una manopola per regolare il LED bianco — e guardate come cambia il LED blu!"
+    "title": "Aggiungete pot per controllare LED bianco",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.91 intitolata \"Aggiungete pot per controllare LED bianco\"."
   },
   "phases": [
     {
@@ -115,8 +115,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito accoppiamento ottico",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED bianco illumina LDR → LED blu seguendo Vol.1 pag.88.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -270,7 +270,7 @@
         "accoppiamento ottico",
         "comunicazione con la luce"
       ],
-      "next_preview": "La prossima volta aggiungete una manopola per regolare il LED bianco — e guardate come cambia il LED blu!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.91 intitolata \"Aggiungete pot per controllare LED bianco\"."
     }
   ],
   "assessment_invisible": [
@@ -285,5 +285,16 @@
     ],
     "next_suggested": "v1-cap10-esp5",
     "resume_message": "L'ultima volta avete fatto comunicare due circuiti con la luce! Ora aggiungiamo il controllo con la manopola."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 88,
+    "label": "Vol.1 pag.88"
   }
 }

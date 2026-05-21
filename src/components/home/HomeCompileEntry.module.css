@@ -96,6 +96,12 @@
   flex: 1 1 auto;
   display: grid;
   grid-template-columns: 1fr;
+  /* iter-102 (Andrea "allarga l'editor"): fill the available vertical space.
+     Without an explicit row track the implicit row was content-sized, so the
+     editorPanel never stretched and the Blockly editor stayed pinned at its
+     ~258px minimum. minmax(0,1fr) makes the panel claim the full flex height
+     → editorSurface (flex:1) → Blockly editor gets real room. */
+  grid-template-rows: minmax(0, 1fr);
   gap: 16px;
   padding: 16px 24px;
   overflow: hidden;

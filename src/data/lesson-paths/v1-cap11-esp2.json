@@ -88,8 +88,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap12-esp1",
-    "title": "Esperimento 1: accendi un LED con l'interruttore magnetico",
-    "preview": "Il prossimo capitolo: un interruttore MAGICO che si attiva con un magnete!"
+    "title": "LED con reed switch",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.98 intitolata \"LED con reed switch\"."
   },
   "phases": [
     {
@@ -116,8 +116,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito campanello con pulsante",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Campanello con pulsante seguendo Vol.1 pag.95.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -245,7 +245,7 @@
         "riuso del principio pulsante",
         "confronto LED/buzzer"
       ],
-      "next_preview": "Il prossimo capitolo: un interruttore MAGICO! Si attiva avvicinando un magnete, senza toccarlo. Come?"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.98 intitolata \"LED con reed switch\"."
     }
   ],
   "assessment_invisible": [
@@ -261,5 +261,16 @@
     ],
     "next_suggested": "v1-cap12-esp1",
     "resume_message": "Avete costruito un campanello! Ora scoprirete un interruttore magico che si attiva con un magnete."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 95,
+    "label": "Vol.1 pag.95"
   }
 }

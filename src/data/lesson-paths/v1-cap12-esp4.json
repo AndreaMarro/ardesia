@@ -107,7 +107,7 @@
   "next_experiment": {
     "id": "v1-cap13-esp1",
     "title": "LED nell'elettropongo",
-    "preview": "Il prossimo capitolo: circuiti con la PLASTILINA! Niente breadboard, si costruisce con le mani!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.104 intitolata \"LED nell'elettropongo\"."
   },
   "phases": [
     {
@@ -134,8 +134,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito sfida pot + RGB + reed switch",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Sfida: pot + RGB + reed switch seguendo Vol.1 pag.101.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -279,7 +279,7 @@
         "catena di controllo",
         "reed + pot + RGB"
       ],
-      "next_preview": "Il prossimo capitolo: costruiamo circuiti con la PLASTILINA! Niente breadboard — si costruisce con le mani!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.104 intitolata \"LED nell'elettropongo\"."
     }
   ],
   "assessment_invisible": [
@@ -295,5 +295,16 @@
     ],
     "next_suggested": "v1-cap13-esp1",
     "resume_message": "Avete completato il capitolo del reed switch! Ora: circuiti con la plastilina!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 101,
+    "label": "Vol.1 pag.101"
   }
 }

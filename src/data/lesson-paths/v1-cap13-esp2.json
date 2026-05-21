@@ -12,7 +12,7 @@
   "difficulty": 2,
   "duration_minutes": 45,
   "target_age": "10-14 anni",
-  "objective": "I ragazzi creano composizioni artistiche con l'elettropongo e accendono più LED. Scoprono che più LED possono funzionare nella stessa zona conduttiva — la corrente si distribuisce!",
+  "objective": "I ragazzi usano elettropongo e LED dello stesso colore per creare un circuito artistico con zone positive e negative.",
   "components_needed": [
     {
       "name": "Batteria 9V con clip",
@@ -82,8 +82,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap14-esp1",
-    "title": "Costruiamo il nostro primo robot",
-    "preview": "Il PROGETTO FINALE! Costruiamo un robot con occhi verdi, mano colorata e sensore magnetico!"
+    "title": "Il Primo Robot ELAB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.107 intitolata \"Il Primo Robot ELAB\"."
   },
   "phases": [
     {
@@ -110,8 +110,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito artistico con 3 LED (simulato con fili)",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Circuiti artistici con plastilina seguendo Vol.1 pag.105.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -238,7 +238,7 @@
         "distribuzione corrente",
         "arte + elettronica"
       ],
-      "next_preview": "Il PROGETTO FINALE del Volume 1! Costruiamo un ROBOT con occhi verdi, mano colorata e sensore magnetico. Tutto quello che avete imparato in un solo progetto!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.107 intitolata \"Il Primo Robot ELAB\"."
     }
   ],
   "assessment_invisible": [
@@ -254,5 +254,16 @@
     ],
     "next_suggested": "v1-cap14-esp1",
     "resume_message": "Avete creato arte con l'elettronica! Ora il PROGETTO FINALE: il vostro primo ROBOT!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 105,
+    "label": "Vol.1 pag.105"
   }
 }

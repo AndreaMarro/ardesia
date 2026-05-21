@@ -2,28 +2,27 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ElabScratchModeShell } from '../../../../../src/features/elabBlocks/ui/ElabScratchModeShell.jsx';
 
-describe('ElabScratchModeShell — Sub-project A iter 84 atom 7 wrap', () => {
-  it('T1: renders children + title default', () => {
+describe('ElabScratchModeShell — iter-102 ridisegno composizione', () => {
+  it('T1: renders children', () => {
     render(
       <ElabScratchModeShell workspaceReady workspaceBlockCount={3} onStarterClick={() => {}}>
         <div data-testid="child-marker">SCRATCH EDITOR PLACEHOLDER</div>
       </ElabScratchModeShell>
     );
-    expect(screen.getByText('ELAB Scratch Arduino')).toBeInTheDocument();
     expect(screen.getByTestId('child-marker')).toBeInTheDocument();
   });
 
-  it('T2: shows loading pill PRINCIPIO ZERO plurale when workspace NOT ready', () => {
+  it('T2: iter-102 — no redundant "ELAB Scratch Arduino" header bar', () => {
     render(
-      <ElabScratchModeShell workspaceReady={false} workspaceBlockCount={0} onStarterClick={() => {}}>
+      <ElabScratchModeShell workspaceReady workspaceBlockCount={3} onStarterClick={() => {}}>
         <div />
       </ElabScratchModeShell>
     );
-    expect(screen.getByRole('status')).toHaveTextContent(/Ragazzi/);
-    expect(screen.getByRole('status')).toHaveTextContent(/blocchi/);
+    // L'header blu ridondante è stato rimosso nel ridisegno iter-102.
+    expect(screen.queryByText('ELAB Scratch Arduino')).not.toBeInTheDocument();
   });
 
-  it('T3: shows skeleton aria-hidden when NOT ready (F4 mount slow mitigation)', () => {
+  it('T3: shows skeleton aria-hidden when NOT ready (mount slow mitigation)', () => {
     const { container } = render(
       <ElabScratchModeShell workspaceReady={false} workspaceBlockCount={0} onStarterClick={() => {}}>
         <div />
@@ -33,7 +32,7 @@ describe('ElabScratchModeShell — Sub-project A iter 84 atom 7 wrap', () => {
     expect(skeleton).toBeInTheDocument();
   });
 
-  it('T4: shows StarterButtons overlay when workspace ready AND empty (block count ≤ 1)', () => {
+  it('T4: shows starter strip when workspace ready AND empty (block count ≤ 1)', () => {
     render(
       <ElabScratchModeShell workspaceReady workspaceBlockCount={1} onStarterClick={() => {}}>
         <div />
@@ -43,7 +42,7 @@ describe('ElabScratchModeShell — Sub-project A iter 84 atom 7 wrap', () => {
     expect(screen.getByText(/da dove cominciamo/i)).toBeInTheDocument();
   });
 
-  it('T5: hides StarterButtons overlay when workspace has user blocks (count > 1)', () => {
+  it('T5: hides starter strip when workspace has user blocks (count > 1)', () => {
     render(
       <ElabScratchModeShell workspaceReady workspaceBlockCount={5} onStarterClick={() => {}}>
         <div />
@@ -52,7 +51,7 @@ describe('ElabScratchModeShell — Sub-project A iter 84 atom 7 wrap', () => {
     expect(screen.queryByRole('button', { name: /Accendi un LED/i })).not.toBeInTheDocument();
   });
 
-  it('T6: hides StarterButtons when disableAutoStarters true (teacher mode opt-out)', () => {
+  it('T6: hides starter strip when disableAutoStarters true (teacher mode opt-out)', () => {
     render(
       <ElabScratchModeShell
         workspaceReady
@@ -77,18 +76,12 @@ describe('ElabScratchModeShell — Sub-project A iter 84 atom 7 wrap', () => {
     expect(handler).toHaveBeenCalledWith('button');
   });
 
-  it('T8: custom title overrides default', () => {
+  it('T8: starter strip hidden until workspace ready (gated on workspaceReady)', () => {
     render(
-      <ElabScratchModeShell
-        workspaceReady
-        workspaceBlockCount={3}
-        onStarterClick={() => {}}
-        title="Modalità Esperto Arduino"
-      >
+      <ElabScratchModeShell workspaceReady={false} workspaceBlockCount={0} onStarterClick={() => {}}>
         <div />
       </ElabScratchModeShell>
     );
-    expect(screen.getByText('Modalità Esperto Arduino')).toBeInTheDocument();
-    expect(screen.queryByText('ELAB Scratch Arduino')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Accendi un LED/i })).not.toBeInTheDocument();
   });
 });

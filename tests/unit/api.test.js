@@ -80,3 +80,63 @@ describe('api — edge cases', () => {
     expect(result.success).toBe(false);
   });
 });
+
+describe('api — compileCode provider honesty', () => {
+  it('tags the legacy n8n fallback so the UI cannot present it as Nano R4 compile', async () => {
+    vi.resetModules();
+    vi.stubEnv('VITE_COMPILE_PROXY_URL', 'https://example.supabase.co/functions/v1/compile-proxy');
+    vi.stubGlobal('window', {
+      ...window,
+      location: { ...window.location, protocol: 'https:' },
+    });
+
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce({ ok: false, status: 503, text: () => Promise.resolve('{"error":"cloud_compile_not_configured"}') })
+      .mockResolvedValueOnce({ ok: true, status: 200, text: () => Promise.resolve(JSON.stringify({
+        success: true,
+        hex: ':100000000C945C000C946E000C946E000C946E00',
+        output: 'AVR compile ok',
+      })) });
+    global.fetch = fetchMock;
+
+    const { compileCode: compileCodeFresh } = await import('../../src/services/api');
+    const result = await compileCodeFresh('void setup(){}', 'arduino:renesas_uno:nanor4');
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[0][0]).toBe('/api/compile/nanor4');
+    expect(fetchMock.mock.calls[1][0]).toBe('https://example.supabase.co/functions/v1/compile-proxy');
+    expect(result.success).toBe(true);
+    expect(result.provider).toBe('n8n-avr-legacy');
+    expect(result.targetFqbn).toBe('arduino:renesas_uno:nanor4');
+  });
+
+  it('does not call a browser-direct Cloud Render endpoint when the secure proxy is unavailable', async () => {
+    vi.resetModules();
+    vi.stubEnv('VITE_ELAB_CLOUD_COMPILE_URL', 'https://elab-cloud-direct.example.com');
+    vi.stubEnv('VITE_COMPILE_PROXY_URL', 'https://example.supabase.co/functions/v1/compile-proxy');
+    vi.stubGlobal('window', {
+      ...window,
+      location: { ...window.location, protocol: 'https:' },
+    });
+
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce({ ok: false, status: 503, text: () => Promise.resolve('{"error":"cloud_compile_not_configured"}') })
+      .mockResolvedValueOnce({ ok: true, status: 200, text: () => Promise.resolve(JSON.stringify({
+        success: true,
+        hex: ':100000000C945C000C946E000C946E000C946E00',
+        output: 'AVR compile ok',
+      })) });
+    global.fetch = fetchMock;
+
+    const { compileCode: compileCodeFresh } = await import('../../src/services/api');
+    const result = await compileCodeFresh('void setup(){}', 'arduino:renesas_uno:nanor4');
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls.map((c) => c[0])).toEqual([
+      '/api/compile/nanor4',
+      'https://example.supabase.co/functions/v1/compile-proxy',
+    ]);
+    expect(fetchMock.mock.calls.map((c) => c[0]).join('\n')).not.toContain('elab-cloud-direct.example.com');
+    expect(result.provider).toBe('n8n-avr-legacy');
+  });
+});

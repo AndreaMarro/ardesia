@@ -1,3 +1,45 @@
+## [fix(iter-103) — allarga editor Blockly su #compile-home (hotfix prod)] — 2026-05-21
+
+Hotfix produzione: l'editor Blockly su `#compile-home` era schiacciato a ~258px — la toolbox mostrava solo 4 categorie su 12, sembravano "blocchi/toolbox mancanti" (segnalato da Andrea iter 103). Il fix esisteva già nel commit `5b4205e5 fix(iter-102): allarga l'editor Blockly` sul branch `feature/volume-1-experiment-overhaul`, mai mergiato → mai deployato in produzione. Questo PR fa cherry-pick di `5b4205e5` su `main` come hotfix mirato (4 file, nessun codice nuovo).
+
+### Changed
+- `src/components/home/HomeCompileEntry.module.css`: `.editorGrid` aggiunge `grid-template-rows: minmax(0, 1fr)` — il pannello editor si estende per riempire lo spazio verticale invece di restare al minimo.
+- `src/features/elabBlocks/ui/ElabScratchModeShell.module.css`: `.workspace` `min-height` 320px → 520px (floor reale per la canvas Blockly).
+- `src/components/home/ProgramExplainer.jsx`: pannello "Cosa fa questo programma?" collassato di default (era espanso, occupava ~210px sopra l'editor). Scelta espandi/collassa persiste in localStorage `'true'`/`'false'`.
+- `tests/unit/components/home/ProgramExplainer.test.jsx`: 6 test aggiornati al nuovo default collassato.
+
+### Verifica
+- Build PASS 44.73s. `ProgramExplainer.test.jsx` 6/6 PASS ×3 (CoV).
+- Misurato su dev server `#compile-home`: editor Blockly `injectionDiv` 258 → 458px, toolbox 4 → 7/12 categorie visibili, `.workspace` min-height 320 → 520px. Console preview senza errori.
+- Combacia con la verifica live documentata nel commit `5b4205e5`.
+
+### Notes
+- Nessun codice nuovo: cherry-pick di `5b4205e5` (autore Andrea Marro, 2026-05-21) da `feature/volume-1-experiment-overhaul`.
+- Fix puramente CSS layout + default-state componente — nessun hardware/UAT richiesto.
+
+---
+
+## [refactor(iter-103) — consolida overhaul narrativo esperimenti Volume 1] — 2026-05-21
+
+Sprint A-ii (iter 103). Consolida in un commit coerente il lavoro parcheggiato nel working tree del branch `feature/volume-1-experiment-overhaul` (accumulato iter 99/101/102, mai committato): overhaul narrativo degli esperimenti del Volume 1. NON è lavoro autorato in questa sessione — è la consolidazione di modifiche parcheggiate, verificate per integrità strutturale ma senza audit di contenuto.
+
+### Changed
+- `src/data/experiments-vol1.js` — dati esperimenti Volume 1 rivisti.
+- `src/data/narrative-map-94.json` — mappa narrativa aggiornata.
+- `src/data/lesson-paths/v1-*.json` — 38 lesson-path Volume 1 (cap6→cap14) aggiornati.
+
+### Added
+- `tests/unit/volume1ExperimentOverhaul.test.js` — test dedicato all'overhaul (6 test).
+
+### Verifica
+- Pre-CoV: 9 file test volume = **195/195 PASS** (`volumeParallelism` + `volumeReferencesQuality` + `volume-references-validity` + factory `volume-parallelism` + `volume1ExperimentOverhaul` 6/6). Integrità struttura dati Volume 1 confermata.
+
+### Notes — onestà
+- Questo commit CONSOLIDA lavoro parcheggiato, NON ne audita il contenuto. Un content-audit dell'overhaul (testo narrativo verbatim Vol.1, parallelismo Morfismo Sense 2) resta da fare in iter separata.
+- Branch `feature/volume-1-experiment-overhaul` è dietro `main` di 3 squash-merge (#136/#137/#138) — rebase + risoluzione conflitto CHANGELOG = Sprint A-iii.
+
+---
+
 ## [fix(sprint-u-cycle3-vol1-cap10-esp1) — internal contradiction removal 220Ω] — 2026-05-07
 
 Sprint U Cycle 3 Phase 1 PR-A. Vol1 cap10-esp1 ("LED controllato dalla luce") had internal contradiction: `desc` + `components` + `pinAssignments` correctly stated "no resistor" (per PDF Vol.1 cap.10 line 1851 verbatim "non c'è bisogno di inserire un resistore in serie al LED perché il fotoresistore anche quando illuminato ha una resistenza abbastanza elevata da non bruciare il LED"), BUT `layout`, `steps`, `observe`, `unlimPrompt`, `buildSteps` step 4 + wire steps 8-9, and `connections` array all referenced 220Ω r1 component as if it existed. Audit Cycle 2 PR #83 marked this critical "PRINCIPIO ZERO violation" → REFINED via Cycle 3 truth table refresh to "internal contradiction" (PARTIAL not HALLUCINATED). Fix = REMOVE r1 references everywhere (NOT add r1 component as handoff initial direction). Realigned `connections` (6 → 5 entries: collapsed orphan a6→a7 + a9→a10 wires into single jumper a8→a9, replaced a11→bus-11 with a10→bus-10 to match `pinAssignments` led1:cathode bb1:d10), `layout` (removed r1 orphan), `steps` (8 → 6 entries removed resistor steps), `buildSteps` (11 → 9 steps removed step 4 r1 entry + collapsed 2 wire steps), `observe` + `unlimPrompt` (replaced "guardiano (resistore)" analogy with "portinaio LDR" analogy, added Ragazzi plurale per Andrea iter 21+ mandate, cited Vol.1 cap.10 verbatim).

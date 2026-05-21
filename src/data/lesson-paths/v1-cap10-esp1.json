@@ -84,8 +84,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap10-esp2",
-    "title": "Esperimento 2: cambia il colore del LED con il fotoresistore",
-    "preview": "E se volessimo che il LED si accenda quando è BUIO invece che con la luce?"
+    "title": "LED diverso colore con LDR",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.84 intitolata \"LED diverso colore con LDR\"."
   },
   "phases": [
     {
@@ -112,8 +112,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito LDR + LED",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED controllato dalla luce seguendo Vol.1 pag.82.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -127,11 +127,6 @@
             {
               "type": "photo-resistor",
               "id": "ldr1"
-            },
-            {
-              "type": "resistor",
-              "id": "r1",
-              "value": 220
             },
             {
               "type": "led",
@@ -151,18 +146,13 @@
               "color": "red"
             },
             {
-              "from": "bb1:a6",
-              "to": "bb1:a7",
+              "from": "bb1:a8",
+              "to": "bb1:a9",
               "color": "yellow"
             },
             {
-              "from": "bb1:a9",
-              "to": "bb1:a10",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:a11",
-              "to": "bb1:bus-top-minus-11",
+              "from": "bb1:a10",
+              "to": "bb1:bus-top-minus-10",
               "color": "black"
             },
             {
@@ -246,7 +236,7 @@
         "fotoresistenza come sensore",
         "resistenza che cambia con l'ambiente"
       ],
-      "next_preview": "E se volessimo che il LED si accenda AL BUIO invece che con la luce? Come una luce notturna automatica!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.84 intitolata \"LED diverso colore con LDR\"."
     }
   ],
   "assessment_invisible": [
@@ -261,5 +251,16 @@
     ],
     "next_suggested": "v1-cap10-esp2",
     "resume_message": "L'ultima volta avete scoperto la fotoresistenza — il primo sensore! Ora facciamo la luce notturna automatica."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 82,
+    "label": "Vol.1 pag.82"
   }
 }

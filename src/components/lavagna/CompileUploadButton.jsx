@@ -145,48 +145,25 @@ export function getUploadStateLabels(state) {
 /** Default loopback URL for the agent's combined endpoint. */
 const AGENT_COMPILE_UPLOAD_URL = 'http://localhost:8765/compile-and-upload';
 
-/** Default loopback URL for the agent's compile-only endpoint (iter 76 D.1). */
-const AGENT_COMPILE_URL = 'http://localhost:8765/compile';
-
-/**
- * iter 77 STOP-HOOK fix (Codex stop-time review #6): wire Cloud Render
- * endpoint so WebUsbBanner "no-download" promise reflects actual compile
- * destination. Env `VITE_ELAB_CLOUD_COMPILE_URL` overrides hardcoded fallback.
- * When Cloud reachable → no LOCAL agent download required for end-users.
- * When Cloud unreachable AND LOCAL agent present → transparent fallback dev
- * mode. When BOTH unavailable → honest error state (no fake success).
- *
- * Iter 78 Andrea Render deploy expected to populate `elab-cloud-compile.onrender.com`.
- * Until then env unset OR returns 404 → fallback chain triggers LOCAL agent.
- */
-const CLOUD_COMPILE_URL =
-  (typeof import.meta !== 'undefined'
-    && import.meta.env
-    && typeof import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL === 'string'
-    && import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL.trim().length > 0)
-    ? import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL.trim().replace(/\/$/, '') + '/compile'
-    : null; // null = no Cloud env wired → LOCAL agent only (dev fallback)
+/** Same-origin secure Nano R4 proxy. Server-side injects any Cloud key. */
+const NANO_R4_COMPILE_PROXY_URL = '/api/compile/nanor4';
 
 /** Default board FQBN for cross-compile to Nano R4 (iter 76 D.1). */
 const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
 
 /**
- * Resolve compile endpoint with fallback chain: Cloud Render → LOCAL agent.
+ * Resolve compile endpoint.
  *
  * Honest behavior:
- * - When VITE_ELAB_CLOUD_COMPILE_URL set → Cloud endpoint canonical (no-download path)
- * - When env unset → LOCAL agent (requires Mac install — DEV/Andrea path)
+ * - Default production path is same-origin `/api/compile/nanor4`
+ * - The Vercel serverless proxy owns Render URL + API key server-side
  * - When prop `compileEndpoint` explicit → override both (tests/Andrea ratify)
- *
- * Iter 78+ enhancement: HEAD probe Cloud /health on mount, fallback LOCAL on 5xx.
- * Current behavior: trust env config, no runtime probe (avoid premature optimization).
  */
 function resolveCompileEndpoint(overrideEndpoint) {
   if (typeof overrideEndpoint === 'string' && overrideEndpoint.length > 0) {
     return overrideEndpoint;
   }
-  if (CLOUD_COMPILE_URL) return CLOUD_COMPILE_URL;
-  return AGENT_COMPILE_URL;
+  return NANO_R4_COMPILE_PROXY_URL;
 }
 
 /**
@@ -391,9 +368,8 @@ export default function CompileUploadButton({
   nextExperiment,
   onLoadNextExperiment,
   // iter 76 D.1 demo-mode honest fallback props (OPTIONAL)
-  // iter 77 STOP-HOOK fix: default now `resolveCompileEndpoint(undefined)`
-  // which picks Cloud Render env first (VITE_ELAB_CLOUD_COMPILE_URL), then
-  // LOCAL agent loopback fallback. Tests can still override explicit.
+  // Iter 101 compile honesty: default goes through the same-origin
+  // `/api/compile/nanor4` proxy. Tests/dev can still override explicitly.
   enableDemoMode = false,
   compileEndpoint = resolveCompileEndpoint(undefined),
   fqbn = DEFAULT_FQBN,
@@ -664,24 +640,7 @@ export default function CompileUploadButton({
     // ── Step 1: POST /compile (cross-compile WITHOUT board).
     let compilePayload = null;
     try {
-      // iter 77 STOP-HOOK #3 fix (Codex stop-time review #8):
-      // 'Cloud demo compile path still omits required auth header'.
-      // Cloud Render server.js:93-107 authMiddleware requires
-      // X-Elab-Api-Key header → 401 prod without. Detect Cloud endpoint
-      // via CLOUD_COMPILE_URL match. Env VITE_ELAB_API_KEY surfaced via
-      // import.meta.env (build-time inject, .trim() per CLAUDE.md regola).
       const headers = { 'Content-Type': 'application/json' };
-      const isCloudEndpoint =
-        CLOUD_COMPILE_URL && compileEndpoint.startsWith(CLOUD_COMPILE_URL.replace(/\/compile$/, ''));
-      const cloudApiKey =
-        typeof import.meta !== 'undefined'
-          && import.meta.env
-          && typeof import.meta.env.VITE_ELAB_API_KEY === 'string'
-          ? import.meta.env.VITE_ELAB_API_KEY.trim()
-          : '';
-      if (isCloudEndpoint && cloudApiKey) {
-        headers['X-Elab-Api-Key'] = cloudApiKey;
-      }
       const compileRes = await doFetch(compileEndpoint, {
         method: 'POST',
         mode: 'cors',

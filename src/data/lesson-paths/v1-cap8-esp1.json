@@ -84,8 +84,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap8-esp2",
-    "title": "Cambia colore e luminosità con il pulsante",
-    "preview": "Stesso circuito, ma con LED verde e resistore diverso. Come cambia?"
+    "title": "Cambiate colore e luminosità",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.47 intitolata \"Cambiate colore e luminosità\"."
   },
   "phases": [
     {
@@ -112,8 +112,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito LED + pulsante",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED con pulsante seguendo Vol.1 pag.44.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -256,7 +256,7 @@
         "circuito aperto e chiuso",
         "pulsante come interruttore"
       ],
-      "next_preview": "La prossima volta proviamo con un LED diverso e un resistore diverso. Come cambia il circuito?"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.47 intitolata \"Cambiate colore e luminosità\"."
     }
   ],
   "assessment_invisible": [
@@ -271,5 +271,16 @@
     ],
     "next_suggested": "v1-cap8-esp2",
     "resume_message": "L'ultima volta avete scoperto il pulsante! Ora proviamo con LED e resistori diversi."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 44,
+    "label": "Vol.1 pag.44"
   }
 }
