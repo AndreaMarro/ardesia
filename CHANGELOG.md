@@ -19,6 +19,23 @@ Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduc
 
 ---
 
+## [fix(iter-103) — #compile-home: rail overflow-y + cross-compile librerie Arduino] — 2026-05-21
+
+Due fix da audit iter-103. (1) Codex adversarial review: il rail `.compileBarPanel` aveva `overflow:hidden` — su schermi desktop bassi o zoom 200% gli errori di compilazione lunghi venivano troncati senza scroll. (2) Audit cross-compile: `/api/compile/nanor4` in produzione falliva per ogni sketch con `#include <Servo.h>` o `<LiquidCrystal.h>` ("No such file or directory") — il Dockerfile del servizio cloud-compile installava i core Arduino ma nessuna libreria.
+
+### Changed
+- `src/components/home/HomeCompileEntry.module.css` — `.compileBarPanel`: `overflow:hidden` → `overflow:hidden auto`, così il rail (barra Compila + mascotte UNLIM) scrolla internamente invece di troncare gli errori di compilazione lunghi.
+- `infra/cloud-compile/Dockerfile` — aggiunto `arduino-cli lib install Servo + LiquidCrystal + LiquidCrystal_I2C` (le librerie usate dal generatore Blockly — categorie "Motore Servo" / "Schermo LCD" — e dai template C++ degli esperimenti).
+
+### Verifica
+- Cross-compile certificato in locale: con le 3 librerie installate, 7/7 tipi di sketch ELAB compilano per `arduino:renesas_uno:nanor4` (Blink, Serial, tone, Servo 41800 byte, LiquidCrystal, LiquidCrystal_I2C, combo Servo+Serial+analogRead).
+- Codex Pattern V PASS + adversarial review.
+
+### Notes
+- Il fix Dockerfile richiede un redeploy Render del servizio cloud-compile (`autoDeploy:true` su `main`) per avere effetto in produzione.
+
+---
+
 ## [feat(fumetto) — Fumetto: report di sessione a fumetti per la classe] — 2026-05-21
 
 Funzionalità "Fumetto" — il report di una sessione di laboratorio reso come fumetto pedagogico in 6 vignette (arco narrativo problema → ipotesi → errore → click → successo → ponte) seguendo lo schema canonico di Tea (`src/data/fumetto-schema.json`). UNLIM resta comprimario: illumina un dettaglio del kit fisico senza rubare la scena. Il fumetto è generato dalla sessione reale (errori commessi, componenti usati, percorso dello studente) — nessun template statico, nessun dato finto.
