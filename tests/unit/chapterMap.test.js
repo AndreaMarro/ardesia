@@ -1,5 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { CHAPTER_MAP, getDisplayInfo, getVolumeChapters } from '../../src/data/chapter-map';
+import { ALL_EXPERIMENTS } from '../../src/data/experiments-index';
 
 describe('Chapter Map -- Tea Alias Mapping', () => {
 
@@ -57,14 +58,14 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     expect(info.title).toContain('OUTPUT');
   });
 
-  test('getDisplayInfo maps v3-cap6-morse to display Cap 2 OUTPUT', () => {
-    const info = getDisplayInfo('v3-cap6-morse');
+  test('getDisplayInfo maps v3-cap6-esp4 to display Cap 2 OUTPUT', () => {
+    const info = getDisplayInfo('v3-cap6-esp4');
     expect(info.displayChapter).toBe(2);
     expect(info.title).toContain('OUTPUT');
   });
 
-  test('getDisplayInfo maps v3-cap6-semaforo to display Cap 2 OUTPUT', () => {
-    const info = getDisplayInfo('v3-cap6-semaforo');
+  test('getDisplayInfo maps v3-cap6-esp5 to display Cap 2 OUTPUT', () => {
+    const info = getDisplayInfo('v3-cap6-esp5');
     expect(info.displayChapter).toBe(2);
     expect(info.title).toContain('OUTPUT');
   });
@@ -103,38 +104,10 @@ describe('Chapter Map -- Tea Alias Mapping', () => {
     }
   });
 
-  test('all 81 experiment IDs map to a valid chapter', () => {
-    // All known experiment IDs from experiments-vol1/2/3.js
-    const allIds = [
-      // Vol1 (38)
-      'v1-cap6-esp1', 'v1-cap6-esp2', 'v1-cap6-esp3',
-      'v1-cap7-esp1', 'v1-cap7-esp2', 'v1-cap7-esp3', 'v1-cap7-esp4', 'v1-cap7-esp5', 'v1-cap7-esp6',
-      'v1-cap8-esp1', 'v1-cap8-esp2', 'v1-cap8-esp3', 'v1-cap8-esp4', 'v1-cap8-esp5',
-      'v1-cap9-esp1', 'v1-cap9-esp2', 'v1-cap9-esp3', 'v1-cap9-esp4', 'v1-cap9-esp5',
-      'v1-cap9-esp6', 'v1-cap9-esp7', 'v1-cap9-esp8', 'v1-cap9-esp9',
-      'v1-cap10-esp1', 'v1-cap10-esp2', 'v1-cap10-esp3', 'v1-cap10-esp4', 'v1-cap10-esp5', 'v1-cap10-esp6',
-      'v1-cap11-esp1', 'v1-cap11-esp2',
-      'v1-cap12-esp1', 'v1-cap12-esp2', 'v1-cap12-esp3', 'v1-cap12-esp4',
-      'v1-cap13-esp1', 'v1-cap13-esp2',
-      'v1-cap14-esp1',
-      // Vol2 (27)
-      'v2-cap3-esp1', 'v2-cap3-esp2', 'v2-cap3-esp3', 'v2-cap3-esp4',
-      'v2-cap4-esp1', 'v2-cap4-esp2', 'v2-cap4-esp3',
-      'v2-cap5-esp1', 'v2-cap5-esp2',
-      'v2-cap6-esp1', 'v2-cap6-esp2', 'v2-cap6-esp3', 'v2-cap6-esp4',
-      'v2-cap7-esp1', 'v2-cap7-esp2', 'v2-cap7-esp3', 'v2-cap7-esp4',
-      'v2-cap8-esp1', 'v2-cap8-esp2', 'v2-cap8-esp3',
-      'v2-cap9-esp1', 'v2-cap9-esp2',
-      'v2-cap10-esp1', 'v2-cap10-esp2', 'v2-cap10-esp3', 'v2-cap10-esp4',
-      'v2-cap12-esp1',
-      // Vol3 (14)
-      'v3-cap5-esp1', 'v3-cap5-esp2',
-      'v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-morse', 'v3-cap6-esp4', 'v3-cap6-semaforo',
-      'v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp6',
-      'v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3',
-    ];
+  test('all 88 experiment IDs map to a valid chapter', () => {
+    const allIds = ALL_EXPERIMENTS.map((exp) => exp.id);
 
-    expect(allIds.length).toBe(79);
+    expect(allIds.length).toBe(88);
 
     allIds.forEach(id => {
       const info = getDisplayInfo(id);

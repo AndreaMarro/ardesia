@@ -75,22 +75,31 @@ import v2Cap10Esp4 from './v2-cap10-esp4.json';
 import v2Cap12Esp1 from './v2-cap12-esp1.json';
 
 // Volume 3 — Arduino Programmato
-import v3Cap5Esp1 from './v3-cap5-esp1.json';
-import v3Cap5Esp2 from './v3-cap5-esp2.json';
-import v3Cap6Esp1 from './v3-cap6-esp1.json';
-import v3Cap6Esp2 from './v3-cap6-esp2.json';
-import v3Cap6Esp4 from './v3-cap6-esp4.json';
-import v3Cap6Morse from './v3-cap6-morse.json';
-import v3Cap6Semaforo from './v3-cap6-semaforo.json';
-import v3Cap7Esp1 from './v3-cap7-esp1.json';
-import v3Cap7Esp2 from './v3-cap7-esp2.json';
-import v3Cap7Esp3 from './v3-cap7-esp3.json';
-import v3Cap7Esp6 from './v3-cap7-esp6.json';
-import v3Cap8Esp1 from './v3-cap8-esp1.json';
-import v3Cap8Esp2 from './v3-cap8-esp2.json';
-import v3Cap8Esp3 from './v3-cap8-esp3.json';
+import v3_cap5_esp1 from './v3-cap5-esp1.json';
+import v3_cap5_esp2 from './v3-cap5-esp2.json';
+import v3_cap6_esp1 from './v3-cap6-esp1.json';
+import v3_cap6_esp2 from './v3-cap6-esp2.json';
+import v3_cap6_esp3 from './v3-cap6-esp3.json';
+import v3_cap6_esp4 from './v3-cap6-esp4.json';
+import v3_cap6_esp5 from './v3-cap6-esp5.json';
+import v3_cap6_esp6 from './v3-cap6-esp6.json';
+import v3_cap6_esp7 from './v3-cap6-esp7.json';
+import v3_cap6_esp8 from './v3-cap6-esp8.json';
+import v3_cap7_esp1 from './v3-cap7-esp1.json';
+import v3_cap7_esp2 from './v3-cap7-esp2.json';
+import v3_cap7_esp3 from './v3-cap7-esp3.json';
+import v3_cap7_esp4 from './v3-cap7-esp4.json';
+import v3_cap7_esp5 from './v3-cap7-esp5.json';
+import v3_cap7_esp6 from './v3-cap7-esp6.json';
+import v3_cap7_esp7 from './v3-cap7-esp7.json';
+import v3_cap8_esp1 from './v3-cap8-esp1.json';
+import v3_cap8_esp2 from './v3-cap8-esp2.json';
+import v3_cap8_esp3 from './v3-cap8-esp3.json';
+import v3_cap8_esp4 from './v3-cap8-esp4.json';
+import v3_cap8_esp5 from './v3-cap8-esp5.json';
+import v3_cap8_esp6 from './v3-cap8-esp6.json';
 
-// Registry percorsi lezione disponibili — 81 totali
+// Registry percorsi lezione disponibili — 88 totali
 const LESSON_PATHS = {
   // Volume 1 — Le Basi (38 esperimenti)
   'v1-cap6-esp1': v1Cap6Esp1,
@@ -161,22 +170,30 @@ const LESSON_PATHS = {
   'v2-cap10-esp4': v2Cap10Esp4,
   'v2-cap12-esp1': v2Cap12Esp1,
 
-  // Volume 3 — Arduino Programmato (14 esperimenti)
-  'v3-cap5-esp1': v3Cap5Esp1,
-  'v3-cap5-esp2': v3Cap5Esp2,
-  'v3-cap6-esp1': v3Cap6Esp1,
-  'v3-cap6-esp2': v3Cap6Esp2,
-  'v3-cap6-esp4': v3Cap6Esp4,
-  'v3-cap6-morse': v3Cap6Morse,
-  'v3-cap6-semaforo': v3Cap6Semaforo,
-  'v3-cap7-esp1': v3Cap7Esp1,
-  'v3-cap7-esp2': v3Cap7Esp2,
-  'v3-cap7-esp3': v3Cap7Esp3,
-  'v3-cap7-esp6': v3Cap7Esp6,
-  'v3-cap8-esp1': v3Cap8Esp1,
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-  'v3-cap8-esp2': v3Cap8Esp2,
-  'v3-cap8-esp3': v3Cap8Esp3,
+  // Volume 3 — Arduino Programmato (23 esperimenti)
+  'v3-cap5-esp1': v3_cap5_esp1,
+  'v3-cap5-esp2': v3_cap5_esp2,
+  'v3-cap6-esp1': v3_cap6_esp1,
+  'v3-cap6-esp2': v3_cap6_esp2,
+  'v3-cap6-esp3': v3_cap6_esp3,
+  'v3-cap6-esp4': v3_cap6_esp4,
+  'v3-cap6-esp5': v3_cap6_esp5,
+  'v3-cap6-esp6': v3_cap6_esp6,
+  'v3-cap6-esp7': v3_cap6_esp7,
+  'v3-cap6-esp8': v3_cap6_esp8,
+  'v3-cap7-esp1': v3_cap7_esp1,
+  'v3-cap7-esp2': v3_cap7_esp2,
+  'v3-cap7-esp3': v3_cap7_esp3,
+  'v3-cap7-esp4': v3_cap7_esp4,
+  'v3-cap7-esp5': v3_cap7_esp5,
+  'v3-cap7-esp6': v3_cap7_esp6,
+  'v3-cap7-esp7': v3_cap7_esp7,
+  'v3-cap8-esp1': v3_cap8_esp1,
+  'v3-cap8-esp2': v3_cap8_esp2,
+  'v3-cap8-esp3': v3_cap8_esp3,
+  'v3-cap8-esp4': v3_cap8_esp4,
+  'v3-cap8-esp5': v3_cap8_esp5,
+  'v3-cap8-esp6': v3_cap8_esp6,
 };
 
 /**

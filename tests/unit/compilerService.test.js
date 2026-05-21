@@ -15,13 +15,13 @@ function extractCodes() {
 
   const codes = [];
   // Match code: `...` or code: "..." patterns
-  const codeMatches = [...content.matchAll(/code:\s*`([\s\S]*?)`/g)];
+  const codeMatches = [...content.matchAll(/"?code"?:\s*`([\s\S]*?)`/g)];
   codeMatches.forEach(m => {
     codes.push({ code: m[1], source: 'vol3' });
   });
 
   // Also match code: "..." (single line)
-  const codeStrMatches = [...content.matchAll(/code:\s*"((?:[^"\\]|\\.)*)"/g)];
+  const codeStrMatches = [...content.matchAll(/"?code"?:\s*"((?:[^"\\]|\\.)*)"/g)];
   codeStrMatches.forEach(m => {
     if (m[1].includes('void')) {
       codes.push({ code: m[1].replace(/\\n/g, '\n'), source: 'vol3' });

@@ -878,177 +878,260 @@ const VOLUME_REFERENCES = {
   // Fonte: Manuale VOLUME 3 V0.8.1 — pagine fisiche del libro
   // ─────────────────────────────────────────────────
 
-  // Capitolo 5 — Il nostro primo programma (Blink) (p.47)
-  // 2026-05-10 fix TRES JOLIE audit: precedente titolo "Come è fatto un programma Arduino?"
-  // era ERRATO. ODT/PDF Vol3 dice "Il nostro primo programma (Blink)".
+  // VOLUME 3 — Programmazione Arduino (23 ESERCIZI canonici)
   'v3-cap5-esp1': {
-    volume: 3, bookPage: 47, chapter: "Capitolo 5 - Il nostro primo programma (Blink)", chapterPage: 47,
-    bookText: "Il capitolo introduce la struttura base di un programma Arduino con void setup() e void loop(), e il primo sketch Blink che fa lampeggiare il LED integrato sulla scheda.",
+    volume: 3, bookPage: 30, chapter: "Capitolo 5 - Il nostro primo programma (Blink)", chapterPage: 29,
+    bookText: "ESERCIZIO 5.1: I ragazzi scrivono Blink e osservano il LED integrato che lampeggia.",
     bookInstructions: [
-      "Collega Arduino Nano al PC con il cavo USB-C",
-      "Apri l'IDE Arduino",
-      "Carica lo sketch Blink (File > Esempi > Basics > Blink)",
-      "Osserva il LED integrato che lampeggia"
+      "Ragazzi, il docente apre il Volume 3 a pagina 30.",
+      "Ragazzi, il docente collega il circuito e il codice: Blink: il primo programma.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Primo programma Arduino: Blink. Il capitolo spiega void setup(), void loop(), pinMode, digitalWrite e delay."
+    bookQuote: "ESERCIZIO 5.1 — Blink: il primo programma",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 5: Il nostro primo programma (Blink)."
   },
   'v3-cap5-esp2': {
-    volume: 3, bookPage: 49, chapter: "Capitolo 5 - Il nostro primo programma (Blink)", chapterPage: 47,
-    bookText: "Modifica il programma Blink per cambiare la velocità del lampeggio. Prova con delay diversi per capire il concetto di millisecondi.",
+    volume: 3, bookPage: 41, chapter: "Capitolo 5 - Il nostro primo programma (Blink)", chapterPage: 29,
+    bookText: "ESERCIZIO 5.2: I ragazzi cambiano i millisecondi del delay per rendere il lampeggio piu veloce o piu lento.",
     bookInstructions: [
-      "Modifica il delay: 100ms per lampeggio veloce",
-      "Modifica il delay: 2000ms per lampeggio lento",
-      "Osserva come cambia il comportamento del LED"
+      "Ragazzi, il docente apre il Volume 3 a pagina 41.",
+      "Ragazzi, il docente collega il circuito e il codice: Modificare il delay del Blink.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Variazione del Blink: lo studente sperimenta con i tempi di delay per capire i millisecondi e il concetto di temporizzazione."
+    bookQuote: "ESERCIZIO 5.2 — Modificare il delay del Blink",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 5: Il nostro primo programma (Blink)."
   },
-
-  // Capitolo 6 — I Pin Digitali: Le Dita di Arduino (p.53)
-  // OUTPUT experiments (esp1-6, morse, semaforo)
   'v3-cap6-esp1': {
-    volume: 3, bookPage: 56, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Primo esperimento con LED esterno: Arduino Nano su breadboard, 1 LED, resistenza 470Ω, cavetto jumper. Facciamo lampeggiare un LED esterno invece del LED integrato sulla scheda.",
+    volume: 3, bookPage: 45, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.1: Due coppie di pulsanti mostrano la logica OR e AND: uno basta, oppure servono entrambi.",
     bookInstructions: [
-      "Inserisci Arduino Nano sulla breadboard (pin sinistri su una fila, destri sull'altra)",
-      "Collega il pin D13 a una colonna libera della breadboard",
-      "Posiziona l'anodo del LED (gamba lunga) nella stessa colonna di D13",
-      "Collega il catodo del LED a una resistenza 470Ω",
-      "Collega l'altra gamba della resistenza al GND di Arduino",
-      "Carica uno sketch con pinMode(13, OUTPUT); digitalWrite(13, HIGH/LOW); delay(500)"
+      "Ragazzi, il docente apre il Volume 3 a pagina 45.",
+      "Ragazzi, il docente collega il circuito e il codice: Circuiti logici AND e OR.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: "Il LED esterno fa esattamente quello che faceva il LED integrato, ma adesso sei TU a posizionarlo e collegarlo!",
-    bookContext: "Primo circuito esterno controllato da Arduino. Introduce pinMode(), digitalWrite() e il pin D13 del Nano come uscita digitale."
+    bookQuote: "ESERCIZIO 6.1 — Circuiti logici AND e OR",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
   },
   'v3-cap6-esp2': {
-    volume: 3, bookPage: 57, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Cambia il numero di pin sia sul codice che sulla breadboard. Modifica il pin: prova a usare un pin diverso da D13 (esempio: D8).",
+    volume: 3, bookPage: 51, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.2: Il Blink esce dalla scheda e controlla un LED verde montato sulla breadboard.",
     bookInstructions: [
-      "Sposta il filo arancione dal pin D13 al pin D8 dell'Arduino Nano",
-      "Modifica il codice: pinMode(8, OUTPUT) invece di pinMode(13, OUTPUT)",
-      "Modifica digitalWrite(8, HIGH) e digitalWrite(8, LOW)",
-      "Carica e verifica che il LED lampeggi identico a prima"
+      "Ragazzi, il docente apre il Volume 3 a pagina 51.",
+      "Ragazzi, il docente collega il circuito e il codice: Accendere un LED esterno sul pin 13.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: "Qualsiasi pin digitale può essere usato come OUTPUT — basta cambiarlo sia nel codice che fisicamente.",
-    bookContext: "Secondo esperimento del Cap. 6: generalizzazione. Lo studente impara che D13 non ha nulla di speciale come OUTPUT — qualsiasi pin digitale funziona uguale."
+    bookQuote: "ESERCIZIO 6.2 — Accendere un LED esterno sul pin 13",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
   },
-  'v3-cap6-morse': {
-    volume: 3, bookPage: 57, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Fai un SOS in codice Morse! Modifica il codice con delay diversi per creare punti (brevi) e linee (lunghi).",
+  'v3-cap6-esp3': {
+    volume: 3, bookPage: 53, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.3: Lo stesso LED viene spostato su un altro pin: codice e filo devono raccontare la stessa scelta.",
     bookInstructions: [
-      "Usa digitalWrite(13, HIGH) e delay diversi: delay(150) per il punto, delay(400) per la linea",
-      "Sequenza SOS: tre punti, tre linee, tre punti",
-      "Carica e osserva il LED lampeggiare in codice Morse"
+      "Ragazzi, il docente apre il Volume 3 a pagina 53.",
+      "Ragazzi, il docente collega il circuito e il codice: Cambiare il pin del LED esterno.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Codice Morse con LED: applicazione creativa dei delay. Lo studente programma una sequenza di lampeggi significativa."
+    bookQuote: "ESERCIZIO 6.3 — Cambiare il pin del LED esterno",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
   },
   'v3-cap6-esp4': {
-    volume: 3, bookPage: 58, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Programma luci lampeggiante stile sirenato: due LED con effetto \"polizia\". LED1 su pin 8, LED2 su pin 9. Programma: uno acceso, l'altro spento, poi si scambiano.",
+    volume: 3, bookPage: 54, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.4: Due LED sui pin 6 e 9 si accendono uno dopo l altro, creando un effetto alternato.",
     bookInstructions: [
-      "Collega LED1 al pin 8 e LED2 al pin 9 con le rispettive resistenze",
-      "Programma l'alternanza: accendi uno e spegni l'altro",
-      "Usa delay per controllare la velocità dell'alternanza"
+      "Ragazzi, il docente apre il Volume 3 a pagina 54.",
+      "Ragazzi, il docente collega il circuito e il codice: Due LED che si alternano.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: "Risultato: luci lampeggianti stile sirena",
-    bookContext: "Due LED alternati: effetto sirena della polizia. Introduce il controllo di più pin digitali contemporaneamente."
+    bookQuote: "ESERCIZIO 6.4 — Due LED che si alternano",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
   },
-  'v3-cap6-semaforo': {
-    volume: 3, bookPage: 58, chapter: "Capitolo 6 - I Pin Digitali: Le Dita di Arduino", chapterPage: 53,
-    bookText: "Il semaforo: un link con più fasi. Verde su pin 5, Giallo su pin 6, Rosso su pin 7. Sequenza: Verde 3s, Giallo 1s, Rosso 3s.",
+  'v3-cap6-esp5': {
+    volume: 3, bookPage: 57, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.5: Tre LED rosso, giallo e verde riproducono una sequenza da semaforo sui pin 5, 6 e 9.",
     bookInstructions: [
-      "Collega LED verde al pin 5, LED giallo al pin 6, LED rosso al pin 7",
-      "Ogni LED ha la sua resistenza in serie",
-      "Programma la sequenza del semaforo con i delay appropriati"
+      "Ragazzi, il docente apre il Volume 3 a pagina 57.",
+      "Ragazzi, il docente collega il circuito e il codice: Costruiamo un semaforo.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Semaforo a tre LED: progetto classico che introduce la sequenza temporizzata con più uscite. Tre pin digitali coordinati."
+    bookQuote: "ESERCIZIO 6.5 — Costruiamo un semaforo",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
   },
-
-  // Capitolo 7 — I Pin di Input: Arduino Ascolta e Decide (p.63)
-  // INPUT experiments (esp7 from cap6, cap7-esp1/2)
+  'v3-cap6-esp6': {
+    volume: 3, bookPage: 64, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.6: Arduino legge un pulsante in INPUT_PULLUP e decide con if/else se accendere il LED.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 64.",
+      "Ragazzi, il docente collega il circuito e il codice: Leggere un pulsante con digitalRead.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 6.6 — Leggere un pulsante con digitalRead",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
+  },
+  'v3-cap6-esp7': {
+    volume: 3, bookPage: 69, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.7: Con una variabile bool il pulsante diventa un interruttore: una pressione accende, la successiva spegne.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 69.",
+      "Ragazzi, il docente collega il circuito e il codice: Una variabile ricorda lo stato del LED.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 6.7 — Una variabile ricorda lo stato del LED",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
+  },
+  'v3-cap6-esp8': {
+    volume: 3, bookPage: 74, chapter: "Capitolo 6 - Il mondo discreto: i pin digitali", chapterPage: 43,
+    bookText: "ESERCIZIO 6.8: Il programma aspetta il rilascio del pulsante con while, cosi una pressione lunga vale una sola volta.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 74.",
+      "Ragazzi, il docente collega il circuito e il codice: Evitare il lampeggio con while.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 6.8 — Evitare il lampeggio con while",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 6: Il mondo discreto: i pin digitali."
+  },
   'v3-cap7-esp1': {
-    volume: 3, bookPage: 65, chapter: "Capitolo 7 - I Pin di Input: Arduino Ascolta e Decide", chapterPage: 63,
-    bookText: "Arduino legge lo stato di un pulsante con digitalRead() e decide cosa fare con if/else: se il pulsante è premuto, accendi il LED; altrimenti spegnilo.",
+    volume: 3, bookPage: 84, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.1: Arduino legge A0 e accende il LED quando il trimmer supera circa meta corsa.",
     bookInstructions: [
-      "Collega il pulsante tra il pin D2 e GND (useremo INPUT_PULLUP interno)",
-      "Collega un LED: anodo al pin D8, catodo a una resistenza 470Ω, l'altro capo della resistenza al GND",
-      "Imposta pinMode(2, INPUT_PULLUP) e pinMode(8, OUTPUT) nel setup",
-      "Nel loop: if (digitalRead(2) == LOW) digitalWrite(8, HIGH); else digitalWrite(8, LOW)"
+      "Ragazzi, il docente apre il Volume 3 a pagina 84.",
+      "Ragazzi, il docente collega il circuito e il codice: Trimmer: accendere il LED sopra 2,5 V.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: "Arduino ora ASCOLTA il pulsante: se lo premi il LED si accende, se non premi si spegne. La scheda decide in tempo reale!",
-    bookContext: "Primo esperimento con INPUT. Il capitolo introduce digitalRead(), INPUT_PULLUP e if/else. Arduino passa da 'parlare' (OUTPUT) ad 'ascoltare' (INPUT) e decidere."
+    bookQuote: "ESERCIZIO 7.1 — Trimmer: accendere il LED sopra 2,5 V",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
   },
   'v3-cap7-esp2': {
-    volume: 3, bookPage: 67, chapter: "Capitolo 7 - I Pin di Input: Arduino Ascolta e Decide", chapterPage: 63,
-    bookText: "Mini-progetto: Due LED, un pulsante. Se premi, LED verde acceso. Se non premi, LED rosso acceso. Arduino sceglie!",
+    volume: 3, bookPage: 87, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.2: Il valore 0-1023 viene trasformato in tensione e confrontato direttamente con 2.5 V.",
     bookInstructions: [
-      "Collega LED verde al pin 8 e LED rosso al pin 9",
-      "Collega il pulsante tra D2 e GND",
-      "Programma con if/else: premuto = verde acceso/rosso spento, non premuto = rosso acceso/verde spento"
+      "Ragazzi, il docente apre il Volume 3 a pagina 87.",
+      "Ragazzi, il docente collega il circuito e il codice: Convertire la lettura analogica in Volt.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Due LED controllati da un pulsante con if/else: Arduino decide quale LED accendere. Introduce la variabile int e il concetto di scelta nel codice."
+    bookQuote: "ESERCIZIO 7.2 — Convertire la lettura analogica in Volt",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
   },
-
-  // Capitolo 8 — I Pin Analogici (p.75)
   'v3-cap7-esp3': {
-    volume: 3, bookPage: 75, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "I pin analogici: Arduino impara a sentire le quantità. La luce non è solo \"c'è/non c'è\": può essere poca, media, tanta. Ora Arduino impara a sentire le quantità con i pin analogici A0-A5.",
+    volume: 3, bookPage: 90, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.3: Il trimmer divide la scala analogica in tre zone: rosso, giallo e verde.",
     bookInstructions: [
-      "Cerca il pin A0 sulla scheda Arduino Nano",
-      "Collega il potenziometro: un estremo a 5V, l'altro a GND, il centrale ad A0"
+      "Ragazzi, il docente apre il Volume 3 a pagina 90.",
+      "Ragazzi, il docente collega il circuito e il codice: Tre LED indicano la posizione del trimmer.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Introduzione ai pin analogici. Il capitolo spiega la differenza tra digitale (sì/no) e analogico (una quantità che può cambiare piano piano), con valori da 0 a 1023."
+    bookQuote: "ESERCIZIO 7.3 — Tre LED indicano la posizione del trimmer",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
+  },
+  'v3-cap7-esp4': {
+    volume: 3, bookPage: 97, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.4: Un ciclo for aumenta gradualmente il valore PWM scritto sul pin 5.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 97.",
+      "Ragazzi, il docente collega il circuito e il codice: Aumentare la luminosita con analogWrite.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 7.4 — Aumentare la luminosita con analogWrite",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
+  },
+  'v3-cap7-esp5': {
+    volume: 3, bookPage: 102, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.5: Il LED aumenta e diminuisce la luminosita in modo continuo, come un respiro.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 102.",
+      "Ragazzi, il docente collega il circuito e il codice: Effetto respiro con due cicli for.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 7.5 — Effetto respiro con due cicli for",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
   },
   'v3-cap7-esp6': {
-    volume: 3, bookPage: 78, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "Spiegazione dettagliata di int valore = 0: le scatoline dei numeri. int significa numero intero senza virgola. Serve per creare una scatolina capace di contenere numeri.",
+    volume: 3, bookPage: 105, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.6: map() trasforma la lettura 0-1023 in un valore PWM 0-255.",
     bookInstructions: [
-      "Comprendi il concetto di variabile: int valore = 0 crea una scatolina chiamata 'valore' con dentro 0",
-      "Prova a rinominare la variabile (es. int lettura = 0) e verifica che il programma funzioni ugualmente"
+      "Ragazzi, il docente apre il Volume 3 a pagina 105.",
+      "Ragazzi, il docente collega il circuito e il codice: Il trimmer controlla la luminosita del LED.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: "Se funziona, hai capito cos'è una variabile: hai cambiato un solo numero e hai cambiato il comportamento del programma.",
-    bookContext: "Spiegazione del concetto di variabile int. La metafora della scatolina rende comprensibile il concetto ai bambini 8-14 anni."
+    bookQuote: "ESERCIZIO 7.6 — Il trimmer controlla la luminosita del LED",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
+  },
+  'v3-cap7-esp7': {
+    volume: 3, bookPage: 109, chapter: "Capitolo 7 - Il mondo continuo: i pin analogici", chapterPage: 79,
+    bookText: "ESERCIZIO 7.7: Il trimmer su A1 controlla una vera uscita analogica su A0, misurata con il multimetro.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 109.",
+      "Ragazzi, il docente collega il circuito e il codice: Generare una tensione analogica sul pin A0.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 7.7 — Generare una tensione analogica sul pin A0",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 7: Il mondo continuo: i pin analogici."
   },
   'v3-cap8-esp1': {
-    volume: 3, bookPage: 81, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "Cosa fare sul PC: carica lo sketch, apri Strumenti > Monitor Seriale, imposta in basso a destra 9600 baud. Osserva i numeri che cambiano mentre giri la manopola.",
+    volume: 3, bookPage: 119, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 113,
+    bookText: "ESERCIZIO 8.1: Il Monitor Seriale riceve un messaggio inviato una sola volta dal setup().",
     bookInstructions: [
-      "Carica lo sketch su Arduino",
-      "Apri Strumenti > Monitor Seriale nell'IDE Arduino",
-      "Imposta 9600 baud in basso a destra",
-      "Gira la manopola del potenziometro e osserva i numeri da 0 a 1023"
+      "Ragazzi, il docente apre il Volume 3 a pagina 119.",
+      "Ragazzi, il docente collega il circuito e il codice: Arduino saluta il computer.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Guida pratica all'uso del Monitor Seriale: è importante impostare la stessa velocità (baud) nel codice e nel monitor, altrimenti si vedono caratteri strani."
+    bookQuote: "ESERCIZIO 8.1 — Arduino saluta il computer",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 8: Visualizzare dati: il Monitor Seriale."
   },
   'v3-cap8-esp2': {
-    volume: 3, bookPage: 82, chapter: "Capitolo 8 - I Pin Analogici", chapterPage: 75,
-    bookText: "Esperimento avanzato con i pin analogici: usa il valore letto dal potenziometro per controllare un LED con if/else basato sulla soglia analogica.",
+    volume: 3, bookPage: 122, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 113,
+    bookText: "ESERCIZIO 8.2: Lo stesso messaggio viene spostato nel loop e compare continuamente.",
     bookInstructions: [
-      "Leggi il valore del potenziometro con analogRead(A0)",
-      "Usa if(valore > 512) per decidere se accendere o spegnere il LED",
-      "Sperimenta con soglie diverse"
+      "Ragazzi, il docente apre il Volume 3 a pagina 122.",
+      "Ragazzi, il docente collega il circuito e il codice: Messaggio ripetuto nel loop.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Combina analogRead con if/else: il LED si accende solo quando la manopola supera metà corsa. Ponte tra il mondo analogico e le decisioni digitali."
+    bookQuote: "ESERCIZIO 8.2 — Messaggio ripetuto nel loop",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 8: Visualizzare dati: il Monitor Seriale."
   },
-
-  // Capitolo 9 — Comunicazione Seriale (p.85)
   'v3-cap8-esp3': {
-    volume: 3, bookPage: 85, chapter: "Capitolo 9 - Comunicazione Seriale", chapterPage: 85,
-    bookText: "Approfondimento sulla comunicazione seriale tra Arduino e PC. Serial.begin, Serial.print, Serial.println per inviare dati al Monitor Seriale.",
+    volume: 3, bookPage: 124, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 113,
+    bookText: "ESERCIZIO 8.3: Il trimmer viene letto su A0 e stampato come numero da 0 a 1023.",
     bookInstructions: [
-      "Scrivi un programma che stampa messaggi di testo e valori numerici sul Monitor Seriale",
-      "Usa Serial.print per scrivere senza andare a capo e Serial.println per andare a capo"
+      "Ragazzi, il docente apre il Volume 3 a pagina 124.",
+      "Ragazzi, il docente collega il circuito e il codice: Stampare analogRead sul Monitor Seriale.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
     ],
-    bookQuote: null,
-    bookContext: "Approfondimento sulla comunicazione seriale. Il capitolo introduce la differenza tra Serial.print e Serial.println e l'uso di stringhe di testo."
+    bookQuote: "ESERCIZIO 8.3 — Stampare analogRead sul Monitor Seriale",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 8: Visualizzare dati: il Monitor Seriale."
   },
+  'v3-cap8-esp4': {
+    volume: 3, bookPage: 128, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 113,
+    bookText: "ESERCIZIO 8.4: Due letture analogiche vengono stampate con etichette separate per il Serial Plotter.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 128.",
+      "Ragazzi, il docente collega il circuito e il codice: Due trimmer sul Serial Plotter.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 8.4 — Due trimmer sul Serial Plotter",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 8: Visualizzare dati: il Monitor Seriale."
+  },
+  'v3-cap8-esp5': {
+    volume: 3, bookPage: 130, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 113,
+    bookText: "ESERCIZIO 8.5: Il valore del potenziometro controlla tre LED e viene visto nel Monitor Seriale e nel Plotter.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 130.",
+      "Ragazzi, il docente collega il circuito e il codice: Trimmer, tre LED e valori seriali.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 8.5 — Trimmer, tre LED e valori seriali",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 8: Visualizzare dati: il Monitor Seriale."
+  },
+  'v3-cap8-esp6': {
+    volume: 3, bookPage: 132, chapter: "Capitolo 8 - Visualizzare dati: il Monitor Seriale", chapterPage: 113,
+    bookText: "ESERCIZIO 8.6: Tre LED costruiscono una barra progressiva: valore basso, medio, alto.",
+    bookInstructions: [
+      "Ragazzi, il docente apre il Volume 3 a pagina 132.",
+      "Ragazzi, il docente collega il circuito e il codice: Barra progressiva LED.",
+      "Ragazzi, la classe osserva il risultato e lo aggancia all'esperimento successivo."
+    ],
+    bookQuote: "ESERCIZIO 8.6 — Barra progressiva LED",
+    bookContext: "Sequenza canonica Volume 3, Capitolo 8: Visualizzare dati: il Monitor Seriale."
+  }
 };
 
 export default VOLUME_REFERENCES;

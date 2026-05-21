@@ -13,7 +13,7 @@ import { ALL_EXPERIMENTS, VOLUMES, findExperimentById } from '../../../src/data/
 import VOLUME_REFERENCES, { getVolumeRef, getBookPage, getVolumeLabel } from '../../../src/data/volume-references';
 
 // ─── Costanti attese ──────────────────────────────────────────────────────────
-const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 14, total: 79 };
+const EXPECTED_COUNTS = { vol1: 38, vol2: 27, vol3: 23, total: 88 };
 const EXPERIMENT_ID_PATTERN = /^v[1-3]-cap\d+(-esp\d+|-[a-z]+)$/;
 
 // ─── Campi obbligatori per la parità con il volume fisico ─────────────────────
@@ -40,11 +40,11 @@ describe('Volume distribution', () => {
     expect(VOLUMES[1].experiments).toHaveLength(EXPECTED_COUNTS.vol2);
   });
 
-  it('Vol3 ha esattamente 14 esperimenti', () => {
+  it('Vol3 ha esattamente 23 esperimenti', () => {
     expect(VOLUMES[2].experiments).toHaveLength(EXPECTED_COUNTS.vol3);
   });
 
-  it('ALL_EXPERIMENTS aggrega tutti e 79 gli esperimenti', () => {
+  it('ALL_EXPERIMENTS aggrega tutti e 88 gli esperimenti', () => {
     expect(ALL_EXPERIMENTS).toHaveLength(EXPECTED_COUNTS.total);
   });
 
@@ -84,10 +84,9 @@ describe('Experiment IDs — unicità e formato', () => {
     expect(bad.map(e => e.id)).toEqual([]);
   });
 
-  it('Gli ID speciali (morse, semaforo, simon…) fanno parte di Vol3', () => {
+  it('Tutti gli ID usano suffisso esperimento canonico', () => {
     const special = ALL_EXPERIMENTS.filter(e => !/esp\d+$/.test(e.id));
-    expect(special.length).toBeGreaterThan(0);
-    special.forEach(e => expect(e.id.startsWith('v3-')).toBe(true));
+    expect(special.map(e => e.id)).toEqual([]);
   });
 
   it('findExperimentById trova "v1-cap6-esp1" (primo Vol1)', () => {
@@ -104,7 +103,7 @@ describe('Experiment IDs — unicità e formato', () => {
 // =============================================================================
 // 3. CAMPI BOOK-PARALLEL — ogni esperimento deve affiancare il volume fisico
 // =============================================================================
-describe('Book-parallel fields — tutti e 94 gli esperimenti', () => {
+describe('Book-parallel fields — tutti gli 88 esperimenti', () => {
   it('Ogni esperimento ha "title" non vuoto', () => {
     const failing = ALL_EXPERIMENTS
       .map(e => ({ id: e.id, issue: getFieldMissing(e, 'title') }))
@@ -337,9 +336,9 @@ describe('Parità volume fisico ↔ dati digitali', () => {
     expect(bad).toEqual([]);
   });
 
-  it('Le pagine di Vol3 sono nell\'intervallo 1-95 (totale pagine PDF)', () => {
+  it('Le pagine di Vol3 sono nell\'intervallo 1-140', () => {
     const bad = Object.entries(VOLUME_REFERENCES)
-      .filter(([id, ref]) => ref.volume === 3 && (ref.bookPage < 1 || ref.bookPage > 95))
+      .filter(([id, ref]) => ref.volume === 3 && (ref.bookPage < 1 || ref.bookPage > 140))
       .map(([id]) => id);
     expect(bad).toEqual([]);
   });

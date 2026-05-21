@@ -140,14 +140,14 @@ describe('findLessonForExperiment', () => {
   it('finds correct lesson for v3-cap5-esp1', () => {
     const result = findLessonForExperiment('v3-cap5-esp1');
     expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-primi-passi');
+    expect(result.lessonId).toBe('v3-cap5-blink');
     expect(result.lesson.volume).toBe(3);
   });
 
-  it('finds correct lesson for v3-cap6-semaforo', () => {
-    const result = findLessonForExperiment('v3-cap6-semaforo');
+  it('finds correct lesson for v3-cap6-esp5', () => {
+    const result = findLessonForExperiment('v3-cap6-esp5');
     expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-progetti-led');
+    expect(result.lessonId).toBe('v3-cap6-digitali');
   });
 
   it('returns null for unknown ID "v4-cap1-esp1"', () => {
@@ -185,9 +185,9 @@ describe('getLessonsForVolume', () => {
     expect(lessons).toHaveLength(9);
   });
 
-  it('Vol 3 returns 5 lessons', () => {
+  it('Vol 3 returns 4 lessons', () => {
     const lessons = getLessonsForVolume(3);
-    expect(lessons).toHaveLength(5);
+    expect(lessons).toHaveLength(4);
   });
 
   it('Vol 1 lessons are sorted by chapter', () => {
@@ -216,8 +216,8 @@ describe('getLessonsForVolume', () => {
 // 4. getLessonCount — 2 tests
 // ============================================================
 describe('getLessonCount', () => {
-  it('returns correct total count of 24', () => {
-    expect(getLessonCount()).toBe(24);
+  it('returns correct total count of 23', () => {
+    expect(getLessonCount()).toBe(23);
   });
 
   it('matches sum of per-volume counts', () => {
@@ -238,8 +238,8 @@ describe('Cross-validation with experiments-index', () => {
     expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(78);
   });
 
-  it('LESSON_GROUPS contains exactly 79 experiment IDs', () => {
-    expect(ALL_LESSON_EXP_IDS.length).toBe(79);
+  it('LESSON_GROUPS contains exactly 88 experiment IDs', () => {
+    expect(ALL_LESSON_EXP_IDS.length).toBe(88);
   });
 
   it('every experiment in LESSON_GROUPS exists in experiments-index', () => {

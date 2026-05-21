@@ -99,7 +99,7 @@ describe('chapter-map — Tea alias mapping', () => {
     });
 
     it('Vol3 semaforo maps correctly', () => {
-      const info = getDisplayInfo('v3-cap6-semaforo');
+      const info = getDisplayInfo('v3-cap6-esp5');
       expect(info).not.toBeNull();
       expect(info.volume).toBe(3);
     });
