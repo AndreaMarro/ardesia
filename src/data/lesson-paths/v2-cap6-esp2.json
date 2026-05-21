@@ -88,7 +88,7 @@
   "next_experiment": {
     "id": "v2-cap6-esp3",
     "title": "Tre LED in serie",
-    "preview": "Aggiungete un terzo LED e scoprite il limite della batteria da 9V!"
+    "preview": "Prossimo passo: Tre LED in serie. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -262,5 +262,41 @@
     ],
     "next_suggested": "v2-cap6-esp3",
     "resume_message": "Hai scoperto la tensione forward! Ora aggiungiamo un terzo LED: riuscirà la batteria a farli brillare tutti?"
+  },
+  "analogies": [
+    {
+      "concept": "tensione_forward_colori",
+      "text": "La tensione forward è come il 'biglietto di ingresso' del LED: il LED rosso paga 1.8V per accendersi, il verde paga 2.2V. In serie, la batteria deve pagare tutti i biglietti sommati! Ecco perché il colore del LED non è solo estetica — è fisica!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "stesso_flusso_diversa_emissione",
+      "text": "Immaginate due lampadine collegate allo stesso tubo dell'acqua (stessa corrente): una è una normale lampadina, l'altra è un LED ad alta efficienza. La stessa acqua passa, ma una illumina meglio dell'altra!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Pensare che la corrente diversa spieghi la luminosità diversa",
+      "teacher_response": "No! In serie la corrente è SEMPRE identica. La differenza di luminosità non dipende dalla corrente ma dall'efficienza luminosa: il verde converte l'energia elettrica in luce in modo leggermente diverso dal rosso a parità di corrente.",
+      "analogy": "È come due studenti che studiano per lo stesso tempo (stessa corrente) ma uno è più bravo in matematica: stesso sforzo, risultati diversi!"
+    },
+    {
+      "mistake": "Confondere anodo e catodo del LED verde",
+      "teacher_response": "Tutti i LED hanno la stessa regola: la gamba LUNGA è sempre l'anodo (+), quella CORTA è sempre il catodo (−). Non importa il colore!",
+      "analogy": "Come il pollice: non importa di che razza sei, il pollice è sempre quello più grosso e corto!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

@@ -82,7 +82,7 @@
   "next_experiment": {
     "id": "v2-cap9-esp2",
     "title": "Luce Notturna Automatica",
-    "preview": "Nel prossimo esperimento userete il fototransistor insieme al MOSFET per costruire una luce che si accende automaticamente al buio!"
+    "preview": "Prossimo passo: Luce Notturna Automatica. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -262,5 +262,41 @@
     ],
     "next_suggested": "v2-cap9-esp2",
     "resume_message": "Avete scoperto il fototransistor! Tensione variabile con la luce. Prossimo: luce notturna automatica con MOSFET!"
+  },
+  "analogies": [
+    {
+      "concept": "porta_solare",
+      "text": "Il fototransistor è come una porta controllata dal sole: più luce arriva, più la porta si apre e più corrente passa. Al tramonto la porta si chiude e la corrente smette di scorrere. La tensione che misuriamo è quanto 'aperta' è questa porta!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap9-esp1"
+    },
+    {
+      "concept": "partitore_luce",
+      "text": "Il fototransistor e il resistore formano un partitore di tensione controllato dalla luce: quando il fototransistor conduce molto (luce), abbassa la sua resistenza e la tensione sale sull'emettitore. Il resistore da 10kΩ tiene il segnale a zero quando non c'è luce.",
+      "evidence": "experiments-vol2.js concept v2-cap9-esp1"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Invertire collettore ed emettitore del fototransistor",
+      "teacher_response": "Il fototransistor ha polarità! Il collettore (gamba più lunga o con il segno nel datasheet) va verso la tensione alta. L'emettitore va verso il resistore e poi a massa. Se invertiti, il circuito non risponde alla luce!",
+      "analogy": "Come una valvola: ha un senso di flusso preciso, invertita non funziona"
+    },
+    {
+      "mistake": "Aspettarsi che il multimetro mostri un valore fisso",
+      "teacher_response": "Il valore sul multimetro CAMBIA continuamente con la luce! È un sensore che varia in modo continuo: tra quasi 0V (buio) e quasi 9V (luce intensa). Muovete una torcia o coprite con la mano e guardate il numero cambiare in diretta!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

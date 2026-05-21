@@ -97,7 +97,7 @@
   "next_experiment": {
     "id": "v2-cap7-esp3",
     "title": "Condensatori in parallelo",
-    "preview": "Collegate due condensatori in parallelo: la capacità si somma e la scarica dura il doppio!"
+    "preview": "Prossimo passo: Condensatori in parallelo. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -302,5 +302,41 @@
     ],
     "next_suggested": "v2-cap7-esp3",
     "resume_message": "Hai visto la fisica con i tuoi occhi! Il condensatore che sfuma il LED è uno dei circuiti più belli dell'elettronica. Prossimo: condensatori in parallelo!"
+  },
+  "analogies": [
+    {
+      "concept": "scarica_visibile_led",
+      "text": "Il condensatore che si scarica attraverso il LED è come una torcia che perde lentamente le pile: parte brillante e si affievolisce gradualmente. L'energia immagazzinata nel condensatore (come nelle pile) si trasforma in luce man mano che se ne va!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "energia_immagazzinata",
+      "text": "Il condensatore è come un secchio d'acqua con un buco: premendo il pulsante riempite il secchio, rilasciandolo l'acqua esce lentamente illuminando il LED. Quando nel secchio rimane meno di un certo livello (Vf del LED), la fontana luminosa si ferma!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Aspettarsi che il LED si spenga esattamente quando la tensione raggiunge zero",
+      "teacher_response": "Il LED ha bisogno di almeno 1.8V (la sua Vf) per accendersi. Quando la tensione del condensatore scende sotto 1.8V, la corrente non è più sufficiente per far brillare il LED. Si spegne prima che il condensatore sia completamente scarico!",
+      "analogy": "Come una fontana che funziona solo quando la pressione dell'acqua è abbastanza alta: quando scende troppo, si ferma anche se c'è ancora un po' d'acqua nel serbatoio!"
+    },
+    {
+      "mistake": "Non capire perché serve il resistore se c'è già il LED",
+      "teacher_response": "Il LED da solo ha una resistenza molto bassa: senza resistore, al momento del pulsante la corrente sarebbe enorme e potrebbe bruciarlo! Il resistore da 1kΩ protegge il LED e regola la velocità di scarica (Tau = R × C).",
+      "analogy": "Il resistore è come il freno di una bicicletta: senza freni la bicicletta (il LED) andrebbe troppo veloce e si romperebbe in curva!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

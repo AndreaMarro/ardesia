@@ -88,7 +88,7 @@
   "next_experiment": {
     "id": "v2-cap7-esp1",
     "title": "Scarica condensatore con multimetro",
-    "preview": "Nel Capitolo 7 scoprirete componenti che immagazzinano energia elettrica e la rilasciano lentamente!"
+    "preview": "Prossimo passo: Scarica condensatore con multimetro. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -271,5 +271,41 @@
     ],
     "next_suggested": "v2-cap7-esp1",
     "resume_message": "Hai completato il Capitolo 6! Ora conosci la tensione forward di ogni LED. Il Capitolo 7 ti aspetta con un componente misterioso: un componente che immagazzina energia!"
+  },
+  "analogies": [
+    {
+      "concept": "voltmetro_parallelo",
+      "text": "Il voltmetro è come un passante che osserva la corsa senza parteciparvi: si mette AI LATI della strada (in parallelo) e guarda senza ostacolare. Se si mettesse in mezzo alla pista (in serie), interferirebbe con tutto!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "Vf_firma_LED",
+      "text": "La tensione forward è la firma unica di ogni LED: 1.8V per il rosso, 2.2V per il verde, 3V per il blu. È come un'impronta unica che il multimetro può leggere! Conoscere questi valori vi permette di calcolare qualsiasi circuito LED.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Collegare le sonde del multimetro in serie invece che in parallelo",
+      "teacher_response": "Il voltmetro va SEMPRE in parallelo! In serie misurerebbe la corrente (che è un'altra cosa) e potrebbe interrompere il circuito. Le sonde vanno ai DUE CAPI del componente che volete misurare, non dentro il percorso principale.",
+      "analogy": "Per misurare l'altezza di una finestra, metti il metro ai lati (parallelo) — non dentro il muro (serie)!"
+    },
+    {
+      "mistake": "Collegare la sonda rossa al catodo invece che all'anodo",
+      "teacher_response": "Attenzione alla polarità! La sonda rossa (+) va all'anodo del LED (gamba lunga, +). La sonda nera (−) va al catodo (gamba corta, −). Se invertite, il multimetro mostra un valore negativo.",
+      "analogy": "Come una bussola: la freccia rossa indica sempre il nord. La sonda rossa del multimetro indica sempre il punto a tensione più alta!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

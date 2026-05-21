@@ -100,80 +100,87 @@
     },
     "vol2": {
       "volume_number": 2,
-      "volume_title": "Volume 2 — Arduino e componenti attivi",
+      "volume_title": "Volume 2 — Approfondiamo",
       "chapters": {
+        "cap3": {
+          "chapter_number": 3,
+          "chapter_title": "Capitolo 3 — Il Multimetro",
+          "experiments": [
+            { "id": "v2-cap3-esp1", "next_id": "v2-cap3-esp2", "page": 16 },
+            { "id": "v2-cap3-esp2", "next_id": "v2-cap3-esp3", "page": 19 },
+            { "id": "v2-cap3-esp3", "next_id": "v2-cap3-esp4", "page": 21 },
+            { "id": "v2-cap3-esp4", "next_id": "v2-cap4-esp1", "page": 28 }
+          ]
+        },
+        "cap4": {
+          "chapter_number": 4,
+          "chapter_title": "Capitolo 4 — Approfondiamo le resistenze",
+          "experiments": [
+            { "id": "v2-cap4-esp1", "next_id": "v2-cap4-esp2", "page": 43 },
+            { "id": "v2-cap4-esp2", "next_id": "v2-cap4-esp3", "page": 43 },
+            { "id": "v2-cap4-esp3", "next_id": "v2-cap5-esp1", "page": 44 }
+          ]
+        },
         "cap5": {
           "chapter_number": 5,
-          "chapter_title": "Capitolo 5",
+          "chapter_title": "Capitolo 5 — Approfondiamo le Batterie",
           "experiments": [
-            { "id": "v2-cap5-esp1", "next_id": "v2-cap5-esp2", "page": null },
-            { "id": "v2-cap5-esp2", "next_id": "v2-cap6-esp1", "page": null }
+            { "id": "v2-cap5-esp1", "next_id": "v2-cap5-esp2", "page": 49 },
+            { "id": "v2-cap5-esp2", "next_id": "v2-cap6-esp1", "page": 51 }
           ]
         },
         "cap6": {
           "chapter_number": 6,
-          "chapter_title": "Capitolo 6",
+          "chapter_title": "Capitolo 6 — Approfondiamo i Led",
           "experiments": [
-            { "id": "v2-cap6-esp1", "next_id": "v2-cap6-esp2", "page": null },
-            { "id": "v2-cap6-esp2", "next_id": "v2-cap6-esp3", "page": null },
-            { "id": "v2-cap6-esp3", "next_id": "v2-cap6-esp4", "page": null },
-            { "id": "v2-cap6-esp4", "next_id": "v2-cap7-esp1", "page": null }
+            { "id": "v2-cap6-esp1", "next_id": "v2-cap6-esp2", "page": 55 },
+            { "id": "v2-cap6-esp2", "next_id": "v2-cap6-esp3", "page": 57 },
+            { "id": "v2-cap6-esp3", "next_id": "v2-cap6-esp4", "page": 58 },
+            { "id": "v2-cap6-esp4", "next_id": "v2-cap7-esp1", "page": 59 }
           ]
         },
         "cap7": {
           "chapter_number": 7,
-          "chapter_title": "Capitolo 7",
+          "chapter_title": "Capitolo 7 — Cosa sono i condensatori?",
           "experiments": [
-            { "id": "v2-cap7-esp1", "next_id": "v2-cap7-esp2", "page": null },
-            { "id": "v2-cap7-esp2", "next_id": "v2-cap7-esp3", "page": null },
-            { "id": "v2-cap7-esp3", "next_id": "v2-cap7-esp4", "page": null },
-            { "id": "v2-cap7-esp4", "next_id": "v2-cap8-esp1", "page": null }
+            { "id": "v2-cap7-esp1", "next_id": "v2-cap7-esp2", "page": 67 },
+            { "id": "v2-cap7-esp2", "next_id": "v2-cap7-esp3", "page": 68 },
+            { "id": "v2-cap7-esp3", "next_id": "v2-cap7-esp4", "page": 72 },
+            { "id": "v2-cap7-esp4", "next_id": "v2-cap8-esp1", "page": 72 }
           ]
         },
         "cap8": {
           "chapter_number": 8,
-          "chapter_title": "Capitolo 8",
+          "chapter_title": "Capitolo 8 — Cosa sono i Transistor?",
           "experiments": [
-            { "id": "v2-cap8-esp1", "next_id": "v2-cap8-esp2", "page": null },
-            { "id": "v2-cap8-esp2", "next_id": "v2-cap8-esp3", "page": null },
-            { "id": "v2-cap8-esp3", "next_id": "v2-cap9-esp1", "page": null }
+            { "id": "v2-cap8-esp1", "next_id": "v2-cap8-esp2", "page": 77 },
+            { "id": "v2-cap8-esp2", "next_id": "v2-cap8-esp3", "page": 80 },
+            { "id": "v2-cap8-esp3", "next_id": "v2-cap9-esp1", "page": 80 }
           ]
         },
         "cap9": {
           "chapter_number": 9,
-          "chapter_title": "Capitolo 9",
+          "chapter_title": "Capitolo 9 — Cosa sono i fototransistor?",
           "experiments": [
-            { "id": "v2-cap9-esp1", "next_id": "v2-cap9-esp2", "page": null },
-            { "id": "v2-cap9-esp2", "next_id": "v2-cap9-esp3", "page": null },
-            { "id": "v2-cap9-esp3", "next_id": "v2-cap9-esp4", "page": null },
-            { "id": "v2-cap9-esp4", "next_id": "v2-cap10-esp1", "page": null }
+            { "id": "v2-cap9-esp1", "next_id": "v2-cap9-esp2", "page": 86 },
+            { "id": "v2-cap9-esp2", "next_id": "v2-cap10-esp1", "page": 89 }
           ]
         },
         "cap10": {
           "chapter_number": 10,
-          "chapter_title": "Capitolo 10",
+          "chapter_title": "Capitolo 10 — Il motore a corrente continua",
           "experiments": [
-            { "id": "v2-cap10-esp1", "next_id": "v2-cap10-esp2", "page": null },
-            { "id": "v2-cap10-esp2", "next_id": "v2-cap11-esp1", "page": null }
-          ]
-        },
-        "cap11": {
-          "chapter_number": 11,
-          "chapter_title": "Capitolo 11",
-          "experiments": [
-            { "id": "v2-cap11-esp1", "next_id": "v2-cap11-esp2", "page": null },
-            { "id": "v2-cap11-esp2", "next_id": "v2-cap11-esp3", "page": null },
-            { "id": "v2-cap11-esp3", "next_id": "v2-cap11-esp4", "page": null },
-            { "id": "v2-cap11-esp4", "next_id": "v2-cap12-esp1", "page": null }
+            { "id": "v2-cap10-esp1", "next_id": "v2-cap10-esp2", "page": 95 },
+            { "id": "v2-cap10-esp2", "next_id": "v2-cap10-esp3", "page": 95 },
+            { "id": "v2-cap10-esp3", "next_id": "v2-cap10-esp4", "page": 95 },
+            { "id": "v2-cap10-esp4", "next_id": "v2-cap12-esp1", "page": 95 }
           ]
         },
         "cap12": {
           "chapter_number": 12,
-          "chapter_title": "Capitolo 12",
+          "chapter_title": "Capitolo 12 — Robot segui luce",
           "experiments": [
-            { "id": "v2-cap12-esp1", "next_id": "v2-cap12-esp2", "page": null },
-            { "id": "v2-cap12-esp2", "next_id": "v2-cap12-esp3", "page": null },
-            { "id": "v2-cap12-esp3", "next_id": null, "page": null }
+            { "id": "v2-cap12-esp1", "next_id": null, "page": 103 }
           ]
         }
       }

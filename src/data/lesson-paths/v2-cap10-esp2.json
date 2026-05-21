@@ -73,7 +73,7 @@
   "next_experiment": {
     "id": "v2-cap10-esp3",
     "title": "Motore con Pulsante",
-    "preview": "Nell'esperimento 3 aggiungerete un pulsante per controllare il motore: gira solo quando premete!"
+    "preview": "Prossimo passo: Motore con Pulsante. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -227,5 +227,41 @@
     ],
     "next_suggested": "v2-cap10-esp3",
     "resume_message": "Avete scoperto come invertire la rotazione del motore DC! Ora aggiungerete un pulsante per controllarlo."
+  },
+  "analogies": [
+    {
+      "concept": "inversione_polarita",
+      "text": "È come invertire il flusso dell'acqua in un mulino ad acqua: se si fa scorrere l'acqua dall'altra parte, le pale girano al contrario. Nel motore, la corrente è l'acqua: cambia direzione, il motore gira al contrario!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    },
+    {
+      "concept": "applicazione_reale",
+      "text": "Le automobili elettriche usano questo principio per la retromarcia: cambiano la polarità del motore elettrico e le ruote girano al contrario. Non serve un cambio meccanico come nelle auto a benzina — basta invertire la corrente!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il motore non sembra girare in direzione diversa dall'esperimento 1",
+      "teacher_response": "Osservate con attenzione il simbolo di rotazione nel simulatore. Confronta i due esperimenti aprendo uno dopo l'altro: la freccia di rotazione punta in direzioni opposte!",
+      "analogy": "È come aprire un barattolo: senso orario chiude, senso antiorario apre. La direzione conta!"
+    },
+    {
+      "mistake": "Gli studenti confondono quale filo è invertito",
+      "teacher_response": "Nell'esp. 1: rosso → terminale + del motore. Nell'esp. 2: rosso → terminale - del motore. Basta scambiare i due fili che vanno al motore, non quelli della batteria!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

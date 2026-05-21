@@ -92,7 +92,7 @@
   "next_experiment": {
     "id": "v2-cap7-esp2",
     "title": "Scarica condensatore con LED rosso",
-    "preview": "Rendete visibile la scarica del condensatore usando un LED che sfuma lentamente!"
+    "preview": "Prossimo passo: Scarica condensatore con LED rosso. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -286,5 +286,41 @@
     ],
     "next_suggested": "v2-cap7-esp2",
     "resume_message": "Hai scoperto il condensatore! Tau = R × C = 1 secondo. Ora rendiamo la scarica visibile con un LED che sfuma!"
+  },
+  "analogies": [
+    {
+      "concept": "scarica_esponenziale",
+      "text": "La scarica del condensatore è come svuotare una vasca da bagno con un buco piccolo: all'inizio l'acqua esce veloce (alta pressione = alta tensione), poi sempre più lentamente man mano che il livello scende. Non si ferma di botto — rallenta gradualmente!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "costante_di_tempo_tau",
+      "text": "Tau è come un orologio interno del circuito: ogni 'ticchettio' (Tau = R×C secondi), la tensione scende del 63%. Con R=1kΩ e C=1000µF, ogni secondo è un ticchettio. Cambiate R o C e cambiate la velocità dell'orologio!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Invertire la polarità del condensatore",
+      "teacher_response": "Il condensatore elettrolitico ha una polarità precisa! Il polo + (gamba più lunga o marcato '+') va verso il positivo del circuito. La striscia bianca indica il polo −. Invertirlo può danneggiarlo, oppure si scalda e non funziona!",
+      "analogy": "Come mettere le batterie in un telecomando: c'è un verso giusto e uno sbagliato. Il condensatore è uguale — rispettate i segni + e −!"
+    },
+    {
+      "mistake": "Pensare che il condensatore si carichi lentamente come si scarica",
+      "teacher_response": "La carica è molto più veloce della scarica! Quando premete il pulsante, la batteria carica il condensatore quasi istantaneamente (la resistenza interna è bassissima). La scarica invece è lenta perché passa attraverso il resistore da 1kΩ.",
+      "analogy": "Come riempire un pallone con un compressore (carica rapida) e poi bucarlo con un ago (scarica lenta). Stesso pallone, velocità molto diversa!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }
