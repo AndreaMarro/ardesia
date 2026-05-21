@@ -1,7 +1,18 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import SessionReportComic from '../../../src/components/lavagna/SessionReportComic';
+import SessionReportComicModal from '../../../src/components/lavagna/SessionReportComicModal';
+
+const { routeImageGenMock } = vi.hoisted(() => ({
+  routeImageGenMock: vi.fn(),
+}));
+
+vi.mock('../../../src/services/multimodalRouter', () => ({
+  multimodalRouter: {
+    routeImageGen: routeImageGenMock,
+  },
+}));
 
 const mockSession = {
   studentAlias: 'S001',
@@ -21,7 +32,12 @@ const mockSession = {
 
 describe('SessionReportComic — Fumetto Report MVP', () => {
   beforeEach(() => cleanup());
-  afterEach(() => cleanup());
+  afterEach(() => {
+    delete window.__ELAB_API;
+    window.location.hash = '';
+    routeImageGenMock.mockReset();
+    cleanup();
+  });
 
   it('renders header with session date', () => {
     render(<SessionReportComic session={mockSession} />);
@@ -33,17 +49,35 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
     expect(screen.getByText(/S001/)).toBeInTheDocument();
   });
 
-  it('renders 6 vignette slots (3 completed + 3 placeholder)', () => {
+  it('renders 6 vignette slots as a complete narrative arc', () => {
     render(<SessionReportComic session={mockSession} />);
     const vignettes = screen.getAllByRole('figure');
     expect(vignettes.length).toBe(6);
+    expect(screen.queryByText(/Prossimo esperimento/i)).not.toBeInTheDocument();
+  });
+
+  it('renders a single completed experiment across all 6 arc panels', () => {
+    render(
+      <SessionReportComic
+        session={{
+          ...mockSession,
+          experimentsCompleted: [
+            { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+          ],
+        }}
+      />
+    );
+
+    expect(screen.getAllByRole('figure')).toHaveLength(6);
+    expect(screen.getAllByText(/Accendi il LED/i).length).toBeGreaterThanOrEqual(6);
+    expect(screen.queryByText(/Prossimo esperimento/i)).not.toBeInTheDocument();
   });
 
   it('shows narration text for each completed vignette', () => {
     render(<SessionReportComic session={mockSession} />);
     expect(screen.getByText(/acceso il primo LED/i)).toBeInTheDocument();
     expect(screen.getByText(/resistore protegge/i)).toBeInTheDocument();
-    expect(screen.getByText(/mescoliamo colori/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/mescoliamo colori/i).length).toBeGreaterThan(0);
   });
 
   it('Principio Zero v3: "Ragazzi" present in narrations', () => {
@@ -71,6 +105,45 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
     expect(onExport).toHaveBeenCalledOnce();
   });
 
+  it('generates six session-specific panel images through the imagegen route', async () => {
+    routeImageGenMock.mockResolvedValue({
+      ok: true,
+      data: { image: 'data:image/png;base64,ZmFrZS1lbGFi' },
+    });
+
+    render(<SessionReportComic session={mockSession} />);
+    fireEvent.click(screen.getByRole('button', { name: /Genera immagini del fumetto dalla sessione/i }));
+
+    await waitFor(() => expect(routeImageGenMock).toHaveBeenCalledTimes(6));
+    expect(routeImageGenMock.mock.calls[0][0].prompt).toMatch(/kit fisico|ELAB Tea flat vector/i);
+    expect(routeImageGenMock.mock.calls[0][1].sessionId).toMatch(/fs-[a-f0-9]{8}-panel-1/i);
+    expect(screen.getByTestId('session-report-comic-imagegen-status')).toHaveTextContent(/Immagini generate: 6\/6/i);
+    expect(screen.getAllByRole('img', { name: /Immagine generata per/i })).toHaveLength(6);
+  });
+
+  it('keeps the comic usable when image generation is unavailable', async () => {
+    routeImageGenMock.mockResolvedValue({
+      ok: false,
+      provider: 'cloudflare-deferred',
+      data: null,
+    });
+
+    render(<SessionReportComic session={mockSession} />);
+    fireEvent.click(screen.getByRole('button', { name: /Genera immagini del fumetto dalla sessione/i }));
+
+    await waitFor(() => expect(routeImageGenMock).toHaveBeenCalledTimes(6));
+    expect(screen.getByTestId('session-report-comic-imagegen-status')).toHaveTextContent(/non disponibile/i);
+    expect(screen.getAllByRole('figure')).toHaveLength(6);
+  });
+
+  it('falls back to window.print when onExport is missing', () => {
+    const printSpy = vi.spyOn(window, 'print').mockImplementation(() => {});
+    render(<SessionReportComic session={mockSession} />);
+    fireEvent.click(screen.getByRole('button', { name: /Scarica PDF|Stampa/i }));
+    expect(printSpy).toHaveBeenCalledOnce();
+    printSpy.mockRestore();
+  });
+
   it('handles empty session (zero experiments) without crash', () => {
     const empty = { studentAlias: 'S002', startedAt: '2026-04-19T09:00:00Z', experimentsCompleted: [], narrations: {} };
     render(<SessionReportComic session={empty} />);
@@ -81,6 +154,184 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
   it('handles missing narrations gracefully', () => {
     const noNarr = { ...mockSession, narrations: {} };
     render(<SessionReportComic session={noNarr} />);
-    expect(screen.getByText(/Accendi il LED/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Accendi il LED/i).length).toBeGreaterThan(0);
+  });
+
+  it('renders a photo placeholder when a session experiment has no usable asset', () => {
+    render(
+      <SessionReportComic
+        session={{
+          ...mockSession,
+          experimentsCompleted: [
+            { id: 'custom-no-photo', title: 'Esperimento senza foto', volume: 99 },
+          ],
+          narrations: {},
+        }}
+      />
+    );
+    expect(screen.getAllByText(/Esperimento senza foto/i).length).toBeGreaterThan(0);
+  });
+
+  it('falls back to an in-card placeholder when the mapped photo asset fails to load', () => {
+    render(<SessionReportComic session={mockSession} />);
+    const image = screen.getByRole('img', { name: /Foto esperimento: Accendi il LED/i });
+
+    fireEvent.error(image);
+
+    expect(screen.queryByRole('img', { name: /Foto esperimento: Accendi il LED/i })).not.toBeInTheDocument();
+    expect(screen.getAllByText(/Accendi il LED/i).length).toBeGreaterThan(0);
+  });
+
+  it('renders post-save cliffhanger CTA and mounts next experiment through UNLIM API', () => {
+    const mountExperiment = vi.fn();
+    const onMountNextExperiment = vi.fn();
+    window.__ELAB_API = { unlim: { mountExperiment } };
+
+    render(
+      <SessionReportComic
+        onMountNextExperiment={onMountNextExperiment}
+        session={{
+          ...mockSession,
+          savedAt: '2026-04-19T10:30:00Z',
+          next_experiment: {
+            id: 'v1-cap6-esp2',
+            title: 'LED senza resistore (cosa NON fare!)',
+            preview: 'Il LED è in pericolo se manca il resistore del kit fisico.',
+          },
+        }}
+      />
+    );
+
+    const cta = screen.getByRole('button', {
+      name: /Andiamo al prossimo esperimento Vol\.1 cap\.6/i,
+    });
+    expect(screen.getByTestId('session-report-comic-cliffhanger')).toHaveTextContent(/Ragazzi/);
+    expect(screen.getByTestId('session-report-comic-cliffhanger')).toHaveTextContent(/kit fisico/i);
+
+    fireEvent.click(cta);
+    expect(mountExperiment).not.toHaveBeenCalled();
+    expect(onMountNextExperiment).toHaveBeenCalledWith('v1-cap6-esp2');
+  });
+
+  it('falls back to top-level mountExperiment when unlim namespace is absent', () => {
+    const mountExperiment = vi.fn();
+    window.__ELAB_API = { mountExperiment };
+
+    render(
+      <SessionReportComic
+        session={{
+          ...mockSession,
+          savedAt: '2026-04-19T10:30:00Z',
+          next_experiment: {
+            id: 'v1-cap6-esp2',
+            title: 'LED senza resistore',
+            preview: 'Ragazzi, ripartiamo dal resistore del kit fisico.',
+          },
+        }}
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button', {
+      name: /Andiamo al prossimo esperimento Vol\.1 cap\.6/i,
+    }));
+    expect(mountExperiment).toHaveBeenCalledWith('v1-cap6-esp2');
+  });
+
+  it('renders cliffhanger fallback copy for missing preview and malformed next id', () => {
+    render(
+      <SessionReportComic
+        session={{
+          ...mockSession,
+          savedAt: '2026-04-19T10:30:00Z',
+          next_experiment: {
+            id: 'next-free-lab',
+            title: 'Laboratorio libero',
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByTestId('session-report-comic-cliffhanger')).toHaveTextContent(
+      /Il kit fisico ha ancora una domanda aperta/i
+    );
+    expect(screen.getByRole('button', {
+      name: /Andiamo al prossimo esperimento\s*: Laboratorio libero/i,
+    })).toBeInTheDocument();
+  });
+
+  it('renders canonical UNLIM mascot, didactic exercises, notes, and session fingerprint', () => {
+    render(
+      <SessionReportComic
+        session={{
+          ...mockSession,
+          classKey: 'classe-fumetto',
+          componentsUsed: ['LED rosso', 'resistore 470 Ohm', 'breadboard'],
+          studentJourney: {
+            mistakesMade: [{ description: 'LED girato al contrario' }],
+            mistakesOvercome: ['LED girato al contrario'],
+            helpRequestsCount: 1,
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByTestId('session-report-comic-mascot')).toHaveTextContent(/UNLIM/i);
+    expect(screen.getByTestId('session-report-comic-mascot')).toHaveAccessibleName(/UNLIM mascotte canonica ELAB/i);
+    expect(screen.getByTestId('unlim-mascotte')).toHaveAccessibleName(/UNLIM mascotte canonica Tea/i);
+    expect(screen.getByTestId('session-report-comic-exercises')).toHaveTextContent(/kit fisico/i);
+    expect(screen.getByTestId('session-report-comic-exercises')).toHaveTextContent(/resistore 470 Ohm/i);
+    expect(screen.getByTestId('session-report-comic-quiz')).toHaveTextContent(/Domande a crocette/i);
+    expect(screen.getByTestId('session-report-comic-quiz')).toHaveTextContent(/LED girato al contrario/i);
+    expect(screen.getByTestId('session-report-comic-notes')).toHaveTextContent(/Spazio appunti/i);
+    expect(screen.getByTestId('session-report-comic-notes')).toHaveTextContent(/LED girato al contrario/i);
+    expect(screen.getByTestId('session-report-comic-diary')).toHaveTextContent(/Pagina diario/i);
+    expect(screen.getByTestId('session-report-comic-diary')).toHaveTextContent(/Vol\.1 pag\./i);
+    expect(screen.getByText(/Traccia sessione:/i)).toBeInTheDocument();
+  });
+
+  it('wraps the comic in an accessible modal and closes after next experiment mount', () => {
+    const onClose = vi.fn();
+    const onMountNextExperiment = vi.fn();
+    const mountExperiment = vi.fn();
+    window.__ELAB_API = { unlim: { mountExperiment } };
+
+    render(
+      <SessionReportComicModal
+        onClose={onClose}
+        onMountNextExperiment={onMountNextExperiment}
+        session={{
+          ...mockSession,
+          savedAt: '2026-04-19T10:30:00Z',
+          next_experiment: {
+            id: 'v1-cap6-esp2',
+            title: 'LED senza resistore',
+            preview: 'Ragazzi, il kit fisico chiede cosa succede senza resistore.',
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByRole('dialog', { name: /Fumetto ELAB generato dalla sessione/i })).toBeInTheDocument();
+    expect(document.body.style.overflow).toBe('hidden');
+
+    fireEvent.click(screen.getByRole('button', {
+      name: /Andiamo al prossimo esperimento Vol\.1 cap\.6/i,
+    }));
+
+    expect(mountExperiment).not.toHaveBeenCalled();
+    expect(onMountNextExperiment).toHaveBeenCalledWith('v1-cap6-esp2');
+    expect(window.location.hash).toBe('');
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it('unlocks page scroll when the modal is closed or unmounted', () => {
+    const onClose = vi.fn();
+    const { unmount } = render(<SessionReportComicModal session={mockSession} onClose={onClose} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /Chiudi fumetto ELAB/i }));
+    expect(onClose).toHaveBeenCalledOnce();
+
+    unmount();
+    expect(document.body.style.overflow).toBe('');
   });
 });

@@ -19,6 +19,24 @@ Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduc
 
 ---
 
+## [feat(fumetto) — Fumetto: report di sessione a fumetti per la classe] — 2026-05-21
+
+Funzionalità "Fumetto" — il report di una sessione di laboratorio reso come fumetto pedagogico in 6 vignette (arco narrativo problema → ipotesi → errore → click → successo → ponte) seguendo lo schema canonico di Tea (`src/data/fumetto-schema.json`). UNLIM resta comprimario: illumina un dettaglio del kit fisico senza rubare la scena. Il fumetto è generato dalla sessione reale (errori commessi, componenti usati, percorso dello studente) — nessun template statico, nessun dato finto.
+
+### Added
+- `src/services/fumettoService.js` — validatore runtime dello schema fumetto (`validateFumettoPayload` + `validateFumettoSchemaContract`), generatore pilota (`generatePilotFumetto`), generatore da sessione reale (`generateSessionFumetto`), modello del report (`buildSessionReportComicModel`) e helper per la prossima tappa narrativa (`getNextExperimentForFumetto`).
+- `src/components/lavagna/SessionReportComic.jsx` + `SessionReportComicModal.jsx` + `SessionReportComicCliffhanger.jsx` — UI del report a fumetti con cliffhanger verso l'esperimento successivo.
+- `src/data/fumetto-schema.json` — schema JSON canonico (da Tea) del fumetto pedagogico.
+- `tests/unit/services/fumettoService.test.js` + `tests/unit/services/fumettoService-coverage.test.js` — copertura validatore, generatori, fallback chain `getNextExperimentForFumetto` e cap dei balloon per vignetta.
+- `tests/unit/lavagna/SessionReportComic.test.jsx` + `tests/e2e/03-fumetto-flow.spec.js` — test componente + flusso E2E del fumetto.
+
+### Notes
+- Arco narrativo continuo: ogni vignetta si aggancia al kit fisico e alla sequenza del libro stampato (Principio Zero + Morfismo Sense 2).
+- `generatePilotFumetto` produce contenuto placeholder sintetico per dev/preview/test — la generazione LLM via Edge Function `unlim-fumetto` è rinviata (l'Edge Function non esiste ancora).
+- `principioZero` nei payload pilota è pre-popolato a `true`: i payload reali vanno ri-validati post-LLM via `principio-zero-validator.ts`.
+
+---
+
 ## [fix(iter-103) — #compile-home: Monitor Seriale dentro la griglia editor (fix "banda nera")] — 2026-05-21
 
 Su `#compile-home` il Monitor Seriale Virtuale era un `<section>` fratello di `<main>`, a tutta larghezza sotto la griglia editor — una "banda nera gigante" che rompeva il layout (segnalato da Andrea iter 103 PM, ratifica "Monitor sotto l'editor"). Spostato dentro `editorGrid` come cella della griglia, sotto l'editor.
