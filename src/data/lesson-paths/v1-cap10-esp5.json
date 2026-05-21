@@ -95,8 +95,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap10-esp6",
-    "title": "Aggiungi pulsante al circuito LDR",
-    "preview": "Ultimo esperimento: il pulsante come interruttore per il circuito con la fotoresistenza!"
+    "title": "Aggiungete pulsante al circuito LDR",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.92 intitolata \"Aggiungete pulsante al circuito LDR\"."
   },
   "phases": [
     {
@@ -123,8 +123,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito pot + LED bianco + LDR + LED blu",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Aggiungi pot per controllare LED bianco seguendo Vol.1 pag.91.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -293,7 +293,7 @@
         "controllo indiretto",
         "catena di reazione"
       ],
-      "next_preview": "Ultimo esperimento del capitolo: aggiungiamo un pulsante ON/OFF al circuito con la fotoresistenza!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.92 intitolata \"Aggiungete pulsante al circuito LDR\"."
     }
   ],
   "assessment_invisible": [
@@ -308,5 +308,16 @@
     ],
     "next_suggested": "v1-cap10-esp6",
     "resume_message": "L'ultima volta avete controllato il LED blu indirettamente! Ultimo esperimento: aggiungiamo il pulsante."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 91,
+    "label": "Vol.1 pag.91"
   }
 }

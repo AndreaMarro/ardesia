@@ -87,7 +87,7 @@
   "next_experiment": {
     "id": "v1-cap8-esp4",
     "title": "3 pulsanti → 3 colori RGB",
-    "preview": "E se avessi un pulsante per OGNI colore? Potresti creare 7 combinazioni diverse!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.51: 3 pulsanti → 3 colori RGB."
   },
   "phases": [
     {
@@ -114,8 +114,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito RGB + pulsante viola",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di RGB + pulsante = viola seguendo Vol.1 pag.47.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -272,7 +272,7 @@
         "sintesi additiva della luce",
         "pulsante regola più canali"
       ],
-      "next_preview": "La prossima volta avrete UN pulsante per OGNI colore — potrete creare 7 combinazioni diverse!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.51: 3 pulsanti → 3 colori RGB."
     }
   ],
   "assessment_invisible": [
@@ -287,5 +287,16 @@
     ],
     "next_suggested": "v1-cap8-esp4",
     "resume_message": "L'ultima volta avete creato il viola! Ora ogni colore avrà il suo pulsante."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 47,
+    "label": "Vol.1 pag.47"
   }
 }

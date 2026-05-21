@@ -1,3 +1,127 @@
+## [fix(shared-infra) — prestep morfico esperimenti: PercorsoCapitoloView + NewElabSimulator + PlacementEngine + ComponentDrawer] — 2026-05-21
+
+Prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti (Codex prompt 0, `docs/prompts/CODEX-EXP-OVERHAUL-PROMPT-0-shared-infra.md`). Prepara le fondamenta riusabili da Vol1/Vol2/Vol3 prima di toccare i singoli esperimenti: drawer componenti, motore di posizionamento e shell del simulatore, più la vista di capitolo del Percorso. Nessun esperimento riscritto in questo step — solo l'infrastruttura comune e i relativi test.
+
+### Changed
+- `src/components/lavagna/PercorsoCapitoloView.jsx` + `.module.css` — vista di capitolo della modalità Percorso allineata al prestep morfico (rendering capitolo + arco narrativo continuo).
+- `src/components/simulator/NewElabSimulator.jsx` — shell del simulatore: punti di aggancio per il drawer componenti e l'orchestrazione morfica.
+- `src/components/simulator/engine/PlacementEngine.js` — posizionamento automatico dei componenti rivisto come parte dell'infrastruttura condivisa.
+- `src/components/simulator/panels/ComponentDrawer.jsx` — drawer dei componenti riusabile dagli esperimenti dei tre volumi.
+
+### Added
+- Test del prestep: `tests/PlacementEngine.test.js`, `tests/unit/components/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/components/simulator/ComponentDrawer-cliffhanger.test.jsx`, `tests/unit/components/simulator/NewElabSimulator-avr-ui.test.jsx`.
+
+### Verifica
+- CI Unit-test job del branch PASS (il prestep è la base per i prompt 1-3).
+- `npm run build` PASS + gate vitest pre-commit/pre-push (anti-regressione).
+
+### Notes
+- Merge di `origin/main` in questo branch: risolti 3 conflitti — `ElabScratchModeShell.jsx`/`.module.css` (mantenuto il ridisegno iter-102 di `main`: striscia starter inline al posto dell'overlay opaco; `min-height` workspace 520px) e `HomeCompileEntry.module.css` (mantenuto l'app-shell iter-103 `grid-auto-rows: max-content`, compatibile con "allarga l'editor").
+- Prestep puramente infrastrutturale: gli esperimenti veri e propri arrivano nei prompt 1-3 (Volume 1/2/3). Nessun hardware/UAT richiesto in questo step.
+
+---
+
+## [fix(iter-103) — #compile-home: Monitor Seriale dentro la griglia editor (fix "banda nera")] — 2026-05-21
+
+Su `#compile-home` il Monitor Seriale Virtuale era un `<section>` fratello di `<main>`, a tutta larghezza sotto la griglia editor — una "banda nera gigante" che rompeva il layout (segnalato da Andrea iter 103 PM, ratifica "Monitor sotto l'editor"). Spostato dentro `editorGrid` come cella della griglia, sotto l'editor.
+
+### Changed
+- `src/components/home/HomeCompileEntry.jsx` — il `<section>` del Virtual Serial Monitor passa da fratello di `<main>` a cella interna a `.editorGrid`, sotto l'editor.
+- `src/components/home/HomeCompileEntry.module.css` — `.root`: `min-height:100vh` → `height:100dvh` + `overflow:hidden` (l'app-shell di HomePage non offre scroll di pagina, lo scroll è interno a `.editorGrid`); `.header` e `.bannerSection` → `flex:0 0 auto`.
+
+### Verifica
+- Build PASS + vitest delta (gate hook pre-commit/pre-push).
+- Smoke UI `#compile-home` su preview pre-merge.
+
+### Notes
+- Fix puramente di layout — nessun codice funzionale nuovo, nessun hardware/UAT richiesto.
+
+---
+
+## [fix(iter-103) — "Carica sul kit fisico": bottone upload demo-mode non più dipinto disabilitato] — 2026-05-21
+
+Su `#compile-home` il bottone "Carica sul kit fisico" restava grigio, opaco e con cursore `not-allowed` anche dopo una compilazione riuscita — sembrava disabilitato (segnalato da Andrea iter 103, *"deve funzionare. imperativo"*). Root cause in `CompileUploadButton.jsx`: il percorso demo-mode (WebUSB browser-direct, iter 76) compila e carica direttamente dal browser e NON richiede né l'agente locale `ELAB Compile Agent` né una porta seriale. L'attributo HTML `disabled` del bottone era già demo-mode-aware (cliccabile), ma `buttonStyle`, `aria-disabled` e `tooltip` leggevano ancora la costante legacy `disabled` (che esige `agentAvailable` + `port`). Risultato: bottone funzionante ma dipinto morto — `cursor: not-allowed`, `opacity: 0.65`, `aria-disabled=true`, tooltip "agente locale non attivo". Il docente non lo cliccava mai.
+
+### Changed
+- `src/components/lavagna/CompileUploadButton.jsx` — introdotti `interactionDisabled` ed `effectiveDisabled` (la verità interattiva reale del bottone, demo-mode-aware). `buttonStyle` (background/cursor/opacity) e l'attributo `disabled` usano `effectiveDisabled`; `aria-disabled` usa `interactionDisabled`. `hasUploadStateOverride` spostato in cima accanto a questi.
+- `src/components/lavagna/CompileUploadButton.jsx` — `tooltip`: in demo-mode mostra "Compila e carica il programma sul kit fisico Nano R4 via USB" (o l'invito plurale a scrivere il programma) invece del fuorviante "agente locale non attivo".
+
+### Added
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — test `T1c` (regression guard): in demo-mode, con agente offline e nessuna porta, il bottone è presentato vivo (non `disabled`, `cursor: pointer`, `opacity: 1`, no `aria-disabled`, tooltip senza "agente locale").
+
+### Verifica
+- `T1c` RED verificato pre-fix (4 asserzioni fallivano), GREEN post-fix.
+- CoV vitest 61/61 PASS ×3 su 4 file (CompileUploadButton + CompileUploadButton-states + ScratchCompileBar-honest-provider + cliffhanger-cta-transitions) — zero regressioni.
+
+### Notes
+- Era rotta solo la *presentazione* del bottone: il percorso funzionale (compile `/api/compile/nanor4` → WebUSB picker → flash DFU) era già wired iter 76+. Ora il bottone appare cliccabile.
+- Il flash fisico su una Nano R4 reale via WebUSB NON è verificabile senza hardware — UAT congiunta Andrea/Tea/Riccardo. Senza scheda/Chrome il bottone porta allo stato onesto `compile_only_no_board` (iter 76 D.1).
+
+---
+
+## [fix(iter-103) — UNLIM chat: recupero build stale su 401 (Fix A)] — 2026-05-21
+
+Una build frontend vecchia servita dalla cache del PWA service worker (tipicamente dopo una rotazione di `VITE_ELAB_API_KEY`) porta con sé la chiave API obsoleta → l'Edge Function `unlim-chat` risponde HTTP 401. Prima di questa fix `tryNanobot` ingoiava il 401 (`if (!res.ok) return null`) e `sendChat` cadeva nei fallback legacy (Render + webhook n8n) → ~25s di timeout → messaggio fuorviante *"UNLIM ci sta mettendo un po' troppo. Riprova"*. Il docente riprovava all'infinito invece di ricaricare la pagina. Root cause completa: `docs/audits/2026-05-21-iter-103-unlim-chat-stale-pwa-root-cause.md`.
+
+### Changed
+- `src/services/api.js` — `tryNanobot`: su HTTP 401/403 ritorna un sentinel `{ authStale: true, status }` invece di `null` (coerente col contratto "tryNanobot non lancia mai").
+- `src/services/api.js` — `sendChat`: gestisce `nanobotResult.authStale` → ritorna subito un errore mappato da `friendlyError` ("Ricarica la pagina e riprova"), saltando i fallback Render/n8n morti. Una build stale diventa così auto-curante (l'utente ricarica → build fresca).
+
+### Added
+- `tests/unit/services/api-stale-build-recovery.test.js` — 2 test (TDD red→green): 401 → messaggio "ricarica"; 401 → nessuna chiamata al fallback Render legacy.
+
+### Verifica
+- Test dedicato 2/2 PASS (TDD: RED verificato prima del fix, GREEN dopo).
+- CoV vitest baseline + `npm run build` = gate pre-commit/pre-push.
+
+### Notes
+- Fix A di un piano A+B+C (B = `UpdatePrompt` PWA app-wide; C = cleanup env Vercel `\n` trailing) — hardening contro la trappola "build stale".
+- Incidente acuto già risolto dal hard-refresh di Andrea; questa fix rende la situazione auto-diagnosticabile e auto-curante per gli altri utenti (docenti in aula).
+
+---
+
+## [fix(iter-103) — allarga editor Blockly su #compile-home (hotfix prod)] — 2026-05-21
+
+Hotfix produzione: l'editor Blockly su `#compile-home` era schiacciato a ~258px — la toolbox mostrava solo 4 categorie su 12, sembravano "blocchi/toolbox mancanti" (segnalato da Andrea iter 103). Il fix esisteva già nel commit `5b4205e5 fix(iter-102): allarga l'editor Blockly` sul branch `feature/volume-1-experiment-overhaul`, mai mergiato → mai deployato in produzione. Questo PR fa cherry-pick di `5b4205e5` su `main` come hotfix mirato (4 file, nessun codice nuovo).
+
+### Changed
+- `src/components/home/HomeCompileEntry.module.css`: `.editorGrid` aggiunge `grid-template-rows: minmax(0, 1fr)` — il pannello editor si estende per riempire lo spazio verticale invece di restare al minimo.
+- `src/features/elabBlocks/ui/ElabScratchModeShell.module.css`: `.workspace` `min-height` 320px → 520px (floor reale per la canvas Blockly).
+- `src/components/home/ProgramExplainer.jsx`: pannello "Cosa fa questo programma?" collassato di default (era espanso, occupava ~210px sopra l'editor). Scelta espandi/collassa persiste in localStorage `'true'`/`'false'`.
+- `tests/unit/components/home/ProgramExplainer.test.jsx`: 6 test aggiornati al nuovo default collassato.
+
+### Verifica
+- Build PASS 44.73s. `ProgramExplainer.test.jsx` 6/6 PASS ×3 (CoV).
+- Misurato su dev server `#compile-home`: editor Blockly `injectionDiv` 258 → 458px, toolbox 4 → 7/12 categorie visibili, `.workspace` min-height 320 → 520px. Console preview senza errori.
+- Combacia con la verifica live documentata nel commit `5b4205e5`.
+
+### Notes
+- Nessun codice nuovo: cherry-pick di `5b4205e5` (autore Andrea Marro, 2026-05-21) da `feature/volume-1-experiment-overhaul`.
+- Fix puramente CSS layout + default-state componente — nessun hardware/UAT richiesto.
+
+---
+
+## [refactor(iter-103) — consolida overhaul narrativo esperimenti Volume 1] — 2026-05-21
+
+Sprint A-ii (iter 103). Consolida in un commit coerente il lavoro parcheggiato nel working tree del branch `feature/volume-1-experiment-overhaul` (accumulato iter 99/101/102, mai committato): overhaul narrativo degli esperimenti del Volume 1. NON è lavoro autorato in questa sessione — è la consolidazione di modifiche parcheggiate, verificate per integrità strutturale ma senza audit di contenuto.
+
+### Changed
+- `src/data/experiments-vol1.js` — dati esperimenti Volume 1 rivisti.
+- `src/data/narrative-map-94.json` — mappa narrativa aggiornata.
+- `src/data/lesson-paths/v1-*.json` — 38 lesson-path Volume 1 (cap6→cap14) aggiornati.
+
+### Added
+- `tests/unit/volume1ExperimentOverhaul.test.js` — test dedicato all'overhaul (6 test).
+
+### Verifica
+- Pre-CoV: 9 file test volume = **195/195 PASS** (`volumeParallelism` + `volumeReferencesQuality` + `volume-references-validity` + factory `volume-parallelism` + `volume1ExperimentOverhaul` 6/6). Integrità struttura dati Volume 1 confermata.
+
+### Notes — onestà
+- Questo commit CONSOLIDA lavoro parcheggiato, NON ne audita il contenuto. Un content-audit dell'overhaul (testo narrativo verbatim Vol.1, parallelismo Morfismo Sense 2) resta da fare in iter separata.
+- Branch `feature/volume-1-experiment-overhaul` è dietro `main` di 3 squash-merge (#136/#137/#138) — rebase + risoluzione conflitto CHANGELOG = Sprint A-iii.
+
+---
+
 ## [fix(sprint-u-cycle3-vol1-cap10-esp1) — internal contradiction removal 220Ω] — 2026-05-07
 
 Sprint U Cycle 3 Phase 1 PR-A. Vol1 cap10-esp1 ("LED controllato dalla luce") had internal contradiction: `desc` + `components` + `pinAssignments` correctly stated "no resistor" (per PDF Vol.1 cap.10 line 1851 verbatim "non c'è bisogno di inserire un resistore in serie al LED perché il fotoresistore anche quando illuminato ha una resistenza abbastanza elevata da non bruciare il LED"), BUT `layout`, `steps`, `observe`, `unlimPrompt`, `buildSteps` step 4 + wire steps 8-9, and `connections` array all referenced 220Ω r1 component as if it existed. Audit Cycle 2 PR #83 marked this critical "PRINCIPIO ZERO violation" → REFINED via Cycle 3 truth table refresh to "internal contradiction" (PARTIAL not HALLUCINATED). Fix = REMOVE r1 references everywhere (NOT add r1 component as handoff initial direction). Realigned `connections` (6 → 5 entries: collapsed orphan a6→a7 + a9→a10 wires into single jumper a8→a9, replaced a11→bus-11 with a10→bus-10 to match `pinAssignments` led1:cathode bb1:d10), `layout` (removed r1 orphan), `steps` (8 → 6 entries removed resistor steps), `buildSteps` (11 → 9 steps removed step 4 r1 entry + collapsed 2 wire steps), `observe` + `unlimPrompt` (replaced "guardiano (resistore)" analogy with "portinaio LDR" analogy, added Ragazzi plurale per Andrea iter 21+ mandate, cited Vol.1 cap.10 verbatim).

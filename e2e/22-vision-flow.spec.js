@@ -76,7 +76,15 @@ async function stubVisionInfra(page) {
   });
 }
 
-test.describe('Vision E2E — VisionButton → UNLIM', () => {
+// ── iter 103 Sprint A-i (2026-05-21): test.describe.fixme ──────────────────
+// VisionButton è dead code: zero import / zero `<VisionButton` JSX in src/.
+// Il tag fu rimosso ~2026-05-12 (iter 39, commit aad961d3 "Pure Gemini chat
+// decision") — combacia con "CI E2E rossa dal 12/05". La feature vision vive
+// ora via chatbot (ChatbotChatPanel.sendVision). Questi 5 test asseriscono un
+// bottone non più montato → fail garantito. fixme = marker onesto (spec ROTTO,
+// non skip arbitrario). Da risolvere: re-wire VisionButton OPPURE riscrivere
+// lo spec per il flusso chat-vision OPPURE cancellare. Andrea iter 103 ratify.
+test.describe.fixme('Vision E2E — VisionButton → UNLIM', () => {
   test.beforeEach(async ({ page }) => {
     await setupUser(page);
     await setTeacherUser(page);

@@ -22,15 +22,62 @@
 
 .mascot {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(74, 122, 37, 0.08);
+  background: rgba(74, 122, 37, 0.10);
   border: 2px solid var(--elab-lime, #4A7A25);
   border-radius: 50%;
-  /* Iter 98+ animation hook: pulse on compileStatus change */
+  overflow: hidden;
+}
+
+/* iter-102 — mascotte ufficiale ELAB (Vera) al posto dell'icona SVG grezza.
+   object-position ritaglia il testo "ELAB" del PNG e centra il volto del
+   robot. Animata via CSS: idle + reazioni allo stato compilazione. */
+.mascotImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  display: block;
+  animation: mascotIdle 3.6s ease-in-out infinite;
+}
+
+@keyframes mascotIdle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2.5px) scale(1.015); }
+}
+
+.helper[data-status="compiling"] .mascotImg {
+  animation: mascotThinking 0.95s ease-in-out infinite;
+}
+@keyframes mascotThinking {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.06) rotate(-2.5deg); }
+}
+
+.helper[data-status="success"] .mascotImg {
+  animation: mascotHappy 0.55s ease-out 2;
+}
+@keyframes mascotHappy {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-7px) scale(1.06); }
+  70% { transform: translateY(0) scale(0.97); }
+}
+
+.helper[data-status="error"] .mascotImg {
+  animation: mascotConcern 0.4s ease-in-out 2;
+}
+@keyframes mascotConcern {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascotImg { animation: none; }
 }
 
 .speech {
@@ -125,8 +172,8 @@
     gap: 10px;
   }
   .mascot {
-    width: 40px;
-    height: 40px;
+    width: 52px;
+    height: 52px;
   }
   .speech {
     font-size: 12px;

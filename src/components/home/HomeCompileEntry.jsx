@@ -349,7 +349,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                   workspaceReady={workspaceReady}
                   workspaceBlockCount={workspaceBlockCount}
                   onStarterClick={handleStarterClick}
-                  title="ELAB Scratch Arduino"
                 >
                   <ScratchEditor
                     onChange={handleScratchCodeChange}
@@ -413,26 +412,26 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
               V2 iter 98+ wire onAskQuestion to HomePage UNLIM chat surface. */}
           <UnlimCompileHelper compileStatus={compileStatus} />
         </aside>
-      </main>
 
-      {/* Iter 95 SP3 T3 — Virtual Serial Monitor section. Mounted below editor
-          + compile bar. Shows predicted Serial.* output from current editor
-          source (cppCode for C++ tab, scratchCode for Blockly tab). Andrea
-          iter 94 PM mandate "Monitor Seriale Virtuale" + mandatory disclaimer
-          "Seriale prevista dal programma. Per leggere la seriale reale
-          collega una Nano R4 via USB." Empty state graceful when no Serial
-          calls detected OR no code yet (defensive UX). */}
-      <section
-        className={styles.virtualSerialSection}
-        aria-label="Monitor Seriale Virtuale"
-        data-onboard-target="virtual-serial"
-      >
-        <VirtualSerialMonitor
-          cppCode={editorMode === MODE_CODE ? cppCode : scratchCode}
-          boardConnected={false}
-          maxIterations={10}
-        />
-      </section>
+        {/* Iter 95 SP3 T3 — Virtual Serial Monitor. iter-103 layout refactor
+            (Andrea iter 103 PM ratify "Monitor sotto l'editor"): spostato
+            DENTRO editorGrid come cella della griglia (grid-area: serial)
+            sotto l'editor. Prima era un <section> fratello a tutta larghezza
+            — la "banda nera gigante" del bug. Mostra l'output Serial.*
+            previsto dal sorgente corrente; disclaimer Andrea iter 94 PM
+            dentro al componente. */}
+        <section
+          className={styles.virtualSerialSection}
+          aria-label="Monitor Seriale Virtuale"
+          data-onboard-target="virtual-serial"
+        >
+          <VirtualSerialMonitor
+            cppCode={editorMode === MODE_CODE ? cppCode : scratchCode}
+            boardConnected={false}
+            maxIterations={10}
+          />
+        </section>
+      </main>
 
       <footer className={styles.footer}>
         {/* iter 88 88.UX-2 /clarify — Andrea verdetto iter 87 PHASE 4c critique

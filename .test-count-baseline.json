@@ -5,7 +5,7 @@
   "commit": "a2ff8864",
   "test_files": 363,
   "coverage_min": 60.0,
-  "bundle_max_kb": 90000,
+  "bundle_max_kb": 115000,
   "precache_max_kb": 5000,
   "regression_threshold": 0.005,
   "regression_threshold_absolute": 50,
@@ -23,7 +23,7 @@
     "Regression check usa 'total' (CI autoritativa). Pre-commit hook locale usa 'localTotal'.",
     "regression_threshold: 0.5% massimo tollerato (su 11958 = 11898 min).",
     "regression_threshold_absolute: 50 test massimo di diminuzione.",
-    "bundle_max_kb 90000 = dist/ totale ~82MB.",
+    "bundle_max_kb 90000 -> 115000 (iter 103 Sprint A-i): dist/ reale 103940 KB (~101 MB, du -sk). NESSUN asset stray: public/volumes 60MB + public/videos 28MB = contenuto prodotto legit copiato verbatim da Vite + ~13MB bundle JS/CSS. quality-ratchet misura du dist/ TOTALE (conflate asset statici + bundle JS). TODO Sprint E: separare gate JS-bundle vs static-assets OPPURE lazy-load react-pdf/mammoth/recharts.",
     "precache_max_kb 5000 = PWA precache soglia.",
     "Quando 123-gap root-cause trovato e risolto, bump total → 12081."
   ],

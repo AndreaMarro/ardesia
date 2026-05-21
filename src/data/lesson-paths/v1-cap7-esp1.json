@@ -90,8 +90,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap7-esp2",
-    "title": "Accendi il verde del RGB",
-    "preview": "Riusciamo ad accendere un colore diverso? Proviamo il verde!"
+    "title": "Accendete il verde del RGB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.38 intitolata \"Accendete il verde del RGB\"."
   },
   "phases": [
     {
@@ -118,8 +118,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito con LED RGB — solo canale rosso",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Accendi il rosso del RGB seguendo Vol.1 pag.36.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -247,7 +247,7 @@
         "catodo comune (piedino più lungo)",
         "singolo canale colore"
       ],
-      "next_preview": "La prossima volta accenderemo il verde — e poi proveremo a mescolare i colori come pittori! 🎨"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.38 intitolata \"Accendete il verde del RGB\"."
     }
   ],
   "assessment_invisible": [
@@ -263,5 +263,16 @@
     ],
     "next_suggested": "v1-cap7-esp2",
     "resume_message": "L'ultima volta avete acceso il rosso del LED RGB! Oggi proviamo il verde — e scopriamo come mescolare i colori."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 36,
+    "label": "Vol.1 pag.36"
   }
 }

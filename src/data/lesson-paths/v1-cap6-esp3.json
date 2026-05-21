@@ -94,8 +94,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap7-esp1",
-    "title": "Accendi il rosso del RGB",
-    "preview": "Ora che sai come funzionano LED e resistenze, scopriamo un LED speciale che ha 3 colori dentro!"
+    "title": "Accendete il rosso del RGB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.36 intitolata \"Accendete il rosso del RGB\"."
   },
   "phases": [
     {
@@ -122,8 +122,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito con resistore 220Ω",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Cambia luminosità con resistenze diverse seguendo Vol.1 pag.33.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -251,7 +251,7 @@
         "resistenza limita la corrente",
         "luminosità proporzionale alla corrente"
       ],
-      "next_preview": "Nel prossimo capitolo scopriremo un LED speciale che ha 3 colori dentro — il LED RGB!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.36 intitolata \"Accendete il rosso del RGB\"."
     }
   ],
   "assessment_invisible": [
@@ -266,5 +266,16 @@
     ],
     "next_suggested": "v1-cap7-esp1",
     "resume_message": "L'ultima volta avete visto come la resistenza cambia la luminosità del LED. Ora scopriamo un LED con 3 colori dentro!"
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 33,
+    "label": "Vol.1 pag.33"
   }
 }
