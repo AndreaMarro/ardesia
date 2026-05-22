@@ -157,6 +157,8 @@ const ComponentDrawer = ({
   volumeNumber = 1,
   onStartScratchPhase,   // S86: callback to open Blocchi tab + load XML
   onCompileAndPlay,      // S86: callback for final compile+play
+  nextExperiment = null,
+  onLoadNextExperiment,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
 
@@ -298,8 +300,8 @@ const ComponentDrawer = ({
   // S84: Auto-collapse when Passo Passo completes — panel covers the finished circuit
   const isCompleteCheck = mode === 'guided' && experiment && currentStep >= (experiment.buildSteps || []).length + (experiment.scratchSteps || []).length;
   useEffect(() => {
-    if (isCompleteCheck) setCollapsed(true);
-  }, [isCompleteCheck]);
+    if (isCompleteCheck && !nextExperiment?.id) setCollapsed(true);
+  }, [isCompleteCheck, nextExperiment?.id]);
 
   /* Sandbox: volume-filtered component list */
   const volumeComponents = useMemo(() => {
@@ -486,6 +488,22 @@ const ComponentDrawer = ({
                     <button onClick={onCompileAndPlay} style={styles.compilePlayBtn}>
                       {'\u25B6'} Compila e Prova!
                     </button>
+                  )}
+                  {nextExperiment?.id && (
+                    <div style={styles.cliffhangerBox} data-testid="component-drawer-cliffhanger">
+                      <div style={styles.cliffhangerTitle}>Prossimo esperimento: {nextExperiment.title || nextExperiment.id}</div>
+                      {nextExperiment.preview && (
+                        <div style={styles.cliffhangerPreview}>{nextExperiment.preview}</div>
+                      )}
+                      <button
+                        type="button"
+                        style={styles.cliffhangerBtn}
+                        data-testid="component-drawer-cliffhanger-cta"
+                        onClick={() => onLoadNextExperiment?.(nextExperiment.id)}
+                      >
+                        Apri prossimo esperimento
+                      </button>
+                    </div>
                   )}
                 </div>
               ) : isScratchStep ? (
@@ -1000,6 +1018,39 @@ const styles = {
     gap: 6,
     flexShrink: 0,
     whiteSpace: 'nowrap',
+  },
+  cliffhangerBox: {
+    flexBasis: '100%',
+    marginTop: 8,
+    padding: '10px 12px',
+    background: 'var(--color-cliffhanger-bg, rgba(74, 122, 37, 0.08))',
+    borderLeft: '3px solid var(--color-accent, var(--elab-lime))',
+    borderRadius: 'var(--radius-sm, 6px)',
+    color: 'var(--color-primary, var(--elab-navy))',
+  },
+  cliffhangerTitle: {
+    fontFamily: "var(--font-display, 'Oswald', sans-serif)",
+    fontSize: 'var(--font-size-sm, 16px)',
+    fontWeight: 700,
+    marginBottom: 4,
+  },
+  cliffhangerPreview: {
+    fontSize: 'var(--font-size-sm, 16px)',
+    lineHeight: 1.45,
+    color: 'var(--color-text-gray-600, #444)',
+    marginBottom: 8,
+  },
+  cliffhangerBtn: {
+    minHeight: 'var(--touch-min, 56px)',
+    padding: '8px 14px',
+    border: 'none',
+    borderRadius: 'var(--radius-md, 8px)',
+    background: 'var(--color-primary, var(--elab-navy))',
+    color: 'var(--color-text-inverse, #fff)',
+    fontFamily: "var(--font-sans, 'Open Sans', sans-serif)",
+    fontSize: 'var(--font-size-sm, 16px)',
+    fontWeight: 700,
+    cursor: 'pointer',
   },
 
   /* Navigation */

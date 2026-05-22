@@ -54,7 +54,7 @@
   "next_experiment": {
     "id": "v2-cap3-esp4",
     "title": "Misuriamo la corrente in un circuito",
-    "preview": "Collegheremo il multimetro IN SERIE per misurare quanta corrente passa!"
+    "preview": "Prossimo passo: Misuriamo la corrente in un circuito. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -171,5 +171,31 @@
     ],
     "next_suggested": "v2-cap3-esp4",
     "resume_message": "Avete misurato le resistenze con il multimetro! Prossimo: misurare la corrente."
+  },
+  "analogies": [
+    {
+      "concept": "tolleranza",
+      "text": "La tolleranza e come la taglia dei vestiti: una 'M' non e identica in tutti i negozi, ma e sempre vicina alla stessa misura. Un resistore da '330ohm' puo variare un po, ma resta nella fascia giusta.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Misurare la resistenza con il circuito alimentato",
+      "teacher_response": "SPEGNI tutto prima! Il multimetro in modalita ohmmetro invia una piccola corrente propria. Se il circuito e acceso, le correnti si mescolano e la misura e sbagliata.",
+      "analogy": "E come pesarsi sulla bilancia tenendo una borsa: il peso che leggi non e il tuo vero peso!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

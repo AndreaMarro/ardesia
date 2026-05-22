@@ -238,6 +238,18 @@ describe('Virtual Serial Monitor C++ interpreter', () => {
       // Non-literal argument → placeholder showing variable name
       expect(result.setupOutput[0]).toMatch(/\[x\]|\{x\}|<x>/i);
     });
+
+    it('iter-99 MEDIUM: caps oversized raw input and warns (MAX_CODE_LENGTH)', () => {
+      const huge = 'void setup() { Serial.begin(9600); Serial.println("ok"); }\n'
+        + 'void loop() {}\n'
+        + '// padding '.repeat(8000);
+      expect(huge.length).toBeGreaterThan(50000);
+      const result = interpretSerialOutput(huge);
+      expect(result.warnings.some((w) => w.includes('truncated'))).toBe(true);
+      // leading setup() is within the cap -> still parsed correctly
+      expect(result.baudRate).toBe(9600);
+      expect(result.setupOutput).toContain('ok');
+    });
   });
 
   describe('Andrea iter 94 PM mandate verbatim example', () => {

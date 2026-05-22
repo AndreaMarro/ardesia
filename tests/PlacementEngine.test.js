@@ -845,6 +845,51 @@ describe('resolvePlacement', () => {
 describe('edge cases', () => {
   beforeEach(() => vi.clearAllMocks());
 
+  it('places known pinless components deterministically without mis-snapping', () => {
+    mockComponent('battery9v', []);
+    const occupancy = new OccupancyMap({});
+
+    const first = placeComponent(
+      { type: 'battery9v', section: 'top' },
+      'bat_1',
+      occupancy,
+      EMPTY_SNAPSHOT,
+    );
+    const second = placeComponent(
+      { type: 'battery9v', section: 'top' },
+      'bat_1',
+      new OccupancyMap({}),
+      EMPTY_SNAPSHOT,
+    );
+
+    expect(first.success).toBe(true);
+    expect(first.pinAssignments).toEqual({});
+    expect(second).toMatchObject({
+      success: true,
+      x: first.x,
+      y: first.y,
+      pinAssignments: {},
+    });
+  });
+
+  it('keeps the v1-cap6-esp1 resistor seven-column pin span stable', () => {
+    mockComponent('resistor', [
+      { id: 'pin1', x: -26.25, y: 0 },
+      { id: 'pin2', x: 26.25, y: 0 },
+    ]);
+
+    const result = placeComponent(
+      { type: 'resistor', section: 'top' },
+      'r_1',
+      new OccupancyMap({}),
+      EMPTY_SNAPSHOT,
+    );
+
+    expect(result.success).toBe(true);
+    expect(result.pinAssignments['r_1:pin1']).toBe('bb1:c6');
+    expect(result.pinAssignments['r_1:pin2']).toBe('bb1:c13');
+  });
+
   it('left relation at column 0 does not crash (clamps to 0)', () => {
     mockComponent('led', LED_PINS);
     const snap = {

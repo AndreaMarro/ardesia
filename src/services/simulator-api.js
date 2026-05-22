@@ -32,6 +32,24 @@ import { recordUnlimEvent } from './unlimSharedStateStore';
  */
 let _simulatorRef = null;
 
+function mountExperimentInSimulator(arg) {
+  const experimentId = typeof arg === 'string' ? arg : (arg?.id || arg?.experimentId);
+  if (!experimentId) return false;
+  if (!_simulatorRef?.selectExperiment) return false;
+  const exp = findExperimentById(experimentId);
+  if (!exp) return false;
+  _simulatorRef.selectExperiment(exp);
+  emitSimulatorEvent('experimentChange', {
+    id: exp.id,
+    experimentId: exp.id,
+    title: exp.title,
+    mode: exp.simulationMode,
+    steps: exp.buildSteps || [],
+    totalSteps: Array.isArray(exp.buildSteps) ? exp.buildSteps.length : 0,
+  });
+  return true;
+}
+
 /**
  * Register the simulator instance for API access
  * Called by NewElabSimulator on mount
@@ -120,6 +138,14 @@ function createPublicAPI() {
         ? exp
         : { ...exp, buildMode: hasBuildSteps ? 'guided' : false };
       _simulatorRef.selectExperiment(enriched);
+      emitSimulatorEvent('experimentChange', {
+        id: enriched.id,
+        experimentId: enriched.id,
+        title: enriched.title,
+        mode: enriched.simulationMode,
+        steps: enriched.buildSteps || [],
+        totalSteps: Array.isArray(enriched.buildSteps) ? enriched.buildSteps.length : 0,
+      });
       return true;
     },
 
@@ -274,13 +300,7 @@ function createPublicAPI() {
     mountExperiment(arg) {
       // Iter 42 P0 BUG-2 FIX: accept BOTH positional string AND object {id}/{experimentId}
       // (Mistral function calling intentsDispatcher passes args object, not positional string)
-      const experimentId = typeof arg === 'string' ? arg : (arg?.id || arg?.experimentId);
-      if (!experimentId) return false;
-      if (!_simulatorRef?.selectExperiment) return false;
-      const exp = findExperimentById(experimentId);
-      if (!exp) return false;
-      _simulatorRef.selectExperiment(exp);
-      return true;
+      return mountExperimentInSimulator(arg);
     },
 
     /**
@@ -737,6 +757,17 @@ function createPublicAPI() {
       clearHighlights() {
         _simulatorRef?.setHighlightedComponents?.([]);
         _simulatorRef?.setHighlightedPins?.([]);
+      },
+
+      /**
+       * Mount a complete experiment through the UNLIM namespace.
+       * Mirrors top-level mountExperiment so Fumetto cliffhangers and direct
+       * UNLIM callers share the same public API contract.
+       * @param {string|{id?: string, experimentId?: string}} arg
+       * @returns {boolean} success
+       */
+      mountExperiment(arg) {
+        return mountExperimentInSimulator(arg);
       },
 
       /**

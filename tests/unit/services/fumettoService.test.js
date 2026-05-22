@@ -7,9 +7,13 @@ import { describe, it, expect } from 'vitest';
 import {
   validateFumettoPayload,
   generatePilotFumetto,
+  generateSessionFumetto,
   countWords,
   isValidExperimentId,
   getFumettoSchemaMeta,
+  validateFumettoSchemaContract,
+  buildSessionReportComicModel,
+  getNextExperimentForFumetto,
   FUMETTO_ENUMS,
   WORD_LIMIT_PER_BALLOON,
   MIN_PANELS,
@@ -240,6 +244,54 @@ describe('fumettoService — Tea iter 70 D', () => {
       expect(r.errors.some((e) => /rendering.format/i.test(e))).toBe(true);
     });
 
+    it('reports Tea schema drift: panel extra fields are not allowed', () => {
+      const p = generatePilotFumetto();
+      p.panels[0].notesPrompt = 'Spazio appunti fuori schema';
+      const r = validateFumettoPayload(p);
+      expect(r.valid).toBe(false);
+      expect(r.errors.some((e) => /panels\[0\]\.notesPrompt.*not allowed/i.test(e))).toBe(true);
+    });
+
+    it('reports Tea schema drift: componentsUsed requires kitId', () => {
+      const p = generatePilotFumetto();
+      delete p.componentsUsed[0].kitId;
+      const r = validateFumettoPayload(p);
+      expect(r.valid).toBe(false);
+      expect(r.errors.some((e) => /componentsUsed\[0\]\.kitId is required/i.test(e))).toBe(true);
+    });
+
+    it('reports Tea schema drift: captionColor and morphicHints enums are enforced', () => {
+      const p = generatePilotFumetto();
+      p.panels[0].captionColor = 'red';
+      p.morphicHints.studentLevel = 'sessione-reale';
+      const r = validateFumettoPayload(p);
+      expect(r.valid).toBe(false);
+      expect(r.errors.some((e) => /captionColor/i.test(e))).toBe(true);
+      expect(r.errors.some((e) => /morphicHints\.studentLevel/i.test(e))).toBe(true);
+    });
+
+    it('reports Tea schema drift: required panel fields and sceneType are enforced', () => {
+      const p = generatePilotFumetto();
+      delete p.panels[0].scene;
+      delete p.panels[1].balloons;
+      p.panels[2].scene.sceneType = 'magia';
+      const r = validateFumettoPayload(p);
+      expect(r.valid).toBe(false);
+      expect(r.errors.some((e) => /panels\[0\]\.scene is required/i.test(e))).toBe(true);
+      expect(r.errors.some((e) => /panels\[1\]\.balloons is required/i.test(e))).toBe(true);
+      expect(r.errors.some((e) => /scene\.sceneType/i.test(e))).toBe(true);
+    });
+
+    it('reports Tea schema drift: required balloon fields are enforced', () => {
+      const p = generatePilotFumetto();
+      delete p.panels[0].balloons[0].text;
+      delete p.panels[1].balloons[0].wordCount;
+      const r = validateFumettoPayload(p);
+      expect(r.valid).toBe(false);
+      expect(r.errors.some((e) => /balloons\[0\]\.text is required/i.test(e))).toBe(true);
+      expect(r.errors.some((e) => /balloons\[0\]\.wordCount is required/i.test(e))).toBe(true);
+    });
+
     it('reports missing required session fields', () => {
       const p = generatePilotFumetto();
       delete p.session.classKey;
@@ -263,6 +315,253 @@ describe('fumettoService — Tea iter 70 D', () => {
       expect(meta.id).toContain('fumetto');
       expect(meta.version).toBe('1.0');
       expect(meta.title).toMatch(/ELAB Tutor/i);
+    });
+  });
+
+  describe('iter 83 edge cases — session report bridge', () => {
+    it('handles empty session as 6 placeholders with an honest warning', () => {
+      const model = buildSessionReportComicModel({});
+      expect(model.vignettes).toHaveLength(6);
+      expect(model.vignettes.every((slot) => slot.exp === null)).toBe(true);
+      expect(model.warnings).toContain('empty_session');
+    });
+
+    it('rejects broken Tea schema shape before report generation', () => {
+      const result = validateFumettoSchemaContract({
+        title: 'broken',
+        properties: {},
+      });
+      expect(result.valid).toBe(false);
+      expect(result.errors).toEqual(
+        expect.arrayContaining([
+          expect.stringMatching(/schema\.properties\.panels/i),
+        ])
+      );
+    });
+
+    it('keeps missing specific assets graceful with fallback URL and warning', () => {
+      const model = buildSessionReportComicModel({
+        experimentsCompleted: [
+          { id: 'v3-cap8-esp3', title: 'Seriale avanzata', volume: 3 },
+        ],
+      });
+      expect(model.vignettes[0].assetUrl).toBe('/brand/foto-esperimenti/vol3/_generic-vol3-cover.webp');
+      expect(model.warnings).toContain('missing_specific_asset:v3-cap8-esp3');
+    });
+
+    it('turns one saved experiment into a complete 6-panel narrative arc', () => {
+      const model = buildSessionReportComicModel({
+        experimentsCompleted: [
+          { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+        ],
+        narrations: {
+          'v1-cap6-esp1': 'Ragazzi, prova realistica completa: il LED si accende dopo il controllo del kit fisico.',
+        },
+        studentJourney: {
+          mistakesMade: [{ description: 'LED montato al contrario' }],
+        },
+      });
+
+      expect(model.vignettes).toHaveLength(6);
+      expect(model.vignettes.every((slot) => slot.exp?.id === 'v1-cap6-esp1')).toBe(true);
+      expect(model.vignettes.map((slot) => slot.role)).toEqual([
+        'problema',
+        'ipotesi',
+        'errore',
+        'click',
+        'successo',
+        'ponte',
+      ]);
+      expect(model.vignettes.slice(1).every((slot) => slot.isSessionArcContinuation)).toBe(true);
+      expect(model.vignettes[2].narration).toMatch(/LED montato al contrario/i);
+    });
+
+    it('returns null for missing next_experiment instead of dead CTA data', () => {
+      const next = getNextExperimentForFumetto({
+        experimentId: 'v1-cap14-esp1',
+      });
+      expect(next).toBeNull();
+    });
+
+    it('makes the report unique to the actual session journey', () => {
+      const base = {
+        studentAlias: 'Classe A',
+        classKey: 'classe-a',
+        startedAt: '2026-05-20T08:00:00Z',
+        experimentsCompleted: [
+          { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+        ],
+        componentsUsed: ['LED rosso', 'resistore 470 Ohm', 'breadboard'],
+      };
+      const first = buildSessionReportComicModel({
+        ...base,
+        studentJourney: {
+          mistakesMade: [{ description: 'LED montato al contrario' }],
+          helpRequestsCount: 1,
+        },
+      });
+      const second = buildSessionReportComicModel({
+        ...base,
+        studentAlias: 'Classe B',
+        studentJourney: {
+          variationsTriedSpontaneously: ['cambio del colore del LED'],
+          helpRequestsCount: 0,
+        },
+      });
+
+      expect(first.sessionFingerprint).not.toBe(second.sessionFingerprint);
+      expect(first.vignettes[0].sessionEvidence).toMatch(/LED montato al contrario/i);
+      expect(second.vignettes[0].sessionEvidence).toMatch(/cambio del colore del LED/i);
+    });
+
+    it('builds didactic exercises and notes space from components and journey evidence', () => {
+      const model = buildSessionReportComicModel({
+        experimentsCompleted: [
+          { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+        ],
+        componentsUsed: ['LED rosso', 'resistore 470 Ohm', 'batteria 9V'],
+        studentJourney: {
+          mistakesOvercome: ['mancava il resistore'],
+          helpRequestsCount: 2,
+        },
+      });
+
+      expect(model.exercisePrompts).toEqual(
+        expect.arrayContaining([
+          expect.stringMatching(/Ragazzi.*kit fisico/i),
+          expect.stringMatching(/resistore 470 Ohm/i),
+        ])
+      );
+      expect(model.notesPrompt).toMatch(/Spazio appunti/i);
+      expect(model.notesPrompt).toMatch(/mancava il resistore/i);
+      expect(model.multipleChoiceQuestions).toHaveLength(3);
+      expect(model.multipleChoiceQuestions[0].question).toMatch(/Ragazzi.*prova/i);
+      expect(model.multipleChoiceQuestions[0].options.join(' ')).toMatch(/mancava il resistore/i);
+      expect(model.multipleChoiceQuestions[0].options[model.multipleChoiceQuestions[0].correctIndex]).toMatch(/mancava il resistore/i);
+      expect(model.multipleChoiceQuestions.some((question) => question.correctIndex !== 0)).toBe(true);
+      expect(model.diaryPage.title).toMatch(/Pagina diario/i);
+      expect(model.diaryPage.prompts.join(' ')).toMatch(/Vol\.1 pag\./i);
+      expect(model.diaryPage.prompts.join(' ')).toMatch(/kit fisico|LED rosso/i);
+      expect(model.imageGenerationBriefs).toHaveLength(6);
+      expect(model.imageGenerationBriefs[0].prompt).toMatch(/ELAB Tea flat vector|kit fisico/i);
+      expect(model.imageGenerationBriefs[0].mascotAsset).toBe('/assets/mascot/logo-senza-sfondo.png');
+      expect(model.imageGenerationBriefs[2].prompt).toMatch(/UNLIM canonico Tea/i);
+    });
+
+    it('generates a Tea-valid comic payload from a real session, not a static template', () => {
+      const payload = generateSessionFumetto({
+        session: {
+          classKey: 'classe-generazione',
+          anonStudentId: '22222222-2222-4222-8222-222222222222',
+          startedAt: '2026-05-20T08:00:00.000Z',
+          completedAt: '2026-05-20T08:08:00.000Z',
+          experimentsCompleted: [
+            { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+          ],
+          componentsUsed: ['LED rosso', 'resistore 470 Ohm', 'breadboard'],
+          studentJourney: {
+            mistakesMade: [{ description: 'LED montato al contrario' }],
+            mistakesOvercome: ['LED montato al contrario'],
+            variationsTriedSpontaneously: ['cambio del colore del LED'],
+            helpRequestsCount: 1,
+          },
+          next_experiment: {
+            id: 'v1-cap6-esp2',
+            title: 'LED senza resistore',
+            preview: 'Il resistore del kit fisico diventa il prossimo protagonista.',
+          },
+        },
+      });
+
+      expect(validateFumettoPayload(payload).valid).toBe(true);
+      expect(payload.panels.map((panel) => panel.role)).toEqual([
+        'problema',
+        'ipotesi',
+        'errore',
+        'click',
+        'successo',
+        'ponte',
+      ]);
+      expect(payload.rendering.outputPath).toContain('22222222-2222-4222-8222-222222222222');
+      expect(payload.rendering.outputPath).toContain(payload.morphicHints.sessionFingerprint);
+      expect(JSON.stringify(payload.panels)).toMatch(/LED montato al contrario/i);
+      expect(payload.morphicHints.exercisePrompts.join(' ')).toMatch(/kit fisico/i);
+      expect(payload.morphicHints.notesPrompt).toMatch(/Spazio appunti/i);
+      expect(payload.morphicHints.multipleChoiceQuestions).toHaveLength(3);
+      expect(payload.morphicHints.multipleChoiceQuestions[0].options.join(' ')).toMatch(/LED montato al contrario/i);
+      expect(payload.morphicHints.multipleChoiceQuestions[0].options[payload.morphicHints.multipleChoiceQuestions[0].correctIndex]).toMatch(/LED montato al contrario/i);
+      expect(payload.morphicHints.diaryPage.prompts.join(' ')).toMatch(/LED montato al contrario|Vol\.1 pag\./i);
+      expect(payload.morphicHints.mascot.name).toBe('UNLIM');
+      expect(payload.morphicHints.mascot.asset).toBe('/assets/mascot/logo-senza-sfondo.png');
+      expect(payload.morphicHints.imageGenerationBriefs).toHaveLength(6);
+      expect(payload.morphicHints.imageGenerationBriefs[0].prompt).toMatch(/LED montato al contrario|kit fisico/i);
+      expect(payload.componentsUsed.every((component) => component.kitId)).toBe(true);
+      expect(payload.studentJourney.mistakesMade[0].type).toBe('other');
+      expect(payload.morphicHints.studentLevel).toBe('basic');
+      expect(payload.panels.every((panel) => !('exercisePrompt' in panel))).toBe(true);
+      expect(payload.panels.every((panel) => !('notesPrompt' in panel))).toBe(true);
+      expect(payload.panels.every((panel) => ['navy', 'lime', 'orange'].includes(panel.captionColor))).toBe(true);
+    });
+
+    it('generation changes when the session journey changes for the same experiment', () => {
+      const baseSession = {
+        classKey: 'classe-generazione',
+        anonStudentId: '33333333-3333-4333-8333-333333333333',
+        startedAt: '2026-05-20T08:00:00.000Z',
+        completedAt: '2026-05-20T08:08:00.000Z',
+        experimentsCompleted: [
+          { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+        ],
+        componentsUsed: ['LED rosso', 'resistore 470 Ohm', 'breadboard'],
+      };
+
+      const first = generateSessionFumetto({
+        session: {
+          ...baseSession,
+          studentJourney: { mistakesMade: [{ description: 'LED invertito' }] },
+        },
+      });
+      const second = generateSessionFumetto({
+        session: {
+          ...baseSession,
+          studentJourney: { variationsTriedSpontaneously: ['resistore da 220 Ohm provato'] },
+        },
+      });
+
+      expect(first.morphicHints.sessionFingerprint).not.toBe(second.morphicHints.sessionFingerprint);
+      expect(first.panels[2].balloons[0].text).toMatch(/LED invertito/i);
+      expect(second.panels[2].balloons[0].text).toMatch(/resistore da 220 Ohm provato/i);
+    });
+
+    it('keeps generated balloons Tea-valid even with very long session evidence', () => {
+      const longMistake = Array.from({ length: 95 }, (_, index) => `errore${index}`).join(' ');
+      const payload = generateSessionFumetto({
+        session: {
+          classKey: 'classe-generazione',
+          anonStudentId: '44444444-4444-4444-8444-444444444444',
+          startedAt: '2026-05-20T08:00:00.000Z',
+          completedAt: '2026-05-20T08:08:00.000Z',
+          experimentsCompleted: [
+            { id: 'v1-cap6-esp1', title: 'Accendi il LED', volume: 1 },
+          ],
+          studentJourney: {
+            mistakesMade: [{ description: longMistake }],
+          },
+        },
+      });
+
+      expect(validateFumettoPayload(payload).valid).toBe(true);
+      expect(payload.panels.flatMap((panel) => panel.balloons).every((balloon) => (
+        countWords(balloon.text) <= WORD_LIMIT_PER_BALLOON &&
+        balloon.wordCount === countWords(balloon.text)
+      ))).toBe(true);
+    });
+
+    it('generation rejects invalid experimentId before producing a payload', () => {
+      expect(() => generateSessionFumetto({
+        experimentId: 'v3-extra-simon',
+        session: { experimentsCompleted: [] },
+      })).toThrow(/invalid experimentId/i);
     });
   });
 });

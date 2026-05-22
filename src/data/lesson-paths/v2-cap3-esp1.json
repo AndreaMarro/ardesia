@@ -60,7 +60,7 @@
   "next_experiment": {
     "id": "v2-cap3-esp2",
     "title": "Diario di misurazione della pila",
-    "preview": "Misureremo la batteria ogni giorno per scoprire quanto dura!"
+    "preview": "Prossimo passo: Diario di misurazione della pila. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -180,5 +180,36 @@
     ],
     "next_suggested": "v2-cap3-esp2",
     "resume_message": "Hai imparato a misurare la tensione con il multimetro! Prossimo passo: il diario di misurazione."
+  },
+  "analogies": [
+    {
+      "concept": "tensione_batteria",
+      "text": "La tensione di una batteria e come il livello d'acqua in un serbatoio: quando e pieno (carica) il livello e alto. Man mano che usi l'acqua (scarica), il livello scende.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Puntali invertiti (rosso al - e nero al +)",
+      "teacher_response": "Nessun danno! Il display mostra un valore negativo. Basta invertire i puntali.",
+      "analogy": "E come guardare un orologio allo specchio: il numero c'e, ma al contrario!"
+    },
+    {
+      "mistake": "Scala sbagliata sul multimetro (es. mA invece di V)",
+      "teacher_response": "Controllate che la manopola sia su V (tensione) e non su A (corrente). In modalita amperometro i puntali sono in corto!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

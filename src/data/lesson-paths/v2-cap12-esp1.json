@@ -89,9 +89,9 @@
     "v2-cap10-esp4"
   ],
   "next_experiment": {
-    "id": "v3-cap6-esp5",
-    "title": "Esperimento 5: il semaforo",
-    "preview": "Nel Volume 3 scoprirete come dare istruzioni ai circuiti!"
+    "id": "v3-cap5-esp1",
+    "title": "Blink: il primo programma",
+    "preview": "Ragazzi, il Volume 3 inizia dando istruzioni ad Arduino: il primo Blink."
   },
   "phases": [
     {
@@ -370,7 +370,43 @@
       "diodi_protezione",
       "integrazione_volume2"
     ],
-    "next_suggested": "v3-cap6-esp5",
+    "next_suggested": "v3-cap5-esp1",
     "resume_message": "Avete completato il Volume 2 e costruito il Robot Segui Luce! Il Volume 3 vi aspetta!"
+  },
+  "analogies": [
+    {
+      "concept": "cross_connection",
+      "text": "Gli occhi del robot sono come quelli umani: quando guardi a destra, il tuo cervello manda il segnale al muscolo sinistro della testa per girare. Anche il robot usa questa 'connessione a X' — il fototransistor di destra attiva il motore di sinistra per girare verso la luce!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 12"
+    },
+    {
+      "concept": "diodo_protezione",
+      "text": "I diodi di protezione sono come le valvole anti-ritorno in un impianto idraulico: lasciano passare l'acqua (corrente) in una direzione, ma la bloccano se tenta di tornare indietro. Quando il motore si ferma e genera un piccolo 'contraccolpo' di energia, il diodo lo blocca e protegge il MOSFET.",
+      "evidence": "Curriculum ELAB Vol 2 Cap 12"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il robot gira nella direzione sbagliata rispetto alla luce",
+      "teacher_response": "Controllate la cross-connection! Se pt1 (sinistra) è collegato a mos1 (sinistra) invece che a mos2 (destra), il robot si allontana dalla luce invece di avvicinarsi. La X è fondamentale: ogni occhio regola il motore OPPOSTO!",
+      "analogy": "È come guidare un'auto con il volante al contrario: se giri a destra il volante, l'auto va a sinistra. La cross-connection è il 'raddrizzatore' che fa funzionare tutto nel verso giusto!"
+    },
+    {
+      "mistake": "I motori si avviano e poi il MOSFET si brucia (nel reale) o smette di funzionare",
+      "teacher_response": "Ecco perché ci sono i diodi! Quando un motore si ferma, genera una piccola tensione inversa (forza controelettromotrice) che può danneggiare il MOSFET. Il diodo blocca questa tensione inversa, proteggendo il circuito.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }
