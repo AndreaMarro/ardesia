@@ -66,6 +66,43 @@ diagnosi sbagliata è stato mergiato.
 
 ---
 
+## [feat(vol2) — overhaul narrazione esperimenti Volume 2] — 2026-05-22
+
+- `src/data/experiments-vol2.js` — riscrittura narrativa e Passo Passo dei 27 esperimenti Volume 2 con indirizzo plurale `Ragazzi` e coerenza col circuito stampato.
+- `src/data/lesson-paths/v2-*.json`, `src/data/narrative-map-94.json`, `src/data/volume-references.js` — riallineamento catena `next_experiment`, analogie e riferimenti libro per il Volume 2, senza nodo fantasma Cap.11.
+- `src/components/lavagna/LavagnaShell.jsx` — il deep-link `#lavagna?exp=v2-*` marca subito l'esperimento come caricato anche se l'evento `experimentChange` iniziale viene perso, evitando che il picker esperimenti copra il Passo Passo.
+- `tests/unit/data/volume2-overhaul.test.js` — test reali per ordine dei 27 esperimenti, catena lesson-path, analogie morfiche, pluralità Principio Zero e correzione Cap.9 Esp.2.
+- `tests/unit/components/lavagna/LavagnaShell-deeplink-state.test.jsx` — test reale contro regressione del deep-link: stato esperimento, picker chiuso, volume corretto.
+
+---
+
+## [fix(percorso) — rendi visibile la narrazione capitolo da Modalita Percorso] — 2026-05-22
+
+- `src/components/lavagna/LavagnaShell.jsx` — il click su Modalita `Percorso` ora chiude il picker esperimenti e apre il picker capitoli; anche la lavagna vuota in Modalita Percorso apre direttamente i capitoli, rendendo raggiungibile `PercorsoCapitoloView` e il riquadro #143 `Prossimo passaggio` nel flusso reale.
+- `src/components/lavagna/LavagnaShell.module.css` — il picker capitoli parte sotto la top bar, così il pulsante `Home` resta cliccabile anche mentre la narrazione capitolo è aperta.
+- `src/components/lavagna/AppHeader.jsx` — aggiunto pulsante esplicito `Home` nella top bar della Lavagna per tornare alla homepage.
+- `tests/unit/components/lavagna/LavagnaShell-modalita.test.jsx` — test reali per evitare regressione: Percorso deve aprire il picker capitoli, non lasciare il picker esperimenti sopra la narrazione e preferire i capitoli nel fallback lavagna vuota.
+- `tests/unit/components/lavagna/AppHeader.test.jsx` — test reale per presenza e callback del nuovo pulsante Home.
+
+---
+
+## [fix(iter-99) — review MEDIUM follow-ups] — 2026-05-22
+
+Follow-up mirato alla review del consolidamento iter-99: chiude tre finding MEDIUM senza cambiare scope funzionale.
+
+### Changed
+- `src/services/virtualSerialInterpreter.js`: aggiunto limite esplicito alla lunghezza dello sketch prima delle scansioni regex/stringa.
+- `src/components/simulator/panels/VirtualSerialMonitor.jsx`: sostituite le icone decorative emoji con icone SVG ELAB.
+- `src/components/home/UnlimCompileHelper.jsx`: le domande rapide vengono mostrate solo quando `onAskQuestion` è realmente collegato.
+
+### Added
+- Test reali per il limite input del virtual serial interpreter e per il comportamento condizionale di `UnlimCompileHelper`.
+
+### Governance
+- Aggiunta voce `CHANGELOG.md` richiesta dalla Regola 5 per modifiche in `src/` nel PR #129.
+
+---
+
 ## [fix(shared-infra) — prestep morfico esperimenti sopra runtime Percorso #132] — 2026-05-22
 
 Integra il prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti senza regredire la Modalita Percorso morfica runtime gia ufficiale in produzione (#132). Il runtime Sense 1.5 resta la base; dal prestep #143 vengono mantenuti i pezzi riusabili per simulatore/drawer/placement e il cliffhanger visivo fra esperimenti nel Percorso.

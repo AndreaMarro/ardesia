@@ -3,7 +3,9 @@
  * feedback verbatim: "qui sarebbe bello unlim animato che ti spiega cosa fare in
  * base alle domande" (right panel below ScratchCompileBar currently empty area).
  *
- * V1 scaffold: static mascot + plurale speech bubble + 3 quick question buttons.
+ * V1 scaffold: static mascot + plurale speech bubble. The 3 quick-question
+ * buttons render only when an onAskQuestion handler is wired (iter-98+ UNLIM
+ * chat surface) — no dead UI when unwired (iter-99 review MEDIUM).
  * V2 iter 98+: full animated mascot with reactions to compile state (idle →
  * compiling → success → error animations).
  * V3 iter 99+: wire to unlimScreenAgent (iter 93 atom 34 — currently NO-GO 5 HIGH
@@ -70,21 +72,25 @@ export default function UnlimCompileHelper({
         </div>
       </div>
 
-      <div className={css.questionsLabel} aria-hidden="true">Domande veloci</div>
-      <ul className={css.questions} role="list">
-        {QUICK_QUESTIONS.map((q) => (
-          <li key={q.id}>
-            <button
-              type="button"
-              className={css.questionBtn}
-              onClick={() => handleQuestion(q.label)}
-              aria-label={`Chiedi: ${q.label}`}
-            >
-              {q.label}
-            </button>
-          </li>
-        ))}
-      </ul>
+      {typeof onAskQuestion === 'function' && (
+        <>
+          <div className={css.questionsLabel} aria-hidden="true">Domande veloci</div>
+          <ul className={css.questions} role="list">
+            {QUICK_QUESTIONS.map((q) => (
+              <li key={q.id}>
+                <button
+                  type="button"
+                  className={css.questionBtn}
+                  onClick={() => handleQuestion(q.label)}
+                  aria-label={`Chiedi: ${q.label}`}
+                >
+                  {q.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </section>
   );
 }

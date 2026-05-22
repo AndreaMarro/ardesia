@@ -92,7 +92,7 @@
   "next_experiment": {
     "id": "v2-cap7-esp4",
     "title": "Variare R nella scarica RC",
-    "preview": "Nel prossimo esperimento scoprirete come cambiare il resistore cambia la velocità di scarica!"
+    "preview": "Prossimo passo: Variare R nella scarica RC. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -308,5 +308,41 @@
     ],
     "next_suggested": "v2-cap7-esp4",
     "resume_message": "Avete scoperto che i condensatori in parallelo sommano le capacità! Nel prossimo esperimento cambiamo R per variare Tau."
+  },
+  "analogies": [
+    {
+      "concept": "parallelo_capacita",
+      "text": "I tre condensatori in parallelo sono come tre serbatoi d'acqua affiancati: quando li svuoti insieme, ci vuole 3 volte più tempo rispetto a svuotarne uno solo. La capacità totale è la somma di tutte!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap7-esp3"
+    },
+    {
+      "concept": "scarica_lenta",
+      "text": "Tau = R × C è come un rubinetto (resistore) che svuota un serbatoio (condensatore): più grande il serbatoio, più tempo ci vuole. Triplicando la capacità, triplichi il tempo di scarica!",
+      "evidence": "experiments-vol2.js concept v2-cap7-esp3"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Collegare i condensatori in serie invece che in parallelo",
+      "teacher_response": "In parallelo i positivi sono TUTTI collegati allo stesso nodo positivo, e i negativi TUTTI allo stesso nodo negativo. Non uno dietro l'altro, ma uno ACCANTO all'altro!",
+      "analogy": "Come secchi d'acqua affiancati: puoi riempirli tutti insieme dallo stesso rubinetto"
+    },
+    {
+      "mistake": "Confondere il polo positivo e negativo del condensatore",
+      "teacher_response": "Il condensatore ha polarità! Il polo positivo (gambe più lunga o segno +) va sempre verso la tensione alta. Il polo negativo (banda bianca o segno −) va verso la riga negativa.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

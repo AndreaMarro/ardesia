@@ -97,7 +97,7 @@
   "next_experiment": {
     "id": "v2-cap9-esp1",
     "title": "Fototransistor come sensore",
-    "preview": "Nel Capitolo 9 scoprirete un componente controllato dalla luce invece che dalla tensione!"
+    "preview": "Prossimo passo: Fototransistor come sensore. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -303,5 +303,41 @@
     ],
     "next_suggested": "v2-cap9-esp1",
     "resume_message": "Avete completato il Capitolo 8! Conoscete Vth e la transizione del MOSFET. Il Capitolo 9 vi aspetta con un sensore di luce!"
+  },
+  "analogies": [
+    {
+      "concept": "manopola_volume",
+      "text": "Il potenziometro è la manopola del volume della tensione al Gate: da 0 (minimo, silenzio) a 9V (massimo, tutto aperto). La soglia Vth è come il volume minimo per sentire la musica: sotto non si sente nulla!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp3"
+    },
+    {
+      "concept": "zona_transizione",
+      "text": "Il MOSFET ha tre zone: spento (0V-Vth), transizione (intorno a Vth) e completamente aperto (>4V). È come un interruttore della luce che ha anche una zona di penombra: non è solo ON/OFF!",
+      "evidence": "experiments-vol2.js observe v2-cap8-esp3"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Girare il potenziometro troppo velocemente e perdere il punto di soglia",
+      "teacher_response": "Girate LENTAMENTE, quasi a rallentatore! Il punto critico è intorno a 2V e dura pochi gradi di rotazione. Se andate troppo veloci, non vedrete la transizione graduale.",
+      "analogy": "Come trovare il punto di ebollizione dell'acqua: bisogna alzare la fiamma lentamente e stare attenti al momento in cui inizia a bollire"
+    },
+    {
+      "mistake": "Collegare il Signal del potenziometro al VCC invece che al Gate",
+      "teacher_response": "Il potenziometro ha 3 pin: VCC (alimentazione), GND (massa) e Signal (uscita variabile). Solo il Signal va al Gate! Il Signal è il pin centrale che varia da 0V a 9V.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

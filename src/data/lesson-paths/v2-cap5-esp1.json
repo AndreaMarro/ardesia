@@ -7,22 +7,27 @@
   "experiment_id": "v2-cap5-esp1",
   "volume": 2,
   "chapter": 5,
-  "title": "Esperimento 1: batterie in serie (più \"spinta\"!)",
+  "title": "Batterie AA/AAA in serie (piu \"spinta\"!)",
   "chapter_title": "Approfondiamo le Batterie",
   "difficulty": 1,
   "duration_minutes": 35,
   "target_age": "10-14 anni",
-  "objective": "Collegare due batterie in serie e scoprire che le tensioni si sommano. Misurare con il multimetro: 9V + 9V = 18V!",
+  "objective": "Ragazzi, collegano batterie AA/AAA da 1,5V in serie e scoprono che le tensioni si sommano: circa 3V con due celle, 4,5V con tre, 6V con quattro, come nel Vol.2 pag.49-50.",
   "components_needed": [
     {
-      "name": "Batteria 9V con clip",
-      "quantity": 2,
+      "name": "Batterie AA/AAA 1,5V",
+      "quantity": 4,
       "icon": "🔋"
     },
     {
       "name": "Multimetro",
       "quantity": 1,
-      "icon": "📏"
+      "icon": "📟"
+    },
+    {
+      "name": "Fili di collegamento",
+      "quantity": 3,
+      "icon": "🔌"
     }
   ],
   "vocabulary": {
@@ -54,16 +59,16 @@
   "next_experiment": {
     "id": "v2-cap5-esp2",
     "title": "Batterie in antiserie",
-    "preview": "Cosa succede se colleghiamo le batterie al contrario? Le tensioni si SOTTRAGGONO!"
+    "preview": "Prossimo passo: Batterie in antiserie. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
       "name": "PREPARA",
       "icon": "📋",
       "duration_minutes": 5,
-      "teacher_message": "Ragazzi, oggi colleghiamo DUE batterie da 9V in serie: il polo negativo della prima al polo positivo della seconda. La tensione totale si somma!",
+      "teacher_message": "Ragazzi, oggi colleghiamo batterie AA/AAA da 1,5V in serie: il polo negativo di una va al polo positivo della successiva. La tensione totale si somma, come nel Vol.2 pag.49-50.",
       "teacher_tip": "Mostrate le pile della torcia: sono in serie! Il + di una tocca il - della successiva. La torcia funziona a 3V (2 pile da 1.5V in serie) o 4.5V (3 pile).",
-      "components_list": "Ti servono: 2 batterie 9V con clip, 1 multimetro.",
+      "components_list": "Ti servono: 4 batterie AA/AAA da 1,5V, 1 multimetro, fili di collegamento.",
       "class_hook": "Nella vostra torcia ci sono 2 o 3 pile in fila. Perche non ne mettono una sola piu potente? Oggi scopriamo il segreto delle batterie in serie!",
       "action_tags": [],
       "auto_action": null
@@ -72,7 +77,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 8,
-      "teacher_message": "Ragazzi, Colleghiamo le due batterie: il negativo (-) della prima al positivo (+) della seconda. Poi misuriamo tra il + della prima e il - della seconda con il multimetro.",
+      "teacher_message": "Ragazzi, colleghiamo prima due batterie AA/AAA in serie e misuriamo circa 3V; poi aggiungiamo la terza e la quarta per osservare 4,5V e 6V.",
       "teacher_tip": "Fate il parallelo con le pile nella torcia: si infilano in modo che il + di una tocchi il - dell'altra. Questa e la serie!",
       "components_list": null,
       "class_hook": null,
@@ -81,7 +86,7 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Collegate due batterie 9V in serie e misura con il multimetro",
+        "description": "Collegate batterie AA/AAA da 1,5V in serie e misurate 3V, 4,5V e 6V con il multimetro",
         "button_label": "Montate il circuito per me",
         "intent": {
           "components": [
@@ -106,8 +111,8 @@
       "name": "CHIEDI",
       "icon": "❓",
       "duration_minutes": 8,
-      "teacher_message": "Ragazzi, Due batterie da 9V in serie: la tensione totale sara 9V (resta uguale), 18V (si somma), o 4.5V (si dimezza)? Perche?",
-      "teacher_tip": "La risposta e 18V. In serie le tensioni si sommano, come i piani di un palazzo: piano 1 + piano 2 = 2 piani di altezza. Ogni batteria 'spinge' la corrente con la sua forza, e le spinte si sommano.",
+      "teacher_message": "Ragazzi, due batterie da 1,5V in serie: la tensione totale sara 1,5V, 3V o 4,5V? Perche?",
+      "teacher_tip": "La risposta e circa 3V. In serie le tensioni si sommano, come i piani di un palazzo: ogni batteria aggiunge la sua altezza.",
       "provocative_question": "Se tre pile da 1.5V fanno 4.5V, quante pile da 1.5V servono per arrivare a 9V? E se ne mettessimo 100?",
       "components_list": null,
       "class_hook": null,
@@ -125,15 +130,15 @@
       "name": "OSSERVA",
       "icon": "👀",
       "duration_minutes": 8,
-      "teacher_message": "Ragazzi, Il multimetro mostra circa 18V! Due batterie da 9V in serie danno il doppio della tensione. Le 'spinte' si sommano.",
-      "teacher_tip": "Evidenziate entrambe le batterie. Se le batterie non sono nuove, il valore sara un po meno di 18V (es. 17.8V). Spiegate che e normale: le batterie usate hanno meno tensione.",
+      "teacher_message": "Ragazzi, il multimetro mostra circa 3V con due batterie, circa 4,5V con tre e circa 6V con quattro. Le 'spinte' si sommano.",
+      "teacher_tip": "Se le batterie non sono nuove, il valore sara un po meno del valore nominale. Spiegate che e normale: le batterie usate hanno meno tensione.",
       "action_tags": [
         "[AZIONE:play]",
         "[AZIONE:highlight:bat1]",
         "[AZIONE:highlight:bat2]"
       ],
       "auto_action": "play_and_highlight",
-      "observation_prompt": "Il multimetro conferma: circa 18V! Due batterie da 9V in serie producono una tensione doppia. Come le pile nella torcia: piu pile = piu spinta!",
+      "observation_prompt": "Il multimetro conferma: circa 3V con due batterie AA/AAA, 4,5V con tre, 6V con quattro. Come le pile nella torcia: piu pile = piu spinta!",
       "analogies": [
         {
           "concept": "batterie_serie",
@@ -146,13 +151,13 @@
       "name": "CONCLUDI",
       "icon": "✅",
       "duration_minutes": 5,
-      "teacher_message": "Ragazzi, In serie le tensioni si sommano! 9V + 9V = 18V. E cosi che funzionano le torce, i giocattoli e tanti dispositivi: pile in serie per ottenere la tensione giusta.",
+      "teacher_message": "Ragazzi, in serie le tensioni si sommano: 1,5V + 1,5V = 3V, poi 4,5V e 6V aggiungendo altre celle. E cosi che funzionano torce, giocattoli e tanti dispositivi.",
       "teacher_tip": "Domanda di chiusura: 'Quante pile AA da 1.5V servono per avere 9V?' Risposta: 6 pile (6 x 1.5 = 9V). Esiste proprio il portapile da 6!",
       "components_list": null,
       "class_hook": null,
       "action_tags": [],
       "auto_action": null,
-      "summary_for_class": "Batterie in serie: le tensioni si SOMMANO. Due da 9V = 18V. Come le pile della torcia: il polo - di una tocca il + della successiva. Piu pile = piu tensione!",
+      "summary_for_class": "Batterie in serie: le tensioni si SOMMANO. Due AA/AAA da 1,5V danno circa 3V; tre danno 4,5V; quattro danno 6V. Piu pile = piu tensione!",
       "concepts_learned": [
         "batterie in serie",
         "somma delle tensioni",
@@ -162,7 +167,7 @@
     }
   ],
   "assessment_invisible": [
-    "Se prevede 18V prima di misurare → comprensione della somma in serie",
+    "Se prevede 3V con due batterie da 1,5V → comprensione della somma in serie",
     "Se fa il parallelo con le pile della torcia → trasferimento nella vita quotidiana",
     "Se calcola quante pile servono per una tensione data → pensiero proporzionale"
   ],
@@ -174,5 +179,31 @@
     ],
     "next_suggested": "v2-cap5-esp2",
     "resume_message": "Le tensioni in serie si sommano! Prossimo: batterie in antiserie."
+  },
+  "analogies": [
+    {
+      "concept": "batterie_serie",
+      "text": "Le batterie in serie sono come le persone in una staffetta di spinta: la prima persona spinge il carrello e lo passa alla seconda, che aggiunge la sua forza. Due persone spingono il doppio!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Batterie collegate con lo stesso polo (+ con + o - con -)",
+      "teacher_response": "Cosi non e serie! Per la serie, il - di una deve andare al + dell'altra. Se collegate + con +, le batterie si 'combattono' e la tensione diminuisce.",
+      "analogy": "E come due persone che spingono una porta da parti opposte: si annullano!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

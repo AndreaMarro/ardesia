@@ -796,12 +796,12 @@ const VOLUME_REFERENCES = {
     bookText: "In questo esperimento useremo un fototransistor per accendere una luce quando è buio e spegnerla quando c'è luce.",
     bookInstructions: [
       "Collega la clip della batteria e connetti positivo e negativo alla breadboard",
-      "Effettua la serie dei 4 resistori da 10kOhm per crearne uno da 40kOhm",
-      "Connetti il fototransistor tra l'ultimo resistore e il negativo della batteria",
-      "Inserisci il MOSFET nella breadboard accanto all'ultimo resistore",
+      "Inserisci il fototransistor con l'emettitore (pin corto) verso destra",
+      "Connetti il resistore da 10 kOhm tra il collettore e il positivo della batteria",
+      "Connetti l'emettitore al negativo della batteria utilizzando un cavetto",
+      "Inserisci il MOSFET nella breadboard accanto al fototransistor",
       "Connetti il gate del MOSFET al collettore del fototransistor",
       "Connetti il source del MOSFET al negativo della batteria",
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
       "Posiziona il LED accanto al MOSFET",
       "Connetti il catodo del LED al drain del MOSFET",
       "Collega il resistore da 470 Ohm tra il positivo della batteria e l'anodo del LED"

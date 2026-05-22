@@ -88,7 +88,7 @@
   "next_experiment": {
     "id": "v2-cap12-esp1",
     "title": "Costruiamo il robot segui luce",
-    "preview": "Nel Capitolo 12 costruirete il Robot Segui Luce: il progetto finale del Volume 2!"
+    "preview": "Il progetto finale mette insieme sensori di luce, MOSFET e motori: il robot segui luce prende vita."
   },
   "phases": [
     {
@@ -274,5 +274,41 @@
     ],
     "next_suggested": "v2-cap12-esp1",
     "resume_message": "Avete completato tutti gli esperimenti sul motore DC! Ora il grande progetto finale: il Robot Segui Luce!"
+  },
+  "analogies": [
+    {
+      "concept": "parallelo_visivo",
+      "text": "Il LED e il motore sono come due strade parallele che partono dallo stesso incrocio (il pulsante): ogni componente ha il suo percorso diretto verso la destinazione (il negativo della batteria). La corrente si divide come il traffico che sceglie due strade diverse!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    },
+    {
+      "concept": "spia_indicatore",
+      "text": "Il LED verde è la spia del cruscotto del vostro circuito! Nelle macchine reali, decine di LED sul cruscotto vi dicono se il motore è acceso, se c'è benzina, se le porte sono chiuse. Voi avete costruito la vostra prima spia elettronica!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il LED è molto fioco rispetto a quando è collegato da solo",
+      "teacher_response": "Con la batteria a 9V condivisa con il motore, il LED potrebbe sembrare meno luminoso perché il motore 'assorbe' molta corrente. Questo è normale in parallelo con un componente ad alto consumo come il motore!",
+      "analogy": "È come due ugelli collegati allo stesso tubo dell'acqua: se uno è grande (motore) e l'altro piccolo (LED), quello piccolo avrà meno pressione."
+    },
+    {
+      "mistake": "Il LED non si accende affatto",
+      "teacher_response": "Regolate che il filo di collegamento dal punto comune del pulsante vada sia al motore che al resistore del LED. Se manca questo filo di raccordo, il ramo del LED è aperto!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }
