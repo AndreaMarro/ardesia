@@ -2,9 +2,9 @@
  * ModalitaSwitch — 3 modes canonical UI Sprint V iter 3 (Andrea iter 1+ mandate)
  *
  * Modes (Italian K-12 plurale "Ragazzi" Principio Zero V3):
- *   • percorso     → 📖 Percorso (default narrative reading + morphic Onniscenza Sense 1.5) ⭐
- *   • passo-passo  → 👣 Passo Passo (build sequenziale variazione interno capitolo)
- *   • gia-montato  → 🧩 Già Montato (pre-assembled diagnose mode, NEW iter 26)
+ *   - percorso     -> Percorso (default narrative reading + morphic Onniscenza Sense 1.5)
+ *   - passo-passo  -> Passo Passo (build sequenziale variazione interno capitolo)
+ *   - gia-montato  -> Gia Montato (pre-assembled diagnose mode, NEW iter 26)
  *
  * Modes REMOVED:
  *   • guida-da-errore — iter 26 (ADR-025 §4.5) diagnose integrato Già Montato + Passo Passo inline
@@ -22,6 +22,7 @@
  */
 import React from 'react';
 import css from './ModalitaSwitch.module.css';
+import { getModalitaMorphicCue } from '../../services/percorsoMorphicAdapter.js';
 
 export const MODALITA = ['percorso', 'passo-passo', 'gia-montato'];
 
@@ -93,12 +94,22 @@ const MODE_META = {
   },
 };
 
-export default function ModalitaSwitch({ activeMode = 'percorso', onModeChange, availableModes }) {
+export default function ModalitaSwitch({
+  activeMode = 'percorso',
+  onModeChange,
+  availableModes,
+  sessionState,
+}) {
   const handleClick = (mode) => {
     if (typeof onModeChange === 'function') {
       onModeChange(mode);
     }
   };
+
+  const morphicCue = React.useMemo(
+    () => getModalitaMorphicCue({ sessionState }),
+    [sessionState]
+  );
 
   // iter 36 Atom A4 fix — defensive filter: never exclude 'percorso' (default canonical).
   // If parent passes availableModes array, intersect with MODALITA + force-include percorso.
@@ -113,6 +124,8 @@ export default function ModalitaSwitch({ activeMode = 'percorso', onModeChange, 
       role="tablist"
       aria-label="Modalità lavagna"
       data-testid="modalita-switch"
+      data-stato-sessione={morphicCue.sessionState}
+      data-morphic-profile={morphicCue.teacherProfile}
     >
       {visibleModes.map((mode) => {
         const meta = MODE_META[mode];
@@ -130,6 +143,8 @@ export default function ModalitaSwitch({ activeMode = 'percorso', onModeChange, 
             data-testid={`modalita-btn-${mode}`}
             data-active={active ? 'true' : 'false'}
             data-default={meta.isDefault ? 'true' : 'false'}
+            data-session-cue={meta.isDefault ? morphicCue.sessionState : undefined}
+            data-morphic-profile={meta.isDefault ? morphicCue.teacherProfile : undefined}
             className={`${css.modeBtn} ${active ? css.modeBtnActive : ''} ${meta.isDefault ? css.modeBtnDefault : ''}`}
             onClick={() => handleClick(mode)}
           >

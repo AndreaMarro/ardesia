@@ -9,10 +9,12 @@
  *
  * (c) Andrea Marro — 2026-04-28
  */
-import React, { useMemo, useCallback } from 'react';
-import { buildPhotoUrl } from '../../data/experiment-photo-map';
-import { getVolumeRef } from '../../data/volume-references';
+import React, { useMemo, useCallback, useState } from 'react';
+import { buildSessionReportComicModel } from '../../services/fumettoService';
 import { ReportIcon, PrintIcon, BookIcon } from '../common/ElabIcons';
+import { multimodalRouter } from '../../services/multimodalRouter';
+import UnlimMascotte from '../common/UnlimMascotte';
+import SessionReportComicCliffhanger from './SessionReportComicCliffhanger';
 import styles from './SessionReportComic.module.css';
 
 function formatSessionDate(iso) {
@@ -26,39 +28,53 @@ function formatSessionDate(iso) {
   }
 }
 
-const VIGNETTE_SLOTS = 6;
-const NARRATION_FALLBACK_LEN = 140;
-
-/**
- * Derive narration text for a vignette.
- * Priority: explicit narrations[exp.id] > volumeRef.bookText excerpt > null.
- */
-function deriveNarration(narrations, exp, volRef) {
-  if (!exp) return null;
-  const explicit = narrations?.[exp.id];
-  if (explicit && typeof explicit === 'string') return explicit;
-  if (volRef?.bookText && typeof volRef.bookText === 'string') {
-    const t = volRef.bookText.trim();
-    return t.length > NARRATION_FALLBACK_LEN
-      ? `${t.slice(0, NARRATION_FALLBACK_LEN).trim()}…`
-      : t;
-  }
-  return null;
+function UnlimMascot() {
+  return (
+    <div
+      className={styles.mascot}
+      data-testid="session-report-comic-mascot"
+      aria-label="UNLIM mascotte canonica ELAB"
+    >
+      <UnlimMascotte
+        size="small"
+        state="aspetta"
+        className={styles.mascotSvg}
+        ariaLabel="UNLIM mascotte canonica Tea, con puntatore luminoso sul kit fisico"
+      />
+      <span className={styles.mascotLabel}>UNLIM guida il ponte, il kit fisico resta protagonista.</span>
+    </div>
+  );
 }
 
-export default function SessionReportComic({ session, onExport }) {
-  const vignettes = useMemo(() => {
-    const completed = Array.isArray(session?.experimentsCompleted)
-      ? session.experimentsCompleted
-      : [];
-    const slots = completed.slice(0, VIGNETTE_SLOTS);
-    while (slots.length < VIGNETTE_SLOTS) slots.push(null);
-    return slots;
-  }, [session]);
+function PhotoPlaceholder({ title }) {
+  return (
+    <div className={styles.photoPlaceholder} aria-hidden="true">
+      <BookIcon size={28} className={styles.placeholderIcon} />
+      <span className={styles.placeholderText}>
+        {title || 'Esperimento'}
+      </span>
+    </div>
+  );
+}
 
-  const narrations = session?.narrations ?? {};
+export default function SessionReportComic({ session, onExport, onMountNextExperiment }) {
+  const reportModel = useMemo(() => buildSessionReportComicModel(session), [session]);
+  const {
+    vignettes,
+    exercisePrompts,
+    notesPrompt,
+    multipleChoiceQuestions,
+    diaryPage,
+    sessionFingerprint,
+    nextExperiment,
+  } = reportModel;
   const sessionDate = formatSessionDate(session?.startedAt);
   const studentAlias = session?.studentAlias ?? '';
+  const [failedAssets, setFailedAssets] = useState(() => new Set());
+  const [loadedAssets, setLoadedAssets] = useState(() => new Set());
+  const [generatedImages, setGeneratedImages] = useState(() => ({}));
+  const [imageGenStatus, setImageGenStatus] = useState('idle');
+  const [imageGenMessage, setImageGenMessage] = useState('');
 
   const handleExport = useCallback(() => {
     if (typeof onExport === 'function') {
@@ -67,6 +83,77 @@ export default function SessionReportComic({ session, onExport }) {
       window.print();
     }
   }, [onExport]);
+
+  const handleMountNextExperiment = useCallback((experimentId) => {
+    if (typeof onMountNextExperiment === 'function') {
+      onMountNextExperiment(experimentId);
+      return;
+    }
+
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.__ELAB_API?.unlim?.mountExperiment === 'function'
+    ) {
+      window.__ELAB_API.unlim.mountExperiment(experimentId);
+    } else if (
+      typeof window !== 'undefined' &&
+      typeof window.__ELAB_API?.mountExperiment === 'function'
+    ) {
+      window.__ELAB_API.mountExperiment(experimentId);
+    }
+    if (typeof window !== 'undefined' && experimentId) {
+      const nextHash = `#lavagna?exp=${encodeURIComponent(experimentId)}`;
+      if (!window.location.hash.includes(`exp=${encodeURIComponent(experimentId)}`)) {
+        window.location.hash = nextHash;
+      }
+    }
+  }, [onMountNextExperiment]);
+
+  const handleGenerateImages = useCallback(async () => {
+    const briefs = reportModel.imageGenerationBriefs || [];
+    setImageGenStatus('loading');
+    setImageGenMessage('Generazione immagini ELAB in corso...');
+
+    try {
+      const nextImages = {};
+      let generatedCount = 0;
+
+      for (let index = 0; index < briefs.length; index += 1) {
+        const brief = briefs[index];
+        if (!brief?.prompt) continue;
+
+        const result = await multimodalRouter.routeImageGen(
+          {
+            prompt: brief.prompt,
+            width: 1024,
+            height: 768,
+            numSteps: 4,
+          },
+          { sessionId: `${sessionFingerprint}-panel-${index + 1}` }
+        );
+
+        const image = result?.data?.image || result?.data?.imageBase64;
+        if (result?.ok && image) {
+          nextImages[index] = image.startsWith('data:image/')
+            ? image
+            : `data:image/png;base64,${image}`;
+          generatedCount += 1;
+        }
+      }
+
+      setGeneratedImages(nextImages);
+      if (generatedCount > 0) {
+        setImageGenStatus('ready');
+        setImageGenMessage(`Immagini generate: ${generatedCount}/6, basate sulla sessione e sulla mascotte Tea.`);
+      } else {
+        setImageGenStatus('deferred');
+        setImageGenMessage('Generazione immagini non disponibile ora: il fumetto usa asset verificati e prompt Tea pronti.');
+      }
+    } catch (_err) {
+      setImageGenStatus('deferred');
+      setImageGenMessage('Generazione immagini non disponibile ora: il fumetto usa asset verificati e prompt Tea pronti.');
+    }
+  }, [reportModel.imageGenerationBriefs, sessionFingerprint]);
 
   return (
     <article
@@ -92,6 +179,7 @@ export default function SessionReportComic({ session, onExport }) {
             </p>
           </div>
         </div>
+        <UnlimMascot />
         <button
           type="button"
           className={styles.exportBtn}
@@ -101,43 +189,91 @@ export default function SessionReportComic({ session, onExport }) {
           <PrintIcon size={20} aria-hidden="true" />
           <span>Scarica PDF</span>
         </button>
+        <button
+          type="button"
+          className={styles.generateImagesBtn}
+          onClick={handleGenerateImages}
+          disabled={imageGenStatus === 'loading'}
+          aria-label="Genera immagini del fumetto dalla sessione"
+        >
+          <BookIcon size={20} aria-hidden="true" />
+          <span>{imageGenStatus === 'loading' ? 'Genero immagini' : 'Genera immagini'}</span>
+        </button>
       </header>
 
+      {imageGenMessage && (
+        <p
+          className={styles.imageGenStatus}
+          data-testid="session-report-comic-imagegen-status"
+          role="status"
+        >
+          {imageGenMessage}
+        </p>
+      )}
+
       <div className={styles.grid}>
-        {vignettes.map((exp, idx) => {
-          const volRef = exp ? getVolumeRef(exp.id) : null;
-          const narration = deriveNarration(narrations, exp, volRef);
+        {vignettes.map((slot, idx) => {
+          const exp = slot.exp;
+          const volRef = slot.volRef;
+          const narration = slot.narration;
+          const generatedImage = generatedImages[idx];
+          const hasGeneratedImage = typeof generatedImage === 'string' && generatedImage.startsWith('data:image/');
+          const hasWorkingAsset = !hasGeneratedImage && slot.assetUrl && !failedAssets.has(slot.assetUrl);
+          const isAssetLoaded = hasWorkingAsset && loadedAssets.has(slot.assetUrl);
           const narrationId = exp ? `narration-${exp.id}-${idx}` : `placeholder-${idx}`;
           const vignetteAriaLabel = exp
-            ? `Vignetta ${idx + 1} — ${exp.title || exp.id}${
+            ? `Vignetta ${idx + 1} — ${slot.roleLabel} — ${exp.title || exp.id}${
                 volRef ? ` — Volume ${volRef.volume} pagina ${volRef.bookPage}` : ''
               }`
             : `Vignetta ${idx + 1} — ancora da svolgere`;
           return (
             <figure
-              key={exp?.id ?? `slot-${idx}`}
+              key={exp ? `${exp.id}-${slot.role}-${idx}` : `slot-${idx}`}
               className={styles.vignette}
               aria-label={vignetteAriaLabel}
               aria-describedby={narration ? narrationId : undefined}
             >
               {exp ? (
                 <>
-                  {buildPhotoUrl(exp.id, exp.volume ?? volRef?.volume ?? 1) ? (
-                    <img
-                      src={buildPhotoUrl(exp.id, exp.volume ?? volRef?.volume ?? 1)}
-                      alt={`Foto esperimento: ${exp.title || exp.id}`}
-                      className={styles.photo}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className={styles.photoPlaceholder} aria-hidden="true">
-                      <BookIcon size={28} className={styles.placeholderIcon} />
-                      <span className={styles.placeholderText}>
-                        {exp.title || 'Esperimento'}
-                      </span>
+                  {hasGeneratedImage ? (
+                    <div className={styles.photoSlot}>
+                      <img
+                        src={generatedImage}
+                        alt={`Immagine generata per ${exp.title || exp.id}`}
+                        className={`${styles.photo} ${styles.photoLoaded}`}
+                      />
                     </div>
+                  ) : hasWorkingAsset ? (
+                    <div className={styles.photoSlot}>
+                      {!isAssetLoaded && (
+                        <PhotoPlaceholder title={exp.title || exp.id} />
+                      )}
+                      <img
+                        src={slot.assetUrl}
+                        alt={`Foto esperimento: ${exp.title || exp.id}`}
+                        className={`${styles.photo} ${isAssetLoaded ? styles.photoLoaded : styles.photoPending}`}
+                        loading="lazy"
+                        onLoad={() => {
+                          setLoadedAssets((current) => {
+                            const next = new Set(current);
+                            next.add(slot.assetUrl);
+                            return next;
+                          });
+                        }}
+                        onError={() => {
+                          setFailedAssets((current) => {
+                            const next = new Set(current);
+                            next.add(slot.assetUrl);
+                            return next;
+                          });
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <PhotoPlaceholder title={exp.title || 'Esperimento'} />
                   )}
                   <figcaption className={styles.caption}>
+                    <span className={styles.arcRole}>{slot.roleLabel}</span>
                     <strong className={styles.captionTitle}>
                       {exp.title || exp.id}
                     </strong>
@@ -154,6 +290,11 @@ export default function SessionReportComic({ session, onExport }) {
                         {narration}
                       </p>
                     )}
+                    {slot.sessionEvidence && (
+                      <p className={styles.sessionEvidence}>
+                        {slot.sessionEvidence}
+                      </p>
+                    )}
                   </figcaption>
                 </>
               ) : (
@@ -166,7 +307,83 @@ export default function SessionReportComic({ session, onExport }) {
         })}
       </div>
 
+      <section
+        className={styles.workshop}
+        data-testid="session-report-comic-exercises"
+        aria-label="Esercizi didattici del fumetto"
+      >
+        <h3 className={styles.sectionTitle}>Esercizi sul kit fisico</h3>
+        <ol className={styles.exerciseList}>
+          {exercisePrompts.map((prompt) => (
+            <li key={prompt}>{prompt}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section
+        className={styles.quiz}
+        data-testid="session-report-comic-quiz"
+        aria-label="Domande a crocette del fumetto"
+      >
+        <h3 className={styles.sectionTitle}>Domande a crocette</h3>
+        <ol className={styles.quizList}>
+          {multipleChoiceQuestions.map((item) => (
+            <li key={item.question} className={styles.quizItem}>
+              <p className={styles.quizQuestion}>{item.question}</p>
+              <ol className={styles.choiceList} type="A">
+                {item.options.map((option) => (
+                  <li key={option} className={styles.choiceItem}>
+                    <span className={styles.choiceBox} aria-hidden="true" />
+                    <span>{option}</span>
+                  </li>
+                ))}
+              </ol>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section
+        className={styles.notes}
+        data-testid="session-report-comic-notes"
+        aria-label="Spazio appunti del fumetto"
+      >
+        <h3 className={styles.sectionTitle}>Spazio appunti</h3>
+        <p className={styles.notesPrompt}>{notesPrompt}</p>
+        <div className={styles.noteLines} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </section>
+
+      <section
+        className={styles.diary}
+        data-testid="session-report-comic-diary"
+        aria-label="Pagina diario finale del fumetto"
+      >
+        <h3 className={styles.sectionTitle}>{diaryPage.title}</h3>
+        <ol className={styles.diaryPrompts}>
+          {diaryPage.prompts.map((prompt) => (
+            <li key={prompt}>{prompt}</li>
+          ))}
+        </ol>
+        <div className={styles.diaryLines} aria-hidden="true">
+          {Array.from({ length: diaryPage.lineCount }).map((_, index) => (
+            <span key={`diary-line-${index + 1}`} />
+          ))}
+        </div>
+      </section>
+
+      {session?.savedAt && nextExperiment && (
+        <SessionReportComicCliffhanger
+          nextExperiment={nextExperiment}
+          onMountNext={handleMountNextExperiment}
+        />
+      )}
+
       <footer className={styles.footer}>
+        <p className={styles.fingerprint}>Traccia sessione: {sessionFingerprint}</p>
         <p className={styles.footerText}>Grazie ragazzi! Alla prossima lezione!</p>
       </footer>
     </article>

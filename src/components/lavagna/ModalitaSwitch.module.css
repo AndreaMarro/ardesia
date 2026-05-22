@@ -109,6 +109,22 @@
   background: rgba(74, 122, 37, 0.08);
 }
 
+.modeBtnDefault[data-session-cue="intro"]:not(.modeBtnActive) {
+  box-shadow: inset 0 -3px 0 rgba(232, 148, 28, 0.55);
+}
+
+.modeBtnDefault[data-session-cue="costruzione"]:not(.modeBtnActive) {
+  box-shadow: inset 0 -3px 0 rgba(74, 122, 37, 0.55);
+}
+
+.modeBtnDefault[data-session-cue="verifica"]:not(.modeBtnActive) {
+  box-shadow: inset 0 -3px 0 rgba(229, 75, 61, 0.55);
+}
+
+.modeBtnDefault[data-session-cue="report"]:not(.modeBtnActive) {
+  box-shadow: inset 0 -3px 0 rgba(30, 77, 140, 0.55);
+}
+
 @media (min-width: 768px) and (max-width: 1180px) {
   .modalitaSwitch {
     width: min(680px, calc(100vw - 24px));
@@ -119,6 +135,37 @@
     min-height: 60px;
     border-radius: 14px;
     font-size: 17px;
+  }
+}
+
+@media (min-resolution: 192dpi), (min-width: 2500px) {
+  .modalitaSwitch {
+    width: min(920px, calc(100vw - 48px));
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .modeBtn {
+    min-height: 72px;
+    font-size: 19px;
+    border-radius: 16px;
+  }
+
+  .modeLabel {
+    font-size: 19px;
+  }
+
+  .modeIcon,
+  .modeSvg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (pointer: coarse) {
+  .modeBtn {
+    min-height: 64px;
+    padding: 12px 14px;
   }
 }
 

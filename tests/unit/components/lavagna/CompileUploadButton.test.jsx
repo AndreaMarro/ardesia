@@ -389,10 +389,9 @@ describe('CompileUploadButton — click flow', () => {
       />,
     );
 
+    // iter 103 B1 — demo-mode no longer polls the local compile agent, so
+    // `data-elab-agent-available` stays 'false'; findByRole is the mount barrier.
     const btn = await screen.findByRole('button');
-    await waitFor(() =>
-      expect(btn.getAttribute('data-elab-agent-available')).toBe('true'),
-    );
 
     fireEvent.click(btn);
     await waitFor(() => expect(fetchSpy).toHaveBeenCalled());
@@ -437,10 +436,9 @@ describe('CompileUploadButton — click flow', () => {
       />,
     );
 
+    // iter 103 B1 — demo-mode no longer polls the local compile agent, so
+    // `data-elab-agent-available` stays 'false'; findByRole is the mount barrier.
     const btn = await screen.findByRole('button');
-    await waitFor(() =>
-      expect(btn.getAttribute('data-elab-agent-available')).toBe('true'),
-    );
 
     fireEvent.click(btn);
     await waitFor(() => expect(fetchSpy).toHaveBeenCalled());
@@ -1058,5 +1056,56 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
       if (prevCloudUrl === undefined) delete import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL;
       else import.meta.env.VITE_ELAB_CLOUD_COMPILE_URL = prevCloudUrl;
     }
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. Iter 103 B1 — agent-poll gate (console noise localhost:8765 on #compile-home)
+//
+// #compile-home renders the button in demo-mode (WebUSB browser-direct compile
+// + flash). The local ELAB Compile Agent is deprecated and never used in that
+// flow, yet the mount useEffect polled getCompileAgentStatus() →
+// fetch('http://localhost:8765/health') every 30s, flooding the console with
+// ERR_CONNECTION_REFUSED. The fix gates the poll behind enableDemoMode.
+//
+// `statusImpl` is the production-documented injection seam for the status
+// probe — spying on it proves whether the poll effect body ran at all.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('CompileUploadButton — iter 103 B1 agent-poll gate', () => {
+  beforeEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('does NOT poll the local compile agent in demo-mode (no localhost:8765 probe)', async () => {
+    const statusSpy = vi.fn().mockResolvedValue({ available: false, port: 8765 });
+    render(
+      <CompileUploadButton
+        enableDemoMode
+        sketchCode="void setup(){}void loop(){}"
+        statusImpl={statusSpy}
+        fetchImpl={makeCompileOk()}
+      />,
+    );
+    // RTL render() flushes the mount effect synchronously inside act();
+    // findByRole adds a microtask tick so any async probe would have started.
+    await screen.findByRole('button', {
+      name: /Carica il programma sul kit fisico Nano R4/i,
+    });
+    expect(statusSpy).not.toHaveBeenCalled();
+  });
+
+  it('still polls the agent in non-demo (legacy) mode — guard against over-gating', async () => {
+    const statusSpy = vi.fn().mockResolvedValue({ available: true, port: 8765 });
+    render(
+      <CompileUploadButton
+        sketchCode="void setup(){}void loop(){}"
+        port="/dev/cu.usb"
+        statusImpl={statusSpy}
+        fetchImpl={makeFetchOk()}
+      />,
+    );
+    await screen.findByRole('button');
+    await waitFor(() => expect(statusSpy).toHaveBeenCalled());
   });
 });

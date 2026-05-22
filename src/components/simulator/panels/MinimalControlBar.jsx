@@ -311,6 +311,7 @@ function buildOverflowItems(props) {
     onToggleBottomPanel, showBottomPanel,
     onExportPng,
     onGenerateReport, isGeneratingReport,
+    onOpenFumetto,
     onToggleWhiteboard, showWhiteboard,
     onToggleDrawingOverlay, showDrawingOverlay,
 
@@ -363,7 +364,11 @@ function buildOverflowItems(props) {
   // ── Avanzato ──
   items.push({ type: 'separator', label: 'Avanzato' });
   if (onExportPng) items.push({ label: 'Cattura Immagine', action: onExportPng });
-  if (onGenerateReport) items.push({ label: isGeneratingReport ? 'Generazione...' : 'Report PDF', action: onGenerateReport, disabled: isGeneratingReport });
+  if (onOpenFumetto) {
+    items.push({ label: 'Fumetto Report', action: onOpenFumetto });
+  } else if (onGenerateReport) {
+    items.push({ label: isGeneratingReport ? 'Generazione...' : 'Report PDF', action: onGenerateReport, disabled: isGeneratingReport });
+  }
   if (onToggleWhiteboard) items.push({ label: 'Lavagna', checked: showWhiteboard, action: onToggleWhiteboard });
   if (onToggleDrawingOverlay) items.push({ label: 'Penna Circuito', checked: showDrawingOverlay, action: onToggleDrawingOverlay });
 

@@ -208,7 +208,10 @@
   background: var(--elab-card-bg, #FFFFFF);
   border: 1px solid var(--elab-border, #E0E6ED);
   border-radius: 12px;
-  overflow: hidden;
+  /* iter-103: overflow-y auto — se gli errori di compilazione si espandono
+     oltre l'altezza del rail (schermi bassi / zoom 200%), scrolla invece
+     di tagliare la barra Compila o la mascotte. */
+  overflow: hidden auto;
   display: flex;
   flex-direction: column;
 }

@@ -81,7 +81,15 @@ const EXPECTED_LEGACY_HANDLERS = [
   'setDiagnoseMode',
 ];
 
-const EXPECTED_UNLIM_HANDLERS = [...EXPECTED_LEGACY_HANDLERS, ...EXPECTED_SPRINT6_HANDLERS];
+// Iter 83 Fumetto cliffhanger CTA needs the nested UNLIM bridge contract:
+// window.__ELAB_API.unlim.mountExperiment(id).
+const EXPECTED_ITER83_HANDLERS = ['mountExperiment'];
+
+const EXPECTED_UNLIM_HANDLERS = [
+  ...EXPECTED_LEGACY_HANDLERS,
+  ...EXPECTED_SPRINT6_HANDLERS,
+  ...EXPECTED_ITER83_HANDLERS,
+];
 
 const EXPECTED_UNLIM_META = ['version', 'info'];
 

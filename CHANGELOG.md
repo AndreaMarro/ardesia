@@ -1,23 +1,117 @@
-## [fix(shared-infra) — prestep morfico esperimenti: PercorsoCapitoloView + NewElabSimulator + PlacementEngine + ComponentDrawer] — 2026-05-21
+## [fix(shared-infra) — prestep morfico esperimenti sopra runtime Percorso #132] — 2026-05-22
 
-Prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti (Codex prompt 0, `docs/prompts/CODEX-EXP-OVERHAUL-PROMPT-0-shared-infra.md`). Prepara le fondamenta riusabili da Vol1/Vol2/Vol3 prima di toccare i singoli esperimenti: drawer componenti, motore di posizionamento e shell del simulatore, più la vista di capitolo del Percorso. Nessun esperimento riscritto in questo step — solo l'infrastruttura comune e i relativi test.
+Integra il prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti senza regredire la Modalita Percorso morfica runtime gia ufficiale in produzione (#132). Il runtime Sense 1.5 resta la base; dal prestep #143 vengono mantenuti i pezzi riusabili per simulatore/drawer/placement e il cliffhanger visivo fra esperimenti nel Percorso.
 
 ### Changed
-- `src/components/lavagna/PercorsoCapitoloView.jsx` + `.module.css` — vista di capitolo della modalità Percorso allineata al prestep morfico (rendering capitolo + arco narrativo continuo).
-- `src/components/simulator/NewElabSimulator.jsx` — shell del simulatore: punti di aggancio per il drawer componenti e l'orchestrazione morfica.
-- `src/components/simulator/engine/PlacementEngine.js` — posizionamento automatico dei componenti rivisto come parte dell'infrastruttura condivisa.
-- `src/components/simulator/panels/ComponentDrawer.jsx` — drawer dei componenti riusabile dagli esperimenti dei tre volumi.
+- `src/components/lavagna/PercorsoCapitoloView.jsx` + `.module.css` — mantenuto il runtime morfico #132 e aggiunto il "Prossimo passaggio" between-card del prestep #143, usando il formatter Vol/pag robusto del runtime.
+- `src/components/simulator/NewElabSimulator.jsx` — apertura automatica editor Arduino per esperimenti AVR e aggancio al prossimo esperimento nel drawer.
+- `src/components/simulator/engine/PlacementEngine.js` — fallback visual-only per componenti ELAB senza pin usabili.
+- `src/components/simulator/panels/ComponentDrawer.jsx` — card cliffhanger per aprire il prossimo esperimento.
 
 ### Added
-- Test del prestep: `tests/PlacementEngine.test.js`, `tests/unit/components/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/components/simulator/ComponentDrawer-cliffhanger.test.jsx`, `tests/unit/components/simulator/NewElabSimulator-avr-ui.test.jsx`.
-
-### Verifica
-- CI Unit-test job del branch PASS (il prestep è la base per i prompt 1-3).
-- `npm run build` PASS + gate vitest pre-commit/pre-push (anti-regressione).
+- Test reali per il prestep: `tests/PlacementEngine.test.js`, `tests/unit/components/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/components/simulator/ComponentDrawer-cliffhanger.test.jsx`, `tests/unit/components/simulator/NewElabSimulator-avr-ui.test.jsx`.
 
 ### Notes
-- Merge di `origin/main` in questo branch: risolti 3 conflitti — `ElabScratchModeShell.jsx`/`.module.css` (mantenuto il ridisegno iter-102 di `main`: striscia starter inline al posto dell'overlay opaco; `min-height` workspace 520px) e `HomeCompileEntry.module.css` (mantenuto l'app-shell iter-103 `grid-auto-rows: max-content`, compatibile con "allarga l'editor").
-- Prestep puramente infrastrutturale: gli esperimenti veri e propri arrivano nei prompt 1-3 (Volume 1/2/3). Nessun hardware/UAT richiesto in questo step.
+- Risoluzione conflitto intenzionale: non sostituisce #132 con la vecchia vista #143; fonde la parte migliore di #143 sopra il runtime morfico gia live.
+
+---
+
+## [fix(iter-103) — #compile-home: stop rumore console localhost:8765 in demo-mode] — 2026-05-22
+
+Su `#compile-home` la console del browser era inondata da decine di richieste `GET` + `OPTIONS http://localhost:8765/health` fallite con `net::ERR_CONNECTION_REFUSED`. Causa: `CompileUploadButton` esegue al mount (e ogni 30s) un `useEffect` che interroga l'agente di compilazione locale via `getCompileAgentStatus()` → `fetch('http://localhost:8765/health')`. Il poll girava anche in demo-mode — il flusso WebUSB browser-direct di `#compile-home` — dove l'agente locale ELAB è deprecato e mai usato. Il `useEffect` è ora gated dietro `enableDemoMode`: in demo-mode fa `return` immediato, nessun poll, nessun rumore. Il ramo non-demo (path legacy `/compile-and-upload`) è invariato.
+
+### Changed
+- `src/components/lavagna/CompileUploadButton.jsx` — il `useEffect` di polling dell'agente esce subito (`if (enableDemoMode) return;`) quando `enableDemoMode` è attivo; `enableDemoMode` aggiunto al deps array. Nessun'altra modifica: nel ramo non-demo `agentAvailable` / `agentChecked` continuano a guidare `disabled`, tooltip e `data-elab-agent-available` identici a prima.
+
+### Tests
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — 2 nuovi test (sezione 5, TDD): in demo-mode lo spy `statusImpl` non viene chiamato (zero poll); in non-demo viene chiamato ≥1 volta (guard anti over-gating). Rimossa una barriera di sincronizzazione `await waitFor(data-elab-agent-available === 'true')` stale da 2 test demo-mode pre-esistenti (describe "click flow"): era agganciata al side-effect del poll, che in demo-mode ora non avviene — `findByRole` resta la barriera di mount. Le asserzioni di sicurezza dei 2 test (nessuna API key nel browser, URL proxy corretto) sono invariate.
+
+### Verifica
+- TDD red→green: il test demo-mode falliva pre-fix (`spy chiamato 1 volta`), passa post-fix.
+- CoV: `npx vitest run` sul file ×3 → 40/40 PASS, 3/3.
+- Build: `npm run build` → `✓ built in 2m 59s`, PWA precache 27 entries.
+- Baseline completa: `npx vitest run` → 14967 passed | 0 failed | 409 file (2 skip). Nessuna regressione (baseline ≥ 14551).
+- Codex Pattern V: 3 CONFIRM (ramo non-demo invariato; demo click/flash non legge lo stato agente; unico altro call site `ScratchCompileBar.jsx` senza dipendenza dal poll; deps array corretto) + 1 CONCERN ristretta — il render emette comunque `data-elab-agent-available` che legge `agentAvailable`; in demo-mode resta `'false'`, valore onesto (l'agente non è interrogato) e già atteso dal test T1c. Nessuna modifica di codice richiesta.
+
+### Notes
+- Fix di solo rumore console — zero cambiamento funzionale per l'utente: il demo-mode non ha mai usato l'agente locale. `data-elab-agent-available` resta `'false'` in demo-mode (onesto).
+- L'analisi "zero regressione" dell'handoff iter-103 era incompleta: copriva la logica del componente ma non l'accoppiamento di 2 test al side-effect del poll. Il ciclo TDD ha intercettato il gap; i 2 test sono stati corretti nello stesso atomo.
+
+---
+
+## [feat(unlim) — modulo awareness-flags (Slice 1A consapevolezza)] — 2026-05-21
+
+Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduce un modulo puro che calcola i "flag di consapevolezza" della lavagna: segnali strutturati che instradano la pipeline e vengono iniettati nel contesto LLM come segnali di attenzione espliciti. Nessuna chiamata LLM, nessun accesso a Deno.env / DB / rete — solo logica pura e difensiva (non lancia mai: su input degenere torna i flag a default). Modulo isolato, nessun consumatore ancora: verrà cablato nella pipeline `unlim-chat` nello Slice 1B → zero rischio di regressione.
+
+### Added
+- `supabase/functions/_shared/awareness-flags.ts` — funzione `computeAwarenessFlags(current, previous, userMessage, hasClassMemory)` che calcola 8 flag (`circuit_changed`, `drawing_changed`, `vision_needed`, `circuit_error`, `experiment_changed`, `step_changed`, `compile_status`, `returning_class`) da uno snapshot della lavagna confrontato col turno precedente; `renderAwarenessFlags(flags, current)` rende i flag narrabili in un blocco italiano per il contesto LLM (`vision_needed` resta routing-only, non viene reso); export `AWARENESS_FLAGS_VERSION`.
+- `tests/unit/awareness-flags.test.js` — 24 test scaffold (input degeneri, flag confronto-col-precedente, flag stato-corrente, `vision_needed`, `renderAwarenessFlags`).
+- `tests/unit/awareness-flags-coverage.test.js` — 22 test di copertura aggiuntiva sui rami non esercitati dallo scaffold: firma circuito sul lato connessioni, confronto con `circuit:null`, guardia asimmetrica di `drawing_changed` (disegno cancellato), equivalenza nullish di `experimentId`/`step` (incluso step 0), copertura per-parola di `VISION_MENTION_RE` + case-insensitività, rendering dettagli (esperimento/step/compile), troncamento errori a 3, ramo difensivo `circuit.errors` non-array.
+- `docs/superpowers/specs/2026-05-21-unlim-context-engineering-overhaul-design.md` — spec dell'overhaul context-engineering UNLIM (§7.2 awareness-flags).
+- `docs/superpowers/plans/2026-05-21-unlim-slice-1a-awareness-flags.md` — piano Slice 1A.
+
+### Verifica
+- `awareness-flags.test.js` + `awareness-flags-coverage.test.js` = **46/46 PASS**, CoV 3/3 (3 esecuzioni consecutive stabili).
+- `npm run build` PASS.
+
+### Notes
+- Modulo puro senza side-effect: nessun consumatore runtime in questa slice. Il cablaggio nella pipeline `unlim-chat` è esplicitamente rimandato allo Slice 1B.
+- `vision_needed` è un flag di routing interno e per scelta NON viene reso nel testo iniettato nel contesto LLM.
+
+---
+
+## [feat(percorso) — Modalità Percorso morfica runtime (Sense 1.5)] — 2026-05-21
+
+Modalità Percorso morfica runtime per la Lavagna (PR #132). Il pannello Percorso del capitolo diventa MORFICO a tempo di esecuzione (Morfismo Sense 1.5): l'adapter `percorsoMorphicAdapter.js` risolve un contesto per-docente / per-classe / per-sessione e `PercorsoCapitoloView` lo applica in tempo reale (polling 750ms + eventi `storage` / `elab:percorso-morphic-context-changed` / `elab:percorso-live-signal`). Cambia la regia — quantità di testo, numero di slide, segnali di regia live — mentre il canone Principio Zero (apertura "Ragazzi,", kit fisico ELAB, citazione Vol.X pag.Y verbatim) resta INVARIANTE.
+
+### Added
+- `src/services/percorsoMorphicAdapter.js` — resolver morfico Sense 1.5: `resolveDocenteContext` / `resolveClasseContext` / `resolvePercorsoMorphicContext` (aggregano profilo locale + Supabase `teacher_history_log`, `errore_ricorrente_pattern`, `class_session_metadata`, `voice_movement_log`), `adaptPercorsoRender` (rendering adattivo + filtro componenti per kit), `getModalitaMorphicCue` (cue di modalità). Path difensivi: client Supabase null tollerato, query in errore/eccezione non propagate.
+- `src/components/lavagna/PercorsoCapitoloView.jsx` — pannello Percorso realtime morfico: regia live da segnali aula (scrittura, montaggio, latenza, screenshot, audio, lezioni passate), budget morfico di frasi/slide, "Lezione personalizzata" via `unlim-chat`.
+- `src/components/lavagna/ModalitaSwitch.jsx` — switch 3 modalità canoniche con cue morfico per la modalità Percorso.
+- `tests/unit/services/percorsoMorphicRuntime.test.js` — 16 test del runtime morfico: `getModalitaMorphicCue`, `resolveUiContext` (4k/touch + sanitizzazione stato sessione), `transitionEmphasis`, `nextExperiment` (stringa/oggetto/null), mapping `capitolo.id` → `ragChapterFocus`, `voiceFocus` da `voice_movement_log`, inferenza kit da materiale, ramo `concepts.size >= 6`.
+- `tests/unit/services/percorsoMorphicAdapter.test.js`, `tests/unit/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/lavagna/ModalitaSwitch.test.jsx`, `tests/e2e/08-percorso-morfica-flow.spec.js` — copertura unit + E2E del flusso Percorso morfico.
+
+### Verifica
+- `percorsoMorphicRuntime.test.js` 16/16 PASS. Suite Percorso aggregata (`percorsoMorphicAdapter` + `percorsoMorphicRuntime` + `PercorsoCapitoloView` + `ModalitaSwitch`) 48/48 PASS. Build PASS.
+
+### Notes
+- Morfismo Sense 1.5: cambia la regia (testo/slide/segnali), il canone Principio Zero resta invariante.
+- I nuovi test esercitano percorsi del runtime morfico non coperti dalla suite precedente (export `getModalitaMorphicCue`, contesto UI, emfasi transizioni, prossimo esperimento, focus RAG capitolo) — nessun test vuoto o fittizio.
+
+---
+
+## [fix(iter-103) — #compile-home: rail overflow-y + cross-compile librerie Arduino] — 2026-05-21
+
+Due fix da audit iter-103. (1) Codex adversarial review: il rail `.compileBarPanel` aveva `overflow:hidden` — su schermi desktop bassi o zoom 200% gli errori di compilazione lunghi venivano troncati senza scroll. (2) Audit cross-compile: `/api/compile/nanor4` in produzione falliva per ogni sketch con `#include <Servo.h>` o `<LiquidCrystal.h>` ("No such file or directory") — il Dockerfile del servizio cloud-compile installava i core Arduino ma nessuna libreria.
+
+### Changed
+- `src/components/home/HomeCompileEntry.module.css` — `.compileBarPanel`: `overflow:hidden` → `overflow:hidden auto`, così il rail (barra Compila + mascotte UNLIM) scrolla internamente invece di troncare gli errori di compilazione lunghi.
+- `infra/cloud-compile/Dockerfile` — aggiunto `arduino-cli lib install Servo + LiquidCrystal + LiquidCrystal_I2C` (le librerie usate dal generatore Blockly — categorie "Motore Servo" / "Schermo LCD" — e dai template C++ degli esperimenti).
+
+### Verifica
+- Cross-compile certificato in locale: con le 3 librerie installate, 7/7 tipi di sketch ELAB compilano per `arduino:renesas_uno:nanor4` (Blink, Serial, tone, Servo 41800 byte, LiquidCrystal, LiquidCrystal_I2C, combo Servo+Serial+analogRead).
+- Codex Pattern V PASS + adversarial review.
+
+### Notes
+- Il fix Dockerfile richiede un redeploy Render del servizio cloud-compile (`autoDeploy:true` su `main`) per avere effetto in produzione.
+
+---
+
+## [feat(fumetto) — Fumetto: report di sessione a fumetti per la classe] — 2026-05-21
+
+Funzionalità "Fumetto" — il report di una sessione di laboratorio reso come fumetto pedagogico in 6 vignette (arco narrativo problema → ipotesi → errore → click → successo → ponte) seguendo lo schema canonico di Tea (`src/data/fumetto-schema.json`). UNLIM resta comprimario: illumina un dettaglio del kit fisico senza rubare la scena. Il fumetto è generato dalla sessione reale (errori commessi, componenti usati, percorso dello studente) — nessun template statico, nessun dato finto.
+
+### Added
+- `src/services/fumettoService.js` — validatore runtime dello schema fumetto (`validateFumettoPayload` + `validateFumettoSchemaContract`), generatore pilota (`generatePilotFumetto`), generatore da sessione reale (`generateSessionFumetto`), modello del report (`buildSessionReportComicModel`) e helper per la prossima tappa narrativa (`getNextExperimentForFumetto`).
+- `src/components/lavagna/SessionReportComic.jsx` + `SessionReportComicModal.jsx` + `SessionReportComicCliffhanger.jsx` — UI del report a fumetti con cliffhanger verso l'esperimento successivo.
+- `src/data/fumetto-schema.json` — schema JSON canonico (da Tea) del fumetto pedagogico.
+- `tests/unit/services/fumettoService.test.js` + `tests/unit/services/fumettoService-coverage.test.js` — copertura validatore, generatori, fallback chain `getNextExperimentForFumetto` e cap dei balloon per vignetta.
+- `tests/unit/lavagna/SessionReportComic.test.jsx` + `tests/e2e/03-fumetto-flow.spec.js` — test componente + flusso E2E del fumetto.
+
+### Notes
+- Arco narrativo continuo: ogni vignetta si aggancia al kit fisico e alla sequenza del libro stampato (Principio Zero + Morfismo Sense 2).
+- `generatePilotFumetto` produce contenuto placeholder sintetico per dev/preview/test — la generazione LLM via Edge Function `unlim-fumetto` è rinviata (l'Edge Function non esiste ancora).
+- `principioZero` nei payload pilota è pre-popolato a `true`: i payload reali vanno ri-validati post-LLM via `principio-zero-validator.ts`.
 
 ---
 

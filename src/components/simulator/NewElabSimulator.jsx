@@ -33,7 +33,6 @@ import { findExperimentById, ALL_EXPERIMENTS } from '../../data/experiments-inde
 // CompileUploadButton (iter 74 B-1 components had props MA real callers
 // non passavano nextExperiment → CTAs invisibili runtime users).
 import { getLessonPath } from '../../data/lesson-paths';
-import { openReportWindow } from '../unlim/UnlimReport';
 import { compileCode as apiCompileCode } from '../../services/api';
 import { emitSimulatorEvent } from '../../services/simulator-api';
 import { pushActivity } from '../../services/activityBuffer';
@@ -103,6 +102,7 @@ const NewElabSimulator = ({
   onGetHints,
   onSendToUNLIM,
   onSendImageToUNLIM,
+  onFumettoOpen,
   messagesRef,
   quizResultsRef,
   sessionStartRef,
@@ -855,7 +855,7 @@ const NewElabSimulator = ({
           hasQuiz={!!(currentExperiment?.quiz?.length)}
           onGenerateReport={currentExperiment ? handleGenerateReport : undefined}
           isGeneratingReport={isGeneratingReport}
-          onOpenFumetto={currentExperiment ? () => openReportWindow(currentExperiment.id) : undefined}
+          onOpenFumetto={currentExperiment && onFumettoOpen ? () => onFumettoOpen(currentExperiment) : undefined}
           selectedComponentId={selectedComponentId}
           onComponentDelete={currentExperiment ? handleComponentDelete : undefined}
           onComponentRotate={currentExperiment ? (compId) => {
