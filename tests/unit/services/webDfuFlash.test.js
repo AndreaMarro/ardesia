@@ -180,9 +180,93 @@ describe('mockUsbDfuDevice — internal state machine', () => {
     expect(mock.__elabMockMode).toBe('simulated');
   });
 
-  it('vendor/product IDs default Nano R4 Arduino 0x2341/0x0070', () => {
+  it('vendor/product IDs default Nano R4 Arduino 0x2341/0x0374', () => {
     const mock = createMockDfuDevice();
     expect(mock.vendorId).toBe(0x2341);
-    expect(mock.productId).toBe(0x0070);
+    expect(mock.productId).toBe(0x0374);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// iter 103 — device + DFU descriptor capture (hardware-UAT discovery)
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('webDfuFlash — device descriptor capture (iter 103)', () => {
+  // Fake WebDFU exposing the descriptor surface flashDfuFirmware reads after
+  // connect(). The real mock USBDevice is plain DFU 1.1; a fake lets a test
+  // drive arbitrary DFUVersion / type / memory descriptors. Injected via
+  // opts.webDfuImpl.
+  function makeFakeWebDFU(descriptor = {}) {
+    class FakeWebDFU {
+      constructor(device) {
+        this.device = device;
+        this.interfaces = [{ name: 'fake-dfu-iface' }];
+        this.properties = descriptor.properties || {
+          DFUVersion: 0x0110,
+          TransferSize: 64,
+          ManifestationTolerant: true,
+        };
+        this.type = descriptor.type ?? 1;
+        this.dfuseMemoryInfo = descriptor.dfuseMemoryInfo;
+      }
+      async init() { /* no-op */ }
+      async connect() { /* no-op */ }
+      write(transferSize, binary) {
+        const listeners = {};
+        const events = { on: (evt, cb) => { listeners[evt] = cb; } };
+        queueMicrotask(() => {
+          listeners['write/end']?.(binary.length);
+          listeners['end']?.();
+        });
+        return { events };
+      }
+    }
+    return FakeWebDFU;
+  }
+
+  const DEVICE_STUB = { vendorId: 0x2341, productId: 0x0374 };
+
+  it('captures plain-DFU descriptors into FlashResult.evidence.deviceInfo', async () => {
+    const FakeWebDFU = makeFakeWebDFU({
+      properties: { DFUVersion: 0x0110, TransferSize: 64, ManifestationTolerant: true },
+      type: 1,
+    });
+    const result = await flashDfuFirmware(DEVICE_STUB, TEST_BINARY, {
+      transferSize: 64,
+      webDfuImpl: FakeWebDFU,
+    });
+    expect(result.ok).toBe(true);
+    const di = result.evidence.deviceInfo;
+    expect(di).toBeTruthy();
+    expect(di.vendorId).toBe(0x2341);
+    expect(di.productId).toBe(0x0374);
+    expect(di.dfuVersion).toBe(0x0110);
+    expect(di.transferSize).toBe(64);
+    expect(di.manifestationTolerant).toBe(true);
+    expect(di.dfuseFirstSegmentStart).toBeNull();
+  });
+
+  it('captures DfuSe descriptors (DFUVersion 0x011a + memory map) when present', async () => {
+    const FakeWebDFU = makeFakeWebDFU({
+      properties: { DFUVersion: 0x011a, TransferSize: 1024, ManifestationTolerant: false },
+      type: 2,
+      dfuseMemoryInfo: { name: '@Flash', segments: [{ start: 0x4000 }] },
+    });
+    const result = await flashDfuFirmware(DEVICE_STUB, TEST_BINARY, { webDfuImpl: FakeWebDFU });
+    const di = result.evidence.deviceInfo;
+    expect(di.dfuVersion).toBe(0x011a);
+    expect(di.dfuseFirstSegmentStart).toBe(0x4000);
+  });
+
+  it('reports deviceInfo (vendor/product) even when DFU init fails', async () => {
+    class FailingWebDFU {
+      constructor(device) { this.device = device; }
+      async init() { throw new Error('init boom'); }
+    }
+    const result = await flashDfuFirmware(DEVICE_STUB, TEST_BINARY, { webDfuImpl: FailingWebDFU });
+    expect(result.ok).toBe(false);
+    expect(result.evidence.deviceInfo).toBeTruthy();
+    expect(result.evidence.deviceInfo.vendorId).toBe(0x2341);
+    expect(result.evidence.deviceInfo.productId).toBe(0x0374);
   });
 });

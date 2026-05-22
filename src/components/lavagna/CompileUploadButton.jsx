@@ -152,6 +152,27 @@ const NANO_R4_COMPILE_PROXY_URL = '/api/compile/nanor4';
 const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
 
 /**
+ * iter 103 — Arduino USB vendor ID. The WebUSB device picker filters on this
+ * so only Arduino boards appear (including the Nano R4 DFU bootloader), not
+ * every USB device on the computer — the teacher can't pick the wrong one.
+ */
+const ARDUINO_USB_VENDOR_ID = 0x2341;
+
+/**
+ * iter 103 — Renesas RA4M1 application flash base. The Nano R4 bootloader
+ * occupies 0x0000–0x3FFF; the sketch lives from 0x4000. A compiled image that
+ * does not start here is the wrong target — the flash is blocked for safety.
+ */
+const NANO_R4_APP_FLASH_ADDRESS = 0x4000;
+
+/**
+ * iter 103 — Renesas RA4M1 Nano R4 USB product IDs (renesas_uno boards.txt):
+ * 0x0074 = run/sketch mode, 0x0374 = DFU bootloader. A board picked while
+ * still 0x0074 has not entered update mode — the teacher must double-tap RESET.
+ */
+const NANO_R4_RUNTIME_PID = 0x0074;
+
+/**
  * Resolve compile endpoint.
  *
  * Honest behavior:
@@ -564,18 +585,38 @@ export default function CompileUploadButton({
       setDemoState(DEMO_STATES.HARDWARE_PICKED_AWAITING_FLASH);
     }
 
+    // iter 103 — if the picked board is still in run (sketch) mode, not update
+    // mode, the DFU flash cannot proceed. Guide the teacher to enter DFU mode
+    // (double-tap RESET) instead of failing deep in the flash chain.
+    if (device && device.productId === NANO_R4_RUNTIME_PID) {
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.COMPILE_ONLY_NO_BOARD);
+      }
+      onError?.({
+        category: 'board_not_in_update_mode',
+        message: "Ragazzi, la Nano R4 non è in modalità aggiornamento. Premete due volte, rapidamente, il tasto RESET sulla scheda, poi riprovate il caricamento.",
+        detail: { productId: device.productId, path: pathLabel },
+      });
+      return;
+    }
+
     // Dynamic import to avoid loading dfu library bundle on every render.
     const { flashDfuFirmware, flashResultMessage } = await import('../../services/webDfuFlash.js');
     const { parseIntelHexBase64 } = await import('../../services/intelHexParser.js');
 
     // Parse Intel HEX from Cloud Render compile response (OpenAPI 76-D.3).
     let binary;
+    // iter 103 — the Intel HEX minimum address; used by the pre-flight sanity
+    // guard below to confirm the artifact is a Nano R4 image (linked at 0x4000).
+    let flashStartAddress;
     try {
       if (!compilePayload?.hexBase64) {
         throw new Error('hexBase64_missing_from_compile_response');
       }
       const parsed = parseIntelHexBase64(compilePayload.hexBase64);
       binary = parsed.binary;
+      flashStartAddress = parsed.startAddress;
     } catch (parseErr) {
       if (mountedRef.current) {
         setUploading(false);
@@ -588,6 +629,39 @@ export default function CompileUploadButton({
       });
       return;
     }
+
+    // iter 103 — pre-flight sanity check on the compiled artifact: the Nano R4
+    // sketch is linked from the RA4M1 application base 0x4000 (FLASH_IMAGE_START
+    // in the renesas_uno NANOR4 memory map). A HEX that does not start there is
+    // a wrong or corrupt compile target — block it before a destructive flash
+    // rather than write a non-Nano-R4 image to the board.
+    if (flashStartAddress !== NANO_R4_APP_FLASH_ADDRESS) {
+      if (mountedRef.current) {
+        setUploading(false);
+        setDemoState(DEMO_STATES.FLASH_ERROR);
+      }
+      onError?.({
+        category: 'unexpected_flash_address',
+        message: "Ragazzi, l'indirizzo del programma compilato non è quello atteso per la Nano R4. Caricamento annullato per sicurezza — avvisate l'insegnante.",
+        detail: {
+          startAddress: flashStartAddress,
+          expected: NANO_R4_APP_FLASH_ADDRESS,
+          path: pathLabel,
+        },
+      });
+      return;
+    }
+
+    // iter 103 — diagnostic breadcrumb for hardware UAT triage (visible in
+    // the browser console, F12 — see docs/RICCARDO-UAT-GUIDE.md).
+    console.info('[ELAB DFU flash]', {
+      startAddressHex: `0x${Number(flashStartAddress).toString(16)}`,
+      binaryBytes: binary.length,
+      transferSize: 64,
+      vendorId: device?.vendorId,
+      productId: device?.productId,
+      path: pathLabel,
+    });
 
     if (mountedRef.current) {
       setDemoState(DEMO_STATES.FLASHING);
@@ -743,7 +817,7 @@ export default function CompileUploadButton({
 
     let device = null;
     try {
-      device = await usbPicker({ filters: [] });
+      device = await usbPicker({ filters: [{ vendorId: ARDUINO_USB_VENDOR_ID }] });
     } catch (err) {
       const name = err && err.name;
       if (name === 'NotFoundError' || name === 'AbortError' || name === 'SecurityError') {
@@ -822,7 +896,7 @@ export default function CompileUploadButton({
 
     let device = null;
     try {
-      device = await usbPicker({ filters: [] });
+      device = await usbPicker({ filters: [{ vendorId: ARDUINO_USB_VENDOR_ID }] });
     } catch (err) {
       const name = err && err.name;
       if (mountedRef.current) setUploading(false);
