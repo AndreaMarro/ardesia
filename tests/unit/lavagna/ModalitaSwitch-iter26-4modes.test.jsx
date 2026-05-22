@@ -1,9 +1,9 @@
 /**
- * ModalitaSwitch — 3 modes canonical UI tests (Sprint V iter 3 update)
+ * ModalitaSwitch — Percorso standby UI tests
  *
  * Verifica:
- *  • render 3 buttons (percorso + passo-passo + gia-montato)
- *  • 'libero' REMOVED Sprint V iter 3 — merged in 'percorso' (Onniscenza morphic)
+ *  • render 2 active buttons (passo-passo + gia-montato)
+ *  • 'percorso' temporarily hidden, migrated by LavagnaShell to passo-passo
  *  • active mode visual via data-active="true"
  *  • onModeChange callback invocato con id mode
  *  • Italian K-12 plurale "Ragazzi" labels (Principio Zero V3)
@@ -21,20 +21,19 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-describe('ModalitaSwitch — 3 modes canonical (Sprint V iter 3)', () => {
-  it('renders all 3 modes (percorso + passo-passo + gia-montato)', () => {
+describe('ModalitaSwitch — Percorso standby', () => {
+  it('renders only active modes while Percorso is in standby', () => {
     render(<ModalitaSwitch activeMode="percorso" onModeChange={() => {}} />);
-    expect(screen.getByTestId('modalita-btn-percorso')).toBeTruthy();
+    expect(screen.queryByTestId('modalita-btn-percorso')).toBeNull();
     expect(screen.getByTestId('modalita-btn-passo-passo')).toBeTruthy();
     expect(screen.getByTestId('modalita-btn-gia-montato')).toBeTruthy();
-    // 'libero' REMOVED Sprint V iter 3 — merged in 'percorso'
     expect(screen.queryByTestId('modalita-btn-libero')).toBeNull();
   });
 
-  it('exports MODALITA list with exactly 3 canonical modes', () => {
-    expect(MODALITA).toEqual(['percorso', 'passo-passo', 'gia-montato']);
-    expect(MODALITA).toHaveLength(3);
-    // Modes REMOVED:
+  it('exports only the two active modes while Percorso stays in standby', () => {
+    expect(MODALITA).toEqual(['passo-passo', 'gia-montato']);
+    expect(MODALITA).toHaveLength(2);
+    expect(MODALITA).not.toContain('percorso');
     expect(MODALITA).not.toContain('guida-da-errore'); // ADR-025 §4.5 iter 26
     expect(MODALITA).not.toContain('libero');           // Sprint V iter 3 merge in percorso
   });
@@ -42,15 +41,15 @@ describe('ModalitaSwitch — 3 modes canonical (Sprint V iter 3)', () => {
   it('marks active mode with data-active="true" + aria-selected', () => {
     render(<ModalitaSwitch activeMode="gia-montato" onModeChange={() => {}} />);
     const giaMontato = screen.getByTestId('modalita-btn-gia-montato');
-    const percorso = screen.getByTestId('modalita-btn-percorso');
+    const passoPasso = screen.getByTestId('modalita-btn-passo-passo');
     expect(giaMontato.getAttribute('data-active')).toBe('true');
     expect(giaMontato.getAttribute('aria-selected')).toBe('true');
-    expect(percorso.getAttribute('data-active')).toBe('false');
+    expect(passoPasso.getAttribute('data-active')).toBe('false');
   });
 
   it('calls onModeChange(mode) when button clicked', () => {
     const onModeChange = vi.fn();
-    render(<ModalitaSwitch activeMode="percorso" onModeChange={onModeChange} />);
+    render(<ModalitaSwitch activeMode="passo-passo" onModeChange={onModeChange} />);
     fireEvent.click(screen.getByTestId('modalita-btn-passo-passo'));
     expect(onModeChange).toHaveBeenCalledWith('passo-passo');
     fireEvent.click(screen.getByTestId('modalita-btn-gia-montato'));
@@ -59,33 +58,32 @@ describe('ModalitaSwitch — 3 modes canonical (Sprint V iter 3)', () => {
   });
 
   it('uses Italian K-12 plurale "Ragazzi" labels (Principio Zero V3)', () => {
-    render(<ModalitaSwitch activeMode="percorso" onModeChange={() => {}} />);
+    render(<ModalitaSwitch activeMode="passo-passo" onModeChange={() => {}} />);
     // Tooltips MUST contain plural "Ragazzi" (NO singular "tu", "clicca")
-    const percorso = screen.getByTestId('modalita-btn-percorso');
     const passoPasso = screen.getByTestId('modalita-btn-passo-passo');
     const giaMontato = screen.getByTestId('modalita-btn-gia-montato');
-    expect(percorso.getAttribute('aria-label')).toMatch(/Ragazzi/);
     expect(passoPasso.getAttribute('aria-label')).toMatch(/Ragazzi/);
     expect(giaMontato.getAttribute('aria-label')).toMatch(/Ragazzi/);
     // NO imperative singular like "clicca tu"
-    [percorso, passoPasso, giaMontato].forEach((btn) => {
+    [passoPasso, giaMontato].forEach((btn) => {
       expect(btn.getAttribute('aria-label')).not.toMatch(/clicca tu/i);
     });
   });
 
   it('does not render legacy "guida-da-errore" + "libero" affordance', () => {
-    render(<ModalitaSwitch activeMode="percorso" onModeChange={() => {}} />);
+    render(<ModalitaSwitch activeMode="passo-passo" onModeChange={() => {}} />);
     expect(screen.queryByTestId('modalita-btn-guida-da-errore')).toBeNull();
     expect(screen.queryByTestId('modalita-btn-libero')).toBeNull();
+    expect(screen.queryByTestId('modalita-btn-percorso')).toBeNull();
     expect(screen.queryByText(/guida da errore/i)).toBeNull();
   });
 
-  it('can collapse the large mode switch into a compact restore tab', () => {
+  it('normalizes a stale Percorso activeMode to Passo Passo in the compact restore tab', () => {
     render(<ModalitaSwitch activeMode="percorso" onModeChange={() => {}} />);
     fireEvent.click(screen.getByTestId('modalita-switch-collapse'));
 
     expect(screen.queryByTestId('modalita-switch')).toBeNull();
-    expect(screen.getByTestId('modalita-switch-collapsed')).toHaveTextContent('Percorso');
+    expect(screen.getByTestId('modalita-switch-collapsed')).toHaveTextContent('Passo Passo');
     expect(window.localStorage.setItem).toHaveBeenCalledWith('elab-lavagna-modalita-switch-collapsed', '1');
   });
 

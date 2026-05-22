@@ -1,7 +1,7 @@
 /**
  * LavagnaShell-modalita.test.jsx — Sprint V iter 1 Atom A13.4 (Tester-1)
  *
- * Tests handleModalitaChange behavior for the 4 canonical modes.
+ * Tests handleModalitaChange behavior while Percorso is temporarily in standby.
  * Source: src/components/lavagna/LavagnaShell.jsx:621-665 (handleModalitaChange callback).
  *
  * Pattern (per LavagnaShell-libero-auto-percorso-iter26.test.jsx):
@@ -11,8 +11,8 @@
  * + clearAll()) — this REVERSES iter 26 ADR-025 §4.4 auto-Percorso. Source
  * lines 657-664 confirm. Test asserts CURRENT behavior.
  *
- * 2026-05-08: Percorso click now starts from an empty sandbox canvas and
- * triggers __ELAB_API.unlim.aggregateContext.
+ * 2026-05-22: Percorso/libero/guida-da-errore migrate to Passo Passo instead
+ * of opening the broken narrative flow.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
@@ -31,11 +31,11 @@ function makeHandler({
   setPickerOpen = () => {},
 }) {
   return function handleModalitaChange(nextMode) {
-    // iter 48: 'libero' + 'guida-da-errore' silently migrate to 'percorso'
-    if (nextMode === 'libero' || nextMode === 'guida-da-errore') {
-      nextMode = 'percorso';
+    // Percorso standby: legacy/narrative entries migrate to Passo Passo.
+    if (nextMode === 'percorso' || nextMode === 'libero' || nextMode === 'guida-da-errore') {
+      nextMode = 'passo-passo';
     }
-    if (!['percorso', 'passo-passo', 'gia-montato'].includes(nextMode)) {
+    if (!['passo-passo', 'gia-montato'].includes(nextMode)) {
       return; // defensive
     }
     setModalita(nextMode);
@@ -75,37 +75,6 @@ function makeHandler({
       setUnlimTab('chat');
     }
 
-    if (nextMode === 'percorso') {
-      const api = getApi();
-      setBuildMode('sandbox');
-      setUnlimOpen(false);
-      setUnlimTab('percorso');
-      setPickerOpen(false);
-      setCapitoloPickerOpen(false);
-      if (api?.setBuildMode) {
-        try { api.setBuildMode('sandbox'); } catch { /* noop */ }
-      }
-      if (api?.setBuildStepIndex) {
-        try { api.setBuildStepIndex(-1); } catch { /* noop */ }
-      }
-      if (api?.clearAll) {
-        try { api.clearAll(); } catch { /* noop */ }
-      }
-      if (api?.unlim?.setDiagnoseMode) {
-        try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
-      }
-      if (api?.unlim?.aggregateContext) {
-        try {
-          api.unlim.aggregateContext({
-            lesson: api?.unlim?.getActiveLessonId?.() || null,
-            class_key: (() => {
-              try { return localStorage.getItem('elab-class-key') || null; } catch { return null; }
-            })(),
-            recent_sessions_limit: 5,
-          });
-        } catch { /* noop */ }
-      }
-    }
   };
 }
 
@@ -114,9 +83,6 @@ function openEmptyLavagnaFallback({
   setPickerOpen = () => {},
   setCapitoloPickerOpen = () => {},
 }) {
-  if (modalita === 'percorso') {
-    return;
-  }
   setPickerOpen(true);
 }
 
@@ -125,31 +91,34 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     if (typeof localStorage !== 'undefined') localStorage.clear();
   });
 
-  it('Percorso click → setModalita("percorso") called', () => {
+  it('Percorso click while in standby → migrates to Passo Passo', () => {
     const setModalita = vi.fn();
     const setCurrentExperiment = vi.fn();
     const getApi = () => null;
     const handler = makeHandler({ setModalita, setCurrentExperiment, getApi });
     handler('percorso');
-    expect(setModalita).toHaveBeenCalledWith('percorso');
+    expect(setModalita).toHaveBeenCalledWith('passo-passo');
   });
 
-  it('Percorso click → non apre automaticamente picker capitoli o finestre UNLIM', () => {
+  it('Percorso standby migration keeps UNLIM on chat and does not open capitoli', () => {
     const setCapitoloPickerOpen = vi.fn();
     const setUnlimOpen = vi.fn();
+    const setUnlimTab = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment: vi.fn(),
       setCapitoloPickerOpen,
       setUnlimOpen,
+      setUnlimTab,
       getApi: () => null,
     });
     handler('percorso');
-    expect(setCapitoloPickerOpen).toHaveBeenCalledWith(false);
     expect(setUnlimOpen).toHaveBeenCalledWith(false);
+    expect(setUnlimTab).toHaveBeenCalledWith('chat');
+    expect(setCapitoloPickerOpen).not.toHaveBeenCalled();
   });
 
-  it('Percorso click → chiude il picker esperimenti per non coprire la narrazione capitolo', () => {
+  it('Percorso standby migration does not close picker as narrative flow', () => {
     const setPickerOpen = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
@@ -158,33 +127,30 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       getApi: () => null,
     });
     handler('percorso');
-    expect(setPickerOpen).toHaveBeenCalledWith(false);
+    expect(setPickerOpen).not.toHaveBeenCalled();
   });
 
-  it.todo('Percorso click → aggregateContext called with payload — Sprint V iter 2 fix mock setup (getApi vs window.__ELAB_API resolve path)');
-
-  it('Percorso click → starts empty sandbox and clears custom canvas state', () => {
+  it('Percorso standby migration starts guided build and does not clear canvas', () => {
     const setCurrentExperiment = vi.fn();
     const setBuildMode = vi.fn();
     const apiSetBuildMode = vi.fn();
     const setBuildStepIndex = vi.fn();
     const clearAll = vi.fn();
-    const aggregateContext = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment,
       setBuildMode,
-      getApi: () => ({ setBuildMode: apiSetBuildMode, setBuildStepIndex, clearAll, unlim: { aggregateContext, setDiagnoseMode: vi.fn() } }),
+      getApi: () => ({ setBuildMode: apiSetBuildMode, setBuildStepIndex, clearAll, unlim: { setDiagnoseMode: vi.fn() } }),
     });
     handler('percorso');
     expect(setCurrentExperiment).not.toHaveBeenCalled();
-    expect(setBuildMode).toHaveBeenCalledWith('sandbox');
-    expect(apiSetBuildMode).toHaveBeenCalledWith('sandbox');
-    expect(setBuildStepIndex).toHaveBeenCalledWith(-1);
-    expect(clearAll).toHaveBeenCalled();
+    expect(setBuildMode).toHaveBeenCalledWith('guided');
+    expect(apiSetBuildMode).toHaveBeenCalledWith('guided');
+    expect(setBuildStepIndex).toHaveBeenCalledWith(0);
+    expect(clearAll).not.toHaveBeenCalled();
   });
 
-  it('Libero click → silently migrated to percorso (Sprint V iter 3 merge)', () => {
+  it('Libero click → silently migrated to passo-passo while Percorso is in standby', () => {
     const setModalita = vi.fn();
     const setCurrentExperiment = vi.fn();
     const clearAll = vi.fn();
@@ -194,8 +160,8 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       getApi: () => ({ clearAll }),
     });
     handler('libero');
-    expect(setModalita).toHaveBeenCalledWith('percorso');
-    expect(clearAll).toHaveBeenCalled();
+    expect(setModalita).toHaveBeenCalledWith('passo-passo');
+    expect(clearAll).not.toHaveBeenCalled();
     expect(setCurrentExperiment).not.toHaveBeenCalled();
   });
 
@@ -275,7 +241,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setBuildMode).toHaveBeenCalledWith('guided');
   });
 
-  it('Legacy "guida-da-errore" mode → silently migrated to percorso (ADR-025 §4.5 + Sprint V iter 3)', () => {
+  it('Legacy "guida-da-errore" mode → silently migrated to passo-passo', () => {
     const setModalita = vi.fn();
     const handler = makeHandler({
       setModalita,
@@ -283,7 +249,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       getApi: () => null,
     });
     handler('guida-da-errore');
-    expect(setModalita).toHaveBeenCalledWith('percorso');
+    expect(setModalita).toHaveBeenCalledWith('passo-passo');
   });
 
   it('Unknown mode (e.g. "alien-mode") → no-op defensive ignore', () => {
@@ -297,7 +263,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setModalita).not.toHaveBeenCalled();
   });
 
-  it('Percorso click with no __ELAB_API present → graceful no-op (defensive)', () => {
+  it('Percorso click with no __ELAB_API present → graceful migration', () => {
     const setModalita = vi.fn();
     const handler = makeHandler({
       setModalita,
@@ -305,10 +271,10 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       getApi: () => null,
     });
     expect(() => handler('percorso')).not.toThrow();
-    expect(setModalita).toHaveBeenCalledWith('percorso');
+    expect(setModalita).toHaveBeenCalledWith('passo-passo');
   });
 
-  it('empty Lavagna fallback in modalita Percorso → resta pulita, non apre capitoli o picker esperimenti', () => {
+  it('empty Lavagna fallback with stale Percorso → opens picker because Percorso is standby', () => {
     const setPickerOpen = vi.fn();
     const setCapitoloPickerOpen = vi.fn();
     openEmptyLavagnaFallback({
@@ -317,7 +283,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       setCapitoloPickerOpen,
     });
     expect(setCapitoloPickerOpen).not.toHaveBeenCalled();
-    expect(setPickerOpen).not.toHaveBeenCalled();
+    expect(setPickerOpen).toHaveBeenCalledWith(true);
   });
 
   it('empty Lavagna fallback fuori da Percorso → mantiene picker esperimenti', () => {

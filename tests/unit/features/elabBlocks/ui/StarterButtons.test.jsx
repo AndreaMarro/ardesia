@@ -10,6 +10,15 @@ describe('StarterButtons — Andrea spec FASE 3.2 + ratify gruppo 16 voce 2', ()
     expect(screen.getByRole('button', { name: /Leggi un sensore/i })).toBeInTheDocument();
   });
 
+  it('T1b: renders the starters as a three-card design grid', () => {
+    render(<StarterButtons onStarterClick={() => {}} />);
+    const group = screen.getByRole('group', { name: /Programmi iniziali/i });
+    expect(group).toHaveAttribute('data-ui-layout', 'three-card-grid');
+    for (const key of STARTER_KEYS) {
+      expect(group.querySelector(`[data-starter="${key}"]`)).toHaveAttribute('data-card-shape', 'outline');
+    }
+  });
+
   it('T2: click triggers onStarterClick with correct key', () => {
     const handler = vi.fn();
     render(<StarterButtons onStarterClick={handler} />);

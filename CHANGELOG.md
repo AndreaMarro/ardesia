@@ -1,3 +1,9 @@
+## [fix(b4-standby) — Percorso in standby e starter Code Kit ripuliti] — 2026-05-22
+
+- `src/components/lavagna/ModalitaSwitch.jsx`, `src/components/lavagna/LavagnaShell.jsx` — `Percorso` temporaneamente rimosso dalla UI e dagli ingressi runtime: stati legacy `percorso`, `libero`, `guida-da-errore` migrano a `Passo Passo`; il tab UNLIM `percorso` non viene piu aperto da cambio modalita/sandbox.
+- `src/features/elabBlocks/ui/ElabScratchModeShell.*`, `src/features/elabBlocks/ui/StarterButtons.*`, `src/components/home/ProgramExplainer.module.css` — blocco starter ridisegnato come banda compatta + tre card outline grandi, senza link esterni di riferimento, mantenendo copy ELAB e senza clonare sorgenti di terze parti.
+- Test mirati: `ModalitaSwitch`, `LavagnaShell-modalita`, `LavagnaShell-libero-auto-percorso`, `ElabScratchModeShell`, `StarterButtons`, `ProgramExplainer` → 52 passed.
+
 ## [fix(sprint-b4) — P0 compile-home Code Kit e Percorso non bloccante] — 2026-05-22
 
 - `src/components/home/HomeCompileEntry.jsx`, `src/components/home/HomeCompileEntry.module.css` — layout `#compile-home` piu vicino al riferimento Code Kit: header e banner compressi in alto, editor blocchi/C++ dominante, fullscreen editor, monitor seriale chiuso di default dietro linguetta laterale ed espandibile.

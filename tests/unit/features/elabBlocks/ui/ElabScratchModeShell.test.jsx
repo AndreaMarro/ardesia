@@ -42,6 +42,18 @@ describe('ElabScratchModeShell — iter-102 ridisegno composizione', () => {
     expect(screen.getByText(/da dove cominciamo/i)).toBeInTheDocument();
   });
 
+  it('T4b: starter prompt uses the compact design band without external Eduki links', () => {
+    const { container } = render(
+      <ElabScratchModeShell workspaceReady workspaceBlockCount={1} onStarterClick={() => {}}>
+        <div />
+      </ElabScratchModeShell>
+    );
+    const strip = screen.getByTestId('starter-design-band');
+    const forbiddenHost = 'eduki.com';
+    expect(strip).toHaveAttribute('data-ui-layout', 'compact-reference-band');
+    expect(container.querySelector(`a[href*="${forbiddenHost}"]`)).toBeNull();
+  });
+
   it('T5: hides starter strip when workspace has user blocks (count > 1)', () => {
     render(
       <ElabScratchModeShell workspaceReady workspaceBlockCount={5} onStarterClick={() => {}}>

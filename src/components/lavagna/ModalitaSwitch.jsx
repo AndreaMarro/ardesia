@@ -1,20 +1,15 @@
 /**
- * ModalitaSwitch — 3 modes canonical UI Sprint V iter 3 (Andrea iter 1+ mandate)
+ * ModalitaSwitch — active lavagna modes.
  *
  * Modes (Italian K-12 plurale "Ragazzi" Principio Zero V3):
- *   - percorso     -> Percorso (default narrative reading + morphic Onniscenza Sense 1.5)
  *   - passo-passo  -> Passo Passo (build sequenziale variazione interno capitolo)
  *   - gia-montato  -> Gia Montato (pre-assembled diagnose mode, NEW iter 26)
  *
- * Modes REMOVED:
+ * Modes STANDBY / REMOVED:
+ *   • percorso — 2026-05-22 temporary standby: hidden from UI, legacy state
+ *     normalizes to Passo Passo until the flow is redesigned.
  *   • guida-da-errore — iter 26 (ADR-025 §4.5) diagnose integrato Già Montato + Passo Passo inline
- *   • libero — Sprint V iter 3 (Andrea iter 1+ mandate) MERGED in 'percorso' (Onniscenza morfico Sense 1.5)
- *     Migration: localStorage 'libero' → 'percorso' on read (LavagnaShell:441-449)
- *
- * Iter 36 Phase 1 Atom A4 fix (PDR §3) — Modalità Percorso visibile:
- *   • availableModes prop opzionale: filter difensivo (mai escludere 'percorso')
- *   • defaultStar visivamente prominente (lift opacity + size + Lime accent)
- *   • Percorso renderizzato SEMPRE first (anche se prop array escluso percorso → forza re-include)
+ *   • libero — legacy merged state; now normalizes to Passo Passo while Percorso is standby.
  *
  * Touch target ≥44px (CLAUDE.md §Qualita rule 9). Active state Navy #1E4D8C palette.
  *
@@ -24,8 +19,9 @@ import React from 'react';
 import css from './ModalitaSwitch.module.css';
 import { getModalitaMorphicCue } from '../../services/percorsoMorphicAdapter.js';
 
-export const MODALITA = ['percorso', 'passo-passo', 'gia-montato'];
+export const MODALITA = ['passo-passo', 'gia-montato'];
 const COLLAPSED_KEY = 'elab-lavagna-modalita-switch-collapsed';
+const FALLBACK_MODE = 'passo-passo';
 
 function readCollapsedPreference() {
   try { return localStorage.getItem(COLLAPSED_KEY) === '1'; } catch { return false; }
@@ -93,7 +89,7 @@ const MODE_META = {
     Icon: StepsIcon,
     label: 'Passo Passo',
     tooltip: 'Ragazzi, montiamo il circuito un componente alla volta.',
-    isDefault: false,
+    isDefault: true,
   },
   'gia-montato': {
     Icon: PuzzleIcon,
@@ -104,7 +100,7 @@ const MODE_META = {
 };
 
 export default function ModalitaSwitch({
-  activeMode = 'percorso',
+  activeMode = FALLBACK_MODE,
   onModeChange,
   availableModes,
   sessionState,
@@ -130,13 +126,12 @@ export default function ModalitaSwitch({
     [sessionState]
   );
 
-  // iter 36 Atom A4 fix — defensive filter: never exclude 'percorso' (default canonical).
-  // If parent passes availableModes array, intersect with MODALITA + force-include percorso.
-  // This protects against H3 hypothesis (filter excludes percorso accidentally).
   const visibleModes = Array.isArray(availableModes) && availableModes.length > 0
-    ? Array.from(new Set(['percorso', ...availableModes.filter((m) => MODALITA.includes(m))]))
+    ? Array.from(new Set(availableModes.filter((m) => MODALITA.includes(m))))
     : MODALITA;
-  const activeMeta = MODE_META[activeMode] || MODE_META.percorso;
+  const safeVisibleModes = visibleModes.length > 0 ? visibleModes : MODALITA;
+  const normalizedActiveMode = MODALITA.includes(activeMode) ? activeMode : FALLBACK_MODE;
+  const activeMeta = MODE_META[normalizedActiveMode] || MODE_META[FALLBACK_MODE];
   const ActiveIcon = activeMeta.Icon;
 
   if (collapsed) {
@@ -175,10 +170,10 @@ export default function ModalitaSwitch({
       >
         −
       </button>
-      {visibleModes.map((mode) => {
+      {safeVisibleModes.map((mode) => {
         const meta = MODE_META[mode];
         if (!meta) return null;
-        const active = activeMode === mode;
+        const active = normalizedActiveMode === mode;
         const Icon = meta.Icon;
         return (
           <button
