@@ -35,6 +35,48 @@ function normalizeComponents(components = []) {
     .filter(Boolean);
 }
 
+function trimText(value, max) {
+  const text = typeof value === 'string' ? value : '';
+  return text.length > max ? `${text.slice(0, max)}…` : text;
+}
+
+/**
+ * Distil the runtime context down to the signal Gemini actually needs.
+ *
+ * `collectFullContext()` ships large, low-signal runtime state (periodic
+ * applicationNarrative snapshots, unlimSharedState event log, agentDecisionSeed).
+ * Forwarding it verbatim bloats the Gemini request, slows the round-trip past the
+ * 15s LLM timeout and starves the JSON output budget — the fumetto draft then
+ * fails and the local sober report is shown instead. Only the distilled fields
+ * below carry storyline value; everything else is dropped.
+ */
+function leanSessionContext(context = {}) {
+  if (!context || typeof context !== 'object') return {};
+  const circuit = context.circuit && typeof context.circuit === 'object' ? context.circuit : {};
+  const compilation = context.compilation || context.lastCompilation
+    || context.compilationResult || circuit.lastCompilation || null;
+  const serial = context.serial || context.serialOutput || context.serialMonitor || null;
+  const components = normalizeComponents(
+    context.componentsUsed || context.components || circuit.components || [],
+  );
+  const lean = {};
+  if (context.editorMode) lean.editorMode = context.editorMode;
+  if (context.buildStep) lean.buildStep = context.buildStep;
+  if (compilation) lean.compilation = compilation;
+  if (serial) lean.serial = serial;
+  if (Array.isArray(context.recentErrors) && context.recentErrors.length) {
+    lean.recentErrors = context.recentErrors.slice(0, 3);
+  }
+  if (context.completedExperiments?.total != null) {
+    lean.completedExperimentsTotal = context.completedExperiments.total;
+  }
+  const description = context.circuitDescription || circuit.description;
+  if (description) lean.circuitDescription = trimText(description, 400);
+  if (context.editorCode) lean.editorCode = trimText(context.editorCode, 600);
+  if (components.length) lean.components = components.slice(0, 10);
+  return lean;
+}
+
 function firstExperiment(session = {}) {
   if (session.activeExperiment?.id) return session.activeExperiment;
   if (session.experiment?.id) return session.experiment;
@@ -62,7 +104,7 @@ export function buildFumettoSessionEvidence(session = {}) {
     studentJourney: session.studentJourney || null,
     messages: normalizeMessages(session),
     volumeContext: session.volumeContext || null,
-    sessionContext: context,
+    sessionContext: leanSessionContext(context),
   };
 }
 

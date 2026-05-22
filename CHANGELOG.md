@@ -1,3 +1,10 @@
+## [fix(fumetto) — deploy unlim-fumetto e payload Gemini snello] — 2026-05-22
+
+- `supabase/functions/unlim-fumetto` — la PR #151 aveva aggiunto la Edge Function ma non l'aveva mai deployata: in produzione rispondeva 404 e la preflight CORS bloccava ogni chiamata POST, quindi il fumetto Gemini era sempre "non disponibile" e il path Gemini era 100% morto. Function deployata sul progetto `euqpdueopmlllqjmqnyb` (verificato: POST 401, OPTIONS 204, draft reale 200).
+- `src/services/fumettoGeminiService.js` — `buildFumettoSessionEvidence` ora distilla il runtime context con `leanSessionContext`: rimuove `applicationNarrative`, `unlimSharedState`, `agentDecisionSeed` e gli snapshot periodici ridondanti (~8KB) che gonfiavano la richiesta, rallentavano il round-trip oltre il timeout LLM di 15s e facevano fallire il draft con 503. Tiene solo i campi con segnale: esperimento, componenti, passo, compilazione, seriale, errori, codice editor.
+- `supabase/functions/unlim-fumetto/index.ts` — `maxOutputTokens` 2800 -> 4096: lo schema completo (6 pannelli + 6 prompt immagine + quiz + diario) sforava il cap e il JSON troncato non si parsava.
+- Test mirati: `fumettoGeminiService` (+1 test pack snello), `fumettoGeminiPrompt` -> CoV x3, 6 passed. Build produzione passata.
+
 ## [fix(fumetto) — storyline Gemini basata sulla sessione] — 2026-05-22
 
 - `supabase/functions/unlim-fumetto/*`, `supabase/functions/_shared/fumetto-prompt.ts` — nuova Edge Function Gemini dedicata al fumetto: genera parti scritte, quiz, diario e prompt immagini in stile ELAB/Omaric per 8-14 anni usando solo evidence di sessione; se il contesto e scarso deve dichiararlo e non inventare.

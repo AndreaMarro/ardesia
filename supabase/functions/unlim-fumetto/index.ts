@@ -48,7 +48,9 @@ serve(async (req: Request) => {
       model: 'gemini-2.5-flash',
       systemPrompt: FUMETTO_GEMINI_SYSTEM_PROMPT,
       message: buildFumettoGeminiMessage(sessionEvidence),
-      maxOutputTokens: 2800,
+      // The full fumetto schema (6 panels + 6 image prompts + quiz + diary)
+      // overflows a 2800-token cap and the truncated JSON fails to parse.
+      maxOutputTokens: 4096,
       temperature: 0.55,
       preferFastProvider: true,
     });
