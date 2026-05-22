@@ -105,19 +105,69 @@ describe('fumettoGeminiService', () => {
     expect(JSON.stringify(body.sessionEvidence).length).toBeLessThan(4000);
   });
 
-  it('returns ok=false when Gemini draft generation is unavailable', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+  it('retries once on a transient 503 and succeeds on the second attempt', async () => {
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce({
+        ok: false,
+        status: 503,
+        json: async () => ({ success: false, error: 'Gemini fumetto unavailable' }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          success: true,
+          draft: { storyline: { problem: 'ok' }, panels: [], imagePrompts: [] },
+          provider: 'gemini',
+        }),
+      });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const result = await generateFumettoDraftWithGemini({
+      session: { experimentsCompleted: [{ id: 'v3-cap8-esp3', title: 'Monitor Seriale', volume: 3 }] },
+      endpoint: 'https://example.supabase.co/functions/v1/unlim-fumetto',
+      retryDelayMs: 0,
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.attempts).toBe(2);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not retry a 4xx failure — it is deterministic, not transient', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
       ok: false,
-      status: 503,
-      json: async () => ({ success: false, error: 'Gemini fumetto unavailable' }),
-    }));
+      status: 400,
+      json: async () => ({ success: false, error: 'sessionEvidence required' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
 
     const result = await generateFumettoDraftWithGemini({
       session: { experimentsCompleted: [] },
       endpoint: 'https://example.supabase.co/functions/v1/unlim-fumetto',
+      retryDelayMs: 0,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe(400);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns ok=false after exhausting retries when Gemini stays unavailable', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 503,
+      json: async () => ({ success: false, error: 'Gemini fumetto unavailable' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const result = await generateFumettoDraftWithGemini({
+      session: { experimentsCompleted: [] },
+      endpoint: 'https://example.supabase.co/functions/v1/unlim-fumetto',
+      retryDelayMs: 0,
     });
 
     expect(result.ok).toBe(false);
     expect(result.error).toMatch(/Gemini fumetto unavailable|http 503/i);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 });

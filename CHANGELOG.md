@@ -1,3 +1,8 @@
+## [fix(fumetto) — retry su 503 transitorio della chiamata Gemini] — 2026-05-22
+
+- `src/services/fumettoGeminiService.js` — `generateFumettoDraftWithGemini` ritenta una volta su fallimento transitorio (errore di rete o 5xx). Verifica live post PR #152 su www.elabtutor.school: la chiamata Gemini ora funziona (200) ma e intermittente — talvolta sfora il timeout LLM di 15s e torna 503. Un secondo tentativo recupera la varianza di latenza; i 4xx (deterministici) non vengono ritentati. Fallback locale sobrio invariato.
+- Test mirati: `fumettoGeminiService` (+3 test retry), `fumettoGeminiPrompt` -> CoV x3, 8 passed. Build produzione passata.
+
 ## [fix(fumetto) — deploy unlim-fumetto e payload Gemini snello] — 2026-05-22
 
 - `supabase/functions/unlim-fumetto` — la PR #151 aveva aggiunto la Edge Function ma non l'aveva mai deployata: in produzione rispondeva 404 e la preflight CORS bloccava ogni chiamata POST, quindi il fumetto Gemini era sempre "non disponibile" e il path Gemini era 100% morto. Function deployata sul progetto `euqpdueopmlllqjmqnyb` (verificato: POST 401, OPTIONS 204, draft reale 200).

@@ -114,34 +114,28 @@ function resolveEndpoint({ endpoint, supabaseUrl } = {}) {
   return url ? `${url.replace(/\/$/, '')}${DEFAULT_EDGE_PATH}` : DEFAULT_EDGE_PATH;
 }
 
-export async function generateFumettoDraftWithGemini({
-  session = {},
-  endpoint,
-  supabaseUrl,
-  anonKey = readEnv('VITE_SUPABASE_ANON_KEY'),
-  elabKey = readEnv('VITE_ELAB_API_KEY'),
-  fetchImpl = globalThis.fetch,
-} = {}) {
-  if (typeof fetchImpl !== 'function') {
-    return { ok: false, error: 'fetch unavailable' };
-  }
+const FUMETTO_MAX_ATTEMPTS = 2;
+const FUMETTO_RETRY_DELAY_MS = 900;
 
-  const sessionEvidence = buildFumettoSessionEvidence(session);
-  const headers = { 'Content-Type': 'application/json' };
-  if (anonKey) {
-    headers.Authorization = `Bearer ${anonKey}`;
-    headers.apikey = anonKey;
-  }
-  if (elabKey) {
-    headers['X-Elab-Api-Key'] = elabKey;
-  }
+function fumettoDelay(ms) {
+  return ms > 0 ? new Promise((resolve) => setTimeout(resolve, ms)) : Promise.resolve();
+}
 
+/**
+ * A failure is worth one retry only when it is transient: a network error
+ * (no HTTP status) or a 5xx. The fumetto Gemini call runs close to the 15s LLM
+ * fetch timeout, so an occasional 503 is latency variance, not a real fault —
+ * a second attempt usually succeeds. A 4xx (bad request, auth) is
+ * deterministic; retrying it would only delay the local fallback.
+ */
+function isTransientFumettoFailure(result) {
+  if (!result || result.ok) return false;
+  return typeof result.status !== 'number' || result.status >= 500;
+}
+
+async function requestFumettoDraft({ fetchImpl, url, headers, body }) {
   try {
-    const response = await fetchImpl(resolveEndpoint({ endpoint, supabaseUrl }), {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ sessionEvidence, sessionId: sessionEvidence.sessionId }),
-    });
+    const response = await fetchImpl(url, { method: 'POST', headers, body });
     const data = await response.json().catch(() => ({}));
     if (!response.ok || data?.success === false) {
       return {
@@ -164,4 +158,44 @@ export async function generateFumettoDraftWithGemini({
       error: err instanceof Error ? err.message : String(err),
     };
   }
+}
+
+export async function generateFumettoDraftWithGemini({
+  session = {},
+  endpoint,
+  supabaseUrl,
+  anonKey = readEnv('VITE_SUPABASE_ANON_KEY'),
+  elabKey = readEnv('VITE_ELAB_API_KEY'),
+  fetchImpl = globalThis.fetch,
+  retryDelayMs = FUMETTO_RETRY_DELAY_MS,
+} = {}) {
+  if (typeof fetchImpl !== 'function') {
+    return { ok: false, error: 'fetch unavailable' };
+  }
+
+  const sessionEvidence = buildFumettoSessionEvidence(session);
+  const headers = { 'Content-Type': 'application/json' };
+  if (anonKey) {
+    headers.Authorization = `Bearer ${anonKey}`;
+    headers.apikey = anonKey;
+  }
+  if (elabKey) {
+    headers['X-Elab-Api-Key'] = elabKey;
+  }
+
+  const url = resolveEndpoint({ endpoint, supabaseUrl });
+  const body = JSON.stringify({ sessionEvidence, sessionId: sessionEvidence.sessionId });
+
+  // One retry on a transient failure: an end-of-session report can afford a
+  // short second attempt, and it lifts the fumetto past Gemini latency spikes.
+  let result;
+  for (let attempt = 1; attempt <= FUMETTO_MAX_ATTEMPTS; attempt += 1) {
+    result = await requestFumettoDraft({ fetchImpl, url, headers, body });
+    result.attempts = attempt;
+    if (!isTransientFumettoFailure(result) || attempt === FUMETTO_MAX_ATTEMPTS) {
+      return result;
+    }
+    await fumettoDelay(retryDelayMs);
+  }
+  return result;
 }
