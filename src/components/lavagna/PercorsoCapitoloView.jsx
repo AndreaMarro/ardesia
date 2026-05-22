@@ -87,6 +87,16 @@ function findTransitionFromPrev(capitolo, espIndex) {
   ) ?? null;
 }
 
+function findTransitionToNext(capitolo, espIndex) {
+  if (!capitolo?.narrative_flow?.transitions) return null;
+  const currId = capitolo.esperimenti[espIndex]?.id;
+  const nextId = capitolo.esperimenti[espIndex + 1]?.id;
+  if (!currId || !nextId) return null;
+  return capitolo.narrative_flow.transitions.find(
+    (t) => t.between?.[0] === currId && t.between?.[1] === nextId
+  ) ?? null;
+}
+
 function GraduationIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -141,6 +151,14 @@ function formatNextExperimentLabel(next, capitolo) {
     || volumeRef?.bookPage
     || (typeof next === 'object' ? next.volume_ref?.page_start || next.pageStart : null);
   return volume && page ? `${title} (Vol.${volume} pag.${page})` : title;
+}
+
+function resolveNextExperimentForCard(esp) {
+  return esp?.next_experiment || getLessonPath(esp?.id)?.next_experiment || null;
+}
+
+function getNextExperimentPreview(next) {
+  return next && typeof next === 'object' ? String(next.preview || '').trim() : '';
 }
 
 function getRuntimeStorage() {
@@ -659,6 +677,11 @@ export default function PercorsoCapitoloView({
 
         {capitolo.esperimenti?.map((esp, idx) => {
           const transition = findTransitionFromPrev(capitolo, idx);
+          const transitionToNext = findTransitionToNext(capitolo, idx);
+          const transitionAlreadyShownBetweenCards = idx > 0 && findTransitionToNext(capitolo, idx - 1);
+          const nextExperiment = resolveNextExperimentForCard(esp);
+          const nextExperimentLabel = formatNextExperimentLabel(nextExperiment, capitolo);
+          const nextExperimentPreview = getNextExperimentPreview(nextExperiment);
           const morphicHint = adaptPercorsoRender(runtimeMorphicContext, esp, capitolo);
           const incrementalHint =
             esp.build_circuit?.mode === 'incremental_from_prev'
@@ -666,18 +689,18 @@ export default function PercorsoCapitoloView({
               : null;
 
           return (
-            <article
-              key={esp.id}
-              className={`${css.experimentSection} ${idx === activeExpIndex ? css.activeExp : ''}`}
-              onClick={() => { setActiveExpIndex(idx); setActivePhaseIndex(0); }}
-              aria-label={`Esperimento ${esp.num}: ${esp.title_classe}`}
-            >
-              {transition && (
-                <div className={css.transition}>
-                  <span className={css.transitionLabel}>Transizione</span>
-                  <p className={css.transitionText}>{transition.text_classe}</p>
-                </div>
-              )}
+            <React.Fragment key={esp.id}>
+              <article
+                className={`${css.experimentSection} ${idx === activeExpIndex ? css.activeExp : ''}`}
+                onClick={() => { setActiveExpIndex(idx); setActivePhaseIndex(0); }}
+                aria-label={`Esperimento ${esp.num}: ${esp.title_classe}`}
+              >
+                {transition && !transitionAlreadyShownBetweenCards && (
+                  <div className={css.transition}>
+                    <span className={css.transitionLabel}>Transizione</span>
+                    <p className={css.transitionText}>{transition.text_classe}</p>
+                  </div>
+                )}
 
               <header className={css.expHeader}>
                 <div className={css.expNum}>Esperimento {esp.num}</div>
@@ -738,7 +761,28 @@ export default function PercorsoCapitoloView({
                   </ol>
                 </div>
               )}
-            </article>
+              </article>
+              {idx < (capitolo.esperimenti?.length ?? 0) - 1 && (transitionToNext || nextExperimentLabel) && (
+                <section
+                  className={css.nextTransition}
+                  data-testid={`percorso-next-transition-${esp.id}`}
+                  aria-label={`Passaggio al prossimo esperimento da ${esp.title_classe}`}
+                >
+                  <span className={css.transitionLabel}>Prossimo passaggio</span>
+                  {transitionToNext?.text_classe && (
+                    <p className={css.transitionText}>{transitionToNext.text_classe}</p>
+                  )}
+                  {nextExperimentLabel && (
+                    <div className={css.nextExperimentPreview}>
+                      <strong>Prossimo:</strong> {nextExperimentLabel}
+                      {nextExperimentPreview && (
+                        <p className={css.nextPreviewText}>{nextExperimentPreview}</p>
+                      )}
+                    </div>
+                  )}
+                </section>
+              )}
+            </React.Fragment>
           );
         })}
 

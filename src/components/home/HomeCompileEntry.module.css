@@ -113,7 +113,9 @@
      implicite) ogni riga prende l'altezza del contenuto e NON collassa
      a 0 quando l'editorGrid è un contenitore di scroll vincolato —
      l'area scrolla internamente mostrando editor → barra compila →
-     monitor. Desktop ≥1024 usa grid-template-rows esplicito (@media). */
+     monitor. Desktop ≥1024 usa grid-template-rows esplicito (@media);
+     l'editor resta ampio grazie a minmax(360px,1fr) sulla riga 1
+     (iter-102 "allarga l'editor" preservato dall'app-shell iter-103). */
   grid-auto-rows: max-content;
   gap: 16px;
   padding: 16px;
