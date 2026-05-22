@@ -85,7 +85,7 @@
   "next_experiment": {
     "id": "v2-cap8-esp3",
     "title": "MOSFET + pot + tensione soglia",
-    "preview": "Nel prossimo esperimento userete un potenziometro per trovare esattamente la tensione di soglia Vth del MOSFET!"
+    "preview": "Prossimo passo: MOSFET + pot + tensione soglia. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -255,5 +255,41 @@
     ],
     "next_suggested": "v2-cap8-esp3",
     "resume_message": "Avete scoperto il Gate flottante e la carica del corpo! Prossimo: potenziometro per trovare Vth con precisione."
+  },
+  "analogies": [
+    {
+      "concept": "porta_leggerissima",
+      "text": "Il Gate del MOSFET è come una porta leggerissima su cardini perfetti: basta un soffio leggero per aprirla. La carica statica del tuo corpo è quel soffio: pochissima energia, ma sufficiente per attivare il MOSFET!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp2"
+    },
+    {
+      "concept": "bottiglia_carica",
+      "text": "L'impedenza altissima del Gate è come una bottiglia con il collo strettissimo: quasi nessuna corrente entra, ma le cariche che entrano si accumulano e alzano la tensione. Poche cariche = tensione alta = MOSFET acceso!",
+      "evidence": "experiments-vol2.js concept v2-cap8-esp2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Pensare di aver rotto il circuito quando il LED si comporta in modo strano con Gate flottante",
+      "teacher_response": "È esattamente quello che deve succedere! Il Gate flottante può attivarsi in modo imprevedibile. Per avere un comportamento stabile, il Gate deve sempre essere collegato a un punto preciso del circuito.",
+      "analogy": "Una porta lasciata aperta sbatte al vento: per avere controllo, bisogna tenerla chiusa o aperta di proposito"
+    },
+    {
+      "mistake": "Confondere l'impedenza del Gate con la corrente",
+      "teacher_response": "Impedenza alta significa che quasi nessuna corrente entra nel Gate. Ma la tensione si accumula comunque, come una bottiglia che si riempie goccia a goccia: poche cariche bastano per alzare la tensione!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

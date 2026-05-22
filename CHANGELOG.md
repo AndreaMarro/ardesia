@@ -1,3 +1,13 @@
+## [feat(vol2) — overhaul narrazione esperimenti Volume 2] — 2026-05-22
+
+- `src/data/experiments-vol2.js` — riscrittura narrativa e Passo Passo dei 27 esperimenti Volume 2 con indirizzo plurale `Ragazzi` e coerenza col circuito stampato.
+- `src/data/lesson-paths/v2-*.json`, `src/data/narrative-map-94.json`, `src/data/volume-references.js` — riallineamento catena `next_experiment`, analogie e riferimenti libro per il Volume 2, senza nodo fantasma Cap.11.
+- `src/components/lavagna/LavagnaShell.jsx` — il deep-link `#lavagna?exp=v2-*` marca subito l'esperimento come caricato anche se l'evento `experimentChange` iniziale viene perso, evitando che il picker esperimenti copra il Passo Passo.
+- `tests/unit/data/volume2-overhaul.test.js` — test reali per ordine dei 27 esperimenti, catena lesson-path, analogie morfiche, pluralità Principio Zero e correzione Cap.9 Esp.2.
+- `tests/unit/components/lavagna/LavagnaShell-deeplink-state.test.jsx` — test reale contro regressione del deep-link: stato esperimento, picker chiuso, volume corretto.
+
+---
+
 ## [fix(percorso) — rendi visibile la narrazione capitolo da Modalita Percorso] — 2026-05-22
 
 - `src/components/lavagna/LavagnaShell.jsx` — il click su Modalita `Percorso` ora chiude il picker esperimenti e apre il picker capitoli; anche la lavagna vuota in Modalita Percorso apre direttamente i capitoli, rendendo raggiungibile `PercorsoCapitoloView` e il riquadro #143 `Prossimo passaggio` nel flusso reale.

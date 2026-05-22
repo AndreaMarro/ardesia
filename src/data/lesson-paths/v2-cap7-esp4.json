@@ -112,7 +112,7 @@
   "next_experiment": {
     "id": "v2-cap8-esp1",
     "title": "MOSFET come interruttore",
-    "preview": "Nel Capitolo 8 incontrerete un componente speciale: un interruttore elettronico controllato dalla tensione!"
+    "preview": "Prossimo passo: MOSFET come interruttore. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -318,5 +318,41 @@
     ],
     "next_suggested": "v2-cap8-esp1",
     "resume_message": "Avete completato il Capitolo 7! Conoscete Tau = R × C. Il Capitolo 8 vi aspetta con un interruttore elettronico!"
+  },
+  "analogies": [
+    {
+      "concept": "resistore_tubo",
+      "text": "Il resistore è come il tubo di un serbatoio: più è stretto (resistenza alta), più lentamente esce l'acqua (corrente). Cambiare R è come cambiare il diametro del tubo!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap7-esp4"
+    },
+    {
+      "concept": "tau_variabile",
+      "text": "Tau = R × C è la ricetta del tempo: raddoppi R, raddoppi il tempo. Moltiplichi R per 10, moltiplichi il tempo per 10! Da mezzo secondo a 10 secondi, tutto con la stessa formula.",
+      "evidence": "experiments-vol2.js observe v2-cap7-esp4"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Pensare che un resistore più grande limiti anche la carica",
+      "teacher_response": "Il resistore più grande rallenta SIA la carica che la scarica! Tau = R × C vale in entrambe le direzioni: caricare e scaricare richiedono lo stesso tempo.",
+      "analogy": "Come riempire e svuotare un serbatoio con lo stesso tubo: più stretto il tubo, più lento in entrambi i sensi"
+    },
+    {
+      "mistake": "Non riuscire a leggere la variazione sul multimetro",
+      "teacher_response": "Il multimetro va in modalità tensione (V). Osservate il numero che scende lentamente da circa 9V a 0V durante la scarica. Con R grande scende molto lentamente!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

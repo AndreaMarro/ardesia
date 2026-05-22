@@ -61,7 +61,7 @@
   "next_experiment": {
     "id": "v2-cap4-esp2",
     "title": "Tre resistori in serie",
-    "preview": "La prossima volta tre resistori in serie: le resistenze si sommano!"
+    "preview": "Prossimo passo: Tre resistori in serie. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -187,5 +187,31 @@
     ],
     "next_suggested": "v2-cap4-esp2",
     "resume_message": "Avete scoperto i resistori in parallelo! Prossimo: tre resistori in serie."
+  },
+  "analogies": [
+    {
+      "concept": "parallelo_porte",
+      "text": "I resistori in parallelo sono come le corsie di un'autostrada: piu corsie ci sono, piu auto passano contemporaneamente. Piu percorsi = meno resistenza al flusso!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Pensare che resistenze in parallelo si sommano",
+      "teacher_response": "In parallelo la corrente ha PIU percorsi, quindi la resistenza totale DIMINUISCE. E l'opposto della serie!",
+      "analogy": "Due porte affiancate fanno passare il doppio delle persone di una sola porta: la 'resistenza al passaggio' dimezza!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

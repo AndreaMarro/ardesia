@@ -83,7 +83,7 @@
   "next_experiment": {
     "id": "v2-cap6-esp4",
     "title": "Misurare Vf con il multimetro",
-    "preview": "Usate il multimetro per misurare con precisione la tensione forward di ogni LED!"
+    "preview": "Prossimo passo: Misurare Vf con il multimetro. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -263,5 +263,41 @@
     ],
     "next_suggested": "v2-cap6-esp4",
     "resume_message": "Hai visto tre LED brillare insieme! Ora usa il multimetro per misurare la tensione forward con precisione."
+  },
+  "analogies": [
+    {
+      "concept": "limiti_batteria",
+      "text": "La batteria è come un serbatoio di benzina: ogni LED in serie è una tappa del viaggio che consuma carburante (tensione). Con 9V e LED da 1.8V, puoi fare massimo 4-5 tappe prima di restare senza carburante per il resistore!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "resistore_controllo_corrente",
+      "text": "Il resistore è come un rubinetto: più lo chiudi (valore alto), meno acqua (corrente) passa e i LED brillano meno. Aprirlo di più (valore basso) fa passare più corrente e più luce — ma attenzione a non aprirlo troppo!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Pensare che più LED in serie = LED più luminosi",
+      "teacher_response": "È il contrario! Ogni LED in serie 'prende' la sua Vf dalla batteria. Con più LED, rimane meno tensione per il resistore, quindi la corrente può DIMINUIRE e i LED possono essere meno luminosi!",
+      "analogy": "È come dividere una pizza tra più persone: più sono, meno fette ha ognuno. Stessa pizza (batteria), più 'porzioni' (Vf) da distribuire!"
+    },
+    {
+      "mistake": "Dimenticare di aggiornare il resistore quando si cambia il numero di LED",
+      "teacher_response": "Ogni volta che cambia il circuito, ricalcolate il resistore! Formula: R = (Vbatteria - somma Vf) / I_desiderata. Con 3 LED rossi e 9V: R = (9 - 5.4) / 0.02 = 180Ω minimo.",
+      "analogy": "Come aggiustare il volume della musica quando cambiate stanza: il contesto cambia, le impostazioni devono adattarsi!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

@@ -67,7 +67,7 @@
   "next_experiment": {
     "id": "v2-cap4-esp1",
     "title": "Due resistori in parallelo",
-    "preview": "Scoprirete cosa succede mettendo due resistori in parallelo: la resistenza totale dimezza!"
+    "preview": "Prossimo passo: Due resistori in parallelo. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -198,5 +198,36 @@
     ],
     "next_suggested": "v2-cap4-esp1",
     "resume_message": "Avete verificato la Legge di Ohm! Prossimo: resistori in parallelo."
+  },
+  "analogies": [
+    {
+      "concept": "legge_ohm",
+      "text": "La Legge di Ohm e come l'acqua in un tubo: piu pressione (tensione) = piu acqua (corrente). Tubo piu stretto (resistenza maggiore) = meno acqua. I = V / R.",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "amperometro_serie",
+      "text": "L'amperometro in serie e come un casello autostradale: tutte le auto (elettroni) devono passarci attraverso per essere contate. Se lo metti su una strada laterale, non conta nulla!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Multimetro collegato in parallelo invece che in serie",
+      "teacher_response": "ATTENZIONE! L'amperometro in parallelo crea un cortocircuito perche ha resistenza quasi zero. Deve essere nel percorso della corrente, come un casello autostradale!",
+      "analogy": "Un casello funziona solo se l'auto ci passa attraverso. Se si fa una strada alternativa che lo aggira, il casello non conta nessuna auto!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

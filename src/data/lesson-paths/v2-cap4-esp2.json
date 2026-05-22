@@ -60,7 +60,7 @@
   "next_experiment": {
     "id": "v2-cap4-esp3",
     "title": "Partitore di tensione",
-    "preview": "Tre resistori in serie creano punti a tensione diversa: il partitore di tensione!"
+    "preview": "Prossimo passo: Partitore di tensione. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -192,5 +192,31 @@
     ],
     "next_suggested": "v2-cap4-esp3",
     "resume_message": "Avete scoperto la somma in serie! Prossimo: il partitore di tensione."
+  },
+  "analogies": [
+    {
+      "concept": "serie_somma",
+      "text": "I resistori in serie sono come tre rallentatori stradali in fila: ogni uno rallenta le auto. Tre rallentatori rallentano tre volte tanto. La resistenza totale e la somma!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Confondere serie e parallelo nella disposizione sulla breadboard",
+      "teacher_response": "In serie: i resistori sono in FILA, l'uscita di uno va all'ingresso del successivo. In parallelo: i terminali sono collegati agli STESSI punti.",
+      "analogy": "Serie = coda indiana (uno dietro l'altro). Parallelo = corsie autostrada (fianco a fianco)."
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }
