@@ -89,6 +89,39 @@ function ensureUnlimMountNamespace() {
   };
 }
 
+export function applyLoadedExperimentStateFromApi({
+  api,
+  experimentId,
+  setCurrentExperiment,
+  setExperimentName,
+  setHasExperiment,
+  setPickerOpen,
+  setCapitoloPickerOpen,
+  setBentornatiVisible,
+  setCurrentVolume,
+}) {
+  if (!api || !experimentId || typeof api.loadExperiment !== 'function') return false;
+  const loaded = api.loadExperiment(experimentId);
+  if (!loaded) return false;
+
+  const experiment =
+    api.getCurrentExperiment?.()
+    || api.getExperiment?.(experimentId)
+    || { id: experimentId };
+
+  if (experiment?.id) setCurrentExperiment?.(experiment);
+  setExperimentName?.(experiment?.title || experimentId);
+  setHasExperiment?.(true);
+  setPickerOpen?.(false);
+  setCapitoloPickerOpen?.(false);
+  setBentornatiVisible?.(false);
+
+  const volMatch = experimentId.match(/^v(\d)/);
+  if (volMatch) setCurrentVolume?.(Number(volMatch[1]));
+
+  return true;
+}
+
 function getFumettoSessionEvidenceScore(session) {
   const messages = Array.isArray(session?.messages) ? session.messages.length : 0;
   const errors = Array.isArray(session?.errors) ? session.errors.length : 0;
@@ -1032,7 +1065,17 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           // Override savedExpId iff prop fornito (intentional user navigation).
           const expIdToLoad = initialExperimentId || localStorage.getItem('elab-lavagna-last-expId');
           if (expIdToLoad && !currentExperiment && api.loadExperiment) {
-            api.loadExperiment(expIdToLoad);
+            applyLoadedExperimentStateFromApi({
+              api,
+              experimentId: expIdToLoad,
+              setCurrentExperiment,
+              setExperimentName,
+              setHasExperiment,
+              setPickerOpen,
+              setCapitoloPickerOpen,
+              setBentornatiVisible,
+              setCurrentVolume,
+            });
           }
         } catch { /* localStorage quota OR private mode */ }
 
