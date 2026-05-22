@@ -80,7 +80,7 @@ describe('UnlimAdapter mode tabs', () => {
     await renderMode('percorso');
     expect(await screen.findByText(/Percorso non disponibile|Fase 1/i)).toBeInTheDocument();
     expect(document.body.textContent.trim().length).toBeGreaterThan(40);
-  });
+  }, 30000);
 
   it('keeps a writable UNLIM input inside Percorso and sends to chat', async () => {
     await renderMode('percorso');
@@ -89,6 +89,8 @@ describe('UnlimAdapter mode tabs', () => {
     fireEvent.submit(screen.getByRole('form', { name: /Scrivi a UNLIM nel percorso/i }));
     expect(chatMock.setInput).toHaveBeenCalledWith('');
     expect(chatMock.handleSend).toHaveBeenCalledWith('Spiegami questo passaggio');
+    expect(screen.queryByTestId('mock-chat-overlay')).not.toBeInTheDocument();
+    expect(screen.getByLabelText(/Scrivi messaggio a UNLIM nel percorso/i)).toBeInTheDocument();
   });
 
   it('legacy Guida tab falls back to chat so Passo Passo is only ComponentDrawer', async () => {

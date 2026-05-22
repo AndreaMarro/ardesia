@@ -193,6 +193,25 @@ describe('CompileUploadButton — rendering', () => {
     expect(btn.style.minWidth).toBe('44px');
   });
 
+  it('B4 hotfix: keeps compact demo-mode CTA readable without clipping', async () => {
+    render(
+      <CompileUploadButton
+        sketchCode="void setup(){}void loop(){}"
+        enableDemoMode
+        compact
+        fetchImpl={makeFetchOk()}
+      />,
+    );
+
+    const btn = await screen.findByRole('button', {
+      name: /Carica il programma sul kit fisico Nano R4/i,
+    });
+
+    expect(btn.style.whiteSpace).toBe('nowrap');
+    expect(btn.style.maxWidth).toBe('100%');
+    expect(btn.style.flexShrink).toBe('0');
+  });
+
   it('exposes ARIA attributes (label + aria-disabled when offline)', async () => {
     render(
       <CompileUploadButton
@@ -858,7 +877,7 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
   // Honest contract: mode='simulated' visible, NO "Caricato sul kit" claim.
   it('T10 device picked + mock DFU + hexBase64 → FLASH_COMPLETE_SIMULATED (NO false Caricato)', async () => {
     // Minimal Intel HEX with valid checksum (16 bytes payload + EOF)
-    const hexText = ':10010000214601360121470136007EFE09D2190140\n:00000001FF\n';
+    const hexText = ':10400000214601360121470136007EFE09D2190101\n:00000001FF\n';
     const hexBase64 = Buffer.from(hexText, 'ascii').toString('base64');
     const compileFetch = vi.fn().mockResolvedValue({
       ok: true,
@@ -915,7 +934,7 @@ describe('CompileUploadButton — demo-mode state machine (iter 76 D.1)', () => 
   // Reuses lastCompilePayloadRef stored by primary handleDemoClick.
   it('T11 retry picker SUCCESS → flash chain invoked → FLASH_COMPLETE_SIMULATED (path=retry)', async () => {
     // Cloud-compile response with valid Intel HEX (16 bytes + EOF)
-    const hexText = ':10010000214601360121470136007EFE09D2190140\n:00000001FF\n';
+    const hexText = ':10400000214601360121470136007EFE09D2190101\n:00000001FF\n';
     const hexBase64 = Buffer.from(hexText, 'ascii').toString('base64');
     const compileFetch = vi.fn().mockResolvedValue({
       ok: true,

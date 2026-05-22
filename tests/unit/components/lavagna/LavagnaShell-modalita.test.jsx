@@ -55,7 +55,7 @@ function makeHandler({
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
       }
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('chat');
     }
 
@@ -71,17 +71,17 @@ function makeHandler({
       if (api?.unlim?.setDiagnoseMode) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('chat');
     }
 
     if (nextMode === 'percorso') {
       const api = getApi();
       setBuildMode('sandbox');
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('percorso');
       setPickerOpen(false);
-      setCapitoloPickerOpen(true);
+      setCapitoloPickerOpen(false);
       if (api?.setBuildMode) {
         try { api.setBuildMode('sandbox'); } catch { /* noop */ }
       }
@@ -115,7 +115,6 @@ function openEmptyLavagnaFallback({
   setCapitoloPickerOpen = () => {},
 }) {
   if (modalita === 'percorso') {
-    setCapitoloPickerOpen(true);
     return;
   }
   setPickerOpen(true);
@@ -135,16 +134,19 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setModalita).toHaveBeenCalledWith('percorso');
   });
 
-  it('Percorso click → apre il picker capitoli così PercorsoCapitoloView è raggiungibile', () => {
+  it('Percorso click → non apre automaticamente picker capitoli o finestre UNLIM', () => {
     const setCapitoloPickerOpen = vi.fn();
+    const setUnlimOpen = vi.fn();
     const handler = makeHandler({
       setModalita: vi.fn(),
       setCurrentExperiment: vi.fn(),
       setCapitoloPickerOpen,
+      setUnlimOpen,
       getApi: () => null,
     });
     handler('percorso');
-    expect(setCapitoloPickerOpen).toHaveBeenCalledWith(true);
+    expect(setCapitoloPickerOpen).toHaveBeenCalledWith(false);
+    expect(setUnlimOpen).toHaveBeenCalledWith(false);
   });
 
   it('Percorso click → chiude il picker esperimenti per non coprire la narrazione capitolo', () => {
@@ -224,7 +226,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setBuildStepIndex).toHaveBeenCalledWith(Number.POSITIVE_INFINITY);
   });
 
-  it('Già Montato click → opens UNLIM chat while diagnose backend stays enabled', () => {
+  it('Già Montato click → keeps UNLIM window closed while diagnose backend stays enabled', () => {
     const setUnlimOpen = vi.fn();
     const setUnlimTab = vi.fn();
     const handler = makeHandler({
@@ -235,11 +237,11 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       getApi: () => ({ setBuildMode: vi.fn(), unlim: { setDiagnoseMode: vi.fn() } }),
     });
     handler('gia-montato');
-    expect(setUnlimOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimOpen).toHaveBeenCalledWith(false);
     expect(setUnlimTab).toHaveBeenCalledWith('chat');
   });
 
-  it('Passo Passo click → setBuildMode("guided") + api.setBuildMode("guided") + UNLIM chat tab (iter 49 single Passo Passo)', () => {
+  it('Passo Passo click → setBuildMode("guided") + api.setBuildMode("guided") without forcing UNLIM open', () => {
     const setBuildMode = vi.fn();
     const apiSetBuildMode = vi.fn();
     const setBuildStepIndex = vi.fn();
@@ -257,7 +259,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setBuildMode).toHaveBeenCalledWith('guided');
     expect(apiSetBuildMode).toHaveBeenCalledWith('guided');
     expect(setBuildStepIndex).toHaveBeenCalledWith(0);
-    expect(setUnlimOpen).toHaveBeenCalledWith(true);
+    expect(setUnlimOpen).toHaveBeenCalledWith(false);
     expect(setUnlimTab).toHaveBeenCalledWith('chat');
   });
 
@@ -306,7 +308,7 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
     expect(setModalita).toHaveBeenCalledWith('percorso');
   });
 
-  it('empty Lavagna fallback in modalita Percorso → apre capitoli, non picker esperimenti', () => {
+  it('empty Lavagna fallback in modalita Percorso → resta pulita, non apre capitoli o picker esperimenti', () => {
     const setPickerOpen = vi.fn();
     const setCapitoloPickerOpen = vi.fn();
     openEmptyLavagnaFallback({
@@ -314,8 +316,8 @@ describe('LavagnaShell handleModalitaChange (Sprint V iter 1 A13.4)', () => {
       setPickerOpen,
       setCapitoloPickerOpen,
     });
-    expect(setCapitoloPickerOpen).toHaveBeenCalledWith(true);
-    expect(setPickerOpen).not.toHaveBeenCalledWith(true);
+    expect(setCapitoloPickerOpen).not.toHaveBeenCalled();
+    expect(setPickerOpen).not.toHaveBeenCalled();
   });
 
   it('empty Lavagna fallback fuori da Percorso → mantiene picker esperimenti', () => {

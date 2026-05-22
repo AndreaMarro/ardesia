@@ -1,3 +1,77 @@
+## [fix(sprint-b4) — P0 compile-home Code Kit e Percorso non bloccante] — 2026-05-22
+
+- `src/components/home/HomeCompileEntry.jsx`, `src/components/home/HomeCompileEntry.module.css` — layout `#compile-home` piu vicino al riferimento Code Kit: header e banner compressi in alto, editor blocchi/C++ dominante, fullscreen editor, monitor seriale chiuso di default dietro linguetta laterale ed espandibile.
+- `src/components/HomePage/WebUsbBanner.jsx`, `src/components/HomePage/CompileAgentBanner.module.css` — variante compatta del banner WebUSB quando viene renderizzato dentro il compilatore.
+- `src/components/lavagna/ModalitaSwitch.jsx`, `src/components/lavagna/ModalitaSwitch.module.css` — barra `Percorso / Passo Passo / Gia Montato` piu bassa e nascondibile con preferenza locale.
+- `src/components/lavagna/LavagnaShell.jsx`, `src/components/lavagna/UnlimAdapter.jsx` — cambiare modalita non apre piu automaticamente UNLIM o picker esperimenti; il form UNLIM in Percorso resta scrivibile dopo invio e l'ultima slide non apre l'elenco esperimenti come fallback.
+- `src/components/simulator/canvas/DrawingOverlay.jsx` — toolbar colori/penna visibile in modalita disegno e riposizionabile trascinando la barra.
+- Test: CoV mirato x3 sui 12 file UI/DFU toccati → 101 passed | 1 todo; build produzione passata. Baseline completa locale bloccata da ambiente (`listen EPERM 127.0.0.1` nei test HTTP agent), riprodotto con server Node minimale.
+
+## [fix(iter-103) — upload WebUSB Nano R4: strumentazione discovery UAT, revert ipotesi indirizzo DfuSe] — 2026-05-22
+
+Sprint B, atomo "upload Nano R4". Un audit aveva ipotizzato un bug ("Risk A"): la
+catena di flash WebUSB non passava un indirizzo DfuSe esplicito `0x4000` alla
+scheda. Verifica indipendente — l'audit iter-60 del repo, i file del core Arduino
+`renesas_uno` installato (`platform.txt`, `boards.txt`, `memory_regions.ld`) e una
+review adversarial Codex — ha stabilito che l'ipotesi era **sbagliata**: la Nano
+R4 si carica in **plain DFU** (`dfu-util ... -D file.bin -a0 -Q`, nessun `-s`,
+nessun indirizzo dall'host). Il "fix indirizzo" è stato revertato prima del
+merge: su un device plain DFU sarebbe un no-op, e potenzialmente rischioso se la
+libreria classificasse male il device come DfuSe.
+
+La PR sostituisce l'ipotesi con ciò che serve davvero: **strumentazione**, perché
+la UAT hardware con Riccardo diventi una *discovery UAT* — quando una Nano R4
+reale viene flashata, l'app cattura e logga i descrittori DFU effettivi, così si
+scopre il comportamento reale invece di assumerlo. Nessun codice basato sulla
+diagnosi sbagliata è stato mergiato.
+
+### Changed
+- `src/services/webDfuFlash.js` — rimosso ogni `dfuseStartAddress` / `opts.startAddress`
+  (fix indirizzo revertato). `flashDfuFirmware`, dopo `connect()`, cattura un
+  oggetto `deviceInfo` (vendorId, productId, DFUVersion, tipo WebDFU, transferSize,
+  manifestationTolerant, primo segmento DfuSe): lo logga e lo include in OGNI
+  `FlashResult.evidence`. `webDfuImpl` injectable per i test.
+- `src/components/lavagna/CompileUploadButton.jsx` — picker WebUSB filtrato sul
+  vendor Arduino `0x2341` (entrambi i call site) invece di `{ filters: [] }`.
+  Una scheda scelta in modalità esecuzione (`0x0074`, non il bootloader DFU
+  `0x0374`) viene fermata con un errore onesto che guida al doppio RESET. Guard
+  pre-flight: un HEX che non parte da `0x4000` (base applicativa RA4M1) blocca il
+  flash. Breadcrumb diagnostico in console.
+- `src/boards/arduino-nano-r4.json` — PID corretto: `0x0070` (errato) → `0x0374`
+  (bootloader DFU) + `runtimePid 0x0074` (da `renesas_uno` boards.txt).
+- `src/services/mockUsbDfuDevice.js` — productId mock allineato al reale `0x0374`.
+
+### Tests
+- `tests/unit/services/webDfuFlash.test.js` — i 3 test `startAddress` (obsoleti)
+  sostituiti da 3 test di cattura `deviceInfo` (plain DFU, DfuSe, init fallita)
+  via fake WebDFU iniettata; test vendor/product allineato a `0x0374`.
+- `tests/unit/components/lavagna/CompileUploadButton-flash-address.test.jsx` — 3
+  test: guard 0x4000, abort PID-runtime, filtro vendor.
+- `tests/unit/services/intelHexParser.test.js` — +1 test parsing HEX a 0x4000.
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — fixture T10/T11
+  allineate al HEX reale Nano R4 (0x4000).
+
+### Verifica
+- TDD red→green: stash del source → i 6 test nuovi falliscono (6 RED), passano
+  con il fix (`git stash` + rerun verificato).
+- CoV: `npx vitest run` sui 5 file toccati ×3 → 84/84, 3/3.
+- Build: `npm run build` → `✓ built in 1m 23s`, PWA precache 27 entries.
+- Baseline completa: `npx vitest run` → 14980 passed | 0 failed | 412 file
+  (15 skip, 11 todo). Nessuna regressione (≥ 14967).
+- Codex Pattern V (diff corretto): 5/5 CONFIRM, zero difetti.
+- Review adversarial Codex: 6 challenge — tutte affrontate (fix indirizzo
+  revertato, strumentazione aggiunta, PID reale, UAT guide riscritta onesta).
+
+### Notes
+- **Onestà G45.** L'audit iniziale "Risk A" era una diagnosi sbagliata, basata su
+  un WebSearch rumoroso e auto-contraddittorio, senza prima controllare gli audit
+  del repo (iter-60 aveva già la risposta). Lezione registrata in memoria.
+- L'upload WebUSB su Nano R4 reale **non è ancora provato su hardware**. Questa PR
+  non lo "de-rischia": lo rende onesto e strumentato perché la UAT lo scopra.
+  `docs/RICCARDO-UAT-GUIDE.md` riscritta come discovery UAT, senza sovrastima.
+- Il guard `0x4000` è hard-coded sulla versione corrente del core `renesas_uno`
+  (NANOR4 `FLASH_IMAGE_START`); accettabile come sanity-check pre-flash, da
+  derivare dal compile service quando arriva il multi-board (B3).
 ## [feat(vol3) — overhaul narrazione esperimenti Volume 3] — 2026-05-22
 
 Overhaul completo della narrazione degli esperimenti Volume 3 in PR #142. La risoluzione merge mantiene intatto il Volume 2 ufficiale (#141) e porta nel `narrative-map-94.json` la sezione Volume 3 del branch.
@@ -14,7 +88,6 @@ Overhaul completo della narrazione degli esperimenti Volume 3 in PR #142. La ris
 ### Notes
 - Merge con `origin/main`: i conflitti Vol2 sono risolti mantenendo il Volume 2 live di #141; unico aggiornamento intenzionale sul finale Vol2 è il ponte legacy verso il nuovo primo esperimento Vol3.
 - Audit UI live esperimento-per-esperimento completato: 23/23 OK.
-
 ---
 
 ## [feat(vol2) — overhaul narrazione esperimenti Volume 2] — 2026-05-22

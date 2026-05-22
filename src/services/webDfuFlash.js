@@ -50,7 +50,7 @@ const NOOP_LOG = {
  * @property {boolean} ok — true ONLY if dfu 'end' event observed
  * @property {'real'|'simulated'} mode — real hardware flash OR mock simulation
  * @property {boolean} verified — true ONLY if read-back upload verified bytes
- * @property {Object} evidence — { endEventReceived, bytesTransferred, durationMs, error? }
+ * @property {Object} evidence — { endEventReceived, bytesTransferred, durationMs, deviceInfo, error? }
  * @property {string} [error] — error message if ok=false
  */
 
@@ -70,6 +70,7 @@ const NOOP_LOG = {
  * @param {boolean} [opts.manifestationTolerant=true] — DFU 1.1 manifestation handling
  * @param {function} [opts.onProgress] — progress callback ({bytesTransferred, totalBytes})
  * @param {function} [opts.onStart] — start callback ({totalBytes})
+ * @param {Function} [opts.webDfuImpl] — WebDFU constructor override (tests).
  * @returns {Promise<FlashResult>}
  */
 export async function flashDfuFirmware(device, binary, opts = {}) {
@@ -96,16 +97,32 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
   // per iter 78 B.2.4 emulator convention. Real navigator.usb device lacks it.
   const mode = device.__elabMockMode === 'simulated' ? 'simulated' : 'real';
 
+  // iter 103 — device + DFU descriptors for hardware-UAT discovery. Enriched
+  // after connect() with the real DFU properties WebDFU parses from the board.
+  const deviceInfo = {
+    vendorId: device && device.vendorId,
+    productId: device && device.productId,
+    dfuVersion: null,
+    webdfuType: null,
+    transferSize: null,
+    manifestationTolerant: null,
+    dfuseFirstSegmentStart: null,
+  };
+
+  // iter 103 — WebDFU constructor is injectable for tests (the mock USBDevice
+  // cannot reproduce every real DFU descriptor — a fake covers those paths).
+  const WebDFUCtor = (opts && opts.webDfuImpl) || WebDFU;
+
   let webdfu;
   try {
-    webdfu = new WebDFU(device, { forceInterfacesName: true }, NOOP_LOG);
+    webdfu = new WebDFUCtor(device, { forceInterfacesName: true }, NOOP_LOG);
     await webdfu.init();
   } catch (err) {
     return {
       ok: false,
       mode,
       verified: false,
-      evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime },
+      evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime, deviceInfo },
       error: `init_failed: ${err.message || err}`,
     };
   }
@@ -115,7 +132,7 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
       ok: false,
       mode,
       verified: false,
-      evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime },
+      evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime, deviceInfo },
       error: 'no_dfu_interfaces',
     };
   }
@@ -127,10 +144,29 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
       ok: false,
       mode,
       verified: false,
-      evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime },
+      evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime, deviceInfo },
       error: `connect_failed: ${err.message || err}`,
     };
   }
+
+  // iter 103 — enrich deviceInfo with the real DFU descriptors WebDFU parsed
+  // from the board. dfuVersion 0x011a marks a DfuSe device; anything else is
+  // plain DFU. Logged + returned so a hardware UAT reveals the real behaviour
+  // instead of the app assuming it.
+  if (webdfu.properties) {
+    deviceInfo.dfuVersion = webdfu.properties.DFUVersion ?? null;
+    deviceInfo.transferSize = webdfu.properties.TransferSize ?? null;
+    deviceInfo.manifestationTolerant = webdfu.properties.ManifestationTolerant ?? null;
+  }
+  deviceInfo.webdfuType = webdfu.type ?? null;
+  if (webdfu.dfuseMemoryInfo
+    && Array.isArray(webdfu.dfuseMemoryInfo.segments)
+    && webdfu.dfuseMemoryInfo.segments[0]) {
+    deviceInfo.dfuseFirstSegmentStart = webdfu.dfuseMemoryInfo.segments[0].start ?? null;
+  }
+  try {
+    console.info('[ELAB DFU flash] device descriptors', deviceInfo);
+  } catch { /* console may be unavailable */ }
 
   // Wire event-driven write process into Promise per Codex design verdict.
   return new Promise((resolve) => {
@@ -146,7 +182,7 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
         ok: false,
         mode,
         verified: false,
-        evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime },
+        evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime, deviceInfo },
         error: `write_start_failed: ${err.message || err}`,
       });
       return;
@@ -157,7 +193,7 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
         ok: false,
         mode,
         verified: false,
-        evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime },
+        evidence: { endEventReceived: false, bytesTransferred: 0, durationMs: Date.now() - startTime, deviceInfo },
         error: 'no_process_events',
       });
       return;
@@ -186,7 +222,7 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
         ok: false,
         mode,
         verified: false,
-        evidence: { endEventReceived, bytesTransferred, durationMs, timedOut: true },
+        evidence: { endEventReceived, bytesTransferred, durationMs, timedOut: true, deviceInfo },
         error: 'flash_timeout_60s',
       });
     }, TIMEOUT_MS);
@@ -217,7 +253,7 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
         ok: false,
         mode,
         verified: false,
-        evidence: { endEventReceived, bytesTransferred, durationMs },
+        evidence: { endEventReceived, bytesTransferred, durationMs, deviceInfo },
         error: errorEventReceived,
       });
     });
@@ -231,7 +267,7 @@ export async function flashDfuFirmware(device, binary, opts = {}) {
         ok: endEventReceived,
         mode,
         verified: false, // No readback in iter 78 MVP — iter 79+ scope
-        evidence: { endEventReceived, bytesTransferred, durationMs },
+        evidence: { endEventReceived, bytesTransferred, durationMs, deviceInfo },
       });
     });
   });

@@ -45,7 +45,7 @@ import styles from './CompileAgentBanner.module.css';
  *   #lavagna instead of #compile-home iter 73 cross-compile entry; reproduced Chrome MCP prod).
  * @returns {JSX.Element|null}
  */
-export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {}) {
+export default function WebUsbBanner({ openCompilerUrl = '#compile-home', compact = false } = {}) {
   const [cap, setCap] = useState(null);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
   if (cap.webUsbAvailable) {
     return (
       <aside
-        className={`${styles.banner} ${styles.bannerOnline}`}
+        className={`${styles.banner} ${styles.bannerOnline} ${compact ? styles.compact : ''}`}
         role="status"
         aria-live="polite"
         aria-label="Browser pronto — Compila e Carica funzionano sul kit Arduino Nano R4"
@@ -103,7 +103,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
     const browserLabel = cap.browser === 'safari' ? 'Safari' : 'Firefox';
     return (
       <aside
-        className={`${styles.banner} ${styles.bannerCta}`}
+        className={`${styles.banner} ${styles.bannerCta} ${compact ? styles.compact : ''}`}
         role="status"
         aria-live="polite"
         aria-label={`${browserLabel} non supporta il caricamento dal browser. Aprite Chrome o Edge su computer.`}
@@ -130,7 +130,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home' } = {})
   // ── State 4: Unknown browser graceful fallback ─────────────────────
   return (
     <aside
-      className={`${styles.banner} ${styles.bannerInfo}`}
+      className={`${styles.banner} ${styles.bannerInfo} ${compact ? styles.compact : ''}`}
       role="status"
       aria-live="polite"
       aria-label="Aprite Chrome o Edge per usare il Compilatore"

@@ -78,13 +78,13 @@ function buildConfigDescriptor() {
  *
  * @param {object} [opts]
  * @param {number} [opts.vendorId=0x2341] — Arduino vendor (Nano R4)
- * @param {number} [opts.productId=0x0070] — Nano R4 product (placeholder iter 78+)
+ * @param {number} [opts.productId=0x0374] — Nano R4 DFU-mode product (renesas_uno boards.txt)
  * @param {string} [opts.productName='Arduino Nano R4 (mock)'] — display name
  * @returns {USBDevice-compatible mock}
  */
 export function createMockDfuDevice(opts = {}) {
   const vendorId = opts.vendorId || 0x2341;
-  const productId = opts.productId || 0x0070;
+  const productId = opts.productId || 0x0374;
   const productName = opts.productName || 'Arduino Nano R4 (mock)';
 
   // DFU state machine internal state

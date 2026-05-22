@@ -109,6 +109,61 @@ const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
 // Omaric + volumi Davide + software ELAB Tutor). Plurale comment intro.
 const DEFAULT_CPP_BLINK = '// Vol3 Cap.6 Esp.1 — Blink sul pin 13 del Nano R4 ELAB\nvoid setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}\n';
 
+function FullscreenIcon({ active = false }) {
+  return (
+    <svg
+      width={18}
+      height={18}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {active ? (
+        <>
+          <path d="M8 3v5H3" />
+          <path d="M16 3v5h5" />
+          <path d="M8 21v-5H3" />
+          <path d="M16 21v-5h5" />
+        </>
+      ) : (
+        <>
+          <path d="M3 9V3h6" />
+          <path d="M21 9V3h-6" />
+          <path d="M3 15v6h6" />
+          <path d="M21 15v6h-6" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function SerialRailIcon() {
+  return (
+    <svg
+      width={18}
+      height={18}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M4 7h16" />
+      <path d="M4 12h10" />
+      <path d="M4 17h16" />
+      <path d="M18 10l3 2-3 2" />
+    </svg>
+  );
+}
+
 const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [scratchCode, setScratchCode] = useState('');
   // iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): direct C++ editor
@@ -153,6 +208,8 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       return false;
     }
   });
+  const [serialExpanded, setSerialExpanded] = useState(false);
+  const [editorFullscreen, setEditorFullscreen] = useState(false);
 
   // iter 85 close integration Sub-project A: ModeToggle handler — persists
   // preference localStorage (defensive try/catch — quota OR private mode).
@@ -256,7 +313,14 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const isLegacyVerified = compileStatus === 'verified-legacy';
 
   return (
-    <div className={styles.root} data-testid="home-compile-entry" data-elab-mode="compile-home">
+    <div
+      className={styles.root}
+      data-testid="home-compile-entry"
+      data-elab-mode="compile-home"
+      data-elab-layout="codekit-workspace"
+      data-elab-fullscreen={editorFullscreen ? 'true' : 'false'}
+      data-elab-serial-expanded={serialExpanded ? 'true' : 'false'}
+    >
       <header className={styles.header}>
         <button
           type="button"
@@ -290,10 +354,10 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             indicator). openCompilerUrl=null hides only the CTA button. */}
         {USE_LOCAL_AGENT_BANNER
           ? <CompileAgentBanner openCompilerUrl={null} />
-          : <WebUsbBanner openCompilerUrl={null} />}
+          : <WebUsbBanner openCompilerUrl={null} compact />}
       </section>
 
-      <main className={styles.editorGrid}>
+      <main className={styles.editorGrid} data-testid="codekit-workspace-main">
         {/* iter 88 88.UX-3 /onboard — data-onboard-target attrs identify
             highlight zones for 5-step tour overlay (HomeCompileOnboarding).
             "starter-buttons" wraps editorPanel containing StarterButtons
@@ -316,6 +380,17 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
               module (file ownership rigid per Sub-project A mandate). */}
           <div className={styles.tabBar}>
             <ModeToggle activeMode={editorMode} onModeChange={handleModeChange} />
+            <button
+              type="button"
+              className={styles.fullscreenBtn}
+              onClick={() => setEditorFullscreen((value) => !value)}
+              aria-label={editorFullscreen ? 'Esci da tutto schermo' : 'Apri editor a tutto schermo'}
+              aria-pressed={editorFullscreen}
+              title={editorFullscreen ? 'Esci da tutto schermo' : 'Editor a tutto schermo'}
+            >
+              <FullscreenIcon active={editorFullscreen} />
+              <span>{editorFullscreen ? 'Esci' : 'Schermo intero'}</span>
+            </button>
           </div>
 
           {/* iter 88 88.UX-7 /extract — ProgramExplainer collapsible panel
@@ -424,28 +499,31 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           className={styles.virtualSerialSection}
           aria-label="Monitor Seriale Virtuale"
           data-onboard-target="virtual-serial"
+          id="home-compile-serial-panel"
         >
-          <VirtualSerialMonitor
-            cppCode={editorMode === MODE_CODE ? cppCode : scratchCode}
-            boardConnected={false}
-            maxIterations={10}
-          />
+          <button
+            type="button"
+            className={styles.serialRailBtn}
+            onClick={() => setSerialExpanded((value) => !value)}
+            aria-label={serialExpanded ? 'Chiudi Monitor Seriale Virtuale' : 'Apri Monitor Seriale Virtuale'}
+            aria-expanded={serialExpanded}
+            aria-controls="home-compile-serial-panel"
+            data-elab-orientation="portrait"
+          >
+            <SerialRailIcon />
+            <span>Seriale</span>
+          </button>
+          {serialExpanded && (
+            <div className={styles.serialDrawer}>
+              <VirtualSerialMonitor
+                cppCode={editorMode === MODE_CODE ? cppCode : scratchCode}
+                boardConnected={false}
+                maxIterations={10}
+              />
+            </div>
+          )}
         </section>
       </main>
-
-      <footer className={styles.footer}>
-        {/* iter 88 88.UX-2 /clarify — Andrea verdetto iter 87 PHASE 4c critique
-            Nielsen #2 Match real world 2/4. Rewrite jargon scuola pubblica:
-            "Renesas RA4M1" → "Arduino Nano R4 del kit ELAB"; "ARM Cortex-M4"
-            rimosso; "WebUSB (Chrome/Edge desktop)" → "Chrome o Edge (computer,
-            non tablet)"; "Carica sul kit fisico" → "Carica sul kit Arduino";
-            "flasha" → "carica". Docente non-tech 8-14 anni studenti target. */}
-        <p className={styles.footerNote}>
-          {isLegacyVerified
-            ? 'Codice verificato dal compilatore legacy: il compilatore Nano R4 non è ancora attivo, quindi questo risultato non abilita il caricamento sul kit fisico.'
-            : 'Compila il programma per l\'Arduino Nano R4 del kit ELAB dal browser. Il caricamento sul kit fisico sarà disponibile solo dopo una compilazione Nano R4 reale. Funziona con browser Chrome o Edge (su computer, non tablet).'}
-        </p>
-      </footer>
       {/* Iter 74 TRACK A1 fix (Codex iter 73 Pattern V MED #4): rimosso
           link diretto <a href="/scripts/setup-elab-compile-agent.sh"> perché
           script MAI shipped (404 prod confermato empirical). Distribuzione
