@@ -72,7 +72,22 @@ diagnosi sbagliata è stato mergiato.
 - Il guard `0x4000` è hard-coded sulla versione corrente del core `renesas_uno`
   (NANOR4 `FLASH_IMAGE_START`); accettabile come sanity-check pre-flash, da
   derivare dal compile service quando arriva il multi-board (B3).
+## [feat(vol3) — overhaul narrazione esperimenti Volume 3] — 2026-05-22
 
+Overhaul completo della narrazione degli esperimenti Volume 3 in PR #142. La risoluzione merge mantiene intatto il Volume 2 ufficiale (#141) e porta nel `narrative-map-94.json` la sezione Volume 3 del branch.
+
+### Changed
+- `src/data/experiments-vol3.js` — 23 esperimenti Volume 3 riallineati al percorso Arduino del manuale.
+- `src/data/lesson-paths/v3-*.json`, `src/data/narrative-map-94.json`, `src/data/volume-references.js` — catena narrativa e riferimenti Volume 3 aggiornati.
+- `src/data/lesson-paths/v2-cap12-esp1.json` — il ponte finale del Volume 2 ora punta al primo esperimento ufficiale del Volume 3 (`v3-cap5-esp1`) invece del legacy rimosso `v3-cap6-semaforo`.
+- `tests/unit/volume3CanonicalAlignment.test.js` — test reali per conteggio, ordine e riferimenti canonici Volume 3.
+- `tests/unit/data/unlimprompts-docente-minor.test.js` — il guard sui prompt riconosce anche chiavi JSON-style `"unlimPrompt"`, non solo object-literal `unlimPrompt`.
+- `tests/unit/data/volume2-overhaul.test.js` — il guard Volume 2 verifica la catena interna dei 27 esperimenti e accetta il ponte finale verso Volume 3.
+- `docs/audits/2026-05-22-volume3-ui-live-audit.md` — audit UI live uno-per-uno: 23/23 esperimenti montano e avanzano in Passo Passo.
+
+### Notes
+- Merge con `origin/main`: i conflitti Vol2 sono risolti mantenendo il Volume 2 live di #141; unico aggiornamento intenzionale sul finale Vol2 è il ponte legacy verso il nuovo primo esperimento Vol3.
+- Audit UI live esperimento-per-esperimento completato: 23/23 OK.
 ---
 
 ## [feat(vol2) — overhaul narrazione esperimenti Volume 2] — 2026-05-22

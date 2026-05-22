@@ -53,18 +53,22 @@ describe('Volume 2 experiment overhaul invariants', () => {
     }
   });
 
-  test('lesson-paths form one Volume 2 chain ending at the robot capstone', () => {
+  test('lesson-paths form one Volume 2 chain, then bridge to official Volume 3', () => {
     const visited = [];
     let cursor = 'v2-cap3-esp1';
 
-    while (cursor) {
+    while (cursor?.startsWith('v2-')) {
       expect(visited).not.toContain(cursor);
       visited.push(cursor);
       cursor = readLessonPath(cursor).next_experiment?.id ?? null;
     }
 
     expect(visited).toEqual(volume2Order);
-    expect(readLessonPath('v2-cap12-esp1').next_experiment).toBeNull();
+    expect(cursor).toBe('v3-cap5-esp1');
+    expect(readLessonPath('v2-cap12-esp1').next_experiment).toEqual(expect.objectContaining({
+      id: 'v3-cap5-esp1',
+      title: 'Blink: il primo programma',
+    }));
   });
 
   test('all Volume 2 lesson-paths expose morphic-ready analogies at top level', () => {

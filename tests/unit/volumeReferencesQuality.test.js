@@ -1,14 +1,14 @@
 /**
  * volumeReferencesQuality.test.js — Qualità contenuti VOLUME_REFERENCES
  *
- * Verifica che tutti gli 81 esperimenti abbiano campi di qualità completi:
+ * Verifica che tutti gli 88 esperimenti abbiano campi di qualità completi:
  * - bookQuote: citazione/frase del libro
  * - bookContext: contesto narrativo dell'esperimento
  * - chapter: titolo del capitolo
  * - chapterPage: pagina di inizio capitolo
  *
  * Testa anche le funzioni helper getVolumeRef, getBookPage, getVolumeLabel
- * e la distribuzione per volume (Vol1: 38, Vol2: 27, Vol3: 27).
+ * e la distribuzione per volume (Vol1: 38, Vol2: 27, Vol3: 23).
  *
  * (c) Andrea Marro — 17/04/2026 — ELAB Tutor
  */
@@ -35,13 +35,13 @@ describe('Volume References — Distribuzione per volume', () => {
     expect(v2.length).toBe(27);
   });
 
-  it('Vol. 3 ha esattamente 14 esperimenti', () => {
+  it('Vol. 3 ha esattamente 23 esperimenti', () => {
     const v3 = ALL_REFS.filter(([, r]) => r.volume === 3);
-    expect(v3.length).toBe(14);
+    expect(v3.length).toBe(23);
   });
 
-  it('totale esperimenti è 79', () => {
-    expect(ALL_IDS.length).toBe(79);
+  it('totale esperimenti è 88', () => {
+    expect(ALL_IDS.length).toBe(88);
   });
 
   it('tutti gli ID iniziano con v1-, v2- o v3-', () => {
@@ -85,7 +85,7 @@ describe('Volume References — bookQuote', () => {
 
   it('almeno il 30% degli esperimenti ha bookQuote (coverage check)', () => {
     const withQuote = ALL_REFS.filter(([, r]) => typeof r.bookQuote === 'string' && r.bookQuote.trim().length > 0);
-    expect(withQuote.length).toBeGreaterThanOrEqual(Math.floor(79 * 0.3));
+    expect(withQuote.length).toBeGreaterThanOrEqual(Math.floor(88 * 0.3));
   });
 
   it('primo esperimento v1-cap6-esp1 ha bookQuote del libro', () => {
@@ -290,9 +290,9 @@ describe('Volume References — Coerenza incrociata', () => {
     }
   });
 
-  it('bookPage di Vol3 è nell\'intervallo 1–95 (PDF vol3 = 95 pp)', () => {
+  it('bookPage di Vol3 è nell\'intervallo 1-140', () => {
     for (const [id, ref] of ALL_REFS.filter(([, r]) => r.volume === 3)) {
-      expect(ref.bookPage, `${id}: bookPage ${ref.bookPage} fuori range Vol3 (1-95)`).toBeLessThanOrEqual(95);
+      expect(ref.bookPage, `${id}: bookPage ${ref.bookPage} fuori range Vol3 (1-140)`).toBeLessThanOrEqual(140);
     }
   });
 });

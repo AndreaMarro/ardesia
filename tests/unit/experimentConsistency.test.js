@@ -38,7 +38,7 @@ describe('Cross-validazione lesson-groups <-> experiments data', () => {
 
   it('stessa quantita di esperimenti in entrambe le fonti', () => {
     expect(allLessonExpIds.length).toBe(allDataExpIds.length);
-    expect(allLessonExpIds.length).toBe(79);
+    expect(allLessonExpIds.length).toBe(88);
   });
 
   it('findExperimentById funziona per tutti gli IDs lesson-groups', () => {
@@ -191,15 +191,15 @@ describe('RAG chunks — copertura volumi esperimenti', () => {
   });
 
   it('numero totale esperimenti e coerente ovunque', () => {
-    // Tutte le fonti concordano su 79 (EPIC 1 A4.1c — 2 Vol3 duplicate-id consolidati)
-    expect(ALL_EXPERIMENTS.length).toBe(79);
-    expect(allLessonExpIds.length).toBe(79);
-    expect(getTotalExperiments()).toBe(79);
+    // Tutte le fonti concordano su 88 (EPIC 1 A4.1c — 2 Vol3 duplicate-id consolidati)
+    expect(ALL_EXPERIMENTS.length).toBe(88);
+    expect(allLessonExpIds.length).toBe(88);
+    expect(getTotalExperiments()).toBe(88);
     expect(
       EXPERIMENTS_VOL1.experiments.length +
       EXPERIMENTS_VOL2.experiments.length +
       EXPERIMENTS_VOL3.experiments.length
-    ).toBe(79);
+    ).toBe(88);
   });
 });
 

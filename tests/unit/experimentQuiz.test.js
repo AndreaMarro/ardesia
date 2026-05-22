@@ -14,8 +14,8 @@ const ALL_EXPERIMENTS = [
 ];
 
 describe('experimentQuiz — every experiment has quiz', () => {
-  it('all 79 experiments are loaded', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(79);
+  it('all 88 experiments are loaded', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(88);
   });
 
   it('every experiment has a quiz array', () => {

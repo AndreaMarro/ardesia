@@ -1,150 +1,255 @@
 {
   "_meta": {
-    "version": "1.0",
-    "generated": "2026-04-04",
-    "source": "PDR auto-generated from experiments-vol3.js"
+    "version": "2.0",
+    "generated": "2026-05-21",
+    "source": "docs/volumi-originali/VOLUME-3-TESTO.txt",
+    "canonical_order": 4
   },
   "experiment_id": "v3-cap6-esp2",
   "volume": 3,
   "chapter": 6,
-  "title": "Esperimento 2: cambia il numero di pin",
-  "chapter_title": "I pin digitali",
-  "difficulty": 1,
+  "title": "Accendere un LED esterno sul pin 13",
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  },
+  "chapter_title": "Il mondo discreto: i pin digitali",
+  "difficulty": 2,
   "duration_minutes": 40,
-  "target_age": "10-14 anni",
-  "objective": "Collegare un LED esterno a un pin digitale diverso dal 13 e modificare il codice per controllarlo. Capire che ogni pin digitale puo diventare OUTPUT.",
+  "target_age": "8-14 anni",
+  "objective": "Ragazzi, il docente accompagna la classe in ESERCIZIO 6.2 del Volume 3: Il Blink esce dalla scheda e il docente controlla un LED verde montato sulla breadboard.",
+  "volume_reference": {
+    "volume": 3,
+    "page": 51,
+    "chapter": 6,
+    "source": "ESERCIZIO 6.2"
+  },
   "components_needed": [
     {
-      "name": "Arduino Nano R4 (breakout wing)",
-      "quantity": 1,
-      "icon": "🤖"
+      "name": "Breadboard",
+      "quantity": 1
     },
     {
-      "name": "Breadboard half-size",
-      "quantity": 1,
-      "icon": "🔲"
+      "name": "Arduino Nano R4",
+      "quantity": 1
     },
     {
-      "name": "LED rosso",
-      "quantity": 1,
-      "icon": "❤️"
+      "name": "Resistore 470 Ohm",
+      "quantity": 1
     },
     {
-      "name": "Resistore 470ohm",
-      "quantity": 1,
-      "icon": "⚡"
-    },
-    {
-      "name": "Fili di collegamento",
-      "quantity": 4,
-      "icon": "🔌"
+      "name": "LED",
+      "quantity": 1
     }
   ],
   "vocabulary": {
     "allowed": [
-      "Arduino",
+      "Ragazzi",
+      "Arduino Nano R4",
+      "setup",
+      "loop",
       "pin",
-      "digitale",
-      "OUTPUT",
-      "HIGH",
-      "LOW",
-      "LED",
-      "resistore",
-      "breadboard",
-      "anodo",
-      "catodo",
-      "pinMode",
+      "GND",
+      "5V",
+      "delay",
       "digitalWrite",
-      "GND"
+      "digitalRead",
+      "analogRead",
+      "Serial"
     ],
     "forbidden": [
-      "PWM",
-      "analogWrite",
-      "registro",
-      "PORTD",
-      "PORTB",
-      "interrupt"
+      "fate da soli",
+      "devi",
+      "devo sostituire il kit",
+      "esperimento extra"
     ],
-    "note": "Focus sul collegamento fisico pin-LED e sulla corrispondenza tra numero nel codice e pin sulla scheda"
+    "note": "Vol. 3 pag. 51 - ESERCIZIO 6.2"
   },
   "prerequisites": [
-    "v3-cap5-esp1",
     "v3-cap6-esp1"
   ],
   "next_experiment": {
-    "id": "v3-cap6-morse",
-    "title": "Esperimento 3: fai un SOS in codice Morse",
-    "preview": "Nella prossima lezione trasformerete il LED in un trasmettitore: lampi brevi e lunghi per mandare un SOS in codice Morse."
+    "id": "v3-cap6-esp3",
+    "title": "Cambiare il pin del LED esterno",
+    "preview": "Ragazzi, dopo Accendere un LED esterno sul pin 13 il libro prosegue con Cambiare il pin del LED esterno."
+  },
+  "common_mistakes": [
+    {
+      "mistake": "Il codice cita un pin ma il filo e collegato a un altro pin.",
+      "teacher_response": "Ragazzi, il docente puo far confrontare numero nel codice e foro fisico prima di correggere.",
+      "analogy": "Come indirizzo scritto sulla busta e numero civico sulla porta: devono combaciare."
+    },
+    {
+      "mistake": "GND o 5V non sono collegati ai binari corretti.",
+      "teacher_response": "Ragazzi, il docente guida una verifica dei binari rosso e nero senza sostituirsi al gruppo.",
+      "analogy": "Come due rotaie: se una manca, il treno non parte."
+    }
+  ],
+  "analogies": [
+    {
+      "concept": "programma",
+      "text": "Il programma e come una ricetta: ogni riga dice alla scheda il prossimo gesto."
+    },
+    {
+      "concept": "pin",
+      "text": "Un pin e come una porta numerata: il codice sceglie quale porta aprire o ascoltare."
+    }
+  ],
+  "session_save": {
+    "store": [
+      "experiment_id",
+      "volume_reference",
+      "build_step",
+      "code_variant",
+      "observations"
+    ],
+    "morphic_ready": true
   },
   "phases": [
     {
       "name": "PREPARA",
-      "icon": "📋",
+      "icon": "prepara",
       "duration_minutes": 5,
-      "teacher_message": "Ragazzi, finora abbiamo usato il LED integrato al pin 13. Ma Arduino ha tanti pin digitali. Oggi colleghiamo un LED esterno a un pin diverso e cambiamo il codice.",
-      "teacher_tip": "Mostrate sulla scheda dove sono i pin digitali numerati. Far contare alla classe quanti ce ne sono.",
-      "class_hook": "Arduino ha 14 pin digitali. Se ognuno regola un LED, quanti LED possiamo accendere insieme?",
+      "teacher_message": "Ragazzi, il docente introduce Accendere un LED esterno sul pin 13 citando Vol. 3 pag. 51.",
+      "teacher_tip": "La guida resta al docente: prima si richiama il passaggio precedente, poi si mostra il nuovo passo della sequenza.",
+      "components_list": "Componenti: Breadboard, Arduino Nano R4, Resistore 470 Ohm, LED",
+      "class_hook": "Ragazzi, questo passaggio continua l'arco narrativo del Volume 3.",
       "action_tags": [],
       "auto_action": null
     },
     {
       "name": "MOSTRA",
-      "icon": "🔧",
+      "icon": "mostra",
       "duration_minutes": 10,
-      "teacher_message": "Ragazzi, Carichiamo il circuito: un LED rosso collegato al pin 7 con un resistore da 470 ohm. Nel codice, al posto di LED_BUILTIN scriviamo 7. Tutto il resto resta uguale.",
-      "teacher_tip": "Sottolineare la corrispondenza: il numero nel codice DEVE corrispondere al pin fisico dove e collegato il filo. Se sbagli numero, il LED non si accende.",
+      "teacher_message": "Ragazzi, il docente mostra sulla LIM il circuito e lo sketch di ESERCIZIO 6.2.",
+      "teacher_tip": "Il Passo Passo va letto lentamente: ogni filo viene nominato prima di essere collegato.",
+      "components_list": null,
+      "class_hook": null,
       "action_tags": [
         "[AZIONE:loadexp:v3-cap6-esp2]"
       ],
-      "auto_action": "load_experiment"
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Passo Passo per Accendere un LED esterno sul pin 13",
+        "button_label": "Passo Passo",
+        "intent": {
+          "components": [
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "nano-r4",
+              "id": "nano1"
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "green"
+            }
+          ],
+          "wires": [
+            {
+              "from": "nano1:W_D13",
+              "to": "bb1:a18",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:d25",
+              "to": "bb1:d27",
+              "color": "green"
+            },
+            {
+              "from": "bb1:a28",
+              "to": "bb1:bus-bot-minus-28",
+              "color": "black"
+            },
+            {
+              "from": "nano1:GND_R",
+              "to": "bb1:bus-bot-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "nano1:5V",
+              "to": "bb1:bus-bot-plus-1",
+              "color": "red"
+            }
+          ]
+        }
+      }
     },
     {
       "name": "CHIEDI",
-      "icon": "❓",
+      "icon": "chiedi",
       "duration_minutes": 8,
-      "teacher_message": "Ragazzi, Il LED e collegato al pin 7, ma nel codice scrivo pin 9. Cosa succede? Il LED si accende lo stesso o resta spento?",
-      "teacher_tip": "Lasciate che provino nel simulatore. L'errore intenzionale e il miglior insegnante. Collegamento fisico e codice devono corrispondere.",
-      "provocative_question": "Se collego il filo al pin 7 ma scrivo nel codice il pin 9, Arduino sa che ho sbagliato? O fa quello che gli ho scritto?",
-      "action_tags": [],
-      "auto_action": null
+      "teacher_message": "Ragazzi, il docente apre una domanda breve e lascia tempo alla classe di prevedere il risultato.",
+      "teacher_tip": "La domanda non ordina: aiuta i ragazzi a collegare codice, pin e componente fisico.",
+      "provocative_question": "Ragazzi, quale riga del codice fa cambiare comportamento a Accendere un LED esterno sul pin 13?",
+      "common_mistakes": [
+        {
+          "mistake": "Il codice cita un pin ma il filo e collegato a un altro pin.",
+          "teacher_response": "Ragazzi, il docente puo far confrontare numero nel codice e foro fisico prima di correggere.",
+          "analogy": "Come indirizzo scritto sulla busta e numero civico sulla porta: devono combaciare."
+        },
+        {
+          "mistake": "GND o 5V non sono collegati ai binari corretti.",
+          "teacher_response": "Ragazzi, il docente guida una verifica dei binari rosso e nero senza sostituirsi al gruppo.",
+          "analogy": "Come due rotaie: se una manca, il treno non parte."
+        }
+      ]
     },
     {
       "name": "OSSERVA",
-      "icon": "👀",
-      "duration_minutes": 10,
-      "teacher_message": "Ragazzi, Premiamo Play e osserviamo il LED esterno lampeggiare. Notate la differenza con il LED integrato: e piu luminoso perche e un vero LED con il suo resistore.",
-      "teacher_tip": "Se il tempo lo permette, far provare a spostare il filo su un altro pin e modificare il codice. Rafforzate il concetto pin fisico = numero nel codice.",
+      "icon": "osserva",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, il docente avvia la simulazione; la classe osserva: Il Blink esce dalla scheda e il docente controlla un LED verde montato sulla breadboard.",
+      "teacher_tip": "La verifica resta legata al kit: codice sullo schermo, fili sulla breadboard, risultato visibile.",
       "action_tags": [
         "[AZIONE:play]"
       ],
-      "auto_action": "play_and_highlight",
-      "observation_prompt": "Il LED esterno lampeggia come quello integrato? Provate a cambiare pin e numero nel codice."
+      "auto_action": "play",
+      "observation_prompt": "Ragazzi, confrontate quello che vedete con Vol. 3 pag. 51.",
+      "analogies": [
+        {
+          "concept": "programma",
+          "text": "Il programma e come una ricetta: ogni riga dice alla scheda il prossimo gesto."
+        },
+        {
+          "concept": "pin",
+          "text": "Un pin e come una porta numerata: il codice sceglie quale porta aprire o ascoltare."
+        }
+      ]
     },
     {
       "name": "CONCLUDI",
-      "icon": "✅",
-      "duration_minutes": 7,
-      "teacher_message": "Ragazzi, Ogni pin digitale di Arduino puo controllare un componente esterno. Il numero nel codice deve corrispondere al pin fisico. Se sbagli numero, Arduino accende il pin sbagliato.",
-      "teacher_tip": "Rafforzare il concetto: Arduino non 'capisce' cosa c'e collegato. Esegue gli ordini alla lettera. La responsabilita e del programmatore.",
-      "summary_for_class": "I pin digitali di Arduino sono uscite controllabili via codice. Il numero nel programma deve corrispondere al pin dove e collegato il LED.",
+      "icon": "concludi",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, il docente chiude ESERCIZIO 6.2 agganciandolo al prossimo esperimento del libro.",
+      "teacher_tip": "Una frase di sintesi basta: cosa abbiamo controllato, con quale pin, e cosa cambia nel prossimo passaggio.",
+      "summary_for_class": "Il Blink esce dalla scheda e il docente controlla un LED verde montato sulla breadboard.",
       "concepts_learned": [
-        "pin digitali numerati",
-        "collegamento LED esterno",
-        "corrispondenza codice-pin fisico",
-        "resistore di protezione LED",
-        "anodo e catodo"
+        "Accendere un LED esterno sul pin 13",
+        "Il mondo discreto: i pin digitali"
       ],
-      "next_preview": "Nella prossima lezione controlleremo due LED alternati: quando uno e acceso l'altro e spento, come un passaggio a livello."
+      "next_preview": "Ragazzi, il prossimo passo e Cambiare il pin del LED esterno."
     }
   ],
-  "session_save": {
-    "concepts_covered": [
-      "pin digitali",
-      "LED esterno",
-      "corrispondenza pin-codice",
-      "resistore protezione"
-    ],
-    "next_suggested": "v3-cap6-morse",
-    "resume_message": "L'ultima volta avete collegato un LED esterno a un pin digitale. Oggi ne controlliamo due alternati."
-  }
+  "assessment_invisible": [
+    "La classe collega Accendere un LED esterno sul pin 13 alla pagina 51.",
+    "I ragazzi distinguono filo fisico e riga di codice.",
+    "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ]
 }

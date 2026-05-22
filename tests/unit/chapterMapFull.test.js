@@ -189,8 +189,8 @@ describe('chapterMapFull — Vol3 Cap6 INPUT/OUTPUT split', () => {
     });
   });
 
-  it('v3-cap6-morse and v3-cap6-semaforo are OUTPUT (displayChapter 2)', () => {
-    ['v3-cap6-morse', 'v3-cap6-semaforo'].forEach(id => {
+  it('v3-cap6-esp4 and v3-cap6-esp5 are OUTPUT (displayChapter 2)', () => {
+    ['v3-cap6-esp4', 'v3-cap6-esp5'].forEach(id => {
       const info = getDisplayInfo(id);
       expect(info).not.toBeNull();
       expect(info.displayChapter).toBe(2);

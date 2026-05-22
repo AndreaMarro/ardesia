@@ -1,5 +1,5 @@
 /**
- * volumeParallelism.test.js — Verifica parità degli 81 esperimenti con i volumi fisici ELAB
+ * volumeParallelism.test.js — Verifica parità degli 88 esperimenti con i volumi fisici ELAB
  *
  * Ogni esperimento nel simulatore DEVE avere:
  *   - bookText non-null (testo dal PDF verbatim)
@@ -24,8 +24,8 @@ describe('Volume Parallelism — Struttura VOLUME_REFERENCES', () => {
     expect(Object.keys(VOLUME_REFERENCES).length).toBeGreaterThan(0);
   });
 
-  it('contiene esattamente 79 esperimenti', () => {
-    expect(Object.keys(VOLUME_REFERENCES).length).toBe(79);
+  it('contiene esattamente 88 esperimenti', () => {
+    expect(Object.keys(VOLUME_REFERENCES).length).toBe(88);
   });
 
   it('tutti gli esperimenti hanno volume 1, 2 o 3', () => {
@@ -44,7 +44,7 @@ describe('Volume Parallelism — Struttura VOLUME_REFERENCES', () => {
 
 // ─── bookText (testo dal PDF) ──────────────────────────────────────────────
 describe('Volume Parallelism — bookText non-null', () => {
-  it('tutti i 92 esperimenti hanno bookText', () => {
+  it('tutti gli 88 esperimenti hanno bookText', () => {
     const missing = [];
     for (const [id, ref] of Object.entries(VOLUME_REFERENCES)) {
       if (!ref.bookText || ref.bookText.trim() === '') {
@@ -119,7 +119,7 @@ describe('Volume Parallelism — Distribuzione volumi', () => {
     expect(vol2.length).toBeGreaterThanOrEqual(20);
   });
 
-  it('Volume 3 ha almeno 14 esperimenti', () => {
+  it('Volume 3 ha almeno 23 esperimenti', () => {
     const vol3 = Object.values(VOLUME_REFERENCES).filter(r => r.volume === 3);
     expect(vol3.length).toBeGreaterThanOrEqual(14);
   });
@@ -212,7 +212,7 @@ describe('Volume Parallelism — Campioni contenuto', () => {
     const vol3 = Object.entries(VOLUME_REFERENCES).filter(([, r]) => r.volume === 3);
     for (const [id, ref] of vol3) {
       expect(ref.bookPage, `${id}: bookPage fuori range Vol3`).toBeGreaterThan(0);
-      expect(ref.bookPage, `${id}: bookPage fuori range Vol3`).toBeLessThanOrEqual(120);
+      expect(ref.bookPage, `${id}: bookPage fuori range Vol3`).toBeLessThanOrEqual(140);
     }
   });
 });

@@ -13,8 +13,8 @@ describe('experiments-index — exports base', () => {
     expect(Array.isArray(ALL_EXPERIMENTS)).toBe(true);
   });
 
-  it('contiene 79 esperimenti totali', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(79);
+  it('contiene 88 esperimenti totali', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(88);
   });
 
   it('VOLUMES e un array di 3 volumi', () => {
@@ -22,8 +22,8 @@ describe('experiments-index — exports base', () => {
     expect(VOLUMES.length).toBe(3);
   });
 
-  it('getTotalExperiments ritorna 79', () => {
-    expect(getTotalExperiments()).toBe(79);
+  it('getTotalExperiments ritorna 88', () => {
+    expect(getTotalExperiments()).toBe(88);
   });
 
   it('Volume 1 ha 38 esperimenti', () => {
@@ -34,8 +34,8 @@ describe('experiments-index — exports base', () => {
     expect(EXPERIMENTS_VOL2.experiments.length).toBe(27);
   });
 
-  it('Volume 3 ha 14 esperimenti', () => {
-    expect(EXPERIMENTS_VOL3.experiments.length).toBe(14);
+  it('Volume 3 ha 23 esperimenti', () => {
+    expect(EXPERIMENTS_VOL3.experiments.length).toBe(23);
   });
 });
 
@@ -307,7 +307,7 @@ describe('getExperimentsByVolume', () => {
   });
 
   it('ritorna 14 esperimenti per Volume 3', () => {
-    expect(getExperimentsByVolume(3).length).toBe(14);
+    expect(getExperimentsByVolume(3).length).toBe(23);
   });
 
   it('ritorna array vuoto per volume inesistente', () => {

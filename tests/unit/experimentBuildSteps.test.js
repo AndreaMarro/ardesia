@@ -1,5 +1,5 @@
 /**
- * experimentBuildSteps.test.js — Validate ALL buildSteps across 92 experiments
+ * experimentBuildSteps.test.js — Validate ALL buildSteps across canonical experiments
  * Sequential step numbers, text fields, componentId references, hint fields
  */
 import { describe, it, expect } from 'vitest';
@@ -14,8 +14,8 @@ const ALL_EXPERIMENTS = [
 ];
 
 describe('experimentBuildSteps — structural validation', () => {
-  it('all 79 experiments are loaded', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(79);
+  it('all 88 experiments are loaded', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(88);
   });
 
   it('every experiment has a buildSteps array', () => {

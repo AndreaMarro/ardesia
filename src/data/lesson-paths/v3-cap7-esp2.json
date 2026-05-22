@@ -1,156 +1,279 @@
 {
   "_meta": {
-    "version": "1.0",
-    "generated": "2026-04-04",
-    "source": "PDR auto-generated from experiments-vol3.js"
+    "version": "2.0",
+    "generated": "2026-05-21",
+    "source": "docs/volumi-originali/VOLUME-3-TESTO.txt",
+    "canonical_order": 12
   },
   "experiment_id": "v3-cap7-esp2",
   "volume": 3,
   "chapter": 7,
-  "title": "Mini-progetto: due LED, un pulsante (Arduino sceglie)",
-  "chapter_title": "I pin di input",
-  "difficulty": 1,
+  "title": "Convertire la lettura analogica in Volt",
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
+  },
+  "chapter_title": "Il mondo continuo: i pin analogici",
+  "difficulty": 3,
   "duration_minutes": 40,
-  "target_age": "10-14 anni",
-  "objective": "Capire come un pulsante puo spegnere un LED normalmente acceso. Il LED parte acceso e si spegne solo quando teniamo premuto il pulsante. Introduciamo digitalRead e la logica invertita: premere = LOW.",
+  "target_age": "8-14 anni",
+  "objective": "Ragazzi, il docente accompagna la classe in ESERCIZIO 7.2 del Volume 3: Il valore 0-1023 viene trasformato in tensione e confrontato direttamente con 2.5 V.",
+  "volume_reference": {
+    "volume": 3,
+    "page": 87,
+    "chapter": 7,
+    "source": "ESERCIZIO 7.2"
+  },
   "components_needed": [
     {
-      "name": "Arduino Nano R4 (breakout wing)",
-      "quantity": 1,
-      "icon": "board"
+      "name": "Breadboard",
+      "quantity": 1
     },
     {
-      "name": "Breadboard half-size",
-      "quantity": 1,
-      "icon": "breadboard"
+      "name": "Arduino Nano R4",
+      "quantity": 1
     },
     {
-      "name": "Pulsante (push button)",
-      "quantity": 1,
-      "icon": "button"
+      "name": "Trimmer 10 kOhm",
+      "quantity": 1
     },
     {
-      "name": "LED rosso",
-      "quantity": 1,
-      "icon": "led"
+      "name": "Resistore 470 Ohm",
+      "quantity": 1
     },
     {
-      "name": "Resistore 470ohm",
-      "quantity": 1,
-      "icon": "resistor"
-    },
-    {
-      "name": "Fili di collegamento",
-      "quantity": 5,
-      "icon": "wire"
+      "name": "LED",
+      "quantity": 1
     }
   ],
   "vocabulary": {
     "allowed": [
-      "Arduino",
+      "Ragazzi",
+      "Arduino Nano R4",
+      "setup",
+      "loop",
       "pin",
-      "INPUT_PULLUP",
-      "pulsante",
-      "digitalRead",
-      "LED",
-      "resistore",
-      "breadboard",
-      "codice",
-      "programma",
       "GND",
-      "HIGH",
-      "LOW",
-      "OUTPUT"
+      "5V",
+      "delay",
+      "digitalWrite",
+      "digitalRead",
+      "analogRead",
+      "Serial"
     ],
     "forbidden": [
-      "condensatore",
-      "transistor",
-      "MOSFET",
-      "motore",
-      "diodo",
-      "fototransistor",
-      "analogico"
+      "fate da soli",
+      "devi",
+      "devo sostituire il kit",
+      "esperimento extra"
     ],
-    "note": "Cap 7 Vol 3 — primo esperimento con pulsante, digitalRead, logica invertita."
+    "note": "Vol. 3 pag. 87 - ESERCIZIO 7.2"
   },
   "prerequisites": [
-    "v3-cap7-esp6"
+    "v3-cap7-esp1"
   ],
   "next_experiment": {
-    "id": "v3-cap8-esp3",
-    "title": "Esercizio 8: trova il pin A0",
-    "preview": "Nel Capitolo 8 Arduino impara a sentire le quantità: per prima cosa troverete il pin analogico A0 sulla scheda."
+    "id": "v3-cap7-esp3",
+    "title": "Tre LED indicano la posizione del trimmer",
+    "preview": "Ragazzi, dopo Convertire la lettura analogica in Volt il libro prosegue con Tre LED indicano la posizione del trimmer."
+  },
+  "common_mistakes": [
+    {
+      "mistake": "Il codice cita un pin ma il filo e collegato a un altro pin.",
+      "teacher_response": "Ragazzi, il docente puo far confrontare numero nel codice e foro fisico prima di correggere.",
+      "analogy": "Come indirizzo scritto sulla busta e numero civico sulla porta: devono combaciare."
+    },
+    {
+      "mistake": "GND o 5V non sono collegati ai binari corretti.",
+      "teacher_response": "Ragazzi, il docente guida una verifica dei binari rosso e nero senza sostituirsi al gruppo.",
+      "analogy": "Come due rotaie: se una manca, il treno non parte."
+    }
+  ],
+  "analogies": [
+    {
+      "concept": "programma",
+      "text": "Il programma e come una ricetta: ogni riga dice alla scheda il prossimo gesto."
+    },
+    {
+      "concept": "pin",
+      "text": "Un pin e come una porta numerata: il codice sceglie quale porta aprire o ascoltare."
+    }
+  ],
+  "session_save": {
+    "store": [
+      "experiment_id",
+      "volume_reference",
+      "build_step",
+      "code_variant",
+      "observations"
+    ],
+    "morphic_ready": true
   },
   "phases": [
     {
       "name": "PREPARA",
-      "icon": "📋",
+      "icon": "prepara",
       "duration_minutes": 5,
-      "teacher_message": "Ragazzi, finora Arduino ha solo comandato i LED: acceso o spento. Oggi facciamo il contrario! Il LED parte acceso e si spegne quando premiamo un pulsante. Arduino impara ad ASCOLTARE il mondo esterno.",
-      "teacher_tip": "Iniziate chiedendo alla classe: chi ha mai usato un pulsante per spegnere qualcosa? Il telecomando della TV, il campanello di casa. Ogni volta che premete, mandi un segnale. Oggi Arduino riceve quel segnale.",
-      "class_hook": "Immaginate un campanello: quando lo premete, suona. Quando lo lasciate, smette. Oggi il nostro pulsante fa il contrario: quando lo premete, il LED si spegne!",
+      "teacher_message": "Ragazzi, il docente introduce Convertire la lettura analogica in Volt citando Vol. 3 pag. 87.",
+      "teacher_tip": "La guida resta al docente: prima si richiama il passaggio precedente, poi si mostra il nuovo passo della sequenza.",
+      "components_list": "Componenti: Breadboard, Arduino Nano R4, Trimmer 10 kOhm, Resistore 470 Ohm, LED",
+      "class_hook": "Ragazzi, questo passaggio continua l'arco narrativo del Volume 3.",
       "action_tags": [],
       "auto_action": null
     },
     {
       "name": "MOSTRA",
-      "icon": "🔧",
+      "icon": "mostra",
       "duration_minutes": 10,
-      "teacher_message": "Ragazzi, Il circuito ha due parti: il LED su un pin OUTPUT e il pulsante su un pin INPUT. Quando il pulsante non e premuto, digitalRead legge HIGH e il LED resta acceso. Quando lo premiamo, legge LOW e il LED si spegne.",
-      "teacher_tip": "Spiegate il concetto di INPUT vs OUTPUT con un paragone semplice: OUTPUT e come parlare (Arduino comanda), INPUT e come ascoltare (Arduino riceve). Fino ad ora abbiamo solo parlato, oggi impariamo ad ascoltare.",
+      "teacher_message": "Ragazzi, il docente mostra sulla LIM il circuito e lo sketch di ESERCIZIO 7.2.",
+      "teacher_tip": "Il Passo Passo va letto lentamente: ogni filo viene nominato prima di essere collegato.",
+      "components_list": null,
+      "class_hook": null,
       "action_tags": [
         "[AZIONE:loadexp:v3-cap7-esp2]"
       ],
-      "auto_action": "load_experiment"
+      "auto_action": "load_experiment",
+      "build_circuit": {
+        "description": "Passo Passo per Convertire la lettura analogica in Volt",
+        "button_label": "Passo Passo",
+        "intent": {
+          "components": [
+            {
+              "type": "breadboard-half",
+              "id": "bb1"
+            },
+            {
+              "type": "nano-r4",
+              "id": "nano1"
+            },
+            {
+              "type": "potentiometer",
+              "id": "pot1",
+              "value": 10000
+            },
+            {
+              "type": "resistor",
+              "id": "r1",
+              "value": 470
+            },
+            {
+              "type": "led",
+              "id": "led1",
+              "color": "green"
+            }
+          ],
+          "wires": [
+            {
+              "from": "bb1:f18",
+              "to": "bb1:bus-bot-plus-18",
+              "color": "red"
+            },
+            {
+              "from": "nano1:W_A0",
+              "to": "bb1:f19",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:f20",
+              "to": "bb1:bus-bot-minus-20",
+              "color": "black"
+            },
+            {
+              "from": "nano1:W_D13",
+              "to": "bb1:a24",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:d21",
+              "to": "bb1:d23",
+              "color": "green"
+            },
+            {
+              "from": "bb1:a24",
+              "to": "bb1:bus-bot-minus-24",
+              "color": "black"
+            },
+            {
+              "from": "nano1:GND_R",
+              "to": "bb1:bus-bot-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "nano1:5V",
+              "to": "bb1:bus-bot-plus-1",
+              "color": "red"
+            }
+          ]
+        }
+      }
     },
     {
       "name": "CHIEDI",
-      "icon": "❓",
+      "icon": "chiedi",
       "duration_minutes": 8,
-      "teacher_message": "Ragazzi, Il LED e acceso. Il pulsante e collegato. Cosa pensate che succeda quando lo premiamo? E perche quando rilasciamo il pulsante, il LED torna ad accendersi? Arduino ha memoria di cosa e successo?",
-      "teacher_tip": "Guidate la riflessione: Arduino non ricorda nulla tra un ciclo e l'altro del loop. Ogni volta legge il pulsante e decide. Se il pulsante e premuto, spegne il LED. Se non e premuto, lo accende. Non c'e memoria, solo lettura istantanea.",
-      "provocative_question": "Se il loop di Arduino gira migliaia di volte al secondo, perche non vediamo il LED che lampeggia? Come fa Arduino a sembrare cosi veloce?",
-      "action_tags": [],
-      "auto_action": null
+      "teacher_message": "Ragazzi, il docente apre una domanda breve e lascia tempo alla classe di prevedere il risultato.",
+      "teacher_tip": "La domanda non ordina: aiuta i ragazzi a collegare codice, pin e componente fisico.",
+      "provocative_question": "Ragazzi, quale riga del codice fa cambiare comportamento a Convertire la lettura analogica in Volt?",
+      "common_mistakes": [
+        {
+          "mistake": "Il codice cita un pin ma il filo e collegato a un altro pin.",
+          "teacher_response": "Ragazzi, il docente puo far confrontare numero nel codice e foro fisico prima di correggere.",
+          "analogy": "Come indirizzo scritto sulla busta e numero civico sulla porta: devono combaciare."
+        },
+        {
+          "mistake": "GND o 5V non sono collegati ai binari corretti.",
+          "teacher_response": "Ragazzi, il docente guida una verifica dei binari rosso e nero senza sostituirsi al gruppo.",
+          "analogy": "Come due rotaie: se una manca, il treno non parte."
+        }
+      ]
     },
     {
       "name": "OSSERVA",
-      "icon": "👀",
-      "duration_minutes": 10,
-      "teacher_message": "Ragazzi, Premete Play! Il LED rosso si accende. Ora cliccate sul pulsante nel simulatore e tenetelo premuto: il LED si spegne. Rilasciate: torna acceso. E un comportamento momentaneo, non un toggle.",
-      "teacher_tip": "Fate notare la differenza con un interruttore di casa: quello resta nella posizione in cui lo metti. Il pulsante invece torna su da solo quando lo lasci. Chiedete: servirebbe una variabile per farlo restare spento?",
+      "icon": "osserva",
+      "duration_minutes": 12,
+      "teacher_message": "Ragazzi, il docente avvia la simulazione; la classe osserva: Il valore 0-1023 viene trasformato in tensione e confrontato direttamente con 2.5 V.",
+      "teacher_tip": "La verifica resta legata al kit: codice sullo schermo, fili sulla breadboard, risultato visibile.",
       "action_tags": [
-        "[AZIONE:play]",
-        "[AZIONE:highlight:led1]",
-        "[AZIONE:highlight:btn1]"
+        "[AZIONE:play]"
       ],
-      "auto_action": "play_and_highlight",
-      "observation_prompt": "LED acceso normalmente. Premete il pulsante: si spegne. Rilascia: torna acceso. Il comportamento e immediato perche il loop legge il pulsante migliaia di volte al secondo."
+      "auto_action": "play",
+      "observation_prompt": "Ragazzi, confrontate quello che vedete con Vol. 3 pag. 87.",
+      "analogies": [
+        {
+          "concept": "programma",
+          "text": "Il programma e come una ricetta: ogni riga dice alla scheda il prossimo gesto."
+        },
+        {
+          "concept": "pin",
+          "text": "Un pin e come una porta numerata: il codice sceglie quale porta aprire o ascoltare."
+        }
+      ]
     },
     {
       "name": "CONCLUDI",
-      "icon": "✅",
-      "duration_minutes": 7,
-      "teacher_message": "Ragazzi, Avete costruito il primo circuito interattivo! Arduino ora sa ascoltare un pulsante con digitalRead. INPUT e OUTPUT sono le due direzioni della comunicazione tra Arduino e il mondo.",
-      "teacher_tip": "Recap: pinMode(pin, INPUT) configura un pin per ascoltare. digitalRead(pin) legge il valore: HIGH o LOW. Il pulsante e momentaneo: funziona solo mentre lo tieni premuto. Per un toggle serve una variabile, che vedremo presto.",
-      "summary_for_class": "Arduino puo sia comandare (OUTPUT) che ascoltare (INPUT). Con digitalRead leggiamo il pulsante: HIGH quando rilasciato, LOW quando premuto. Il LED si spegne solo finche teniamo premuto. Per farlo restare spento servira una variabile di stato!",
+      "icon": "concludi",
+      "duration_minutes": 5,
+      "teacher_message": "Ragazzi, il docente chiude ESERCIZIO 7.2 agganciandolo al prossimo esperimento del libro.",
+      "teacher_tip": "Una frase di sintesi basta: cosa abbiamo controllato, con quale pin, e cosa cambia nel prossimo passaggio.",
+      "summary_for_class": "Il valore 0-1023 viene trasformato in tensione e confrontato direttamente con 2.5 V.",
       "concepts_learned": [
-        "digitalRead() per leggere un pin",
-        "pin INPUT vs OUTPUT",
-        "pulsante momentaneo",
-        "logica HIGH/LOW"
+        "Convertire la lettura analogica in Volt",
+        "Il mondo continuo: i pin analogici"
       ],
-      "next_preview": "Nel prossimo esperimento scopriamo INPUT_PULLUP: una resistenza nascosta dentro Arduino che semplifica il circuito del pulsante!"
+      "next_preview": "Ragazzi, il prossimo passo e Tre LED indicano la posizione del trimmer."
     }
   ],
-  "session_save": {
-    "concepts_covered": [
-      "digitalRead",
-      "pin_INPUT",
-      "pulsante_momentaneo",
-      "HIGH_LOW"
-    ],
-    "next_suggested": "v3-cap8-esp3",
-    "resume_message": "Avete imparato a leggere un pulsante con digitalRead! Prossimo: INPUT_PULLUP e la resistenza interna."
-  }
+  "assessment_invisible": [
+    "La classe collega Convertire la lettura analogica in Volt alla pagina 87.",
+    "I ragazzi distinguono filo fisico e riga di codice.",
+    "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ]
 }
