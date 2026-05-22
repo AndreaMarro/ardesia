@@ -426,8 +426,8 @@
    passavano sotto al backdrop causando comportamento "crash". */
 .capitoloPickerOverlay {
   position: fixed;
-  inset: 0;
-  z-index: 1000;
+  inset: 48px 0 0;
+  z-index: 900;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -442,8 +442,8 @@
   position: relative;
   width: 100%;
   max-width: 1080px;
-  max-height: calc(100vh - 48px);
-  max-height: calc(100dvh - 48px);
+  max-height: calc(100vh - 96px);
+  max-height: calc(100dvh - 96px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background: #ffffff; /* palette */
@@ -487,5 +487,5 @@
 
 @media (max-width: 640px) {
   .capitoloPickerOverlay { padding: 12px; }
-  .capitoloPickerContent { padding: 16px; max-height: calc(100dvh - 24px); }
+  .capitoloPickerContent { padding: 16px; max-height: calc(100dvh - 72px); }
 }

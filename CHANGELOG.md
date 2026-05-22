@@ -1,3 +1,13 @@
+## [fix(percorso) — rendi visibile la narrazione capitolo da Modalita Percorso] — 2026-05-22
+
+- `src/components/lavagna/LavagnaShell.jsx` — il click su Modalita `Percorso` ora chiude il picker esperimenti e apre il picker capitoli; anche la lavagna vuota in Modalita Percorso apre direttamente i capitoli, rendendo raggiungibile `PercorsoCapitoloView` e il riquadro #143 `Prossimo passaggio` nel flusso reale.
+- `src/components/lavagna/LavagnaShell.module.css` — il picker capitoli parte sotto la top bar, così il pulsante `Home` resta cliccabile anche mentre la narrazione capitolo è aperta.
+- `src/components/lavagna/AppHeader.jsx` — aggiunto pulsante esplicito `Home` nella top bar della Lavagna per tornare alla homepage.
+- `tests/unit/components/lavagna/LavagnaShell-modalita.test.jsx` — test reali per evitare regressione: Percorso deve aprire il picker capitoli, non lasciare il picker esperimenti sopra la narrazione e preferire i capitoli nel fallback lavagna vuota.
+- `tests/unit/components/lavagna/AppHeader.test.jsx` — test reale per presenza e callback del nuovo pulsante Home.
+
+---
+
 ## [fix(iter-99) — review MEDIUM follow-ups] — 2026-05-22
 
 Follow-up mirato alla review del consolidamento iter-99: chiude tre finding MEDIUM senza cambiare scope funzionale.

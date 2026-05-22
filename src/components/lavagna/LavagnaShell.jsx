@@ -953,6 +953,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       setBuildMode('sandbox');
       setUnlimOpen(true);
       setUnlimTab('percorso');
+      setPickerOpen(false);
+      setCapitoloPickerOpen(true);
       manualOverridesRef.current.unlim = true;
       const api = window.__ELAB_API;
       if (api?.setBuildMode) {
@@ -998,11 +1000,17 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // The BentornatiOverlay handles first-time vs returning users.
   // Fallback: if bentornati is dismissed without loading, open picker.
   useEffect(() => {
-    if (!hasExperiment && !bentornatiVisible && !pickerOpen && !freeMode) {
-      const timer = setTimeout(() => setPickerOpen(true), 400);
+    if (!hasExperiment && !bentornatiVisible && !pickerOpen && !capitoloPickerOpen && !freeMode) {
+      const timer = setTimeout(() => {
+        if (modalita === 'percorso') {
+          setCapitoloPickerOpen(true);
+          return;
+        }
+        setPickerOpen(true);
+      }, 400);
       return () => clearTimeout(timer);
     }
-  }, [hasExperiment, bentornatiVisible, pickerOpen, freeMode]);
+  }, [hasExperiment, bentornatiVisible, pickerOpen, capitoloPickerOpen, freeMode, modalita]);
   const manualOverridesRef = useRef({});
   const apiReadyRef = useRef(false);
 
@@ -1424,6 +1432,11 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     setActiveCapitoloId(null);
   }, []);
 
+  const handleHomeClick = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    window.location.hash = 'home';
+  }, []);
+
   // VolumeCitation onClick wired → opens VolumeViewer at vol/page (lazy-loaded already)
   const handleCitationClick = useCallback(({ volume, page }) => {
     if (typeof volume === 'number' && volume >= 1 && volume <= 3) {
@@ -1571,6 +1584,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       </Suspense>
       <AppHeader
         experimentName={freeMode ? 'ELAB' : experimentName}
+        onHome={handleHomeClick}
         totalSteps={totalSteps}
         currentStep={currentStep}
         onPickerOpen={freeMode ? undefined : handlePickerOpen}
