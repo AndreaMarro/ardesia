@@ -1,3 +1,21 @@
+## [fix(shared-infra) — prestep morfico esperimenti sopra runtime Percorso #132] — 2026-05-22
+
+Integra il prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti senza regredire la Modalita Percorso morfica runtime gia ufficiale in produzione (#132). Il runtime Sense 1.5 resta la base; dal prestep #143 vengono mantenuti i pezzi riusabili per simulatore/drawer/placement e il cliffhanger visivo fra esperimenti nel Percorso.
+
+### Changed
+- `src/components/lavagna/PercorsoCapitoloView.jsx` + `.module.css` — mantenuto il runtime morfico #132 e aggiunto il "Prossimo passaggio" between-card del prestep #143, usando il formatter Vol/pag robusto del runtime.
+- `src/components/simulator/NewElabSimulator.jsx` — apertura automatica editor Arduino per esperimenti AVR e aggancio al prossimo esperimento nel drawer.
+- `src/components/simulator/engine/PlacementEngine.js` — fallback visual-only per componenti ELAB senza pin usabili.
+- `src/components/simulator/panels/ComponentDrawer.jsx` — card cliffhanger per aprire il prossimo esperimento.
+
+### Added
+- Test reali per il prestep: `tests/PlacementEngine.test.js`, `tests/unit/components/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/components/simulator/ComponentDrawer-cliffhanger.test.jsx`, `tests/unit/components/simulator/NewElabSimulator-avr-ui.test.jsx`.
+
+### Notes
+- Risoluzione conflitto intenzionale: non sostituisce #132 con la vecchia vista #143; fonde la parte migliore di #143 sopra il runtime morfico gia live.
+
+---
+
 ## [fix(iter-103) — #compile-home: stop rumore console localhost:8765 in demo-mode] — 2026-05-22
 
 Su `#compile-home` la console del browser era inondata da decine di richieste `GET` + `OPTIONS http://localhost:8765/health` fallite con `net::ERR_CONNECTION_REFUSED`. Causa: `CompileUploadButton` esegue al mount (e ogni 30s) un `useEffect` che interroga l'agente di compilazione locale via `getCompileAgentStatus()` → `fetch('http://localhost:8765/health')`. Il poll girava anche in demo-mode — il flusso WebUSB browser-direct di `#compile-home` — dove l'agente locale ELAB è deprecato e mai usato. Il `useEffect` è ora gated dietro `enableDemoMode`: in demo-mode fa `return` immediato, nessun poll, nessun rumore. Il ramo non-demo (path legacy `/compile-and-upload`) è invariato.

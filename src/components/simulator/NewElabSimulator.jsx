@@ -80,6 +80,10 @@ const FONT_BODY = "var(--font-sans)";
 
 /* Helpers extracted to utils/pinComponentMap.js and utils/breadboardSnap.js — Andrea Marro 12/02/2026 */
 
+export function shouldAutoOpenCodeEditor(experiment) {
+  return experiment?.simulationMode === 'avr';
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
@@ -771,6 +775,24 @@ const NewElabSimulator = ({
   // Principio Zero: progressive disclosure — Vol1/Vol2 nascondono codice/serial
   const isVol3 = currentExperiment?.id?.startsWith('v3-') ?? false;
 
+  useEffect(() => {
+    if (!currentExperiment) {
+      setShowCodeEditor(false);
+      setScratchFullscreen(false);
+      return;
+    }
+
+    if (shouldAutoOpenCodeEditor(currentExperiment)) {
+      setShowCodeEditor(true);
+      setEditorMode('arduino');
+      setScratchFullscreen(false);
+      return;
+    }
+
+    setShowCodeEditor(false);
+    setScratchFullscreen(false);
+  }, [currentExperiment?.id, currentExperiment?.simulationMode]);
+
   /* ═══════════════════════════════════════════════════════════════
      RENDER
      ═══════════════════════════════════════════════════════════════ */
@@ -925,6 +947,11 @@ const NewElabSimulator = ({
                   <ComponentDrawer mode={currentExperiment.buildMode} experiment={currentExperiment} currentStep={buildStepIndex} onStepChange={handleBuildStepChange} volumeNumber={selectedVolume}
                     onStartScratchPhase={(chosenMode) => { setShowCodeEditor(true); setEditorMode(chosenMode || 'scratch'); }}
                     onCompileAndPlay={() => { if (handleCompileOnly) handleCompileOnly(); }}
+                    nextExperiment={getLessonPath(currentExperiment.id)?.next_experiment || null}
+                    onLoadNextExperiment={(nextId) => {
+                      const nextExp = findExperimentById(nextId);
+                      if (nextExp) handleSelectExperiment(nextExp);
+                    }}
                   />
                 )}
                 <NotesPanel experimentId={currentExperiment?.id} visible={showNotes} onClose={() => setShowNotes(false)} />

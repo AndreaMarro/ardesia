@@ -283,12 +283,19 @@
   box-shadow: 0 2px 8px rgba(30, 77, 140, 0.15);
 }
 
-.transition {
+.transition,
+.nextTransition {
   margin-bottom: 16px;
   padding: 12px 16px;
   background-color: rgba(232, 148, 28, 0.1);
   border-left: 3px solid var(--elab-orange);
   border-radius: 0 6px 6px 0;
+}
+
+.nextTransition {
+  margin: -8px 0 24px 0;
+  background-color: rgba(74, 122, 37, 0.08);
+  border-left-color: var(--elab-lime);
 }
 
 .transitionLabel {
@@ -306,6 +313,18 @@
   font-size: 15px;
   font-style: italic;
   margin: 0;
+}
+
+.nextExperimentPreview {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #1E4D8C;
+}
+
+.nextPreviewText {
+  margin: 4px 0 0;
+  color: #3a6020;
+  line-height: 1.45;
 }
 
 .expHeader {
