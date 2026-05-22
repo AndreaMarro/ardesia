@@ -1,3 +1,20 @@
+## [fix(iter-99) — review MEDIUM follow-ups] — 2026-05-22
+
+Follow-up mirato alla review del consolidamento iter-99: chiude tre finding MEDIUM senza cambiare scope funzionale.
+
+### Changed
+- `src/services/virtualSerialInterpreter.js`: aggiunto limite esplicito alla lunghezza dello sketch prima delle scansioni regex/stringa.
+- `src/components/simulator/panels/VirtualSerialMonitor.jsx`: sostituite le icone decorative emoji con icone SVG ELAB.
+- `src/components/home/UnlimCompileHelper.jsx`: le domande rapide vengono mostrate solo quando `onAskQuestion` è realmente collegato.
+
+### Added
+- Test reali per il limite input del virtual serial interpreter e per il comportamento condizionale di `UnlimCompileHelper`.
+
+### Governance
+- Aggiunta voce `CHANGELOG.md` richiesta dalla Regola 5 per modifiche in `src/` nel PR #129.
+
+---
+
 ## [fix(shared-infra) — prestep morfico esperimenti sopra runtime Percorso #132] — 2026-05-22
 
 Integra il prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti senza regredire la Modalita Percorso morfica runtime gia ufficiale in produzione (#132). Il runtime Sense 1.5 resta la base; dal prestep #143 vengono mantenuti i pezzi riusabili per simulatore/drawer/placement e il cliffhanger visivo fra esperimenti nel Percorso.

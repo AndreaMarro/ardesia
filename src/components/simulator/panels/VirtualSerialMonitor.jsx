@@ -29,6 +29,7 @@
 import React, { useMemo, useDeferredValue } from 'react';
 import { interpretSerialOutput } from '../../../services/virtualSerialInterpreter';
 import css from './VirtualSerialMonitor.module.css';
+import { LetterIcon, SearchIcon, WarningIcon } from '../../common/ElabIcons';
 
 function pad2(n) {
   return n < 10 ? `0${n}` : `${n}`;
@@ -83,14 +84,14 @@ export default function VirtualSerialMonitor({
       <div className={css.outputArea} role="log" aria-live="polite">
         {!hasInput && (
           <div className={css.emptyState}>
-            <span className={css.emptyStateIcon} aria-hidden="true">📭</span>
+            <span className={css.emptyStateIcon} aria-hidden="true"><LetterIcon size={36} /></span>
             <p className={css.emptyStateText}>Nessun codice da analizzare</p>
           </div>
         )}
 
         {hasInput && !hasSerial && (
           <div className={css.emptyState}>
-            <span className={css.emptyStateIcon} aria-hidden="true">🔍</span>
+            <span className={css.emptyStateIcon} aria-hidden="true"><SearchIcon size={36} /></span>
             <p className={css.emptyStateText}>
               Nessuna istruzione seriale rilevata.
               <br />
@@ -141,7 +142,7 @@ export default function VirtualSerialMonitor({
         <div className={css.warnings} role="alert">
           {warnings.map((w, i) => (
             <div key={`warn-${i}`} className={css.warningItem}>
-              ⚠ {w}
+              <WarningIcon size={14} />{w}
             </div>
           ))}
         </div>
