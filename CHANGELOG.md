@@ -15,6 +15,164 @@ Follow-up mirato alla review del consolidamento iter-99: chiude tre finding MEDI
 
 ---
 
+## [fix(iter-103) — #compile-home: stop rumore console localhost:8765 in demo-mode] — 2026-05-22
+
+Su `#compile-home` la console del browser era inondata da decine di richieste `GET` + `OPTIONS http://localhost:8765/health` fallite con `net::ERR_CONNECTION_REFUSED`. Causa: `CompileUploadButton` esegue al mount (e ogni 30s) un `useEffect` che interroga l'agente di compilazione locale via `getCompileAgentStatus()` → `fetch('http://localhost:8765/health')`. Il poll girava anche in demo-mode — il flusso WebUSB browser-direct di `#compile-home` — dove l'agente locale ELAB è deprecato e mai usato. Il `useEffect` è ora gated dietro `enableDemoMode`: in demo-mode fa `return` immediato, nessun poll, nessun rumore. Il ramo non-demo (path legacy `/compile-and-upload`) è invariato.
+
+### Changed
+- `src/components/lavagna/CompileUploadButton.jsx` — il `useEffect` di polling dell'agente esce subito (`if (enableDemoMode) return;`) quando `enableDemoMode` è attivo; `enableDemoMode` aggiunto al deps array. Nessun'altra modifica: nel ramo non-demo `agentAvailable` / `agentChecked` continuano a guidare `disabled`, tooltip e `data-elab-agent-available` identici a prima.
+
+### Tests
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — 2 nuovi test (sezione 5, TDD): in demo-mode lo spy `statusImpl` non viene chiamato (zero poll); in non-demo viene chiamato ≥1 volta (guard anti over-gating). Rimossa una barriera di sincronizzazione `await waitFor(data-elab-agent-available === 'true')` stale da 2 test demo-mode pre-esistenti (describe "click flow"): era agganciata al side-effect del poll, che in demo-mode ora non avviene — `findByRole` resta la barriera di mount. Le asserzioni di sicurezza dei 2 test (nessuna API key nel browser, URL proxy corretto) sono invariate.
+
+### Verifica
+- TDD red→green: il test demo-mode falliva pre-fix (`spy chiamato 1 volta`), passa post-fix.
+- CoV: `npx vitest run` sul file ×3 → 40/40 PASS, 3/3.
+- Build: `npm run build` → `✓ built in 2m 59s`, PWA precache 27 entries.
+- Baseline completa: `npx vitest run` → 14967 passed | 0 failed | 409 file (2 skip). Nessuna regressione (baseline ≥ 14551).
+- Codex Pattern V: 3 CONFIRM (ramo non-demo invariato; demo click/flash non legge lo stato agente; unico altro call site `ScratchCompileBar.jsx` senza dipendenza dal poll; deps array corretto) + 1 CONCERN ristretta — il render emette comunque `data-elab-agent-available` che legge `agentAvailable`; in demo-mode resta `'false'`, valore onesto (l'agente non è interrogato) e già atteso dal test T1c. Nessuna modifica di codice richiesta.
+
+### Notes
+- Fix di solo rumore console — zero cambiamento funzionale per l'utente: il demo-mode non ha mai usato l'agente locale. `data-elab-agent-available` resta `'false'` in demo-mode (onesto).
+- L'analisi "zero regressione" dell'handoff iter-103 era incompleta: copriva la logica del componente ma non l'accoppiamento di 2 test al side-effect del poll. Il ciclo TDD ha intercettato il gap; i 2 test sono stati corretti nello stesso atomo.
+
+---
+
+## [feat(unlim) — modulo awareness-flags (Slice 1A consapevolezza)] — 2026-05-21
+
+Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduce un modulo puro che calcola i "flag di consapevolezza" della lavagna: segnali strutturati che instradano la pipeline e vengono iniettati nel contesto LLM come segnali di attenzione espliciti. Nessuna chiamata LLM, nessun accesso a Deno.env / DB / rete — solo logica pura e difensiva (non lancia mai: su input degenere torna i flag a default). Modulo isolato, nessun consumatore ancora: verrà cablato nella pipeline `unlim-chat` nello Slice 1B → zero rischio di regressione.
+
+### Added
+- `supabase/functions/_shared/awareness-flags.ts` — funzione `computeAwarenessFlags(current, previous, userMessage, hasClassMemory)` che calcola 8 flag (`circuit_changed`, `drawing_changed`, `vision_needed`, `circuit_error`, `experiment_changed`, `step_changed`, `compile_status`, `returning_class`) da uno snapshot della lavagna confrontato col turno precedente; `renderAwarenessFlags(flags, current)` rende i flag narrabili in un blocco italiano per il contesto LLM (`vision_needed` resta routing-only, non viene reso); export `AWARENESS_FLAGS_VERSION`.
+- `tests/unit/awareness-flags.test.js` — 24 test scaffold (input degeneri, flag confronto-col-precedente, flag stato-corrente, `vision_needed`, `renderAwarenessFlags`).
+- `tests/unit/awareness-flags-coverage.test.js` — 22 test di copertura aggiuntiva sui rami non esercitati dallo scaffold: firma circuito sul lato connessioni, confronto con `circuit:null`, guardia asimmetrica di `drawing_changed` (disegno cancellato), equivalenza nullish di `experimentId`/`step` (incluso step 0), copertura per-parola di `VISION_MENTION_RE` + case-insensitività, rendering dettagli (esperimento/step/compile), troncamento errori a 3, ramo difensivo `circuit.errors` non-array.
+- `docs/superpowers/specs/2026-05-21-unlim-context-engineering-overhaul-design.md` — spec dell'overhaul context-engineering UNLIM (§7.2 awareness-flags).
+- `docs/superpowers/plans/2026-05-21-unlim-slice-1a-awareness-flags.md` — piano Slice 1A.
+
+### Verifica
+- `awareness-flags.test.js` + `awareness-flags-coverage.test.js` = **46/46 PASS**, CoV 3/3 (3 esecuzioni consecutive stabili).
+- `npm run build` PASS.
+
+### Notes
+- Modulo puro senza side-effect: nessun consumatore runtime in questa slice. Il cablaggio nella pipeline `unlim-chat` è esplicitamente rimandato allo Slice 1B.
+- `vision_needed` è un flag di routing interno e per scelta NON viene reso nel testo iniettato nel contesto LLM.
+
+---
+
+## [feat(percorso) — Modalità Percorso morfica runtime (Sense 1.5)] — 2026-05-21
+
+Modalità Percorso morfica runtime per la Lavagna (PR #132). Il pannello Percorso del capitolo diventa MORFICO a tempo di esecuzione (Morfismo Sense 1.5): l'adapter `percorsoMorphicAdapter.js` risolve un contesto per-docente / per-classe / per-sessione e `PercorsoCapitoloView` lo applica in tempo reale (polling 750ms + eventi `storage` / `elab:percorso-morphic-context-changed` / `elab:percorso-live-signal`). Cambia la regia — quantità di testo, numero di slide, segnali di regia live — mentre il canone Principio Zero (apertura "Ragazzi,", kit fisico ELAB, citazione Vol.X pag.Y verbatim) resta INVARIANTE.
+
+### Added
+- `src/services/percorsoMorphicAdapter.js` — resolver morfico Sense 1.5: `resolveDocenteContext` / `resolveClasseContext` / `resolvePercorsoMorphicContext` (aggregano profilo locale + Supabase `teacher_history_log`, `errore_ricorrente_pattern`, `class_session_metadata`, `voice_movement_log`), `adaptPercorsoRender` (rendering adattivo + filtro componenti per kit), `getModalitaMorphicCue` (cue di modalità). Path difensivi: client Supabase null tollerato, query in errore/eccezione non propagate.
+- `src/components/lavagna/PercorsoCapitoloView.jsx` — pannello Percorso realtime morfico: regia live da segnali aula (scrittura, montaggio, latenza, screenshot, audio, lezioni passate), budget morfico di frasi/slide, "Lezione personalizzata" via `unlim-chat`.
+- `src/components/lavagna/ModalitaSwitch.jsx` — switch 3 modalità canoniche con cue morfico per la modalità Percorso.
+- `tests/unit/services/percorsoMorphicRuntime.test.js` — 16 test del runtime morfico: `getModalitaMorphicCue`, `resolveUiContext` (4k/touch + sanitizzazione stato sessione), `transitionEmphasis`, `nextExperiment` (stringa/oggetto/null), mapping `capitolo.id` → `ragChapterFocus`, `voiceFocus` da `voice_movement_log`, inferenza kit da materiale, ramo `concepts.size >= 6`.
+- `tests/unit/services/percorsoMorphicAdapter.test.js`, `tests/unit/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/lavagna/ModalitaSwitch.test.jsx`, `tests/e2e/08-percorso-morfica-flow.spec.js` — copertura unit + E2E del flusso Percorso morfico.
+
+### Verifica
+- `percorsoMorphicRuntime.test.js` 16/16 PASS. Suite Percorso aggregata (`percorsoMorphicAdapter` + `percorsoMorphicRuntime` + `PercorsoCapitoloView` + `ModalitaSwitch`) 48/48 PASS. Build PASS.
+
+### Notes
+- Morfismo Sense 1.5: cambia la regia (testo/slide/segnali), il canone Principio Zero resta invariante.
+- I nuovi test esercitano percorsi del runtime morfico non coperti dalla suite precedente (export `getModalitaMorphicCue`, contesto UI, emfasi transizioni, prossimo esperimento, focus RAG capitolo) — nessun test vuoto o fittizio.
+
+---
+
+## [fix(iter-103) — #compile-home: rail overflow-y + cross-compile librerie Arduino] — 2026-05-21
+
+Due fix da audit iter-103. (1) Codex adversarial review: il rail `.compileBarPanel` aveva `overflow:hidden` — su schermi desktop bassi o zoom 200% gli errori di compilazione lunghi venivano troncati senza scroll. (2) Audit cross-compile: `/api/compile/nanor4` in produzione falliva per ogni sketch con `#include <Servo.h>` o `<LiquidCrystal.h>` ("No such file or directory") — il Dockerfile del servizio cloud-compile installava i core Arduino ma nessuna libreria.
+
+### Changed
+- `src/components/home/HomeCompileEntry.module.css` — `.compileBarPanel`: `overflow:hidden` → `overflow:hidden auto`, così il rail (barra Compila + mascotte UNLIM) scrolla internamente invece di troncare gli errori di compilazione lunghi.
+- `infra/cloud-compile/Dockerfile` — aggiunto `arduino-cli lib install Servo + LiquidCrystal + LiquidCrystal_I2C` (le librerie usate dal generatore Blockly — categorie "Motore Servo" / "Schermo LCD" — e dai template C++ degli esperimenti).
+
+### Verifica
+- Cross-compile certificato in locale: con le 3 librerie installate, 7/7 tipi di sketch ELAB compilano per `arduino:renesas_uno:nanor4` (Blink, Serial, tone, Servo 41800 byte, LiquidCrystal, LiquidCrystal_I2C, combo Servo+Serial+analogRead).
+- Codex Pattern V PASS + adversarial review.
+
+### Notes
+- Il fix Dockerfile richiede un redeploy Render del servizio cloud-compile (`autoDeploy:true` su `main`) per avere effetto in produzione.
+
+---
+
+## [feat(fumetto) — Fumetto: report di sessione a fumetti per la classe] — 2026-05-21
+
+Funzionalità "Fumetto" — il report di una sessione di laboratorio reso come fumetto pedagogico in 6 vignette (arco narrativo problema → ipotesi → errore → click → successo → ponte) seguendo lo schema canonico di Tea (`src/data/fumetto-schema.json`). UNLIM resta comprimario: illumina un dettaglio del kit fisico senza rubare la scena. Il fumetto è generato dalla sessione reale (errori commessi, componenti usati, percorso dello studente) — nessun template statico, nessun dato finto.
+
+### Added
+- `src/services/fumettoService.js` — validatore runtime dello schema fumetto (`validateFumettoPayload` + `validateFumettoSchemaContract`), generatore pilota (`generatePilotFumetto`), generatore da sessione reale (`generateSessionFumetto`), modello del report (`buildSessionReportComicModel`) e helper per la prossima tappa narrativa (`getNextExperimentForFumetto`).
+- `src/components/lavagna/SessionReportComic.jsx` + `SessionReportComicModal.jsx` + `SessionReportComicCliffhanger.jsx` — UI del report a fumetti con cliffhanger verso l'esperimento successivo.
+- `src/data/fumetto-schema.json` — schema JSON canonico (da Tea) del fumetto pedagogico.
+- `tests/unit/services/fumettoService.test.js` + `tests/unit/services/fumettoService-coverage.test.js` — copertura validatore, generatori, fallback chain `getNextExperimentForFumetto` e cap dei balloon per vignetta.
+- `tests/unit/lavagna/SessionReportComic.test.jsx` + `tests/e2e/03-fumetto-flow.spec.js` — test componente + flusso E2E del fumetto.
+
+### Notes
+- Arco narrativo continuo: ogni vignetta si aggancia al kit fisico e alla sequenza del libro stampato (Principio Zero + Morfismo Sense 2).
+- `generatePilotFumetto` produce contenuto placeholder sintetico per dev/preview/test — la generazione LLM via Edge Function `unlim-fumetto` è rinviata (l'Edge Function non esiste ancora).
+- `principioZero` nei payload pilota è pre-popolato a `true`: i payload reali vanno ri-validati post-LLM via `principio-zero-validator.ts`.
+
+---
+
+## [fix(iter-103) — #compile-home: Monitor Seriale dentro la griglia editor (fix "banda nera")] — 2026-05-21
+
+Su `#compile-home` il Monitor Seriale Virtuale era un `<section>` fratello di `<main>`, a tutta larghezza sotto la griglia editor — una "banda nera gigante" che rompeva il layout (segnalato da Andrea iter 103 PM, ratifica "Monitor sotto l'editor"). Spostato dentro `editorGrid` come cella della griglia, sotto l'editor.
+
+### Changed
+- `src/components/home/HomeCompileEntry.jsx` — il `<section>` del Virtual Serial Monitor passa da fratello di `<main>` a cella interna a `.editorGrid`, sotto l'editor.
+- `src/components/home/HomeCompileEntry.module.css` — `.root`: `min-height:100vh` → `height:100dvh` + `overflow:hidden` (l'app-shell di HomePage non offre scroll di pagina, lo scroll è interno a `.editorGrid`); `.header` e `.bannerSection` → `flex:0 0 auto`.
+
+### Verifica
+- Build PASS + vitest delta (gate hook pre-commit/pre-push).
+- Smoke UI `#compile-home` su preview pre-merge.
+
+### Notes
+- Fix puramente di layout — nessun codice funzionale nuovo, nessun hardware/UAT richiesto.
+
+---
+
+## [fix(iter-103) — "Carica sul kit fisico": bottone upload demo-mode non più dipinto disabilitato] — 2026-05-21
+
+Su `#compile-home` il bottone "Carica sul kit fisico" restava grigio, opaco e con cursore `not-allowed` anche dopo una compilazione riuscita — sembrava disabilitato (segnalato da Andrea iter 103, *"deve funzionare. imperativo"*). Root cause in `CompileUploadButton.jsx`: il percorso demo-mode (WebUSB browser-direct, iter 76) compila e carica direttamente dal browser e NON richiede né l'agente locale `ELAB Compile Agent` né una porta seriale. L'attributo HTML `disabled` del bottone era già demo-mode-aware (cliccabile), ma `buttonStyle`, `aria-disabled` e `tooltip` leggevano ancora la costante legacy `disabled` (che esige `agentAvailable` + `port`). Risultato: bottone funzionante ma dipinto morto — `cursor: not-allowed`, `opacity: 0.65`, `aria-disabled=true`, tooltip "agente locale non attivo". Il docente non lo cliccava mai.
+
+### Changed
+- `src/components/lavagna/CompileUploadButton.jsx` — introdotti `interactionDisabled` ed `effectiveDisabled` (la verità interattiva reale del bottone, demo-mode-aware). `buttonStyle` (background/cursor/opacity) e l'attributo `disabled` usano `effectiveDisabled`; `aria-disabled` usa `interactionDisabled`. `hasUploadStateOverride` spostato in cima accanto a questi.
+- `src/components/lavagna/CompileUploadButton.jsx` — `tooltip`: in demo-mode mostra "Compila e carica il programma sul kit fisico Nano R4 via USB" (o l'invito plurale a scrivere il programma) invece del fuorviante "agente locale non attivo".
+
+### Added
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — test `T1c` (regression guard): in demo-mode, con agente offline e nessuna porta, il bottone è presentato vivo (non `disabled`, `cursor: pointer`, `opacity: 1`, no `aria-disabled`, tooltip senza "agente locale").
+
+### Verifica
+- `T1c` RED verificato pre-fix (4 asserzioni fallivano), GREEN post-fix.
+- CoV vitest 61/61 PASS ×3 su 4 file (CompileUploadButton + CompileUploadButton-states + ScratchCompileBar-honest-provider + cliffhanger-cta-transitions) — zero regressioni.
+
+### Notes
+- Era rotta solo la *presentazione* del bottone: il percorso funzionale (compile `/api/compile/nanor4` → WebUSB picker → flash DFU) era già wired iter 76+. Ora il bottone appare cliccabile.
+- Il flash fisico su una Nano R4 reale via WebUSB NON è verificabile senza hardware — UAT congiunta Andrea/Tea/Riccardo. Senza scheda/Chrome il bottone porta allo stato onesto `compile_only_no_board` (iter 76 D.1).
+
+---
+
+## [fix(iter-103) — UNLIM chat: recupero build stale su 401 (Fix A)] — 2026-05-21
+
+Una build frontend vecchia servita dalla cache del PWA service worker (tipicamente dopo una rotazione di `VITE_ELAB_API_KEY`) porta con sé la chiave API obsoleta → l'Edge Function `unlim-chat` risponde HTTP 401. Prima di questa fix `tryNanobot` ingoiava il 401 (`if (!res.ok) return null`) e `sendChat` cadeva nei fallback legacy (Render + webhook n8n) → ~25s di timeout → messaggio fuorviante *"UNLIM ci sta mettendo un po' troppo. Riprova"*. Il docente riprovava all'infinito invece di ricaricare la pagina. Root cause completa: `docs/audits/2026-05-21-iter-103-unlim-chat-stale-pwa-root-cause.md`.
+
+### Changed
+- `src/services/api.js` — `tryNanobot`: su HTTP 401/403 ritorna un sentinel `{ authStale: true, status }` invece di `null` (coerente col contratto "tryNanobot non lancia mai").
+- `src/services/api.js` — `sendChat`: gestisce `nanobotResult.authStale` → ritorna subito un errore mappato da `friendlyError` ("Ricarica la pagina e riprova"), saltando i fallback Render/n8n morti. Una build stale diventa così auto-curante (l'utente ricarica → build fresca).
+
+### Added
+- `tests/unit/services/api-stale-build-recovery.test.js` — 2 test (TDD red→green): 401 → messaggio "ricarica"; 401 → nessuna chiamata al fallback Render legacy.
+
+### Verifica
+- Test dedicato 2/2 PASS (TDD: RED verificato prima del fix, GREEN dopo).
+- CoV vitest baseline + `npm run build` = gate pre-commit/pre-push.
+
+### Notes
+- Fix A di un piano A+B+C (B = `UpdatePrompt` PWA app-wide; C = cleanup env Vercel `\n` trailing) — hardening contro la trappola "build stale".
+- Incidente acuto già risolto dal hard-refresh di Andrea; questa fix rende la situazione auto-diagnosticabile e auto-curante per gli altri utenti (docenti in aula).
+
+---
+
 ## [fix(iter-103) — allarga editor Blockly su #compile-home (hotfix prod)] — 2026-05-21
 
 Hotfix produzione: l'editor Blockly su `#compile-home` era schiacciato a ~258px — la toolbox mostrava solo 4 categorie su 12, sembravano "blocchi/toolbox mancanti" (segnalato da Andrea iter 103). Il fix esisteva già nel commit `5b4205e5 fix(iter-102): allarga l'editor Blockly` sul branch `feature/volume-1-experiment-overhaul`, mai mergiato → mai deployato in produzione. Questo PR fa cherry-pick di `5b4205e5` su `main` come hotfix mirato (4 file, nessun codice nuovo).

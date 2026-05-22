@@ -15,10 +15,13 @@ import { useAuth } from '../../context/AuthContext';
 // `__ELAB_API.experimentChange` non innesca startSession + finaliseSession
 // non scatta su Esci → saveSession Supabase mai chiamato → Cronologia void.
 import { useSessionTracker } from '../../hooks/useSessionTracker';
+import { getSavedSessions } from '../../hooks/useSessionTracker';
+import { getLessonPath } from '../../data/lesson-paths';
 import AppHeader from './AppHeader';
 import FloatingToolbar from './FloatingToolbar';
 import RetractablePanel from './RetractablePanel';
 import UnlimAdapter from './UnlimAdapter';
+import SessionReportComicModal from './SessionReportComicModal';
 import VideoFloat from './VideoFloat';
 import ExperimentPicker from './ExperimentPicker';
 import { deriveState, computePanelActions, STATES } from './LavagnaStateManager';
@@ -39,8 +42,6 @@ import ErrorBoundary from '../common/ErrorBoundary';
 // ComponentDrawer step-by-step in NewElabSimulator. Vedi commento blocco render rimosso.
 // Sprint S iter 2 Task B — Capitolo lookup service
 import { getCapitolo, listAllCapitoli } from '../../services/percorsoService';
-// iter 35 fix Bug 5 Fumetto: static import preserves user-gesture chain (was async dynamic import → window.open() blocked browser popup policy).
-import { openReportWindow } from '../unlim/UnlimReport';
 import { showToast as showToastSync } from '../common/Toast';
 import { startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../../services/unlimContextCollector';
 // iter 38 Atom A11 + A12 (WebDesigner-1): pre-emptive UX nudges.
@@ -68,7 +69,135 @@ const CapitoloPicker = lazy(() => import('./CapitoloPicker'));
 const PercorsoCapitoloView = lazy(() => import('./PercorsoCapitoloView'));
 
 const DEFAULT_MODALITA_EXPERIMENT_ID = 'v1-cap6-esp1';
+
+function getStoredClassKey() {
+  if (typeof window === 'undefined') return 'classe-fumetto';
+  try {
+    return localStorage.getItem('elab-license-key') || 'classe-fumetto';
+  } catch {
+    return 'classe-fumetto';
+  }
+}
+
+function ensureUnlimMountNamespace() {
+  if (typeof window === 'undefined') return;
+  const api = window.__ELAB_API;
+  if (!api || typeof api.mountExperiment !== 'function') return;
+  api.unlim = {
+    ...(api.unlim || {}),
+    mountExperiment: api.unlim?.mountExperiment || api.mountExperiment.bind(api),
+  };
+}
+
+function getFumettoSessionEvidenceScore(session) {
+  const messages = Array.isArray(session?.messages) ? session.messages.length : 0;
+  const errors = Array.isArray(session?.errors) ? session.errors.length : 0;
+  const actions = Array.isArray(session?.actions)
+    ? session.actions.filter((action) => action?.type !== 'experiment_loaded').length
+    : 0;
+  const completed = Array.isArray(session?.experimentsCompleted) ? session.experimentsCompleted.length : 0;
+  const journey = session?.studentJourney && typeof session.studentJourney === 'object'
+    ? Object.keys(session.studentJourney).length
+    : 0;
+  return (messages * 8) + (errors * 6) + (journey * 5) + (completed * 3) + actions;
+}
+
+function getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId }) {
+  const experimentId = currentExperiment?.id || initialExperimentId || getExpFromHash() || 'v1-cap6-esp1';
+  const savedSessions = getSavedSessions();
+  const matchingSessions = [...savedSessions]
+    .reverse()
+    .filter((session) => session.experimentId === experimentId);
+  const saved = matchingSessions
+    .map((session, index) => ({ session, index, score: getFumettoSessionEvidenceScore(session) }))
+    .sort((a, b) => b.score - a.score || a.index - b.index)[0]?.session
+    || null;
+  const lessonPath = getLessonPath(experimentId);
+  const now = new Date().toISOString();
+  const startedAt = saved?.startedAt || saved?.startTime || now;
+  const endedAt = saved?.endedAt || saved?.endTime || now;
+  const componentsUsed = Array.isArray(lessonPath?.components_needed)
+    ? lessonPath.components_needed.map((component) => component.name).filter(Boolean)
+    : [];
+  const sessionMistakes = Array.isArray(saved?.errors)
+    ? saved.errors.map((error) => ({
+        type: error.type || 'other',
+        description: error.detail || error.type || 'errore osservato sul kit fisico',
+        atSec: undefined,
+      }))
+    : [];
+  const assistantText = Array.isArray(saved?.messages)
+    ? [...saved.messages].reverse().find((message) => message.role === 'assistant' && message.text)?.text
+    : null;
+  const fallbackCompletedExperiment = {
+    id: experimentId,
+    title: lessonPath?.title || currentExperiment?.title || experimentName || experimentId,
+    volume: lessonPath?.volume,
+  };
+  const savedCompleted = Array.isArray(saved?.experimentsCompleted)
+    ? saved.experimentsCompleted.filter((experiment) => experiment?.id)
+    : [];
+  const experimentsCompleted = savedCompleted.length > 0
+    ? [
+        ...savedCompleted,
+        ...(savedCompleted.some((experiment) => experiment.id === experimentId)
+          ? []
+          : [fallbackCompletedExperiment]),
+      ]
+    : [fallbackCompletedExperiment];
+  const savedJourney = saved?.studentJourney && typeof saved.studentJourney === 'object'
+    ? saved.studentJourney
+    : {};
+  const mistakesMade = Array.isArray(savedJourney.mistakesMade) && savedJourney.mistakesMade.length > 0
+    ? savedJourney.mistakesMade
+    : sessionMistakes;
+  const variationsTriedSpontaneously = Array.isArray(savedJourney.variationsTriedSpontaneously)
+    ? savedJourney.variationsTriedSpontaneously
+    : (Array.isArray(saved?.actions)
+        ? saved.actions.map((action) => action.detail).filter(Boolean).slice(0, 3)
+        : []);
+  const helpRequestsCount = Number.isFinite(savedJourney.helpRequestsCount)
+    ? savedJourney.helpRequestsCount
+    : (Array.isArray(saved?.messages)
+        ? saved.messages.filter((message) => message.role === 'user').length
+        : 0);
+
+  return {
+    ...saved,
+    studentAlias: saved?.studentAlias || 'Classe ELAB',
+    classKey: saved?.classKey || getStoredClassKey(),
+    startedAt,
+    endedAt,
+    savedAt: now,
+    experimentsCompleted,
+    componentsUsed: Array.isArray(saved?.componentsUsed) && saved.componentsUsed.length > 0
+      ? saved.componentsUsed
+      : componentsUsed,
+    narrations: {
+      ...(saved?.narrations || {}),
+      ...(assistantText ? { [experimentId]: assistantText } : {}),
+    },
+    studentJourney: {
+      ...savedJourney,
+      mistakesMade,
+      mistakesOvercome: Array.isArray(savedJourney.mistakesOvercome) ? savedJourney.mistakesOvercome : [],
+      variationsTriedSpontaneously,
+      helpRequestsCount,
+    },
+    next_experiment: lessonPath?.next_experiment || null,
+  };
+}
 const DRAWING_SYNC_ENABLED = import.meta.env.VITE_ENABLE_DRAWING_SYNC === 'true';
+const PERCORSO_SESSION_STATES = ['intro', 'costruzione', 'verifica', 'report'];
+
+function readPercorsoSessionState() {
+  try {
+    const value = window.localStorage?.getItem?.('elab-percorso-session-state');
+    return PERCORSO_SESSION_STATES.includes(value) ? value : 'intro';
+  } catch {
+    return 'intro';
+  }
+}
 
 // Component quick-add buttons for left panel (uses __ELAB_API)
 // Realistic component icons — recognizable by a 10-year-old
@@ -412,6 +541,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   const [unlimOpen, setUnlimOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [videoMinimized, setVideoMinimized] = useState(false);
+  const [fumettoSession, setFumettoSession] = useState(null);
   const [leftPanelOpen, setLeftPanelOpen] = useState(false);
   const [bottomPanelOpen, setBottomPanelOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -518,6 +648,19 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     try { return localStorage.getItem('elab-lavagna-wake-word') !== 'off'; } catch { return true; }
   });
   const [wakeWordActive, setWakeWordActive] = useState(false);
+
+  // Codex MED#1 fix (Phase 1 sub-iter 83.6): derive + persist sessionState morfico per ModalitaSwitch cue.
+  // Mappa stato lavagna → fase canonica: intro (default), costruzione (mode=passo-passo/libero/gia-montato attivo).
+  // Persiste in localStorage 'elab-percorso-session-state' per consumare adapter percorsoMorphicAdapter.
+  const [storedPercorsoSessionState, setStoredPercorsoSessionState] = useState(readPercorsoSessionState);
+  const derivedSessionState = React.useMemo(() => {
+    if (typeof modalita === 'string' && (modalita === 'passo-passo' || modalita === 'libero' || modalita === 'gia-montato')) return 'costruzione';
+    return PERCORSO_SESSION_STATES.includes(storedPercorsoSessionState) ? storedPercorsoSessionState : 'intro';
+  }, [modalita, storedPercorsoSessionState]);
+  React.useEffect(() => {
+    try { window.localStorage?.setItem?.('elab-percorso-session-state', derivedSessionState); } catch { /* noop */ }
+    setStoredPercorsoSessionState((current) => (current === derivedSessionState ? current : derivedSessionState));
+  }, [derivedSessionState]);
   // F2.B: serializzazione primo-accesso. ConsentBanner (se presente) ha
   // priorità su Bentornati/Picker. ExperimentPicker parte ultimo.
   const bentornatiAllowed = useOverlayQueue('bentornati');
@@ -1332,27 +1475,51 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     }
   }, [videoOpen, videoMinimized]);
 
-  // ── Fumetto Report open (Regola 0: riuso UnlimReport existing system) ──
-  // iter 35 fix Bug 5: SYNC handler preserva user-gesture chain (async breaks window.open browser popup policy).
-  // openReportWindow + showToast static-imported = call in same tick come click event.
+  // ── Fumetto Report open ──
+  // Iter 83: render in-page. The legacy popup/download path was invisible in
+  // browsers that block window.open, so teachers saw "nothing happened".
   const handleFumettoOpen = useCallback(() => {
     try {
-      const expId = currentExperiment?.id || null;
-      const result = openReportWindow(expId);
-      // Feedback UX: avoid silent failure that was masking "nothing happens" bug
-      if (result === 'error') {
-        showToastSync?.('Errore nella generazione del Fumetto. Riprova.', 'error');
-      } else if (result === 'downloaded') {
-        showToastSync?.('Fumetto scaricato come file HTML (popup bloccato dal browser).', 'success');
-      } else if (result === 'downloaded-stub') {
-        showToastSync?.('Fumetto avviato (sessione vuota): completate un esperimento per arricchirlo.', 'info');
-      } else if (result === 'ok-stub') {
-        showToastSync?.('Fumetto aperto: completate un esperimento per arricchirlo coi dettagli.', 'info');
-      }
+      ensureUnlimMountNamespace();
+      sessionTracker.finaliseSession();
+      const session = getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId });
+      setFumettoSession(session);
+      setToolToast('Fumetto generato dalla sessione. Buon lavoro, Ragazzi.');
+      setTimeout(() => setToolToast(null), 2500);
     } catch (err) {
       logger.warn('[Fumetto] Unable to open report window:', err?.message || err);
+      showToastSync?.('Errore nella generazione del Fumetto. Riprova.', 'error');
     }
-  }, [currentExperiment]);
+  }, [currentExperiment, experimentName, initialExperimentId, sessionTracker]);
+
+  const handleFumettoMountNext = useCallback((experimentId) => {
+    if (!experimentId) return;
+    const lessonPath = getLessonPath(experimentId);
+    const api = typeof window !== 'undefined' ? window.__ELAB_API : null;
+    const applyNextExperimentState = () => {
+      setCurrentExperiment({
+        id: experimentId,
+        title: lessonPath?.title || experimentId,
+        volume: lessonPath?.volume,
+      });
+      setExperimentName(lessonPath?.title || experimentId);
+      setHasExperiment(true);
+      setBentornatiVisible(false);
+      const volMatch = experimentId.match(/^v(\d)/);
+      if (volMatch) setCurrentVolume(Number(volMatch[1]));
+    };
+
+    api?.mountExperiment?.(experimentId);
+    if (typeof window !== 'undefined') {
+      const nextHash = `#lavagna?exp=${encodeURIComponent(experimentId)}`;
+      if (!window.location.hash.includes(`exp=${encodeURIComponent(experimentId)}`)) {
+        window.history.replaceState(null, '', nextHash);
+      }
+    }
+    applyNextExperimentState();
+    setTimeout(applyNextExperimentState, 300);
+    manualOverridesRef.current = {};
+  }, []);
 
   // ── Voice command integration: "crea il report" / "fumetto" ──
   useEffect(() => {
@@ -1457,7 +1624,9 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso) */}
           {!freeMode && (
             <div className={css.modalitaSwitchSlot} data-testid="modalita-switch-slot">
-              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange} />
+              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange}
+          sessionState={derivedSessionState}
+        />
             </div>
           )}
 
@@ -1499,6 +1668,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
                 hideLessonPath
                 hideBuildModeBar
                 enableDrawingSync={DRAWING_SYNC_ENABLED}
+                onFumettoOpen={handleFumettoOpen}
               />
             </Suspense>
 
@@ -1572,6 +1742,12 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
             onRestore={() => setVideoMinimized(false)}
           />
         )}
+
+        <SessionReportComicModal
+          session={fumettoSession}
+          onClose={() => setFumettoSession(null)}
+          onMountNextExperiment={handleFumettoMountNext}
+        />
 
         {/* Sprint S iter 2 Task B — CapitoloPicker overlay (modal) */}
         {!freeMode && capitoloPickerOpen && (

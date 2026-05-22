@@ -314,6 +314,13 @@ describe('simulatorAPI — experiment management', () => {
     expect(mockSimulator.selectExperiment).toHaveBeenCalled();
   });
 
+  it('unlim.mountExperiment mirrors the top-level mount contract', () => {
+    expect(window.__ELAB_API.unlim.mountExperiment({ id: 'v1-cap6-esp1' })).toBe(true);
+    expect(mockSimulator.selectExperiment).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'v1-cap6-esp1' })
+    );
+  });
+
   it('mountExperiment returns false for unknown experiment', () => {
     expect(window.__ELAB_API.mountExperiment('nope')).toBe(false);
   });
