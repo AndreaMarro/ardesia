@@ -3,6 +3,7 @@ import css from './AppHeader.module.css';
 
 export default function AppHeader({
   experimentName = 'Scegli un esperimento...',
+  onHome,
   totalSteps = 0,
   currentStep = 0,
   onPickerOpen,
@@ -41,6 +42,23 @@ export default function AppHeader({
           />
           <span className={css.brandText}>ELAB</span>
         </div>
+        {onHome && (
+          <button
+            type="button"
+            className={`${css.btn} ${css.btnLabeled} ${css.homeBtn}`}
+            onClick={onHome}
+            aria-label="Torna alla Home"
+            title="Torna alla Home"
+            data-testid="app-header-home"
+          >
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 9.5 10 3l7 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M5.5 8.5V17h9V8.5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+              <path d="M8.2 17v-5h3.6v5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+            </svg>
+            <span className={css.btnText}>Home</span>
+          </button>
+        )}
         {(showClasseTab || showProgressiTab || showLezioneTab) && (
           <div className={css.tabs}>
             <button
