@@ -1,3 +1,26 @@
+## [fix(iter-103) — #compile-home: stop rumore console localhost:8765 in demo-mode] — 2026-05-22
+
+Su `#compile-home` la console del browser era inondata da decine di richieste `GET` + `OPTIONS http://localhost:8765/health` fallite con `net::ERR_CONNECTION_REFUSED`. Causa: `CompileUploadButton` esegue al mount (e ogni 30s) un `useEffect` che interroga l'agente di compilazione locale via `getCompileAgentStatus()` → `fetch('http://localhost:8765/health')`. Il poll girava anche in demo-mode — il flusso WebUSB browser-direct di `#compile-home` — dove l'agente locale ELAB è deprecato e mai usato. Il `useEffect` è ora gated dietro `enableDemoMode`: in demo-mode fa `return` immediato, nessun poll, nessun rumore. Il ramo non-demo (path legacy `/compile-and-upload`) è invariato.
+
+### Changed
+- `src/components/lavagna/CompileUploadButton.jsx` — il `useEffect` di polling dell'agente esce subito (`if (enableDemoMode) return;`) quando `enableDemoMode` è attivo; `enableDemoMode` aggiunto al deps array. Nessun'altra modifica: nel ramo non-demo `agentAvailable` / `agentChecked` continuano a guidare `disabled`, tooltip e `data-elab-agent-available` identici a prima.
+
+### Tests
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — 2 nuovi test (sezione 5, TDD): in demo-mode lo spy `statusImpl` non viene chiamato (zero poll); in non-demo viene chiamato ≥1 volta (guard anti over-gating). Rimossa una barriera di sincronizzazione `await waitFor(data-elab-agent-available === 'true')` stale da 2 test demo-mode pre-esistenti (describe "click flow"): era agganciata al side-effect del poll, che in demo-mode ora non avviene — `findByRole` resta la barriera di mount. Le asserzioni di sicurezza dei 2 test (nessuna API key nel browser, URL proxy corretto) sono invariate.
+
+### Verifica
+- TDD red→green: il test demo-mode falliva pre-fix (`spy chiamato 1 volta`), passa post-fix.
+- CoV: `npx vitest run` sul file ×3 → 40/40 PASS, 3/3.
+- Build: `npm run build` → `✓ built in 2m 59s`, PWA precache 27 entries.
+- Baseline completa: `npx vitest run` → 14967 passed | 0 failed | 409 file (2 skip). Nessuna regressione (baseline ≥ 14551).
+- Codex Pattern V: 3 CONFIRM (ramo non-demo invariato; demo click/flash non legge lo stato agente; unico altro call site `ScratchCompileBar.jsx` senza dipendenza dal poll; deps array corretto) + 1 CONCERN ristretta — il render emette comunque `data-elab-agent-available` che legge `agentAvailable`; in demo-mode resta `'false'`, valore onesto (l'agente non è interrogato) e già atteso dal test T1c. Nessuna modifica di codice richiesta.
+
+### Notes
+- Fix di solo rumore console — zero cambiamento funzionale per l'utente: il demo-mode non ha mai usato l'agente locale. `data-elab-agent-available` resta `'false'` in demo-mode (onesto).
+- L'analisi "zero regressione" dell'handoff iter-103 era incompleta: copriva la logica del componente ma non l'accoppiamento di 2 test al side-effect del poll. Il ciclo TDD ha intercettato il gap; i 2 test sono stati corretti nello stesso atomo.
+
+---
+
 ## [feat(unlim) — modulo awareness-flags (Slice 1A consapevolezza)] — 2026-05-21
 
 Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduce un modulo puro che calcola i "flag di consapevolezza" della lavagna: segnali strutturati che instradano la pipeline e vengono iniettati nel contesto LLM come segnali di attenzione espliciti. Nessuna chiamata LLM, nessun accesso a Deno.env / DB / rete — solo logica pura e difensiva (non lancia mai: su input degenere torna i flag a default). Modulo isolato, nessun consumatore ancora: verrà cablato nella pipeline `unlim-chat` nello Slice 1B → zero rischio di regressione.

@@ -419,7 +419,11 @@ export default function CompileUploadButton({
   }, []);
 
   // Poll agent status (mount + every 30s) — defensive deduped via R4 cache.
+  // iter 103 B1 — skip entirely in demo-mode: the WebUSB browser-direct flow
+  // never uses the local ELAB Compile Agent, so polling localhost:8765/health
+  // only floods the #compile-home console with ERR_CONNECTION_REFUSED.
   useEffect(() => {
+    if (enableDemoMode) return; // demo-mode reads neither agentAvailable nor agentChecked
     let cancelled = false;
     const probe = async () => {
       try {
@@ -437,7 +441,7 @@ export default function CompileUploadButton({
     probe();
     const id = setInterval(probe, STATUS_POLL_INTERVAL_MS);
     return () => { cancelled = true; clearInterval(id); };
-  }, [statusImpl]);
+  }, [statusImpl, enableDemoMode]);
 
   const disabled = !agentAvailable || uploading || !sketchCode || !port;
 
