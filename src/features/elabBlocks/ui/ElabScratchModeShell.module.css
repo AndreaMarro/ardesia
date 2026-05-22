@@ -38,10 +38,11 @@
 .workspace {
   position: relative;
   flex: 1 1 auto;
-  /* iter-102: con l'header rimosso + la striscia starter inline, 420 di
-     canvas Blockly entrano senza clipping anche a workspace vuoto; quando
-     il workspace ha blocchi la striscia sparisce e l'editor cresce. */
-  min-height: 420px;
+  /* iter-102 (Andrea "allarga l'editor"): con l'header blu rimosso e la
+     striscia starter spostata SOPRA il workspace, la canvas Blockly non è
+     più compressa. Floor a 520px per un editor vero (~470px canvas, ~8-9
+     categorie toolbox visibili); la pagina scrolla su viewport più corti. */
+  min-height: 520px;
   overflow: hidden;
 }
 

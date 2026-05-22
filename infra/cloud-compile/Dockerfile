@@ -23,6 +23,17 @@ RUN arduino-cli config init && \
     arduino-cli core install arduino:avr@1.8.7 && \
     arduino-cli core list
 
+# Install Arduino libraries used by ELAB sketches. The Blockly generator
+# emits #include <Servo.h> (categoria "Motore Servo") and
+# <LiquidCrystal.h> (categoria "Schermo LCD"); C++ experiment templates
+# also use <LiquidCrystal_I2C.h>. Senza queste librerie la cross-compile
+# fallisce con "Servo.h: No such file or directory" (iter-103 audit).
+RUN arduino-cli lib update-index && \
+    arduino-cli lib install Servo && \
+    arduino-cli lib install LiquidCrystal && \
+    arduino-cli lib install LiquidCrystal_I2C && \
+    arduino-cli lib list
+
 # Working directory for cloud service
 WORKDIR /app
 

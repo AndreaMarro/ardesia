@@ -46,6 +46,16 @@
 const MAX_ITERATIONS_HARDCAP = 200;
 
 /**
+ * MAX_CODE_LENGTH caps raw input size before the regex/parse passes. A
+ * realistic educational Arduino sketch is well under 10KB; 50KB is a generous
+ * ceiling that prevents a pathological large input from taxing stripComments,
+ * the callRegex matchAll, and the char-by-char extractBlock scan.
+ * iter-99 review (Codex MEDIUM): iteration count was hardcapped but the raw
+ * source string length was not.
+ */
+const MAX_CODE_LENGTH = 50000;
+
+/**
  * Strip C/C++ comments before regex matching to prevent false-positive Serial
  * output detection from commented-out lines.
  *
@@ -191,13 +201,20 @@ export function interpretSerialOutput(code, options = {}) {
     };
   }
 
-  const baudMatch = code.match(/Serial\.begin\s*\(\s*(\d+)\s*\)/);
+  // iter-99 review (Codex MEDIUM): cap raw input size. MAX_ITERATIONS_HARDCAP
+  // bounded the simulated loop count but the source string itself was uncapped.
+  const src = code.length > MAX_CODE_LENGTH ? code.slice(0, MAX_CODE_LENGTH) : code;
+  if (src.length !== code.length) {
+    warnings.push(`code truncated to ${MAX_CODE_LENGTH} chars (input too large)`);
+  }
+
+  const baudMatch = src.match(/Serial\.begin\s*\(\s*(\d+)\s*\)/);
   const baudRate = baudMatch ? parseInt(baudMatch[1], 10) : null;
 
-  const setupBlock = extractBlock(code, /void\s+setup\s*\(\s*\)\s*\{/);
+  const setupBlock = extractBlock(src, /void\s+setup\s*\(\s*\)\s*\{/);
   if (setupBlock === null) warnings.push('setup() not found');
 
-  const loopBlock = extractBlock(code, /void\s+loop\s*\(\s*\)\s*\{/);
+  const loopBlock = extractBlock(src, /void\s+loop\s*\(\s*\)\s*\{/);
   if (loopBlock === null) warnings.push('loop() not found');
 
   const setupActions = extractSerialAndDelayCalls(setupBlock);

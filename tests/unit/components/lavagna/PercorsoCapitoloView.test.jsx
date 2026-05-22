@@ -21,6 +21,21 @@ vi.mock('../../../../src/services/api.js', () => ({
   sendChat: vi.fn(),
 }));
 
+vi.mock('../../../../src/data/lesson-paths', () => ({
+  getLessonPath: vi.fn((experimentId) => {
+    if (experimentId === 'v1-cap6-esp1') {
+      return {
+        next_experiment: {
+          id: 'v1-cap6-esp2',
+          title: 'LED senza resistore (cosa NON fare!)',
+          preview: 'Cosa succede se togliamo il resistore? Il LED è in pericolo!',
+        },
+      };
+    }
+    return null;
+  }),
+}));
+
 const SAMPLE_CAPITOLO_EXP = {
   id: 'v1-cap6',
   volume: 1,
@@ -149,6 +164,15 @@ describe('PercorsoCapitoloView', () => {
   it('renders narrative_flow.transitions between esperimenti', () => {
     render(<PercorsoCapitoloView capitolo={SAMPLE_CAPITOLO_EXP} />);
     expect(screen.getByText(/Abbiamo acceso il LED. Ma cosa succede senza resistore/)).toBeInTheDocument();
+  });
+
+  it('renders next_experiment preview as a between-card cliffhanger, not inside a flat grid/card', () => {
+    render(<PercorsoCapitoloView capitolo={SAMPLE_CAPITOLO_EXP} />);
+    const transition = screen.getByTestId('percorso-next-transition-v1-cap6-esp1');
+
+    expect(transition).toHaveTextContent(/LED senza resistore/);
+    expect(transition).toHaveTextContent(/Il LED è in pericolo/);
+    expect(transition.closest('article')).toBeNull();
   });
 
   it('renders DocenteSidebar with role complementary', () => {

@@ -83,7 +83,7 @@
   "next_experiment": {
     "id": "v1-cap9-esp9",
     "title": "Sfida: aggiungi pulsante all'esp 8",
-    "preview": "Ultima sfida del capitolo: aggiungi un pulsante 'master' al circuito!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.79 intitolata \"Sfida: aggiungi pulsante all'esp 8\"."
   },
   "phases": [
     {
@@ -110,8 +110,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito sfida 2 pot RGB",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Sfida: combina esperimenti 5+6 seguendo Vol.1 pag.79.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -274,7 +274,7 @@
         "combinazione di circuiti",
         "modularità"
       ],
-      "next_preview": "Ultima sfida del capitolo: aggiungete un pulsante 'master' ON/OFF a questo circuito!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.79 intitolata \"Sfida: aggiungi pulsante all'esp 8\"."
     }
   ],
   "assessment_invisible": [
@@ -289,5 +289,16 @@
     ],
     "next_suggested": "v1-cap9-esp9",
     "resume_message": "L'ultima volta avete combinato due circuiti! Ultima sfida: aggiungete il pulsante master."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 79,
+    "label": "Vol.1 pag.79"
   }
 }

@@ -83,7 +83,7 @@
   "next_experiment": {
     "id": "v1-cap9-esp7",
     "title": "Sfida: aggiungi pulsanti alla lampada",
-    "preview": "Sfida! Riesci ad aggiungere un pulsante ON/OFF a ogni canale?"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.78 intitolata \"Sfida: aggiungi pulsanti alla lampada\"."
   },
   "phases": [
     {
@@ -110,8 +110,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate la lampada RGB con 3 potenziometri",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Lampada RGB con 3 potenziometri seguendo Vol.1 pag.71.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -310,7 +310,7 @@
         "controllo indipendente continuo",
         "principio RGB degli schermi"
       ],
-      "next_preview": "Sfida! Riesci ad aggiungere un pulsante ON/OFF a ogni canale della lampada?"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.78 intitolata \"Sfida: aggiungi pulsanti alla lampada\"."
     }
   ],
   "assessment_invisible": [
@@ -325,5 +325,16 @@
     ],
     "next_suggested": "v1-cap9-esp7",
     "resume_message": "L'ultima volta avete costruito la lampada RGB! Ora sfida: aggiungete pulsanti ON/OFF."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 71,
+    "label": "Vol.1 pag.71"
   }
 }

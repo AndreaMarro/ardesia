@@ -83,7 +83,7 @@
   "next_experiment": {
     "id": "v1-cap9-esp6",
     "title": "Lampada RGB con 3 potenziometri",
-    "preview": "Tre manopole, tre colori — crea QUALSIASI colore come i pixel del telefono!"
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.71 intitolata \"Lampada RGB con 3 potenziometri\"."
   },
   "phases": [
     {
@@ -110,8 +110,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito miscelatore blu/rosso",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Pot miscelatore blu  rosso seguendo Vol.1 pag.67.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -133,11 +133,6 @@
               "value": 470
             },
             {
-              "type": "resistor",
-              "id": "r2",
-              "value": 470
-            },
-            {
               "type": "rgb-led",
               "id": "rgb1"
             }
@@ -155,27 +150,17 @@
             },
             {
               "from": "bb1:a3",
-              "to": "bb1:a8",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:a5",
-              "to": "bb1:f8",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:a15",
               "to": "bb1:a21",
               "color": "blue"
             },
             {
-              "from": "bb1:f15",
+              "from": "bb1:a5",
               "to": "bb1:a18",
               "color": "orange"
             },
             {
-              "from": "bb1:a19",
-              "to": "bb1:bus-top-minus-19",
+              "from": "bb1:a15",
+              "to": "bb1:bus-top-minus-15",
               "color": "black"
             },
             {
@@ -254,7 +239,7 @@
         "potenziometro come miscelatore",
         "sfumatura continua tra colori"
       ],
-      "next_preview": "La prossima volta: TRE manopole per TRE colori — come i pixel dello schermo del telefono!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.71 intitolata \"Lampada RGB con 3 potenziometri\"."
     }
   ],
   "assessment_invisible": [
@@ -269,5 +254,16 @@
     ],
     "next_suggested": "v1-cap9-esp6",
     "resume_message": "L'ultima volta avete miscelato blu e rosso! Ora: 3 manopole per creare qualsiasi colore."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 67,
+    "label": "Vol.1 pag.67"
   }
 }

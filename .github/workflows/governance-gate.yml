@@ -155,8 +155,12 @@ jobs:
         id: baseline
         run: |
           BASELINE=$(jq '.total' .test-count-baseline.json)
-          npx vitest run --reporter=json > /tmp/vitest.json 2>&1 || true
-          TESTS_NOW=$(jq '.numPassedTests' /tmp/vitest.json)
+          # --outputFile writes ONLY clean JSON; the old `> file 2>&1` redirect
+          # mixed stderr into it -> jq parse error crashed the whole gate (exit 5).
+          npx vitest run --reporter=json --outputFile=/tmp/vitest.json || true
+          # // 0 guard: a vitest failure / missing file now surfaces as a clear
+          # "0 < baseline" instead of crashing the gate on a jq parse error.
+          TESTS_NOW=$(jq -r '.numPassedTests // 0' /tmp/vitest.json 2>/dev/null || echo 0)
           if [ "$TESTS_NOW" -lt "$BASELINE" ]; then
             echo "❌ Baseline regression: $TESTS_NOW < $BASELINE"
             exit 1

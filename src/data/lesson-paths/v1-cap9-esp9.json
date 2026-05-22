@@ -88,8 +88,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap10-esp1",
-    "title": "La fotoresistenza sente la luce",
-    "preview": "Il prossimo capitolo: un componente che cambia resistenza DA SOLO — reagisce alla luce!"
+    "title": "LED controllato dalla luce",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.82 intitolata \"LED controllato dalla luce\"."
   },
   "phases": [
     {
@@ -116,8 +116,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito sfida pulsante + pot + LED",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di Sfida: aggiungi pulsante all'esp 8 seguendo Vol.1 pag.79.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -134,6 +134,11 @@
               "value": 10000
             },
             {
+              "type": "potentiometer",
+              "id": "pot2",
+              "value": 10000
+            },
+            {
               "type": "push-button",
               "id": "btn1"
             },
@@ -143,9 +148,13 @@
               "value": 470
             },
             {
-              "type": "led",
-              "id": "led1",
-              "color": "red"
+              "type": "resistor",
+              "id": "r2",
+              "value": 470
+            },
+            {
+              "type": "rgb-led",
+              "id": "rgb1"
             }
           ],
           "wires": [
@@ -161,18 +170,33 @@
             },
             {
               "from": "bb1:j4",
-              "to": "bb1:j7",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:j7",
               "to": "bb1:a7",
               "color": "yellow"
             },
             {
-              "from": "bb1:a8",
+              "from": "bb1:j4",
               "to": "bb1:a12",
               "color": "yellow"
+            },
+            {
+              "from": "bb1:a8",
+              "to": "bb1:a17",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a13",
+              "to": "bb1:f17",
+              "color": "yellow"
+            },
+            {
+              "from": "bb1:a24",
+              "to": "bb1:a27",
+              "color": "orange"
+            },
+            {
+              "from": "bb1:f24",
+              "to": "bb1:a30",
+              "color": "blue"
             },
             {
               "from": "bb1:a9",
@@ -180,13 +204,13 @@
               "color": "black"
             },
             {
-              "from": "bb1:a19",
-              "to": "bb1:a20",
-              "color": "orange"
+              "from": "bb1:a14",
+              "to": "bb1:bus-top-minus-14",
+              "color": "black"
             },
             {
-              "from": "bb1:a21",
-              "to": "bb1:bus-top-minus-21",
+              "from": "bb1:a28",
+              "to": "bb1:bus-top-minus-28",
               "color": "black"
             },
             {
@@ -266,7 +290,7 @@
         "catena di controllo",
         "ruoli dei componenti"
       ],
-      "next_preview": "Il prossimo capitolo: un componente che cambia resistenza DA SOLO — reagisce alla luce! Non serve toccarlo!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.82 intitolata \"LED controllato dalla luce\"."
     }
   ],
   "assessment_invisible": [
@@ -281,5 +305,16 @@
     ],
     "next_suggested": "v1-cap10-esp1",
     "resume_message": "Avete completato il capitolo del potenziometro! Ora un componente magico che reagisce alla luce."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 79,
+    "label": "Vol.1 pag.79"
   }
 }

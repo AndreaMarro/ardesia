@@ -33,7 +33,6 @@ import { findExperimentById, ALL_EXPERIMENTS } from '../../data/experiments-inde
 // CompileUploadButton (iter 74 B-1 components had props MA real callers
 // non passavano nextExperiment → CTAs invisibili runtime users).
 import { getLessonPath } from '../../data/lesson-paths';
-import { openReportWindow } from '../unlim/UnlimReport';
 import { compileCode as apiCompileCode } from '../../services/api';
 import { emitSimulatorEvent } from '../../services/simulator-api';
 import { pushActivity } from '../../services/activityBuffer';
@@ -81,6 +80,10 @@ const FONT_BODY = "var(--font-sans)";
 
 /* Helpers extracted to utils/pinComponentMap.js and utils/breadboardSnap.js — Andrea Marro 12/02/2026 */
 
+export function shouldAutoOpenCodeEditor(experiment) {
+  return experiment?.simulationMode === 'avr';
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
@@ -99,6 +102,7 @@ const NewElabSimulator = ({
   onGetHints,
   onSendToUNLIM,
   onSendImageToUNLIM,
+  onFumettoOpen,
   messagesRef,
   quizResultsRef,
   sessionStartRef,
@@ -771,6 +775,24 @@ const NewElabSimulator = ({
   // Principio Zero: progressive disclosure — Vol1/Vol2 nascondono codice/serial
   const isVol3 = currentExperiment?.id?.startsWith('v3-') ?? false;
 
+  useEffect(() => {
+    if (!currentExperiment) {
+      setShowCodeEditor(false);
+      setScratchFullscreen(false);
+      return;
+    }
+
+    if (shouldAutoOpenCodeEditor(currentExperiment)) {
+      setShowCodeEditor(true);
+      setEditorMode('arduino');
+      setScratchFullscreen(false);
+      return;
+    }
+
+    setShowCodeEditor(false);
+    setScratchFullscreen(false);
+  }, [currentExperiment?.id, currentExperiment?.simulationMode]);
+
   /* ═══════════════════════════════════════════════════════════════
      RENDER
      ═══════════════════════════════════════════════════════════════ */
@@ -833,7 +855,7 @@ const NewElabSimulator = ({
           hasQuiz={!!(currentExperiment?.quiz?.length)}
           onGenerateReport={currentExperiment ? handleGenerateReport : undefined}
           isGeneratingReport={isGeneratingReport}
-          onOpenFumetto={currentExperiment ? () => openReportWindow(currentExperiment.id) : undefined}
+          onOpenFumetto={currentExperiment && onFumettoOpen ? () => onFumettoOpen(currentExperiment) : undefined}
           selectedComponentId={selectedComponentId}
           onComponentDelete={currentExperiment ? handleComponentDelete : undefined}
           onComponentRotate={currentExperiment ? (compId) => {
@@ -925,6 +947,11 @@ const NewElabSimulator = ({
                   <ComponentDrawer mode={currentExperiment.buildMode} experiment={currentExperiment} currentStep={buildStepIndex} onStepChange={handleBuildStepChange} volumeNumber={selectedVolume}
                     onStartScratchPhase={(chosenMode) => { setShowCodeEditor(true); setEditorMode(chosenMode || 'scratch'); }}
                     onCompileAndPlay={() => { if (handleCompileOnly) handleCompileOnly(); }}
+                    nextExperiment={getLessonPath(currentExperiment.id)?.next_experiment || null}
+                    onLoadNextExperiment={(nextId) => {
+                      const nextExp = findExperimentById(nextId);
+                      if (nextExp) handleSelectExperiment(nextExp);
+                    }}
                   />
                 )}
                 <NotesPanel experimentId={currentExperiment?.id} visible={showNotes} onClose={() => setShowNotes(false)} />

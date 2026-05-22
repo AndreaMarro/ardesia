@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ELAB Percorso Morfico</title>
+  <style>
+    :root {
+      --elab-navy: #1E4D8C;
+      --elab-lime: #4A7A25;
+      --elab-orange: #E8941C;
+      --elab-red: #E54B3D;
+      --ink: #1B2430;
+      --muted: #5A6675;
+      --surface: #F7FAFC;
+      --line: #D8E1EB;
+      --white: #FFFFFF;
+      --shadow: 0 16px 40px rgba(30, 77, 140, 0.14);
+      font-family: "Open Sans", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(247, 250, 252, 0.96)),
+        repeating-linear-gradient(90deg, rgba(30, 77, 140, 0.04) 0 1px, transparent 1px 88px);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1400px, 100%);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) auto;
+      gap: 24px;
+      align-items: start;
+      padding: 20px 0 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--elab-lime);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Oswald", "Arial Narrow", Arial, sans-serif;
+      letter-spacing: 0;
+      margin: 0;
+      color: var(--elab-navy);
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 1.08;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .canonical-card {
+      min-width: 280px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .canonical-ref {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 2px solid var(--elab-navy);
+      border-radius: 8px;
+      color: var(--elab-navy);
+      font-weight: 800;
+    }
+
+    .canonical-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .tab {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--elab-navy);
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tab[aria-selected="true"] {
+      background: var(--elab-navy);
+      color: var(--white);
+      border-color: var(--elab-navy);
+      box-shadow: 0 8px 20px rgba(30, 77, 140, 0.20);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.15fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panelHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #FFFFFF;
+    }
+
+    .panelHeader small {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .phase {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      border-radius: 8px;
+      padding: 5px 10px;
+      background: rgba(232, 148, 28, 0.12);
+      color: #8B4F00;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .panelBody {
+      padding: 18px;
+    }
+
+    .regiaGrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric,
+    .cue,
+    .checkRow {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #FFFFFF;
+    }
+
+    .metric strong,
+    .cue strong {
+      display: block;
+      color: var(--elab-navy);
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .metric span,
+    .cue span {
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .cue {
+      margin-top: 12px;
+      border-left: 4px solid var(--elab-lime);
+      background: #FBFEF8;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .actionButton {
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--elab-navy);
+      padding: 8px 12px;
+      font-weight: 800;
+    }
+
+    .actionButton.primary {
+      background: var(--elab-lime);
+      color: var(--white);
+      border-color: var(--elab-lime);
+    }
+
+    .limPanel {
+      min-height: 100%;
+    }
+
+    .limCanvas {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      background: linear-gradient(180deg, #FFFFFF, #F9FBFD);
+    }
+
+    .classPrompt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      min-height: 390px;
+      padding: 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .classPrompt h2 {
+      font-size: 42px;
+      line-height: 1.08;
+      color: var(--elab-navy);
+    }
+
+    .classPrompt p {
+      margin: 0;
+      max-width: 620px;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .kitStrip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(30, 77, 140, 0.22);
+      background: #FFFFFF;
+      color: var(--elab-navy);
+      padding: 5px 9px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .kitDiagram {
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+      min-height: 390px;
+      background: #FFFFFF;
+    }
+
+    .breadboard {
+      position: relative;
+      min-height: 230px;
+      border: 2px solid #C9D5E2;
+      border-radius: 8px;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 28px, rgba(30, 77, 140, 0.08) 28px 30px),
+        repeating-linear-gradient(0deg, #FFFFFF 0 28px, #F1F5F9 28px 30px);
+      overflow: hidden;
+    }
+
+    .rail {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      height: 10px;
+      border-radius: 8px;
+      background: var(--elab-red);
+      top: 18px;
+    }
+
+    .rail.minus {
+      background: var(--elab-navy);
+      top: auto;
+      bottom: 18px;
+    }
+
+    .led {
+      position: absolute;
+      left: 46%;
+      top: 64px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50% 50% 46% 46%;
+      border: 4px solid var(--elab-red);
+      background: radial-gradient(circle at 34% 30%, #FFFFFF, #F8B5AF 35%, #E54B3D 70%);
+      box-shadow: 0 0 0 8px rgba(229, 75, 61, 0.12);
+    }
+
+    .leg {
+      position: absolute;
+      width: 4px;
+      background: #777;
+      top: 118px;
+      height: 82px;
+    }
+
+    .leg.long {
+      left: calc(46% + 17px);
+    }
+
+    .leg.short {
+      left: calc(46% + 40px);
+      height: 62px;
+    }
+
+    .resistor {
+      position: absolute;
+      left: 72px;
+      right: 62px;
+      top: 156px;
+      height: 18px;
+      border-radius: 12px;
+      background:
+        linear-gradient(90deg, transparent 0 24%, #7A4A1B 24% 28%, transparent 28% 42%, #E54B3D 42% 46%, transparent 46% 62%, #D5A253 62% 66%, transparent 66%),
+        #E6C08B;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+    }
+
+    .wire {
+      position: absolute;
+      border: 5px solid var(--elab-orange);
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 0 18px 0 0;
+      left: 58px;
+      top: 56px;
+      width: 170px;
+      height: 72px;
+    }
+
+    .highlight {
+      position: absolute;
+      left: calc(46% + 30px);
+      top: 42px;
+      width: 80px;
+      height: 128px;
+      border: 3px solid var(--elab-orange);
+      border-radius: 8px;
+      background: rgba(232, 148, 28, 0.10);
+    }
+
+    .diagramCaption {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .checkRow {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .checkIcon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--elab-lime);
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .handoff {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .handoff .metric {
+      background: #FBFEF8;
+    }
+
+    .srOnly {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        padding: 16px;
+      }
+
+      .topbar,
+      .workspace,
+      .limCanvas,
+      .handoff {
+        grid-template-columns: 1fr;
+      }
+
+      .canonical-card {
+        min-width: 0;
+      }
+
+      .classPrompt {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .classPrompt h2 {
+        font-size: 34px;
+      }
+
+      .classPrompt p {
+        font-size: 18px;
+      }
+    }
+
+    @media (pointer: coarse) {
+      .tab,
+      .actionButton {
+        min-height: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell" data-testid="prototype-shell">
+    <header class="topbar">
+      <section>
+        <p class="eyebrow">Open Design pilot · Percorso morfico</p>
+        <h1>ELABTutor come regia didattica viva</h1>
+        <p class="subtitle">
+          Lo stesso esperimento mantiene il percorso canonico dei volumi, ma cambia densita,
+          linguaggio, controlli e visual focus in base a docente, classe, fase e dispositivo.
+        </p>
+      </section>
+      <aside class="canonical-card" aria-label="Stato canonico">
+        <div class="canonical-ref" data-testid="canonical-ref">Vol.1 pag.36</div>
+        <p>Esperimento: Accendi il rosso del RGB. Prossimo aggancio: LED con pulsante.</p>
+      </aside>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Varianti morfiche">
+      <button class="tab" role="tab" aria-selected="true" id="tab-expert" aria-controls="variant-panel" data-variant="expert">Docente esperto</button>
+      <button class="tab" role="tab" aria-selected="false" id="tab-first-year" aria-controls="variant-panel" data-variant="firstYear">Primo anno</button>
+      <button class="tab" role="tab" aria-selected="false" id="tab-report" aria-controls="variant-panel" data-variant="report">Report</button>
+    </nav>
+
+    <section id="variant-panel" role="tabpanel" aria-labelledby="tab-expert">
+      <div class="workspace">
+        <section class="panel" data-testid="regia-view" aria-label="Regia docente privata">
+          <div class="panelHeader">
+            <div>
+              <h2>Regia docente</h2>
+              <small data-testid="variant-profile">Docente esperto · Classe avanzata</small>
+            </div>
+            <span class="phase" data-testid="session-phase">verifica</span>
+          </div>
+          <div class="panelBody">
+            <div class="regiaGrid">
+              <div class="metric">
+                <strong>Timer docente</strong>
+                <span id="timerValue">18 min restanti</span>
+              </div>
+              <div class="metric">
+                <strong>Densita UI</strong>
+                <span data-testid="density-score">Densita alta</span>
+              </div>
+              <div class="metric">
+                <strong>Errore ricorrente</strong>
+                <span>polarita LED</span>
+              </div>
+              <div class="metric">
+                <strong>Prossimo esperimento</strong>
+                <span data-testid="next-experiment">LED con pulsante</span>
+              </div>
+            </div>
+
+            <div class="cue">
+              <strong>UNLIM cue</strong>
+              <span data-testid="primary-cue">Confronto atteso/reale: prima osserviamo il verso del LED, poi proviamo a scollegare un jumper.</span>
+            </div>
+
+            <div class="actions" aria-label="Azioni regia">
+              <button class="actionButton primary" type="button">Mostra controllo sulla LIM</button>
+              <button class="actionButton" type="button">Fallback debug collettivo</button>
+              <button class="actionButton" type="button">Avanza fase</button>
+            </div>
+
+            <div class="checklist" aria-label="Checklist privata">
+              <div class="checkRow"><span class="checkIcon">1</span><span>Verifica se la gamba lunga e sul positivo.</span></div>
+              <div class="checkRow"><span class="checkIcon">2</span><span>Confronta la resistenza con il percorso indicato nel volume.</span></div>
+              <div class="checkRow"><span class="checkIcon">3</span><span>Salva il pattern se due gruppi ripetono lo stesso errore.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel limPanel" data-testid="lim-view" aria-label="LIM pubblica">
+          <div class="panelHeader">
+            <div>
+              <h2>LIM classe</h2>
+              <small>Vista pubblica read-only</small>
+            </div>
+            <span class="phase">Percorso</span>
+          </div>
+          <div class="limCanvas">
+            <article class="classPrompt">
+              <h2 id="limTitle">Ragazzi, controlliamo il verso del LED.</h2>
+              <p id="limCopy">
+                Siamo sul kit fisico ELAB: la corrente deve attraversare il componente nel verso giusto.
+                Prima osserviamo la gamba lunga, poi facciamo una prova semplice.
+              </p>
+              <div class="kitStrip" data-testid="kit-strip" aria-label="Componenti kit">
+                <span class="chip">kit fisico ELAB</span>
+                <span class="chip">breadboard</span>
+                <span class="chip">LED RGB rosso</span>
+                <span class="chip">resistenza 220 ohm</span>
+                <span class="chip">jumper</span>
+              </div>
+            </article>
+
+            <article class="kitDiagram" aria-label="Schema kit fisico">
+              <h3>Focus controllo: polarita LED</h3>
+              <div class="breadboard" role="img" aria-label="Breadboard con LED, resistenza e jumper evidenziati">
+                <span class="rail"></span>
+                <span class="rail minus"></span>
+                <span class="wire"></span>
+                <span class="resistor"></span>
+                <span class="highlight"></span>
+                <span class="led"></span>
+                <span class="leg long"></span>
+                <span class="leg short"></span>
+              </div>
+              <p class="diagramCaption">Il riquadro arancione indica il controllo da fare sul banco reale, non un passaggio astratto.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <section class="handoff" aria-label="Validazione del prototipo">
+        <div class="metric">
+          <strong>Gate Principio Zero</strong>
+          <span>Docente guida, UNLIM supporta, classe vede solo il necessario.</span>
+        </div>
+        <div class="metric">
+          <strong>Gate Volumi</strong>
+          <span>Riferimento canonico Vol.1 pag.36 sempre visibile.</span>
+        </div>
+        <div class="metric">
+          <strong>Gate E2E</strong>
+          <span>Varianti, Regia/LIM e viewport tablet sono verificabili.</span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const variants = {
+      expert: {
+        tab: "tab-expert",
+        profile: "Docente esperto · Classe avanzata",
+        phase: "verifica",
+        density: "Densita alta",
+        timer: "18 min restanti",
+        cue: "Confronto atteso/reale: prima osserviamo il verso del LED, poi proviamo a scollegare un jumper.",
+        title: "Ragazzi, controlliamo il verso del LED.",
+        copy: "Siamo sul kit fisico ELAB: la corrente deve attraversare il componente nel verso giusto. Prima osserviamo la gamba lunga, poi facciamo una prova semplice.",
+        next: "LED con pulsante",
+      },
+      firstYear: {
+        tab: "tab-first-year",
+        profile: "Docente al primo anno · Classe fragile 10-11 anni",
+        phase: "costruzione",
+        density: "Micro-step",
+        timer: "32 min restanti",
+        cue: "Polarita LED: usa due controlli piccoli, gamba lunga verso il positivo e resistenza in serie.",
+        title: "Ragazzi, facciamo un controllo alla volta.",
+        copy: "Sul kit fisico ELAB guardiamo prima la gamba lunga del LED. Poi seguiamo il percorso della resistenza come una piccola strada obbligata.",
+        next: "LED con pulsante",
+      },
+      report: {
+        tab: "tab-report",
+        profile: "Report finale · Tablet docente",
+        phase: "report",
+        density: "Sintesi compatta",
+        timer: "Lezione chiusa",
+        cue: "Errore ricorrente salvato: polarita LED. Riprendere la funzione della resistenza nel prossimo aggancio.",
+        title: "Ragazzi, oggi avete verificato un circuito reale.",
+        copy: "Il LED si accende solo quando il percorso e chiuso e il verso e corretto. Nel prossimo esperimento aggiungeremo il pulsante.",
+        next: "LED con pulsante",
+      },
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+
+    function setVariant(key) {
+      const variant = variants[key] || variants.expert;
+      document.querySelectorAll("[role='tab']").forEach((tab) => {
+        const selected = tab.dataset.variant === key;
+        tab.setAttribute("aria-selected", String(selected));
+      });
+      $("#variant-panel").setAttribute("aria-labelledby", variant.tab);
+      $("[data-testid='variant-profile']").textContent = variant.profile;
+      $("[data-testid='session-phase']").textContent = variant.phase;
+      $("[data-testid='density-score']").textContent = variant.density;
+      $("[data-testid='primary-cue']").textContent = variant.cue;
+      $("[data-testid='next-experiment']").textContent = variant.next;
+      $("#timerValue").textContent = variant.timer;
+      $("#limTitle").textContent = variant.title;
+      $("#limCopy").textContent = variant.copy;
+    }
+
+    document.querySelectorAll("[role='tab']").forEach((tab) => {
+      tab.addEventListener("click", () => setVariant(tab.dataset.variant));
+    });
+  </script>
+</body>
+</html>

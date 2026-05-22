@@ -12,7 +12,7 @@
   "difficulty": 1,
   "duration_minutes": 35,
   "target_age": "10-14 anni",
-  "objective": "I ragazzi scoprono che la plastilina conduttiva (elettropongo) può sostituire i fili! Un LED si accende collegato alla batteria tramite strisce di plastilina — niente breadboard!",
+  "objective": "I ragazzi scoprono che due strisce di elettropongo conducono corrente e accendono un LED senza breadboard.",
   "components_needed": [
     {
       "name": "Batteria 9V con clip",
@@ -80,8 +80,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap13-esp2",
-    "title": "Esperimento 2: crea circuiti artistici con l'elettropongo",
-    "preview": "Ora creiamo forme artistiche con l'elettropongo e accendiamo tanti LED!"
+    "title": "Circuiti artistici con plastilina",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.105 intitolata \"Circuiti artistici con plastilina\"."
   },
   "phases": [
     {
@@ -108,8 +108,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito LED con elettropongo (simulato con fili)",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED nell'elettropongo seguendo Vol.1 pag.104.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -204,7 +204,7 @@
         "circuito senza breadboard",
         "separazione polarità"
       ],
-      "next_preview": "Ora creiamo FORME ARTISTICHE con l'elettropongo e accendiamo tanti LED! Circuiti creativi!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.105 intitolata \"Circuiti artistici con plastilina\"."
     }
   ],
   "assessment_invisible": [
@@ -220,5 +220,16 @@
     ],
     "next_suggested": "v1-cap13-esp2",
     "resume_message": "Avete scoperto l'elettropongo! Ora creiamo circuiti artistici con la plastilina."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 104,
+    "label": "Vol.1 pag.104"
   }
 }

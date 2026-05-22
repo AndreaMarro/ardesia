@@ -419,7 +419,11 @@ export default function CompileUploadButton({
   }, []);
 
   // Poll agent status (mount + every 30s) — defensive deduped via R4 cache.
+  // iter 103 B1 — skip entirely in demo-mode: the WebUSB browser-direct flow
+  // never uses the local ELAB Compile Agent, so polling localhost:8765/health
+  // only floods the #compile-home console with ERR_CONNECTION_REFUSED.
   useEffect(() => {
+    if (enableDemoMode) return; // demo-mode reads neither agentAvailable nor agentChecked
     let cancelled = false;
     const probe = async () => {
       try {
@@ -437,12 +441,35 @@ export default function CompileUploadButton({
     probe();
     const id = setInterval(probe, STATUS_POLL_INTERVAL_MS);
     return () => { cancelled = true; clearInterval(id); };
-  }, [statusImpl]);
+  }, [statusImpl, enableDemoMode]);
 
   const disabled = !agentAvailable || uploading || !sketchCode || !port;
 
+  // iter 88 UX-6 — surface the richer 6-state visual when `uploadState` is set.
+  const hasUploadStateOverride =
+    typeof uploadState === 'string' && uploadState.length > 0;
+  // iter 103 root-cause fix — demo-mode (WebUSB browser-direct, iter 76)
+  // compiles + flashes straight from the browser: it needs NEITHER the local
+  // ELAB Compile Agent NOR a serial `port`. The legacy `disabled` above
+  // hard-requires both, so buttonStyle / aria-disabled / tooltip painted the
+  // demo-mode button grey + "not-allowed" + "agente offline" even though it
+  // was clickable. These mirror the button's true interactive state.
+  const interactionDisabled = enableDemoMode
+    ? uploading || !sketchCode
+    : disabled;
+  const effectiveDisabled = hasUploadStateOverride
+    ? uploadState === UPLOAD_STATES.IDLE
+      || uploadState === UPLOAD_STATES.UPLOADING
+    : interactionDisabled;
+
   const tooltip = (() => {
     if (uploading) return "Caricamento in corso, ragazzi...";
+    // iter 103 — demo-mode bypasses the local agent; never surface the
+    // "agente offline" copy that only applies to the legacy upload path.
+    if (enableDemoMode) {
+      if (!sketchCode) return "Ragazzi, scrivete prima il programma nei blocchi.";
+      return "Compila e carica il programma sul kit fisico Nano R4 via USB";
+    }
     if (!agentChecked) return "Verifico se l'agente locale e attivo...";
     if (!agentAvailable) {
       return "Ragazzi, l'agente locale non e attivo. Chiedete all'insegnante di avviare ELAB Compile Agent.";
@@ -853,15 +880,15 @@ export default function CompileUploadButton({
     padding: compact ? '8px 12px' : '10px 18px',
     border: 'none',
     borderRadius: 6,
-    background: disabled
+    background: effectiveDisabled
       ? 'var(--color-muted, #8c8c8c)'
       : 'var(--color-accent, #4A7A25)',
     color: 'var(--color-text-inverse, #ffffff)',
     fontFamily: 'var(--font-sans, "Open Sans", sans-serif)',
     fontWeight: 700,
     fontSize: 14,
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.65 : 1,
+    cursor: effectiveDisabled ? 'not-allowed' : 'pointer',
+    opacity: effectiveDisabled ? 0.65 : 1,
     transition: 'background 0.18s ease, opacity 0.18s ease',
   };
 
@@ -906,11 +933,8 @@ export default function CompileUploadButton({
     return "Compilazione completata. Collegate il Nano R4 via USB per caricare sulla scheda.";
   })();
 
-  // iter 88 UX-6 — when uploadState prop is supplied, surface a richer
-  // 6-state visual via CSS module class + override tooltip + aria-live.
-  // Otherwise preserve iter 69/74/76/77 inline tooltip + style behavior.
-  const hasUploadStateOverride =
-    typeof uploadState === 'string' && uploadState.length > 0;
+  // iter 88 UX-6 — surface the richer 6-state visual when `uploadState` is set
+  // (`hasUploadStateOverride` is computed up-front beside `effectiveDisabled`).
   const uploadStateLabels = hasUploadStateOverride
     ? getUploadStateLabels(uploadState)
     : null;
@@ -930,7 +954,7 @@ export default function CompileUploadButton({
         aria-disabled={
           (hasUploadStateOverride
             ? uploadState === UPLOAD_STATES.IDLE
-            : disabled) || undefined
+            : interactionDisabled) || undefined
         }
         aria-busy={
           (hasUploadStateOverride
@@ -939,12 +963,7 @@ export default function CompileUploadButton({
         }
         title={effectiveTooltip}
         onClick={enableDemoMode ? handleDemoClick : handleClick}
-        disabled={
-          hasUploadStateOverride
-            ? uploadState === UPLOAD_STATES.IDLE
-              || uploadState === UPLOAD_STATES.UPLOADING
-            : (enableDemoMode ? (uploading || !sketchCode) : disabled)
-        }
+        disabled={effectiveDisabled}
         style={buttonStyle}
         className={uploadStateClass}
         data-elab-component="compile-upload-button"

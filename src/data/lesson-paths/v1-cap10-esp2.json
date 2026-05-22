@@ -84,8 +84,8 @@
   ],
   "next_experiment": {
     "id": "v1-cap10-esp3",
-    "title": "Esperimento 3: tre fotoresistori controllano un LED RGB",
-    "preview": "Tre fotoresistenze per tre colori: un arcobaleno che risponde alla luce!"
+    "title": "3 LDR controllano RGB",
+    "preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.85: 3 LDR controllano RGB."
   },
   "phases": [
     {
@@ -112,8 +112,8 @@
       ],
       "auto_action": "load_experiment",
       "build_circuit": {
-        "description": "Montate il circuito LDR + LED blu",
-        "button_label": "Montate il circuito per me",
+        "description": "Ragazzi, costruite il circuito di LED diverso colore con LDR seguendo Vol.1 pag.84.",
+        "button_label": "Mostrate il circuito passo passo",
         "intent": {
           "components": [
             {
@@ -127,11 +127,6 @@
             {
               "type": "photo-resistor",
               "id": "ldr1"
-            },
-            {
-              "type": "resistor",
-              "id": "r1",
-              "value": 220
             },
             {
               "type": "led",
@@ -151,18 +146,13 @@
               "color": "red"
             },
             {
-              "from": "bb1:a6",
-              "to": "bb1:a7",
+              "from": "bb1:a8",
+              "to": "bb1:a9",
               "color": "yellow"
             },
             {
-              "from": "bb1:a9",
-              "to": "bb1:a10",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:a11",
-              "to": "bb1:bus-top-minus-11",
+              "from": "bb1:a10",
+              "to": "bb1:bus-top-minus-10",
               "color": "black"
             },
             {
@@ -241,7 +231,7 @@
         "soglia diversa per colore LED con LDR",
         "confronto sensibilità"
       ],
-      "next_preview": "La prossima volta: TRE fotoresistenze controllano i TRE colori del LED RGB!"
+      "next_preview": "Ragazzi, il prossimo passaggio continua l'arco del Volume 1 a pag.85: 3 LDR controllano RGB."
     }
   ],
   "assessment_invisible": [
@@ -256,5 +246,16 @@
     ],
     "next_suggested": "v1-cap10-esp3",
     "resume_message": "L'ultima volta avete scoperto che il blu è più esigente! Ora: 3 fotoresistenze per 3 colori."
+  },
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "book_reference": {
+    "volume": 1,
+    "page": 84,
+    "label": "Vol.1 pag.84"
   }
 }
