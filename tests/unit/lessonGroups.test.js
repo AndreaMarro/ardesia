@@ -1,6 +1,6 @@
 /**
  * lessonGroups.test.js — Test per lesson-groups.js
- * Verifica struttura 24 lezioni, helper functions, copertura esperimenti
+ * Verifica struttura 23 lezioni, helper functions, copertura esperimenti
  */
 import { describe, it, expect } from 'vitest';
 import LESSON_GROUPS, {
@@ -19,8 +19,8 @@ describe('LESSON_GROUPS — struttura base', () => {
     expect(entries.length).toBeGreaterThan(0);
   });
 
-  it('contiene esattamente 24 lezioni', () => {
-    expect(entries.length).toBe(24);
+  it('contiene esattamente 23 lezioni', () => {
+    expect(entries.length).toBe(23);
   });
 
   it('ogni lessonId inizia con v1-, v2- o v3-', () => {
@@ -89,9 +89,9 @@ describe('LESSON_GROUPS — struttura base', () => {
     expect(unique.size).toBe(allExpIds.length);
   });
 
-  it('contiene esattamente 79 esperimenti totali', () => {
+  it('contiene esattamente 88 esperimenti totali', () => {
     const allExpIds = entries.flatMap(([, l]) => l.experiments);
-    expect(allExpIds.length).toBe(79);
+    expect(allExpIds.length).toBe(88);
   });
 });
 
@@ -108,9 +108,9 @@ describe('LESSON_GROUPS — distribuzione volumi', () => {
     expect(v2.length).toBe(9);
   });
 
-  it('Volume 3 ha 5 lezioni', () => {
+  it('Volume 3 ha 4 lezioni', () => {
     const v3 = entries.filter(([, l]) => l.volume === 3);
-    expect(v3.length).toBe(5);
+    expect(v3.length).toBe(4);
   });
 
   it('Volume 1 contiene 38 esperimenti', () => {
@@ -123,9 +123,9 @@ describe('LESSON_GROUPS — distribuzione volumi', () => {
     expect(v2Exps.length).toBe(27);
   });
 
-  it('Volume 3 contiene 14 esperimenti', () => {
+  it('Volume 3 contiene 23 esperimenti', () => {
     const v3Exps = entries.filter(([, l]) => l.volume === 3).flatMap(([, l]) => l.experiments);
-    expect(v3Exps.length).toBe(14);
+    expect(v3Exps.length).toBe(23);
   });
 
   it('experiment IDs del Volume 1 iniziano con v1-', () => {
@@ -166,7 +166,7 @@ describe('findLessonForExperiment', () => {
   it('trova la lezione per un esperimento Vol3', () => {
     const result = findLessonForExperiment('v3-cap5-esp1');
     expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-primi-passi');
+    expect(result.lessonId).toBe('v3-cap5-blink');
     expect(result.lesson.volume).toBe(3);
   });
 
@@ -213,9 +213,9 @@ describe('getLessonsForVolume', () => {
     expect(result.length).toBe(9);
   });
 
-  it('ritorna 5 lezioni per Volume 3', () => {
+  it('ritorna 4 lezioni per Volume 3', () => {
     const result = getLessonsForVolume(3);
-    expect(result.length).toBe(5);
+    expect(result.length).toBe(4);
   });
 
   it('lezioni ordinate per chapter crescente', () => {
@@ -234,8 +234,8 @@ describe('getLessonsForVolume', () => {
 });
 
 describe('getLessonCount', () => {
-  it('ritorna 24', () => {
-    expect(getLessonCount()).toBe(24);
+  it('ritorna 23', () => {
+    expect(getLessonCount()).toBe(23);
   });
 
   it('ritorna un numero', () => {

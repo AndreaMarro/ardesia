@@ -478,4 +478,3 @@ Known gaps:
 
 - Exact producer implementation for screenshot/OCR and audio depends on current capture components and should be scoped after locating the owning files.
 - Production E2E may remain blocked by auth/licence; do not fake success.
-

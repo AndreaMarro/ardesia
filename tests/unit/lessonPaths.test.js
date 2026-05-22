@@ -110,7 +110,7 @@ describe('lessonPaths', () => {
     });
 
     it('Vol3 lesson has correct structure', () => {
-      const lesson = getLessonPath('v3-cap6-semaforo');
+      const lesson = getLessonPath('v3-cap6-esp5');
       if (lesson) {
         expect(lesson.phases).toHaveLength(5);
         expect(lesson.title).toBeTruthy();

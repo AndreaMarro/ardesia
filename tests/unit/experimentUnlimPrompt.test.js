@@ -14,8 +14,8 @@ const ALL = [
 ];
 
 describe('unlimPrompt — all experiments', () => {
-  it('has 79 total experiments', () => {
-    expect(ALL.length).toBe(79);
+  it('has 88 total experiments', () => {
+    expect(ALL.length).toBe(88);
   });
 
   for (const exp of ALL) {

@@ -31,8 +31,9 @@ const SOURCES = FILES.map((f) => ({ path: f, text: readFileSync(f, 'utf8') }));
 
 // Extract unlimPrompt strings via String.matchAll (no exec / no shell).
 function extractUnlimPrompts(text) {
-  // Match `unlimPrompt: "<content>"` allowing escaped quotes inside content.
-  const pattern = /unlimPrompt:\s*"((?:[^"\\]|\\.)*)"/g;
+  // Match both JS object style `unlimPrompt: "..."` and JSON style
+  // `"unlimPrompt": "..."`, allowing escaped quotes inside content.
+  const pattern = /"?unlimPrompt"?:\s*"((?:[^"\\]|\\.)*)"/g;
   const out = [];
   for (const match of text.matchAll(pattern)) {
     out.push(match[1]);

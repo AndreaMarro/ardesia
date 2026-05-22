@@ -1,5 +1,5 @@
 /**
- * Experiment Data Integrity — Comprehensive verification of ALL 79 experiments (EPIC 1 A4.1c — 2 Vol3 duplicate-id consolidated)
+ * Experiment Data Integrity — Comprehensive verification of ALL 88 experiments
  * Verifies counts, uniqueness, required fields, components, lesson groups,
  * volume references, difficulty ranges, and simulation modes.
  * Target: ~300 test cases
@@ -42,12 +42,12 @@ describe('1. Count Integrity', () => {
     expect(vol2Experiments.length).toBe(27);
   });
 
-  test('Volume 3 has exactly 14 experiments', () => {
-    expect(vol3Experiments.length).toBe(14);
+  test('Volume 3 has exactly 23 experiments', () => {
+    expect(vol3Experiments.length).toBe(23);
   });
 
-  test('Total experiments is 38 + 27 + 14 = 79', () => {
-    expect(allExperiments.length).toBe(79);
+  test('Total experiments is 38 + 27 + 23 = 88', () => {
+    expect(allExperiments.length).toBe(88);
   });
 
   test('Sum of volumes equals total', () => {
@@ -146,8 +146,8 @@ describe('4. Component Validity — one test per experiment', () => {
 // ═════════════════════════════════════════════════════════════════════════════
 
 describe('5. Lesson Group Coverage', () => {
-  test('There are exactly 24 lesson groups', () => {
-    expect(lessonGroupEntries.length).toBe(24);
+  test('There are exactly 23 lesson groups', () => {
+    expect(lessonGroupEntries.length).toBe(23);
   });
 
   test('Every experiment belongs to at least one lesson group', () => {
@@ -169,8 +169,8 @@ describe('5. Lesson Group Coverage', () => {
     }
   });
 
-  test('Lesson group experiment IDs total matches 79', () => {
-    expect(lessonGroupExperimentIds.size).toBe(79);
+  test('Lesson group experiment IDs total matches 88', () => {
+    expect(lessonGroupExperimentIds.size).toBe(88);
   });
 
   test('Every lesson group experiment ID corresponds to a real experiment', () => {
@@ -212,8 +212,8 @@ describe('7. Lesson Path Existence — sample of 10 experiments', () => {
     'v2-cap8-esp2',   // transistor
     'v2-cap12-esp1',  // robot segui luce
     'v3-cap5-esp1',   // primi passi Arduino
-    'v3-cap6-semaforo', // semaforo
-    'v3-cap6-morse',  // SOS in codice Morse
+    'v3-cap6-esp5',   // semaforo
+    'v3-cap8-esp6',   // barra progressiva LED
   ];
 
   sampleIds.forEach(id => {
@@ -242,8 +242,8 @@ describe('8. Cross-Reference Consistency — 10 sample experiments', () => {
     { id: 'v2-cap7-esp1', expectedVol: 2 },
     { id: 'v2-cap10-esp4', expectedVol: 2 },
     { id: 'v3-cap5-esp2', expectedVol: 3 },
-    { id: 'v3-cap6-morse', expectedVol: 3 },
-    { id: 'v3-cap8-esp3', expectedVol: 3 },
+    { id: 'v3-cap6-esp5', expectedVol: 3 },
+    { id: 'v3-cap8-esp6', expectedVol: 3 },
     { id: 'v3-cap6-esp4', expectedVol: 3 },
   ];
 
@@ -336,11 +336,11 @@ describe('10. SimulationMode Valid', () => {
     });
   });
 
-  test('Circuit mode count (65) + AVR mode count (14) = 79', () => {
+  test('Circuit mode count (65) + AVR mode count (23) = 88', () => {
     const circuitCount = allExperiments.filter(e => e.simulationMode === 'circuit').length;
     const avrCount = allExperiments.filter(e => e.simulationMode === 'avr').length;
     expect(circuitCount).toBe(65);
-    expect(avrCount).toBe(14);
-    expect(circuitCount + avrCount).toBe(79);
+    expect(avrCount).toBe(23);
+    expect(circuitCount + avrCount).toBe(88);
   });
 });

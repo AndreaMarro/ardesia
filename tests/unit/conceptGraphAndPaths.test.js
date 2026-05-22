@@ -315,8 +315,8 @@ describe('lesson-paths', () => {
       expect(path).toHaveProperty('experiment_id', 'v2-cap7-esp1');
     });
 
-    it('returns data for v3-cap6-semaforo', () => {
-      const path = getLessonPath('v3-cap6-semaforo');
+    it('returns data for v3-cap6-esp5', () => {
+      const path = getLessonPath('v3-cap6-esp5');
       expect(path).not.toBeNull();
     });
 
@@ -373,7 +373,7 @@ describe('lesson-paths', () => {
   // -- Lesson path structure --
   describe('lesson path structure', () => {
     it('has experiment_id field matching the key', () => {
-      for (const id of ['v1-cap6-esp1', 'v2-cap6-esp1', 'v3-cap6-semaforo']) {
+      for (const id of ['v1-cap6-esp1', 'v2-cap6-esp1', 'v3-cap6-esp5']) {
         const path = getLessonPath(id);
         expect(path.experiment_id).toBe(id);
       }
@@ -480,7 +480,7 @@ describe('lesson-paths', () => {
     });
 
     it('sample Vol3 experiments have lesson paths', () => {
-      const v3Sample = ['v3-cap6-semaforo', 'v3-cap8-esp3', 'v3-cap6-morse', 'v3-cap7-esp6'];
+      const v3Sample = ['v3-cap6-esp5', 'v3-cap8-esp3', 'v3-cap6-esp8', 'v3-cap7-esp6'];
       for (const id of v3Sample) {
         expect(hasLessonPath(id)).toBe(true);
       }
@@ -611,7 +611,7 @@ describe('cross-reference', () => {
   });
 
   it('lesson path volume field matches experiment ID prefix', () => {
-    const samples = ['v1-cap6-esp1', 'v2-cap6-esp1', 'v3-cap6-semaforo'];
+    const samples = ['v1-cap6-esp1', 'v2-cap6-esp1', 'v3-cap6-esp5'];
     for (const id of samples) {
       const path = getLessonPath(id);
       if (path) {

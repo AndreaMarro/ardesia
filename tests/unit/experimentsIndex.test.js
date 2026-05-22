@@ -22,8 +22,8 @@ describe('experimentsIndex', () => {
       expect(ALL_EXPERIMENTS.length).toBeGreaterThan(78);
     });
 
-    it('total >= 79 experiments across 3 volumes', () => {
-      expect(getTotalExperiments()).toBeGreaterThanOrEqual(79);
+    it('total >= 88 experiments across 3 volumes', () => {
+      expect(getTotalExperiments()).toBeGreaterThanOrEqual(88);
     });
 
     it('every experiment has id, title, chapter', () => {
@@ -53,8 +53,8 @@ describe('experimentsIndex', () => {
       expect(EXPERIMENTS_VOL2.experiments.length).toBe(27);
     });
 
-    it('Vol3 has >= 14 experiments', () => {
-      expect(EXPERIMENTS_VOL3.experiments.length).toBeGreaterThanOrEqual(14);
+    it('Vol3 has >= 23 experiments', () => {
+      expect(EXPERIMENTS_VOL3.experiments.length).toBeGreaterThanOrEqual(23);
     });
   });
 
@@ -75,7 +75,7 @@ describe('experimentsIndex', () => {
     });
 
     it('finds Vol3 experiment', () => {
-      const exp = findExperimentById('v3-cap6-semaforo');
+      const exp = findExperimentById('v3-cap6-esp5');
       expect(exp).not.toBeNull();
     });
   });
@@ -112,7 +112,7 @@ describe('experimentsIndex', () => {
   describe('default export (getStats)', () => {
     it('getStats returns correct totals', () => {
       const stats = experimentsIndex.getStats();
-      expect(stats.total).toBeGreaterThanOrEqual(79);
+      expect(stats.total).toBeGreaterThanOrEqual(88);
       expect(stats.vol1).toBe(38);
       expect(stats.vol2).toBe(27);
     });

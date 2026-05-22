@@ -105,8 +105,8 @@ describe('Parita Volumi Originali <-> App', () => {
       expect(VOL3_TEXT.toLowerCase()).toContain('servo');
     });
 
-    it('Vol3 app has >= 14 experiments', () => {
-      expect(EXPERIMENTS_VOL3.experiments.length).toBeGreaterThanOrEqual(14);
+    it('Vol3 app has >= 23 experiments', () => {
+      expect(EXPERIMENTS_VOL3.experiments.length).toBeGreaterThanOrEqual(23);
     });
   });
 
@@ -127,8 +127,8 @@ describe('Parita Volumi Originali <-> App', () => {
       expect(withResistor.length).toBeGreaterThan(15);
     });
 
-    it('total experiments across all volumes >= 79', () => {
-      expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(79);
+    it('total experiments across all volumes >= 88', () => {
+      expect(ALL_EXPERIMENTS.length).toBeGreaterThanOrEqual(88);
     });
 
     it('every experiment has a title', () => {

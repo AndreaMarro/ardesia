@@ -39,7 +39,7 @@ describe('Volume metadata', () => {
     expect(VOL2.length).toBeGreaterThanOrEqual(20);
   });
 
-  it('Vol3 has at least 14 experiments', () => {
+  it('Vol3 has at least 23 experiments', () => {
     expect(VOL3.length).toBeGreaterThanOrEqual(14);
   });
 

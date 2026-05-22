@@ -117,9 +117,9 @@ describe('VOLUME_REFERENCES — page numbers', () => {
     });
   });
 
-  it('Vol3 bookPage within 1–100', () => {
+  it('Vol3 bookPage within 1-140', () => {
     ALL_REFS.filter(([, r]) => r.volume === 3).forEach(([id, ref]) => {
-      expect(ref.bookPage, `${id} bookPage out of Vol3 range`).toBeLessThanOrEqual(100);
+      expect(ref.bookPage, `${id} bookPage out of Vol3 range`).toBeLessThanOrEqual(140);
     });
   });
 
@@ -260,7 +260,7 @@ describe('getBookPage', () => {
 
   it('returns page for Vol3 experiment', () => {
     const page = getBookPage('v3-cap8-esp3');
-    expect(page).toBe(85);
+    expect(page).toBe(124);
   });
 });
 
