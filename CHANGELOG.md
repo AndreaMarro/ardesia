@@ -1,3 +1,11 @@
+## [fix(fumetto) — storyline Gemini basata sulla sessione] — 2026-05-22
+
+- `supabase/functions/unlim-fumetto/*`, `supabase/functions/_shared/fumetto-prompt.ts` — nuova Edge Function Gemini dedicata al fumetto: genera parti scritte, quiz, diario e prompt immagini in stile ELAB/Omaric per 8-14 anni usando solo evidence di sessione; se il contesto e scarso deve dichiararlo e non inventare.
+- `src/services/fumettoGeminiService.js`, `src/components/lavagna/LavagnaShell.jsx` — apertura fumetto con raccolta live del contesto UNLIM/simulatore e chiamata asincrona a `unlim-fumetto`; fallback locale resta sobrio e non blocca la classe.
+- `src/services/fumettoService.js`, `src/components/lavagna/SessionReportComic.jsx` — report arricchito da session context reale (esperimento, passo, componenti, blocchi/codice, compilazione, seriale, domande UNLIM). I draft Gemini vengono applicati solo se completi sui 6 ruoli e grounded con `evidenceRefs`; in caso contrario il report locale resta sobrio e dichiara contesto scarso.
+- `src/components/lavagna/SessionReportComic.*`, `src/services/fumettoService.js` — CTA/payload "prossimo esperimento" disabilitati finche `Percorso` resta in standby; niente default a sessioni LED finte quando mancano prove.
+- Test mirati: `fumettoGeminiPrompt`, `fumettoGeminiService`, `fumettoService`, `fumettoService-coverage`, `SessionReportComic` -> 92 passed.
+
 ## [fix(b4-standby) — Percorso in standby e starter Code Kit ripuliti] — 2026-05-22
 
 - `src/components/lavagna/ModalitaSwitch.jsx`, `src/components/lavagna/LavagnaShell.jsx` — `Percorso` temporaneamente rimosso dalla UI e dagli ingressi runtime: stati legacy `percorso`, `libero`, `guida-da-errore` migrano a `Passo Passo`; il tab UNLIM `percorso` non viene piu aperto da cambio modalita/sandbox.

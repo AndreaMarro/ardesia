@@ -448,6 +448,222 @@ describe('fumettoService — Tea iter 70 D', () => {
       expect(model.imageGenerationBriefs[2].prompt).toMatch(/UNLIM canonico Tea/i);
     });
 
+    it('uses live session context as evidence when saved completed experiments are missing', () => {
+      const model = buildSessionReportComicModel({
+        studentAlias: 'Classe Live',
+        startedAt: '2026-05-22T09:00:00.000Z',
+        sessionContext: {
+          currentExperiment: {
+            id: 'v3-cap8-esp3',
+            title: 'Dati sul Monitor Seriale',
+            volume: 3,
+          },
+          buildStep: { current: 4, total: 7, phase: 'verifica' },
+          editorMode: 'scratch',
+          editorVisible: true,
+          compilation: {
+            success: false,
+            errors: ['expected ; before digitalWrite'],
+            provider: 'cloud-renesas',
+          },
+          serial: {
+            lastLines: ['temperatura=23', 'luce=710'],
+            lineCount: 2,
+          },
+          recentErrors: [
+            { type: 'compilation', message: 'expected ; before digitalWrite' },
+          ],
+          circuit: {
+            components: [
+              { type: 'led', id: 'led-1', name: 'LED rosso' },
+              { type: 'resistor', id: 'r1', value: '470 Ohm' },
+              { type: 'breadboard', id: 'bb1' },
+            ],
+          },
+        },
+        messages: [
+          { role: 'user', text: 'UNLIM, perche non compila?' },
+          { role: 'assistant', text: 'Ragazzi, manca un punto e virgola prima di digitalWrite.' },
+        ],
+      });
+
+      expect(model.warnings).not.toContain('empty_session');
+      expect(model.vignettes).toHaveLength(6);
+      expect(model.vignettes.every((slot) => slot.exp?.id === 'v3-cap8-esp3')).toBe(true);
+      expect(model.sessionStoryline.anchors.join(' ')).toMatch(/passo 4\/7/i);
+      expect(model.sessionStoryline.anchors.join(' ')).toMatch(/modalita blocchi|modalità blocchi/i);
+      expect(model.sessionStoryline.anchors.join(' ')).toMatch(/expected ; before digitalWrite/i);
+      expect(model.sessionStoryline.anchors.join(' ')).toMatch(/Serial Monitor.*temperatura=23/i);
+      expect(model.vignettes[2].sessionEvidence).toMatch(/expected ; before digitalWrite/i);
+      expect(model.vignettes[3].sessionEvidence).toMatch(/UNLIM, perche non compila/i);
+    });
+
+    it('anchors image prompts to mode, compile result, serial output and UNLIM questions', () => {
+      const model = buildSessionReportComicModel({
+        experimentsCompleted: [
+          { id: 'v3-cap8-esp3', title: 'Dati sul Monitor Seriale', volume: 3 },
+        ],
+        sessionContext: {
+          editorMode: 'arduino',
+          compilation: { success: true, size: 38120, provider: 'cloud-renesas' },
+          serial: { lastLines: ['OK: lettura seriale stabile'], lineCount: 1 },
+        },
+        messages: [
+          { role: 'user', content: 'UNLIM, cosa significa il valore 710?' },
+        ],
+        componentsUsed: ['Nano R4', 'sensore di luce', 'cavo USB'],
+      });
+
+      const promptText = model.imageGenerationBriefs.map((brief) => brief?.prompt).join(' ');
+      expect(promptText).toMatch(/modalita codice|modalità codice/i);
+      expect(promptText).toMatch(/compilazione riuscita/i);
+      expect(promptText).toMatch(/38120/);
+      expect(promptText).toMatch(/Serial Monitor.*OK: lettura seriale stabile/i);
+      expect(promptText).toMatch(/UNLIM.*valore 710/i);
+      expect(promptText).toMatch(/Nano R4, sensore di luce, cavo USB/i);
+    });
+
+    it('applies a Gemini draft for written panels, quiz, diary and image prompts', () => {
+      const model = buildSessionReportComicModel({
+        experimentsCompleted: [
+          { id: 'v3-cap8-esp3', title: 'Dati sul Monitor Seriale', volume: 3 },
+        ],
+        componentsUsed: ['Nano R4', 'sensore di luce'],
+        sessionContext: {
+          editorMode: 'arduino',
+          compilation: { success: true, size: 38120 },
+          serial: { lastLines: ['valore=710'] },
+        },
+        geminiDraft: {
+          storyline: {
+            problem: 'Capire perche il valore 710 cambia',
+            hypothesis: 'Usare Nano R4 e sensore di luce.',
+            trial: 'Leggere il Serial Monitor.',
+            correction: 'Controllare il valore letto.',
+            result: 'Il valore 710 e stato annotato.',
+            nextChallenge: 'Cambiare luce e confrontare.',
+            contextWarnings: [],
+            evidenceRefs: ['Serial Monitor: valore=710'],
+          },
+          panels: [
+            {
+              role: 'problema',
+              title: 'Il valore misterioso',
+              caption: 'Ragazzi, il sensore ha scritto 710 sul monitor.',
+              evidenceRefs: ['Serial Monitor: valore=710'],
+              balloons: [{ speaker: 'studente', text: 'Abbiamo visto 710 dopo la compilazione riuscita.' }],
+            },
+            { role: 'ipotesi', title: 'Ipotesi', caption: 'Proviamo il sensore di luce.', evidenceRefs: ['componenti: Nano R4, sensore di luce'], balloons: [{ speaker: 'docente', text: 'Ragazzi, osserviamo il sensore di luce.' }] },
+            { role: 'errore', title: 'Controllo', caption: 'Controlliamo il monitor seriale.', evidenceRefs: ['Serial Monitor: valore=710'], balloons: [{ speaker: 'unlim', text: 'Il valore 710 e la prova da annotare.' }] },
+            { role: 'click', title: 'Click', caption: 'Il monitor seriale collega sensore e numero.', evidenceRefs: ['Serial Monitor: valore=710'], balloons: [{ speaker: 'docente', text: 'Ragazzi, quel numero viene dalla lettura.' }] },
+            { role: 'successo', title: 'Risultato', caption: 'Il valore 710 resta sul quaderno.', evidenceRefs: ['Serial Monitor: valore=710'], balloons: [{ speaker: 'studente', text: 'Scriviamo 710 come risultato osservato.' }] },
+            { role: 'ponte', title: 'Ponte', caption: 'Prossima prova: cambiare luce.', evidenceRefs: ['Serial Monitor: valore=710'], balloons: [{ speaker: 'unlim', text: 'Ragazzi, confrontiamo il prossimo valore.' }] },
+          ],
+          imagePrompts: [
+            {
+              role: 'problema',
+              prompt: 'ELAB style, Nano R4 collegata, Serial Monitor con valore 710, sensore di luce visibile.',
+              negativePrompt: 'niente componenti inventati',
+              evidenceRefs: ['Serial Monitor: valore=710', 'componenti: Nano R4, sensore di luce'],
+            },
+            { role: 'ipotesi', prompt: 'ELAB style, Nano R4 e sensore di luce sul banco.', negativePrompt: 'niente componenti inventati', evidenceRefs: ['componenti: Nano R4, sensore di luce'] },
+            { role: 'errore', prompt: 'ELAB style, Serial Monitor con valore 710.', negativePrompt: 'niente componenti inventati', evidenceRefs: ['Serial Monitor: valore=710'] },
+            { role: 'click', prompt: 'ELAB style, collegamento tra sensore e valore 710.', negativePrompt: 'niente componenti inventati', evidenceRefs: ['Serial Monitor: valore=710'] },
+            { role: 'successo', prompt: 'ELAB style, quaderno con valore 710 dal Serial Monitor.', negativePrompt: 'niente componenti inventati', evidenceRefs: ['Serial Monitor: valore=710'] },
+            { role: 'ponte', prompt: 'ELAB style, prossima misura partendo dal valore 710.', negativePrompt: 'niente componenti inventati', evidenceRefs: ['Serial Monitor: valore=710'] },
+          ],
+          quiz: [
+            {
+              question: 'Quale valore abbiamo letto davvero?',
+              options: ['710', '42', 'nessun valore'],
+              correctIndex: 0,
+              explanation: 'Era nella sessione.',
+              evidenceRefs: ['Serial Monitor: valore=710'],
+            },
+            {
+              question: 'Quale scheda era nel kit?',
+              options: ['Nano R4', 'Microbit', 'nessuna scheda'],
+              correctIndex: 0,
+              explanation: 'Era tra i componenti usati.',
+              evidenceRefs: ['componenti: Nano R4, sensore di luce'],
+            },
+            {
+              question: 'Che cosa stavamo osservando?',
+              options: ['sensore di luce', 'motore', 'buzzer'],
+              correctIndex: 0,
+              explanation: 'Il sensore di luce era nella sessione.',
+              evidenceRefs: ['componenti: Nano R4, sensore di luce'],
+            },
+          ],
+          diaryPage: {
+            title: 'Diario del monitor seriale',
+            prompts: ['Ho letto 710', 'Ho usato Nano R4', 'Ho controllato il sensore', 'Prossima prova'],
+            evidenceRefs: ['Serial Monitor: valore=710'],
+          },
+          notesPrompt: 'Spazio appunti Gemini: annotate il valore 710.',
+          notesEvidenceRefs: ['Serial Monitor: valore=710'],
+          exercisePrompts: ['Rileggete il valore 710 sul Serial Monitor.'],
+          exerciseEvidenceRefs: ['Serial Monitor: valore=710'],
+        },
+      });
+
+      expect(model.geminiDraftApplied).toBe(true);
+      expect(model.vignettes[0].narration).toMatch(/710 sul monitor/i);
+      expect(model.vignettes[0].sessionEvidence).toMatch(/compilazione riuscita/i);
+      expect(model.imageGenerationBriefs[0].prompt).toMatch(/Serial Monitor con valore 710/i);
+      expect(model.multipleChoiceQuestions[0].question).toMatch(/valore abbiamo letto/i);
+      expect(model.notesPrompt).toMatch(/Spazio appunti Gemini/i);
+      expect(model.diaryPage.title).toMatch(/monitor seriale/i);
+      expect(model.exercisePrompts[0]).toMatch(/710/i);
+    });
+
+    it('rejects a Gemini draft that adds hardware claims missing from session evidence', () => {
+      const model = buildSessionReportComicModel({
+        experimentsCompleted: [
+          { id: 'v3-cap8-esp3', title: 'Dati sul Monitor Seriale', volume: 3 },
+        ],
+        componentsUsed: ['Nano R4', 'sensore di luce'],
+        geminiDraft: {
+          storyline: { problem: 'Upload reale completato su scheda fisica', contextWarnings: [], evidenceRefs: ['componenti: Nano R4, sensore di luce'] },
+          panels: [
+            {
+              role: 'successo',
+              caption: 'Ragazzi, upload reale completato sulla scheda fisica Nano R4.',
+              evidenceRefs: ['componenti: Nano R4, sensore di luce'],
+              balloons: [{ speaker: 'unlim', text: 'Hardware provato e certificato.' }],
+            },
+          ],
+          imagePrompts: [{ role: 'successo', prompt: 'Nano R4 hardware provato con upload reale.', evidenceRefs: ['componenti: Nano R4, sensore di luce'] }],
+        },
+      });
+
+      expect(model.geminiDraftApplied).toBe(false);
+      expect(model.warnings).toContain('gemini_draft_ungrounded');
+      expect(model.warnings).toContain('claim_hardware_not_in_session');
+      expect(model.vignettes[0].narration).not.toMatch(/upload reale/i);
+    });
+
+    it('declares sparse context instead of inventing a fake session story', () => {
+      const model = buildSessionReportComicModel({
+        studentAlias: 'Classe senza traccia',
+        startedAt: '2026-05-22T09:00:00.000Z',
+      });
+
+      expect(model.warnings).toContain('empty_session');
+      expect(model.warnings).toContain('sparse_session_context');
+      expect(model.sessionStoryline.contextWarnings).toEqual(
+        expect.arrayContaining([
+          expect.stringMatching(/manca esperimento attivo/i),
+          expect.stringMatching(/mancano prove della sessione/i),
+        ])
+      );
+      expect(model.notesPrompt).toMatch(/contesto della sessione e scarso|contesto della sessione è scarso/i);
+      expect(model.multipleChoiceQuestions[0].explanation).toMatch(/senza prove/i);
+      expect(model.diaryPage.prompts.join(' ')).toMatch(/non ha abbastanza prove registrate/i);
+      expect(model.diaryPage.prompts.join(' ')).not.toMatch(/Oggi abbiamo scoperto/i);
+      expect(model.imageGenerationBriefs.filter(Boolean)).toHaveLength(0);
+    });
+
     it('generates a Tea-valid comic payload from a real session, not a static template', () => {
       const payload = generateSessionFumetto({
         session: {
@@ -562,6 +778,11 @@ describe('fumettoService — Tea iter 70 D', () => {
         experimentId: 'v3-extra-simon',
         session: { experimentsCompleted: [] },
       })).toThrow(/invalid experimentId/i);
+    });
+
+    it('generation rejects sparse input instead of defaulting to a fake LED session', () => {
+      expect(() => generateSessionFumetto({ session: { studentAlias: 'Senza dati' } }))
+        .toThrow(/session experiment evidence required/i);
     });
   });
 });

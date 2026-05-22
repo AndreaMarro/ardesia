@@ -43,7 +43,8 @@ import ErrorBoundary from '../common/ErrorBoundary';
 // Sprint S iter 2 Task B — Capitolo lookup service
 import { getCapitolo, listAllCapitoli } from '../../services/percorsoService';
 import { showToast as showToastSync } from '../common/Toast';
-import { startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../../services/unlimContextCollector';
+import { collectFullContext, startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../../services/unlimContextCollector';
+import { generateFumettoDraftWithGemini } from '../../services/fumettoGeminiService';
 // iter 38 Atom A11 + A12 (WebDesigner-1): pre-emptive UX nudges.
 //   - MicPermissionNudge: chiede mic ai docenti PRIMA di entrare in Lavagna
 //     così wake word "Ehi UNLIM" è caldo al primo uso (browser cache grant
@@ -138,7 +139,19 @@ function getFumettoSessionEvidenceScore(session) {
   return (messages * 8) + (errors * 6) + (journey * 5) + (completed * 3) + actions;
 }
 
-function getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId }) {
+function hasMeaningfulFumettoRuntimeEvidence(context) {
+  if (!context || typeof context !== 'object') return false;
+  if (context.compilation || context.serial || context.serialOutput || context.serialMonitor) return true;
+  if (Array.isArray(context.recentErrors) && context.recentErrors.length > 0) return true;
+  if (context.completedExperiments?.total > 0) return true;
+  if (context.currentExperimentAttempts > 0 || context.currentExperimentHintsUsed > 0) return true;
+  if (Array.isArray(context.applicationNarrative) && context.applicationNarrative.length > 0) return true;
+  if (Array.isArray(context.unlimSharedState?.recentEvents) && context.unlimSharedState.recentEvents.length > 0) return true;
+  if (context.buildStep?.current > 1) return true;
+  return false;
+}
+
+function getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId, sessionContext }) {
   const experimentId = currentExperiment?.id || initialExperimentId || getExpFromHash() || 'v1-cap6-esp1';
   const savedSessions = getSavedSessions();
   const matchingSessions = [...savedSessions]
@@ -148,6 +161,8 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
     .map((session, index) => ({ session, index, score: getFumettoSessionEvidenceScore(session) }))
     .sort((a, b) => b.score - a.score || a.index - b.index)[0]?.session
     || null;
+  const savedScore = saved ? getFumettoSessionEvidenceScore(saved) : 0;
+  const hasSessionEvidence = savedScore > 0 || hasMeaningfulFumettoRuntimeEvidence(sessionContext);
   const lessonPath = getLessonPath(experimentId);
   const now = new Date().toISOString();
   const startedAt = saved?.startedAt || saved?.startTime || now;
@@ -173,14 +188,16 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
   const savedCompleted = Array.isArray(saved?.experimentsCompleted)
     ? saved.experimentsCompleted.filter((experiment) => experiment?.id)
     : [];
-  const experimentsCompleted = savedCompleted.length > 0
-    ? [
-        ...savedCompleted,
-        ...(savedCompleted.some((experiment) => experiment.id === experimentId)
-          ? []
-          : [fallbackCompletedExperiment]),
-      ]
-    : [fallbackCompletedExperiment];
+  const experimentsCompleted = !hasSessionEvidence
+    ? []
+    : savedCompleted.length > 0
+      ? [
+          ...savedCompleted,
+          ...(savedCompleted.some((experiment) => experiment.id === experimentId)
+            ? []
+            : [fallbackCompletedExperiment]),
+        ]
+      : [fallbackCompletedExperiment];
   const savedJourney = saved?.studentJourney && typeof saved.studentJourney === 'object'
     ? saved.studentJourney
     : {};
@@ -208,7 +225,7 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
     experimentsCompleted,
     componentsUsed: Array.isArray(saved?.componentsUsed) && saved.componentsUsed.length > 0
       ? saved.componentsUsed
-      : componentsUsed,
+      : (hasSessionEvidence ? componentsUsed : []),
     narrations: {
       ...(saved?.narrations || {}),
       ...(assistantText ? { [experimentId]: assistantText } : {}),
@@ -221,6 +238,8 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
       helpRequestsCount,
     },
     next_experiment: lessonPath?.next_experiment || null,
+    sessionContext: sessionContext || saved?.sessionContext || null,
+    sessionEvidenceLevel: hasSessionEvidence ? 'live_or_saved' : 'sparse',
   };
 }
 const DRAWING_SYNC_ENABLED = import.meta.env.VITE_ENABLE_DRAWING_SYNC === 'true';
@@ -1474,9 +1493,49 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     try {
       ensureUnlimMountNamespace();
       sessionTracker.finaliseSession();
-      const session = getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId });
-      setFumettoSession(session);
-      setToolToast('Fumetto generato dalla sessione. Buon lavoro, Ragazzi.');
+      const sessionContext = collectFullContext();
+      const session = getRuntimeFumettoSession({
+        currentExperiment,
+        experimentName,
+        initialExperimentId,
+        sessionContext,
+      });
+      setFumettoSession({ ...session, fumettoGeminiStatus: 'loading' });
+      setToolToast('Fumetto aperto: UNLIM prepara la storyline dalla sessione.');
+      generateFumettoDraftWithGemini({ session })
+        .then((result) => {
+          if (result.ok && result.draft) {
+            setFumettoSession((current) => current
+              ? {
+                  ...current,
+                  geminiDraft: result.draft,
+                  fumettoGeminiStatus: 'received',
+                  fumettoGeminiMeta: {
+                    provider: result.provider,
+                    model: result.model,
+                    latencyMs: result.latencyMs,
+                  },
+                }
+              : current);
+            return;
+          }
+          setFumettoSession((current) => current
+            ? {
+                ...current,
+                fumettoGeminiStatus: 'deferred',
+                fumettoGeminiError: result.error || 'Gemini fumetto non disponibile',
+              }
+            : current);
+        })
+        .catch((err) => {
+          setFumettoSession((current) => current
+            ? {
+                ...current,
+                fumettoGeminiStatus: 'deferred',
+                fumettoGeminiError: err?.message || 'Gemini fumetto non disponibile',
+              }
+            : current);
+        });
       setTimeout(() => setToolToast(null), 2500);
     } catch (err) {
       logger.warn('[Fumetto] Unable to open report window:', err?.message || err);
