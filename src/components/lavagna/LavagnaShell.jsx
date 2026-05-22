@@ -941,7 +941,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       const api = window.__ELAB_API;
       ensureDefaultExperimentForMode(api);
       setBuildMode('guided');
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('chat');
       manualOverridesRef.current.unlim = true;
       if (api?.setBuildMode) {
@@ -961,7 +961,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       const api = window.__ELAB_API;
       ensureDefaultExperimentForMode(api);
       setBuildMode('complete');
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('chat');
       manualOverridesRef.current.unlim = true;
       if (api?.setBuildMode) {
@@ -984,10 +984,10 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       // preserviamo il circuito: mettiamo il simulatore in sandbox vuota e
       // lasciamo a UNLIM la lettura narrativa/morfica.
       setBuildMode('sandbox');
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('percorso');
       setPickerOpen(false);
-      setCapitoloPickerOpen(true);
+      setCapitoloPickerOpen(false);
       manualOverridesRef.current.unlim = true;
       const api = window.__ELAB_API;
       if (api?.setBuildMode) {
@@ -1036,7 +1036,6 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     if (!hasExperiment && !bentornatiVisible && !pickerOpen && !capitoloPickerOpen && !freeMode) {
       const timer = setTimeout(() => {
         if (modalita === 'percorso') {
-          setCapitoloPickerOpen(true);
           return;
         }
         setPickerOpen(true);

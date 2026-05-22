@@ -80,24 +80,22 @@ import { detectWebUSBCapability } from '../../../../src/services/webUsbDetect.js
 
 const FORBIDDEN_JARGON = /Renesas|ARM\s*Cortex|WebUSB|flasha\b/i;
 
-describe('HomeCompileEntry footer — 88.UX-2 /clarify jargon rewrite', () => {
+describe('HomeCompileEntry shell — 88.UX-2 /clarify jargon rewrite', () => {
   beforeEach(() => {
     cleanup();
   });
 
-  it('T1 — footer no longer contains forbidden technical jargon', () => {
+  it('T1 — compile home visible shell no longer contains forbidden technical jargon', () => {
     const { container } = render(<HomeCompileEntry onBackHome={() => {}} />);
-    const footerText = container.querySelector('footer')?.textContent || '';
-    expect(footerText.length).toBeGreaterThan(0);
-    expect(footerText).not.toMatch(FORBIDDEN_JARGON);
+    const shellText = container.textContent || '';
+    expect(shellText.length).toBeGreaterThan(0);
+    expect(shellText).not.toMatch(FORBIDDEN_JARGON);
   });
 
-  it('T2 — footer mentions Arduino Nano R4 in friendly language', () => {
+  it('T2 — B4 removes the old footer chrome and keeps Nano R4 context in the shell', () => {
     const { container } = render(<HomeCompileEntry onBackHome={() => {}} />);
-    const footerText = container.querySelector('footer')?.textContent || '';
-    expect(footerText).toMatch(/Arduino Nano R4 del kit ELAB/i);
-    expect(footerText).toMatch(/Chrome o Edge/i);
-    expect(footerText).toMatch(/computer, non tablet/i);
+    expect(container.querySelector('footer')).toBeNull();
+    expect(container.textContent || '').toMatch(/Nano R4/i);
   });
 });
 

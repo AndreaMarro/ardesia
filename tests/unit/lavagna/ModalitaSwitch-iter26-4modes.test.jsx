@@ -79,4 +79,25 @@ describe('ModalitaSwitch — 3 modes canonical (Sprint V iter 3)', () => {
     expect(screen.queryByTestId('modalita-btn-libero')).toBeNull();
     expect(screen.queryByText(/guida da errore/i)).toBeNull();
   });
+
+  it('can collapse the large mode switch into a compact restore tab', () => {
+    render(<ModalitaSwitch activeMode="percorso" onModeChange={() => {}} />);
+    fireEvent.click(screen.getByTestId('modalita-switch-collapse'));
+
+    expect(screen.queryByTestId('modalita-switch')).toBeNull();
+    expect(screen.getByTestId('modalita-switch-collapsed')).toHaveTextContent('Percorso');
+    expect(window.localStorage.setItem).toHaveBeenCalledWith('elab-lavagna-modalita-switch-collapsed', '1');
+  });
+
+  it('restores the full mode switch from the compact tab', () => {
+    window.localStorage.getItem.mockImplementation((key) => (
+      key === 'elab-lavagna-modalita-switch-collapsed' ? '1' : null
+    ));
+    render(<ModalitaSwitch activeMode="gia-montato" onModeChange={() => {}} />);
+
+    fireEvent.click(screen.getByTestId('modalita-switch-collapsed'));
+    expect(screen.getByTestId('modalita-switch')).toBeTruthy();
+    expect(screen.getByTestId('modalita-btn-gia-montato')).toHaveAttribute('data-active', 'true');
+    expect(window.localStorage.setItem).toHaveBeenCalledWith('elab-lavagna-modalita-switch-collapsed', '0');
+  });
 });

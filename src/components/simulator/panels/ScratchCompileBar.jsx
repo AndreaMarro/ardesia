@@ -201,8 +201,8 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
         </div>
       )}
       {/* Status + Compile button row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', padding: 'var(--space-1) var(--space-2-5)' }}>
-        <span style={{ flex: 1, fontSize: 14, color: statusColor, fontFamily: "var(--font-mono)" }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', padding: 'var(--space-1) var(--space-2-5)', flexWrap: 'wrap' }}>
+        <span style={{ flex: '1 1 180px', minWidth: 0, fontSize: 14, color: statusColor, fontFamily: "var(--font-mono)" }}>
           {statusText}
         </span>
         {/* iter 69 A3 — physical kit upload (only when sketchCode prop wired)
@@ -228,6 +228,7 @@ const ScratchCompileBar = React.memo(function ScratchCompileBar({
             padding: '6px 16px', border: 'none', borderRadius: 4,
             background: 'var(--color-accent)', color: 'var(--color-text-inverse)',
             fontWeight: 700, fontSize: 14, cursor: 'pointer', minHeight: 44,
+            minWidth: 92, whiteSpace: 'nowrap', flexShrink: 0,
             opacity: compilationStatus === 'compiling' ? 0.5 : 1,
             fontFamily: "var(--font-sans)",
           }}

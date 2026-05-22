@@ -477,7 +477,6 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
             onClick={() => {
               const api = typeof window !== 'undefined' && window.__ELAB_API;
               if (api?.loadNextExperiment) api.loadNextExperiment();
-              else if (api?.openExperimentPicker) api.openExperimentPicker();
             }}
           >
             Prossimo esperimento →
@@ -628,7 +627,6 @@ export default function UnlimAdapter({ visible, onClose, onSpeakingChange, activ
     const prompt = String(chat.input || '').trim();
     if (!prompt || chat.isLoading) return;
     chat.setInput('');
-    setActiveTab('chat');
     chat.handleSend?.(prompt);
   }, [chat]);
 

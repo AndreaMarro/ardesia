@@ -193,6 +193,25 @@ describe('CompileUploadButton — rendering', () => {
     expect(btn.style.minWidth).toBe('44px');
   });
 
+  it('B4 hotfix: keeps compact demo-mode CTA readable without clipping', async () => {
+    render(
+      <CompileUploadButton
+        sketchCode="void setup(){}void loop(){}"
+        enableDemoMode
+        compact
+        fetchImpl={makeFetchOk()}
+      />,
+    );
+
+    const btn = await screen.findByRole('button', {
+      name: /Carica il programma sul kit fisico Nano R4/i,
+    });
+
+    expect(btn.style.whiteSpace).toBe('nowrap');
+    expect(btn.style.maxWidth).toBe('100%');
+    expect(btn.style.flexShrink).toBe('0');
+  });
+
   it('exposes ARIA attributes (label + aria-disabled when offline)', async () => {
     render(
       <CompileUploadButton

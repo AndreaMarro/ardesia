@@ -19,6 +19,13 @@
   font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
 }
 
+.root[data-elab-fullscreen='true'] {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: var(--elab-bg, #F0F4F8);
+}
+
 /* Iter 97 atom 1 (Andrea iter 97 PM screenshot feedback "qua è preso troppo
    spazio"): reduce vertical header footprint. Original padding 16/24/12px +
    2-row grid title+subtitle + 2px navy border = ~70-80px vertical. New:
@@ -26,13 +33,13 @@
    muted = ~46px vertical (-30px saving). Mobile breakpoint preserved. */
 .header {
   flex: 0 0 auto;
-  padding: 8px 16px 6px;
+  padding: 4px 12px 3px;
   background: var(--elab-card-bg, #FFFFFF);
   border-bottom: 1px solid var(--elab-navy, #1E4D8C);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
-  gap: 2px 12px;
+  gap: 0 10px;
   align-items: center;
 }
 
@@ -40,15 +47,15 @@
   grid-column: 1;
   grid-row: 1 / span 2;
   align-self: center;
-  min-width: 88px;
-  min-height: 44px;
-  padding: 8px 14px;
+  min-width: 72px;
+  min-height: 34px;
+  padding: 5px 10px;
   background: var(--elab-card-bg, #FFFFFF);
   border: 2px solid var(--elab-navy, #1E4D8C);
   border-radius: 8px;
   color: var(--elab-navy, #1E4D8C);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: background 120ms ease, transform 120ms ease;
 }
@@ -69,6 +76,7 @@
   margin: 0;
   font-family: 'Oswald', sans-serif;
   font-size: 18px;
+  line-height: 1;
   font-weight: 600;
   color: var(--elab-navy, #1E4D8C);
   letter-spacing: 0.2px;
@@ -81,8 +89,8 @@
   grid-column: 2;
   grid-row: 2;
   margin: 0;
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 11px;
+  line-height: 1.15;
   color: var(--elab-text-muted, #5A6B7E);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -94,7 +102,7 @@
    itself remains intact. Border 1px preserved. */
 .bannerSection {
   flex: 0 0 auto;
-  padding: 6px 16px;
+  padding: 5px 12px;
   background: var(--elab-card-bg, #FFFFFF);
   border-bottom: 1px solid var(--elab-border, #E0E6ED);
 }
@@ -117,8 +125,8 @@
      l'editor resta ampio grazie a minmax(360px,1fr) sulla riga 1
      (iter-102 "allarga l'editor" preservato dall'app-shell iter-103). */
   grid-auto-rows: max-content;
-  gap: 16px;
-  padding: 16px;
+  gap: 8px;
+  padding: 8px 12px;
   /* min-height:0 → l'editorGrid può flex-shrink fino allo spazio
      residuo del root; overflow-y:auto → l'area editor scrolla da sola
      (header/banner/footer restano fissi, app-shell). */
@@ -129,9 +137,9 @@
 .editorPanel {
   background: var(--elab-card-bg, #FFFFFF);
   border: 1px solid var(--elab-border, #E0E6ED);
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  min-height: 360px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
@@ -142,10 +150,39 @@
 .tabBar {
   display: flex;
   flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
   background: var(--elab-card-bg, #FFFFFF);
   border-bottom: 1px solid var(--elab-border, #E0E6ED);
-  padding: 0 8px;
+  min-height: 42px;
+  padding: 0 6px;
   gap: 4px;
+}
+
+.fullscreenBtn {
+  flex: 0 0 auto;
+  min-height: 38px;
+  min-width: 38px;
+  padding: 6px 10px;
+  border: 0;
+  border-left: 1px solid var(--elab-border, #E0E6ED);
+  background: transparent;
+  color: var(--elab-navy, #1E4D8C);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fullscreenBtn:hover,
+.fullscreenBtn:focus-visible {
+  background: rgba(30, 77, 140, 0.08);
+  outline: none;
 }
 
 .tabButton {
@@ -207,7 +244,7 @@
 .compileBarPanel {
   background: var(--elab-card-bg, #FFFFFF);
   border: 1px solid var(--elab-border, #E0E6ED);
-  border-radius: 12px;
+  border-radius: 8px;
   /* iter-103: overflow-y auto — se gli errori di compilazione si espandono
      oltre l'altezza del rail (schermi bassi / zoom 200%), scrolla invece
      di tagliare la barra Compila o la mascotte. */
@@ -224,10 +261,67 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  min-width: 0;
 }
 
 .virtualSerialSection > * {
   flex: 1 1 auto;
+}
+
+.serialRailBtn {
+  flex: 0 0 auto;
+  min-width: 44px;
+  min-height: 42px;
+  border: 1px solid var(--elab-navy, #1E4D8C);
+  border-radius: 8px;
+  background: var(--elab-navy, #1E4D8C);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.serialRailBtn:focus-visible {
+  outline: 3px solid var(--elab-orange, #E8941C);
+  outline-offset: 2px;
+}
+
+.serialDrawer {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.serialDrawer > * {
+  flex: 1 1 auto;
+}
+
+.root[data-elab-fullscreen='true'] .header,
+.root[data-elab-fullscreen='true'] .bannerSection,
+.root[data-elab-fullscreen='true'] .compileBarPanel,
+.root[data-elab-fullscreen='true'] .virtualSerialSection {
+  display: none;
+}
+
+.root[data-elab-fullscreen='true'] .editorGrid {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "editor";
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.root[data-elab-fullscreen='true'] .editorPanel {
+  border: 0;
+  border-radius: 0;
+  min-height: 0;
 }
 
 .footer {
@@ -272,12 +366,11 @@
      → Monitor Seriale riproporzionato (~220-260px, non più banda).
      App-shell height/overflow è già nel .root base. */
   .editorGrid {
-    grid-template-columns: 1fr 340px;
-    grid-template-rows: minmax(360px, 1fr) clamp(200px, 22vh, 260px);
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 300px) 46px;
+    grid-template-rows: minmax(0, 1fr);
     grid-template-areas:
-      "editor rail"
-      "serial rail";
-    padding: 16px 24px;
+      "editor rail serial";
+    padding: 8px 14px;
   }
   .editorPanel {
     grid-area: editor;
@@ -288,15 +381,45 @@
   .virtualSerialSection {
     grid-area: serial;
   }
+  .serialRailBtn {
+    height: 100%;
+    width: 46px;
+    padding: 10px 0;
+    border-radius: 8px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .serialRailBtn svg {
+    transform: rotate(90deg);
+  }
+  .serialDrawer {
+    height: 100%;
+    min-width: 300px;
+  }
+  .root[data-elab-serial-expanded='true'] .editorGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 280px) minmax(300px, 340px);
+  }
+  .root[data-elab-serial-expanded='true'] .virtualSerialSection {
+    gap: 8px;
+  }
+  .root[data-elab-serial-expanded='true'] .serialRailBtn {
+    height: 44px;
+    width: 100%;
+    padding: 0 12px;
+    writing-mode: horizontal-tb;
+  }
+  .root[data-elab-serial-expanded='true'] .serialRailBtn svg {
+    transform: none;
+  }
 }
 
 /* LIM-mode ≥1280px — bigger typography for fondo-aula visibility */
 @media (min-width: 1280px) {
   .title {
-    font-size: 26px;
+    font-size: 22px;
   }
   .subtitle {
-    font-size: 16px;
+    font-size: 12px;
   }
   .footerNote {
     font-size: 14px;
@@ -306,7 +429,7 @@
 /* Mobile <768 — stacked layout with reduced padding */
 @media (max-width: 767px) {
   .header {
-    padding: 12px 16px 8px;
+    padding: 8px 12px 6px;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
@@ -318,15 +441,27 @@
   .title {
     grid-column: 1;
     grid-row: 2;
-    font-size: 18px;
+    font-size: 17px;
   }
   .subtitle {
     grid-column: 1;
     grid-row: 3;
-    font-size: 13px;
+    font-size: 12px;
   }
   .editorGrid {
-    padding: 12px 16px;
+    padding: 8px 10px;
+  }
+  .virtualSerialSection {
+    gap: 8px;
+  }
+  .serialRailBtn {
+    width: 100%;
+  }
+  .serialDrawer {
+    min-height: 220px;
+  }
+  .fullscreenBtn span {
+    display: none;
   }
 }
 

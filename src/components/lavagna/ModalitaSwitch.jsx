@@ -25,6 +25,15 @@ import css from './ModalitaSwitch.module.css';
 import { getModalitaMorphicCue } from '../../services/percorsoMorphicAdapter.js';
 
 export const MODALITA = ['percorso', 'passo-passo', 'gia-montato'];
+const COLLAPSED_KEY = 'elab-lavagna-modalita-switch-collapsed';
+
+function readCollapsedPreference() {
+  try { return localStorage.getItem(COLLAPSED_KEY) === '1'; } catch { return false; }
+}
+
+function writeCollapsedPreference(value) {
+  try { localStorage.setItem(COLLAPSED_KEY, value ? '1' : '0'); } catch { /* noop */ }
+}
 
 function BookIcon() {
   return (
@@ -100,10 +109,20 @@ export default function ModalitaSwitch({
   availableModes,
   sessionState,
 }) {
+  const [collapsed, setCollapsed] = React.useState(readCollapsedPreference);
+
   const handleClick = (mode) => {
     if (typeof onModeChange === 'function') {
       onModeChange(mode);
     }
+  };
+
+  const toggleCollapsed = () => {
+    setCollapsed((current) => {
+      const next = !current;
+      writeCollapsedPreference(next);
+      return next;
+    });
   };
 
   const morphicCue = React.useMemo(
@@ -117,6 +136,25 @@ export default function ModalitaSwitch({
   const visibleModes = Array.isArray(availableModes) && availableModes.length > 0
     ? Array.from(new Set(['percorso', ...availableModes.filter((m) => MODALITA.includes(m))]))
     : MODALITA;
+  const activeMeta = MODE_META[activeMode] || MODE_META.percorso;
+  const ActiveIcon = activeMeta.Icon;
+
+  if (collapsed) {
+    return (
+      <button
+        type="button"
+        className={css.collapsedSwitch}
+        onClick={toggleCollapsed}
+        aria-label={`Mostra modalità lavagna. Attiva: ${activeMeta.label}`}
+        aria-expanded="false"
+        data-testid="modalita-switch-collapsed"
+      >
+        <span className={css.modeIcon} aria-hidden="true"><ActiveIcon /></span>
+        <span className={css.collapsedLabel}>{activeMeta.label}</span>
+        <span className={css.chevron} aria-hidden="true">▾</span>
+      </button>
+    );
+  }
 
   return (
     <div
@@ -127,6 +165,16 @@ export default function ModalitaSwitch({
       data-stato-sessione={morphicCue.sessionState}
       data-morphic-profile={morphicCue.teacherProfile}
     >
+      <button
+        type="button"
+        className={css.collapseBtn}
+        onClick={toggleCollapsed}
+        aria-label="Nascondi modalità lavagna"
+        aria-expanded="true"
+        data-testid="modalita-switch-collapse"
+      >
+        −
+      </button>
       {visibleModes.map((mode) => {
         const meta = MODE_META[mode];
         if (!meta) return null;

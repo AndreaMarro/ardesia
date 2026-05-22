@@ -1,3 +1,12 @@
+## [fix(sprint-b4) — P0 compile-home Code Kit e Percorso non bloccante] — 2026-05-22
+
+- `src/components/home/HomeCompileEntry.jsx`, `src/components/home/HomeCompileEntry.module.css` — layout `#compile-home` piu vicino al riferimento Code Kit: header e banner compressi in alto, editor blocchi/C++ dominante, fullscreen editor, monitor seriale chiuso di default dietro linguetta laterale ed espandibile.
+- `src/components/HomePage/WebUsbBanner.jsx`, `src/components/HomePage/CompileAgentBanner.module.css` — variante compatta del banner WebUSB quando viene renderizzato dentro il compilatore.
+- `src/components/lavagna/ModalitaSwitch.jsx`, `src/components/lavagna/ModalitaSwitch.module.css` — barra `Percorso / Passo Passo / Gia Montato` piu bassa e nascondibile con preferenza locale.
+- `src/components/lavagna/LavagnaShell.jsx`, `src/components/lavagna/UnlimAdapter.jsx` — cambiare modalita non apre piu automaticamente UNLIM o picker esperimenti; il form UNLIM in Percorso resta scrivibile dopo invio e l'ultima slide non apre l'elenco esperimenti come fallback.
+- `src/components/simulator/canvas/DrawingOverlay.jsx` — toolbar colori/penna visibile in modalita disegno e riposizionabile trascinando la barra.
+- Test: CoV mirato x3 sui 12 file UI/DFU toccati → 101 passed | 1 todo; build produzione passata. Baseline completa locale bloccata da ambiente (`listen EPERM 127.0.0.1` nei test HTTP agent), riprodotto con server Node minimale.
+
 ## [fix(iter-103) — upload WebUSB Nano R4: strumentazione discovery UAT, revert ipotesi indirizzo DfuSe] — 2026-05-22
 
 Sprint B, atomo "upload Nano R4". Un audit aveva ipotizzato un bug ("Risk A"): la
