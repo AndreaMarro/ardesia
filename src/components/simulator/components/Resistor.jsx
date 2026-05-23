@@ -52,7 +52,7 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
   return (
     <g transform={`translate(${x}, ${y})`} data-component-id={id} data-type="resistor" role="img"
        aria-label={`Resistore ${id}: ${formatValue(value)}`}>
-      {/* S115: Hit area — 44px minimum height for WCAG touch target */}
+      {/* S115: Hit area — 44px minimum for WCAG touch target. */}
       <rect x="-30" y="-22" width="60" height="44" fill="transparent" pointerEvents="all" onClick={onInteract} />
 
       <defs>
@@ -65,41 +65,41 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
         </linearGradient>
       </defs>
 
-      {/* Wire leads — flat metallic gray (book style: simple lines) */}
-      <line x1="-26.25" y1="0" x2="-13.5" y2="0"
+      {/* Wire leads — flat metallic gray (book style: simple lines).
+          Pin distance kept at 52.5px (7 col) for solver compat with existing experiments.
+          Andrea 23/05/2026: "resistenze troppo lunghe come sul libro" — BODY shortened (was 26px, ora 18px),
+          piedini più lunghi rispetto al corpo come 1/4W standard. */}
+      <line x1="-26.25" y1="0" x2="-9.0" y2="0"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
-      <line x1="13.5" y1="0" x2="26.25" y2="0"
+      <line x1="9.0" y1="0" x2="26.25" y2="0"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
 
-      {/* Body — single cylindrical pill, soft gradient (didactic 3D hint).
-          End caps integrated as rounded ends (no separate metallic rings —
-          book never shows them as silver caps, only as natural body tapering). */}
-      <rect x="-13" y="-5.6" width="26" height="11.2" rx="5.6"
+      {/* Body — corpo compatto 18px (was 26px), book-style. */}
+      <rect x="-9.0" y="-4.5" width="18" height="9" rx="4.5"
         fill={`url(#${uid}-body)`} stroke="var(--elab-hex-9c874e)" strokeWidth="0.5" />
 
-      {/* Color bands — FLAT fills, no highlight overlay. Book style.
-          4 bands centered on body, even spacing. */}
+      {/* Color bands — 4 bands fit inside 18px body. */}
       {[
-        { bx: -8.6, w: 2.8, fill: bands[0] },
-        { bx: -4.2, w: 2.8, fill: bands[1] },
-        { bx:  0.2, w: 2.8, fill: bands[2] },
-        { bx:  7.0, w: 2.8, fill: bands[3] },
+        { bx: -6.0, w: 1.8, fill: bands[0] },
+        { bx: -3.0, w: 1.8, fill: bands[1] },
+        { bx:  0.0, w: 1.8, fill: bands[2] },
+        { bx:  4.8, w: 1.8, fill: bands[3] },
       ].map(({ bx, w, fill }, i) => (
-        <rect key={i} x={bx} y="-5.6" width={w} height="11.2"
+        <rect key={i} x={bx} y="-4.5" width={w} height="9"
           fill={fill} stroke="var(--elab-hex-9c874e)" strokeWidth="0.25"
           strokeOpacity="0.4" />
       ))}
 
       {/* Current flow indicator */}
       {hasFlow && (
-        <circle cx="0" cy="0" r="1.2" fill="var(--color-accent, var(--elab-lime))" opacity={0.5}>
-          <animate attributeName="cx" values="-13;13" dur="0.4s" repeatCount="indefinite" />
+        <circle cx="0" cy="0" r="1.0" fill="var(--color-accent, var(--elab-lime))" opacity={0.5}>
+          <animate attributeName="cx" values="-9;9" dur="0.4s" repeatCount="indefinite" />
         </circle>
       )}
 
       {/* AI tutoring highlight */}
       {highlighted && (
-        <rect x="-29" y="-10" width="58" height="20" rx="3"
+        <rect x="-29" y="-9" width="58" height="18" rx="3"
           fill="none" stroke="var(--color-accent, var(--elab-lime))" strokeWidth="2" strokeDasharray="4 2">
           <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />
         </rect>
@@ -108,6 +108,7 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
   );
 };
 
+// Pin distance unchanged 52.5px (7 col) for solver+experiment compat. Body shortened.
 Resistor.pins = [
   { id: 'pin1', label: 'Pin 1', x: -26.25, y: 0, type: 'digital' },
   { id: 'pin2', label: 'Pin 2', x:  26.25, y: 0, type: 'digital' },
