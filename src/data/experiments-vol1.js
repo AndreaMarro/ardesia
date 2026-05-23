@@ -226,7 +226,7 @@ const EXPERIMENTS_VOL1 = {
               {
                       "type": "led",
                       "id": "led1",
-                      "color": "blue"
+                      "color": "red"
               }
       ],
       pinAssignments: {
