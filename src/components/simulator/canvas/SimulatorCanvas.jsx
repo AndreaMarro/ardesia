@@ -8,6 +8,7 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { getComponent } from '../components/registry';
 import WireRenderer, { resolvePinPosition } from './WireRenderer';
+import { isDemoExperiment } from '../../../data/demo-mode';
 import PinOverlay from './PinOverlay';
 import Annotation from '../components/Annotation';
 import RotationHandle, { snapToNearestQuadrant } from '../overlays/RotationHandle';
@@ -2386,6 +2387,9 @@ const SimulatorCanvas = ({
               onInteract={onComponentClick ? (compId, action) => onComponentClick(compId, action) : undefined}
               {...(comp.value !== undefined ? { value: comp.value } : {})}
               {...(comp.color !== undefined ? { color: comp.color } : {})}
+              {...(comp.type === 'battery9v' && isDemoExperiment(experiment?.id)
+                ? { renderMode: 'clip_simplified' }
+                : {})}
               {...((comp.type === 'breadboard-half' || comp.type === 'breadboard-full') && wireMode
                 ? { onHoleClick: (holeId) => handlePinClick(`${comp.id}:${holeId}`) }
                 : {})}

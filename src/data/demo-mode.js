@@ -60,6 +60,18 @@ export function isExperimentVisible(experimentId) {
 }
 
 /**
+ * Verifica se un esperimento appartiene al set demo selezionato (3+2+2).
+ * Indipendente da DEMO_MODE_ENABLED — usato per applicare "lucidatura" geometry
+ * (es. Battery9V renderMode clip_simplified) ai 7 esp demo a prescindere dal filter UI.
+ * @param {string} experimentId — es. "v1-cap6-esp1"
+ * @returns {boolean} true se id in DEMO_EXPERIMENT_IDS
+ */
+export function isDemoExperiment(experimentId) {
+  if (!experimentId) return false;
+  return DEMO_EXPERIMENT_IDS.includes(experimentId);
+}
+
+/**
  * Filter array di esperimenti per demo mode.
  * @param {Array<{id: string}>} experiments — array oggetti con campo `id`
  * @returns {Array} array filtrato (solo demo IDs se mode on)
