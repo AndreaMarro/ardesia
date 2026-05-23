@@ -2237,7 +2237,7 @@ const EXPERIMENTS_VOL2 = {
           "componentType": "battery9v",
           "hint": "La batteria 9V alimenta il circuito."
         },
-        { "step": 3, "text": "Posiziona il pulsante a cavallo del gap (E10 + F12).", "componentId": "btn1", "componentType": "push-button", "targetPins": { "btn1:pin1": "bb1:e10", "btn1:pin2": "bb1:f12" }, "hint": "Pulsante attraversa la scanalatura centrale." },
+        { "step": 3, "text": "Posiziona il pulsante a cavallo del gap, 4 pin: pin1 E10, pin2 E12, pin3 F10, pin4 F12.", "componentId": "btn1", "componentType": "push-button", "targetPins": { "btn1:pin1": "bb1:e10", "btn1:pin2": "bb1:e12", "btn1:pin3": "bb1:f10", "btn1:pin4": "bb1:f12" }, "hint": "Push-button tattile 4-pin: due pin top + due pin bot. Pressed: pin1↔pin2 e pin3↔pin4 chiusi." },
         { "step": 4, "text": "Posiziona il condensatore da 1000µF a cavallo gap col 14: + in E14, − in F14.", "componentId": "c1", "componentType": "capacitor", "targetPins": { "c1:positive": "bb1:e14", "c1:negative": "bb1:f14" }, "hint": "Polo + (lunga) in alto E14, polo − (corta + striscia) in basso F14." },
         { "step": 5, "text": "Posiziona il multimetro accanto al circuito.", "componentId": "mm1", "componentType": "multimeter", "hint": "Misurerà tensione del cap." },
         { "step": 6, "text": "Filo ROSSO dal + batteria al bus + superiore (col. 1).", "wireFrom": "bat1:positive", "wireTo": "bb1:bus-top-plus-1", "wireColor": "red", "hint": "9V al bus." },
@@ -2390,7 +2390,7 @@ const EXPERIMENTS_VOL2 = {
           "componentType": "battery9v",
           "hint": "La batteria 9V alimenta il circuito."
         },
-        { "step": 3, "text": "Posiziona il pulsante a cavallo del gap (E10 + F12).", "componentId": "btn1", "componentType": "push-button", "targetPins": { "btn1:pin1": "bb1:e10", "btn1:pin2": "bb1:f12" }, "hint": "Pulsante attraversa la scanalatura centrale." },
+        { "step": 3, "text": "Posiziona il pulsante a cavallo del gap, 4 pin: pin1 E10, pin2 E12, pin3 F10, pin4 F12.", "componentId": "btn1", "componentType": "push-button", "targetPins": { "btn1:pin1": "bb1:e10", "btn1:pin2": "bb1:e12", "btn1:pin3": "bb1:f10", "btn1:pin4": "bb1:f12" }, "hint": "Push-button tattile 4-pin: due pin top + due pin bot. Pressed: pin1↔pin2 e pin3↔pin4 chiusi." },
         { "step": 4, "text": "Posiziona il condensatore da 1000µF a cavallo gap col 14: + in E14, − in F14.", "componentId": "c1", "componentType": "capacitor", "targetPins": { "c1:positive": "bb1:e14", "c1:negative": "bb1:f14" }, "hint": "Polo + (gamba lunga) in alto E14, polo − (gamba corta + striscia) in basso F14." },
         { "step": 5, "text": "Posiziona il resistore da 1kΩ orizzontale fila A: A14 (sopra cap +) → A21.", "componentId": "r1", "componentType": "resistor", "targetPins": { "r1:pin1": "bb1:a14", "r1:pin2": "bb1:a21" }, "hint": "R limita la corrente di scarica del cap." },
         { "step": 6, "text": "Posiziona il LED rosso a cavallo gap col 21: anodo E21, catodo F21.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e21", "led1:cathode": "bb1:f21" }, "hint": "Anodo (lunga) in alto E21, catodo (corta) in basso F21." },
