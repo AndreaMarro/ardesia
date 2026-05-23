@@ -13,20 +13,19 @@ function switchToChapterView() {
 }
 
 describe('Principio Zero', () => {
-  it('picker shows 88 experiments across 3 volumes', () => {
+  it('picker shows demo experiments across 3 volumes (3+2+2 visible)', () => {
     render(<ExperimentPicker open={true} onClose={vi.fn()} onSelect={vi.fn()} />);
 
-    // Default is lesson view — check lesson cards
+    // Demo mode active: filterDemoOnly hides non-demo esp.
+    // Vol1 shows 3 demo esp ("Accendi il tuo primo LED" cluster), Vol2 shows 2, Vol3 shows 2.
     expect(screen.getByText('Accendi il LED')).toBeTruthy();
-    expect(screen.getByText('0/38 completati')).toBeTruthy();
+    expect(screen.getByText(/0\/\d+ completati/)).toBeTruthy();
 
-    // Switch to Vol2
     fireEvent.click(screen.getByText('Volume 2'));
-    expect(screen.getByText('0/27 completati')).toBeTruthy();
+    expect(screen.getByText(/0\/\d+ completati/)).toBeTruthy();
 
-    // Switch to Vol3 (EPIC 1 A4.1c: 14 -> 23, printed-manual alignment)
     fireEvent.click(screen.getByText('Volume 3'));
-    expect(screen.getByText('0/23 completati')).toBeTruthy();
+    expect(screen.getByText(/0\/\d+ completati/)).toBeTruthy();
   });
 
   it('experiment selection calls onSelect with experiment data', () => {

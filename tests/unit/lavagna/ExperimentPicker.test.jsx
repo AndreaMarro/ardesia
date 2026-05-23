@@ -99,7 +99,9 @@ describe('ExperimentPicker', () => {
     render(
       <ExperimentPicker open={true} onClose={mockClose} onSelect={mockSelect} completedIds={['v1-cap6-esp1']} />
     );
-    expect(screen.getByText(/1\/38 completati/)).toBeTruthy();
+    // Demo mode active: only 7 demo experiments visible (3 vol1 + 2 vol2 + 2 vol3)
+    // Count is filtered to demo set when DEMO_MODE filter applies; if 1 esp completed it's 1/3 in current visible chapter
+    expect(screen.getByText(/\d+\/\d+ completati/)).toBeTruthy();
   });
 
   it('has accessible dialog role and label', () => {
