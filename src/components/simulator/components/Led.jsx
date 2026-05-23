@@ -69,16 +69,18 @@ const Led = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, color 
          </g>
        )}
 
-       {/* Wire leads — anode (left, x=-3.75) is LONGER, cathode (right, x=3.75)
-            is SHORTER with a visible KINK above the breadboard hole.
-            Book Vol1 cap6 teaches: "gambetta lunga = positivo, gambetta corta = catodo".
-            Pin Y unchanged (solver-safe). Visual distinction via kink only. */}
-       {/* Anode lead — straight, long, from dome base to pin */}
-       <line x1="-2.4" y1="0" x2="-3.75" y2="22.5"
-         stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-       {/* Cathode lead — has visible KINK at y=15 indicating shorter physical lead */}
-       <polyline points="2.4,0 3.0,12 4.2,14 3.75,15.5 3.75,22.5"
-         fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.25"
+       {/* Wire leads — Andrea 23/05/2026 PM "gambe dei led devono essere più divaricate".
+            Anode (lunga, sx) diverges DIAGONALLY left from dome base (-2.4,0) → bend at (-5.0,8)
+            then straight down to pin (-3.75, 22.5). Cathode (corta, dx) diverges DIAGONALLY
+            right from (2.4,0) → bend at (5.0,8) → KINK at 14 → pin (3.75, 22.5).
+            Splay angle ~20° dal dome rende gambe visivamente divaricate book-style. */}
+       {/* Anode lead — diagonal splay sx + vertical bottom */}
+       <polyline points="-2.4,0 -5.0,8 -3.75,22.5"
+         fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.4"
+         strokeLinecap="round" strokeLinejoin="round" />
+       {/* Cathode lead — diagonal splay dx + KINK indicating shorter physical lead */}
+       <polyline points="2.4,0 5.0,8 4.5,12 5.6,14 3.75,15.5 3.75,22.5"
+         fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.4"
          strokeLinecap="round" strokeLinejoin="round" />
        {/* Pin connection markers at breadboard level */}
        <circle cx="-3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
@@ -218,15 +220,16 @@ const LedBridge = (props) => {
       {/* Legs divaricate: anode (sinistra, gamba lunga) va verso -y (riga e/top),
           cathode (destra, gamba corta con kink) va verso +y (riga f/bot).
           Pin anode: (-3.75, -8.75), cathode: (3.75, +8.75) divergono dal dome verso direzioni opposte. */}
-      {/* Anode lead \u2014 diagonale verso top-left + verticale verso pin (-3.75, -8.75) */}
-      <line x1="-1.5" y1="0" x2="-3.75" y2="-8.75"
-        stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-      {/* Cathode lead \u2014 diagonale + KINK verso pin (3.75, 8.75) */}
-      <polyline points="1.5,0 2.4,2 3.5,4 3.75,5 3.75,8.75"
-        fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.25"
+      {/* Anode lead - pins x=0 stessa col, splay diagonale UP poi pin (0,-8.75) */}
+      <polyline points="-1.5,0 -3.0,-3 -1.5,-6 0,-8.75"
+        fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.4"
         strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="-3.75" cy="-8.75" r="1.0" fill="#888" opacity="0.3" />
-      <circle cx="3.75" cy="8.75" r="1.0" fill="#888" opacity="0.3" />
+      {/* Cathode lead - splay DOWN diagonale + KINK shorter physical lead \u2192 pin (0,8.75) */}
+      <polyline points="1.5,0 3.0,2 2.4,4 3.6,5.5 0,8.75"
+        fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.4"
+        strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="0" cy="-8.75" r="1.0" fill="#888" opacity="0.3" />
+      <circle cx="0" cy="8.75" r="1.0" fill="#888" opacity="0.3" />
 
       {/* Polarity markers + (anode), small bar (cathode) */}
       <text x="-7" y="-7" fontSize="3" fill="var(--elab-hex-cc0000)"
@@ -268,9 +271,12 @@ const LedBridge = (props) => {
   );
 };
 
+// Bridge: pins stessa colonna (dx=0), diversa riga (dy=17.5 = row e \u2194 row f gap)
+// Permette mount across gap centrale breadboard: anode in top section (e7),
+// cathode in bot section (f7), same col \u2192 solver vede stessa colonna nodi.
 LedBridge.pins = [
-  { id: 'anode',   label: 'A (+)',      x: -3.75, y: -8.75, type: 'digital' },
-  { id: 'cathode', label: 'K (\u2212)', x:  3.75, y:  8.75, type: 'digital' },
+  { id: 'anode',   label: 'A (+)',      x: 0, y: -8.75, type: 'digital' },
+  { id: 'cathode', label: 'K (\u2212)', x: 0, y:  8.75, type: 'digital' },
 ];
 
 LedBridge.defaultState = { on: false, brightness: 0 };

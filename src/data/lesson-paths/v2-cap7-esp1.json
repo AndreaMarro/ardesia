@@ -141,11 +141,6 @@
               "id": "btn1"
             },
             {
-              "type": "resistor",
-              "id": "r1",
-              "value": 1000
-            },
-            {
               "type": "multimeter",
               "id": "mm1"
             }
@@ -162,38 +157,28 @@
               "color": "red"
             },
             {
-              "from": "bb1:g12",
-              "to": "bb1:c5",
+              "from": "bb1:c12",
+              "to": "bb1:c14",
               "color": "yellow"
             },
             {
-              "from": "bb1:a5",
-              "to": "bb1:a16",
-              "color": "green"
-            },
-            {
-              "from": "bb1:a23",
-              "to": "bb1:bus-top-minus-23",
+              "from": "bb1:f14",
+              "to": "bb1:bus-bot-minus-14",
               "color": "black"
             },
             {
-              "from": "bb1:a6",
-              "to": "bb1:bus-top-minus-6",
-              "color": "black"
-            },
-            {
-              "from": "bb1:bus-top-minus-1",
+              "from": "bb1:bus-bot-minus-1",
               "to": "bat1:negative",
               "color": "black"
             },
             {
               "from": "mm1:probe-positive",
-              "to": "bb1:b5",
+              "to": "bb1:b14",
               "color": "red"
             },
             {
               "from": "mm1:probe-negative",
-              "to": "bb1:b6",
+              "to": "bb1:g14",
               "color": "black"
             }
           ]

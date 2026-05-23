@@ -65,28 +65,27 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
         </linearGradient>
       </defs>
 
-      {/* Wire leads — flat metallic gray (book style: simple lines).
-          Pin distance kept at 52.5px (7 col) for solver compat with existing experiments.
-          Andrea 23/05/2026 close-up: corpo MOLTO corto, gambe MOLTO lunghe (~75% del totale).
-          Body 14px in span 52.5px = 27% body, 73% leads ratio. */}
-      <line x1="-26.25" y1="0" x2="-7.0" y2="0"
-        stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
-      <line x1="7.0" y1="0" x2="26.25" y2="0"
-        stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
+      {/* Wire leads — Andrea 23/05/2026 PM "resistenza più corta, gambe più lunghe".
+          Body 10px on pin span 52.5px = 19% body, 81% leads ratio (1/4W axial real). */}
+      <line x1="-26.25" y1="0" x2="-5.0" y2="0"
+        stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="5.0" y1="0" x2="26.25" y2="0"
+        stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.4" strokeLinecap="round" />
 
-      {/* Body — corpo MOLTO compatto 14px, proporzioni book Vol1 pag.33. */}
-      <rect x="-7.0" y="-3.5" width="14" height="7" rx="3.5"
-        fill={`url(#${uid}-body)`} stroke="var(--elab-hex-9c874e)" strokeWidth="0.5" />
+      {/* Body — corpo 10px compatto book-style. */}
+      <rect x="-5.0" y="-3" width="10" height="6" rx="3"
+        fill={`url(#${uid}-body)`} stroke="var(--elab-hex-9c874e)" strokeWidth="0.4" />
 
-      {/* Color bands — 4 bands fit inside 14px body, tight spacing. */}
+      {/* Color bands — 4 bande E12 standard.
+          3 bande valore clustered left + gap + tolerance gold band right (4-band code). */}
       {[
-        { bx: -4.8, w: 1.4, fill: bands[0] },
-        { bx: -2.4, w: 1.4, fill: bands[1] },
-        { bx:  0.0, w: 1.4, fill: bands[2] },
-        { bx:  3.8, w: 1.4, fill: bands[3] },
+        { bx: -3.6, w: 1.1, fill: bands[0] }, // 1st digit
+        { bx: -1.8, w: 1.1, fill: bands[1] }, // 2nd digit
+        { bx:  0.0, w: 1.1, fill: bands[2] }, // multiplier
+        { bx:  2.6, w: 1.1, fill: bands[3] }, // tolerance (gap before)
       ].map(({ bx, w, fill }, i) => (
-        <rect key={i} x={bx} y="-3.5" width={w} height="7"
-          fill={fill} stroke="var(--elab-hex-9c874e)" strokeWidth="0.25"
+        <rect key={i} x={bx} y="-3" width={w} height="6"
+          fill={fill} stroke="var(--elab-hex-9c874e)" strokeWidth="0.2"
           strokeOpacity="0.4" />
       ))}
 
