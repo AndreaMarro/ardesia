@@ -564,7 +564,7 @@ class CircuitSolver {
 
     // Check 1: LED must have current-limiting resistor in series
     this.components.forEach((comp, id) => {
-      if (comp.type === 'led') {
+      if ((comp.type === 'led' || comp.type === 'led-bridge')) {
         const hasResistor = this._hasResistorInSeries(id);
         if (!hasResistor) {
           errors.push(`LED "${id}" non ha una resistenza in serie! Serve una resistenza per proteggere il LED.`);
@@ -574,7 +574,7 @@ class CircuitSolver {
 
     // Check 2: LED polarity must be correct (anode to higher voltage)
     this.components.forEach((comp, id) => {
-      if (comp.type === 'led') {
+      if ((comp.type === 'led' || comp.type === 'led-bridge')) {
         const anodeRef = `${id}:anode`;
         const cathodeRef = `${id}:cathode`;
 
@@ -993,7 +993,7 @@ class CircuitSolver {
     const LED_BURN_CURRENT = 0.030; // 30mA — burn threshold
 
     this.components.forEach((comp, id) => {
-      if (comp.type === 'led') {
+      if ((comp.type === 'led' || comp.type === 'led-bridge')) {
         const current = comp.state.current || 0;
         if (current > LED_WARN_CURRENT && current <= LED_BURN_CURRENT && !comp.state.burned) {
           comp.state.warning = 'overcurrent';
@@ -1187,6 +1187,7 @@ class CircuitSolver {
   _getComponentVDrop(compId, comp) {
     switch (comp.type) {
       case 'led':
+      case 'led-bridge':
         return LED_VF[comp.color] || 2.0;
       case 'diode':
         return comp.state.conducting ? DIODE_VF : 0;
@@ -1209,6 +1210,7 @@ class CircuitSolver {
         : null,
       'reed-switch': comp.state.closed ? { pin1: 'pin2', pin2: 'pin1' } : null,
       'led': { anode: 'cathode', cathode: 'anode' },
+      'led-bridge': { anode: 'cathode', cathode: 'anode' },
       'rgb-led': { red: 'common', green: 'common', blue: 'common', common: null }, // multi-channel: each color pin → common; common doesn't traverse back (solved per-channel in _solveRGBLed)
       'buzzer-piezo': { positive: 'negative', negative: 'positive' },
       'motor-dc': { positive: 'negative', negative: 'positive' },
@@ -1486,7 +1488,7 @@ class CircuitSolver {
         }
         // LED modeled as Vf voltage source + forward resistance
         // BUG FIX: Skip reverse-biased LEDs (excluded in previous pass)
-        if (comp.type === 'led' && !excludedLEDs.has(id)) {
+        if ((comp.type === 'led' || comp.type === 'led-bridge') && !excludedLEDs.has(id)) {
           const anodeRef = `${id}:anode`;
           const cathodeRef = `${id}:cathode`;
           if (this._pinRefs.has(anodeRef) && this._pinRefs.has(cathodeRef)) {
@@ -1532,7 +1534,7 @@ class CircuitSolver {
         if (R === null || R <= 0) return;
 
         // LED resistance is stamped along with its voltage source
-        if (comp.type === 'led') return;
+        if ((comp.type === 'led' || comp.type === 'led-bridge')) return;
 
         const pins = this._getMNAPins(id, comp);
         if (!pins) return;

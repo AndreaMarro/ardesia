@@ -165,5 +165,126 @@ registerComponent('led', {
   volumeAvailableFrom: 1,
 });
 
-export { LED_COLORS };
+/* \u2500\u2500\u2500 LED-BRIDGE variant (Andrea 23/05/2026) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+ * Gambe divaricate per attraversare il gap centrale della breadboard.
+ * Stesso dome, ma legs verticali a stessa X (col allineata) e diversa Y
+ * (riga e top \u2194 riga f bot, 17.5px = 1 row pitch + gap).
+ *
+ * Uso: experiment.components: { type:'led-bridge', id:'led1', color:'red' }
+ * pinAssignments: led1:anode \u2192 bb1:e7, led1:cathode \u2192 bb1:f7
+ *
+ * Render: legs visivamente paralleli che attraversano il gap,
+ * anode (sx, gamba lunga) sopra \u2192 e row, cathode (dx, gamba corta) sotto \u2192 f row.
+ */
+const LedBridge = (props) => {
+  const { x = 0, y = 0, state = {}, highlighted = false, onInteract, color = 'red', id } = props;
+  const burned = state.burned || false;
+  const brightness = burned ? 0 : (state.brightness || 0);
+  const isOn = !burned && brightness > 0.01;
+  const c = LED_COLORS[color] || LED_COLORS.red;
+  const uid = `ledbridge-${id}`;
+  const glowOpacity = Math.min(brightness, 1);
+
+  return (
+    <g transform={`translate(${x}, ${y})`} data-component-id={id} data-type="led-bridge" role="img"
+       aria-label={`LED ${id} a cavallo del gap: ${color}${burned ? ', bruciato' : isOn ? ', acceso' : ''}`}>
+      <rect x="-22" y="-22" width="44" height="44" fill="transparent" pointerEvents="all" onClick={onInteract} />
+      <defs>
+        <filter id={`${uid}-glow`} x="-200%" y="-200%" width="500%" height="500%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feComposite in="blur" in2="SourceGraphic" operator="over" />
+        </filter>
+        <radialGradient id={`${uid}-dome`} cx="35%" cy="30%" r="65%">
+          <stop offset="0%" stopColor={isOn ? 'var(--elab-hex-ffffff)' : c.tint} stopOpacity={isOn ? 0.6 : 0.3} />
+          <stop offset="40%" stopColor={isOn ? c.tint : c.body} />
+          <stop offset="100%" stopColor={c.dark} />
+        </radialGradient>
+        <linearGradient id={`${uid}-wire`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="var(--elab-hex-b0b0b0)" />
+          <stop offset="50%" stopColor="var(--elab-hex-9e9e9e)" />
+          <stop offset="100%" stopColor="var(--elab-hex-808080)" />
+        </linearGradient>
+      </defs>
+
+      {isOn && (
+        <g filter={`url(#${uid}-glow)`}>
+          <circle cx="0" cy="-3" r="32" fill={c.tint} opacity={glowOpacity * 0.08} />
+          <circle cx="0" cy="-3" r="20" fill={c.tint} opacity={glowOpacity * 0.32} />
+          <circle cx="0" cy="-3" r="10" fill={c.tint} opacity={glowOpacity * 0.52} />
+          <circle cx="0" cy="-3" r="5" fill="var(--elab-hex-ffffff)" opacity={glowOpacity * 0.40} />
+        </g>
+      )}
+
+      {/* Legs divaricate: anode (sinistra, gamba lunga) va verso -y (riga e/top),
+          cathode (destra, gamba corta con kink) va verso +y (riga f/bot).
+          Pin anode: (-3.75, -8.75), cathode: (3.75, +8.75) divergono dal dome verso direzioni opposte. */}
+      {/* Anode lead \u2014 diagonale verso top-left + verticale verso pin (-3.75, -8.75) */}
+      <line x1="-1.5" y1="0" x2="-3.75" y2="-8.75"
+        stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
+      {/* Cathode lead \u2014 diagonale + KINK verso pin (3.75, 8.75) */}
+      <polyline points="1.5,0 2.4,2 3.5,4 3.75,5 3.75,8.75"
+        fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.25"
+        strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="-3.75" cy="-8.75" r="1.0" fill="#888" opacity="0.3" />
+      <circle cx="3.75" cy="8.75" r="1.0" fill="#888" opacity="0.3" />
+
+      {/* Polarity markers + (anode), small bar (cathode) */}
+      <text x="-7" y="-7" fontSize="3" fill="var(--elab-hex-cc0000)"
+        fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle" opacity="0.6">+</text>
+      <line x1="5.5" y1="7" x2="8" y2="7" stroke="var(--elab-hex-1a1a1a)" strokeWidth="0.7" opacity="0.55" />
+
+      {/* Dome shadow */}
+      <path d="M -5.4 0.6 L -5.4 -1.2 A 5.4 8.8 0 0 1 5.4 -1.2 L 5.4 0.6 Z"
+        fill="var(--elab-hex-000000)" opacity="0.08" />
+      {/* Dome */}
+      <path d="M -5.8 0 L -5.8 -1.8 A 5.8 9.4 0 0 1 5.8 -1.8 L 5.8 0 Z"
+        fill={`url(#${uid}-dome)`} stroke={c.dark} strokeWidth="0.5" />
+      {isOn && (
+        <path d="M -3.5 -1.2 A 3.5 6.2 0 0 1 3.5 -1.2 L 3.5 -0.5 L -3.5 -0.5 Z"
+          fill="var(--elab-hex-ffffff)" opacity={glowOpacity * 0.55} />
+      )}
+      <path d="M -4.2 -2 A 4 7 0 0 1 -0.5 -9.2 L -1.8 -8 A 3.2 5.5 0 0 0 -4.2 -2.5 Z"
+        fill="var(--elab-hex-ffffff)" opacity={isOn ? 0.28 : 0.18} />
+      <line x1="-5.8" y1="0" x2="5.8" y2="0" stroke={c.dark} strokeWidth="0.5" />
+
+      {burned && (
+        <>
+          <path d="M -5.8 0 L -5.8 -1.8 A 5.8 9.4 0 0 1 5.8 -1.8 L 5.8 0 Z"
+            fill="var(--elab-hex-1a1a1a)" opacity={0.88} />
+          <line x1="-5" y1="-8" x2="5" y2="0" stroke="var(--elab-hex-ff3333)" strokeWidth="1.8" strokeLinecap="round" />
+          <line x1="5" y1="-8" x2="-5" y2="0" stroke="var(--elab-hex-ff3333)" strokeWidth="1.8" strokeLinecap="round" />
+          <text x="0" y="-16" textAnchor="middle" fontSize="4.5" fill="var(--elab-hex-ff3333)"
+            fontFamily="Oswald, sans-serif" fontWeight="700">BRUCIATO!</text>
+        </>
+      )}
+
+      {highlighted && (
+        <rect x="-12" y="-14" width="24" height="28" rx="3"
+          fill="none" stroke="var(--color-accent, var(--elab-lime))" strokeWidth="2" strokeDasharray="4 2" opacity="0.8">
+          <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />
+        </rect>
+      )}
+    </g>
+  );
+};
+
+LedBridge.pins = [
+  { id: 'anode',   label: 'A (+)',      x: -3.75, y: -8.75, type: 'digital' },
+  { id: 'cathode', label: 'K (\u2212)', x:  3.75, y:  8.75, type: 'digital' },
+];
+
+LedBridge.defaultState = { on: false, brightness: 0 };
+
+registerComponent('led-bridge', {
+  component: LedBridge,
+  pins: LedBridge.pins,
+  defaultState: LedBridge.defaultState,
+  category: 'output',
+  label: 'LED (gap)',
+  icon: '\u{1F4A1}',
+  vfByColor: LED_COLORS,
+  volumeAvailableFrom: 1,
+});
+
+export { LED_COLORS, LedBridge };
 export default Led;
