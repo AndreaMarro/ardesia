@@ -25,6 +25,7 @@ import DocenteSidebar from './DocenteSidebar.jsx';
 import css from './PercorsoCapitoloView.module.css';
 import { getLessonPath } from '../../data/lesson-paths';
 import { getVolumeRef } from '../../data/volume-references.js';
+import { filterDemoOnly } from '../../data/demo-mode.js';
 import {
   adaptPercorsoRender,
   DEFAULT_PERCORSO_MORPHIC_CONTEXT,
@@ -520,7 +521,13 @@ export default function PercorsoCapitoloView({
     );
   }
 
-  const activeExp = capitolo.esperimenti?.[activeExpIndex] ?? null;
+  // Demo mode 25/05: filter capitolo.esperimenti a "contenitori volumi 3+2+2 demo".
+  // Andrea verbatim 2026-05-23: "i contenitori volumi contengono 3 2 2 esperimenti".
+  // Sidebar + chapter navigation invariati (filter SOLO esperimenti rendered in capitolo).
+  const visibleEsperimenti = filterDemoOnly(capitolo.esperimenti || []);
+  const effectiveCapitolo = { ...capitolo, esperimenti: visibleEsperimenti };
+
+  const activeExp = visibleEsperimenti[activeExpIndex] ?? null;
   const activePhase = activeExp?.phases?.[activePhaseIndex] ?? null;
   const docenteSidebarData = activePhase?.docente_sidebar ?? null;
   const activeMorphicHint = adaptPercorsoRender(runtimeMorphicContext, activeExp, capitolo);
@@ -675,10 +682,10 @@ export default function PercorsoCapitoloView({
           </section>
         )}
 
-        {capitolo.esperimenti?.map((esp, idx) => {
-          const transition = findTransitionFromPrev(capitolo, idx);
-          const transitionToNext = findTransitionToNext(capitolo, idx);
-          const transitionAlreadyShownBetweenCards = idx > 0 && findTransitionToNext(capitolo, idx - 1);
+        {visibleEsperimenti.map((esp, idx) => {
+          const transition = findTransitionFromPrev(effectiveCapitolo, idx);
+          const transitionToNext = findTransitionToNext(effectiveCapitolo, idx);
+          const transitionAlreadyShownBetweenCards = idx > 0 && findTransitionToNext(effectiveCapitolo, idx - 1);
           const nextExperiment = resolveNextExperimentForCard(esp);
           const nextExperimentLabel = formatNextExperimentLabel(nextExperiment, capitolo);
           const nextExperimentPreview = getNextExperimentPreview(nextExperiment);
@@ -762,7 +769,7 @@ export default function PercorsoCapitoloView({
                 </div>
               )}
               </article>
-              {idx < (capitolo.esperimenti?.length ?? 0) - 1 && (transitionToNext || nextExperimentLabel) && (
+              {idx < (visibleEsperimenti.length ?? 0) - 1 && (transitionToNext || nextExperimentLabel) && (
                 <section
                   className={css.nextTransition}
                   data-testid={`percorso-next-transition-${esp.id}`}

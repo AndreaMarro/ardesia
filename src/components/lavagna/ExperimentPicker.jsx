@@ -9,6 +9,7 @@ import EXPERIMENTS_VOL2 from '../../data/experiments-vol2';
 import EXPERIMENTS_VOL3 from '../../data/experiments-vol3';
 import { getDisplayInfo } from '../../data/chapter-map';
 import LESSON_GROUPS, { getLessonsForVolume } from '../../data/lesson-groups';
+import { filterDemoOnly } from '../../data/demo-mode';
 import css from './ExperimentPicker.module.css';
 
 const VOLUMES = [
@@ -63,7 +64,9 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
   }, [open, onClose]);
 
   const vol = VOLUMES.find(v => v.key === activeVol);
-  const experiments = vol?.data?.experiments || [];
+  // Demo mode 25/05: filter experiments al subset 3+2+2 per "contenitori volumi".
+  // Andrea verbatim 2026-05-23: "i contenitori volumi contengono 3 2 2 esperimenti".
+  const experiments = filterDemoOnly(vol?.data?.experiments || []);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return experiments;
