@@ -2202,12 +2202,12 @@ const EXPERIMENTS_VOL2 = {
         }
       ],
       "pinAssignments": {
-        "c1:positive": "bb1:e5",
-        "c1:negative": "bb1:e6",
         "btn1:pin1": "bb1:e10",
         "btn1:pin2": "bb1:f12",
-        "r1:pin1": "bb1:e16",
-        "r1:pin2": "bb1:e23"
+        "c1:positive": "bb1:g12",
+        "c1:negative": "bb1:g15",
+        "r1:pin1": "bb1:h15",
+        "r1:pin2": "bb1:h18"
       },
       "connections": [
         {
@@ -2221,38 +2221,23 @@ const EXPERIMENTS_VOL2 = {
           "color": "red"
         },
         {
-          "from": "bb1:g12",
-          "to": "bb1:c5",
-          "color": "yellow"
-        },
-        {
-          "from": "bb1:a5",
-          "to": "bb1:a16",
-          "color": "green"
-        },
-        {
-          "from": "bb1:a23",
-          "to": "bb1:bus-top-minus-23",
+          "from": "bb1:h18",
+          "to": "bb1:bus-bot-minus-18",
           "color": "black"
         },
         {
-          "from": "bb1:a6",
-          "to": "bb1:bus-top-minus-6",
-          "color": "black"
-        },
-        {
-          "from": "bb1:bus-top-minus-1",
+          "from": "bb1:bus-bot-minus-1",
           "to": "bat1:negative",
           "color": "black"
         },
         {
           "from": "mm1:probe-positive",
-          "to": "bb1:b5",
+          "to": "bb1:j12",
           "color": "red"
         },
         {
           "from": "mm1:probe-negative",
-          "to": "bb1:b6",
+          "to": "bb1:j15",
           "color": "black"
         }
       ],
@@ -2265,17 +2250,17 @@ const EXPERIMENTS_VOL2 = {
           "x": 100,
           "y": 10
         },
-        "c1": {
-          "x": 155.25,
-          "y": 88.75
-        },
         "btn1": {
-          "x": 200.25,
-          "y": 81.25
+          "x": 189,
+          "y": 82.5
+        },
+        "c1": {
+          "x": 207.75,
+          "y": 98.75
         },
         "r1": {
-          "x": 256.5,
-          "y": 73.75
+          "x": 230.25,
+          "y": 106.25
         },
         "mm1": {
           "x": 340,
