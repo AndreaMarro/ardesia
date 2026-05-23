@@ -180,15 +180,17 @@ const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
   );
 };
 
-// Andrea 23/05/2026 PM: "i cavi devono partire dalla batteria. ora partono staccati"
-// Pin coords ora allineati ai CLIP terminals (right edge) invece di pin esterni body.
-// Wires emerge from clip + (upper) and clip \u2212 (lower) come reale 9V battery snap.
-// CLIP_X=3+3=6, CLIP_W=10, TERM_X=CLIP_X+CLIP_W*0.6=9 (offset right edge of clip).
-// TERM_PLUS_Y = CLIP_TOP_Y(-38) + CLIP_H/2 (~7.75) = ~-30
-// TERM_MINUS_Y = CLIP_BOT_Y(0.5) + CLIP_H/2 (~7.75) = ~8
+// Andrea 23/05/2026 PM: "i cavi devono partire dalla batteria".
+// Pin coords aligned to CLIP terminals (right edge).
+// Geometry calc:
+//   BODY_TOP=-38, BODY_H=36, BODY_MID_Y=-20, CLIP_GAP=5, CLIP_H=15.5
+//   CLIP_TOP_Y=-38, CLIP_BOT_Y=-17.5
+//   TERM_PLUS_Y=CLIP_TOP_Y+CLIP_H/2=-30.25
+//   TERM_MINUS_Y=CLIP_BOT_Y+CLIP_H/2=-9.75
+//   TERM_X=CLIP_X+CLIP_W*0.35=6.5 (use 9 for slight right exit)
 Battery9V.pins = [
   { id: 'positive', label: '+ (9V)', x: 9, y: -30, type: 'power' },
-  { id: 'negative', label: '\u2212 (GND)', x: 9, y: 8, type: 'power' },
+  { id: 'negative', label: '\u2212 (GND)', x: 9, y: -10, type: 'power' },
 ];
 
 Battery9V.defaultState = { voltage: 9, connected: true };
