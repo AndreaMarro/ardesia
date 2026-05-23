@@ -1324,7 +1324,8 @@ class CircuitSolver {
     switch (comp.type) {
       case 'resistor': return [`${id}:pin1`, `${id}:pin2`];
       case 'photo-resistor': return [`${id}:pin1`, `${id}:pin2`];
-      case 'led': return [`${id}:anode`, `${id}:cathode`];
+      case 'led':
+      case 'led-bridge': return [`${id}:anode`, `${id}:cathode`];
       case 'buzzer-piezo': return [`${id}:positive`, `${id}:negative`];
       case 'motor-dc': return [`${id}:positive`, `${id}:negative`];
       case 'capacitor': return [`${id}:positive`, `${id}:negative`];
@@ -1343,7 +1344,8 @@ class CircuitSolver {
     switch (comp.type) {
       case 'resistor': return comp.value || 470;
       case 'photo-resistor': return comp.state.resistance || 5000;
-      case 'led': return 20; // Forward resistance ~20Ω (Vf handled as voltage source)
+      case 'led':
+      case 'led-bridge': return 20; // Forward resistance ~20Ω (Vf handled as voltage source)
       case 'buzzer-piezo': return 50;
       case 'motor-dc': return 10;
       case 'capacitor': return 1e6; // High impedance for DC steady state
@@ -1773,7 +1775,8 @@ class CircuitSolver {
 
     this.components.forEach((comp, id) => {
       switch (comp.type) {
-        case 'led': this._solveLED(id, comp); break;
+        case 'led':
+        case 'led-bridge': this._solveLED(id, comp); break;
         case 'rgb-led': this._solveRGBLed(id, comp); break;
         case 'buzzer-piezo': this._solveBuzzer(id, comp); break;
         case 'motor-dc': this._solveMotor(id, comp); break;
@@ -2447,6 +2450,7 @@ class CircuitSolver {
         // BUG FIX: Respect comp.value if provided (e.g., 1.5V batteries)
         return { voltage: comp.value || 9, connected: true };
       case 'led':
+      case 'led-bridge':
         return { brightness: 0, on: false, current: 0, voltage: 0, burned: false };
       case 'rgb-led':
         return {

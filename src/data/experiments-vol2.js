@@ -2184,7 +2184,9 @@ const EXPERIMENTS_VOL2 = {
         "c1:positive": "bb1:e14",
         "c1:negative": "bb1:f14",
         "btn1:pin1": "bb1:e10",
-        "btn1:pin2": "bb1:f12"
+        "btn1:pin2": "bb1:e12",
+        "btn1:pin3": "bb1:f10",
+        "btn1:pin4": "bb1:f12"
       },
       "connections": [
         { "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red" },
@@ -2303,7 +2305,9 @@ const EXPERIMENTS_VOL2 = {
         "c1:positive": "bb1:e14",
         "c1:negative": "bb1:f14",
         "btn1:pin1": "bb1:e10",
-        "btn1:pin2": "bb1:f12",
+        "btn1:pin2": "bb1:e12",
+        "btn1:pin3": "bb1:f10",
+        "btn1:pin4": "bb1:f12",
         "r1:pin1": "bb1:a14",
         "r1:pin2": "bb1:a21",
         "led1:anode": "bb1:e21",
