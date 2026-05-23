@@ -65,26 +65,25 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
         </linearGradient>
       </defs>
 
-      {/* Wire leads — Andrea 23/05/2026 PM "resistenza più corta, gambe più lunghe".
-          Body 10px on pin span 52.5px = 19% body, 81% leads ratio (1/4W axial real). */}
-      <line x1="-26.25" y1="0" x2="-5.0" y2="0"
+      {/* Wire leads — Andrea PM iter 2 "ancora troppo lunghe": pin distance 7→5 col.
+          Pin span 37.5px, body 8px, leads 14.75px each side. */}
+      <line x1="-18.75" y1="0" x2="-4.0" y2="0"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.4" strokeLinecap="round" />
-      <line x1="5.0" y1="0" x2="26.25" y2="0"
+      <line x1="4.0" y1="0" x2="18.75" y2="0"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.4" strokeLinecap="round" />
 
-      {/* Body — corpo 10px compatto book-style. */}
-      <rect x="-5.0" y="-3" width="10" height="6" rx="3"
+      {/* Body — corpo 8px compatto */}
+      <rect x="-4.0" y="-2.5" width="8" height="5" rx="2.5"
         fill={`url(#${uid}-body)`} stroke="var(--elab-hex-9c874e)" strokeWidth="0.4" />
 
-      {/* Color bands — 4 bande E12 standard.
-          3 bande valore clustered left + gap + tolerance gold band right (4-band code). */}
+      {/* Color bands — 4 bande E12 fit 8px body */}
       {[
-        { bx: -3.6, w: 1.1, fill: bands[0] }, // 1st digit
-        { bx: -1.8, w: 1.1, fill: bands[1] }, // 2nd digit
-        { bx:  0.0, w: 1.1, fill: bands[2] }, // multiplier
-        { bx:  2.6, w: 1.1, fill: bands[3] }, // tolerance (gap before)
+        { bx: -2.8, w: 0.9, fill: bands[0] },
+        { bx: -1.4, w: 0.9, fill: bands[1] },
+        { bx:  0.0, w: 0.9, fill: bands[2] },
+        { bx:  2.1, w: 0.9, fill: bands[3] },
       ].map(({ bx, w, fill }, i) => (
-        <rect key={i} x={bx} y="-3" width={w} height="6"
+        <rect key={i} x={bx} y="-2.5" width={w} height="5"
           fill={fill} stroke="var(--elab-hex-9c874e)" strokeWidth="0.2"
           strokeOpacity="0.4" />
       ))}
@@ -107,10 +106,11 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
   );
 };
 
-// Pin distance unchanged 52.5px (7 col) for solver+experiment compat. Body shortened.
+// Pin distance 5 col = 37.5px (Andrea iter 2 "ancora troppo lunghe").
+// Topologie ora a2-a7 invece a2-a9.
 Resistor.pins = [
-  { id: 'pin1', label: 'Pin 1', x: -26.25, y: 0, type: 'digital' },
-  { id: 'pin2', label: 'Pin 2', x:  26.25, y: 0, type: 'digital' },
+  { id: 'pin1', label: 'Pin 1', x: -18.75, y: 0, type: 'digital' },
+  { id: 'pin2', label: 'Pin 2', x:  18.75, y: 0, type: 'digital' },
 ];
 
 Resistor.defaultState = { current: 0, voltage: 0 };

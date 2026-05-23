@@ -33,15 +33,15 @@ const EXPERIMENTS_VOL1 = {
       // Book Vol1 pag.29: R orizzontale top section a2-a9, LED a cavallo gap col 9
       pinAssignments: {
         "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "led1:anode": "bb1:e9",
-        "led1:cathode": "bb1:f9"
+        "r1:pin2": "bb1:a7",
+        "led1:anode": "bb1:e7",
+        "led1:cathode": "bb1:f7"
       },
       // 4 wires only — clean from clip batteria
       connections: [
         { "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red" },
         { "from": "bb1:bus-top-plus-2", "to": "bb1:a2", "color": "red" },
-        { "from": "bb1:f9", "to": "bb1:bus-bot-minus-9", "color": "black" },
+        { "from": "bb1:f7", "to": "bb1:bus-bot-minus-7", "color": "black" },
         { "from": "bb1:bus-bot-minus-1", "to": "bat1:negative", "color": "black" }
       ],
       layout: {
@@ -51,7 +51,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -67,7 +68,7 @@ const EXPERIMENTS_VOL1 = {
         "Inserisci il LED rosso a cavallo del gap, colonna 9: anodo in E9 (top), catodo in F9 (bot).",
         "Collega un filo ROSSO dal polo + della batteria al bus + superiore (col. 1).",
         "Collega un filo ROSSO dal bus + (col. 2) al foro A2 \u2014 alimenta il resistore.",
-        "Collega un filo NERO dal foro F9 al bus \u2212 inferiore (col. 9) \u2014 catodo LED a GND.",
+        "Collega un filo NERO dal foro F7 al bus \u2212 inferiore (col. 7) \u2014 catodo LED a GND.",
         "Collega un filo NERO dal bus \u2212 (col. 1) al polo \u2212 della batteria \u2014 chiude il circuito."
       ],
       observe: "Il LED rosso si accende! Il resistore da 470\u03A9 limita la corrente a circa 15mA, proteggendo il LED.",
@@ -80,11 +81,11 @@ const EXPERIMENTS_VOL1 = {
       buildSteps: [
         { "step": 1, "text": "Posiziona la breadboard al centro.", "componentId": "bb1", "componentType": "breadboard-half", "hint": "La breadboard ha 2 sezioni (top a-e, bot f-j) separate dal gap centrale." },
         { "step": 2, "text": "Posiziona la batteria 9V a sinistra della breadboard.", "componentId": "bat1", "componentType": "battery9v", "hint": "I fili partono dai morsetti + e − della batteria." },
-        { "step": 3, "text": "Posiziona il resistore da 470Ω orizzontale fila A, colonne 2 e 9.", "componentId": "r1", "componentType": "resistor", "targetPins": { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" }, "hint": "Il resistore protegge il LED dalla troppa corrente." },
-        { "step": 4, "text": "Posiziona il LED rosso a cavallo del gap colonna 9: anodo E9, catodo F9.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e9", "led1:cathode": "bb1:f9" }, "hint": "Anodo (gamba lunga) in alto E9, catodo (gamba corta) in basso F9." },
+        { "step": 3, "text": "Posiziona il resistore da 470Ω orizzontale fila A, colonne 2 e 9.", "componentId": "r1", "componentType": "resistor", "targetPins": { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a7" }, "hint": "Il resistore protegge il LED dalla troppa corrente." },
+        { "step": 4, "text": "Posiziona il LED rosso a cavallo del gap colonna 9: anodo E9, catodo F9.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e7", "led1:cathode": "bb1:f7" }, "hint": "Anodo (gamba lunga) in alto E9, catodo (gamba corta) in basso F9." },
         { "step": 5, "text": "Filo ROSSO dal + batteria al bus + superiore (col. 1).", "wireFrom": "bat1:positive", "wireTo": "bb1:bus-top-plus-1", "wireColor": "red", "hint": "Tensione + arriva al bus superiore." },
         { "step": 6, "text": "Filo ROSSO dal bus + (col. 2) al foro A2 — alimenta il resistore.", "wireFrom": "bb1:bus-top-plus-2", "wireTo": "bb1:a2", "wireColor": "red", "hint": "Il resistore riceve la corrente dal bus +." },
-        { "step": 7, "text": "Filo NERO dal foro F9 al bus − inferiore (col. 9) — catodo LED a GND.", "wireFrom": "bb1:f9", "wireTo": "bb1:bus-bot-minus-9", "wireColor": "black", "hint": "La corrente esce dal LED verso GND." },
+        { "step": 7, "text": "Filo NERO dal foro F7 al bus − inferiore (col. 7) — catodo LED a GND.", "wireFrom": "bb1:f7", "wireTo": "bb1:bus-bot-minus-7", "wireColor": "black", "hint": "La corrente esce dal LED verso GND." },
         { "step": 8, "text": "Filo NERO dal bus − (col. 1) al − batteria — chiude il circuito.", "wireFrom": "bb1:bus-bot-minus-1", "wireTo": "bat1:negative", "wireColor": "black", "hint": "Circuito chiuso: il LED si accende!" }
       ],
       quiz: [
@@ -123,25 +124,25 @@ const EXPERIMENTS_VOL1 = {
       ],
       // Book Vol1 pag.32: LED senza R, brucia. LED a cavallo gap col 9.
       pinAssignments: {
-        "led1:anode": "bb1:e9",
-        "led1:cathode": "bb1:f9"
+        "led1:anode": "bb1:e7",
+        "led1:cathode": "bb1:f7"
       },
       connections: [
         { "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red" },
-        { "from": "bb1:bus-top-plus-9", "to": "bb1:a9", "color": "red" },
-        { "from": "bb1:f9", "to": "bb1:bus-bot-minus-9", "color": "black" },
+        { "from": "bb1:bus-top-plus-7", "to": "bb1:a7", "color": "red" },
+        { "from": "bb1:f7", "to": "bb1:bus-bot-minus-7", "color": "black" },
         { "from": "bb1:bus-bot-minus-1", "to": "bat1:negative", "color": "black" }
       ],
       layout: {
         "bat1": { "x": 30, "y": 55 },
-        "bb1": { "x": 110, "y": 20 },
+        "bb1": { "x": 110, "y": 20, "rotation": 90 },
         "led1": { "x": 174, "y": 82.5 }
       },
       steps: [
         "Inserisci il LED rosso a cavallo del gap, colonna 9: anodo E9 (top), catodo F9 (bot).",
         "Collega un filo ROSSO dal polo + della batteria al bus + superiore (col. 1).",
-        "Collega un filo ROSSO dal bus + (col. 9) al foro A9 — alimenta DIRETTAMENTE l'anodo, NIENTE resistore!",
-        "Collega un filo NERO dal foro F9 al bus − inferiore (col. 9) — catodo a GND.",
+        "Collega un filo ROSSO dal bus + (col. 7) al foro A9 — alimenta DIRETTAMENTE l'anodo, NIENTE resistore!",
+        "Collega un filo NERO dal foro F7 al bus − inferiore (col. 7) — catodo a GND.",
         "Collega un filo NERO dal bus − (col. 1) al polo − della batteria.",
         "ATTENZIONE: 9V diretti su LED da 2V = troppa corrente → il LED si brucia!"
       ],
@@ -156,10 +157,10 @@ const EXPERIMENTS_VOL1 = {
       buildSteps: [
         { "step": 1, "text": "Posiziona la breadboard al centro.", "componentId": "bb1", "componentType": "breadboard-half", "hint": "La base del circuito." },
         { "step": 2, "text": "Posiziona la batteria 9V a sinistra.", "componentId": "bat1", "componentType": "battery9v", "hint": "9V è troppo per un LED da 2V!" },
-        { "step": 3, "text": "Posiziona il LED rosso a cavallo del gap col 9: anodo E9, catodo F9.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e9", "led1:cathode": "bb1:f9" }, "hint": "Anodo (gamba lunga) in alto, catodo (gamba corta) in basso. NIENTE resistore!" },
+        { "step": 3, "text": "Posiziona il LED rosso a cavallo del gap col 7: anodo E7, catodo F7.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e7", "led1:cathode": "bb1:f7" }, "hint": "Anodo (gamba lunga) in alto, catodo (gamba corta) in basso. NIENTE resistore!" },
         { "step": 4, "text": "Filo ROSSO dal + batteria al bus + superiore (col. 1).", "wireFrom": "bat1:positive", "wireTo": "bb1:bus-top-plus-1", "wireColor": "red", "hint": "9V arrivano sul bus." },
-        { "step": 5, "text": "Filo ROSSO dal bus + (col. 9) al foro A9 — DIRETTO sull'anodo!", "wireFrom": "bb1:bus-top-plus-9", "wireTo": "bb1:a9", "wireColor": "red", "hint": "Nessun resistore: tutta la corrente passa." },
-        { "step": 6, "text": "Filo NERO dal foro F9 al bus − inferiore (col. 9).", "wireFrom": "bb1:f9", "wireTo": "bb1:bus-bot-minus-9", "wireColor": "black", "hint": "Catodo a GND." },
+        { "step": 5, "text": "Filo ROSSO dal bus + (col. 7) al foro A9 — DIRETTO sull'anodo!", "wireFrom": "bb1:bus-top-plus-7", "wireTo": "bb1:a7", "wireColor": "red", "hint": "Nessun resistore: tutta la corrente passa." },
+        { "step": 6, "text": "Filo NERO dal foro F7 al bus − inferiore (col. 7).", "wireFrom": "bb1:f7", "wireTo": "bb1:bus-bot-minus-7", "wireColor": "black", "hint": "Catodo a GND." },
         { "step": 7, "text": "Filo NERO dal bus − (col. 1) al − batteria.", "wireFrom": "bb1:bus-bot-minus-1", "wireTo": "bat1:negative", "wireColor": "black", "hint": "Premi Play: il LED lampeggia e si brucia!" }
       ],
       quiz: [
@@ -195,14 +196,14 @@ const EXPERIMENTS_VOL1 = {
       // Book Vol1 pag.33: stesso layout esp1, cambia valore R (220/470/1k)
       pinAssignments: {
         "r1:pin1": "bb1:a2",
-        "r1:pin2": "bb1:a9",
-        "led1:anode": "bb1:e9",
-        "led1:cathode": "bb1:f9"
+        "r1:pin2": "bb1:a7",
+        "led1:anode": "bb1:e7",
+        "led1:cathode": "bb1:f7"
       },
       connections: [
         { "from": "bat1:positive", "to": "bb1:bus-top-plus-1", "color": "red" },
         { "from": "bb1:bus-top-plus-2", "to": "bb1:a2", "color": "red" },
-        { "from": "bb1:f9", "to": "bb1:bus-bot-minus-9", "color": "black" },
+        { "from": "bb1:f7", "to": "bb1:bus-bot-minus-7", "color": "black" },
         { "from": "bb1:bus-bot-minus-1", "to": "bat1:negative", "color": "black" }
       ],
       layout: {
@@ -212,7 +213,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -228,7 +230,7 @@ const EXPERIMENTS_VOL1 = {
         "Inserisci il LED rosso a cavallo del gap, colonna 9: anodo E9, catodo F9.",
         "Collega un filo ROSSO dal polo + della batteria al bus + superiore (col. 1).",
         "Collega un filo ROSSO dal bus + (col. 2) al foro A2 \u2014 alimenta il resistore.",
-        "Collega un filo NERO dal foro F9 al bus \u2212 inferiore (col. 9).",
+        "Collega un filo NERO dal foro F7 al bus \u2212 inferiore (col. 7).",
         "Collega un filo NERO dal bus \u2212 (col. 1) al polo \u2212 batteria.",
         "Prova a cambiare il valore del resistore: 220\u03A9 (luminoso), 470\u03A9, 1k\u03A9 (debole)."
       ],
@@ -243,11 +245,11 @@ const EXPERIMENTS_VOL1 = {
       buildSteps: [
         { "step": 1, "text": "Posiziona la breadboard al centro.", "componentId": "bb1", "componentType": "breadboard-half", "hint": "Base del circuito." },
         { "step": 2, "text": "Posiziona la batteria 9V a sinistra.", "componentId": "bat1", "componentType": "battery9v", "hint": "Fonte di energia." },
-        { "step": 3, "text": "Posiziona il resistore da 220Ω orizzontale fila A, colonne 2 e 9.", "componentId": "r1", "componentType": "resistor", "targetPins": { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a9" }, "hint": "Parti da 220Ω: LED ben luminoso." },
-        { "step": 4, "text": "Posiziona il LED rosso a cavallo del gap col 9: anodo E9, catodo F9.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e9", "led1:cathode": "bb1:f9" }, "hint": "Anodo (lunga) in alto E9, catodo (corta) in basso F9." },
+        { "step": 3, "text": "Posiziona il resistore da 220Ω orizzontale fila A, colonne 2 e 9.", "componentId": "r1", "componentType": "resistor", "targetPins": { "r1:pin1": "bb1:a2", "r1:pin2": "bb1:a7" }, "hint": "Parti da 220Ω: LED ben luminoso." },
+        { "step": 4, "text": "Posiziona il LED rosso a cavallo del gap col 7: anodo E7, catodo F7.", "componentId": "led1", "componentType": "led-bridge", "targetPins": { "led1:anode": "bb1:e7", "led1:cathode": "bb1:f7" }, "hint": "Anodo (lunga) in alto E9, catodo (corta) in basso F9." },
         { "step": 5, "text": "Filo ROSSO dal + batteria al bus + sup. (col. 1).", "wireFrom": "bat1:positive", "wireTo": "bb1:bus-top-plus-1", "wireColor": "red", "hint": "Tensione + al bus." },
         { "step": 6, "text": "Filo ROSSO dal bus + (col. 2) al foro A2 — al resistore.", "wireFrom": "bb1:bus-top-plus-2", "wireTo": "bb1:a2", "wireColor": "red", "hint": "Bus + → R pin1." },
-        { "step": 7, "text": "Filo NERO dal foro F9 al bus − inf. (col. 9).", "wireFrom": "bb1:f9", "wireTo": "bb1:bus-bot-minus-9", "wireColor": "black", "hint": "Catodo → GND." },
+        { "step": 7, "text": "Filo NERO dal foro F7 al bus − inf. (col. 7).", "wireFrom": "bb1:f7", "wireTo": "bb1:bus-bot-minus-7", "wireColor": "black", "hint": "Catodo → GND." },
         { "step": 8, "text": "Filo NERO dal bus − (col. 1) al − batteria.", "wireFrom": "bb1:bus-bot-minus-1", "wireTo": "bat1:negative", "wireColor": "black", "hint": "Cambia R 220 → 470 → 1kΩ e osserva luminosità!" }
       ],
       quiz: [
@@ -299,7 +301,7 @@ const EXPERIMENTS_VOL1 = {
       ],
       pinAssignments: {
               "r1:pin1": "bb1:a2",
-              "r1:pin2": "bb1:a9",
+              "r1:pin2": "bb1:a7",
               "rgb1:red": "bb1:f2",
               "rgb1:common": "bb1:f3",
               "rgb1:green": "bb1:f4",
@@ -344,7 +346,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -546,7 +549,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 166.5,
@@ -748,7 +752,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 174,
@@ -968,7 +973,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -1236,7 +1242,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -1536,7 +1543,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -1760,7 +1768,7 @@ const EXPERIMENTS_VOL1 = {
       ],
       pinAssignments: {
               "r1:pin1": "bb1:a2",
-              "r1:pin2": "bb1:a9",
+              "r1:pin2": "bb1:a7",
               "led1:anode": "bb1:f9",
               "led1:cathode": "bb1:f10",
               "btn1:pin1": "bb1:e11",
@@ -1815,7 +1823,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -2007,7 +2016,7 @@ const EXPERIMENTS_VOL1 = {
       ],
       pinAssignments: {
               "r1:pin1": "bb1:a2",
-              "r1:pin2": "bb1:a9",
+              "r1:pin2": "bb1:a7",
               "led1:anode": "bb1:f9",
               "led1:cathode": "bb1:f10",
               "btn1:pin1": "bb1:e11",
@@ -2062,7 +2071,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -2257,7 +2267,7 @@ const EXPERIMENTS_VOL1 = {
       ],
       pinAssignments: {
               "r1:pin1": "bb1:a2",
-              "r1:pin2": "bb1:a9",
+              "r1:pin2": "bb1:a7",
               "r2:pin1": "bb1:a11",
               "r2:pin2": "bb1:a18",
               "rgb1:red": "bb1:f15",
@@ -2326,7 +2336,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 151.5,
@@ -2641,7 +2652,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "btn1": {
                       "x": 140.25,
@@ -2991,7 +3003,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "btn1": {
                       "x": 140.25,
@@ -3305,7 +3318,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 155.25,
@@ -3529,7 +3543,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 155.25,
@@ -3752,7 +3767,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 155.25,
@@ -3981,7 +3997,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 140.25,
@@ -4220,7 +4237,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 140.25,
@@ -4531,7 +4549,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 132.75,
@@ -4922,7 +4941,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "btn1": {
                       "x": 140.25,
@@ -5230,7 +5250,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 132.75,
@@ -5581,7 +5602,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "btn1": {
                       "x": 140.25,
@@ -5894,7 +5916,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "ldr1": {
                       "x": 151.5,
@@ -6081,7 +6104,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "ldr1": {
                       "x": 151.5,
@@ -6303,7 +6327,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "ldr1": {
                       "x": 136.5,
@@ -6592,7 +6617,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "r1": {
                       "x": 174,
@@ -6905,7 +6931,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "pot1": {
                       "x": 132.75,
@@ -7233,7 +7260,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "btn1": {
                       "x": 140.25,
@@ -7499,7 +7527,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "buz1": {
                       "x": 350,
@@ -7683,7 +7712,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "btn1": {
                       "x": 230.25,
@@ -7892,7 +7922,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "reed1": {
                       "x": 170.25,
@@ -8101,7 +8132,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "reed1": {
                       "x": 170.25,
@@ -8314,7 +8346,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "reed1": {
                       "x": 170.25,
@@ -8557,7 +8590,8 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10
+                      "y": 10,
+                      "rotation": 90
               },
               "reed1": {
                       "x": 155.25,
