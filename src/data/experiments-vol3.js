@@ -1046,32 +1046,22 @@ const EXPERIMENTS_VOL3 = {
       "connections": [
         {
           "from": "nano1:W_D6",
-          "to": "bb1:a16",
+          "to": "bb1:a11",
           "color": "orange"
         },
         {
-          "from": "bb1:d23",
-          "to": "bb1:d25",
-          "color": "green"
-        },
-        {
-          "from": "bb1:a26",
-          "to": "bb1:bus-bot-minus-26",
+          "from": "bb1:f14",
+          "to": "bb1:bus-bot-minus-14",
           "color": "black"
         },
         {
           "from": "nano1:W_D9",
-          "to": "bb1:a20",
+          "to": "bb1:a15",
           "color": "orange"
         },
         {
-          "from": "bb1:d27",
-          "to": "bb1:d29",
-          "color": "green"
-        },
-        {
-          "from": "bb1:a30",
-          "to": "bb1:bus-bot-minus-30",
+          "from": "bb1:f18",
+          "to": "bb1:bus-bot-minus-18",
           "color": "black"
         },
         {
@@ -1086,14 +1076,14 @@ const EXPERIMENTS_VOL3 = {
         }
       ],
       "pinAssignments": {
-        "r1:pin1": "bb1:c16",
-        "r1:pin2": "bb1:c23",
-        "led1:anode": "bb1:d25",
-        "led1:cathode": "bb1:d26",
-        "r2:pin1": "bb1:c20",
-        "r2:pin2": "bb1:c27",
-        "led2:anode": "bb1:d29",
-        "led2:cathode": "bb1:d30"
+        "r1:pin1": "bb1:a11",
+        "r1:pin2": "bb1:a14",
+        "led1:anode": "bb1:e14",
+        "led1:cathode": "bb1:f14",
+        "r2:pin1": "bb1:a15",
+        "r2:pin2": "bb1:a18",
+        "led2:anode": "bb1:e18",
+        "led2:cathode": "bb1:f18"
       },
       "code": "const int LED_BLU = 6;\nconst int LED_ROSSO = 9;\n\nvoid setup() {\n  pinMode(LED_BLU, OUTPUT);\n  pinMode(LED_ROSSO, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED_BLU, HIGH);\n  digitalWrite(LED_ROSSO, LOW);\n  delay(200);\n  digitalWrite(LED_BLU, LOW);\n  digitalWrite(LED_ROSSO, HIGH);\n  delay(200);\n}",
       "scratchXml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"arduino_base\" x=\"40\" y=\"30\" deletable=\"false\"><statement name=\"SETUP\"><block type=\"arduino_serial_begin\"><field name=\"BAUD\">9600</field></block></statement><statement name=\"LOOP\"><block type=\"arduino_delay\"><value name=\"DELAY_TIME\"><shadow type=\"math_number\"><field name=\"NUM\">1000</field></shadow></value></block></statement></block></xml>",
@@ -1108,20 +1098,20 @@ const EXPERIMENTS_VOL3 = {
           "y": 10
         },
         "r1": {
-          "x": 436.5,
-          "y": 58.75
+          "x": 380.25,
+          "y": 43.75
         },
         "led1": {
-          "x": 481.5,
-          "y": 43.75
+          "x": 391.5,
+          "y": 82.5
         },
         "r2": {
-          "x": 466.5,
-          "y": 58.75
+          "x": 410.25,
+          "y": 43.75
         },
         "led2": {
-          "x": 511.5,
-          "y": 43.75
+          "x": 421.5,
+          "y": 82.5
         }
       },
       "concept": "Due LED che si alternano",
