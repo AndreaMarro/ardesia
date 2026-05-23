@@ -12,6 +12,7 @@
 .body {
   flex: 1;
   display: flex;
+  flex-direction: column;   /* era riga: ora impila striscia modalità + work-area */
   position: relative;
   overflow: hidden;
 }
@@ -19,15 +20,14 @@
 .canvas {
   flex: 1;
   position: relative;
-  z-index: 0;
   overflow: hidden;
   /* Dot pattern — visible workspace feel (like Excalidraw/Figma) */
   background-color: #F8FAFB; /* palette */
   background-image: radial-gradient(circle, #d0d4d8 0.8px, transparent 0.8px); /* palette */
   background-size: 20px 20px;
-  /* Smooth push transition when panels open/close */
-  transition: margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1),
-              margin-bottom 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* L3: no more margin-left/margin-bottom hacks — left panel is now an in-flow
+     column of .workArea (plan §6 Task 3), so width changes are absorbed by flex
+     layout. Transition lives on RetractablePanel left width animation. */
 }
 
 .loading {
@@ -44,7 +44,8 @@
   position: fixed;
   right: 96px;
   bottom: 24px;
-  z-index: 920;
+  /* L5: era hardcoded 920 → token Lavagna overlay layer (1000). */
+  z-index: var(--z-lav-overlay);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -101,7 +102,8 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  z-index: 955;
+  /* L5: era hardcoded 955 → token Lavagna overlay layer (1000). */
+  z-index: var(--z-lav-overlay);
 }
 
 /* ── Quick Component Panel (left RetractablePanel content) ── */
@@ -260,7 +262,9 @@
 .bentornatiOverlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  /* L5: era hardcoded 1000 → token Lavagna modal layer (2000). Welcome-back
+     overlay deve essere sopra gli overlay normali (chat, toast). */
+  z-index: var(--z-lav-modal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -410,13 +414,36 @@
   }
 }
 
-/* ADR-025 iter 26 — Modalità switch slot (4 modes canonical) */
-.modalitaSwitchSlot {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 960;
+/* Striscia modalità — in flusso, non più position:absolute (niente overlap) */
+.modalitaStrip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 6px 8px;
+  background: var(--color-bg-cool);
+}
+
+/* Work-area — riga a colonne: pannello sinistro | canvas | (chat via portal in L4) */
+.workArea {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* L4: livello overlay — target dei portal createPortal(node, document.body).
+   Sopra la griglia, mai intrappolato da stacking context interni. Plan §6 Task 4.
+   NOTE: usato come wrapper inline dentro createPortal — il pointer-events:none
+   protegge il fondo del canvas, i figli devono ri-abilitare pointer-events:auto. */
+.overlayRoot {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-lav-overlay);
+  pointer-events: none;
+}
+.overlayRoot > * {
   pointer-events: auto;
 }
 
@@ -427,7 +454,9 @@
 .capitoloPickerOverlay {
   position: fixed;
   inset: 48px 0 0;
-  z-index: 900;
+  /* L5: era hardcoded 900 → token Lavagna modal layer (2000). Picker è
+     un dialog modale, deve stare sopra UnlimAdapter (overlay 1000). */
+  z-index: var(--z-lav-modal);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,6 +6,7 @@ import App from './App.jsx'
 import { initCodeProtection } from './utils/codeProtection.js'
 import studentTracker from './services/studentTracker.js'
 import './index.css'
+import './styles/z-index.css'
 import './styles/design-system.css'
 import './styles/accessibility-fixes.css'  // WCAG 2.1 AA — DO NOT REMOVE
 

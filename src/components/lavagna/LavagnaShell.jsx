@@ -6,6 +6,8 @@
  */
 
 import React, { lazy, Suspense, useState, useCallback, useEffect, useRef, useMemo, useId } from 'react';
+import { createPortal } from 'react-dom';
+import { overlayPortalTarget, overlayPortalDisplayStyle } from './overlayPortal';
 import { useAuth } from '../../context/AuthContext';
 // Iter 44 wire-up: useSessionTracker per persistenza scritte sessione.
 // Andrea iter 41+ feedback 2026-05-06: "Cronologia recente" homepage sempre
@@ -1667,73 +1669,94 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       <div className={css.body}>
         {/* === LAVAGNA VIEW (simulatore + pannelli) === */}
         <div className={css.lavagnaView} style={{ display: activeTab === 'lavagna' ? 'contents' : 'none' }}>
-          {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso) */}
+          {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso)
+               L2: striscia in-flusso (non più position:absolute z960) → no overlap editor */}
           {!freeMode && (
-            <div className={css.modalitaSwitchSlot} data-testid="modalita-switch-slot">
-              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange}
-          sessionState={derivedSessionState}
-        />
+            <div className={css.modalitaStrip} data-testid="modalita-switch-slot">
+              <ModalitaSwitch
+                activeMode={modalita}
+                onModeChange={handleModalitaChange}
+                sessionState={derivedSessionState}
+              />
             </div>
           )}
 
-          {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito.
-               iter 45 B9: anche hidden in freeMode 'Lavagna libera' Andrea mandate). */}
-          {!freeMode && hasExperiment && buildMode !== 'sandbox' && (
-            <RetractablePanel
-              id="lavagna-left"
-              direction="left"
-              open={leftPanelOpen}
-              onToggle={toggleLeftPanel}
-              defaultSize={180}
-              minSize={140}
-              maxSize={280}
-              onSizeChange={setLeftPanelSize}
-              className={css.hideOnPortrait}
-            >
-              <QuickComponentPanel volumeNumber={currentVolume} />
-            </RetractablePanel>
-          )}
+          {/* L2: workArea wrapper — riga a colonne: pannello sinistro | canvas | UNLIM */}
+          <div className={css.workArea}>
+            {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito.
+                 iter 45 B9: anche hidden in freeMode 'Lavagna libera' Andrea mandate). */}
+            {!freeMode && hasExperiment && buildMode !== 'sandbox' && (
+              <RetractablePanel
+                id="lavagna-left"
+                direction="left"
+                open={leftPanelOpen}
+                onToggle={toggleLeftPanel}
+                defaultSize={180}
+                minSize={140}
+                maxSize={280}
+                onSizeChange={setLeftPanelSize}
+                className={css.hideOnPortrait}
+              >
+                <QuickComponentPanel volumeNumber={currentVolume} />
+              </RetractablePanel>
+            )}
 
-          {/* Center — simulator canvas + floating toolbar.
-               Homepage freeMode=true: blank simulator bridge + UNLIM, without
-               permanent copy that blocks manuals/actions. */}
-          <main className={css.canvas} style={{
-            ...(leftPanelOpen && !freeMode ? { marginLeft: leftPanelSize } : {}),
-            ...(bottomPanelOpen ? { marginBottom: bottomPanelSize } : {}),
-          }}>
-            <Suspense fallback={
-              <div className={css.loading}>
-                <span>Caricamento simulatore...</span>
-              </div>
-            }>
-              {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
-                   click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
-                   NON nascondere ComponentDrawer — al contrario, è proprio quello che
-                   l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
-              <NewElabSimulator
-                hideLessonPath
-                hideBuildModeBar
-                enableDrawingSync={DRAWING_SYNC_ENABLED}
-                onFumettoOpen={handleFumettoOpen}
+            {/* Center — simulator canvas + floating toolbar.
+                 Homepage freeMode=true: blank simulator bridge + UNLIM, without
+                 permanent copy that blocks manuals/actions. */}
+            <main className={css.canvas}>
+              <Suspense fallback={
+                <div className={css.loading}>
+                  <span>Caricamento simulatore...</span>
+                </div>
+              }>
+                {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
+                     click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
+                     NON nascondere ComponentDrawer — al contrario, è proprio quello che
+                     l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
+                <NewElabSimulator
+                  hideLessonPath
+                  hideBuildModeBar
+                  enableDrawingSync={DRAWING_SYNC_ENABLED}
+                  onFumettoOpen={handleFumettoOpen}
+                />
+              </Suspense>
+
+              <FloatingToolbar
+                activeTool={activeTool}
+                onToolChange={handleToolChange}
+                abovePanel={bottomPanelOpen}
+                leftPanelOpen={leftPanelOpen}
               />
-            </Suspense>
+            </main>
 
-            <FloatingToolbar
-              activeTool={activeTool}
-              onToolChange={handleToolChange}
-              abovePanel={bottomPanelOpen}
-              leftPanelOpen={leftPanelOpen}
-            />
-          </main>
-
-          {/* Right — UNLIM AI in FloatingWindow */}
-          <UnlimAdapter
-            visible={unlimOpen}
-            onClose={() => { manualOverridesRef.current.unlim = true; setUnlimOpen(false); }}
-            onSpeakingChange={setUnlimSpeaking}
-            activeTab={unlimTab}
-          />
+            {/* L4: UNLIM chat moved OUT of workArea into overlay portal (sotto).
+                 Plan §6 Task 4. Era qui dentro workArea ma intrappolava il layer
+                 di stacking del canvas. */}
+          </div>
         </div>
+
+        {/* L4 overlay portal — UNLIM chat sopra al canvas, mai intrappolata.
+             Plan §6 Task 4 Step 2. Target: document.body via overlayPortalTarget().
+             L4.1 fix (Codex stop-time review 2026-05-23): il portal scappa al gate
+             display:none di .lavagnaView, quindi UnlimAdapter risulterebbe visibile
+             su tab non-Lavagna (classe/progressi/lezione). Applichiamo lo stesso
+             gate display:none sul wrapper .overlayRoot per preservare il mount
+             (chat history, voice subs) ma nasconderlo visivamente fuori da #lavagna. */}
+        {overlayPortalTarget() && createPortal(
+          <div
+            className={css.overlayRoot}
+            style={{ display: overlayPortalDisplayStyle(activeTab) }}
+          >
+            <UnlimAdapter
+              visible={unlimOpen}
+              onClose={() => { manualOverridesRef.current.unlim = true; setUnlimOpen(false); }}
+              onSpeakingChange={setUnlimSpeaking}
+              activeTab={unlimTab}
+            />
+          </div>,
+          overlayPortalTarget()
+        )}
 
         {/* === DASHBOARD VIEW (docente o studente) === */}
         {activeTab === 'classe' && isDocente && (

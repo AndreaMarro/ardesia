@@ -1,3 +1,51 @@
+### fix(lavagna): tab-gate L4 overlay portal (Codex stop-time review)
+- L4 portal originale escapava il gate `display:none` di `.lavagnaView`, causando l'apparizione di UnlimAdapter (chat UNLIM) su tab non-Lavagna (`classe` dashboard docente, `progressi` student, `lezione` selector).
+- Fix: nuovo helper puro `overlayPortalDisplayStyle(activeTab)` in `overlayPortal.js` che ritorna `'none'` quando `activeTab !== 'lavagna'`. Applicato come style inline su `.overlayRoot` wrapper dentro `createPortal`.
+- Mount preservato (no unmount → no perdita di chat history, voice subs, FloatingWindow position). Solo nascosto visivamente.
+- +5 test regression guardrail su `tests/unit/components/lavagna/overlayPortal.test.js` (lavagna / classe / progressi / lezione / unknown defaults).
+
+### style(lavagna): z-index token cleanup + legibility QA
+- `LavagnaShell.module.css`: 4 z-index hardcoded sostituiti con token `--z-lav-*`:
+  - `.wakeWordPill` 920 → `var(--z-lav-overlay)` (1000)
+  - `.visionButtonSlot` 955 → `var(--z-lav-overlay)` (1000)
+  - `.bentornatiOverlay` 1000 → `var(--z-lav-modal)` (2000)
+  - `.capitoloPickerOverlay` 900 → `var(--z-lav-modal)` (2000)
+- Picker e Bentornati ora coerentemente sopra l'overlay layer (chat UNLIM).
+- Legibility pass: grep `fontSize:` su `src/components/lavagna/` non trova valori `<10px` (label) o `<13px` (testo). L'illeggibilità segnalata da Andrea era causata SOLO dall'overlap (risolto L2-L4) — dichiarato onestamente, nessun fix cosmetico aggiunto.
+- Skip plan §6 Task 5 Step 3 (AppHeader ≤52px verify): `.header { height:48px }` già conforme, segnalato in spec §5 A6.
+- Inline `zIndex` JSX (`LavagnaShell.jsx:1901` toolToast 9999, `MascotPresence.jsx:158` 900) e residui in altri component CSS (`UnlimBar`, `FloatingToolbar`, `VolumeViewer`, `ExperimentPicker`, ecc.) NON toccati: scope L5 limitato a `LavagnaShell.module.css` per evitare scope creep. Tracciati come issue residuo nell'AUDIT-FINAL.md.
+
+### feat(lavagna): unified overlay portal layer
+- Nuovo helper `src/components/lavagna/overlayPortal.js` (pura: `overlayPortalTarget()` → `document.body`).
+- Nuovo CSS `.overlayRoot` in `LavagnaShell.module.css` con `var(--z-lav-overlay)`, `position:fixed`, `inset:0`, `pointer-events:none` + figli `pointer-events:auto`.
+- `UnlimAdapter` (chat UNLIM) spostato fuori da `.workArea` e wrappato in `createPortal(<div class=overlayRoot>...</div>, document.body)`. Niente più stacking trap.
+- Skip plan §6 Task 4 Step 3-4 (revert A4): A4 non è sul branch (vedi spec §5 "A4 DISCARDED prima del branch").
+- Skip wakeWordPill + MascotPresence portal: già fuori da `.workArea` con `position:fixed`, scope minimo L4.
+- Test `tests/unit/components/lavagna/overlayPortal.test.js` (3 test, TDD pura sull'helper).
+- Deviazione vs plan §6 Task 4 Step 2: usa `var(--z-lav-overlay)` (NON `--z-overlay`) — plan è stale post L1 fix che prefissa i token Lavagna con `--z-lav-*`.
+
+### fix(lavagna): pannello sinistro come colonna della work-area
+- `RetractablePanel` variante `direction="left"` da `position:absolute` a colonna in-flow (`position:relative`, `flex-shrink:0`).
+- Stato `closed` da `transform:translateX(-100%)` a `width:0` per coerenza con layout in-flow.
+- Rimossi gli inline `marginLeft`/`marginBottom` su `<main className={css.canvas}>` in `LavagnaShell.jsx`.
+- Rimossa la transizione `margin-left`/`margin-bottom` da `.canvas` (la transizione di width vive ora su `.left`).
+- Le varianti `direction="right"` e `direction="bottom"` restano invariate.
+
+### fix(lavagna): striscia ModalitaSwitch in-flow — stop overlap editor
+- `.body` da riga a colonna; ModalitaSwitch da `position:absolute z960` a striscia in flusso.
+- `.canvas` non ha più `z-index:0` → niente stacking context che intrappola l'editor fullscreen.
+- Nuovo wrapper `.workArea`. Risolve la sovrapposizione principale segnalata da Andrea.
+
+### fix(lavagna): consolidate z-index tokens into z-index.css (single source)
+- Spostati i 7 token z-index esistenti da `design-system.css` a `z-index.css` con valori invariati.
+- Token Lavagna-specifici rinominati con prefisso `--z-lav-*` per evitare collisione con i token esistenti.
+- Single source of truth: tutti i token z-index ora vivono in `src/styles/z-index.css`.
+- Risolve la collisione individuata dal code quality reviewer (`--z-overlay` e `--z-modal` duplicati con valori diversi).
+
+### style(lavagna): scala z-index token unica
+- Nuovo `src/styles/z-index.css` — token `--z-base/--z-rail/--z-topbar/--z-overlay/--z-modal`.
+- Fondamenta per il Lavagna Layout Overhaul (L1/5). Nessun cambiamento visibile.
+
 ## [fix(fumetto) — retry su 503 transitorio della chiamata Gemini] — 2026-05-22
 
 - `src/services/fumettoGeminiService.js` — `generateFumettoDraftWithGemini` ritenta una volta su fallimento transitorio (errore di rete o 5xx). Verifica live post PR #152 su www.elabtutor.school: la chiamata Gemini ora funziona (200) ma e intermittente — talvolta sfora il timeout LLM di 15s e torna 503. Un secondo tentativo recupera la varianza di latenza; i 4xx (deterministici) non vengono ritentati. Fallback locale sobrio invariato.
