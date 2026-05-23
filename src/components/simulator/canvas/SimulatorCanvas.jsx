@@ -50,6 +50,7 @@ const COMP_SIZES = {
   'breadboard-full': { w: 110, h: 469 },  // VERTICAL: W=8*2+14+5*7*2+10=110, H=8*2+6*2+63*7=469 (from BreadboardFull.jsx)
   'battery9v': { w: 40, h: 90 },
   'led': { w: 20, h: 50 },
+  'led-bridge': { w: 20, h: 24 },  // pins vertical span 17.5 + dome margin
   'rgb-led': { w: 36, h: 50 },
   'resistor': { w: 60, h: 16 },
   'push-button': { w: 20, h: 20 },
