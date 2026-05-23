@@ -37,13 +37,14 @@ export const ALL_EXPERIMENTS = DEMO_MODE_ENABLED
 
 /**
  * Trova un esperimento per ID (es. "v1-cap6-esp1")
- * Risolve da RAW set per supportare riferimenti narrativi a esp non-demo
- * (next_experiment, prerequisites, etc.) senza rompere lesson-paths.
+ * Andrea 24/05 PM mandate: STRICT demo mode — return null for non-demo IDs
+ * to block URL hash routing, stale localStorage, narrative auto-next bypass.
+ * Post-demo: set DEMO_MODE_ENABLED=false in demo-mode.js to restore full access.
  * @param {string} id
  * @returns {object|null}
  */
 export function findExperimentById(id) {
-  return ALL_EXPERIMENTS_RAW.find(e => e.id === id) || null;
+  return ALL_EXPERIMENTS.find(e => e.id === id) || null;
 }
 
 /**
