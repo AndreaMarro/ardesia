@@ -45,39 +45,29 @@ const EXPERIMENTS_VOL1 = {
               }
       ],
       pinAssignments: {
-              "r1:pin1": "bb1:a2",
-              "r1:pin2": "bb1:a9",
-              "led1:anode": "bb1:f9",
-              "led1:cathode": "bb1:f10"
+              "r1:pin1": "bb1:a20",
+              "r1:pin2": "bb1:a25",
+              "led1:anode": "bb1:e25",
+              "led1:cathode": "bb1:f25"
       },
       connections: [
               {
                       "from": "bat1:positive",
-                      "to": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-top-plus-3",
                       "color": "red"
               },
               {
-                      "from": "bb1:bus-top-plus-2",
-                      "to": "bb1:b2",
+                      "from": "bb1:bus-top-plus-20",
+                      "to": "bb1:a20",
                       "color": "red"
               },
               {
-                      "from": "bb1:e9",
-                      "to": "bb1:f9",
-                      "color": "green"
-              },
-              {
-                      "from": "bb1:j10",
-                      "to": "bb1:bus-bot-minus-10",
+                      "from": "bb1:f25",
+                      "to": "bb1:bus-bot-minus-25",
                       "color": "black"
               },
               {
-                      "from": "bb1:bus-bot-minus-1",
-                      "to": "bb1:bus-top-minus-1",
-                      "color": "black"
-              },
-              {
-                      "from": "bb1:bus-top-minus-1",
+                      "from": "bb1:bus-bot-minus-3",
                       "to": "bat1:negative",
                       "color": "black"
               }
@@ -92,12 +82,12 @@ const EXPERIMENTS_VOL1 = {
                       "y": 10
               },
               "r1": {
-                      "x": 151.5,
+                      "x": 275,
                       "y": 43.75
               },
               "led1": {
-                      "x": 181.5,
-                      "y": 68.75
+                      "x": 294,
+                      "y": 82.5
               }
       },
       steps: [
