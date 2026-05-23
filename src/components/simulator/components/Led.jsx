@@ -69,14 +69,28 @@ const Led = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, color 
          </g>
        )}
 
-       {/* Wire leads — metallic gradient, slightly diverging */}
+       {/* Wire leads — anode (left, x=-3.75) is LONGER, cathode (right, x=3.75)
+            is SHORTER with a visible KINK above the breadboard hole.
+            Book Vol1 cap6 teaches: "gambetta lunga = positivo, gambetta corta = catodo".
+            Pin Y unchanged (solver-safe). Visual distinction via kink only. */}
+       {/* Anode lead — straight, long, from dome base to pin */}
        <line x1="-2.4" y1="0" x2="-3.75" y2="22.5"
          stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-       <line x1="2.4" y1="0" x2="3.75" y2="22.5"
-         stroke={`url(#${uid}-wire)`} strokeWidth="1.25" strokeLinecap="round" />
-       {/* Anode marker — longer lead (left) has subtle thickening at base */}
+       {/* Cathode lead — has visible KINK at y=15 indicating shorter physical lead */}
+       <polyline points="2.4,0 3.0,12 4.2,14 3.75,15.5 3.75,22.5"
+         fill="none" stroke={`url(#${uid}-wire)`} strokeWidth="1.25"
+         strokeLinecap="round" strokeLinejoin="round" />
+       {/* Pin connection markers at breadboard level */}
        <circle cx="-3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
        <circle cx="3.75" cy="22.5" r="1.0" fill="#888" opacity="0.3" />
+       {/* Subtle polarity labels: + (left, anode) and small flat-bar (right, cathode).
+            Drawn under the dome shadow so they don't dominate visually. */}
+       <text x="-7.5" y="6" fontSize="3.2" fill="var(--elab-hex-cc0000)"
+         fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle"
+         opacity="0.55">+</text>
+       <line x1="6.2" y1="5" x2="9.0" y2="5"
+         stroke="var(--elab-hex-1a1a1a)" strokeWidth="0.7"
+         strokeLinecap="round" opacity="0.55" />
 
        {/* LED dome shadow */}
        <path
