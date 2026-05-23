@@ -13,7 +13,7 @@
 import React from 'react';
 import { registerComponent } from './registry';
 
-const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, id }) => {
+const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, id, renderMode = 'default' }) => {
   const voltage = state.voltage || 9;
   const isConnected = state.connected !== false;
 
@@ -129,25 +129,36 @@ const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
       <circle cx={TERM_X} cy={TERM_MINUS_Y} r="2"
         fill="var(--elab-hex-d0d0d0)" stroke="#999" strokeWidth="0.3" />
 
-      {/* Red wire (+) — from upper clip down to pin positive (0, 32) */}
-      <path
-        d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
-        stroke="var(--elab-hex-8b1b1b)" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
-      />
-      <path
-        d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
-        stroke="var(--elab-hex-d32f2f)" strokeWidth="2.4" fill="none" strokeLinecap="round"
-      />
+      {/* Embedded strisci cavi — solo in renderMode="default" (legacy).
+          renderMode="clip_simplified" → nasconde strisci, lascia Wire.jsx esterno
+          con path custom per geometria identica libro (Demo S1 fedelta volume). */}
+      {renderMode === 'default' && (
+        <>
+          {/* Red wire (+) — from upper clip down to pin positive (0, 32) */}
+          <path
+            data-strisci="red"
+            d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
+            stroke="var(--elab-hex-8b1b1b)" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
+          />
+          <path
+            data-strisci="red"
+            d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
+            stroke="var(--elab-hex-d32f2f)" strokeWidth="2.4" fill="none" strokeLinecap="round"
+          />
 
-      {/* Black wire (−) — from lower clip down to pin negative (0, 58) */}
-      <path
-        d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
-        stroke="#000" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
-      />
-      <path
-        d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
-        stroke="var(--elab-hex-1a1a1a)" strokeWidth="2.4" fill="none" strokeLinecap="round"
-      />
+          {/* Black wire (−) — from lower clip down to pin negative (0, 58) */}
+          <path
+            data-strisci="black"
+            d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
+            stroke="#000" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
+          />
+          <path
+            data-strisci="black"
+            d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
+            stroke="var(--elab-hex-1a1a1a)" strokeWidth="2.4" fill="none" strokeLinecap="round"
+          />
+        </>
+      )}
 
       {/* ── Interaction area ── */}
       <rect
