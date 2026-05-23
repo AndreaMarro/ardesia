@@ -2202,12 +2202,12 @@ const EXPERIMENTS_VOL2 = {
         }
       ],
       "pinAssignments": {
+        "c1:positive": "bb1:e5",
+        "c1:negative": "bb1:e6",
         "btn1:pin1": "bb1:e10",
         "btn1:pin2": "bb1:f12",
-        "c1:positive": "bb1:g12",
-        "c1:negative": "bb1:g15",
-        "r1:pin1": "bb1:h15",
-        "r1:pin2": "bb1:h18"
+        "r1:pin1": "bb1:e16",
+        "r1:pin2": "bb1:e23"
       },
       "connections": [
         {
@@ -2221,23 +2221,38 @@ const EXPERIMENTS_VOL2 = {
           "color": "red"
         },
         {
-          "from": "bb1:h18",
-          "to": "bb1:bus-bot-minus-18",
+          "from": "bb1:g12",
+          "to": "bb1:c5",
+          "color": "yellow"
+        },
+        {
+          "from": "bb1:a5",
+          "to": "bb1:a16",
+          "color": "green"
+        },
+        {
+          "from": "bb1:a23",
+          "to": "bb1:bus-top-minus-23",
           "color": "black"
         },
         {
-          "from": "bb1:bus-bot-minus-1",
+          "from": "bb1:a6",
+          "to": "bb1:bus-top-minus-6",
+          "color": "black"
+        },
+        {
+          "from": "bb1:bus-top-minus-1",
           "to": "bat1:negative",
           "color": "black"
         },
         {
           "from": "mm1:probe-positive",
-          "to": "bb1:j12",
+          "to": "bb1:b5",
           "color": "red"
         },
         {
           "from": "mm1:probe-negative",
-          "to": "bb1:j15",
+          "to": "bb1:b6",
           "color": "black"
         }
       ],
@@ -2250,17 +2265,17 @@ const EXPERIMENTS_VOL2 = {
           "x": 100,
           "y": 10
         },
-        "btn1": {
-          "x": 189,
-          "y": 82.5
-        },
         "c1": {
-          "x": 207.75,
-          "y": 98.75
+          "x": 155.25,
+          "y": 88.75
+        },
+        "btn1": {
+          "x": 200.25,
+          "y": 81.25
         },
         "r1": {
-          "x": 230.25,
-          "y": 106.25
+          "x": 256.5,
+          "y": 73.75
         },
         "mm1": {
           "x": 340,
@@ -2477,14 +2492,14 @@ const EXPERIMENTS_VOL2 = {
         }
       ],
       "pinAssignments": {
+        "c1:positive": "bb1:e5",
+        "c1:negative": "bb1:e6",
         "btn1:pin1": "bb1:e10",
         "btn1:pin2": "bb1:f12",
-        "c1:positive": "bb1:g12",
-        "c1:negative": "bb1:g15",
-        "r1:pin1": "bb1:h15",
-        "r1:pin2": "bb1:h17",
-        "led1:anode": "bb1:f17",
-        "led1:cathode": "bb1:e17"
+        "r1:pin1": "bb1:e15",
+        "r1:pin2": "bb1:e22",
+        "led1:anode": "bb1:d23",
+        "led1:cathode": "bb1:d24"
       },
       "connections": [
         {
@@ -2498,8 +2513,8 @@ const EXPERIMENTS_VOL2 = {
           "color": "red"
         },
         {
-          "from": "bb1:a17",
-          "to": "bb1:bus-top-minus-17",
+          "from": "bb1:a6",
+          "to": "bb1:bus-top-minus-6",
           "color": "black"
         },
         {
@@ -2508,13 +2523,33 @@ const EXPERIMENTS_VOL2 = {
           "color": "black"
         },
         {
+          "from": "bb1:g12",
+          "to": "bb1:c5",
+          "color": "yellow"
+        },
+        {
+          "from": "bb1:a5",
+          "to": "bb1:a15",
+          "color": "green"
+        },
+        {
+          "from": "bb1:a22",
+          "to": "bb1:a23",
+          "color": "orange"
+        },
+        {
+          "from": "bb1:a24",
+          "to": "bb1:bus-top-minus-24",
+          "color": "black"
+        },
+        {
           "from": "mm1:probe-positive",
-          "to": "bb1:j12",
+          "to": "bb1:b5",
           "color": "red"
         },
         {
           "from": "mm1:probe-negative",
-          "to": "bb1:j15",
+          "to": "bb1:b6",
           "color": "black"
         }
       ],
@@ -2528,36 +2563,36 @@ const EXPERIMENTS_VOL2 = {
           "y": 10
         },
         "c1": {
-          "x": 207.75,
+          "x": 155.25,
           "y": 88.75
         },
         "btn1": {
-          "x": 189,
-          "y": 72.5
+          "x": 200.25,
+          "y": 81.25
         },
         "r1": {
-          "x": 226.5,
-          "y": 96.25
+          "x": 249,
+          "y": 73.75
         },
         "led1": {
-          "x": 234,
-          "y": 72.5
+          "x": 286.5,
+          "y": 43.75
         },
         "mm1": {
-          "x": 320,
+          "x": 340,
           "y": 20
         }
       },
       "steps": [
-        "Posiziona il pulsante a cavallo dei fori E10 (top) e F12 (bot): collega bus+ al condensatore via interruttore.",
-        "Inserisci il condensatore da 1000µF in orizzontale: + in G12 e − in G15.",
-        "Inserisci il resistore da 1kΩ tra H15 e H17: ponte tra cap− e LED.",
-        "Inserisci il LED rosso verticale colonna 17: anodo F17 (bot), catodo E17 (top).",
-        "Collega il polo + della batteria al bus + (top).",
-        "Collega il bus + al pulsante (A10) per portare corrente al condensatore quando premi.",
-        "Collega il catodo del LED (A17) al bus − (top) per chiudere il circuito di scarica.",
-        "Collega il bus − al polo − della batteria.",
-        "Multimetro: sonda rossa in J12 (cap +), sonda nera in J15 (cap −)."
+        "Inserisci il condensatore da 1000µF con il positivo nel foro e5 e il negativo in e6.",
+        "Posiziona il pulsante a cavallo dei fori e10 e f12.",
+        "Inserisci il resistore da 1kΩ tra i fori e15 e e22.",
+        "Inserisci il LED rosso con l'anodo nel foro d23 e il catodo in d24.",
+        "Collega il bus + della breadboard al pulsante (a10).",
+        "Collega il negativo del condensatore (a6) alla riga - e poi al polo negativo.",
+        "Collega l'uscita del pulsante (g12) al polo + del condensatore (c5), poi dal condensatore (a5) al resistore (a15).",
+        "Collega il catodo del LED (a24) alla riga -.",
+        "Collega il multimetro: sonda rossa al foro b5, sonda nera al foro b6."
       ],
       "observe": "Premendo il pulsante, il LED si accende e poi sfuma lentamente! Puoi VEDERE l'energia del condensatore che si esaurisce. Il multimetro mostra la tensione che cala contemporaneamente.",
       "unlimPrompt": "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Scarica con LED rosso'. Qui il condensatore si scarica attraverso un LED è un resistore: puoi VEDERE l'energia che se ne va! Il LED parte luminoso e sfuma piano piano, come una torcia che si scarica. Questo è il concetto di scarica RC reso visibile. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
@@ -2584,102 +2619,134 @@ const EXPERIMENTS_VOL2 = {
         },
         {
           "step": 3,
-          "text": "Ragazzi, prendete il pulsante dalla palette e posizionatelo a cavallo dei fori E10 (top) e F12 (bot).",
+          "text": "Ragazzi, prendete il condensatore da 1000µF dalla palette e posizionalo nei fori E5 e E6.",
+          "componentId": "c1",
+          "componentType": "capacitor",
+          "targetPins": {
+            "c1:positive": "bb1:e5",
+            "c1:negative": "bb1:e6"
+          },
+          "hint": "Il polo + in E5, il polo − in E6. Attenzione alla polarità!"
+        },
+        {
+          "step": 4,
+          "text": "Ragazzi, prendete il pulsante dalla palette e posizionalo nei fori E10 e F12.",
           "componentId": "btn1",
           "componentType": "push-button",
           "targetPins": {
             "btn1:pin1": "bb1:e10",
             "btn1:pin2": "bb1:f12"
           },
-          "hint": "Il pulsante attraversa la scanalatura centrale: pin1 in E10, pin2 in F12."
-        },
-        {
-          "step": 4,
-          "text": "Ragazzi, prendete il condensatore da 1000µF e posizionatelo orizzontale: + in G12, − in G15.",
-          "componentId": "c1",
-          "componentType": "capacitor",
-          "targetPins": {
-            "c1:positive": "bb1:g12",
-            "c1:negative": "bb1:g15"
-          },
-          "hint": "Il polo + in G12 (allineato col pulsante), il polo − in G15. Attenzione alla polarità!"
+          "hint": "Il pulsante va a cavallo della scanalatura centrale della breadboard."
         },
         {
           "step": 5,
-          "text": "Ragazzi, prendete il resistore da 1kΩ e posizionatelo orizzontale tra H15 e H17.",
-          "componentId": "r1",
-          "componentType": "resistor",
-          "targetPins": {
-            "r1:pin1": "bb1:h15",
-            "r1:pin2": "bb1:h17"
-          },
-          "hint": "Il resistore limita la corrente di scarica del condensatore."
-        },
-        {
-          "step": 6,
-          "text": "Ragazzi, prendete il LED rosso e posizionatelo verticale sulla colonna 17: anodo in F17 (bot), catodo in E17 (top).",
+          "text": "Ragazzi, prendete il LED rosso dalla palette e posizionalo nei fori D23 e D24.",
           "componentId": "led1",
           "componentType": "led",
           "targetPins": {
-            "led1:anode": "bb1:f17",
-            "led1:cathode": "bb1:e17"
+            "led1:anode": "bb1:d23",
+            "led1:cathode": "bb1:d24"
           },
-          "hint": "L'anodo (+, gamba lunga) in F17 attraversa la scanalatura: il catodo (−) sale in E17."
+          "hint": "L'anodo (+, gamba lunga) va in D23 e il catodo (−, gamba corta) in D24."
+        },
+        {
+          "step": 6,
+          "text": "Ragazzi, prendete il resistore da 1kΩ dalla palette e posizionalo nei fori E15 e E22.",
+          "componentId": "r1",
+          "componentType": "resistor",
+          "targetPins": {
+            "r1:pin1": "bb1:e15",
+            "r1:pin2": "bb1:e22"
+          },
+          "hint": "Il resistore limita la corrente nel circuito."
         },
         {
           "step": 7,
-          "text": "Ragazzi, posizionate il multimetro accanto al circuito. Misurerà la tensione del condensatore!",
+          "text": "Ragazzi, posizionate il multimetro accanto al circuito. Ti servirà per misurare!",
           "componentId": "mm1",
           "componentType": "multimeter",
-          "hint": "Il multimetro misura la tensione che cala mentre il condensatore si scarica."
+          "hint": "Il multimetro misura tensione, corrente e resistenza."
         },
         {
           "step": 8,
-          "text": "Ragazzi, collegate un filo ROSSO dal polo + della batteria al bus + superiore (col. 1).",
+          "text": "Ragazzi, collegate un filo ROSSO dal polo + della batteria al foro bus + superiore (col. 1).",
           "wireFrom": "bat1:positive",
           "wireTo": "bb1:bus-top-plus-1",
           "wireColor": "red",
-          "hint": "Questo filo porta la corrente positiva dalla batteria al bus della breadboard."
+          "hint": "Questo filo porta la corrente dalla batteria al bus positivo della breadboard."
         },
         {
           "step": 9,
-          "text": "Ragazzi, collegate un filo ROSSO dal bus + (col. 10) al foro A10: corrente al pulsante!",
-          "wireFrom": "bb1:bus-top-plus-10",
-          "wireTo": "bb1:a10",
+          "text": "Ragazzi, collegate un filo ROSSO dal foro bus + superiore (col. 5) al foro A5.",
+          "wireFrom": "bb1:bus-top-plus-5",
+          "wireTo": "bb1:a5",
           "wireColor": "red",
-          "hint": "La corrente arriva al pulsante: finché non lo premete, il condensatore non si carica."
+          "hint": "Questo filo porta la corrente dal bus positivo al componente."
         },
         {
           "step": 10,
-          "text": "Ragazzi, collegate un filo NERO dal foro A17 al bus − superiore (col. 17): chiude il circuito di scarica.",
-          "wireFrom": "bb1:a17",
-          "wireTo": "bb1:bus-top-minus-17",
+          "text": "Ragazzi, collegate un filo NERO dal foro A6 al foro bus − superiore (col. 6).",
+          "wireFrom": "bb1:a6",
+          "wireTo": "bb1:bus-top-minus-6",
           "wireColor": "black",
-          "hint": "Il catodo del LED arriva al bus negativo: ecco la via per la scarica."
+          "hint": "Questo filo riporta la corrente al bus negativo."
         },
         {
           "step": 11,
-          "text": "Ragazzi, collegate un filo NERO dal bus − (col. 1) al polo − della batteria: chiude il circuito.",
+          "text": "Ragazzi, collegate un filo NERO dal foro bus − superiore (col. 1) al polo − della batteria.",
           "wireFrom": "bb1:bus-top-minus-1",
           "wireTo": "bat1:negative",
           "wireColor": "black",
-          "hint": "Questo filo riporta la corrente alla batteria, chiudendo il loop."
+          "hint": "Questo filo chiude il circuito riportando la corrente alla batteria."
         },
         {
           "step": 12,
-          "text": "Ragazzi, collegate la sonda ROSSA del multimetro al foro J12 (polo + del condensatore).",
-          "wireFrom": "mm1:probe-positive",
-          "wireTo": "bb1:j12",
+          "text": "Ragazzi, collegate un filo ROSSO dal foro A5 al foro A10.",
+          "wireFrom": "bb1:a5",
+          "wireTo": "bb1:a10",
           "wireColor": "red",
-          "hint": "La sonda rossa misura il potenziale positivo del condensatore."
+          "hint": "Il filo rosso porta la corrente positiva."
         },
         {
           "step": 13,
-          "text": "Ragazzi, collegate la sonda NERA del multimetro al foro J15 (polo − del condensatore).",
-          "wireFrom": "mm1:probe-negative",
-          "wireTo": "bb1:j15",
+          "text": "Ragazzi, collegate un filo GIALLO dal foro G12 al foro A15.",
+          "wireFrom": "bb1:g12",
+          "wireTo": "bb1:a15",
+          "wireColor": "yellow",
+          "hint": "Questo filo attraversa la scanalatura e collega due parti del circuito."
+        },
+        {
+          "step": 14,
+          "text": "Ragazzi, collegate un filo ARANCIONE dal foro A22 al foro A23.",
+          "wireFrom": "bb1:a22",
+          "wireTo": "bb1:a23",
+          "wireColor": "orange",
+          "hint": "Questo filo collega il resistore al LED."
+        },
+        {
+          "step": 15,
+          "text": "Ragazzi, collegate un filo NERO dal foro A24 al foro bus − superiore (col. 24).",
+          "wireFrom": "bb1:a24",
+          "wireTo": "bb1:bus-top-minus-24",
           "wireColor": "black",
-          "hint": "Le due sonde misurano la differenza di potenziale ai capi del condensatore."
+          "hint": "Questo filo riporta la corrente al bus negativo."
+        },
+        {
+          "step": 16,
+          "text": "Ragazzi, collegate la sonda rossa (+) del multimetro al foro B5.",
+          "wireFrom": "mm1:probe-positive",
+          "wireTo": "bb1:b5",
+          "wireColor": "red",
+          "hint": "Posiziona la sonda per misurare la tensione nel punto desiderato."
+        },
+        {
+          "step": 17,
+          "text": "Ragazzi, collegate la sonda nera (−) del multimetro al foro B6.",
+          "wireFrom": "mm1:probe-negative",
+          "wireTo": "bb1:b6",
+          "wireColor": "black",
+          "hint": "Posiziona la sonda per misurare la tensione nel punto desiderato."
         }
       ],
       "quiz": [

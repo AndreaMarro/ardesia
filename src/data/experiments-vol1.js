@@ -45,10 +45,10 @@ const EXPERIMENTS_VOL1 = {
               }
       ],
       pinAssignments: {
-              "r1:pin1": "bb1:i7",
-              "r1:pin2": "bb1:i9",
-              "led1:anode": "bb1:e7",
-              "led1:cathode": "bb1:f7"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:f10"
       },
       connections: [
               {
@@ -57,17 +57,27 @@ const EXPERIMENTS_VOL1 = {
                       "color": "red"
               },
               {
-                      "from": "bb1:bus-top-plus-7",
-                      "to": "bb1:a7",
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:b2",
                       "color": "red"
               },
               {
-                      "from": "bb1:i9",
-                      "to": "bb1:bus-bot-minus-9",
+                      "from": "bb1:e9",
+                      "to": "bb1:f9",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j10",
+                      "to": "bb1:bus-bot-minus-10",
                       "color": "black"
               },
               {
                       "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
                       "to": "bat1:negative",
                       "color": "black"
               }
@@ -82,21 +92,21 @@ const EXPERIMENTS_VOL1 = {
                       "y": 10
               },
               "r1": {
-                      "x": 166.5,
-                      "y": 113.75
+                      "x": 151.5,
+                      "y": 43.75
               },
               "led1": {
-                      "x": 159,
-                      "y": 82.5
+                      "x": 181.5,
+                      "y": 68.75
               }
       },
       steps: [
-        "Inserisci il resistore da 470\u03A9 in verticale sulla fila I, colonne 7 e 9 (I7-I9).",
-        "Inserisci il LED rosso a cavallo del gap centrale, colonna 7: anodo in E7 (top), catodo in F7 (bot).",
-        "Collega un filo ROSSO dal polo + della batteria al bus + superiore (colonna 1).",
-        "Collega un filo ROSSO dal bus + superiore (colonna 7) al foro A7: corrente al LED.",
-        "Collega un filo NERO dal foro I9 al bus \u2212 inferiore (colonna 9): catodo a GND via resistore.",
-        "Collega un filo NERO dal bus \u2212 inferiore (colonna 1) al polo \u2212 della batteria."
+        "Inserisci il resistore da 470\u03A9 nella fila A, colonne 2-9",
+        "Inserisci il LED rosso con l'anodo in F9 e il catodo in F10 (sotto il gap centrale)",
+        "Collega un filo ROSSO dal bus + (colonna 2) al foro B2",
+        "Collega un filo VERDE dal foro E9 al foro F9 (attraversa il gap centrale)",
+        "Collega un filo NERO dal foro J10 al bus \u2212 inferiore (colonna 10)",
+        "Collega la batteria 9V: filo rosso al bus +, filo nero al bus \u2212"
       ],
       observe: "Il LED rosso si accende! Il resistore da 470\u03A9 limita la corrente a circa 15mA, proteggendo il LED.",
       unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Accendi il tuo primo LED'. Questo è il primissimo circuito: batteria 9V, resistore da 470 ohm e LED rosso. Spiega cos'è un circuito chiuso, perché serve il resistore (protezione LED), e cosa significano anodo e catodo. Usa l'analogia dell'acqua che scorre in un tubo. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
@@ -108,71 +118,87 @@ const EXPERIMENTS_VOL1 = {
       buildSteps: [
               {
                       "step": 1,
-                      "text": "Posiziona la breadboard mezza al centro del piano di lavoro.",
-                      "componentId": "bb1",
-                      "componentType": "breadboard-half",
-                      "hint": "La breadboard ha 2 sezioni (top a-e, bot f-j) separate dal gap centrale."
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
               },
               {
                       "step": 2,
-                      "text": "Posiziona la batteria 9V a sinistra della breadboard: è la fonte di energia.",
-                      "componentId": "bat1",
-                      "componentType": "battery9v",
-                      "hint": "La batteria 9V alimenta il circuito; rispetta i poli + e −."
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
               },
               {
                       "step": 3,
-                      "text": "Posiziona il resistore da 470Ω verticale sulla fila I, colonne 7 e 9 (I7-I9).",
+                      "text": "Posiziona resistore da 470 ohm nei fori A2, A9.",
                       "componentId": "r1",
                       "componentType": "resistor",
-                      "hint": "Il resistore limita la corrente del LED proteggendolo dal bruciarsi.",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
                       "targetPins": {
-                              "r1:pin1": "bb1:i7",
-                              "r1:pin2": "bb1:i9"
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
                       }
               },
               {
                       "step": 4,
-                      "text": "Posiziona il LED rosso a cavallo del gap: anodo in E7 (top), catodo in F7 (bot).",
+                      "text": "Posiziona LED red nei fori F9, F10.",
                       "componentId": "led1",
                       "componentType": "led",
-                      "hint": "Anodo (+, gamba lunga) in E7, catodo (−, gamba corta) in F7.",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
                       "targetPins": {
-                              "led1:anode": "bb1:e7",
-                              "led1:cathode": "bb1:f7"
+                              "led1:anode": "bb1:f9",
+                              "led1:cathode": "bb1:f10"
                       }
               },
               {
                       "step": 5,
-                      "text": "Collega un filo ROSSO dal polo + della batteria al bus + superiore (colonna 1).",
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
                       "wireFrom": "bat1:positive",
                       "wireTo": "bb1:bus-top-plus-1",
                       "wireColor": "red",
-                      "hint": "Porta la tensione + dalla batteria al bus superiore."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 6,
-                      "text": "Collega un filo ROSSO dal bus + superiore (col. 7) al foro A7: alimenta l'anodo del LED.",
-                      "wireFrom": "bb1:bus-top-plus-7",
-                      "wireTo": "bb1:a7",
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:b2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:b2",
                       "wireColor": "red",
-                      "hint": "Connette il bus + alla colonna 7 dove c'è l'anodo del LED."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 7,
-                      "text": "Collega un filo NERO dal foro I9 al bus − inferiore (col. 9): catodo verso GND via resistore.",
-                      "wireFrom": "bb1:i9",
-                      "wireTo": "bb1:bus-bot-minus-9",
-                      "wireColor": "black",
-                      "hint": "Dopo il resistore la corrente arriva al bus −."
+                      "text": "Collega un filo GREEN da bb1:e9 a bb1:f9.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f9",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 8,
-                      "text": "Collega un filo NERO dal bus − inferiore (col. 1) al polo − della batteria: chiude il circuito.",
+                      "text": "Collega un filo BLACK da bb1:j10 a bb1:bus-bot-minus-10.",
+                      "wireFrom": "bb1:j10",
+                      "wireTo": "bb1:bus-bot-minus-10",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
                       "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
                       "wireTo": "bat1:negative",
                       "wireColor": "black",
-                      "hint": "Senza questo filo il circuito è aperto e il LED non si accende."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               }
       ],
       quiz: [
@@ -210,31 +236,41 @@ const EXPERIMENTS_VOL1 = {
               {
                       "type": "led",
                       "id": "led1",
-                      "color": "red"
+                      "color": "blue"
               }
       ],
       pinAssignments: {
-              "led1:anode": "bb1:e7",
-              "led1:cathode": "bb1:f7"
+              "led1:anode": "bb1:f2",
+              "led1:cathode": "bb1:f3"
       },
       connections: [
               {
                       "from": "bat1:positive",
-                      "to": "bb1:bus-top-plus-2",
+                      "to": "bb1:bus-top-plus-1",
                       "color": "red"
               },
               {
-                      "from": "bb1:bus-top-plus-7",
-                      "to": "bb1:a7",
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:a2",
                       "color": "red"
               },
               {
-                      "from": "bb1:f7",
-                      "to": "bb1:bus-bot-minus-7",
+                      "from": "bb1:e2",
+                      "to": "bb1:f2",
+                      "color": "red"
+              },
+              {
+                      "from": "bb1:j3",
+                      "to": "bb1:bus-bot-minus-3",
                       "color": "black"
               },
               {
-                      "from": "bb1:bus-bot-minus-2",
+                      "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
                       "to": "bat1:negative",
                       "color": "black"
               }
@@ -249,17 +285,16 @@ const EXPERIMENTS_VOL1 = {
                       "y": 10
               },
               "led1": {
-                      "x": 159,
-                      "y": 82.5
+                      "x": 129,
+                      "y": 68.75
               }
       },
       steps: [
-        "Inserisci il LED rosso a cavallo del gap centrale, colonna 7: anodo in E7 (top), catodo in F7 (bot).",
-        "Collega un filo ROSSO dal polo + della batteria al bus + superiore (colonna 2).",
-        "Collega un filo ROSSO dal bus + superiore (colonna 7) al foro A7: alimenta l'anodo del LED.",
-        "Collega un filo NERO dal foro F7 al bus − inferiore (colonna 7): catodo diretto a GND, NIENTE resistore!",
-        "Collega un filo NERO dal bus − inferiore (colonna 2) al polo − della batteria.",
-        "ATTENZIONE: il LED si brucerà! 9V diretti su un LED da 2V = troppa corrente."
+        "Inserisci il LED blu nei fori F2 (anodo) e F3 (catodo), sotto il gap centrale",
+        "Collega un filo ROSSO dal bus + (colonna 2) al foro A2",
+        "Collega un filo ROSSO dal foro E2 al foro F2 (attraversa il gap centrale)",
+        "Collega un filo NERO dal foro J3 al bus − inferiore (colonna 3)",
+        "ATTENZIONE: il LED si brucerà! Questo esperimento mostra cosa NON fare"
       ],
       observe: "Il LED lampeggia brevemente e si brucia! Senza resistore, la corrente \u00e8 troppo alta (9V diretti su un LED da 2V).",
       unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'LED senza resistore'. Il LED è collegato direttamente alla batteria 9V SENZA resistore. Spiega perché è pericoloso: troppa corrente brucia il LED. Usa l'analogia di un rubinetto aperto al massimo che rompe il tubo. Spiega la differenza tra 9V della batteria e i 2V che il LED sopporta. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
@@ -272,60 +307,76 @@ const EXPERIMENTS_VOL1 = {
       buildSteps: [
               {
                       "step": 1,
-                      "text": "Posiziona la breadboard mezza al centro del piano di lavoro.",
-                      "componentId": "bb1",
-                      "componentType": "breadboard-half",
-                      "hint": "La breadboard sarà la base del circuito."
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
               },
               {
                       "step": 2,
-                      "text": "Posiziona la batteria 9V a sinistra della breadboard.",
-                      "componentId": "bat1",
-                      "componentType": "battery9v",
-                      "hint": "9 volt è troppa tensione per un LED che ne sopporta solo 2!"
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
               },
               {
                       "step": 3,
-                      "text": "Posiziona il LED rosso a cavallo del gap, colonna 7: anodo in E7 (top), catodo in F7 (bot).",
+                      "text": "Posiziona LED blue nei fori F2, F3.",
                       "componentId": "led1",
                       "componentType": "led",
-                      "hint": "Anodo (+, gamba lunga) in E7, catodo (−, gamba corta) in F7. NIENTE resistore!",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
                       "targetPins": {
-                              "led1:anode": "bb1:e7",
-                              "led1:cathode": "bb1:f7"
+                              "led1:anode": "bb1:f2",
+                              "led1:cathode": "bb1:f3"
                       }
               },
               {
                       "step": 4,
-                      "text": "Collega un filo ROSSO dal polo + della batteria al bus + superiore (col. 2).",
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
                       "wireFrom": "bat1:positive",
-                      "wireTo": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:bus-top-plus-1",
                       "wireColor": "red",
-                      "hint": "9V arrivano sul bus superiore."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 5,
-                      "text": "Collega un filo ROSSO dal bus + (col. 7) al foro A7: alimenta direttamente l'anodo!",
-                      "wireFrom": "bb1:bus-top-plus-7",
-                      "wireTo": "bb1:a7",
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:a2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:a2",
                       "wireColor": "red",
-                      "hint": "Senza nulla a limitare la corrente: 9V arrivano sull'anodo del LED."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 6,
-                      "text": "Collega un filo NERO dal foro F7 al bus − inferiore (col. 7): catodo diretto a GND.",
-                      "wireFrom": "bb1:f7",
-                      "wireTo": "bb1:bus-bot-minus-7",
-                      "wireColor": "black",
-                      "hint": "Catodo a GND senza resistore: la corrente sarà altissima!"
+                      "text": "Collega un filo RED da bb1:e2 a bb1:f2.",
+                      "wireFrom": "bb1:e2",
+                      "wireTo": "bb1:f2",
+                      "wireColor": "red",
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 7,
-                      "text": "Collega un filo NERO dal bus − (col. 2) al polo − della batteria: chiude il circuito.",
-                      "wireFrom": "bb1:bus-bot-minus-2",
+                      "text": "Collega un filo BLACK da bb1:j3 a bb1:bus-bot-minus-3.",
+                      "wireFrom": "bb1:j3",
+                      "wireTo": "bb1:bus-bot-minus-3",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 8,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
+                      "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
                       "wireTo": "bat1:negative",
                       "wireColor": "black",
-                      "hint": "Premi Play: il LED lampeggia un istante e si brucia!"
+                      "hint": "Ragazzi, controllate colore e due estremi."
               }
       ],
       quiz: [
@@ -373,10 +424,10 @@ const EXPERIMENTS_VOL1 = {
               }
       ],
       pinAssignments: {
-              "r1:pin1": "bb1:i7",
-              "r1:pin2": "bb1:i9",
-              "led1:anode": "bb1:e7",
-              "led1:cathode": "bb1:f7"
+              "r1:pin1": "bb1:a2",
+              "r1:pin2": "bb1:a9",
+              "led1:anode": "bb1:f9",
+              "led1:cathode": "bb1:f10"
       },
       connections: [
               {
@@ -385,17 +436,27 @@ const EXPERIMENTS_VOL1 = {
                       "color": "red"
               },
               {
-                      "from": "bb1:bus-top-plus-7",
-                      "to": "bb1:a7",
+                      "from": "bb1:bus-top-plus-2",
+                      "to": "bb1:b2",
                       "color": "red"
               },
               {
-                      "from": "bb1:i9",
-                      "to": "bb1:bus-bot-minus-9",
+                      "from": "bb1:e9",
+                      "to": "bb1:f9",
+                      "color": "green"
+              },
+              {
+                      "from": "bb1:j10",
+                      "to": "bb1:bus-bot-minus-10",
                       "color": "black"
               },
               {
                       "from": "bb1:bus-bot-minus-1",
+                      "to": "bb1:bus-top-minus-1",
+                      "color": "black"
+              },
+              {
+                      "from": "bb1:bus-top-minus-1",
                       "to": "bat1:negative",
                       "color": "black"
               }
@@ -410,22 +471,20 @@ const EXPERIMENTS_VOL1 = {
                       "y": 10
               },
               "r1": {
-                      "x": 166.5,
-                      "y": 113.75
+                      "x": 151.5,
+                      "y": 43.75
               },
               "led1": {
-                      "x": 159,
-                      "y": 82.5
+                      "x": 181.5,
+                      "y": 68.75
               }
       },
       steps: [
-        "Inserisci il resistore da 220\u03A9 verticale sulla fila I, colonne 7 e 9 (I7-I9).",
-        "Inserisci il LED a cavallo del gap, colonna 7: anodo in E7 (top), catodo in F7 (bot).",
-        "Collega un filo ROSSO dal polo + della batteria al bus + superiore (colonna 1).",
-        "Collega un filo ROSSO dal bus + (colonna 7) al foro A7: corrente al LED.",
-        "Collega un filo NERO dal foro I9 al bus \u2212 inferiore (colonna 9).",
-        "Collega un filo NERO dal bus \u2212 (colonna 1) al polo \u2212 della batteria.",
-        "Prova a cambiare il valore del resistore: 220\u03A9 (pi\u00F9 luminoso), 470\u03A9, 1k\u03A9 (meno luminoso)."
+        "Inserisci il resistore da 220\u03A9 nella fila A, colonne 2-9",
+        "Inserisci il LED verde in F9 (anodo) e F10 (catodo), sotto il gap centrale",
+        "Collega un filo ROSSO dal bus + (colonna 2) al foro B2",
+        "Collega un filo VERDE dal foro E9 al foro F9 (attraversa il gap centrale)",
+        "Prova a cambiare il resistore: 220\u03A9, 470\u03A9, 1k\u03A9"
       ],
       observe: "Con 220\u03A9 il LED \u00e8 pi\u00f9 luminoso, con 1k\u03A9 \u00e8 pi\u00f9 fioco. Pi\u00f9 resistenza = meno corrente = meno luce!",
       unlimPrompt: "Sei UNLIM, il tutor AI di ELAB. Il docente sta mostrando alla classe l'esperimento 'Cambia luminosita con resistenze diverse'. Qui si cambia il valore del resistore (220, 470, 1000 ohm) e si osserva come cambia la luminosita del LED. Spiega la Legge di Ohm in modo semplice: più resistenza = meno corrente = meno luce. Usa l'analogia di un tubo più stretto che fa passare meno acqua. Spiega in modo semplice e coinvolgente, usando analogie adatte a bambini di 8-12 anni. Rispondi in italiano.",
@@ -438,71 +497,87 @@ const EXPERIMENTS_VOL1 = {
       buildSteps: [
               {
                       "step": 1,
-                      "text": "Posiziona la breadboard mezza al centro del piano di lavoro.",
-                      "componentId": "bb1",
-                      "componentType": "breadboard-half",
-                      "hint": "La breadboard collega componenti senza saldature."
+                      "text": "Posiziona batteria 9V.",
+                      "componentId": "bat1",
+                      "componentType": "battery9v",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
               },
               {
                       "step": 2,
-                      "text": "Posiziona la batteria 9V a sinistra della breadboard.",
-                      "componentId": "bat1",
-                      "componentType": "battery9v",
-                      "hint": "La batteria 9V è la fonte di energia del circuito."
+                      "text": "Posiziona breadboard mezza.",
+                      "componentId": "bb1",
+                      "componentType": "breadboard-half",
+                      "hint": "Ragazzi, verificate posizione e polarita'."
               },
               {
                       "step": 3,
-                      "text": "Posiziona il resistore da 220Ω verticale sulla fila I, colonne 7 e 9 (I7-I9).",
+                      "text": "Posiziona resistore da 220 ohm nei fori A2, A9.",
                       "componentId": "r1",
                       "componentType": "resistor",
-                      "hint": "Parti dal 220Ω: il LED sarà ben luminoso.",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
                       "targetPins": {
-                              "r1:pin1": "bb1:i7",
-                              "r1:pin2": "bb1:i9"
+                              "r1:pin1": "bb1:a2",
+                              "r1:pin2": "bb1:a9"
                       }
               },
               {
                       "step": 4,
-                      "text": "Posiziona il LED a cavallo del gap, colonna 7: anodo in E7, catodo in F7.",
+                      "text": "Posiziona LED green nei fori F9, F10.",
                       "componentId": "led1",
                       "componentType": "led",
-                      "hint": "Anodo (+, gamba lunga) in E7, catodo (−, gamba corta) in F7.",
+                      "hint": "Ragazzi, verificate posizione e polarita'.",
                       "targetPins": {
-                              "led1:anode": "bb1:e7",
-                              "led1:cathode": "bb1:f7"
+                              "led1:anode": "bb1:f9",
+                              "led1:cathode": "bb1:f10"
                       }
               },
               {
                       "step": 5,
-                      "text": "Collega un filo ROSSO dal polo + della batteria al bus + superiore (col. 1).",
+                      "text": "Collega un filo RED da bat1:positive a bb1:bus-top-plus-1.",
                       "wireFrom": "bat1:positive",
                       "wireTo": "bb1:bus-top-plus-1",
                       "wireColor": "red",
-                      "hint": "Porta la tensione + dalla batteria al bus superiore."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 6,
-                      "text": "Collega un filo ROSSO dal bus + (col. 7) al foro A7: alimenta l'anodo del LED.",
-                      "wireFrom": "bb1:bus-top-plus-7",
-                      "wireTo": "bb1:a7",
+                      "text": "Collega un filo RED da bb1:bus-top-plus-2 a bb1:b2.",
+                      "wireFrom": "bb1:bus-top-plus-2",
+                      "wireTo": "bb1:b2",
                       "wireColor": "red",
-                      "hint": "Connette il bus + alla colonna 7 dove c'è l'anodo del LED."
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 7,
-                      "text": "Collega un filo NERO dal foro I9 al bus − inferiore (col. 9): catodo verso GND via resistore.",
-                      "wireFrom": "bb1:i9",
-                      "wireTo": "bb1:bus-bot-minus-9",
-                      "wireColor": "black",
-                      "hint": "Dopo il resistore la corrente arriva al bus −."
+                      "text": "Collega un filo GREEN da bb1:e9 a bb1:f9.",
+                      "wireFrom": "bb1:e9",
+                      "wireTo": "bb1:f9",
+                      "wireColor": "green",
+                      "hint": "Ragazzi, controllate colore e due estremi."
               },
               {
                       "step": 8,
-                      "text": "Collega un filo NERO dal bus − (col. 1) al polo − della batteria: chiude il circuito.",
+                      "text": "Collega un filo BLACK da bb1:j10 a bb1:bus-bot-minus-10.",
+                      "wireFrom": "bb1:j10",
+                      "wireTo": "bb1:bus-bot-minus-10",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 9,
+                      "text": "Collega un filo BLACK da bb1:bus-bot-minus-1 a bb1:bus-top-minus-1.",
                       "wireFrom": "bb1:bus-bot-minus-1",
+                      "wireTo": "bb1:bus-top-minus-1",
+                      "wireColor": "black",
+                      "hint": "Ragazzi, controllate colore e due estremi."
+              },
+              {
+                      "step": 10,
+                      "text": "Collega un filo BLACK da bb1:bus-top-minus-1 a bat1:negative.",
+                      "wireFrom": "bb1:bus-top-minus-1",
                       "wireTo": "bat1:negative",
                       "wireColor": "black",
-                      "hint": "Prova a cambiare il valore del resistore e osserva la luminosità!"
+                      "hint": "Ragazzi, controllate colore e due estremi."
               }
       ],
       quiz: [
