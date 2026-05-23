@@ -1329,46 +1329,31 @@ const EXPERIMENTS_VOL3 = {
       "connections": [
         {
           "from": "nano1:W_D5",
-          "to": "bb1:a14",
+          "to": "bb1:a11",
           "color": "orange"
         },
         {
-          "from": "bb1:d21",
-          "to": "bb1:d23",
-          "color": "green"
-        },
-        {
-          "from": "bb1:a24",
-          "to": "bb1:bus-bot-minus-24",
+          "from": "bb1:f14",
+          "to": "bb1:bus-bot-minus-14",
           "color": "black"
         },
         {
           "from": "nano1:W_D6",
-          "to": "bb1:a18",
+          "to": "bb1:a15",
           "color": "orange"
         },
         {
-          "from": "bb1:d25",
-          "to": "bb1:d27",
-          "color": "green"
-        },
-        {
-          "from": "bb1:a28",
-          "to": "bb1:bus-bot-minus-28",
+          "from": "bb1:f18",
+          "to": "bb1:bus-bot-minus-18",
           "color": "black"
         },
         {
           "from": "nano1:W_D9",
-          "to": "bb1:a22",
+          "to": "bb1:a19",
           "color": "orange"
         },
         {
-          "from": "bb1:d29",
-          "to": "bb1:d21",
-          "color": "green"
-        },
-        {
-          "from": "bb1:a22",
+          "from": "bb1:f22",
           "to": "bb1:bus-bot-minus-22",
           "color": "black"
         },
@@ -1384,18 +1369,18 @@ const EXPERIMENTS_VOL3 = {
         }
       ],
       "pinAssignments": {
-        "r1:pin1": "bb1:c14",
-        "r1:pin2": "bb1:c21",
-        "led1:anode": "bb1:d23",
-        "led1:cathode": "bb1:d24",
-        "r2:pin1": "bb1:c18",
-        "r2:pin2": "bb1:c25",
-        "led2:anode": "bb1:d27",
-        "led2:cathode": "bb1:d28",
-        "r3:pin1": "bb1:c22",
-        "r3:pin2": "bb1:c29",
-        "led3:anode": "bb1:d21",
-        "led3:cathode": "bb1:d22"
+        "r1:pin1": "bb1:a11",
+        "r1:pin2": "bb1:a14",
+        "led1:anode": "bb1:e14",
+        "led1:cathode": "bb1:f14",
+        "r2:pin1": "bb1:a15",
+        "r2:pin2": "bb1:a18",
+        "led2:anode": "bb1:e18",
+        "led2:cathode": "bb1:f18",
+        "r3:pin1": "bb1:a19",
+        "r3:pin2": "bb1:a22",
+        "led3:anode": "bb1:e22",
+        "led3:cathode": "bb1:f22"
       },
       "code": "const int LED_VERDE = 5;\nconst int LED_GIALLO = 6;\nconst int LED_ROSSO = 9;\n\nvoid setup() {\n  pinMode(LED_VERDE, OUTPUT);\n  pinMode(LED_GIALLO, OUTPUT);\n  pinMode(LED_ROSSO, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED_VERDE, HIGH);\n  delay(3000);\n  digitalWrite(LED_VERDE, LOW);\n  digitalWrite(LED_GIALLO, HIGH);\n  delay(1000);\n  digitalWrite(LED_GIALLO, LOW);\n  digitalWrite(LED_ROSSO, HIGH);\n  delay(3000);\n  digitalWrite(LED_ROSSO, LOW);\n}",
       "hexFile": "/hex/v3-cap6-esp5.hex",
