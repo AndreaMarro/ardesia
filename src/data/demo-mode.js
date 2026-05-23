@@ -1,3 +1,4 @@
+// © Andrea Marro — 23/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Demo Mode Filter — solo 7 esperimenti selezionati visibili in UI tutor.
  *
