@@ -230,37 +230,27 @@ const EXPERIMENTS_VOL1 = {
               }
       ],
       pinAssignments: {
-              "led1:anode": "bb1:f2",
-              "led1:cathode": "bb1:f3"
+              "led1:anode": "bb1:e7",
+              "led1:cathode": "bb1:f7"
       },
       connections: [
               {
                       "from": "bat1:positive",
-                      "to": "bb1:bus-top-plus-1",
+                      "to": "bb1:bus-top-plus-2",
                       "color": "red"
               },
               {
-                      "from": "bb1:bus-top-plus-2",
-                      "to": "bb1:a2",
+                      "from": "bb1:bus-top-plus-7",
+                      "to": "bb1:a7",
                       "color": "red"
               },
               {
-                      "from": "bb1:e2",
-                      "to": "bb1:f2",
-                      "color": "red"
-              },
-              {
-                      "from": "bb1:j3",
-                      "to": "bb1:bus-bot-minus-3",
+                      "from": "bb1:f7",
+                      "to": "bb1:bus-bot-minus-7",
                       "color": "black"
               },
               {
-                      "from": "bb1:bus-bot-minus-1",
-                      "to": "bb1:bus-top-minus-1",
-                      "color": "black"
-              },
-              {
-                      "from": "bb1:bus-top-minus-1",
+                      "from": "bb1:bus-bot-minus-2",
                       "to": "bat1:negative",
                       "color": "black"
               }
@@ -275,8 +265,8 @@ const EXPERIMENTS_VOL1 = {
                       "y": 10
               },
               "led1": {
-                      "x": 129,
-                      "y": 68.75
+                      "x": 159,
+                      "y": 82.5
               }
       },
       steps: [
