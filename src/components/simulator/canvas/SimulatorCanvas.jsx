@@ -2567,7 +2567,7 @@ const SimulatorCanvas = ({
             selectedWireIndex={selectedWireIndex}
             onWireClick={onWireClick}
             onWireDelete={onWireDelete}
-            routingMode={experiment.wireRouting || 'flex'}
+            routingMode={experiment.wireRouting || (isDemoExperiment(experiment?.id) ? 'book' : 'flex')}
             electronViewEnabled={electronViewEnabled}
           />
         )}
