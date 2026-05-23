@@ -67,39 +67,39 @@ const Resistor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, v
 
       {/* Wire leads — flat metallic gray (book style: simple lines).
           Pin distance kept at 52.5px (7 col) for solver compat with existing experiments.
-          Andrea 23/05/2026: "resistenze troppo lunghe come sul libro" — BODY shortened (was 26px, ora 18px),
-          piedini più lunghi rispetto al corpo come 1/4W standard. */}
-      <line x1="-26.25" y1="0" x2="-9.0" y2="0"
+          Andrea 23/05/2026 close-up: corpo MOLTO corto, gambe MOLTO lunghe (~75% del totale).
+          Body 14px in span 52.5px = 27% body, 73% leads ratio. */}
+      <line x1="-26.25" y1="0" x2="-7.0" y2="0"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
-      <line x1="9.0" y1="0" x2="26.25" y2="0"
+      <line x1="7.0" y1="0" x2="26.25" y2="0"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
 
-      {/* Body — corpo compatto 18px (was 26px), book-style. */}
-      <rect x="-9.0" y="-4.5" width="18" height="9" rx="4.5"
+      {/* Body — corpo MOLTO compatto 14px, proporzioni book Vol1 pag.33. */}
+      <rect x="-7.0" y="-3.5" width="14" height="7" rx="3.5"
         fill={`url(#${uid}-body)`} stroke="var(--elab-hex-9c874e)" strokeWidth="0.5" />
 
-      {/* Color bands — 4 bands fit inside 18px body. */}
+      {/* Color bands — 4 bands fit inside 14px body, tight spacing. */}
       {[
-        { bx: -6.0, w: 1.8, fill: bands[0] },
-        { bx: -3.0, w: 1.8, fill: bands[1] },
-        { bx:  0.0, w: 1.8, fill: bands[2] },
-        { bx:  4.8, w: 1.8, fill: bands[3] },
+        { bx: -4.8, w: 1.4, fill: bands[0] },
+        { bx: -2.4, w: 1.4, fill: bands[1] },
+        { bx:  0.0, w: 1.4, fill: bands[2] },
+        { bx:  3.8, w: 1.4, fill: bands[3] },
       ].map(({ bx, w, fill }, i) => (
-        <rect key={i} x={bx} y="-4.5" width={w} height="9"
+        <rect key={i} x={bx} y="-3.5" width={w} height="7"
           fill={fill} stroke="var(--elab-hex-9c874e)" strokeWidth="0.25"
           strokeOpacity="0.4" />
       ))}
 
       {/* Current flow indicator */}
       {hasFlow && (
-        <circle cx="0" cy="0" r="1.0" fill="var(--color-accent, var(--elab-lime))" opacity={0.5}>
-          <animate attributeName="cx" values="-9;9" dur="0.4s" repeatCount="indefinite" />
+        <circle cx="0" cy="0" r="0.9" fill="var(--color-accent, var(--elab-lime))" opacity={0.5}>
+          <animate attributeName="cx" values="-7;7" dur="0.4s" repeatCount="indefinite" />
         </circle>
       )}
 
       {/* AI tutoring highlight */}
       {highlighted && (
-        <rect x="-29" y="-9" width="58" height="18" rx="3"
+        <rect x="-29" y="-7" width="58" height="14" rx="3"
           fill="none" stroke="var(--color-accent, var(--elab-lime))" strokeWidth="2" strokeDasharray="4 2">
           <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />
         </rect>
