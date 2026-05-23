@@ -388,15 +388,23 @@ export default function useCircuitHandlers({
 
   const handlePropChange = useCallback((compId, field, newValue) => {
     pushSnapshot(getCurrentSnapshot());
+    // Andrea 23/05/2026: "voglio che le proprietà degli oggetti cambino senza la scritta unknown"
+    // Quando creiamo entry per comp non in customComponents, recupera type da experiment OR mergedExperiment.
+    const lookupType = (id) => {
+      const exp = currentExperiment?.components?.find(c => c.id === id);
+      if (exp?.type) return exp.type;
+      const merged = mergedExperiment?.components?.find(c => c.id === id);
+      return merged?.type || 'resistor'; // fallback resistor (most common editable)
+    };
     setCustomComponents(prev => {
       const existing = prev.find(c => c.id === compId);
       if (existing) return prev.map(c => c.id === compId ? { ...c, [field]: newValue } : c);
-      return [...prev, { id: compId, type: 'unknown', [field]: newValue }];
+      return [...prev, { id: compId, type: lookupType(compId), [field]: newValue }];
     });
     if (solverRef.current) {
       solverRef.current.interact(compId, field === 'value' ? 'setValue' : 'setColor', newValue);
     }
-  }, [pushSnapshot, getCurrentSnapshot]);
+  }, [pushSnapshot, getCurrentSnapshot, currentExperiment, mergedExperiment]);
 
   const handleComponentValueChange = useCallback((componentId, newValue) => {
 // © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati

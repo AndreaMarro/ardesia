@@ -11,6 +11,7 @@ import { getComponent } from '../components/registry';
 
 const COMPONENT_LABELS = {
   'led': 'LED',
+  'led-bridge': 'LED a cavallo del gap',
   'rgb-led': 'LED RGB',
   'resistor': 'Resistenza',
   'push-button': 'Pulsante',
