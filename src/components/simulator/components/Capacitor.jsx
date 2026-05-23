@@ -41,15 +41,20 @@ const Capacitor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
         </linearGradient>
       </defs>
 
-      {/* Wire leads — vertical alignment for breadboard snap */}
+      {/* Wire leads — vertical alignment for breadboard snap.
+          POSITIVE (top, x=0, y=-15) is the lead OPPOSITE to white stripe.
+          NEGATIVE (bottom, x=0, y=15) corresponds to white stripe side
+          (white stripe = negative per electrolytic convention).
+          NOTE: pin labels are 'positive' (top) / 'negative' (bottom). */}
       <line x1="-2" y1="-11" x2="0" y2="-15"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
       <line x1="2" y1="11" x2="0" y2="15"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
 
-      {/* + polarity symbol near positive lead */}
-      <text x="-11" y="-13" fontSize="4" fill="var(--elab-hex-cc0000)" fontWeight="700"
-        fontFamily="Arial, sans-serif">+</text>
+      {/* + polarity symbol on positive (top) lead side — bigger, more visible.
+          Placed RIGHT of body to avoid overlap with white minus-stripe (left). */}
+      <text x="10" y="-9" fontSize="5.5" fill="var(--elab-hex-cc0000)" fontWeight="800"
+        fontFamily="Arial, sans-serif" textAnchor="middle">+</text>
 
       {/* Main cylindrical body */}
       <rect x="-8" y="-11" width="16" height="22" rx="3"
