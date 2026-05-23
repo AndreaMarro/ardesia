@@ -51,8 +51,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -135,7 +134,7 @@ const EXPERIMENTS_VOL1 = {
       ],
       layout: {
         "bat1": { "x": 30, "y": 55 },
-        "bb1": { "x": 110, "y": 20, "rotation": 90 },
+        "bb1": { "x": 110, "y": 20 },
         "led1": { "x": 174, "y": 82.5 }
       },
       steps: [
@@ -213,8 +212,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -346,8 +344,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -549,8 +546,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 166.5,
@@ -752,8 +748,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 174,
@@ -973,8 +968,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -1242,8 +1236,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -1543,8 +1536,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -1823,8 +1815,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -2071,8 +2062,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -2336,8 +2326,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 151.5,
@@ -2652,8 +2641,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "btn1": {
                       "x": 140.25,
@@ -3003,8 +2991,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "btn1": {
                       "x": 140.25,
@@ -3318,8 +3305,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 155.25,
@@ -3543,8 +3529,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 155.25,
@@ -3767,8 +3752,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 155.25,
@@ -3997,8 +3981,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 140.25,
@@ -4237,8 +4220,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 140.25,
@@ -4549,8 +4531,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 132.75,
@@ -4941,8 +4922,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "btn1": {
                       "x": 140.25,
@@ -5250,8 +5230,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 132.75,
@@ -5602,8 +5581,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "btn1": {
                       "x": 140.25,
@@ -5916,8 +5894,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "ldr1": {
                       "x": 151.5,
@@ -6104,8 +6081,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "ldr1": {
                       "x": 151.5,
@@ -6327,8 +6303,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "ldr1": {
                       "x": 136.5,
@@ -6617,8 +6592,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "r1": {
                       "x": 174,
@@ -6931,8 +6905,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "pot1": {
                       "x": 132.75,
@@ -7260,8 +7233,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "btn1": {
                       "x": 140.25,
@@ -7527,8 +7499,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "buz1": {
                       "x": 350,
@@ -7712,8 +7683,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "btn1": {
                       "x": 230.25,
@@ -7922,8 +7892,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "reed1": {
                       "x": 170.25,
@@ -8132,8 +8101,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "reed1": {
                       "x": 170.25,
@@ -8346,8 +8314,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "reed1": {
                       "x": 170.25,
@@ -8590,8 +8557,7 @@ const EXPERIMENTS_VOL1 = {
               },
               "bb1": {
                       "x": 100,
-                      "y": 10,
-                      "rotation": 90
+                      "y": 10
               },
               "reed1": {
                       "x": 155.25,
