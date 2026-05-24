@@ -1,3 +1,24 @@
+## [feat(unlim) — wire awareness-flags nella pipeline `unlim-chat` (Slice 1B)] — 2026-05-25
+
+Secondo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Cabla il modulo puro `awareness-flags.ts` (Slice 1A, commit f06d0595, 46 test) dentro la pipeline dell'Edge Function `unlim-chat`. Il body della richiesta accetta due nuovi campi opzionali (`boardSnapshot`, `previousBoardSnapshot`) — se assenti o nulli, `renderAwarenessFlags` torna stringa vuota e la `systemPrompt` resta identica al percorso legacy (backward-compat 100%, zero rischio di regressione sulla chiamata corrente del client). Quando il client (Slice 1C) invierà gli snapshot, il blocco "Segnali di attenzione: ..." viene appeso al prompt LLM accanto a RAG / Onniscenza / PII-guard.
+
+### Added
+- `supabase/functions/unlim-chat/index.ts` — import `computeAwarenessFlags` + `renderAwarenessFlags` + `BoardSnapshot` da `../_shared/awareness-flags.ts`; due nuovi campi opzionali `boardSnapshot?` + `previousBoardSnapshot?` nel body destructure (estensione inline a `ChatRequest`, niente modifica al tipo condiviso); compute + render prima di `buildSystemPrompt`; append condizionale `+ (awarenessContext ? '\n\n${awarenessContext}' : '')` alla `systemPrompt` chain (linea 864). `hasClassMemory` derivato da presenza `classKey` (heuristica iter 65 V2 — refinement Slice 1C).
+
+### Verifica
+- `awareness-flags.test.js` + `awareness-flags-coverage.test.js` = **46/46 PASS** post-edit (modulo intatto).
+- `npm run build` PASS (exit 0, build in 14m 47s).
+- `deno check supabase/functions/unlim-chat/index.ts` = **zero nuovi errori** dai miei edit (32 errori pre-existing in llm-client.ts / principio-zero-validator.ts / lines 729+894+1538-1552 di unlim-chat — non toccati).
+- Full vitest CoV run 1 = **14965 pass | 15 skip | 11 todo | 0 fail** (baseline 14551 in `automa/baseline-tests.txt` — stale, no decrease vs effective 14965).
+
+### Notes
+- **Backward-compat by design**: client legacy che NON invia `boardSnapshot` → render torna `""` → systemPrompt identica all'output pre-Slice 1B. Pre-existing tests + invocation Edge Function legacy operano invariati.
+- **Surgical scope** (Karpathy principle): 1 file modificato, 27 LOC nette aggiunte, zero modifiche a tipo `ChatRequest` condiviso (estensione inline), zero modifiche a `buildSystemPrompt` signature, zero modifiche a test file esistenti, zero nuove deps.
+- **Privacy**: `boardSnapshot` contiene solo dati strutturali (id componenti, fili, hash disegno, step, compile status) — nessun PII, nessun messaggio grezzo. GDPR-neutro come Slice 1A.
+- **Slice 1C (TODO)**: wire client-side in `useGalileoChat.js` per raccogliere `boardSnapshot` da `__ELAB_API.unlim.getCircuitState()` + drawingHash + experimentId + step + compileStatus, e mantenere `previousBoardSnapshot` in ref tra turni.
+
+---
+
 ## [feat(unlim) — modulo awareness-flags (Slice 1A consapevolezza)] — 2026-05-21
 
 Primo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Introduce un modulo puro che calcola i "flag di consapevolezza" della lavagna: segnali strutturati che instradano la pipeline e vengono iniettati nel contesto LLM come segnali di attenzione espliciti. Nessuna chiamata LLM, nessun accesso a Deno.env / DB / rete — solo logica pura e difensiva (non lancia mai: su input degenere torna i flag a default). Modulo isolato, nessun consumatore ancora: verrà cablato nella pipeline `unlim-chat` nello Slice 1B → zero rischio di regressione.

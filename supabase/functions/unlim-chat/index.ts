@@ -34,6 +34,12 @@ import { classifyPrompt } from '../_shared/onniscenza-classifier.ts';
 // `cleanText` strips the tags before TTS / display (Principio Zero V3
 // preservation: tags don't pollute the user-facing line count / Vol/pag check).
 import { parseIntentTags, stripIntentTags, type IntentTag } from '../_shared/intent-parser.ts';
+// UNLIM Slice 1B (2026-05-26) — wire awareness-flags module into pipeline.
+// Slice 1A (f06d0595) shipped pure module `awareness-flags.ts` (200 LOC, 46 tests).
+// This wire-up: optional boardSnapshot in request body → compute 8 flags →
+// render Italian narrative → append to systemPrompt chain. Backward-compat:
+// snapshot null/missing → render returns "" → ZERO change in legacy path.
+import { computeAwarenessFlags, renderAwarenessFlags, type BoardSnapshot } from '../_shared/awareness-flags.ts';
 // iter 27 Agent Z — safety hardcoded fallback wrap.
 // Iter 24 dim-1 LIVE prod bench: Cat C "scossa" returned 503 vuoto (GDPR
 // rischio minori 8-14 anni). Iter 25 P0-B shipped pure fallback helper.
@@ -179,6 +185,11 @@ serve(async (req: Request) => {
       // Optional, defensive: missing → V2 collectors return empty graceful.
       teacher_anon_uuid?: string;
       class_key?: string;
+      // UNLIM Slice 1B (2026-05-26) — board snapshots for awareness-flags compute.
+      // Both optional + nullable. Missing → render returns empty → zero change.
+      // Client wire-up (collection from simulator-api) = Slice 1C scope.
+      boardSnapshot?: BoardSnapshot | null;
+      previousBoardSnapshot?: BoardSnapshot | null;
     };
     const { message, sessionId, circuitState, experimentId, simulatorContext, images, aiProfile: requestedAiProfile, aiDepth, unlimMode } = body;
     // iter 65 Atom 2.5 — extract V2 identifiers (defensive: empty string treated as missing).
@@ -824,6 +835,21 @@ serve(async (req: Request) => {
       (Deno.env.get('ENABLE_INTENT_TOOLS_SCHEMA') || 'false').toLowerCase() === 'true';
     const useIntentSchema = intentSchemaEnabled && shouldUseIntentSchema(safeMessage);
 
+    // UNLIM Slice 1B (2026-05-26) — compute awareness flags + render before prompt build.
+    // Pure call (no I/O, no throw): defensive on null/undefined inputs.
+    // hasClassMemory heuristic: classKey presence implies prior session exists
+    // (V2 collector pattern — proper memory query = Slice 1C scope refinement).
+    const awarenessFlags = computeAwarenessFlags(
+      (body.boardSnapshot ?? null) as BoardSnapshot | null,
+      (body.previousBoardSnapshot ?? null) as BoardSnapshot | null,
+      safeMessage,
+      !!classKey,
+    );
+    const awarenessContext = renderAwarenessFlags(
+      awarenessFlags,
+      (body.boardSnapshot ?? null) as BoardSnapshot | null,
+    );
+
     const systemPrompt = buildSystemPrompt(
       studentContext,
       safeCircuitState as CircuitState | null,
@@ -834,7 +860,8 @@ serve(async (req: Request) => {
     )
       + (ragContext ? `\n\n${ragContext}` : '')
       + onniscenzaContext
-      + imagePiiGuard;
+      + imagePiiGuard
+      + (awarenessContext ? `\n\n${awarenessContext}` : '');
 
     // 3.5 ClawBot L2 template short-circuit (Sprint T iter 26).
     // Sprint U iter 41 — Andrea live test 2026-05-12 PM evidence: L2 templates
