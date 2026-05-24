@@ -49,12 +49,12 @@
     "bat1": {
       "type": "battery9v",
       "asset": "battery9v-vol2-horizontal-clip-right",
-      "_note": "Posizione BELOW-LEFT bb (NOT lato Vol1). Visible solo pag.68 step finale.",
+      "_note": "Posizione BELOW-LEFT bb (NOT lato Vol1). Visible solo pag.68 step finale. canonicalPose round 4 anchored bb1.",
       "x": 150,
       "y": 320,
       "rotation": 0,
       "locked": true,
-      "canonicalPose": { "anchor": "scene", "x": 150, "y": 320, "rotation": 0 }
+      "canonicalPose": { "anchor": "bb1", "x": -300, "y": 140, "rotation": 0 }
     },
     "c1": {
       "type": "capacitor",
@@ -132,11 +132,10 @@
       "color": "yellow",
       "_note": "Filo 'colorato' verbatim libro. Repo gia yellow (codex confirm).",
       "from": "btn1:pin2",
-      "to": "c1:positive-column",
+      "to": "c1:positive",
       "pathStyle": "L",
       "points": [
         { "x": 575, "y": 175 },
-        { "x": 595, "y": 175 },
         { "x": 595, "y": 175 }
       ],
       "thickness": 3,
