@@ -1359,8 +1359,9 @@ const EXPERIMENTS_VOL3 = {
         },
         {
           "from": "nano1:W_D9",
-          "to": "bb1:a22",
-          "color": "orange"
+          "to": "bb1:a26",
+          "color": "orange",
+          "_fix": "round-6 D9-short bug: was bb1:a22 (same col as led3 cathode → SHORT to GND). Moved to a26 (unused col). r3:pin1 also moved c22→c26."
         },
         {
           "from": "bb1:d29",
@@ -1392,7 +1393,7 @@ const EXPERIMENTS_VOL3 = {
         "r2:pin2": "bb1:c25",
         "led2:anode": "bb1:d27",
         "led2:cathode": "bb1:d28",
-        "r3:pin1": "bb1:c22",
+        "r3:pin1": "bb1:c26",
         "r3:pin2": "bb1:c29",
         "led3:anode": "bb1:d21",
         "led3:cathode": "bb1:d22"

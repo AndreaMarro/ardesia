@@ -990,7 +990,9 @@ class CircuitSolver {
   _detectOverload() {
     this._overloadWarnings = [];
     const LED_WARN_CURRENT = 0.020; // 20mA — rated max for standard LEDs
-    const LED_BURN_CURRENT = 0.030; // 30mA — burn threshold
+    // 2026-05-24 Andrea round 6: allineato 30→40mA con _solveLED (Vol1 esp3 R=220Ω).
+    // Yellow zone 20-40mA = warning. Burn >40mA (era >30).
+    const LED_BURN_CURRENT = 0.040; // 40mA — burn threshold (allineato _solveLED)
 
     this.components.forEach((comp, id) => {
       if ((comp.type === 'led' || comp.type === 'led-bridge')) {
@@ -1792,8 +1794,12 @@ class CircuitSolver {
   }
 
   _solveLED(id, comp) {
-    // Both MNA and path-tracer use the same 20mA burn threshold for consistency.
-    const LED_BURN_CURRENT = 0.03; // 30mA — burn threshold for standard LEDs (rated 20mA continuous, burns above ~30mA)
+    // Both MNA and path-tracer use the same burn threshold for consistency.
+    // 2026-05-24 Andrea round 6: alzato 30→40mA per demo v1-cap6-esp3 (R=220Ω @ 9V = 32.7mA).
+    // Libro Vol1 V0.16 pag.33 prescrive R=220Ω esp3 "più luminoso" → previously triggered burn (32.7>30).
+    // 40mA threshold copre R=220 demo + comunque burns esp2 anti-pattern (no R = infinite current via path 1875).
+    // Trade-off LED 5mm standard rated 20mA continuous, burns ~30-40mA. Soglia 40 = tollerante transitorio.
+    const LED_BURN_CURRENT = 0.04; // 40mA — burn threshold (was 30mA before round 6)
 
     // If MNA is available, use its branch current for this LED
     if (this._mnaBranchCurrents && this._mnaBranchCurrents.has(id)) {

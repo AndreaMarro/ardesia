@@ -2175,7 +2175,7 @@ const EXPERIMENTS_VOL2 = {
       "simulationMode": "circuit",
       "components": [
         { "type": "battery9v", "id": "bat1" },
-        { "type": "breadboard-half", "id": "bb1" },
+        { "type": "breadboard-full", "id": "bb1" },
         { "type": "capacitor", "id": "c1", "value": 1000 },
         { "type": "push-button", "id": "btn1" },
         { "type": "multimeter", "id": "mm1" }
@@ -2227,7 +2227,7 @@ const EXPERIMENTS_VOL2 = {
           "step": 1,
           "text": "Posiziona Ragazzi, posizionate la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
           "componentId": "bb1",
-          "componentType": "breadboard-half",
+          "componentType": "breadboard-full",
           "hint": "La breadboard collega i componenti senza saldature."
         },
         {
@@ -2285,7 +2285,7 @@ const EXPERIMENTS_VOL2 = {
           "id": "bat1"
         },
         {
-          "type": "breadboard-half",
+          "type": "breadboard-full",
           "id": "bb1"
         },
         {
@@ -2380,7 +2380,7 @@ const EXPERIMENTS_VOL2 = {
           "step": 1,
           "text": "Posiziona Ragazzi, posizionate la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
           "componentId": "bb1",
-          "componentType": "breadboard-half",
+          "componentType": "breadboard-full",
           "hint": "La breadboard collega i componenti senza saldature."
         },
         {
@@ -2441,7 +2441,7 @@ const EXPERIMENTS_VOL2 = {
           "id": "bat1"
         },
         {
-          "type": "breadboard-half",
+          "type": "breadboard-full",
           "id": "bb1"
         },
         {
@@ -2603,7 +2603,7 @@ const EXPERIMENTS_VOL2 = {
           "step": 1,
           "text": "Posiziona Ragazzi, posizionate la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
           "componentId": "bb1",
-          "componentType": "breadboard-half",
+          "componentType": "breadboard-full",
           "hint": "La breadboard collega i componenti senza saldature."
         },
         {
@@ -2805,7 +2805,7 @@ const EXPERIMENTS_VOL2 = {
           "id": "bat1"
         },
         {
-          "type": "breadboard-half",
+          "type": "breadboard-full",
           "id": "bb1"
         },
         {
@@ -2946,7 +2946,7 @@ const EXPERIMENTS_VOL2 = {
           "step": 1,
           "text": "Posiziona Ragazzi, posizionate la breadboard (mezza) al centro del piano di lavoro. Sarà la base del tuo circuito!",
           "componentId": "bb1",
-          "componentType": "breadboard-half",
+          "componentType": "breadboard-full",
           "hint": "La breadboard collega i componenti senza saldature."
         },
         {
