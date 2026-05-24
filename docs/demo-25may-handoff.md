@@ -16,7 +16,7 @@
 3. "resistenze troppo lunghe per essere collegate come sul libro"
 4. "le breadboard dovrebbe essere verticale nel primo volume" (deferred post-demo)
 5. "nel simulatore devono esserci solo gli esperimenti che abbiamo selezionato"
-6. "io monterò a mano le cose come sono su libro"
+6. "io descrivo come sono su libro, voi montate"
 7. "Un bambino deve avere lo stesso riferimento del libro"
 
 ### Demo committenti
@@ -201,28 +201,27 @@ export const DEMO_MODE_ENABLED = false;
 4. ⏳ Vol3 esp4+esp5 pixel-perfect bake (revert a base, andrea può ribasare manualmente)
 5. ⏳ Multimetro discharge path modeling (cap esp1 trattiene 9V dopo rilascio)
 
-## Workflow Andrea draw → Claude verify
+## Workflow Andrea describe → Claude bake
 
 **Andrea**:
-1. Apre simulator → esp demo
-2. Cancella circuito predefinito
-3. Monta come libro (drag componenti, fili dalla batteria)
-4. Auto-save 5s persiste a localStorage `elab-simulator-circuit-{id}`
-5. Click Salva o Esporta JSON
-6. Manda JSON o screenshot
+1. Apre libro Vol1/Vol2/Vol3 alla pagina esp
+2. Descrive layout: "R orizzontale fila a, cols 2-7. LED a cavallo gap col 7. Bat sx, bb dx. Fili da bat+ → bus+ → R, da LED catodo → bus− → bat−"
+3. Manda screenshot libro (oppure indica pagina precisa)
 
-**Claude verifica**:
-1. Read JSON
-2. Confronta libro PDF (Vol1/Vol2/Vol3)
+**Claude bake**:
+1. Read libro PDF: `grep "ESPERIMENTO" /Users/andreamarro/VOLUME 3/CONTENUTI/volumi-pdf/vol{N}.txt`
+2. Estrae descrizione textual + verifica con Andrea
 3. Solver mental walkthrough (polarità, R serie, no SHORT)
 4. Bake in `experiments-vol{N}.js`:
    - components
    - pinAssignments
-   - connections
+   - connections (max 4-5 wires, fili dalla batteria)
    - layout (x/y coords)
 5. Sync `lesson-paths/v{N}-cap{M}-esp{K}.json` intent.wires
 6. Update steps[] + buildSteps[]
 7. Test+build+deploy
+8. Playwright visual verify prod vs scan libro
+9. Iter fix se Andrea segnala discrepanza
 
 ## Comandi rapidi
 
@@ -271,7 +270,8 @@ Branch feat/demo-25may, last commit selection bbox Battery9V.
 Caveman mode active.
 
 Continua: visual verify 7 esp prod + remaining bug fix se Andrea ne segnala altri.
-Andrea testa, manda screenshot. Io fix mirato + redeploy.
+Andrea DESCRIVE topologia esp dal libro, io BAKE in experiments-vol*.js + deploy.
+Andrea NON monta — io monto. Andrea verifica risultato finale.
 Tutto deve match libro 1:1.
 ```
 
