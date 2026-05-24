@@ -80,12 +80,16 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
 
   const chapters = useMemo(() => getChapterGroups(filtered), [filtered]);
 
-  // Lesson-based grouping
+  // Lesson-based grouping — Andrea 24/05 PM mandate: nascondi lessons senza esp demo
   const lessons = useMemo(() => {
     const volLessons = getLessonsForVolume(activeVol);
-    if (!search.trim()) return volLessons;
+    // Filter out lessons where NO experiment is in demo set (experiments already filtered)
+    const demoLessons = volLessons.filter(([, lesson]) =>
+      lesson.experiments.some(eid => experiments.find(e => e.id === eid))
+    );
+    if (!search.trim()) return demoLessons;
     const q = search.toLowerCase();
-    return volLessons.filter(([, lesson]) =>
+    return demoLessons.filter(([, lesson]) =>
       lesson.title.toLowerCase().includes(q) ||
       lesson.concept.toLowerCase().includes(q) ||
       lesson.experiments.some(eid => {
