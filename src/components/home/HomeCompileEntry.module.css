@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--elab-bg, #F0F4F8);
+  background: #f4f5f7;
   color: var(--elab-text, #1A1A1A);
   font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
 }
@@ -33,29 +33,25 @@
    muted = ~46px vertical (-30px saving). Mobile breakpoint preserved. */
 .header {
   flex: 0 0 auto;
-  padding: 4px 12px 3px;
-  background: var(--elab-card-bg, #FFFFFF);
-  border-bottom: 1px solid var(--elab-navy, #1E4D8C);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  gap: 0 10px;
+  min-height: 58px;
+  padding: 8px 18px;
+  background: #ffffff;
+  border-bottom: 1px solid #d9dde4;
+  display: flex;
+  gap: 14px;
   align-items: center;
 }
 
 .backBtn {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  align-self: center;
-  min-width: 72px;
-  min-height: 34px;
-  padding: 5px 10px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
   background: var(--elab-card-bg, #FFFFFF);
-  border: 2px solid var(--elab-navy, #1E4D8C);
-  border-radius: 8px;
-  color: var(--elab-navy, #1E4D8C);
-  font-weight: 600;
-  font-size: 13px;
+  border: 1px solid #d0d4dc;
+  border-radius: 10px;
+  color: #111827;
+  font-weight: 800;
+  font-size: 20px;
   cursor: pointer;
   transition: background 120ms ease, transform 120ms ease;
 }
@@ -71,40 +67,35 @@
 /* Iter 97 atom 1 — compact title font 22 → 18 (LIM-mode 26 → 22 preserved
    responsive). Reduces vertical signature ~6px. */
 .title {
-  grid-column: 2;
-  grid-row: 1;
   margin: 0;
   font-family: 'Oswald', sans-serif;
-  font-size: 18px;
+  font-size: 26px;
   line-height: 1;
-  font-weight: 600;
-  color: var(--elab-navy, #1E4D8C);
-  letter-spacing: 0.2px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: 0;
 }
 
-/* Iter 97 atom 1 — compact subtitle font 14 → 12 + line-height 1.45 → 1.3 + 1-line
-   ellipsis. Reduces vertical signature ~6px. Single-line ellipsis defensive
-   against long copy regression. */
-.subtitle {
-  grid-column: 2;
-  grid-row: 2;
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.15;
-  color: var(--elab-text-muted, #5A6B7E);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.boardPill {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #d0d4dc;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111827;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: auto;
 }
 
 /* Iter 97 atom 1 — compact banner section: padding 12px 24px → 6px 16px
    (-12px vertical). Banner content (CompileAgentBanner OR WebUsbBanner)
    itself remains intact. Border 1px preserved. */
 .bannerSection {
-  flex: 0 0 auto;
-  padding: 5px 12px;
-  background: var(--elab-card-bg, #FFFFFF);
-  border-bottom: 1px solid var(--elab-border, #E0E6ED);
+  display: none;
 }
 
 /* iter-103 layout refactor (Andrea iter 103 PM ratify): #compile-home deve
@@ -125,8 +116,8 @@
      l'editor resta ampio grazie a minmax(360px,1fr) sulla riga 1
      (iter-102 "allarga l'editor" preservato dall'app-shell iter-103). */
   grid-auto-rows: max-content;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 12px;
+  padding: 12px 14px;
   /* min-height:0 → l'editorGrid può flex-shrink fino allo spazio
      residuo del root; overflow-y:auto → l'area editor scrolla da sola
      (header/banner/footer restano fissi, app-shell). */
@@ -135,9 +126,9 @@
 }
 
 .editorPanel {
-  background: var(--elab-card-bg, #FFFFFF);
-  border: 1px solid var(--elab-border, #E0E6ED);
-  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #d0d4dc;
+  border-radius: 18px;
   overflow: hidden;
   min-height: 0;
   display: flex;
@@ -152,11 +143,11 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
-  background: var(--elab-card-bg, #FFFFFF);
-  border-bottom: 1px solid var(--elab-border, #E0E6ED);
-  min-height: 42px;
-  padding: 0 6px;
-  gap: 4px;
+  background: #ffffff;
+  border-bottom: 1px solid #d9dde4;
+  min-height: 58px;
+  padding: 8px 10px;
+  gap: 8px;
 }
 
 .fullscreenBtn {
@@ -165,9 +156,10 @@
   min-width: 38px;
   padding: 6px 10px;
   border: 0;
-  border-left: 1px solid var(--elab-border, #E0E6ED);
+  border: 1px solid #d0d4dc;
+  border-radius: 10px;
   background: transparent;
-  color: var(--elab-navy, #1E4D8C);
+  color: #111827;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -242,15 +234,70 @@
 }
 
 .compileBarPanel {
-  background: var(--elab-card-bg, #FFFFFF);
-  border: 1px solid var(--elab-border, #E0E6ED);
-  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #d0d4dc;
+  border-radius: 18px;
   /* iter-103: overflow-y auto — se gli errori di compilazione si espandono
      oltre l'altezza del rail (schermi bassi / zoom 200%), scrolla invece
      di tagliare la barra Compila o la mascotte. */
   overflow: hidden auto;
   display: flex;
   flex-direction: column;
+}
+
+.codePreview {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 178px;
+  max-height: 238px;
+  border-bottom: 1px solid #d9dde4;
+  background: #111827;
+  color: #e5e7eb;
+}
+
+.codePreviewHeader {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.codePreviewAction {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 8px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.codePreviewAction:hover,
+.codePreviewAction:focus-visible {
+  background: rgba(255, 255, 255, 0.10);
+  outline: none;
+}
+
+.codePreviewBody {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 10px 12px;
+  overflow: auto;
+  color: #e5e7eb;
+  font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  white-space: pre;
 }
 
 /* iter-103 — Monitor Seriale ora è una cella della griglia (grid-area:
@@ -366,7 +413,7 @@
      → Monitor Seriale riproporzionato (~220-260px, non più banda).
      App-shell height/overflow è già nel .root base. */
   .editorGrid {
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 300px) 46px;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 340px) 46px;
     grid-template-rows: minmax(0, 1fr);
     grid-template-areas:
       "editor rail serial";
@@ -397,7 +444,7 @@
     min-width: 300px;
   }
   .root[data-elab-serial-expanded='true'] .editorGrid {
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 280px) minmax(300px, 340px);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 320px) minmax(300px, 340px);
   }
   .root[data-elab-serial-expanded='true'] .virtualSerialSection {
     gap: 8px;
@@ -416,10 +463,7 @@
 /* LIM-mode ≥1280px — bigger typography for fondo-aula visibility */
 @media (min-width: 1280px) {
   .title {
-    font-size: 22px;
-  }
-  .subtitle {
-    font-size: 12px;
+    font-size: 28px;
   }
   .footerNote {
     font-size: 14px;
@@ -429,24 +473,15 @@
 /* Mobile <768 — stacked layout with reduced padding */
 @media (max-width: 767px) {
   .header {
-    padding: 8px 12px 6px;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-  }
-  .backBtn {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
+    padding: 8px 10px;
+    flex-wrap: wrap;
   }
   .title {
-    grid-column: 1;
-    grid-row: 2;
-    font-size: 17px;
+    font-size: 22px;
   }
-  .subtitle {
-    grid-column: 1;
-    grid-row: 3;
-    font-size: 12px;
+  .boardPill {
+    margin-left: 0;
+    font-size: 14px;
   }
   .editorGrid {
     padding: 8px 10px;
