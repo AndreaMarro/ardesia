@@ -1069,6 +1069,22 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         api.on?.('stateChange', (data) => {
           if (data?.running != null) setIsPlaying(data.running);
         });
+
+        // iter 104 C3 fix Codex stop-time review "UNLIM handoff drops the user's
+        // question": #compile-home UnlimCompileHelper.jsx forwarda question via
+        // localStorage `elab-unlim-seed` + navigate `#lavagna`. Consume here al
+        // primo mount API ready: setUnlimOpen(true) + api.unlim.sendMessage(seed)
+        // + clear localStorage key (idempotente — evita re-trigger reload).
+        try {
+          if (typeof window !== 'undefined') {
+            const seed = window.localStorage.getItem('elab-unlim-seed');
+            if (seed && seed.trim() && api?.unlim?.sendMessage) {
+              setUnlimOpen(true);
+              api.unlim.sendMessage(seed);
+              window.localStorage.removeItem('elab-unlim-seed');
+            }
+          }
+        } catch (_) { /* defensive — quota/private mode */ }
       }
     }, 500);
     return () => clearInterval(check);
