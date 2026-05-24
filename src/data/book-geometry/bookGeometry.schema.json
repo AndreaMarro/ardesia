@@ -5,7 +5,7 @@
   "description": "Source-of-truth visiva per esperimenti demo 25/05/2026. Geometria canonica derivata da libro volumi. Sprint A foundation — workflow-v2 fase 9.",
   "type": "object",
   "required": ["experimentId", "source", "scene", "components", "visibleWires", "hiddenElectricalConnections", "steps"],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "experimentId": {
       "type": "string",
@@ -15,7 +15,7 @@
     "source": {
       "type": "object",
       "required": ["volume", "pages", "referenceImages"],
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "volume": { "type": "integer", "enum": [1, 2, 3] },
         "chapter": { "type": "integer", "minimum": 1 },
@@ -40,7 +40,7 @@
     "scene": {
       "type": "object",
       "required": ["width", "height", "anchor"],
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "width": { "type": "number", "minimum": 100 },
         "height": { "type": "number", "minimum": 100 },
@@ -116,7 +116,7 @@
       "items": {
         "type": "object",
         "required": ["id", "color", "from", "to", "points"],
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "id": { "type": "string" },
           "color": {
@@ -152,7 +152,7 @@
       "items": {
         "type": "object",
         "required": ["id", "from", "to", "reason"],
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "id": { "type": "string" },
           "from": { "type": "string" },
@@ -167,7 +167,7 @@
       "items": {
         "type": "object",
         "required": ["id", "visibleComponents", "visibleWires"],
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "id": { "type": "string" },
           "visibleComponents": {
