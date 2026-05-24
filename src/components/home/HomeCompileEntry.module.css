@@ -528,10 +528,20 @@
   stroke: none !important;
 }
 
+/* C4 v2 fix iter 104: classe REALE Blockly v10+ Zelos renderer = `.blocklyToolbox`
+   (NON .blocklyToolboxDiv come ELAB_BLOCKLY_CSS pre-existente in ScratchEditor.jsx).
+   Empirico inspect DOM live preview: chain category → ToolboxCategory → Container
+   → Group → blocklyToolbox bg #161B22 dark default. Override scope-locked. */
+.root :global(.blocklyToolbox),
 .root :global(.blocklyToolboxDiv) {
   background: #ffffff !important;
   border-right: 1px solid #d9dde4 !important;
   padding: 12px 8px !important;
+}
+
+.root :global(.blocklyToolboxCategoryGroup),
+.root :global(.blocklyToolboxCategoryContainer) {
+  background: #ffffff !important;
 }
 
 .root :global(.blocklyToolboxCategory) {
@@ -539,6 +549,7 @@
   margin: 4px 6px !important;
   border-radius: 12px !important;
   min-height: 52px !important;
+  color: #1a1a2e !important;
 }
 
 .root :global(.blocklyToolboxCategory:hover) {
@@ -550,7 +561,9 @@
   background: rgba(30, 77, 140, 0.10) !important;
 }
 
-.root :global(.blocklyToolboxCategoryLabel) {
+.root :global(.blocklyToolboxCategoryLabel),
+.root :global(.blocklyTreeLabel),
+.root :global(.blocklyTreeRow) {
   color: #1a1a2e !important;
   font-family: var(--font-sans, 'Open Sans', sans-serif) !important;
 }
