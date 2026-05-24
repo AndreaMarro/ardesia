@@ -4,6 +4,13 @@
  */
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+
+// Demo mode mock
+vi.mock('../../../src/data/demo-mode', async (importOriginal) => {
+  const mod = await importOriginal();
+  return { ...mod, DEMO_MODE_ENABLED: false, filterDemoOnly: (arr) => arr };
+});
+
 import ExperimentPicker from '../../../src/components/lavagna/ExperimentPicker';
 import { deriveState, computePanelActions, STATES } from '../../../src/components/lavagna/LavagnaStateManager';
 

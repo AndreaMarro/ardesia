@@ -1,5 +1,12 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+
+// Demo mode mock: disable filter so tests see full lesson list
+vi.mock('../../../src/data/demo-mode', async (importOriginal) => {
+  const mod = await importOriginal();
+  return { ...mod, DEMO_MODE_ENABLED: false, filterDemoOnly: (arr) => arr };
+});
+
 import ExperimentPicker from '../../../src/components/lavagna/ExperimentPicker';
 
 // Helper: switch to "Tutti gli esperimenti" view (chapter view)
