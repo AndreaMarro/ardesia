@@ -902,8 +902,45 @@ export const __test__ = {
   normalizeActionComponentType,
   shouldUseVisualNarrative,
   normalizeCircuitStateForDirectPath,
+  buildBoardSnapshot,
   THINKING_INDICATOR_DELAY_MS,
 };
+
+// ══════════════════════════════════════
+// Slice 1C — BoardSnapshot builder (pure, file-scope, testable)
+// ══════════════════════════════════════
+// Mirrors the BoardSnapshot shape consumed by supabase/functions/_shared/awareness-flags.ts
+// Defensive: any input may be null/undefined; never throws. Returns a normalized object
+// the server can safely diff (computeAwarenessFlags handles null/undefined fields).
+function buildBoardSnapshot(circuitState, experimentId, step, compileStatus, compileMessage, drawingHash) {
+  let components = [];
+  let connections = [];
+  let errors = [];
+  try {
+    const cs = circuitState && typeof circuitState === 'object' ? circuitState : null;
+    const structured = cs?.structured && typeof cs.structured === 'object' ? cs.structured : null;
+    if (structured) {
+      if (Array.isArray(structured.components)) components = structured.components;
+      if (Array.isArray(structured.connections)) connections = structured.connections;
+      else if (Array.isArray(structured.wires)) connections = structured.wires;
+      if (Array.isArray(structured.errors)) errors = structured.errors;
+    } else if (cs && !cs.text) {
+      // Direct circuit object (no structured/text wrapper) — best-effort harvest.
+      if (Array.isArray(cs.components)) components = cs.components;
+      if (Array.isArray(cs.connections)) connections = cs.connections;
+      else if (Array.isArray(cs.wires)) connections = cs.wires;
+      if (Array.isArray(cs.errors)) errors = cs.errors;
+    }
+  } catch { /* defensive: leave arrays empty */ }
+  return {
+    circuit: { components, connections, errors },
+    drawingHash: drawingHash ?? null,
+    experimentId: experimentId ?? null,
+    step: step ?? null,
+    compileStatus: compileStatus ?? null,
+    compileMessage: compileMessage ?? null,
+  };
+}
 
 // ══════════════════════════════════════
 // HOOK: useGalileoChat
@@ -913,6 +950,9 @@ export default function useGalileoChat() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const circuitStateRef = useRef(null);
+  // Slice 1C: previous turn snapshot for server-side awareness-flags diff.
+  // Updated after each successful sendChat so the next turn sees this turn as "previous".
+  const previousBoardSnapshotRef = useRef(null);
 
   // Persist chat history on every change
   useEffect(() => {
@@ -1172,6 +1212,33 @@ export default function useGalileoChat() {
     const simulatorContext = collectFullContext();
 
     const activeExp = api?.getActiveExperiment?.() || api?.getCurrentExperiment?.();
+
+    // ── Slice 1C: collect BoardSnapshot for server-side awareness-flags ──
+    // Defensive: ANY error falls back to null. Server tolerates null (Slice 1B
+    // returns "" from renderAwarenessFlags → systemPrompt unchanged → backward compat).
+    let currentBoardSnapshot = null;
+    try {
+      const api2 = typeof window !== 'undefined' && window.__ELAB_API;
+      const activeExp2 = api2?.getActiveExperiment?.() || api2?.getCurrentExperiment?.();
+      const drawingHash = simulatorContext?.drawing?.hash ?? simulatorContext?.drawingHash ?? null;
+      const compileStatus = simulatorContext?.compileStatus ?? null;
+      const compileMessage = simulatorContext?.compileMessage ?? null;
+      const stepValue = simulatorContext?.currentStep
+        ?? simulatorContext?.step
+        ?? simulatorContext?.buildStep?.current
+        ?? null;
+      currentBoardSnapshot = buildBoardSnapshot(
+        circuitStateRef.current,
+        activeExp2?.id ?? activeExp?.id ?? null,
+        stepValue,
+        compileStatus,
+        compileMessage,
+        drawingHash,
+      );
+    } catch {
+      currentBoardSnapshot = null;
+    }
+
     const result = await sendChat(userMessage, [], {
       socraticMode: true,
       experimentContext: experimentContext || null,
@@ -1182,9 +1249,13 @@ export default function useGalileoChat() {
         : null,
       experimentId: activeExp?.id || null,
       simulatorContext,
+      boardSnapshot: currentBoardSnapshot,
+      previousBoardSnapshot: previousBoardSnapshotRef.current,
     });
 
     if (result.success) {
+      // Slice 1C: advance snapshot ref so next turn diffs against this turn.
+      previousBoardSnapshotRef.current = currentBoardSnapshot;
       logLatency({
         latency_ms: Date.now() - requestStartedAt,
         ok: true,

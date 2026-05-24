@@ -1,3 +1,37 @@
+## [feat(unlim) — Slice 1C client wire-up + deploy runbook] — 2026-05-25
+
+Terzo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Cabla la raccolta di `boardSnapshot` lato client React in `useGalileoChat.js` + `sendChat` (`services/api.js`) per inviare gli snapshot all'Edge Function `unlim-chat` (Slice 1B server-side già wired su `feat/unlim-slice-1b-pipeline-wireup`, commit f7a71b0f, PR #166). End-to-end: cliente raccoglie snapshot strutturale → server compute 8 flag awareness → render iniettato in systemPrompt LLM → UNLIM riceve "Segnali di attenzione: ..." come segnali strutturati.
+
+### Added
+- `src/components/lavagna/useGalileoChat.js` (+71 LOC) — top-level helper `buildBoardSnapshot(circuitState, experimentId, step, compileStatus, compileMessage, drawingHash)` defensive pure function (try/catch fallback empty arrays), nuovo `previousBoardSnapshotRef = useRef(null)` per stato cross-turno, collect snapshot in `handleSend` PRIMA di `sendChat()` (defensive try/catch → null fallback su qualsiasi errore), passaggio `boardSnapshot` + `previousBoardSnapshot` alle options, advance `previousBoardSnapshotRef.current = currentBoardSnapshot` SOLO dopo `result.success` (failed sends non avanzano diff). Export `buildBoardSnapshot` nel namespace `__test__` per unit test isolato (convenzione esistente del file). Zero modifiche a `circuitChange` handler, validation, rate limiting, message flow.
+- `src/services/api.js` (+5 LOC) — `sendChat` destructure estesa con `boardSnapshot = null` + `previousBoardSnapshot = null`. Forward attraverso `options` esistente a `tryNanobot` payload (`options.boardSnapshot ?? null` + `options.previousBoardSnapshot ?? null`). Zero nuovi parametri di funzione, zero signature change su `tryNanobot`.
+- `tests/unit/lavagna/useGalileoChat-awareness-wire.test.jsx` (271 LOC, NEW) — 9 test contract-level:
+  - PART A (5 tests) `buildBoardSnapshot` pure function: export presenza, defensive null inputs, structured circuit extract, .text-only graceful, pass-through fields
+  - PART B (3 tests) `sendChat` wire-up: include boardSnapshot in fetch body, include previousBoardSnapshot, backward-compat senza opzioni
+  - PART C (1 test) integration: cross-turn ref preservation (secondo send vede primo boardSnapshot come previousBoardSnapshot)
+- `docs/sprints/slice-1c-deploy-and-verify.md` (310 LOC, NEW) — runbook deploy + live verify produzione: 9 sezioni (pre-deploy checklist, deploy sequence ordinato 2.1-2.4 Edge Function + smoke-test + frontend + HTTP 200 verify, 8 functional flow live verify checklist con awareness flag expected per flow, network panel inspection, Edge Function log verification, rollback procedure 6.1-6.3 frontend + Edge Function + DB N/A, success criteria, Slice 1D candidates out-of-scope, references). Tutti i comandi copy-paste runnable.
+
+### Verifica CoV + anti-regressione
+- **CoV 3× vitest run PASS IDENTICI**: 14974 pass | 15 skip | 11 todo | 0 fail × 3 esecuzioni (run 1: 584s, run 2: 261s, run 3: 234s — duration scende con cache warm). Zero flakiness sui nuovi 9 test.
+- **Delta baseline**: 14965 (Slice 1B) → 14974 (+9 Slice 1C). Anti-regressione conferma: nessun decrement.
+- **Build**: `npm run build` exit 0 PASS, PWA 27 entries precache 1968 KiB, sw.js generato.
+- **Test 1A awareness-flags intatti**: 46/46 PASS post-edit (modulo non toccato Slice 1A → 1B → 1C).
+- **Test adjacent lavagna**: 250/250 pre-Slice-1C → 259/259 post (=250 + 9 nuovi).
+
+### Notes
+- **Surgical scope** (Karpathy): 2 file `src/` modificati + 2 file NEW, 354 LOC totali aggiunte (71 useGalileoChat + 5 api + 271 test + 310 doc). Zero modifiche a tipo `ChatRequest`, `tryNanobot` signature, `circuitChange` handler, validation/rate-limit/message flow esistenti. Zero nuove deps npm.
+- **Backward-compat by design**: collection wrapped in try/catch → null fallback → server `renderAwarenessFlags(null, null)` → "" → systemPrompt invariata.
+- **Privacy GDPR**: `boardSnapshot` solo dati strutturali (id componenti, fili, hash disegno, step, compile status). Nessun PII, nessun messaggio grezzo. GDPR-neutro come Slice 1A/1B.
+- **Multi-agent execution**: Slice 1C shipped via 3 agenti paralleli (frontend-developer implementer + test-writer-fixer tester + docs-architect runbook) con file ownership matrix zero-overlap, integrazione clean senza conflitti.
+- **End-to-end pronto**: Slice 1A (module) + 1B (server wire) + 1C (client wire + tests + deploy runbook) costituiscono restauro UNLIM completo. Slice 1D candidates documentati out-of-scope (Edge Function logging awareness, debug UI badge, memoria cross-sessione Supabase, citazione gating).
+
+### Deploy gate
+- [ ] Andrea ratify PR Slice 1B (#166) + PR Slice 1C (sarà aperta post-commit)
+- [ ] Merge sequence: 1B → 1C
+- [ ] Execute runbook `docs/sprints/slice-1c-deploy-and-verify.md` sezione 2 (deploy Edge Function + frontend Vercel) + sezione 3 (8 live verify flow)
+
+---
+
 ## [feat(unlim) — wire awareness-flags nella pipeline `unlim-chat` (Slice 1B)] — 2026-05-25
 
 Secondo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Cabla il modulo puro `awareness-flags.ts` (Slice 1A, commit f06d0595, 46 test) dentro la pipeline dell'Edge Function `unlim-chat`. Il body della richiesta accetta due nuovi campi opzionali (`boardSnapshot`, `previousBoardSnapshot`) — se assenti o nulli, `renderAwarenessFlags` torna stringa vuota e la `systemPrompt` resta identica al percorso legacy (backward-compat 100%, zero rischio di regressione sulla chiamata corrente del client). Quando il client (Slice 1C) invierà gli snapshot, il blocco "Segnali di attenzione: ..." viene appeso al prompt LLM accanto a RAG / Onniscenza / PII-guard.
