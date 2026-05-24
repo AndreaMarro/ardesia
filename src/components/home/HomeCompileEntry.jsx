@@ -76,20 +76,9 @@ import VirtualSerialMonitor from '../simulator/panels/VirtualSerialMonitor';
 import { ModeToggle, MODE_BLOCKS, MODE_CODE } from '../../features/elabBlocks/ui/ModeToggle.jsx';
 import { ElabScratchModeShell } from '../../features/elabBlocks/ui/ElabScratchModeShell.jsx';
 import { getStarterXml } from '../../features/elabBlocks/starterTemplates.js';
+import { cppToBlocklyXml, NANO_R4_BLINK_CPP } from '../../features/elabBlocks/codeSync.js';
 import * as Blockly from 'blockly';
 import styles from './HomeCompileEntry.module.css';
-
-// iter 88 88.UX-3 /onboard — lazy mount 5-step overlay tour first-render
-// per docente non-tech (target Sprint U Riccardo demo). Lazy import keeps
-// bundle small (~150 LOC + ~120 LOC CSS module). Mount gated by localStorage
-// `elab.compile.onboarded === 'true'` — second visit no auto-mount.
-const HomeCompileOnboarding = React.lazy(() => import('./HomeCompileOnboarding'));
-
-// iter 88 88.UX-7 /extract — collapsible "Cosa fa questo programma?" panel.
-// Plain Italian docente explainer per-template (blink-led/read-button/read-sensor).
-// localStorage persist `elab.compile.explainer.collapsed`. PRINCIPIO ZERO
-// plurale + Vol3 Cap.6 Esp.1 reference. Lazy import bundle small (~175 LOC).
-const ProgramExplainer = React.lazy(() => import('./ProgramExplainer'));
 
 // iter 85 close integration Sub-project A: localStorage persistence key
 // Andrea ratify gruppo 17 voce 2 verbose explicit naming
@@ -103,11 +92,7 @@ const DEFAULT_BOARD_ID = 'arduino-nano-r4';
 // src/boards/arduino-nano-r4.json:6 + api.js:64 whitelist (iter 72 BG-A7).
 const DEFAULT_FQBN = 'arduino:renesas_uno:nanor4';
 
-// iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): default Blink starter
-// sketch for "Codice C++" tab. Mirrors Vol3 Cap.6 Esp.1 introduction —
-// pin 13 LED standard didattico (PRINCIPIO ZERO triplet coerenza: kit
-// Omaric + volumi Davide + software ELAB Tutor). Plurale comment intro.
-const DEFAULT_CPP_BLINK = '// Vol3 Cap.6 Esp.1 — Blink sul pin 13 del Nano R4 ELAB\nvoid setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}\n';
+const DEFAULT_BLOCKS_BLINK = getStarterXml('blink');
 
 function FullscreenIcon({ active = false }) {
   return (
@@ -165,11 +150,12 @@ function SerialRailIcon() {
 }
 
 const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
-  const [scratchCode, setScratchCode] = useState('');
+  const [blocklyXml, setBlocklyXml] = useState(DEFAULT_BLOCKS_BLINK);
+  const [scratchCode, setScratchCode] = useState(NANO_R4_BLINK_CPP);
   // iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): direct C++ editor
   // state. Default seeded Blink Vol3 Cap.6 Esp.1 sketch so docente vede
   // codice già compilabile (Karpathy "Simple": no empty-editor friction).
-  const [cppCode, setCppCode] = useState(DEFAULT_CPP_BLINK);
+  const [cppCode, setCppCode] = useState(NANO_R4_BLINK_CPP);
   // iter 85 close integration Sub-project A: editorMode state ora consume
   // localStorage preference Andrea ratify gruppo 17 voce 2. Default 'blocks'
   // preserves iter 73 CC-2 Blockly first-impression (vs 'code' direct C++).
@@ -194,20 +180,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [compileWarnings, setCompileWarnings] = useState(null);
   const [compileSize, setCompileSize] = useState(null);
 
-  // iter 88 88.UX-3 /onboard — first-render tour mount gate. Read
-  // localStorage at lazy init time (NOT useEffect) so we never render
-  // overlay then dismiss = flicker. Defensive try/catch private mode +
-  // SSR (typeof window === 'undefined' guard). Default false NOT true on
-  // throw — safer to skip tour than block compile entry behind broken
-  // localStorage.
-  const [showOnboarding, setShowOnboarding] = useState(() => {
-    try {
-      return typeof window !== 'undefined'
-        && window.localStorage.getItem('elab.compile.onboarded') !== 'true';
-    } catch (_) {
-      return false;
-    }
-  });
   const [serialExpanded, setSerialExpanded] = useState(false);
   const [editorFullscreen, setEditorFullscreen] = useState(false);
 
@@ -215,13 +187,23 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   // preference localStorage (defensive try/catch — quota OR private mode).
   const handleModeChange = useCallback((mode) => {
     if (mode !== MODE_BLOCKS && mode !== MODE_CODE) return;
+    if (mode === MODE_CODE && editorMode === MODE_BLOCKS) {
+      setCppCode(scratchCode || NANO_R4_BLINK_CPP);
+    }
+    if (mode === MODE_BLOCKS && editorMode === MODE_CODE) {
+      const xml = cppToBlocklyXml(cppCode);
+      if (xml) {
+        setBlocklyXml(xml);
+        setScratchCode(cppCode || NANO_R4_BLINK_CPP);
+      }
+    }
     setEditorMode(mode);
     try {
       if (typeof window !== 'undefined') {
         window.localStorage.setItem(EDITOR_MODE_STORAGE_KEY, mode);
       }
     } catch (_) { /* defensive — localStorage may throw (private mode, quota) */ }
-  }, []);
+  }, [cppCode, editorMode, scratchCode]);
 
   // iter 85 close integration Sub-project A: ScratchEditor optional callback
   // onWorkspaceReady — captures Blockly workspace ref for starter XML load
@@ -261,8 +243,11 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   // build: exit status 1" (empirically reproduced 2026-05-17). Fix: ignore
   // first arg, store second (generated C++).
   const handleScratchCodeChange = useCallback((_xml, code) => {
+    setBlocklyXml(_xml || DEFAULT_BLOCKS_BLINK);
     setScratchCode(code || '');
   }, []);
+
+  const activeSketchCode = editorMode === MODE_CODE ? cppCode : scratchCode;
 
   const handleCompile = useCallback(async (codeOverride) => {
     const code = typeof codeOverride === 'string' ? codeOverride : scratchCode;
@@ -310,8 +295,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     }
   }, [scratchCode]);
 
-  const isLegacyVerified = compileStatus === 'verified-legacy';
-
   return (
     <div
       className={styles.root}
@@ -328,23 +311,10 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           onClick={onBackHome}
           aria-label="Torna alla home"
         >
-          ← Home
+          ←
         </button>
-        <h1 className={styles.title}>Compila Arduino dal kit ELAB</h1>
-        <p className={styles.subtitle}>
-          Ragazzi, scrivete codice Arduino con i blocchi Blockly oppure direttamente in C++.
-          {isLegacyVerified ? (
-            <>
-              {' '}Poi premete <strong>Compila</strong>: se vedete “codice verificato”,
-              è solo una verifica legacy, non un programma pronto da caricare sul Nano R4.
-            </>
-          ) : (
-            <>
-              {' '}Poi premete <strong>Compila</strong>: il caricamento sul Nano R4 si abilita
-              solo dopo una compilazione reale per il kit.
-            </>
-          )}
-        </p>
+        <h1 className={styles.title}>ELAB Code</h1>
+        <div className={styles.boardPill} aria-label="Scheda selezionata">Arduino Nano R4</div>
       </header>
 
       <section className={styles.bannerSection} aria-label="Stato browser cross-compile">
@@ -358,13 +328,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       </section>
 
       <main className={styles.editorGrid} data-testid="codekit-workspace-main">
-        {/* iter 88 88.UX-3 /onboard — data-onboard-target attrs identify
-            highlight zones for 5-step tour overlay (HomeCompileOnboarding).
-            "starter-buttons" wraps editorPanel containing StarterButtons
-            overlay (atom 7 ElabScratchModeShell, mounts inside ScratchEditor
-            when workspace empty). "editor" wraps the editor surface, "compile-bar"
-            wraps the ScratchCompileBar aside. NO functional change — pure attr
-            additions for tour outline targeting. */}
+        {/* data-onboard-target attrs are kept as stable QA hooks for this tool surface. */}
         <section className={styles.editorPanel} aria-label="Editor Blockly + IDE" data-onboard-target="starter-buttons">
           {/* iter 85 close integration Sub-project A — ModeToggle iter 84
               atom 8 (Andrea ratify gruppo 16 voce 3) replaces inline
@@ -393,17 +357,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             </button>
           </div>
 
-          {/* iter 88 88.UX-7 /extract — ProgramExplainer collapsible panel
-              above editor first-render. Plain Italian "Cosa fa questo
-              programma?" per current loaded template (default blink-led
-              maps Vol3 Cap.6 Esp.1 Blink). NO functional wiring to editor
-              state — pure presentational. Mounts both Blockly + C++ tabs
-              (templateKey static "blink-led" until iter 89+ dynamic detect
-              via volume-references.js wire-up). */}
-          <React.Suspense fallback={null}>
-            <ProgramExplainer templateKey="blink-led" />
-          </React.Suspense>
-
           <div
             className={styles.editorSurface}
             role="tabpanel"
@@ -424,8 +377,10 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                   workspaceReady={workspaceReady}
                   workspaceBlockCount={workspaceBlockCount}
                   onStarterClick={handleStarterClick}
+                  disableAutoStarters
                 >
                   <ScratchEditor
+                    initialCode={blocklyXml}
                     onChange={handleScratchCodeChange}
                     // iter 82 PHASE 5.5 fix Codex MED-5: gate compileError by editorMode.
                     // Without gate, C++ compile error shows in Blockly overlay after tab switch.
@@ -436,6 +391,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                     // for ElabScratchModeShell skeleton + StarterButtons overlay.
                     onWorkspaceReady={handleWorkspaceReady}
                     onBlockCountChange={setWorkspaceBlockCount}
+                    showOnboardingOnFirstRun={false}
                   />
                 </ElabScratchModeShell>
               </ScratchErrorBoundary>
@@ -462,8 +418,21 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         </section>
 
         <aside className={styles.compileBarPanel} aria-label="Pannello compilazione" data-onboard-target="compile-bar">
+          <section className={styles.codePreview} aria-label="Codice Arduino corrente">
+            <div className={styles.codePreviewHeader}>
+              <span>Codice</span>
+              <button
+                type="button"
+                className={styles.codePreviewAction}
+                onClick={() => handleModeChange(MODE_CODE)}
+              >
+                Apri
+              </button>
+            </div>
+            <pre className={styles.codePreviewBody}>{activeSketchCode || NANO_R4_BLINK_CPP}</pre>
+          </section>
           <ScratchCompileBar
-            onCompile={() => handleCompile(editorMode === MODE_CODE ? cppCode : scratchCode)}
+            onCompile={() => handleCompile(activeSketchCode)}
             compilationStatus={compileStatus}
             compilationErrors={compileErrors}
             compilationWarnings={compileWarnings}
@@ -475,7 +444,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             // (ScratchEditor onChange xml/code → C++ via scratchGenerator).
             // Label override "Compila" because Home handler calls compileCode
             // only — physical upload routes via separate CompileUploadButton.
-            sketchCode={editorMode === MODE_CODE ? cppCode : scratchCode}
+            sketchCode={activeSketchCode}
             compileButtonLabel="Compila"
             boardId={DEFAULT_BOARD_ID}
             port={null}
@@ -485,7 +454,24 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
               animato che ti spiega cosa fare in base alle domande". V1 fills
               previously empty right-panel area below ScratchCompileBar.
               V2 iter 98+ wire onAskQuestion to HomePage UNLIM chat surface. */}
-          <UnlimCompileHelper compileStatus={compileStatus} />
+          <UnlimCompileHelper
+            compileStatus={compileStatus}
+            editorMode={editorMode}
+            sketchCode={activeSketchCode}
+            blockCount={workspaceBlockCount}
+            onAskQuestion={(question) => {
+              // iter 104 C3 — forward a Lavagna chat reale via hash navigation
+              // con seedMessage query param. Lavagna seedMessage consume handler
+              // out-of-scope C3 (TODO iter 105+); per ora apre Lavagna pulita,
+              // mascotte preserva contesto via localStorage `elab-unlim-seed`.
+              try {
+                if (typeof window !== 'undefined') {
+                  window.localStorage.setItem('elab-unlim-seed', String(question || ''));
+                  window.location.hash = '#lavagna';
+                }
+              } catch (_) { /* defensive — quota/private mode */ }
+            }}
+          />
         </aside>
 
         {/* Iter 95 SP3 T3 — Virtual Serial Monitor. iter-103 layout refactor
@@ -532,18 +518,6 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           scope. Per ora docente legge istruzioni manuale OR Andrea/Tea
           installa via SSH ad-hoc. */}
 
-      {/* iter 88 88.UX-3 /onboard — first-render 5-step tour overlay.
-          Mount only if localStorage `elab.compile.onboarded !== 'true'`
-          (gated by useState lazy init top). Suspense fallback=null per
-          spec — no skeleton, just instant mount on chunk load (~150 LOC
-          + ~120 LOC CSS module, loads <30ms typical). On dismiss
-          (skip/Esc/complete step 5) → setShowOnboarding(false) +
-          localStorage.setItem 'true' (set internally by component). */}
-      {showOnboarding && (
-        <React.Suspense fallback={null}>
-          <HomeCompileOnboarding onComplete={() => setShowOnboarding(false)} />
-        </React.Suspense>
-      )}
     </div>
   );
 });

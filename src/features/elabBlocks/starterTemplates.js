@@ -4,25 +4,40 @@
  * Andrea spec FASE 3.2: "Accendi un LED" + "Leggi un pulsante" + "Leggi un sensore".
  *
  * Returns Blockly-compatible XML string for Xml.domToWorkspace(xml, workspace).
- * Pin choices follow ELAB volume Vol.3 conventions (D13 LED, D2 button, A0 sensor).
+ * Default blink targets the built-in LED on the Arduino Nano R4 board, so no
+ * external circuit, breadboard, or wires are required.
  */
 
 const BLINK_XML = `<xml xmlns="https://developers.google.com/blockly/xml">
   <block type="arduino_base" x="20" y="20">
+    <statement name="SETUP">
+      <block type="arduino_pin_mode">
+        <field name="PIN">13</field>
+        <field name="MODE">OUTPUT</field>
+      </block>
+    </statement>
     <statement name="LOOP">
       <block type="arduino_digital_write">
         <field name="PIN">13</field>
         <field name="STATE">HIGH</field>
         <next>
           <block type="arduino_delay">
-            <field name="MS">1000</field>
+            <value name="DELAY_TIME">
+              <shadow type="math_number">
+                <field name="NUM">1000</field>
+              </shadow>
+            </value>
             <next>
               <block type="arduino_digital_write">
                 <field name="PIN">13</field>
                 <field name="STATE">LOW</field>
                 <next>
                   <block type="arduino_delay">
-                    <field name="MS">1000</field>
+                    <value name="DELAY_TIME">
+                      <shadow type="math_number">
+                        <field name="NUM">1000</field>
+                      </shadow>
+                    </value>
                   </block>
                 </next>
               </block>

@@ -1,3 +1,12 @@
+### fix(home-codekit): #compile-home edukit-style scope-pulito (PR #163, salva Codex parziale)
+- C1 `117ee30a`: codeSync.js NEW (NANO_R4_BLINK_CPP + cppToBlocklyXml Blink-only restrict) + starterTemplates BLINK/BUTTON/SENSOR XML + test 4/4 PASS.
+- C2 `6c12f140`: HomeCompileEntry.jsx + .module.css rebuild edukit. Header "ELAB Code" + boardPill "Arduino Nano R4". Dot bg workspace, light theme palette ELAB. Mode toggle wire Blocchi/C++ via codeSync. Rimosso ProgramExplainer + Onboarding + StarterButtons banner stale (Andrea verbatim "elimina questo schifo" iter precedente).
+- C3 `5fe1df5c`: UnlimCompileHelper.jsx REWRITE no fake — rimosso `answerQuestion()` HARDCODED decision-tree (viola CLAUDE.md §12 "MAI dati finti"). Forward `onAskQuestion` → localStorage `elab-unlim-seed` + navigate `#lavagna`. Footer link onesto "Chat completa su Lavagna".
+- C4 `c9364932`: ScratchEditor theme SCOPE-LOCKED in HomeCompileEntry.module.css (`.root :global(.blockly*)` cascade higher specificity). Lavagna dark theme preservato — NO touch shared file.
+- C5 `a1d6865a`: Playwright cross-compile-upload-e2e.spec.js 4/4 PASS 33.7s LIVE — Supabase compile-proxy HEX returned + mock WebUSB/Serial upload code-path NO fatal JS errors.
+- Andrea verbatim "salvo Codex parziale" + "sicuro per upload e crosscompilazione" mandate.
+- Gap residui onesti: hardware Nano R4 upload UAT P1, Firefox/Safari Web Serial unsupported, cppToBlocklyXml one-way lossy, arch mismatch Nano R4 ARM vs avr8js ATmega328p, C3b mount UnlimAdapter standalone deferred.
+
 ### fix(lavagna): tab-gate L4 overlay portal (Codex stop-time review)
 - L4 portal originale escapava il gate `display:none` di `.lavagnaView`, causando l'apparizione di UnlimAdapter (chat UNLIM) su tab non-Lavagna (`classe` dashboard docente, `progressi` student, `lezione` selector).
 - Fix: nuovo helper puro `overlayPortalDisplayStyle(activeTab)` in `overlayPortal.js` che ritorna `'none'` quando `activeTab !== 'lavagna'`. Applicato come style inline su `.overlayRoot` wrapper dentro `createPortal`.
