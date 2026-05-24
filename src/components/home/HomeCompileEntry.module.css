@@ -513,3 +513,65 @@
     font-size: 15px;
   }
 }
+
+/* ============================================================
+   C4 (iter 104) — ScratchEditor Blockly theme SCOPE-LOCKED to
+   #compile-home only. Override scuro default ELAB_BLOCKLY_CSS
+   (iniettato global in document.head da ScratchEditor.jsx:370)
+   con specificity higher (`.root` wrapper + :global selector).
+   Lavagna NON wrappa con .root HomeCompileEntry → tema dark
+   preservato. NO modifiche file shared ScratchEditor.jsx.
+   ============================================================ */
+
+.root :global(.blocklyMainBackground) {
+  fill: transparent !important;
+  stroke: none !important;
+}
+
+.root :global(.blocklyToolboxDiv) {
+  background: #ffffff !important;
+  border-right: 1px solid #d9dde4 !important;
+  padding: 12px 8px !important;
+}
+
+.root :global(.blocklyToolboxCategory) {
+  padding: 10px 12px !important;
+  margin: 4px 6px !important;
+  border-radius: 12px !important;
+  min-height: 52px !important;
+}
+
+.root :global(.blocklyToolboxCategory:hover) {
+  background: #eef5ff !important;
+}
+
+.root :global(.blocklyToolboxCategory[aria-selected="true"]),
+.root :global(.blocklyToolboxCategory.blocklyTreeSelected) {
+  background: rgba(30, 77, 140, 0.10) !important;
+}
+
+.root :global(.blocklyToolboxCategoryLabel) {
+  color: #1a1a2e !important;
+  font-family: var(--font-sans, 'Open Sans', sans-serif) !important;
+}
+
+.root :global(.blocklyFlyoutBackground) {
+  fill: #f8fafc !important;
+  fill-opacity: 0.95 !important;
+}
+
+.root :global(.blocklyScrollbarHandle) {
+  fill: #b8bec8 !important;
+  fill-opacity: 0.6 !important;
+}
+
+.root :global(.blocklyText) {
+  fill: #1a1a2e !important;
+}
+
+/* dot pattern grid sfondo workspace edukit-style */
+.root :global(.injectionDiv) {
+  background-color: #f8fafb !important;
+  background-image: radial-gradient(circle, #d0d4d8 0.8px, transparent 0.8px) !important;
+  background-size: 20px 20px !important;
+}
