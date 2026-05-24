@@ -18,10 +18,8 @@ import experimentsIndex, {
 describe('experimentsIndex', () => {
   describe('ALL_EXPERIMENTS', () => {
     it('is a non-empty array', () => {
-      // Demo mode 23/05/2026: ALL_EXPERIMENTS filtrato a 7 esp (Andrea mandate).
-      // Set completo (>=88) via getTotalExperiments() / ALL_EXPERIMENTS_RAW.
       expect(Array.isArray(ALL_EXPERIMENTS)).toBe(true);
-      expect(ALL_EXPERIMENTS.length).toBeGreaterThan(0);
+      expect(ALL_EXPERIMENTS.length).toBeGreaterThan(78);
     });
 
     it('total >= 88 experiments across 3 volumes', () => {

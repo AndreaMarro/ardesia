@@ -532,7 +532,7 @@ function applyComponentAvoidance(waypoints, components, layout) {
   const GRID = 7.5; // Breadboard pitch
 
   // Collect obstacle bounding boxes (only breadboard-snappable elements)
-  const avoidTypes = new Set(['resistor', 'capacitor', 'led', 'led-bridge', 'diode', 'mosfet-n', 'motor-dc', 'buzzer-piezo', 'phototransistor', 'push-button', 'nano-r4']);
+  const avoidTypes = new Set(['resistor', 'capacitor', 'led', 'diode', 'mosfet-n', 'motor-dc', 'buzzer-piezo', 'phototransistor', 'push-button', 'nano-r4']);
 
   const obstacles = components
     .filter(c => avoidTypes.has(c.type))

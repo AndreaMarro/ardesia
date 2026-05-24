@@ -13,7 +13,7 @@
 import React from 'react';
 import { registerComponent } from './registry';
 
-const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, id, renderMode = 'default' }) => {
+const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, id }) => {
   const voltage = state.voltage || 9;
   const isConnected = state.connected !== false;
 
@@ -129,36 +129,25 @@ const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
       <circle cx={TERM_X} cy={TERM_MINUS_Y} r="2"
         fill="var(--elab-hex-d0d0d0)" stroke="#999" strokeWidth="0.3" />
 
-      {/* Embedded strisci cavi — solo in renderMode="default" (legacy).
-          renderMode="clip_simplified" → nasconde strisci, lascia Wire.jsx esterno
-          con path custom per geometria identica libro (Demo S1 fedelta volume). */}
-      {renderMode === 'default' && (
-        <>
-          {/* Red wire (+) — from upper clip down to pin positive (0, 32) */}
-          <path
-            data-strisci="red"
-            d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
-            stroke="var(--elab-hex-8b1b1b)" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
-          />
-          <path
-            data-strisci="red"
-            d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
-            stroke="var(--elab-hex-d32f2f)" strokeWidth="2.4" fill="none" strokeLinecap="round"
-          />
+      {/* Red wire (+) — from upper clip down to pin positive (0, 32) */}
+      <path
+        d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
+        stroke="var(--elab-hex-8b1b1b)" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
+      />
+      <path
+        d={`M ${TERM_X} ${CLIP_TOP_Y + CLIP_H + 1} C ${TERM_X} 5, 2 20, 0 32`}
+        stroke="var(--elab-hex-d32f2f)" strokeWidth="2.4" fill="none" strokeLinecap="round"
+      />
 
-          {/* Black wire (−) — from lower clip down to pin negative (0, 58) */}
-          <path
-            data-strisci="black"
-            d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
-            stroke="#000" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
-          />
-          <path
-            data-strisci="black"
-            d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
-            stroke="var(--elab-hex-1a1a1a)" strokeWidth="2.4" fill="none" strokeLinecap="round"
-          />
-        </>
-      )}
+      {/* Black wire (−) — from lower clip down to pin negative (0, 58) */}
+      <path
+        d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
+        stroke="#000" strokeWidth="3.2" fill="none" strokeLinecap="round" opacity="0.2"
+      />
+      <path
+        d={`M ${TERM_X} ${CLIP_BOT_Y + CLIP_H + 1} C ${TERM_X} 20, 2 42, 0 58`}
+        stroke="var(--elab-hex-1a1a1a)" strokeWidth="2.4" fill="none" strokeLinecap="round"
+      />
 
       {/* ── Interaction area ── */}
       <rect
@@ -180,17 +169,9 @@ const Battery9V = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
   );
 };
 
-// Andrea 23/05/2026 PM: "i cavi devono partire dalla batteria".
-// Pin coords aligned to CLIP terminals (right edge).
-// Geometry calc:
-//   BODY_TOP=-38, BODY_H=36, BODY_MID_Y=-20, CLIP_GAP=5, CLIP_H=15.5
-//   CLIP_TOP_Y=-38, CLIP_BOT_Y=-17.5
-//   TERM_PLUS_Y=CLIP_TOP_Y+CLIP_H/2=-30.25
-//   TERM_MINUS_Y=CLIP_BOT_Y+CLIP_H/2=-9.75
-//   TERM_X=CLIP_X+CLIP_W*0.35=6.5 (use 9 for slight right exit)
 Battery9V.pins = [
-  { id: 'positive', label: '+ (9V)', x: 9, y: -30, type: 'power' },
-  { id: 'negative', label: '\u2212 (GND)', x: 9, y: -10, type: 'power' },
+  { id: 'positive', label: '+ (9V)', x: 0, y: 32, type: 'power' },
+  { id: 'negative', label: '\u2212 (GND)', x: 0, y: 58, type: 'power' },
 ];
 
 Battery9V.defaultState = { voltage: 9, connected: true };

@@ -15,7 +15,7 @@ const CATEGORIES = [
   { id: 'power',   label: 'Alimentazione', types: ['battery9v', 'nano-r4'] },
   { id: 'passive', label: 'Passivi',       types: ['resistor', 'capacitor', 'potentiometer', 'diode'] },
   { id: 'semi',    label: 'Semiconduttori', types: ['mosfet-n'] },
-  { id: 'output',  label: 'Luci e Suoni',   types: ['led', 'led-bridge', 'rgb-led', 'buzzer-piezo', 'motor-dc', 'servo', 'lcd16x2'] },
+  { id: 'output',  label: 'Luci e Suoni',   types: ['led', 'rgb-led', 'buzzer-piezo', 'motor-dc', 'servo', 'lcd16x2'] },
   { id: 'input',   label: 'Sensori e Input', types: ['push-button', 'reed-switch', 'photo-resistor', 'phototransistor'] },
   { id: 'board',   label: 'Schede',        types: ['breadboard-half', 'breadboard-full'] },
   { id: 'tool',    label: 'Strumenti',     types: ['multimeter', 'wire'] },

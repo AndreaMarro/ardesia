@@ -1,12 +1,9 @@
 /**
- * ELAB Simulator — Capacitor Component (Book-Parity, Flat Didactic)
- * Electrolytic capacitor: dark cylindrical body, white polarity stripe with
- * minus marks, metallic top cap, + label near positive lead, value text.
- * Book reference Vol2 cap7 pages 63-72: simple cylinder, white stripe,
- * no K-groove drawings / vent markings (those are micro-details not in book).
+ * ELAB Simulator — Capacitor Component (Tinkercad-Identical Style, ENRICHED)
+ * Electrolytic capacitor: dark cylindrical body, polarity stripe with dash marks,
+ * metallic top cap with K-groove, bottom face, + marking, value display.
  * Pin positions UNCHANGED — solver-safe.
- * © Andrea Marro — 10/02/2026, Tinkercad redesign 23/02/2026,
- *   book-parity simplification (remove micro-details) 2026-05-23
+ * © Andrea Marro — 10/02/2026, Tinkercad-identical redesign 23/02/2026
  */
 
 import React from 'react';
@@ -41,20 +38,15 @@ const Capacitor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
         </linearGradient>
       </defs>
 
-      {/* Wire leads — vertical alignment for breadboard snap.
-          POSITIVE (top, x=0, y=-15) is the lead OPPOSITE to white stripe.
-          NEGATIVE (bottom, x=0, y=15) corresponds to white stripe side
-          (white stripe = negative per electrolytic convention).
-          NOTE: pin labels are 'positive' (top) / 'negative' (bottom). */}
+      {/* Wire leads — vertical alignment for breadboard snap */}
       <line x1="-2" y1="-11" x2="0" y2="-15"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
       <line x1="2" y1="11" x2="0" y2="15"
         stroke="var(--elab-hex-9e9e9e)" strokeWidth="1.25" strokeLinecap="round" />
 
-      {/* + polarity symbol on positive (top) lead side — bigger, more visible.
-          Placed RIGHT of body to avoid overlap with white minus-stripe (left). */}
-      <text x="10" y="-9" fontSize="5.5" fill="var(--elab-hex-cc0000)" fontWeight="800"
-        fontFamily="Arial, sans-serif" textAnchor="middle">+</text>
+      {/* + polarity symbol near positive lead */}
+      <text x="-11" y="-13" fontSize="4" fill="var(--elab-hex-cc0000)" fontWeight="700"
+        fontFamily="Arial, sans-serif">+</text>
 
       {/* Main cylindrical body */}
       <rect x="-8" y="-11" width="16" height="22" rx="3"
@@ -68,33 +60,47 @@ const Capacitor = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract, 
       <rect x="3.5" y="-10.2" width="3.5" height="20.4" rx="1.8"
         fill="var(--elab-hex-000000)" opacity="0.08" />
 
-      {/* Polarity stripe — white band on negative side (left).
-          Book shows clear white stripe with minus marks. */}
-      <rect x="-8" y="-11" width="3.4" height="22"
-        fill="var(--elab-hex-eaeaea)" opacity="0.85" />
+      {/* Polarity stripe — white/silver on left side */}
+      <rect x="-8" y="-11" width="4" height="22" rx="0"
+        fill="var(--elab-hex-cfcfcf)" opacity="0.32" />
 
-      {/* Minus marks on stripe (didactic polarity indicator) — vertical column */}
-      {[-6, -2, 2, 6].map((dy, i) => (
-        <text key={i} x="-6.3" y={dy + 1} fontSize="3.6"
-          fill="var(--elab-hex-1a1a1a)" fontWeight="700"
-          fontFamily="Arial, sans-serif" textAnchor="middle"
-          opacity="0.75">
-          −
-        </text>
+      {/* Stripe dash marks (ruler-like ticks) */}
+      {[-8, -5.5, -3, -0.5, 2, 4.5, 7].map((dy, i) => (
+        <line key={i} x1="-7" y1={dy} x2="-5.2" y2={dy}
+          stroke="var(--elab-hex-eaeaea)" strokeWidth="0.55" opacity="0.45" />
       ))}
 
-      {/* Value text on body — single line, didactic readable */}
-      <text x="2.5" y="1.5" textAnchor="middle" fontSize="3" fill="var(--elab-hex-eaeaea)"
-        fontFamily="Fira Code, monospace" fontWeight="600" letterSpacing="0.15">
+      {/* Value text on body */}
+      <text x="1" y="1" textAnchor="middle" fontSize="3" fill="var(--elab-hex-aaaaaa)"
+        fontFamily="Fira Code, monospace" fontWeight="500" letterSpacing="0.2">
         {formatCapValue(value)}
       </text>
 
-      {/* Top face — metallic silver cap (subtle, no K-groove / vent markings) */}
-      <ellipse cx="0" cy="-11" rx="8" ry="2.2"
-        fill="var(--elab-hex-c8c8c8)" stroke="var(--elab-hex-707070)" strokeWidth="0.4" />
+      {/* Voltage rating (small, below value) */}
+      <text x="1" y="5" textAnchor="middle" fontSize="2" fill="var(--elab-hex-777777)"
+        fontFamily="Fira Code, monospace">
+        25V
+      </text>
+
+      {/* Top face — metallic silver cap */}
+      <ellipse cx="0" cy="-11" rx="8" ry="2.4"
+        fill="var(--elab-hex-d0d0d0)" stroke="var(--elab-hex-707070)" strokeWidth="0.4" />
+      {/* Top face highlight */}
+      <ellipse cx="-2" cy="-11.5" rx="4" ry="1"
+        fill="var(--elab-hex-ffffff)" opacity="0.20" />
+
+      {/* K-groove scoring on top */}
+      <line x1="-3.5" y1="-11.6" x2="0" y2="-10"
+        stroke="var(--elab-hex-8a8a8a)" strokeWidth="0.5" opacity="0.55" />
+      <line x1="3.5" y1="-11.6" x2="0" y2="-10"
+        stroke="var(--elab-hex-8a8a8a)" strokeWidth="0.5" opacity="0.55" />
+
+      {/* Vent scoring (small cross on top) */}
+      <line x1="-1.5" y1="-11" x2="1.5" y2="-11"
+        stroke="var(--elab-hex-888888)" strokeWidth="0.3" opacity="0.4" />
 
       {/* Bottom face */}
-      <ellipse cx="0" cy="11" rx="8" ry="2.2"
+      <ellipse cx="0" cy="11" rx="8" ry="2.4"
         fill="var(--elab-hex-252525)" stroke="var(--elab-hex-111111)" strokeWidth="0.35" />
 
       {/* Charge level fill — rises from bottom like liquid filling the capacitor */}

@@ -13,7 +13,6 @@ import { getComponentsByVolume, getComponent } from '../components/registry';
 const STEP_ICONS = {
   resistor: 'R',
   led: 'LED',
-  'led-bridge': 'LED↕',
   'push-button': 'SW',
   'rgb-led': 'RGB',
   'buzzer-piezo': 'BZ',
@@ -41,7 +40,6 @@ const SHORT_LABELS = {
   diode: 'Diodo',
   'mosfet-n': 'MOSFET',
   led: 'LED',
-  'led-bridge': 'LED a cavallo gap',
   'rgb-led': 'LED RGB',
   'buzzer-piezo': 'Cicalino',
   'motor-dc': 'Motore DC',
@@ -60,7 +58,6 @@ const SVG_PREVIEW_SIZE = {
   battery9v: { w: 60, h: 80, vb: '-30 -40 60 80' },
   resistor: { w: 50, h: 20, vb: '-25 -10 50 20' },
   led: { w: 30, h: 40, vb: '-15 -20 30 40' },
-  'led-bridge': { w: 30, h: 40, vb: '-15 -20 30 40' },
   'rgb-led': { w: 30, h: 40, vb: '-15 -20 30 40' },
   capacitor: { w: 30, h: 40, vb: '-15 -20 30 40' },
   'push-button': { w: 40, h: 40, vb: '-20 -20 40 40' },

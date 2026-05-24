@@ -9,7 +9,6 @@ import EXPERIMENTS_VOL2 from '../../data/experiments-vol2';
 import EXPERIMENTS_VOL3 from '../../data/experiments-vol3';
 import { getDisplayInfo } from '../../data/chapter-map';
 import LESSON_GROUPS, { getLessonsForVolume } from '../../data/lesson-groups';
-import { filterDemoOnly } from '../../data/demo-mode';
 import css from './ExperimentPicker.module.css';
 
 const VOLUMES = [
@@ -64,9 +63,7 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
   }, [open, onClose]);
 
   const vol = VOLUMES.find(v => v.key === activeVol);
-  // Demo mode 25/05: filter experiments al subset 3+2+2 per "contenitori volumi".
-  // Andrea verbatim 2026-05-23: "i contenitori volumi contengono 3 2 2 esperimenti".
-  const experiments = filterDemoOnly(vol?.data?.experiments || []);
+  const experiments = vol?.data?.experiments || [];
 
   const filtered = useMemo(() => {
     if (!search.trim()) return experiments;
@@ -80,16 +77,12 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
 
   const chapters = useMemo(() => getChapterGroups(filtered), [filtered]);
 
-  // Lesson-based grouping — Andrea 24/05 PM mandate: nascondi lessons senza esp demo
+  // Lesson-based grouping
   const lessons = useMemo(() => {
     const volLessons = getLessonsForVolume(activeVol);
-    // Filter out lessons where NO experiment is in demo set (experiments already filtered)
-    const demoLessons = volLessons.filter(([, lesson]) =>
-      lesson.experiments.some(eid => experiments.find(e => e.id === eid))
-    );
-    if (!search.trim()) return demoLessons;
+    if (!search.trim()) return volLessons;
     const q = search.toLowerCase();
-    return demoLessons.filter(([, lesson]) =>
+    return volLessons.filter(([, lesson]) =>
       lesson.title.toLowerCase().includes(q) ||
       lesson.concept.toLowerCase().includes(q) ||
       lesson.experiments.some(eid => {

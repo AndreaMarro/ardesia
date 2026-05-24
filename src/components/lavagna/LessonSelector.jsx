@@ -1,16 +1,9 @@
 import React from 'react';
 import { getLessonsForVolume } from '../../data/lesson-groups';
-import { isDemoExperiment, DEMO_MODE_ENABLED } from '../../data/demo-mode';
 import styles from './LessonSelector.module.css';
 
 export default function LessonSelector({ volumeNumber, activeLessonId, onLessonSelect }) {
-  let lessons = getLessonsForVolume(volumeNumber);
-  // Andrea 24/05 PM STRICT: nascondi lezioni senza esp demo
-  if (DEMO_MODE_ENABLED) {
-    lessons = lessons.filter(([, lesson]) =>
-      lesson.experiments?.some(eid => isDemoExperiment(eid))
-    );
-  }
+  const lessons = getLessonsForVolume(volumeNumber);
 
   return (
     <nav className={styles.container} aria-label="Scegli lezione">

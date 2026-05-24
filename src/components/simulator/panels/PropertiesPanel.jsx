@@ -29,22 +29,8 @@ const COMP_NAMES = {
   resistor: 'Resistore',
   capacitor: 'Condensatore',
   led: 'LED',
-  'led-bridge': 'LED a cavallo del gap',
-  'rgb-led': 'LED RGB',
-  battery9v: 'Batteria 9V',
+  battery9v: 'Batteria',
   potentiometer: 'Potenziometro',
-  'push-button': 'Pulsante',
-  multimeter: 'Multimetro',
-  'photo-resistor': 'Fotoresistenza',
-  phototransistor: 'Fototransistor',
-  diode: 'Diodo',
-  'mosfet-n': 'MOSFET',
-  'buzzer-piezo': 'Buzzer',
-  'reed-switch': 'Reed switch',
-  servo: 'Servo motore',
-  'motor-dc': 'Motore DC',
-  'nano-r4': 'Arduino Nano R4',
-  'breadboard-half': 'Breadboard',
 };
 
 const PropertiesPanel = React.memo(function PropertiesPanel({ comp, onValueChange, onClose }) {
