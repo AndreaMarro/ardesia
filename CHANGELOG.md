@@ -1,3 +1,10 @@
+### fix(home-codekit): UnlimCompileHelper mascotte ELAB-text + position (Andrea visual review post PR #163)
+- `UnlimCompileHelper.jsx`: `MASCOT_SRC` da `/assets/mascot/elab-mascot-vera.png` (PNG con scritta "ELAB" baked in lime sotto la mascotte) a `/assets/mascot/logo-senza-sfondo.png` (asset esistente, identica mascotte robot navy+lime, ZERO scritta ELAB).
+- `UnlimCompileHelper.module.css`: `.mascotImg` `object-position` da `center 24%` (testa alta nel cerchio, mascotte "sale") a `center 70%` (mascotte scivola verso il basso, piedi visibili al fondo del round badge). Andrea verbatim "abbassa la mascotte".
+- Comments code aggiornati con motivazione iter 104 C4-fix 2026-05-24.
+- Scope: SOLO UnlimCompileHelper (compile-home page). HomePage hero mascot + ChatbotOnly small avatar + altre 5 occorrenze `elab-mascot-vera.png` NON toccate (out-of-scope, Andrea ratify per-componente).
+- Gap residui onesti: HomePage hero usa ancora `elab-mascot-vera.png` con ELAB text visibile (no green ring wrap), Chatbot avatar 36x44px usa ancora text-version, deciso scope-strict per evitare regressione mascotte unified.
+
 ### fix(home-codekit): #compile-home edukit-style scope-pulito (PR #163, salva Codex parziale)
 - C1 `117ee30a`: codeSync.js NEW (NANO_R4_BLINK_CPP + cppToBlocklyXml Blink-only restrict) + starterTemplates BLINK/BUTTON/SENSOR XML + test 4/4 PASS.
 - C2 `6c12f140`: HomeCompileEntry.jsx + .module.css rebuild edukit. Header "ELAB Code" + boardPill "Arduino Nano R4". Dot bg workspace, light theme palette ELAB. Mode toggle wire Blocchi/C++ via codeSync. Rimosso ProgramExplainer + Onboarding + StarterButtons banner stale (Andrea verbatim "elimina questo schifo" iter precedente).
