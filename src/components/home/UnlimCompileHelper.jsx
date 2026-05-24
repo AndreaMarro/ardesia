@@ -33,8 +33,12 @@
 import React, { useState } from 'react';
 import css from './UnlimCompileHelper.module.css';
 
-// Mascotte ufficiale ELAB (Vera) PNG servita da public/ — iter-102 mandate.
-const MASCOT_SRC = '/assets/mascot/elab-mascot-vera.png';
+// Mascotte ufficiale ELAB — uso versione "logo-senza-sfondo.png" che NON
+// contiene la scritta "ELAB" baked nel PNG (Andrea iter 104 C4-fix
+// 2026-05-24: "togli la scritta elab e abbassa la mascotte"). La variante
+// "vera" ha "ELAB" baked in lime sotto la mascotte: anche con object-position
+// crop center 24% la scritta riemerge a piccole risoluzioni del round badge.
+const MASCOT_SRC = '/assets/mascot/logo-senza-sfondo.png';
 
 const QUICK_QUESTIONS = [
   { id: 'read', label: 'Leggi il programma' },
