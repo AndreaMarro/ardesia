@@ -6,6 +6,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import React from 'react';
+
+// Andrea 24/05 PM mandate: DEMO_MODE_ENABLED filters lesson list to demo set.
+// Tests below assert FULL lesson list behavior — mock demo-mode to disable filter.
+vi.mock('../../../src/data/demo-mode', async (importOriginal) => {
+  const mod = await importOriginal();
+  return { ...mod, DEMO_MODE_ENABLED: false };
+});
+
 import LessonSelector from '../../../src/components/lavagna/LessonSelector';
 
 describe('LessonSelector — scelta lezione', () => {

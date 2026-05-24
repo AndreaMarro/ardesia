@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://elabtutor.school/schemas/bookGeometry.schema.json",
+  "title": "ELAB bookGeometry",
+  "description": "Source-of-truth visiva per esperimenti demo 25/05/2026. Geometria canonica derivata da libro volumi. Sprint A foundation — workflow-v2 fase 9.",
+  "type": "object",
+  "required": ["experimentId", "source", "scene", "components", "visibleWires", "hiddenElectricalConnections", "steps"],
+  "additionalProperties": true,
+  "properties": {
+    "experimentId": {
+      "type": "string",
+      "description": "ID canonical es v1-cap6-esp1",
+      "pattern": "^v[123]-cap[0-9]+-esp[0-9]+$"
+    },
+    "source": {
+      "type": "object",
+      "required": ["volume", "pages", "referenceImages"],
+      "additionalProperties": true,
+      "properties": {
+        "volume": { "type": "integer", "enum": [1, 2, 3] },
+        "chapter": { "type": "integer", "minimum": 1 },
+        "pages": {
+          "type": "array",
+          "description": "Printed pages volume cartaceo",
+          "items": { "type": "integer", "minimum": 1 },
+          "minItems": 1
+        },
+        "pdfPages": {
+          "type": "array",
+          "description": "PDF physical pages (may differ from printed)",
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "pdfFile": { "type": "string" },
+        "referenceImages": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "required": ["width", "height", "anchor"],
+      "additionalProperties": true,
+      "properties": {
+        "width": { "type": "number", "minimum": 100 },
+        "height": { "type": "number", "minimum": 100 },
+        "anchor": {
+          "type": "string",
+          "description": "Component id che ancora la scena (di solito breadboard bb1)"
+        },
+        "background": { "type": "string" }
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Mappa id → component spec. Anchor relativo a scene.anchor.",
+      "patternProperties": {
+        "^[a-z][a-z0-9]*$": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["battery9v", "breadboard", "led", "led-bridge", "resistor", "capacitor", "push-button", "multimeter", "nano-r4", "potentiometer", "photoresistor", "buzzer", "rgb-led", "mosfet", "wire-jumper"]
+            },
+            "asset": { "type": "string" },
+            "color": { "type": "string" },
+            "value": { "type": ["number", "string"] },
+            "unit": { "type": "string" },
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "rotation": { "type": "number", "default": 0 },
+            "locked": { "type": "boolean", "default": false },
+            "pins": {
+              "type": "object",
+              "description": "Mappa nome-pin → ancoraggio (es bb1:f9, bb1:topPlusRail-5)",
+              "additionalProperties": { "type": "string" }
+            },
+            "pose": {
+              "type": "object",
+              "properties": {
+                "rotation": { "type": "number" },
+                "bodyOffset": {
+                  "type": "object",
+                  "properties": {
+                    "x": { "type": "number" },
+                    "y": { "type": "number" }
+                  }
+                },
+                "legStyle": { "type": "string" }
+              }
+            },
+            "canonicalPose": {
+              "type": "object",
+              "properties": {
+                "anchor": { "type": "string" },
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "rotation": { "type": "number" }
+              }
+            },
+            "snapTolerance": {
+              "type": "object",
+              "properties": {
+                "positionPx": { "type": "number" },
+                "rotationDeg": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "visibleWires": {
+      "type": "array",
+      "description": "Cavi che il libro mostra esplicitamente disegnati",
+      "items": {
+        "type": "object",
+        "required": ["id", "color", "from", "to", "points"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string" },
+          "color": {
+            "type": "string",
+            "enum": ["red", "black", "blue", "green", "yellow", "white", "orange", "purple", "brown", "gray"]
+          },
+          "from": { "type": "string", "description": "endpoint formato componentId:pinName" },
+          "to": { "type": "string" },
+          "pathStyle": {
+            "type": "string",
+            "enum": ["straight", "L", "U", "bezier", "angular-short"]
+          },
+          "points": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["x", "y"],
+              "properties": {
+                "x": { "type": "number" },
+                "y": { "type": "number" }
+              }
+            }
+          },
+          "thickness": { "type": "number", "default": 3 },
+          "zIndex": { "type": "integer", "default": 10 }
+        }
+      }
+    },
+    "hiddenElectricalConnections": {
+      "type": "array",
+      "description": "Connessioni elettriche reali NON disegnate nel libro (es contatto su rail interna)",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "reason"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "Passo-passo: subset progressivo della stessa scena canonica. NO geometria diversa per step.",
+      "items": {
+        "type": "object",
+        "required": ["id", "visibleComponents", "visibleWires"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string" },
+          "visibleComponents": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "visibleWires": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "hide": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "activeTargets": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "instruction": {
+            "type": "string",
+            "description": "Citazione VERBATIM libro o riformulazione minima docente-rivolta"
+          },
+          "bookPage": {
+            "type": "integer",
+            "description": "Pagina libro corrispondente a questo step"
+          }
+        }
+      }
+    },
+    "manualSync": {
+      "type": "object",
+      "description": "Mapping step → pagina libro per docente sync",
+      "properties": {
+        "defaultPage": { "type": "integer" },
+        "stepPageMap": {
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+$": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}

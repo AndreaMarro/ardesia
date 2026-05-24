@@ -22,7 +22,7 @@ import {
 //  KNOWN COMPONENT TYPES (validated against registry)
 // ═══════════════════════════════════════════════════════════════
 const KNOWN_TYPES = new Set([
-  'led', 'resistor', 'capacitor', 'diode', 'buzzer-piezo',
+  'led', 'led-bridge', 'resistor', 'capacitor', 'diode', 'buzzer-piezo',
   'push-button', 'potentiometer', 'photo-resistor', 'phototransistor',
   'rgb-led', 'motor-dc', 'mosfet-n', 'reed-switch', 'servo',
   'battery9v', 'multimeter',

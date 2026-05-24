@@ -1,0 +1,241 @@
+{
+  "$schema": "./bookGeometry.schema.json",
+  "_meta": {
+    "purpose": "bookGeometry v2-cap7-esp1 — Scarica condensatore + MM. Post codex round 2 convergence.",
+    "generated": "2026-05-24",
+    "session": "demo-25may Sprint B round 2",
+    "coordsStatus": "APPROXIMATE — Sprint B fase 4 calibrator pending",
+    "visualSource": "reference/vol2/v2-cap7-esp1/page-{067,068}.png (200 DPI Vol2 PDF)",
+    "codexCorrections": [
+      "Battery POSITION below-left bb (NOT lato Vol1-style) — codex round 2",
+      "Breadboard FULL-SIZE (NOT half come Vol1) — codex BLOCKER",
+      "Solver MULTIMETRO discharge HA logic (CircuitSolver.js:1233+2194-2242) — mio claim 'bug' ERRATO",
+      "W3 filo colorato GIÀ yellow in repo (experiments-vol2.js:2194)",
+      "R 1kΩ listato materiali libro pag.67 ma NON visibile illustrazioni — Andrea ratify (typo o discharge parallelo non illustrato?)"
+    ],
+    "andreaRatifyPending": [
+      "P0 BLOCKER: bb-half → bb-full migration experiments-vol2.js:2177-2179",
+      "P0: R 1kΩ esp1 typo libro o gap implementation app?"
+    ]
+  },
+  "experimentId": "v2-cap7-esp1",
+  "source": {
+    "volume": 2,
+    "chapter": 7,
+    "pages": [67, 68],
+    "pdfPages": [67, 68],
+    "pdfFile": "VOL2_ITA_COMPLETO GP V 0.1.pdf",
+    "referenceImages": [
+      "reference/vol2/v2-cap7-esp1/page-067.png",
+      "reference/vol2/v2-cap7-esp1/page-068.png"
+    ]
+  },
+  "scene": {
+    "width": 1200,
+    "height": 400,
+    "anchor": "bb1",
+    "background": "book-light-green"
+  },
+  "components": {
+    "bb1": {
+      "type": "breadboard",
+      "asset": "breadboard-vol2-horizontal-full",
+      "_note": "FULL SIZE breadboard (~60 colonne). NON half. BLOCKER fix per esp1+esp2.",
+      "x": 450,
+      "y": 180,
+      "rotation": 0,
+      "locked": true
+    },
+    "bat1": {
+      "type": "battery9v",
+      "asset": "battery9v-vol2-horizontal-clip-right",
+      "_note": "Posizione BELOW-LEFT bb (NOT lato Vol1). Visible solo pag.68 step finale. canonicalPose round 4 anchored bb1.",
+      "x": 150,
+      "y": 320,
+      "rotation": 0,
+      "locked": true,
+      "canonicalPose": { "anchor": "bb1", "x": -300, "y": 140, "rotation": 0 }
+    },
+    "c1": {
+      "type": "capacitor",
+      "value": 1000,
+      "unit": "uF",
+      "asset": "capacitor-electrolytic-vertical-1000uF",
+      "_note": "A cavallo gap centrale bb. Negativo basso (polarità marker visibile).",
+      "pins": {
+        "positive": "bb1:e14",
+        "negative": "bb1:f14"
+      },
+      "pose": {
+        "rotation": 0,
+        "bodyOffset": { "x": 0, "y": -30 },
+        "legStyle": "electrolytic-vertical"
+      },
+      "canonicalPose": { "anchor": "bb1", "x": 200, "y": 0, "rotation": 0 }
+    },
+    "btn1": {
+      "type": "push-button",
+      "asset": "push-button-tactile-4pin",
+      "_note": "A cavallo gap centrale. Tactile 4-pin (pin1/2 top section, pin3/4 bot section).",
+      "pins": {
+        "pin1": "bb1:e10",
+        "pin2": "bb1:e12",
+        "pin3": "bb1:f10",
+        "pin4": "bb1:f12"
+      },
+      "canonicalPose": { "anchor": "bb1", "x": 100, "y": 0, "rotation": 0 }
+    },
+    "mm1": {
+      "type": "multimeter",
+      "asset": "multimeter-vol2-yellow-20vdc",
+      "_note": "DESTRA bb. Display LCD 20V DC fondo scala. Probes flessibili rosso/nero.",
+      "x": 1000,
+      "y": 180,
+      "rotation": 0,
+      "locked": true,
+      "displayConfig": { "range": "20V DC", "initialValue": 0.0 }
+    }
+  },
+  "visibleWires": [
+    {
+      "id": "wire-battery-positive",
+      "color": "red",
+      "from": "bat1:positive",
+      "to": "bb1:topPlusRail-col1",
+      "pathStyle": "bezier",
+      "points": [
+        { "x": 200, "y": 300 },
+        { "x": 250, "y": 220 },
+        { "x": 420, "y": 180 },
+        { "x": 420, "y": 190 }
+      ],
+      "thickness": 3,
+      "zIndex": 10
+    },
+    {
+      "id": "wire-battery-negative",
+      "color": "black",
+      "from": "bat1:negative",
+      "to": "bb1:bottomMinusRail-col1",
+      "pathStyle": "bezier",
+      "points": [
+        { "x": 200, "y": 340 },
+        { "x": 250, "y": 380 },
+        { "x": 420, "y": 380 },
+        { "x": 420, "y": 230 }
+      ],
+      "thickness": 3,
+      "zIndex": 10
+    },
+    {
+      "id": "wire-button-to-cap",
+      "color": "yellow",
+      "_note": "Filo 'colorato' verbatim libro. Repo gia yellow (codex confirm).",
+      "from": "btn1:pin2",
+      "to": "c1:positive",
+      "pathStyle": "L",
+      "points": [
+        { "x": 575, "y": 175 },
+        { "x": 595, "y": 175 }
+      ],
+      "thickness": 3,
+      "zIndex": 11
+    },
+    {
+      "id": "probe-mm-positive",
+      "color": "red",
+      "from": "mm1:probe-positive",
+      "to": "c1:positive-column-b14",
+      "pathStyle": "bezier",
+      "points": [
+        { "x": 1000, "y": 200 },
+        { "x": 900, "y": 180 },
+        { "x": 680, "y": 175 },
+        { "x": 595, "y": 170 }
+      ],
+      "thickness": 2.5,
+      "zIndex": 12
+    },
+    {
+      "id": "probe-mm-negative",
+      "color": "black",
+      "from": "mm1:probe-negative",
+      "to": "c1:negative-column-g14",
+      "pathStyle": "bezier",
+      "points": [
+        { "x": 1000, "y": 220 },
+        { "x": 900, "y": 240 },
+        { "x": 680, "y": 220 },
+        { "x": 595, "y": 200 }
+      ],
+      "thickness": 2.5,
+      "zIndex": 12
+    }
+  ],
+  "hiddenElectricalConnections": [
+    {
+      "id": "hidden-topPlusRail-to-btn",
+      "from": "bb1:topPlusRail",
+      "to": "btn1:pin1",
+      "reason": "Rail-jumper interno bb — alimenta pulsante. Anti-pattern workflow-v2 fase 8 (NON visibile libro)."
+    },
+    {
+      "id": "hidden-c-cathode-to-rail",
+      "from": "c1:negative",
+      "to": "bb1:bottomMinusRail",
+      "reason": "Cap− collegato a rail bot− via colonna f14. Connessione interna bb."
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-01-mm-setup",
+      "visibleComponents": ["bb1", "mm1"],
+      "visibleWires": [],
+      "instruction": "Imposta il multimetro su 20V in continua come fondo scala.",
+      "bookPage": 67
+    },
+    {
+      "id": "step-02-cap-mm",
+      "visibleComponents": ["bb1", "c1", "mm1"],
+      "visibleWires": ["probe-mm-positive", "probe-mm-negative"],
+      "activeTargets": ["c1"],
+      "instruction": "Inserisci il condensatore a cavallo della separazione centrale della breadboard e collega il multimetro con il cavo nero sul negativo e il rosso sul positivo del condensatore.",
+      "bookPage": 67
+    },
+    {
+      "id": "step-03-button",
+      "visibleComponents": ["bb1", "c1", "btn1", "mm1"],
+      "visibleWires": ["probe-mm-positive", "probe-mm-negative"],
+      "activeTargets": ["btn1"],
+      "instruction": "Inserisci il pulsante accanto al condensatore sempre a cavallo della separazione centrale.",
+      "bookPage": 67
+    },
+    {
+      "id": "step-04-press",
+      "visibleComponents": ["bb1", "c1", "btn1", "mm1", "bat1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-button-to-cap", "probe-mm-positive", "probe-mm-negative"],
+      "activeTargets": ["wire-button-to-cap"],
+      "instruction": "Collega un lato del pulsante al positivo del condensatore con il filo colorato e premi il pulsante. Il multimetro deve indicare circa 9V (cioè la tensione di batteria).",
+      "bookPage": 68,
+      "expectedMMReading": "~9.0V"
+    },
+    {
+      "id": "step-05-release-discharge",
+      "visibleComponents": ["bb1", "c1", "btn1", "mm1", "bat1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-button-to-cap", "probe-mm-positive", "probe-mm-negative"],
+      "activeTargets": ["mm1", "c1"],
+      "instruction": "Rilascia il pulsante e osserva cosa succede alla tensione ai capi del condensatore. Il condensatore si comporta come una batteria momentanea e si scarica lentamente all'interno del multimetro (i puntali = R interna molto elevata).",
+      "bookPage": 68,
+      "expectedBehavior": "discharge-via-mm-probes-high-R"
+    }
+  ],
+  "manualSync": {
+    "defaultPage": 67,
+    "stepPageMap": { "0": 67, "1": 67, "2": 67, "3": 68, "4": 68 }
+  },
+  "solverNotes": {
+    "dischargePath": "CircuitSolver.js:1233 multimeter 1M ohm + :2194-2242 cap transient + :2078-2148 discharge tau = R*C — solver HA logic OK (codex round 2 confirm)",
+    "ambiguity": "Book MM internal R ~10M, repo uses 1M — discharge tau more permissive in app",
+    "R1kPresence": "Libro materiali include R 1kΩ MA illustrazioni esp1 NON mostrano R inserito. Repo esp1 components NO R. Hypothesis: typo libro materiali OR R discharge in parallelo come safety, mostrato solo esp2."
+  }
+}

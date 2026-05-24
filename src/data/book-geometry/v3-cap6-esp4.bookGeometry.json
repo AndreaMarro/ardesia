@@ -1,0 +1,194 @@
+{
+  "$schema": "./bookGeometry.schema.json",
+  "_meta": {
+    "purpose": "bookGeometry v3-cap6-esp4 — Due LED che si alternano. CANON V0.16 RESOLVED.",
+    "generated": "2026-05-24",
+    "session": "demo-25may pivot round 6 — Andrea correzione canon source",
+    "coordsStatus": "APPROXIMATE — Sprint B fase 4 calibrator pending",
+    "visualSource": "reference/vol3/v3-cap6-esp4/v016/page-v016-{054,055,056}.png (Vol3 V0.16 manuale REALE canon)",
+    "canonResolved": {
+      "source": "Manuale vol 3 versione 0.16.pdf (VOLUMI pdf e MD/)",
+      "pages": [54, 55, 56],
+      "pin_LED1": 6,
+      "pin_LED2": 9,
+      "verbatim": "pinMode(6, OUTPUT); pinMode(9, OUTPUT); — Vol3 V0.16 pag.55",
+      "led_colors": ["blue", "red"],
+      "resistors": "2 × 470 Ohm",
+      "_note": "V0.8.1 era OUTDATED bozza Davide (pin 8+9). V0.16 = canon stampato → repo MATCH (D6+D9)."
+    },
+    "outdatedReference": "V0.8.1 PDF (CONTENUTI/volumi-pdf/Manuale VOLUME 3 V0.8.1.pdf) NON è canon — bozza superata."
+  },
+  "experimentId": "v3-cap6-esp4",
+  "source": {
+    "volume": 3,
+    "chapter": 6,
+    "pages": [54, 55, 56],
+    "pdfPages": [54, 55, 56],
+    "pdfFile": "Manuale vol 3 versione 0.16.pdf",
+    "pdfPath": "VOLUMI pdf e MD/Manuale vol 3 versione 0.16.pdf",
+    "referenceImages": [
+      "reference/vol3/v3-cap6-esp4/v016/page-v016-054.png",
+      "reference/vol3/v3-cap6-esp4/v016/page-v016-055.png",
+      "reference/vol3/v3-cap6-esp4/v016/page-v016-056.png"
+    ]
+  },
+  "scene": {
+    "width": 900,
+    "height": 400,
+    "anchor": "bb1",
+    "background": "book-light"
+  },
+  "components": {
+    "nano1": {
+      "type": "nano-r4",
+      "asset": "nano-r4-board-omaric-breakout",
+      "_note": "Arduino Nano R4 + ELAB Nano Breakout (Vol3 V0.16 verbatim materiali).",
+      "x": 200,
+      "y": 200,
+      "rotation": 0,
+      "locked": true,
+      "canonicalPose": { "anchor": "bb1", "x": -350, "y": 0, "rotation": 0 }
+    },
+    "bb1": {
+      "type": "breadboard",
+      "asset": "breadboard-vol3-horizontal-half",
+      "x": 550,
+      "y": 200,
+      "rotation": 0,
+      "locked": true
+    },
+    "led1": {
+      "type": "led",
+      "color": "blue",
+      "asset": "led-book-vol3-standard-splayed",
+      "_note": "LED BLU — Vol3 V0.16 materiali verbatim '1 LED blu'. Pin Arduino 6.",
+      "pins": { "anode": "bb1:d25", "cathode": "bb1:d26" },
+      "pose": { "bodyOffset": { "x": 0, "y": -28 }, "legStyle": "vol3-splayed-divaricate" },
+      "canonicalPose": { "anchor": "bb1", "x": 100, "y": 0, "rotation": 0 }
+    },
+    "led2": {
+      "type": "led",
+      "color": "red",
+      "asset": "led-book-vol3-standard-splayed",
+      "_note": "LED ROSSO — Vol3 V0.16 materiali verbatim '1 LED rosso'. Pin Arduino 9.",
+      "pins": { "anode": "bb1:d29", "cathode": "bb1:d30" },
+      "pose": { "bodyOffset": { "x": 0, "y": -28 }, "legStyle": "vol3-splayed-divaricate" },
+      "canonicalPose": { "anchor": "bb1", "x": 140, "y": 0, "rotation": 0 }
+    },
+    "r1": {
+      "type": "resistor",
+      "value": 470,
+      "unit": "ohm",
+      "asset": "resistor-book-470-vol3-horizontal",
+      "color": "yellow-violet-brown",
+      "_note": "R 470Ω current limit LED1.",
+      "pins": { "pin1": "bb1:c16", "pin2": "bb1:c23" }
+    },
+    "r2": {
+      "type": "resistor",
+      "value": 470,
+      "unit": "ohm",
+      "asset": "resistor-book-470-vol3-horizontal",
+      "color": "yellow-violet-brown",
+      "_note": "R 470Ω current limit LED2.",
+      "pins": { "pin1": "bb1:c20", "pin2": "bb1:c27" }
+    }
+  },
+  "visibleWires": [
+    {
+      "id": "wire-D6-to-r1",
+      "color": "orange",
+      "_note": "BOOK V0.16 CANON: LED1 → pin 6 via R1. Repo experiments-vol3.js MATCH.",
+      "from": "nano1:D6",
+      "to": "r1:pin1",
+      "pathStyle": "angular-short",
+      "points": [{"x":300,"y":200},{"x":420,"y":175},{"x":550,"y":195}]
+    },
+    {
+      "id": "wire-D9-to-r2",
+      "color": "orange",
+      "_note": "BOOK V0.16 CANON: LED2 → pin 9 via R2.",
+      "from": "nano1:D9",
+      "to": "r2:pin1",
+      "pathStyle": "angular-short",
+      "points": [{"x":300,"y":215},{"x":420,"y":195},{"x":600,"y":200}]
+    },
+    {
+      "id": "wire-led1-cathode-to-gnd",
+      "color": "black",
+      "from": "led1:cathode",
+      "to": "nano1:GND",
+      "pathStyle": "angular-short",
+      "points": [{"x":620,"y":220},{"x":620,"y":280},{"x":300,"y":280}]
+    },
+    {
+      "id": "wire-led2-cathode-to-gnd",
+      "color": "black",
+      "from": "led2:cathode",
+      "to": "nano1:GND",
+      "pathStyle": "angular-short",
+      "points": [{"x":660,"y":220},{"x":660,"y":290},{"x":300,"y":290}]
+    }
+  ],
+  "hiddenElectricalConnections": [
+    {
+      "id": "hidden-r1-to-led1",
+      "from": "r1:pin2",
+      "to": "led1:anode",
+      "reason": "Connessione via colonna bb d23/d25 metallo interno."
+    },
+    {
+      "id": "hidden-r2-to-led2",
+      "from": "r2:pin2",
+      "to": "led2:anode",
+      "reason": "Connessione via colonna bb d27/d29 metallo interno."
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-01-arduino",
+      "visibleComponents": ["nano1"],
+      "visibleWires": [],
+      "instruction": "Posiziona Arduino Nano R4 + ELAB Nano Breakout.",
+      "bookPage": 54
+    },
+    {
+      "id": "step-02-breadboard",
+      "visibleComponents": ["nano1", "bb1"],
+      "visibleWires": [],
+      "instruction": "Posiziona la breadboard.",
+      "bookPage": 54
+    },
+    {
+      "id": "step-03-led1-r1",
+      "visibleComponents": ["nano1", "bb1", "led1", "r1"],
+      "visibleWires": [],
+      "activeTargets": ["led1", "r1"],
+      "instruction": "Inserisci il LED BLU e il resistore 470Ω. Anodo verso il resistore, catodo verso GND.",
+      "bookPage": 55
+    },
+    {
+      "id": "step-04-led2-r2",
+      "visibleComponents": ["nano1", "bb1", "led1", "r1", "led2", "r2"],
+      "visibleWires": [],
+      "activeTargets": ["led2", "r2"],
+      "instruction": "Inserisci il LED ROSSO e il resistore 470Ω.",
+      "bookPage": 55
+    },
+    {
+      "id": "step-05-wires",
+      "visibleComponents": ["nano1", "bb1", "led1", "r1", "led2", "r2"],
+      "visibleWires": ["wire-D6-to-r1", "wire-D9-to-r2", "wire-led1-cathode-to-gnd", "wire-led2-cathode-to-gnd"],
+      "instruction": "Collega: LED 1 → pin 6 (via resistore). LED 2 → pin 9 (via resistore). Catodi → GND.",
+      "bookPage": 55
+    }
+  ],
+  "manualSync": { "defaultPage": 55, "stepPageMap": { "0": 54, "1": 54, "2": 55, "3": 55, "4": 55 } },
+  "codeRef": {
+    "verbatimLibro": "void setup() {\n  pinMode(6, OUTPUT);\n  pinMode(9, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(6, HIGH);\n  delay(200);\n  digitalWrite(6, LOW);\n  digitalWrite(9, HIGH);\n  delay(200);\n  digitalWrite(9, LOW);\n}",
+    "verbatimSource": "Vol3 V0.16 pag.55-56",
+    "repoCurrentMatches": true,
+    "repoFile": "src/data/experiments-vol3.js:1098",
+    "delayMs": 200
+  }
+}

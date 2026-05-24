@@ -1,0 +1,157 @@
+{
+  "$schema": "./bookGeometry.schema.json",
+  "_meta": {
+    "purpose": "bookGeometry v1-cap6-esp2 — LED senza R (anti-pattern educativo brucia). Post-convergence round 1 con codex corrections.",
+    "generated": "2026-05-24",
+    "session": "demo-25may Sprint B convergence round 1",
+    "coordsStatus": "APPROXIMATE — calibration awaits Sprint B fase 4 breadboard-calibrator",
+    "visualSource": "reference/vol1/v1-cap6-esp2/page-032.png (200 DPI Vol1 PDF)",
+    "codexCorrections": [
+      "Battery body HORIZONTAL (NOT vertical) — codex round 1",
+      "LED standard splayed (NOT led-bridge variant)",
+      "Burn behavior: Led.jsx:253-260 + CircuitSolver.js:1875-1883 GIÀ implementati"
+    ],
+    "andreaVerifyPending": true
+  },
+  "experimentId": "v1-cap6-esp2",
+  "source": {
+    "volume": 1,
+    "chapter": 6,
+    "pages": [32],
+    "pdfPages": [32],
+    "pdfFile": "VOL1_ITA_ COMPLETO V.0.1 GP.pdf",
+    "referenceImages": [
+      "reference/vol1/v1-cap6-esp2/page-032.png"
+    ]
+  },
+  "scene": {
+    "width": 900,
+    "height": 300,
+    "anchor": "bb1",
+    "background": "book-light-green"
+  },
+  "components": {
+    "bat1": {
+      "type": "battery9v",
+      "asset": "battery9v-vol1-horizontal-clip-right",
+      "_note": "HORIZONTAL body (codex round 1 corrected). Clip esce DESTRA verso bb.",
+      "x": 80,
+      "y": 150,
+      "rotation": 0,
+      "locked": true,
+      "canonicalPose": { "anchor": "scene", "x": 80, "y": 150, "rotation": 0 },
+      "snapTolerance": { "positionPx": 18, "rotationDeg": 10 }
+    },
+    "bb1": {
+      "type": "breadboard",
+      "asset": "breadboard-vol1-horizontal-half",
+      "x": 450,
+      "y": 150,
+      "rotation": 0,
+      "locked": true
+    },
+    "led1": {
+      "type": "led",
+      "color": "red",
+      "asset": "led-book-vol1-standard-splayed",
+      "_note": "LED standard splayed (NOT led-bridge per codex round 1). NO R per anti-pattern educativo brucia. Solver setta burned=true (CircuitSolver.js:1875-1883).",
+      "pins": {
+        "anode": "bb1:e7",
+        "cathode": "bb1:f7"
+      },
+      "pose": {
+        "rotation": 0,
+        "bodyOffset": { "x": 0, "y": -28 },
+        "legStyle": "vol1-splayed-divaricate"
+      },
+      "canonicalPose": { "anchor": "bb1", "x": 150, "y": 0, "rotation": 0 },
+      "expectedState": "burned-after-power-on"
+    }
+  },
+  "visibleWires": [
+    {
+      "id": "wire-positive-clip-to-rail",
+      "color": "red",
+      "from": "bat1:positive",
+      "to": "bb1:topPlusRail-col1",
+      "pathStyle": "bezier",
+      "points": [
+        { "x": 120, "y": 130 },
+        { "x": 150, "y": 110 },
+        { "x": 410, "y": 110 },
+        { "x": 410, "y": 145 }
+      ],
+      "thickness": 3,
+      "zIndex": 10
+    },
+    {
+      "id": "wire-negative-clip-to-cathode-column",
+      "color": "black",
+      "from": "bat1:negative",
+      "to": "bb1:bottomColumn7-near-cathode",
+      "pathStyle": "bezier",
+      "points": [
+        { "x": 120, "y": 170 },
+        { "x": 150, "y": 200 },
+        { "x": 600, "y": 200 },
+        { "x": 600, "y": 160 }
+      ],
+      "thickness": 3,
+      "zIndex": 10,
+      "_note": "Catodo LED collegato DIRETTAMENTE a bat− (NO R intermedio) — anti-pattern educativo."
+    }
+  ],
+  "hiddenElectricalConnections": [
+    {
+      "id": "hidden-topPlusRail-direct-to-led1anode",
+      "from": "bb1:topPlusRail",
+      "to": "led1:anode",
+      "reason": "LED anodo direttamente alla rail top+ (NO R intermedio). Connessione interna bb metallo."
+    },
+    {
+      "id": "hidden-led1cathode-to-bottomColumn7",
+      "from": "led1:cathode",
+      "to": "bb1:bottomColumn7",
+      "reason": "LED catodo in foro f7 — colonna metallo interna bb."
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-01-setup-base",
+      "visibleComponents": ["bat1", "bb1"],
+      "visibleWires": [],
+      "instruction": "Stesso circuito esp1 MA senza il resistore. Inserisci la batteria e la breadboard.",
+      "bookPage": 32
+    },
+    {
+      "id": "step-02-led-direct",
+      "visibleComponents": ["bat1", "bb1", "led1"],
+      "visibleWires": [],
+      "activeTargets": ["led1"],
+      "instruction": "Inserisci il LED direttamente sulla breadboard (anodo gambetta lunga, catodo gambetta corta).",
+      "bookPage": 32
+    },
+    {
+      "id": "step-03-connect-power",
+      "visibleComponents": ["bat1", "bb1", "led1"],
+      "visibleWires": ["wire-positive-clip-to-rail", "wire-negative-clip-to-cathode-column"],
+      "activeTargets": ["wire-positive-clip-to-rail", "wire-negative-clip-to-cathode-column"],
+      "instruction": "Collega il positivo della batteria direttamente al LED. ATTENZIONE: senza resistore il LED brucia!",
+      "bookPage": 32,
+      "_dangerWarning": true
+    }
+  ],
+  "manualSync": {
+    "defaultPage": 32,
+    "stepPageMap": { "0": 32, "1": 32, "2": 32 }
+  },
+  "pedagogicalEvents": [
+    {
+      "id": "LED_BURN_EVENT",
+      "trigger": "step-03 power-on with no R",
+      "expectedSolverBehavior": "I = (9V - 1.8V) / R_LED_only ~70mA >> 30mA threshold → setta burned=true (CircuitSolver.js:1875-1883)",
+      "expectedVisualRendering": "Led.jsx:253-260 LedBridge burned overlay (black + red X + 'BRUCIATO!')",
+      "_note": "Codex round 1: burn rendering GIÀ implementato in source. Runtime quality TBD verify Phase D."
+    }
+  ]
+}

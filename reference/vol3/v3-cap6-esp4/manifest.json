@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "purpose": "Reference manifest crop libro per esp v3-cap6-esp4 (Due LED polizia). Sprint A scheletro NO PNG yet. Topology RESET handoff = Sprint D ribake da zero.",
+    "schema": "workflow-v2 fase 3",
+    "warning": "Pagine printed↔pdf mapping discrepancy: handoff pag.54-56 vs PDF V0.8.1 pag.37. Andrea verifica canone."
+  },
+  "experimentId": "v3-cap6-esp4",
+  "volume": 3,
+  "chapter": 6,
+  "bookPages": [54, 55, 56],
+  "pdfPages": [37],
+  "pdfFile": "Manuale VOLUME 3 V0.8.1.pdf",
+  "scaleCalibration": "vol3-nano-breakout-bb",
+  "references": [
+    {
+      "id": "page-pdf37-circuit-2leds",
+      "page": 37,
+      "file": "page-pdf37-circuit.png",
+      "status": "PLANNED",
+      "description": "Due LED su breadboard, colori diversi, anodi → pin Arduino via R, catodi → GND",
+      "type": "build-state"
+    },
+    {
+      "id": "page-pdf37-code-sample",
+      "page": 37,
+      "file": "page-pdf37-code.png",
+      "status": "PLANNED",
+      "description": "Codice digitalWrite alternato + delay (effetto sirena polizia)",
+      "type": "code-snippet"
+    }
+  ],
+  "verbatimQuote": "PROGRAMMA LUCI LAMPEGGIANTE STILE SIRENATO 2. Due LED: effetto 'polizia'. Collega: LED 1 → pin [OCR partial — Andrea verifica]. LED 2 → pin 9. Programma: uno acceso, l'altro spento, poi si scambiano. Risultato: luci lampeggianti stile sirena",
+  "auditDoc": "docs/demo-audit/v3-cap6-esp4.md",
+  "notes": {
+    "pinAssignmentVerify": "LED1 pin numero parzialmente OCR'd in pdftotext. Andrea zoom PDF visivo per verbatim.",
+    "topologyStatus": "RESET base origin/main 4d75c0ca. Sprint D ribake from scratch seguendo workflow-v2 15 fasi.",
+    "wireStyle": "Vol3 angolare corto modulare (NON soft-curve Vol1). Workflow-v2 fase 7 wire-router style 'vol3-short-orthogonal-jumper'."
+  }
+}

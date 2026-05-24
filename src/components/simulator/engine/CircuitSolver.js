@@ -564,7 +564,7 @@ class CircuitSolver {
 
     // Check 1: LED must have current-limiting resistor in series
     this.components.forEach((comp, id) => {
-      if (comp.type === 'led') {
+      if ((comp.type === 'led' || comp.type === 'led-bridge')) {
         const hasResistor = this._hasResistorInSeries(id);
         if (!hasResistor) {
           errors.push(`LED "${id}" non ha una resistenza in serie! Serve una resistenza per proteggere il LED.`);
@@ -574,7 +574,7 @@ class CircuitSolver {
 
     // Check 2: LED polarity must be correct (anode to higher voltage)
     this.components.forEach((comp, id) => {
-      if (comp.type === 'led') {
+      if ((comp.type === 'led' || comp.type === 'led-bridge')) {
         const anodeRef = `${id}:anode`;
         const cathodeRef = `${id}:cathode`;
 
@@ -990,10 +990,12 @@ class CircuitSolver {
   _detectOverload() {
     this._overloadWarnings = [];
     const LED_WARN_CURRENT = 0.020; // 20mA — rated max for standard LEDs
-    const LED_BURN_CURRENT = 0.030; // 30mA — burn threshold
+    // 2026-05-24 Andrea round 6: allineato 30→40mA con _solveLED (Vol1 esp3 R=220Ω).
+    // Yellow zone 20-40mA = warning. Burn >40mA (era >30).
+    const LED_BURN_CURRENT = 0.040; // 40mA — burn threshold (allineato _solveLED)
 
     this.components.forEach((comp, id) => {
-      if (comp.type === 'led') {
+      if ((comp.type === 'led' || comp.type === 'led-bridge')) {
         const current = comp.state.current || 0;
         if (current > LED_WARN_CURRENT && current <= LED_BURN_CURRENT && !comp.state.burned) {
           comp.state.warning = 'overcurrent';
@@ -1187,6 +1189,7 @@ class CircuitSolver {
   _getComponentVDrop(compId, comp) {
     switch (comp.type) {
       case 'led':
+      case 'led-bridge':
         return LED_VF[comp.color] || 2.0;
       case 'diode':
         return comp.state.conducting ? DIODE_VF : 0;
@@ -1209,6 +1212,7 @@ class CircuitSolver {
         : null,
       'reed-switch': comp.state.closed ? { pin1: 'pin2', pin2: 'pin1' } : null,
       'led': { anode: 'cathode', cathode: 'anode' },
+      'led-bridge': { anode: 'cathode', cathode: 'anode' },
       'rgb-led': { red: 'common', green: 'common', blue: 'common', common: null }, // multi-channel: each color pin → common; common doesn't traverse back (solved per-channel in _solveRGBLed)
       'buzzer-piezo': { positive: 'negative', negative: 'positive' },
       'motor-dc': { positive: 'negative', negative: 'positive' },
@@ -1322,7 +1326,8 @@ class CircuitSolver {
     switch (comp.type) {
       case 'resistor': return [`${id}:pin1`, `${id}:pin2`];
       case 'photo-resistor': return [`${id}:pin1`, `${id}:pin2`];
-      case 'led': return [`${id}:anode`, `${id}:cathode`];
+      case 'led':
+      case 'led-bridge': return [`${id}:anode`, `${id}:cathode`];
       case 'buzzer-piezo': return [`${id}:positive`, `${id}:negative`];
       case 'motor-dc': return [`${id}:positive`, `${id}:negative`];
       case 'capacitor': return [`${id}:positive`, `${id}:negative`];
@@ -1341,7 +1346,8 @@ class CircuitSolver {
     switch (comp.type) {
       case 'resistor': return comp.value || 470;
       case 'photo-resistor': return comp.state.resistance || 5000;
-      case 'led': return 20; // Forward resistance ~20Ω (Vf handled as voltage source)
+      case 'led':
+      case 'led-bridge': return 20; // Forward resistance ~20Ω (Vf handled as voltage source)
       case 'buzzer-piezo': return 50;
       case 'motor-dc': return 10;
       case 'capacitor': return 1e6; // High impedance for DC steady state
@@ -1486,7 +1492,7 @@ class CircuitSolver {
         }
         // LED modeled as Vf voltage source + forward resistance
         // BUG FIX: Skip reverse-biased LEDs (excluded in previous pass)
-        if (comp.type === 'led' && !excludedLEDs.has(id)) {
+        if ((comp.type === 'led' || comp.type === 'led-bridge') && !excludedLEDs.has(id)) {
           const anodeRef = `${id}:anode`;
           const cathodeRef = `${id}:cathode`;
           if (this._pinRefs.has(anodeRef) && this._pinRefs.has(cathodeRef)) {
@@ -1532,7 +1538,7 @@ class CircuitSolver {
         if (R === null || R <= 0) return;
 
         // LED resistance is stamped along with its voltage source
-        if (comp.type === 'led') return;
+        if ((comp.type === 'led' || comp.type === 'led-bridge')) return;
 
         const pins = this._getMNAPins(id, comp);
         if (!pins) return;
@@ -1771,7 +1777,8 @@ class CircuitSolver {
 
     this.components.forEach((comp, id) => {
       switch (comp.type) {
-        case 'led': this._solveLED(id, comp); break;
+        case 'led':
+        case 'led-bridge': this._solveLED(id, comp); break;
         case 'rgb-led': this._solveRGBLed(id, comp); break;
         case 'buzzer-piezo': this._solveBuzzer(id, comp); break;
         case 'motor-dc': this._solveMotor(id, comp); break;
@@ -1787,8 +1794,12 @@ class CircuitSolver {
   }
 
   _solveLED(id, comp) {
-    // Both MNA and path-tracer use the same 20mA burn threshold for consistency.
-    const LED_BURN_CURRENT = 0.03; // 30mA — burn threshold for standard LEDs (rated 20mA continuous, burns above ~30mA)
+    // Both MNA and path-tracer use the same burn threshold for consistency.
+    // 2026-05-24 Andrea round 6: alzato 30→40mA per demo v1-cap6-esp3 (R=220Ω @ 9V = 32.7mA).
+    // Libro Vol1 V0.16 pag.33 prescrive R=220Ω esp3 "più luminoso" → previously triggered burn (32.7>30).
+    // 40mA threshold copre R=220 demo + comunque burns esp2 anti-pattern (no R = infinite current via path 1875).
+    // Trade-off LED 5mm standard rated 20mA continuous, burns ~30-40mA. Soglia 40 = tollerante transitorio.
+    const LED_BURN_CURRENT = 0.04; // 40mA — burn threshold (was 30mA before round 6)
 
     // If MNA is available, use its branch current for this LED
     if (this._mnaBranchCurrents && this._mnaBranchCurrents.has(id)) {
@@ -2445,6 +2456,7 @@ class CircuitSolver {
         // BUG FIX: Respect comp.value if provided (e.g., 1.5V batteries)
         return { voltage: comp.value || 9, connected: true };
       case 'led':
+      case 'led-bridge':
         return { brightness: 0, on: false, current: 0, voltage: 0, burned: false };
       case 'rgb-led':
         return {

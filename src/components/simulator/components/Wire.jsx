@@ -48,18 +48,88 @@ const Wire = ({
   color = 'red',
   state = {},
   highlighted = false,
-  id
+  id,
+  path: manualPath,
 }) => {
   const wireColor = WIRE_COLORS[color] || color;
   const current = state.current || 0;
   const hasFlow = current > 0.0001;
-  const path = calcWirePath(x1, y1, x2, y2);
+  const useManualPath = Array.isArray(manualPath) && manualPath.length >= 2;
+
+  // Demo S1 fedelta libro: manual waypoint routing via SVG polyline.
+  // Andrea verbatim: "geometria dei cavi nello spazio identica disegni libro".
+  if (useManualPath) {
+    const points = manualPath.map((p) => `${p.x},${p.y}`).join(' ');
+    const motionPath = `M ${manualPath.map((p) => `${p.x} ${p.y}`).join(' L ')}`;
+    return (
+      <g data-component-id={id} data-type="wire">
+        {/* Shadow */}
+        <polyline
+          points={points}
+          stroke="#00000018"
+          strokeWidth="4.5"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          transform="translate(0.8, 0.8)"
+        />
+        {/* Main wire */}
+        <polyline
+          data-wire-main
+          points={points}
+          stroke={wireColor}
+          strokeWidth="3.2"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* Subtle highlight */}
+        <polyline
+          points={points}
+          stroke="var(--elab-hex-ffffff)"
+          strokeWidth="0.8"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.2"
+          transform="translate(-0.4, -0.4)"
+        />
+        {/* Current flow animation along manual path */}
+        {hasFlow && (
+          <circle r="1.5" fill="var(--color-accent, var(--elab-lime))" opacity="0.7">
+            <animateMotion
+              path={motionPath}
+              dur={`${Math.max(0.3, 1 - current * 0.5)}s`}
+              repeatCount="indefinite"
+            />
+          </circle>
+        )}
+        {highlighted && (
+          <polyline
+            points={points}
+            stroke="var(--color-accent, var(--elab-lime))"
+            strokeWidth="7"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.3"
+            strokeDasharray="6 3"
+          >
+            <animate attributeName="stroke-opacity" values="0.2;0.6;0.2" dur="1.5s" repeatCount="indefinite" />
+          </polyline>
+        )}
+      </g>
+    );
+  }
+
+  // Legacy auto-routing via Bezier curve (calcWirePath).
+  const bezierPath = calcWirePath(x1, y1, x2, y2);
 
   return (
     <g data-component-id={id} data-type="wire">
       {/* Shadow */}
       <path
-        d={path}
+        d={bezierPath}
         stroke="#00000018"
         strokeWidth="4.5"
         fill="none"
@@ -69,7 +139,7 @@ const Wire = ({
 
       {/* Main wire — thicker for Tinkercad look */}
       <path
-        d={path}
+        d={bezierPath}
         stroke={wireColor}
         strokeWidth="3.2"
         fill="none"
@@ -78,7 +148,7 @@ const Wire = ({
 
       {/* Subtle highlight */}
       <path
-        d={path}
+        d={bezierPath}
         stroke="var(--elab-hex-ffffff)"
         strokeWidth="0.8"
         fill="none"
@@ -91,7 +161,7 @@ const Wire = ({
       {hasFlow && (
         <circle r="1.5" fill="var(--color-accent, var(--elab-lime))" opacity="0.7">
           <animateMotion
-            path={path}
+            path={bezierPath}
             dur={`${Math.max(0.3, 1 - current * 0.5)}s`}
             repeatCount="indefinite"
           />
@@ -109,7 +179,7 @@ const Wire = ({
       {/* Highlight per AI tutoring */}
       {highlighted && (
         <path
-          d={path}
+          d={bezierPath}
           stroke="var(--color-accent, var(--elab-lime))"
           strokeWidth="7"
           fill="none"

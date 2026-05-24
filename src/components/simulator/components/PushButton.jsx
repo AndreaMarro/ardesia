@@ -1,8 +1,10 @@
 /**
- * ELAB Simulator — PushButton Component (Tinkercad-Identical Style)
- * Tactile switch 6x6mm: compact dark housing, light cap with subtle highlight.
+ * ELAB Simulator — PushButton Component (Book-Parity, Omaric Kit)
+ * Tactile switch 6x6mm: dark housing with ORANGE/YELLOW cap (Omaric kit color).
+ * Book reference: Vol1 cap6 + Vol3 cap6 — yellow/orange tactile cap, square base.
  * Dimensions matched to Tinkercad — body ~2 breadboard holes wide.
- * © Andrea Marro — 10/02/2026, Tinkercad-identical redesign 23/02/2026, dim fix 28/02/2026
+ * © Andrea Marro — 10/02/2026, Tinkercad redesign 23/02/2026, dim fix 28/02/2026,
+ *   book-parity orange cap (kit Omaric Morfismo) 2026-05-23
  */
 
 import React from 'react';
@@ -54,27 +56,26 @@ const PushButton = ({ x = 0, y = 0, state = {}, highlighted = false, onInteract,
       <rect x="-6" y="-6" width="12" height="12" rx="1.4"
         fill="none" stroke="var(--elab-hex-ffffff)" strokeWidth="0.5" opacity="0.06" />
 
-      {/* Cap — round button with gradient, depresses 1.2px when pressed */}
+      {/* Cap — orange tactile button (kit Omaric color), depresses 1.2px when pressed.
+          Book reference: Vol3 page 46 — yellow-orange square caps. We render a slightly
+          rounded square (square base aligned to body) for didactic clarity. */}
       <g transform={isPressed ? 'translate(0, 1.2)' : ''}>
-        {/* Cap shadow */}
+        {/* Cap shadow under base */}
         {!isPressed && (
-          <circle cx="0.3" cy="0.4" r="4" fill="var(--elab-hex-000000)" opacity="0.12" />
+          <rect x="-3.6" y="-3.4" width="7.2" height="7.2" rx="1"
+            fill="var(--elab-hex-000000)" opacity="0.14" />
         )}
-        {/* Cap face — metallic gradient circle */}
-        <circle cx="0" cy="0" r="4"
-          fill={isPressed ? 'var(--elab-hex-9a9a9a)' : 'var(--elab-hex-cfcfcf)'}
-          stroke="#666" strokeWidth="0.5" />
-        {/* Cap gradient overlay for 3D dome */}
-        <circle cx="0" cy="0" r="3.8"
-          fill="none" stroke={isPressed ? '#888' : 'var(--elab-hex-e8e8e8)'} strokeWidth="0.8" opacity="0.3" />
-        {/* Specular highlight — moves when pressed */}
-        <ellipse cx={isPressed ? -0.5 : -1} cy={isPressed ? -0.8 : -1.4} rx="1.8" ry="1.3"
-          fill="white" opacity={isPressed ? 0.08 : 0.22} />
-        {/* Center cross mark */}
-        <line x1="-1.5" y1="0" x2="1.5" y2="0"
-          stroke={isPressed ? '#555' : '#666'} strokeWidth="0.4" opacity="0.35" />
-        <line x1="0" y1="-1.5" x2="0" y2="1.5"
-          stroke={isPressed ? '#555' : '#666'} strokeWidth="0.4" opacity="0.35" />
+        {/* Cap face — ELAB Orange Omaric kit color (rounded square, not circle) */}
+        <rect x="-3.8" y="-3.8" width="7.6" height="7.6" rx="1.2"
+          fill={isPressed ? 'var(--elab-orange-pressed, #c87411)' : 'var(--elab-orange, #E8941C)'}
+          stroke="var(--elab-hex-8a4d0a)" strokeWidth="0.5" />
+        {/* Top highlight (didactic light-from-above) */}
+        <rect x="-3.4" y="-3.5" width="6.8" height="1.6" rx="0.6"
+          fill="var(--elab-hex-ffffff)" opacity={isPressed ? 0.10 : 0.24} />
+        {/* Inner ring — subtle bevel */}
+        <rect x="-3.0" y="-3.0" width="6.0" height="6.0" rx="0.9"
+          fill="none" stroke={isPressed ? 'var(--elab-hex-8a4d0a)' : 'var(--elab-hex-f4b04a)'}
+          strokeWidth="0.4" opacity="0.55" />
       </g>
 
       {/* AI tutoring highlight */}
