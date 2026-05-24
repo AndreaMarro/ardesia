@@ -8,7 +8,6 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { getComponent } from '../components/registry';
 import WireRenderer, { resolvePinPosition } from './WireRenderer';
-import { isDemoExperiment } from '../../../data/demo-mode';
 import PinOverlay from './PinOverlay';
 import Annotation from '../components/Annotation';
 import RotationHandle, { snapToNearestQuadrant } from '../overlays/RotationHandle';
@@ -48,9 +47,8 @@ const COMP_SIZES = {
   'nano-r4': { w: 167.58, h: 99.0 },  // ELAB breakout V1.1 GP HORIZONTAL: body 139.5w + wing 28.08 overhang = ~167.58 total width, height = 99.0 (BOARD_H)
   'breadboard-half': { w: 253, h: 145 },  // BOARD_W=30*7.5+14*2=253, BOARD_H=145 (from BreadboardHalf.jsx)
   'breadboard-full': { w: 110, h: 469 },  // VERTICAL: W=8*2+14+5*7*2+10=110, H=8*2+6*2+63*7=469 (from BreadboardFull.jsx)
-  'battery9v': { w: 85, h: 40, ox: -28.5, oy: -20 },  // Origin at clip-body junction; body extends LEFT from origin, clip RIGHT
+  'battery9v': { w: 40, h: 90 },
   'led': { w: 20, h: 50 },
-  'led-bridge': { w: 20, h: 24 },  // pins vertical span 17.5 + dome margin
   'rgb-led': { w: 36, h: 50 },
   'resistor': { w: 60, h: 16 },
   'push-button': { w: 20, h: 20 },
@@ -2263,11 +2261,9 @@ const SimulatorCanvas = ({
           {isMultiSelected && !isSelected && (() => {
             const size = COMP_SIZES[comp.type] || { w: 40, h: 40 };
             const pad = 4;
-            const ox = size.ox || 0;
-            const oy = size.oy || 0;
             const isTopLeft = comp.type === 'breadboard-half' || comp.type === 'breadboard-full' || comp.type === 'nano-r4';
-            const rectX = isTopLeft ? pos.x - pad : pos.x + ox - size.w / 2 - pad;
-            const rectY = isTopLeft ? pos.y - pad : pos.y + oy - size.h / 2 - pad;
+            const rectX = isTopLeft ? pos.x - pad : pos.x - size.w / 2 - pad;
+            const rectY = isTopLeft ? pos.y - pad : pos.y - size.h / 2 - pad;
             return (
               <rect
                 x={rectX} y={rectY}
@@ -2283,13 +2279,11 @@ const SimulatorCanvas = ({
           {isSelected && (() => {
             const size = COMP_SIZES[comp.type] || { w: 40, h: 40 };
             const pad = 6;
-            const ox = size.ox || 0;
-            const oy = size.oy || 0;
             const isTopLeft = comp.type === 'breadboard-half' || comp.type === 'breadboard-full' || comp.type === 'nano-r4';
             // For TOP_LEFT_ORIGIN: rect from (-pad, -pad) to (size.w+pad, size.h+pad)
-            // For centered: rect from (ox-size.w/2-pad, oy-size.h/2-pad) to (ox+size.w/2+pad, oy+size.h/2+pad)
-            const rectX = isTopLeft ? -pad : ox - (size.w / 2 + pad);
-            const rectY = isTopLeft ? -pad : oy - (size.h / 2 + pad);
+            // For centered: rect from (-size.w/2-pad, -size.h/2-pad) to (size.w/2+pad, size.h/2+pad)
+            const rectX = isTopLeft ? -pad : -(size.w / 2 + pad);
+            const rectY = isTopLeft ? -pad : -(size.h / 2 + pad);
             const rectW = size.w + pad * 2;
             const rectH = size.h + pad * 2;
             const noDelete = []; // Tinkercad style: Everything can be deleted!
@@ -2392,9 +2386,6 @@ const SimulatorCanvas = ({
               onInteract={onComponentClick ? (compId, action) => onComponentClick(compId, action) : undefined}
               {...(comp.value !== undefined ? { value: comp.value } : {})}
               {...(comp.color !== undefined ? { color: comp.color } : {})}
-              {...(comp.type === 'battery9v' && isDemoExperiment(experiment?.id)
-                ? { renderMode: 'clip_simplified' }
-                : {})}
               {...((comp.type === 'breadboard-half' || comp.type === 'breadboard-full') && wireMode
                 ? { onHoleClick: (holeId) => handlePinClick(`${comp.id}:${holeId}`) }
                 : {})}
@@ -2572,7 +2563,7 @@ const SimulatorCanvas = ({
             selectedWireIndex={selectedWireIndex}
             onWireClick={onWireClick}
             onWireDelete={onWireDelete}
-            routingMode={experiment.wireRouting || (isDemoExperiment(experiment?.id) ? 'book' : 'flex')}
+            routingMode={experiment.wireRouting || 'flex'}
             electronViewEnabled={electronViewEnabled}
           />
         )}

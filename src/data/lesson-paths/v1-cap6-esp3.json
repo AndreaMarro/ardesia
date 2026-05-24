@@ -140,9 +140,9 @@
               "value": 220
             },
             {
-              "type": "led-bridge",
+              "type": "led",
               "id": "led1",
-              "color": "red"
+              "color": "green"
             }
           ],
           "wires": [
@@ -153,16 +153,26 @@
             },
             {
               "from": "bb1:bus-top-plus-2",
-              "to": "bb1:a2",
+              "to": "bb1:b2",
               "color": "red"
             },
             {
-              "from": "bb1:f7",
-              "to": "bb1:bus-bot-minus-7",
+              "from": "bb1:e9",
+              "to": "bb1:f9",
+              "color": "green"
+            },
+            {
+              "from": "bb1:j10",
+              "to": "bb1:bus-bot-minus-10",
               "color": "black"
             },
             {
               "from": "bb1:bus-bot-minus-1",
+              "to": "bb1:bus-top-minus-1",
+              "color": "black"
+            },
+            {
+              "from": "bb1:bus-top-minus-1",
               "to": "bat1:negative",
               "color": "black"
             }
