@@ -1,60 +1,91 @@
 /**
- * Iter 97 atom C — UnlimCompileHelper scaffold per Andrea iter 97 PM screenshot
- * feedback verbatim: "qui sarebbe bello unlim animato che ti spiega cosa fare in
- * base alle domande" (right panel below ScratchCompileBar currently empty area).
+ * UnlimCompileHelper — right-panel mascot + quick UNLIM forward
  *
- * V1 scaffold: static mascot + plurale speech bubble. The 3 quick-question
- * buttons render only when an onAskQuestion handler is wired (iter-98+ UNLIM
- * chat surface) — no dead UI when unwired (iter-99 review MEDIUM).
- * V2 iter 98+: full animated mascot with reactions to compile state (idle →
- * compiling → success → error animations).
- * V3 iter 99+: wire to unlimScreenAgent (iter 93 atom 34 — currently NO-GO 5 HIGH
- * per code-reviewer verdict; refactor needed canonical elabArduinoAst integration).
+ * iter 104 C3 REWRITE post Codex audit (Andrea verbatim "salvo Codex parziale"):
+ *   Codex V1 conteneva `answerQuestion()` HARDCODED decision-tree con 3 regex
+ *   pre-canned + local `useState messages` chatLog → FAKE chat che simulava
+ *   UNLIM senza backend. Violava CLAUDE.md §12 "MAI dati finti o demo".
+ *
+ * Questa versione:
+ *   - Rimuove `answerQuestion()` finto + local chatLog + chatForm complesso
+ *   - Quick buttons + free text input → forward `onAskQuestion(text)` callback
+ *     al parent (HomeCompileEntry), che instrada a Lavagna chat reale via
+ *     hash navigation con `seedMessage` query param.
+ *   - Mantiene mascotte + speech bubble status real-time + context chip.
+ *   - Footer banner onesto: "La chat completa con UNLIM e sulla Lavagna".
+ *
+ * Quando il parent NON passa onAskQuestion, i bottoni mostrano solo affordance
+ * visiva e l'input scivola in stato pending (niente fake reply locale).
+ *
+ * Future C3b iter (out of scope qui): mount UnlimAdapter standalone in
+ * HomeCompileEntry per chat in-page senza navigare via Lavagna (richiede
+ * AuthContext/SessionRecorder provider wire).
  *
  * Props:
  *   compileStatus: 'idle' | 'compiling' | 'success' | 'verified-legacy' | 'error'
- *     (matches ScratchCompileBar canonical state). Adapts message + future animation.
- *   onAskQuestion: (question: string) => void — callback when quick question
- *     clicked. Wires to UNLIM chat (HomePage UNLIM panel) in iter 98+ atom.
+ *   onAskQuestion: (question: string) => void — required per attivare bottoni
+ *   editorMode: 'blocks' | 'code'
+ *   sketchCode: string — codice corrente (per context chip righe count)
+ *   blockCount: number — blocchi correnti (per context chip)
  *
- * © Andrea Marro — iter 97 atom C — 2026-05-19
+ * © Andrea Marro — iter 104 C3 — 2026-05-24
  */
-import React from 'react';
+import React, { useState } from 'react';
 import css from './UnlimCompileHelper.module.css';
 
-// iter-102 (Andrea "il robottino deve essere la mascotte animata"): la
-// mascotte ufficiale ELAB (Vera) al posto dell'icona SVG grezza. PNG servito
-// da public/. L'animazione (idle + reazioni allo stato) è in CSS.
+// Mascotte ufficiale ELAB (Vera) PNG servita da public/ — iter-102 mandate.
 const MASCOT_SRC = '/assets/mascot/elab-mascot-vera.png';
 
 const QUICK_QUESTIONS = [
-  { id: 'whatis', label: 'Che cosa è una compilazione?' },
-  { id: 'howto', label: 'Come carico sul Nano R4?' },
-  { id: 'error', label: 'Come leggo gli errori?' },
+  { id: 'read', label: 'Leggi il programma' },
+  { id: 'fix', label: 'Controlla errori' },
+  { id: 'next', label: 'Consiglio rapido' },
 ];
 
 function getStatusMessage(compileStatus) {
   switch (compileStatus) {
     case 'compiling':
-      return 'Ragazzi, sto preparando il programma per il vostro Nano R4. Aspettate un attimo!';
+      return 'Sto controllando il codice per Nano R4.';
     case 'success':
-      return 'Compilazione riuscita ragazzi! Ora potete caricare il programma sul vostro kit ELAB.';
+      return 'Compilazione OK. Potete caricare sulla Nano R4.';
     case 'verified-legacy':
-      return 'Ragazzi, il codice è stato verificato dal compilatore legacy, ma il compilatore Nano R4 non è ancora attivo. Non usiamo questo risultato per il kit fisico.';
+      return 'Codice verificato, ma non ancora per Nano R4.';
     case 'error':
-      return 'C\'è un errore nel programma, ragazzi. Aprite la sezione errori per capire cosa correggere.';
+      return 'C\'e un errore nel codice. Apri la chat su Lavagna per i dettagli.';
     default:
-      return 'Ragazzi, scrivete il vostro programma a sinistra. Quando siete pronti, premete Compila qui sopra.';
+      return 'Sono collegato a blocchi, codice e compilazione.';
   }
+}
+
+function buildContext({ editorMode, compileStatus, blockCount, sketchCode }) {
+  const mode = editorMode === 'code' ? 'C++' : 'Blocchi';
+  const lines = String(sketchCode || '').split('\n').filter(Boolean).length;
+  return `${mode} · ${blockCount || 0} blocchi · ${lines} righe · ${compileStatus || 'idle'}`;
 }
 
 export default function UnlimCompileHelper({
   compileStatus = 'idle',
   onAskQuestion,
+  editorMode = 'blocks',
+  sketchCode = '',
+  blockCount = 0,
 }) {
   const message = getStatusMessage(compileStatus);
+  const context = buildContext({ editorMode, compileStatus, blockCount, sketchCode });
+  const [draft, setDraft] = useState('');
+  const hasHandler = typeof onAskQuestion === 'function';
+
   const handleQuestion = (q) => {
-    if (typeof onAskQuestion === 'function') onAskQuestion(q);
+    if (!hasHandler) return;
+    onAskQuestion(q);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const question = draft.trim();
+    if (!question || !hasHandler) return;
+    setDraft('');
+    handleQuestion(question);
   };
 
   return (
@@ -72,25 +103,46 @@ export default function UnlimCompileHelper({
         </div>
       </div>
 
-      {typeof onAskQuestion === 'function' && (
-        <>
-          <div className={css.questionsLabel} aria-hidden="true">Domande veloci</div>
-          <ul className={css.questions} role="list">
-            {QUICK_QUESTIONS.map((q) => (
-              <li key={q.id}>
-                <button
-                  type="button"
-                  className={css.questionBtn}
-                  onClick={() => handleQuestion(q.label)}
-                  aria-label={`Chiedi: ${q.label}`}
-                >
-                  {q.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <div className={css.contextChip}>{context}</div>
+
+      <ul className={css.questions} role="list">
+        {QUICK_QUESTIONS.map((q) => (
+          <li key={q.id}>
+            <button
+              type="button"
+              className={css.questionBtn}
+              onClick={() => handleQuestion(q.label)}
+              aria-label={`Chiedi a UNLIM: ${q.label}`}
+              disabled={!hasHandler}
+            >
+              {q.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <form className={css.chatForm} onSubmit={handleSubmit}>
+        <input
+          className={css.chatInput}
+          value={draft}
+          onChange={(event) => setDraft(event.target.value)}
+          placeholder={hasHandler ? 'Chiedi a UNLIM' : 'Apri la Lavagna per chattare'}
+          aria-label="Scrivi a UNLIM"
+          disabled={!hasHandler}
+        />
+        <button
+          type="submit"
+          className={css.chatSubmit}
+          aria-label="Invia a UNLIM"
+          disabled={!hasHandler}
+        >
+          →
+        </button>
+      </form>
+
+      <a className={css.openLavagnaLink} href="#lavagna" aria-label="Apri la Lavagna per chat UNLIM completa">
+        Chat completa su Lavagna
+      </a>
     </section>
   );
 }

@@ -459,6 +459,18 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             editorMode={editorMode}
             sketchCode={activeSketchCode}
             blockCount={workspaceBlockCount}
+            onAskQuestion={(question) => {
+              // iter 104 C3 — forward a Lavagna chat reale via hash navigation
+              // con seedMessage query param. Lavagna seedMessage consume handler
+              // out-of-scope C3 (TODO iter 105+); per ora apre Lavagna pulita,
+              // mascotte preserva contesto via localStorage `elab-unlim-seed`.
+              try {
+                if (typeof window !== 'undefined') {
+                  window.localStorage.setItem('elab-unlim-seed', String(question || ''));
+                  window.location.hash = '#lavagna';
+                }
+              } catch (_) { /* defensive — quota/private mode */ }
+            }}
           />
         </aside>
 
