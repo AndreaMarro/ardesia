@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "purpose": "Reference manifest crop libro per esp v2-cap7-esp2 (carica+scarica cap con LED). Sprint A scheletro NO PNG yet.",
+    "schema": "workflow-v2 fase 3"
+  },
+  "experimentId": "v2-cap7-esp2",
+  "volume": 2,
+  "chapter": 7,
+  "bookPages": [69, 70],
+  "pdfPages": [69, 70],
+  "pdfFile": "VOL2_ITA_COMPLETO GP V 0.1.pdf",
+  "scaleCalibration": "vol2-large-bb-horizontal",
+  "references": [
+    {
+      "id": "page-069-step-01-button-battery",
+      "page": 69,
+      "file": "page-069-step-01.png",
+      "status": "PLANNED",
+      "description": "Pulsante a cavallo divisione centrale + batteria collegata come figura",
+      "type": "build-state"
+    },
+    {
+      "id": "page-069-step-02-cap-orient",
+      "page": 69,
+      "file": "page-069-step-02.png",
+      "status": "PLANNED",
+      "description": "Condensatore accanto pulsante, negativo rivolto basso, positivo all'altro lato pulsante",
+      "type": "build-state",
+      "polarity": "negative-down"
+    },
+    {
+      "id": "page-070-step-03-cap-neg-wire",
+      "page": 70,
+      "file": "page-070-step-03.png",
+      "status": "PLANNED",
+      "description": "Collega cap negativo → batteria negativo con filo",
+      "type": "build-state"
+    },
+    {
+      "id": "page-070-step-04-resistor",
+      "page": 70,
+      "file": "page-070-step-04.png",
+      "status": "PLANNED",
+      "description": "Resistore 1kΩ tra cap positivo e altro punto breadboard",
+      "type": "build-state"
+    },
+    {
+      "id": "page-070-final-led",
+      "page": 70,
+      "file": "page-070-final.png",
+      "status": "PLANNED",
+      "description": "LED + MM aggiunti a end sequenza (libro implica completamento)",
+      "type": "final-state"
+    }
+  ],
+  "verbatimQuote": "In questo esperimento continueremo ad osservare l'effetto di scarica del condensatore. Per questo esperimento abbiamo bisogno di: un condensatore da 1000uF, un pulsante, un LED rosso, il multimetro, tre fili colorati, un resistore da 1kΩ. Inserisci il pulsante a cavallo della divisione centrale della breadboard e collega la batteria come mostrato in figura",
+  "auditDoc": "docs/demo-audit/v2-cap7-esp2.md",
+  "notes": {
+    "wireCount": "Libro esplicita 'tre fili colorati' visibili. App ha 8 wires totali (3 colorati + rail jumpers). 5+ extra app-only = anti-pattern workflow-v2 fase 8.",
+    "dischargeBug": "Stesso bug solver discharge esp1. Fix bookGeometry → solver coordination Sprint E."
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "_meta": {
+    "purpose": "Mapping 7 esp demo locked → riferimento libro autoritativo. Sprint A fondazione workflow-v2 fase 1+2.",
+    "generated": "2026-05-24",
+    "session": "demo-25may sera",
+    "sourceVerification": "pdftotext + grep verbatim, NO inference",
+    "anchor": "Andrea mandate: ogni esperimento nasce dal libro, non dal simulatore",
+    "demoLocked": true
+  },
+  "v1-cap6-esp1": {
+    "volume": 1,
+    "chapter": 6,
+    "chapterTitle": "Cos'è il diodo LED?",
+    "bookTitle": "ESPERIMENTO 1",
+    "experimentSubtitle": "Accendi il tuo primo LED",
+    "pages": [29, 30, 31],
+    "pdfPages": [29, 30, 31],
+    "pdfFile": "VOL1_ITA_ COMPLETO V.0.1 GP.pdf",
+    "kind": "manual-circuit",
+    "hasCircuitImages": true,
+    "hasCodeImages": false,
+    "components": ["battery9v", "breadboard", "resistor-470", "led-red"],
+    "appDataFile": "src/data/experiments-vol1.js",
+    "lessonPathFile": "src/data/lesson-paths/v1-cap6-esp1.json",
+    "verbatimQuote": "Per accendere il LED e fare il nostro primo esperimento abbiamo bisogno di: Un LED, sceglilo del colore che ti piace di più! Una breadboard. Una batteria 9V. La clip per la batteria 9V. Un resistore da 470 Ohm: spiegheremo dopo perché. Ti ricordi i colori?(Giallo Viola Marrone)",
+    "bookStateSequence": [
+      "page-29: lista materiali",
+      "page-30: clip alla batteria",
+      "page-30: positivo → striscia rossa superiore",
+      "page-30: resistore 470Ω tra striscia rossa e zona sotto",
+      "page-30: LED anodo verso resistore, catodo zona sotto divisione",
+      "page-31: negativo → colonna catodo LED → MAGIA"
+    ]
+  },
+  "v1-cap6-esp2": {
+    "volume": 1,
+    "chapter": 6,
+    "chapterTitle": "Cos'è il diodo LED?",
+    "bookTitle": "ESPERIMENTO 2",
+    "experimentSubtitle": "LED senza resistore (brucia)",
+    "pages": [32],
+    "pdfPages": [32],
+    "pdfFile": "VOL1_ITA_ COMPLETO V.0.1 GP.pdf",
+    "kind": "manual-circuit-anti-pattern",
+    "hasCircuitImages": true,
+    "components": ["battery9v", "breadboard", "led-red"],
+    "appDataFile": "src/data/experiments-vol1.js",
+    "lessonPathFile": "src/data/lesson-paths/v1-cap6-esp2.json",
+    "verbatimQuote": "Se infatti colleghi per errore il LED direttamente alla batteria, il LED si brucia e potrebbe addirittura esplodere! [...] RICORDA: NON collegare MAI il LED direttamente alla batteria, ma inserisci sempre un resistore al centro!",
+    "bookStateSequence": [
+      "page-32: spiegazione perché serve il resistore",
+      "page-32: anti-circuito LED direct → batteria (educativo: NON fare)"
+    ]
+  },
+  "v1-cap6-esp3": {
+    "volume": 1,
+    "chapter": 6,
+    "chapterTitle": "Cos'è il diodo LED?",
+    "bookTitle": "ESPERIMENTO 3",
+    "experimentSubtitle": "Cambiare luminosità con resistori diversi",
+    "pages": [33],
+    "pdfPages": [33],
+    "pdfFile": "VOL1_ITA_ COMPLETO V.0.1 GP.pdf",
+    "kind": "manual-circuit-variant",
+    "hasCircuitImages": true,
+    "components": ["battery9v", "breadboard", "resistor-220-or-470-or-1k", "led-red"],
+    "appDataFile": "src/data/experiments-vol1.js",
+    "lessonPathFile": "src/data/lesson-paths/v1-cap6-esp3.json",
+    "verbatimQuote": "Per rendere il led più luminoso ci basta partire dal circuito che abbiamo",
+    "bookStateSequence": [
+      "page-33: stesso circuito esp1 con resistore variabile",
+      "page-33: confronto luminosità 220 / 470 / 1k Ω"
+    ]
+  },
+  "v2-cap7-esp1": {
+    "volume": 2,
+    "chapter": 7,
+    "chapterTitle": "Che cosa sono i condensatori?",
+    "bookTitle": "ESPERIMENTO 1",
+    "experimentSubtitle": "Scarica condensatore + multimetro",
+    "pages": [67, 68],
+    "pdfPages": [67, 68],
+    "pdfFile": "VOL2_ITA_COMPLETO GP V 0.1.pdf",
+    "kind": "manual-circuit",
+    "hasCircuitImages": true,
+    "components": ["battery9v", "breadboard", "capacitor-1000uF", "push-button", "multimeter", "resistor-1k", "wire-colored"],
+    "appDataFile": "src/data/experiments-vol2.js",
+    "lessonPathFile": "src/data/lesson-paths/v2-cap7-esp1.json",
+    "verbatimQuote": "In questo esperimento osserveremo l'effetto di scarica del condensatore elettrolitico. Abbiamo bisogno di: un condensatore da 1000uF, un pulsante, il multimetro, un filo colorato, un resistore da 1kΩ. Imposta il multimetro su 20V in continua come fondo scala",
+    "bookStateSequence": [
+      "page-67: condensatore a cavallo separazione centrale + multimetro nero su negativo, rosso su positivo cap",
+      "page-67: pulsante accanto al condensatore a cavallo gap",
+      "page-68: filo colorato da pulsante a positivo cap, premi → MM ~9V",
+      "page-68: rilascia → MM scende lentamente (scarica via probes alta R)"
+    ],
+    "note": "Bug residuo handoff: 'multimetro discharge path modeling (cap esp1 trattiene 9V dopo rilascio)' — P0 da fix Sprint E"
+  },
+  "v2-cap7-esp2": {
+    "volume": 2,
+    "chapter": 7,
+    "chapterTitle": "Che cosa sono i condensatori?",
+    "bookTitle": "ESPERIMENTO 2",
+    "experimentSubtitle": "Carica+scarica condensatore con LED rosso",
+    "pages": [69, 70],
+    "pdfPages": [69, 70],
+    "pdfFile": "VOL2_ITA_COMPLETO GP V 0.1.pdf",
+    "kind": "manual-circuit",
+    "hasCircuitImages": true,
+    "components": ["battery9v", "breadboard", "capacitor-1000uF", "push-button", "led-red", "multimeter", "resistor-1k", "wire-colored-3"],
+    "appDataFile": "src/data/experiments-vol2.js",
+    "lessonPathFile": "src/data/lesson-paths/v2-cap7-esp2.json",
+    "verbatimQuote": "In questo esperimento continueremo ad osservare l'effetto di scarica del condensatore. Per questo esperimento abbiamo bisogno di: un condensatore da 1000uF, un pulsante, un LED rosso, il multimetro, tre fili colorati, un resistore da 1kΩ. Inserisci il pulsante a cavallo della divisione centrale della breadboard e collega la batteria come mostrato in figura",
+    "bookStateSequence": [
+      "page-69: pulsante a cavallo gap centrale + batteria",
+      "page-69: condensatore accanto pulsante, negativo rivolto basso, positivo all'altro lato pulsante",
+      "page-70: collega cap negativo → batteria negativo",
+      "page-70: resistore tra cap positivo e altro punto breadboard"
+    ]
+  },
+  "v3-cap6-esp4": {
+    "volume": 3,
+    "chapter": 6,
+    "chapterTitle": "I pin digitali: le dita di Arduino",
+    "bookTitle": "ESPERIMENTO 4",
+    "experimentSubtitle": "Programma luci lampeggianti stile sirena polizia (Due LED)",
+    "pages": [54, 55, 56],
+    "pdfPages": [37],
+    "pdfFile": "Manuale VOLUME 3 V0.8.1.pdf",
+    "kind": "arduino-circuit-code",
+    "hasCircuitImages": true,
+    "hasCodeImages": true,
+    "components": ["nano-r4", "breadboard", "led-red", "led-blue-or-second-color", "resistor-220-x2"],
+    "appDataFile": "src/data/experiments-vol3.js",
+    "lessonPathFile": "src/data/lesson-paths/v3-cap6-esp4.json",
+    "verbatimQuote": "PROGRAMMA LUCI LAMPEGGIANTE STILE SIRENATO 2. Due LED: effetto 'polizia'. Collega: LED 1 → pin [TBD]. LED 2 → pin 9. Programma: uno acceso, l'altro spento, poi si scambiano. Risultato: luci lampeggianti stile sirena",
+    "bookStateSequence": [
+      "page-pdf37: due LED su breadboard (colori diversi)",
+      "page-pdf37: LED1 anodo → pin Arduino (via resistor)",
+      "page-pdf37: LED2 anodo → pin 9 (via resistor)",
+      "page-pdf37: catodi → GND",
+      "page-pdf37: codice digitalWrite alternato + delay"
+    ],
+    "note": "Handoff topology RESET to base origin/main 4d75c0ca — Sprint D ribake required",
+    "pinAssignment": {
+      "led1_pin_book": "TBD verbatim verify (PDF crop esp4 pin number partially OCR'd)",
+      "led2_pin_book": "9 (verbatim 'LED 2 → pin 9')"
+    }
+  },
+  "v3-cap6-esp5": {
+    "volume": 3,
+    "chapter": 6,
+    "chapterTitle": "I pin digitali: le dita di Arduino",
+    "bookTitle": "ESPERIMENTO 5",
+    "experimentSubtitle": "Il semaforo (3 LED)",
+    "pages": [57, 58, 59],
+    "pdfPages": [38],
+    "pdfFile": "Manuale VOLUME 3 V0.8.1.pdf",
+    "kind": "arduino-circuit-code",
+    "hasCircuitImages": true,
+    "hasCodeImages": true,
+    "components": ["nano-r4", "breadboard", "led-green", "led-yellow", "led-red", "resistor-220-x3"],
+    "appDataFile": "src/data/experiments-vol3.js",
+    "lessonPathFile": "src/data/lesson-paths/v3-cap6-esp5.json",
+    "verbatimQuote": "ESPERIMENTO 5: Il semaforo. Un semaforo è solo: un link con più fasi. LED: Verde → pin [TBD], Giallo → pin 6, Rosso → pin 7. Sequenza V3-1-3 R...",
+    "bookStateSequence": [
+      "page-pdf38: 3 LED verticali sequenza semaforo",
+      "page-pdf38: verde → pin (verbatim TBD verify), giallo → pin 6, rosso → pin 7",
+      "page-pdf38: ciascun LED via resistor 220Ω",
+      "page-pdf38: GND comune",
+      "page-pdf38: codice sequenza temporizzata"
+    ],
+    "note": "Handoff topology RESET base origin/main — Sprint D ribake. Codex review claim (rosso→pin 9) NON matcha libro V0.8.1 (rosso→pin 7). Verify verbatim PDF before bake.",
+    "pinAssignment": {
+      "verde_pin_book": "TBD verbatim verify (PDF crop esp5 pin number partially OCR'd)",
+      "giallo_pin_book": "6",
+      "rosso_pin_book": "7"
+    }
+  },
+  "_consistencyChecks": {
+    "pageNumbersVerifiedBy": "pdftotext -layout VOL1/VOL2/VOL3 PDF + grep ESPERIMENTO + cross-ref verbatim quote",
+    "vol3PageDiscrepancy": "Handoff workflow-v2 dichiara pag.54-59 (printed). PDF V0.8.1 fisico pag.37-38. Possibile mapping printed→pdf offset variabile. AUDIT ANDREA verify mapping printed↔pdf prima bake bookGeometry Vol3.",
+    "vol3PinDiscrepancy": "Codex adversarial review claim semaforo rosso→pin 9 contraddetto da PDF V0.8.1 (rosso→pin 7). Verbatim libro = canone."
+  }
+}
