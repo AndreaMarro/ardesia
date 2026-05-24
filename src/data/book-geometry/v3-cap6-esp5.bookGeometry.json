@@ -1,0 +1,208 @@
+{
+  "$schema": "./bookGeometry.schema.json",
+  "_meta": {
+    "purpose": "bookGeometry v3-cap6-esp5 — Semaforo 3 LED. Post codex round 2 con CANON CLASH + LAYOUT REVERSED.",
+    "generated": "2026-05-24",
+    "session": "demo-25may Sprint B round 2",
+    "coordsStatus": "APPROXIMATE — Sprint B fase 4 calibrator pending",
+    "visualSource": "reference/vol3/v3-cap6-esp5/page-pdf38-38.png (Vol3 V0.8.1 manuale)",
+    "codexCorrections": [
+      "Mio claim 'LED layout VERTICALE torre semaforo' ERRATO — PNG HORIZONTAL row red-yellow-green left-to-right",
+      "Mio claim 'R 220Ω' ERRATO — repo usa R=470Ω (codex)",
+      "Mio claim 'topology RESET' ERRATO — topology popolata MA rosso pin sbagliato",
+      "Repo LED order green-yellow-red REVERSED vs PNG red-yellow-green"
+    ],
+    "andreaRatifyPending": [
+      "BLOCKER P0: CANON CLASH pin rosso — Manuale V0.8.1 pag.38 dice 'Rosso → pin 7' verbatim. Repo experiments-vol3.js usa W_D9 + code LED_ROSSO=9.",
+      "BLOCKER P0: LED layout PNG red-yellow-green vs repo green-yellow-red — verify Vol3 final stampato canon",
+      "Andrea verify canon V0.8.1 vs Vol3 final stampato"
+    ]
+  },
+  "experimentId": "v3-cap6-esp5",
+  "source": {
+    "volume": 3,
+    "chapter": 6,
+    "pages": [57, 58, 59],
+    "_pageNote": "Repo bookRef pag.57 stampate vs PDF V0.8.1 pag.38 fisica MISMATCH",
+    "pdfPages": [38],
+    "pdfFile": "Manuale VOLUME 3 V0.8.1.pdf",
+    "referenceImages": [
+      "reference/vol3/v3-cap6-esp5/page-pdf38-38.png"
+    ]
+  },
+  "scene": {
+    "width": 900,
+    "height": 400,
+    "anchor": "bb1",
+    "background": "book-light"
+  },
+  "components": {
+    "nano1": {
+      "type": "nano-r4",
+      "asset": "nano-r4-board-omaric",
+      "x": 200,
+      "y": 200,
+      "rotation": 0,
+      "locked": true
+    },
+    "bb1": {
+      "type": "breadboard",
+      "asset": "breadboard-vol3-horizontal-half",
+      "x": 550,
+      "y": 200,
+      "rotation": 0,
+      "locked": true
+    },
+    "led_rosso": {
+      "type": "led",
+      "color": "red",
+      "asset": "led-book-vol3-standard-splayed",
+      "_note": "ROSSO — book V0.8.1 verbatim pin 7. Repo current pin D9 (CLASH). PNG layout: leftmost (red-yellow-green order).",
+      "pins": { "anode": "bb1:e9", "cathode": "bb1:f9" },
+      "pose": { "bodyOffset": { "x": 0, "y": -28 }, "legStyle": "vol1-splayed-divaricate" },
+      "canonicalPose": { "anchor": "bb1", "x": 80, "y": 0, "rotation": 0 }
+    },
+    "led_giallo": {
+      "type": "led",
+      "color": "yellow",
+      "asset": "led-book-vol3-standard-splayed",
+      "_note": "GIALLO — book V0.8.1 verbatim pin 6. Repo MATCH. PNG layout: middle.",
+      "pins": { "anode": "bb1:e13", "cathode": "bb1:f13" },
+      "canonicalPose": { "anchor": "bb1", "x": 140, "y": 0, "rotation": 0 }
+    },
+    "led_verde": {
+      "type": "led",
+      "color": "green",
+      "asset": "led-book-vol3-standard-splayed",
+      "_note": "VERDE — book V0.8.1 verbatim pin 5. Repo MATCH. PNG layout: rightmost.",
+      "pins": { "anode": "bb1:e17", "cathode": "bb1:f17" },
+      "canonicalPose": { "anchor": "bb1", "x": 200, "y": 0, "rotation": 0 }
+    },
+    "r_rosso": {
+      "type": "resistor",
+      "value": 470,
+      "unit": "ohm",
+      "asset": "resistor-book-470-vol3-horizontal",
+      "_note": "R=470Ω (codex round 2 confirm). NON 220 mio claim originale.",
+      "pins": { "pin1": "bb1:a9", "pin2": "bb1:b9" }
+    },
+    "r_giallo": {
+      "type": "resistor",
+      "value": 470,
+      "unit": "ohm",
+      "asset": "resistor-book-470-vol3-horizontal",
+      "pins": { "pin1": "bb1:a13", "pin2": "bb1:b13" }
+    },
+    "r_verde": {
+      "type": "resistor",
+      "value": 470,
+      "unit": "ohm",
+      "asset": "resistor-book-470-vol3-horizontal",
+      "pins": { "pin1": "bb1:a17", "pin2": "bb1:b17" }
+    }
+  },
+  "visibleWires": [
+    {
+      "id": "wire-D7-to-rosso",
+      "color": "orange",
+      "_note": "BOOK V0.8.1 CANON: ROSSO → pin 7. Repo current usa D9 CLASH.",
+      "from": "nano1:D7",
+      "to": "r_rosso:pin2-via-bb",
+      "pathStyle": "angular-short",
+      "points": [{"x":300,"y":195},{"x":550,"y":200}],
+      "_bookCanonPin": 7,
+      "_repoCurrentPin": 9
+    },
+    {
+      "id": "wire-D6-to-giallo",
+      "color": "orange",
+      "from": "nano1:D6",
+      "to": "r_giallo:pin2-via-bb",
+      "pathStyle": "angular-short",
+      "points": [{"x":300,"y":205},{"x":600,"y":200}]
+    },
+    {
+      "id": "wire-D5-to-verde",
+      "color": "orange",
+      "from": "nano1:D5",
+      "to": "r_verde:pin2-via-bb",
+      "pathStyle": "angular-short",
+      "points": [{"x":300,"y":215},{"x":650,"y":200}]
+    },
+    {
+      "id": "wire-rosso-cathode-to-gnd",
+      "color": "black",
+      "from": "led_rosso:cathode-via-bb",
+      "to": "nano1:GND",
+      "pathStyle": "angular-short",
+      "points": [{"x":620,"y":220},{"x":620,"y":290},{"x":300,"y":290}]
+    },
+    {
+      "id": "wire-giallo-cathode-to-gnd",
+      "color": "black",
+      "from": "led_giallo:cathode-via-bb",
+      "to": "nano1:GND",
+      "pathStyle": "angular-short",
+      "points": [{"x":660,"y":220},{"x":660,"y":295},{"x":300,"y":295}]
+    },
+    {
+      "id": "wire-verde-cathode-to-gnd",
+      "color": "black",
+      "from": "led_verde:cathode-via-bb",
+      "to": "nano1:GND",
+      "pathStyle": "angular-short",
+      "points": [{"x":700,"y":220},{"x":700,"y":300},{"x":300,"y":300}]
+    }
+  ],
+  "hiddenElectricalConnections": [
+    { "id": "hidden-rrosso-to-ledrosso", "from": "r_rosso:pin1", "to": "led_rosso:anode", "reason": "Via colonna bb e9" },
+    { "id": "hidden-rgiallo-to-ledgiallo", "from": "r_giallo:pin1", "to": "led_giallo:anode", "reason": "Via colonna bb e13" },
+    { "id": "hidden-rverde-to-ledverde", "from": "r_verde:pin1", "to": "led_verde:anode", "reason": "Via colonna bb e17" }
+  ],
+  "steps": [
+    {
+      "id": "step-01-setup",
+      "visibleComponents": ["nano1", "bb1"],
+      "visibleWires": [],
+      "instruction": "Posiziona Arduino Nano R4 e breadboard.",
+      "bookPage": 38
+    },
+    {
+      "id": "step-02-rosso",
+      "visibleComponents": ["nano1", "bb1", "led_rosso", "r_rosso"],
+      "visibleWires": [],
+      "activeTargets": ["led_rosso", "r_rosso"],
+      "instruction": "Inserisci LED rosso e resistore (pin 7).",
+      "bookPage": 38
+    },
+    {
+      "id": "step-03-giallo",
+      "visibleComponents": ["nano1", "bb1", "led_rosso", "r_rosso", "led_giallo", "r_giallo"],
+      "visibleWires": [],
+      "activeTargets": ["led_giallo", "r_giallo"],
+      "instruction": "Inserisci LED giallo e resistore (pin 6).",
+      "bookPage": 38
+    },
+    {
+      "id": "step-04-verde",
+      "visibleComponents": ["nano1", "bb1", "led_rosso", "r_rosso", "led_giallo", "r_giallo", "led_verde", "r_verde"],
+      "visibleWires": [],
+      "activeTargets": ["led_verde", "r_verde"],
+      "instruction": "Inserisci LED verde e resistore (pin 5).",
+      "bookPage": 38
+    },
+    {
+      "id": "step-05-wires",
+      "visibleComponents": ["nano1", "bb1", "led_rosso", "r_rosso", "led_giallo", "r_giallo", "led_verde", "r_verde"],
+      "visibleWires": ["wire-D7-to-rosso", "wire-D6-to-giallo", "wire-D5-to-verde", "wire-rosso-cathode-to-gnd", "wire-giallo-cathode-to-gnd", "wire-verde-cathode-to-gnd"],
+      "instruction": "Collega: Verde → pin 5, Giallo → pin 6, Rosso → pin 7. Catodi → GND. Sequenza: Verde 3s, Giallo 1s, Rosso 3s, Ripeti.",
+      "bookPage": 38
+    }
+  ],
+  "manualSync": { "defaultPage": 38, "stepPageMap": { "0": 38, "1": 38, "2": 38, "3": 38, "4": 38 } },
+  "codeRef": {
+    "verbatimLibro": "void setup() { pinMode(5, OUTPUT); pinMode(6, OUTPUT); pinMode(7, OUTPUT); } void loop() { digitalWrite(5, HIGH); delay(3000); digitalWrite(5, LOW); digitalWrite(6, HIGH); delay(1000); digitalWrite(6, LOW); digitalWrite(7, HIGH); delay(3000); digitalWrite(7, LOW); }",
+    "repoCurrentDiffers": "const int LED_VERDE = 5; const int LED_GIALLO = 6; const int LED_ROSSO = 9; — usa pin 9 NON 7 libro",
+    "timingMatchRepo": "3000/1000/3000 ms verbatim libro V0.8.1"
+  }
+}

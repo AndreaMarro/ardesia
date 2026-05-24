@@ -1,0 +1,240 @@
+{
+  "$schema": "./bookGeometry.schema.json",
+  "_meta": {
+    "purpose": "bookGeometry v2-cap7-esp2 — Carica/scarica condensatore con LED + R 1kΩ. Post codex round 2.",
+    "generated": "2026-05-24",
+    "session": "demo-25may Sprint B round 2",
+    "coordsStatus": "APPROXIMATE — calibration awaits Sprint B fase 4",
+    "visualSource": "reference/vol2/v2-cap7-esp2/page-{069,070,071}.png (200 DPI)",
+    "codexCorrections": [
+      "Mio claim '8 step illustrati 3+3+3' ERRATO — PNG = 1+3+3 = 7 circuit illustrazioni",
+      "Mio claim 'solver dynamic RC TBD' ERRATO — CircuitSolver.js:1491-1508+:2126-2148 HA logic",
+      "Breadboard FULL-SIZE (codex BLOCKER, repo half)",
+      "Battery below-left bb (codex confirm)",
+      "Repo 15 buildSteps vs libro 8 prose actions — reduction needed",
+      "'Tre fili colorati' libro vs 6+ repo wires — over-specified"
+    ],
+    "andreaRatifyPending": [
+      "P0 BLOCKER: bb-half → bb-full",
+      "P0: led-bridge → led standard",
+      "P1: 15 buildSteps → 8 match libro prose"
+    ]
+  },
+  "experimentId": "v2-cap7-esp2",
+  "source": {
+    "volume": 2,
+    "chapter": 7,
+    "pages": [69, 70, 71],
+    "pdfPages": [69, 70, 71],
+    "pdfFile": "VOL2_ITA_COMPLETO GP V 0.1.pdf",
+    "referenceImages": [
+      "reference/vol2/v2-cap7-esp2/page-069.png",
+      "reference/vol2/v2-cap7-esp2/page-070.png",
+      "reference/vol2/v2-cap7-esp2/page-071.png"
+    ]
+  },
+  "scene": {
+    "width": 1200,
+    "height": 400,
+    "anchor": "bb1",
+    "background": "book-light-green"
+  },
+  "components": {
+    "bb1": {
+      "type": "breadboard",
+      "asset": "breadboard-vol2-horizontal-full",
+      "x": 450,
+      "y": 180,
+      "rotation": 0,
+      "locked": true
+    },
+    "bat1": {
+      "type": "battery9v",
+      "asset": "battery9v-vol2-horizontal-clip-right",
+      "x": 150,
+      "y": 320,
+      "rotation": 0,
+      "locked": true
+    },
+    "c1": {
+      "type": "capacitor",
+      "value": 1000,
+      "unit": "uF",
+      "asset": "capacitor-electrolytic-vertical-1000uF",
+      "pins": { "positive": "bb1:e14", "negative": "bb1:f14" },
+      "pose": { "bodyOffset": { "x": 0, "y": -30 }, "legStyle": "electrolytic-vertical" }
+    },
+    "btn1": {
+      "type": "push-button",
+      "asset": "push-button-tactile-4pin",
+      "pins": { "pin1": "bb1:e10", "pin2": "bb1:e12", "pin3": "bb1:f10", "pin4": "bb1:f12" }
+    },
+    "r1": {
+      "type": "resistor",
+      "value": 1000,
+      "unit": "ohm",
+      "asset": "resistor-book-1k-horizontal",
+      "color": "brown-black-red",
+      "pins": { "pin1": "bb1:a14", "pin2": "bb1:a19" },
+      "_note": "5-col span R 1kΩ tra cap+ pin column e LED anode column",
+      "pose": { "rotation": 0, "legStyle": "book-flat-axial-vol2" }
+    },
+    "led1": {
+      "type": "led",
+      "color": "red",
+      "asset": "led-book-vol2-standard-splayed",
+      "_note": "LED standard splayed (NOT led-bridge per codex Vol1 corrections).",
+      "pins": { "anode": "bb1:e19", "cathode": "bb1:f19" },
+      "pose": { "bodyOffset": { "x": 0, "y": -28 }, "legStyle": "vol1-splayed-divaricate" }
+    },
+    "mm1": {
+      "type": "multimeter",
+      "asset": "multimeter-vol2-yellow-20vdc",
+      "x": 1000,
+      "y": 180,
+      "displayConfig": { "range": "20V DC" }
+    }
+  },
+  "visibleWires": [
+    {
+      "id": "wire-battery-positive",
+      "color": "red",
+      "from": "bat1:positive",
+      "to": "bb1:topPlusRail-col1",
+      "pathStyle": "bezier",
+      "points": [{"x":200,"y":300},{"x":250,"y":220},{"x":420,"y":180},{"x":420,"y":190}]
+    },
+    {
+      "id": "wire-battery-negative",
+      "color": "black",
+      "from": "bat1:negative",
+      "to": "bb1:bottomMinusRail-col1",
+      "pathStyle": "bezier",
+      "points": [{"x":200,"y":340},{"x":250,"y":380},{"x":420,"y":380},{"x":420,"y":230}]
+    },
+    {
+      "id": "wire-colored-1-button-to-cap",
+      "color": "yellow",
+      "_note": "Primo dei 'tre fili colorati' verbatim libro pag.69 materiali",
+      "from": "btn1:pin2",
+      "to": "c1:positive-column-e14",
+      "pathStyle": "L",
+      "points": [{"x":575,"y":175},{"x":595,"y":175}]
+    },
+    {
+      "id": "wire-colored-2-cap-neg-to-bat-neg",
+      "color": "orange",
+      "_note": "Secondo dei 'tre fili colorati' — verbatim libro pag.70: 'Collega il negativo del condensatore al negativo della batteria con un filo'",
+      "from": "c1:negative",
+      "to": "bat1:negative-via-bb-bottom",
+      "pathStyle": "bezier",
+      "points": [{"x":595,"y":280},{"x":400,"y":380},{"x":250,"y":380}]
+    },
+    {
+      "id": "wire-colored-3-led-cathode-to-bat-neg",
+      "color": "green",
+      "_note": "Terzo dei 'tre fili colorati' — verbatim libro pag.71: 'Collega il negativo del LED al negativo della batteria con un filo'",
+      "from": "led1:cathode",
+      "to": "bat1:negative-via-bb-bottom",
+      "pathStyle": "bezier",
+      "points": [{"x":690,"y":280},{"x":500,"y":380},{"x":250,"y":380}]
+    },
+    {
+      "id": "probe-mm-positive",
+      "color": "red",
+      "from": "mm1:probe-positive",
+      "to": "c1:positive-column-b14",
+      "pathStyle": "bezier",
+      "points": [{"x":1000,"y":200},{"x":900,"y":180},{"x":680,"y":175},{"x":595,"y":170}]
+    },
+    {
+      "id": "probe-mm-negative",
+      "color": "black",
+      "from": "mm1:probe-negative",
+      "to": "c1:negative-column-g14",
+      "pathStyle": "bezier",
+      "points": [{"x":1000,"y":220},{"x":900,"y":240},{"x":680,"y":220},{"x":595,"y":200}]
+    }
+  ],
+  "hiddenElectricalConnections": [
+    {
+      "id": "hidden-rail-to-btn",
+      "from": "bb1:topPlusRail",
+      "to": "btn1:pin1",
+      "reason": "Rail-jumper interno bb alimenta btn. Anti-pattern visibile in app (W2 repo)."
+    },
+    {
+      "id": "hidden-cap-to-r1",
+      "from": "c1:positive",
+      "to": "r1:pin1",
+      "reason": "Connessione via colonna bb a14 — cap+ pin e R1 pin1 stessa colonna."
+    },
+    {
+      "id": "hidden-r1-to-led",
+      "from": "r1:pin2",
+      "to": "led1:anode",
+      "reason": "Connessione via colonna bb a19 — R1 pin2 e LED anodo stessa colonna."
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-01-button-battery",
+      "visibleComponents": ["bb1", "btn1", "bat1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative"],
+      "instruction": "Inserisci il pulsante a cavallo della divisione centrale della breadboard e collega la batteria come mostrato in figura.",
+      "bookPage": 69
+    },
+    {
+      "id": "step-02-cap-orient",
+      "visibleComponents": ["bb1", "btn1", "bat1", "c1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-colored-1-button-to-cap"],
+      "activeTargets": ["c1"],
+      "instruction": "Inserisci il condensatore accanto al pulsante con il negativo rivolto verso il basso e collega il positivo all'altro lato del pulsante.",
+      "bookPage": 69
+    },
+    {
+      "id": "step-03-cap-neg-wire",
+      "visibleComponents": ["bb1", "btn1", "bat1", "c1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-colored-1-button-to-cap", "wire-colored-2-cap-neg-to-bat-neg"],
+      "activeTargets": ["wire-colored-2-cap-neg-to-bat-neg"],
+      "instruction": "Collega il negativo del condensatore al negativo della batteria con un filo.",
+      "bookPage": 70
+    },
+    {
+      "id": "step-04-resistor",
+      "visibleComponents": ["bb1", "btn1", "bat1", "c1", "r1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-colored-1-button-to-cap", "wire-colored-2-cap-neg-to-bat-neg"],
+      "activeTargets": ["r1"],
+      "instruction": "Collega il resistore tra il positivo del condensatore e un punto qualsiasi della breadboard.",
+      "bookPage": 70
+    },
+    {
+      "id": "step-05-led",
+      "visibleComponents": ["bb1", "btn1", "bat1", "c1", "r1", "led1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-colored-1-button-to-cap", "wire-colored-2-cap-neg-to-bat-neg"],
+      "activeTargets": ["led1"],
+      "instruction": "Collega il positivo del LED con il lato libero del resistore e il negativo del LED in un punto qualsiasi della breadboard dopo la divisione centrale.",
+      "bookPage": 71
+    },
+    {
+      "id": "step-06-led-neg-wire",
+      "visibleComponents": ["bb1", "btn1", "bat1", "c1", "r1", "led1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-colored-1-button-to-cap", "wire-colored-2-cap-neg-to-bat-neg", "wire-colored-3-led-cathode-to-bat-neg"],
+      "activeTargets": ["wire-colored-3-led-cathode-to-bat-neg"],
+      "instruction": "Collega il negativo del LED al negativo della batteria con un filo.",
+      "bookPage": 71
+    },
+    {
+      "id": "step-07-mm-probes",
+      "visibleComponents": ["bb1", "btn1", "bat1", "c1", "r1", "led1", "mm1"],
+      "visibleWires": ["wire-battery-positive", "wire-battery-negative", "wire-colored-1-button-to-cap", "wire-colored-2-cap-neg-to-bat-neg", "wire-colored-3-led-cathode-to-bat-neg", "probe-mm-positive", "probe-mm-negative"],
+      "activeTargets": ["mm1"],
+      "instruction": "Collega il multimetro col cavo rosso sul positivo del condensatore e il cavo nero sul negativo del condensatore.",
+      "bookPage": 71
+    }
+  ],
+  "manualSync": {
+    "defaultPage": 69,
+    "stepPageMap": { "0": 69, "1": 69, "2": 70, "3": 70, "4": 71, "5": 71, "6": 71 }
+  }
+}
