@@ -209,6 +209,7 @@ const BUTTON_LED_XML = `<xml xmlns="https://developers.google.com/blockly/xml">
     </statement>
     <statement name="LOOP">
       <block type="controls_if">
+        <mutation else="1"/>
         <value name="IF0">
           <block type="arduino_digital_read">
             <field name="PIN">2</field>

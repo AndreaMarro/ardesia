@@ -42,4 +42,18 @@ describe('starterTemplates — Sub-project A iter 84 atom 6', () => {
     expect(getStarterXml('')).toBeNull();
     expect(getStarterXml(null)).toBeNull();
   });
+
+  // Wave 1b regression fix #2: controls_if mutation else=1 required to preserve ELSE branch on hydrate
+  it('T4: button-led starter hydrates with BOTH HIGH and LOW digitalWrite branches (controls_if mutation)', () => {
+    const workspace = new Blockly.Workspace();
+    try {
+      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(getStarterXml('button-led')), workspace);
+      const code = generateArduinoCode(workspace);
+      expect(code).toContain('digitalWrite(13, HIGH);');
+      expect(code).toContain('digitalWrite(13, LOW);');
+      expect(code).toMatch(/else\s*\{/);
+    } finally {
+      workspace.dispose();
+    }
+  });
 });
