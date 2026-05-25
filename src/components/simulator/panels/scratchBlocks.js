@@ -412,3 +412,34 @@ Blockly.Blocks['arduino_map'] = {
         this.setTooltip("Rimappa un valore da un intervallo ad un altro");
     }
 };
+
+// ─── RGB LED ─── //
+// Wave 1b Impl-A-2 (Sez 1 RGB LED category gap fill):
+// Single block emitting three analogWrite() calls for a common-cathode RGB
+// LED. IT labels verbatim Vol1/Vol2 — "imposta RGB su pin", canali R/G/B
+// 0-255. NON wired in TOOLBOX_XML iter 82+ — consumed by getCanonicalToolbox()
+// (scratchToolboxProgressive.js) for future ScratchEditor integration atom.
+Blockly.Blocks['arduino_rgb_led'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("imposta RGB rosso pin")
+            .appendField(new Blockly.FieldNumber(9, 0, 19), "PIN_R")
+            .appendField("verde pin")
+            .appendField(new Blockly.FieldNumber(10, 0, 19), "PIN_G")
+            .appendField("blu pin")
+            .appendField(new Blockly.FieldNumber(11, 0, 19), "PIN_B");
+        this.appendValueInput("R")
+            .setCheck("Number")
+            .appendField("  rosso (0-255)");
+        this.appendValueInput("G")
+            .setCheck("Number")
+            .appendField("  verde (0-255)");
+        this.appendValueInput("B")
+            .setCheck("Number")
+            .appendField("  blu (0-255)");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setStyle(STYLES.IO);
+        this.setTooltip("Accende un LED RGB miscelando tre intensita (rosso, verde, blu) tra 0 e 255.");
+    }
+};
