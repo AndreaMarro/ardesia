@@ -113,7 +113,8 @@ describe('compileArduinoCode — remote fallback', () => {
 describe('compileArduinoCode — cache', () => {
   it('returns success from compile', async () => {
     const { compileCode } = await import('../../src/services/api.js');
-    compileCode.mockResolvedValueOnce({ success: true, hex: ':AABBCCDD', size: 100 });
+    // Wave 1b Impl-C-2: remote HEX response now validated → must be valid Intel HEX.
+    compileCode.mockResolvedValueOnce({ success: true, hex: ':00000001FF\n', size: 100 });
 
     const result = await compileArduinoCode('void setup() { uniqueSessionCacheTest(); } void loop() {}');
     expect(result.success).toBe(true);
@@ -160,7 +161,8 @@ describe('compileArduinoCode — edge cases', () => {
 
   it('normalizes code for hash comparison (strips comments)', async () => {
     const { compileCode } = await import('../../src/services/api.js');
-    compileCode.mockResolvedValue({ success: true, hex: ':NORM', size: 10 });
+    // Wave 1b Impl-C-2: remote HEX must validate → use EOF-only Intel HEX.
+    compileCode.mockResolvedValue({ success: true, hex: ':00000001FF\n', size: 10 });
 
     const code1 = 'void setup() { x(); } // comment\nvoid loop() {}';
     const code2 = 'void setup() { x(); }\nvoid loop() {}';
@@ -222,11 +224,12 @@ describe('fetchHexFile — Intel HEX validation (iter X.1.6)', () => {
       text: () => Promise.resolve(INVALID_CHECKSUM),
     }));
     const { compileCode } = await import('../../src/services/api.js');
-    compileCode.mockResolvedValue({ success: true, hex: ':REMOTE', size: 50 });
+    // Wave 1b Impl-C-2: remote HEX must validate → use EOF-only Intel HEX.
+    compileCode.mockResolvedValue({ success: true, hex: ':00000001FF\n', size: 50 });
 
     const result = await compileArduinoCode(semaforoCode(2));
     expect(result.source).toBe('remote');
-    expect(result.hex).toBe(':REMOTE');
+    expect(result.hex).toBe(':00000001FF\n');
   });
 
   it('rejects non-HEX content (HTML 404) → falls through', async () => {
@@ -235,7 +238,8 @@ describe('fetchHexFile — Intel HEX validation (iter X.1.6)', () => {
       text: () => Promise.resolve(NOT_HEX),
     }));
     const { compileCode } = await import('../../src/services/api.js');
-    compileCode.mockResolvedValue({ success: true, hex: ':REMOTE2', size: 50 });
+    // Wave 1b Impl-C-2: remote HEX must validate → use EOF-only Intel HEX.
+    compileCode.mockResolvedValue({ success: true, hex: ':00000001FF\n', size: 50 });
 
     const result = await compileArduinoCode(semaforoCode(3));
     expect(result.source).toBe('remote');
@@ -254,7 +258,8 @@ describe('fetchHexFile — Intel HEX validation (iter X.1.6)', () => {
   it('handles fetch !ok (404/500) unchanged — returns null fallthrough', async () => {
     global.fetch = vi.fn(() => Promise.resolve({ ok: false, status: 404 }));
     const { compileCode } = await import('../../src/services/api.js');
-    compileCode.mockResolvedValue({ success: true, hex: ':R404', size: 30 });
+    // Wave 1b Impl-C-2: remote HEX must validate → use EOF-only Intel HEX.
+    compileCode.mockResolvedValue({ success: true, hex: ':00000001FF\n', size: 30 });
 
     const result = await compileArduinoCode(semaforoCode(5));
     expect(result.source).toBe('remote');

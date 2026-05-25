@@ -34,6 +34,9 @@ import {
   setCachedHex,
   clearCache,
   getCacheSize,
+  recordCompileMetric,
+  getCompileMetrics,
+  resetCompileMetrics,
 } from '../../../../../src/components/simulator/utils/compileCache';
 
 beforeEach(() => {
@@ -141,5 +144,85 @@ describe('compileCache LRU — getCacheSize', () => {
     expect(getCacheSize()).toBe(2);
     setCachedHex('c', ':C', 30);
     expect(getCacheSize()).toBe(3);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────
+// Wave 1b Impl-C-2 — compile counter telemetry hook
+// Spec: PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 item 3
+// "Compile counter telemetry session: number compilazioni, success rate,
+//  avg latency, persist Supabase via existing edge function pattern."
+//
+// `recordCompileMetric({ success, latencyMs, ramPercent })` is the lightweight
+// API surface called from compiler.js. Persistence (Supabase) is fire-and-forget;
+// in-memory counters are exposed via `getCompileMetrics()`.
+// ─────────────────────────────────────────────────────────────
+describe('compileCache — telemetry counter hook', () => {
+  beforeEach(() => {
+    resetCompileMetrics();
+  });
+
+  it('resetCompileMetrics() yields zeros', () => {
+    const m = getCompileMetrics();
+    expect(m).toEqual({ count: 0, success: 0, failure: 0, avgLatencyMs: 0 });
+  });
+
+  it('recordCompileMetric({success:true}) increments count + success', () => {
+    recordCompileMetric({ success: true, latencyMs: 100 });
+    const m = getCompileMetrics();
+    expect(m.count).toBe(1);
+    expect(m.success).toBe(1);
+    expect(m.failure).toBe(0);
+  });
+
+  it('recordCompileMetric({success:false}) increments count + failure', () => {
+    recordCompileMetric({ success: false, latencyMs: 50 });
+    const m = getCompileMetrics();
+    expect(m.count).toBe(1);
+    expect(m.success).toBe(0);
+    expect(m.failure).toBe(1);
+  });
+
+  it('averages latency across calls', () => {
+    recordCompileMetric({ success: true, latencyMs: 100 });
+    recordCompileMetric({ success: true, latencyMs: 200 });
+    recordCompileMetric({ success: true, latencyMs: 300 });
+    const m = getCompileMetrics();
+    expect(m.count).toBe(3);
+    expect(m.avgLatencyMs).toBe(200);
+  });
+
+  it('handles missing latencyMs as 0', () => {
+    recordCompileMetric({ success: true });
+    const m = getCompileMetrics();
+    expect(m.count).toBe(1);
+    expect(m.avgLatencyMs).toBe(0);
+  });
+
+  it('handles null payload gracefully (no throw)', () => {
+    expect(() => recordCompileMetric(null)).not.toThrow();
+    expect(() => recordCompileMetric(undefined)).not.toThrow();
+    const m = getCompileMetrics();
+    expect(m.count).toBe(0);
+  });
+
+  it('ignores non-number latency values', () => {
+    recordCompileMetric({ success: true, latencyMs: 'notanumber' });
+    recordCompileMetric({ success: true, latencyMs: 200 });
+    const m = getCompileMetrics();
+    expect(m.count).toBe(2);
+    expect(m.avgLatencyMs).toBe(100); // (0 + 200) / 2
+  });
+
+  it('accumulates mixed success/failure across calls', () => {
+    recordCompileMetric({ success: true, latencyMs: 50 });
+    recordCompileMetric({ success: false, latencyMs: 30 });
+    recordCompileMetric({ success: true, latencyMs: 100 });
+    recordCompileMetric({ success: false, latencyMs: 20 });
+    const m = getCompileMetrics();
+    expect(m.count).toBe(4);
+    expect(m.success).toBe(2);
+    expect(m.failure).toBe(2);
+    expect(m.avgLatencyMs).toBe(50); // (50+30+100+20)/4
   });
 });

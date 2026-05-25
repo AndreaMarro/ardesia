@@ -9,9 +9,96 @@
  */
 
 import { compileCode as remoteCompileCode } from './api.js';
-import { getCachedHex, setCachedHex } from '../components/simulator/utils/compileCache.js';
-import { validateIntelHex, NANO_R4_FLASH_BYTES } from '../utils/intelHexValidator.js';
+import {
+  getCachedHex,
+  setCachedHex,
+  recordCompileMetric,
+  getCompileMetrics,
+  resetCompileMetrics,
+} from '../components/simulator/utils/compileCache.js';
+import {
+  validateIntelHex,
+  NANO_R4_FLASH_BYTES,
+  ATMEGA328P_FLASH_BYTES,
+} from '../utils/intelHexValidator.js';
 import logger from '../utils/logger.js';
+
+// ─────────────────────────────────────────────────────────────
+// Wave 1b Impl-C-2 — RAM report + size warning thresholds
+// Spec source: PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 items 1-2
+// ─────────────────────────────────────────────────────────────
+
+/** ATmega328p size warn threshold: 28KB out of 32KB flash. */
+const ATMEGA328P_SIZE_WARN_BYTES = 28 * 1024;
+
+/** Nano R4 (Renesas) size warn threshold: 90% of 256KB flash. */
+const NANO_R4_SIZE_WARN_BYTES = Math.floor(NANO_R4_FLASH_BYTES * 0.9);
+
+/** RAM warn threshold: 90% (applies to all boards). */
+const RAM_WARN_PERCENT = 90;
+
+/**
+ * Parse arduino-cli stdout for the canonical RAM usage line.
+ * Pattern: `RAM:   [...]  XX% (used Y bytes of Z)` (whitespace tolerant).
+ *
+ * @param {string} stdout - arduino-cli stdout/output text
+ * @returns {{ used: number, total: number, percent: number } | null}
+ */
+export function parseRamReport(stdout) {
+  if (typeof stdout !== 'string' || stdout.length === 0) return null;
+  // RAM:   [== ]  21% (used 432 bytes of 2048)
+  const re = /RAM:[^\d%]*(\d+)\s*%\s*\(used\s+(\d+)\s+bytes\s+of\s+(\d+)\)/i;
+  const m = stdout.match(re);
+  if (!m) return null;
+  return {
+    used: Number(m[2]),
+    total: Number(m[3]),
+    percent: Number(m[1]),
+  };
+}
+
+/**
+ * Compute size + RAM warning flags for a compile result.
+ * UI consumer (Wave 2) renders these; here we only SET the flag.
+ *
+ * @param {{ hexBytes: number, ramPercent: number|null, board?: string }} params
+ * @returns {string[]} warn flags subset of ['size-near-limit', 'ram-near-limit']
+ */
+export function evaluateSizeWarnings({ hexBytes, ramPercent, board }) {
+  const warn = [];
+  const isNanoR4 = typeof board === 'string' && /renesas|unor4|nanor4/i.test(board);
+  const sizeThreshold = isNanoR4 ? NANO_R4_SIZE_WARN_BYTES : ATMEGA328P_SIZE_WARN_BYTES;
+  if (typeof hexBytes === 'number' && hexBytes > sizeThreshold) {
+    warn.push('size-near-limit');
+  }
+  if (typeof ramPercent === 'number' && ramPercent >= RAM_WARN_PERCENT) {
+    warn.push('ram-near-limit');
+  }
+  return warn;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Compile telemetry — session counters (re-exported from compileCache)
+// Wave 1b Impl-C-2: counters live in compileCache.js (owned), wrapped here
+// to give compiler.js callers a single import surface.
+// ─────────────────────────────────────────────────────────────
+
+/**
+ * Snapshot of session-scoped compile telemetry.
+ * @returns {{ count: number, success: number, avgLatencyMs: number }}
+ */
+export function getCompileTelemetry() {
+  const m = getCompileMetrics();
+  return { count: m.count, success: m.success, avgLatencyMs: m.avgLatencyMs };
+}
+
+/** Reset compile telemetry. Test hook + session boundary helper. */
+export function resetCompileTelemetry() {
+  resetCompileMetrics();
+}
+
+// Reference threshold const so tests can introspect it (no behavior effect).
+void ATMEGA328P_FLASH_BYTES;
 
 // ─────────────────────────────────────────────────────────────
 // Pre-compiled HEX manifest
@@ -162,9 +249,40 @@ export function getLastCompileSource() {
  * @param {object} [options]
  * @param {string} [options.experimentId] — current experiment ID (for direct pre-compiled lookup)
  * @param {string} [options.board] — FQBN board string
- * @returns {Promise<{success: boolean, hex: string|null, errors: string|null, output: string|null, source: string, size?: number}>}
+ * @returns {Promise<{success: boolean, hex: string|null, errors: string|null, output: string|null, source: string, size?: number, ram?: {used:number,total:number,percent:number}|null, warn?: string[]}>}
  */
 export async function compileArduinoCode(code, options = {}) {
+  const t0 = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+  const result = await _compileArduinoCodeInner(code, options);
+  const latencyMs = Math.max(
+    0,
+    ((typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now()) - t0
+  );
+
+  // Wave 1b Impl-C-2: enrich result with ram + warn fields.
+  const ram = parseRamReport(result.output);
+  const hexBytes = typeof result.size === 'number'
+    ? result.size
+    : (result.hex ? Math.floor(result.hex.replace(/[^0-9a-fA-F]/g, '').length / 2) : 0);
+  const warn = evaluateSizeWarnings({
+    hexBytes,
+    ramPercent: ram ? ram.percent : null,
+    board: options.board,
+  });
+
+  // Wave 1b Impl-C-2: telemetry counter (fire-and-forget).
+  try {
+    recordCompileMetric({
+      success: !!result.success,
+      latencyMs,
+      ramPercent: ram ? ram.percent : null,
+    });
+  } catch { /* telemetry must not break compile flow */ }
+
+  return { ...result, ram, warn };
+}
+
+async function _compileArduinoCodeInner(code, options = {}) {
   const { experimentId, board } = options;
   const normalizedCode = normalizeCode(code);
   const codeHash = fnv1aHash(normalizedCode);
@@ -289,6 +407,22 @@ export async function compileArduinoCode(code, options = {}) {
     try {
       const result = await remoteCompileCode(code, board);
       if (result.success && result.hex) {
+        // Wave 1b Impl-C-2: validate remote HEX response before returning.
+        // Defense in depth — catches n8n/proxy returning malformed HEX
+        // (e.g. truncated, HTML error page, bad checksum). Pre-compiled path
+        // already validates via fetchHexFile.
+        const remoteValidation = validateIntelHex(result.hex, { maxBytes: NANO_R4_FLASH_BYTES });
+        if (!remoteValidation.valid) {
+          logger.warn(`compileArduinoCode: remote HEX malformato — ${remoteValidation.error}`);
+          lastCompileSource = null;
+          return {
+            success: false,
+            hex: null,
+            errors: `Risposta del compilatore non valida: HEX malformato (${remoteValidation.error}). Riprova o usa il codice predefinito.`,
+            output: result.output || null,
+            source: 'remote',
+          };
+        }
         lastCompileSource = 'remote';
         const size = result.size || Math.floor(result.hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
         setCachedResult(codeHash, result.hex, size);
