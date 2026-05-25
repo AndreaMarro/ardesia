@@ -289,13 +289,35 @@ Scope CAPPED per atom (~1h each) for ship-over-sprawl Karpathy discipline. elabA
 - ✅ intelHexValidator wiring preserved (verified line 13 + 363 compiler.js)
 - ✅ File ownership matrix respected post-fix (Impl-A initial swept G files, self-recovered via reset+recommit clean)
 
-### Iter X.2b — Wave 1 expansion (DEFERRED next session)
-- Impl-A completion: search box toolbox + collapse/expand btn + welcome state copy + 30+ remaining msg keys
-- Impl-B completion: codeSync.js tolerant parser + comment preserve + #define + multi-function + starterTemplates.js extensions (still excludes elabArduinoAst refactor → Wave 2)
-- Impl-C completion: RAM usage report parse + size warning > 28KB / > 90% Nano R4 + telemetry counter + intelHexValidator on remote n8n response
-- Impl-G completion: v3-cap6-esp5 semaforo E2E + HomePage Codekit E2E + full pipeline upload→AVR8js→pin-states + compile latency < 5s p95 perf bench + tests/unit/features/elabBlocks/ unit dir
+### Iter X.2b — Wave 1b expansion (CLOSED 2026-05-25/26)
+**Status: CLOSED. 5 atomic commits + 1 regression fix landed worktree feature/blockly-crosscompiler-definitivo via agent-teams team-lead 4-parallel dispatch.**
 
-### Iter X.3 — Wave 2 parallel (4 impl, 1 sessione)
+Scope FOLLOWED Wave 1 file ownership matrix (immutable). elabArduinoAst Wave 2 still DEFERRED (1185 LOC cascade risk preserved). Codex stop-time review caught 1 real regression (arduino_rgb_led missing generator) fixed defensively.
+
+| Atom | SHA | Files | LOC | Tests new |
+|------|-----|-------|-----|-----------|
+| Impl-A-2 (i18n) | `41582af5` | blockly-msg-it.js + blockly-msg-it.test.js | +415/-24 | +52 (21→73) |
+| Impl-A-2 (toolbox) | `d149bbf1` | scratchToolboxProgressive.js + scratchBlocks.js + scratchToolboxProgressive.test.js | +492/-16 | +21 (5→26) |
+| Impl-B-2 (codegen) | `75244099` | codeSync.js + starterTemplates.js + scratchGenerator.js + 2 test files | +967/-8 | +25 internal + 20 contract |
+| Impl-C-2 (compile) | `58ecc5fc` | compiler.js + compileCache.js + NEW services/compiler.test.js + compileCache.lru.test.js + existing compiler.test.js fixtures | +651/-16 | +29 NEW + 8 ext + 4 fixture |
+| Impl-G-2 (tests) | `95222e79` | 3 NEW spec + roundtrip contract + perf bench + README + UNSKIP 08 | +1037/-14 | +20 roundtrip + 13 E2E (11 fixme markers) |
+| Fix | `1cc0146b` | scratchGenerator.js + scratchGenerator.pinMode.test.js | +124/-0 | +5 regression |
+
+**Verification close gate**:
+- ✅ Independent CoV 3× (lead-direct) POST all 6 commit: `3 failed | 425 passed | 2 skipped (430)` IDENTICAL — 9 pre-existing UnlimCompileHelper/HomeCompileEntry fails unchanged, ZERO Wave 1b contribution to failures
+- ✅ npm run build exit 0 × all atoms (per-implementer report)
+- ✅ File ownership matrix respected (no cross-owner cached diff)
+- ✅ elabArduinoAst/* UNTOUCHED (Wave 2 deferred preserved)
+- ✅ intelHexValidator.js + api.js + revert-protected engine files UNTOUCHED
+- ⚠️ Impl-G E2E 11 FIXME markers (upstream wait — AVR8js stateChange + IT toolbox label deps + cliffhanger wire) documented honest deferral
+
+**Codex catch + recovery**:
+- Codex stop-time review #1: caught arduino_rgb_led block registered (Impl-A d149bbf1 scratchBlocks.js:422) without generator in scratchGenerator.js → "Unknown generator" runtime crash risk
+- Impl-B fix 1cc0146b: added arduino_rgb_led generator (3× analogWrite R/G/B pattern matching arduino_servo_write) + defensive controls_whileUntil regression tests (already wired line 330, verified)
+- Codex stop-time review #2: invalid JSON output (review system flake, NOT actual issue)
+- Lead-direct grep cross-reference: confirmed only arduino_rgb_led was real missing generator. Lead initial diagnosis included controls_whileUntil incorrectly (regex `[a-z_]+` missed capital U). Impl-B corrected during fix.
+
+### Iter X.3 — Wave 2 parallel (NEXT — 4 impl, 1 sessione)
 - Impl-D Upload-WebSerial (decisione ELAB Agent primary + Web Serial fallback)
 - Impl-E UNLIM-HomePage (chat floating + RAG Blockly-aware + Vision wire)
 - Impl-F UNLIM-Vol3 (PassoPassoUnifiedPanel chat wire + esp template Blockly highlight coord)
