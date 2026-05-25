@@ -123,7 +123,101 @@ describe('scratchGenerator pinMode auto-emission (Wave 1 Impl-B)', () => {
         expect(setupBody).not.toContain('pinMode(');
     });
 
-    it('Test 5: same pin in digitalWrite AND digitalRead → OUTPUT wins (Arduino convention)', () => {
+    it('Test 5b (Wave 1b): servo block → header emits #include <Servo.h>', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="SETUP">
+                    <block type="arduino_servo_attach">
+                        <field name="NAME">myServo</field>
+                        <field name="PIN">9</field>
+                    </block>
+                </statement>
+                <statement name="LOOP">
+                    <block type="arduino_servo_write">
+                        <field name="NAME">myServo</field>
+                        <value name="ANGLE">
+                            <shadow type="math_number"><field name="NUM">90</field></shadow>
+                        </value>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        expect(code).toContain('#include <Servo.h>');
+        expect(code).toContain('Servo myServo;');
+    });
+
+    it('Test 5c (Wave 1b): LCD init block → header emits #include <LiquidCrystal.h>', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="SETUP">
+                    <block type="arduino_lcd_init">
+                        <field name="RS">12</field>
+                        <field name="E">11</field>
+                        <field name="D4">5</field>
+                        <field name="D5">4</field>
+                        <field name="D6">3</field>
+                        <field name="D7">2</field>
+                        <field name="COLS">16</field>
+                        <field name="ROWS">2</field>
+                    </block>
+                </statement>
+                <statement name="LOOP">
+                    <block type="arduino_lcd_print">
+                        <value name="TEXT">
+                            <block type="text">
+                                <field name="TEXT">Ciao</field>
+                            </block>
+                        </value>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        expect(code).toContain('#include <LiquidCrystal.h>');
+        expect(code).toContain('LiquidCrystal lcd(12, 11, 5, 4, 3, 2);');
+    });
+
+    it('Test 5d (Wave 1b): no Servo / LCD usage → no spurious #include headers', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="LOOP">
+                    <block type="arduino_digital_write">
+                        <field name="PIN">13</field>
+                        <field name="STATE">HIGH</field>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        expect(code).not.toContain('#include <Servo.h>');
+        expect(code).not.toContain('#include <LiquidCrystal.h>');
+        expect(code).not.toContain('#include <SoftwareSerial.h>');
+        expect(code).not.toContain('#include <Wire.h>');
+    });
+
+    it('Test 5e (Wave 1b): Blockly variable usage → variable declared before setup()', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="SETUP">
+                    <block type="arduino_variable_set">
+                        <field name="VAR">ledPin</field>
+                        <field name="TYPE">int</field>
+                        <value name="VALUE">
+                            <shadow type="math_number"><field name="NUM">13</field></shadow>
+                        </value>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        const setupIdx = code.indexOf('void setup()');
+        const declIdx = code.indexOf('int ledPin;');
+        expect(declIdx).toBeGreaterThanOrEqual(0);
+        expect(declIdx).toBeLessThan(setupIdx);
+    });
+
+    it('Test 6: same pin in digitalWrite AND digitalRead → OUTPUT wins (Arduino convention)', () => {
         const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
             <block type="arduino_base" x="40" y="30" deletable="false">
                 <statement name="LOOP">

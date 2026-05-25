@@ -41,6 +41,8 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
     arduinoGenerator._lcdIncludes = false;
     arduinoGenerator._lcdPins = null;
     arduinoGenerator._lcdBegin = null;
+    arduinoGenerator._softwareSerialIncludes = false; // Wave 1b: SoftwareSerial.h auto-inject
+    arduinoGenerator._wireIncludes = false; // Wave 1b: Wire.h auto-inject for I2C
     arduinoGenerator._declaredVars = new Set(); // Reset variable declarations
     arduinoGenerator._globalVarDecls = new Map(); // S116: Global var declarations (name → type)
     arduinoGenerator._loopVarCounter = 0; // S116: Deterministic loop variable counter
@@ -48,6 +50,11 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
     // Wave 1 Impl-B: Walk workspace to collect GPIO pin usage BEFORE emitting setup.
     // digitalWrite → OUTPUT, digitalRead → INPUT. OUTPUT wins when same pin used both ways.
     const pinUsage = collectGpioPinUsage(block.workspace);
+
+    // Wave 1b Impl-B-2: Walk workspace once to detect future block types triggering
+    // SoftwareSerial / Wire library inclusion. Blocks not yet present in scratchBlocks
+    // — pre-wired hook so Wave 2 toolbox additions need ZERO codegen edits.
+    detectAuxIncludes(block.workspace);
 
     const setupCode = arduinoGenerator.statementToCode(block, 'SETUP') || '';
     const loopCode = arduinoGenerator.statementToCode(block, 'LOOP') || '';
@@ -65,6 +72,13 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
         const p = arduinoGenerator._lcdPins;
         header += '#include <LiquidCrystal.h>\n';
         header += `LiquidCrystal lcd(${p.rs}, ${p.e}, ${p.d4}, ${p.d5}, ${p.d6}, ${p.d7});\n\n`;
+    }
+    // Wave 1b: emit SoftwareSerial / Wire headers when corresponding blocks detected
+    if (arduinoGenerator._softwareSerialIncludes) {
+        header += '#include <SoftwareSerial.h>\n\n';
+    }
+    if (arduinoGenerator._wireIncludes) {
+        header += '#include <Wire.h>\n\n';
     }
     // S116: Emit global variable declarations (for Blockly variables used across setup/loop)
     if (arduinoGenerator._globalVarDecls.size > 0) {
@@ -98,6 +112,24 @@ ${pinModeSetupCode}${lcdSetupCode}${setupCode}}
 void loop() {
 ${loopCode}}`;
 };
+
+// Wave 1b Impl-B-2: detect block types that require auxiliary library headers
+// (SoftwareSerial.h, Wire.h for I2C). Blocks not yet wired in toolbox — pre-wired
+// hook future-proofs codegen when Wave 2 adds matching toolbox entries.
+function detectAuxIncludes(workspace) {
+    if (!workspace || typeof workspace.getAllBlocks !== 'function') return;
+    const allBlocks = workspace.getAllBlocks(false);
+    for (const b of allBlocks) {
+        if (!b || b.isInsertionMarker?.()) continue;
+        const t = b.type || '';
+        if (t.startsWith('arduino_software_serial') || t === 'arduino_softserial_begin') {
+            arduinoGenerator._softwareSerialIncludes = true;
+        }
+        if (t.startsWith('arduino_wire_') || t.startsWith('arduino_i2c_') || t === 'arduino_wire_begin') {
+            arduinoGenerator._wireIncludes = true;
+        }
+    }
+}
 
 // Wave 1 Impl-B: Walk workspace to discover digitalWrite/digitalRead pin usage.
 // Returns Map<pinNum:number, mode:'OUTPUT'|'INPUT'>. OUTPUT wins on conflict so

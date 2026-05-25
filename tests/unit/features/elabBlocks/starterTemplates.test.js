@@ -5,10 +5,10 @@ import { generateArduinoCode } from '../../../../src/components/simulator/panels
 import { STARTER_TEMPLATES, getStarterXml, isValidStarterXml } from '../../../../src/features/elabBlocks/starterTemplates.js';
 
 describe('starterTemplates — Sub-project A iter 84 atom 6', () => {
-  it('T1: STARTER_TEMPLATES has 3 keys all with valid XML', () => {
+  it('T1: STARTER_TEMPLATES has at least 5 keys all with valid XML (Wave 1b expansion)', () => {
     const keys = Object.keys(STARTER_TEMPLATES);
     expect(keys).toEqual(expect.arrayContaining(['blink', 'button', 'sensor']));
-    expect(keys.length).toBe(3);
+    expect(keys.length).toBeGreaterThanOrEqual(5);
     for (const k of keys) {
       expect(isValidStarterXml(STARTER_TEMPLATES[k])).toBe(true);
     }
