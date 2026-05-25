@@ -45,6 +45,10 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
     arduinoGenerator._globalVarDecls = new Map(); // S116: Global var declarations (name → type)
     arduinoGenerator._loopVarCounter = 0; // S116: Deterministic loop variable counter
 
+    // Wave 1 Impl-B: Walk workspace to collect GPIO pin usage BEFORE emitting setup.
+    // digitalWrite → OUTPUT, digitalRead → INPUT. OUTPUT wins when same pin used both ways.
+    const pinUsage = collectGpioPinUsage(block.workspace);
+
     const setupCode = arduinoGenerator.statementToCode(block, 'SETUP') || '';
     const loopCode = arduinoGenerator.statementToCode(block, 'LOOP') || '';
 
@@ -77,12 +81,56 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
         lcdSetupCode = `  lcd.begin(${b.cols}, ${b.rows});\n`;
     }
 
+    // Wave 1 Impl-B: Emit pinMode() calls at start of setup based on collected pin usage.
+    // Stable sort: ascending pin number for deterministic output. Runs before user setup
+    // body so pins are configured before any user-side digitalWrite/digitalRead executes.
+    let pinModeSetupCode = '';
+    if (pinUsage && pinUsage.size > 0) {
+        const sortedPins = [...pinUsage.keys()].sort((a, b) => a - b);
+        for (const pin of sortedPins) {
+            pinModeSetupCode += `  pinMode(${pin}, ${pinUsage.get(pin)});\n`;
+        }
+    }
+
     return `${header}void setup() {
-${lcdSetupCode}${setupCode}}
+${pinModeSetupCode}${lcdSetupCode}${setupCode}}
 
 void loop() {
 ${loopCode}}`;
 };
+
+// Wave 1 Impl-B: Walk workspace to discover digitalWrite/digitalRead pin usage.
+// Returns Map<pinNum:number, mode:'OUTPUT'|'INPUT'>. OUTPUT wins on conflict so
+// once any digitalWrite targets a pin, that pin stays OUTPUT even if digitalRead
+// also references it (Arduino convention: pinMode last-set wins, and a pin you
+// drive as OUTPUT should not silently fall back to INPUT just because you also
+// read its state programmatically).
+function collectGpioPinUsage(workspace) {
+    const usage = new Map();
+    if (!workspace || typeof workspace.getAllBlocks !== 'function') return usage;
+    const allBlocks = workspace.getAllBlocks(false);
+    for (const b of allBlocks) {
+        if (!b || b.isInsertionMarker?.()) continue;
+        if (b.type === 'arduino_digital_write') {
+            const pinRaw = b.getFieldValue('PIN');
+            const pin = parseInt(pinRaw, 10);
+            if (!Number.isNaN(pin)) {
+                // OUTPUT wins — always overwrite (or set if absent)
+                usage.set(pin, 'OUTPUT');
+            }
+        } else if (b.type === 'arduino_digital_read') {
+            const pinRaw = b.getFieldValue('PIN');
+            const pin = parseInt(pinRaw, 10);
+            if (!Number.isNaN(pin)) {
+                // INPUT only if pin not already marked OUTPUT
+                if (!usage.has(pin)) {
+                    usage.set(pin, 'INPUT');
+                }
+            }
+        }
+    }
+    return usage;
+}
 
 arduinoGenerator.forBlock['arduino_pin_mode'] = function (block) {
     const pin = block.getFieldValue('PIN');
