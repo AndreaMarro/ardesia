@@ -248,3 +248,112 @@ describe('scratchGenerator pinMode auto-emission (Wave 1 Impl-B)', () => {
         expect(matches.length).toBe(1);
     });
 });
+
+// ─── Wave 1b regression fix: arduino_rgb_led + controls_whileUntil generators ──
+
+describe('scratchGenerator Wave 1b regression — missing generators wire (Impl-B-2)', () => {
+    it('RGB1: arduino_rgb_led block emits three analogWrite calls for R/G/B', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="LOOP">
+                    <block type="arduino_rgb_led">
+                        <field name="PIN_R">9</field>
+                        <field name="PIN_G">10</field>
+                        <field name="PIN_B">11</field>
+                        <value name="R">
+                            <shadow type="math_number"><field name="NUM">255</field></shadow>
+                        </value>
+                        <value name="G">
+                            <shadow type="math_number"><field name="NUM">128</field></shadow>
+                        </value>
+                        <value name="B">
+                            <shadow type="math_number"><field name="NUM">0</field></shadow>
+                        </value>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        expect(code).toContain('analogWrite(9, 255);');
+        expect(code).toContain('analogWrite(10, 128);');
+        expect(code).toContain('analogWrite(11, 0);');
+    });
+
+    it('RGB2: arduino_rgb_led does NOT throw "Unknown generator" at codegen time', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="LOOP">
+                    <block type="arduino_rgb_led">
+                        <field name="PIN_R">9</field>
+                        <field name="PIN_G">10</field>
+                        <field name="PIN_B">11</field>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        expect(() => codeFromXml(xml)).not.toThrow();
+    });
+
+    it('WHILE1: controls_whileUntil MODE=WHILE emits `while (cond) { body }`', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="LOOP">
+                    <block type="controls_whileUntil">
+                        <field name="MODE">WHILE</field>
+                        <value name="BOOL">
+                            <block type="logic_boolean"><field name="BOOL">TRUE</field></block>
+                        </value>
+                        <statement name="DO">
+                            <block type="arduino_delay">
+                                <value name="DELAY_TIME">
+                                    <shadow type="math_number"><field name="NUM">100</field></shadow>
+                                </value>
+                            </block>
+                        </statement>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        expect(code).toMatch(/while\s*\(\s*true\s*\)\s*\{/);
+        expect(code).toContain('delay(100);');
+    });
+
+    it('WHILE2: controls_whileUntil MODE=UNTIL emits `while (!(cond)) { body }`', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="LOOP">
+                    <block type="controls_whileUntil">
+                        <field name="MODE">UNTIL</field>
+                        <value name="BOOL">
+                            <block type="logic_boolean"><field name="BOOL">FALSE</field></block>
+                        </value>
+                        <statement name="DO">
+                            <block type="arduino_delay">
+                                <value name="DELAY_TIME">
+                                    <shadow type="math_number"><field name="NUM">50</field></shadow>
+                                </value>
+                            </block>
+                        </statement>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        const code = codeFromXml(xml);
+        expect(code).toMatch(/while\s*\(\s*!\(\s*false\s*\)\s*\)\s*\{/);
+        expect(code).toContain('delay(50);');
+    });
+
+    it('WHILE3: controls_whileUntil does NOT throw "Unknown generator"', () => {
+        const xml = `<xml xmlns="https://developers.google.com/blockly/xml">
+            <block type="arduino_base" x="40" y="30" deletable="false">
+                <statement name="LOOP">
+                    <block type="controls_whileUntil">
+                        <field name="MODE">WHILE</field>
+                    </block>
+                </statement>
+            </block>
+        </xml>`;
+        expect(() => codeFromXml(xml)).not.toThrow();
+    });
+});

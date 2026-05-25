@@ -371,6 +371,21 @@ arduinoGenerator.forBlock['text_join'] = function (block) {
     return [parts.join(' + '), arduinoGenerator.ORDER_ADDITION];
 };
 
+// --- RGB LED --- //
+
+// Wave 1b regression fix: arduino_rgb_led block registered in scratchBlocks.js
+// (Impl-A canonical 16-cat toolbox d149bbf1) lacked generator. Emits three
+// analogWrite() calls for common-cathode RGB LED, one per channel (R/G/B).
+arduinoGenerator.forBlock['arduino_rgb_led'] = function (block) {
+    const pinR = block.getFieldValue('PIN_R');
+    const pinG = block.getFieldValue('PIN_G');
+    const pinB = block.getFieldValue('PIN_B');
+    const r = arduinoGenerator.valueToCode(block, 'R', arduinoGenerator.ORDER_ATOMIC) || '0';
+    const g = arduinoGenerator.valueToCode(block, 'G', arduinoGenerator.ORDER_ATOMIC) || '0';
+    const b = arduinoGenerator.valueToCode(block, 'B', arduinoGenerator.ORDER_ATOMIC) || '0';
+    return `  analogWrite(${pinR}, ${r});\n  analogWrite(${pinG}, ${g});\n  analogWrite(${pinB}, ${b});\n`;
+};
+
 // --- Tone / Buzzer --- //
 
 arduinoGenerator.forBlock['arduino_tone'] = function (block) {
