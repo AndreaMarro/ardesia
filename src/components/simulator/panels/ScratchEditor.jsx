@@ -3,9 +3,14 @@ import * as Blockly from 'blockly';
 import { arduinoGenerator, generateArduinoCode } from './scratchGenerator';
 import logger from '../../../utils/logger';
 import './scratchBlocks';
+import { applyItalianMessages } from '../../../i18n/blockly-msg-it';
 import ScratchOnboarding from './ScratchOnboarding';
 import ScratchToolbar from './ScratchToolbar';
 import ScratchErrorOverlay from './ScratchErrorOverlay';
+
+// iter X.2 Wave 1 Impl-A: apply 15 IT Blockly.Msg overrides at module load
+// (BEFORE any Blockly.inject call). Idempotent — safe across hot reloads.
+applyItalianMessages(Blockly);
 // iter 82 PHASE 5.5 fix CRITICAL-2: elab-blockly-theme.css NOT imported.
 // Both Codex Pattern V + code-reviewer found conflict with existing dark
 // inline ELAB_BLOCKLY_CSS (lines 193-331) — both !important on same selectors,
