@@ -36,10 +36,14 @@ import { classifyPrompt } from '../_shared/onniscenza-classifier.ts';
 import { parseIntentTags, stripIntentTags, type IntentTag } from '../_shared/intent-parser.ts';
 // UNLIM Slice 1B (2026-05-26) — wire awareness-flags module into pipeline.
 // Slice 1A (f06d0595) shipped pure module `awareness-flags.ts` (200 LOC, 46 tests).
-// This wire-up: optional boardSnapshot in request body → compute 8 flags →
-// render Italian narrative → append to systemPrompt chain. Backward-compat:
-// snapshot null/missing → render returns "" → ZERO change in legacy path.
+// This wire-up: optional boardSnapshot in request body → sanitize via guards.ts →
+// compute 8 flags → render Italian narrative → append to systemPrompt chain.
+// Backward-compat: snapshot null/missing → render returns "" → ZERO change in legacy path.
+// Security hardening 2026-05-25: sanitizeBoardSnapshot strips LLM injection
+// patterns + caps array sizes (code review C1+C2 mitigations).
 import { computeAwarenessFlags, renderAwarenessFlags, type BoardSnapshot } from '../_shared/awareness-flags.ts';
+// Pure ESM module — vitest-testable (no Deno https: imports unlike guards.ts).
+import { sanitizeBoardSnapshot } from '../_shared/sanitize-board-snapshot.ts';
 // iter 27 Agent Z — safety hardcoded fallback wrap.
 // Iter 24 dim-1 LIVE prod bench: Cat C "scossa" returned 503 vuoto (GDPR
 // rischio minori 8-14 anni). Iter 25 P0-B shipped pure fallback helper.
@@ -837,17 +841,26 @@ serve(async (req: Request) => {
 
     // UNLIM Slice 1B (2026-05-26) — compute awareness flags + render before prompt build.
     // Pure call (no I/O, no throw): defensive on null/undefined inputs.
-    // hasClassMemory heuristic: classKey presence implies prior session exists
-    // (V2 collector pattern — proper memory query = Slice 1C scope refinement).
+    //
+    // Security (code review hardening 2026-05-25):
+    // - Sanitize boardSnapshot via deepSanitize (guards.ts) BEFORE passing to
+    //   awareness-flags module: strips LLM injection patterns from
+    //   circuit.errors[], experimentId, compileMessage (C1) + caps array sizes
+    //   in components/connections to MAX_ARRAY_SIZE=50 (C2).
+    // - hasClassMemory gated by snapshot presence: legacy clients without
+    //   boardSnapshot → hasClassMemory=false → returning_class=false → render="" →
+    //   systemPrompt UNCHANGED (H2 backward-compat invariant fix).
+    const safeBoardSnapshot = sanitizeBoardSnapshot(body.boardSnapshot) as BoardSnapshot | null;
+    const safePreviousBoardSnapshot = sanitizeBoardSnapshot(body.previousBoardSnapshot) as BoardSnapshot | null;
     const awarenessFlags = computeAwarenessFlags(
-      (body.boardSnapshot ?? null) as BoardSnapshot | null,
-      (body.previousBoardSnapshot ?? null) as BoardSnapshot | null,
+      safeBoardSnapshot,
+      safePreviousBoardSnapshot,
       safeMessage,
-      !!classKey,
+      !!classKey && !!safeBoardSnapshot,
     );
     const awarenessContext = renderAwarenessFlags(
       awarenessFlags,
-      (body.boardSnapshot ?? null) as BoardSnapshot | null,
+      safeBoardSnapshot,
     );
 
     const systemPrompt = buildSystemPrompt(

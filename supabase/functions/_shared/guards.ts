@@ -413,6 +413,10 @@ export function sanitizeCircuitState(circuitState: unknown): unknown {
   return deepSanitize(circuitState, 0);
 }
 
+// UNLIM Slice 1B+ sanitizer moved to `sanitize-board-snapshot.ts` (pure ESM
+// module) so vitest can test it without the Deno https: imports this file uses
+// for Supabase. See `_shared/sanitize-board-snapshot.ts` for sanitizeBoardSnapshot.
+
 // ── Experiment ID Validation ──
 
 export function validateExperimentId(id: string | null | undefined): string | null {

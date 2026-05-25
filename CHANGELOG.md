@@ -1,3 +1,48 @@
+## [fix(unlim) — Slice 1B+1C hardening post code review (C1+C2+H1+H2+H3+H4+M2)] — 2026-05-25
+
+Hardening post adversarial code review 2026-05-25 (code-reviewer agent + systematic-debugging skill, Iron Law: ROOT CAUSE before fix). 6 blocker (2 CRITICAL + 4 HIGH) + 1 MEDIUM risolti. Verdict pre-fix: ACCEPT_WITH_FIXES → post-fix: ACCEPT.
+
+### Root cause pattern (systematic-debugging Phase 1)
+
+4 di 6 blocker hanno radice in **incomplete verification of preconditions before integration**:
+- C1+C2: pattern blindness security — bypassato esistente sanitizer pattern (`sanitizeMessage`, `sanitizeCircuitState`) per nuovi client-trusted body field
+- H3: assumption-without-verification — scritto consumer `drawingHash` senza grep producer (non esiste)
+- H4: snapshot semantics — buildBoardSnapshot assegna ref array invece copia → simulator mutate in-place tra turni invalida diff
+
+2 di 6 in **incomplete control-flow reading**:
+- H1: wired solo main sendChat branch (line 1175), bypassato vision (analyzeImage line 1087+1363) e direct-operational
+- H2: `returning_class` UNCONDITIONAL fuori dal guard `if (hasPrev && current)` — letto Slice 1A ma missed line 150
+
+### Added
+- `supabase/functions/_shared/sanitize-board-snapshot.ts` (94 LOC, NEW pure ESM module) — `sanitizeBoardSnapshot(input)` defense-in-depth contro C1 (prompt injection) + C2 (DoS). Estratto da `guards.ts` come pure module senza Deno https: imports per essere testabile da vitest. Mitigazioni: strip pattern `ignore previous instructions`/`you are now`/`system prompt`/`[SYSTEM]`/`[ADMIN]`/`[INST]`/`<\|...\|>`, zero-width chars (U+200B-U+200F + U+FEFF) anti-evasione, cap MAX_DEPTH=10 / MAX_STRING_LENGTH=500 / MAX_ARRAY_SIZE=50, strip unknown types (function, symbol).
+- `tests/unit/sanitize-board-snapshot.test.js` (NEW, 19 test) — copertura completa: null/garbage handling (5 test), C1 injection defense (6 test su pattern + length cap), C2 array-size + recursion cap (4 test), non-string type preservation (3 test). CoV 3/3 stabile.
+
+### Changed
+- `supabase/functions/unlim-chat/index.ts` — import `sanitizeBoardSnapshot` da nuovo modulo pure. **H2 fix**: `hasClassMemory` gated by snapshot presence (`!!classKey && !!safeBoardSnapshot`) — legacy client senza boardSnapshot → systemPrompt invariata (backward-compat invariant ora vera). **C1+C2 fix**: sanitize input PRIMA di passare a `computeAwarenessFlags`.
+- `supabase/functions/_shared/guards.ts` — sanitizer extracted to pure module sibling, replaced with comment pointer.
+- `src/components/lavagna/useGalileoChat.js`:
+  - **H4 mutation safety**: `buildBoardSnapshot` ora usa `.map()` per estrarre tuple {id, type} / {from, to} — PII-minimal + mutation-safe vs simulator in-place array changes.
+  - **H3 honest scope**: `drawingHash` passato sempre `null` (producer non esiste in `src/services/`, deferred Slice 1D). Param mantenuto in signature per forward-compat.
+  - **H1 fix**: nuovo helper `collectCurrentBoardSnapshot(circuitStateRef, simulatorContext, activeExp)` riusato da MAIN send path + 2 vision path (analyzeImage line 1087+1363) — boardSnapshot ora attraversa TUTTI i 3 chat branch.
+  - **M2 fix**: `previousBoardSnapshotRef.current = currentBoardSnapshot` advance UNCONDITIONAL post-sendChat (era gated da `result.success` → failed turn lasciava stale ref → false-positive flag su next turn).
+- `src/services/api.js` `analyzeImage` — accept `boardSnapshot` + `previousBoardSnapshot` in options, forward in internal `sendChat` fallback (vision-path turns now carry awareness signals).
+
+### Verifica CoV + anti-regressione (post-hardening)
+- **CoV 3× full vitest run IDENTICI**: 14993 pass | 15 skip | 11 todo | 0 fail (411 file). Durations 415s / 334s / 939s (cache + system load variance). Zero flakiness.
+- **Delta baseline**: 14974 (Slice 1C pre-hardening) → 14993 (+19 sanitizer test). Anti-regressione: nessun decrement, +19 test net.
+- **Targeted hardening suite (4 file)**: 74/74 PASS — 46 awareness-flags (Slice 1A intatti) + 19 sanitizer (C1+C2 mitigation verified) + 9 wire (Slice 1C contract) + 0 broken.
+- **Build**: `npm run build` exit 0 PASS (PWA 27 entries 1968 KiB).
+
+### Deferred (non-blocker, Slice 1D scope)
+- **drawingHash producer**: implement in `unlimContextCollector.js` — compute fast non-crypto hash dei drawing path data, expose come `simulatorContext.drawingHash`. Runbook flow 6 da rewriting post-implement.
+- **Edge Function structured logging** `awareness_flags_present` event per observability.
+- **Client debug UI badge** che mostra awareness flag attivi (DEV-only).
+
+### Code review report
+Reviewer: `code-reviewer:code-reviewer` agent (independent adversarial). Findings detail in commit message Slice 1B/1C + PR #166 review thread. Status post-hardening: **ACCEPT** (verdict updated from ACCEPT_WITH_FIXES).
+
+---
+
 ## [feat(unlim) — Slice 1C client wire-up + deploy runbook] — 2026-05-25
 
 Terzo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Cabla la raccolta di `boardSnapshot` lato client React in `useGalileoChat.js` + `sendChat` (`services/api.js`) per inviare gli snapshot all'Edge Function `unlim-chat` (Slice 1B server-side già wired su `feat/unlim-slice-1b-pipeline-wireup`, commit f7a71b0f, PR #166). End-to-end: cliente raccoglie snapshot strutturale → server compute 8 flag awareness → render iniettato in systemPrompt LLM → UNLIM riceve "Segnali di attenzione: ..." come segnali strutturati.

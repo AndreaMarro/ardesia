@@ -912,6 +912,15 @@ export const __test__ = {
 // Mirrors the BoardSnapshot shape consumed by supabase/functions/_shared/awareness-flags.ts
 // Defensive: any input may be null/undefined; never throws. Returns a normalized object
 // the server can safely diff (computeAwarenessFlags handles null/undefined fields).
+// Slice 1C BoardSnapshot builder — hardened post code review 2026-05-25:
+// - H4 mutation safety: .map() to NEW objects with ONLY {id, type} / {from, to} —
+//   prevents simulator in-place array mutation from invalidating previousRef diff.
+// - H3 drawingHash: producer not yet implemented in src/services/. Caller passes
+//   null until Slice 1D adds hash compute in unlimContextCollector. Param kept
+//   for forward-compat to avoid signature break when Slice 1D lands.
+// - PII-minimal: extracted tuples carry ONLY id+type / from+to fields; any
+//   additional simulator metadata (positions, colors) is discarded — server's
+//   circuitSignature only needs id+type / from+to anyway.
 function buildBoardSnapshot(circuitState, experimentId, step, compileStatus, compileMessage, drawingHash) {
   let components = [];
   let connections = [];
@@ -919,17 +928,19 @@ function buildBoardSnapshot(circuitState, experimentId, step, compileStatus, com
   try {
     const cs = circuitState && typeof circuitState === 'object' ? circuitState : null;
     const structured = cs?.structured && typeof cs.structured === 'object' ? cs.structured : null;
-    if (structured) {
-      if (Array.isArray(structured.components)) components = structured.components;
-      if (Array.isArray(structured.connections)) connections = structured.connections;
-      else if (Array.isArray(structured.wires)) connections = structured.wires;
-      if (Array.isArray(structured.errors)) errors = structured.errors;
-    } else if (cs && !cs.text) {
-      // Direct circuit object (no structured/text wrapper) — best-effort harvest.
-      if (Array.isArray(cs.components)) components = cs.components;
-      if (Array.isArray(cs.connections)) connections = cs.connections;
-      else if (Array.isArray(cs.wires)) connections = cs.wires;
-      if (Array.isArray(cs.errors)) errors = cs.errors;
+    const source = structured || (cs && !cs.text ? cs : null);
+    if (source) {
+      if (Array.isArray(source.components)) {
+        components = source.components.map(c => ({ id: c?.id ?? null, type: c?.type ?? null }));
+      }
+      const conn = Array.isArray(source.connections) ? source.connections
+        : (Array.isArray(source.wires) ? source.wires : null);
+      if (conn) {
+        connections = conn.map(c => ({ from: c?.from ?? null, to: c?.to ?? null }));
+      }
+      if (Array.isArray(source.errors)) {
+        errors = source.errors.slice().filter(e => typeof e === 'string');
+      }
     }
   } catch { /* defensive: leave arrays empty */ }
   return {
@@ -940,6 +951,29 @@ function buildBoardSnapshot(circuitState, experimentId, step, compileStatus, com
     compileStatus: compileStatus ?? null,
     compileMessage: compileMessage ?? null,
   };
+}
+
+// Slice 1C helper — single source of truth for snapshot collection.
+// Used by main send path + vision (analyzeImage) paths to ensure consistent
+// boardSnapshot wire across ALL chat routes (H1 fix: vision path was bypassed).
+// Defensive try/catch → null fallback (server tolerates null per Slice 1B).
+function collectCurrentBoardSnapshot(circuitStateRef, simulatorContext, activeExp) {
+  try {
+    const stepValue = simulatorContext?.currentStep
+      ?? simulatorContext?.step
+      ?? simulatorContext?.buildStep?.current
+      ?? null;
+    return buildBoardSnapshot(
+      circuitStateRef?.current ?? null,
+      activeExp?.id ?? null,
+      stepValue,
+      simulatorContext?.compileStatus ?? null,
+      simulatorContext?.compileMessage ?? null,
+      null, // H3: drawingHash producer = Slice 1D. Always null until implemented.
+    );
+  } catch {
+    return null;
+  }
 }
 
 // ══════════════════════════════════════
@@ -1084,13 +1118,21 @@ export default function useGalileoChat() {
         const dataUrl = latestVisual?.dataUrl || await api?.captureScreenshot?.();
         if (dataUrl) {
           const simulatorContext = collectFullContext();
+          // H1 fix: forward boardSnapshot through vision path (was bypassed pre-2026-05-25).
+          const visionApi = typeof window !== 'undefined' && window.__ELAB_API;
+          const visionActiveExp = visionApi?.getActiveExperiment?.() || visionApi?.getCurrentExperiment?.();
+          const visionBoardSnapshot = collectCurrentBoardSnapshot(circuitStateRef, simulatorContext, visionActiveExp);
           const visionResult = await analyzeImage(dataUrl, userMessage, {
             circuitState: circuitStateRef.current,
             simulatorContext,
             preferProvider: 'pixtral',
             aiProfile: 'pixtral_total',
             aiDepth: 'total',
+            boardSnapshot: visionBoardSnapshot,
+            previousBoardSnapshot: previousBoardSnapshotRef.current,
           });
+          // Advance ref for vision-path turn (M2 unconditional advance).
+          previousBoardSnapshotRef.current = visionBoardSnapshot;
           if (visionResult.success) {
             const cleaned = sanitizeOutput(typeof visionResult.response === 'string' ? visionResult.response : JSON.stringify(visionResult.response));
             setMessages(prev => [...prev, {
@@ -1213,31 +1255,10 @@ export default function useGalileoChat() {
 
     const activeExp = api?.getActiveExperiment?.() || api?.getCurrentExperiment?.();
 
-    // ── Slice 1C: collect BoardSnapshot for server-side awareness-flags ──
-    // Defensive: ANY error falls back to null. Server tolerates null (Slice 1B
-    // returns "" from renderAwarenessFlags → systemPrompt unchanged → backward compat).
-    let currentBoardSnapshot = null;
-    try {
-      const api2 = typeof window !== 'undefined' && window.__ELAB_API;
-      const activeExp2 = api2?.getActiveExperiment?.() || api2?.getCurrentExperiment?.();
-      const drawingHash = simulatorContext?.drawing?.hash ?? simulatorContext?.drawingHash ?? null;
-      const compileStatus = simulatorContext?.compileStatus ?? null;
-      const compileMessage = simulatorContext?.compileMessage ?? null;
-      const stepValue = simulatorContext?.currentStep
-        ?? simulatorContext?.step
-        ?? simulatorContext?.buildStep?.current
-        ?? null;
-      currentBoardSnapshot = buildBoardSnapshot(
-        circuitStateRef.current,
-        activeExp2?.id ?? activeExp?.id ?? null,
-        stepValue,
-        compileStatus,
-        compileMessage,
-        drawingHash,
-      );
-    } catch {
-      currentBoardSnapshot = null;
-    }
+    // Slice 1C: collect BoardSnapshot via helper (also used by vision paths
+    // for consistent wire — H1 code review fix). Helper handles defensive
+    // try/catch + null fallback internally.
+    const currentBoardSnapshot = collectCurrentBoardSnapshot(circuitStateRef, simulatorContext, activeExp);
 
     const result = await sendChat(userMessage, [], {
       socraticMode: true,
@@ -1253,9 +1274,13 @@ export default function useGalileoChat() {
       previousBoardSnapshot: previousBoardSnapshotRef.current,
     });
 
+    // Slice 1C M2 fix (code review 2026-05-25): advance snapshot ref UNCONDITIONALLY
+    // after sendChat — the UI failure does not undo the board state the user is
+    // looking at. Without this, a failed turn leaves the ref stale and next
+    // successful turn diffs against an older state → false positives on flags.
+    previousBoardSnapshotRef.current = currentBoardSnapshot;
+
     if (result.success) {
-      // Slice 1C: advance snapshot ref so next turn diffs against this turn.
-      previousBoardSnapshotRef.current = currentBoardSnapshot;
       logLatency({
         latency_ms: Date.now() - requestStartedAt,
         ok: true,
@@ -1360,11 +1385,25 @@ export default function useGalileoChat() {
         image: displayDataUrl || undefined,
       }]);
 
+      // H1 fix: forward boardSnapshot through explicit vision analyze path.
+      const visionSimContext = collectFullContext();
+      const visionApi2 = typeof window !== 'undefined' && window.__ELAB_API;
+      const visionActiveExp2 = visionApi2?.getActiveExperiment?.() || visionApi2?.getCurrentExperiment?.();
+      const explicitVisionBoardSnapshot = collectCurrentBoardSnapshot(circuitStateRef, visionSimContext, visionActiveExp2);
       const result = await analyzeImage(
         images,
         userMessage || 'Analizza questa schermata del simulatore e dimmi se vedi qualcosa di sbagliato o se va tutto bene.',
-        { circuitState: circuitStateRef.current, simulatorContext: collectFullContext(), preferProvider: 'pixtral', aiProfile: 'pixtral_total', aiDepth: 'total' }
+        {
+          circuitState: circuitStateRef.current,
+          simulatorContext: visionSimContext,
+          preferProvider: 'pixtral',
+          aiProfile: 'pixtral_total',
+          aiDepth: 'total',
+          boardSnapshot: explicitVisionBoardSnapshot,
+          previousBoardSnapshot: previousBoardSnapshotRef.current,
+        }
       );
+      previousBoardSnapshotRef.current = explicitVisionBoardSnapshot;
 
       if (result.success) {
         const cleaned = sanitizeOutput(typeof result.response === 'string' ? result.response : JSON.stringify(result.response));
