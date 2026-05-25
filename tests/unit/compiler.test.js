@@ -157,13 +157,102 @@ describe('compileArduinoCode — edge cases', () => {
   it('normalizes code for hash comparison (strips comments)', async () => {
     const { compileCode } = await import('../../src/services/api.js');
     compileCode.mockResolvedValue({ success: true, hex: ':NORM', size: 10 });
-    
+
     const code1 = 'void setup() { x(); } // comment\nvoid loop() {}';
     const code2 = 'void setup() { x(); }\nvoid loop() {}';
-    
+
     await compileArduinoCode(code1);
     const result2 = await compileArduinoCode(code2);
     // Same normalized code should use cache
     expect(result2.source).toBe('cache');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────
+// iter X.1.6 — fetchHexFile defensive Intel HEX validation
+// Spec PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 item 6 + Sez 20 item 3.
+// fetchHexFile usa validateIntelHex per rifiutare pre-compiled HEX malformato
+// (deploy bug / SW cache corruption / CDN tampering).
+// ─────────────────────────────────────────────────────────────
+
+describe('fetchHexFile — Intel HEX validation (iter X.1.6)', () => {
+  // Builder per generare codice SEMAFORO con var unica → bust sessionCache cross-test
+  const semaforoCode = (unique) => `void setup() {
+    int marker_${unique} = ${unique};
+    pinMode(5, OUTPUT);
+    pinMode(6, OUTPUT);
+    pinMode(3, OUTPUT);
+  }
+  void loop() {
+    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+    digitalWrite(3, HIGH);
+  }`;
+
+  // Valid Intel HEX: EOF-only (smallest valid file)
+  const VALID_HEX = ':00000001FF\n';
+
+  // Valid Intel HEX: 4 data bytes 0x00 at addr 0x0000 + EOF
+  const VALID_HEX_4BYTES = ':0400000000000000FC\n:00000001FF\n';
+
+  // Bad checksum: same data but CC=FF (wrong)
+  const INVALID_CHECKSUM = ':0400000000000000FF\n:00000001FF\n';
+
+  // Not Intel HEX at all (HTML 404 page)
+  const NOT_HEX = '<!DOCTYPE html>\n<html><body>404 Not Found</body></html>';
+
+  it('accepts valid Intel HEX via FAST_PRECOMPILED_MATCHERS path', async () => {
+    global.fetch = vi.fn(() => Promise.resolve({
+      ok: true,
+      text: () => Promise.resolve(VALID_HEX),
+    }));
+    const result = await compileArduinoCode(semaforoCode(1));
+    expect(result.success).toBe(true);
+    expect(result.source).toBe('precompiled');
+    expect(result.hex).toBe(VALID_HEX);
+  });
+
+  it('rejects malformed HEX (bad checksum) → falls through to remote', async () => {
+    global.fetch = vi.fn(() => Promise.resolve({
+      ok: true,
+      text: () => Promise.resolve(INVALID_CHECKSUM),
+    }));
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode.mockResolvedValue({ success: true, hex: ':REMOTE', size: 50 });
+
+    const result = await compileArduinoCode(semaforoCode(2));
+    expect(result.source).toBe('remote');
+    expect(result.hex).toBe(':REMOTE');
+  });
+
+  it('rejects non-HEX content (HTML 404) → falls through', async () => {
+    global.fetch = vi.fn(() => Promise.resolve({
+      ok: true,
+      text: () => Promise.resolve(NOT_HEX),
+    }));
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode.mockResolvedValue({ success: true, hex: ':REMOTE2', size: 50 });
+
+    const result = await compileArduinoCode(semaforoCode(3));
+    expect(result.source).toBe('remote');
+  });
+
+  it('accepts multi-record valid HEX (4 data bytes + EOF)', async () => {
+    global.fetch = vi.fn(() => Promise.resolve({
+      ok: true,
+      text: () => Promise.resolve(VALID_HEX_4BYTES),
+    }));
+    const result = await compileArduinoCode(semaforoCode(4));
+    expect(result.success).toBe(true);
+    expect(result.source).toBe('precompiled');
+  });
+
+  it('handles fetch !ok (404/500) unchanged — returns null fallthrough', async () => {
+    global.fetch = vi.fn(() => Promise.resolve({ ok: false, status: 404 }));
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode.mockResolvedValue({ success: true, hex: ':R404', size: 30 });
+
+    const result = await compileArduinoCode(semaforoCode(5));
+    expect(result.source).toBe('remote');
   });
 });

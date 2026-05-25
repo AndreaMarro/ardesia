@@ -10,6 +10,8 @@
 
 import { compileCode as remoteCompileCode } from './api.js';
 import { getCachedHex, setCachedHex } from '../components/simulator/utils/compileCache.js';
+import { validateIntelHex, NANO_R4_FLASH_BYTES } from '../utils/intelHexValidator.js';
+import logger from '../utils/logger.js';
 
 // ─────────────────────────────────────────────────────────────
 // Pre-compiled HEX manifest
@@ -338,8 +340,20 @@ async function fetchHexFile(hexPath) {
   const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
   if (!response.ok) return null;
   const text = await response.text();
-  // Validate it looks like Intel HEX
-  if (!text.startsWith(':')) return null;
+
+  // Defensive Intel HEX validation (iter X.1.6, spec Sez 4 item 6 + Sez 20 item 3).
+  // Pre-compiled HEX files are built via arduino-cli at deploy time and served as
+  // static assets. Validation catches:
+  //   - deploy bug (broken HEX shipped)
+  //   - ServiceWorker cache corruption
+  //   - CDN tampering (defense in depth)
+  // Cap = Nano R4 flash (256 KB) since pre-compiled targets primarily Nano R4
+  // (vedi PRECOMPILED_HEX map: v3-cap6-* + v3-cap7-* + v3-cap8-*).
+  const validation = validateIntelHex(text, { maxBytes: NANO_R4_FLASH_BYTES });
+  if (!validation.valid) {
+    logger.warn(`fetchHexFile: HEX malformato per ${hexPath} — ${validation.error}`);
+    return null;
+  }
   return text;
 }
 
