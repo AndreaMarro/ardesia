@@ -29,7 +29,9 @@ Rendere produzione-ready il cross-compilatore Blockly↔C++↔HEX↔Arduino in T
 
 - [x] **Iter X.1 — Phase 0 plan + worktree setup** (2026-05-25) — plan doc + worktree + Andrea decisioni queue
 - [x] **Iter X.1.5 — Pilot atom intelHexValidator** (2026-05-25) — Sez 4 item 6 + Sez 20 item 3, commit `1ad9d13f`, 19 test PASS + CoV 3× IDENTICAL + utils suite 99/99 no regression
-- [ ] **Iter X.2 — Wave 1 parallel** — Impl-A Toolbox-IT + Impl-B Codegen-CodeSync + Impl-C Compile (consumer wire intelHexValidator) + Impl-G Tests
+- [x] **Iter X.1.6 — Consumer wire intelHexValidator in compiler.js** (2026-05-25) — fetchHexFile validateIntelHex({maxBytes:NANO_R4_FLASH_BYTES}), defensive deploy/SW cache/CDN tampering, commit `2e6b7cf3`, +5 test compiler.test.js (25 totali), CoV 3× IDENTICAL 139/139 across 7 suite
+- [x] **Iter X.1.7 — C4 architecture doc** (2026-05-25) — `docs/architectures/blockly-arduino-cross-compiler.md` 3 livelli C4 + decision log 6 entry + anti-pattern list 7 voci, commit `97e8a295` (Sez 22 deliverable)
+- [ ] **Iter X.2 — Wave 1 parallel** — Impl-A Toolbox-IT + Impl-B Codegen-CodeSync + Impl-C Compile (extra wire compile latency telemetry + RAM report) + Impl-G Tests (E2E v3-cap6-esp4+esp5 full cycle)
 - [ ] **Iter X.3 — Wave 2 parallel** — Impl-D Upload-WebSerial + Impl-E UNLIM-HomePage + Impl-F UNLIM-Vol3 + Impl-H A11y-Polish
 - [ ] **Iter X.4 — Verify** — CoV 3× + npm run build × 2 + axe-core 0 + E2E v3-cap6-esp4+esp5 full cycle
 - [ ] **Iter X.5 — Codex adversarial Phase 3** — HIGH bug hunt + fix
@@ -142,7 +144,7 @@ Rendere produzione-ready il cross-compilatore Blockly↔C++↔HEX↔Arduino in T
 - [ ] Loading spinner Oswald (palette Navy)
 - [ ] Compile button states: idle / compiling / success / error
 - [ ] Error response parser: file/line/col/message
-- [x] HEX bytes validation (Intel HEX format checksum) — **DONE 2026-05-25 pilot atom `1ad9d13f` `src/utils/intelHexValidator.js` + 19 test + CoV 3×. Consumer wire compiler.js pending Iter X.2 Impl-C.**
+- [x] HEX bytes validation (Intel HEX format checksum) — **DONE 2026-05-25 pilot atom `1ad9d13f` `src/utils/intelHexValidator.js` + 19 test + CoV 3×. Consumer wire `2e6b7cf3` compiler.js fetchHexFile (iter X.1.6).**
 - [ ] Compilation size warning > 28KB (ATmega328p limit)
 - [ ] RAM usage report
 - [ ] Compile cache: hash(C++) → HEX (skip recompile identical)
@@ -314,7 +316,7 @@ Rendere produzione-ready il cross-compilatore Blockly↔C++↔HEX↔Arduino in T
 ### 20. Sicurezza
 - [ ] C++ source size limit 100KB pre-POST n8n (DoS guard)
 - [ ] No eval client-side (parser custom)
-- [x] HEX binary validation Intel HEX checksum + size cap 32KB — **DONE 2026-05-25 pilot atom `1ad9d13f` (cap configurabile, default ATMEGA328P 32KB, NANO_R4 256KB const).**
+- [x] HEX binary validation Intel HEX checksum + size cap 32KB — **DONE 2026-05-25 pilot atom `1ad9d13f` (cap configurabile, default ATMEGA328P 32KB, NANO_R4 256KB const). Consumer wire `2e6b7cf3` fetchHexFile usa NANO_R4_FLASH_BYTES (iter X.1.6).**
 - [ ] Web Serial scope only Arduino VID/PID
 - [ ] XSS prevention C++ display: escape HTML in code panel
 - [ ] CORS n8n endpoint corretto
@@ -437,4 +439,5 @@ Rendere produzione-ready il cross-compilatore Blockly↔C++↔HEX↔Arduino in T
 
 - **2026-05-25 17:00 GMT+2** — initial spec creation (382 righe, 23 sezioni, 8-agent matrix)
 - **2026-05-25 17:20 GMT+2** — Phase 0 execution: aggiunta EXECUTION TRACKING section + iter progress checkbox + plan doc cross-link + pilot atom marked DONE (Sez 4 item 6 + Sez 20 item 3) + 4 decisioni Andrea queue + SUCCESS CRITERIA tracking inline + changelog
+- **2026-05-25 17:35 GMT+2** — Iter X.1.6 + X.1.7 ship: consumer wire intelHexValidator in compiler.js fetchHexFile (commit `2e6b7cf3`, +5 test, CoV 3× 139/139 zero regression) + C4 architecture doc 3 livelli + decision log 6 entry + anti-pattern list 7 voci (commit `97e8a295`, Sez 22 deliverable). Sez 4 item 6 + Sez 20 item 3 marked DONE end-to-end. Iter X.1 → X.1.7 progressivo.
 - _(next iter aggiornamenti qui)_
