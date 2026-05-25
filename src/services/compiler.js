@@ -9,7 +9,96 @@
  */
 
 import { compileCode as remoteCompileCode } from './api.js';
-import { getCachedHex, setCachedHex } from '../components/simulator/utils/compileCache.js';
+import {
+  getCachedHex,
+  setCachedHex,
+  recordCompileMetric,
+  getCompileMetrics,
+  resetCompileMetrics,
+} from '../components/simulator/utils/compileCache.js';
+import {
+  validateIntelHex,
+  NANO_R4_FLASH_BYTES,
+  ATMEGA328P_FLASH_BYTES,
+} from '../utils/intelHexValidator.js';
+import logger from '../utils/logger.js';
+
+// ─────────────────────────────────────────────────────────────
+// Wave 1b Impl-C-2 — RAM report + size warning thresholds
+// Spec source: PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 items 1-2
+// ─────────────────────────────────────────────────────────────
+
+/** ATmega328p size warn threshold: 28KB out of 32KB flash. */
+const ATMEGA328P_SIZE_WARN_BYTES = 28 * 1024;
+
+/** Nano R4 (Renesas) size warn threshold: 90% of 256KB flash. */
+const NANO_R4_SIZE_WARN_BYTES = Math.floor(NANO_R4_FLASH_BYTES * 0.9);
+
+/** RAM warn threshold: 90% (applies to all boards). */
+const RAM_WARN_PERCENT = 90;
+
+/**
+ * Parse arduino-cli stdout for the canonical RAM usage line.
+ * Pattern: `RAM:   [...]  XX% (used Y bytes of Z)` (whitespace tolerant).
+ *
+ * @param {string} stdout - arduino-cli stdout/output text
+ * @returns {{ used: number, total: number, percent: number } | null}
+ */
+export function parseRamReport(stdout) {
+  if (typeof stdout !== 'string' || stdout.length === 0) return null;
+  // RAM:   [== ]  21% (used 432 bytes of 2048)
+  const re = /RAM:[^\d%]*(\d+)\s*%\s*\(used\s+(\d+)\s+bytes\s+of\s+(\d+)\)/i;
+  const m = stdout.match(re);
+  if (!m) return null;
+  return {
+    used: Number(m[2]),
+    total: Number(m[3]),
+    percent: Number(m[1]),
+  };
+}
+
+/**
+ * Compute size + RAM warning flags for a compile result.
+ * UI consumer (Wave 2) renders these; here we only SET the flag.
+ *
+ * @param {{ hexBytes: number, ramPercent: number|null, board?: string }} params
+ * @returns {string[]} warn flags subset of ['size-near-limit', 'ram-near-limit']
+ */
+export function evaluateSizeWarnings({ hexBytes, ramPercent, board }) {
+  const warn = [];
+  const isNanoR4 = typeof board === 'string' && /renesas|unor4|nanor4/i.test(board);
+  const sizeThreshold = isNanoR4 ? NANO_R4_SIZE_WARN_BYTES : ATMEGA328P_SIZE_WARN_BYTES;
+  if (typeof hexBytes === 'number' && hexBytes > sizeThreshold) {
+    warn.push('size-near-limit');
+  }
+  if (typeof ramPercent === 'number' && ramPercent >= RAM_WARN_PERCENT) {
+    warn.push('ram-near-limit');
+  }
+  return warn;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Compile telemetry — session counters (re-exported from compileCache)
+// Wave 1b Impl-C-2: counters live in compileCache.js (owned), wrapped here
+// to give compiler.js callers a single import surface.
+// ─────────────────────────────────────────────────────────────
+
+/**
+ * Snapshot of session-scoped compile telemetry.
+ * @returns {{ count: number, success: number, avgLatencyMs: number }}
+ */
+export function getCompileTelemetry() {
+  const m = getCompileMetrics();
+  return { count: m.count, success: m.success, avgLatencyMs: m.avgLatencyMs };
+}
+
+/** Reset compile telemetry. Test hook + session boundary helper. */
+export function resetCompileTelemetry() {
+  resetCompileMetrics();
+}
+
+// Reference threshold const so tests can introspect it (no behavior effect).
+void ATMEGA328P_FLASH_BYTES;
 
 // ─────────────────────────────────────────────────────────────
 // Pre-compiled HEX manifest
@@ -160,9 +249,40 @@ export function getLastCompileSource() {
  * @param {object} [options]
  * @param {string} [options.experimentId] — current experiment ID (for direct pre-compiled lookup)
  * @param {string} [options.board] — FQBN board string
- * @returns {Promise<{success: boolean, hex: string|null, errors: string|null, output: string|null, source: string, size?: number}>}
+ * @returns {Promise<{success: boolean, hex: string|null, errors: string|null, output: string|null, source: string, size?: number, ram?: {used:number,total:number,percent:number}|null, warn?: string[]}>}
  */
 export async function compileArduinoCode(code, options = {}) {
+  const t0 = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+  const result = await _compileArduinoCodeInner(code, options);
+  const latencyMs = Math.max(
+    0,
+    ((typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now()) - t0
+  );
+
+  // Wave 1b Impl-C-2: enrich result with ram + warn fields.
+  const ram = parseRamReport(result.output);
+  const hexBytes = typeof result.size === 'number'
+    ? result.size
+    : (result.hex ? Math.floor(result.hex.replace(/[^0-9a-fA-F]/g, '').length / 2) : 0);
+  const warn = evaluateSizeWarnings({
+    hexBytes,
+    ramPercent: ram ? ram.percent : null,
+    board: options.board,
+  });
+
+  // Wave 1b Impl-C-2: telemetry counter (fire-and-forget).
+  try {
+    recordCompileMetric({
+      success: !!result.success,
+      latencyMs,
+      ramPercent: ram ? ram.percent : null,
+    });
+  } catch { /* telemetry must not break compile flow */ }
+
+  return { ...result, ram, warn };
+}
+
+async function _compileArduinoCodeInner(code, options = {}) {
   const { experimentId, board } = options;
   const normalizedCode = normalizeCode(code);
   const codeHash = fnv1aHash(normalizedCode);
@@ -275,13 +395,34 @@ export async function compileArduinoCode(code, options = {}) {
   } catch { /* localStorage read error, continue to remote */ }
 
   // ── Step 3: Remote compilation (standalone → n8n → local dev) ──
-  // G40: retry con backoff (1 retry dopo 5s) per reti scolastiche instabili
-  // Note: remoteCompileCode catches internally and returns {success:false} —
-  // we must detect network failures from the result, not just from thrown errors
-  for (let attempt = 0; attempt < 2; attempt++) {
+  // Wave 1 Impl-C: exponential backoff schedule [1s, 2s] = 2 retries (3 total
+  // attempts). Retry ONLY on 5xx server errors or network throws. 4xx client
+  // errors (incl. syntax compile errors) bubble immediately — no retry.
+  // Spec: PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 item 2
+  // "Timeout 30s + retry 1× exponential backoff".
+  const RETRY_BACKOFF_MS = [1000, 2000];
+  const MAX_ATTEMPTS = RETRY_BACKOFF_MS.length + 1; // 3 total
+
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     try {
       const result = await remoteCompileCode(code, board);
       if (result.success && result.hex) {
+        // Wave 1b Impl-C-2: validate remote HEX response before returning.
+        // Defense in depth — catches n8n/proxy returning malformed HEX
+        // (e.g. truncated, HTML error page, bad checksum). Pre-compiled path
+        // already validates via fetchHexFile.
+        const remoteValidation = validateIntelHex(result.hex, { maxBytes: NANO_R4_FLASH_BYTES });
+        if (!remoteValidation.valid) {
+          logger.warn(`compileArduinoCode: remote HEX malformato — ${remoteValidation.error}`);
+          lastCompileSource = null;
+          return {
+            success: false,
+            hex: null,
+            errors: `Risposta del compilatore non valida: HEX malformato (${remoteValidation.error}). Riprova o usa il codice predefinito.`,
+            output: result.output || null,
+            source: 'remote',
+          };
+        }
         lastCompileSource = 'remote';
         const size = result.size || Math.floor(result.hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
         setCachedResult(codeHash, result.hex, size);
@@ -289,31 +430,37 @@ export async function compileArduinoCode(code, options = {}) {
         return { ...result, source: 'remote', size };
       }
 
-      // Distinguish syntax errors from network/server failures
-      // Network failures: no hex, errors contain connectivity keywords or source='none'
-      const isNetworkError = !result.hex && (
+      // Distinguish retriable (5xx / network) from non-retriable (4xx / syntax).
+      // remoteCompileCode catches HTTP internally and returns shape without
+      // status. Heuristics: source='none' OR connectivity keywords OR explicit
+      // 5xx in errors string. 4xx markers in errors → NO retry.
+      const errStr = result.errors || '';
+      const isClientError = /\b4\d{2}\b/.test(errStr); // 400, 401, 403, 404 …
+      const isServerError = /\b5\d{2}\b/.test(errStr); // 500, 502, 503, 504 …
+      const isNetworkError = !result.hex && !isClientError && (
+        isServerError ||
         result.source === 'none' ||
-        result.errors?.includes('non raggiungibile') ||
-        result.errors?.includes('non risponde') ||
-        result.errors?.includes('Failed to fetch') ||
-        result.errors?.includes('NetworkError') ||
-        result.errors?.includes('timeout')
+        errStr.includes('non raggiungibile') ||
+        errStr.includes('non risponde') ||
+        errStr.includes('Failed to fetch') ||
+        errStr.includes('NetworkError') ||
+        errStr.includes('timeout')
       );
 
       if (!isNetworkError) {
-        // Real compilation error (syntax etc.) — don't retry
+        // 4xx client error or syntax — don't retry
         lastCompileSource = null;
         return { ...result, source: 'remote' };
       }
 
-      // Network error — retry once after 5s
-      if (attempt === 0) {
-        await new Promise(r => setTimeout(r, 5000));
+      // 5xx / network — retry with exponential backoff if attempts remain
+      if (attempt < RETRY_BACKOFF_MS.length) {
+        await new Promise(r => setTimeout(r, RETRY_BACKOFF_MS[attempt]));
       }
     } catch {
-      // Hard JS exception (rare) — retry once after 5s
-      if (attempt === 0) {
-        await new Promise(r => setTimeout(r, 5000));
+      // Hard JS exception (network throw) — retry with exponential backoff
+      if (attempt < RETRY_BACKOFF_MS.length) {
+        await new Promise(r => setTimeout(r, RETRY_BACKOFF_MS[attempt]));
       }
     }
   }
@@ -338,8 +485,20 @@ async function fetchHexFile(hexPath) {
   const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
   if (!response.ok) return null;
   const text = await response.text();
-  // Validate it looks like Intel HEX
-  if (!text.startsWith(':')) return null;
+
+  // Defensive Intel HEX validation (iter X.1.6, spec Sez 4 item 6 + Sez 20 item 3).
+  // Pre-compiled HEX files are built via arduino-cli at deploy time and served as
+  // static assets. Validation catches:
+  //   - deploy bug (broken HEX shipped)
+  //   - ServiceWorker cache corruption
+  //   - CDN tampering (defense in depth)
+  // Cap = Nano R4 flash (256 KB) since pre-compiled targets primarily Nano R4
+  // (vedi PRECOMPILED_HEX map: v3-cap6-* + v3-cap7-* + v3-cap8-*).
+  const validation = validateIntelHex(text, { maxBytes: NANO_R4_FLASH_BYTES });
+  if (!validation.valid) {
+    logger.warn(`fetchHexFile: HEX malformato per ${hexPath} — ${validation.error}`);
+    return null;
+  }
   return text;
 }
 

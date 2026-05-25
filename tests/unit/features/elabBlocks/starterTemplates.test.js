@@ -5,10 +5,10 @@ import { generateArduinoCode } from '../../../../src/components/simulator/panels
 import { STARTER_TEMPLATES, getStarterXml, isValidStarterXml } from '../../../../src/features/elabBlocks/starterTemplates.js';
 
 describe('starterTemplates — Sub-project A iter 84 atom 6', () => {
-  it('T1: STARTER_TEMPLATES has 3 keys all with valid XML', () => {
+  it('T1: STARTER_TEMPLATES has at least 5 keys all with valid XML (Wave 1b expansion)', () => {
     const keys = Object.keys(STARTER_TEMPLATES);
     expect(keys).toEqual(expect.arrayContaining(['blink', 'button', 'sensor']));
-    expect(keys.length).toBe(3);
+    expect(keys.length).toBeGreaterThanOrEqual(5);
     for (const k of keys) {
       expect(isValidStarterXml(STARTER_TEMPLATES[k])).toBe(true);
     }
@@ -41,5 +41,19 @@ describe('starterTemplates — Sub-project A iter 84 atom 6', () => {
     expect(getStarterXml('unknown')).toBeNull();
     expect(getStarterXml('')).toBeNull();
     expect(getStarterXml(null)).toBeNull();
+  });
+
+  // Wave 1b regression fix #2: controls_if mutation else=1 required to preserve ELSE branch on hydrate
+  it('T4: button-led starter hydrates with BOTH HIGH and LOW digitalWrite branches (controls_if mutation)', () => {
+    const workspace = new Blockly.Workspace();
+    try {
+      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(getStarterXml('button-led')), workspace);
+      const code = generateArduinoCode(workspace);
+      expect(code).toContain('digitalWrite(13, HIGH);');
+      expect(code).toContain('digitalWrite(13, LOW);');
+      expect(code).toMatch(/else\s*\{/);
+    } finally {
+      workspace.dispose();
+    }
   });
 });

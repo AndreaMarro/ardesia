@@ -41,9 +41,20 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
     arduinoGenerator._lcdIncludes = false;
     arduinoGenerator._lcdPins = null;
     arduinoGenerator._lcdBegin = null;
+    arduinoGenerator._softwareSerialIncludes = false; // Wave 1b: SoftwareSerial.h auto-inject
+    arduinoGenerator._wireIncludes = false; // Wave 1b: Wire.h auto-inject for I2C
     arduinoGenerator._declaredVars = new Set(); // Reset variable declarations
     arduinoGenerator._globalVarDecls = new Map(); // S116: Global var declarations (name → type)
     arduinoGenerator._loopVarCounter = 0; // S116: Deterministic loop variable counter
+
+    // Wave 1 Impl-B: Walk workspace to collect GPIO pin usage BEFORE emitting setup.
+    // digitalWrite → OUTPUT, digitalRead → INPUT. OUTPUT wins when same pin used both ways.
+    const pinUsage = collectGpioPinUsage(block.workspace);
+
+    // Wave 1b Impl-B-2: Walk workspace once to detect future block types triggering
+    // SoftwareSerial / Wire library inclusion. Blocks not yet present in scratchBlocks
+    // — pre-wired hook so Wave 2 toolbox additions need ZERO codegen edits.
+    detectAuxIncludes(block.workspace);
 
     const setupCode = arduinoGenerator.statementToCode(block, 'SETUP') || '';
     const loopCode = arduinoGenerator.statementToCode(block, 'LOOP') || '';
@@ -62,6 +73,13 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
         header += '#include <LiquidCrystal.h>\n';
         header += `LiquidCrystal lcd(${p.rs}, ${p.e}, ${p.d4}, ${p.d5}, ${p.d6}, ${p.d7});\n\n`;
     }
+    // Wave 1b: emit SoftwareSerial / Wire headers when corresponding blocks detected
+    if (arduinoGenerator._softwareSerialIncludes) {
+        header += '#include <SoftwareSerial.h>\n\n';
+    }
+    if (arduinoGenerator._wireIncludes) {
+        header += '#include <Wire.h>\n\n';
+    }
     // S116: Emit global variable declarations (for Blockly variables used across setup/loop)
     if (arduinoGenerator._globalVarDecls.size > 0) {
         for (const [name, type] of arduinoGenerator._globalVarDecls) {
@@ -77,12 +95,74 @@ arduinoGenerator.forBlock['arduino_base'] = function (block) {
         lcdSetupCode = `  lcd.begin(${b.cols}, ${b.rows});\n`;
     }
 
+    // Wave 1 Impl-B: Emit pinMode() calls at start of setup based on collected pin usage.
+    // Stable sort: ascending pin number for deterministic output. Runs before user setup
+    // body so pins are configured before any user-side digitalWrite/digitalRead executes.
+    let pinModeSetupCode = '';
+    if (pinUsage && pinUsage.size > 0) {
+        const sortedPins = [...pinUsage.keys()].sort((a, b) => a - b);
+        for (const pin of sortedPins) {
+            pinModeSetupCode += `  pinMode(${pin}, ${pinUsage.get(pin)});\n`;
+        }
+    }
+
     return `${header}void setup() {
-${lcdSetupCode}${setupCode}}
+${pinModeSetupCode}${lcdSetupCode}${setupCode}}
 
 void loop() {
 ${loopCode}}`;
 };
+
+// Wave 1b Impl-B-2: detect block types that require auxiliary library headers
+// (SoftwareSerial.h, Wire.h for I2C). Blocks not yet wired in toolbox — pre-wired
+// hook future-proofs codegen when Wave 2 adds matching toolbox entries.
+function detectAuxIncludes(workspace) {
+    if (!workspace || typeof workspace.getAllBlocks !== 'function') return;
+    const allBlocks = workspace.getAllBlocks(false);
+    for (const b of allBlocks) {
+        if (!b || b.isInsertionMarker?.()) continue;
+        const t = b.type || '';
+        if (t.startsWith('arduino_software_serial') || t === 'arduino_softserial_begin') {
+            arduinoGenerator._softwareSerialIncludes = true;
+        }
+        if (t.startsWith('arduino_wire_') || t.startsWith('arduino_i2c_') || t === 'arduino_wire_begin') {
+            arduinoGenerator._wireIncludes = true;
+        }
+    }
+}
+
+// Wave 1 Impl-B: Walk workspace to discover digitalWrite/digitalRead pin usage.
+// Returns Map<pinNum:number, mode:'OUTPUT'|'INPUT'>. OUTPUT wins on conflict so
+// once any digitalWrite targets a pin, that pin stays OUTPUT even if digitalRead
+// also references it (Arduino convention: pinMode last-set wins, and a pin you
+// drive as OUTPUT should not silently fall back to INPUT just because you also
+// read its state programmatically).
+function collectGpioPinUsage(workspace) {
+    const usage = new Map();
+    if (!workspace || typeof workspace.getAllBlocks !== 'function') return usage;
+    const allBlocks = workspace.getAllBlocks(false);
+    for (const b of allBlocks) {
+        if (!b || b.isInsertionMarker?.()) continue;
+        if (b.type === 'arduino_digital_write') {
+            const pinRaw = b.getFieldValue('PIN');
+            const pin = parseInt(pinRaw, 10);
+            if (!Number.isNaN(pin)) {
+                // OUTPUT wins — always overwrite (or set if absent)
+                usage.set(pin, 'OUTPUT');
+            }
+        } else if (b.type === 'arduino_digital_read') {
+            const pinRaw = b.getFieldValue('PIN');
+            const pin = parseInt(pinRaw, 10);
+            if (!Number.isNaN(pin)) {
+                // INPUT only if pin not already marked OUTPUT
+                if (!usage.has(pin)) {
+                    usage.set(pin, 'INPUT');
+                }
+            }
+        }
+    }
+    return usage;
+}
 
 arduinoGenerator.forBlock['arduino_pin_mode'] = function (block) {
     const pin = block.getFieldValue('PIN');
@@ -289,6 +369,21 @@ arduinoGenerator.forBlock['text_join'] = function (block) {
         parts.push(`String(${arduinoGenerator.valueToCode(block, 'ADD' + i, arduinoGenerator.ORDER_ADDITION) || '""'})`);
     }
     return [parts.join(' + '), arduinoGenerator.ORDER_ADDITION];
+};
+
+// --- RGB LED --- //
+
+// Wave 1b regression fix: arduino_rgb_led block registered in scratchBlocks.js
+// (Impl-A canonical 16-cat toolbox d149bbf1) lacked generator. Emits three
+// analogWrite() calls for common-cathode RGB LED, one per channel (R/G/B).
+arduinoGenerator.forBlock['arduino_rgb_led'] = function (block) {
+    const pinR = block.getFieldValue('PIN_R');
+    const pinG = block.getFieldValue('PIN_G');
+    const pinB = block.getFieldValue('PIN_B');
+    const r = arduinoGenerator.valueToCode(block, 'R', arduinoGenerator.ORDER_ATOMIC) || '0';
+    const g = arduinoGenerator.valueToCode(block, 'G', arduinoGenerator.ORDER_ATOMIC) || '0';
+    const b = arduinoGenerator.valueToCode(block, 'B', arduinoGenerator.ORDER_ATOMIC) || '0';
+    return `  analogWrite(${pinR}, ${r});\n  analogWrite(${pinG}, ${g});\n  analogWrite(${pinB}, ${b});\n`;
 };
 
 // --- Tone / Buzzer --- //

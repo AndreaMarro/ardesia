@@ -206,36 +206,40 @@ const MinimalControlBar = (props) => {
 
   return (
     <div className="minimal-toolbar" role="toolbar" aria-label="Controlli simulatore">
-      {/* ── 1. PLAY/PAUSE — big, lime ── */}
+      {/* ── 1. PLAY / PAUSE / STOP — explicit 3-button cluster (Andrea 2026-05-26) ──
+          Split previous Play↔Pause toggle into two always-visible buttons + rename
+          Reset → Stop. Stop semantic = halt + reset state (Andrea ratify Stop=Reset). */}
       <div className="minimal-toolbar__primary">
         {isArduinoExperiment && (
-          isRunning ? (
+          <>
+            <button
+              className="minimal-toolbar__btn minimal-toolbar__btn--play"
+              onClick={onPlay}
+              disabled={isRunning}
+              title="Avvia simulazione (Spazio)"
+              aria-label="Play"
+              aria-pressed={isRunning ? 'true' : 'false'}
+            >
+              <PlayIcon />
+            </button>
             <button
               className="minimal-toolbar__btn minimal-toolbar__btn--play minimal-toolbar__btn--pause-state"
               onClick={onPause}
+              disabled={!isRunning}
               title="Metti in pausa (Spazio)"
               aria-label="Pausa"
             >
               <PauseIcon />
             </button>
-          ) : (
-            <button
-              className="minimal-toolbar__btn minimal-toolbar__btn--play"
-              onClick={onPlay}
-              title="Avvia simulazione (Spazio)"
-              aria-label="Avvia"
-            >
-              <PlayIcon />
-            </button>
-          )
+          </>
         )}
 
-        {/* Reset — small, next to play */}
+        {/* Stop — halt + reset state (Andrea ratified Stop=Reset semantic 2026-05-26). */}
         <button
           className="minimal-toolbar__btn minimal-toolbar__btn--reset"
           onClick={onReset}
-          title="Resetta simulazione"
-          aria-label="Azzera"
+          title="Ferma simulazione"
+          aria-label="Stop"
         >
           <ResetIcon />
         </button>

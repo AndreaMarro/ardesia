@@ -3,6 +3,7 @@ import * as Blockly from 'blockly';
 import { arduinoGenerator, generateArduinoCode } from './scratchGenerator';
 import logger from '../../../utils/logger';
 import './scratchBlocks';
+import { applyItalianMessages } from '../../../i18n/blockly-msg-it';
 import ScratchOnboarding from './ScratchOnboarding';
 import ScratchToolbar from './ScratchToolbar';
 import ScratchErrorOverlay from './ScratchErrorOverlay';
@@ -380,6 +381,12 @@ const ScratchEditor = ({ onChange, initialCode, compileError, onCompileErrorDism
         while (blocklyDiv.current.firstChild) {
             blocklyDiv.current.removeChild(blocklyDiv.current.firstChild);
         }
+
+        // iter X.2 Wave 1 Impl-A fix: apply 15 IT Blockly.Msg overrides INSIDE
+        // useEffect (before inject), NOT at module load — keeps test mocks
+        // working (mocks established after import, before useEffect runs).
+        // Idempotent — safe across hot reloads + re-mounts.
+        applyItalianMessages(Blockly);
 
         workspaceRef.current = Blockly.inject(blocklyDiv.current, {
             toolbox: TOOLBOX_XML,
