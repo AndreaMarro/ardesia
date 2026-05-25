@@ -98,8 +98,12 @@ describe('compileArduinoCode — remote fallback', () => {
   }, 15000);
 
   it('returns error after all retries exhausted', async () => {
+    // Wave 1 Impl-C: retry schedule [1s, 2s] = 3 total attempts
     const { compileCode } = await import('../../src/services/api.js');
-    compileCode.mockResolvedValueOnce({ success: false, hex: null, errors: 'timeout', source: 'none' }).mockResolvedValueOnce({ success: false, hex: null, errors: 'timeout', source: 'none' });
+    compileCode
+      .mockResolvedValueOnce({ success: false, hex: null, errors: 'timeout', source: 'none' })
+      .mockResolvedValueOnce({ success: false, hex: null, errors: 'timeout', source: 'none' })
+      .mockResolvedValueOnce({ success: false, hex: null, errors: 'timeout', source: 'none' });
 
     const result = await compileArduinoCode('void setup_retry_test(){} void loop(){}');
     expect(result.success).toBe(false);
@@ -255,4 +259,99 @@ describe('fetchHexFile — Intel HEX validation (iter X.1.6)', () => {
     const result = await compileArduinoCode(semaforoCode(5));
     expect(result.source).toBe('remote');
   });
+});
+
+// ─────────────────────────────────────────────────────────────
+// Wave 1 Impl-C — n8n compile retry with exponential backoff [1s, 2s]
+// Spec PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 item 2
+// "Timeout 30s + retry 1× exponential backoff".
+//
+// Behavior:
+//   - 5xx server error OR network throw → retry on schedule [1000, 2000] ms
+//   - 4xx client error → NO retry, immediate fail
+//   - Total attempts: 3 (initial + 2 retries)
+//
+// Fake-timer pattern: advanceTimersByTimeAsync to drive setTimeout backoff
+// without real-time wait.
+// ─────────────────────────────────────────────────────────────
+
+describe('compileArduinoCode — retry exponential backoff [1s, 2s] (Wave 1)', () => {
+  // Builder for unique code per test → bust sessionCache cross-test
+  const uniqueCode = (tag) => `void setup() {
+    int marker_${tag} = ${tag};
+  } void loop() {}`;
+
+  it('5xx then 200 success — retries after 1s, 2 fetch calls total (Test 6)', async () => {
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode
+      .mockResolvedValueOnce({ success: false, hex: null, errors: 'server error 503', source: 'remote' })
+      .mockResolvedValueOnce({ success: true, hex: ':00000001FF', size: 32 });
+
+    vi.useFakeTimers();
+    const promise = compileArduinoCode(uniqueCode('retry5xx'));
+    // Run any pending microtasks first (await remoteCompileCode call)
+    await vi.advanceTimersByTimeAsync(0);
+    // Advance through the 1s backoff
+    await vi.advanceTimersByTimeAsync(1000);
+    const result = await promise;
+    vi.useRealTimers();
+
+    expect(result.success).toBe(true);
+    expect(compileCode).toHaveBeenCalledTimes(2);
+  }, 30000);
+
+  it('5xx → 5xx → 200 — retries on [1s, 2s] schedule, 3 fetch calls (Test 7)', async () => {
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode
+      .mockResolvedValueOnce({ success: false, hex: null, errors: 'server error 503', source: 'remote' })
+      .mockResolvedValueOnce({ success: false, hex: null, errors: 'server error 503', source: 'remote' })
+      .mockResolvedValueOnce({ success: true, hex: ':00000001FF', size: 32 });
+
+    vi.useFakeTimers();
+    const promise = compileArduinoCode(uniqueCode('retry5xx7'));
+    await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(1000); // first backoff
+    await vi.advanceTimersByTimeAsync(2000); // second backoff
+    const result = await promise;
+    vi.useRealTimers();
+
+    expect(result.success).toBe(true);
+    expect(compileCode).toHaveBeenCalledTimes(3);
+  }, 30000);
+
+  it('network throw → 1× retry → throw again → bubble error (Test 8)', async () => {
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode
+      .mockRejectedValueOnce(new Error('NetworkError'))
+      .mockRejectedValueOnce(new Error('NetworkError'))
+      .mockRejectedValueOnce(new Error('NetworkError'));
+
+    vi.useFakeTimers();
+    const promise = compileArduinoCode(uniqueCode('retryThrow'));
+    await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(1000);
+    await vi.advanceTimersByTimeAsync(2000);
+    const result = await promise;
+    vi.useRealTimers();
+
+    expect(result.success).toBe(false);
+    // After all attempts exhausted, returns final unreachable message
+    expect(result.errors).toBeTruthy();
+    expect(compileCode).toHaveBeenCalledTimes(3);
+  }, 30000);
+
+  it('4xx client error → NO retry, immediate fail (Test 9)', async () => {
+    const { compileCode } = await import('../../src/services/api.js');
+    compileCode.mockResolvedValueOnce({ success: false, hex: null, errors: 'client error 400 bad request', source: 'remote' });
+
+    vi.useFakeTimers();
+    const promise = compileArduinoCode(uniqueCode('retry4xx'));
+    await vi.advanceTimersByTimeAsync(0);
+    const result = await promise;
+    vi.useRealTimers();
+
+    expect(result.success).toBe(false);
+    // Only ONE call — no retry on 4xx
+    expect(compileCode).toHaveBeenCalledTimes(1);
+  }, 30000);
 });

@@ -277,10 +277,15 @@ export async function compileArduinoCode(code, options = {}) {
   } catch { /* localStorage read error, continue to remote */ }
 
   // ── Step 3: Remote compilation (standalone → n8n → local dev) ──
-  // G40: retry con backoff (1 retry dopo 5s) per reti scolastiche instabili
-  // Note: remoteCompileCode catches internally and returns {success:false} —
-  // we must detect network failures from the result, not just from thrown errors
-  for (let attempt = 0; attempt < 2; attempt++) {
+  // Wave 1 Impl-C: exponential backoff schedule [1s, 2s] = 2 retries (3 total
+  // attempts). Retry ONLY on 5xx server errors or network throws. 4xx client
+  // errors (incl. syntax compile errors) bubble immediately — no retry.
+  // Spec: PROMPT-CROSSCOMPILATORE-BLOCKLY-DEFINITIVO.md Sez 4 item 2
+  // "Timeout 30s + retry 1× exponential backoff".
+  const RETRY_BACKOFF_MS = [1000, 2000];
+  const MAX_ATTEMPTS = RETRY_BACKOFF_MS.length + 1; // 3 total
+
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     try {
       const result = await remoteCompileCode(code, board);
       if (result.success && result.hex) {
@@ -291,31 +296,37 @@ export async function compileArduinoCode(code, options = {}) {
         return { ...result, source: 'remote', size };
       }
 
-      // Distinguish syntax errors from network/server failures
-      // Network failures: no hex, errors contain connectivity keywords or source='none'
-      const isNetworkError = !result.hex && (
+      // Distinguish retriable (5xx / network) from non-retriable (4xx / syntax).
+      // remoteCompileCode catches HTTP internally and returns shape without
+      // status. Heuristics: source='none' OR connectivity keywords OR explicit
+      // 5xx in errors string. 4xx markers in errors → NO retry.
+      const errStr = result.errors || '';
+      const isClientError = /\b4\d{2}\b/.test(errStr); // 400, 401, 403, 404 …
+      const isServerError = /\b5\d{2}\b/.test(errStr); // 500, 502, 503, 504 …
+      const isNetworkError = !result.hex && !isClientError && (
+        isServerError ||
         result.source === 'none' ||
-        result.errors?.includes('non raggiungibile') ||
-        result.errors?.includes('non risponde') ||
-        result.errors?.includes('Failed to fetch') ||
-        result.errors?.includes('NetworkError') ||
-        result.errors?.includes('timeout')
+        errStr.includes('non raggiungibile') ||
+        errStr.includes('non risponde') ||
+        errStr.includes('Failed to fetch') ||
+        errStr.includes('NetworkError') ||
+        errStr.includes('timeout')
       );
 
       if (!isNetworkError) {
-        // Real compilation error (syntax etc.) — don't retry
+        // 4xx client error or syntax — don't retry
         lastCompileSource = null;
         return { ...result, source: 'remote' };
       }
 
-      // Network error — retry once after 5s
-      if (attempt === 0) {
-        await new Promise(r => setTimeout(r, 5000));
+      // 5xx / network — retry with exponential backoff if attempts remain
+      if (attempt < RETRY_BACKOFF_MS.length) {
+        await new Promise(r => setTimeout(r, RETRY_BACKOFF_MS[attempt]));
       }
     } catch {
-      // Hard JS exception (rare) — retry once after 5s
-      if (attempt === 0) {
-        await new Promise(r => setTimeout(r, 5000));
+      // Hard JS exception (network throw) — retry with exponential backoff
+      if (attempt < RETRY_BACKOFF_MS.length) {
+        await new Promise(r => setTimeout(r, RETRY_BACKOFF_MS[attempt]));
       }
     }
   }
