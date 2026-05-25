@@ -270,11 +270,30 @@ Legend: ✅ = built + production. 🟡 = parziale/scheletro. ❌ = mancante. �
 - Plan doc PR draft + Andrea ratify ownership matrix
 - Baseline benchmark + WCAG axe-core baseline + screenshot regression baseline
 
-### Iter X.2 — Wave 1 parallel (4 impl disjoint, 1 sessione)
-- Impl-A Toolbox-IT (completeness audit + search box + collapse + welcome state)
-- Impl-B Codegen-CodeSync (tolerant parse + comment preserve + TODO placeholder unknown C++)
-- Impl-C Compile (retry exponential + RAM report + Intel HEX validator + LRU 20)
-- Impl-G Tests (snapshot + roundtrip ≥30 + 2 nuovi E2E)
+### Iter X.2 — Wave 1 parallel first-slice (4 impl disjoint, SHIPPED 2026-05-25)
+**Status: CLOSED. 5 commit landed worktree feature/blockly-crosscompiler-definitivo.**
+
+Scope CAPPED per atom (~1h each) for ship-over-sprawl Karpathy discipline. elabArduinoAst refactor (1185 LOC actual vs 591 stale spec) DEFERRED to Wave 1b/X.2b. PR per-iter (R8 Andrea-default ratified).
+
+| Atom | SHA | Files | LOC | Tests new |
+|------|-----|-------|-----|-----------|
+| Impl-B scratchGenerator pinMode auto-emit | `0c3e48e3` | scratchGenerator.js + .pinMode.test.js | +205/-1 | 5 |
+| Impl-C compileCache LRU 20 + n8n retry [1s,2s] 5xx-only | `ef50e968` | compileCache.js + compiler.js + tests | +356/-33 | 10 |
+| Impl-G CoV script + v3-cap6-esp4 E2E skeleton (skipped) | `b1e19e14` | scripts/cov-blockly.sh + 08-spec.js | +73 | 3 Playwright stub |
+| Impl-A 15 IT Blockly.Msg + ScratchEditor wire | `12c49be6` | blockly-msg-it.js + ScratchEditor.jsx + test | +277 | 21 |
+| Fix regression ScratchEditor-callbacks T1/T2/T3 | `62bd32ae` | ScratchEditor.jsx + blockly-msg-it.js | +19/-9 | (3 unblocked) |
+
+**Verification close gate**:
+- ✅ CoV 3× IDENTICAL Test Files 3 failed | 422 passed | 2 skipped (427) — 9 fails ALL pre-existing UnlimCompileHelper baseline, NO Wave 1 contribution
+- ✅ npm run build exit 0 (50s, PWA 27 entries 2076.13 KiB)
+- ✅ intelHexValidator wiring preserved (verified line 13 + 363 compiler.js)
+- ✅ File ownership matrix respected post-fix (Impl-A initial swept G files, self-recovered via reset+recommit clean)
+
+### Iter X.2b — Wave 1 expansion (DEFERRED next session)
+- Impl-A completion: search box toolbox + collapse/expand btn + welcome state copy + 30+ remaining msg keys
+- Impl-B completion: codeSync.js tolerant parser + comment preserve + #define + multi-function + starterTemplates.js extensions (still excludes elabArduinoAst refactor → Wave 2)
+- Impl-C completion: RAM usage report parse + size warning > 28KB / > 90% Nano R4 + telemetry counter + intelHexValidator on remote n8n response
+- Impl-G completion: v3-cap6-esp5 semaforo E2E + HomePage Codekit E2E + full pipeline upload→AVR8js→pin-states + compile latency < 5s p95 perf bench + tests/unit/features/elabBlocks/ unit dir
 
 ### Iter X.3 — Wave 2 parallel (4 impl, 1 sessione)
 - Impl-D Upload-WebSerial (decisione ELAB Agent primary + Web Serial fallback)

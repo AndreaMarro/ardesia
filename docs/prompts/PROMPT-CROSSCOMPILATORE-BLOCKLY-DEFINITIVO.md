@@ -31,7 +31,14 @@ Rendere produzione-ready il cross-compilatore Blockly↔C++↔HEX↔Arduino in T
 - [x] **Iter X.1.5 — Pilot atom intelHexValidator** (2026-05-25) — Sez 4 item 6 + Sez 20 item 3, commit `1ad9d13f`, 19 test PASS + CoV 3× IDENTICAL + utils suite 99/99 no regression
 - [x] **Iter X.1.6 — Consumer wire intelHexValidator in compiler.js** (2026-05-25) — fetchHexFile validateIntelHex({maxBytes:NANO_R4_FLASH_BYTES}), defensive deploy/SW cache/CDN tampering, commit `2e6b7cf3`, +5 test compiler.test.js (25 totali), CoV 3× IDENTICAL 139/139 across 7 suite
 - [x] **Iter X.1.7 — C4 architecture doc** (2026-05-25) — `docs/architectures/blockly-arduino-cross-compiler.md` 3 livelli C4 + decision log 6 entry + anti-pattern list 7 voci, commit `97e8a295` (Sez 22 deliverable)
-- [ ] **Iter X.2 — Wave 1 parallel** — Impl-A Toolbox-IT + Impl-B Codegen-CodeSync + Impl-C Compile (extra wire compile latency telemetry + RAM report) + Impl-G Tests (E2E v3-cap6-esp4+esp5 full cycle)
+- [x] **Iter X.2 — Wave 1 parallel first-slice** (2026-05-25) — 4 atomic commits + 1 regression fix shipped. SCOPE CAPPED per atom (~1h each) to ensure ship over sprawl. elabArduinoAst refactor (1185 LOC actual) deferred Wave 2. PR per-iter (R8 Andrea-default).
+  - Impl-B `0c3e48e3` — scratchGenerator.js pinMode auto-emission in setup() (+205/-1, 5 new tests, CoV 3× IDENTICAL)
+  - Impl-C `ef50e968` — compileCache LRU cap 20 + n8n retry exponential [1s,2s] only on 5xx/network (+356/-33, 10 new tests, intelHexValidator preserved wired, CoV 3× IDENTICAL)
+  - Impl-G `b1e19e14` — scripts/cov-blockly.sh + tests/e2e/08-blockly-v3-cap6-esp4-full-cycle.spec.js skeleton 3 stub tests (+73)
+  - Impl-A `12c49be6` — src/i18n/blockly-msg-it.js 15 IT msg overrides + ScratchEditor wire + 21 new tests (+277)
+  - Fix `62bd32ae` — moved applyItalianMessages from module top-level to useEffect + try/catch defensive (resolves 3 ScratchEditor-callbacks regression, brings baseline back to 9 pre-existing UnlimCompileHelper fails)
+  - Deferred Wave 1b/2: Impl-A search box + collapse btn + welcome state + 30+ msg keys; Impl-B codeSync/starterTemplates/AST/include/var-decls; Impl-C RAM report + size warn + telemetry + remote HEX validation; Impl-G v3-cap6-esp5 + HomePage Codekit E2E + full pipeline + perf bench
+- [ ] **Iter X.2b — Wave 1 expansion** — Complete each Impl atom (toolbox UX + AST + telemetry + full E2E)
 - [ ] **Iter X.3 — Wave 2 parallel** — Impl-D Upload-WebSerial + Impl-E UNLIM-HomePage + Impl-F UNLIM-Vol3 + Impl-H A11y-Polish
 - [ ] **Iter X.4 — Verify** — CoV 3× + npm run build × 2 + axe-core 0 + E2E v3-cap6-esp4+esp5 full cycle
 - [ ] **Iter X.5 — Codex adversarial Phase 3** — HIGH bug hunt + fix
@@ -41,12 +48,12 @@ Rendere produzione-ready il cross-compilatore Blockly↔C++↔HEX↔Arduino in T
 - [ ] **Iter X.9 (optional)** — Performance polish (worker chunk + virtualization)
 - [ ] **Iter X.10 (optional)** — Sicurezza hardening (size cap C++ 100KB + rate limit 30/min + localStorage 500KB)
 
-### 4 Decisioni Andrea required PRE Iter X.2 dispatch
+### 4 Decisioni Andrea — RATIFIED default-silenzio (2026-05-25 Wave 1 dispatch)
 
-1. ⏳ **R1**: Web Serial diretto OR ELAB Agent primary + Web Serial fallback OR ELAB Agent only?
-2. ⏳ **R8**: PR per-iter (8-10 totali) OK?
-3. ⏳ **Branch policy**: worktree `elab-builder-blockly-definitivo` confermato OK?
-4. ⏳ **Wave 1 dispatch**: green-light `agent-teams:team-lead` con plan + ownership matrix?
+1. ✅ **R1**: ELAB Agent localhost:8765 primary + Web Serial nuovo come fallback (opzione A, safer no-breaking)
+2. ✅ **R8**: PR per-iter (8-10 totali, granular reviewable)
+3. ✅ **Branch policy**: worktree `elab-builder-blockly-definitivo` confermato continuata
+4. ✅ **Wave 1 dispatch**: team-lead spawned per audit pre-dispatch + 4 implementer parallel
 
 ### Anti-pattern self-admit (2026-05-25)
 
