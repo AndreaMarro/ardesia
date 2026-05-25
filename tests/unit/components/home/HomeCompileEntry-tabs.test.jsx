@@ -195,9 +195,18 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
     const cm6 = screen.getByTestId('code-editor-cm6-stub');
     const code = cm6.getAttribute('data-code') || '';
 
+    // iter 104 C1 (commit 117ee30a) extracted NANO_R4_BLINK_CPP seed to
+    // src/features/elabBlocks/codeSync.js as bare C++ (no Vol reference
+    // comment). Vol3 Cap.6 Esp.1 lineage documented in HomeCompileEntry.jsx
+    // line 156 source comment ("Default seeded Blink Vol3 Cap.6 Esp.1 sketch")
+    // but NOT embedded in the runtime sketch text — that is intentional, the
+    // C++ seed must remain compilable as-is by arduino-cli. PRINCIPIO ZERO
+    // Vol reference belongs in surrounding UI copy (banner/onboarding), not
+    // in the user-editable sketch. Test sync 2026-05-25 PR #166 base merge:
+    // assert Blink shape only.
     expect(code).toContain('pinMode(13, OUTPUT)');
     expect(code).toContain('digitalWrite(13, HIGH)');
-    expect(code).toContain('Vol3 Cap.6 Esp.1'); // PRINCIPIO ZERO Vol reference
+    expect(code).toContain('delay(1000)');
     expect(cm6.getAttribute('data-readonly')).toBe('false');
     expect(cm6.getAttribute('data-has-onchange')).toBe('true');
   });
@@ -247,8 +256,19 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
       await new Promise((r) => setTimeout(r, 0));
     });
 
-    expect(container.textContent).toContain('codice è stato verificato dal compilatore legacy');
-    expect(container.textContent).toContain('Non usiamo questo risultato per il kit fisico');
+    // iter-99 commit a7cd406e "rendi Compila onesta sul fallback legacy" +
+    // iter 104 C3 commit 5fe1df5c UnlimCompileHelper rewrite shipped honest
+    // verified-legacy copy in TWO places:
+    //   - UnlimCompileHelper.jsx line 56 speech bubble: "Codice verificato,
+    //     ma non ancora per Nano R4." (UNSTUBBED — rendered by helper child)
+    //   - ScratchCompileBar.jsx line 140 status: "Codice verificato —
+    //     compilatore Nano R4 non ancora attivo" (STUBBED in this test, so
+    //     not asserted on container.textContent).
+    // Test sync 2026-05-25 PR #166 base merge: assert UnlimCompileHelper honest
+    // copy is present + retain anti-regression negatives (static upload copy
+    // strings must NOT appear — these never existed in source but guard a
+    // future regression where someone re-adds them).
+    expect(container.textContent).toContain('Codice verificato, ma non ancora per Nano R4');
     expect(container.textContent).not.toContain('Carica sul kit Arduino');
     expect(container.textContent).not.toContain('Ora potete caricare il programma');
   });
