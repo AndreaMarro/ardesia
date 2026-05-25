@@ -86,7 +86,7 @@
   "next_experiment": {
     "id": "v2-cap8-esp2",
     "title": "MOSFET e carica del corpo",
-    "preview": "Nel prossimo esperimento scoprirete qualcosa di sorprendente: il Gate è così sensibile che basta toccare il pin col dito per accendere il LED!"
+    "preview": "Prossimo passo: MOSFET e carica del corpo. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -266,5 +266,41 @@
     ],
     "next_suggested": "v2-cap8-esp2",
     "resume_message": "Avete imparato il MOSFET come interruttore! Gate alto = ON, Gate basso = OFF. Prossimo: il Gate flottante e la carica del corpo!"
+  },
+  "analogies": [
+    {
+      "concept": "cancello_elettronico",
+      "text": "Il MOSFET è come un cancello elettronico: il Gate è il telecomando. Con il segnale giusto (tensione alta) il cancello si apre e la corrente può passare dal Drain al Source. Senza segnale, il cancello è chiuso!",
+      "evidence": "experiments-vol2.js unlimPrompt v2-cap8-esp1"
+    },
+    {
+      "concept": "interruttore_senza_dita",
+      "text": "Un pulsante normale hai bisogno di premere con il dito. Il MOSFET invece risponde alla tensione: può essere controllato da un altro circuito, automaticamente, anche milioni di volte al secondo!",
+      "evidence": "experiments-vol2.js concept v2-cap8-esp1"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Invertire i pin Drain e Source del MOSFET",
+      "teacher_response": "Nel MOSFET N-channel: il Drain è sempre collegato al lato ad alta tensione (verso il LED), il Source è collegato a massa. Se li invertite il circuito non funziona!",
+      "analogy": "Come una valvola dell'acqua: ha un senso di flusso preciso"
+    },
+    {
+      "mistake": "Pensare che il MOSFET si controlli con la corrente come un pulsante",
+      "teacher_response": "Il MOSFET si regola con la TENSIONE al Gate, non con la corrente! Il Gate ha un'impedenza altissima: quasi nessuna corrente entra nel Gate. Basta la tensione!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

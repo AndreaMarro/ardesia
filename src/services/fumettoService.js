@@ -20,8 +20,8 @@
  *   - validateFumettoPayload is SUBSET validator (top-level required + panel
  *     enums + balloon word count). Full JSON Schema compliance defer ajv iter 71+.
  *   - generatePilotFumetto produces SYNTHETIC placeholder content (Tea spec
- *     analogies + Vol/pag verbatim) — NOT LLM-generated. Wire-up to Edge
- *     Function `unlim-fumetto` defer iter 71+ (no Edge Function exists yet).
+ *     analogies + Vol/pag verbatim) — NOT LLM-generated. Runtime session
+ *     reports can be enriched by Edge Function `unlim-fumetto` Gemini drafts.
  *   - principioZero rules pre-populated as `true` for placeholders — real
  *     payloads MUST be re-validated post-LLM via `principio-zero-validator.ts`.
  *
@@ -67,6 +67,7 @@ export const FUMETTO_PANEL_ARC = Object.freeze([
   { role: 'successo', label: 'Successo' },
   { role: 'ponte', label: 'Ponte' },
 ]);
+const FUMETTO_NEXT_EXPERIMENT_ENABLED = false;
 
 const MODEL_NARRATION_FALLBACK_LEN = 140;
 const FUMETTO_MISTAKE_TYPES = new Set([
@@ -177,7 +178,7 @@ function normalizeJourneyEvidence(journey = {}) {
   if (typeof journey.helpRequestsCount === 'number' && journey.helpRequestsCount > 0) {
     return `Durante la sessione avete chiesto aiuto ${journey.helpRequestsCount} volte e avete ripreso il controllo del circuito.`;
   }
-  return 'Durante la sessione avete raccolto prove sul kit fisico.';
+  return 'Il contesto della sessione non contiene prove osservate sul kit fisico.';
 }
 
 function getVolumeAndChapterFromId(id, fallbackVolume) {
@@ -219,7 +220,7 @@ function deriveModelNarration(narrations, exp, volRef, journeyEvidence, arcStep)
   return base;
 }
 
-function buildImageGenerationBrief({ arcStep, exp, volRef, narration, journeyEvidence, components }) {
+function buildImageGenerationBrief({ arcStep, exp, volRef, narration, journeyEvidence, components, sessionStoryline }) {
   const title = exp?.title || exp?.id || 'esperimento ELAB';
   const visibleComponents = normalizeComponents(components).slice(0, 4);
   const componentText = visibleComponents.length
@@ -231,6 +232,12 @@ function buildImageGenerationBrief({ arcStep, exp, volRef, narration, journeyEvi
   const unlimPresence = arcStep.role === 'errore' || arcStep.role === 'ponte'
     ? 'UNLIM canonico Tea visibile di lato con puntatore luminoso, senza bocca, comprimario.'
     : 'UNLIM assente o molto laterale; protagonisti sono docente, Ragazzi e kit fisico.';
+  const sessionAnchors = Array.isArray(sessionStoryline?.anchors)
+    ? sessionStoryline.anchors.slice(0, 6)
+    : [];
+  const sessionTrace = sessionAnchors.length
+    ? `Traccia sessione reale: ${sessionAnchors.join('; ')}.`
+    : 'Traccia sessione reale scarsa: non aggiungere prove non viste.';
 
   return {
     providerHint: 'image-generator',
@@ -243,6 +250,7 @@ function buildImageGenerationBrief({ arcStep, exp, volRef, narration, journeyEvi
       `${unlimPresence}`,
       `LIM o banco laboratorio leggibile; palette Navy #1E4D8C, Lime #4A7A25, Orange #E8941C, Red #E54B3D.`,
       `Testo didattico coerente con ${citation}: ${trimWords(narration || journeyEvidence, 34)}`,
+      sessionTrace,
       'Composizione chiara per classe primaria/media, docente guida, Ragazzi in gruppo.',
     ].join(' '),
     negativePrompt: `niente mascotte diverse da UNLIM, niente nome ${['Gali', 'leo'].join('')}, niente loghi inventati, niente mani deformi, niente circuito impossibile, niente componenti non richiesti`,
@@ -255,9 +263,242 @@ function normalizeComponents(componentsUsed = []) {
     .map((component) => {
       if (typeof component === 'string') return component;
       if (component?.name) return component.name;
+      if (component?.label) return component.label;
+      if (component?.value && component?.type) return `${component.type} ${component.value}`;
+      if (component?.type) return component.type;
       return null;
     })
     .filter(Boolean);
+}
+
+function uniqueList(values, max = 8) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values) {
+    const text = typeof value === 'string' ? value.trim() : '';
+    if (!text || seen.has(text.toLowerCase())) continue;
+    seen.add(text.toLowerCase());
+    out.push(text);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
+function getSessionContext(session = {}) {
+  return session?.sessionContext || session?.runtimeContext || session?.unlimContext || {};
+}
+
+function getContextExperiment(session = {}, context = getSessionContext(session)) {
+  const circuit = context?.circuit || {};
+  const candidate =
+    session?.activeExperiment ||
+    session?.experiment ||
+    (Array.isArray(session?.experimentsCompleted) ? session.experimentsCompleted[0] : null) ||
+    context?.currentExperiment ||
+    context?.activeExperiment ||
+    context?.experiment ||
+    circuit?.experiment ||
+    circuit?.currentExperiment ||
+    null;
+  if (candidate?.id) {
+    return {
+      id: candidate.id,
+      title: candidate.title || candidate.name || candidate.id,
+      volume: candidate.volume ?? getVolumeAndChapterFromId(candidate.id).volume,
+    };
+  }
+  const id = context?.currentExperimentId || circuit?.experimentId || session?.experimentId;
+  if (id && isValidExperimentId(id)) {
+    return {
+      id,
+      title: context?.experimentTitle || circuit?.experimentTitle || session?.experimentTitle || id,
+      volume: getVolumeAndChapterFromId(id).volume,
+    };
+  }
+  return null;
+}
+
+function normalizeMessages(session = {}) {
+  const source = Array.isArray(session?.messages)
+    ? session.messages
+    : Array.isArray(session?.chatMessages)
+      ? session.chatMessages
+      : [];
+  return source
+    .map((message) => ({
+      role: message?.role,
+      text: String(message?.text || message?.content || '').trim(),
+    }))
+    .filter((message) => message.text);
+}
+
+function getContextComponents(session = {}, context = getSessionContext(session)) {
+  const circuit = context?.circuit || {};
+  return uniqueList([
+    ...normalizeComponents(session?.componentsUsed),
+    ...normalizeComponents(context?.componentsUsed),
+    ...normalizeComponents(context?.components),
+    ...normalizeComponents(circuit?.components),
+    ...normalizeComponents(context?.layout?.components),
+  ], 8);
+}
+
+function getContextCompilation(context = {}) {
+  return context?.compilation || context?.lastCompilation || context?.compilationResult || null;
+}
+
+function getCompilationErrors(compilation) {
+  if (!compilation) return [];
+  const values = [
+    ...(Array.isArray(compilation.errors) ? compilation.errors : [compilation.errors]),
+    compilation.error,
+    compilation.message,
+  ];
+  return uniqueList(values.map((value) => {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return value.message || value.text || value.detail || String(value);
+  }), 3);
+}
+
+function getSerialLines(context = {}) {
+  const serial = context?.serial || context?.serialOutput || context?.serialMonitor || {};
+  if (Array.isArray(serial?.lastLines)) return uniqueList(serial.lastLines, 4);
+  if (typeof serial?.text === 'string') return uniqueList(serial.text.split('\n').slice(-4), 4);
+  if (typeof serial === 'string') return uniqueList(serial.split('\n').slice(-4), 4);
+  return [];
+}
+
+function editorModeLabel(mode) {
+  if (mode === 'scratch' || mode === 'blocks' || mode === 'blockly') return 'modalita blocchi';
+  if (mode === 'arduino' || mode === 'cpp' || mode === 'code') return 'modalita codice';
+  return mode ? `modalita ${mode}` : null;
+}
+
+function buildSessionStoryline(session = {}) {
+  const context = getSessionContext(session);
+  const experiment = getContextExperiment(session, context);
+  const messages = normalizeMessages(session);
+  const userQuestion = [...messages].reverse().find((message) => message.role === 'user')?.text || null;
+  const assistantAnswer = [...messages].reverse().find((message) => message.role === 'assistant')?.text || null;
+  const components = getContextComponents(session, context);
+  const buildStep = context?.buildStep || session?.buildProgress || null;
+  const mode = editorModeLabel(context?.editorMode || session?.editorMode);
+  const compilation = getContextCompilation(context);
+  const compilationErrors = getCompilationErrors(compilation);
+  const recentErrors = Array.isArray(context?.recentErrors)
+    ? context.recentErrors.map((error) => error?.message || error?.detail || error?.type).filter(Boolean)
+    : [];
+  const serialLines = getSerialLines(context);
+  const anchors = [];
+  const contextWarnings = [];
+
+  if (experiment?.title || experiment?.id) anchors.push(`esperimento attivo: ${experiment.title || experiment.id}`);
+  if (buildStep?.current) anchors.push(`passo ${buildStep.current}/${buildStep.total || '?'}`);
+  if (mode) anchors.push(mode);
+  if (components.length) anchors.push(`componenti: ${components.slice(0, 5).join(', ')}`);
+  if (compilation) {
+    if (compilation.success === false || compilationErrors.length > 0) {
+      anchors.push(`errore compilazione: ${compilationErrors[0] || 'compilazione non riuscita'}`);
+    } else if (compilation.success === true) {
+      anchors.push(`compilazione riuscita${compilation.size ? ` (${compilation.size} byte)` : ''}`);
+    }
+  }
+  if (serialLines.length) anchors.push(`Serial Monitor: ${serialLines.slice(0, 2).join(' | ')}`);
+  if (userQuestion) anchors.push(`domanda a UNLIM: ${trimWords(userQuestion, 18)}`);
+  if (recentErrors.length && !compilationErrors.length) anchors.push(`errore osservato: ${trimWords(recentErrors[0], 18)}`);
+
+  if (!experiment) contextWarnings.push('manca esperimento attivo verificabile');
+  const evidenceCount = anchors.length + normalizeComponents(session?.componentsUsed).length;
+  if (evidenceCount < 2) contextWarnings.push('mancano prove della sessione sufficienti');
+  if (session?.sessionEvidenceLevel === 'sparse') {
+    contextWarnings.push('sessione runtime senza prove osservate');
+  }
+
+  const errorText = compilationErrors[0] || recentErrors[0] || null;
+  const resultText = compilation?.success === true
+    ? `Risultato: compilazione riuscita${compilation.size ? ` (${compilation.size} byte)` : ''}${serialLines.length ? `; Serial Monitor: ${serialLines[0]}` : ''}.`
+    : serialLines.length
+      ? `Risultato osservato sul Serial Monitor: ${serialLines[0]}.`
+      : null;
+
+  return {
+    experiment,
+    components,
+    messages,
+    anchors,
+    contextWarnings,
+    question: userQuestion,
+    problem: experiment
+      ? `Problema: capire ${experiment.title || experiment.id} sul kit fisico.`
+      : 'Problema: il contesto non indica un esperimento attivo.',
+    hypothesis: components.length
+      ? `Ipotesi: provare con ${components.slice(0, 3).join(', ')}${mode ? ` in ${mode}` : ''}.`
+      : mode
+        ? `Ipotesi: lavorare in ${mode} e osservare il kit fisico.`
+        : 'Ipotesi: servono componenti e passaggi reali della sessione.',
+    trial: buildStep?.current
+      ? `Prova/montaggio: passo ${buildStep.current}/${buildStep.total || '?'}${mode ? `, ${mode}` : ''}.`
+      : userQuestion
+        ? `Prova/montaggio: domanda a UNLIM, "${trimWords(userQuestion, 18)}".`
+        : 'Prova/montaggio: nessun passaggio registrato.',
+    correction: errorText
+      ? `Errore/correzione: ${trimWords(errorText, 22)}.`
+      : assistantAnswer
+        ? `Errore/correzione: ${trimWords(assistantAnswer, 22)}.`
+        : 'Errore/correzione: nessun errore registrato.',
+    result: resultText || 'Risultato: servono altre prove registrate prima di dichiarare un successo.',
+    nextChallenge: 'Prossima sfida: rifare la prova sul kit fisico e annotare cosa cambia.',
+  };
+}
+
+function enrichSessionForFumetto(session = {}) {
+  const context = getSessionContext(session);
+  const storyline = buildSessionStoryline(session);
+  const completed = Array.isArray(session?.experimentsCompleted)
+    ? session.experimentsCompleted.filter((experiment) => experiment?.id)
+    : [];
+  const experimentsCompleted = completed.length > 0
+    ? completed
+    : storyline.experiment
+      ? [storyline.experiment]
+      : [];
+
+  const contextErrors = [
+    ...getCompilationErrors(getContextCompilation(context)),
+    ...(Array.isArray(context?.recentErrors)
+      ? context.recentErrors.map((error) => error?.message || error?.detail || error?.type).filter(Boolean)
+      : []),
+  ];
+  const savedJourney = session?.studentJourney && typeof session.studentJourney === 'object'
+    ? session.studentJourney
+    : {};
+  const messages = normalizeMessages(session);
+  const userMessages = messages.filter((message) => message.role === 'user');
+  const mistakesMade = Array.isArray(savedJourney.mistakesMade) && savedJourney.mistakesMade.length > 0
+    ? savedJourney.mistakesMade
+    : uniqueList(contextErrors, 3).map((description) => ({ type: 'other', description }));
+  const variationsFromActions = Array.isArray(session?.actions)
+    ? session.actions.map((action) => action?.detail).filter(Boolean)
+    : [];
+
+  return {
+    ...session,
+    experimentsCompleted,
+    componentsUsed: getContextComponents(session, context),
+    studentJourney: {
+      ...savedJourney,
+      mistakesMade,
+      mistakesOvercome: Array.isArray(savedJourney.mistakesOvercome) ? savedJourney.mistakesOvercome : [],
+      variationsTriedSpontaneously: Array.isArray(savedJourney.variationsTriedSpontaneously)
+        ? savedJourney.variationsTriedSpontaneously
+        : variationsFromActions.slice(0, 3),
+      helpRequestsCount: Number.isFinite(savedJourney.helpRequestsCount)
+        ? savedJourney.helpRequestsCount
+        : userMessages.length,
+    },
+    sessionStoryline: storyline,
+  };
 }
 
 function buildExercisePrompts(session, completed) {
@@ -308,6 +549,44 @@ function rotateQuestionOptions(question, seed) {
 }
 
 function buildMultipleChoiceQuestions(session, completed) {
+  const warnings = Array.isArray(session?.sessionStoryline?.contextWarnings)
+    ? session.sessionStoryline.contextWarnings
+    : [];
+  if (warnings.length) {
+    return [
+      {
+        question: 'Ragazzi, cosa possiamo dire con un contesto sessione scarso?',
+        options: [
+          'che servono altre prove registrate prima di raccontare il risultato',
+          'che il circuito ha sicuramente funzionato',
+          'che possiamo inventare il finale',
+        ],
+        correctIndex: 0,
+        explanation: 'Il fumetto deve restare onesto: senza prove, si annota che mancano dati.',
+      },
+      {
+        question: 'Quale dato va raccolto nella prossima prova?',
+        options: [
+          'esperimento attivo, componenti, errore o risultato osservato',
+          'un titolo bello ma non verificato',
+          'una promessa di upload hardware',
+        ],
+        correctIndex: 0,
+        explanation: 'Il report si basa su tracce reali della sessione.',
+      },
+      {
+        question: 'Perche il report resta sobrio?',
+        options: [
+          'per non attribuire alla sessione cose non viste',
+          'perche il kit fisico non conta',
+          'per saltare il diario',
+        ],
+        correctIndex: 0,
+        explanation: 'Un report utile distingue prove viste e dati mancanti.',
+      },
+    ];
+  }
+
   const components = normalizeComponents(session?.componentsUsed);
   const mainComponent = components[0] || 'kit fisico ELAB';
   const secondComponent = components[1] || 'collegamento sulla breadboard';
@@ -362,10 +641,32 @@ function buildMultipleChoiceQuestions(session, completed) {
 function buildNotesPrompt(session) {
   const journey = session?.studentJourney || {};
   const evidence = normalizeJourneyEvidence(journey);
+  const warnings = Array.isArray(session?.sessionStoryline?.contextWarnings)
+    ? session.sessionStoryline.contextWarnings
+    : [];
+  if (warnings.length) {
+    return `Spazio appunti: il contesto della sessione e scarso (${warnings.join('; ')}). Scrivete solo prove viste davvero sul kit fisico.`;
+  }
   return `Spazio appunti: scrivete la prova fatta, il componente del kit fisico che ha cambiato il risultato e la regola nata da questa osservazione. ${evidence}`;
 }
 
 function buildDiaryPage(session, completed) {
+  const warnings = Array.isArray(session?.sessionStoryline?.contextWarnings)
+    ? session.sessionStoryline.contextWarnings
+    : [];
+  if (warnings.length) {
+    return {
+      title: 'Pagina diario della classe',
+      prompts: [
+        'Oggi il report non ha abbastanza prove registrate per raccontare un risultato.',
+        `Dati mancanti da raccogliere: ${warnings.join('; ')}.`,
+        'Prossima sessione: annotate esperimento, componenti, errore o valore osservato.',
+        'Domanda per UNLIM: quale prova reale vogliamo registrare?',
+      ],
+      lineCount: 8,
+    };
+  }
+
   const firstExp = completed[0];
   const firstRef = firstExp ? getVolumeRef(firstExp.id) : null;
   const evidence = normalizeJourneyEvidence(session?.studentJourney || {});
@@ -383,6 +684,253 @@ function buildDiaryPage(session, completed) {
       'Domanda per la prossima volta: quale pezzo del kit fisico vogliamo mettere alla prova?',
     ],
     lineCount: 8,
+  };
+}
+
+function normalizeGeminiQuizItem(item) {
+  const options = Array.isArray(item?.options)
+    ? item.options.map((option) => String(option || '').trim()).filter(Boolean).slice(0, 4)
+    : [];
+  if (!item?.question || options.length < 2) return null;
+  const correctIndex = Number.isInteger(item.correctIndex)
+    ? Math.max(0, Math.min(item.correctIndex, options.length - 1))
+    : 0;
+  return {
+    question: String(item.question).trim(),
+    options,
+    correctIndex,
+    explanation: String(item.explanation || '').trim(),
+  };
+}
+
+function collectDraftText(draft) {
+  const values = [];
+  const visit = (value) => {
+    if (!value) return;
+    if (typeof value === 'string') {
+      values.push(value);
+      return;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(visit);
+      return;
+    }
+    if (typeof value === 'object') {
+      Object.values(value).forEach(visit);
+    }
+  };
+  visit(draft?.storyline);
+  visit(draft?.panels);
+  visit(draft?.imagePrompts);
+  if (Array.isArray(draft?.quiz)) {
+    draft.quiz.forEach((item) => {
+      visit(item?.question);
+      visit(item?.explanation);
+    });
+  }
+  visit(draft?.diaryPage);
+  visit(draft?.notesPrompt);
+  visit(draft?.exercisePrompts);
+  return values.join(' ');
+}
+
+function collectGroundingEvidence(session, model) {
+  return stableStringify({
+    experimentsCompleted: session?.experimentsCompleted,
+    componentsUsed: session?.componentsUsed,
+    studentJourney: session?.studentJourney,
+    messages: normalizeMessages(session),
+    sessionContext: getSessionContext(session),
+    sessionStoryline: model?.sessionStoryline,
+    vignettes: model?.vignettes?.map((slot) => ({
+      exp: slot.exp,
+      volRef: slot.volRef,
+      sessionEvidence: slot.sessionEvidence,
+      narration: slot.narration,
+    })),
+  }).toLowerCase();
+}
+
+function hasValidEvidenceRefs(item, evidence) {
+  const refs = Array.isArray(item?.evidenceRefs)
+    ? item.evidenceRefs.map((ref) => String(ref || '').trim()).filter((ref) => ref.length >= 4)
+    : [];
+  if (!refs.length) return false;
+  return refs.every((ref) => evidence.includes(ref.toLowerCase()));
+}
+
+function hasCompleteRoleSet(items) {
+  if (!Array.isArray(items)) return false;
+  const roles = new Set(items.map((item) => item?.role).filter(Boolean));
+  return FUMETTO_PANEL_ARC.every((arcStep) => roles.has(arcStep.role));
+}
+
+function hasCompleteStoryline(storyline) {
+  return ['problem', 'hypothesis', 'trial', 'correction', 'result', 'nextChallenge']
+    .every((key) => typeof storyline?.[key] === 'string' && storyline[key].trim().length > 0);
+}
+
+function validateGeminiDraftGrounding(draft, session, model) {
+  const evidence = collectGroundingEvidence(session, model);
+  const draftText = collectDraftText(draft).toLowerCase();
+  const violations = [];
+  const panels = Array.isArray(draft?.panels) ? draft.panels : [];
+  const imagePrompts = Array.isArray(draft?.imagePrompts) ? draft.imagePrompts : [];
+  const quiz = Array.isArray(draft?.quiz) ? draft.quiz : [];
+  const diaryPrompts = Array.isArray(draft?.diaryPage?.prompts) ? draft.diaryPage.prompts : [];
+  const exercisePrompts = Array.isArray(draft?.exercisePrompts) ? draft.exercisePrompts : [];
+
+  if (!hasCompleteRoleSet(panels) || panels.some((panel) => !hasValidEvidenceRefs(panel, evidence))) {
+    violations.push('missing_panel_evidence_refs');
+  }
+  if (!hasCompleteStoryline(draft?.storyline) || !hasValidEvidenceRefs(draft.storyline, evidence)) {
+    violations.push('missing_storyline_evidence_refs');
+  }
+  if (!hasCompleteRoleSet(imagePrompts) || imagePrompts.some((item) => !hasValidEvidenceRefs(item, evidence))) {
+    violations.push('missing_image_evidence_refs');
+  }
+  if (quiz.length < 3 || quiz.some((item) => !hasValidEvidenceRefs(item, evidence))) {
+    violations.push('missing_quiz_evidence_refs');
+  }
+  if (!draft?.diaryPage || diaryPrompts.length < 4 || !hasValidEvidenceRefs(draft.diaryPage, evidence)) {
+    violations.push('missing_diary_evidence_refs');
+  }
+  if (!draft?.notesPrompt || !hasValidEvidenceRefs({ evidenceRefs: draft.notesEvidenceRefs }, evidence)) {
+    violations.push('missing_notes_evidence_refs');
+  }
+  if (exercisePrompts.length < 1 || !hasValidEvidenceRefs({ evidenceRefs: draft.exerciseEvidenceRefs }, evidence)) {
+    violations.push('missing_exercise_evidence_refs');
+  }
+
+  const guardedClaims = [
+    /upload\s+reale/i,
+    /caricat[oa]\s+(?:sulla|su)\s+(?:scheda|nano|arduino)/i,
+    /flash\s+completat[oa]/i,
+    /scheda\s+fisica/i,
+    /hardware\s+(?:provato|certificat[oa])/i,
+  ];
+  guardedClaims.forEach((pattern) => {
+    if (pattern.test(draftText) && !pattern.test(evidence)) {
+      violations.push('claim_hardware_not_in_session');
+    }
+  });
+
+  const sessionBoundTerms = [
+    'serial monitor',
+    'monitor seriale',
+    'compilazione riuscita',
+    'errore compilazione',
+    'nano r4',
+    'cavo usb',
+    'motore',
+    'motor',
+    'buzzer',
+    'suonato',
+    'girato',
+    'pin',
+    'cambiando pin',
+    'risolto cambiando',
+    'modalita blocchi',
+    'modalita codice',
+  ];
+  sessionBoundTerms.forEach((term) => {
+    if (draftText.includes(term) && !evidence.includes(term)) {
+      violations.push(`ungrounded_term:${term}`);
+    }
+  });
+
+  const evidenceNumbers = new Set(evidence.match(/\b\d{2,6}\b/g) || []);
+  const draftNumbers = new Set(draftText.match(/\b\d{2,6}\b/g) || []);
+  draftNumbers.forEach((number) => {
+    if (!evidenceNumbers.has(number)) {
+      violations.push(`ungrounded_number:${number}`);
+    }
+  });
+
+  return {
+    valid: violations.length === 0,
+    violations: uniqueList(violations, 8),
+  };
+}
+
+function applyGeminiDraftToReportModel(model, session) {
+  const draft = session?.geminiDraft || session?.fumettoDraft || null;
+  if (!draft || typeof draft !== 'object') return model;
+  const grounding = validateGeminiDraftGrounding(draft, session, model);
+  if (!grounding.valid) {
+    return {
+      ...model,
+      warnings: uniqueList([
+        ...(Array.isArray(model.warnings) ? model.warnings : []),
+        'gemini_draft_ungrounded',
+        ...grounding.violations,
+      ], 12),
+      geminiDraftApplied: false,
+    };
+  }
+
+  const panels = Array.isArray(draft.panels) ? draft.panels : [];
+  const panelByRole = new Map(
+    panels
+      .filter((panel) => panel?.role)
+      .map((panel) => [panel.role, panel])
+  );
+  const vignettes = model.vignettes.map((slot, index) => {
+    const panel = panelByRole.get(slot.role) || panels[index] || null;
+    if (!panel) return slot;
+    const balloons = Array.isArray(panel.balloons)
+      ? panel.balloons
+          .map((balloon) => String(balloon?.text || '').trim())
+          .filter(Boolean)
+      : [];
+    return {
+      ...slot,
+      title: panel.title || slot.title,
+      narration: panel.caption || slot.narration,
+      sessionEvidence: balloons.length ? trimWords(balloons.join(' '), 60) : slot.sessionEvidence,
+      geminiPanel: panel,
+    };
+  });
+
+  const geminiPrompts = Array.isArray(draft.imagePrompts) ? draft.imagePrompts : [];
+  const imageGenerationBriefs = model.imageGenerationBriefs.map((brief, index) => {
+    if (!brief) return brief;
+    const prompt = geminiPrompts.find((item) => item?.role === vignettes[index]?.role) || geminiPrompts[index] || null;
+    if (!prompt?.prompt) return brief;
+    return {
+      ...brief,
+      providerHint: 'gemini-image-prompt',
+      prompt: String(prompt.prompt),
+      negativePrompt: prompt.negativePrompt || brief.negativePrompt,
+    };
+  });
+
+  const quiz = Array.isArray(draft.quiz)
+    ? draft.quiz.map(normalizeGeminiQuizItem).filter(Boolean).slice(0, 3)
+    : [];
+  const diaryPrompts = Array.isArray(draft.diaryPage?.prompts)
+    ? draft.diaryPage.prompts.map((prompt) => String(prompt || '').trim()).filter(Boolean).slice(0, 4)
+    : [];
+  const exercisePrompts = Array.isArray(draft.exercisePrompts)
+    ? draft.exercisePrompts.map((prompt) => String(prompt || '').trim()).filter(Boolean).slice(0, 3)
+    : [];
+
+  return {
+    ...model,
+    vignettes,
+    imageGenerationBriefs,
+    sessionStoryline: draft.storyline || model.sessionStoryline,
+    exercisePrompts: exercisePrompts.length ? exercisePrompts : model.exercisePrompts,
+    notesPrompt: draft.notesPrompt || model.notesPrompt,
+    multipleChoiceQuestions: quiz.length ? quiz : model.multipleChoiceQuestions,
+    diaryPage: diaryPrompts.length
+      ? {
+          ...model.diaryPage,
+          title: draft.diaryPage?.title || model.diaryPage.title,
+          prompts: diaryPrompts,
+        }
+      : model.diaryPage,
+    geminiDraftApplied: true,
   };
 }
 
@@ -894,6 +1442,7 @@ export function validateFumettoSchemaContract(schema = fumettoSchema) {
 }
 
 export function getNextExperimentForFumetto({ session, next_experiment: nextExperiment, experimentId } = {}) {
+  if (!FUMETTO_NEXT_EXPERIMENT_ENABLED) return null;
   const candidate = nextExperiment || session?.next_experiment || session?.nextExperiment || null;
   if (!candidate?.id) return null;
   return {
@@ -905,33 +1454,53 @@ export function getNextExperimentForFumetto({ session, next_experiment: nextExpe
 }
 
 export function buildSessionReportComicModel(session = {}) {
+  const effectiveSession = enrichSessionForFumetto(session);
   const warnings = [];
-  const completed = Array.isArray(session?.experimentsCompleted)
-    ? session.experimentsCompleted.slice(0, MAX_PANELS)
+  const sessionStoryline = effectiveSession.sessionStoryline || buildSessionStoryline(effectiveSession);
+  const completed = Array.isArray(effectiveSession?.experimentsCompleted)
+    ? effectiveSession.experimentsCompleted.slice(0, MAX_PANELS)
     : [];
 
   if (completed.length === 0) {
     warnings.push('empty_session');
   }
+  if (Array.isArray(sessionStoryline.contextWarnings) && sessionStoryline.contextWarnings.length) {
+    warnings.push('sparse_session_context');
+  }
 
-  const journeyEvidence = normalizeJourneyEvidence(session?.studentJourney);
-  const narrations = session?.narrations ?? {};
+  const journeyEvidence = normalizeJourneyEvidence(effectiveSession?.studentJourney);
+  const narrations = effectiveSession?.narrations ?? {};
   const sessionFingerprint = shortHash({
-    classKey: session?.classKey,
-    studentAlias: session?.studentAlias,
-    startedAt: session?.startedAt,
-    savedAt: session?.savedAt,
+    classKey: effectiveSession?.classKey,
+    studentAlias: effectiveSession?.studentAlias,
+    startedAt: effectiveSession?.startedAt,
+    savedAt: effectiveSession?.savedAt,
     experimentsCompleted: completed.map((exp) => ({
       id: exp?.id,
       title: exp?.title,
       volume: exp?.volume,
     })),
     narrations,
-    studentJourney: session?.studentJourney,
-    componentsUsed: session?.componentsUsed,
+    studentJourney: effectiveSession?.studentJourney,
+    componentsUsed: effectiveSession?.componentsUsed,
+    sessionStoryline,
   });
 
   const fallbackExperiment = completed.length > 0 ? completed[completed.length - 1] : null;
+  const context = getSessionContext(session);
+  const hasLiveContext = Object.keys(context || {}).length > 0 || normalizeMessages(session).length > 0;
+  const roleEvidence = hasLiveContext
+    ? {
+        problema: sessionStoryline.problem,
+        ipotesi: sessionStoryline.hypothesis,
+        errore: sessionStoryline.correction,
+        click: sessionStoryline.question
+          ? `Domanda a UNLIM: ${sessionStoryline.question}`
+          : sessionStoryline.trial,
+        successo: sessionStoryline.result,
+        ponte: sessionStoryline.nextChallenge,
+      }
+    : {};
   const vignettes = FUMETTO_PANEL_ARC.map((arcStep, index) => {
     const exp = completed[index] || fallbackExperiment;
     if (!exp) {
@@ -940,7 +1509,7 @@ export function buildSessionReportComicModel(session = {}) {
         role: arcStep.role,
         roleLabel: arcStep.label,
         index: index + 1,
-        sessionEvidence: journeyEvidence,
+        sessionEvidence: roleEvidence[arcStep.role] || journeyEvidence,
       };
     }
 
@@ -958,7 +1527,7 @@ export function buildSessionReportComicModel(session = {}) {
       chapter: idParts.chapter,
       isSessionArcContinuation: !completed[index],
       narration: deriveModelNarration(narrations, exp, volRef, journeyEvidence, arcStep),
-      sessionEvidence: journeyEvidence,
+      sessionEvidence: roleEvidence[arcStep.role] || journeyEvidence,
     };
   });
 
@@ -970,28 +1539,40 @@ export function buildSessionReportComicModel(session = {}) {
       volRef: slot.volRef,
       narration: slot.narration,
       journeyEvidence,
-      components: session?.componentsUsed,
+      components: effectiveSession?.componentsUsed,
+      sessionStoryline,
     });
   });
 
-  return {
+  const model = {
     vignettes,
     warnings,
+    sessionStoryline,
     sessionFingerprint,
-    exercisePrompts: buildExercisePrompts(session, completed),
-    notesPrompt: buildNotesPrompt(session),
-    multipleChoiceQuestions: buildMultipleChoiceQuestions(session, completed),
-    diaryPage: buildDiaryPage(session, completed),
+    exercisePrompts: buildExercisePrompts(effectiveSession, completed),
+    notesPrompt: buildNotesPrompt(effectiveSession),
+    multipleChoiceQuestions: buildMultipleChoiceQuestions(effectiveSession, completed),
+    diaryPage: buildDiaryPage(effectiveSession, completed),
     imageGenerationBriefs,
-    nextExperiment: getNextExperimentForFumetto({ session }),
+    nextExperiment: getNextExperimentForFumetto({ session: effectiveSession }),
     mascot: TEA_CANONICAL_MASCOT,
   };
+  return applyGeminiDraftToReportModel(model, effectiveSession);
 }
 
 export function generateSessionFumetto(input = {}) {
   const session = input.session || input;
-  const exp = firstExperimentFromSession(session, input.experimentId);
-  const experimentId = input.experimentId || exp.id || 'v1-cap6-esp1';
+  const explicitExperimentId =
+    input.experimentId ||
+    session?.experimentId ||
+    session?.activeExperiment?.id ||
+    session?.experiment?.id ||
+    (Array.isArray(session?.experimentsCompleted) ? session.experimentsCompleted[0]?.id : null);
+  if (!explicitExperimentId) {
+    throw new Error('generateSessionFumetto: session experiment evidence required');
+  }
+  const exp = firstExperimentFromSession(session, explicitExperimentId);
+  const experimentId = explicitExperimentId || exp.id;
   if (!isValidExperimentId(experimentId)) {
     throw new Error(
       `generateSessionFumetto: invalid experimentId "${experimentId}"`
@@ -1076,7 +1657,7 @@ export function generateSessionFumetto(input = {}) {
       title: 'Il ponte',
       sceneType: 'cliffhanger',
       speaker: 'unlim',
-      text: next
+      text: FUMETTO_NEXT_EXPERIMENT_ENABLED && next
         ? `Ragazzi, prossimo esperimento: ${next.title}. ${trimText(next.preview, 72)}`
         : `Ragazzi, prossimo passo: trasformate il fumetto in appunti e rifate la prova sul kit fisico.`,
       caption: 'Prossima tappa',
@@ -1164,7 +1745,7 @@ export function generateSessionFumetto(input = {}) {
       diaryPage: model.diaryPage,
       mascot: model.mascot,
       imageGenerationBriefs: model.imageGenerationBriefs,
-      nextExperiment: next,
+      nextExperiment: FUMETTO_NEXT_EXPERIMENT_ENABLED ? next : null,
     },
   };
 }

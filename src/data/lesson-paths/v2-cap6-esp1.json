@@ -83,7 +83,7 @@
   "next_experiment": {
     "id": "v2-cap6-esp2",
     "title": "LED in serie colori diversi",
-    "preview": "Scoprirete perché due LED di colori diversi in serie hanno luminosità diversa!"
+    "preview": "Prossimo passo: LED in serie colori diversi. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -257,5 +257,41 @@
     ],
     "next_suggested": "v2-cap6-esp2",
     "resume_message": "Hai imparato che in serie la corrente è identica! Prossimo passo: cosa cambia con LED di colori diversi?"
+  },
+  "analogies": [
+    {
+      "concept": "corrente_serie",
+      "text": "La corrente in serie è come l'acqua in un tubo unico: tutta l'acqua deve passare attraverso ogni punto. Non importa quanti componenti ci sono — la stessa corrente li attraversa tutti, uno dopo l'altro!",
+      "evidence": "Curriculum ELAB Vol 2"
+    },
+    {
+      "concept": "tensioni_sommano",
+      "text": "Le tensioni in serie si sommano come i piani di un palazzo: ogni piano (componente) ha la sua altezza (tensione). Il totale è la somma di tutti i piani — e deve eguagliare l'altezza totale dell'edificio (la batteria)!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il LED non si accende perché inserito al contrario",
+      "teacher_response": "Controllate la polarità! L'anodo (gamba lunga, +) deve essere collegato verso il polo positivo della batteria. Il catodo (gamba corta, −) verso la massa. Provate a girarlo!",
+      "analogy": "È come una porta girevole: funziona solo in un senso. La corrente passa nel LED solo nella direzione giusta!"
+    },
+    {
+      "mistake": "Pensare che in serie la corrente si divida tra i due LED",
+      "teacher_response": "In serie c'è UN SOLO percorso per la corrente: non può dividersi! Tutta la corrente passa prima nel resistore, poi nel LED1, poi nel LED2. Come l'acqua in un tubo senza biforcazioni.",
+      "analogy": "Immaginate una fila unica alla cassa del supermercato: tutti passano nello stesso punto, uno alla volta!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

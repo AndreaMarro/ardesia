@@ -17,6 +17,8 @@ import UnlimMascotte from '../common/UnlimMascotte';
 import SessionReportComicCliffhanger from './SessionReportComicCliffhanger';
 import styles from './SessionReportComic.module.css';
 
+const FUMETTO_NEXT_EXPERIMENT_CTA_ENABLED = false;
+
 function formatSessionDate(iso) {
   if (!iso) return '';
   try {
@@ -75,6 +77,9 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
   const [generatedImages, setGeneratedImages] = useState(() => ({}));
   const [imageGenStatus, setImageGenStatus] = useState('idle');
   const [imageGenMessage, setImageGenMessage] = useState('');
+  const geminiStatus = session?.fumettoGeminiStatus;
+  const geminiDraftReceived = geminiStatus === 'ready' || geminiStatus === 'received';
+  const geminiDraftRejected = geminiDraftReceived && session?.geminiDraft && !reportModel.geminiDraftApplied;
 
   const handleExport = useCallback(() => {
     if (typeof onExport === 'function') {
@@ -211,6 +216,22 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
         </p>
       )}
 
+      {geminiStatus && (
+        <p
+          className={styles.imageGenStatus}
+          data-testid="session-report-comic-gemini-status"
+          role="status"
+        >
+          {geminiDraftRejected
+            ? 'Storyline Gemini scartata: evidenceRefs non sufficienti, report locale sobrio.'
+            : geminiDraftReceived && reportModel.geminiDraftApplied
+              ? 'Storyline Gemini pronta: testi, quiz, diario e prompt immagini usano la sessione.'
+              : geminiStatus === 'loading'
+              ? 'UNLIM sta preparando storyline, quiz, diario e prompt immagini dalla sessione.'
+              : 'Storyline Gemini non disponibile ora: report locale sobrio, senza inventare prove.'}
+        </p>
+      )}
+
       <div className={styles.grid}>
         {vignettes.map((slot, idx) => {
           const exp = slot.exp;
@@ -299,7 +320,7 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
                 </>
               ) : (
                 <div className={styles.placeholder} aria-hidden="true">
-                  <span>Prossimo esperimento</span>
+                  <span>Contesto non sufficiente</span>
                 </div>
               )}
             </figure>
@@ -375,7 +396,7 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
         </div>
       </section>
 
-      {session?.savedAt && nextExperiment && (
+      {FUMETTO_NEXT_EXPERIMENT_CTA_ENABLED && session?.savedAt && nextExperiment && (
         <SessionReportComicCliffhanger
           nextExperiment={nextExperiment}
           onMountNext={handleMountNextExperiment}

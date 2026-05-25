@@ -1,6 +1,6 @@
 /**
  * Experiment Connections — Comprehensive Wire Validation
- * Tests all 92 experiments for correct wire/connection definitions.
+ * Tests all canonical experiments for correct wire/connection definitions.
  * ~250 tests covering: existence, format, component references, self-connections, pin validity.
  *
  * © Andrea Marro — 15/04/2026
@@ -110,7 +110,7 @@ const SAMPLED_IDS = [
   'v2-cap6-esp1', 'v2-cap7-esp1', 'v2-cap8-esp1',
   'v2-cap9-esp1', 'v2-cap10-esp1', 'v2-cap11-esp1',
   // Vol3 — Arduino circuits
-  'v3-cap5-esp3', 'v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-morse',
+  'v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp5',
   'v3-cap7-esp1', 'v3-cap7-esp2',
 ];
 
@@ -131,8 +131,8 @@ const sampledExperiments = () => SAMPLED_IDS
 // ═══════════════════════════════════════════════════════════════════════════
 
 describe('Connections — Existence', () => {
-  it('ALL_EXPERIMENTS contains exactly 79 experiments', () => {
-    expect(ALL_EXPERIMENTS.length).toBe(79);
+  it('ALL_EXPERIMENTS contains exactly 88 experiments', () => {
+    expect(ALL_EXPERIMENTS.length).toBe(88);
   });
 
   describe('connections array exists on every experiment', () => {

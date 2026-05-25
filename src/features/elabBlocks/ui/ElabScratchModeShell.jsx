@@ -48,7 +48,11 @@ export function ElabScratchModeShell({
   return (
     <div className={styles.shell} data-testid="elab-scratch-mode-shell">
       {showStarters && (
-        <div className={styles.starterStrip}>
+        <div
+          className={styles.starterStrip}
+          data-testid="starter-design-band"
+          data-ui-layout="compact-reference-band"
+        >
           <p className={styles.starterPrompt}>
             Ragazzi, da dove cominciamo? Partite da un programma pronto qui sotto,
             oppure trascinate i blocchi dalla cassetta colorata.

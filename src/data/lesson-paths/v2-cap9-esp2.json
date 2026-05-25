@@ -12,7 +12,7 @@
   "difficulty": 3,
   "duration_minutes": 35,
   "target_age": "10-14 anni",
-  "objective": "Costruire una luce notturna automatica: il LED si accende quando viene buio. Il fototransistor rileva la luce e il MOSFET decide se accendere il LED — logica invertita!",
+  "objective": "Ragazzi, costruiscono una luce notturna automatica fedele al Vol.2 pag.89-92: un solo resistore da 10kΩ polarizza il fototransistor e il MOSFET accende il LED quando il sensore e al buio.",
   "components_needed": [
     {
       "name": "Batteria 9V con clip",
@@ -36,7 +36,7 @@
     },
     {
       "name": "Resistore 10kΩ",
-      "quantity": 4,
+      "quantity": 1,
       "icon": "⚡"
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "Fili di collegamento",
-      "quantity": 10,
+      "quantity": 4,
       "icon": "🔌"
     }
   ],
@@ -92,7 +92,7 @@
   "next_experiment": {
     "id": "v2-cap10-esp1",
     "title": "Far Girare il Motore",
-    "preview": "Nel Capitolo 10 scoprirete come trasformare l'elettricità in movimento!"
+    "preview": "Prossimo passo: Far Girare il Motore. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -101,7 +101,7 @@
       "duration_minutes": 5,
       "teacher_message": "Ragazzi, oggi costruiamo una luce notturna INTELLIGENTE! Si accende da sola quando viene buio, come le luci delle strade di notte.",
       "teacher_tip": "Fate alzare la mano a chi ha già visto le lampioni accendersi da soli di sera. Poi spiegate: 'Dentro c'è un sensore di luce, proprio come quello che useremo oggi — il fototransistor!'",
-      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 fototransistor, 1 MOSFET-N, 4 resistori 10kΩ, 1 resistore 470Ω, 1 LED bianco, fili.",
+      "components_list": "Ti servono: 1 breadboard mezza, 1 batteria 9V, 1 fototransistor, 1 MOSFET-N, 1 resistore 10kΩ, 1 resistore 470Ω, 1 LED, 4 fili.",
       "class_hook": "Chi conosce le luci dei lampioni che si accendono da sole la sera? Come fa la luce a sapere che è buio? Oggi scopriamo il segreto!",
       "action_tags": [],
       "auto_action": null
@@ -110,7 +110,7 @@
       "name": "MOSTRA",
       "icon": "🔧",
       "duration_minutes": 10,
-      "teacher_message": "Ragazzi, Il circuito ha 2 sezioni: SENSORE (fototransistor + resistori) e ATTUATORE (MOSFET + LED). Quando c'è luce il Gate resta basso e il LED è spento. Al buio il Gate sale e il LED si accende!",
+      "teacher_message": "Ragazzi, il circuito segue Vol.2 pag.89-92: il fototransistor sente la luce, il resistore da 10kΩ collega il collettore al positivo, il MOSFET accende il LED quando il sensore viene coperto.",
       "teacher_tip": "Mostrate prima il fototransistor da solo: 'Ha un collettore e un emettitore come un transistor normale, ma la luce che entra dalla finestra trasparente è il segnale di controllo!' Poi mostrate il MOSFET: 'Il Gate è come un cancello: quando la tensione sale abbastanza, apre la strada alla corrente verso il LED.'",
       "components_list": null,
       "class_hook": null,
@@ -147,21 +147,6 @@
             {
               "type": "resistor",
               "id": "r2",
-              "value": 10000
-            },
-            {
-              "type": "resistor",
-              "id": "r3",
-              "value": 10000
-            },
-            {
-              "type": "resistor",
-              "id": "r4",
-              "value": 10000
-            },
-            {
-              "type": "resistor",
-              "id": "r5",
               "value": 470
             },
             {
@@ -177,9 +162,29 @@
               "color": "red"
             },
             {
+              "from": "bb1:bus-top-minus-1",
+              "to": "bat1:negative",
+              "color": "black"
+            },
+            {
               "from": "bb1:bus-top-plus-3",
               "to": "bb1:a3",
               "color": "red"
+            },
+            {
+              "from": "bb1:a11",
+              "to": "bb1:bus-top-minus-11",
+              "color": "black"
+            },
+            {
+              "from": "bb1:a10",
+              "to": "bb1:g28",
+              "color": "green"
+            },
+            {
+              "from": "bb1:g30",
+              "to": "bb1:bus-top-minus-30",
+              "color": "black"
             },
             {
               "from": "bb1:bus-top-plus-20",
@@ -187,49 +192,9 @@
               "color": "red"
             },
             {
-              "from": "bb1:bus-top-minus-1",
-              "to": "bat1:negative",
-              "color": "black"
-            },
-            {
-              "from": "bb1:a10",
-              "to": "bb1:g3",
-              "color": "orange"
-            },
-            {
-              "from": "bb1:a11",
-              "to": "bb1:g11",
-              "color": "yellow"
-            },
-            {
-              "from": "bb1:g18",
-              "to": "bb1:bus-top-minus-18",
-              "color": "black"
-            },
-            {
-              "from": "bb1:g10",
-              "to": "bb1:g20",
-              "color": "green"
-            },
-            {
-              "from": "bb1:g20",
-              "to": "bb1:g28",
-              "color": "green"
-            },
-            {
-              "from": "bb1:g27",
-              "to": "bb1:bus-top-minus-27",
-              "color": "black"
-            },
-            {
               "from": "bb1:a28",
               "to": "bb1:g29",
               "color": "yellow"
-            },
-            {
-              "from": "bb1:g30",
-              "to": "bb1:bus-top-minus-30",
-              "color": "black"
             }
           ]
         }
@@ -249,12 +214,12 @@
       "common_mistakes": [
         {
           "mistake": "Il LED rimane sempre spento anche al buio",
-          "teacher_response": "Controllate il resistore di pull-down R4 collegato al Gate. Se manca o è scollegato, il Gate rimane fluttuante e il MOSFET non si apre correttamente al buio.",
-          "analogy": "Il pull-down è come un peso che tiene il cancello chiuso: senza peso, il cancello rimane dove lo lasci!"
+          "teacher_response": "Ragazzi, conviene verificare che il resistore da 10kΩ sia tra collettore e positivo e che il gate del MOSFET riceva quel nodo.",
+          "analogy": "Il resistore da 10kΩ e come una molla che riporta su il gate quando la luce manca."
         },
         {
           "mistake": "Il LED rimane sempre acceso anche con la luce",
-          "teacher_response": "Controllate che il collettore e l'emettitore del fototransistor siano nella posizione giusta. Se sono invertiti, il circuito funziona al contrario!",
+          "teacher_response": "Ragazzi, osservate collettore ed emettitore del fototransistor: se sono invertiti, il sensore non scarica correttamente il gate.",
           "analogy": null
         }
       ]
@@ -322,5 +287,36 @@
     ],
     "next_suggested": "v2-cap10-esp1",
     "resume_message": "Avete costruito la luce notturna automatica! Il Capitolo 10 vi aspetta con un componente che si muove!"
+  },
+  "analogies": [
+    {
+      "concept": "luce_notturna",
+      "text": "Come i lampioni: quando il sensore non vede luce, il circuito lascia accendere la lampada.",
+      "evidence": "Vol.2 pag.89-92"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il LED rimane sempre spento anche al buio",
+      "teacher_response": "Ragazzi, conviene verificare che il resistore da 10kΩ sia tra collettore e positivo e che il gate del MOSFET riceva quel nodo.",
+      "analogy": "Il resistore da 10kΩ e come una molla che riporta su il gate quando la luce manca."
+    },
+    {
+      "mistake": "Il LED rimane sempre acceso anche con la luce",
+      "teacher_response": "Ragazzi, osservate collettore ed emettitore del fototransistor: se sono invertiti, il sensore non scarica correttamente il gate.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

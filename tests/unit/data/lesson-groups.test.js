@@ -122,14 +122,14 @@ describe('LESSON_GROUPS — Volume 2 experiments', () => {
 describe('LESSON_GROUPS — Volume 3 experiments', () => {
   const v3 = ALL_ENTRIES.filter(([, l]) => l.volume === 3);
 
-  it('Volume 3 has led digitale lesson', () => {
-    const led = v3.find(([id]) => id === 'v3-led-digitale');
-    expect(led).toBeDefined();
+  it('Volume 3 has digital pins lesson', () => {
+    const digital = v3.find(([id]) => id === 'v3-cap6-digitali');
+    expect(digital).toBeDefined();
   });
 
-  it('Volume 3 has input analogico lesson', () => {
-    const input = v3.find(([id]) => id === 'v3-input-analogico');
-    expect(input).toBeDefined();
+  it('Volume 3 has analog pins lesson', () => {
+    const analog = v3.find(([id]) => id === 'v3-cap7-analogici');
+    expect(analog).toBeDefined();
   });
 
   it('all Vol3 lesson IDs start with v3-', () => {
@@ -140,19 +140,19 @@ describe('LESSON_GROUPS — Volume 3 experiments', () => {
 // ─── findLessonForExperiment — extended ──────────────────────────────
 
 describe('findLessonForExperiment — extended', () => {
-  it('finds semaforo extra experiment', () => {
-    const result = findLessonForExperiment('v3-cap6-semaforo');
+  it('finds semaforo canonical experiment', () => {
+    const result = findLessonForExperiment('v3-cap6-esp5');
     expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-progetti-led');
+    expect(result.lessonId).toBe('v3-cap6-digitali');
   });
 
-  it('finds morse experiment', () => {
-    const result = findLessonForExperiment('v3-cap6-morse');
+  it('finds final Cap.6 canonical experiment', () => {
+    const result = findLessonForExperiment('v3-cap6-esp8');
     expect(result).not.toBeNull();
-    expect(result.lessonId).toBe('v3-progetti-led');
+    expect(result.lessonId).toBe('v3-cap6-digitali');
   });
 
-  it('finds all 79 experiments without error', () => {
+  it('finds all 88 experiments without error', () => {
     let found = 0;
     ALL_ENTRIES.forEach(([, lesson]) => {
       lesson.experiments.forEach(expId => {
@@ -160,7 +160,7 @@ describe('findLessonForExperiment — extended', () => {
         if (r) found++;
       });
     });
-    expect(found).toBe(79);
+    expect(found).toBe(88);
   });
 
   it('returns null for numeric input', () => {
@@ -213,8 +213,8 @@ describe('getLessonsForVolume — extended', () => {
 // ─── getLessonCount ───────────────────────────────────────────────────
 
 describe('getLessonCount', () => {
-  it('returns 24', () => {
-    expect(getLessonCount()).toBe(24);
+  it('returns 23', () => {
+    expect(getLessonCount()).toBe(23);
   });
 
   it('matches actual LESSON_GROUPS size', () => {
@@ -250,9 +250,9 @@ describe('getExperimentGroupContext', () => {
 // ─── Cross-volume consistency ─────────────────────────────────────────
 
 describe('LESSON_GROUPS — cross-volume experiment distribution', () => {
-  it('total experiments across all volumes sums to 79', () => {
+  it('total experiments across all volumes sums to 88', () => {
     const total = ALL_ENTRIES.reduce((sum, [, l]) => sum + l.experiments.length, 0);
-    expect(total).toBe(79);
+    expect(total).toBe(88);
   });
 
   it('Volume 1 contains exactly 38 experiments', () => {
@@ -269,11 +269,11 @@ describe('LESSON_GROUPS — cross-volume experiment distribution', () => {
     expect(v2Exps.length).toBe(27);
   });
 
-  it('Volume 3 contains exactly 14 experiments', () => {
+  it('Volume 3 contains exactly 23 experiments', () => {
     const v3Exps = ALL_ENTRIES
       .filter(([, l]) => l.volume === 3)
       .flatMap(([, l]) => l.experiments);
-    expect(v3Exps.length).toBe(14);
+    expect(v3Exps.length).toBe(23);
   });
 
   it('no experiment appears in more than one lesson', () => {

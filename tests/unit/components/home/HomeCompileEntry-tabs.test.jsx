@@ -247,8 +247,8 @@ describe('iter 80.A2 — HomeCompileEntry tab Blocchi/Codice C++', () => {
       await new Promise((r) => setTimeout(r, 0));
     });
 
-    expect(container.textContent).toContain('Codice verificato dal compilatore legacy');
-    expect(container.textContent).toContain('non abilita il caricamento sul kit fisico');
+    expect(container.textContent).toContain('codice è stato verificato dal compilatore legacy');
+    expect(container.textContent).toContain('Non usiamo questo risultato per il kit fisico');
     expect(container.textContent).not.toContain('Carica sul kit Arduino');
     expect(container.textContent).not.toContain('Ora potete caricare il programma');
   });

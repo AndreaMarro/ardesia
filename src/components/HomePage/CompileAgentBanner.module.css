@@ -31,6 +31,34 @@
   box-shadow: 0 2px 6px rgba(30, 77, 140, 0.08);
 }
 
+.compact {
+  gap: 10px;
+  max-width: none;
+  min-height: 42px;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.compact .iconWrap {
+  width: 28px;
+  height: 28px;
+}
+
+.compact .title {
+  font-size: 13px;
+  line-height: 1.15;
+}
+
+.compact .subtitle {
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* State: agent ONLINE on Mac — Lime success banner.
  * iter 88 88.UX-4 /quieter: soften border-width 2px → 1px + icon bg
  * 0.14 → 0.08 to reduce competing Lime accent stack vs Compila CTA

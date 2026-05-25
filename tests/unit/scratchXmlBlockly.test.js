@@ -267,7 +267,7 @@ describe('scratchXml — inventory check', () => {
   it('known scratchXml experiment IDs are present', () => {
     const ids = new Set(ALL_SCRATCH.map(e => e.id));
     // These experiments should have scratchXml (from the codebase analysis)
-    const expected = ['v3-cap6-semaforo', 'v3-cap6-morse', 'v3-cap7-esp1'];
+    const expected = ['v3-cap6-esp5', 'v3-cap6-esp8', 'v3-cap7-esp1'];
     for (const id of expected) {
       expect(ids.has(id)).toBe(true);
     }

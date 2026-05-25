@@ -66,7 +66,7 @@
   "next_experiment": {
     "id": "v2-cap5-esp1",
     "title": "Esperimento 1: batterie in serie (più \"spinta\"!)",
-    "preview": "Nel prossimo capitolo collegheremo piu batterie insieme: le tensioni si sommano!"
+    "preview": "Prossimo passo: Esperimento 1: batterie in serie (più \"spinta\"!). La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -203,5 +203,31 @@
     ],
     "next_suggested": "v2-cap5-esp1",
     "resume_message": "Avete costruito un partitore di tensione! Prossimo: batterie in serie."
+  },
+  "analogies": [
+    {
+      "concept": "partitore_palazzo",
+      "text": "Il partitore di tensione e come un palazzo: la batteria e l'altezza totale (9 piani). Ogni resistore e un gruppo di scale. Con 3 gruppi uguali, ogni piano intermedio e a 1/3, 2/3 e 3/3 dell'altezza totale.",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Misurare la tensione ai capi di un solo resistore con i puntali invertiti",
+      "teacher_response": "Per misurare la caduta su R2, il puntale rosso va al nodo superiore di R2 e il nero al nodo inferiore. Se leggete un valore negativo, inverti i puntali!",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

@@ -61,7 +61,7 @@
   "next_experiment": {
     "id": "v2-cap3-esp3",
     "title": "Misuriamo una resistenza",
-    "preview": "Imparerete a misurare il valore di una resistenza con il multimetro!"
+    "preview": "Prossimo passo: Misuriamo una resistenza. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -176,5 +176,31 @@
     ],
     "next_suggested": "v2-cap3-esp3",
     "resume_message": "Avete iniziato il diario di misurazione! Prossimo passo: misurare le resistenze."
+  },
+  "analogies": [
+    {
+      "concept": "scarica_batteria",
+      "text": "La batteria e come un secchio d'acqua con un piccolo buco: l'acqua esce lentamente. Se si fa un buco piu grande (circuito che consuma di piu), l'acqua finisce prima!",
+      "evidence": "Curriculum ELAB Vol 2"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Dimenticare di segnare la data e l'ora della misurazione",
+      "teacher_response": "Senza la data, il dato perde significato! Ogni scienziato registra QUANDO ha fatto la misurazione.",
+      "analogy": "E come scattare una foto senza sapere quando: non puoi ricostruire la storia!"
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

@@ -136,6 +136,25 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
     expect(screen.getAllByRole('figure')).toHaveLength(6);
   });
 
+  it('does not claim Gemini ready when the draft is rejected by grounding checks', () => {
+    render(
+      <SessionReportComic
+        session={{
+          ...mockSession,
+          fumettoGeminiStatus: 'ready',
+          geminiDraft: {
+            storyline: { problem: 'Il motore ha girato', contextWarnings: [] },
+            panels: [{ role: 'problema', caption: 'Ragazzi, il motore ha girato.' }],
+            imagePrompts: [],
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByTestId('session-report-comic-gemini-status')).toHaveTextContent(/scartata/i);
+    expect(screen.getByTestId('session-report-comic-gemini-status')).not.toHaveTextContent(/pronta/i);
+  });
+
   it('falls back to window.print when onExport is missing', () => {
     const printSpy = vi.spyOn(window, 'print').mockImplementation(() => {});
     render(<SessionReportComic session={mockSession} />);
@@ -182,7 +201,7 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
     expect(screen.getAllByText(/Accendi il LED/i).length).toBeGreaterThan(0);
   });
 
-  it('renders post-save cliffhanger CTA and mounts next experiment through UNLIM API', () => {
+  it('keeps the next-experiment CTA hidden while Percorso is in standby', () => {
     const mountExperiment = vi.fn();
     const onMountNextExperiment = vi.fn();
     window.__ELAB_API = { unlim: { mountExperiment } };
@@ -202,18 +221,12 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
       />
     );
 
-    const cta = screen.getByRole('button', {
-      name: /Andiamo al prossimo esperimento Vol\.1 cap\.6/i,
-    });
-    expect(screen.getByTestId('session-report-comic-cliffhanger')).toHaveTextContent(/Ragazzi/);
-    expect(screen.getByTestId('session-report-comic-cliffhanger')).toHaveTextContent(/kit fisico/i);
-
-    fireEvent.click(cta);
+    expect(screen.queryByTestId('session-report-comic-cliffhanger')).not.toBeInTheDocument();
     expect(mountExperiment).not.toHaveBeenCalled();
-    expect(onMountNextExperiment).toHaveBeenCalledWith('v1-cap6-esp2');
+    expect(onMountNextExperiment).not.toHaveBeenCalled();
   });
 
-  it('falls back to top-level mountExperiment when unlim namespace is absent', () => {
+  it('does not mount a next experiment from the comic while standby is active', () => {
     const mountExperiment = vi.fn();
     window.__ELAB_API = { mountExperiment };
 
@@ -231,13 +244,11 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
       />
     );
 
-    fireEvent.click(screen.getByRole('button', {
-      name: /Andiamo al prossimo esperimento Vol\.1 cap\.6/i,
-    }));
-    expect(mountExperiment).toHaveBeenCalledWith('v1-cap6-esp2');
+    expect(screen.queryByTestId('session-report-comic-cliffhanger')).not.toBeInTheDocument();
+    expect(mountExperiment).not.toHaveBeenCalled();
   });
 
-  it('renders cliffhanger fallback copy for missing preview and malformed next id', () => {
+  it('does not render malformed next experiment CTA while Percorso is hidden', () => {
     render(
       <SessionReportComic
         session={{
@@ -251,12 +262,7 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
       />
     );
 
-    expect(screen.getByTestId('session-report-comic-cliffhanger')).toHaveTextContent(
-      /Il kit fisico ha ancora una domanda aperta/i
-    );
-    expect(screen.getByRole('button', {
-      name: /Andiamo al prossimo esperimento\s*: Laboratorio libero/i,
-    })).toBeInTheDocument();
+    expect(screen.queryByTestId('session-report-comic-cliffhanger')).not.toBeInTheDocument();
   });
 
   it('renders canonical UNLIM mascot, didactic exercises, notes, and session fingerprint', () => {
@@ -314,14 +320,10 @@ describe('SessionReportComic — Fumetto Report MVP', () => {
     expect(screen.getByRole('dialog', { name: /Fumetto ELAB generato dalla sessione/i })).toBeInTheDocument();
     expect(document.body.style.overflow).toBe('hidden');
 
-    fireEvent.click(screen.getByRole('button', {
-      name: /Andiamo al prossimo esperimento Vol\.1 cap\.6/i,
-    }));
-
     expect(mountExperiment).not.toHaveBeenCalled();
-    expect(onMountNextExperiment).toHaveBeenCalledWith('v1-cap6-esp2');
+    expect(onMountNextExperiment).not.toHaveBeenCalled();
     expect(window.location.hash).toBe('');
-    expect(onClose).toHaveBeenCalledOnce();
+    expect(onClose).not.toHaveBeenCalled();
   });
 
   it('unlocks page scroll when the modal is closed or unmounted', () => {

@@ -1,21 +1,21 @@
 /**
  * iter-70-experiments-data-integrity.test.js
  *
- * Iter 70 Team B — data integrity verification for all 79 experiments.
+ * Iter 70 Team B — data integrity verification for all 88 experiments.
  *
  * Complements the existing experimentDataIntegrity.test.js but focuses on:
- *  1. Canonical ID regex compliance (v[1-3]-cap[0-9]+-(?:esp\d+|[a-z0-9_-]+))
+ *  1. Canonical ID regex compliance (v[1-3]-cap[0-9]+-esp\d+)
  *  2. unlimPrompt presence and minimum quality (non-empty string)
- *  3. connections field presence and correct type on all 79 experiments
+ *  3. connections field presence and correct type on all 88 experiments
  *  4. Vol3 chapter ordering matches book order (cap5 → cap6 → cap7 → cap8)
  *  5. Cross-volume ID uniqueness
- *  6. Exact counts (38 vol1, 27 vol2, 14 vol3 = 79 total)
- *  7. Vol3 chapter composition (cap5:2, cap6:5, cap7:4, cap8:3)
+ *  6. Exact counts (38 vol1, 27 vol2, 23 vol3 = 88 total)
+ *  7. Vol3 chapter composition (cap5:2, cap6:8, cap7:7, cap8:6)
  *  8. Vol2 "simulable=false" experiments still have components array
  *  9. connections elements have {from, to} string fields
  * 10. layout field present on experiments with components
  * 11. No experiment has negative difficulty
- * 12. IDs with non-standard suffixes (morse, semaforo) are in Vol3 cap6 only
+ * 12. All Volume 3 IDs use clean canonical esp numbering
  * 13. Vol1+Vol2 experiments use simulationMode "circuit" (no Arduino)
  * 14. Vol3 experiments use simulationMode "avr" (Arduino)
  * 15. estimatedMinutes > 0 where present
@@ -35,12 +35,11 @@ const vol2 = EXPERIMENTS_VOL2.experiments;
 const vol3 = EXPERIMENTS_VOL3.experiments;
 const all = [...vol1, ...vol2, ...vol3];
 
-// Canonical ID regex from iter-70 brief:
-// IDs: v[1-3]-cap[0-9]+-(?:esp\d+|[a-z0-9_-]+)
-const CANONICAL_ID_REGEX = /^v[1-3]-cap\d+(?:-esp\d+|-[a-z][a-z0-9_-]*)$/;
+// Canonical ID regex after Volume 3 printed-manual alignment.
+const CANONICAL_ID_REGEX = /^v[1-3]-cap\d+-esp\d+$/;
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 1. Exact counts — iter 70 reality check (not 94, but 79)
+// 1. Exact counts — printed-manual reality check (88 canonical experiments)
 // ═══════════════════════════════════════════════════════════════════════════
 describe('1. Exact experiment counts', () => {
   test('Volume 1 has exactly 38 experiments', () => {
@@ -51,19 +50,19 @@ describe('1. Exact experiment counts', () => {
     expect(vol2.length).toBe(27);
   });
 
-  test('Volume 3 has exactly 14 experiments (not 29 as brief says)', () => {
-    expect(vol3.length).toBe(14);
+  test('Volume 3 has exactly 23 experiments', () => {
+    expect(vol3.length).toBe(23);
   });
 
-  test('Total across all volumes is 79', () => {
-    expect(all.length).toBe(79);
+  test('Total across all volumes is 88', () => {
+    expect(all.length).toBe(88);
   });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 2. All 79 IDs match canonical regex
+// 2. All 88 IDs match canonical regex
 // ═══════════════════════════════════════════════════════════════════════════
-describe('2. All IDs match canonical regex v[1-3]-cap\\d+-(?:esp\\d+|[a-z0-9_-]+)', () => {
+describe('2. All IDs match canonical regex v[1-3]-cap\\d+-esp\\d+', () => {
   all.forEach((exp) => {
     test(`${exp.id} matches canonical ID regex`, () => {
       expect(exp.id, `"${exp.id}" does not match canonical regex`).toMatch(CANONICAL_ID_REGEX);
@@ -72,10 +71,10 @@ describe('2. All IDs match canonical regex v[1-3]-cap\\d+-(?:esp\\d+|[a-z0-9_-]+
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 3. All 79 IDs are unique across volumes
+// 3. All 88 IDs are unique across volumes
 // ═══════════════════════════════════════════════════════════════════════════
 describe('3. ID uniqueness', () => {
-  test('No duplicate IDs across all 79 experiments', () => {
+  test('No duplicate IDs across all 88 experiments', () => {
     const ids = all.map((e) => e.id);
     const unique = new Set(ids);
     const duplicates = ids.filter((id, idx) => ids.indexOf(id) !== idx);
@@ -105,7 +104,7 @@ describe('3. ID uniqueness', () => {
 // ═══════════════════════════════════════════════════════════════════════════
 // 4. All experiments have required fields: title + unlimPrompt + components + connections
 // ═══════════════════════════════════════════════════════════════════════════
-describe('4. Required fields present on all 79 experiments', () => {
+describe('4. Required fields present on all 88 experiments', () => {
   all.forEach((exp) => {
     test(`${exp.id} has title + unlimPrompt + components + connections`, () => {
       expect(exp.title, `${exp.id} missing title`).toBeTruthy();
@@ -176,46 +175,31 @@ describe('6. Vol3 chapter ordering matches book order (cap5 → cap6 → cap7 �
     expect(cap5.length).toBe(2);
   });
 
-  test('Vol3 chapter 6 has exactly 5 experiments', () => {
+  test('Vol3 chapter 6 has exactly 8 experiments', () => {
     const cap6 = vol3.filter((e) => e.id.startsWith('v3-cap6-'));
-    expect(cap6.length).toBe(5);
+    expect(cap6.length).toBe(8);
   });
 
-  test('Vol3 chapter 7 has exactly 4 experiments', () => {
+  test('Vol3 chapter 7 has exactly 7 experiments', () => {
     const cap7 = vol3.filter((e) => e.id.startsWith('v3-cap7-'));
-    expect(cap7.length).toBe(4);
+    expect(cap7.length).toBe(7);
   });
 
-  test('Vol3 chapter 8 has exactly 3 experiments', () => {
+  test('Vol3 chapter 8 has exactly 6 experiments', () => {
     const cap8 = vol3.filter((e) => e.id.startsWith('v3-cap8-'));
-    expect(cap8.length).toBe(3);
+    expect(cap8.length).toBe(6);
   });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 7. Non-standard suffixes (morse, semaforo) are only in Vol3 cap6
+// 7. Volume 3 IDs are clean canonical esp IDs
 // ═══════════════════════════════════════════════════════════════════════════
-describe('7. Non-standard ID suffixes are correctly scoped', () => {
-  test('v3-cap6-morse exists in Vol3', () => {
-    const found = vol3.find((e) => e.id === 'v3-cap6-morse');
-    expect(found, 'v3-cap6-morse not found in vol3').toBeDefined();
-  });
-
-  test('v3-cap6-semaforo exists in Vol3', () => {
-    const found = vol3.find((e) => e.id === 'v3-cap6-semaforo');
-    expect(found, 'v3-cap6-semaforo not found in vol3').toBeDefined();
-  });
-
-  test('No non-standard suffixes outside Vol3 cap6', () => {
-    const nonStandardOutsideCap6 = all.filter((e) => {
-      // Standard suffix is -esp\d+
-      const isStandard = /^v[1-3]-cap\d+-esp\d+$/.test(e.id);
-      const isAllowedNonStandard = /^v3-cap6-(morse|semaforo)$/.test(e.id);
-      return !isStandard && !isAllowedNonStandard;
-    });
+describe('7. Canonical ID suffixes are used everywhere', () => {
+  test('No non-standard suffixes remain', () => {
+    const nonStandard = all.filter((e) => !/^v[1-3]-cap\d+-esp\d+$/.test(e.id));
     expect(
-      nonStandardOutsideCap6.map((e) => e.id),
-      'Unexpected non-standard IDs found outside v3-cap6'
+      nonStandard.map((e) => e.id),
+      'Unexpected non-standard IDs found'
     ).toEqual([]);
   });
 });
@@ -239,11 +223,11 @@ describe('8. simulationMode correctness by volume', () => {
     expect(wrong.map((e) => `${e.id}:${e.simulationMode}`)).toEqual([]);
   });
 
-  test('Total circuit mode = 65 (Vol1+Vol2), total avr mode = 14 (Vol3)', () => {
+  test('Total circuit mode = 65 (Vol1+Vol2), total avr mode = 23 (Vol3)', () => {
     const circuitCount = all.filter((e) => e.simulationMode === 'circuit').length;
     const avrCount = all.filter((e) => e.simulationMode === 'avr').length;
     expect(circuitCount).toBe(65);
-    expect(avrCount).toBe(14);
+    expect(avrCount).toBe(23);
   });
 });
 
@@ -337,26 +321,16 @@ describe('13. unlimPrompt is in Italian (contains Italian keywords)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 14. Vol3 cap6 specific: morse and semaforo have correct simulationMode
+// 14. Vol3 canonical chapter checks
 // ═══════════════════════════════════════════════════════════════════════════
-describe('14. Vol3 cap6 special experiments (morse, semaforo) correctness', () => {
-  const morse = vol3.find((e) => e.id === 'v3-cap6-morse');
-  const semaforo = vol3.find((e) => e.id === 'v3-cap6-semaforo');
-
-  test('v3-cap6-morse has simulationMode avr', () => {
-    expect(morse?.simulationMode).toBe('avr');
-  });
-
-  test('v3-cap6-semaforo has simulationMode avr', () => {
-    expect(semaforo?.simulationMode).toBe('avr');
-  });
-
-  test('v3-cap6-morse has chapter field containing "Capitolo 6"', () => {
-    expect(morse?.chapter).toMatch(/capitolo 6|cap.*6/i);
-  });
-
-  test('v3-cap6-semaforo has chapter field containing "Capitolo 6"', () => {
-    expect(semaforo?.chapter).toMatch(/capitolo 6|cap.*6/i);
+describe('14. Vol3 canonical chapter fields are correct', () => {
+  test('All Cap.6 experiments have simulationMode avr and chapter field containing "Capitolo 6"', () => {
+    const cap6 = vol3.filter((e) => e.id.startsWith('v3-cap6-'));
+    expect(cap6).toHaveLength(8);
+    cap6.forEach((exp) => {
+      expect(exp.simulationMode).toBe('avr');
+      expect(exp.chapter).toMatch(/capitolo 6|cap.*6/i);
+    });
   });
 });
 

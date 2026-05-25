@@ -762,8 +762,8 @@ describe('Principio Zero / 5. Parita tra i 3 volumi', () => {
     expect(getLessonsForVolume(2).length).toBeGreaterThanOrEqual(9);
   });
 
-  it('Vol 3 ha almeno 5 lezioni nel lesson-groups', () => {
-    expect(getLessonsForVolume(3).length).toBeGreaterThanOrEqual(5);
+  it('Vol 3 ha almeno 4 lezioni nel lesson-groups', () => {
+    expect(getLessonsForVolume(3).length).toBeGreaterThanOrEqual(4);
   });
 
   // 5g — ogni esperimento del VOLUME_REFERENCES appartiene a una lezione

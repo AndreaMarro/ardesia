@@ -1,3 +1,4 @@
+// © Andrea Marro — 21/05/2026 — ELAB Tutor — Tutti i diritti riservati
 /**
  * Raggruppamento esperimenti in Lezioni
  *
@@ -179,46 +180,37 @@ const LESSON_GROUPS = {
   // VOLUME 3 — Arduino
   // ═══════════════════════════════════════
 
-  'v3-primi-passi': {
-    title: 'Primi passi con Arduino',
-    concept: 'Scopri la scheda e il codice',
+  'v3-cap5-blink': {
+    title: 'Capitolo 5 — Il nostro primo programma (Blink)',
+    concept: 'setup, loop, Blink e delay',
     volume: 3,
     chapter: 5,
-    icon: '🔌',
+    icon: 'arduino',
     experiments: ['v3-cap5-esp1', 'v3-cap5-esp2']
   },
-  'v3-led-digitale': {
-    title: 'LED digitale con Arduino',
-    concept: 'Accendi, spegni e fai lampeggiare con il codice',
+  'v3-cap6-digitali': {
+    title: 'Capitolo 6 — Il mondo discreto: i pin digitali',
+    concept: 'digitalWrite, digitalRead, IF/ELSE, bool e while',
     volume: 3,
     chapter: 6,
-    icon: '💡',
-    experiments: ['v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp4']
+    icon: 'digital',
+    experiments: ['v3-cap6-esp1', 'v3-cap6-esp2', 'v3-cap6-esp3', 'v3-cap6-esp4', 'v3-cap6-esp5', 'v3-cap6-esp6', 'v3-cap6-esp7', 'v3-cap6-esp8']
   },
-  'v3-progetti-led': {
-    title: 'Progetti LED: semaforo e Morse',
-    concept: 'Sequenze e pattern con i LED',
-    volume: 3,
-// © Andrea Marro — 17/04/2026 — ELAB Tutor — Tutti i diritti riservati
-    chapter: 6,
-    icon: '🚦',
-    experiments: ['v3-cap6-semaforo', 'v3-cap6-morse']
-  },
-  'v3-input-analogico': {
-    title: 'Input analogico',
-    concept: 'Leggi sensori e potenziometri con Arduino',
+  'v3-cap7-analogici': {
+    title: 'Capitolo 7 — Il mondo continuo: i pin analogici',
+    concept: 'analogRead, PWM, map e analogWriteResolution',
     volume: 3,
     chapter: 7,
-    icon: '📊',
-    experiments: ['v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp6']
+    icon: 'analog',
+    experiments: ['v3-cap7-esp1', 'v3-cap7-esp2', 'v3-cap7-esp3', 'v3-cap7-esp4', 'v3-cap7-esp5', 'v3-cap7-esp6', 'v3-cap7-esp7']
   },
-  'v3-output-avanzato': {
-    title: 'Output avanzato',
-    concept: 'PWM, buzzer e comunicazione seriale',
+  'v3-cap8-seriale': {
+    title: 'Capitolo 8 — Visualizzare dati: il Monitor Seriale',
+    concept: 'Serial Monitor, Serial Plotter e barra LED',
     volume: 3,
     chapter: 8,
-    icon: '🎵',
-    experiments: ['v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3']
+    icon: 'serial',
+    experiments: ['v3-cap8-esp1', 'v3-cap8-esp2', 'v3-cap8-esp3', 'v3-cap8-esp4', 'v3-cap8-esp5', 'v3-cap8-esp6']
   }
 };
 

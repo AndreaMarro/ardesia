@@ -1,4 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import * as Blockly from 'blockly';
+import '../../../../src/components/simulator/panels/scratchBlocks.js';
+import { generateArduinoCode } from '../../../../src/components/simulator/panels/scratchGenerator.js';
 import { STARTER_TEMPLATES, getStarterXml, isValidStarterXml } from '../../../../src/features/elabBlocks/starterTemplates.js';
 
 describe('starterTemplates — Sub-project A iter 84 atom 6', () => {
@@ -17,6 +20,21 @@ describe('starterTemplates — Sub-project A iter 84 atom 6', () => {
     expect(xml).toContain('arduino_digital_write');
     expect(xml).toContain('<field name="PIN">13</field>');
     expect(xml).toContain('arduino_delay');
+  });
+
+  it('T2b: blink starter generates Nano R4 built-in LED blink code immediately', () => {
+    const workspace = new Blockly.Workspace();
+    try {
+      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(getStarterXml('blink')), workspace);
+      const code = generateArduinoCode(workspace);
+
+      expect(code).toContain('pinMode(13, OUTPUT);');
+      expect(code).toContain('digitalWrite(13, HIGH);');
+      expect(code).toContain('digitalWrite(13, LOW);');
+      expect(code.match(/delay\(1000\);/g)).toHaveLength(2);
+    } finally {
+      workspace.dispose();
+    }
   });
 
   it('T3: getStarterXml("unknown") returns null defensive', () => {

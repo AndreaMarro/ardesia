@@ -19,17 +19,17 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px;
-  background: var(--elab-bg-secondary, #f0f4f8);
+  gap: 14px;
+  padding: 16px;
+  background: #eef2f7;
   border-bottom: 1px solid var(--elab-border, #d4dee8);
 }
 
 .starterPrompt {
   margin: 0;
   font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 1.35;
   color: var(--elab-navy, #1E4D8C);
   text-align: center;
@@ -38,10 +38,11 @@
 .workspace {
   position: relative;
   flex: 1 1 auto;
-  /* iter-102: con l'header rimosso + la striscia starter inline, 420 di
-     canvas Blockly entrano senza clipping anche a workspace vuoto; quando
-     il workspace ha blocchi la striscia sparisce e l'editor cresce. */
-  min-height: 420px;
+  /* iter-102 (Andrea "allarga l'editor"): con l'header blu rimosso e la
+     striscia starter spostata SOPRA il workspace, la canvas Blockly non è
+     più compressa. Floor a 520px per un editor vero (~470px canvas, ~8-9
+     categorie toolbox visibili); la pagina scrolla su viewport più corti. */
+  min-height: 520px;
   overflow: hidden;
 }
 

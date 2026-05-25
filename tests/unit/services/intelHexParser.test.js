@@ -35,6 +35,14 @@ describe('parseIntelHexText — minimal Blink-like input', () => {
     expect(Array.from(r.binary.slice(0, 4))).toEqual([0x21, 0x46, 0x01, 0x36]);
   });
 
+  it('parses a real Nano R4 record at the RA4M1 app base 0x4000', () => {
+    // iter 103 — the Renesas RA4M1 cross-compile HEX starts at 0x4000.
+    const hex4000 = ':10400000214601360121470136007EFE09D2190101\n:00000001FF\n';
+    const r = parseIntelHexText(hex4000);
+    expect(r.startAddress).toBe(0x4000);
+    expect(r.binary.length).toBe(16);
+  });
+
   it('rejects missing EOF record', () => {
     const noEof = ':10010000214601360121470136007EFE09D2190140\n';
     expect(() => parseIntelHexText(noEof)).toThrow(/EOF/i);

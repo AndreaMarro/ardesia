@@ -73,7 +73,7 @@
   "next_experiment": {
     "id": "v2-cap10-esp2",
     "title": "Invertire la Rotazione",
-    "preview": "Nell'esperimento 2 scoprirete come far girare il motore al contrario invertendo i fili!"
+    "preview": "Prossimo passo: Invertire la Rotazione. La storia continua nello stesso ordine del Volume 2."
   },
   "phases": [
     {
@@ -228,5 +228,41 @@
     ],
     "next_suggested": "v2-cap10-esp2",
     "resume_message": "Avete fatto girare il primo motore DC! Ora scoprirete come invertire la direzione di rotazione."
+  },
+  "analogies": [
+    {
+      "concept": "conversione_energia",
+      "text": "Il motore è come un traduttore: prende il 'linguaggio' dell'elettricità (corrente) e lo trasforma nel 'linguaggio' del movimento. È la stessa magia dentro un drone, un frullatore o una lavatrice!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    },
+    {
+      "concept": "flusso_corrente",
+      "text": "La corrente che entra nel motore è come l'acqua che fa girare un mulino ad acqua: l'acqua scorre, il mulino gira. La corrente scorre, il motore gira. Togli l'acqua (o la corrente) e tutto si ferma!",
+      "evidence": "Curriculum ELAB Vol 2 Cap 10"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Il motore non gira",
+      "teacher_response": "Controllate che entrambi i fili siano collegati: + della batteria al + del motore, - della batteria al - del motore. Se un filo è staccato, il circuito è aperto e la corrente non passa!",
+      "analogy": "Come una catena della bici: se manca anche solo un anello, la ruota non gira."
+    },
+    {
+      "mistake": "Il motore vibra ma non gira davvero",
+      "teacher_response": "Nel simulatore, assicurati di aver premuto Play! Il motore nel simulatore gira quando il circuito è chiuso e la simulazione è attiva.",
+      "analogy": null
+    }
+  ],
+  "modes_supported": [
+    "percorso",
+    "passo-passo",
+    "gia-montato",
+    "libero"
+  ],
+  "modes_entry_state": {
+    "percorso": "passive_view",
+    "passo-passo": "build_step_1",
+    "gia-montato": "final_assembled_state",
+    "libero": "passive_view_with_proactive_unlim"
   }
 }

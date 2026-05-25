@@ -8,7 +8,7 @@ function mockStorageEntries(entries) {
   window.localStorage.getItem.mockImplementation((key) => entries[key] ?? null);
 }
 
-describe('ModalitaSwitch — cue morfico sessione Percorso', () => {
+describe('ModalitaSwitch — Percorso in standby', () => {
   // HIGH-G fix (Phase 1 sub-iter 83.6): reset localStorage mock state to prevent leak
   // to subsequent specs in vitest fork worker.
   afterEach(() => {
@@ -18,28 +18,28 @@ describe('ModalitaSwitch — cue morfico sessione Percorso', () => {
     }
   });
 
-  it('espone data-stato-sessione runtime sullo switch', () => {
+  it('espone data-stato-sessione runtime sullo switch senza mostrare Percorso', () => {
     render(
       <ModalitaSwitch
-        activeMode="percorso"
+        activeMode="passo-passo"
         onModeChange={vi.fn()}
         sessionState="verifica"
       />
     );
 
     expect(screen.getByTestId('modalita-switch')).toHaveAttribute('data-stato-sessione', 'verifica');
-    expect(screen.getByTestId('modalita-btn-percorso')).toHaveAttribute('data-session-cue', 'verifica');
+    expect(screen.queryByTestId('modalita-btn-percorso')).toBeNull();
   });
 
   it('legge il cue morfico da localStorage quando LavagnaShell non passa props', () => {
     mockStorageEntries({ 'elab-percorso-session-state': 'costruzione' });
-    render(<ModalitaSwitch activeMode="percorso" onModeChange={vi.fn()} />);
+    render(<ModalitaSwitch activeMode="passo-passo" onModeChange={vi.fn()} />);
 
     expect(screen.getByTestId('modalita-switch')).toHaveAttribute('data-stato-sessione', 'costruzione');
-    expect(screen.getByTestId('modalita-btn-percorso')).toHaveAttribute('data-session-cue', 'costruzione');
+    expect(screen.queryByTestId('modalita-btn-percorso')).toBeNull();
   });
 
-  it('mantiene Percorso first anche con availableModes difensivo e profilo docente morfico', () => {
+  it('non forza Percorso dentro availableModes mentre e in standby', () => {
     mockStorageEntries({
       'elab-teacher-anon-uuid': 'teacher-a',
       'elab-morphic-teacher-profile:teacher-a': JSON.stringify({ experience: 'expert' }),
@@ -54,7 +54,8 @@ describe('ModalitaSwitch — cue morfico sessione Percorso', () => {
     );
 
     const buttons = screen.getAllByRole('tab');
-    expect(buttons[0]).toHaveTextContent('Percorso');
-    expect(screen.getByTestId('modalita-btn-percorso')).toHaveAttribute('data-morphic-profile', 'esperto');
+    expect(buttons).toHaveLength(1);
+    expect(buttons[0]).toHaveTextContent('Già Montato');
+    expect(screen.queryByTestId('modalita-btn-percorso')).toBeNull();
   });
 });

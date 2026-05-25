@@ -52,6 +52,21 @@ const PEN_SIZES = [
 // bezier già attivo (pointsToSmoothPath line 60).
 const DEFAULT_PEN_SIZE = 3;
 const ERASER_WIDTH = 18;
+const TOOLBAR_POS_KEY = 'elab-drawing-toolbar-pos';
+
+function loadToolbarPos() {
+  try {
+    const raw = localStorage.getItem(TOOLBAR_POS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (typeof parsed?.left === 'number' && typeof parsed?.top === 'number') return parsed;
+  } catch { /* noop */ }
+  return null;
+}
+
+function saveToolbarPos(pos) {
+  try { localStorage.setItem(TOOLBAR_POS_KEY, JSON.stringify(pos)); } catch { /* noop */ }
+}
 
 /**
  * Convert raw point string "x1,y1 x2,y2 ..." into smooth SVG quadratic bezier path.
@@ -150,6 +165,8 @@ export default function DrawingOverlay({
   const [showToolbar, setShowToolbar] = useState(true);
   const [penSize, setPenSize] = useState(DEFAULT_PEN_SIZE);
   const [isFullscreen, setIsFullscreen] = useState(initialFullscreen);
+  const [toolbarPos, setToolbarPos] = useState(loadToolbarPos);
+  const toolbarRef = useRef(null);
 
   // iter 45 fix Andrea video2 06/05/2026 B5 "manca la gomma": ascolta CustomEvent
   // 'elab-set-eraser-mode' emesso da FloatingToolbar (LavagnaShell handleToolChange
@@ -403,6 +420,38 @@ export default function DrawingOverlay({
     onClose?.();
   }, [isDrawing, currentPath, paths, experimentId, onPathsChange, onClose]);
 
+  const handleToolbarDragStart = useCallback((e) => {
+    if (e.target?.closest?.('button, input, label')) return;
+    const rect = toolbarRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+
+    const handleMove = (ev) => {
+      const left = Math.max(8, Math.min(ev.clientX - offsetX, window.innerWidth - rect.width - 8));
+      const top = Math.max(8, Math.min(ev.clientY - offsetY, window.innerHeight - rect.height - 8));
+      setToolbarPos({ left, top });
+    };
+    const handleUp = () => {
+      window.removeEventListener('pointermove', handleMove);
+      window.removeEventListener('pointerup', handleUp);
+      setToolbarPos((current) => {
+        if (current) saveToolbarPos(current);
+        return current;
+      });
+    };
+    window.addEventListener('pointermove', handleMove);
+    window.addEventListener('pointerup', handleUp);
+  }, []);
+
+  const resetToolbarPosition = useCallback((e) => {
+    if (e.target?.closest?.('button, input, label')) return;
+    setToolbarPos(null);
+    try { localStorage.removeItem(TOOLBAR_POS_KEY); } catch { /* noop */ }
+  }, []);
+
   // Event handlers attached via JSX props (no useEffect timing issues)
 
   // Keyboard shortcuts for undo/redo
@@ -528,11 +577,11 @@ export default function DrawingOverlay({
 
       {/* Compact horizontal toolbar — top center */}
       {showToolbar && (
-        <div style={{
+        <div ref={toolbarRef} onPointerDown={handleToolbarDragStart} onDoubleClick={resetToolbarPosition} style={{
           position: 'absolute',
-          top: 8,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          top: toolbarPos ? toolbarPos.top : 8,
+          left: toolbarPos ? toolbarPos.left : '50%',
+          transform: toolbarPos ? 'none' : 'translateX(-50%)',
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
@@ -544,7 +593,25 @@ export default function DrawingOverlay({
           zIndex: isFullscreen ? 9001 : 51,
           backdropFilter: 'blur(10px)',
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.35)',
+          cursor: 'grab',
+          touchAction: 'none',
         }}>
+          <span
+            title="Trascina barra colori"
+            aria-hidden="true"
+            style={{
+              width: 12,
+              height: 32,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--elab-hex-94a3b8)',
+              flexShrink: 0,
+              userSelect: 'none',
+            }}
+          >
+            ⋮
+          </span>
           {/* Colors — small circles */}
           {COLORS.map(color => (
             <button
@@ -661,7 +728,8 @@ export default function DrawingOverlay({
           style={{
             position: 'absolute',
             top: 12,
-            right: 12,
+            left: toolbarPos ? toolbarPos.left : 'auto',
+            right: toolbarPos ? 'auto' : 12,
             width: 44,
             height: 44,
             borderRadius: 10,

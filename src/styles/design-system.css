@@ -126,14 +126,7 @@
   --glass-blur: blur(12px);
   --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
-  /* --- Z-index scale --- */
-  --z-base: 1;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-overlay: 300;
-  --z-modal: 400;
-  --z-toast: 500;
-  --z-max: 9999;
+  /* --- Z-index scale — spostata in src/styles/z-index.css (single source of truth) --- */
 
   /* --- Touch targets (WCAG minimum) --- */
   --touch-min: 56px;

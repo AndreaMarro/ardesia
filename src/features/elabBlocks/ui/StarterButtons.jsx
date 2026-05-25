@@ -43,7 +43,12 @@ export function StarterButtons({ onStarterClick, disabled = false }) {
   }, [disabled, onStarterClick]);
 
   return (
-    <div className={styles.container} role="group" aria-label="Programmi iniziali da cui partire">
+    <div
+      className={styles.container}
+      role="group"
+      aria-label="Programmi iniziali da cui partire"
+      data-ui-layout="three-card-grid"
+    >
       {STARTER_KEYS.map((key) => (
         <button
           key={key}
@@ -54,6 +59,7 @@ export function StarterButtons({ onStarterClick, disabled = false }) {
           disabled={disabled}
           aria-label={`${STARTER_LABELS[key]} — ${STARTER_DESCRIPTIONS[key]}`}
           data-starter={key}
+          data-card-shape="outline"
         >
           <span className={styles.label}>{STARTER_LABELS[key]}</span>
           <span className={styles.description}>{STARTER_DESCRIPTIONS[key]}</span>

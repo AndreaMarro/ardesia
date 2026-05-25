@@ -9,7 +9,7 @@
 
 .root {
   width: 100%;
-  margin: 12px 0 0;
+  margin: 0;
   border: 1px solid var(--elab-border, #E0E6ED);
   border-radius: 8px;
   background: var(--elab-card-bg, #FFFFFF);
@@ -21,15 +21,15 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 44px;
-  padding: 10px 16px;
+  min-height: 56px;
+  padding: 12px 18px;
   background: transparent;
   border: none;
   border-radius: 8px;
   color: var(--elab-navy, #1E4D8C);
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
   text-align: left;
   transition: background 120ms ease;
@@ -50,7 +50,7 @@
 }
 
 .body {
-  padding: 4px 16px 16px;
+  padding: 8px 18px 18px;
   border-top: 1px solid var(--elab-border, #E0E6ED);
 }
 
@@ -73,8 +73,8 @@
 /* LIM-mode ≥1280px — bigger typography for fondo-aula visibility. */
 @media (min-width: 1280px) {
   .toggleBtn {
-    font-size: 16px;
-    min-height: 48px;
+    font-size: 19px;
+    min-height: 60px;
   }
   .title {
     font-size: 18px;

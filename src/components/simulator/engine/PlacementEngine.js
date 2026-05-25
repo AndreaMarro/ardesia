@@ -345,6 +345,33 @@ function resolveRelation(compIntent, pinAssignments) {
 //  COMPONENT PLACEMENT
 // ═══════════════════════════════════════════════════════════════
 
+function getUsablePins(pins = []) {
+  return pins.filter(pin =>
+    pin
+    && typeof pin.id === 'string'
+    && Number.isFinite(pin.x)
+    && Number.isFinite(pin.y)
+  );
+}
+
+function placeVisualOnlyComponent(compIntent, bbId, preferredCol, section, snapshot) {
+  const bbPos = snapshot.layout?.[bbId] || { x: 0, y: 0 };
+  const sectionY = section === 'top' ? BB_Y_SEC_TOP : BB_Y_SEC_BOT;
+  const anchorRowIdx = 2;
+  const x = bbPos.x + BB_PAD_X + preferredCol * BB_PITCH + BB_PITCH / 2;
+  const y = bbPos.y + sectionY + anchorRowIdx * BB_PITCH + BB_PITCH / 2;
+
+  return {
+    success: true,
+    x,
+    y,
+    pinAssignments: {},
+    bbId,
+    pinless: true,
+    componentType: compIntent.type,
+  };
+}
+
 /**
  * Place a single component on the breadboard.
  * @param {Object} compIntent - { type, near, relation, section, color, value }
@@ -355,15 +382,22 @@ function resolveRelation(compIntent, pinAssignments) {
  */
 export function placeComponent(compIntent, compId, occupancy, snapshot) {
   const registered = getComponent(compIntent.type);
-  if (!registered || !registered.pins || registered.pins.length === 0) {
-    return { success: false, error: `Unknown or pinless component type: ${compIntent.type}` };
+  if (!registered) {
+    return { success: false, error: `Unknown component type: ${compIntent.type}` };
   }
-
-  const pins = registered.pins;
-  const { orientation, pinSpans } = analyzePinLayout(pins);
 
   // Resolve where to place relative to reference component
   const { bbId, preferredCol, section } = resolveRelation(compIntent, snapshot.pinAssignments || {});
+
+  const pins = getUsablePins(registered.pins);
+  if (pins.length < 2) {
+    if (!KNOWN_TYPES.has(compIntent.type)) {
+      return { success: false, error: `pinless component type without ELAB placement fallback: ${compIntent.type}` };
+    }
+    return placeVisualOnlyComponent(compIntent, bbId, preferredCol, section, snapshot);
+  }
+
+  const { orientation, pinSpans } = analyzePinLayout(pins);
 
   // Get breadboard position in SVG space
   const bbPos = snapshot.layout?.[bbId] || { x: 0, y: 0 };

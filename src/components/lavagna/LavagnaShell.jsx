@@ -6,6 +6,8 @@
  */
 
 import React, { lazy, Suspense, useState, useCallback, useEffect, useRef, useMemo, useId } from 'react';
+import { createPortal } from 'react-dom';
+import { overlayPortalTarget, overlayPortalDisplayStyle } from './overlayPortal';
 import { useAuth } from '../../context/AuthContext';
 // Iter 44 wire-up: useSessionTracker per persistenza scritte sessione.
 // Andrea iter 41+ feedback 2026-05-06: "Cronologia recente" homepage sempre
@@ -43,7 +45,8 @@ import ErrorBoundary from '../common/ErrorBoundary';
 // Sprint S iter 2 Task B — Capitolo lookup service
 import { getCapitolo, listAllCapitoli } from '../../services/percorsoService';
 import { showToast as showToastSync } from '../common/Toast';
-import { startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../../services/unlimContextCollector';
+import { collectFullContext, startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../../services/unlimContextCollector';
+import { generateFumettoDraftWithGemini } from '../../services/fumettoGeminiService';
 // iter 38 Atom A11 + A12 (WebDesigner-1): pre-emptive UX nudges.
 //   - MicPermissionNudge: chiede mic ai docenti PRIMA di entrare in Lavagna
 //     così wake word "Ehi UNLIM" è caldo al primo uso (browser cache grant
@@ -54,7 +57,8 @@ import { startApplicationNarrativeLoop, stopApplicationNarrativeLoop } from '../
 // senza aggiornamenti pending.
 const MicPermissionNudge = lazy(() => import('../common/MicPermissionNudge.jsx'));
 const UpdatePrompt = lazy(() => import('../common/UpdatePrompt.jsx'));
-// ADR-025 iter 26 — Modalità 4 modes canonical UI (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso)
+// 2026-05-22 — Percorso temporaneamente in standby: la UI espone solo
+// Passo Passo + Già Montato e migra gli stati legacy verso Passo Passo.
 import ModalitaSwitch from './ModalitaSwitch';
 import css from './LavagnaShell.module.css';
 
@@ -69,6 +73,8 @@ const CapitoloPicker = lazy(() => import('./CapitoloPicker'));
 const PercorsoCapitoloView = lazy(() => import('./PercorsoCapitoloView'));
 
 const DEFAULT_MODALITA_EXPERIMENT_ID = 'v1-cap6-esp1';
+const ACTIVE_MODALITA = ['passo-passo', 'gia-montato'];
+const MODALITA_STANDBY_FALLBACK = 'passo-passo';
 
 function getStoredClassKey() {
   if (typeof window === 'undefined') return 'classe-fumetto';
@@ -89,6 +95,39 @@ function ensureUnlimMountNamespace() {
   };
 }
 
+export function applyLoadedExperimentStateFromApi({
+  api,
+  experimentId,
+  setCurrentExperiment,
+  setExperimentName,
+  setHasExperiment,
+  setPickerOpen,
+  setCapitoloPickerOpen,
+  setBentornatiVisible,
+  setCurrentVolume,
+}) {
+  if (!api || !experimentId || typeof api.loadExperiment !== 'function') return false;
+  const loaded = api.loadExperiment(experimentId);
+  if (!loaded) return false;
+
+  const experiment =
+    api.getCurrentExperiment?.()
+    || api.getExperiment?.(experimentId)
+    || { id: experimentId };
+
+  if (experiment?.id) setCurrentExperiment?.(experiment);
+  setExperimentName?.(experiment?.title || experimentId);
+  setHasExperiment?.(true);
+  setPickerOpen?.(false);
+  setCapitoloPickerOpen?.(false);
+  setBentornatiVisible?.(false);
+
+  const volMatch = experimentId.match(/^v(\d)/);
+  if (volMatch) setCurrentVolume?.(Number(volMatch[1]));
+
+  return true;
+}
+
 function getFumettoSessionEvidenceScore(session) {
   const messages = Array.isArray(session?.messages) ? session.messages.length : 0;
   const errors = Array.isArray(session?.errors) ? session.errors.length : 0;
@@ -102,7 +141,19 @@ function getFumettoSessionEvidenceScore(session) {
   return (messages * 8) + (errors * 6) + (journey * 5) + (completed * 3) + actions;
 }
 
-function getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId }) {
+function hasMeaningfulFumettoRuntimeEvidence(context) {
+  if (!context || typeof context !== 'object') return false;
+  if (context.compilation || context.serial || context.serialOutput || context.serialMonitor) return true;
+  if (Array.isArray(context.recentErrors) && context.recentErrors.length > 0) return true;
+  if (context.completedExperiments?.total > 0) return true;
+  if (context.currentExperimentAttempts > 0 || context.currentExperimentHintsUsed > 0) return true;
+  if (Array.isArray(context.applicationNarrative) && context.applicationNarrative.length > 0) return true;
+  if (Array.isArray(context.unlimSharedState?.recentEvents) && context.unlimSharedState.recentEvents.length > 0) return true;
+  if (context.buildStep?.current > 1) return true;
+  return false;
+}
+
+function getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId, sessionContext }) {
   const experimentId = currentExperiment?.id || initialExperimentId || getExpFromHash() || 'v1-cap6-esp1';
   const savedSessions = getSavedSessions();
   const matchingSessions = [...savedSessions]
@@ -112,6 +163,8 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
     .map((session, index) => ({ session, index, score: getFumettoSessionEvidenceScore(session) }))
     .sort((a, b) => b.score - a.score || a.index - b.index)[0]?.session
     || null;
+  const savedScore = saved ? getFumettoSessionEvidenceScore(saved) : 0;
+  const hasSessionEvidence = savedScore > 0 || hasMeaningfulFumettoRuntimeEvidence(sessionContext);
   const lessonPath = getLessonPath(experimentId);
   const now = new Date().toISOString();
   const startedAt = saved?.startedAt || saved?.startTime || now;
@@ -137,14 +190,16 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
   const savedCompleted = Array.isArray(saved?.experimentsCompleted)
     ? saved.experimentsCompleted.filter((experiment) => experiment?.id)
     : [];
-  const experimentsCompleted = savedCompleted.length > 0
-    ? [
-        ...savedCompleted,
-        ...(savedCompleted.some((experiment) => experiment.id === experimentId)
-          ? []
-          : [fallbackCompletedExperiment]),
-      ]
-    : [fallbackCompletedExperiment];
+  const experimentsCompleted = !hasSessionEvidence
+    ? []
+    : savedCompleted.length > 0
+      ? [
+          ...savedCompleted,
+          ...(savedCompleted.some((experiment) => experiment.id === experimentId)
+            ? []
+            : [fallbackCompletedExperiment]),
+        ]
+      : [fallbackCompletedExperiment];
   const savedJourney = saved?.studentJourney && typeof saved.studentJourney === 'object'
     ? saved.studentJourney
     : {};
@@ -172,7 +227,7 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
     experimentsCompleted,
     componentsUsed: Array.isArray(saved?.componentsUsed) && saved.componentsUsed.length > 0
       ? saved.componentsUsed
-      : componentsUsed,
+      : (hasSessionEvidence ? componentsUsed : []),
     narrations: {
       ...(saved?.narrations || {}),
       ...(assistantText ? { [experimentId]: assistantText } : {}),
@@ -185,6 +240,8 @@ function getRuntimeFumettoSession({ currentExperiment, experimentName, initialEx
       helpRequestsCount,
     },
     next_experiment: lessonPath?.next_experiment || null,
+    sessionContext: sessionContext || saved?.sessionContext || null,
+    sessionEvidenceLevel: hasSessionEvidence ? 'live_or_saved' : 'sparse',
   };
 }
 const DRAWING_SYNC_ENABLED = import.meta.env.VITE_ENABLE_DRAWING_SYNC === 'true';
@@ -617,26 +674,17 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       return ['complete', 'guided', 'sandbox'].includes(v) ? v : 'complete';
     } catch { return 'complete'; }
   }); // complete | guided | sandbox
-  // ADR-025 iter 26 — modalità canonical 4 modes (Percorso default, Passo Passo, Già Montato, Libero)
-  // Default 'percorso' (NOT 'libero'). Libero auto-mounts Percorso (NON sandbox vuoto).
-  // iter 36 Atom A4 fix — H4 mitigation: migrate stale legacy values (e.g. 'guida-da-errore'
-  // removed iter 26) to canonical 'percorso'. Without this, a docente che aveva selezionato
-  // un mode legacy in iter <26 vedeva localStorage stale → re-mount restava su valore
-  // invalid filtered out → setModalita default 'percorso' attivo MA bottone non mostrato attivo
-  // perché il browser ricaricava su modalità non più rendered. Forziamo cleanup al mount.
+  // Percorso standby: non cancelliamo codice o dati, ma non lo rendiamo più
+  // raggiungibile dalla UI finché il flusso non viene ridisegnato.
   const [modalita, setModalita] = useState(() => {
-    const CANONICAL = ['percorso', 'passo-passo', 'gia-montato'];
-    const MIGRATED_TO_PERCORSO = ['libero', 'guida-da-errore'];
     try {
       const v = localStorage.getItem('elab-lavagna-modalita');
-      if (CANONICAL.includes(v)) return v;
-      // Stale or unknown value (legacy 'guida-da-errore', 'complete', 'guided', 'sandbox', null)
-      // → reset localStorage + default to 'percorso' canonical default.
+      if (ACTIVE_MODALITA.includes(v)) return v;
       if (v != null) {
         try { localStorage.removeItem('elab-lavagna-modalita'); } catch {}
       }
-      return 'percorso';
-    } catch { return 'percorso'; }
+      return MODALITA_STANDBY_FALLBACK;
+    } catch { return MODALITA_STANDBY_FALLBACK; }
   });
   const [drawingEnabled, setDrawingEnabled] = useState(false);
   const [bentornatiVisible, setBentornatiVisible] = useState(() => {
@@ -654,7 +702,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // Persiste in localStorage 'elab-percorso-session-state' per consumare adapter percorsoMorphicAdapter.
   const [storedPercorsoSessionState, setStoredPercorsoSessionState] = useState(readPercorsoSessionState);
   const derivedSessionState = React.useMemo(() => {
-    if (typeof modalita === 'string' && (modalita === 'passo-passo' || modalita === 'libero' || modalita === 'gia-montato')) return 'costruzione';
+    if (typeof modalita === 'string' && ACTIVE_MODALITA.includes(modalita)) return 'costruzione';
     return PERCORSO_SESSION_STATES.includes(storedPercorsoSessionState) ? storedPercorsoSessionState : 'intro';
   }, [modalita, storedPercorsoSessionState]);
   React.useEffect(() => {
@@ -882,17 +930,13 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     try { localStorage.setItem('elab-lavagna-modalita', modalita); } catch {}
   }, [modalita]);
 
-  // Iter 34 P0 fix Andrea bug "lavagna bianca quando selezionata non è mai vuota":
-  // ADR-025 §4.4 iter 26 forced Libero → auto-Percorso (NON sandbox). Andrea iter
-  // 34 ha invertito il mandate: Libero DEVE essere blank sandbox (true empty
-  // canvas) per consentire creazione libera senza esperimento pre-mounted.
-  // Diagnose flow integrato dentro Già Montato + Passo Passo (mode 'guida-da-errore' REMOVED).
+  // Percorso standby: ogni ingresso legacy/narrativo torna al flusso guidato
+  // leggibile e testabile. Non apre UNLIM percorso, non cancella canvas.
   const handleModalitaChange = useCallback((nextMode) => {
-    // Sprint V iter 3 — 'libero' MERGED in 'percorso' (Andrea iter 1+ mandate). Migrate silently.
-    if (nextMode === 'libero' || nextMode === 'guida-da-errore') {
-      nextMode = 'percorso';
+    if (nextMode === 'percorso' || nextMode === 'libero' || nextMode === 'guida-da-errore') {
+      nextMode = MODALITA_STANDBY_FALLBACK;
     }
-    if (!['percorso', 'passo-passo', 'gia-montato'].includes(nextMode)) {
+    if (!ACTIVE_MODALITA.includes(nextMode)) {
       return; // defensive: ignore unknown modes
     }
     setModalita(nextMode);
@@ -908,7 +952,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       const api = window.__ELAB_API;
       ensureDefaultExperimentForMode(api);
       setBuildMode('guided');
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('chat');
       manualOverridesRef.current.unlim = true;
       if (api?.setBuildMode) {
@@ -928,7 +972,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       const api = window.__ELAB_API;
       ensureDefaultExperimentForMode(api);
       setBuildMode('complete');
-      setUnlimOpen(true);
+      setUnlimOpen(false);
       setUnlimTab('chat');
       manualOverridesRef.current.unlim = true;
       if (api?.setBuildMode) {
@@ -941,48 +985,6 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         try { api.unlim.setDiagnoseMode(true); } catch { /* noop */ }
       }
     }
-    // Sprint V iter 1 Atom A5 — Percorso morphic Onniscenza Sense 1.5.
-    // Andrea mandate: vecchia "Libero" + adattamento contesto lezione+classe+sessioni.
-    // Trigger best-effort prefetch dell'aggregator Onniscenza (client-side bridge only;
-    // wire-up Edge Function chain decisione orchestratore Phase 4). NON muta
-    // currentExperiment — preserva canvas (no clearAll).
-    if (nextMode === 'percorso' && typeof window !== 'undefined') {
-      // Andrea 2026-05-08: Percorso deve partire senza nulla. Quindi non
-      // preserviamo il circuito: mettiamo il simulatore in sandbox vuota e
-      // lasciamo a UNLIM la lettura narrativa/morfica.
-      setBuildMode('sandbox');
-      setUnlimOpen(true);
-      setUnlimTab('percorso');
-      manualOverridesRef.current.unlim = true;
-      const api = window.__ELAB_API;
-      if (api?.setBuildMode) {
-        try { api.setBuildMode('sandbox'); } catch { /* noop */ }
-      }
-      if (api?.setBuildStepIndex) {
-        try { api.setBuildStepIndex(-1); } catch { /* noop */ }
-      }
-      if (api?.clearAll) {
-        try { api.clearAll(); } catch { /* noop */ }
-      }
-      if (api?.unlim?.setDiagnoseMode) {
-        try { api.unlim.setDiagnoseMode(false); } catch { /* noop */ }
-      }
-      if (api?.unlim?.aggregateContext) {
-        try {
-          api.unlim.aggregateContext({
-            lesson: api?.unlim?.getActiveLessonId?.() || null,
-            class_key: (() => {
-              try { return localStorage.getItem('elab-class-key') || null; } catch { return null; }
-            })(),
-            recent_sessions_limit: 5,
-          });
-        } catch { /* noop */ }
-      }
-    }
-    // Sprint V iter 3 — 'libero' MERGED in 'percorso'. Legacy clearAll branch
-    // RIMOSSO: percorso preserva canvas (no clearAll) per Onniscenza morphic
-    // Sense 1.5 contesto lezione+classe+sessioni precedenti. Andrea iter 1+
-    // mandate: percorso = vecchia "Libero" + adattamento contesto morfico.
   }, [ensureDefaultExperimentForMode]);
   useEffect(() => {
     try { localStorage.setItem('elab-lavagna-volume', String(currentVolume)); } catch {}
@@ -998,11 +1000,13 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // The BentornatiOverlay handles first-time vs returning users.
   // Fallback: if bentornati is dismissed without loading, open picker.
   useEffect(() => {
-    if (!hasExperiment && !bentornatiVisible && !pickerOpen && !freeMode) {
-      const timer = setTimeout(() => setPickerOpen(true), 400);
+    if (!hasExperiment && !bentornatiVisible && !pickerOpen && !capitoloPickerOpen && !freeMode) {
+      const timer = setTimeout(() => {
+        setPickerOpen(true);
+      }, 400);
       return () => clearTimeout(timer);
     }
-  }, [hasExperiment, bentornatiVisible, pickerOpen, freeMode]);
+  }, [hasExperiment, bentornatiVisible, pickerOpen, capitoloPickerOpen, freeMode, modalita]);
   const manualOverridesRef = useRef({});
   const apiReadyRef = useRef(false);
 
@@ -1024,7 +1028,17 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           // Override savedExpId iff prop fornito (intentional user navigation).
           const expIdToLoad = initialExperimentId || localStorage.getItem('elab-lavagna-last-expId');
           if (expIdToLoad && !currentExperiment && api.loadExperiment) {
-            api.loadExperiment(expIdToLoad);
+            applyLoadedExperimentStateFromApi({
+              api,
+              experimentId: expIdToLoad,
+              setCurrentExperiment,
+              setExperimentName,
+              setHasExperiment,
+              setPickerOpen,
+              setCapitoloPickerOpen,
+              setBentornatiVisible,
+              setCurrentVolume,
+            });
           }
         } catch { /* localStorage quota OR private mode */ }
 
@@ -1055,6 +1069,22 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         api.on?.('stateChange', (data) => {
           if (data?.running != null) setIsPlaying(data.running);
         });
+
+        // iter 104 C3 fix Codex stop-time review "UNLIM handoff drops the user's
+        // question": #compile-home UnlimCompileHelper.jsx forwarda question via
+        // localStorage `elab-unlim-seed` + navigate `#lavagna`. Consume here al
+        // primo mount API ready: setUnlimOpen(true) + api.unlim.sendMessage(seed)
+        // + clear localStorage key (idempotente — evita re-trigger reload).
+        try {
+          if (typeof window !== 'undefined') {
+            const seed = window.localStorage.getItem('elab-unlim-seed');
+            if (seed && seed.trim() && api?.unlim?.sendMessage) {
+              setUnlimOpen(true);
+              api.unlim.sendMessage(seed);
+              window.localStorage.removeItem('elab-unlim-seed');
+            }
+          }
+        } catch (_) { /* defensive — quota/private mode */ }
       }
     }, 500);
     return () => clearInterval(check);
@@ -1115,7 +1145,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     setBottomPanelOpen(p => !p);
   }, []);
 
-  // Build mode change — sets simulator mode via API + auto-opens UNLIM tab
+  // Build mode change — sets simulator mode via API. Percorso is in standby,
+  // so sandbox no longer opens the old UNLIM percorso tab.
   const handleBuildModeChange = useCallback((mode) => {
     setBuildMode(mode);
     const api = typeof window !== 'undefined' && window.__ELAB_API;
@@ -1123,8 +1154,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     if (mode === 'guided') {
       return;
     } else if (mode === 'sandbox') {
-      setUnlimOpen(true);
-      setUnlimTab('percorso');
+      setUnlimOpen(false);
+      setUnlimTab('chat');
       manualOverridesRef.current.unlim = true;
     }
   }, []);
@@ -1132,22 +1163,15 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   const applyCurrentModalitaToSimulator = useCallback((mode = modalita) => {
     const api = typeof window !== 'undefined' && window.__ELAB_API;
     if (!api) return;
-    if (mode === 'percorso') {
-      try { api.setBuildMode?.('sandbox'); } catch { /* noop */ }
-      try { api.setBuildStepIndex?.(-1); } catch { /* noop */ }
-      try { api.clearAll?.(); } catch { /* noop */ }
-      try { api.unlim?.setDiagnoseMode?.(false); } catch { /* noop */ }
-      setBuildMode('sandbox');
-      return;
-    }
-    if (mode === 'passo-passo') {
+    const normalizedMode = ACTIVE_MODALITA.includes(mode) ? mode : MODALITA_STANDBY_FALLBACK;
+    if (normalizedMode === 'passo-passo') {
       try { api.setBuildMode?.('guided'); } catch { /* noop */ }
       try { api.setBuildStepIndex?.(0); } catch { /* noop */ }
       try { api.unlim?.setDiagnoseMode?.(false); } catch { /* noop */ }
       setBuildMode('guided');
       return;
     }
-    if (mode === 'gia-montato') {
+    if (normalizedMode === 'gia-montato') {
       try { api.setBuildMode?.('complete'); } catch { /* noop */ }
       try { api.setBuildStepIndex?.(Number.POSITIVE_INFINITY); } catch { /* noop */ }
       try { api.unlim?.setDiagnoseMode?.(true); } catch { /* noop */ }
@@ -1424,6 +1448,11 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     setActiveCapitoloId(null);
   }, []);
 
+  const handleHomeClick = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    window.location.hash = 'home';
+  }, []);
+
   // VolumeCitation onClick wired → opens VolumeViewer at vol/page (lazy-loaded already)
   const handleCitationClick = useCallback(({ volume, page }) => {
     if (typeof volume === 'number' && volume >= 1 && volume <= 3) {
@@ -1482,9 +1511,49 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     try {
       ensureUnlimMountNamespace();
       sessionTracker.finaliseSession();
-      const session = getRuntimeFumettoSession({ currentExperiment, experimentName, initialExperimentId });
-      setFumettoSession(session);
-      setToolToast('Fumetto generato dalla sessione. Buon lavoro, Ragazzi.');
+      const sessionContext = collectFullContext();
+      const session = getRuntimeFumettoSession({
+        currentExperiment,
+        experimentName,
+        initialExperimentId,
+        sessionContext,
+      });
+      setFumettoSession({ ...session, fumettoGeminiStatus: 'loading' });
+      setToolToast('Fumetto aperto: UNLIM prepara la storyline dalla sessione.');
+      generateFumettoDraftWithGemini({ session })
+        .then((result) => {
+          if (result.ok && result.draft) {
+            setFumettoSession((current) => current
+              ? {
+                  ...current,
+                  geminiDraft: result.draft,
+                  fumettoGeminiStatus: 'received',
+                  fumettoGeminiMeta: {
+                    provider: result.provider,
+                    model: result.model,
+                    latencyMs: result.latencyMs,
+                  },
+                }
+              : current);
+            return;
+          }
+          setFumettoSession((current) => current
+            ? {
+                ...current,
+                fumettoGeminiStatus: 'deferred',
+                fumettoGeminiError: result.error || 'Gemini fumetto non disponibile',
+              }
+            : current);
+        })
+        .catch((err) => {
+          setFumettoSession((current) => current
+            ? {
+                ...current,
+                fumettoGeminiStatus: 'deferred',
+                fumettoGeminiError: err?.message || 'Gemini fumetto non disponibile',
+              }
+            : current);
+        });
       setTimeout(() => setToolToast(null), 2500);
     } catch (err) {
       logger.warn('[Fumetto] Unable to open report window:', err?.message || err);
@@ -1571,6 +1640,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       </Suspense>
       <AppHeader
         experimentName={freeMode ? 'ELAB' : experimentName}
+        onHome={handleHomeClick}
         totalSteps={totalSteps}
         currentStep={currentStep}
         onPickerOpen={freeMode ? undefined : handlePickerOpen}
@@ -1599,17 +1669,11 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           }
         } : undefined}
         onPercorsoToggle={() => {
-          // Open UNLIM with Percorso tab instead of separate panel
-          if (unlimOpen && unlimTab === 'percorso') {
-            // Already showing percorso — switch back to chat
-            setUnlimTab('chat');
-          } else {
-            setUnlimOpen(true);
-            setUnlimTab('percorso');
-            manualOverridesRef.current.unlim = true;
-          }
+          setUnlimOpen(false);
+          setUnlimTab('chat');
+          manualOverridesRef.current.unlim = true;
         }}
-        percorsoOpen={unlimOpen && unlimTab === 'percorso'}
+        percorsoOpen={false}
         onFumettoOpen={freeMode ? undefined : handleFumettoOpen}
         activeTab={activeTab}
         onTabChange={setActiveTab}
@@ -1621,73 +1685,94 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       <div className={css.body}>
         {/* === LAVAGNA VIEW (simulatore + pannelli) === */}
         <div className={css.lavagnaView} style={{ display: activeTab === 'lavagna' ? 'contents' : 'none' }}>
-          {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso) */}
+          {/* ADR-025 iter 26 — Modalità switch 4 modes canonical (Percorso default + Passo Passo + Già Montato + Libero auto-Percorso)
+               L2: striscia in-flusso (non più position:absolute z960) → no overlap editor */}
           {!freeMode && (
-            <div className={css.modalitaSwitchSlot} data-testid="modalita-switch-slot">
-              <ModalitaSwitch activeMode={modalita} onModeChange={handleModalitaChange}
-          sessionState={derivedSessionState}
-        />
+            <div className={css.modalitaStrip} data-testid="modalita-switch-slot">
+              <ModalitaSwitch
+                activeMode={modalita}
+                onModeChange={handleModalitaChange}
+                sessionState={derivedSessionState}
+              />
             </div>
           )}
 
-          {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito.
-               iter 45 B9: anche hidden in freeMode 'Lavagna libera' Andrea mandate). */}
-          {!freeMode && hasExperiment && buildMode !== 'sandbox' && (
-            <RetractablePanel
-              id="lavagna-left"
-              direction="left"
-              open={leftPanelOpen}
-              onToggle={toggleLeftPanel}
-              defaultSize={180}
-              minSize={140}
-              maxSize={280}
-              onSizeChange={setLeftPanelSize}
-              className={css.hideOnPortrait}
-            >
-              <QuickComponentPanel volumeNumber={currentVolume} />
-            </RetractablePanel>
-          )}
+          {/* L2: workArea wrapper — riga a colonne: pannello sinistro | canvas | UNLIM */}
+          <div className={css.workArea}>
+            {/* Left panel — quick component palette (hidden in Libero/sandbox: solo canvas pulito.
+                 iter 45 B9: anche hidden in freeMode 'Lavagna libera' Andrea mandate). */}
+            {!freeMode && hasExperiment && buildMode !== 'sandbox' && (
+              <RetractablePanel
+                id="lavagna-left"
+                direction="left"
+                open={leftPanelOpen}
+                onToggle={toggleLeftPanel}
+                defaultSize={180}
+                minSize={140}
+                maxSize={280}
+                onSizeChange={setLeftPanelSize}
+                className={css.hideOnPortrait}
+              >
+                <QuickComponentPanel volumeNumber={currentVolume} />
+              </RetractablePanel>
+            )}
 
-          {/* Center — simulator canvas + floating toolbar.
-               Homepage freeMode=true: blank simulator bridge + UNLIM, without
-               permanent copy that blocks manuals/actions. */}
-          <main className={css.canvas} style={{
-            ...(leftPanelOpen && !freeMode ? { marginLeft: leftPanelSize } : {}),
-            ...(bottomPanelOpen ? { marginBottom: bottomPanelSize } : {}),
-          }}>
-            <Suspense fallback={
-              <div className={css.loading}>
-                <span>Caricamento simulatore...</span>
-              </div>
-            }>
-              {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
-                   click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
-                   NON nascondere ComponentDrawer — al contrario, è proprio quello che
-                   l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
-              <NewElabSimulator
-                hideLessonPath
-                hideBuildModeBar
-                enableDrawingSync={DRAWING_SYNC_ENABLED}
-                onFumettoOpen={handleFumettoOpen}
+            {/* Center — simulator canvas + floating toolbar.
+                 Homepage freeMode=true: blank simulator bridge + UNLIM, without
+                 permanent copy that blocks manuals/actions. */}
+            <main className={css.canvas}>
+              <Suspense fallback={
+                <div className={css.loading}>
+                  <span>Caricamento simulatore...</span>
+                </div>
+              }>
+                {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
+                     click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
+                     NON nascondere ComponentDrawer — al contrario, è proprio quello che
+                     l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
+                <NewElabSimulator
+                  hideLessonPath
+                  hideBuildModeBar
+                  enableDrawingSync={DRAWING_SYNC_ENABLED}
+                  onFumettoOpen={handleFumettoOpen}
+                />
+              </Suspense>
+
+              <FloatingToolbar
+                activeTool={activeTool}
+                onToolChange={handleToolChange}
+                abovePanel={bottomPanelOpen}
+                leftPanelOpen={leftPanelOpen}
               />
-            </Suspense>
+            </main>
 
-            <FloatingToolbar
-              activeTool={activeTool}
-              onToolChange={handleToolChange}
-              abovePanel={bottomPanelOpen}
-              leftPanelOpen={leftPanelOpen}
-            />
-          </main>
-
-          {/* Right — UNLIM AI in FloatingWindow */}
-          <UnlimAdapter
-            visible={unlimOpen}
-            onClose={() => { manualOverridesRef.current.unlim = true; setUnlimOpen(false); }}
-            onSpeakingChange={setUnlimSpeaking}
-            activeTab={unlimTab}
-          />
+            {/* L4: UNLIM chat moved OUT of workArea into overlay portal (sotto).
+                 Plan §6 Task 4. Era qui dentro workArea ma intrappolava il layer
+                 di stacking del canvas. */}
+          </div>
         </div>
+
+        {/* L4 overlay portal — UNLIM chat sopra al canvas, mai intrappolata.
+             Plan §6 Task 4 Step 2. Target: document.body via overlayPortalTarget().
+             L4.1 fix (Codex stop-time review 2026-05-23): il portal scappa al gate
+             display:none di .lavagnaView, quindi UnlimAdapter risulterebbe visibile
+             su tab non-Lavagna (classe/progressi/lezione). Applichiamo lo stesso
+             gate display:none sul wrapper .overlayRoot per preservare il mount
+             (chat history, voice subs) ma nasconderlo visivamente fuori da #lavagna. */}
+        {overlayPortalTarget() && createPortal(
+          <div
+            className={css.overlayRoot}
+            style={{ display: overlayPortalDisplayStyle(activeTab) }}
+          >
+            <UnlimAdapter
+              visible={unlimOpen}
+              onClose={() => { manualOverridesRef.current.unlim = true; setUnlimOpen(false); }}
+              onSpeakingChange={setUnlimSpeaking}
+              activeTab={unlimTab}
+            />
+          </div>,
+          overlayPortalTarget()
+        )}
 
         {/* === DASHBOARD VIEW (docente o studente) === */}
         {activeTab === 'classe' && isDocente && (

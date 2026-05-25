@@ -1,7 +1,6 @@
 /* RetractablePanel — pannello slide-in/out per Lavagna ELAB */
 
 .panel {
-  position: absolute;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -11,20 +10,29 @@
               box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Direction: left */
+/* Right and bottom variants remain position:absolute (unchanged in L3).
+   Left becomes an in-flow flex column of .workArea (L3 — plan §6 Task 3). */
+.right,
+.bottom {
+  position: absolute;
+}
+
+/* Direction: left — in-flow flex column of .workArea (L3) */
 .left {
-  top: 0;
-  left: 0;
-  bottom: 0;
+  position: relative;
+  flex-shrink: 0;
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .left.closed {
-  transform: translateX(-100%);
+  width: 0 !important;
   box-shadow: none;
   pointer-events: none;
 }
-/* Keep toggle clickable when panel is closed */
+/* Keep toggle clickable when panel is closed (toggle is position:absolute
+   relative to the panel, sticks out to the right via toggleLeft offset). */
 .left.closed .toggle {
   pointer-events: auto;
 }

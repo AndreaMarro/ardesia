@@ -95,6 +95,263 @@ Secondo atomo dell'overhaul UNLIM (percezione → cognizione → azione). Cabla 
 - **Surgical scope** (Karpathy principle): 1 file modificato, 27 LOC nette aggiunte, zero modifiche a tipo `ChatRequest` condiviso (estensione inline), zero modifiche a `buildSystemPrompt` signature, zero modifiche a test file esistenti, zero nuove deps.
 - **Privacy**: `boardSnapshot` contiene solo dati strutturali (id componenti, fili, hash disegno, step, compile status) — nessun PII, nessun messaggio grezzo. GDPR-neutro come Slice 1A.
 - **Slice 1C (TODO)**: wire client-side in `useGalileoChat.js` per raccogliere `boardSnapshot` da `__ELAB_API.unlim.getCircuitState()` + drawingHash + experimentId + step + compileStatus, e mantenere `previousBoardSnapshot` in ref tra turni.
+### fix(home-codekit): UnlimCompileHelper mascotte ELAB-text + position (Andrea visual review post PR #163)
+- `UnlimCompileHelper.jsx`: `MASCOT_SRC` da `/assets/mascot/elab-mascot-vera.png` (PNG con scritta "ELAB" baked in lime sotto la mascotte) a `/assets/mascot/logo-senza-sfondo.png` (asset esistente, identica mascotte robot navy+lime, ZERO scritta ELAB).
+- `UnlimCompileHelper.module.css`: `.mascotImg` `object-position` da `center 24%` (testa alta nel cerchio, mascotte "sale") a `center 70%` (mascotte scivola verso il basso, piedi visibili al fondo del round badge). Andrea verbatim "abbassa la mascotte".
+- Comments code aggiornati con motivazione iter 104 C4-fix 2026-05-24.
+- Scope: SOLO UnlimCompileHelper (compile-home page). HomePage hero mascot + ChatbotOnly small avatar + altre 5 occorrenze `elab-mascot-vera.png` NON toccate (out-of-scope, Andrea ratify per-componente).
+- Gap residui onesti: HomePage hero usa ancora `elab-mascot-vera.png` con ELAB text visibile (no green ring wrap), Chatbot avatar 36x44px usa ancora text-version, deciso scope-strict per evitare regressione mascotte unified.
+
+### fix(home-codekit): #compile-home edukit-style scope-pulito (PR #163, salva Codex parziale)
+- C1 `117ee30a`: codeSync.js NEW (NANO_R4_BLINK_CPP + cppToBlocklyXml Blink-only restrict) + starterTemplates BLINK/BUTTON/SENSOR XML + test 4/4 PASS.
+- C2 `6c12f140`: HomeCompileEntry.jsx + .module.css rebuild edukit. Header "ELAB Code" + boardPill "Arduino Nano R4". Dot bg workspace, light theme palette ELAB. Mode toggle wire Blocchi/C++ via codeSync. Rimosso ProgramExplainer + Onboarding + StarterButtons banner stale (Andrea verbatim "elimina questo schifo" iter precedente).
+- C3 `5fe1df5c`: UnlimCompileHelper.jsx REWRITE no fake — rimosso `answerQuestion()` HARDCODED decision-tree (viola CLAUDE.md §12 "MAI dati finti"). Forward `onAskQuestion` → localStorage `elab-unlim-seed` + navigate `#lavagna`. Footer link onesto "Chat completa su Lavagna".
+- C4 `c9364932`: ScratchEditor theme SCOPE-LOCKED in HomeCompileEntry.module.css (`.root :global(.blockly*)` cascade higher specificity). Lavagna dark theme preservato — NO touch shared file.
+- C5 `a1d6865a`: Playwright cross-compile-upload-e2e.spec.js 4/4 PASS 33.7s LIVE — Supabase compile-proxy HEX returned + mock WebUSB/Serial upload code-path NO fatal JS errors.
+- Andrea verbatim "salvo Codex parziale" + "sicuro per upload e crosscompilazione" mandate.
+- Gap residui onesti: hardware Nano R4 upload UAT P1, Firefox/Safari Web Serial unsupported, cppToBlocklyXml one-way lossy, arch mismatch Nano R4 ARM vs avr8js ATmega328p, C3b mount UnlimAdapter standalone deferred.
+
+### fix(lavagna): tab-gate L4 overlay portal (Codex stop-time review)
+- L4 portal originale escapava il gate `display:none` di `.lavagnaView`, causando l'apparizione di UnlimAdapter (chat UNLIM) su tab non-Lavagna (`classe` dashboard docente, `progressi` student, `lezione` selector).
+- Fix: nuovo helper puro `overlayPortalDisplayStyle(activeTab)` in `overlayPortal.js` che ritorna `'none'` quando `activeTab !== 'lavagna'`. Applicato come style inline su `.overlayRoot` wrapper dentro `createPortal`.
+- Mount preservato (no unmount → no perdita di chat history, voice subs, FloatingWindow position). Solo nascosto visivamente.
+- +5 test regression guardrail su `tests/unit/components/lavagna/overlayPortal.test.js` (lavagna / classe / progressi / lezione / unknown defaults).
+
+### style(lavagna): z-index token cleanup + legibility QA
+- `LavagnaShell.module.css`: 4 z-index hardcoded sostituiti con token `--z-lav-*`:
+  - `.wakeWordPill` 920 → `var(--z-lav-overlay)` (1000)
+  - `.visionButtonSlot` 955 → `var(--z-lav-overlay)` (1000)
+  - `.bentornatiOverlay` 1000 → `var(--z-lav-modal)` (2000)
+  - `.capitoloPickerOverlay` 900 → `var(--z-lav-modal)` (2000)
+- Picker e Bentornati ora coerentemente sopra l'overlay layer (chat UNLIM).
+- Legibility pass: grep `fontSize:` su `src/components/lavagna/` non trova valori `<10px` (label) o `<13px` (testo). L'illeggibilità segnalata da Andrea era causata SOLO dall'overlap (risolto L2-L4) — dichiarato onestamente, nessun fix cosmetico aggiunto.
+- Skip plan §6 Task 5 Step 3 (AppHeader ≤52px verify): `.header { height:48px }` già conforme, segnalato in spec §5 A6.
+- Inline `zIndex` JSX (`LavagnaShell.jsx:1901` toolToast 9999, `MascotPresence.jsx:158` 900) e residui in altri component CSS (`UnlimBar`, `FloatingToolbar`, `VolumeViewer`, `ExperimentPicker`, ecc.) NON toccati: scope L5 limitato a `LavagnaShell.module.css` per evitare scope creep. Tracciati come issue residuo nell'AUDIT-FINAL.md.
+
+### feat(lavagna): unified overlay portal layer
+- Nuovo helper `src/components/lavagna/overlayPortal.js` (pura: `overlayPortalTarget()` → `document.body`).
+- Nuovo CSS `.overlayRoot` in `LavagnaShell.module.css` con `var(--z-lav-overlay)`, `position:fixed`, `inset:0`, `pointer-events:none` + figli `pointer-events:auto`.
+- `UnlimAdapter` (chat UNLIM) spostato fuori da `.workArea` e wrappato in `createPortal(<div class=overlayRoot>...</div>, document.body)`. Niente più stacking trap.
+- Skip plan §6 Task 4 Step 3-4 (revert A4): A4 non è sul branch (vedi spec §5 "A4 DISCARDED prima del branch").
+- Skip wakeWordPill + MascotPresence portal: già fuori da `.workArea` con `position:fixed`, scope minimo L4.
+- Test `tests/unit/components/lavagna/overlayPortal.test.js` (3 test, TDD pura sull'helper).
+- Deviazione vs plan §6 Task 4 Step 2: usa `var(--z-lav-overlay)` (NON `--z-overlay`) — plan è stale post L1 fix che prefissa i token Lavagna con `--z-lav-*`.
+
+### fix(lavagna): pannello sinistro come colonna della work-area
+- `RetractablePanel` variante `direction="left"` da `position:absolute` a colonna in-flow (`position:relative`, `flex-shrink:0`).
+- Stato `closed` da `transform:translateX(-100%)` a `width:0` per coerenza con layout in-flow.
+- Rimossi gli inline `marginLeft`/`marginBottom` su `<main className={css.canvas}>` in `LavagnaShell.jsx`.
+- Rimossa la transizione `margin-left`/`margin-bottom` da `.canvas` (la transizione di width vive ora su `.left`).
+- Le varianti `direction="right"` e `direction="bottom"` restano invariate.
+
+### fix(lavagna): striscia ModalitaSwitch in-flow — stop overlap editor
+- `.body` da riga a colonna; ModalitaSwitch da `position:absolute z960` a striscia in flusso.
+- `.canvas` non ha più `z-index:0` → niente stacking context che intrappola l'editor fullscreen.
+- Nuovo wrapper `.workArea`. Risolve la sovrapposizione principale segnalata da Andrea.
+
+### fix(lavagna): consolidate z-index tokens into z-index.css (single source)
+- Spostati i 7 token z-index esistenti da `design-system.css` a `z-index.css` con valori invariati.
+- Token Lavagna-specifici rinominati con prefisso `--z-lav-*` per evitare collisione con i token esistenti.
+- Single source of truth: tutti i token z-index ora vivono in `src/styles/z-index.css`.
+- Risolve la collisione individuata dal code quality reviewer (`--z-overlay` e `--z-modal` duplicati con valori diversi).
+
+### style(lavagna): scala z-index token unica
+- Nuovo `src/styles/z-index.css` — token `--z-base/--z-rail/--z-topbar/--z-overlay/--z-modal`.
+- Fondamenta per il Lavagna Layout Overhaul (L1/5). Nessun cambiamento visibile.
+
+## [fix(fumetto) — retry su 503 transitorio della chiamata Gemini] — 2026-05-22
+
+- `src/services/fumettoGeminiService.js` — `generateFumettoDraftWithGemini` ritenta una volta su fallimento transitorio (errore di rete o 5xx). Verifica live post PR #152 su www.elabtutor.school: la chiamata Gemini ora funziona (200) ma e intermittente — talvolta sfora il timeout LLM di 15s e torna 503. Un secondo tentativo recupera la varianza di latenza; i 4xx (deterministici) non vengono ritentati. Fallback locale sobrio invariato.
+- Test mirati: `fumettoGeminiService` (+3 test retry), `fumettoGeminiPrompt` -> CoV x3, 8 passed. Build produzione passata.
+
+## [fix(fumetto) — deploy unlim-fumetto e payload Gemini snello] — 2026-05-22
+
+- `supabase/functions/unlim-fumetto` — la PR #151 aveva aggiunto la Edge Function ma non l'aveva mai deployata: in produzione rispondeva 404 e la preflight CORS bloccava ogni chiamata POST, quindi il fumetto Gemini era sempre "non disponibile" e il path Gemini era 100% morto. Function deployata sul progetto `euqpdueopmlllqjmqnyb` (verificato: POST 401, OPTIONS 204, draft reale 200).
+- `src/services/fumettoGeminiService.js` — `buildFumettoSessionEvidence` ora distilla il runtime context con `leanSessionContext`: rimuove `applicationNarrative`, `unlimSharedState`, `agentDecisionSeed` e gli snapshot periodici ridondanti (~8KB) che gonfiavano la richiesta, rallentavano il round-trip oltre il timeout LLM di 15s e facevano fallire il draft con 503. Tiene solo i campi con segnale: esperimento, componenti, passo, compilazione, seriale, errori, codice editor.
+- `supabase/functions/unlim-fumetto/index.ts` — `maxOutputTokens` 2800 -> 4096: lo schema completo (6 pannelli + 6 prompt immagine + quiz + diario) sforava il cap e il JSON troncato non si parsava.
+- Test mirati: `fumettoGeminiService` (+1 test pack snello), `fumettoGeminiPrompt` -> CoV x3, 6 passed. Build produzione passata.
+
+## [fix(fumetto) — storyline Gemini basata sulla sessione] — 2026-05-22
+
+- `supabase/functions/unlim-fumetto/*`, `supabase/functions/_shared/fumetto-prompt.ts` — nuova Edge Function Gemini dedicata al fumetto: genera parti scritte, quiz, diario e prompt immagini in stile ELAB/Omaric per 8-14 anni usando solo evidence di sessione; se il contesto e scarso deve dichiararlo e non inventare.
+- `src/services/fumettoGeminiService.js`, `src/components/lavagna/LavagnaShell.jsx` — apertura fumetto con raccolta live del contesto UNLIM/simulatore e chiamata asincrona a `unlim-fumetto`; fallback locale resta sobrio e non blocca la classe.
+- `src/services/fumettoService.js`, `src/components/lavagna/SessionReportComic.jsx` — report arricchito da session context reale (esperimento, passo, componenti, blocchi/codice, compilazione, seriale, domande UNLIM). I draft Gemini vengono applicati solo se completi sui 6 ruoli e grounded con `evidenceRefs`; in caso contrario il report locale resta sobrio e dichiara contesto scarso.
+- `src/components/lavagna/SessionReportComic.*`, `src/services/fumettoService.js` — CTA/payload "prossimo esperimento" disabilitati finche `Percorso` resta in standby; niente default a sessioni LED finte quando mancano prove.
+- Test mirati: `fumettoGeminiPrompt`, `fumettoGeminiService`, `fumettoService`, `fumettoService-coverage`, `SessionReportComic` -> 92 passed.
+
+## [fix(b4-standby) — Percorso in standby e starter Code Kit ripuliti] — 2026-05-22
+
+- `src/components/lavagna/ModalitaSwitch.jsx`, `src/components/lavagna/LavagnaShell.jsx` — `Percorso` temporaneamente rimosso dalla UI e dagli ingressi runtime: stati legacy `percorso`, `libero`, `guida-da-errore` migrano a `Passo Passo`; il tab UNLIM `percorso` non viene piu aperto da cambio modalita/sandbox.
+- `src/features/elabBlocks/ui/ElabScratchModeShell.*`, `src/features/elabBlocks/ui/StarterButtons.*`, `src/components/home/ProgramExplainer.module.css` — blocco starter ridisegnato come banda compatta + tre card outline grandi, senza link esterni di riferimento, mantenendo copy ELAB e senza clonare sorgenti di terze parti.
+- Test mirati: `ModalitaSwitch`, `LavagnaShell-modalita`, `LavagnaShell-libero-auto-percorso`, `ElabScratchModeShell`, `StarterButtons`, `ProgramExplainer` → 52 passed.
+
+## [fix(sprint-b4) — P0 compile-home Code Kit e Percorso non bloccante] — 2026-05-22
+
+- `src/components/home/HomeCompileEntry.jsx`, `src/components/home/HomeCompileEntry.module.css` — layout `#compile-home` piu vicino al riferimento Code Kit: header e banner compressi in alto, editor blocchi/C++ dominante, fullscreen editor, monitor seriale chiuso di default dietro linguetta laterale ed espandibile.
+- `src/components/HomePage/WebUsbBanner.jsx`, `src/components/HomePage/CompileAgentBanner.module.css` — variante compatta del banner WebUSB quando viene renderizzato dentro il compilatore.
+- `src/components/lavagna/ModalitaSwitch.jsx`, `src/components/lavagna/ModalitaSwitch.module.css` — barra `Percorso / Passo Passo / Gia Montato` piu bassa e nascondibile con preferenza locale.
+- `src/components/lavagna/LavagnaShell.jsx`, `src/components/lavagna/UnlimAdapter.jsx` — cambiare modalita non apre piu automaticamente UNLIM o picker esperimenti; il form UNLIM in Percorso resta scrivibile dopo invio e l'ultima slide non apre l'elenco esperimenti come fallback.
+- `src/components/simulator/canvas/DrawingOverlay.jsx` — toolbar colori/penna visibile in modalita disegno e riposizionabile trascinando la barra.
+- Test: CoV mirato x3 sui 12 file UI/DFU toccati → 101 passed | 1 todo; build produzione passata. Baseline completa locale bloccata da ambiente (`listen EPERM 127.0.0.1` nei test HTTP agent), riprodotto con server Node minimale.
+
+## [fix(iter-103) — upload WebUSB Nano R4: strumentazione discovery UAT, revert ipotesi indirizzo DfuSe] — 2026-05-22
+
+Sprint B, atomo "upload Nano R4". Un audit aveva ipotizzato un bug ("Risk A"): la
+catena di flash WebUSB non passava un indirizzo DfuSe esplicito `0x4000` alla
+scheda. Verifica indipendente — l'audit iter-60 del repo, i file del core Arduino
+`renesas_uno` installato (`platform.txt`, `boards.txt`, `memory_regions.ld`) e una
+review adversarial Codex — ha stabilito che l'ipotesi era **sbagliata**: la Nano
+R4 si carica in **plain DFU** (`dfu-util ... -D file.bin -a0 -Q`, nessun `-s`,
+nessun indirizzo dall'host). Il "fix indirizzo" è stato revertato prima del
+merge: su un device plain DFU sarebbe un no-op, e potenzialmente rischioso se la
+libreria classificasse male il device come DfuSe.
+
+La PR sostituisce l'ipotesi con ciò che serve davvero: **strumentazione**, perché
+la UAT hardware con Riccardo diventi una *discovery UAT* — quando una Nano R4
+reale viene flashata, l'app cattura e logga i descrittori DFU effettivi, così si
+scopre il comportamento reale invece di assumerlo. Nessun codice basato sulla
+diagnosi sbagliata è stato mergiato.
+
+### Changed
+- `src/services/webDfuFlash.js` — rimosso ogni `dfuseStartAddress` / `opts.startAddress`
+  (fix indirizzo revertato). `flashDfuFirmware`, dopo `connect()`, cattura un
+  oggetto `deviceInfo` (vendorId, productId, DFUVersion, tipo WebDFU, transferSize,
+  manifestationTolerant, primo segmento DfuSe): lo logga e lo include in OGNI
+  `FlashResult.evidence`. `webDfuImpl` injectable per i test.
+- `src/components/lavagna/CompileUploadButton.jsx` — picker WebUSB filtrato sul
+  vendor Arduino `0x2341` (entrambi i call site) invece di `{ filters: [] }`.
+  Una scheda scelta in modalità esecuzione (`0x0074`, non il bootloader DFU
+  `0x0374`) viene fermata con un errore onesto che guida al doppio RESET. Guard
+  pre-flight: un HEX che non parte da `0x4000` (base applicativa RA4M1) blocca il
+  flash. Breadcrumb diagnostico in console.
+- `src/boards/arduino-nano-r4.json` — PID corretto: `0x0070` (errato) → `0x0374`
+  (bootloader DFU) + `runtimePid 0x0074` (da `renesas_uno` boards.txt).
+- `src/services/mockUsbDfuDevice.js` — productId mock allineato al reale `0x0374`.
+
+### Tests
+- `tests/unit/services/webDfuFlash.test.js` — i 3 test `startAddress` (obsoleti)
+  sostituiti da 3 test di cattura `deviceInfo` (plain DFU, DfuSe, init fallita)
+  via fake WebDFU iniettata; test vendor/product allineato a `0x0374`.
+- `tests/unit/components/lavagna/CompileUploadButton-flash-address.test.jsx` — 3
+  test: guard 0x4000, abort PID-runtime, filtro vendor.
+- `tests/unit/services/intelHexParser.test.js` — +1 test parsing HEX a 0x4000.
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — fixture T10/T11
+  allineate al HEX reale Nano R4 (0x4000).
+
+### Verifica
+- TDD red→green: stash del source → i 6 test nuovi falliscono (6 RED), passano
+  con il fix (`git stash` + rerun verificato).
+- CoV: `npx vitest run` sui 5 file toccati ×3 → 84/84, 3/3.
+- Build: `npm run build` → `✓ built in 1m 23s`, PWA precache 27 entries.
+- Baseline completa: `npx vitest run` → 14980 passed | 0 failed | 412 file
+  (15 skip, 11 todo). Nessuna regressione (≥ 14967).
+- Codex Pattern V (diff corretto): 5/5 CONFIRM, zero difetti.
+- Review adversarial Codex: 6 challenge — tutte affrontate (fix indirizzo
+  revertato, strumentazione aggiunta, PID reale, UAT guide riscritta onesta).
+
+### Notes
+- **Onestà G45.** L'audit iniziale "Risk A" era una diagnosi sbagliata, basata su
+  un WebSearch rumoroso e auto-contraddittorio, senza prima controllare gli audit
+  del repo (iter-60 aveva già la risposta). Lezione registrata in memoria.
+- L'upload WebUSB su Nano R4 reale **non è ancora provato su hardware**. Questa PR
+  non lo "de-rischia": lo rende onesto e strumentato perché la UAT lo scopra.
+  `docs/RICCARDO-UAT-GUIDE.md` riscritta come discovery UAT, senza sovrastima.
+- Il guard `0x4000` è hard-coded sulla versione corrente del core `renesas_uno`
+  (NANOR4 `FLASH_IMAGE_START`); accettabile come sanity-check pre-flash, da
+  derivare dal compile service quando arriva il multi-board (B3).
+## [feat(vol3) — overhaul narrazione esperimenti Volume 3] — 2026-05-22
+
+Overhaul completo della narrazione degli esperimenti Volume 3 in PR #142. La risoluzione merge mantiene intatto il Volume 2 ufficiale (#141) e porta nel `narrative-map-94.json` la sezione Volume 3 del branch.
+
+### Changed
+- `src/data/experiments-vol3.js` — 23 esperimenti Volume 3 riallineati al percorso Arduino del manuale.
+- `src/data/lesson-paths/v3-*.json`, `src/data/narrative-map-94.json`, `src/data/volume-references.js` — catena narrativa e riferimenti Volume 3 aggiornati.
+- `src/data/lesson-paths/v2-cap12-esp1.json` — il ponte finale del Volume 2 ora punta al primo esperimento ufficiale del Volume 3 (`v3-cap5-esp1`) invece del legacy rimosso `v3-cap6-semaforo`.
+- `tests/unit/volume3CanonicalAlignment.test.js` — test reali per conteggio, ordine e riferimenti canonici Volume 3.
+- `tests/unit/data/unlimprompts-docente-minor.test.js` — il guard sui prompt riconosce anche chiavi JSON-style `"unlimPrompt"`, non solo object-literal `unlimPrompt`.
+- `tests/unit/data/volume2-overhaul.test.js` — il guard Volume 2 verifica la catena interna dei 27 esperimenti e accetta il ponte finale verso Volume 3.
+- `docs/audits/2026-05-22-volume3-ui-live-audit.md` — audit UI live uno-per-uno: 23/23 esperimenti montano e avanzano in Passo Passo.
+
+### Notes
+- Merge con `origin/main`: i conflitti Vol2 sono risolti mantenendo il Volume 2 live di #141; unico aggiornamento intenzionale sul finale Vol2 è il ponte legacy verso il nuovo primo esperimento Vol3.
+- Audit UI live esperimento-per-esperimento completato: 23/23 OK.
+---
+
+## [feat(vol2) — overhaul narrazione esperimenti Volume 2] — 2026-05-22
+
+- `src/data/experiments-vol2.js` — riscrittura narrativa e Passo Passo dei 27 esperimenti Volume 2 con indirizzo plurale `Ragazzi` e coerenza col circuito stampato.
+- `src/data/lesson-paths/v2-*.json`, `src/data/narrative-map-94.json`, `src/data/volume-references.js` — riallineamento catena `next_experiment`, analogie e riferimenti libro per il Volume 2, senza nodo fantasma Cap.11.
+- `src/components/lavagna/LavagnaShell.jsx` — il deep-link `#lavagna?exp=v2-*` marca subito l'esperimento come caricato anche se l'evento `experimentChange` iniziale viene perso, evitando che il picker esperimenti copra il Passo Passo.
+- `tests/unit/data/volume2-overhaul.test.js` — test reali per ordine dei 27 esperimenti, catena lesson-path, analogie morfiche, pluralità Principio Zero e correzione Cap.9 Esp.2.
+- `tests/unit/components/lavagna/LavagnaShell-deeplink-state.test.jsx` — test reale contro regressione del deep-link: stato esperimento, picker chiuso, volume corretto.
+
+---
+
+## [fix(percorso) — rendi visibile la narrazione capitolo da Modalita Percorso] — 2026-05-22
+
+- `src/components/lavagna/LavagnaShell.jsx` — il click su Modalita `Percorso` ora chiude il picker esperimenti e apre il picker capitoli; anche la lavagna vuota in Modalita Percorso apre direttamente i capitoli, rendendo raggiungibile `PercorsoCapitoloView` e il riquadro #143 `Prossimo passaggio` nel flusso reale.
+- `src/components/lavagna/LavagnaShell.module.css` — il picker capitoli parte sotto la top bar, così il pulsante `Home` resta cliccabile anche mentre la narrazione capitolo è aperta.
+- `src/components/lavagna/AppHeader.jsx` — aggiunto pulsante esplicito `Home` nella top bar della Lavagna per tornare alla homepage.
+- `tests/unit/components/lavagna/LavagnaShell-modalita.test.jsx` — test reali per evitare regressione: Percorso deve aprire il picker capitoli, non lasciare il picker esperimenti sopra la narrazione e preferire i capitoli nel fallback lavagna vuota.
+- `tests/unit/components/lavagna/AppHeader.test.jsx` — test reale per presenza e callback del nuovo pulsante Home.
+
+---
+
+## [fix(iter-99) — review MEDIUM follow-ups] — 2026-05-22
+
+Follow-up mirato alla review del consolidamento iter-99: chiude tre finding MEDIUM senza cambiare scope funzionale.
+
+### Changed
+- `src/services/virtualSerialInterpreter.js`: aggiunto limite esplicito alla lunghezza dello sketch prima delle scansioni regex/stringa.
+- `src/components/simulator/panels/VirtualSerialMonitor.jsx`: sostituite le icone decorative emoji con icone SVG ELAB.
+- `src/components/home/UnlimCompileHelper.jsx`: le domande rapide vengono mostrate solo quando `onAskQuestion` è realmente collegato.
+
+### Added
+- Test reali per il limite input del virtual serial interpreter e per il comportamento condizionale di `UnlimCompileHelper`.
+
+### Governance
+- Aggiunta voce `CHANGELOG.md` richiesta dalla Regola 5 per modifiche in `src/` nel PR #129.
+
+---
+
+## [fix(shared-infra) — prestep morfico esperimenti sopra runtime Percorso #132] — 2026-05-22
+
+Integra il prestep di infrastruttura condivisa per l'overhaul morfico degli esperimenti senza regredire la Modalita Percorso morfica runtime gia ufficiale in produzione (#132). Il runtime Sense 1.5 resta la base; dal prestep #143 vengono mantenuti i pezzi riusabili per simulatore/drawer/placement e il cliffhanger visivo fra esperimenti nel Percorso.
+
+### Changed
+- `src/components/lavagna/PercorsoCapitoloView.jsx` + `.module.css` — mantenuto il runtime morfico #132 e aggiunto il "Prossimo passaggio" between-card del prestep #143, usando il formatter Vol/pag robusto del runtime.
+- `src/components/simulator/NewElabSimulator.jsx` — apertura automatica editor Arduino per esperimenti AVR e aggancio al prossimo esperimento nel drawer.
+- `src/components/simulator/engine/PlacementEngine.js` — fallback visual-only per componenti ELAB senza pin usabili.
+- `src/components/simulator/panels/ComponentDrawer.jsx` — card cliffhanger per aprire il prossimo esperimento.
+
+### Added
+- Test reali per il prestep: `tests/PlacementEngine.test.js`, `tests/unit/components/lavagna/PercorsoCapitoloView.test.jsx`, `tests/unit/components/simulator/ComponentDrawer-cliffhanger.test.jsx`, `tests/unit/components/simulator/NewElabSimulator-avr-ui.test.jsx`.
+
+### Notes
+- Risoluzione conflitto intenzionale: non sostituisce #132 con la vecchia vista #143; fonde la parte migliore di #143 sopra il runtime morfico gia live.
+
+---
+
+## [fix(iter-103) — #compile-home: stop rumore console localhost:8765 in demo-mode] — 2026-05-22
+
+Su `#compile-home` la console del browser era inondata da decine di richieste `GET` + `OPTIONS http://localhost:8765/health` fallite con `net::ERR_CONNECTION_REFUSED`. Causa: `CompileUploadButton` esegue al mount (e ogni 30s) un `useEffect` che interroga l'agente di compilazione locale via `getCompileAgentStatus()` → `fetch('http://localhost:8765/health')`. Il poll girava anche in demo-mode — il flusso WebUSB browser-direct di `#compile-home` — dove l'agente locale ELAB è deprecato e mai usato. Il `useEffect` è ora gated dietro `enableDemoMode`: in demo-mode fa `return` immediato, nessun poll, nessun rumore. Il ramo non-demo (path legacy `/compile-and-upload`) è invariato.
+
+### Changed
+- `src/components/lavagna/CompileUploadButton.jsx` — il `useEffect` di polling dell'agente esce subito (`if (enableDemoMode) return;`) quando `enableDemoMode` è attivo; `enableDemoMode` aggiunto al deps array. Nessun'altra modifica: nel ramo non-demo `agentAvailable` / `agentChecked` continuano a guidare `disabled`, tooltip e `data-elab-agent-available` identici a prima.
+
+### Tests
+- `tests/unit/components/lavagna/CompileUploadButton.test.jsx` — 2 nuovi test (sezione 5, TDD): in demo-mode lo spy `statusImpl` non viene chiamato (zero poll); in non-demo viene chiamato ≥1 volta (guard anti over-gating). Rimossa una barriera di sincronizzazione `await waitFor(data-elab-agent-available === 'true')` stale da 2 test demo-mode pre-esistenti (describe "click flow"): era agganciata al side-effect del poll, che in demo-mode ora non avviene — `findByRole` resta la barriera di mount. Le asserzioni di sicurezza dei 2 test (nessuna API key nel browser, URL proxy corretto) sono invariate.
+
+### Verifica
+- TDD red→green: il test demo-mode falliva pre-fix (`spy chiamato 1 volta`), passa post-fix.
+- CoV: `npx vitest run` sul file ×3 → 40/40 PASS, 3/3.
+- Build: `npm run build` → `✓ built in 2m 59s`, PWA precache 27 entries.
+- Baseline completa: `npx vitest run` → 14967 passed | 0 failed | 409 file (2 skip). Nessuna regressione (baseline ≥ 14551).
+- Codex Pattern V: 3 CONFIRM (ramo non-demo invariato; demo click/flash non legge lo stato agente; unico altro call site `ScratchCompileBar.jsx` senza dipendenza dal poll; deps array corretto) + 1 CONCERN ristretta — il render emette comunque `data-elab-agent-available` che legge `agentAvailable`; in demo-mode resta `'false'`, valore onesto (l'agente non è interrogato) e già atteso dal test T1c. Nessuna modifica di codice richiesta.
+
+### Notes
+- Fix di solo rumore console — zero cambiamento funzionale per l'utente: il demo-mode non ha mai usato l'agente locale. `data-elab-agent-available` resta `'false'` in demo-mode (onesto).
+- L'analisi "zero regressione" dell'handoff iter-103 era incompleta: copriva la logica del componente ma non l'accoppiamento di 2 test al side-effect del poll. Il ciclo TDD ha intercettato il gap; i 2 test sono stati corretti nello stesso atomo.
 
 ---
 

@@ -7,10 +7,8 @@
  * generators thoroughly, but three real behaviours of `fumettoService.js`
  * stayed untested:
  *
- *   1. `getNextExperimentForFumetto()` — only the null (no next experiment)
- *      case was covered. The happy path (resolving an actual next experiment),
- *      the `session.next_experiment` / `session.nextExperiment` fallback chain,
- *      and `fromExperimentId` derivation had ZERO coverage.
+ *   1. `getNextExperimentForFumetto()` — standby contract: next-experiment
+ *      data must not leak into the fumetto while Percorso remains hidden.
  *   2. `validateFumettoSchemaContract()` — only the broken-schema case was
  *      covered. That the real canonical `fumetto-schema.json` actually
  *      satisfies the contract was never asserted.
@@ -29,8 +27,8 @@ import {
 } from '../../../src/services/fumettoService';
 
 describe('fumettoService — iter 83 additional coverage', () => {
-  describe('getNextExperimentForFumetto() — happy path + fallback chain', () => {
-    it('resolves an explicit next_experiment argument with preview kept', () => {
+  describe('getNextExperimentForFumetto() — Percorso standby contract', () => {
+    it('returns null even when an explicit next_experiment argument is present', () => {
       const next = getNextExperimentForFumetto({
         experimentId: 'v1-cap6-esp1',
         next_experiment: {
@@ -39,44 +37,36 @@ describe('fumettoService — iter 83 additional coverage', () => {
           preview: 'Il resistore diventa il prossimo protagonista.',
         },
       });
-      expect(next).toEqual({
-        id: 'v1-cap6-esp2',
-        title: 'LED senza resistore',
-        preview: 'Il resistore diventa il prossimo protagonista.',
-        fromExperimentId: 'v1-cap6-esp1',
-      });
+      expect(next).toBeNull();
     });
 
-    it('falls back to session.next_experiment when no explicit arg', () => {
+    it('does not fall back to session.next_experiment while standby is active', () => {
       const next = getNextExperimentForFumetto({
         session: {
           next_experiment: { id: 'v2-cap3-esp4', title: 'Sensore di luce' },
         },
       });
-      expect(next.id).toBe('v2-cap3-esp4');
-      expect(next.title).toBe('Sensore di luce');
+      expect(next).toBeNull();
     });
 
-    it('falls back to the camelCase session.nextExperiment alias', () => {
+    it('does not fall back to the camelCase session.nextExperiment alias', () => {
       const next = getNextExperimentForFumetto({
         session: {
           nextExperiment: { id: 'v3-cap8-esp2' },
         },
       });
-      expect(next.id).toBe('v3-cap8-esp2');
-      // title defaults to the id when not provided
-      expect(next.title).toBe('v3-cap8-esp2');
+      expect(next).toBeNull();
     });
 
-    it('omits preview from the result when the candidate has none', () => {
+    it('does not expose preview-only next experiment data', () => {
       const next = getNextExperimentForFumetto({
         experimentId: 'v1-cap7-esp1',
         next_experiment: { id: 'v1-cap7-esp2', title: 'Pulsante' },
       });
-      expect(next).not.toHaveProperty('preview');
+      expect(next).toBeNull();
     });
 
-    it('derives fromExperimentId from the last completed experiment when experimentId is absent', () => {
+    it('does not derive fromExperimentId while next experiment output is disabled', () => {
       const next = getNextExperimentForFumetto({
         session: {
           experimentsCompleted: [
@@ -86,7 +76,7 @@ describe('fumettoService — iter 83 additional coverage', () => {
           next_experiment: { id: 'v1-cap6-esp3', title: 'Tre LED' },
         },
       });
-      expect(next.fromExperimentId).toBe('v1-cap6-esp2');
+      expect(next).toBeNull();
     });
 
     it('returns null when the next-experiment candidate has no id', () => {
