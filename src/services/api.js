@@ -378,6 +378,11 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
             aiProfile: inferAiProfileHint(message, images, simulatorContext, options),
             aiDepth: options.aiDepth || null,
             unlimMode: normalizeUnlimMode(simulatorContext),
+            // Slice 1C: forward awareness-flags snapshots when the caller provides them.
+            // Server (Slice 1B) renders "Segnali di attenzione: ..." only when present;
+            // omitted/null keeps backward-compat (Slice 1A returns "" → no prompt delta).
+            boardSnapshot: options.boardSnapshot ?? null,
+            previousBoardSnapshot: options.previousBoardSnapshot ?? null,
         };
         if (images.length > 0) {
             payload.images = images.map(img => ({
@@ -757,7 +762,7 @@ function isMessageBlocked(message) {
  * @param {Array} images - Array di immagini [{base64, mimeType}] (opzionale)
  */
 export async function sendChat(message, images = [], options = {}) {
-    const { signal: externalSignal, socraticMode = false, experimentContext = null, circuitState = null, experimentId = null, simulatorContext = null } = options;
+    const { signal: externalSignal, socraticMode = false, experimentContext = null, circuitState = null, experimentId = null, simulatorContext = null, boardSnapshot = null, previousBoardSnapshot = null } = options;
 
     // Content moderation: blocca messaggi inappropriati
     if (isMessageBlocked(message)) {
@@ -1272,7 +1277,11 @@ function extractActions(text, userMessage = '') {
  * @param {AbortSignal} [options.signal] - AbortSignal per cancellare la richiesta
  */
 export async function analyzeImage(imageData, question = "Analizza questa immagine di un circuito elettronico.", options = {}) {
-    const { signal, circuitState = null, simulatorContext = null, experimentId = null, preferProvider = null } = options;
+    // Slice 1C H1 fix (code review 2026-05-25): extract boardSnapshot +
+    // previousBoardSnapshot from options to forward through internal sendChat
+    // fallback. Without this, vision-path turns silently bypass awareness-flags
+    // server-side wire (the most context-rich UNLIM use case was the dark hole).
+    const { signal, circuitState = null, simulatorContext = null, experimentId = null, preferProvider = null, boardSnapshot = null, previousBoardSnapshot = null } = options;
 
     // Check if already aborted before starting
     if (signal?.aborted) {
@@ -1298,7 +1307,7 @@ export async function analyzeImage(imageData, question = "Analizza questa immagi
         ? imageString.split(';')[0].split(':')[1]
         : 'image/png';
 
-    return await sendChat(question, [{ base64, mimeType }], { signal, circuitState, simulatorContext, experimentId });
+    return await sendChat(question, [{ base64, mimeType }], { signal, circuitState, simulatorContext, experimentId, boardSnapshot, previousBoardSnapshot });
 }
 
 /**
