@@ -301,7 +301,8 @@ Scope FOLLOWED Wave 1 file ownership matrix (immutable). elabArduinoAst Wave 2 s
 | Impl-B-2 (codegen) | `75244099` | codeSync.js + starterTemplates.js + scratchGenerator.js + 2 test files | +967/-8 | +25 internal + 20 contract |
 | Impl-C-2 (compile) | `58ecc5fc` | compiler.js + compileCache.js + NEW services/compiler.test.js + compileCache.lru.test.js + existing compiler.test.js fixtures | +651/-16 | +29 NEW + 8 ext + 4 fixture |
 | Impl-G-2 (tests) | `95222e79` | 3 NEW spec + roundtrip contract + perf bench + README + UNSKIP 08 | +1037/-14 | +20 roundtrip + 13 E2E (11 fixme markers) |
-| Fix | `1cc0146b` | scratchGenerator.js + scratchGenerator.pinMode.test.js | +124/-0 | +5 regression |
+| Fix #1 | `1cc0146b` | scratchGenerator.js + scratchGenerator.pinMode.test.js | +124/-0 | +5 regression |
+| Fix #2 | `fe1f843b` | starterTemplates.js + starterTemplates.test.js | +15/-0 | +1 regression (T4) |
 
 **Verification close gate**:
 - ✅ Independent CoV 3× (lead-direct) POST all 6 commit: `3 failed | 425 passed | 2 skipped (430)` IDENTICAL — 9 pre-existing UnlimCompileHelper/HomeCompileEntry fails unchanged, ZERO Wave 1b contribution to failures
@@ -313,8 +314,10 @@ Scope FOLLOWED Wave 1 file ownership matrix (immutable). elabArduinoAst Wave 2 s
 
 **Codex catch + recovery**:
 - Codex stop-time review #1: caught arduino_rgb_led block registered (Impl-A d149bbf1 scratchBlocks.js:422) without generator in scratchGenerator.js → "Unknown generator" runtime crash risk
-- Impl-B fix 1cc0146b: added arduino_rgb_led generator (3× analogWrite R/G/B pattern matching arduino_servo_write) + defensive controls_whileUntil regression tests (already wired line 330, verified)
-- Codex stop-time review #2: invalid JSON output (review system flake, NOT actual issue)
+- Impl-B fix #1 1cc0146b: added arduino_rgb_led generator (3× analogWrite R/G/B pattern matching arduino_servo_write) + defensive controls_whileUntil regression tests (already wired line 330, verified)
+- Codex stop-time review #2: invalid JSON output (review system flake, NOT actual issue at first parse)
+- Codex stop-time review #3: caught BUTTON_LED_XML starterTemplates.js controls_if missing `<mutation else="1"/>` → Blockly silently drops ELSE statement branch on hydrate, button-led template loads with only HIGH path
+- Impl-B fix #2 fe1f843b: added `<mutation else="1"/>` first child of BUTTON_LED controls_if + T4 regression test verifying hydrated workspace generates BOTH digitalWrite(13, HIGH) AND digitalWrite(13, LOW). BUTTON_XML + SERIAL_ECHO_XML verified clean (no ELSE branches present).
 - Lead-direct grep cross-reference: confirmed only arduino_rgb_led was real missing generator. Lead initial diagnosis included controls_whileUntil incorrectly (regex `[a-z_]+` missed capital U). Impl-B corrected during fix.
 
 ### Iter X.3 — Wave 2 parallel (NEXT — 4 impl, 1 sessione)
