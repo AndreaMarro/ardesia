@@ -1,5 +1,17 @@
 # /goal — BLOCKLY CROSS-COMPILER WAVE 2 X.3 + VOL3 BLOCKLY AUDIT (Iter X.3)
 
+> **STATUS**: ✅ **CLOSED 2026-05-26** — see [PROMPT-NEXT-SESSION-2026-05-29-BLOCKLY-WAVE-2-X3B-EXPANSION.md](./PROMPT-NEXT-SESSION-2026-05-29-BLOCKLY-WAVE-2-X3B-EXPANSION.md) for the inheriting iter X.3b session.
+>
+> **Close gate verdict**:
+> - 3 atomic commits shipped on `feature/blockly-wave2-x3` from main 11a67cf0:
+>   - `26280ff0` feat(upload): unified uploadAgent facade — Wave 2 Impl-D (420 LOC + test 364 LOC, 21/21 PASS)
+>   - `0e533b41` fix(data): Vol3 19 esp scratchXml Blockly parity bulk fix + esp4/esp5 over-closure repair — Wave 2 Impl-Vol3 + Wave 1b carryover (19 replaced + esp4/esp5 strict-XML repair + 373 LOC test 108/108 PASS)
+>   - `bddbf818` docs(tracking): plan doc Iter X.3 CLOSED row
+> - PR [#169](https://github.com/AndreaMarro/elab-tutor/pull/169) OPEN awaiting Andrea review + admin-merge
+> - CoV 3× IDENTICAL: `3 failed | 428 passed | 2 skipped (433)` — Wave 1b baseline `3 failed | 425 passed (430)` preserved + 3 net new test files
+> - Andrea ratify 4 decisioni dispatched pre-start (scope 1 atom + Vol3 P0 inside + Vol1/2 deferred X.4 + CI admin-merge)
+> - Scope narrowed vs original spec (4 atom → 2 atom) per Andrea ratify. Deferred Impl-E + F + H + CompileUploadButton wire + real DFU/STK500 protocol to iter X.3b.
+>
 > **Context inheritance**: this prompt continues [PROMPT-NEXT-SESSION-2026-05-27-BLOCKLY-WAVE-1B-EXPANSION.md](./PROMPT-NEXT-SESSION-2026-05-27-BLOCKLY-WAVE-1B-EXPANSION.md) iter X.2b → X.3. Wave 1b CLOSED 2026-05-25/26 (11 commit including 2 Codex catches + esp4/esp5 scratchXml fix + Play/Stop/Pause buttons). PR #167 MERGED admin override (CI red iter 102+ pre-existing). www.elabtutor.school live with Wave 1b.
 
 ---
