@@ -320,11 +320,40 @@ Scope FOLLOWED Wave 1 file ownership matrix (immutable). elabArduinoAst Wave 2 s
 - Impl-B fix #2 fe1f843b: added `<mutation else="1"/>` first child of BUTTON_LED controls_if + T4 regression test verifying hydrated workspace generates BOTH digitalWrite(13, HIGH) AND digitalWrite(13, LOW). BUTTON_XML + SERIAL_ECHO_XML verified clean (no ELSE branches present).
 - Lead-direct grep cross-reference: confirmed only arduino_rgb_led was real missing generator. Lead initial diagnosis included controls_whileUntil incorrectly (regex `[a-z_]+` missed capital U). Impl-B corrected during fix.
 
-### Iter X.3 — Wave 2 parallel (NEXT — 4 impl, 1 sessione)
-- Impl-D Upload-WebSerial (decisione ELAB Agent primary + Web Serial fallback)
+### Iter X.3 — Wave 2 parallel (CLOSED 2026-05-26 — Andrea ratify scope-narrow 2 atom)
+
+Andrea pre-start ratify questions (4 decisioni dispatched via AskUserQuestion):
+1. **Wave 2 scope** → `1 atom solo (Impl-D)` — conservative slice, defer Impl-E + F + H to iter X.3b
+2. **Vol3 audit P1** → `Inside X.3 P0` — bulk fix 19 placeholder scratchXml (NOT 21 as directive estimated — empirical audit corrected count)
+3. **Vol1/Vol2 audit P2** → `Separato iter X.4` — Sprint 8+ scope (38 + 27 esp deferred)
+4. **CI red blocker** → `Admin-merge continua` — iter X.6 dedicato CI fix
+
+**Atoms shipped** (2 atomic commits, branch `feature/blockly-wave2-x3` from main 11a67cf0):
+- `26280ff0` — feat(upload): unified uploadAgent facade with ElabAgent primary + Web Serial fallback — Wave 2 Impl-D (420 LOC src + 364 LOC test, 21/21 PASS)
+- `0e533b41` — fix(data): Vol3 19 esp scratchXml Blockly parity bulk fix + esp4/esp5 over-closure repair — Wave 2 Impl-Vol3 + Wave 1b carryover (19 scratchXml replaced + esp4/esp5 strict-XML repair + 373 LOC test 108/108 PASS)
+
+**Verification close gate PASSED**:
+- ✅ Independent CoV 3× IDENTICAL global lead-direct: `3 failed | 428 passed | 2 skipped (433)` / `9 failed | 16214 passed | 15 skipped | 10 todo (16248)` — Wave 1b baseline `3 failed | 425 passed | 2 skipped (430)` preserved + 3 new test files (uploadAgent + vol3-parity + 2 previously silently-failing tests now green)
+- ✅ npm run build exit 0 (19.28s, PWA 27 entries 2081.64 KiB precache)
+- ✅ Test Files baseline ≥ 425 PASS — no regression Wave 1b
+- ✅ 3 remaining failed Test Files = pre-existing UI test failures (UnlimCompileHelper × 2 + HomeCompileEntry-tabs × 1) unrelated to Wave 2 scope
+- ✅ File ownership respected — Atom-D src/services/uploadAgent.js + test exclusive; Atom-Vol3 src/data/experiments-vol3.js + test exclusive; engine files revert-protected untouched
+
+**Pedagogical deviations documented** (5 esp where Blockly registry lacks 1:1 C++ block mapping):
+- statoLED toggle (esp7) — approximation, no NOT operator on variable_set
+- Volt threshold float math (esp7.2) — approximated as `valoreLetto > 512` (mathematical equivalent)
+- analogWriteResolution + analogWrite(A0) (esp7.7) — skipped (no blocks)
+- PWM for-loop ramp (esp7.4 + esp7.5) — controls_repeat_ext static counter (no controls_for with variable)
+- while(!Serial) (esp8.2) — skipped in SETUP (no equivalent block)
+
+All acceptable: kit-physical build still compiles correctly; only Blockly visual representation diverges from canonical C++.
+
+**Deferred iter X.3b**:
 - Impl-E UNLIM-HomePage (chat floating + RAG Blockly-aware + Vision wire)
 - Impl-F UNLIM-Vol3 (PassoPassoUnifiedPanel chat wire + esp template Blockly highlight coord)
 - Impl-H A11y-Polish (ARIA sweep + focus ring + WCAG audit + ElabIcons.HammerIcon)
+- CompileUploadButton.jsx wire-up to uploadHex orchestrator (UI integration)
+- Real DFU/STK500 protocol in uploadViaWebSerial (currently writes raw Intel HEX lines stub)
 
 ### Iter X.4 — Verify + integration (1 sessione)
 - CoV 3× vitest run identical
