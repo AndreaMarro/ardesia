@@ -338,7 +338,7 @@ Grep for `sk-...`, `tok_...` patterns returned ZERO hits. No OpenAI/Stripe/Anthr
 src/App.jsx:23,331  AdminPage lazy-loaded, gated by currentPage === 'admin'
 ```
 
-Routing is client-side. Real auth happens server-side via Supabase RLS (per project memory). Admin password (`ELAB2026-Andrea!` per memory) is NOT in source — verified by grep for "Andrea!" returning zero hits in `src/components/admin/`. Good — but trust hinges on server-side enforcement.
+Routing is client-side. Real auth happens server-side via Supabase RLS (per project memory). Admin password (`[REDACTED-MOVED-TO-ENV]` per memory) is NOT in source — verified by grep for "Andrea!" returning zero hits in `src/components/admin/`. Good — but trust hinges on server-side enforcement.
 
 ---
 

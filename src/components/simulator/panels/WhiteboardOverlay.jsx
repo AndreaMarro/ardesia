@@ -765,6 +765,24 @@ export default function WhiteboardOverlay({
   }, [tool, getCoords]);
 
   // ── Commit text → vector element ────────────
+  // Andrea /goal 25/05 PM-3 bug-fix: "Quando scrivo sulla lavagna la scritta
+  // si sposta rispetto a dove avevo scritto".
+  //
+  // Root cause (systematic-debugging Phase 1-3):
+  //   - Input element ha padding:4px 8px + border:2px solid → testo digitato
+  //     visivamente offset di (10px,6px) CSS dall'outer edge dell'input.
+  //   - commitText storeava element.x = textInput.x (outer edge) → canvas
+  //     fillText(baseline='top') rendeva il testo all'outer edge invece che
+  //     dove l'utente lo aveva visto digitato. Drift visibile su commit.
+  //   - Aggravante: font dimensione diversa (input 14-20px vs canvas 16-24px)
+  //     → text width/height percepiti differenti = "si sposta" subjective.
+  //
+  // Fix: (1) match font sizes input ↔ canvas (vedi style sotto),
+  //      (2) offset element.x/y di (padding+border)*dpr per allineare
+  //      canvas render al testo visibile dentro l'input.
+  const TEXT_INPUT_PADDING_LEFT_CSS = 8;
+  const TEXT_INPUT_PADDING_TOP_CSS = 4;
+  const TEXT_INPUT_BORDER_CSS = 2;
   const commitText = useCallback((value) => {
     if (!value || !textInput) { setTextInput(null); return; }
     const canvas = canvasRef.current;
@@ -775,7 +793,12 @@ export default function WhiteboardOverlay({
     const deviceFontSize = fontSize * dpr;
     const ctx = canvas.getContext('2d');
     ctx.font = `${deviceFontSize}px 'Open Sans', sans-serif`;
-    const maxWidth = canvas.width - textInput.x - 10;
+    // Padding+border offsets (CSS px) converted to canvas-internal coords
+    const offsetX = (TEXT_INPUT_PADDING_LEFT_CSS + TEXT_INPUT_BORDER_CSS) * dpr;
+    const offsetY = (TEXT_INPUT_PADDING_TOP_CSS + TEXT_INPUT_BORDER_CSS) * dpr;
+    const elX = textInput.x + offsetX;
+    const elY = textInput.y + offsetY;
+    const maxWidth = canvas.width - elX - 10;
     const words = value.split(' ');
     let line = '';
     let lines = [];
@@ -787,7 +810,7 @@ export default function WhiteboardOverlay({
     if (line) lines.push(line);
     const textWidth = Math.max(...lines.map(l => ctx.measureText(l).width));
     const textHeight = lines.length * deviceFontSize * 1.3;
-    elements.current.push({ id: nextElementId(), type: 'text', x: textInput.x, y: textInput.y, text: lines.join('\n'), color, thickness, fontSize, textWidth, textHeight });
+    elements.current.push({ id: nextElementId(), type: 'text', x: elX, y: elY, text: lines.join('\n'), color, thickness, fontSize, textWidth, textHeight });
     setTextInput(null);
     redrawCanvas();
     saveToStorage();
@@ -899,7 +922,11 @@ export default function WhiteboardOverlay({
             top: `${(textInput.y / (canvasRef.current?.height || 1)) * 100}%`,
             background: 'rgba(255,255,255,0.9)', border: `2px solid ${color}`,
             borderRadius: '4px', padding: '4px 8px',
-            fontSize: `${Math.max(14, thickness * 5)}px`,
+            /* Andrea /goal 25/05 PM-3: match canvas fontSize (vedi commitText)
+               per evitare drift visivo "scritta si sposta" su commit. */
+            fontSize: `${Math.max(16, thickness * 6)}px`,
+            lineHeight: 1.3,
+            boxSizing: 'content-box',
             fontFamily: "var(--font-sans, 'Open Sans', sans-serif)", color, outline: 'none',
             zIndex: 22, minWidth: '120px', maxWidth: '300px',
           }}

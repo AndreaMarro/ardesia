@@ -18,12 +18,21 @@ import { useAuth } from '../../context/AuthContext';
 // non scatta su Esci → saveSession Supabase mai chiamato → Cronologia void.
 import { useSessionTracker } from '../../hooks/useSessionTracker';
 import { getSavedSessions } from '../../hooks/useSessionTracker';
+// Codex HIGH-2 fix 2026-05-25: B4 autosnapshot hook was dead code (built,
+// tested in isolation, never imported). Wire here so 30s snapshot writes
+// localStorage during any active experiment session.
+import useSessionAutosnapshot from '../../hooks/useSessionAutosnapshot';
 import { getLessonPath } from '../../data/lesson-paths';
+// Goal A (Manuale ↔ Passo Passo auto-sync): VOLUME_REFERENCES is the
+// source-of-truth for the experiment→bookPage mapping (94/94 enriched).
+import VOLUME_REFERENCES from '../../data/volume-references';
 import AppHeader from './AppHeader';
 import FloatingToolbar from './FloatingToolbar';
 import RetractablePanel from './RetractablePanel';
 import UnlimAdapter from './UnlimAdapter';
 import SessionReportComicModal from './SessionReportComicModal';
+// Goal B B3 — SessionExportModal: salva su Supabase / export JSON / import JSON
+import SessionExportModal from './SessionExportModal';
 import VideoFloat from './VideoFloat';
 import ExperimentPicker from './ExperimentPicker';
 import { deriveState, computePanelActions, STATES } from './LavagnaStateManager';
@@ -66,6 +75,8 @@ const NewElabSimulator = lazy(() => import('../simulator/NewElabSimulator'));
 const TeacherDashboard = lazy(() => import('../teacher/TeacherDashboard'));
 const StudentDashboard = lazy(() => import('../student/StudentDashboard'));
 const VolumeViewer = lazy(() => import('./VolumeViewer'));
+// Andrea feedback 2026-05-25: UN solo pannello in modalità Passo Passo.
+const PassoPassoUnifiedPanel = lazy(() => import('./PassoPassoUnifiedPanel'));
 const PercorsoPanel = lazy(() => import('./PercorsoPanel'));
 const DrawingOverlay = lazy(() => import('../simulator/canvas/DrawingOverlay'));
 // Sprint S iter 2 Task B — lazy load Capitolo flow components
@@ -93,6 +104,55 @@ function ensureUnlimMountNamespace() {
     ...(api.unlim || {}),
     mountExperiment: api.unlim?.mountExperiment || api.mountExperiment.bind(api),
   };
+}
+
+/**
+ * Goal A — Manuale ↔ Passo Passo auto-sync.
+ *
+ * Called whenever Passo Passo currentStep changes for the active experiment.
+ * Behaviour contract (see docs/plans/2026-05-27-3-features-multi-agent-plan.md):
+ *  1. If VolumeViewer is OPEN and VOLUME_REFERENCES[experimentId].bookPage exists →
+ *     setCurrentVolume(volume) + setCurrentVolumePage(bookPage).
+ *  2. If VolumeViewer is CLOSED → DO NOT call setters (never auto-open the viewer).
+ *  3. Always emit DOM CustomEvent('elab-step-change', { detail: {
+ *       experimentId, stepIndex, bookPage } }) — even when bookPage is null —
+ *     so analytics/Codex review hooks observe step transitions.
+ *  4. Per-step granularity v1: ALL steps of an experiment map to the same
+ *     experiment-level bookPage. Per-step bookRef is future enhancement.
+ *  5. Defensive: null/undefined experimentId → full no-op (no event, no setters).
+ *
+ * Pure helper (no React imports, no closures over component state) so it can be
+ * unit-tested in isolation — see tests/unit/components/lavagna-step-sync.test.js.
+ */
+export function dispatchStepSync({
+  experimentId,
+  stepIndex,
+  volumeOpen,
+  setCurrentVolumePage,
+  setCurrentVolume,
+}) {
+  if (!experimentId) return;
+
+  const ref = VOLUME_REFERENCES?.[experimentId] || null;
+  const bookPage = (ref && typeof ref.bookPage === 'number') ? ref.bookPage : null;
+  const volume = (ref && typeof ref.volume === 'number') ? ref.volume : null;
+
+  if (volumeOpen && bookPage != null) {
+    if (volume === 1 || volume === 2 || volume === 3) {
+      try { setCurrentVolume?.(volume); } catch { /* defensive — setter may throw on unmount */ }
+    }
+    try { setCurrentVolumePage?.(bookPage); } catch { /* defensive */ }
+  }
+
+  // Always emit (even when viewer closed or ref missing) so external observers
+  // can track step transitions for analytics / Codex review hooks.
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+    try {
+      window.dispatchEvent(new CustomEvent('elab-step-change', {
+        detail: { experimentId, stepIndex, bookPage },
+      }));
+    } catch { /* CustomEvent unsupported (SSR) — silent */ }
+  }
 }
 
 export function applyLoadedExperimentStateFromApi({
@@ -595,6 +655,8 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   });
   const [activeTool, setActiveTool] = useState('select');
   const [toolToast, setToolToast] = useState(null);
+  // Goal B B3 — SessionExportModal open state (driven from AppHeader Salva)
+  const [exportModalOpen, setExportModalOpen] = useState(false);
   const [unlimOpen, setUnlimOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [videoMinimized, setVideoMinimized] = useState(false);
@@ -930,6 +992,15 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
     try { localStorage.setItem('elab-lavagna-modalita', modalita); } catch {}
   }, [modalita]);
 
+  // Codex HIGH-2 fix 2026-05-25: wire B4 autosnapshot. Snapshot every 30s
+  // while an experiment is active so teachers can recover from crashes /
+  // accidental tab close. Bounded MAX_SNAPSHOTS_PER_EXP=5, quota-safe.
+  useSessionAutosnapshot({
+    enabled: Boolean(currentExperiment?.id),
+    experimentId: currentExperiment?.id,
+    modalita,
+  });
+
   // Percorso standby: ogni ingresso legacy/narrativo torna al flusso guidato
   // leggibile e testabile. Non apre UNLIM percorso, non cancella canvas.
   const handleModalitaChange = useCallback((nextMode) => {
@@ -940,6 +1011,14 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
       return; // defensive: ignore unknown modes
     }
     setModalita(nextMode);
+    // Andrea feedback 2026-05-25: PassoPassoUnifiedPanel deve aprirsi
+    // automaticamente quando docente clicca "Passo Passo", al posto del
+    // pannello vecchio (suppress ComponentDrawer via elab-unified-passo-active).
+    // Per altre modalita NON forziamo apertura/chiusura: docente apre Manuale
+    // esplicitamente con il pulsante header se vuole il PDF flottante.
+    if (nextMode === 'passo-passo') {
+      setVolumeOpen(true);
+    }
     // iter 48 Andrea verbatim "i tre tasti devono attivare quello per cui sono pensati":
     // wire-up modalita → simulator buildMode + ComponentDrawer + UNLIM tab. Senza
     // questo, prima di iter 48, Passo Passo + Già Montato cambiavano solo lo stato
@@ -992,6 +1071,60 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   useEffect(() => {
     try { localStorage.setItem('elab-lavagna-page', String(currentVolumePage)); } catch {}
   }, [currentVolumePage]);
+  // Goal A — Manuale ↔ Passo Passo auto-sync. On every currentStep change for
+  // the active experiment, look up VOLUME_REFERENCES → if VolumeViewer is open,
+  // navigate it to the experiment's bookPage. When closed: state untouched
+  // (we never auto-open the viewer — respects teacher attention). Always emits
+  // 'elab-step-change' DOM event so analytics/Codex hooks can observe.
+  useEffect(() => {
+    dispatchStepSync({
+      experimentId: currentExperiment?.id,
+      stepIndex: currentStep,
+      volumeOpen,
+      setCurrentVolumePage,
+      setCurrentVolume,
+    });
+  }, [currentStep, currentExperiment?.id, volumeOpen]);
+  // Goal A fix 2026-05-25 — Bridge across simulator/lavagna boundary.
+  // The live Passo Passo step state lives in NewElabSimulator (buildStepIndex),
+  // NOT in LavagnaShell.currentStep (which is loader-driven). NewElabSimulator
+  // emits 'elab-build-step-change' on every Avanti/Indietro — we listen here and
+  // run the same dispatchStepSync logic so the Manuale auto-flips even when the
+  // teacher uses BuildModeGuide.
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const onBuildStepChange = (e) => {
+      const detail = e?.detail || {};
+      dispatchStepSync({
+        experimentId: detail.experimentId || currentExperiment?.id,
+        stepIndex: typeof detail.stepIndex === 'number' ? detail.stepIndex : currentStep,
+        volumeOpen,
+        setCurrentVolumePage,
+        setCurrentVolume,
+      });
+    };
+    window.addEventListener('elab-build-step-change', onBuildStepChange);
+    return () => window.removeEventListener('elab-build-step-change', onBuildStepChange);
+  }, [currentExperiment?.id, currentStep, volumeOpen]);
+
+  // Andrea feedback 2026-05-25: track NewElabSimulator's live buildStepIndex
+  // so the unified Passo Passo panel can render the current step text/hint
+  // without coupling directly into the simulator tree.
+  const [liveBuildStepIndex, setLiveBuildStepIndex] = useState(-1);
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const onBuildStepChange = (e) => {
+      const idx = e?.detail?.stepIndex;
+      if (typeof idx === 'number') setLiveBuildStepIndex(idx);
+    };
+    window.addEventListener('elab-build-step-change', onBuildStepChange);
+    return () => window.removeEventListener('elab-build-step-change', onBuildStepChange);
+  }, []);
+  // Reset live step when experiment changes so we don't carry over an index
+  // from a previous experiment with different buildSteps length.
+  useEffect(() => {
+    setLiveBuildStepIndex(-1);
+  }, [currentExperiment?.id]);
   useEffect(() => {
     try { localStorage.setItem('elab_lavagna_active_tab', activeTab); } catch {}
   }, [activeTab]);
@@ -1650,24 +1783,13 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         videoOpen={videoOpen}
         onVolumeToggle={toggleVolume}
         volumeOpen={volumeOpen}
-        // iter 45 fix Andrea video2 06/05/2026 B3 "manca il pulsante per il
-        // salvataggio della sessione": pulsante esplicito Salva nel header.
-        // Chiama sessionTracker.finaliseSession() (saveSessions localStorage +
-        // saveSessionSummary unlimMemory + saveSessionToSupabase async). Auto
-        // save invisibility/beforeunload preserved.
-        onSaveSession={sessionTracker?.finaliseSession ? () => {
-          try {
-            if (currentExperiment?.id && sessionTracker?.startSession) {
-              sessionTracker.startSession(currentExperiment.id);
-            }
-            sessionTracker.finaliseSession();
-            setToolToast('Sessione salvata. Buon lavoro, Ragazzi.');
-            setTimeout(() => setToolToast(null), 2500);
-          } catch (err) {
-            setToolToast('Errore salvataggio. Riprova tra un attimo.');
-            setTimeout(() => setToolToast(null), 2500);
-          }
-        } : undefined}
+        // Goal B B3 (2026-05-27): il pulsante Salva ora apre SessionExportModal
+        // (3 azioni: Supabase / Esporta JSON / Importa JSON) invece di chiamare
+        // direttamente finaliseSession. Il flusso Supabase resta intatto:
+        // l'azione primaria del modal richiama finaliseSession via callback.
+        // iter 45 storico (06/05/2026): "manca il pulsante per il salvataggio";
+        // pulsante Salva preservato, semantica estesa.
+        onSaveSession={sessionTracker?.finaliseSession ? () => setExportModalOpen(true) : undefined}
         onPercorsoToggle={() => {
           setUnlimOpen(false);
           setUnlimTab('chat');
@@ -1726,13 +1848,18 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
                   <span>Caricamento simulatore...</span>
                 </div>
               }>
-                {/* iter 45 fix Andrea video 06/05/2026: ComponentDrawer è il VERO Passo Passo
-                     click-per-clic (Andrea Marro 20/02/2026). Quando modalita='passo-passo'
-                     NON nascondere ComponentDrawer — al contrario, è proprio quello che
-                     l'utente vuole vedere ("sotto si nascondono i veri pulsanti" — Andrea verbatim). */}
+                {/* Andrea verbatim 2026-05-25 PM-3 /goal: "assicurati che il vecchio
+                     pannello passo passo non compaia più, ma quando premi passo passo
+                     compaia il pannello volume misto a passo passo che abbiamo creato".
+                     Override iter 45 (06/05/2026): in modalita='passo-passo' il VERO
+                     pannello è PassoPassoUnifiedPanel (commit 34d5b9f7 25/05/2026),
+                     non più ComponentDrawer. hideComponentDrawer sopprime il vecchio
+                     panel a livello simulator a prescindere dallo stato di mount
+                     dell'unified panel (evita pop-back quando user chiude unified). */}
                 <NewElabSimulator
                   hideLessonPath
                   hideBuildModeBar
+                  hideComponentDrawer={modalita === 'passo-passo'}
                   enableDrawingSync={DRAWING_SYNC_ENABLED}
                   onFumettoOpen={handleFumettoOpen}
                 />
@@ -1805,16 +1932,33 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           </div>
         )}
 
-        {/* Volume PDF Viewer */}
+        {/* Volume PDF Viewer — Andrea feedback 2026-05-25:
+            in modalità Passo Passo + Manuale aperto + l'esperimento ha
+            buildSteps, sostituiamo VolumeViewer con PassoPassoUnifiedPanel
+            (UN solo pannello). Negli altri modi VolumeViewer torna standalone. */}
         <Suspense fallback={null}>
-          <VolumeViewer
-            visible={volumeOpen}
-            volumeNumber={currentVolume}
-            onClose={() => setVolumeOpen(false)}
-            onPageChange={handleVolumePage}
-            onVolumeChange={setCurrentVolume}
-            initialPage={1}
-          />
+          {volumeOpen && modalita === 'passo-passo' && Array.isArray(currentExperiment?.buildSteps) && currentExperiment.buildSteps.length > 0 ? (
+            <PassoPassoUnifiedPanel
+              visible={volumeOpen}
+              volumeNumber={currentVolume}
+              onClose={() => setVolumeOpen(false)}
+              onPageChange={handleVolumePage}
+              onVolumeChange={setCurrentVolume}
+              initialPage={currentVolumePage}
+              experimentTitle={currentExperiment?.title || ''}
+              currentStepIndex={liveBuildStepIndex}
+              buildSteps={currentExperiment.buildSteps}
+            />
+          ) : (
+            <VolumeViewer
+              visible={volumeOpen}
+              volumeNumber={currentVolume}
+              onClose={() => setVolumeOpen(false)}
+              onPageChange={handleVolumePage}
+              onVolumeChange={setCurrentVolume}
+              initialPage={currentVolumePage}
+            />
+          )}
         </Suspense>
 
         {/* Video — YouTube + Videocorsi in FloatingWindow */}
@@ -1832,6 +1976,31 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           session={fumettoSession}
           onClose={() => setFumettoSession(null)}
           onMountNextExperiment={handleFumettoMountNext}
+        />
+
+        {/* Goal B B3 — SessionExportModal: aperto dal pulsante Salva in AppHeader.
+             Tre azioni: Salva su Supabase (richiama sessionTracker.finaliseSession),
+             Esporta JSON (download blob schema v1.0), Importa JSON (restore via
+             sessionImporter). Resta passivo finché exportModalOpen è false. */}
+        <SessionExportModal
+          isOpen={exportModalOpen}
+          onClose={() => setExportModalOpen(false)}
+          onSaveSupabase={() => {
+            try {
+              if (currentExperiment?.id && sessionTracker?.startSession) {
+                sessionTracker.startSession(currentExperiment.id);
+              }
+              sessionTracker?.finaliseSession?.();
+              setExportModalOpen(false);
+              setToolToast('Sessione salvata. Buon lavoro, Ragazzi.');
+              setTimeout(() => setToolToast(null), 2500);
+            } catch (err) {
+              setToolToast('Errore salvataggio. Riprova tra un attimo.');
+              setTimeout(() => setToolToast(null), 2500);
+            }
+          }}
+          currentExperimentId={currentExperiment?.id}
+          currentModalita={modalita || 'percorso'}
         />
 
         {/* Sprint S iter 2 Task B — CapitoloPicker overlay (modal) */}

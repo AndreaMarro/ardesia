@@ -144,6 +144,22 @@ const NewElabSimulator = ({
   const mergedExperimentRef = useRef(null);
   const [componentStates, setComponentStates] = useState({});
   const [isRunning, setIsRunning] = useState(false);
+  // Codex HIGH-1 fix 2026-05-25: track paused-vs-stopped so MinimalControlBar
+  // can disable Stop when fully stopped and label Play as "Riprendi" after
+  // Pause. useCircuitHandlers is engine-reverted so we wrap its handlers
+  // below rather than mutating the hook.
+  const [isPaused, setIsPaused] = useState(false);
+  // Andrea feedback 2026-05-25: PassoPassoUnifiedPanel (lavagna-side) dispatches
+  // `elab-unified-passo-active` when it mounts/unmounts. While active, we
+  // suppress the simulator-side ComponentDrawer Passo Passo UI because the
+  // unified panel owns step navigation. Also listen for `elab-passo-advance`
+  // step nav coming from the unified panel.
+  // PM-2 fix 2026-05-25: read the synchronous global flag at init so we don't
+  // race against the panel's mount-time event dispatch.
+  const [unifiedPassoActive, setUnifiedPassoActive] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return Boolean(window.__ELAB_UNIFIED_PASSO_ACTIVE);
+  });
   const [simulationAnnouncement, setSimulationAnnouncement] = useState('');
   const isRunningRef = useRef(false);
   useEffect(() => { isRunningRef.current = isRunning; }, [isRunning]);
@@ -342,6 +358,22 @@ const NewElabSimulator = ({
   const handleBuildStepChange = useCallback((newIndex) => {
     const prevIndex = buildStepIndex;
     setBuildStepIndex(newIndex);
+    // Goal A fix 2026-05-25: NewElabSimulator owns the live Passo Passo step
+    // state (buildStepIndex) — emit a window event so LavagnaShell can sync
+    // VolumeViewer to the matching book page. Decoupled bridge across the
+    // simulator/lavagna component boundary (LavagnaShell.currentStep is a
+    // separate, loader-driven state and does NOT track Passo Passo Avanti).
+    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+      try {
+        window.dispatchEvent(new CustomEvent('elab-build-step-change', {
+          detail: {
+            experimentId: currentExperiment?.id || null,
+            stepIndex: newIndex,
+            prevIndex,
+          },
+        }));
+      } catch { /* CustomEvent unsupported (SSR) — silent */ }
+    }
     if (newIndex > prevIndex && newIndex >= 0) {
       try {
         if (!buildStepSoundRef.current) buildStepSoundRef.current = new (window.AudioContext || window.webkitAudioContext)();
@@ -758,6 +790,7 @@ const NewElabSimulator = ({
     setComponentStates(prev => ({ ...prev, _avrRunning: false, _txActive: false, _rxActive: false }));
     if (avrPollRef.current) { clearInterval(avrPollRef.current); avrPollRef.current = null; }
     setIsRunning(false);
+    setIsPaused(true); // Codex HIGH-1
     pushActivity('pause');
     setSimulationAnnouncement('Simulazione in pausa');
     recordEvent('simulation_stopped');
@@ -796,6 +829,72 @@ const NewElabSimulator = ({
     handleAnnotationAdd, handleAnnotationTextChange, handleAnnotationDelete,
     handleAnnotationSelect, handleAnnotationPositionChange,
   } = handlers;
+
+  // ─── Stop handler (Goal C — halt + t=0 + clear pin/serial, KEEP topology) ───
+  // Andrea verbatim "play e pausa e stop": Stop e diverso da Reset (Azzera).
+  // Reset purga customLayout/customComponents/customConnections (factory reset).
+  // Stop ferma il worker AVR + azzera il tempo + svuota seriale, ma preserva la
+  // topologia del circuito (componenti, fili, layout custom). Per AVR usiamo
+  // avrRef.reset() che ricarica la CPU mantenendo l'HEX flashato (= topologia).
+  // Per modalita circuit (Vol1/Vol2) il CircuitSolver non ha una API
+  // stop-without-purge: l'unico riavvio mantenendo topologia e re-loadExperiment
+  // con preserveState:false. Limitazione documentata per follow-up engine API.
+  const handleStop = useCallback(() => {
+    handlePause();
+    setIsPaused(false); // Codex HIGH-1: Stop = fully stopped, NOT paused
+    setSimulationTime(0);
+    timeRef.current = 0;
+    if (avrTxLenRef) avrTxLenRef.current = 0;
+    if (currentExperiment?.simulationMode === 'avr' && avrRef.current) {
+      avrRef.current.reset();
+      setSerialOutput('');
+      setComponentStates({ _pins: avrRef.current.getPinStates ? avrRef.current.getPinStates() : {} });
+    } else if (solverRef.current && mergedExperiment) {
+      solverRef.current.loadExperiment(mergedExperiment, { preserveState: false });
+      setComponentStates(solverRef.current.getState());
+    }
+    setSimulationAnnouncement('Simulazione fermata');
+    try { emitSimulatorEvent('stateChange', { state: 'stopped', experimentId: currentExperiment?.id }); } catch { }
+  }, [handlePause, currentExperiment, mergedExperiment, avrTxLenRef]);
+
+  // ─── Codex HIGH-1: Play/Reset wrappers that clear isPaused ───
+  // useCircuitHandlers is engine-reverted (CLAUDE.md guard), so we wrap the
+  // returned handlers here instead of mutating the hook. Play clears paused
+  // (start fresh OR resume → both paths land in not-paused running state).
+  // Reset is factory reset → never leaves a paused state.
+  const handlePlayWrapped = useCallback(() => {
+    setIsPaused(false);
+    handlePlay();
+  }, [handlePlay]);
+
+  const handleResetWrapped = useCallback(() => {
+    setIsPaused(false);
+    handleReset();
+  }, [handleReset]);
+
+  // Andrea feedback 2026-05-25: window event bridge for PassoPassoUnifiedPanel.
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const onActive = (e) => {
+      const active = Boolean(e?.detail?.active);
+      setUnifiedPassoActive(active);
+    };
+    const onAdvance = (e) => {
+      const delta = Number(e?.detail?.delta);
+      if (!Number.isFinite(delta) || delta === 0) return;
+      const total = currentExperiment?.buildSteps?.length || 0;
+      // Andrea feedback 2026-05-25: allow stepIndex == total (complete state)
+      // so unified panel can render the cliffhanger CTA on "Finito" click.
+      const next = Math.max(-1, Math.min(total, buildStepIndex + delta));
+      handleBuildStepChange(next);
+    };
+    window.addEventListener('elab-unified-passo-active', onActive);
+    window.addEventListener('elab-passo-advance', onAdvance);
+    return () => {
+      window.removeEventListener('elab-unified-passo-active', onActive);
+      window.removeEventListener('elab-passo-advance', onAdvance);
+    };
+  }, [buildStepIndex, currentExperiment?.buildSteps?.length, handleBuildStepChange]);
 
   // ─── Keep callback refs in sync ───
   useEffect(() => { handleSelectExperimentRef.current = handleSelectExperiment; }, [handleSelectExperiment]);
@@ -877,9 +976,11 @@ const NewElabSimulator = ({
           onTabChange={onTabChange}
           experiment={currentExperiment}
           isRunning={isRunning}
-          onPlay={handlePlay}
+          isPaused={isPaused}
+          onPlay={handlePlayWrapped}
           onPause={handlePause}
-          onReset={handleReset}
+          onStop={handleStop}
+          onReset={handleResetWrapped}
           onBack={handleBack}
           simulationTime={simulationTime}
           showPalette={showPalette}
@@ -1015,7 +1116,7 @@ const NewElabSimulator = ({
                 {exportToast && (<div role="status" aria-live="polite" style={{ position: 'absolute', bottom: 50, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent, var(--elab-lime))', color: 'var(--color-text-inverse, #fff)', padding: '8px 20px', borderRadius: 8, fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 700, boxShadow: '0 4px 12px rgba(124,179,66,0.35)', zIndex: 100, pointerEvents: 'none' }}>Foto salvata!</div>)}
                 {wireToast && (<div role="status" aria-live="polite" style={{ position: 'absolute', bottom: 50, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-vol2, var(--elab-orange))', color: 'var(--color-text, #1A1A2E)', padding: '8px 20px', borderRadius: 8, fontFamily: "var(--font-display, 'Oswald', sans-serif)", fontSize: 16, fontWeight: 700, boxShadow: '0 4px 12px rgba(232,148,28,0.35)', zIndex: 100, pointerEvents: 'none' }}>{wireToast}</div>)}
                 {wireMode && (<div className={lyStyles.wireModeIndicator} role="status" aria-live="polite"><span style={{ fontSize: 14 }}>&#x1F50C;</span><span>Collegamento fili attivo</span>{wireStartRef.current && (<span style={{ color: 'var(--color-vol2-text, #996600)' }}>Da: {wireStartRef.current} — clicca il pin destinazione</span>)}</div>)}
-                {currentExperiment && currentExperiment.buildMode === 'guided' && !hideComponentDrawer && (
+                {currentExperiment && currentExperiment.buildMode === 'guided' && !hideComponentDrawer && !unifiedPassoActive && !(typeof window !== 'undefined' && window.__ELAB_UNIFIED_PASSO_ACTIVE) && (
                   <ComponentDrawer mode={currentExperiment.buildMode} experiment={currentExperiment} currentStep={buildStepIndex} onStepChange={handleBuildStepChange} volumeNumber={selectedVolume}
                     onStartScratchPhase={(chosenMode) => { setShowCodeEditor(true); setEditorMode(chosenMode || 'scratch'); }}
                     onCompileAndPlay={() => { if (handleCompileOnly) handleCompileOnly(); }}
@@ -1134,16 +1235,37 @@ const NewElabSimulator = ({
           {!showCodeEditor && currentExperiment && currentExperiment.simulationMode === 'avr' && isVol3 && (
             <button onClick={() => setShowCodeEditor(true)} aria-label="Apri editor codice" style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 30, width: 24, height: 64, border: 'none', borderRadius: '6px 0 0 6px', background: 'var(--color-primary, var(--elab-navy))', color: 'var(--color-text-inverse, #fff)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-md)', fontSize: 14, padding: 0, transition: 'opacity var(--transition-base)' }} title="Apri Editor">‹</button>
           )}
+
+          {/* Andrea ratify 2026-05-24: DrawingOverlay anche quando NO esperimento
+              caricato (lavagna normale vuota → pen click deve mostrare colorbar).
+              Era SOLO dentro {currentExperiment?...} ternario → mai montato in
+              lavagna libera/welcome → barra colori mancante. Fix: sibling overlay
+              fullscreen quando !currentExperiment + drawingEnabled. */}
+          {!currentExperiment && (
+            <DrawingOverlay
+              drawingEnabled={drawingEnabled}
+              canvasWidth={typeof window !== 'undefined' ? window.innerWidth : 1024}
+              canvasHeight={typeof window !== 'undefined' ? window.innerHeight : 768}
+              onPathsChange={() => {}}
+              initialFullscreen
+              onClose={() => setDrawingEnabled(false)}
+              experimentId={null}
+              syncEnabled={false}
+            />
+          )}
         </div>
 
         {/* RIGHT PANEL: Code Editor */}
         {showCodeEditor && currentExperiment && (
           <div ref={editorPanelRef} className={`${lyStyles.codeEditorPanel} ${editorMode === 'scratch' ? (scratchFullscreen ? lyStyles.codeEditorPanelScratchFullscreen : lyStyles.codeEditorPanelScratch) : ''}`}>
-            <div role="tablist" aria-label="Editor codice" style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--color-blockly-grid, #2a3040)', background: 'var(--color-editor-bg, #161B22)', flexShrink: 0 }}>
-              <button onClick={() => setShowCodeEditor(false)} aria-label="Chiudi editor" title="Chiudi editor (torna al circuito)" style={{ width: 44, minHeight: 44, border: 'none', cursor: 'pointer', padding: 0, background: 'var(--color-editor-bg, #161B22)', color: 'var(--color-text-gray-400, #666)', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'color 150ms, background 150ms' }} onPointerEnter={e => { e.currentTarget.style.color = 'var(--elab-red)'; e.currentTarget.style.background = 'rgba(229,75,61,0.1)'; }} onPointerLeave={e => { e.currentTarget.style.color = '#666'; e.currentTarget.style.background = 'var(--color-editor-bg, #161B22)'; }}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 4L12 12M4 12L12 4"/></svg></button>
-              <button onClick={() => { if (editorMode !== 'arduino') { setModeSwitchNotice('arduino'); setTimeout(() => setModeSwitchNotice(null), 4000); } setEditorMode('arduino'); setScratchFullscreen(false); }} style={{ flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer', minHeight: 44, fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 600, background: editorMode === 'arduino' ? 'var(--color-editor-active-bg, #1E2530)' : 'var(--color-editor-bg, #161B22)', color: editorMode === 'arduino' ? 'var(--color-accent, var(--elab-lime))' : 'var(--color-text-gray-400, #666)', borderBottom: editorMode === 'arduino' ? '2px solid var(--color-accent, var(--elab-lime))' : '2px solid transparent' }}>{'</>  Arduino C++'}</button>
-              {currentExperiment?.simulationMode === 'avr' && isVol3 && (<button onClick={() => { if (editorMode !== 'scratch') { setModeSwitchNotice('scratch'); setTimeout(() => setModeSwitchNotice(null), 4000); } setEditorMode('scratch'); }} style={{ flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer', minHeight: 44, fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 600, background: editorMode === 'scratch' ? 'var(--color-editor-active-bg, #1E2530)' : 'var(--color-editor-bg, #161B22)', color: editorMode === 'scratch' ? 'var(--color-tab-scratch, #E67E22)' : 'var(--color-text-gray-400, #666)', borderBottom: editorMode === 'scratch' ? '2px solid var(--color-tab-scratch, #E67E22)' : '2px solid transparent' }}>{'Blocchi'}</button>)}
-              {editorMode === 'scratch' && (<button onClick={() => setScratchFullscreen(f => !f)} title={scratchFullscreen ? 'Esci da schermo intero (Esc)' : 'Schermo intero'} aria-label={scratchFullscreen ? 'Esci da schermo intero' : 'Schermo intero'} style={{ padding: scratchFullscreen ? '7px 16px' : '7px 12px', border: 'none', cursor: 'pointer', minHeight: 44, minWidth: 56, fontFamily: "var(--font-sans)", fontSize: scratchFullscreen ? 14 : 18, fontWeight: scratchFullscreen ? 600 : 400, background: scratchFullscreen ? 'var(--color-tab-scratch, #E67E22)' : 'var(--color-editor-bg, #161B22)', color: scratchFullscreen ? '#fff' : 'var(--color-text-gray-400, #666)', borderLeft: scratchFullscreen ? 'none' : '1px solid var(--color-blockly-grid, #2a3040)', borderRadius: scratchFullscreen ? '6px' : 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>{scratchFullscreen ? (<><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M10 2h4v4M6 14H2v-4M14 2L9.5 6.5M2 14l4.5-4.5"/></svg>Esci</>) : (<svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2 6V2h4M14 10v4h-4M2 2l4.5 4.5M14 14L9.5 9.5"/></svg>)}</button>)}
+            {/* Andrea ratify 2026-05-24 — repalette editor tabs: era dark
+                code-editor theme (#161B22) → light ELAB warm. Allinea estetica
+                home Blockly compiler. Navy text + Lime/Orange accent attivo. */}
+            <div role="tablist" aria-label="Editor codice" style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(30, 77, 140, 0.18)', background: '#F5F5F0', flexShrink: 0 }}>
+              <button onClick={() => setShowCodeEditor(false)} aria-label="Chiudi editor" title="Chiudi editor (torna al circuito)" style={{ width: 44, minHeight: 44, border: 'none', cursor: 'pointer', padding: 0, background: 'transparent', color: 'var(--elab-navy)', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'color 150ms, background 150ms' }} onPointerEnter={e => { e.currentTarget.style.color = 'var(--elab-red)'; e.currentTarget.style.background = 'rgba(229,75,61,0.10)'; }} onPointerLeave={e => { e.currentTarget.style.color = 'var(--elab-navy)'; e.currentTarget.style.background = 'transparent'; }}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 4L12 12M4 12L12 4"/></svg></button>
+              <button onClick={() => { if (editorMode !== 'arduino') { setModeSwitchNotice('arduino'); setTimeout(() => setModeSwitchNotice(null), 4000); } setEditorMode('arduino'); setScratchFullscreen(false); }} style={{ flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer', minHeight: 44, fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, background: editorMode === 'arduino' ? '#FFFFFF' : 'transparent', color: editorMode === 'arduino' ? 'var(--elab-navy)' : 'rgba(30, 77, 140, 0.55)', borderBottom: editorMode === 'arduino' ? '3px solid var(--elab-lime)' : '3px solid transparent' }}>{'</>  Arduino C++'}</button>
+              {currentExperiment?.simulationMode === 'avr' && isVol3 && (<button onClick={() => { if (editorMode !== 'scratch') { setModeSwitchNotice('scratch'); setTimeout(() => setModeSwitchNotice(null), 4000); } setEditorMode('scratch'); }} style={{ flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer', minHeight: 44, fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, background: editorMode === 'scratch' ? '#FFFFFF' : 'transparent', color: editorMode === 'scratch' ? 'var(--elab-navy)' : 'rgba(30, 77, 140, 0.55)', borderBottom: editorMode === 'scratch' ? '3px solid var(--elab-orange)' : '3px solid transparent' }}>{'Blocchi'}</button>)}
+              {editorMode === 'scratch' && (<button onClick={() => setScratchFullscreen(f => !f)} title={scratchFullscreen ? 'Esci da schermo intero (Esc)' : 'Schermo intero'} aria-label={scratchFullscreen ? 'Esci da schermo intero' : 'Schermo intero'} style={{ padding: scratchFullscreen ? '7px 16px' : '7px 12px', border: 'none', cursor: 'pointer', minHeight: 44, minWidth: 56, fontFamily: "var(--font-sans)", fontSize: scratchFullscreen ? 14 : 18, fontWeight: scratchFullscreen ? 700 : 400, background: scratchFullscreen ? 'var(--elab-orange)' : 'transparent', color: scratchFullscreen ? '#fff' : 'var(--elab-navy)', borderLeft: scratchFullscreen ? 'none' : '1px solid rgba(30, 77, 140, 0.12)', borderRadius: scratchFullscreen ? '6px' : 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>{scratchFullscreen ? (<><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M10 2h4v4M6 14H2v-4M14 2L9.5 6.5M2 14l4.5-4.5"/></svg>Esci</>) : (<svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2 6V2h4M14 10v4h-4M2 2l4.5 4.5M14 14L9.5 9.5"/></svg>)}</button>)}
             </div>
             {modeSwitchNotice && (
               <div role="status" aria-live="polite" style={{ padding: '8px 16px', background: 'var(--color-vol2, var(--elab-orange))', color: 'var(--color-text, #1A1A2E)', fontSize: 14, fontFamily: "var(--font-sans)", fontWeight: 500, textAlign: 'center', animation: 'sim-welcome-fade 0.3s ease' }}>
@@ -1198,7 +1320,16 @@ const NewElabSimulator = ({
       <UnlimResponsePanel response={unlimResponse} isAsking={isAskingUNLIM} onAskAgain={() => { setUnlimResponse(null); window.dispatchEvent(new CustomEvent('elab-open-unlim-input')); }} onClose={() => setUnlimResponse(null)} />
       {potOverlay && (<PotOverlay value={potOverlay.value} onValueChange={handlePotValueChange} onClose={() => setPotOverlay(null)} />)}
       {ldrOverlay && (<LdrOverlay value={ldrOverlay.value} onValueChange={handleLdrValueChange} onClose={() => setLdrOverlay(null)} />)}
-      {propsPanel && (<PropertiesPanel comp={propsPanel} onValueChange={handlePropChange} onClose={() => setPropsPanel(null)} />)}
+      {propsPanel && (() => {
+        // Read live values from mergedExperiment so the panel reflects ongoing
+        // edits (Andrea 26/05/2026: bug "proprieta non puo mai essere cambiato"
+        // — panel was stuck on the snapshot taken at open time).
+        const liveComp = mergedExperiment?.components?.find(c => c.id === propsPanel.id);
+        const comp = liveComp
+          ? { id: liveComp.id, type: liveComp.type, value: liveComp.value, color: liveComp.color }
+          : propsPanel;
+        return (<PropertiesPanel comp={comp} onValueChange={handlePropChange} onClose={() => setPropsPanel(null)} />);
+      })()}
       {showShortcuts && (<ShortcutsPanel onClose={() => setShowShortcuts(false)} />)}
     </div>
   );

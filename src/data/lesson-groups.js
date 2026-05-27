@@ -7,7 +7,17 @@
  * lo stesso concetto da angolazioni diverse.
  *
  * Struttura: lessonId -> { title, concept, experiments[] }
+ *
+ * Visibility filter (Andrea 25/05/2026): getLessonsForVolume() filtra
+ * lessons senza esperimenti visibili + filtra l'array `experiments` di
+ * ogni lesson tenendo solo quelli visibili. Sorgente: experiment-visibility.js
  */
+
+import {
+  isVisibleExperiment,
+  lessonHasVisibleExperiments,
+  VISIBILITY_FILTER_DISABLED,
+} from './experiment-visibility';
 
 const LESSON_GROUPS = {
   // ═══════════════════════════════════════
@@ -234,9 +244,24 @@ export function findLessonForExperiment(experimentId) {
  * @returns {Array<[string, object]>}
  */
 export function getLessonsForVolume(volumeNumber) {
-  return Object.entries(LESSON_GROUPS)
+  const entries = Object.entries(LESSON_GROUPS)
     .filter(([, l]) => l.volume === volumeNumber)
     .sort((a, b) => a[1].chapter - b[1].chapter);
+
+  if (VISIBILITY_FILTER_DISABLED) return entries;
+
+  // Visibility filter: drop lessons with zero visible experiments + filter
+  // the inner experiments[] array to drop hidden IDs. Lesson metadata
+  // (title, concept, chapter, icon) preserved unchanged.
+  return entries
+    .filter(([, l]) => lessonHasVisibleExperiments(l.experiments))
+    .map(([lessonId, lesson]) => [
+      lessonId,
+      {
+        ...lesson,
+        experiments: lesson.experiments.filter(isVisibleExperiment),
+      },
+    ]);
 }
 
 /**

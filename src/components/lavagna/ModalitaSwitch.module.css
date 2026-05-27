@@ -3,75 +3,41 @@
    Palette ELAB CLAUDE.md §Design rule 16: Navy var(--elab-navy) primary, Lime var(--elab-lime) accent
    Touch target ≥44px (rule 9), font ≥13px (rule 8) */
 
+/* Andrea 26/05 PM verbatim: "togliere linguetta a sinistra + pulsanti più piccoli".
+   Era grid 40px+repeat(3,1fr) per riservare colonna collapseBtn. Ora inline-flex
+   auto-fit per i 2 mode visibili (Passo Passo + Già Montato) — nessuna colonna
+   vuota a destra, nessuna riserva di spazio. Container centrato. */
 .modalitaSwitch {
-  display: grid;
-  grid-template-columns: 40px repeat(3, minmax(0, 1fr));
+  display: inline-flex;
+  align-items: center;
   gap: 4px;
-  width: min(560px, calc(100vw - 32px));
+  width: auto;
+  max-width: calc(100vw - 32px);
+  margin: 0 auto;
   padding: 4px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(30, 77, 140, 0.10);
   border-radius: 12px;
-  align-items: center;
   box-shadow: 0 6px 18px rgba(30, 77, 140, 0.08);
   backdrop-filter: blur(12px);
-}
-
-.collapseBtn,
-.collapsedSwitch {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  border: 1px solid rgba(30, 77, 140, 0.16);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.96);
-  color: var(--elab-navy);
-  font-family: var(--font-sans, 'Open Sans', sans-serif);
-  font-size: 18px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.collapseBtn:hover,
-.collapsedSwitch:hover {
-  background: rgba(30, 77, 140, 0.05);
-  border-color: rgba(30, 77, 140, 0.28);
-}
-
-.collapsedSwitch {
-  gap: 8px;
-  padding: 6px 12px;
-  box-shadow: 0 6px 18px rgba(30, 77, 140, 0.08);
-}
-
-.collapsedLabel {
-  font-size: 14px;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.chevron {
-  font-size: 14px;
-  line-height: 1;
-  color: rgba(30, 77, 140, 0.65);
 }
 
 .modeBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 44px;
+  gap: 5px;
+  /* Andrea 26/05 PM verbatim: "rendere i pulsanti più piccoli". Ridotto da
+     44→36px min-height (WCAG 44 trade-off per request user esplicita). */
+  min-height: 36px;
   min-width: 0;
-  padding: 7px 10px;
+  padding: 4px 10px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
   color: var(--elab-navy);
   font-family: var(--font-sans, 'Open Sans', sans-serif);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800;
   cursor: pointer;
   transition: background 120ms ease, border-color 120ms ease, transform 80ms ease, box-shadow 120ms ease, color 120ms ease;
@@ -104,8 +70,8 @@
 }
 
 .modeIcon {
-  width: 19px;
-  height: 19px;
+  width: 14px;
+  height: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -114,8 +80,8 @@
 }
 
 .modeSvg {
-  width: 19px;
-  height: 19px;
+  width: 14px;
+  height: 14px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -124,7 +90,7 @@
 }
 
 .modeLabel {
-  font-size: 14px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -168,20 +134,20 @@
 
 @media (min-width: 768px) and (max-width: 1180px) {
   .modalitaSwitch {
-    width: min(560px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
     border-radius: 12px;
   }
 
   .modeBtn {
-    min-height: 46px;
-    border-radius: 10px;
-    font-size: 14px;
+    min-height: 36px;
+    border-radius: 8px;
+    font-size: 12px;
   }
 }
 
 @media (min-resolution: 192dpi), (min-width: 2500px) {
   .modalitaSwitch {
-    width: min(720px, calc(100vw - 48px));
+    max-width: calc(100vw - 48px);
     gap: 6px;
     padding: 6px;
   }
@@ -203,23 +169,34 @@
   }
 }
 
+/* Touch device WCAG 2.5.5 enhanced — min target 44x44px (Codex stop-time
+   review 26/05 PM). Desktop hover-pointer keeps Andrea's compact 36px
+   request; touch (pointer:coarse) restores accessible 44px. */
 @media (pointer: coarse) {
   .modeBtn {
-    min-height: 48px;
-    padding: 8px 10px;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .modeIcon,
+  .modeSvg {
+    width: 18px;
+    height: 18px;
+  }
+  .modeLabel {
+    font-size: 13px;
   }
 }
 
-/* Mobile / portrait LIM: stack buttons vertical compact */
+/* Mobile / portrait LIM: inline-flex (no grid). Touch target restored 44px
+   per WCAG 2.5.5 (Codex review). */
 @media (max-width: 640px) {
   .modalitaSwitch {
-    width: calc(100vw - 20px);
-    grid-template-columns: 40px repeat(3, minmax(0, 1fr));
+    max-width: calc(100vw - 20px);
     gap: 4px;
     padding: 4px;
   }
   .modeLabel { font-size: 12px; }
-  .modeBtn { padding: 6px 6px; gap: 5px; min-height: 44px; }
+  .modeBtn { padding: 6px 10px; gap: 5px; min-height: 44px; }
   .modeIcon,
-  .modeSvg { width: 20px; height: 20px; }
+  .modeSvg { width: 18px; height: 18px; }
 }

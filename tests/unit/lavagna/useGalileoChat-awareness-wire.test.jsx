@@ -278,6 +278,31 @@ describe('sendChat — boardSnapshot forwarding contract', () => {
     expect(body.previousBoardSnapshot).toEqual(previousBoardSnapshot);
   });
 
+  it('includes UNLIM intent flags and screenSnapshot in the unlim-chat fetch body when provided', async () => {
+    const flags = {
+      triggered_flags: ['WANTS_SCREEN_VIEW', 'WANTS_EXPLAIN'],
+      flags: { WANTS_SCREEN_VIEW: true, WANTS_EXPLAIN: true },
+    };
+    const screenSnapshot = {
+      circuit: { components: [{ id: 'led1', type: 'led' }] },
+      arduino: { code: 'void setup() {}' },
+      step: { current: 1, total: 3 },
+    };
+
+    await realSendChat('guarda e spiega', [], {
+      flags,
+      screenSnapshot,
+    });
+
+    const nanobotCall = findNanobotCall();
+    expect(nanobotCall).toBeTruthy();
+    const body = JSON.parse(nanobotCall[1].body);
+    expect(body).toHaveProperty('flags');
+    expect(body.flags.triggered_flags).toEqual(['WANTS_SCREEN_VIEW', 'WANTS_EXPLAIN']);
+    expect(body).toHaveProperty('screenSnapshot');
+    expect(body.screenSnapshot).toEqual(screenSnapshot);
+  });
+
   it('omits boardSnapshot/previousBoardSnapshot from body when both options are absent (legacy callers unchanged)', async () => {
     // Legacy callers pre-Slice-1C call sendChat without the new options.
     // The contract here: the body either OMITS the keys entirely, OR sets
@@ -331,7 +356,7 @@ describe('useGalileoChat hook — cross-turn previousBoardSnapshot preservation'
 
     // ── Turn 1 ──
     await act(async () => {
-      await result.current.handleSend('prima domanda');
+      await result.current.handleSend('spiegami la prima domanda sul LED');
     });
     await waitFor(() => expect(sendChat).toHaveBeenCalledTimes(1));
 
@@ -344,6 +369,9 @@ describe('useGalileoChat hook — cross-turn previousBoardSnapshot preservation'
     }
     // First turn MUST have a boardSnapshot field (the wire-up's whole point).
     expect(firstOptions).toHaveProperty('boardSnapshot');
+    expect(firstOptions).toHaveProperty('flags');
+    expect(firstOptions.flags.triggered_flags).toContain('WANTS_EXPLAIN');
+    expect(firstOptions).toHaveProperty('screenSnapshot');
     const firstBoardSnapshot = firstOptions.boardSnapshot;
 
     // ── Turn 2 ──

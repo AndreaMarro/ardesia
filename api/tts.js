@@ -33,7 +33,7 @@ const LEGACY_VPS_TIMEOUT_MS = 2500;
 const SUPABASE_EDGE_URL = process.env.SUPABASE_EDGE_URL
   || process.env.VITE_SUPABASE_EDGE_URL
   || 'https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1';
-const PUBLIC_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
+const PUBLIC_SUPABASE_ANON_KEY = 'DEV_SENTINEL_SET_VITE_SUPABASE_ANON_KEY_IN_ENV_LOCAL';
 
 function isValidElabAnonJwt(value) {
   try {

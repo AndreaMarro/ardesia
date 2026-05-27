@@ -192,7 +192,7 @@ pip install gtts
 Supabase:      euqpdueopmlllqjmqnyb / sbp_REVOKED_20260423_REDACTED
 Gemini:        AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
 VPS:           72.60.129.50 (Ollama :11434 ✓, Voxtral :8880 ✗)
-Admin:         #admin → ELAB2026-Andrea!
+Admin:         #admin → [REDACTED-MOVED-TO-ENV]
 Vercel Prod:   https://elab-builder.vercel.app
 Anon Key:      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ
 ```

@@ -7,6 +7,7 @@
  */
 
 import knowledgeBase from '../knowledge-base.json' with { type: 'json' };
+import { logSilentFailure } from './observability.ts';
 
 const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY') || '';
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL') || '';
@@ -436,7 +437,9 @@ async function generateEmbedding(text: string): Promise<number[] | null> {
     if (!resp.ok) return null;
     const data = await resp.json();
     return data?.embedding?.values || null;
-  } catch {
+  } catch (err) {
+    // iter 105 ops: surface silent gemini embedding failures (was: catch{} return null)
+    logSilentFailure('rag_gemini_embedding_failed', err, { provider: 'gemini' });
     return null;
   }
 }
@@ -597,7 +600,10 @@ async function bm25Search(
   // "R", "I", "per", "di", ecc.). Query "Ohm legge formula V uguale R per I"
   // → tsquery empty after Italian stemmer = 0 results. Solution: pre-clean
   // query removing single-letter tokens + Italian stopwords BEFORE plfts call.
-  const STOPWORDS_IT = new Set(['di','il','la','un','una','per','con','del','della','della','su','tra','fra','dei','delle','degli','al','alla','ad','è','sono','sei','non','non','ma','si','no','che','cosa','come','quando','perché','più','meno','molto','poco','tutti','tutto','ogni','some','of','the','for','an','to','from','as','by','with','is','are','was','were','do']);
+  // iter 105 ops fix (2026-05-25): dedupe 'della' + 'non' (each listed twice in
+  // legacy literal). Same set semantics, removes silent duplicates that hide
+  // list-maintenance regressions during review.
+  const STOPWORDS_IT = new Set(['di','il','la','un','una','per','con','del','della','su','tra','fra','dei','delle','degli','al','alla','ad','è','sono','sei','non','ma','si','no','che','cosa','come','quando','perché','più','meno','molto','poco','tutti','tutto','ogni','some','of','the','for','an','to','from','as','by','with','is','are','was','were','do']);
   const cleanedQuery = query
     .replace(/[^\p{L}\p{N}\s]/gu, ' ')
     .split(/\s+/)
@@ -691,13 +697,18 @@ async function bm25Search(
               rank: idx + 1,
             }));
           }
-        } catch (_err) { /* OR fallback fail, keep [] */ }
+        } catch (err) {
+          // iter 105 ops: was silent (`_err`); surface for production observability
+          logSilentFailure('rag_bm25_or_fallback_failed', err, { stage: 'fts_or_retry' });
+        }
       }
     }
 
     return result;
-  } catch (_err) {
+  } catch (err) {
     clearTimeout(timer);
+    // iter 105 ops: surface bm25Search outer silent failures
+    logSilentFailure('rag_bm25_outer_failed', err, { stage: 'bm25_outer' });
     return [];
   }
 }
@@ -800,8 +811,10 @@ async function embedQueryVoyage(query: string): Promise<number[] | null> {
     if (!res.ok) return null;
     const data = await res.json();
     return data?.data?.[0]?.embedding || null;
-  } catch (_err) {
+  } catch (err) {
     clearTimeout(timer);
+    // iter 105 ops: surface Voyage embedding silent failures
+    logSilentFailure('rag_voyage_embedding_failed', err, { provider: 'voyage', model: 'voyage-3' });
     return null;
   }
 }
@@ -887,8 +900,10 @@ async function voyageRerank(
     const ranked = (data?.data || []) as Array<{ index: number; relevance_score: number }>;
     if (!ranked.length) return candidates.slice(0, topN);
     return ranked.map(r => candidates[r.index]).filter(Boolean).slice(0, topN);
-  } catch (_err) {
+  } catch (err) {
     clearTimeout(timer);
+    // iter 105 ops: surface Voyage rerank silent failures; preserve fallback ordering
+    logSilentFailure('rag_voyage_rerank_failed', err, { provider: 'voyage', topN, candidateCount: candidates.length });
     return candidates.slice(0, topN);
   }
 }
@@ -945,8 +960,10 @@ export async function hybridRetrieve(
       ]);
       wikiBm25Raw = wb;
       wikiDenseRaw = wd;
-    } catch (_err) {
+    } catch (err) {
       // Wiki fetch failure non-fatal — proceed with rag-only fusion.
+      // iter 105 ops: surface wiki fusion failure (was silent `_err`)
+      logSilentFailure('rag_wiki_fusion_failed', err, { stage: 'wiki_parallel_fetch' });
       wikiBm25Raw = [];
       wikiDenseRaw = [];
     }

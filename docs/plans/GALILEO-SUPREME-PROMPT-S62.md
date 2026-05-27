@@ -29,7 +29,7 @@ DEPLOY COMMANDS:
 
 TEST ACCOUNTS:
 - Teacher: teacher@elab.test / Tm7@xK4!pR2#nJ8
-- Admin: marro.andrea96@gmail.com / Qf3!dN9@bL5#wH7
+- Admin: marro.andrea96@gmail.com / [REDACTED-MOVED-TO-ENV]
 
 NANOBOT API:
 - POST https://elab-galileo.onrender.com/chat — { message, sessionId, experimentId, circuitState, experimentContext, images }

@@ -252,18 +252,23 @@ const ELAB_BLOCKLY_CSS = `
   touch-action: none !important;
 }
 
-/* Block text */
+/* Block text — Andrea 25/05/2026 PM: bump font 14→16 + opaque white pill +
+   dark navy text on editable fields. Era 14px white-on-translucent invisibile
+   su LIM 4K + numeri illeggibili nelle shadow math_number block (FieldNumber). */
 .blocklyText {
   font-family: var(--font-sans, 'Open Sans', sans-serif) !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
   fill: var(--color-text-inverse, #fff) !important;
 }
 .blocklyEditableText > .blocklyText {
-  fill: var(--color-text-inverse, #fff) !important;
+  fill: #1a1a2e !important;
+  font-weight: 700 !important;
 }
 .blocklyEditableText > rect {
-  fill: rgba(255,255,255,0.15) !important;
+  fill: rgba(255,255,255,0.96) !important;
+  stroke: rgba(30,77,140,0.35) !important;
+  stroke-width: 1 !important;
   rx: 4 !important;
   ry: 4 !important;
 }

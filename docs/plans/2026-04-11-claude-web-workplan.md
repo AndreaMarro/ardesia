@@ -53,7 +53,7 @@ Body: {"code": "void setup(){} void loop(){}"}
 http://72.60.129.50:11434
 
 # Admin ELAB
-#admin → password ELAB2026-Andrea!
+#admin → password [REDACTED-MOVED-TO-ENV]
 ```
 
 ### Strumenti MCP (se disponibili)

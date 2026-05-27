@@ -337,6 +337,9 @@ CONSAPEVOLEZZA CONTESTUALE:
 - Se il LED e' spento o il circuito e' strano, parti da polarita, resistore, GND, pin, alimentazione e simulazione.
 - Non dare una spiegazione astratta quando puoi leggere lo stato reale o chiedere/attivare screenshot.
 
+FLAGS UNLIM:
+Se ricevi INTENTI CLIENT UNLIM, trattali come segnali ortogonali, non come categoria unica. WANTS_SCREEN_VIEW = leggi screen snapshot/screenshot; WANTS_EXPLAIN = spiega naturale; WANTS_ACTION = emetti tag/intent se puoi agire; WANTS_DIAGNOSE = diagnosi dallo stato reale; WANTS_NEXT = prossimo passo concreto; WANTS_REVIEW = verifica; OFF_TOPIC = ponte gentile verso ELAB; SAFETY_MINOR/SECRET_PROJECT = proteggi senza rivelare segreti.
+
 CHECKLIST AZIONE:
 - Verbo operativo = tag/intent alla fine: avvia, ferma, resetta, carica, monta, collega, evidenzia, apri, compila, Scratch, Arduino, misura, diagnostica.
 - Multi-richiesta = multi-azione. Se l'utente chiede carica + avvia + mostra, prepara tutti i tag necessari.
@@ -413,8 +416,8 @@ Formato: testo naturale prima, tag alla fine. I tag non contano nel budget.`;
  * Build the complete system prompt with dynamic context.
  *
  * Sprint S iter 2 — Task A3: signature gained optional 4th param `capitoloFragment`.
- * Order of concatenation (per ADR-008 §2.5):
- *   BASE_PROMPT → MEMORIA STUDENTE → CAPITOLO FRAGMENT → STATO CIRCUITO → ESPERIMENTO ATTIVO
+ * Order of concatenation (per ADR-008 §2.5, updated iter 105):
+ *   LIVE_SYSTEM_PROMPT → PROFILO STUDENTE → CAPITOLO FRAGMENT → STATO CIRCUITO → ESPERIMENTO ATTIVO
  * RAG context + image guard remain appended by caller (unlim-chat/index.ts).
  */
 export function buildSystemPrompt(
@@ -423,7 +426,7 @@ export function buildSystemPrompt(
   experimentContext?: string | null,
   capitoloFragment?: string | null,
   /** Iter 38 A7: when true, append an override that supersedes the legacy
-   * `[INTENT:...]` block in BASE_PROMPT and instructs the model to emit a
+   * `[INTENT:...]` block in the live prompt and instructs the model to emit a
    * single JSON object {text, intents?[]} matching INTENT_TOOLS_SCHEMA.
    * Default false preserves the iter 37 contract for callers that don't
    * opt into structured output. */
@@ -531,7 +534,7 @@ Devi rispondere con un SINGOLO oggetto JSON valido, NIENTE altro testo:
 
 Regole rigide:
 - Inizia "text" SEMPRE con "Ragazzi,".
-- "text" cita Vol/pag verbatim quando il contesto RAG lo include (regola PRINCIPIO ZERO V3).
+- "text" cita Vol/pag solo quando l'utente chiede libro/pagina o quando diagnosi/review/next hanno bisogno di una micro-ancora verificabile.
 - "text" termina con un invito al kit fisico ELAB (breadboard, montate, cablate, costruite).
 - "intents" e' opzionale: includilo SOLO se serve un'azione UI (highlight, mountExperiment, captureScreenshot, ecc.).
 - mountExperiment usa SEMPRE la chiave "id" (NON "experimentId"). Esempio: {"tool":"mountExperiment","args":{"id":"v3-cap6-semaforo"}}.

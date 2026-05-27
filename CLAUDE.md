@@ -563,6 +563,62 @@ Iter 72 ha shipped infrastructure tecnica MA NON ha rinforzato arco narrativo co
 Iter 72 close score 8.95/10 UNCHANGED (correction = post-doc audit, NON modifica deliverables iter 72). NON COMPIACERE applies to MY audit errors: admitted retroactively. Iter 73 priorities REALISTIC narrative gap (4 components + cliffhanger-table format + Passo Passo regression + Vol1/Vol2 titles) NON inflated false "15 missing Vol3".
 
 
+## REVERT POST-DEMO 25/05/2026 — STATO IMMUTABILE
+
+**STAY REVERTED**. Andrea ha rebbattezzato simulator + esperimenti a pre-demo (origin/main post `e290f779`). NON cadere nelle modifiche demo-era — sono REGRESSIONI causa.
+
+### Cose REVERTED (mai più re-introdurre senza Andrea OK):
+- `src/data/book-geometry/*.bookGeometry.json` — 8 file ELIMINATI (demo pixel-perfect parity)
+- `src/data/demo-mode.js` — ELIMINATO
+- `src/data/manual-index.json` — ELIMINATO
+- `src/data/experiments-vol1.js`, `vol2.js`, `vol3.js` — full revert origin/main (eccetto v2-cap7-esp1 fix 25/05 PM)
+- `src/data/lesson-paths/v1-cap6-esp1/2/3.json` + `v2-cap7-esp1/2.json` — reverted
+- `src/components/simulator/components/{Capacitor,Led,PushButton,Resistor,Wire,WireRenderer}.jsx` — reverted (pre-demo SVG)
+- `src/components/simulator/canvas/SimulatorCanvas.jsx` — reverted
+- `src/components/simulator/engine/{CircuitSolver,PlacementEngine,useCircuitHandlers}.js` — reverted
+- `src/components/simulator/panels/{BomPanel,ComponentDrawer,ComponentPalette,LessonPathPanel,PropertiesPanel}.jsx` — reverted
+- `src/components/lavagna/{LessonSelector,ExperimentPicker,PercorsoCapitoloView,CompileUploadButton}.jsx` — reverted (rimosso demo-mode dependency)
+- Test file demo-aware mocked patterns — reverted
+
+### Cose PRESERVATE (NON revertire):
+- `src/components/simulator/components/Battery9V.jsx` — keep (Andrea verbatim "la batteria che va bene con i fili che partono così")
+- `src/features/elabBlocks/codeSync.js` — keep (real cppToAst translator iter 105)
+- `src/components/home/HomeCompileEntry.jsx`, `UnlimCompileHelper.jsx` — keep (home-codekit sessione 24/05)
+- `src/components/HomePage.jsx`, common/ElabIcons.jsx — keep
+- `src/components/lavagna/LavagnaShell.module.css`, `VolumeViewer.jsx`, `ModalitaSwitch.module.css` — keep
+- `src/components/simulator/NewElabSimulator.jsx` — keep (tab repalette + UNLIM forward)
+
+### Anti-pattern signal (red flags):
+- Vedi `bookGeometry` / `renderMode='clip_simplified'` / `Wire path waypoint mode='book'` riferito in nuovo codice → REGRESSIONE, indaga + revert
+- Vedi nuovi file `book-geometry/*.json` → REGRESSIONE
+- Vedi `demo-mode.js` re-introdotto → REGRESSIONE
+- Vedi `experiments-vol*.js` diff massive da main senza ratify Andrea → REGRESSIONE
+
+### Restoration emergency:
+Se Andrea esplicitamente chiede ripristino → `git revert 530a35d8 ba82df0f` (i 2 commit revert) + cherry-pick selettivo demo-era commits.
+
+## ESPERIMENTI VISIBILI UI — 8 su 94 (whitelist 25/05/2026)
+
+Andrea verbatim "nascondi tutti quelli (con possibilità di farli tornare tutti) tranne i primi 3 volume 1 + pwm crea tuo colore, volume 2 i primi 2 sul condensatore volume tre lampeggiante e semaforo. ASSICURATI DI POTERE RESUSCITARE TUTTO. DOCUMENTA QUESTE COSE NEL MINIMO DETTAGLIO."
+
+**Whitelist 8 esp** (source: `src/data/experiment-visibility.js`):
+- Vol1: `v1-cap6-esp1`, `v1-cap6-esp2`, `v1-cap6-esp3`, `v1-cap9-esp6` (Lampada RGB 3 potenziometri)
+- Vol2: `v2-cap7-esp1`, `v2-cap7-esp2` (condensatore)
+- Vol3: `v3-cap6-esp4` (Due LED sirena pin 6+9), `v3-cap6-esp5` (semaforo)
+
+**Filter applicato in**: `src/data/lesson-groups.js getLessonsForVolume()` + `src/components/lavagna/ExperimentPicker.jsx`. `findExperimentById()` NON filtrato (API calls always succeed).
+
+**RESTORE**:
+- 1 esp: append ID a `VISIBLE_EXP_IDS` in `src/data/experiment-visibility.js`
+- Tutti: imposta `VISIBILITY_FILTER_DISABLED = true` nello stesso file
+- Git: `git revert ba82df0f` annulla intera meccanica
+
+**Doc completa**: [docs/HIDDEN-EXPERIMENTS-RESTORE.md](docs/HIDDEN-EXPERIMENTS-RESTORE.md)
+
+**ZERO modifica** a `experiments-vol1/2/3.js` (dati integri, filter only UI).
+
+**NON ricadere**: prossimi sessioni dev NON devono auto-aggiungere ID al `VISIBLE_EXP_IDS` senza esplicita richiesta Andrea. La selezione 8 esp è curata.
+
 ## Sprint history archive
 
 Storia completa iter 3-82 (Sprint S/T/U close logs, ~3500 righe) archiviata in [docs/sprint-history-iter3-82-archive.md](docs/sprint-history-iter3-82-archive.md) — Fase 3 riconciliazione doc 2026-05-20. In CLAUDE.md restano solo: regole evergreen + Design Context + Narrative Arc.

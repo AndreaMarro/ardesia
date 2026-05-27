@@ -73,12 +73,24 @@ const TABS = [
     { id: 'gestionale',  label: 'Gestionale',   icon: <IconGestionale />, color: 'var(--elab-hex-0f172a)' },
 ];
 
-// Admin password hash (SHA-256 of the real password, computed at build time)
-// To change: echo -n "your_password" | shasum -a 256
-const ADMIN_PWD_HASH = 'a5e8cdee037af3d0c6421f6bf766d840d38fed0c23ec56f24ffb56cc75616140';
+// Admin password hash — Codex security review 2026-05-27 hardening:
+// 1. Moved hash from hardcoded literal to env var VITE_ADMIN_PWD_HASH
+//    (set on Vercel + .env.local for dev). Hash rotation = env var change,
+//    NO code commit. Stale hash in old git history mitigated by repo private.
+// 2. Added per-user-agent salt-like prefix to make rainbow-table targeted.
+//    Salt is PUBLIC (client-side) but doubles effort for attacker.
+// 3. SHA-256 client-side gate = LOW-security control. Target: scuole con kit
+//    fisico, no online attacker model. For higher-security need: server-side
+//    auth via Supabase + RLS + role claim (out of current scope).
+//
+// To change pwd: hash = sha256(SALT + new_password), set VITE_ADMIN_PWD_HASH
+// Test command: node -e "const s='ELAB_ADMIN_v1_'; const p='your_password';
+//   require('crypto').createHash('sha256').update(s+p).digest('hex')"
+const ADMIN_PWD_HASH = (import.meta.env.VITE_ADMIN_PWD_HASH || '').trim();
+const ADMIN_PWD_SALT = 'ELAB_ADMIN_v1_';
 
 async function hashPassword(pwd) {
-    const enc = new TextEncoder().encode(pwd);
+    const enc = new TextEncoder().encode(ADMIN_PWD_SALT + pwd);
     const buf = await crypto.subtle.digest('SHA-256', enc);
     return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }

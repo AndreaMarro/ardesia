@@ -35,7 +35,7 @@ Body: {"code": "void setup(){} void loop(){}"}
 http://72.60.129.50:11434
 
 # Admin ELAB
-Accesso: #admin → password ELAB2026-Andrea!
+Accesso: #admin → password [REDACTED-MOVED-TO-ENV]
 
 # Deploy
 npx vercel --prod --yes

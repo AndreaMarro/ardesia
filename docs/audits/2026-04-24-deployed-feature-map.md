@@ -50,7 +50,7 @@ App.jsx implementa routing custom: `pathname` per landing legali/PNRR, `hash` pe
 | `/#dashboard` | `StudentDashboard` | `RequireAuth` | `[NASCOSTA]` | Redirect a `#login`. |
 | `/#dashboard-v2?live=1&teacher=...&range=7d` | `DashboardShell` | nessuna | `[ROTTA]` | Render HTML ma fetch fallisce: "Errore: Failed to fetch". |
 | `/#teacher` | `TeacherDashboard` | `RequireAuth` + `isDocente` | `[NASCOSTA]` | Redirect a `#login`. |
-| `/#admin` | `AdminPage` | nessuna (ma password gate interno) | `[LIVE]` | "Accesso Admin" con campo password (per memoria: `ELAB2026-Andrea!`). |
+| `/#admin` | `AdminPage` | nessuna (ma password gate interno) | `[LIVE]` | "Accesso Admin" con campo password (per memoria: `[REDACTED-MOVED-TO-ENV]`). |
 | `/scuole/pnrr` | `LandingPNRR` | nessuna | `[LIVE]` | Landing commerciale completa. Vedi §2.5. |
 | `/scuole` | `LandingPNRR` (alias) | nessuna | `[LIVE]` | Stessa pagina. |
 | `/privacy` | `PrivacyPolicy` | nessuna | `[LIVE]` | 14+ sezioni, navigation interna (genitori/bambini/diritti/contatti). |

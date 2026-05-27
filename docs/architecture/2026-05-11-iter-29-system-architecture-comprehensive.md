@@ -109,7 +109,7 @@ ELAB Tutor does NOT use react-router. Routing is implemented as custom `useState
 #prova        -> ElabTutorV4 (legacy simulator shell)
 #glossario    -> Glossario (Tea 180-term glossary)
 #chatbot-only -> ChatbotOnly (standalone UNLIM chat)
-#admin        -> AdminPage (password: ELAB2026-Andrea!)
+#admin        -> AdminPage (password: [REDACTED-MOVED-TO-ENV])
 #dashboard    -> DashboardShell (teacher progress dashboard)
 #login        -> LoginPage
 #register     -> RegisterPage

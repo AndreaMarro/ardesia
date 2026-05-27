@@ -20,7 +20,29 @@ import { buildAgentDecisionSeed } from './unlimSharedStateStore';
 // Without this, URLs like "https://example.com\n" cause silent fetch failures
 // Nanobot: Supabase Edge Functions (SOLO Gemini — directive 11/04/2026)
 const _SUPABASE_EDGE = (import.meta.env.VITE_SUPABASE_EDGE_URL || 'https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1').trim();
-const _SUPABASE_ANON = (import.meta.env.VITE_SUPABASE_EDGE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ').trim();
+
+// Codex stop-review (2026-05-27): validate fallback JWT belongs to the
+// correct project. Vercel anon JWT may target legacy `vxvqalmxqtezvgiboxyv`
+// project — using it as fallback for `euqpdueopmlllqjmqnyb` Edge calls
+// → silent 401. Validator mirrors api/tts.js + voiceService.js pattern.
+function _isValidElabAnonJwt(value) {
+  try {
+    const token = String(value || '').trim();
+    const payload = token.split('.')[1];
+    if (!payload) return false;
+    const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+    return decoded.ref === 'euqpdueopmlllqjmqnyb' && decoded.role === 'anon';
+  } catch {
+    return false;
+  }
+}
+const _ENV_EDGE_KEY = (import.meta.env.VITE_SUPABASE_EDGE_KEY || '').trim();
+const _ENV_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+const _SUPABASE_ANON = _isValidElabAnonJwt(_ENV_EDGE_KEY)
+  ? _ENV_EDGE_KEY
+  : _isValidElabAnonJwt(_ENV_ANON_KEY)
+    ? _ENV_ANON_KEY
+    : 'DEV_SENTINEL_SET_VITE_SUPABASE_ANON_KEY_IN_ENV_LOCAL';
 // P1-002 fix (2026-04-22): custom API key shared with Supabase Edge Function
 // (stored there as the `ELAB_API_KEY` secret). Complements the bundle-visible
 // anon JWT with a server-only secret that only legit ELAB builds carry. The
@@ -40,6 +62,29 @@ function boundedTimeout(value, fallback, max) {
     const parsed = Number.parseInt(value || `${fallback}`, 10);
     if (!Number.isFinite(parsed) || parsed <= 0) return fallback;
     return Math.min(parsed, max);
+}
+
+function readRuntimeStorage(keys) {
+    if (typeof window === 'undefined') return null;
+    const stores = [window.localStorage, window.sessionStorage].filter(Boolean);
+    for (const store of stores) {
+        for (const key of keys) {
+            try {
+                const value = store.getItem(key);
+                if (typeof value === 'string' && value.trim()) return value.trim();
+            } catch { /* storage unavailable */ }
+        }
+    }
+    return null;
+}
+
+function compactJson(value, max = 2500) {
+    try {
+        const json = JSON.stringify(value);
+        return json.length > max ? json.slice(0, max) + '...' : json;
+    } catch {
+        return '';
+    }
 }
 // 2026-05-10 iter 9 — frontend timeout cap raised to absorb Edge Function v57
 // pipeline (LLM 12s + Onniscenza + RAG + INTENT). Andrea screenshot bug
@@ -383,6 +428,10 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
             // omitted/null keeps backward-compat (Slice 1A returns "" → no prompt delta).
             boardSnapshot: options.boardSnapshot ?? null,
             previousBoardSnapshot: options.previousBoardSnapshot ?? null,
+            flags: options.flags ?? null,
+            screenSnapshot: options.screenSnapshot ?? simulatorContext?.screenSnapshot ?? null,
+            teacher_anon_uuid: readRuntimeStorage(['elab_teacher_anon_uuid', 'elab-teacher-anon-uuid', 'elab_anon_uuid']),
+            class_key: readRuntimeStorage(['elab_class_key', 'elab-class-key']),
         };
         if (images.length > 0) {
             payload.images = images.map(img => ({
@@ -455,6 +504,8 @@ async function tryVisionEndpoint(question, imageDataUrl, options = {}) {
                 aiProfile: options.aiProfile || (preferPixtral ? 'pixtral_total' : null),
                 aiDepth: options.aiDepth || null,
                 unlimMode: normalizeUnlimMode(options.simulatorContext),
+                flags: options.flags ?? null,
+                screenSnapshot: options.screenSnapshot ?? options.simulatorContext?.screenSnapshot ?? null,
             }),
         });
         if (!res.ok) return null;
@@ -762,7 +813,7 @@ function isMessageBlocked(message) {
  * @param {Array} images - Array di immagini [{base64, mimeType}] (opzionale)
  */
 export async function sendChat(message, images = [], options = {}) {
-    const { signal: externalSignal, socraticMode = false, experimentContext = null, circuitState = null, experimentId = null, simulatorContext = null, boardSnapshot = null, previousBoardSnapshot = null } = options;
+    const { signal: externalSignal, socraticMode = false, experimentContext = null, circuitState = null, experimentId = null, simulatorContext = null, boardSnapshot = null, previousBoardSnapshot = null, flags = null, screenSnapshot = null } = options;
 
     // Content moderation: blocca messaggi inappropriati
     if (isMessageBlocked(message)) {
@@ -825,6 +876,14 @@ export async function sendChat(message, images = [], options = {}) {
             ctxLines.push('Pin: ' + pins);
         }
         if (ctxLines.length > 1) contextParts.push(ctxLines.join('\n'));
+
+        const liveScreenSnapshot = screenSnapshot || simulatorContext.screenSnapshot || null;
+        if (liveScreenSnapshot) {
+            contextParts.push('[SCREEN SNAPSHOT LIM]\n' + compactJson(liveScreenSnapshot, 2200));
+        }
+        if (flags?.triggered_flags?.length || Array.isArray(flags)) {
+            contextParts.push('[UNLIM INTENT FLAGS]\n' + compactJson(flags, 1200));
+        }
 
         if (Array.isArray(simulatorContext.applicationNarrative) && simulatorContext.applicationNarrative.length > 0) {
             const liveLines = simulatorContext.applicationNarrative.slice(-5).map((s, idx) => {
@@ -1281,7 +1340,7 @@ export async function analyzeImage(imageData, question = "Analizza questa immagi
     // previousBoardSnapshot from options to forward through internal sendChat
     // fallback. Without this, vision-path turns silently bypass awareness-flags
     // server-side wire (the most context-rich UNLIM use case was the dark hole).
-    const { signal, circuitState = null, simulatorContext = null, experimentId = null, preferProvider = null, boardSnapshot = null, previousBoardSnapshot = null } = options;
+    const { signal, circuitState = null, simulatorContext = null, experimentId = null, preferProvider = null, boardSnapshot = null, previousBoardSnapshot = null, flags = null, screenSnapshot = null } = options;
 
     // Check if already aborted before starting
     if (signal?.aborted) {
@@ -1299,6 +1358,8 @@ export async function analyzeImage(imageData, question = "Analizza questa immagi
         simulatorContext,
         aiProfile: options.aiProfile,
         aiDepth: options.aiDepth,
+        flags,
+        screenSnapshot,
     });
     if (directVision) return directVision;
 
@@ -1307,7 +1368,7 @@ export async function analyzeImage(imageData, question = "Analizza questa immagi
         ? imageString.split(';')[0].split(':')[1]
         : 'image/png';
 
-    return await sendChat(question, [{ base64, mimeType }], { signal, circuitState, simulatorContext, experimentId, boardSnapshot, previousBoardSnapshot });
+    return await sendChat(question, [{ base64, mimeType }], { signal, circuitState, simulatorContext, experimentId, boardSnapshot, previousBoardSnapshot, flags, screenSnapshot });
 }
 
 /**

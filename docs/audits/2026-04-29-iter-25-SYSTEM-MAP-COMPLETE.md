@@ -98,7 +98,7 @@ Source of truth: `supabase/functions/_shared/onniscenza-bridge.ts:5-22` doc head
 | `/` (default) | `ShowcasePage` (App.jsx:113 fallback `'showcase'`) | LIVE |
 | `/#tutor` | `ElabTutorV4` (lazy) | LIVE — legacy entry |
 | `/#lavagna` | `LavagnaShell` (App.jsx:33 lazy import) | LIVE iter 24 — Andrea iter 18 PM mandate switch tutor→lavagna pending decision (CLAUDEMD "S8 PENDING") |
-| `/#admin` | `AdminPage` password `ELAB2026-Andrea!` (CLAUDEMD) | LIVE |
+| `/#admin` | `AdminPage` password `[REDACTED-MOVED-TO-ENV]` (CLAUDEMD) | LIVE |
 | `/#dashboard` | `StudentDashboard` (RequireAuth gated) | LIVE |
 | `/#dashboard-v2` | `DashboardShell` (App.jsx:301-304, gated `?live=1`) | LIVE iter 24 — backend SCAFFOLD only `dashboard-data` Edge Fn |
 | `/#teacher` | `TeacherDashboard` (isDocente or isAdmin) | LIVE |

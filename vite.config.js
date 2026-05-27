@@ -76,7 +76,11 @@ const enableCodeProtection = (mode, env = process.env) => {
     return mode === 'production' && env.VERCEL_ENV === 'production';
 };
 
-const PUBLIC_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
+// Codex security stop-review (2026-05-27): removed hardcoded
+// PUBLIC_SUPABASE_ANON_KEY fallback. anon JWT pubblico by design ma
+// hardcode = leak in git history. Require env var only. Dev senza env =
+// fallback dev-only sentinel (NON valido JWT, forza setup .env.local).
+const DEV_SENTINEL_ANON_KEY = 'DEV_SENTINEL_SET_VITE_SUPABASE_ANON_KEY_IN_ENV_LOCAL';
 
 function elabDevApiProxy() {
     const edgeUrl = (process.env.SUPABASE_EDGE_URL
@@ -84,7 +88,7 @@ function elabDevApiProxy() {
         || 'https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1').replace(/\/+$/, '');
     const anonKey = process.env.SUPABASE_ANON_KEY
         || process.env.VITE_SUPABASE_ANON_KEY
-        || PUBLIC_SUPABASE_ANON_KEY;
+        || DEV_SENTINEL_ANON_KEY;
 
     return {
         name: 'elab-dev-api-proxy',

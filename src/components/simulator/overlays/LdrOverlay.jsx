@@ -57,7 +57,7 @@ const LdrOverlay = React.memo(function LdrOverlay({ value, onValueChange, onClos
             value={Math.round(value * 1000)}
             onChange={(e) => onValueChange(parseInt(e.target.value) / 1000)}
             aria-label="Regola livello luce fotoresistore"
-            style={{ flex: 1, accentColor: 'var(--elab-hex-ffc107)', minHeight: 44, height: 44, padding: '16px 0', touchAction: 'manipulation' }}
+            style={{ flex: 1, accentColor: 'var(--elab-hex-ffc107)', touchAction: 'manipulation' }}
           />
           <span style={{ fontSize: 15, color: 'var(--color-text-gray-300, #737373)', width: 36, textAlign: 'right' }}>Luce</span>
         </div>

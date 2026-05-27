@@ -66,8 +66,15 @@ export function getSecurityHeaders(req: Request): Record<string, string> {
 export function verifyElabApiKey(req: Request): { ok: boolean; reason?: string } {
   const expected = Deno.env.get('ELAB_API_KEY');
   if (!expected) {
-    // Fail-open: secret not yet configured. Deployment is still backward-
-    // compatible for any Edge Function that hasn't been updated to enforce.
+    // iter 105 ops (Andrea mandate "NON COMPIACERE" + audit P0 C1):
+    // Fail-CLOSED in production (DENO_DEPLOYMENT_ID set on Supabase Edge
+    // runtime) when secret missing — prevents auth bypass when a deploy
+    // accidentally ships without ELAB_API_KEY configured.
+    // Fail-OPEN preserved for local dev (no DENO_DEPLOYMENT_ID) so
+    // `supabase functions serve` continues to work without the secret.
+    if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
+      return { ok: false, reason: 'server_misconfigured: ELAB_API_KEY missing in production' };
+    }
     return { ok: true };
   }
   const provided = req.headers.get('X-Elab-Api-Key') || '';

@@ -278,7 +278,7 @@ URL: https://euqpdueopmlllqjmqnyb.supabase.co
 Token: sbp_REVOKED_20260423_REDACTED
 Gemini: AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
 VPS: 72.60.129.50
-Admin: #admin → ELAB2026-Andrea!
+Admin: #admin → [REDACTED-MOVED-TO-ENV]
 Anon Key: (in supabase/DEPLOY-GUIDE.md)
 ```
 

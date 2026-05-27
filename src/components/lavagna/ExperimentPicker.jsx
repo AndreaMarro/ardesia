@@ -9,6 +9,7 @@ import EXPERIMENTS_VOL2 from '../../data/experiments-vol2';
 import EXPERIMENTS_VOL3 from '../../data/experiments-vol3';
 import { getDisplayInfo } from '../../data/chapter-map';
 import LESSON_GROUPS, { getLessonsForVolume } from '../../data/lesson-groups';
+import { filterVisibleExperiments, VISIBILITY_FILTER_DISABLED } from '../../data/experiment-visibility';
 import css from './ExperimentPicker.module.css';
 
 const VOLUMES = [
@@ -63,7 +64,11 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
   }, [open, onClose]);
 
   const vol = VOLUMES.find(v => v.key === activeVol);
-  const experiments = vol?.data?.experiments || [];
+  const rawExperiments = vol?.data?.experiments || [];
+  // Visibility filter (Andrea 25/05/2026): hide all except 8-esp whitelist.
+  // Source of truth: src/data/experiment-visibility.js
+  // Restore: edit VISIBLE_EXP_IDS in experiment-visibility.js
+  const experiments = VISIBILITY_FILTER_DISABLED ? rawExperiments : filterVisibleExperiments(rawExperiments);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return experiments;

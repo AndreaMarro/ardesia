@@ -22,29 +22,39 @@ const COMP_NAMES = {
   'battery9v': 'Batteria 9V',
   'breadboard-half': 'Breadboard (mezza)',
   'breadboard': 'Breadboard',
+  'breadboard-full': 'Breadboard intera',
   'resistor': 'Resistore',
   'led': 'LED',
+  'led-bridge': 'LED a cavallo del gap',
+  'rgb-led': 'LED RGB',
   'led-rgb': 'LED RGB',
+  'push-button': 'Pulsante',
   'pushbutton': 'Pulsante',
   'potentiometer': 'Potenziometro',
   'capacitor': 'Condensatore',
+  'buzzer-piezo': 'Buzzer piezo',
   'buzzer': 'Buzzer',
   'photoresistor': 'Fotoresistenza',
+  'photo-resistor': 'Fotoresistenza',
+  'phototransistor': 'Fototransistor',
   'diode': 'Diodo',
+  'mosfet-n': 'MOSFET (canale N)',
   'mosfet': 'MOSFET',
+  'reed-switch': 'Reed switch',
   'servo': 'Servo motore',
   'lcd16x2': 'Display LCD 16×2',
   'motor-dc': 'Motore DC',
-  'nano-r4': 'Arduino Nano',
+  'nano-r4': 'Arduino Nano R4',
   'nano-breakout': 'NanoBreakout',
   'multimeter': 'Multimetro',
   'switch': 'Interruttore',
 };
 
 function getComponentLabel(comp) {
-  let name = COMP_NAMES[comp.type] || comp.type;
+  // Andrea 23/05/2026: niente "unknown" — fallback su "Componente" se type sconosciuto.
+  let name = COMP_NAMES[comp.type] || (comp.type && comp.type !== 'unknown' ? comp.type : 'Componente');
   if (comp.type === 'resistor' && comp.value) name += ` ${comp.value}Ω`;
-  if (comp.type === 'led' && comp.color) name += ` ${comp.color === 'red' ? 'rosso' : comp.color === 'green' ? 'verde' : comp.color === 'blue' ? 'blu' : comp.color === 'yellow' ? 'giallo' : comp.color}`;
+  if ((comp.type === 'led' || comp.type === 'led-bridge') && comp.color) name += ` ${comp.color === 'red' ? 'rosso' : comp.color === 'green' ? 'verde' : comp.color === 'blue' ? 'blu' : comp.color === 'yellow' ? 'giallo' : comp.color}`;
   if (comp.type === 'capacitor' && comp.value) name += ` ${comp.value}`;
   return name;
 }

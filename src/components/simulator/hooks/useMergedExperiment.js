@@ -40,7 +40,14 @@ export default function useMergedExperiment({
     const hiddenIds = new Set(
       Object.entries(customLayout).filter(([_, v]) => v?.hidden).map(([k]) => k)
     );
-    const mergedComponents = [...baseComponents, ...customComponents]
+    // Dedup by id: customComponents win over baseComponents (so PropertiesPanel
+    // edits to default-experiment components — LED color, R value, C µF,
+    // Battery V — actually override at render time instead of being shadowed
+    // by the original baseComponents entry).
+    const componentsById = new Map();
+    for (const c of baseComponents) componentsById.set(c.id, c);
+    for (const c of customComponents) componentsById.set(c.id, { ...componentsById.get(c.id), ...c });
+    const mergedComponents = [...componentsById.values()]
       .filter(c => !hiddenIds.has(c.id));
 
     // Merge connections (rimuovi connessioni a componenti nascosti)

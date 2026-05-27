@@ -9,7 +9,7 @@ import logger from '../utils/logger';
 
 const SUPABASE_EDGE_URL = (import.meta.env.VITE_SUPABASE_EDGE_URL || 'https://euqpdueopmlllqjmqnyb.supabase.co/functions/v1').trim();
 const NANOBOT_URL = (import.meta.env.VITE_NANOBOT_URL || '').trim() || SUPABASE_EDGE_URL;
-const PUBLIC_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ';
+const PUBLIC_SUPABASE_ANON_KEY = 'DEV_SENTINEL_SET_VITE_SUPABASE_ANON_KEY_IN_ENV_LOCAL';
 function isValidElabAnonJwt(value) {
     try {
         const token = String(value || '').trim();
@@ -21,7 +21,10 @@ function isValidElabAnonJwt(value) {
         return false;
     }
 }
-const ENV_SUPABASE_EDGE_KEY = (import.meta.env.VITE_SUPABASE_EDGE_KEY || '').trim();
+// Fallback chain: VITE_SUPABASE_EDGE_KEY → VITE_SUPABASE_ANON_KEY → sentinel.
+// Vercel env historically had only VITE_SUPABASE_ANON_KEY set; missing
+// VITE_SUPABASE_EDGE_KEY broke fetch after JWT strip a7dfc9d0.
+const ENV_SUPABASE_EDGE_KEY = (import.meta.env.VITE_SUPABASE_EDGE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
 const SUPABASE_EDGE_KEY = isValidElabAnonJwt(ENV_SUPABASE_EDGE_KEY)
     ? ENV_SUPABASE_EDGE_KEY
     : PUBLIC_SUPABASE_ANON_KEY;

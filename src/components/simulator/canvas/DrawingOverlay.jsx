@@ -108,6 +108,12 @@ function pointsHit(a, b, threshold) {
 }
 
 function pointsToSmoothPath(pointsStr) {
+  // Andrea 2026-05-27 crash fix: ErrorBoundary stack `s[u(...)] is not a
+  // function` traced to pointsStr.trim() when path loaded from localStorage
+  // has schema mismatch (path.points null OR object instead of string from
+  // old multi-session strokes commit 716812fe). Mirror parsePointsString
+  // guard pattern.
+  if (!pointsStr || typeof pointsStr !== 'string') return '';
   const pts = pointsStr.trim().split(/\s+/).map(p => {
     const [x, y] = p.split(',').map(Number);
     return { x, y };

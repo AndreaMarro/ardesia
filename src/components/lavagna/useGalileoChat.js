@@ -11,6 +11,7 @@ import { sendChat, analyzeImage, checkRateLimit } from '../../services/api';
 import { validateMessage, sanitizeOutput } from '../../utils/contentFilter';
 import { isLessonPrepCommand, getLessonSummary, prepareLesson } from '../../services/lessonPrepService';
 import { collectFullContext, getLatestVisualSnapshotImage } from '../../services/unlimContextCollector';
+import { classifyUnlimIntentFlags } from '../../services/unlimFlagClassifier';
 import { logLatency } from '../../services/unlimLatencyLog';
 import { executeServerIntents } from './intentsDispatcher';
 import { buildDirectOperationalResponse } from '../../../supabase/functions/_shared/operational-response.ts';
@@ -1110,14 +1111,17 @@ export default function useGalileoChat() {
       return;
     }
 
+    const earlyUnlimFlags = classifyUnlimIntentFlags(userMessage);
+
     // ── Vision trigger: "guarda il circuito", "analizza", "cosa vedi", "controlla" ──
-    if (shouldUseVisualNarrative(userMessage)) {
+    if (earlyUnlimFlags.flags.WANTS_SCREEN_VIEW || shouldUseVisualNarrative(userMessage)) {
       try {
         const api = typeof window !== 'undefined' && window.__ELAB_API;
         const latestVisual = getLatestVisualSnapshotImage();
         const dataUrl = latestVisual?.dataUrl || await api?.captureScreenshot?.();
         if (dataUrl) {
           const simulatorContext = collectFullContext();
+          const unlimFlags = classifyUnlimIntentFlags(userMessage, simulatorContext?.screenSnapshot || simulatorContext);
           // H1 fix: forward boardSnapshot through vision path (was bypassed pre-2026-05-25).
           const visionApi = typeof window !== 'undefined' && window.__ELAB_API;
           const visionActiveExp = visionApi?.getActiveExperiment?.() || visionApi?.getCurrentExperiment?.();
@@ -1130,6 +1134,8 @@ export default function useGalileoChat() {
             aiDepth: 'total',
             boardSnapshot: visionBoardSnapshot,
             previousBoardSnapshot: previousBoardSnapshotRef.current,
+            flags: unlimFlags,
+            screenSnapshot: simulatorContext?.screenSnapshot || null,
           });
           // Advance ref for vision-path turn (M2 unconditional advance).
           previousBoardSnapshotRef.current = visionBoardSnapshot;
@@ -1252,6 +1258,16 @@ export default function useGalileoChat() {
 
     // UNLIM vede TUTTO: raccolta contesto completo prima di ogni sendChat
     const simulatorContext = collectFullContext();
+    // Adversarial M6 (2026-05-26): wrap classifier in try/catch — if regex
+    // bug or null message would throw, chat must NOT blank screen. Empty
+    // flags fallback preserves backward-compat path.
+    let unlimFlags;
+    try {
+      unlimFlags = classifyUnlimIntentFlags(userMessage, simulatorContext?.screenSnapshot || simulatorContext);
+    } catch (err) {
+      logger.warn('[useGalileoChat] classifier crash, fallback empty flags:', err?.message || err);
+      unlimFlags = { flags: {}, triggered_flags: [], confidenceByFlag: {}, reasonsByFlag: {}, primary_flag: null };
+    }
 
     const activeExp = api?.getActiveExperiment?.() || api?.getCurrentExperiment?.();
 
@@ -1272,6 +1288,8 @@ export default function useGalileoChat() {
       simulatorContext,
       boardSnapshot: currentBoardSnapshot,
       previousBoardSnapshot: previousBoardSnapshotRef.current,
+      flags: unlimFlags,
+      screenSnapshot: simulatorContext?.screenSnapshot || null,
     });
 
     // Slice 1C M2 fix (code review 2026-05-25): advance snapshot ref UNCONDITIONALLY

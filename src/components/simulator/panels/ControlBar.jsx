@@ -239,8 +239,10 @@ const CircuitStatusChip = ({ status }) => {
 const ControlBar = ({
   experiment = null,
   isRunning = false,
+  isPaused = false,
   onPlay,
   onPause,
+  onStop,
   onReset,
   onBack,
   simulationTime = 0,
@@ -359,34 +361,42 @@ const ControlBar = ({
         </>
       )}
 
-      {/* ── Group 1: Simulation Controls ── */}
+      {/* ── Group 1: Simulation Controls (Goal C — 3 distinct buttons + Reset) ── */}
       <div className="toolbar-group">
-        {/* Play/Pause: solo per esperimenti Arduino (AVR). Battery experiments auto-partono. */}
+        {/* Play/Pause/Stop: solo per esperimenti Arduino (AVR). Battery experiments auto-partono. */}
         {isArduinoExperiment && (
-          isRunning ? (
+          <>
+            <ToolbarButton
+              icon={<PlayIcon />}
+              label={isPaused ? 'Riprendi' : 'Avvia'}
+              tooltip={isPaused ? 'Riprendi simulazione' : 'Avvia simulazione'}
+              shortcut="Spazio"
+              onClick={onPlay}
+              disabled={isRunning && !isPaused}
+              variant="success"
+            />
             <ToolbarButton
               icon={<PauseIcon />}
               label="Pausa"
-              tooltip="Metti in pausa"
-              shortcut="Spazio"
+              tooltip="Sospendi simulazione"
               onClick={onPause}
+              disabled={!isRunning || isPaused}
               variant="warning"
             />
-          ) : (
             <ToolbarButton
-              icon={<PlayIcon />}
-              label="Avvia"
-              tooltip="Avvia simulazione"
-              shortcut="Spazio"
-              onClick={onPlay}
-              variant="success"
+              icon={<StopIcon />}
+              label="Stop"
+              tooltip="Ferma simulazione e azzera tempo"
+              onClick={onStop}
+              disabled={!isRunning && !isPaused}
+              variant="danger"
             />
-          )
+          </>
         )}
         <ToolbarButton
           icon={<ResetIcon />}
           label="Azzera"
-          tooltip="Resetta simulazione"
+          tooltip="Azzera circuito"
           onClick={onReset}
           variant="danger"
         />
@@ -669,6 +679,12 @@ const PauseIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
     <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const StopIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" stroke="none">
+    <rect x="3" y="3" width="10" height="10" rx="1" />
   </svg>
 );
 

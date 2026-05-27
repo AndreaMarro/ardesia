@@ -63,14 +63,21 @@ const PotOverlay = React.memo(function PotOverlay({ value, onValueChange, onClos
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
         >
+          {/* Andrea ratify 2026-05-24: era 270° sweep (strokeDasharray 339/120
+              offset -60) — sembrava "cerchio tagliato sotto". NEW: full 360°
+              track + filled arc parte da top (-90° rotation) cresce orario.
+              Circumference 2π·72 ≈ 452.4 → arrotondato 453 per stroke linecap
+              round. Sweep visivo 0..360° basato value (0..1). Logica drag
+              clamp resta 270° (-135..+135) per coerenza pot reale. */}
           <svg width="180" height="180" viewBox="0 0 180 180">
-            {/* Track arc */}
-            <circle cx="90" cy="90" r="72" fill="none" stroke="var(--elab-hex-d4c9b0)" strokeWidth="8"
-              strokeDasharray="339 120" strokeDashoffset="-60" strokeLinecap="round" />
-            {/* Filled arc */}
+            {/* Track — full ring 360° */}
+            <circle cx="90" cy="90" r="72" fill="none" stroke="var(--elab-hex-d4c9b0)" strokeWidth="8" />
+            {/* Filled arc — 0 to value*360°, start at top */}
             <circle cx="90" cy="90" r="72" fill="none" stroke={LIME} strokeWidth="8"
-              strokeDasharray={`${value * 339} ${459 - value * 339}`}
-              strokeDashoffset="-60" strokeLinecap="round" />
+              strokeDasharray={`${value * 453} 453`}
+              strokeLinecap="round"
+              transform="rotate(-90 90 90)"
+            />
             {/* Knob body */}
             <circle cx="90" cy="90" r="42" fill="#fff" stroke="var(--elab-hex-d4c9b0)" strokeWidth="2" />
             {/* Indicator line */}
@@ -91,7 +98,7 @@ const PotOverlay = React.memo(function PotOverlay({ value, onValueChange, onClos
             value={Math.round(value * 1000)}
             onChange={(e) => onValueChange(parseInt(e.target.value) / 1000)}
             aria-label="Regola posizione potenziometro"
-            style={{ flex: 1, accentColor: LIME, minHeight: 44, height: 44, padding: '16px 0', touchAction: 'manipulation' }}
+            style={{ flex: 1, accentColor: LIME, touchAction: 'manipulation' }}
           />
           <span className={ovStyles.valueText}>
             {Math.round(value * 100)}%

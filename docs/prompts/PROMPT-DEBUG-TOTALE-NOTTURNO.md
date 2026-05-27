@@ -360,7 +360,7 @@ Supabase URL:      https://euqpdueopmlllqjmqnyb.supabase.co
 Supabase Token:    sbp_REVOKED_20260423_REDACTED
 Gemini API Key:    AIzaSyB3IjfrHeG9u_yscwHamo7lT1zoWJ0ii1g
 VPS:               72.60.129.50 (Ollama :11434, Voxtral :8880)
-Admin:             #admin → ELAB2026-Andrea!
+Admin:             #admin → [REDACTED-MOVED-TO-ENV]
 Anon Key:          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cXBkdWVvcG1sbGxxam1xbnliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNDI3MDksImV4cCI6MjA5MDcxODcwOX0.289s8NklODdiXDVc_sXBb_Y7SGMgWSOss70iKQRVpjQ
 Vercel Prod:       https://elab-builder.vercel.app
 Netlify Scuole:    https://funny-pika-3d1029.netlify.app/scuole.html
@@ -369,7 +369,7 @@ Netlify Scuole:    https://funny-pika-3d1029.netlify.app/scuole.html
 ## CREDENZIALI FINALI DA GENERARE PER ANDREA
 
 ### 1. Admin
-- `https://elab-builder.vercel.app/#admin` → `ELAB2026-Andrea!`
+- `https://elab-builder.vercel.app/#admin` → `[REDACTED-MOVED-TO-ENV]`
 - Verifica funzioni in produzione
 
 ### 2. Docente/Scuola

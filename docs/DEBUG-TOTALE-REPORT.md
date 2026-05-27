@@ -128,7 +128,7 @@ I 2 benchmark FAIL sono **infrastrutturali**: VPS TTS down (72.60.129.50:8880) e
 
 - Vercel prod: https://elab-builder.vercel.app (LIVE)
 - Supabase: 5/5 Edge Functions, 12 tabelle, RPC, RLS
-- Admin: #admin con password ELAB2026-Andrea!
+- Admin: #admin con password [REDACTED-MOVED-TO-ENV]
 
 ---
 

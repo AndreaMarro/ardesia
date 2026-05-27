@@ -29,6 +29,144 @@ let liveNarrativeBusy = false;
 let latestVisualSnapshot = null;
 let liveNarrativeEntries = [];
 
+// Codex stop-review fix (2026-05-26): defense-in-depth. PII + injection
+// markers MUST be scrubbed client-side BEFORE network transit. Edge
+// sanitizer alone leaves unscrubbed payload in Vercel/Supabase access logs
+// + network proxies. Mirror Edge regex patterns (deepScrub at index.ts).
+const CLIENT_PII_PATTERNS = [
+  /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g, // email
+  /\b(?:\+39\s?)?(?:3[0-9]{2}|0[0-9]{1,3})\s?[0-9]{6,8}\b/g, // IT phone
+  /\b[A-Za-z]{6}[0-9]{2}[A-Za-z][0-9]{2}[A-Za-z][0-9]{3}[A-Za-z]\b/gi, // codice fiscale (case-insensitive)
+  /\b\d{11}\b/g, // partita IVA
+  /\b(?:ssid|wpa|wifi|password|pwd|psk)\s*[:=]\s*["']?[^\s"']+/gi, // WiFi creds
+];
+const CLIENT_INJECTION_MARKERS = [
+  /\b(?:SYSTEM|ASSISTANT|USER)\s*:\s*/gi,
+  /\[\/?INST\]/gi,
+  /<\/?s>/gi,
+  /\bignora\s+(?:le\s+)?istruzion[ei]\s+precedent[ie]?/gi,
+  /\bignore\s+(?:all\s+)?previous\s+instructions?/gi,
+  /\b(?:jailbreak|DAN\b|do\s+anything\s+now)/gi,
+];
+
+function scrubClientText(text) {
+  if (typeof text !== 'string') return text;
+  let out = text;
+  for (const re of CLIENT_PII_PATTERNS) out = out.replace(re, '[REDACTED]');
+  for (const re of CLIENT_INJECTION_MARKERS) out = out.replace(re, '[BLOCKED]');
+  return out;
+}
+
+function deepScrubClient(value) {
+  if (typeof value === 'string') return scrubClientText(value);
+  if (Array.isArray(value)) return value.map(deepScrubClient);
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const k of Object.keys(value)) {
+      // Codex stop-review (2026-05-26): scrub KEYS too. User may inject
+      // PII/markers via object keys (e.g., {"marco@school.it":"..."}).
+      const scrubbedKey = scrubClientText(k);
+      out[scrubbedKey] = deepScrubClient(value[k]);
+    }
+    return out;
+  }
+  return value;
+}
+
+export function buildUnlimScreenSnapshot(inputContext = {}) {
+  const context = inputContext && typeof inputContext === 'object' ? inputContext : {};
+  const circuitSource = context.circuit || null;
+  const components = Array.isArray(circuitSource?.components) ? circuitSource.components : [];
+  const connections = Array.isArray(circuitSource?.connections)
+    ? circuitSource.connections
+    : (Array.isArray(circuitSource?.wires) ? circuitSource.wires : []);
+  const editorCode = typeof context.editorCode === 'string' && context.editorCode.trim()
+    ? context.editorCode
+    : null;
+  const blocklyXml = typeof context.blocklyXml === 'string' && context.blocklyXml.trim()
+    ? context.blocklyXml
+    : (typeof context.scratchXml === 'string' && context.scratchXml.trim() ? context.scratchXml : null);
+  // Adversarial H1 (2026-05-26): freshness check on module-level latestVisualSnapshot.
+  // Race: user types "guarda questo" at t0, captureApplicationSnapshot
+  // still pending t1, sendChat fires t2 with `visual.available:true`
+  // pointing at OLD frame. Reject module visual if > 3000ms stale, emit
+  // staleMs so LLM can read. Context-provided visualSnapshot bypasses
+  // (explicit caller intent, e.g. tests + direct providers).
+  const VISUAL_STALENESS_MS = 3000;
+  let visual = null;
+  if (context.visualSnapshot) {
+    // Caller explicit — pass through with staleMs annotation if timestamp present
+    const capturedAt = context.visualSnapshot.capturedAt || context.visualSnapshot.ts || null;
+    const staleMs = capturedAt ? (Date.now() - capturedAt) : null;
+    visual = {
+      available: context.visualSnapshot.available !== false,
+      capturedAt,
+      reason: context.visualSnapshot.reason || null,
+      staleMs,
+    };
+  } else if (latestVisualSnapshot) {
+    const capturedAt = latestVisualSnapshot.capturedAt || latestVisualSnapshot.ts || null;
+    const staleMs = capturedAt ? (Date.now() - capturedAt) : null;
+    const fresh = staleMs === null || staleMs <= VISUAL_STALENESS_MS;
+    visual = fresh
+      ? { available: true, capturedAt, reason: latestVisualSnapshot.reason || null, staleMs }
+      : { available: false, reason: 'stale', staleMs };
+  }
+
+  const rawSnapshot = {
+    circuit: circuitSource ? {
+      components: components.slice(0, 40),
+      connections: connections.slice(0, 80),
+      simulation: circuitSource.simulation || null,
+      description: context.circuitDescription || null,
+    } : null,
+    blockly: blocklyXml ? { xml: blocklyXml.slice(0, 4000) } : null,
+    arduino: editorCode ? {
+      code: editorCode.slice(0, 4000),
+      visible: context.editorVisible ?? null,
+      mode: context.editorMode || null,
+      compilation: context.compilation || null,
+    } : null,
+    cpp: editorCode && /(?:void\s+setup|#include|pinMode|digitalWrite|analogRead)/i.test(editorCode)
+      ? { code: editorCode.slice(0, 4000), compilation: context.compilation || null }
+      : null,
+    step: context.buildStep || null,
+    // Cap drawing payload to prevent unbounded user-text leak into LLM
+    // prompt (brain-reviewer MUST fix 26/05). If drawing has `text` content
+    // (teacher annotation may contain student names), bound to 400 chars
+    // and emit metadata only when payload exceeds that.
+    drawing: (() => {
+      const raw = context.drawing || context.unlimSharedState?.latestSnapshot?.drawing || null;
+      if (!raw) return null;
+      const cap = (val) => (typeof val === 'string' && val.length > 400 ? val.slice(0, 400) + '…' : val);
+      if (typeof raw === 'string') return cap(raw);
+      if (typeof raw === 'object') {
+        const out = {};
+        for (const k of Object.keys(raw)) {
+          const v = raw[k];
+          out[k] = typeof v === 'string' ? cap(v) : v;
+        }
+        return out;
+      }
+      return raw;
+    })(),
+    modalita: {
+      editorMode: context.editorMode || null,
+      editorVisible: context.editorVisible ?? null,
+      buildMode: context.buildMode || context.modalita || null,
+    },
+    experiment: context.experiment || context.circuit?.experiment || null,
+    narrative: Array.isArray(context.applicationNarrative) ? context.applicationNarrative.slice(-5) : [],
+    visual,
+    timestamp: Date.now(),
+  };
+  // Codex stop-review fix (2026-05-26): defense-in-depth scrub at source.
+  // PII + injection markers stripped CLIENT-SIDE before network transit.
+  // Prevents leak via Vercel/Supabase access logs + proxies + middleware
+  // that see request body PRE-Edge-sanitizer.
+  return deepScrubClient(rawSnapshot);
+}
+
 /**
  * Log an error to the session error history (for AI context)
  * @param {string} type - Error type: 'compilation', 'circuit', 'runtime'
@@ -435,6 +573,24 @@ export function collectFullContext() {
     });
   } catch { /* silent */ }
 
+  try {
+    if (latestVisualSnapshot) {
+      context.visualSnapshot = {
+        available: true,
+        capturedAt: latestVisualSnapshot.capturedAt || latestVisualSnapshot.ts || null,
+        reason: latestVisualSnapshot.reason || null,
+      };
+    }
+    context.screenSnapshot = buildUnlimScreenSnapshot(context);
+  } catch { /* silent */ }
+
   logger.debug('[unlimContextCollector] Full context collected:', Object.keys(context));
-  return context;
+  // Codex stop-review (2026-05-26): "raw simulatorContext still leaks pre-transit
+  // data". Raw context.editorCode + context.circuit + context.pinStates + recent
+  // errors go to Edge as `simulatorContext` payload. Apply deepScrubClient to
+  // ENTIRE return — PII + injection markers stripped before network transit.
+  // screenSnapshot is already scrubbed inside buildUnlimScreenSnapshot but
+  // wrapping again is idempotent (regex replace on already-redacted text =
+  // no-op).
+  return deepScrubClient(context);
 }
