@@ -242,5 +242,28 @@
     "La classe collega Stampare analogRead sul Monitor Seriale alla pagina 124.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_a0",
+      "instruction": "Ragazzi, leggete A0 con analogRead (Vol3 pag 124).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, analogRead di A0 viene mandato sul Monitor (Vol3 pag 124)."
+      }
+    },
+    {
+      "step_id": "stampa_valore",
+      "instruction": "Ragazzi, stampate il valore con Serial.print (Vol3 pag 124).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_serial_print",
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, vediamo il valore del trimmer sul Monitor (Vol3 pag 124)."
+      }
+    }
   ]
 }

@@ -317,5 +317,28 @@
     "La classe collega Costruiamo un semaforo alla pagina 57.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "tre_pin",
+      "instruction": "Ragazzi, impostate i tre pin del semaforo come uscita (Vol3 pag 57).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, rosso, giallo e verde hanno ciascuno un pin (Vol3 pag 57)."
+      }
+    },
+    {
+      "step_id": "sequenza_semaforo",
+      "instruction": "Ragazzi, scrivete la sequenza rosso giallo verde con i delay (Vol3 pag 57).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_write",
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, il semaforo cambia colore secondo i tempi del Loop (Vol3 pag 57)."
+      }
+    }
   ]
 }

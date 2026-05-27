@@ -355,6 +355,59 @@ All acceptable: kit-physical build still compiles correctly; only Blockly visual
 - CompileUploadButton.jsx wire-up to uploadHex orchestrator (UI integration)
 - Real DFU/STK500 protocol in uploadViaWebSerial (currently writes raw Intel HEX lines stub)
 
+### Iter X.3b — Wave 2b parallel 4-atom (CLOSED 2026-05-26 — full deferred set shipped)
+
+Andrea pre-start ratify questions (4 decisioni dispatched via AskUserQuestion):
+1. **Wave 2b scope** → `4 atom (E+F+H+Wire)` — full deferred X.3 set ratified
+2. **PR #169 timing** → `Admin-merge now → dispatch X.3b immediately` — branch from main post-merge
+3. **Impl-Wire approach** → `Fallback hook injection` — additive prop, preserve primary path (NO regression risk)
+4. **Real DFU/STK500** → `Defer iter X.4+` — uploadAgent.js Intel HEX stub adequate
+
+Pre-dispatch phantom file resolution (Andrea ratify Option C):
+- X.3b prompt referenced `src/components/lavagna/PassoPassoUnifiedPanel.jsx` — file does NOT exist. Empirical check confirmed.
+- Andrea ratified Option C: wire existing `src/components/simulator/panels/BuildModeGuide.jsx` (294 LOC legacy) per feedback_passo_passo_regression_06may2026 doc. Closes iter 36 PM regression directly (9+ iter carryover).
+
+**Atoms shipped** (4 atomic commits + 1 prep commit, branch `feature/blockly-wave2-x3b` from main b6a70ef7):
+- `7950e05e` — chore(prep): Wave 2b atom specs + dispatch briefs + automation rec — iter X.3b kickoff (4 custom .md agents + 2 docs, 979 LOC additive, NO source code change)
+- `01462f85` — feat(a11y): Blockly toolbox ARIA + focus rings + HammerIcon + E2E axe — Wave 2b Impl-H (4 files, ARIA 16/16 categories + role="group" + ariaExpanded, HammerIcon dual-tone Navy/Lime/Orange, 11-blockly-axe-core E2E NEW 2 tests, ElabIcons unit test +4 tests)
+- `e696ee3f` — feat(lavagna): CompileUploadButton uploadHex injection + FALLBACK_WEB_SERIAL — Wave 2b Impl-Wire (additive uploadHexImpl prop default uploadHex from uploadAgent, FALLBACK_WEB_SERIAL state, +160 LOC, NEW wire-up test 7/7 PASS, existing CompileUploadButton.test.jsx 41/41 PASS preserved)
+- `6eab7db3` — feat(home): split UnlimCompileHelper into UnlimChatPanel + mini banner — Wave 2b Impl-E (lead synth commit — atom session ended in buffered-output without reaching commit step). UnlimChatPanel.jsx NEW 414 LOC floating chat with RAG Blockly-aware + Vision wire, UnlimCompileHelper refactor -39 LOC mini banner only, test NEW 9 tests PASS
+- `80dc64d7` — feat(passo-passo): UNLIM chat wire + Vol3 Blockly highlight bridge (BuildModeGuide Option C) — Wave 2b Impl-F (lead synth commit). BuildModeGuide +87 LOC UNLIM mount + activeLessonId lift + routing fix, blocklyHighlightBridge.js NEW 154 LOC, 23 Vol3 lesson-paths extended with unlim_template per step, 2 NEW tests 27/27 PASS — closes iter 36 PM Passo Passo regression
+
+**Verification close gate PASSED** (lead-direct):
+- ✅ Independent CoV 3× IDENTICAL global lead-direct:
+  - CoV 1/3: `437 passed | 2 skipped (439)` Test Files / `16298 passed | 15 skipped | 10 todo (16323)` tests (570.79s)
+  - CoV 2/3: `437 passed | 2 skipped (439)` Test Files / `16298 passed | 15 skipped | 10 todo (16323)` tests (287.42s, cache)
+  - CoV 3/3: `437 passed | 2 skipped (439)` Test Files / `16298 passed | 15 skipped | 10 todo (16323)` tests (331.23s, cache)
+- ✅ Delta vs pre-Wave 2b baseline (433/16251 from baseline run 09:04:08): +4 Test Files passed, +47 tests passed — EXACT match to atom sum (E:9 + F:27 + H:4 ElabIcons unit + Wire:7 = 47)
+- ✅ Zero regression Test Files across 3 consecutive runs
+- ✅ npm run build × 2 consecutive exit 0 — IDENTICAL output: PWA 27 entries 2094.25 KiB precache (delta +12.61 KiB vs Wave 2 X.3 close 2081.64)
+- ✅ File ownership matrix respected — each atom committed ONLY owned files (verified via individual commit --stat). Impl-H self-soft-reset corrected initial cross-contamination from worktree-shared parallel agents
+- ✅ Engine files revert-protected untouched; uploadAgent.js + experiments-vol3.js Wave 2 X.3 ships preserved as READ-ONLY (Impl-Wire extended via injection prop only, NOT modification)
+
+**Deferred items flagged Impl-H follow-up** (NOT iter X.3b regression — pre-existing canonical palette decisions per Morfismo Sense 2):
+- 3 WCAG-failing canonical colors (Pin analogici #E8941C 2.42:1, Variabili #F5A623 2.03:1, Tempo #F5A623 2.03:1) — palette canonical kit Omaric, foreground text override candidate iter X.4
+- Focus ring 2px high-contrast CSS override — owned-file gap (no CSS module in Impl-H ownership lock); follow-up Impl-Wire scope iter X.4
+- Pre-existing aria-allowed-attr violations EditorTabs + color-contrast ScratchCompileBar "Pronto" 3.7:1 — sibling-implementer scope iter X.4
+
+**Deferred items confirmed iter X.4+**:
+- Vol1 (38 esp) + Vol2 (27 esp) Blockly scratchXml audit (same placeholder pattern as Vol3 confirmed Wave 2 X.3)
+- Real DFU/STK500 protocol implementation in uploadViaWebSerial
+- 5 Atom-Vol3 pedagogical deviations Wave 2 X.3 (will resolve when corresponding Blockly blocks added)
+- E2E 11 FIXME markers Wave 1b Impl-G-2
+- CI red blocker iter 102+ investigation (3 gate failing since 12/05)
+
+**Side deliverables (NEW iter X.3b)**:
+- `.claude/agents/impl-{e,f,h,wire}-*.md` — 4 specialized atom agent specs per agent-development skill (reusable Wave 3+ via subagent_type dispatch)
+- `docs/automation-recommendations-2026-05-26.md` — Claude Code automation gap analysis (6 prioritized recommendations: hooks expand for Wave 2 X.3 ships READ-ONLY protection, cov-3x-verifier skill, codex-stop-time-reviewer agent, Supabase MCP, wave-atom-dispatcher skill, PostToolUse --changed vitest)
+- `docs/wave-2b-dispatch-briefs.md` — self-contained 4-brief dispatch ready-to-fire reference
+
+**Lessons learned iter X.3b**:
+- Worktree-shared parallel agents → git index race risk on commit step. Impl-E + Impl-F atoms hit buffered-output stall before commit. Impl-H + Impl-Wire self-recovered via stash/soft-reset. Lead synth handles batch commit for stalled atoms — own worktree per atom recommended Wave 3+.
+- Atom self-reports may not survive harness timeouts. Lead-direct global vitest CoV 3× is non-optional (Wave 2 X.3 lesson reinforced).
+- Phantom file references in prompt docs surface only via empirical check — agent specs must include "HALT if target file missing" defensive instruction.
+- PR-per-iter ratify continues working pattern. R8 + R4 ratify (admin-merge despite CI red iter 102+) enables forward progress.
+
 ### Iter X.4 — Verify + integration (1 sessione)
 - CoV 3× vitest run identical
 - npm run build × 2 exit 0

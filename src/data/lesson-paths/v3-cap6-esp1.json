@@ -356,5 +356,27 @@
     "La classe collega Circuiti logici AND e OR alla pagina 45.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_condizione",
+      "instruction": "Ragazzi, osservate il blocco if con AND e OR (Vol3 pag 45).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_if"
+        ],
+        "explanation": "Ragazzi, AND chiede entrambe vere, OR ne chiede almeno una (Vol3 pag 45)."
+      }
+    },
+    {
+      "step_id": "verifica_circuito",
+      "instruction": "Ragazzi, controlliamo i pulsanti collegati ai pin (Vol3 pag 45).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_read"
+        ],
+        "explanation": "Ragazzi, digitalRead legge se il pulsante e premuto (Vol3 pag 45)."
+      }
+    }
   ]
 }

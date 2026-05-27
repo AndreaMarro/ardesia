@@ -275,5 +275,28 @@
     "La classe collega Il trimmer controlla la luminosita del LED alla pagina 105.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_trimmer",
+      "instruction": "Ragazzi, leggete il trimmer con analogRead (Vol3 pag 105).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, il valore del trimmer guida la luminosita (Vol3 pag 105)."
+      }
+    },
+    {
+      "step_id": "mappa_valore",
+      "instruction": "Ragazzi, mappate il valore con map e scrivete su analogWrite (Vol3 pag 105).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_map",
+          "arduino_analog_write"
+        ],
+        "explanation": "Ragazzi, map trasforma 0-1023 in 0-255 (Vol3 pag 105)."
+      }
+    }
   ]
 }

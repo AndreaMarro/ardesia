@@ -207,5 +207,27 @@
     "La classe collega Arduino saluta il computer alla pagina 119.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "serial_begin",
+      "instruction": "Ragazzi, aprite la comunicazione con Serial.begin nel setup (Vol3 pag 119).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_serial_begin"
+        ],
+        "explanation": "Ragazzi, Serial.begin parla con il computer una sola volta (Vol3 pag 119)."
+      }
+    },
+    {
+      "step_id": "stampa_saluto",
+      "instruction": "Ragazzi, scrivete un Serial.print di saluto (Vol3 pag 119).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_serial_print"
+        ],
+        "explanation": "Ragazzi, il messaggio appare sul Monitor del computer (Vol3 pag 119)."
+      }
+    }
   ]
 }

@@ -251,5 +251,27 @@
     "La classe collega Accendere un LED esterno sul pin 13 alla pagina 51.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "pin_uscita",
+      "instruction": "Ragazzi, impostate il pin 13 come uscita (Vol3 pag 51).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, il pin 13 alimenta il LED esterno tramite la resistenza (Vol3 pag 51)."
+      }
+    },
+    {
+      "step_id": "accendi_led",
+      "instruction": "Ragazzi, scrivete digitalWrite HIGH per accendere il LED esterno (Vol3 pag 51).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, HIGH manda corrente al LED collegato sulla breadboard (Vol3 pag 51)."
+      }
+    }
   ]
 }

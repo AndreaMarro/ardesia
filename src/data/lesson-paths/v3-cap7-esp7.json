@@ -260,5 +260,27 @@
     "La classe collega Generare una tensione analogica sul pin A0 alla pagina 109.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "analog_write_pin",
+      "instruction": "Ragazzi, generate una tensione con analogWrite (Vol3 pag 109).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_write"
+        ],
+        "explanation": "Ragazzi, il pin PWM simula una tensione media (Vol3 pag 109)."
+      }
+    },
+    {
+      "step_id": "controlla_uscita",
+      "instruction": "Ragazzi, leggete la tensione sul Monitor Seriale (Vol3 pag 109).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_serial_print"
+        ],
+        "explanation": "Ragazzi, il Monitor ci dice se la tensione e quella attesa (Vol3 pag 109)."
+      }
+    }
   ]
 }

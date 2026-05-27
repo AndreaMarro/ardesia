@@ -269,5 +269,28 @@
     "La classe collega Leggere un pulsante con digitalRead alla pagina 64.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "pin_ingresso",
+      "instruction": "Ragazzi, impostate il pin del pulsante come INPUT (Vol3 pag 64).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, INPUT permette ad Arduino di leggere il pulsante (Vol3 pag 64)."
+      }
+    },
+    {
+      "step_id": "leggi_pulsante",
+      "instruction": "Ragazzi, usate digitalRead per leggere lo stato (Vol3 pag 64).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_read",
+          "controls_if"
+        ],
+        "explanation": "Ragazzi, digitalRead torna HIGH o LOW, l if decide cosa fare (Vol3 pag 64)."
+      }
+    }
   ]
 }

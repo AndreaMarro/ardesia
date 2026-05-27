@@ -207,5 +207,27 @@
     "La classe collega Modificare il delay del Blink alla pagina 41.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "individua_delay",
+      "instruction": "Ragazzi, trovate i due blocchi delay nel Loop (Vol3 pag 41).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, delay tiene fermo il programma per i millisecondi indicati (Vol3 pag 41)."
+      }
+    },
+    {
+      "step_id": "modifica_valore",
+      "instruction": "Ragazzi, cambiate il valore dei delay per accelerare il lampeggio (Vol3 pag 41).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, valori piu bassi significano lampeggio piu veloce (Vol3 pag 41)."
+      }
+    }
   ]
 }

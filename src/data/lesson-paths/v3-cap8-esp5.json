@@ -341,5 +341,29 @@
     "La classe collega Trimmer, tre LED e valori seriali alla pagina 130.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_trimmer",
+      "instruction": "Ragazzi, leggete il trimmer con analogRead (Vol3 pag 130).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, il trimmer guida i tre LED per fasce (Vol3 pag 130)."
+      }
+    },
+    {
+      "step_id": "accendi_fascia",
+      "instruction": "Ragazzi, accendete il LED corretto e stampate il valore (Vol3 pag 130).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_if",
+          "arduino_digital_write",
+          "arduino_serial_print"
+        ],
+        "explanation": "Ragazzi, il Monitor ci dice quale LED si e acceso (Vol3 pag 130)."
+      }
+    }
   ]
 }

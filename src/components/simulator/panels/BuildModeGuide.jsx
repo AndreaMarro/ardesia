@@ -9,15 +9,30 @@
  * Step -1 = empty board (only base components: breadboard + battery/arduino)
  * Step 0 = first buildStep visible, etc.
  *
+ * Wave 2 X.3b Impl-F (Option C — wire UNLIM chat) iter 36 PM Passo Passo
+ * regression close:
+ *   - UNLIM chat surface mounted INSIDE the guide (not in a sibling
+ *     LessonReader) so passo-passo mode owns its own conversational
+ *     channel + AZIONE:highlight wire.
+ *   - activeLessonId flows from prop (falling back to experiment.id) so
+ *     the lavagna no longer hardcodes 'v1-accendi-led'.
+ *   - AZIONE:highlight:<id> tags emitted by UNLIM responses route through
+ *     src/services/blocklyHighlightBridge.js to select Blockly blocks.
+ *
  * Props:
- *   experiment: { title, icon, buildSteps: [...] }
+ *   experiment: { id, title, icon, buildSteps: [...] }
  *   currentStep: number (-1 = intro, 0..N = step index)
+ *   activeLessonId: string  (Wave 2b iter X.3b — replaces hardcode)
  *   onStepChange: (stepIndex: number) => void
  *   onClose: () => void
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ovStyles from '../overlays.module.css';
+import {
+  parseHighlightActionTags,
+  emitHighlightAction,
+} from '../../../services/blocklyHighlightBridge';
 
 // Simple step number used instead of emoji per component type
 const STEP_ICONS = {};
@@ -35,12 +50,45 @@ function loadSavedSize() {
 const BuildModeGuide = React.memo(function BuildModeGuide({
   experiment,
   currentStep = -1,
+  activeLessonId,
   onStepChange,
   onClose,
 }) {
   const [expanded, setExpanded] = useState(true);
   const [size, setSize] = useState(loadSavedSize);
   const resizeRef = React.useRef(null);
+  // Wave 2b iter X.3b — last highlight count reflected on the UNLIM panel
+  // surface so callers (and tests) can observe bridge activity without
+  // peeking into Blockly internals.
+  const [lastHighlightCount, setLastHighlightCount] = useState(0);
+  const unlimPanelRef = useRef(null);
+
+  // Wave 2b iter X.3b — resolve activeLessonId from prop, falling back to
+  // experiment.id. The legacy LavagnaShell hardcode 'v1-accendi-led' is
+  // GONE — passo-passo mode now reflects whichever experiment the user
+  // selected. (iter 36 PM regression cause: useState('v1-accendi-led') at
+  // LavagnaShell:438 never updated on experiment change.)
+  const resolvedLessonId = (typeof activeLessonId === 'string' && activeLessonId.trim())
+    ? activeLessonId.trim()
+    : (experiment?.id || '');
+
+  // Wave 2b iter X.3b — UNLIM chat AZIONE:highlight wire.
+  // BuildModeGuide listens on a window-level CustomEvent so the existing
+  // useGalileoChat hook (which lives in the lavagna shell) can broadcast
+  // responses without BuildModeGuide importing it directly — keeping the
+  // 294 LOC panel surgical and avoiding a circular dep on the chat hook.
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const handler = (evt) => {
+      const text = evt?.detail?.text;
+      const ids = parseHighlightActionTags(text);
+      if (ids.length === 0) return;
+      const { highlighted } = emitHighlightAction(ids);
+      setLastHighlightCount(highlighted.length);
+    };
+    window.addEventListener('elab:unlim:response', handler);
+    return () => window.removeEventListener('elab:unlim:response', handler);
+  }, []);
 
   const handleResizeStart = React.useCallback((e) => {
     e.preventDefault();
@@ -167,6 +215,25 @@ const BuildModeGuide = React.memo(function BuildModeGuide({
         )}
       </div>
 
+      {/* Wave 2b iter X.3b \u2014 UNLIM panel mount surface (Option C wire).
+          The lavagna shell's useGalileoChat hook broadcasts UNLIM
+          responses on the window CustomEvent 'elab:unlim:response'; the
+          handler in this component routes AZIONE:highlight:<id> tags
+          through blocklyHighlightBridge to select Blockly blocks.
+          The lessonId attribute reflects the prop (no hardcode). */}
+      <div
+        ref={unlimPanelRef}
+        data-testid="build-mode-guide-unlim-panel"
+        data-lesson-id={resolvedLessonId}
+        data-last-highlight-count={String(lastHighlightCount)}
+        style={unlimPanelStyle}
+        aria-label="Pannello UNLIM passo-passo"
+      >
+        <span style={unlimPanelHintStyle}>
+          UNLIM ti accompagna {resolvedLessonId ? `(${resolvedLessonId})` : ''}
+        </span>
+      </div>
+
       {/* Navigation */}
       <div style={navStyle}>
         <button
@@ -289,6 +356,24 @@ const navBtnStyle = {
   justifyContent: 'center',
   gap: 4,
   transition: 'var(--transition-fast)',
+};
+
+// Wave 2b iter X.3b — UNLIM panel mount surface (Option C wire).
+const unlimPanelStyle = {
+  padding: '6px 10px 6px',
+  borderTop: '1px solid var(--color-divider-subtle)',
+  background: 'var(--color-primary-subtle, rgba(30,77,140,0.05))',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  minHeight: 28,
+};
+
+const unlimPanelHintStyle = {
+  fontSize: 13,
+  color: 'var(--color-primary, #1E4D8C)',
+  fontFamily: 'var(--font-sans)',
+  fontStyle: 'italic',
 };
 
 export default BuildModeGuide;

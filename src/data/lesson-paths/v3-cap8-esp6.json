@@ -337,5 +337,29 @@
     "La classe collega Barra progressiva LED alla pagina 132.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "mappa_progresso",
+      "instruction": "Ragazzi, mappate il valore in numero di LED accesi (Vol3 pag 132).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read",
+          "arduino_map"
+        ],
+        "explanation": "Ragazzi, map ci dice quanti LED accendere (Vol3 pag 132)."
+      }
+    },
+    {
+      "step_id": "accendi_barra",
+      "instruction": "Ragazzi, accendete i LED in sequenza con un ciclo (Vol3 pag 132).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_repeat_ext",
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, la barra cresce man mano che ruotate il trimmer (Vol3 pag 132)."
+      }
+    }
   ]
 }

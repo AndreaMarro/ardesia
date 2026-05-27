@@ -269,5 +269,29 @@
     "La classe collega Evitare il lampeggio con while alla pagina 74.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "usa_while",
+      "instruction": "Ragazzi, racchiudete la lettura nel ciclo while (Vol3 pag 74).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_whileUntil",
+          "arduino_digital_read"
+        ],
+        "explanation": "Ragazzi, while resta fermo finche il pulsante e premuto (Vol3 pag 74)."
+      }
+    },
+    {
+      "step_id": "commuta_stato",
+      "instruction": "Ragazzi, dopo il while cambiate lo stato del LED (Vol3 pag 74).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_variable_set",
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, cosi il LED commuta una volta sola per ogni pressione (Vol3 pag 74)."
+      }
+    }
   ]
 }

@@ -41,6 +41,22 @@
  *   - Real Nano R4 hardware UAT pending Andrea/Tea iter 70+.
  *   - Cross-platform installer (Win/Linux) deferred iter 67+.
  *
+ * Wave 2 X.3b Impl-Wire (Andrea R3 ratify fallback-hook-injection):
+ *   - NEW prop `uploadHexImpl` (default: dynamic import `uploadHex` from
+ *     ../../services/uploadAgent.js — Wave 2 X.3 ship). Receives the
+ *     sketchCode/HEX text + `{ port, boardId, signal }` opts. Returns the
+ *     orchestrator result shape `{ ok:true, msg, data?, lines? }`.
+ *   - Legacy single-shot path (`enableDemoMode === false`) state machine
+ *     when the primary AGENT_COMPILE_UPLOAD_URL leg fails:
+ *       IDLE → UPLOADING (primary attempt) → FALLBACK_WEB_SERIAL (orchestrator
+ *       engaged) → SUCCESS (onSuccess fires) | ERROR (onError fires)
+ *   - The primary path stays untouched bit-for-bit when the agent responds
+ *     2xx + `payload.ok === true` (NO regression — verified by the wire test
+ *     `tests/unit/components/lavagna/CompileUploadButton-uploadAgent-wire.test.jsx`).
+ *   - State transitions emit via `setDemoState` so existing `onDemoStateChange`
+ *     telemetry hook surfaces FALLBACK_WEB_SERIAL distinct from UPLOADING
+ *     (consumer instrumentation parity, Wave 2 X.3b mandate).
+ *
  * Iter 76 D.1 — Demo-mode honest fallback (Andrea iter 76 mandate, Riccardo
  * Omaric demo-grade trust WITHOUT physical Nano R4 board):
  *   - State machine: idle → compiling → compile_success → connecting_usb
@@ -224,6 +240,13 @@ export const DEMO_STATES = Object.freeze({
   FLASH_SUCCESS_REAL: 'flash_success_real',
   FLASH_COMPLETE_SIMULATED: 'flash_complete_simulated',
   FLASH_ERROR: 'flash_error',
+  // Wave 2 X.3b Impl-Wire (Andrea R3 ratify fallback-hook-injection):
+  // distinct state from UPLOADING (declared above) so consumer telemetry
+  // can tell apart the primary AGENT_COMPILE_UPLOAD_URL path from the
+  // orchestrated uploadHex fallback (currently Web Serial line-by-line).
+  // Emitted from handleClick ONLY when the legacy single-shot agent path
+  // fails AND `uploadHexImpl` is invoked. demo-mode flow is unchanged.
+  FALLBACK_WEB_SERIAL: 'fallback_web_serial',
 });
 
 /**
@@ -404,6 +427,12 @@ export default function CompileUploadButton({
   // legacy + demo-mode flows continue to work unchanged. When unset (the
   // default), the button preserves its iter 69/74/76/77 behavior 1:1.
   uploadState,
+  // Wave 2 X.3b Impl-Wire — fallback hook injection (Andrea R3 ratify).
+  // Default resolves the Wave 2 X.3 `uploadHex` orchestrator from
+  // `../../services/uploadAgent.js` via DYNAMIC import at upload time so the
+  // ship file stays read-only and no circular import is introduced at module
+  // load. Tests pass a vi.fn() to assert routing + state transitions.
+  uploadHexImpl,
 }) {
   const [agentAvailable, setAgentAvailable] = useState(false);
   const [agentChecked, setAgentChecked] = useState(false);
@@ -503,6 +532,10 @@ export default function CompileUploadButton({
   const handleClick = useCallback(async () => {
     if (disabled) return;
     setUploading(true);
+    // Wave 2 X.3b Impl-Wire — emit UPLOADING transition so consumer
+    // telemetry (onDemoStateChange) can observe the primary path attempt.
+    // Demo-mode flow is unchanged (handleDemoClick owns its own machine).
+    setDemoState(DEMO_STATES.UPLOADING);
     // iter 74 B1-B — hide stale cliffhanger from a previous upload while
     // the new attempt is in-flight; re-set on success below.
     setUploadSucceeded(false);
@@ -526,6 +559,19 @@ export default function CompileUploadButton({
       return;
     }
 
+    // Wave 2 X.3b Impl-Wire — track whether the primary leg succeeded so the
+    // fallback only engages on a real primary failure (NOT after success).
+    // `agentUnreachable` is the strict signal that the agent ITSELF could not
+    // be reached (network error, HTTP 5xx). Domain-level errors returned by a
+    // reachable agent (compile_failed, port_missing, …) are NOT fallback
+    // triggers — they surface to onError unchanged so the docente sees the
+    // canonical Italian plurale toast for that specific failure.
+    let primaryOk = false;
+    let agentUnreachable = false;
+    let primaryFailureCategory = null;
+    let primaryFailureDetail = null;
+    let primaryErrorCause = null;
+
     try {
       const res = await doFetch(endpoint, {
         method: 'POST',
@@ -547,32 +593,132 @@ export default function CompileUploadButton({
         // iter 74 B1-B — flag success so the cliffhanger CTA can mount.
         // Guarded by mountedRef so we never call setState after unmount.
         if (mountedRef.current) setUploadSucceeded(true);
+        primaryOk = true;
         onSuccess?.({
           message:
             "Caricato sul kit fisico Nano R4! Ragazzi, ora osservate cosa succede.",
           payload,
         });
       } else {
-        const category = payload?.error?.category || 'upload_failed';
-        onError?.({
-          category,
-          message: getDocenteErrorMessage(category),
-          detail: payload?.error,
-        });
+        primaryFailureCategory = payload?.error?.category || 'upload_failed';
+        primaryFailureDetail = payload?.error;
+        // HTTP 5xx (or 0/no status) on a reachable host signals the agent is
+        // down — engage the fallback orchestrator. 4xx domain errors do not.
+        const status = res && typeof res.status === 'number' ? res.status : 0;
+        if (status === 0 || status >= 500) {
+          agentUnreachable = true;
+          primaryFailureCategory = 'agent_offline';
+        }
       }
     } catch (err) {
       const aborted = err && (err.name === 'AbortError' || err.code === 20);
-      const category = aborted ? 'timeout' : 'agent_offline';
-      onError?.({
-        category,
-        message: getDocenteErrorMessage(category),
-        detail: err && err.message ? err.message : undefined,
-      });
+      primaryFailureCategory = aborted ? 'timeout' : 'agent_offline';
+      primaryErrorCause = err;
+      // Network-level rejection (fetch threw) ⇒ agent unreachable. Abort
+      // (timeout) is excluded — the docente expects a fast surface, not a
+      // second-leg attempt.
+      if (!aborted) {
+        agentUnreachable = true;
+      }
     } finally {
       if (timer) clearTimeout(timer);
-      if (mountedRef.current) setUploading(false);
     }
-  }, [disabled, endpoint, sketchCode, boardId, port, fetchImpl, onSuccess, onError]);
+
+    // Wave 2 X.3b Impl-Wire — fallback orchestrator engagement.
+    // Engage ONLY when the agent itself is unreachable AND an injected /
+    // resolvable `uploadHexImpl` is available. Aborted (timeout) primaries
+    // are NOT retried — the original behaviour for AbortError is preserved
+    // (surface timeout immediately to the docente). Domain-level errors
+    // returned by a reachable agent (compile_failed, port_missing, …)
+    // bypass the fallback so the docente sees the canonical plurale toast
+    // for the actual failure category.
+    if (
+      !primaryOk
+      && agentUnreachable
+      && primaryFailureCategory !== 'timeout'
+      && mountedRef.current
+    ) {
+      let resolvedUploadHex = uploadHexImpl;
+      if (typeof resolvedUploadHex !== 'function') {
+        try {
+          // Dynamic import keeps uploadAgent.js out of the synchronous module
+          // graph (ship file READ-ONLY Wave 2 X.3) and avoids any circular
+          // import risk under the existing bundler config.
+          const mod = await import('../../services/uploadAgent.js');
+          resolvedUploadHex = mod && typeof mod.uploadHex === 'function'
+            ? mod.uploadHex
+            : null;
+        } catch {
+          resolvedUploadHex = null;
+        }
+      }
+
+      if (typeof resolvedUploadHex === 'function') {
+        // Transition to the explicit fallback state so consumer telemetry
+        // can distinguish the orchestrator path from the primary attempt.
+        setDemoState(DEMO_STATES.FALLBACK_WEB_SERIAL);
+        try {
+          const fallbackRes = await resolvedUploadHex(sketchCode, {
+            port,
+            boardId,
+            fetchImpl: doFetch,
+          });
+          if (fallbackRes && fallbackRes.ok) {
+            if (mountedRef.current) setUploadSucceeded(true);
+            onSuccess?.({
+              message:
+                "Ragazzi, caricato sul kit ELAB via porta seriale. Osservate cosa succede sulla Nano R4.",
+              payload: fallbackRes,
+            });
+            if (mountedRef.current) setUploading(false);
+            return;
+          }
+          // Fallback returned a non-ok shape — funnel into the canonical
+          // upload_failed plurale toast.
+          onError?.({
+            category: 'upload_failed',
+            message: getDocenteErrorMessage('upload_failed'),
+            detail: fallbackRes,
+          });
+          if (mountedRef.current) setUploading(false);
+          return;
+        } catch (fallbackErr) {
+          // Honor the Italian message attached by uploadAgent.js when present;
+          // otherwise fall back to the canonical default plurale toast.
+          const itMessage =
+            fallbackErr && typeof fallbackErr.it === 'string' && fallbackErr.it
+              ? fallbackErr.it
+              : getDocenteErrorMessage('upload_failed');
+          onError?.({
+            category: (fallbackErr && fallbackErr.code) || 'upload_failed',
+            message: itMessage,
+            detail: fallbackErr && fallbackErr.message ? fallbackErr.message : undefined,
+            tried: fallbackErr && Array.isArray(fallbackErr.tried) ? fallbackErr.tried : undefined,
+          });
+          if (mountedRef.current) setUploading(false);
+          return;
+        }
+      }
+    }
+
+    // No fallback engaged (either primary OK, or aborted/timeout, or no
+    // uploadHexImpl resolvable). Surface the legacy outcome unchanged.
+    if (!primaryOk) {
+      onError?.({
+        category: primaryFailureCategory || 'upload_failed',
+        message: getDocenteErrorMessage(primaryFailureCategory || 'upload_failed'),
+        detail:
+          primaryFailureDetail
+          || (primaryErrorCause && primaryErrorCause.message
+            ? primaryErrorCause.message
+            : undefined),
+      });
+    }
+    if (mountedRef.current) setUploading(false);
+  }, [
+    disabled, endpoint, sketchCode, boardId, port, fetchImpl,
+    onSuccess, onError, uploadHexImpl, setDemoState,
+  ]);
 
   // iter 78 STOP-HOOK fix (Codex stop-time review): extract flash chain into
   // shared helper invoked from BOTH primary handleDemoClick AND handleRetryUsb.

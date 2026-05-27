@@ -251,5 +251,27 @@
     "La classe collega Aumentare la luminosita con analogWrite alla pagina 97.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "pin_pwm",
+      "instruction": "Ragazzi, scegliete un pin PWM per il LED (Vol3 pag 97).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, solo i pin PWM accettano analogWrite (Vol3 pag 97)."
+      }
+    },
+    {
+      "step_id": "imposta_luminosita",
+      "instruction": "Ragazzi, usate analogWrite per cambiare la luminosita (Vol3 pag 97).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_write"
+        ],
+        "explanation": "Ragazzi, il valore 0-255 imposta la luce del LED (Vol3 pag 97)."
+      }
+    }
   ]
 }

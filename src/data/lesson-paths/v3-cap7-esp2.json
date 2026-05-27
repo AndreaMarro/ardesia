@@ -275,5 +275,28 @@
     "La classe collega Convertire la lettura analogica in Volt alla pagina 87.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_trimmer",
+      "instruction": "Ragazzi, leggete il trimmer su A0 (Vol3 pag 87).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, A0 ci da un numero da convertire in Volt (Vol3 pag 87)."
+      }
+    },
+    {
+      "step_id": "converti_volt",
+      "instruction": "Ragazzi, moltiplicate per la costante per ottenere i Volt (Vol3 pag 87).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "math_arithmetic",
+          "arduino_serial_print"
+        ],
+        "explanation": "Ragazzi, il calcolo trasforma 0-1023 in 0-5 V (Vol3 pag 87)."
+      }
+    }
   ]
 }

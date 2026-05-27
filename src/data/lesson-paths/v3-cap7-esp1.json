@@ -275,5 +275,28 @@
     "La classe collega Trimmer: accendere il LED sopra 2,5 V alla pagina 84.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "analog_read",
+      "instruction": "Ragazzi, leggete il trimmer con analogRead su A0 (Vol3 pag 84).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, analogRead torna un numero tra 0 e 1023 (Vol3 pag 84)."
+      }
+    },
+    {
+      "step_id": "confronto_soglia",
+      "instruction": "Ragazzi, confrontate il valore con la soglia 512 (Vol3 pag 84).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_if",
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, sopra 2,5 V accendiamo il LED, sotto lo spegniamo (Vol3 pag 84)."
+      }
+    }
   ]
 }

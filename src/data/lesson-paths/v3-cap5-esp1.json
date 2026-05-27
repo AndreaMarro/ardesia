@@ -205,5 +205,38 @@
     "La classe collega Blink: il primo programma alla pagina 30.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "apri_sketch",
+      "instruction": "Ragazzi, apriamo lo sketch Blink (Vol3 pag 30).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_base"
+        ],
+        "explanation": "Ragazzi, il blocco Setup prepara la scheda, il Loop ripete (Vol3 pag 30)."
+      }
+    },
+    {
+      "step_id": "imposta_pin",
+      "instruction": "Ragazzi, impostate il pin 13 come uscita (Vol3 pag 30).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, pinMode dice ad Arduino se il pin riceve o manda segnali (Vol3 pag 30)."
+      }
+    },
+    {
+      "step_id": "lampeggia",
+      "instruction": "Ragazzi, scrivete digitalWrite HIGH e LOW con un delay (Vol3 pag 30).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_write",
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, il LED si accende e spegne ogni mezzo secondo (Vol3 pag 30)."
+      }
+    }
   ]
 }

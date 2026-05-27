@@ -284,5 +284,28 @@
     "La classe collega Due LED che si alternano alla pagina 54.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "setup_due_pin",
+      "instruction": "Ragazzi, impostate pin 6 e pin 9 come uscita (Vol3 pag 54).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode"
+        ],
+        "explanation": "Ragazzi, ogni LED ha il suo pinMode nel setup (Vol3 pag 54)."
+      }
+    },
+    {
+      "step_id": "alterna_led",
+      "instruction": "Ragazzi, scrivete digitalWrite alternato per i due pin (Vol3 pag 54).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_write",
+          "arduino_delay"
+        ],
+        "explanation": "Ragazzi, mentre uno e HIGH l altro e LOW: si alternano (Vol3 pag 54)."
+      }
+    }
   ]
 }

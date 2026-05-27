@@ -44,56 +44,93 @@ if (typeof console !== 'undefined' && typeof console.warn === 'function') {
   );
 }
 
+// ───────────────────────────────────────────────────────────────────────
+// Wave 2b Impl-H — ARIA semantics layer (additive, NO logic changes).
+//
+// Each category gets an `ariaLabel` (IT verbatim per Principio Zero,
+// addressing the LIM-projected docente — "Categoria <name>, contiene
+// blocchi <type>"). Category objects also carry `role: 'group'` to
+// signal toolbox semantics + `ariaExpanded: true` default for the
+// collapsible UI layer (paired with the existing `collapsed` flag).
+//
+// Wave 1b test assertions remain untouched: the cloned output through
+// getCanonicalToolbox / getProgressiveToolbox still surfaces the same
+// {kind,name,colour,custom?,contents?} shape Wave 1b tests assert on,
+// plus optional ariaLabel/role/ariaExpanded fields tolerated.
+// ───────────────────────────────────────────────────────────────────────
+
 const LIVELLO_1_CATEGORIES = [
-  { kind: 'category', name: 'Eventi', colour: '#FFD700', contents: [
-    { kind: 'block', type: 'arduino_setup' },
-    { kind: 'block', type: 'arduino_loop' },
-  ]},
-  { kind: 'category', name: 'LED', colour: '#E54B3D', contents: [
-    { kind: 'block', type: 'digital_write' },
-    { kind: 'block', type: 'led_on_pin' },
-  ]},
-  { kind: 'category', name: 'Movimento', colour: '#4A7A25', contents: [
-    { kind: 'block', type: 'analog_write' },
-    { kind: 'block', type: 'servo_write' },
-  ]},
-  { kind: 'category', name: 'Aspetta', colour: '#E8941C', contents: [
-    { kind: 'block', type: 'delay' },
-    { kind: 'block', type: 'delay_microseconds' },
-  ]},
+  { kind: 'category', name: 'Eventi', colour: '#FFD700',
+    ariaLabel: 'Categoria Eventi, blocchi avvio Arduino',
+    contents: [
+      { kind: 'block', type: 'arduino_setup' },
+      { kind: 'block', type: 'arduino_loop' },
+    ]},
+  { kind: 'category', name: 'LED', colour: '#E54B3D',
+    ariaLabel: 'Categoria LED, blocchi accensione luci',
+    contents: [
+      { kind: 'block', type: 'digital_write' },
+      { kind: 'block', type: 'led_on_pin' },
+    ]},
+  { kind: 'category', name: 'Movimento', colour: '#4A7A25',
+    ariaLabel: 'Categoria Movimento, blocchi servo e PWM',
+    contents: [
+      { kind: 'block', type: 'analog_write' },
+      { kind: 'block', type: 'servo_write' },
+    ]},
+  { kind: 'category', name: 'Aspetta', colour: '#E8941C',
+    ariaLabel: 'Categoria Aspetta, blocchi tempo e pausa',
+    contents: [
+      { kind: 'block', type: 'delay' },
+      { kind: 'block', type: 'delay_microseconds' },
+    ]},
 ];
 
 const LIVELLO_2_EXTRA = [
-  { kind: 'category', name: 'Variabili', colour: '#1E4D8C', custom: 'VARIABLE' },
-  { kind: 'category', name: 'Logica', colour: '#9B59B6', contents: [
-    { kind: 'block', type: 'controls_if' },
-    { kind: 'block', type: 'logic_compare' },
-    { kind: 'block', type: 'logic_operation' },
-  ]},
-  { kind: 'category', name: 'Numeri', colour: '#16A085', contents: [
-    { kind: 'block', type: 'math_number' },
-    { kind: 'block', type: 'math_arithmetic' },
-  ]},
+  { kind: 'category', name: 'Variabili', colour: '#1E4D8C', custom: 'VARIABLE',
+    ariaLabel: 'Categoria Variabili, contenitori per memorizzare valori' },
+  { kind: 'category', name: 'Logica', colour: '#9B59B6',
+    ariaLabel: 'Categoria Logica, blocchi se-allora-altrimenti',
+    contents: [
+      { kind: 'block', type: 'controls_if' },
+      { kind: 'block', type: 'logic_compare' },
+      { kind: 'block', type: 'logic_operation' },
+    ]},
+  { kind: 'category', name: 'Numeri', colour: '#16A085',
+    ariaLabel: 'Categoria Numeri, blocchi matematica base',
+    contents: [
+      { kind: 'block', type: 'math_number' },
+      { kind: 'block', type: 'math_arithmetic' },
+    ]},
 ];
 
 const LIVELLO_3_EXTRA = [
-  { kind: 'category', name: 'Funzioni', colour: '#34495E', custom: 'PROCEDURE' },
-  { kind: 'category', name: 'Liste', colour: '#7F8C8D', contents: [
-    { kind: 'block', type: 'lists_create_with' },
-    { kind: 'block', type: 'lists_indexOf' },
-  ]},
-  { kind: 'category', name: 'Sensori', colour: '#D35400', contents: [
-    { kind: 'block', type: 'analog_read' },
-    { kind: 'block', type: 'digital_read' },
-  ]},
-  { kind: 'category', name: 'Suono', colour: '#8E44AD', contents: [
-    { kind: 'block', type: 'tone' },
-    { kind: 'block', type: 'noTone' },
-  ]},
-  { kind: 'category', name: 'Seriale', colour: '#27AE60', contents: [
-    { kind: 'block', type: 'serial_begin' },
-    { kind: 'block', type: 'serial_println' },
-  ]},
+  { kind: 'category', name: 'Funzioni', colour: '#34495E', custom: 'PROCEDURE',
+    ariaLabel: 'Categoria Funzioni, blocchi riutilizzabili definiti dal docente' },
+  { kind: 'category', name: 'Liste', colour: '#7F8C8D',
+    ariaLabel: 'Categoria Liste, blocchi array e raccolte',
+    contents: [
+      { kind: 'block', type: 'lists_create_with' },
+      { kind: 'block', type: 'lists_indexOf' },
+    ]},
+  { kind: 'category', name: 'Sensori', colour: '#D35400',
+    ariaLabel: 'Categoria Sensori, blocchi lettura analogica e digitale',
+    contents: [
+      { kind: 'block', type: 'analog_read' },
+      { kind: 'block', type: 'digital_read' },
+    ]},
+  { kind: 'category', name: 'Suono', colour: '#8E44AD',
+    ariaLabel: 'Categoria Suono, blocchi tono buzzer',
+    contents: [
+      { kind: 'block', type: 'tone' },
+      { kind: 'block', type: 'noTone' },
+    ]},
+  { kind: 'category', name: 'Seriale', colour: '#27AE60',
+    ariaLabel: 'Categoria Seriale, blocchi comunicazione USB',
+    contents: [
+      { kind: 'block', type: 'serial_begin' },
+      { kind: 'block', type: 'serial_println' },
+    ]},
 ];
 
 export function getProgressiveToolbox(level = 1) {
@@ -139,77 +176,110 @@ export const CANONICAL_CATEGORY_NAMES = Object.freeze([
   'Buzzer',
 ]);
 
+// Canonical 16-category metadata with Wave 2b Impl-H ARIA additions.
+// `ariaLabel` IT verbatim per Principio Zero (linguaggio plurale Vol1/Vol2,
+// addresses LIM docente). Order preserves CANONICAL_CATEGORY_NAMES Sez 1.
 const CANONICAL_CATEGORIES = [
-  { name: 'Setup', colour: '#1E4D8C', contents: [
-    { kind: 'block', type: 'arduino_base' },
-    { kind: 'block', type: 'arduino_pin_mode' },
-  ]},
-  { name: 'Pin digitali', colour: '#4A7A25', contents: [
-    { kind: 'block', type: 'arduino_digital_write' },
-    { kind: 'block', type: 'arduino_digital_read' },
-  ]},
-  { name: 'Pin analogici', colour: '#E8941C', contents: [
-    { kind: 'block', type: 'arduino_analog_write' },
-    { kind: 'block', type: 'arduino_analog_read' },
-  ]},
-  { name: 'Ripeti', colour: '#2E7D50', contents: [
-    { kind: 'block', type: 'controls_repeat_ext' },
-    { kind: 'block', type: 'controls_whileUntil' },
-    { kind: 'block', type: 'controls_for' },
-  ]},
-  { name: 'Matematica', colour: '#3A8A9E', contents: [
-    { kind: 'block', type: 'math_number' },
-    { kind: 'block', type: 'math_arithmetic' },
-    { kind: 'block', type: 'arduino_map' },
-    { kind: 'block', type: 'arduino_random' },
-    { kind: 'block', type: 'math_modulo' },
-    { kind: 'block', type: 'math_constrain' },
-  ]},
-  { name: 'Logica', colour: '#1E4D8C', contents: [
-    { kind: 'block', type: 'controls_if' },
-    { kind: 'block', type: 'logic_compare' },
-    { kind: 'block', type: 'logic_operation' },
-    { kind: 'block', type: 'logic_negate' },
-    { kind: 'block', type: 'logic_boolean' },
-  ]},
-  { name: 'Variabili', colour: '#F5A623', custom: 'VARIABLE' },
-  { name: 'Funzioni', colour: '#345E94', custom: 'PROCEDURE' },
-  { name: 'Comunicazione Serial', colour: '#E54B3D', contents: [
-    { kind: 'block', type: 'arduino_serial_begin' },
-    { kind: 'block', type: 'arduino_serial_print' },
-    { kind: 'block', type: 'arduino_serial_available' },
-    { kind: 'block', type: 'arduino_serial_read' },
-  ]},
-  { name: 'Sensori', colour: '#D35400', contents: [
-    { kind: 'block', type: 'arduino_analog_read' },
-    { kind: 'block', type: 'arduino_digital_read' },
-    { kind: 'block', type: 'arduino_pulse_in' },
-  ]},
-  { name: 'Attuatori', colour: '#0EA87B', contents: [
-    { kind: 'block', type: 'arduino_digital_write' },
-    { kind: 'block', type: 'arduino_analog_write' },
-  ]},
-  { name: 'Tempo', colour: '#F5A623', contents: [
-    { kind: 'block', type: 'arduino_delay' },
-    { kind: 'block', type: 'arduino_millis' },
-  ]},
-  { name: 'Stringhe', colour: '#5A8DBE', contents: [
-    { kind: 'block', type: 'text' },
-    { kind: 'block', type: 'text_join' },
-  ]},
-  { name: 'RGB LED', colour: '#9E5AC0', contents: [
-    { kind: 'block', type: 'arduino_rgb_led' },
-    { kind: 'block', type: 'arduino_analog_write' },
-  ]},
-  { name: 'Servo', colour: '#0EA87B', contents: [
-    { kind: 'block', type: 'arduino_servo_attach' },
-    { kind: 'block', type: 'arduino_servo_write' },
-    { kind: 'block', type: 'arduino_servo_read' },
-  ]},
-  { name: 'Buzzer', colour: '#9E5AC0', contents: [
-    { kind: 'block', type: 'arduino_tone' },
-    { kind: 'block', type: 'arduino_no_tone' },
-  ]},
+  { name: 'Setup', colour: '#1E4D8C',
+    ariaLabel: 'Categoria Setup, blocchi configurazione iniziale Arduino',
+    contents: [
+      { kind: 'block', type: 'arduino_base' },
+      { kind: 'block', type: 'arduino_pin_mode' },
+    ]},
+  { name: 'Pin digitali', colour: '#4A7A25',
+    ariaLabel: 'Categoria Pin digitali, blocchi accendere e spegnere pin',
+    contents: [
+      { kind: 'block', type: 'arduino_digital_write' },
+      { kind: 'block', type: 'arduino_digital_read' },
+    ]},
+  { name: 'Pin analogici', colour: '#E8941C',
+    ariaLabel: 'Categoria Pin analogici, blocchi PWM e lettura analogica',
+    contents: [
+      { kind: 'block', type: 'arduino_analog_write' },
+      { kind: 'block', type: 'arduino_analog_read' },
+    ]},
+  { name: 'Ripeti', colour: '#2E7D50',
+    ariaLabel: 'Categoria Ripeti, blocchi cicli e iterazioni',
+    contents: [
+      { kind: 'block', type: 'controls_repeat_ext' },
+      { kind: 'block', type: 'controls_whileUntil' },
+      { kind: 'block', type: 'controls_for' },
+    ]},
+  { name: 'Matematica', colour: '#3A8A9E',
+    ariaLabel: 'Categoria Matematica, blocchi operazioni aritmetiche',
+    contents: [
+      { kind: 'block', type: 'math_number' },
+      { kind: 'block', type: 'math_arithmetic' },
+      { kind: 'block', type: 'arduino_map' },
+      { kind: 'block', type: 'arduino_random' },
+      { kind: 'block', type: 'math_modulo' },
+      { kind: 'block', type: 'math_constrain' },
+    ]},
+  { name: 'Logica', colour: '#1E4D8C',
+    ariaLabel: 'Categoria Logica, blocchi se-allora-altrimenti e confronti',
+    contents: [
+      { kind: 'block', type: 'controls_if' },
+      { kind: 'block', type: 'logic_compare' },
+      { kind: 'block', type: 'logic_operation' },
+      { kind: 'block', type: 'logic_negate' },
+      { kind: 'block', type: 'logic_boolean' },
+    ]},
+  { name: 'Variabili', colour: '#F5A623', custom: 'VARIABLE',
+    ariaLabel: 'Categoria Variabili, contenitori per memorizzare valori' },
+  { name: 'Funzioni', colour: '#345E94', custom: 'PROCEDURE',
+    ariaLabel: 'Categoria Funzioni, blocchi riutilizzabili definiti dal docente' },
+  { name: 'Comunicazione Serial', colour: '#E54B3D',
+    ariaLabel: 'Categoria Comunicazione Serial, blocchi USB Serial Monitor',
+    contents: [
+      { kind: 'block', type: 'arduino_serial_begin' },
+      { kind: 'block', type: 'arduino_serial_print' },
+      { kind: 'block', type: 'arduino_serial_available' },
+      { kind: 'block', type: 'arduino_serial_read' },
+    ]},
+  { name: 'Sensori', colour: '#D35400',
+    ariaLabel: 'Categoria Sensori, blocchi lettura sensori analogici e digitali',
+    contents: [
+      { kind: 'block', type: 'arduino_analog_read' },
+      { kind: 'block', type: 'arduino_digital_read' },
+      { kind: 'block', type: 'arduino_pulse_in' },
+    ]},
+  { name: 'Attuatori', colour: '#0EA87B',
+    ariaLabel: 'Categoria Attuatori, blocchi controllo motori e LED',
+    contents: [
+      { kind: 'block', type: 'arduino_digital_write' },
+      { kind: 'block', type: 'arduino_analog_write' },
+    ]},
+  { name: 'Tempo', colour: '#F5A623',
+    ariaLabel: 'Categoria Tempo, blocchi pause e millisecondi',
+    contents: [
+      { kind: 'block', type: 'arduino_delay' },
+      { kind: 'block', type: 'arduino_millis' },
+    ]},
+  { name: 'Stringhe', colour: '#5A8DBE',
+    ariaLabel: 'Categoria Stringhe, blocchi testo e concatenazione',
+    contents: [
+      { kind: 'block', type: 'text' },
+      { kind: 'block', type: 'text_join' },
+    ]},
+  { name: 'RGB LED', colour: '#9E5AC0',
+    ariaLabel: 'Categoria RGB LED, blocchi LED tre colori',
+    contents: [
+      { kind: 'block', type: 'arduino_rgb_led' },
+      { kind: 'block', type: 'arduino_analog_write' },
+    ]},
+  { name: 'Servo', colour: '#0EA87B',
+    ariaLabel: 'Categoria Servo, blocchi servomotore angoli',
+    contents: [
+      { kind: 'block', type: 'arduino_servo_attach' },
+      { kind: 'block', type: 'arduino_servo_write' },
+      { kind: 'block', type: 'arduino_servo_read' },
+    ]},
+  { name: 'Buzzer', colour: '#9E5AC0',
+    ariaLabel: 'Categoria Buzzer, blocchi tono e note musicali',
+    contents: [
+      { kind: 'block', type: 'arduino_tone' },
+      { kind: 'block', type: 'arduino_no_tone' },
+    ]},
 ];
 
 /**
@@ -228,6 +298,13 @@ export function getCanonicalToolbox() {
       kind: 'category',
       name: cat.name,
       colour: cat.colour,
+      // Wave 2b Impl-H ARIA additive layer — present on every canonical
+      // category (16/16) so the consuming UI layer (ScratchEditor toolbox
+      // integration atom) can apply aria-label + role="group" + aria-expanded
+      // directly from the data tree without runtime mapping.
+      ...(cat.ariaLabel ? { ariaLabel: cat.ariaLabel } : {}),
+      role: 'group',
+      ariaExpanded: true,
       ...(cat.custom ? { custom: cat.custom } : {}),
       ...(cat.contents ? { contents: cat.contents.map((b) => ({ ...b })) } : {}),
     })),
@@ -307,6 +384,9 @@ export function toggleCategoryCollapsed(toolbox, categoryName) {
       };
       if (cat.name === categoryName) {
         cloned.collapsed = !cat.collapsed;
+        // Wave 2b Impl-H — ariaExpanded mirrors !collapsed for screen
+        // readers (axe-core "aria-expanded should reflect state" rule).
+        cloned.ariaExpanded = !cloned.collapsed;
       }
       return cloned;
     }),

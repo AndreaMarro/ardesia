@@ -1,43 +1,36 @@
 /**
- * UnlimCompileHelper — right-panel mascot + quick UNLIM forward
+ * UnlimCompileHelper — mini banner mascot + 3 quick-question forward.
  *
- * iter 104 C3 REWRITE post Codex audit (Andrea verbatim "salvo Codex parziale"):
- *   Codex V1 conteneva `answerQuestion()` HARDCODED decision-tree con 3 regex
- *   pre-canned + local `useState messages` chatLog → FAKE chat che simulava
- *   UNLIM senza backend. Violava CLAUDE.md §12 "MAI dati finti o demo".
+ * Wave 2 X.3b Impl-E refactor (2026-05-25): the full free-text chat input
+ * + submit form + #lavagna fallback link have been EXTRACTED into the new
+ * UnlimChatPanel.jsx floating component. This file is now a *mini banner
+ * only* — kept lean so it can sit beside ScratchCompileBar without dominating
+ * the right column.
  *
- * Questa versione:
- *   - Rimuove `answerQuestion()` finto + local chatLog + chatForm complesso
- *   - Quick buttons + free text input → forward `onAskQuestion(text)` callback
- *     al parent (HomeCompileEntry), che instrada a Lavagna chat reale via
- *     hash navigation con `seedMessage` query param.
- *   - Mantiene mascotte + speech bubble status real-time + context chip.
- *   - Footer banner onesto: "La chat completa con UNLIM e sulla Lavagna".
+ * Export contract preserved (iter 104 C3 callers HomeCompileEntry.jsx +
+ * LavagnaShell.jsx unchanged):
+ *   props.compileStatus: 'idle' | 'compiling' | 'success' | 'verified-legacy' | 'error'
+ *   props.onAskQuestion: (question: string) => void — required to enable buttons
+ *   props.editorMode: 'blocks' | 'code'
+ *   props.sketchCode: string
+ *   props.blockCount: number
  *
- * Quando il parent NON passa onAskQuestion, i bottoni mostrano solo affordance
- * visiva e l'input scivola in stato pending (niente fake reply locale).
+ * Removed in this refactor (moved into UnlimChatPanel):
+ *   - Free-text input + chatForm + chatSubmit + draft useState
+ *   - #lavagna anchor "Chat completa su Lavagna" link
  *
- * Future C3b iter (out of scope qui): mount UnlimAdapter standalone in
- * HomeCompileEntry per chat in-page senza navigare via Lavagna (richiede
- * AuthContext/SessionRecorder provider wire).
+ * Retained:
+ *   - Mascotte (logo-senza-sfondo.png — iter 104 C4-fix asset)
+ *   - Speech bubble status message (5 compileStatus branches, iter 104 C3 copy)
+ *   - Context chip ("Blocchi · N blocchi · M righe · status")
+ *   - 3 quick-question buttons forwarding `onAskQuestion(label)` to parent
  *
- * Props:
- *   compileStatus: 'idle' | 'compiling' | 'success' | 'verified-legacy' | 'error'
- *   onAskQuestion: (question: string) => void — required per attivare bottoni
- *   editorMode: 'blocks' | 'code'
- *   sketchCode: string — codice corrente (per context chip righe count)
- *   blockCount: number — blocchi correnti (per context chip)
- *
- * © Andrea Marro — iter 104 C3 — 2026-05-24
+ * © Andrea Marro — Wave 2 X.3b Impl-E refactor — 2026-05-25
+ * Original iter 104 C3 © Andrea Marro — 2026-05-24
  */
-import React, { useState } from 'react';
+import React from 'react';
 import css from './UnlimCompileHelper.module.css';
 
-// Mascotte ufficiale ELAB — uso versione "logo-senza-sfondo.png" che NON
-// contiene la scritta "ELAB" baked nel PNG (Andrea iter 104 C4-fix
-// 2026-05-24: "togli la scritta elab e abbassa la mascotte"). La variante
-// "vera" ha "ELAB" baked in lime sotto la mascotte: anche con object-position
-// crop center 24% la scritta riemerge a piccole risoluzioni del round badge.
 const MASCOT_SRC = '/assets/mascot/logo-senza-sfondo.png';
 
 const QUICK_QUESTIONS = [
@@ -76,20 +69,11 @@ export default function UnlimCompileHelper({
 }) {
   const message = getStatusMessage(compileStatus);
   const context = buildContext({ editorMode, compileStatus, blockCount, sketchCode });
-  const [draft, setDraft] = useState('');
   const hasHandler = typeof onAskQuestion === 'function';
 
   const handleQuestion = (q) => {
     if (!hasHandler) return;
     onAskQuestion(q);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const question = draft.trim();
-    if (!question || !hasHandler) return;
-    setDraft('');
-    handleQuestion(question);
   };
 
   return (
@@ -124,29 +108,6 @@ export default function UnlimCompileHelper({
           </li>
         ))}
       </ul>
-
-      <form className={css.chatForm} onSubmit={handleSubmit}>
-        <input
-          className={css.chatInput}
-          value={draft}
-          onChange={(event) => setDraft(event.target.value)}
-          placeholder={hasHandler ? 'Chiedi a UNLIM' : 'Apri la Lavagna per chattare'}
-          aria-label="Scrivi a UNLIM"
-          disabled={!hasHandler}
-        />
-        <button
-          type="submit"
-          className={css.chatSubmit}
-          aria-label="Invia a UNLIM"
-          disabled={!hasHandler}
-        >
-          →
-        </button>
-      </form>
-
-      <a className={css.openLavagnaLink} href="#lavagna" aria-label="Apri la Lavagna per chat UNLIM completa">
-        Chat completa su Lavagna
-      </a>
     </section>
   );
 }

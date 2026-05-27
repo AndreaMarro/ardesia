@@ -793,3 +793,39 @@ export function HelpIcon(props) {
     </svg>
   );
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   WAVE 2b Impl-H — HammerIcon (PROMPT-CROSSCOMPILATORE Sez 21 mandate)
+   Referenced in spec Sez 21 (a11y polish) — not previously exported.
+   Identity: "costruzione/montaggio" semantic, evokes kit Omaric kit
+   assembly + Blockly compose-and-build workflow. Lime + Navy duotone
+   matching ElabIcons.jsx canonical style (PuzzleIcon iter 94 pattern).
+   24×24 viewBox, currentColor stroke, role="img" + aria-hidden default.
+   ═══════════════════════════════════════════════════════════════════ */
+
+export function HammerIcon(props) {
+  const { size = 24, color, ...rest } = props || {};
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 24 24" fill="none"
+      role="img" aria-hidden="true" {...rest}
+    >
+      {/* Hammer head — Navy block (kit assembly identity) */}
+      <path
+        d="M3 11 L9 5 L15 11 L13 13 L11 11 L5 17 L3 15 Z"
+        fill={color || '#1E4D8C'} stroke="#0E2D5C"
+        strokeWidth="1.5" strokeLinejoin="round"
+      />
+      {/* Hammer handle — Lime grip (Vol 1 base elettronica palette) */}
+      <line
+        x1="14" y1="12" x2="20" y2="18"
+        stroke="#4A7A25" strokeWidth="2.5" strokeLinecap="round"
+      />
+      {/* Handle wrap — Orange accent (Vol 2 componenti palette) */}
+      <line
+        x1="17" y1="15" x2="19" y2="17"
+        stroke="#E8941C" strokeWidth="2" strokeLinecap="round"
+      />
+    </svg>
+  );
+}

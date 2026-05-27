@@ -266,5 +266,27 @@
     "La classe collega Due trimmer sul Serial Plotter alla pagina 128.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_due_trimmer",
+      "instruction": "Ragazzi, leggete entrambi i trimmer su A0 e A1 (Vol3 pag 128).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, due analogRead ci danno due valori distinti (Vol3 pag 128)."
+      }
+    },
+    {
+      "step_id": "stampa_plotter",
+      "instruction": "Ragazzi, stampate i valori separati per il Serial Plotter (Vol3 pag 128).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_serial_print"
+        ],
+        "explanation": "Ragazzi, il Plotter disegna due tracce, una per trimmer (Vol3 pag 128)."
+      }
+    }
   ]
 }

@@ -269,5 +269,28 @@
     "La classe collega Una variabile ricorda lo stato del LED alla pagina 69.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "crea_variabile",
+      "instruction": "Ragazzi, create la variabile statoLed (Vol3 pag 69).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_variable_set"
+        ],
+        "explanation": "Ragazzi, la variabile ricorda se il LED e acceso o spento (Vol3 pag 69)."
+      }
+    },
+    {
+      "step_id": "leggi_variabile",
+      "instruction": "Ragazzi, usate la variabile dentro al digitalWrite (Vol3 pag 69).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_variable_get",
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, leggere la variabile evita di ripetere il valore due volte (Vol3 pag 69)."
+      }
+    }
   ]
 }

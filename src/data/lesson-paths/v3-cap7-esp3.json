@@ -341,5 +341,28 @@
     "La classe collega Tre LED indicano la posizione del trimmer alla pagina 90.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "leggi_posizione",
+      "instruction": "Ragazzi, leggete il trimmer per scegliere quale LED (Vol3 pag 90).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_analog_read"
+        ],
+        "explanation": "Ragazzi, dividiamo il valore in tre fasce (Vol3 pag 90)."
+      }
+    },
+    {
+      "step_id": "accendi_fascia",
+      "instruction": "Ragazzi, accendete un solo LED secondo la fascia (Vol3 pag 90).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_if",
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, ogni fascia accende solo il suo LED (Vol3 pag 90)."
+      }
+    }
   ]
 }

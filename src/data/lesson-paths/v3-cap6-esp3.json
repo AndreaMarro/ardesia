@@ -251,5 +251,28 @@
     "La classe collega Cambiare il pin del LED esterno alla pagina 53.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "individua_pin",
+      "instruction": "Ragazzi, trovate i blocchi che citano il pin (Vol3 pag 53).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_pin_mode",
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, codice e filo devono indicare lo stesso pin (Vol3 pag 53)."
+      }
+    },
+    {
+      "step_id": "aggiorna_circuito",
+      "instruction": "Ragazzi, spostate il filo del LED sul nuovo pin (Vol3 pag 53).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "arduino_digital_write"
+        ],
+        "explanation": "Ragazzi, controllate che il numero nel codice combaci con il foro fisico (Vol3 pag 53)."
+      }
+    }
   ]
 }

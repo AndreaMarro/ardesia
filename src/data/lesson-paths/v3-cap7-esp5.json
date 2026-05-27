@@ -251,5 +251,29 @@
     "La classe collega Effetto respiro con due cicli for alla pagina 102.",
     "I ragazzi distinguono filo fisico e riga di codice.",
     "Il docente puo salvare osservazioni per il prossimo adattamento morfico."
+  ],
+  "passo_passo_steps": [
+    {
+      "step_id": "ciclo_for_su",
+      "instruction": "Ragazzi, scrivete il ciclo for che aumenta la luminosita (Vol3 pag 102).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_repeat_ext",
+          "arduino_analog_write"
+        ],
+        "explanation": "Ragazzi, il for porta il valore da 0 a 255 piano (Vol3 pag 102)."
+      }
+    },
+    {
+      "step_id": "ciclo_for_giu",
+      "instruction": "Ragazzi, scrivete il for che diminuisce la luminosita (Vol3 pag 102).",
+      "unlim_template": {
+        "highlight_block_ids": [
+          "controls_repeat_ext",
+          "arduino_analog_write"
+        ],
+        "explanation": "Ragazzi, il secondo for torna da 255 a 0 per il respiro (Vol3 pag 102)."
+      }
+    }
   ]
 }
