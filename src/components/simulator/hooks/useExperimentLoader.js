@@ -8,6 +8,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { preloadExperiment } from '../../../services/api';
 import { compileArduinoCode } from '../../../services/compiler';
+import { ensureScratchXml } from '../../../features/elabArduinoAst/generators/cppToArduinoBlocklyXml';
 import { emitSimulatorEvent } from '../../../services/simulator-api';
 import { pushActivity } from '../../../services/activityBuffer';
 import { sessionMetrics } from '../../../services/sessionMetrics';
@@ -174,7 +175,7 @@ export default function useExperimentLoader({
     setEditorCode(actualCode);
     const isAvr = experiment.simulationMode === 'avr';
     const savedScratch = isAvr ? localStorage.getItem(`elab_scratch_${experiment.id}`) : null;
-    setScratchXml(savedScratch || experiment.scratchXml || '');
+    setScratchXml(savedScratch || ensureScratchXml(experiment));
     setScratchGeneratedCode(isAvr ? localStorage.getItem(`elab_scratch_code_${experiment.id}`) || '' : '');
     setEditorMode(isAvr ? 'scratch' : 'arduino');
     const originalCode = (experiment.code || '').trim();

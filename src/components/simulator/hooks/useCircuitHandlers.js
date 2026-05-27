@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { getAutoWireColor } from '../canvas/WireRenderer';
 import { sendChat as apiSendChat } from '../../../services/api';
 import { compileArduinoCode, getLastCompileSource } from '../../../services/compiler';
+import { ensureScratchXml } from '../../../features/elabArduinoAst/generators/cppToArduinoBlocklyXml';
 import { emitSimulatorEvent } from '../../../services/simulator-api';
 import { pushActivity } from '../../../services/activityBuffer';
 import { sessionMetrics } from '../../../services/sessionMetrics';
@@ -181,7 +182,7 @@ export default function useCircuitHandlers({
       setCompilationErrors(null);
       setCompilationWarnings(null);
       setCompilationSize(null);
-      setScratchXml(currentExperiment.scratchXml || '');
+      setScratchXml(ensureScratchXml(currentExperiment));
       setScratchGeneratedCode('');
       if (currentExperiment.id) {
         localStorage.removeItem(`elab_scratch_${currentExperiment.id}`);

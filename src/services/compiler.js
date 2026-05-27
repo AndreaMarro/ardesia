@@ -8,7 +8,6 @@
  *   4. Errore user-friendly
  */
 
-import { compileCode as remoteCompileCode } from './api.js';
 import {
   getCachedHex,
   setCachedHex,
@@ -22,6 +21,8 @@ import {
   ATMEGA328P_FLASH_BYTES,
 } from '../utils/intelHexValidator.js';
 import logger from '../utils/logger.js';
+import { compileArduinoInBrowser } from './inBrowserAvrCompiler.js';
+import { getBoardForBoardParam, supportsInBrowserCompile } from './arduinoBoards.js';
 
 // ─────────────────────────────────────────────────────────────
 // Wave 1b Impl-C-2 — RAM report + size warning thresholds
@@ -116,7 +117,32 @@ const PRECOMPILED_HEX = {
   'v3-cap6-sirena':      '/hex/v3-cap6-sirena.hex',
   'v3-cap7-pullup':      '/hex/v3-cap7-pullup.hex',
   'v3-cap7-pulsante':    '/hex/v3-cap7-pulsante.hex',
+  // 2026-05-27 — Andrea mandate "esperimenti devono funzionare". Compiled with
+  // arduino-cli + arduino:avr:nano:cpu=atmega328old. Sketch 924B / 970B.
+  'v3-cap6-esp3':        '/hex/v3-cap6-esp3.hex',
+  'v3-cap6-esp4':        '/hex/v3-cap6-esp4.hex',
 };
+
+// Nano R4 (Renesas RA4M1) precompiled HEX variants. Linked at flash base 0x4000.
+// Compiled with arduino-cli --fqbn arduino:renesas_uno:nanor4. Used when caller
+// passes board='arduino:renesas_uno:nanor4' (or any 'renesas' substring).
+// Generated via `npm run compile:r4:precompile` — append more entries as you
+// add experiments to public/hex/.
+const PRECOMPILED_HEX_R4 = {
+  'v3-cap6-esp1':        '/hex/v3-cap6-esp1-r4.hex',
+  'v3-cap6-esp2':        '/hex/v3-cap6-esp2-r4.hex',
+  'v3-cap6-esp3':        '/hex/v3-cap6-esp3-r4.hex',
+  'v3-cap6-esp4':        '/hex/v3-cap6-esp4-r4.hex',
+};
+
+function isRenesasBoard(board) {
+  if (!board) return false;
+  return /renesas|nanor4|unor4/i.test(String(board));
+}
+
+function pickHexManifest(board) {
+  return isRenesasBoard(board) ? PRECOMPILED_HEX_R4 : PRECOMPILED_HEX;
+}
 
 const FAST_PRECOMPILED_MATCHERS = [
   {
@@ -138,6 +164,29 @@ const FAST_PRECOMPILED_MATCHERS = [
       /pinMode\(13,\s*OUTPUT\)/.test(code)
       && /digitalWrite\(13,\s*HIGH\)/.test(code)
       && /digitalWrite\(13,\s*LOW\)/.test(code)
+    ),
+  },
+  // v3-cap6-esp3 — single LED on pin 8 blink 700ms.
+  {
+    experimentId: 'v3-cap6-esp3',
+    hexFile: PRECOMPILED_HEX['v3-cap6-esp3'],
+    matches: (code) => (
+      /pinMode\(\s*(LED_PIN|8)\s*,\s*OUTPUT\)/.test(code)
+      && /digitalWrite\(\s*(LED_PIN|8)\s*,\s*HIGH\)/.test(code)
+      && /digitalWrite\(\s*(LED_PIN|8)\s*,\s*LOW\)/.test(code)
+      && /delay\(\s*700\s*\)/.test(code)
+    ),
+  },
+  // v3-cap6-esp4 — two LEDs on pin 6 + 9 alternating 200ms.
+  {
+    experimentId: 'v3-cap6-esp4',
+    hexFile: PRECOMPILED_HEX['v3-cap6-esp4'],
+    matches: (code) => (
+      /pinMode\(\s*(LED_BLU|6)\s*,\s*OUTPUT\)/.test(code)
+      && /pinMode\(\s*(LED_ROSSO|9)\s*,\s*OUTPUT\)/.test(code)
+      && /digitalWrite\(\s*(LED_BLU|6)\s*,\s*HIGH\)/.test(code)
+      && /digitalWrite\(\s*(LED_ROSSO|9)\s*,\s*HIGH\)/.test(code)
+      && /delay\(\s*200\s*\)/.test(code)
     ),
   },
 ];
@@ -285,40 +334,54 @@ export async function compileArduinoCode(code, options = {}) {
 async function _compileArduinoCodeInner(code, options = {}) {
   const { experimentId, board } = options;
   const normalizedCode = normalizeCode(code);
-  const codeHash = fnv1aHash(normalizedCode);
+  const baseHash = fnv1aHash(normalizedCode);
+
+  const r4 = isRenesasBoard(board);
+  const manifest = pickHexManifest(board);
+  // Adversarial-review MED-2 fix 2026-05-27: cache key MUST include board
+  // family. Same code compiled for AVR then R4 was hitting cache + returning
+  // AVR HEX for R4 upload → DFU rejected with unexpected_flash_address.
+  const codeHash = `${baseHash}:${r4 ? 'r4' : 'avr'}`;
 
   const fastPrecompiled = FAST_PRECOMPILED_MATCHERS.find(entry => entry.matches(normalizedCode));
   if (fastPrecompiled) {
-    try {
-      const hex = await fetchHexFile(fastPrecompiled.hexFile);
-      if (hex) {
-        lastCompileSource = 'precompiled';
-        const size = Math.floor(hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
-        setCachedResult(codeHash, hex, size);
-        return {
-          success: true,
-          hex,
-          errors: null,
-          output: null,
-          source: 'precompiled',
-          experimentId: fastPrecompiled.experimentId,
-          size,
-        };
+    // Pick board-specific hex when available; fall through if R4 variant missing.
+    const hexFile = r4
+      ? (manifest[fastPrecompiled.experimentId] || null)
+      : fastPrecompiled.hexFile;
+    if (hexFile) {
+      try {
+        const hex = await fetchHexFile(hexFile);
+        if (hex) {
+          lastCompileSource = 'precompiled';
+          const size = Math.floor(hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
+          setCachedResult(codeHash, hex, size);
+          return {
+            success: true,
+            hex,
+            errors: null,
+            output: null,
+            source: 'precompiled',
+            experimentId: fastPrecompiled.experimentId,
+            size,
+            board: board || 'avr',
+          };
+        }
+      } catch {
+        // Continue to the normal cache/remote chain.
       }
-    } catch {
-      // Continue to the normal cache/remote chain.
     }
   }
 
   // ── Step 1: Direct pre-compiled lookup by experiment ID ──
-  if (experimentId && PRECOMPILED_HEX[experimentId]) {
+  if (experimentId && manifest[experimentId]) {
     const hashMap = await buildCodeHashMap();
     const match = hashMap.get(codeHash);
 
     // Only use pre-compiled if code hasn't been modified
     if (match && match.experimentId === experimentId) {
       try {
-        const hex = await fetchHexFile(match.hexFile);
+        const hex = await fetchHexFile(manifest[experimentId]);
         if (hex) {
           lastCompileSource = 'precompiled';
           const size = Math.floor(hex.replace(/[^0-9a-fA-F]/g, '').length / 2);
@@ -335,6 +398,52 @@ async function _compileArduinoCodeInner(code, options = {}) {
       } catch {
         // HEX file fetch failed — continue to next fallback
       }
+    }
+  }
+
+  // ── Step 1.5: In-browser AVR compile (no backend) ──
+  // Routed via board registry: only ATmega328P-class boards (Uno, Nano)
+  // currently emit machine code in-browser. Renesas R4, SAMD, ESP32 fall
+  // through to precompiled HEX or remote compile chain.
+  const boardEntry = getBoardForBoardParam(board);
+  if (boardEntry && supportsInBrowserCompile(boardEntry)) {
+    try {
+      const browserResult = compileArduinoInBrowser(code, { board: boardEntry.id });
+      if (browserResult.success && browserResult.hex) {
+        lastCompileSource = 'browser';
+        setCachedResult(codeHash, browserResult.hex, browserResult.size);
+        return {
+          success: true,
+          hex: browserResult.hex,
+          errors: null,
+          output: null,
+          source: 'browser',
+          size: browserResult.size,
+          board: boardEntry.id,
+        };
+      }
+    } catch {
+      // Fall through to cache/remote chain.
+    }
+  } else if (!r4 && !boardEntry) {
+    // No board hint at all — default to ATmega328P Nano.
+    try {
+      const browserResult = compileArduinoInBrowser(code, { board: 'nano' });
+      if (browserResult.success && browserResult.hex) {
+        lastCompileSource = 'browser';
+        setCachedResult(codeHash, browserResult.hex, browserResult.size);
+        return {
+          success: true,
+          hex: browserResult.hex,
+          errors: null,
+          output: null,
+          source: 'browser',
+          size: browserResult.size,
+          board: 'nano',
+        };
+      }
+    } catch {
+      // fall through
     }
   }
 
@@ -356,8 +465,14 @@ async function _compileArduinoCodeInner(code, options = {}) {
   const hashMap = await buildCodeHashMap();
   const anyMatch = hashMap.get(codeHash);
   if (anyMatch) {
+    // When caller requested Renesas board, prefer the R4 precompiled variant
+    // (linked at 0x4000) over the experiment.hexFile which is the AVR HEX.
+    const targetHexFile =
+      r4 && manifest[anyMatch.experimentId]
+        ? manifest[anyMatch.experimentId]
+        : anyMatch.hexFile;
     try {
-      const hex = await fetchHexFile(anyMatch.hexFile);
+      const hex = await fetchHexFile(targetHexFile);
       if (hex) {
         lastCompileSource = 'precompiled';
         const size = Math.floor(hex.replace(/[^0-9a-fA-F]/g, '').length / 2);

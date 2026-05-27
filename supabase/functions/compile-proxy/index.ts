@@ -97,7 +97,7 @@ serve(async (req: Request): Promise<Response> => {
   }
 
   // Parse + validate
-  let payload: { code?: unknown };
+  let payload: { code?: unknown; fqbn?: unknown; board?: unknown };
   try {
     payload = await req.json();
   } catch {
@@ -116,15 +116,27 @@ serve(async (req: Request): Promise<Response> => {
     );
   }
 
+  // Optional FQBN passthrough. n8n /webhook/compile must be updated to forward
+  // this string to arduino-cli (--fqbn) so Renesas Nano R4 cross-compile works.
+  // Until n8n installs the Renesas core, unknown FQBN falls back to AVR.
+  const fqbnInput = typeof payload?.fqbn === 'string' ? payload.fqbn
+    : typeof payload?.board === 'string' ? (payload.board as string)
+    : null;
+  const fqbn = fqbnInput && /^[\w\-:.]+$/.test(fqbnInput) && fqbnInput.length <= 80
+    ? fqbnInput
+    : null;
+
   // Forward to n8n webhook
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
 
   try {
+    const upstreamBody: Record<string, string> = { code };
+    if (fqbn) upstreamBody.fqbn = fqbn;
     const upstream = await fetch(N8N_COMPILE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code }),
+      body: JSON.stringify(upstreamBody),
       signal: controller.signal,
     });
     clearTimeout(timeoutId);

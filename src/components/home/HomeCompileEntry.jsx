@@ -79,6 +79,9 @@ import { getStarterXml } from '../../features/elabBlocks/starterTemplates.js';
 import { cppToBlocklyXml, NANO_R4_BLINK_CPP } from '../../features/elabBlocks/codeSync.js';
 import * as Blockly from 'blockly';
 import styles from './HomeCompileEntry.module.css';
+import BoardPicker from '../lavagna/BoardPicker';
+import UniversalUploadButton from '../lavagna/UniversalUploadButton';
+import { getBoardById } from '../../services/arduinoBoards';
 
 // iter 85 close integration Sub-project A: localStorage persistence key
 // Andrea ratify gruppo 17 voce 2 verbose explicit naming
@@ -179,6 +182,20 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const [compileErrors, setCompileErrors] = useState(null);
   const [compileWarnings, setCompileWarnings] = useState(null);
   const [compileSize, setCompileSize] = useState(null);
+  // Compiled HEX (Intel HEX text or base64-wrapped) preserved so the upload
+  // button can flash without re-compiling. Per-board (R4 vs AVR) separation.
+  const [compiledHex, setCompiledHex] = useState(null);
+  const [targetBoardId, setTargetBoardId] = useState('nano-r4');
+  // Switching board invalidates the previous compile output — different MCU
+  // family means the bytes don't apply. Force re-compile.
+  const handleBoardChange = useCallback((newBoardId) => {
+    setTargetBoardId(newBoardId);
+    setCompiledHex(null);
+    setCompileStatus('idle');
+    setCompileErrors(null);
+    setCompileWarnings(null);
+    setCompileSize(null);
+  }, []);
 
   const [serialExpanded, setSerialExpanded] = useState(false);
   const [editorFullscreen, setEditorFullscreen] = useState(false);
@@ -260,9 +277,13 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     setCompileErrors(null);
     setCompileWarnings(null);
     setCompileSize(null);
+    setCompiledHex(null);
     try {
-      const result = await compileCode(code, DEFAULT_FQBN);
+      const board = getBoardById(targetBoardId);
+      const fqbn = board?.fqbn || DEFAULT_FQBN;
+      const result = await compileCode(code, fqbn);
       if (result && result.success) {
+        if (result.hex) setCompiledHex(result.hex);
         const provider = result.provider || 'cloud-renesas';
         if (provider !== 'cloud-renesas') {
           setCompileStatus('verified-legacy');
@@ -449,6 +470,14 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             boardId={DEFAULT_BOARD_ID}
             port={null}
           />
+          {/* Andrea 2026-05-27 — board picker + universal upload. Surfaces a
+              concretely-usable upload entry next to the existing compile bar
+              so the docente picks target board once + flashes any model
+              (Nano R4 via WebUSB DFU, AVR family via WebSerial stk500). */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '12px 0' }}>
+            <BoardPicker boardId={targetBoardId} onChange={handleBoardChange} hint="Scheda di destinazione" />
+            <UniversalUploadButton boardId={targetBoardId} hexText={compiledHex || ''} />
+          </div>
           {/* Iter 97 atom C — UnlimCompileHelper static mascot scaffold per
               Andrea iter 97 PM screenshot feedback "qui sarebbe bello unlim
               animato che ti spiega cosa fare in base alle domande". V1 fills

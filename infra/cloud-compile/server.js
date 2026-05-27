@@ -241,7 +241,7 @@ app.post('/compile', async (req, res) => {
       '--fqbn', targetFqbn,
       '--build-path', buildDir,
       sketchDir,
-    ], 60_000);
+    ], 180_000);
 
     if (compileResult.code !== 0) {
       return res.status(422).json({

@@ -111,7 +111,8 @@ export function parseIntelHexText(hexText) {
   }
   const lines = hexText.split(/\r?\n/).filter((l) => l.trim().length > 0);
   const segments = []; // [{addr, data}]
-  let extendedAddress = 0;
+  let extendedAddress = 0; // type 0x04 (linear, 64K pages)
+  let segmentAddress = 0;  // type 0x02 (8086 real-mode, paragraph offset)
   let recordCount = 0;
   let eofSeen = false;
   let eofIndex = -1;
@@ -126,7 +127,7 @@ export function parseIntelHexText(hexText) {
     }
     switch (rec.recordType) {
       case 0x00: { // Data record
-        const linearAddress = (extendedAddress << 16) + rec.address;
+        const linearAddress = (extendedAddress << 16) + (segmentAddress << 4) + rec.address;
         segments.push({ addr: linearAddress, data: rec.data });
         break;
       }
@@ -142,9 +143,12 @@ export function parseIntelHexText(hexText) {
         break;
       case 0x05: // Start linear address (entry point, informational, ignored)
         break;
-      case 0x02: // Extended segment address (8086 real mode — paragraph<<4 added to address)
-        // Renesas + AVR arduino-cli output may include this; treat as no-op
-        // for now since Renesas RA4M1 firmware base is 0x00000000.
+      case 0x02: // Extended segment address (8086 real mode — paragraph<<4 added)
+        // Adversarial-review HIGH-3 fix 2026-05-27: parser previously
+        // treated 0x02 as no-op → arduino-cli output with type-02 records
+        // (some Renesas toolchain variants) was miscomputing startAddress.
+        if (rec.data.length !== 2) throw new Error('Type 02 must have 2 data bytes');
+        segmentAddress = (rec.data[0] << 8) | rec.data[1];
         break;
       default:
         throw new Error(`Unsupported record type 0x${rec.recordType.toString(16)}`);

@@ -34,6 +34,7 @@ import { findExperimentById, ALL_EXPERIMENTS } from '../../data/experiments-inde
 // non passavano nextExperiment → CTAs invisibili runtime users).
 import { getLessonPath } from '../../data/lesson-paths';
 import { compileCode as apiCompileCode } from '../../services/api';
+import { compileArduinoCode, getLastCompileSource } from '../../services/compiler';
 import { emitSimulatorEvent } from '../../services/simulator-api';
 import { pushActivity } from '../../services/activityBuffer';
 import { sendAnalyticsEvent, EVENTS } from './api/AnalyticsWebhook';
@@ -46,6 +47,11 @@ import useExperimentLoader from './hooks/useExperimentLoader';
 import useCircuitHandlers from './hooks/useCircuitHandlers';
 import CodeEditorCM6 from './panels/CodeEditorCM6';
 import ScratchCompileBar, { ScratchErrorBoundary } from './panels/ScratchCompileBar';
+import WebSerialUploadButton from '../lavagna/WebSerialUploadButton';
+import R4DfuUploadButton from '../lavagna/R4DfuUploadButton';
+import UniversalUploadButton from '../lavagna/UniversalUploadButton';
+import BoardPicker from '../lavagna/BoardPicker';
+import { getBoardById } from '../../services/arduinoBoards';
 const ScratchEditor = lazy(() => import('./panels/ScratchEditor'));
 
 import PotOverlay from './overlays/PotOverlay';
@@ -68,7 +74,7 @@ import { WrenchIcon, FootstepsIcon, PaletteIcon } from '../common/ElabIcons';
 import './ElabSimulator.css';
 import lyStyles from './layout.module.css';
 import { translateCompilationErrors } from './utils/errorTranslator';
-import { buildPinComponentMap } from './utils/pinComponentMap';
+import { buildPinComponentMap, buildLCDPinMapping, createOnPinChangeHandler } from './utils/pinComponentMap';
 import logger from '../../utils/logger';
 import __useDisclosureLevel from './hooks/useDisclosureLevel';
 
@@ -412,6 +418,15 @@ const NewElabSimulator = ({
   const [compilationWarnings, setCompilationWarnings] = useState(null);
   const [compilationErrorLine, setCompilationErrorLine] = useState(null);
   const [compilationSize, setCompilationSize] = useState(null);
+  // Hex preserved after successful compile so the WebSerial upload button can
+  // flash it to a real ATmega328 board without recompiling.
+  const [compiledHex, setCompiledHex] = useState(null);
+  // R4 (Renesas RA4M1) Intel HEX produced by a parallel cross-compile pass.
+  // Routed to CompileUploadButton WebUSB DFU flash for physical Nano R4 kit.
+  const [compiledHexR4, setCompiledHexR4] = useState(null);
+  // Target board for the upload step. Defaults to Nano R4 (kit Omaric canonical).
+  // User can switch to any board in arduinoBoards.js via BoardPicker.
+  const [targetBoardId, setTargetBoardId] = useState('nano-r4');
 
   // ─── Compile Only (solo verifica) ───
   // iter 79.A A2 ROLLBACK (Codex Pattern C HIGH regression caught
@@ -427,10 +442,67 @@ const NewElabSimulator = ({
     recordMilestone('compiledCode');
     setCompilationStatus('compiling'); setCompilationErrors(null); setCompilationWarnings(null); setCompilationErrorLine(null); setCompilationSize(null);
     try {
-      const result = await apiCompileCode(codeToCompile);
-      recordEvent('code_compiled', { success: !!result.success, errorCount: result.errors ? (typeof result.errors === 'string' ? result.errors.split('\n').filter(Boolean).length : 0) : 0 });
+      const experimentId = currentExperiment?.id;
+      const result = await compileArduinoCode(codeToCompile, { experimentId });
+      recordEvent('code_compiled', { success: !!result.success, errorCount: result.errors ? (typeof result.errors === 'string' ? result.errors.split('\n').filter(Boolean).length : 0) : 0, source: result.source });
       if (result.success) {
-        setCompilationStatus('success'); codeNeedsCompileRef.current = false;
+        const compileSource = getLastCompileSource();
+        const isLocal = compileSource === 'precompiled' || compileSource === 'browser';
+        setCompilationStatus(isLocal ? 'success-local' : 'success'); codeNeedsCompileRef.current = false;
+        if (result.hex) setCompiledHex(result.hex);
+        // SIMULATION: load the freshly compiled hex into the avr8js emulator
+        // so the simulator actually runs the new code. Without this, pressing
+        // "Compila" updated state but the simulator kept executing the stale
+        // hex (Andrea 2026-05-27 — Coordinator audit fix). Lazy-create
+        // AVRBridge when first compile on an AVR experiment.
+        if (result.hex && currentExperiment?.simulationMode === 'avr') {
+          void (async () => {
+            try {
+              if (avrRef.current) {
+                avrRef.current.pause();
+                if (avrPollRef.current) { clearInterval(avrPollRef.current); avrPollRef.current = null; }
+                setIsRunning(false);
+                const loaded = await avrRef.current.loadHexFromString(result.hex);
+                if (loaded) {
+                  setSerialOutput('');
+                  const lcdMapping = buildLCDPinMapping(mergedExperiment || currentExperiment);
+                  if (lcdMapping && avrRef.current.configureLCDPins) avrRef.current.configureLCDPins(lcdMapping);
+                  setComponentStates({ _pins: avrRef.current.getPinStates() });
+                }
+              } else {
+                const { default: AVRBridge } = await import('./engine/AVRBridge');
+                const bridge = new AVRBridge();
+                bridge.onSerialOutput = (char) => {
+                  setSerialOutput(prev => {
+                    const next = prev + char;
+                    return next.length > 4000 ? next.slice(-3000) : next;
+                  });
+                  try { emitSimulatorEvent('serialOutput', { char }); } catch { /* noop */ }
+                };
+                bridge.onPinChange = createOnPinChangeHandler(bridge, setComponentStates, pinMapRef);
+                const loaded = await bridge.loadHexFromString(result.hex);
+                if (loaded) {
+                  avrRef.current = bridge;
+                  setAvrReady(true);
+                  setSerialOutput('');
+                  const lcdMapping = buildLCDPinMapping(mergedExperiment || currentExperiment);
+                  if (lcdMapping && bridge.configureLCDPins) bridge.configureLCDPins(lcdMapping);
+                  setComponentStates({ _pins: bridge.getPinStates() });
+                }
+              }
+            } catch (err) {
+              logger.warn('[ELAB] handleCompileOnly hex load failed:', err?.message);
+            }
+          })();
+        }
+        // Parallel R4 cross-compile so the docente can flash the Nano R4 kit
+        // via WebUSB DFU without an extra click. Best-effort: failure here does
+        // not invalidate the AVR simulation hex above.
+        compileArduinoCode(codeToCompile, { experimentId, board: 'arduino:renesas_uno:nanor4' })
+          .then((r4Result) => {
+            if (r4Result?.success && r4Result.hex) setCompiledHexR4(r4Result.hex);
+          })
+          .catch(() => { /* silent — AVR flow already succeeded */ });
         const FLASH_TOTAL = 32256;
         const hexBytes = result.size || Math.floor((result.hex || '').replace(/[^0-9a-fA-F]/g, '').length / 2);
         setCompilationSize({ bytes: hexBytes, total: FLASH_TOTAL, percent: Math.round((hexBytes / FLASH_TOTAL) * 100) });
@@ -459,7 +531,7 @@ const NewElabSimulator = ({
       setCompilationErrors('Non riesco a compilare il codice. Controlla la connessione internet e riprova!');
       try { sendAnalyticsEvent(EVENTS.ERROR, { type: 'compilation', message: err.message }); } catch { }
     } finally { compilingRef.current = false; }
-  }, [trackedTimeout]);
+  }, [trackedTimeout, currentExperiment?.id]);
 
   // ─── Code Persistence ───
   const EDITOR_STORAGE_KEY = 'elab_editor_code';
@@ -955,6 +1027,43 @@ const NewElabSimulator = ({
                   />
                 )}
                 <NotesPanel experimentId={currentExperiment?.id} visible={showNotes} onClose={() => setShowNotes(false)} />
+                {/* WebSerial upload — visible after successful AVR compile.
+                    Flashes the compiled hex to a real ATmega328 Arduino via
+                    browser-native stk500v1 (no local agent needed). */}
+                {isAvrMode && isVol3 && (compiledHex || compiledHexR4) && (() => {
+                  const targetBoard = getBoardById(targetBoardId);
+                  const targetIsRenesas = targetBoard?.mcuFamily === 'renesas';
+                  const hexForTarget = targetIsRenesas ? compiledHexR4 : compiledHex;
+                  return (
+                    <div
+                      data-testid="simulator-upload-tray"
+                      style={{
+                        position: 'absolute',
+                        bottom: 16,
+                        right: 16,
+                        zIndex: 50,
+                        background: 'rgba(24, 24, 37, 0.92)',
+                        padding: 12,
+                        borderRadius: 12,
+                        boxShadow: '0 6px 16px rgba(0,0,0,0.35)',
+                        border: '1px solid rgba(124, 179, 66, 0.4)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 10,
+                        minWidth: 240,
+                      }}
+                    >
+                      <BoardPicker boardId={targetBoardId} onChange={setTargetBoardId} />
+                      {hexForTarget ? (
+                        <UniversalUploadButton boardId={targetBoardId} hexText={hexForTarget} />
+                      ) : (
+                        <span style={{ fontSize: 12, color: '#FFFFFFAA', textAlign: 'center' }}>
+                          Compilate per generare il binario di {targetBoard?.label}.
+                        </span>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* BOTTOM PANEL: Serial Monitor / Plotter — solo Vol3 (disclosure >= 2) */}

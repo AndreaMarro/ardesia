@@ -63,6 +63,9 @@ const EasterModal = lazy(() => import('./easter/EasterModal'));
 const GlossarioRoute = lazy(() => import('./glossario/GlossarioRoute'));
 // Iter 73 CC-2 — HomePage Blockly+IDE cross-compile entry (iter 64 SPEC mandate).
 const HomeCompileEntry = lazy(() => import('./home/HomeCompileEntry'));
+// Inline UNLIM chat card — Andrea 2026-05-27 mandate: homepage missing UNLIM chat.
+// Lazy-loaded: useGalileoChat 533KB chunk only hydrates when docente opens card.
+const HomeUnlimChatInline = lazy(() => import('./home/HomeUnlimChatInline'));
 
 // Iter 38 Atom A11 — mic permission UX nudge (pre-emptive grant request).
 // Lazy-loaded: il banner appare solo se Permissions API segnala state='prompt',
@@ -475,6 +478,20 @@ const CARDS = [
     target: 'internal',
     credit: null,
   },
+  // Andrea 2026-05-27 mandate: homepage missing UNLIM chat interface.
+  // Inline card mirrors Videolezioni inline-video pattern. Renders compact
+  // chat panel (scroll + input + send) via lazy-loaded HomeUnlimChatInline.
+  {
+    id: 'unlim-chat',
+    IconComponent: TutorCardIcon,
+    accent: PALETTE.navy,
+    title: 'Chiedi a UNLIM',
+    text: 'Parla con UNLIM senza uscire dalla home: lezioni, esperimenti, citazioni dai Volumi.',
+    cta: 'Scrivi nella card',
+    href: null,
+    target: 'inline-chat',
+    credit: null,
+  },
 ];
 
 const HOME_VIDEO_ROW_HEIGHT = 56;
@@ -597,6 +614,11 @@ function HomeCard({ card, onActivate }) {
       <h2 style={styles.cardTitle}>{card.title}</h2>
       <p style={styles.cardText}>{card.text}</p>
       {card.target === 'inline-video' && <HomeVideoInline />}
+      {card.target === 'inline-chat' && (
+        <Suspense fallback={<div style={{ padding: 16, color: '#5A6B7E', fontSize: 13 }} data-testid="home-unlim-chat-loading">Caricamento chat UNLIM…</div>}>
+          <HomeUnlimChatInline />
+        </Suspense>
+      )}
       {card.credit && (
         <span style={styles.cardCredit} data-testid={`home-card-credit-${card.id}`}>
           {card.credit}
@@ -623,6 +645,14 @@ function HomeCard({ card, onActivate }) {
   }
 
   if (card.target === 'inline-video') {
+    return (
+      <section role="region" {...sharedProps}>
+        {innerContent}
+      </section>
+    );
+  }
+
+  if (card.target === 'inline-chat') {
     return (
       <section role="region" {...sharedProps}>
         {innerContent}

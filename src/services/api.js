@@ -1341,7 +1341,11 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
         // key needed — secure proxy Andrea iter 94 mandate). isCloudShape gates
         // body shape + response mapping for the same-origin proxy.
         const isVercelProxy = url === '/api/compile/nanor4' || url.endsWith('/api/compile/nanor4');
-        const isCloudShape = isVercelProxy;
+        // Local cloud-compile server (infra/cloud-compile/server.js) uses the
+        // same OpenAPI 76-D.3 shape — treat it as cloud-canonical when the
+        // URL points at the documented localhost:8765 endpoint.
+        const isLocalCloudCompile = /localhost:8765\/compile$/.test(url) || /127\.0\.0\.1:8765\/compile$/.test(url);
+        const isCloudShape = isVercelProxy || isLocalCloudCompile;
 
         try {
             // iter 77 STOP-HOOK #2 fix (Codex): Cloud Render expects canonical
@@ -1408,6 +1412,17 @@ export async function compileCode(code, board = 'arduino:avr:nano:cpu=atmega328o
     }
 
     const httpsBrowser = isHttpsBrowserOrigin();
+
+    // PRIORITY: local cloud-compile server (infra/cloud-compile/server.js)
+    // when running on localhost. Allows full Renesas R4 cross-compile without
+    // any backend deploy. Server expects {sketchCode, fqbn} via isCloudShape.
+    // Optional header X-Elab-Api-Key supplied via VITE_LOCAL_CLOUD_COMPILE_KEY
+    // for dev parity with Render (empty in dev means server runs in DEV-allow
+    // mode per server.js authMiddleware:96).
+    if (!httpsBrowser) {
+        const result = await tryCompile('http://localhost:8765/compile', 'Local cloud-compile (R4)', 'cloud-renesas-local');
+        if (result) return result;
+    }
 
     // iter 98 Atom E — same-origin Vercel serverless proxy /api/compile/nanor4.
     // PRIORITY 0: secure proxy (server-side ELAB_CLOUD_COMPILE_API_KEY injection,
