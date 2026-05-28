@@ -385,9 +385,20 @@ export async function flashHex(port, hexText, options = {}) {
         }
       }
       if (lastSyncErr) throw lastSyncErr;
-      await prog.enterProgmode();
-      await prog.writeFlash(data);
-      await prog.leaveProgmode();
+      // 2026-05-29: per-step diagnostic. Wrap each STK500V1 step so that
+      // the docente (or Andrea triaging in the field) gets an error message
+      // pointing at the exact protocol stage that failed. Without this,
+      // every post-sync failure surfaces as a generic "Caricamento è
+      // fallito" and we have to guess which step broke.
+      try { await prog.enterProgmode(); } catch (e) {
+        throw new Error(`[enter_progmode @ ${baudRate}] ${e?.message || e}`);
+      }
+      try { await prog.writeFlash(data); } catch (e) {
+        throw new Error(`[write_flash @ ${baudRate}] ${e?.message || e}`);
+      }
+      try { await prog.leaveProgmode(); } catch (e) {
+        throw new Error(`[leave_progmode @ ${baudRate}] ${e?.message || e}`);
+      }
       // Success path — close at this baud and return.
       try { await prog.close(); } catch { /* ignore */ }
       return { bytesWritten: size };
