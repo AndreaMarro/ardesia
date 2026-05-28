@@ -30,9 +30,22 @@ describe('UnlimCompileHelper', () => {
       expect(screen.getByText(/Sono collegato a blocchi, codice e compilazione/i)).toBeTruthy();
     });
 
-    it('adapts the message to compileStatus="success"', () => {
+    it('adapts the message to compileStatus="success" with explicit boardLabel', () => {
+      render(<UnlimCompileHelper compileStatus="success" boardLabel="Arduino Nano R4" />);
+      expect(screen.getByText(/Compilazione OK\. Potete caricare sulla Arduino Nano R4/i)).toBeTruthy();
+    });
+
+    it('falls back to "scheda" when no boardLabel passed (legacy callers)', () => {
+      // 2026-05-28 (Andrea report iter post-#180) — mascot is now board-aware.
+      // Legacy callers without boardLabel render a generic "scheda" instead
+      // of the hardcoded "Nano R4" that previously mismatched the picker.
       render(<UnlimCompileHelper compileStatus="success" />);
-      expect(screen.getByText(/Compilazione OK\. Potete caricare sulla Nano R4/i)).toBeTruthy();
+      expect(screen.getByText(/Compilazione OK\. Potete caricare sulla scheda\./i)).toBeTruthy();
+    });
+
+    it('uses Arduino Uno R3 label when picker says so', () => {
+      render(<UnlimCompileHelper compileStatus="success" boardLabel="Arduino Uno R3 (ATmega328P)" />);
+      expect(screen.getByText(/caricare sulla Arduino Uno R3/i)).toBeTruthy();
     });
 
     it('adapts the message to compileStatus="error"', () => {

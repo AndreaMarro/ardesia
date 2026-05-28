@@ -490,6 +490,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             editorMode={editorMode}
             sketchCode={activeSketchCode}
             blockCount={workspaceBlockCount}
+            boardLabel={getBoardById(targetBoardId)?.label || ''}
             onAskQuestion={(question) => {
               // iter 104 C3 — forward a Lavagna chat reale via hash navigation
               // con seedMessage query param. Lavagna seedMessage consume handler

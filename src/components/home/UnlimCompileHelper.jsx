@@ -40,14 +40,19 @@ const QUICK_QUESTIONS = [
   { id: 'next', label: 'Consiglio rapido' },
 ];
 
-function getStatusMessage(compileStatus) {
+function getStatusMessage(compileStatus, boardLabel) {
+  // 2026-05-28 (Andrea report post-#180): mascot was hardcoded to "Nano R4".
+  // With cross-board upload working (PR #179 + #180), the mascot must reflect
+  // the docente's actual picker selection. Falls back to a generic "scheda"
+  // if the parent doesn't pass a label (legacy callers).
+  const board = boardLabel || 'scheda';
   switch (compileStatus) {
     case 'compiling':
-      return 'Sto controllando il codice per Nano R4.';
+      return `Sto controllando il codice per ${board}.`;
     case 'success':
-      return 'Compilazione OK. Potete caricare sulla Nano R4.';
+      return `Compilazione OK. Potete caricare sulla ${board}.`;
     case 'verified-legacy':
-      return 'Codice verificato, ma non ancora per Nano R4.';
+      return `Codice verificato, ma non ancora per ${board}.`;
     case 'error':
       return 'C\'e un errore nel codice. Apri la chat su Lavagna per i dettagli.';
     default:
@@ -67,9 +72,10 @@ export default function UnlimCompileHelper({
   editorMode = 'blocks',
   sketchCode = '',
   blockCount = 0,
+  boardLabel = '',
 }) {
   const { t } = useTranslation();
-  const message = getStatusMessage(compileStatus);
+  const message = getStatusMessage(compileStatus, boardLabel);
   const context = buildContext({ editorMode, compileStatus, blockCount, sketchCode });
   const hasHandler = typeof onAskQuestion === 'function';
 
