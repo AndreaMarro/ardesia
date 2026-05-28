@@ -1,0 +1,533 @@
+/* © Andrea Marro — 29/05/2026 — ELAB Tutor — Tutti i diritti riservati */
+/**
+ * home-compile-polish.css — Swarm 4 Visual Polish + Morfismo layer.
+ *
+ * Imported once by HomeCompilePolishProvider. All rules are nested
+ * under `.hcPolishScope` so they cannot leak outside the
+ * #compile-home route. Class names are prefixed `hcPolish*` so they
+ * cannot clash with CSS module owned by other swarms.
+ *
+ * Andrea verbatim mandate iter-2026-05-29 swarm-4:
+ *   "bellissima moltissimo".
+ *
+ * Aesthetic reference per .impeccable.md:
+ *   POSITIVE: Lego Education (gentle confidence, kit-coupled physical-first)
+ *             Khan Academy (whitespace + Open Sans rhythm)
+ *             volumi cartacei ELAB (Navy #1E4D8C / Lime #4A7A25 /
+ *             Orange #E8941C / Red #E54B3D)
+ *   NEGATIVE: Material Design SaaS bounce, Disney cartoon overshoot,
+ *             Salesforce enterprise gray, Gaming RGB rainbow.
+ *
+ * Token contract — see src/utils/homeCompileAnimationTokens.js:
+ *   var(--hc-polish-duration-{micro|fast|normal|slow|breathe|shimmer|morph|pulse})
+ *   var(--hc-polish-ease-{out-soft|in-out|spring|linear|out-back})
+ *   var(--hc-polish-transition-{button-press|panel-hover|morph|ribbon|skeleton})
+ *
+ * Palette tokens — design-system.css canonical:
+ *   var(--color-primary) Navy   var(--color-accent) Lime
+ *   var(--color-vol1)    Lime   var(--color-vol2)  Orange   var(--color-vol3) Red
+ *
+ * WCAG 2.1 AA:
+ *   - All foreground/background contrast pairs preserved from
+ *     design-system.css tokens.
+ *   - prefers-reduced-motion: every keyframe block has an override
+ *     that collapses to static state (no transform, no opacity flicker).
+ *   - Touch targets unchanged (≥44px enforced by Swarm 2 module CSS).
+ */
+
+/* ─────────────────────────────────────────────────────────────────────
+   1. ROOT SCOPE
+   ───────────────────────────────────────────────────────────────────── */
+
+.hcPolishScope {
+  /* The provider injects CSS custom props onto this element. We add
+     no layout here — Swarm 2 owns layout. The scope is purely a
+     CSS variable boundary + animation context. */
+  display: contents;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   2. SHIMMER + SKELETON STATES
+   Khan Academy reference: 1.2s linear sweep, subtle, readable.
+   NO opacity-pulse only — sweep keeps the eye anchored.
+   ───────────────────────────────────────────────────────────────────── */
+
+@keyframes hcPolishShimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.hcPolishScope .hcPolishSkeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-tertiary, #ECECF1) 0%,
+    var(--color-bg-secondary, #F7F7F8) 35%,
+    var(--color-bg, #FFFFFF) 50%,
+    var(--color-bg-secondary, #F7F7F8) 65%,
+    var(--color-bg-tertiary, #ECECF1) 100%
+  );
+  background-size: 200% 100%;
+  animation: hcPolishShimmerSweep var(--hc-polish-duration-shimmer, 1200ms)
+    var(--hc-polish-ease-linear, linear) infinite;
+  border-radius: var(--radius-md, 10px);
+  /* keep text invisible until content lands */
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hcPolishScope .hcPolishSkeletonLine {
+  height: 14px;
+  margin-block: 8px;
+}
+
+.hcPolishScope .hcPolishSkeletonBlock {
+  min-height: 96px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   3. BUTTON PRESS MICRO-INTERACTION
+   Nielsen Norman 100ms perceived-immediate rule.
+   NO Material ripple — anti-pattern per .impeccable.md.
+   Combines: scale 0.97 + brightness 0.95 + subtle Lime ring on focus.
+   ───────────────────────────────────────────────────────────────────── */
+
+.hcPolishScope .hcPolishButton {
+  /* Apply via composition: <button class="hcPolishButton swarm2OwnedClass" /> */
+  transition: var(
+    --hc-polish-transition-button-press,
+    transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 120ms cubic-bezier(0.16, 1, 0.3, 1)
+  );
+  will-change: transform;
+}
+
+.hcPolishScope .hcPolishButton:active {
+  transform: scale(0.97);
+}
+
+.hcPolishScope .hcPolishButton:focus-visible {
+  /* Lime focus halo aligned with design-system.css --shadow-focus-accent */
+  box-shadow: 0 0 0 3px rgba(74, 122, 37, 0.25);
+  outline: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   4. COMPILE BUTTON MORPH: idle → spinner → success
+   Edukit reference (per task brief): prominent compile+upload pill.
+   Single pill that morphs through 3 visual states without remounting
+   so the user reads continuity instead of pop-in.
+   ───────────────────────────────────────────────────────────────────── */
+
+@keyframes hcPolishSpinnerOrbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes hcPolishCheckDraw {
+  0% {
+    stroke-dashoffset: 24;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes hcPolishRibbonReveal {
+  0% {
+    transform: translateY(-6px) scale(0.96);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(0) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.hcPolishScope .hcPolishCompileMorph {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--hc-polish-transition-morph, all 280ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.hcPolishScope .hcPolishCompileMorph[data-state="compiling"] .hcPolishCompileSpinner {
+  display: inline-block;
+  animation: hcPolishSpinnerOrbit 0.9s var(--hc-polish-ease-linear, linear) infinite;
+}
+
+.hcPolishScope .hcPolishCompileMorph[data-state="success"] {
+  /* Lime palette is the Vol1 success identity (Morfismo Sense 2 —
+     same color the printed volume uses for "ben fatto"). Anti-RGB:
+     stay on palette, never reach for a generic Material green. */
+  color: var(--color-accent, #4A7A25);
+  background-color: rgba(74, 122, 37, 0.10);
+}
+
+.hcPolishScope .hcPolishCompileMorph[data-state="success"] .hcPolishCheckIcon path {
+  stroke-dasharray: 24;
+  animation: hcPolishCheckDraw var(--hc-polish-duration-slow, 480ms)
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+.hcPolishScope .hcPolishCompileMorph[data-state="error"] {
+  color: var(--color-vol3-text, #C62828);
+  background-color: rgba(229, 75, 61, 0.08);
+  animation: hcPolishErrorShake var(--hc-polish-duration-normal, 280ms)
+    var(--hc-polish-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) 1;
+}
+
+@keyframes hcPolishErrorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2.5px); }
+  75% { transform: translateX(2.5px); }
+}
+
+/* Success ribbon revealing under the compile button after a positive
+   compile cycle. Spring-overshoot capped at ~6% so it doesn't read
+   as Disney-cartoon — anti-pattern per .impeccable.md. */
+.hcPolishScope .hcPolishRibbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-light, #E8F5E9) 0%,
+    rgba(74, 122, 37, 0.12) 100%
+  );
+  color: var(--color-accent-hover, #3E6B1F);
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  animation: hcPolishRibbonReveal var(--hc-polish-duration-slow, 480ms)
+    var(--hc-polish-ease-spring, cubic-bezier(0.34, 1.26, 0.64, 1)) 1;
+  will-change: transform, opacity;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   5. UPLOAD PROGRESS SHADER
+   When the WebSerial upload streams write-progress, the bar fills
+   with a subtle moving gradient (Navy → Lime). The motion is left-
+   to-right ONLY (NO RGB cycle, NO rainbow — gaming anti-pattern).
+   ───────────────────────────────────────────────────────────────────── */
+
+@keyframes hcPolishUploadShader {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.hcPolishScope .hcPolishUploadProgress {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--color-bg-tertiary, #ECECF1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.hcPolishScope .hcPolishUploadProgressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary, #1E4D8C) 0%,
+    var(--color-accent, #4A7A25) 50%,
+    var(--color-primary, #1E4D8C) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: inherit;
+  transition: width var(--hc-polish-duration-normal, 280ms)
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1));
+  animation: hcPolishUploadShader var(--hc-polish-duration-pulse, 1800ms)
+    var(--hc-polish-ease-linear, linear) infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   6. PANEL HOVER + FOCUS ELEVATION
+   Subtle elevation lift, never a "card pop" — Lego Education quietness.
+   ───────────────────────────────────────────────────────────────────── */
+
+.hcPolishScope .hcPolishPanel {
+  transition: var(
+    --hc-polish-transition-panel-hover,
+    box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1)
+  );
+}
+
+.hcPolishScope .hcPolishPanel:hover {
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.06));
+}
+
+.hcPolishScope .hcPolishPanel:focus-within {
+  box-shadow: var(--shadow-lg, 0 10px 20px rgba(0, 0, 0, 0.07));
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   7. MASCOT UNLIM ANIMATION STATES (idle / listening / thinking /
+      speaking / celebrating / concerned).
+   Extends the iter-102 UnlimCompileHelper.module.css vocabulary —
+   the polish layer adds STATE classes that consumers can apply on
+   the existing mascot DOM by adding `data-hc-mascot-state="..."`.
+   Consumers do NOT need to import this CSS directly — provider does.
+   ───────────────────────────────────────────────────────────────────── */
+
+/* Idle: slow breathing rhythm, 3.6s. Lego Education calm presence. */
+@keyframes hcPolishMascotIdle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2.5px) scale(1.015); }
+}
+
+/* Listening: gentle lean-in left, 1.4s, repeating. Suggests focus. */
+@keyframes hcPolishMascotListening {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(-3deg) scale(1.03); }
+}
+
+/* Thinking: subtle wobble + small scale pulse, 0.95s. */
+@keyframes hcPolishMascotThinking {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.06) rotate(-2.5deg); }
+}
+
+/* Speaking: rapid mini-bobs, 0.76s. Avoids cartoon bounce — capped 3% scale. */
+@keyframes hcPolishMascotSpeaking {
+  0%, 100% { transform: translateY(0) scale(1); }
+  25%, 75% { transform: translateY(-1.5px) scale(1.02); }
+  50% { transform: translateY(-0.5px) scale(1.005); }
+}
+
+/* Celebrating: 2-burst spring up, 0.55s × 2. Anti-Disney: no rotate spin. */
+@keyframes hcPolishMascotCelebrating {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-7px) scale(1.06); }
+  70% { transform: translateY(0) scale(0.97); }
+}
+
+/* Concerned: 2-tick side shake, 0.4s × 2. Empathetic — never punitive. */
+@keyframes hcPolishMascotConcerned {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+.hcPolishScope [data-hc-mascot-state] {
+  /* will-change scoped to mascot element so other layers stay cheap */
+  will-change: transform;
+}
+
+.hcPolishScope [data-hc-mascot-state="idle"] {
+  animation: hcPolishMascotIdle var(--hc-polish-duration-breathe, 3600ms)
+    var(--hc-polish-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+
+.hcPolishScope [data-hc-mascot-state="listening"] {
+  animation: hcPolishMascotListening 1400ms
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1)) infinite;
+}
+
+.hcPolishScope [data-hc-mascot-state="thinking"] {
+  animation: hcPolishMascotThinking 950ms
+    var(--hc-polish-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+
+.hcPolishScope [data-hc-mascot-state="speaking"] {
+  animation: hcPolishMascotSpeaking 760ms
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1)) infinite;
+}
+
+.hcPolishScope [data-hc-mascot-state="celebrating"] {
+  animation: hcPolishMascotCelebrating var(--hc-polish-duration-slow, 480ms)
+    var(--hc-polish-ease-spring, cubic-bezier(0.34, 1.26, 0.64, 1)) 2;
+}
+
+.hcPolishScope [data-hc-mascot-state="concerned"] {
+  animation: hcPolishMascotConcerned 400ms
+    var(--hc-polish-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) 2;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   8. SPEECH BUBBLE ENTRY ANIMATION
+   When UNLIM emits a new message, fade-up softly. Khan Academy
+   conversational rhythm.
+   ───────────────────────────────────────────────────────────────────── */
+
+@keyframes hcPolishSpeechIn {
+  0% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hcPolishScope .hcPolishSpeechBubble {
+  animation: hcPolishSpeechIn var(--hc-polish-duration-normal, 280ms)
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1)) 1;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   9. ATTENTION PULSE (subtle attention cue — non-arcade)
+   For UPLOAD pill when compile just succeeded and the user should
+   notice the next step. Single low-amplitude pulse, then quiet.
+   ───────────────────────────────────────────────────────────────────── */
+
+@keyframes hcPolishAttentionPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(74, 122, 37, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(74, 122, 37, 0);
+  }
+}
+
+.hcPolishScope .hcPolishAttention {
+  animation: hcPolishAttentionPulse var(--hc-polish-duration-pulse, 1800ms)
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1)) 3;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   10. SOUND MUTE TOGGLE button styling (provider exposes
+       data-hc-sound-muted; consumers render the toggle in their own
+       chrome — this provides only the visual affordance).
+   ───────────────────────────────────────────────────────────────────── */
+
+.hcPolishScope .hcPolishSoundToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 6px;
+  border: 1px solid var(--color-border, #E5E5EA);
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-bg, #FFFFFF);
+  color: var(--color-text-secondary, #5A5A6B);
+  cursor: pointer;
+  transition: var(--hc-polish-transition-button-press,
+    transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 120ms cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.hcPolishScope .hcPolishSoundToggle:hover {
+  background: var(--color-bg-secondary, #F7F7F8);
+}
+
+.hcPolishScope .hcPolishSoundToggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.20);
+}
+
+.hcPolishScope[data-hc-sound-muted="true"] .hcPolishSoundToggle {
+  color: var(--color-text-tertiary, #5A5A69);
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   11. ILLUSTRATION SLOTS — Morfismo coherent placeholders.
+   Consumers reference one of the SVG assets shipped in
+   /public/assets/home-compile/ via background-image. We define
+   sizing + entry fade here so each illustration drops in smoothly.
+   ───────────────────────────────────────────────────────────────────── */
+
+.hcPolishScope .hcPolishIllustration {
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 3 / 2;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0;
+  animation: hcPolishSpeechIn var(--hc-polish-duration-slow, 480ms)
+    var(--hc-polish-ease-out-soft, cubic-bezier(0.16, 1, 0.3, 1)) 200ms 1 forwards;
+}
+
+.hcPolishScope .hcPolishIllustrationCompileSuccess {
+  background-image: url('/assets/home-compile/illustration-compile-success.svg');
+}
+
+.hcPolishScope .hcPolishIllustrationCompileIdle {
+  background-image: url('/assets/home-compile/illustration-compile-idle.svg');
+}
+
+.hcPolishScope .hcPolishIllustrationUploadReady {
+  background-image: url('/assets/home-compile/illustration-upload-ready.svg');
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   12. WCAG 2.1 prefers-reduced-motion HARD OVERRIDE
+   Every keyframe set above is neutralized here. Static state.
+   Mirrors the JS-side applyReducedMotionTokens() collapse.
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .hcPolishScope .hcPolishSkeleton,
+  .hcPolishScope .hcPolishCompileMorph[data-state="compiling"] .hcPolishCompileSpinner,
+  .hcPolishScope .hcPolishCompileMorph[data-state="success"] .hcPolishCheckIcon path,
+  .hcPolishScope .hcPolishCompileMorph[data-state="error"],
+  .hcPolishScope .hcPolishRibbon,
+  .hcPolishScope .hcPolishUploadProgressFill,
+  .hcPolishScope [data-hc-mascot-state="idle"],
+  .hcPolishScope [data-hc-mascot-state="listening"],
+  .hcPolishScope [data-hc-mascot-state="thinking"],
+  .hcPolishScope [data-hc-mascot-state="speaking"],
+  .hcPolishScope [data-hc-mascot-state="celebrating"],
+  .hcPolishScope [data-hc-mascot-state="concerned"],
+  .hcPolishScope .hcPolishSpeechBubble,
+  .hcPolishScope .hcPolishAttention,
+  .hcPolishScope .hcPolishIllustration {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hcPolishScope .hcPolishSkeleton {
+    background: var(--color-bg-tertiary, #ECECF1);
+  }
+  .hcPolishScope .hcPolishCheckIcon path {
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
+  .hcPolishScope .hcPolishIllustration {
+    opacity: 1 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   13. FORCED-COLORS MODE compatibility (Windows High Contrast).
+   Removes background-image illustrations + retains structural cues
+   via system color tokens so the polish layer never breaks contrast.
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (forced-colors: active) {
+  .hcPolishScope .hcPolishIllustration {
+    background-image: none;
+    border: 1px dashed CanvasText;
+  }
+  .hcPolishScope .hcPolishRibbon {
+    background: Canvas;
+    color: CanvasText;
+    border: 1px solid CanvasText;
+  }
+  .hcPolishScope .hcPolishUploadProgress,
+  .hcPolishScope .hcPolishUploadProgressFill {
+    background: ButtonFace;
+  }
+  .hcPolishScope .hcPolishUploadProgressFill {
+    background: Highlight;
+  }
+}

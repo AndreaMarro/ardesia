@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- (c) Andrea Marro - 29/05/2026 - ELAB Tutor - Tutti i diritti riservati
+     Swarm 4 Visual Polish + Morfismo (2026-05-29).
+     Morfismo Sense 2 idle illustration: Blockly puzzle block (Volumi cap.
+     pwm/blink) + C++ braces, side by side, with a soft arrow to compile.
+     Palette: Navy primary + Vol1 Lime accent. Aesthetic: Lego Education
+     kit-coupled, NOT generic stock Material editor icons. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="ELAB Tutor pronti a compilare">
+  <title>Editor pronto - blocchi e codice C++</title>
+  <desc>Illustrazione Morfismo: blocco Blockly e parentesi graffe C++ pronti per la compilazione, palette Navy ELAB Volumi cartacei</desc>
+  <defs>
+    <linearGradient id="hciCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F7F8"/>
+    </linearGradient>
+    <linearGradient id="hciNavyBlock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E4D8C"/>
+      <stop offset="100%" stop-color="#163A6B"/>
+    </linearGradient>
+  </defs>
+  <!-- Background card -->
+  <rect x="6" y="6" width="228" height="148" rx="14" fill="url(#hciCard)" stroke="#E5E5EA" stroke-width="1"/>
+  <!-- Navy accent strip left -->
+  <rect x="6" y="6" width="6" height="148" rx="3" fill="#1E4D8C"/>
+  <!-- Blockly puzzle block left -->
+  <g transform="translate(28 44)">
+    <path d="M0 8 Q0 0 8 0 L36 0 L36 6 Q40 6 40 10 Q40 14 36 14 L36 20 L74 20 Q82 20 82 28 L82 56 Q82 64 74 64 L8 64 Q0 64 0 56 Z" fill="url(#hciNavyBlock)"/>
+    <text x="14" y="38" font-family="Open Sans, system-ui, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">accendi LED</text>
+    <text x="14" y="52" font-family="Open Sans, system-ui, sans-serif" font-size="8" fill="#E8EEF6">pin 13</text>
+  </g>
+  <!-- Arrow midfield -->
+  <g transform="translate(118 74)" stroke="#4A7A25" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <line x1="0" y1="0" x2="20" y2="0"/>
+    <polyline points="14,-5 20,0 14,5"/>
+  </g>
+  <!-- C++ braces right - Vol1 Lime palette accent border -->
+  <g transform="translate(148 38)">
+    <rect x="0" y="0" width="68" height="76" rx="6" fill="#0F172A" stroke="#4A7A25" stroke-width="1.5"/>
+    <text x="34" y="26" text-anchor="middle" font-family="Fira Code, SF Mono, Consolas, monospace" font-size="11" fill="#4A7A25" font-weight="600">void</text>
+    <text x="34" y="40" text-anchor="middle" font-family="Fira Code, SF Mono, Consolas, monospace" font-size="11" fill="#E5E7EB" font-weight="600">loop()</text>
+    <text x="14" y="58" font-family="Fira Code, SF Mono, Consolas, monospace" font-size="14" fill="#4A7A25" font-weight="700">{</text>
+    <text x="48" y="58" font-family="Fira Code, SF Mono, Consolas, monospace" font-size="14" fill="#4A7A25" font-weight="700">}</text>
+  </g>
+  <!-- Caption -->
+  <text x="120" y="138" text-anchor="middle" font-family="Open Sans, system-ui, sans-serif" font-size="11" font-weight="600" fill="#1E4D8C">Blocchi o codice C++</text>
+  <text x="120" y="150" text-anchor="middle" font-family="Open Sans, system-ui, sans-serif" font-size="9" fill="#5A5A6B">Premete Compila quando siete pronti</text>
+</svg>
