@@ -316,7 +316,16 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
       setCompileStatus('error');
       setCompileErrors(err?.message || 'Errore di rete. Verificate la connessione.');
     }
-  }, [scratchCode]);
+    // 2026-05-28 (Andrea + Playwright trace): targetBoardId MUST be in the
+    // deps list — handleCompile reads getBoardById(targetBoardId) above. The
+    // previous `[scratchCode]` deps array captured 'nano-r4' (the initial
+    // useState) and kept reusing that closure, so changing the picker to UNO
+    // R3 left the compile call targeting Nano R4 anyway. Mascot + upload
+    // button labels were correct (read from current render state) but the
+    // compile API still received the stale fqbn — visible regression: size
+    // panel kept saying "38.1 KB / 256 KB" (Nano R4 build) while the picker
+    // said UNO R3.
+  }, [scratchCode, targetBoardId]);
 
   return (
     <div
