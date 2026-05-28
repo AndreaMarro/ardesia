@@ -7,6 +7,7 @@
 // ============================================
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import studentService from '../../services/studentService';
 import { joinClass } from '../../services/authService';
@@ -75,6 +76,7 @@ const MOOD_COLORS = {
 };
 
 export default function StudentDashboard({ onNavigate }) {
+    const { t } = useTranslation();
     const { user } = useAuth();
     const [activeTab, setActiveTab] = useState('panoramica');
     const [moodInput, setMoodInput] = useState('');
@@ -106,18 +108,18 @@ export default function StudentDashboard({ onNavigate }) {
         return (
             <div className={sd.loginPrompt}>
                 <p className={sd.loginLogo}>ELAB</p>
-                <h2 className={sd.headingNavy}>Accedi per vedere la tua dashboard</h2>
+                <h2 className={sd.headingNavy}>{t('student_dashboard.login_required')}</h2>
             </div>
         );
     }
 
     const tabs = [
-        { id: 'panoramica', label: 'Panoramica' },
-        { id: 'diario', label: 'Diario' },
-        { id: 'meraviglie', label: 'Meraviglie' },
-        { id: 'esperimenti', label: 'Esperimenti' },
-        { id: 'costellazione', label: 'Mappa' },
-        { id: 'classe', label: 'La mia classe' },
+        { id: 'panoramica', label: t('student_dashboard.tabs.panoramica') },
+        { id: 'diario', label: t('student_dashboard.tabs.diario') },
+        { id: 'meraviglie', label: t('student_dashboard.tabs.meraviglie') },
+        { id: 'esperimenti', label: t('student_dashboard.tabs.esperimenti') },
+        { id: 'costellazione', label: t('student_dashboard.tabs.mappa') },
+        { id: 'classe', label: t('student_dashboard.tabs.classe') },
     ];
 
     // Handlers
@@ -161,7 +163,7 @@ export default function StudentDashboard({ onNavigate }) {
                         )}
                     </div>
                     <div>
-                        <h1 style={styles.headerTitle}>Ciao, {user.nome?.split(' ')[0]}!</h1>
+                        <h1 style={styles.headerTitle}>{t('student_dashboard.hello', { name: user.nome?.split(' ')[0] })}</h1>
                         <p style={styles.headerSubtitle}>
                             {data.stats.giorniConsecutivi > 0
                                 ? `${data.stats.giorniConsecutivi} giorni consecutivi!`
@@ -262,7 +264,7 @@ export default function StudentDashboard({ onNavigate }) {
                         type="button"
                         autoFocus
                         onClick={() => setPendingNudge(null)}
-                        aria-label="Chiudi messaggio insegnante"
+                        aria-label={t('student_dashboard.close_teacher_message')}
                         style={{
                             background: C.navy, color: '#ffffff', border: 'none', // palette
                             borderRadius: 8, padding: '10px 24px', fontSize: 14,
@@ -293,7 +295,7 @@ function BadgeGrid() {
     const badges = gamification.getAllBadges();
     return (
         <div style={styles.section}>
-            <h3 style={styles.sectionTitle}>Traguardi</h3>
+            <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.achievements')}</h3>
             <div className={sd.badgeGrid}>
                 {badges.map(b => (
                     <div key={b.id} className={sd.badgeCard} style={{
@@ -386,7 +388,7 @@ function PanoramicaTab({ data, formatTempo }) {
             {/* Meraviglie aperte */}
             {meraviglie.length > 0 && (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>Domande aperte ({meraviglie.length})</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.open_questions', { count: meraviglie.length })}</h3>
                     {meraviglie.slice(0, 5).map(m => (
                         <div key={m.id} style={styles.meravigliaItem}>
                             <span style={{ color: C.orange, marginRight: 8 }}>?</span>
@@ -399,7 +401,7 @@ function PanoramicaTab({ data, formatTempo }) {
             {/* Attività recente */}
             {data.esperimenti.length > 0 && (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>Ultimi esperimenti</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.recent_experiments')}</h3>
                     {data.esperimenti.slice(-5).reverse().map(e => (
                         <div key={e.id} style={styles.experimentItem}>
                             <span style={{ color: e.completato ? C.lime : C.orange }}>
@@ -426,7 +428,7 @@ function DiarioTab({ data, diarioInput, setDiarioInput, handleDiario, moodInput,
         <div>
             {/* Mood check-in */}
             <div style={styles.section}>
-                <h3 style={styles.sectionTitle}>Come ti senti adesso?</h3>
+                <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.how_feel')}</h3>
                 <div style={styles.moodGrid}>
                     {Object.entries(MOOD_EMOJI).map(([mood, emoji]) => (
                         <button
@@ -449,18 +451,18 @@ function DiarioTab({ data, diarioInput, setDiarioInput, handleDiario, moodInput,
                     type="text"
                     value={moodInput}
                     onChange={e => setMoodInput(e.target.value)}
-                    placeholder="Vuoi aggiungere una nota? (opzionale)"
+                    placeholder={t('student_dashboard.placeholders.mood_note')}
                     style={styles.input}
                 />
             </div>
 
             {/* Nuova voce di diario */}
             <div style={styles.section}>
-                <h3 style={styles.sectionTitle}>Scrivi nel tuo diario</h3>
+                <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.write_diary')}</h3>
                 <textarea
                     value={diarioInput}
                     onChange={e => setDiarioInput(e.target.value)}
-                    placeholder="Cosa hai scoperto oggi? Cosa ti ha sorpreso? Cosa è stato difficile?"
+                    placeholder={t('student_dashboard.placeholders.diary')}
                     style={styles.textarea}
                     rows={4}
                 />
@@ -478,7 +480,7 @@ function DiarioTab({ data, diarioInput, setDiarioInput, handleDiario, moodInput,
 
             {/* Voci del diario */}
             <div style={styles.section}>
-                <h3 style={styles.sectionTitle}>Il tuo diario di bordo</h3>
+                <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.your_diary')}</h3>
                 {data.diario.length === 0 ? (
                     <p className={sd.emptyState}>
                         Il tuo diario è vuoto. Inizia a scrivere le tue scoperte!
@@ -509,7 +511,7 @@ function DiarioTab({ data, diarioInput, setDiarioInput, handleDiario, moodInput,
             {/* Storia mood */}
             {data.moods.length > 0 && (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>I tuoi mood recenti</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.recent_moods')}</h3>
                     <div style={styles.moodHistory}>
                         {data.moods.slice(-14).map((m, i) => (
                             <div key={i} style={styles.moodHistoryItem} title={`${m.mood} - ${new Date(m.timestamp).toLocaleDateString('it-IT')}`}>
@@ -535,7 +537,7 @@ function MeraviglieTab({ data, meravigliaInput, setMeravigliaInput, handleMeravi
         <div>
             {/* Input nuova meraviglia */}
             <div style={styles.section}>
-                <h3 style={styles.sectionTitle}>Cosa ti stai chiedendo?</h3>
+                <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.what_wondering')}</h3>
                 <p className={sd.infoNote}>
                     Non esiste domanda sbagliata. Ogni domanda è una porta verso la scoperta.
                 </p>
@@ -545,7 +547,7 @@ function MeraviglieTab({ data, meravigliaInput, setMeravigliaInput, handleMeravi
                         value={meravigliaInput}
                         onChange={e => setMeravigliaInput(e.target.value)}
                         onKeyDown={e => e.key === 'Enter' && handleMeraviglia()}
-                        placeholder="Scrivi la tua domanda..."
+                        placeholder={t('student_dashboard.placeholders.question')}
                         style={{ ...styles.input, flex: 1 }}
                     />
                     <button
@@ -579,7 +581,7 @@ function MeraviglieTab({ data, meravigliaInput, setMeravigliaInput, handleMeravi
             {/* Domande aperte */}
             {aperte.length > 0 && (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>Domande aperte ({aperte.length})</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.open_questions', { count: aperte.length })}</h3>
                     {aperte.map(m => (
                         <div key={m.id} style={styles.meravigliaCard}>
                             <span style={{ color: C.orange, fontSize: 20, fontWeight: 700 }}>?</span>
@@ -597,7 +599,7 @@ function MeraviglieTab({ data, meravigliaInput, setMeravigliaInput, handleMeravi
             {/* Domande risolte */}
             {risolte.length > 0 && (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>Domande risolte ({risolte.length})</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.solved_questions', { count: risolte.length })}</h3>
                     {risolte.map(m => (
                         <div key={m.id} style={{ ...styles.meravigliaCard, opacity: 0.7 }}>
                             <span style={{ color: C.lime, fontSize: 20, fontWeight: 700 }}>{'\u2713'}</span>
@@ -624,25 +626,25 @@ function EsperimentiTab({ data, formatTempo }) {
                 <div style={styles.statCard}>
                     <span style={{ fontSize: 32, color: C.lime, fontWeight: 700 }}>{'\u2713'}</span>
                     <div style={{ ...styles.statValue, color: C.lime }}>{completati.length}</div>
-                    <div style={styles.statLabel}>Completati</div>
+                    <div style={styles.statLabel}>{t('student_dashboard.stats.completed')}</div>
                 </div>
                 <div style={styles.statCard}>
                     <span style={{ fontSize: 32, color: C.orange, fontWeight: 700 }}>{'\u27F3'}</span>
                     <div style={{ ...styles.statValue, color: C.orange }}>{inCorso.length}</div>
-                    <div style={styles.statLabel}>In corso</div>
+                    <div style={styles.statLabel}>{t('student_dashboard.stats.in_progress')}</div>
                 </div>
                 <div style={styles.statCard}>
                     <span style={{ color: C.navy, display: 'flex', justifyContent: 'center' }}><IcoBook /></span>
                     <div style={{ ...styles.statValue, color: C.navy }}>
                         {[...new Set(data.esperimenti.map(e => e.volume).filter(Boolean))].length}
                     </div>
-                    <div style={styles.statLabel}>Volumi toccati</div>
+                    <div style={styles.statLabel}>{t('student_dashboard.stats.volumes_touched')}</div>
                 </div>
             </div>
 
             {/* Lista esperimenti */}
             <div style={styles.section}>
-                <h3 style={styles.sectionTitle}>Tutti gli esperimenti</h3>
+                <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.all_experiments')}</h3>
                 {data.esperimenti.length === 0 ? (
                     <p style={{ color: C.textMuted, textAlign: 'center', padding: 20 }}>
                         Non hai ancora fatto esperimenti. Vai al Tutor e inizia a esplorare!
@@ -691,7 +693,7 @@ function CostellazioneTab({ data }) {
     return (
         <div>
             <div style={styles.section}>
-                <h3 style={styles.sectionTitle}>La tua mappa delle stelle</h3>
+                <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.star_map')}</h3>
                 <p style={{ color: C.textMuted, fontSize: 14, marginBottom: 16 }}>
                     Ogni stella è un concetto che hai esplorato. Più è grande, più l'hai approfondito.
                     Ci sarà sempre un cielo infinito da esplorare.
@@ -700,8 +702,8 @@ function CostellazioneTab({ data }) {
                 {concetti.length === 0 ? (
                     <div style={styles.emptyConstellation}>
                         <span style={{ fontSize: 64, color: C.navy }}>{'\u2726'}</span>
-                        <p style={{ color: C.textMuted }}>Il tuo cielo è ancora vuoto.</p>
-                        <p style={{ color: C.textMuted, fontSize: 14 }}>Ogni concetto che esplori diventerà una stella.</p>
+                        <p style={{ color: C.textMuted }}>{t('student_dashboard.empty.sky_empty')}</p>
+                        <p style={{ color: C.textMuted, fontSize: 14 }}>{t('student_dashboard.empty.sky_hint')}</p>
                     </div>
                 ) : (
                     <div style={styles.constellationMap}>
@@ -773,7 +775,7 @@ function CostellazioneTab({ data }) {
             {/* Lista concetti */}
             {concetti.length > 0 && (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>Concetti esplorati ({concetti.length})</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.concepts_explored', { count: concetti.length })}</h3>
                     {[...concetti].sort((a, b) => b.visite - a.visite).map(c => (
                         <div key={c.concettoId} style={styles.concettoRow}>
                             <div style={{
@@ -829,7 +831,7 @@ function ClasseTab({ user }) {
         <div>
             {classInfo ? (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>La tua classe</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.your_class')}</h3>
                     <div style={{
                         background: 'linear-gradient(135deg, var(--elab-navy)08, var(--elab-lime)08)',
                         borderRadius: 12, padding: 20,
@@ -845,7 +847,7 @@ function ClasseTab({ user }) {
                 </div>
             ) : (
                 <div style={styles.section}>
-                    <h3 style={styles.sectionTitle}>Entra in una classe</h3>
+                    <h3 style={styles.sectionTitle}>{t('student_dashboard.sections.join_class')}</h3>
                     <p style={{ color: C.textMuted, fontSize: 14, marginBottom: 16 }}>
                         Il tuo insegnante ti darà un codice di 6 lettere per entrare nella classe.
                         Inseriscilo qui sotto per unirti.
@@ -855,7 +857,7 @@ function ClasseTab({ user }) {
                             type="text"
                             value={classCode}
                             onChange={e => setClassCode(e.target.value.toUpperCase().slice(0, 6))}
-                            placeholder="CODICE"
+                            placeholder={t('student_dashboard.placeholders.class_code')}
                             maxLength={6}
                             style={{
                                 ...styles.searchInput,

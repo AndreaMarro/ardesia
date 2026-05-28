@@ -524,7 +524,7 @@ function QuickComponentPanel({ volumeNumber = 3 }) {
 
   return (
     <div className={css.quickComponents}>
-      <div className={css.panelTitle}>Componenti</div>
+      <div className={css.panelTitle}>{t('lavagna_shell.components')}</div>
       <div className={css.componentGrid}>
         {components.map(c => (
           <button
@@ -577,7 +577,7 @@ function BentornatiOverlay({ visible, onStart, onPickExperiment }) {
           <div className={css.bentornatiIconWrap}>
             <HandWaveIcon size={32} />
           </div>
-          <h2 className={css.bentornatiTitle}>Benvenuti!</h2>
+          <h2 className={css.bentornatiTitle}>{t('lavagna_shell.welcome_first')}</h2>
           <p className={css.bentornatiMessage}>
             Pronti per il primo esperimento?
           </p>
@@ -600,7 +600,7 @@ function BentornatiOverlay({ visible, onStart, onPickExperiment }) {
           <div className={css.bentornatiIconWrap}>
             <PartyIcon size={32} />
           </div>
-          <h2 className={css.bentornatiTitle}>Bentornati!</h2>
+          <h2 className={css.bentornatiTitle}>{t('lavagna_shell.welcome_back')}</h2>
           <p className={css.bentornatiMessage}>
             L'ultima volta: <em>&ldquo;{profile.lastExperimentTitle}&rdquo;</em>
           </p>
@@ -625,7 +625,7 @@ function BentornatiOverlay({ visible, onStart, onPickExperiment }) {
         <div className={css.bentornatiIconWrap}>
           <PartyIcon size={32} />
         </div>
-        <h2 className={css.bentornatiTitle}>Bentornati!</h2>
+        <h2 className={css.bentornatiTitle}>{t('lavagna_shell.welcome_back')}</h2>
         <p className={css.bentornatiMessage}>
           Pronti a continuare? Scegliete l'esperimento di oggi!
         </p>
@@ -641,6 +641,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
   // iter 27 P0 SURGICAL FIX (Agent X 94/94 esperimenti BROKEN evidence brutale):
   // Accept initialExperimentId prop from App.jsx #lavagna route deep-link `?exp=<id>`.
   // Wired in useEffect mount polling __ELAB_API ready below.
+  const { t } = useTranslation();
   const { user, isDocente, isStudente } = useAuth();
   // Iter 44 persistenza scritte: hook self-wires su __ELAB_API.experimentChange
   // (auto-startSession + recordAction 'experiment_loaded') + beforeunload +
@@ -1845,7 +1846,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
             <main className={css.canvas}>
               <Suspense fallback={
                 <div className={css.loading}>
-                  <span>Caricamento simulatore...</span>
+                  <span>{t('lavagna_shell.loading_simulator')}</span>
                 </div>
               }>
                 {/* Andrea verbatim 2026-05-25 PM-3 /goal: "assicurati che il vecchio
@@ -1904,14 +1905,14 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         {/* === DASHBOARD VIEW (docente o studente) === */}
         {activeTab === 'classe' && isDocente && (
           <div className={css.dashboardView}>
-            <Suspense fallback={<div className={css.loading}><span>Caricamento dashboard...</span></div>}>
+            <Suspense fallback={<div className={css.loading}><span>{i18n.t('lavagna_shell.loading_dashboard')}</span></div>}>
               <TeacherDashboard />
             </Suspense>
           </div>
         )}
         {activeTab === 'progressi' && isStudente && (
           <div className={css.dashboardView}>
-            <Suspense fallback={<div className={css.loading}><span>Caricamento progressi...</span></div>}>
+            <Suspense fallback={<div className={css.loading}><span>{i18n.t('lavagna_shell.loading_progress')}</span></div>}>
               <StudentDashboard />
             </Suspense>
           </div>
@@ -2010,7 +2011,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
             data-testid="capitolo-picker-overlay"
             role="dialog"
             aria-modal="true"
-            aria-label="Selezione capitolo"
+            aria-label={t('lavagna_shell.chapter_select_aria')}
             onClick={(e) => {
               // Click backdrop closes picker; clicks inside content do not
               if (e.target === e.currentTarget) handleCapitoliClose();
@@ -2021,12 +2022,12 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
                 type="button"
                 className={css.capitoloPickerClose}
                 onClick={handleCapitoliClose}
-                aria-label="Chiudi selezione capitolo"
+                aria-label={t('lavagna_shell.chapter_close_aria')}
               >
                 ×
               </button>
               <ErrorBoundary>
-                <Suspense fallback={<div className={css.loading}><span>Caricamento capitoli...</span></div>}>
+                <Suspense fallback={<div className={css.loading}><span>{i18n.t('lavagna_shell.loading_chapters')}</span></div>}>
                   <CapitoloPicker
                     capitoli={allCapitoli}
                     volume={currentVolume}
@@ -2046,7 +2047,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
             data-testid="percorso-capitolo-view"
           >
             <ErrorBoundary>
-              <Suspense fallback={<div className={css.loading}><span>Caricamento capitolo...</span></div>}>
+              <Suspense fallback={<div className={css.loading}><span>{i18n.t('lavagna_shell.loading_chapter')}</span></div>}>
                 <PercorsoCapitoloView
                   capitolo={activeCapitolo}
                   onClose={handlePercorsoCapitoloClose}
@@ -2080,7 +2081,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
           onSizeChange={setBottomPanelSize}
         >
           <div className={css.bottomPlaceholder}>
-            <span>Il pannello codice e integrato nel simulatore</span>
+            <span>{t('lavagna_shell.code_panel_inline')}</span>
           </div>
         </RetractablePanel>
       )}
@@ -2105,7 +2106,7 @@ export default function LavagnaShell({ initialExperimentId } = {}) {
         title={wakeWordEnabled ? 'Wake word attiva: dì Ehi UNLIM' : 'Attiva wake word Ehi UNLIM'}
       >
         <span className={css.wakeWordDot} aria-hidden="true" />
-        <span>Ehi UNLIM</span>
+        <span>{t('lavagna_shell.wake_word')}</span>
       </button>
 
       {/* Drawing overlay controlled via NewElabSimulator's own DrawingOverlay + __ELAB_API.toggleDrawing */}

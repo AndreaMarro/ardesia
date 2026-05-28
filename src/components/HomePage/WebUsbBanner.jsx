@@ -31,6 +31,7 @@
  * @copyright © Andrea Marro — 2026 — ELAB Tutor iter 76 B-3
  */
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { detectWebUSBCapability } from '../../services/webUsbDetect.js';
 import { CheckIcon, WarningIcon, DesktopIcon } from '../common/ElabIcons.jsx';
 import styles from './CompileAgentBanner.module.css';
@@ -46,6 +47,7 @@ import styles from './CompileAgentBanner.module.css';
  * @returns {JSX.Element|null}
  */
 export default function WebUsbBanner({ openCompilerUrl = '#compile-home', compact = false } = {}) {
+  const { t } = useTranslation();
   const [cap, setCap] = useState(null);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home', compac
         className={`${styles.banner} ${styles.bannerOnline} ${compact ? styles.compact : ''}`}
         role="status"
         aria-live="polite"
-        aria-label="Browser pronto — Compila e Carica funzionano sul kit Arduino Nano R4"
+        aria-label={t('web_usb_banner.ready_aria')}
         data-testid="webusb-banner"
         data-state="supported"
         data-browser={cap.browser}
@@ -88,7 +90,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home', compac
               href={openCompilerUrl}
               className={styles.buttonSecondary}
               data-testid="webusb-open-compiler"
-              aria-label="Apri il Compilatore ELAB"
+              aria-label={t('web_usb_banner.open_compiler_aria')}
             >
               Apri il Compilatore
             </a>
@@ -133,7 +135,7 @@ export default function WebUsbBanner({ openCompilerUrl = '#compile-home', compac
       className={`${styles.banner} ${styles.bannerInfo} ${compact ? styles.compact : ''}`}
       role="status"
       aria-live="polite"
-      aria-label="Aprite Chrome o Edge per usare il Compilatore"
+      aria-label={t('web_usb_banner.fallback_aria')}
       data-testid="webusb-banner"
       data-state="unsupported"
       data-browser="unknown"

@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from '../../i18n';
 import logger from '../../utils/logger';
 
 class ErrorBoundary extends React.Component {
@@ -57,10 +58,10 @@ class ErrorBoundary extends React.Component {
         }}>
           <div style={{ fontSize: '32px', fontWeight: 700, color: 'var(--elab-navy)', marginBottom: '24px' }}>ELAB</div>
           <h1 style={{ color: 'var(--elab-navy)', fontSize: '28px', marginBottom: '16px', fontFamily: 'Oswald, sans-serif' }}>
-            Ops! Qualcosa è andato storto
+            {i18n.t('errors.boundary_title')}
           </h1>
           <p style={{ color: '#555', fontSize: '18px', marginBottom: '24px', maxWidth: '500px' }}>
-            Non preoccuparti! Prova a ricaricare la pagina. Se il problema continua, contattaci.
+            {i18n.t('errors.boundary_body')}
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
@@ -70,7 +71,7 @@ class ErrorBoundary extends React.Component {
                 borderRadius: '8px', fontSize: '18px', cursor: 'pointer', minHeight: '44px'
               }}
             >
-              Ricarica la pagina
+              {i18n.t('errors.boundary_reload')}
             </button>
             {/* iter 45 fix Andrea video2 06/05/2026 B8 "spesso accade un errore... ricarico
                 la pagina e non va. Se invece utilizzo Berkeley va subito": ricarica
@@ -97,9 +98,9 @@ class ErrorBoundary extends React.Component {
                 background: 'var(--elab-orange, #E8941C)', color: 'white', border: 'none', padding: '14px 24px',
                 borderRadius: '8px', fontSize: '16px', cursor: 'pointer', minHeight: '44px',
               }}
-              title="Pulisce la cache locale e ricarica con la versione più recente"
+              title={i18n.t('errors.boundary_clear_cache_title')}
             >
-              Pulisci cache + ricarica
+              {i18n.t('errors.boundary_clear_cache')}
             </button>
           </div>
 
@@ -117,7 +118,7 @@ class ErrorBoundary extends React.Component {
                 minHeight: '44px',
               }}
             >
-              {this.state.showDetails ? 'Nascondi dettagli' : 'Mostra dettagli tecnici'}
+              {this.state.showDetails ? i18n.t('errors.boundary_hide_details') : i18n.t('errors.boundary_show_details')}
             </button>
 
             {this.state.showDetails && (
@@ -140,7 +141,7 @@ class ErrorBoundary extends React.Component {
                   minHeight: '44px',
                 }}
               >
-                Copia dettagli
+                {i18n.t('errors.boundary_copy_details')}
               </button>
             )}
           </div>

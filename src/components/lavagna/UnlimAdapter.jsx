@@ -7,6 +7,7 @@
  */
 
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import FloatingWindow from './FloatingWindow';
 import ChatOverlay from '../tutor/ChatOverlay';
 import useGalileoChat from './useGalileoChat';
@@ -58,6 +59,7 @@ function formatPercorsoExtra(value) {
 
 /** Embedded Percorso — 5 phases one at a time (PREPARA/MOSTRA/CHIEDI/OSSERVA/CONCLUDI). Principio Zero. */
 function EmbeddedPercorso({ experiment, onAskUNLIM }) {
+  const { t } = useTranslation();
   const path = getLessonPath(experiment?.id);
   const volRef = getVolumeRef(experiment?.id);
   const [currentPhase, setCurrentPhase] = React.useState(0);
@@ -79,8 +81,8 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
   if (!path?.phases?.length) {
     return (
       <div style={{ padding: 24, textAlign: 'center', color: '#737373', fontFamily: "'Open Sans', sans-serif" }}>
-        <p style={{ fontSize: 16, fontWeight: 600, color: 'var(--elab-navy)', marginBottom: 8 }}>Percorso non disponibile</p>
-        <p style={{ fontSize: 15 }}>Questo esperimento non ha un percorso lezione dettagliato.</p>
+        <p style={{ fontSize: 16, fontWeight: 600, color: 'var(--elab-navy)', marginBottom: 8 }}>{t('lavagna_path.no_path_title')}</p>
+        <p style={{ fontSize: 15 }}>{t('lavagna_path.no_path_body')}</p>
         <button onClick={() => onAskUNLIM?.('Prepara una lezione per questo esperimento')} style={{ marginTop: 16, padding: '12px 20px', border: '2px solid var(--elab-lime)', borderRadius: 12, background: 'rgba(74,122,37,0.08)', color: 'var(--elab-lime)', fontFamily: "'Oswald', sans-serif", fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
           Chiedi a UNLIM di preparare la lezione
         </button>
@@ -168,7 +170,7 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
       <div style={PS.content}>
         <div style={PS.card}>
           <div style={PS.phaseLabel}>
-            <span>Fase {currentPhase + 1} di {totalPages}</span>
+            <span>{t('lavagna_path.phase_of', { current: currentPhase + 1, total: totalPages })}</span>
             <span style={{ flex: 1, height: 2, background: `${colors.accent}20`, borderRadius: 1 }} />
             <span>{phase.duration_minutes} min</span>
           </div>
@@ -201,7 +203,7 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
           )}
           {currentPhase === 0 && componentsNeeded.length > 0 && (
             <div style={PS.tip} data-testid="percorso-components-needed">
-              <div style={PS.tipLabel}>Componenti</div>
+              <div style={PS.tipLabel}>{t('lavagna_path.components')}</div>
               <div style={PS.componentGrid}>
                 {componentsNeeded.map((component, index) => (
                   <span key={`${component.name || index}-${index}`} style={PS.componentChip}>
@@ -215,14 +217,14 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
           )}
           {currentPhase === 0 && !componentsNeeded.length && phase.components_list && (
             <div style={PS.tip} data-testid="percorso-components-needed">
-              <div style={PS.tipLabel}>Componenti</div>
+              <div style={PS.tipLabel}>{t('lavagna_path.components')}</div>
               {phase.components_list}
             </div>
           )}
           <div style={PS.message}>{phase.teacher_message}</div>
           {phase.teacher_tip && (
             <div style={PS.tip}>
-              <div style={PS.tipLabel}>Suggerimento</div>
+              <div style={PS.tipLabel}>{t('lavagna_path.hint')}</div>
               {phase.teacher_tip}
             </div>
           )}
@@ -238,15 +240,15 @@ function EmbeddedPercorso({ experiment, onAskUNLIM }) {
         {phases.map((_, i) => <div key={i} style={PS.dot(i === currentPhase)} />)}
       </div>
       <div style={PS.nav}>
-        {!isFirst && <button style={PS.navBtn(false)} onClick={() => setCurrentPhase(p => p - 1)}>Indietro</button>}
+        {!isFirst && <button style={PS.navBtn(false)} onClick={() => setCurrentPhase(p => p - 1)}>{t('lavagna_path.back')}</button>}
         <button
           style={{ ...PS.navBtn(false), flex: 'none', width: 48, padding: '14px 0', fontSize: 18, border: `2px solid ${colors.accent}30` }}
           onClick={() => onAskUNLIM?.(`Sono nella fase ${phase.name} dell'esperimento "${path.title}". ${phase.teacher_message} Dammi un consiglio o un'idea per questa fase.`)}
-          title="Chiedi consiglio a UNLIM per questa fase"
-          aria-label="Chiedi a UNLIM"
+          title={t('lavagna_path.ask_unlim_phase_title')}
+          aria-label={t('lavagna_path.ask_unlim')}
         >?</button>
-        {!isLast && <button style={PS.navBtn(true)} onClick={() => setCurrentPhase(p => p + 1)}>Avanti</button>}
-        {isLast && <button style={PS.navBtn(true)} onClick={() => onAskUNLIM?.(`Riepilogo della lezione "${path.title}". Sintetizza cosa abbiamo costruito, cosa osservare, errori comuni e riferimento Vol./pag.`)}>Riepilogo</button>}
+        {!isLast && <button style={PS.navBtn(true)} onClick={() => setCurrentPhase(p => p + 1)}>{t('lavagna_path.forward')}</button>}
+        {isLast && <button style={PS.navBtn(true)} onClick={() => onAskUNLIM?.(t('lavagna_path.summary_prompt', { title: path.title }))}>{t('lavagna_path.summary')}</button>}
       </div>
     </div>
   );
@@ -258,6 +260,7 @@ export const __test__ = {
 
 /** Embedded step-by-step guide — ONE step at a time, Avanti/Indietro buttons. Principio Zero. */
 function EmbeddedGuide({ experiment, onAskUNLIM }) {
+  const { t } = useTranslation();
   const steps = experiment?.steps || [];
   const desc = experiment?.desc || '';
   const observe = experiment?.observe || experiment?.note || '';
@@ -352,7 +355,7 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
   };
 
   if (!steps.length && !desc && !observe) {
-    return <div style={{ padding: 20, textAlign: 'center', color: '#737373', fontSize: 16 }}>Questo esperimento non ha passi dettagliati.<br/><button style={GS.askBtn} onClick={() => onAskUNLIM?.('Aiutami con questo esperimento')}>Chiedi a UNLIM</button></div>;
+    return <div style={{ padding: 20, textAlign: 'center', color: '#737373', fontSize: 16 }}>{t('lavagna_path.no_steps_body')}<br/><button style={GS.askBtn} onClick={() => onAskUNLIM?.(t('lavagna_path.ask_unlim_help'))}>{t('lavagna_path.ask_unlim')}</button></div>;
   }
 
   // Determine what to show for current step
@@ -393,10 +396,10 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
           </div>
         )}
         {desc && <div style={GS.desc}>{desc}</div>}
-        {!desc && <div style={GS.desc}>Pronti a iniziare? Premete Avanti per il primo passo.</div>}
+        {!desc && <div style={GS.desc}>{t('lavagna_path.ready_to_start')}</div>}
         {splitSuggestion && (
           <div style={{ marginTop: 8, padding: 10, background: '#FFF8E7', borderRadius: 8, border: '1px solid var(--elab-orange)33', fontSize: 12, color: '#8B6914', lineHeight: 1.5 }}>
-            <strong>Suggerimento docente:</strong> {splitSuggestion}
+            <strong>{t('lavagna_path.teacher_suggestion')}</strong> {splitSuggestion}
           </div>
         )}
       </div>
@@ -407,10 +410,10 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
       <div style={GS.content}>
         <div style={GS.stepCard}>
           <div style={GS.stepLabel}>
-            <span>Passo {currentStep + 1} di {steps.length}</span>
+            <span>{t('lavagna_path.step_of', { current: currentStep + 1, total: steps.length })}</span>
             <span style={GS.stepLabelBar} />
-            {groupCtx && <span style={{ fontSize: 10, color: 'var(--elab-lime)', opacity: 0.8 }}>Esp. {groupCtx.position}/{groupCtx.total}</span>}
-            {volRef && <span style={{ fontSize: 11, color: 'var(--elab-navy)', opacity: 0.7 }}>Vol. {volRef.volume}, p. {volRef.bookPage}</span>}
+            {groupCtx && <span style={{ fontSize: 10, color: 'var(--elab-lime)', opacity: 0.8 }}>{t('lavagna_path.exp_pos', { pos: groupCtx.position, total: groupCtx.total })}</span>}
+            {volRef && <span style={{ fontSize: 11, color: 'var(--elab-navy)', opacity: 0.7 }}>{t('lavagna_path.vol_page', { vol: volRef.volume, page: volRef.bookPage })}</span>}
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <span style={GS.stepNum}>{currentStep + 1}</span>
@@ -428,7 +431,7 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
     content = (
       <div style={GS.content}>
         <div style={GS.sectionCard}>
-          <div style={GS.sectionTitle}>Cosa osservare</div>
+          <div style={GS.sectionTitle}>{t('lavagna_path.what_to_observe')}</div>
           <div style={GS.sectionText}>{observe}</div>
           {solutionHint && (
             <div style={{ marginTop: 10 }}>
@@ -448,10 +451,10 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
     content = (
       <div style={GS.content}>
         <div style={GS.sectionCard}>
-          <div style={GS.sectionTitle}>Concetto chiave</div>
+          <div style={GS.sectionTitle}>{t('lavagna_path.key_concept')}</div>
           <div style={GS.sectionText}>{concept}</div>
         </div>
-        <button style={GS.askBtn} onClick={() => onAskUNLIM?.('Aiutami con questo esperimento')}>Chiedi a UNLIM</button>
+        <button style={GS.askBtn} onClick={() => onAskUNLIM?.(t('lavagna_path.ask_unlim_help'))}>{t('lavagna_path.ask_unlim')}</button>
       </div>
     );
   }
@@ -468,9 +471,9 @@ function EmbeddedGuide({ experiment, onAskUNLIM }) {
       </div>
       {/* Navigation */}
       <div style={GS.nav}>
-        {!isFirst && <button style={GS.navBtn(false)} onClick={() => setCurrentStep(s => s - 1)}>Indietro</button>}
+        {!isFirst && <button style={GS.navBtn(false)} onClick={() => setCurrentStep(s => s - 1)}>{t('lavagna_path.back')}</button>}
         {!isLast && <button style={GS.navBtn(true)} onClick={() => setCurrentStep(s => s + 1)}>{isFirst ? 'Inizia' : 'Avanti'}</button>}
-        {isLast && <button style={GS.navBtn(false)} onClick={() => setCurrentStep(-1)}>Ricomincia</button>}
+        {isLast && <button style={GS.navBtn(false)} onClick={() => setCurrentStep(-1)}>{t('lavagna_path.restart')}</button>}
         {isLast && (
           <button
             style={{ ...GS.navBtn(true), background: 'linear-gradient(135deg, var(--elab-lime), #3A6A1A)', animation: 'pulse 2s infinite' }}
@@ -577,6 +580,7 @@ function EmbeddedDiagnose({ experiment, onAskUNLIM }) {
 }
 
 export default function UnlimAdapter({ visible, onClose, onSpeakingChange, activeTab: initialTab = 'chat' }) {
+  const { t } = useTranslation();
   const chat = useGalileoChat();
   const [activeTab, setActiveTab] = useState('chat');
   const [currentExperiment, setCurrentExperiment] = useState(null);
@@ -885,14 +889,14 @@ export default function UnlimAdapter({ visible, onClose, onSpeakingChange, activ
               </div>
               <form
                 onSubmit={handlePercorsoSubmit}
-                aria-label="Scrivi a UNLIM nel percorso"
+                aria-label={t('lavagna_path.chat_aria')}
                 style={{ display: 'flex', gap: 8, padding: 10, borderTop: '1px solid #e5e7eb', background: '#fff' }}
               >
                 <input
                   value={chat.input}
                   onChange={(e) => chat.setInput(e.target.value)}
-                  aria-label="Scrivi messaggio a UNLIM nel percorso"
-                  placeholder="Scrivi a UNLIM..."
+                  aria-label={t('lavagna_path.chat_input_aria')}
+                  placeholder={t('lavagna_path.chat_placeholder')}
                   disabled={chat.isLoading}
                   style={{
                     flex: 1,
@@ -907,7 +911,7 @@ export default function UnlimAdapter({ visible, onClose, onSpeakingChange, activ
                 <button
                   type="submit"
                   disabled={chat.isLoading || !String(chat.input || '').trim()}
-                  aria-label="Invia messaggio a UNLIM dal percorso"
+                  aria-label={t('lavagna_path.chat_send_aria')}
                   style={{
                     border: 'none',
                     borderRadius: 8,

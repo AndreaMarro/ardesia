@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import css from './AppHeader.module.css';
+import LanguageSwitcher from '../common/LanguageSwitcher.jsx';
 
 export default function AppHeader({
-  experimentName = 'Scegli un esperimento...',
+  experimentName = '',
   onHome,
   totalSteps = 0,
   currentStep = 0,
@@ -28,6 +30,8 @@ export default function AppHeader({
   showProgressiTab = false,
   showLezioneTab = false,
 }) {
+  const { t } = useTranslation();
+  const expName = experimentName || t('simulator.selectExperiment');
   return (
     <header className={css.header} role="banner">
       {/* Left: brand + tabs */}
@@ -47,8 +51,8 @@ export default function AppHeader({
             type="button"
             className={`${css.btn} ${css.btnLabeled} ${css.homeBtn}`}
             onClick={onHome}
-            aria-label="Torna alla Home"
-            title="Torna alla Home"
+            aria-label={t('header.back_to_home')}
+            title={t('header.back_to_home')}
             data-testid="app-header-home"
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -56,7 +60,7 @@ export default function AppHeader({
               <path d="M5.5 8.5V17h9V8.5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
               <path d="M8.2 17v-5h3.6v5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
             </svg>
-            <span className={css.btnText}>Home</span>
+            <span className={css.btnText}>{t('header.home_label')}</span>
           </button>
         )}
         {(showClasseTab || showProgressiTab || showLezioneTab) && (
@@ -64,28 +68,28 @@ export default function AppHeader({
             <button
               className={`${css.tabBtn} ${activeTab === 'lavagna' ? css.tabBtnActive : ''}`}
               onClick={() => onTabChange?.('lavagna')}
-              aria-label="Lavagna"
-            >Lavagna</button>
+              aria-label={t('header.tab_lavagna')}
+            >{t('header.tab_lavagna')}</button>
             {showLezioneTab && (
               <button
                 className={`${css.tabBtn} ${activeTab === 'lezione' ? css.tabBtnActive : ''}`}
                 onClick={() => onTabChange?.('lezione')}
-                aria-label="Lezione Guidata"
-              >Lezione Guidata</button>
+                aria-label={t('header.tab_lezione')}
+              >{t('header.tab_lezione')}</button>
             )}
             {showClasseTab && (
               <button
                 className={`${css.tabBtn} ${activeTab === 'classe' ? css.tabBtnActive : ''}`}
                 onClick={() => onTabChange?.('classe')}
-                aria-label="Dashboard classe"
-              >Classe</button>
+                aria-label={t('header.tab_classe_aria')}
+              >{t('header.tab_classe')}</button>
             )}
             {showProgressiTab && (
               <button
                 className={`${css.tabBtn} ${activeTab === 'progressi' ? css.tabBtnActive : ''}`}
                 onClick={() => onTabChange?.('progressi')}
-                aria-label="I miei progressi"
-              >Progressi</button>
+                aria-label={t('header.tab_progressi_aria')}
+              >{t('header.tab_progressi')}</button>
             )}
           </div>
         )}
@@ -98,13 +102,13 @@ export default function AppHeader({
           onClick={onPickerOpen}
           role={onPickerOpen ? 'button' : undefined}
           tabIndex={onPickerOpen ? 0 : undefined}
-          aria-label={onPickerOpen ? `Esperimento: ${experimentName}. Clicca per cambiare.` : `Esperimento: ${experimentName}.`}
+          aria-label={onPickerOpen ? t('header.experiment_aria_clickable', { name: expName }) : t('header.experiment_aria_static', { name: expName })}
           onKeyDown={onPickerOpen ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onPickerOpen?.(); } } : undefined}
         >
-          {experimentName.replace(/^Cap\.\s*\d+\s*Esp\.\s*\d+\s*-\s*/i, '')}
+          {expName.replace(/^Cap\.\s*\d+\s*Esp\.\s*\d+\s*-\s*/i, '')}
         </span>
         {totalSteps > 0 && (
-          <div className={css.progressDots} aria-label={`Passo ${currentStep} di ${totalSteps}`}>
+          <div className={css.progressDots} aria-label={t('header.progress_aria', { current: currentStep, total: totalSteps })}>
             {Array.from({ length: totalSteps }, (_, i) => (
               <div
                 key={i}
@@ -115,51 +119,52 @@ export default function AppHeader({
         )}
       </div>
 
-      {/* Right: Manuale + Video */}
+      {/* Right: Language + Manuale + Video */}
       <div className={css.right}>
+        <LanguageSwitcher compact />
         {/* Percorso button removed — now accessed via build mode selector (Percorso = ex Libero) */}
         {onUnlimToggle && (
           <button
             className={`${css.btn} ${css.btnLabeled} ${unlimOpen ? css.btnActive : ''}`}
             onClick={onUnlimToggle}
-            aria-label={unlimOpen ? 'Nascondi chat UNLIM' : 'Mostra chat UNLIM'}
+            aria-label={unlimOpen ? t('header.unlim_hide') : t('header.unlim_show')}
             aria-pressed={unlimOpen}
-            title="Apri la chat UNLIM"
+            title={t('header.unlim_title')}
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M4 4h12a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 3v-3a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
               <path d="M6 8h8M6 11h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
-            <span className={css.btnText}>UNLIM</span>
+            <span className={css.btnText}>{t('header.unlim_label')}</span>
           </button>
         )}
         {onVolumeToggle && (
           <button
             className={`${css.btn} ${css.btnLabeled} ${volumeOpen ? css.btnActive : ''}`}
             onClick={onVolumeToggle}
-            aria-label={volumeOpen ? 'Chiudi manuale' : 'Apri manuale'}
+            aria-label={volumeOpen ? t('header.manual_hide') : t('header.manual_show')}
             aria-pressed={volumeOpen}
-            title="Apri il manuale del volume"
+            title={t('header.manual_title')}
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M4 3c0-1 1-2 2-2h8c1 0 2 1 2 2v14c0 1-1 2-2 2H6c-1 0-2-1-2-2V3z" stroke="currentColor" strokeWidth="1.5" />
               <path d="M8 7h4M8 10h4M8 13h2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
-            <span className={css.btnText}>Manuale</span>
+            <span className={css.btnText}>{t('header.manual_label')}</span>
           </button>
         )}
         {onVideoToggle && (
           <button
             className={`${css.btn} ${videoOpen ? css.btnActive : ''}`}
             onClick={onVideoToggle}
-            aria-label={videoOpen ? 'Chiudi video' : 'Apri video'}
+            aria-label={videoOpen ? t('header.video_hide') : t('header.video_show')}
             aria-pressed={videoOpen}
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <rect x="2" y="4" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
               <path d="M14 8l4-2v8l-4-2V8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
-            <span>Video</span>
+            <span>{t('header.video_label')}</span>
           </button>
         )}
         {/* iter 45 fix Andrea video2 06/05/2026 B3: Salva Sessione esplicito */}
@@ -168,8 +173,8 @@ export default function AppHeader({
             type="button"
             className={`${css.btn} ${css.btnLabeled}`}
             onClick={onSaveSession}
-            aria-label="Salva la sessione corrente"
-            title="Salva sessione (la salviamo anche automaticamente all'uscita)"
+            aria-label={t('header.save_aria')}
+            title={t('header.save_title')}
             data-testid="btn-salva-sessione"
             style={{ minWidth: 44, minHeight: 44 }}
           >
@@ -177,22 +182,22 @@ export default function AppHeader({
               <path d="M3 3h11l3 3v11H3V3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
               <path d="M6 3v5h7V3M6 17v-6h8v6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
-            <span className={css.btnText}>Salva</span>
+            <span className={css.btnText}>{t('header.save_label')}</span>
           </button>
         )}
         {onFumettoOpen && (
           <button
             className={`${css.btn} ${css.btnLabeled}`}
             onClick={onFumettoOpen}
-            aria-label="Apri Fumetto Report della sessione"
-            title="Genera Fumetto Report"
+            aria-label={t('header.fumetto_aria')}
+            title={t('header.fumetto_title')}
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <rect x="2" y="3" width="7" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
               <rect x="11" y="3" width="7" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
               <rect x="2" y="11" width="16" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
             </svg>
-            <span className={css.btnText}>Fumetto</span>
+            <span className={css.btnText}>{t('header.fumetto_label')}</span>
           </button>
         )}
       </div>

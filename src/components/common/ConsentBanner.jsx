@@ -24,6 +24,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getConsent, saveConsent, isCOPPAApplicable } from '../../services/gdprService';
 import gdprService from '../../services/gdprService';
 import studentTracker from '../../services/studentTracker';
@@ -37,14 +38,18 @@ const CONSENT_KEY = 'elab_consent_v2';
 /** Soglia eta digitale Italia (Art. 8 GDPR + D.Lgs. 101/2018) */
 const ITALY_DIGITAL_AGE = 14;
 
-/** Opzioni eta per il selettore */
+/** Opzioni età per il selettore. Etichette risolte runtime via t().
+ * iter 2026-05-28 i18n: il selettore prima usava costanti italiane statiche
+ * (`Scegli...`, `X anni`, `18+ anni`). Adesso le costanti contengono solo gli
+ * identificativi value + le t-key per la label; risolte dentro il componente. */
 const AGE_OPTIONS = [
-  { value: '', label: 'Scegli...' },
+  { value: '', labelKey: 'consent.age_choose' },
   ...Array.from({ length: 10 }, (_, i) => ({
     value: String(8 + i),
-    label: `${8 + i} anni`,
+    labelKey: 'consent.age_year_n',
+    n: 8 + i,
   })),
-  { value: '18', label: '18+ anni' },
+  { value: '18', labelKey: 'consent.age_18_plus' },
 ];
 
 /**
@@ -57,6 +62,8 @@ function isValidEmail(email) {
 }
 
 export default function ConsentBanner() {
+  const { t } = useTranslation();
+  const renderAgeLabel = (opt) => opt.n != null ? t(opt.labelKey, { n: opt.n }) : t(opt.labelKey);
   const [visible, setVisible] = useState(false);
   const [userAge, setUserAge] = useState(null);
   const [phase, setPhase] = useState('age'); // 'age' | 'consent' | 'parental' | 'sent'
@@ -202,17 +209,17 @@ export default function ConsentBanner() {
   if (!visible) return null;
 
   return (
-    <div ref={trapRef} className={styles.banner} role="dialog" aria-label="Consenso privacy" aria-modal="true">
+    <div ref={trapRef} className={styles.banner} role="dialog" aria-label={t('consent.dialog_aria')} aria-modal="true">
       {/* ── FASE 1: Selezione eta ── */}
       {phase === 'age' && (
         <div className={styles.content}>
           <div className={styles.textContainer}>
             <p className={styles.textChild}>
-              Prima di iniziare, dicci quanti anni hai. Ci serve per proteggerti al meglio!
+              {t('consent.age_intro')}
             </p>
             <div className={styles.ageRow}>
               <label htmlFor="elab-age-select" className={styles.ageLabel}>
-                Quanti anni hai?
+                {t('consent.age_question')}
               </label>
               <select
                 id="elab-age-select"
@@ -225,7 +232,7 @@ export default function ConsentBanner() {
               >
                 {AGE_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>
-                    {opt.label}
+                    {renderAgeLabel(opt)}
                   </option>
                 ))}
               </select>
@@ -234,7 +241,7 @@ export default function ConsentBanner() {
                 onClick={handleAgeConfirm}
                 disabled={!userAge}
               >
-                Avanti
+                {t('consent.age_next')}
               </button>
             </div>
           </div>
@@ -247,10 +254,7 @@ export default function ConsentBanner() {
           <div className={styles.content}>
             <div className={styles.textContainer}>
               <p className={isChild ? styles.textChild : styles.text}>
-                {isChild
-                  ? "Questo sito usa dei 'biscottini' (cookie) per funzionare meglio. Non preoccuparti: non raccontiamo i tuoi segreti a nessuno!"
-                  : "Questo sito raccoglie informazioni anonime per migliorare l'esperienza. I dati sono protetti e non condivisi con terze parti."
-                }
+                {isChild ? t('consent.child_text') : t('consent.adult_text')}
                 {' '}
                 <a
                   href="/privacy"
@@ -258,14 +262,13 @@ export default function ConsentBanner() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {isChild ? "Cosa sono i cookie?" : "Informativa Privacy"}
+                  {isChild ? t('consent.child_privacy_link') : t('consent.adult_privacy_link')}
                 </a>
               </p>
 
               {userAge && isCOPPAApplicable(userAge) && (
                 <p className={styles.coppaNotice}>
-                  <strong>Per i genitori:</strong> Se tuo figlio ha meno di 13 anni,
-                  il consenso deve essere dato da un genitore o tutore legale.
+                  <strong>{t('consent.coppa_label')}</strong> {t('consent.coppa_body')}
                 </p>
               )}
             </div>
@@ -273,10 +276,10 @@ export default function ConsentBanner() {
 
           <div className={styles.buttons}>
             <button className={styles.btnAccept} onClick={handleAccept}>
-              {isChild ? "Ok, va bene!" : "Accetto"}
+              {isChild ? t('consent.accept_child') : t('consent.accept_adult')}
             </button>
             <button className={styles.btnReject} onClick={handleReject}>
-              {isChild ? "No, grazie" : "Rifiuto"}
+              {isChild ? t('consent.reject_child') : t('consent.reject_adult')}
             </button>
           </div>
         </>
@@ -287,22 +290,21 @@ export default function ConsentBanner() {
         <div className={styles.content}>
           <div className={styles.textContainer}>
             <p className={styles.textChild}>
-              Hai meno di 14 anni, quindi serve il permesso di un genitore o tutore.
-              Niente paura, ci mettiamo pochissimo!
+              {t('consent.parental_intro')}
             </p>
             <p className={styles.parentalExplain}>
-              Scrivi l'email di mamma o papa e noi gli mandiamo un messaggio per chiedere il permesso.
+              {t('consent.parental_explain')}
             </p>
 
             <div className={styles.parentalForm}>
               <label htmlFor="elab-parent-email" className={styles.ageLabel}>
-                Email del genitore
+                {t('consent.parental_email_label')}
               </label>
               <input
                 id="elab-parent-email"
                 type="email"
                 className={styles.parentInput}
-                placeholder="nome@email.com"
+                placeholder={t('consent.parental_email_placeholder')}
                 value={parentEmail}
                 onChange={(e) => {
                   setParentEmail(e.target.value);
@@ -318,13 +320,12 @@ export default function ConsentBanner() {
                 onClick={handleParentalRequest}
                 disabled={sending}
               >
-                {sending ? 'Invio in corso...' : 'Chiedi al genitore'}
+                {sending ? t('consent.parental_sending') : t('consent.parental_send')}
               </button>
             </div>
 
             <p className={styles.parentalNote}>
-              Intanto puoi usare ELAB in modalita limitata:
-              i tuoi dati restano solo su questo dispositivo.
+              {t('consent.parental_note')}
             </p>
           </div>
         </div>
@@ -335,12 +336,14 @@ export default function ConsentBanner() {
         <div className={styles.content}>
           <div className={styles.textContainer}>
             <p className={styles.textChild}>
-              Abbiamo mandato un'email a <strong>{maskedEmail}</strong>.
-              Chiedi al tuo genitore di confermare!
+              {t('consent.sent_intro', { email: '__MASKED__' }).split('__MASKED__').map((part, i, arr) =>
+                i < arr.length - 1
+                  ? <React.Fragment key={i}>{part}<strong>{maskedEmail}</strong></React.Fragment>
+                  : <React.Fragment key={i}>{part}</React.Fragment>
+              )}
             </p>
             <p className={styles.parentalNote}>
-              Intanto puoi continuare a usare ELAB. I tuoi dati restano al sicuro
-              solo su questo dispositivo: niente analytics, niente dati inviati fuori.
+              {t('consent.sent_note')}
             </p>
           </div>
         </div>

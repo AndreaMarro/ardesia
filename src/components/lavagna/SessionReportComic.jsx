@@ -10,6 +10,7 @@
  * (c) Andrea Marro — 2026-04-28
  */
 import React, { useMemo, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { buildSessionReportComicModel } from '../../services/fumettoService';
 import { ReportIcon, PrintIcon, BookIcon } from '../common/ElabIcons';
 import { multimodalRouter } from '../../services/multimodalRouter';
@@ -31,11 +32,12 @@ function formatSessionDate(iso) {
 }
 
 function UnlimMascot() {
+  const { t } = useTranslation();
   return (
     <div
       className={styles.mascot}
       data-testid="session-report-comic-mascot"
-      aria-label="UNLIM mascotte canonica ELAB"
+      aria-label={t('session_comic.mascot_aria')}
     >
       <UnlimMascotte
         size="small"
@@ -60,6 +62,7 @@ function PhotoPlaceholder({ title }) {
 }
 
 export default function SessionReportComic({ session, onExport, onMountNextExperiment }) {
+  const { t } = useTranslation();
   const reportModel = useMemo(() => buildSessionReportComicModel(session), [session]);
   const {
     vignettes,
@@ -164,16 +167,16 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
     <article
       className={styles.container}
       role="article"
-      aria-label="Report fumetto della sessione"
+      aria-label={t('session_comic.report_aria')}
     >
       <header className={styles.header}>
         <div className={styles.titleRow}>
           <ReportIcon size={32} className={styles.titleIcon} aria-hidden="true" />
           <div className={styles.meta}>
-            <h2 className={styles.title}>Ragazzi, ecco cosa abbiamo fatto oggi!</h2>
+            <h2 className={styles.title}>{t('session_comic.title')}</h2>
             <p className={styles.subtitle}>
               {studentAlias && (
-                <span className={styles.alias}>Classe: {studentAlias}</span>
+                <span className={styles.alias}>{t('session_comic.class_prefix', { name: studentAlias })}</span>
               )}
               {sessionDate && (
                 <span className={styles.date}>
@@ -189,20 +192,20 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
           type="button"
           className={styles.exportBtn}
           onClick={handleExport}
-          aria-label="Scarica PDF del report fumetto"
+          aria-label={t('session_comic.export_pdf_aria')}
         >
           <PrintIcon size={20} aria-hidden="true" />
-          <span>Scarica PDF</span>
+          <span>{t('session_comic.export_pdf')}</span>
         </button>
         <button
           type="button"
           className={styles.generateImagesBtn}
           onClick={handleGenerateImages}
           disabled={imageGenStatus === 'loading'}
-          aria-label="Genera immagini del fumetto dalla sessione"
+          aria-label={t('session_comic.generate_images_aria')}
         >
           <BookIcon size={20} aria-hidden="true" />
-          <span>{imageGenStatus === 'loading' ? 'Genero immagini' : 'Genera immagini'}</span>
+          <span>{imageGenStatus === 'loading' ? t('session_comic.generating_images') : t('session_comic.generate_images')}</span>
         </button>
       </header>
 
@@ -223,12 +226,12 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
           role="status"
         >
           {geminiDraftRejected
-            ? 'Storyline Gemini scartata: evidenceRefs non sufficienti, report locale sobrio.'
+            ? t('session_comic.gemini_rejected')
             : geminiDraftReceived && reportModel.geminiDraftApplied
-              ? 'Storyline Gemini pronta: testi, quiz, diario e prompt immagini usano la sessione.'
+              ? t('session_comic.gemini_ready')
               : geminiStatus === 'loading'
-              ? 'UNLIM sta preparando storyline, quiz, diario e prompt immagini dalla sessione.'
-              : 'Storyline Gemini non disponibile ora: report locale sobrio, senza inventare prove.'}
+              ? t('session_comic.gemini_loading')
+              : t('session_comic.gemini_unavailable')}
         </p>
       )}
 
@@ -320,7 +323,7 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
                 </>
               ) : (
                 <div className={styles.placeholder} aria-hidden="true">
-                  <span>Contesto non sufficiente</span>
+                  <span>{t('session_comic.no_context')}</span>
                 </div>
               )}
             </figure>
@@ -331,9 +334,9 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
       <section
         className={styles.workshop}
         data-testid="session-report-comic-exercises"
-        aria-label="Esercizi didattici del fumetto"
+        aria-label={t('session_comic.exercises_aria')}
       >
-        <h3 className={styles.sectionTitle}>Esercizi sul kit fisico</h3>
+        <h3 className={styles.sectionTitle}>{t('session_comic.exercises_title')}</h3>
         <ol className={styles.exerciseList}>
           {exercisePrompts.map((prompt) => (
             <li key={prompt}>{prompt}</li>
@@ -344,9 +347,9 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
       <section
         className={styles.quiz}
         data-testid="session-report-comic-quiz"
-        aria-label="Domande a crocette del fumetto"
+        aria-label={t('session_comic.quiz_aria')}
       >
-        <h3 className={styles.sectionTitle}>Domande a crocette</h3>
+        <h3 className={styles.sectionTitle}>{t('session_comic.quiz_title')}</h3>
         <ol className={styles.quizList}>
           {multipleChoiceQuestions.map((item) => (
             <li key={item.question} className={styles.quizItem}>
@@ -367,9 +370,9 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
       <section
         className={styles.notes}
         data-testid="session-report-comic-notes"
-        aria-label="Spazio appunti del fumetto"
+        aria-label={t('session_comic.notes_aria')}
       >
-        <h3 className={styles.sectionTitle}>Spazio appunti</h3>
+        <h3 className={styles.sectionTitle}>{t('session_comic.notes_title')}</h3>
         <p className={styles.notesPrompt}>{notesPrompt}</p>
         <div className={styles.noteLines} aria-hidden="true">
           <span />
@@ -381,7 +384,7 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
       <section
         className={styles.diary}
         data-testid="session-report-comic-diary"
-        aria-label="Pagina diario finale del fumetto"
+        aria-label={t('session_comic.diary_aria')}
       >
         <h3 className={styles.sectionTitle}>{diaryPage.title}</h3>
         <ol className={styles.diaryPrompts}>
@@ -404,8 +407,8 @@ export default function SessionReportComic({ session, onExport, onMountNextExper
       )}
 
       <footer className={styles.footer}>
-        <p className={styles.fingerprint}>Traccia sessione: {sessionFingerprint}</p>
-        <p className={styles.footerText}>Grazie ragazzi! Alla prossima lezione!</p>
+        <p className={styles.fingerprint}>{t('session_comic.fingerprint', { fingerprint: sessionFingerprint })}</p>
+        <p className={styles.footerText}>{t('session_comic.footer')}</p>
       </footer>
     </article>
   );

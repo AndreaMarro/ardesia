@@ -36,6 +36,7 @@
  * © Andrea Marro — 2026-05-16 — ELAB Tutor iter 66 P0.3
  */
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   getCompileAgentStatus,
   getAgentInstallInstructions,
@@ -93,6 +94,7 @@ export default function CompileAgentBanner({
   openCompilerUrl = '#compile-home',
   onInstallClick,
 } = {}) {
+  const { t } = useTranslation();
   const [status, setStatus] = useState(null); // null = still loading
   const [channel, setChannel] = useState(null); // resolved platform info
   const intervalRef = useRef(null);
@@ -156,7 +158,7 @@ export default function CompileAgentBanner({
         className={`${styles.banner} ${styles.bannerOnline}`}
         role="status"
         aria-live="polite"
-        aria-label="Agent ELAB attivo"
+        aria-label={t('compile_agent_banner.active_aria')}
         data-testid="compile-agent-banner"
         data-state="online"
       >
@@ -182,7 +184,7 @@ export default function CompileAgentBanner({
               href={openCompilerUrl}
               className={styles.buttonSecondary}
               data-testid="compile-agent-open-compiler"
-              aria-label="Apri il Compilatore ELAB"
+              aria-label={t('compile_agent_banner.open_compiler_aria')}
             >
               Apri il Compilatore
             </a>
@@ -199,7 +201,7 @@ export default function CompileAgentBanner({
         className={`${styles.banner} ${styles.bannerCta}`}
         role="status"
         aria-live="polite"
-        aria-label="Installa Agent ELAB per Mac"
+        aria-label={t('compile_agent_banner.install_mac_aria')}
         data-testid="compile-agent-banner"
         data-state="offline"
       >
@@ -220,7 +222,7 @@ export default function CompileAgentBanner({
             className={styles.buttonPrimary}
             onClick={handleInstallClick}
             data-testid="compile-agent-install-button"
-            aria-label="Installa Agent ELAB per Mac"
+            aria-label={t('compile_agent_banner.install_mac_aria')}
             download
           >
             <DownloadIcon size={18} aria-hidden="true" />
@@ -264,7 +266,7 @@ export default function CompileAgentBanner({
       className={`${styles.banner} ${styles.bannerInfo}`}
       role="status"
       aria-live="polite"
-      aria-label="Compilazione cloud disponibile"
+      aria-label={t('compile_agent_banner.cloud_aria')}
       data-testid="compile-agent-banner"
       data-state="unknown"
     >

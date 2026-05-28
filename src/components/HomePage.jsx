@@ -35,6 +35,7 @@
  * Andrea Marro — iter 36 WebDesigner-1 Phase 1 — 2026-04-30
  */
 import React, { lazy, Suspense, useState, useCallback, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 // Iter 36 M1+Q1+O3 — Andrea mandate "SVG sostitutivi emoticon più belli
 // usa impeccable" + 4° card Glossario.
 import {
@@ -49,6 +50,7 @@ import { VIDEO_COURSES } from '../data/video-courses';
 // inline impeccable (replaces PNG mascot — Andrea iter 42 PM mandate
 // "voglio mascotte e nessuna emoticon" + design strutturato).
 import ElabMascotte from './common/ElabMascotte';
+import LanguageSwitcher from './common/LanguageSwitcher.jsx';
 
 // Cronologia sessioni — sezione sotto le card (iter 35 Task 2, preserved iter 36)
 const HomeCronologia = lazy(() => import('./HomeCronologia'));
@@ -416,9 +418,9 @@ const CARDS = [
     // ban emoji icone. Field kept absent for compat with optional ?. lookup.
     IconComponent: LavagnaCardIcon,
     accent: PALETTE.navy,
-    title: 'Lavagna libera',
-    text: 'Lavagna pulita per scrivere e parlare con UNLIM. Volumi sempre a portata. Niente circuiti.',
-    cta: 'Entra in Lavagna',
+    title: 'home.cards.lavagna.title',
+    text: 'home.cards.lavagna.text',
+    cta: 'home.cards.lavagna.cta',
     // Deterministic route for the home-only whiteboard. App.jsx aliases it to
     // currentPage='lavagna'; LavagnaShell consumes the hash and blocks circuits.
     href: '#lavagna-solo',
@@ -432,9 +434,9 @@ const CARDS = [
     // fallback; TutorCardIcon always rendered). CLAUDE.md regola 11 ban.
     IconComponent: TutorCardIcon,
     accent: PALETTE.lime,
-    title: 'ELAB Tutor completo',
-    text: 'App piena: Percorso dei volumi, esperimenti, UNLIM, voce, simulatore. Lezione completa con la classe.',
-    cta: 'Apri ELAB Tutor',
+    title: 'home.cards.tutor.title',
+    text: 'home.cards.tutor.text',
+    cta: 'home.cards.tutor.cta',
     href: '#tutor',
     target: 'internal',
     credit: null,
@@ -455,9 +457,9 @@ const CARDS = [
     // strip + Orange play triangle) replaces emoji. CLAUDE.md regola 11.
     IconComponent: VideoLessonsCardIcon,
     accent: PALETTE.orange,
-    title: 'Videolezioni',
-    text: 'I due video TikTok del kit, caricati qui dentro senza uscire dalla home.',
-    cta: 'Guarda nella card',
+    title: 'home.cards.videolezioni.title',
+    text: 'home.cards.videolezioni.text',
+    cta: 'home.cards.videolezioni.cta',
     href: null,
     target: 'inline-video',
     credit: null,
@@ -471,9 +473,9 @@ const CARDS = [
     id: 'compile-home',
     IconComponent: CircuitIcon,
     accent: PALETTE.red,
-    title: 'Compila Arduino',
-    text: 'Scrivete codice Arduino con i blocchi Blockly o in C++. Compila + carica sul Nano R4 del kit.',
-    cta: 'Apri editor',
+    title: 'home.cards.compile_home.title',
+    text: 'home.cards.compile_home.text',
+    cta: 'home.cards.compile_home.cta',
     href: '#compile-home',
     target: 'internal',
     credit: null,
@@ -485,9 +487,9 @@ const CARDS = [
     id: 'unlim-chat',
     IconComponent: TutorCardIcon,
     accent: PALETTE.navy,
-    title: 'Chiedi a UNLIM',
-    text: 'Parla con UNLIM senza uscire dalla home: lezioni, esperimenti, citazioni dai Volumi.',
-    cta: 'Scrivi nella card',
+    title: 'home.cards.unlim_chat.title',
+    text: 'home.cards.unlim_chat.text',
+    cta: 'home.cards.unlim_chat.cta',
     href: null,
     target: 'inline-chat',
     credit: null,
@@ -563,6 +565,7 @@ function HomeVideoInline() {
 }
 
 function HomeCard({ card, onActivate }) {
+  const { t } = useTranslation();
   const [hover, setHover] = useState(false);
   const handle = useCallback((e) => {
     if (card.target === 'external') {
@@ -590,7 +593,7 @@ function HomeCard({ card, onActivate }) {
     onMouseLeave: () => setHover(false),
     onFocus: () => setHover(true),
     onBlur: () => setHover(false),
-    'aria-label': `${card.title}: ${card.text}`,
+    'aria-label': `${t(card.title)}: ${t(card.text)}`,
     'data-testid': `home-card-${card.id}`,
     style: {
       ...styles.card,
@@ -611,11 +614,12 @@ function HomeCard({ card, onActivate }) {
       ) : (
         <span style={styles.cardEmoji} aria-hidden="true">{card.emoji}</span>
       )}
-      <h2 style={styles.cardTitle}>{card.title}</h2>
-      <p style={styles.cardText}>{card.text}</p>
+      <h2 style={styles.cardTitle}>{t(card.title)}</h2>
+      <p style={styles.cardText}>{t(card.text)}</p>
       {card.target === 'inline-video' && <HomeVideoInline />}
       {card.target === 'inline-chat' && (
-        <Suspense fallback={<div style={{ padding: 16, color: '#5A6B7E', fontSize: 13 }} data-testid="home-unlim-chat-loading">Caricamento chat UNLIM…</div>}>
+        <Suspense fallback={<div style={{ padding: 16, color: '#5A6B7E', fontSize: 13 }} data-testid="home-unlim-chat-loading">{t('home.loading.unlim_chat')}</div>}>
+
           <HomeUnlimChatInline />
         </Suspense>
       )}
@@ -625,7 +629,7 @@ function HomeCard({ card, onActivate }) {
         </span>
       )}
       <span style={{ ...styles.cardCta, color: card.accent }}>
-        {card.cta} <span aria-hidden="true">→</span>
+        {t(card.cta)} <span aria-hidden="true">→</span>
       </span>
     </>
   );
@@ -669,31 +673,27 @@ function HomeCard({ card, onActivate }) {
 
 // Sprint U iter 7 — Rotating class greeting (cycles every 3.5s).
 // Pattern Andrea: docente entra classe diversa ogni ora, greeting riconosce.
-const ROTATING_GREETINGS = [
-  'Ciao Ragazzi!',
-  'Ciao 1 A!',
-  'Ciao 2 B!',
-  'Ciao 3 C!',
-  'Ciao 4ª!',
-  'Ciao 5ª!',
-  'Ciao 1ª media!',
-  'Ciao 2ª media!',
-  'Ciao 3ª media!',
-  'Pronti, classe?',
-  'Buongiorno, ragazzi!',
-];
+// iter 2026-05-28 i18n: greetings array moved to locales/{it,en}.json under
+// home.greetings_list. Resolved via t(..., { returnObjects: true }) inside
+// the component so it updates reactively on language switch.
+const GREETINGS_FALLBACK = ['Ciao Ragazzi!'];
 
 export default function HomePage({ onNavigate, onActivate }) {
+  const { t, i18n } = useTranslation();
+  const greetings = (() => {
+    const list = t('home.greetings_list', { returnObjects: true });
+    return Array.isArray(list) && list.length > 0 ? list : GREETINGS_FALLBACK;
+  })();
   const [showGreeting, setShowGreeting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   // Iter 37 Atom A6 — hash route awareness for #chatbot-only and #about-easter
   const [hash, setHash] = useState(() => readHash());
 
   // Sprint U iter 7 — rotating greeting index, cycles 3.5s
-  const [greetingIdx, setGreetingIdx] = useState(() => Math.floor(Math.random() * ROTATING_GREETINGS.length));
+  const [greetingIdx, setGreetingIdx] = useState(() => Math.floor(Math.random() * (Array.isArray(greetings) ? greetings.length : 1)));
   useEffect(() => {
     const interval = setInterval(() => {
-      setGreetingIdx((idx) => (idx + 1) % ROTATING_GREETINGS.length);
+      setGreetingIdx((idx) => (idx + 1) % greetings.length);
     }, 3500);
     return () => clearInterval(interval);
   }, []);
@@ -840,7 +840,7 @@ export default function HomePage({ onNavigate, onActivate }) {
   // Mount BEFORE the home grid se hash corrisponde alle nuove route.
   if (hash === HASH_ROUTES.CHATBOT) {
     return (
-      <Suspense fallback={<div data-testid="chatbot-only-loading" style={{ padding: 24 }}>Caricamento chat UNLIM…</div>}>
+      <Suspense fallback={<div data-testid="chatbot-only-loading" style={{ padding: 24 }}>{t('home.loading.unlim_chat')}</div>}>
         <ChatbotOnly
           onBackHome={handleChatbotBackHome}
           onOpenLavagna={handleChatbotOpenLavagna}
@@ -854,7 +854,7 @@ export default function HomePage({ onNavigate, onActivate }) {
   // Mounts GlossarioRoute with onClose returning to homepage via '#home'.
   if (hash === HASH_ROUTES.GLOSSARIO) {
     return (
-      <Suspense fallback={<div data-testid="glossario-loading" style={{ padding: 24 }}>Caricamento glossario…</div>}>
+      <Suspense fallback={<div data-testid="glossario-loading" style={{ padding: 24 }}>{t('home.loading.glossario')}</div>}>
         <GlossarioRoute onClose={handleChatbotBackHome} />
       </Suspense>
     );
@@ -866,7 +866,7 @@ export default function HomePage({ onNavigate, onActivate }) {
   // in sicurezza. Zero debito tecnico"). Lazy-mounted from #compile-home hash.
   if (hash === HASH_ROUTES.COMPILE_HOME) {
     return (
-      <Suspense fallback={<div data-testid="compile-home-loading" style={{ padding: 24 }}>Caricamento editor Arduino…</div>}>
+      <Suspense fallback={<div data-testid="compile-home-loading" style={{ padding: 24 }}>{t('home.loading.compile_editor')}</div>}>
         <HomeCompileEntry onBackHome={handleChatbotBackHome} />
       </Suspense>
     );
@@ -874,6 +874,19 @@ export default function HomePage({ onNavigate, onActivate }) {
 
   return (
     <div style={styles.page} data-testid="elab-home-page" data-elab-mode="home" data-elab-routing={hash || 'root'}>
+      {/* iter 2026-05-28 i18n: floating language switcher top-right.
+          Absolute positioning so it overlays without restructuring HomePage layout.
+          Phase 0: only the switcher itself is internationalised; surrounding
+          home content is incrementally migrated in Phase 1. */}
+      <div style={{
+        position: 'fixed',
+        top: 12,
+        right: 12,
+        zIndex: 1000,
+        pointerEvents: 'auto',
+      }}>
+        <LanguageSwitcher compact />
+      </div>
       {/* Iter 36 fix Andrea: nuvoletta animata (translateX(-50%) preservato in
           keyframes per centratura). Wave + scale subtile + opacity respect
           prefers-reduced-motion. */}
@@ -971,7 +984,7 @@ export default function HomePage({ onNavigate, onActivate }) {
             aria-live="polite"
             data-testid="home-mascotte-greeting"
           >
-            {ROTATING_GREETINGS[greetingIdx]}
+            {greetings[greetingIdx % greetings.length]}
             <span style={styles.speechBubbleArrow} aria-hidden="true" />
           </div>
           {/* MascotPresence è "fixed position" by default — qui lo wrappiamo
@@ -984,7 +997,7 @@ export default function HomePage({ onNavigate, onActivate }) {
             onClick={handleMascotteClick}
             data-testid="home-mascotte-button"
             data-elab-action="click-mascotte"
-            aria-label="Saluta la mascotte UNLIM"
+            aria-label={t('home.mascot_aria')}
             style={{
               width: '100%',
               height: '100%',
@@ -1117,7 +1130,7 @@ export default function HomePage({ onNavigate, onActivate }) {
           style={styles.footerCredits}
           data-testid="home-footer-credits-team"
         >
-          <span>Homepage a cura di </span>
+          <span>{t('home.footer.credits_prefix')}</span>
           <span style={styles.footerCreditsStrong}>Andrea Marro</span>
           <span style={{ margin: '0 8px', opacity: 0.5 }} aria-hidden="true">·</span>
           <span style={styles.footerCreditsStrong}>Teodora de Venere</span>
@@ -1138,8 +1151,8 @@ export default function HomePage({ onNavigate, onActivate }) {
           }}
           data-testid="home-footer-easter-link"
           data-elab-action="open-about-easter"
-          aria-label="Chi siamo"
-          title="Chi siamo"
+          aria-label={t('home.footer.about_us_aria')}
+          title={t('home.footer.about_us_aria')}
           onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; }}
           onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
         >

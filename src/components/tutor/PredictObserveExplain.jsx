@@ -6,6 +6,7 @@
 // ============================================
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { POE_CHALLENGES } from '../../data/poe-challenges';
 import studentTracker from '../../services/studentTracker';
 import { LayerBadge, VolumeBadge, LAYER_COLORS } from './shared/LayerBadge';
@@ -31,6 +32,7 @@ const POE_STAR_MESSAGES = {
 };
 
 export default function PredictObserveExplain({ onOpenSimulator, logSession, onSendToUNLIM }) {
+  const { t } = useTranslation();
   const { saveScore, getScore, getAllScores } = useGameScore('poe');
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [phase, setPhase] = useState('predict');
@@ -117,7 +119,7 @@ export default function PredictObserveExplain({ onOpenSimulator, logSession, onS
               <path d="M12 21v2" />
             </svg>
           </span>
-          <h2>Prevedi, Osserva, Spiega</h2>
+          <h2>{t('predict_observe_explain.title')}</h2>
           <p>
             Prima fai la tua previsione, poi scopri cosa succede davvero!
             <br />Sbagliare la previsione è il modo migliore per imparare.
@@ -286,7 +288,7 @@ export default function PredictObserveExplain({ onOpenSimulator, logSession, onS
           <textarea
             value={explanation}
             onChange={e => setExplanation(e.target.value)}
-            placeholder="Scrivi qui la tua spiegazione..."
+            placeholder={t('predict_observe_explain.explain_placeholder')}
             className="elab-tool__textarea"
           />
           {explanation.trim().length > 0 && explanation.trim().length < 10 && (

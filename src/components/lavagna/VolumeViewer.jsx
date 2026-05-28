@@ -5,6 +5,7 @@
  */
 
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import logger from '../../utils/logger';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -61,6 +62,7 @@ export default function VolumeViewer({
   onUnifiedStepNext,
   onUnifiedStepPrev,
 }) {
+  const { t } = useTranslation();
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(initialPage);
   const [zoom, setZoom] = useState(1.0);
@@ -224,7 +226,7 @@ export default function VolumeViewer({
         {/* Nav bar */}
         <div className={css.navBar}>
           <div className={css.navGroup}>
-            <button className={css.navBtn} onClick={prevPage} disabled={pageNumber <= 1} aria-label="Pagina precedente">
+            <button className={css.navBtn} onClick={prevPage} disabled={pageNumber <= 1} aria-label={t('volume_viewer.prev_page')}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
             {/* Andrea ratify 2026-05-24: pulsante esplicito "vai a pagina N".
@@ -244,10 +246,10 @@ export default function VolumeViewer({
               Pag.
             </button>
             <span className={css.pageInfo}>
-              <input type="number" className={css.pageInput} value={pageNumber} min={1} max={numPages || 1} onChange={(e) => goToPage(Number(e.target.value))} aria-label="Numero pagina" />
+              <input type="number" className={css.pageInput} value={pageNumber} min={1} max={numPages || 1} onChange={(e) => goToPage(Number(e.target.value))} aria-label={t('volume_viewer.page_number_aria')} />
               <span className={css.pageSep}>/</span><span>{numPages || '...'}</span>
             </span>
-            <button className={css.navBtn} onClick={nextPage} disabled={pageNumber >= (numPages || 1)} aria-label="Pagina successiva">
+            <button className={css.navBtn} onClick={nextPage} disabled={pageNumber >= (numPages || 1)} aria-label={t('volume_viewer.next_page')}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           </div>
@@ -351,10 +353,10 @@ export default function VolumeViewer({
               </button>
             ))}
             <span className={css.penSep} />
-            <button className={css.penToolBtn} onClick={handleUndo} title="Annulla" aria-label="Annulla tratto">
+            <button className={css.penToolBtn} onClick={handleUndo} title={t('volume_viewer.pen_undo_title')} aria-label={t('volume_viewer.pen_undo_aria')}>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 7l-3 3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M1 10h9a4 4 0 000-8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </button>
-            <button className={css.penToolBtn} onClick={handleClear} title="Cancella tutto" aria-label="Cancella annotazioni">
+            <button className={css.penToolBtn} onClick={handleClear} title={t('volume_viewer.pen_clear_title')} aria-label={t('volume_viewer.pen_clear_aria')}>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 5h10M6 5V3h4v2M5 5l1 9h4l1-9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>
             {paths.length > 0 && <span className={css.penCount}>{paths.length}</span>}
@@ -363,8 +365,8 @@ export default function VolumeViewer({
 
         {/* PDF + annotation layer */}
         <div className={css.pageContainer}>
-          {loading && <div className={css.loadingOverlay}><div className={css.spinner} /><span>Caricamento volume...</span></div>}
-          {error && <div className={css.errorOverlay}><span>{error}</span><button className={css.retryBtn} onClick={() => { setError(null); setLoading(true); }}>Riprova</button></div>}
+          {loading && <div className={css.loadingOverlay}><div className={css.spinner} /><span>{t('volume_viewer.loading')}</span></div>}
+          {error && <div className={css.errorOverlay}><span>{error}</span><button className={css.retryBtn} onClick={() => { setError(null); setLoading(true); }}>{t('volume_viewer.retry')}</button></div>}
 
           <div className={css.pdfStage}>
             <Document file={filePath} onLoadSuccess={onDocumentLoadSuccess} onLoadError={onDocumentLoadError} options={documentOptions} loading="">

@@ -4,6 +4,7 @@
 // ============================================
 
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 
 // Andrea Marro — 18/02/2026
@@ -31,6 +32,7 @@ const Spinner = () => (
 );
 
 export default function LoginPage({ onNavigate }) {
+    const { t } = useTranslation();
     const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -43,7 +45,7 @@ export default function LoginPage({ onNavigate }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email.trim() || !password.trim()) {
-            setError('Compila tutti i campi');
+            setError(t('auth.login.error_empty_fields'));
             return;
         }
         setLoading(true);
@@ -87,12 +89,12 @@ export default function LoginPage({ onNavigate }) {
 
             <div style={styles.card}>
                 <div style={{ ...styles.logo, color: 'var(--elab-navy)', fontWeight: 800, fontFamily: 'Oswald, sans-serif', letterSpacing: '-1px' }}>ELAB</div>
-                <h1 style={styles.title}>Accedi</h1>
-                <p style={styles.subtitle}>Accedi al tuo laboratorio</p>
+                <h1 style={styles.title}>{t('auth.login.title')}</h1>
+                <p style={styles.subtitle}>{t('auth.login.subtitle')}</p>
 
-                <form onSubmit={handleSubmit} style={styles.form} ref={formRef} aria-label="Form di accesso">
+                <form onSubmit={handleSubmit} style={styles.form} ref={formRef} aria-label={t('auth.login.form_aria')}>
                     <div style={styles.field}>
-                        <label style={styles.label} htmlFor="login-email">Email</label>
+                        <label style={styles.label} htmlFor="login-email">{t('auth.login.email_label')}</label>
                         <input
                             id="login-email"
                             type="email"
@@ -100,7 +102,7 @@ export default function LoginPage({ onNavigate }) {
                             onChange={e => setEmail(e.target.value)}
                             onFocus={() => setFocusedField('email')}
                             onBlur={() => setFocusedField(null)}
-                            placeholder="la-tua@email.com"
+                            placeholder={t('auth.login.email_placeholder')}
                             style={inputStyle('email')}
                             autoComplete="email"
                             autoFocus
@@ -109,7 +111,7 @@ export default function LoginPage({ onNavigate }) {
                     </div>
 
                     <div style={styles.field}>
-                        <label style={styles.label} htmlFor="login-password">Password</label>
+                        <label style={styles.label} htmlFor="login-password">{t('auth.login.password_label')}</label>
                         <div style={styles.passwordWrap}>
                             <input
                                 id="login-password"
@@ -118,7 +120,7 @@ export default function LoginPage({ onNavigate }) {
                                 onChange={e => setPassword(e.target.value)}
                                 onFocus={() => setFocusedField('password')}
                                 onBlur={() => setFocusedField(null)}
-                                placeholder="La tua password"
+                                placeholder={t('auth.login.password_placeholder')}
                                 style={{ ...inputStyle('password'), paddingRight: '44px' }}
                                 autoComplete="current-password"
                                 disabled={loading}
@@ -127,7 +129,7 @@ export default function LoginPage({ onNavigate }) {
                                 type="button"
                                 onClick={() => setShowPassword(p => !p)}
                                 style={styles.eyeBtn}
-                                aria-label={showPassword ? 'Nascondi password' : 'Mostra password'}
+                                aria-label={showPassword ? t('auth.login.hide_password') : t('auth.login.show_password')}
                                 tabIndex={-1}
                             >
                                 <EyeIcon open={showPassword} />
@@ -148,19 +150,19 @@ export default function LoginPage({ onNavigate }) {
                     >
                         {loading ? (
                             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                                <Spinner /> Accesso in corso...
+                                <Spinner /> {t('auth.login.submitting')}
                             </span>
-                        ) : 'Accedi'}
+                        ) : t('auth.login.submit')}
                     </button>
                 </form>
 
                 <p style={styles.footer}>
-                    Non hai un account?{' '}
-                    <button onClick={() => onNavigate('register')} style={styles.link}>Registrati</button>
+                    {t('auth.login.no_account')}{' '}
+                    <button onClick={() => onNavigate('register')} style={styles.link}>{t('auth.login.register_link')}</button>
                 </p>
 
                 <button onClick={() => onNavigate('showcase')} style={styles.backBtn}>
-                    ← Scopri ELAB
+                    {t('auth.login.back_showcase')}
                 </button>
             </div>
         </div>

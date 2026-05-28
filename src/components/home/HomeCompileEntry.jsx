@@ -28,6 +28,7 @@
  */
 
 import React, { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { compileCode } from '../../services/api';
 import logger from '../../utils/logger';
 import { resolveCompileFlash } from '../../utils/compileSizeParse';
@@ -153,6 +154,7 @@ function SerialRailIcon() {
 }
 
 const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
+  const { t } = useTranslation();
   const [blocklyXml, setBlocklyXml] = useState(DEFAULT_BLOCKS_BLINK);
   const [scratchCode, setScratchCode] = useState(NANO_R4_BLINK_CPP);
   // iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): direct C++ editor
@@ -330,7 +332,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
           type="button"
           className={styles.backBtn}
           onClick={onBackHome}
-          aria-label="Torna alla home"
+          aria-label={t('home_compile_entry.back_home')}
         >
           ←
         </button>
@@ -441,7 +443,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         <aside className={styles.compileBarPanel} aria-label="Pannello compilazione" data-onboard-target="compile-bar">
           <section className={styles.codePreview} aria-label="Codice Arduino corrente">
             <div className={styles.codePreviewHeader}>
-              <span>Codice</span>
+              <span>{t('home_compile_entry.code')}</span>
               <button
                 type="button"
                 className={styles.codePreviewAction}
@@ -512,7 +514,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             dentro al componente. */}
         <section
           className={styles.virtualSerialSection}
-          aria-label="Monitor Seriale Virtuale"
+          aria-label={t('home_compile_entry.serial_aria')}
           data-onboard-target="virtual-serial"
           id="home-compile-serial-panel"
         >
@@ -526,7 +528,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             data-elab-orientation="portrait"
           >
             <SerialRailIcon />
-            <span>Seriale</span>
+            <span>{t('home_compile_entry.serial')}</span>
           </button>
           {serialExpanded && (
             <div className={styles.serialDrawer}>

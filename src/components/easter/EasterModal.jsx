@@ -26,6 +26,8 @@
  * Andrea Marro — iter 37 — 2026-04-30
  */
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 import styles from './EasterModal.module.css';
 
 const BANANA_KEY = 'elab-easter-banana-clicks';
@@ -68,12 +70,13 @@ function ScimpanzeFallback() {
         <ellipse cx="22" cy="42" rx="5" ry="8" fill="var(--elab-hex-d9a87c)" />
         <ellipse cx="98" cy="42" rx="5" ry="8" fill="var(--elab-hex-d9a87c)" />
       </svg>
-      <span>Ragazzi, ancora niente scimpanze qui — torneranno presto!</span>
+      <span>{i18n.t('easter_modal.placeholder_message')}</span>
     </div>
   );
 }
 
 export default function EasterModal({ isOpen = true, onClose }) {
+  const { t } = useTranslation();
   const dialogRef = useRef(null);
   const closeBtnRef = useRef(null);
   const previousFocusRef = useRef(null);
@@ -201,7 +204,7 @@ export default function EasterModal({ isOpen = true, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="easter-modal-title"
-        aria-label="Chi siamo — il team ELAB"
+        aria-label={t('easter_modal.modal_aria')}
         data-testid="easter-modal-dialog"
       >
         <header className={styles.header}>
@@ -213,7 +216,7 @@ export default function EasterModal({ isOpen = true, onClose }) {
             type="button"
             className={styles.closeBtn}
             onClick={handleClose}
-            aria-label="Chiudi finestra Chi siamo"
+            aria-label={t('easter_modal.close_aria')}
             data-testid="easter-modal-close"
           >
             ×

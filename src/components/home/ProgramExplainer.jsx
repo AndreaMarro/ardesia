@@ -27,6 +27,7 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './ProgramExplainer.module.css';
 
 const STORAGE_KEY = 'elab.compile.explainer.collapsed';
@@ -117,6 +118,7 @@ function readInitialCollapsed() {
  * @param {string} [props.templateKey='blink-led']
  */
 export default function ProgramExplainer({ templateKey = 'blink-led' }) {
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(readInitialCollapsed);
 
   // iter-102: persist BOTH states. Default is collapsed, so an explicit
@@ -155,7 +157,7 @@ export default function ProgramExplainer({ templateKey = 'blink-led' }) {
         <section
           id={sectionId}
           role="region"
-          aria-label="Spiegazione del programma corrente"
+          aria-label={t('program_explainer.aria')}
           className={styles.body}
           data-testid="program-explainer-body"
         >

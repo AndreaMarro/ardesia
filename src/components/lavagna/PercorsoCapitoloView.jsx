@@ -20,6 +20,7 @@
  */
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import VolumeCitation from '../common/VolumeCitation.jsx';
 import DocenteSidebar from './DocenteSidebar.jsx';
 import css from './PercorsoCapitoloView.module.css';
@@ -357,6 +358,7 @@ export default function PercorsoCapitoloView({
   onCitationClick,
   morphicContext = null,
 }) {
+  const { t } = useTranslation();
   const [activeExpIndex, setActiveExpIndex] = useState(0);
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
   const [runtimeMorphicContext, setRuntimeMorphicContext] = useState(
@@ -515,7 +517,7 @@ export default function PercorsoCapitoloView({
   if (!capitolo) {
     return (
       <div className={css.fallback}>
-        <p>Nessun capitolo selezionato. Caricamento in corso o selezionare Capitolo.</p>
+        <p>{t('percorso_view.no_chapter')}</p>
       </div>
     );
   }
@@ -551,7 +553,7 @@ export default function PercorsoCapitoloView({
           </div>
           <h1 className={css.capTitle}>{capitolo.titolo}</h1>
           {onClose && (
-            <button type="button" className={css.closeBtn} onClick={onClose} aria-label="Chiudi percorso">
+            <button type="button" className={css.closeBtn} onClick={onClose} aria-label={t('percorso_view.close')}>
               ×
             </button>
           )}
@@ -560,7 +562,7 @@ export default function PercorsoCapitoloView({
         {/* iter 45 Andrea video2 + ADR-019 Sense 1.5 — Lezione personalizzata.
              Click → sendChat con context capitolo → unlim-chat (Mistral routing 70/20/10
              + onniscenza-bridge iter 24 LIVE) genera proposta adattata classe + storia. */}
-        <section className={css.lezioneBox} aria-label="Lezione personalizzata">
+        <section className={css.lezioneBox} aria-label={t('percorso_view.custom_lesson')}>
           <button
             type="button"
             onClick={generaLezione}
@@ -608,11 +610,11 @@ export default function PercorsoCapitoloView({
 
         <section
           className={css.morphicRuntimeCue}
-          aria-label="Adattamento percorso"
+          aria-label={t('percorso_view.path_adaptation')}
           data-testid="percorso-morphic-cue"
           data-transition-emphasis={activeMorphicHint.transitionEmphasis}
         >
-          <span>Ragazzi, kit fisico ELAB</span>
+          <span>{t('percorso_view.kit_ribbon')}</span>
           <span>{`Lessico ${activeMorphicHint.lexicalComplexity}`}</span>
           <span data-testid="morphic-example-count">{activeMorphicHint.esempiBaseCount}</span>
           <span data-testid="morphic-analogy-count">{activeMorphicHint.analogieCount}</span>
@@ -620,9 +622,9 @@ export default function PercorsoCapitoloView({
           <span data-testid="morphic-live-variation">{openingVariation.text}</span>
         </section>
 
-        <section className={css.liveRegiaPanel} aria-label="Regia live Percorso">
+        <section className={css.liveRegiaPanel} aria-label={t('percorso_view.live_regia_aria')}>
           <div className={css.liveRegiaHeader}>
-            <span className={css.liveRegiaTitle}>Regia live Percorso</span>
+            <span className={css.liveRegiaTitle}>{t('percorso_view.live_regia_title')}</span>
             <span className={css.liveRegiaStatus}>
               {liveSignals.length > 0 ? 'contesto aula attivo' : 'in ascolto del contesto aula'}
             </span>
@@ -638,7 +640,7 @@ export default function PercorsoCapitoloView({
               <span className={css.liveSignal}>nessun segnale live recente</span>
             )}
           </div>
-          <div className={css.liveRegiaBudget} aria-label="Budget morfico Percorso">
+          <div className={css.liveRegiaBudget} aria-label={t('percorso_view.morphic_budget')}>
             <span className={css.liveBudgetItem} data-testid="percorso-writing-budget">
               {morphicOutputBudget.writingLabel}
             </span>
@@ -652,7 +654,7 @@ export default function PercorsoCapitoloView({
         </section>
 
         {capitolo.theory?.testo_classe && (
-          <section className={css.theorySection} aria-label="Teoria">
+          <section className={css.theorySection} aria-label={t('percorso_view.theory')}>
             <p className={css.theoryText}>{capitolo.theory.testo_classe}</p>
             {capitolo.theory.citazioni_volume?.length > 0 && (
               <div className={css.citationsRow}>
@@ -697,13 +699,13 @@ export default function PercorsoCapitoloView({
               >
                 {transition && !transitionAlreadyShownBetweenCards && (
                   <div className={css.transition}>
-                    <span className={css.transitionLabel}>Transizione</span>
+                    <span className={css.transitionLabel}>{t('percorso_view.transition')}</span>
                     <p className={css.transitionText}>{transition.text_classe}</p>
                   </div>
                 )}
 
               <header className={css.expHeader}>
-                <div className={css.expNum}>Esperimento {esp.num}</div>
+                <div className={css.expNum}>{t('percorso_view.experiment_num', { num: esp.num })}</div>
                 <h2 className={css.expTitle}>{esp.title_classe}</h2>
                 {esp.volume_ref?.page_start && (
                   <VolumeCitation
@@ -716,7 +718,7 @@ export default function PercorsoCapitoloView({
 
               {esp.components_needed?.length > 0 && (
                 <div className={css.componentsBlock}>
-                  <div className={css.blockLabel}>Componenti</div>
+                  <div className={css.blockLabel}>{t('percorso_view.components')}</div>
                   <ul className={css.componentsList}>
                     {morphicHint.visibleComponents.map((c, i) => (
                       <li key={i} className={css.componentItem}>
@@ -741,7 +743,7 @@ export default function PercorsoCapitoloView({
 
               {esp.phases?.length > 0 && (
                 <div className={css.phasesBlock}>
-                  <div className={css.blockLabel}>Fasi</div>
+                  <div className={css.blockLabel}>{t('percorso_view.phases')}</div>
                   <ol className={css.phasesList}>
                     {esp.phases.map((ph, phi) => (
                       <li
@@ -768,13 +770,13 @@ export default function PercorsoCapitoloView({
                   data-testid={`percorso-next-transition-${esp.id}`}
                   aria-label={`Passaggio al prossimo esperimento da ${esp.title_classe}`}
                 >
-                  <span className={css.transitionLabel}>Prossimo passaggio</span>
+                  <span className={css.transitionLabel}>{t('percorso_view.next_step')}</span>
                   {transitionToNext?.text_classe && (
                     <p className={css.transitionText}>{transitionToNext.text_classe}</p>
                   )}
                   {nextExperimentLabel && (
                     <div className={css.nextExperimentPreview}>
-                      <strong>Prossimo:</strong> {nextExperimentLabel}
+                      <strong>{t('percorso_view.next_prefix')}</strong> {nextExperimentLabel}
                       {nextExperimentPreview && (
                         <p className={css.nextPreviewText}>{nextExperimentPreview}</p>
                       )}

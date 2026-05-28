@@ -5,6 +5,7 @@
 // ============================================
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function VideosTab({
     // YouTube state
@@ -26,6 +27,7 @@ export default function VideosTab({
     // UNLIM
     onSendToUNLIM,
 }) {
+    const { t } = useTranslation();
     return (
         <div className="v4-videos-container">
             <div className="v4-sub-toolbar">
@@ -42,7 +44,7 @@ export default function VideosTab({
                             type="text"
                             value={youtubeUrl}
                             onChange={(e) => onSetYoutubeUrl(e.target.value)}
-                            placeholder="Incolla link YouTube..."
+                            placeholder={t('videos_tab.youtube_placeholder')}
                             onKeyDown={(e) => e.key === 'Enter' && onAddYoutubeVideo()}
                         />
                         <button className="v4-toolbar-btn primary" onClick={onAddYoutubeVideo}>Carica</button>
@@ -55,7 +57,7 @@ export default function VideosTab({
                                     width="100%"
                                     height="100%"
                                     src={`https://www.youtube.com/embed/${currentVideoId}?rel=0`}
-                                    title="YouTube video"
+                                    title={t('videos_tab.video_iframe_title')}
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
@@ -80,8 +82,8 @@ export default function VideosTab({
                         ) : (
                             <div className="v4-placeholder">
                                 <div className="v4-icon"></div>
-                                <h3>Videolezioni YouTube</h3>
-                                <p>Incolla un link sopra oppure scegli un video consigliato</p>
+                                <h3>{t('videos_tab.youtube_title')}</h3>
+                                <p>{t('videos_tab.youtube_subtitle')}</p>
                                 <div className="v4-video-suggestions">
                                     {[
                                         { title: 'Introduzione Arduino', id: 'fCxzA9_kg6s' },
@@ -101,8 +103,8 @@ export default function VideosTab({
                     {!meetLink.trim() || !meetActive ? (
                         <div className="v4-meet-setup">
                             <div className="v4-icon"></div>
-                            <h3>Videochiamata con Google Meet</h3>
-                            <p>Incolla un link Google Meet oppure creane uno nuovo</p>
+                            <h3>{t('videos_tab.meet_title')}</h3>
+                            <p>{t('videos_tab.meet_subtitle')}</p>
                             <div className="v4-meet-input-row">
                                 <input
                                     type="text"
@@ -121,12 +123,12 @@ export default function VideosTab({
                     ) : (
                         <div className="v4-meet-active">
                             <div className="v4-meet-bar">
-                                <span>Riunione attiva</span>
+                                <span>{t('videos_tab.meet_active')}</span>
                                 <button className="v4-meet-leave" onClick={onStopMeet}>✕ Termina</button>
                             </div>
                             <div className="v4-meet-card">
                                 <div className="v4-meet-card-icon"></div>
-                                <h3>Google Meet</h3>
+                                <h3>{t('videos_tab.meet_brand')}</h3>
                                 <p className="v4-meet-link-display">{meetLink}</p>
                                 <div className="v4-meet-actions">
                                     <button className="v4-meet-join-btn" onClick={onJoinMeet}>

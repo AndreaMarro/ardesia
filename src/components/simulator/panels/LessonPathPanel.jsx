@@ -13,6 +13,7 @@
  */
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getCurriculum } from '../../../data/curriculumData';
 import { getLessonPath } from '../../../data/lesson-paths';
 import { getPrerequisites, getNewConcepts, CONCEPTS } from '../../../data/concept-graph';
@@ -260,7 +261,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
     if (phase.teacher_tip) {
       content.push(
         <div key="tip" style={RS.teacherTipBox}>
-          <span style={RS.teacherTipIcon}>Nota:</span>
+          <span style={RS.teacherTipIcon}>{t('lesson_path_panel.note')}</span>
           <span>{phase.teacher_tip}</span>
         </div>
       );
@@ -282,7 +283,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
     if (phase.class_hook) {
       content.push(
         <div key="hook" style={RS.hookBox}>
-          <span style={RS.hookIcon}>Spunto:</span>
+          <span style={RS.hookIcon}>{t('lesson_path_panel.cue')}</span>
           <em>{phase.class_hook}</em>
         </div>
       );
@@ -302,12 +303,12 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
     if (phase.common_mistakes?.length > 0) {
       content.push(
         <div key="mistakes">
-          <p style={S.phaseLabel}>Errori tipici e come reagire:</p>
+          <p style={S.phaseLabel}>{t('lesson_path_panel.typical_errors')}</p>
           <ul style={S.errorList}>
             {phase.common_mistakes.map((m, i) => (
               <li key={i} style={S.errorItem}>
                 <strong>{m.mistake}</strong> → {m.teacher_response}
-                {m.analogy && <em style={{ display: 'block', marginTop: 2, color: 'var(--elab-hex-6b7280)' }}>Analogia: {m.analogy}</em>}
+                {m.analogy && <em style={{ display: 'block', marginTop: 2, color: 'var(--elab-hex-6b7280)' }}>{t('lesson_path_panel.analogy')} {m.analogy}</em>}
               </li>
             ))}
           </ul>
@@ -353,7 +354,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
     if (phase.observation_prompt) {
       content.push(
         <div key="obs" style={RS.observeBox}>
-          <span>Osserva:</span>
+          <span>{t('lesson_path_panel.observe')}</span>
           <span>{phase.observation_prompt}</span>
         </div>
       );
@@ -363,7 +364,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
     if (phase.analogies?.length > 0) {
       content.push(
         <div key="analogies">
-          <p style={S.phaseLabel}>Analogie per spiegare:</p>
+          <p style={S.phaseLabel}>{t('lesson_path_panel.analogies_to_explain')}</p>
           <ul style={S.errorList}>
             {phase.analogies.map((a, i) => (
               <li key={i} style={{ ...S.errorItem, borderLeftColor: 'var(--elab-lime)' }}>
@@ -381,7 +382,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
     if (phase.summary_for_class) {
       content.push(
         <div key="summary" style={RS.summaryBox}>
-          <strong>Da dire alla classe:</strong> {phase.summary_for_class}
+          <strong>{t('lesson_path_panel.say_to_class')}</strong> {phase.summary_for_class}
         </div>
       );
     }
@@ -410,14 +411,14 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
       {/* Header — hidden when embedded in FloatingWindow */}
       {!embedded && (
       <div style={collapsed ? { ...S.header, borderRadius: 14 } : S.header}>
-        <span style={S.headerIcon}>Lezione</span>
+        <span style={S.headerIcon}>{t('lesson_path_panel.lesson_label')}</span>
         <span style={S.headerTitle}>{collapsed ? (path.title || '') : 'Percorso Lezione'}</span>
         <button onClick={(e) => { e.stopPropagation(); onToggleCollapse?.(); }} style={{ ...S.closeBtn, marginRight: 4 }} title={collapsed ? 'Espandi' : 'Riduci'} aria-label={collapsed ? 'Espandi percorso' : 'Riduci percorso'}>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d={collapsed ? 'M3 5L7 9L11 5' : 'M3 9L7 5L11 9'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
-        <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={S.closeBtn} title="Chiudi" aria-label="Chiudi percorso">
+        <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={S.closeBtn} title={t('lesson_path_panel.close')} aria-label={t('lesson_path_panel.close_path_aria')}>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M3 3L11 11M3 11L11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
@@ -435,7 +436,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
       {/* Obiettivo */}
       {path.objective && (
         <div style={RS.objectiveBox}>
-          <strong>Obiettivo:</strong> {path.objective}
+          <strong>{t('lesson_path_panel.objective')}</strong> {path.objective}
         </div>
       )}
 
@@ -472,7 +473,7 @@ function RichLessonPath({ path, experiment, expandedPhase, onExpandPhase, onClos
       {path.next_experiment && onLoadExperiment && (
         <div style={{ padding: '8px 14px 14px' }}>
           <p style={S.phaseText}>
-            <strong>Prossimo:</strong> {path.next_experiment.title}
+            <strong>{t('lesson_path_panel.next')}</strong> {path.next_experiment.title}
           </p>
           {path.next_experiment.preview && (
             <p style={S.phaseHint}>{path.next_experiment.preview}</p>
@@ -641,6 +642,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
   onLoadExperiment,
   embedded = false,
 }) {
+  const { t } = useTranslation();
   const [expandedPhase, setExpandedPhase] = React.useState(0);
   const [collapsed, setCollapsed] = React.useState(false); // Start expanded in FloatingWindow
 
@@ -679,7 +681,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
     // Phase 1: PREPARA
     <div key="p1" style={S.phaseContent}>
       <p style={S.phaseText}>
-        <strong>Oggi facciamo:</strong> {experiment.title || experiment.desc}
+        <strong>{t('lesson_path_panel.today_we_do')}</strong> {experiment.title || experiment.desc}
       </p>
       {hasCurriculum && (
         <div style={S.curatedBox}>
@@ -689,7 +691,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
       )}
       {materials.length > 0 && (
         <>
-          <p style={S.phaseLabel}>Materiale per ogni gruppo:</p>
+          <p style={S.phaseLabel}>{t('lesson_path_panel.material_per_group')}</p>
           <ul style={S.materialList}>
             {materials.map((m, i) => (
               <li key={i} style={S.materialItem}>
@@ -734,7 +736,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
       </p>
       {hasCurriculum && curriculum.teacherBriefing.commonQuestion && (
         <div style={S.teacherTipBox}>
-          <span style={S.teacherTipLabel}>Se ti chiedono di più:</span>
+          <span style={S.teacherTipLabel}>{t('lesson_path_panel.if_they_ask_more')}</span>
           <span>{curriculum.teacherBriefing.commonQuestion}</span>
         </div>
       )}
@@ -745,7 +747,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
       {experiment.observe && (
         <p style={S.phaseText}>{experiment.observe}</p>
       )}
-      <p style={S.phaseLabel}>Errori tipici e come reagire:</p>
+      <p style={S.phaseLabel}>{t('lesson_path_panel.typical_errors')}</p>
       <ul style={S.errorList}>
         {mistakes.map((m, i) => (
           <li key={i} style={S.errorItem}>
@@ -788,7 +790,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
     <div key="p6" style={S.phaseContent}>
       {experiment.concept && (
         <p style={S.phaseText}>
-          <strong>Oggi abbiamo imparato:</strong> {experiment.concept}
+          <strong>{t('lesson_path_panel.today_we_learned')}</strong> {experiment.concept}
         </p>
       )}
       {hasCurriculum && curriculum.assessment?.length > 0 && (
@@ -804,7 +806,7 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
       {nextExp && (
         <div style={S.nextExpBox}>
           <p style={S.phaseText}>
-            <strong>La prossima volta:</strong> {nextExp.title}
+            <strong>{t('lesson_path_panel.next_time')}</strong> {nextExp.title}
           </p>
           {onLoadExperiment && (
             <button
@@ -826,8 +828,8 @@ const LessonPathPanel = React.memo(function LessonPathPanel({
     <div style={S.root} data-elab-lesson-path="true">
       {/* Header */}
       <div style={S.header}>
-        <span style={S.headerIcon}>Lezione</span>
-        <span style={S.headerTitle}>Percorso Lezione</span>
+        <span style={S.headerIcon}>{t('lesson_path_panel.lesson_label')}</span>
+        <span style={S.headerTitle}>{t('lesson_path_panel.lesson_path_title')}</span>
         <button onClick={onClose} style={S.closeBtn} title="Chiudi">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M3 3L11 11M3 11L11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>

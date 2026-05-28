@@ -29,6 +29,7 @@
  * Original iter 104 C3 © Andrea Marro — 2026-05-24
  */
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import css from './UnlimCompileHelper.module.css';
 
 const MASCOT_SRC = '/assets/mascot/logo-senza-sfondo.png';
@@ -67,6 +68,7 @@ export default function UnlimCompileHelper({
   sketchCode = '',
   blockCount = 0,
 }) {
+  const { t } = useTranslation();
   const message = getStatusMessage(compileStatus);
   const context = buildContext({ editorMode, compileStatus, blockCount, sketchCode });
   const hasHandler = typeof onAskQuestion === 'function';
@@ -79,7 +81,7 @@ export default function UnlimCompileHelper({
   return (
     <section
       className={css.helper}
-      aria-label="Aiuto UNLIM compilazione"
+      aria-label={t('unlim_compile_helper.aria')}
       data-status={compileStatus}
     >
       <div className={css.mascotRow}>

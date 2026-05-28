@@ -19,6 +19,7 @@ import React, {
   Suspense,
   lazy,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import SimulatorCanvas from './canvas/SimulatorCanvas';
 import DrawingOverlay from './canvas/DrawingOverlay';
 import ExperimentPicker from './panels/ExperimentPicker';
@@ -125,6 +126,7 @@ const NewElabSimulator = ({
   hideBuildModeBar = false,
   enableDrawingSync = false,
 }) => {
+  const { t } = useTranslation();
   // ─── UNLIM API highlight state (internal, merged with props) ───
   const [apiHighlightedComponents, setApiHighlightedComponents] = useState([]);
   const [apiHighlightedPins, setApiHighlightedPins] = useState([]);
@@ -1043,9 +1045,9 @@ const NewElabSimulator = ({
       {/* PDF Ready Toast */}
       {pdfReady && (
         <div style={{ position: 'absolute', top: 56, left: '50%', transform: 'translateX(-50%)', zIndex: 1000, display: 'flex', alignItems: 'center', gap: 10, background: 'var(--color-primary, var(--elab-navy))', color: 'var(--color-text-inverse, #fff)', padding: '10px 18px', borderRadius: 10, boxShadow: '0 4px 20px rgba(0,0,0,.25)', fontFamily: "var(--font-sans)", fontSize: 14 }}>
-          <span>Report PDF pronto!</span>
-          <button onClick={handleDownloadPdf} aria-label="Scarica report PDF" style={{ background: 'var(--color-accent, var(--elab-lime))', color: 'var(--color-text-inverse, #fff)', border: 'none', borderRadius: 6, padding: '6px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>Scarica</button>
-          <button onClick={() => { if (pdfReady.url) URL.revokeObjectURL(pdfReady.url); setPdfReady(null); }} style={{ background: 'transparent', color: '#fff9', border: 'none', cursor: 'pointer', fontSize: 18, lineHeight: 1, padding: '2px 6px' }} aria-label="Chiudi">✕</button>
+          <span>{t('simulator_shell.report_ready')}</span>
+          <button onClick={handleDownloadPdf} aria-label={t('simulator_shell.download_report_aria')} style={{ background: 'var(--color-accent, var(--elab-lime))', color: 'var(--color-text-inverse, #fff)', border: 'none', borderRadius: 6, padding: '6px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>{t('simulator_shell.download')}</button>
+          <button onClick={() => { if (pdfReady.url) URL.revokeObjectURL(pdfReady.url); setPdfReady(null); }} style={{ background: 'transparent', color: '#fff9', border: 'none', cursor: 'pointer', fontSize: 18, lineHeight: 1, padding: '2px 6px' }} aria-label={t('simulator_shell.close')}>✕</button>
         </div>
       )}
 
@@ -1113,9 +1115,9 @@ const NewElabSimulator = ({
                 {showBom && currentExperiment && (<BomPanel experiment={mergedExperiment} onClose={() => setShowBom(false)} />)}
                 {!hideLessonPath && showLessonPath && currentExperiment && (<LessonPathPanel experiment={currentExperiment} allExperiments={ALL_EXPERIMENTS} onClose={() => setShowLessonPath(false)} onSendToUNLIM={onSendToUNLIM} onLoadExperiment={(id) => { const exp = findExperimentById(id); if (exp) handleSelectExperiment(exp); }} />)}
                 {showQuiz && currentExperiment?.quiz?.length > 0 && (<QuizPanel experiment={currentExperiment} onClose={() => setShowQuiz(false)} onSendToUNLIM={onSendToUNLIM} onQuizComplete={handleQuizComplete} />)}
-                {exportToast && (<div role="status" aria-live="polite" style={{ position: 'absolute', bottom: 50, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent, var(--elab-lime))', color: 'var(--color-text-inverse, #fff)', padding: '8px 20px', borderRadius: 8, fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 700, boxShadow: '0 4px 12px rgba(124,179,66,0.35)', zIndex: 100, pointerEvents: 'none' }}>Foto salvata!</div>)}
+                {exportToast && (<div role="status" aria-live="polite" style={{ position: 'absolute', bottom: 50, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent, var(--elab-lime))', color: 'var(--color-text-inverse, #fff)', padding: '8px 20px', borderRadius: 8, fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 700, boxShadow: '0 4px 12px rgba(124,179,66,0.35)', zIndex: 100, pointerEvents: 'none' }}>{t('simulator_shell.photo_saved')}</div>)}
                 {wireToast && (<div role="status" aria-live="polite" style={{ position: 'absolute', bottom: 50, left: '50%', transform: 'translateX(-50%)', background: 'var(--color-vol2, var(--elab-orange))', color: 'var(--color-text, #1A1A2E)', padding: '8px 20px', borderRadius: 8, fontFamily: "var(--font-display, 'Oswald', sans-serif)", fontSize: 16, fontWeight: 700, boxShadow: '0 4px 12px rgba(232,148,28,0.35)', zIndex: 100, pointerEvents: 'none' }}>{wireToast}</div>)}
-                {wireMode && (<div className={lyStyles.wireModeIndicator} role="status" aria-live="polite"><span style={{ fontSize: 14 }}>&#x1F50C;</span><span>Collegamento fili attivo</span>{wireStartRef.current && (<span style={{ color: 'var(--color-vol2-text, #996600)' }}>Da: {wireStartRef.current} — clicca il pin destinazione</span>)}</div>)}
+                {wireMode && (<div className={lyStyles.wireModeIndicator} role="status" aria-live="polite"><span style={{ fontSize: 14 }}>&#x1F50C;</span><span>{t('simulator_shell.wire_mode_active')}</span>{wireStartRef.current && (<span style={{ color: 'var(--color-vol2-text, #996600)' }}>{t('simulator_shell.wire_mode_from', { from: wireStartRef.current })}</span>)}</div>)}
                 {currentExperiment && currentExperiment.buildMode === 'guided' && !hideComponentDrawer && !unifiedPassoActive && !(typeof window !== 'undefined' && window.__ELAB_UNIFIED_PASSO_ACTIVE) && (
                   <ComponentDrawer mode={currentExperiment.buildMode} experiment={currentExperiment} currentStep={buildStepIndex} onStepChange={handleBuildStepChange} volumeNumber={selectedVolume}
                     onStartScratchPhase={(chosenMode) => { setShowCodeEditor(true); setEditorMode(chosenMode || 'scratch'); }}
@@ -1170,11 +1172,11 @@ const NewElabSimulator = ({
               {/* BOTTOM PANEL: Serial Monitor / Plotter — solo Vol3 (disclosure >= 2) */}
               {isAvrMode && isVol3 && (
                 <div ref={bottomPanelRef} className="elab-simulator__bottom-panel" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', transition: 'max-height 200ms ease', maxHeight: showBottomPanel ? 'min(350px, 45dvh)' : 40, flexShrink: 0 }}>
-                  {!showBottomPanel && (<button onClick={() => setShowBottomPanel(true)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, height: 44, minHeight: 44, background: 'var(--color-code-header, #181825)', border: 'none', borderTop: '1px solid var(--color-code-border, #313244)', cursor: 'pointer', width: '100%', fontFamily: FONT_BODY, fontSize: 14, fontWeight: 600, color: 'var(--color-text-gray-300, #737373)' }} title="Apri Monitor Seriale"><span style={{ fontSize: 14 }}>{'\u25B2'}</span><span>Monitor Seriale</span>{isRunning && (<span style={{ width: 8, height: 8, borderRadius: '50%', background: LIME, boxShadow: '0 0 6px rgba(124,179,66,0.5)', flexShrink: 0 }} />)}</button>)}
+                  {!showBottomPanel && (<button onClick={() => setShowBottomPanel(true)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, height: 44, minHeight: 44, background: 'var(--color-code-header, #181825)', border: 'none', borderTop: '1px solid var(--color-code-border, #313244)', cursor: 'pointer', width: '100%', fontFamily: FONT_BODY, fontSize: 14, fontWeight: 600, color: 'var(--color-text-gray-300, #737373)' }} title={t('simulator_shell.open_serial_title')}><span style={{ fontSize: 14 }}>{'\u25B2'}</span><span>{t('simulator_shell.serial_monitor')}</span>{isRunning && (<span style={{ width: 8, height: 8, borderRadius: '50%', background: LIME, boxShadow: '0 0 6px rgba(124,179,66,0.5)', flexShrink: 0 }} />)}</button>)}
                   {showBottomPanel && (<>
                     <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--color-editor-border, #2D3748)', flexShrink: 0 }}>
-                      <button onClick={() => setBottomPanel('monitor')} style={{ flex: 1, padding: '4px 8px', border: 'none', cursor: 'pointer', fontFamily: FONT_BODY, fontSize: 14, fontWeight: 600, background: bottomPanel === 'monitor' ? 'var(--color-editor-active-bg, #1E2530)' : 'var(--color-editor-bg, #161B22)', color: bottomPanel === 'monitor' ? LIME : 'var(--color-text-gray-400, #666)', borderBottom: bottomPanel === 'monitor' ? `2px solid ${LIME}` : '2px solid transparent', minHeight: 36 }}>Monitor</button>
-                      <button onClick={() => setBottomPanel('plotter')} style={{ flex: 1, padding: '4px 8px', border: 'none', cursor: 'pointer', fontFamily: FONT_BODY, fontSize: 14, fontWeight: 600, background: bottomPanel === 'plotter' ? 'var(--color-editor-active-bg, #1E2530)' : 'var(--color-editor-bg, #161B22)', color: bottomPanel === 'plotter' ? 'var(--color-tab-plotter, #3498DB)' : 'var(--color-text-gray-400, #666)', borderBottom: bottomPanel === 'plotter' ? '2px solid var(--color-tab-plotter, #3498DB)' : '2px solid transparent', minHeight: 36 }}>Plotter</button>
+                      <button onClick={() => setBottomPanel('monitor')} style={{ flex: 1, padding: '4px 8px', border: 'none', cursor: 'pointer', fontFamily: FONT_BODY, fontSize: 14, fontWeight: 600, background: bottomPanel === 'monitor' ? 'var(--color-editor-active-bg, #1E2530)' : 'var(--color-editor-bg, #161B22)', color: bottomPanel === 'monitor' ? LIME : 'var(--color-text-gray-400, #666)', borderBottom: bottomPanel === 'monitor' ? `2px solid ${LIME}` : '2px solid transparent', minHeight: 36 }}>{t('simulator_shell.monitor_tab')}</button>
+                      <button onClick={() => setBottomPanel('plotter')} style={{ flex: 1, padding: '4px 8px', border: 'none', cursor: 'pointer', fontFamily: FONT_BODY, fontSize: 14, fontWeight: 600, background: bottomPanel === 'plotter' ? 'var(--color-editor-active-bg, #1E2530)' : 'var(--color-editor-bg, #161B22)', color: bottomPanel === 'plotter' ? 'var(--color-tab-plotter, #3498DB)' : 'var(--color-text-gray-400, #666)', borderBottom: bottomPanel === 'plotter' ? '2px solid var(--color-tab-plotter, #3498DB)' : '2px solid transparent', minHeight: 36 }}>{t('simulator_shell.plotter_tab')}</button>
                       <button onClick={() => setShowBottomPanel(false)} title="Chiudi pannello (Monitor/Plotter)" aria-label="Chiudi pannello seriale" style={{ padding: '4px 10px', border: 'none', cursor: 'pointer', background: 'var(--color-editor-bg, #161B22)', color: 'var(--color-text-gray-300, #737373)', fontSize: 16, borderBottom: '2px solid transparent', minHeight: 36, minWidth: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 150ms, background 150ms' }} onPointerEnter={e => { e.currentTarget.style.color = 'var(--elab-red)'; e.currentTarget.style.background = 'rgba(229,75,61,0.1)'; }} onPointerLeave={e => { e.currentTarget.style.color = '#737373'; e.currentTarget.style.background = 'var(--color-editor-bg, #161B22)'; }}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 4L12 12M4 12L12 4"/></svg></button>
                     </div>
                     <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
@@ -1190,50 +1192,50 @@ const NewElabSimulator = ({
                 <div className="sim-welcome">
                   <div className="sim-welcome__header">
                     <span className="sim-welcome__icon">&#x26A1;</span>
-                    <h2 className="sim-welcome__title">Benvenuto nel Simulatore!</h2>
-                    <p className="sim-welcome__subtitle">Iniziare è facilissimo. Segui questi 3 passi:</p>
+                    <h2 className="sim-welcome__title">{t('simulator_shell.welcome_title')}</h2>
+                    <p className="sim-welcome__subtitle">{t('simulator_shell.welcome_subtitle')}</p>
                   </div>
                   <div className="sim-welcome__steps">
                     <button className="sim-welcome__step" onClick={() => { if (!showSidebar) setShowSidebar(true); }}>
                       <span className="sim-welcome__step-num">1</span>
                       <span className="sim-welcome__step-icon">&#x1F4D6;</span>
                       <span className="sim-welcome__step-text">
-                        <strong>Scegli un esperimento</strong>
-                        <span>Dalla lista a sinistra, tocca un esperimento</span>
+                        <strong>{t('simulator_shell.step1_title')}</strong>
+                        <span>{t('simulator_shell.step1_body')}</span>
                       </span>
                     </button>
                     <button className="sim-welcome__step" onClick={() => { if (!showSidebar) setShowSidebar(true); }}>
                       <span className="sim-welcome__step-num">2</span>
                       <span className="sim-welcome__step-icon">&#x1F50D;</span>
                       <span className="sim-welcome__step-text">
-                        <strong>Guarda il circuito</strong>
-                        <span>Qui al centro apparirà il circuito da esplorare</span>
+                        <strong>{t('simulator_shell.step2_title')}</strong>
+                        <span>{t('simulator_shell.step2_body')}</span>
                       </span>
                     </button>
                     <button className="sim-welcome__step" disabled style={{ opacity: 0.7 }}>
                       <span className="sim-welcome__step-num">3</span>
                       <span className="sim-welcome__step-icon">&#x1F916;</span>
                       <span className="sim-welcome__step-text">
-                        <strong>Chiedi aiuto a UNLIM</strong>
-                        <span>Il bottone in alto a destra spiega tutto</span>
+                        <strong>{t('simulator_shell.step3_title')}</strong>
+                        <span>{t('simulator_shell.step3_body')}</span>
                       </span>
                     </button>
                   </div>
-                  <button className="sim-welcome__dismiss" onClick={dismissWelcome}>Ho capito, iniziamo!</button>
+                  <button className="sim-welcome__dismiss" onClick={dismissWelcome}>{t('simulator_shell.welcome_dismiss')}</button>
                 </div>
               ) : (
                 <>
                   <span className="elab-simulator__placeholder-icon">&#x26A1;</span>
                   <span className="elab-simulator__placeholder-text">ELAB Simulator</span>
-                  <span style={{ fontSize: 14, color: 'var(--color-text-gray-100, #AAA)' }}>Seleziona un esperimento dalla sidebar</span>
-                  {!showSidebar && (<button onClick={() => setShowSidebar(true)} style={{ marginTop: 12, padding: '6px 16px', border: `1px solid ${LIME}`, borderRadius: 6, background: 'transparent', color: LIME, cursor: 'pointer', fontFamily: FONT_BODY, fontSize: 14 }}>Mostra Esperimenti</button>)}
+                  <span style={{ fontSize: 14, color: 'var(--color-text-gray-100, #AAA)' }}>{t('simulator_shell.no_experiment')}</span>
+                  {!showSidebar && (<button onClick={() => setShowSidebar(true)} style={{ marginTop: 12, padding: '6px 16px', border: `1px solid ${LIME}`, borderRadius: 6, background: 'transparent', color: LIME, cursor: 'pointer', fontFamily: FONT_BODY, fontSize: 14 }}>{t('simulator_shell.show_experiments')}</button>)}
                 </>
               )}
             </div>
           )}
 
           {!showCodeEditor && currentExperiment && currentExperiment.simulationMode === 'avr' && isVol3 && (
-            <button onClick={() => setShowCodeEditor(true)} aria-label="Apri editor codice" style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 30, width: 24, height: 64, border: 'none', borderRadius: '6px 0 0 6px', background: 'var(--color-primary, var(--elab-navy))', color: 'var(--color-text-inverse, #fff)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-md)', fontSize: 14, padding: 0, transition: 'opacity var(--transition-base)' }} title="Apri Editor">‹</button>
+            <button onClick={() => setShowCodeEditor(true)} aria-label={t('simulator_shell.open_editor_aria')} style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 30, width: 24, height: 64, border: 'none', borderRadius: '6px 0 0 6px', background: 'var(--color-primary, var(--elab-navy))', color: 'var(--color-text-inverse, #fff)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-md)', fontSize: 14, padding: 0, transition: 'opacity var(--transition-base)' }} title={t('simulator_shell.open_editor_title')}>‹</button>
           )}
 
           {/* Andrea ratify 2026-05-24: DrawingOverlay anche quando NO esperimento
@@ -1261,7 +1263,7 @@ const NewElabSimulator = ({
             {/* Andrea ratify 2026-05-24 — repalette editor tabs: era dark
                 code-editor theme (#161B22) → light ELAB warm. Allinea estetica
                 home Blockly compiler. Navy text + Lime/Orange accent attivo. */}
-            <div role="tablist" aria-label="Editor codice" style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(30, 77, 140, 0.18)', background: '#F5F5F0', flexShrink: 0 }}>
+            <div role="tablist" aria-label={t('simulator_shell.editor_aria')} style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(30, 77, 140, 0.18)', background: '#F5F5F0', flexShrink: 0 }}>
               <button onClick={() => setShowCodeEditor(false)} aria-label="Chiudi editor" title="Chiudi editor (torna al circuito)" style={{ width: 44, minHeight: 44, border: 'none', cursor: 'pointer', padding: 0, background: 'transparent', color: 'var(--elab-navy)', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'color 150ms, background 150ms' }} onPointerEnter={e => { e.currentTarget.style.color = 'var(--elab-red)'; e.currentTarget.style.background = 'rgba(229,75,61,0.10)'; }} onPointerLeave={e => { e.currentTarget.style.color = 'var(--elab-navy)'; e.currentTarget.style.background = 'transparent'; }}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 4L12 12M4 12L12 4"/></svg></button>
               <button onClick={() => { if (editorMode !== 'arduino') { setModeSwitchNotice('arduino'); setTimeout(() => setModeSwitchNotice(null), 4000); } setEditorMode('arduino'); setScratchFullscreen(false); }} style={{ flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer', minHeight: 44, fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, background: editorMode === 'arduino' ? '#FFFFFF' : 'transparent', color: editorMode === 'arduino' ? 'var(--elab-navy)' : 'rgba(30, 77, 140, 0.55)', borderBottom: editorMode === 'arduino' ? '3px solid var(--elab-lime)' : '3px solid transparent' }}>{'</>  Arduino C++'}</button>
               {currentExperiment?.simulationMode === 'avr' && isVol3 && (<button onClick={() => { if (editorMode !== 'scratch') { setModeSwitchNotice('scratch'); setTimeout(() => setModeSwitchNotice(null), 4000); } setEditorMode('scratch'); }} style={{ flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer', minHeight: 44, fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, background: editorMode === 'scratch' ? '#FFFFFF' : 'transparent', color: editorMode === 'scratch' ? 'var(--elab-navy)' : 'rgba(30, 77, 140, 0.55)', borderBottom: editorMode === 'scratch' ? '3px solid var(--elab-orange)' : '3px solid transparent' }}>{'Blocchi'}</button>)}
@@ -1281,7 +1283,7 @@ const NewElabSimulator = ({
               <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
                 <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
                   <ScratchErrorBoundary>
-                    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-accent, var(--elab-lime))', fontFamily: "var(--font-sans)", fontSize: 14, gap: 8, background: 'var(--color-editor-active-bg, #1E2530)' }}><span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>...</span>Caricamento editor blocchi...</div>}>
+                    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-accent, var(--elab-lime))', fontFamily: "var(--font-sans)", fontSize: 14, gap: 8, background: 'var(--color-editor-active-bg, #1E2530)' }}><span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>...</span>{t('simulator_shell.loading_blocks_editor')}</div>}>
                       <ScratchEditor initialCode={scratchXml} compileError={compilationErrors} onCompileErrorDismiss={() => setCompilationErrors(null)} onChange={(xml, generatedCode) => { setScratchXml(xml); setScratchGeneratedCode(generatedCode); codeNeedsCompileRef.current = true; if (currentExperiment?.id) { localStorage.setItem(`elab_scratch_${currentExperiment.id}`, xml); if (generatedCode) localStorage.setItem(`elab_scratch_code_${currentExperiment.id}`, generatedCode); } }} />
                     </Suspense>
                   </ScratchErrorBoundary>

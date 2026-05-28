@@ -414,6 +414,14 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
     try {
         // Use /chat for vision (images support), /tutor-chat for text-only
         const endpoint = images.length > 0 ? '/chat' : '/tutor-chat';
+        // iter 2026-05-28 i18n: forward user's UI locale so backend selects per-locale
+        // system prompt + applies query-translate when language='en'. Defaults to 'it'.
+        const userLocale = (() => {
+            try {
+                const v = (typeof localStorage !== 'undefined' && localStorage.getItem('elab-locale')) || '';
+                return v.slice(0, 2) === 'en' ? 'en' : 'it';
+            } catch { return 'it'; }
+        })();
         const payload = {
             message,
             sessionId: getTutorSessionId(),
@@ -423,6 +431,7 @@ async function tryNanobot(message, circuitState, externalSignal, experimentId, i
             aiProfile: inferAiProfileHint(message, images, simulatorContext, options),
             aiDepth: options.aiDepth || null,
             unlimMode: normalizeUnlimMode(simulatorContext),
+            language: userLocale,
             // Slice 1C: forward awareness-flags snapshots when the caller provides them.
             // Server (Slice 1B) renders "Segnali di attenzione: ..." only when present;
             // omitted/null keeps backward-compat (Slice 1A returns "" → no prompt delta).

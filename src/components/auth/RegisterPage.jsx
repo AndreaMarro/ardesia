@@ -4,6 +4,7 @@
 // ============================================
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 
 // Andrea Marro — 18/02/2026
@@ -31,6 +32,7 @@ const Spinner = () => (
 );
 
 export default function RegisterPage({ onNavigate }) {
+    const { t } = useTranslation();
     const { register } = useAuth();
     const [form, setForm] = useState({
         nome: '',
@@ -54,23 +56,23 @@ export default function RegisterPage({ onNavigate }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.nome.trim() || !form.email.trim() || !form.password.trim()) {
-            setError('Nome, email e password sono obbligatori');
+            setError(t('auth.register.error_required'));
             return;
         }
         if (form.password.length < 6) {
-            setError('La password deve avere almeno 6 caratteri');
+            setError(t('auth.register.error_password_length'));
             return;
         }
         if (form.password !== form.confermaPassword) {
-            setError('Le password non corrispondono');
+            setError(t('auth.register.error_password_mismatch'));
             return;
         }
         if (!form.privacyAccepted) {
-            setError('Devi accettare l\'informativa privacy per continuare');
+            setError(t('auth.register.error_privacy_required'));
             return;
         }
         if (form.ruolo === 'user' && !form.parentConsent) {
-            setError('Per utenti minorenni è necessario il consenso di un genitore o tutore');
+            setError(t('auth.register.error_parent_consent'));
             return;
         }
 
@@ -115,13 +117,13 @@ export default function RegisterPage({ onNavigate }) {
 
             <div style={styles.card}>
                 <div style={{ ...styles.logo, color: 'var(--elab-navy)', fontWeight: 800, fontFamily: 'Oswald, sans-serif', letterSpacing: '-1px' }}>ELAB</div>
-                <h1 style={styles.title}>Registrati</h1>
-                <p style={styles.subtitle}>Crea il tuo account ELAB</p>
+                <h1 style={styles.title}>{t('auth.register.title')}</h1>
+                <p style={styles.subtitle}>{t('auth.register.subtitle')}</p>
 
-                <form onSubmit={handleSubmit} style={styles.form} aria-label="Form di registrazione">
+                <form onSubmit={handleSubmit} style={styles.form} aria-label={t('auth.register.form_aria')}>
                     <div style={styles.row}>
                         <div style={styles.field}>
-                            <label style={styles.label} htmlFor="reg-nome">Nome completo *</label>
+                            <label style={styles.label} htmlFor="reg-nome">{t('auth.register.name_label')}</label>
                             <input
                                 id="reg-nome"
                                 type="text"
@@ -129,7 +131,7 @@ export default function RegisterPage({ onNavigate }) {
                                 onChange={e => updateField('nome', e.target.value)}
                                 onFocus={() => setFocusedField('nome')}
                                 onBlur={() => setFocusedField(null)}
-                                placeholder="Mario Rossi"
+                                placeholder={t('auth.register.name_placeholder')}
                                 style={inputStyle('nome')}
                                 autoComplete="name"
                                 autoFocus
@@ -147,7 +149,7 @@ export default function RegisterPage({ onNavigate }) {
                                 disabled={loading}
                             />
                             <span>
-                                Ho letto e accetto l'informativa privacy
+                                {t('auth.register.privacy_accept')}
                             </span>
                         </label>
                         {form.ruolo === 'user' && (
@@ -159,14 +161,14 @@ export default function RegisterPage({ onNavigate }) {
                                     disabled={loading}
                                 />
                                 <span>
-                                    Confermo di avere il consenso di un genitore/tutore (se minore di 14 anni)
+                                    {t('auth.register.parent_consent')}
                                 </span>
                             </label>
                         )}
                     </div>
 
                     <div style={styles.field}>
-                        <label style={styles.label} htmlFor="reg-email">Email *</label>
+                        <label style={styles.label} htmlFor="reg-email">{t('auth.register.email_label')}</label>
                         <input
                             id="reg-email"
                             type="email"
@@ -174,7 +176,7 @@ export default function RegisterPage({ onNavigate }) {
                             onChange={e => updateField('email', e.target.value)}
                             onFocus={() => setFocusedField('email')}
                             onBlur={() => setFocusedField(null)}
-                            placeholder="mario@scuola.it"
+                            placeholder={t('auth.register.email_placeholder')}
                             style={inputStyle('email')}
                             autoComplete="email"
                             disabled={loading}
@@ -183,7 +185,7 @@ export default function RegisterPage({ onNavigate }) {
 
                     <div style={styles.row}>
                         <div style={styles.field}>
-                            <label style={styles.label} htmlFor="reg-password">Password *</label>
+                            <label style={styles.label} htmlFor="reg-password">{t('auth.register.password_label')}</label>
                             <div style={styles.passwordWrap}>
                                 <input
                                     id="reg-password"
@@ -192,7 +194,7 @@ export default function RegisterPage({ onNavigate }) {
                                     onChange={e => updateField('password', e.target.value)}
                                     onFocus={() => setFocusedField('password')}
                                     onBlur={() => setFocusedField(null)}
-                                    placeholder="Min. 6 caratteri"
+                                    placeholder={t('auth.register.password_placeholder')}
                                     style={{ ...inputStyle('password'), paddingRight: '44px' }}
                                     autoComplete="new-password"
                                     disabled={loading}
@@ -201,7 +203,7 @@ export default function RegisterPage({ onNavigate }) {
                                     type="button"
                                     onClick={() => setShowPassword(p => !p)}
                                     style={styles.eyeBtn}
-                                    aria-label={showPassword ? 'Nascondi password' : 'Mostra password'}
+                                    aria-label={showPassword ? t('auth.register.hide_password') : t('auth.register.show_password')}
                                     tabIndex={-1}
                                 >
                                     <EyeIcon open={showPassword} />
@@ -209,7 +211,7 @@ export default function RegisterPage({ onNavigate }) {
                             </div>
                         </div>
                         <div style={styles.field}>
-                            <label style={styles.label} htmlFor="reg-confirm-password">Conferma password *</label>
+                            <label style={styles.label} htmlFor="reg-confirm-password">{t('auth.register.confirm_password_label')}</label>
                             <div style={styles.passwordWrap}>
                                 <input
                                     id="reg-confirm-password"
@@ -218,7 +220,7 @@ export default function RegisterPage({ onNavigate }) {
                                     onChange={e => updateField('confermaPassword', e.target.value)}
                                     onFocus={() => setFocusedField('confermaPassword')}
                                     onBlur={() => setFocusedField(null)}
-                                    placeholder="Ripeti password"
+                                    placeholder={t('auth.register.confirm_password_placeholder')}
                                     style={{ ...inputStyle('confermaPassword'), paddingRight: '44px' }}
                                     autoComplete="new-password"
                                     disabled={loading}
@@ -227,7 +229,7 @@ export default function RegisterPage({ onNavigate }) {
                                     type="button"
                                     onClick={() => setShowConfirmPassword(p => !p)}
                                     style={styles.eyeBtn}
-                                    aria-label={showConfirmPassword ? 'Nascondi password' : 'Mostra password'}
+                                    aria-label={showConfirmPassword ? t('auth.register.hide_password') : t('auth.register.show_password')}
                                     tabIndex={-1}
                                 >
                                     <EyeIcon open={showConfirmPassword} />
@@ -237,20 +239,20 @@ export default function RegisterPage({ onNavigate }) {
                     </div>
 
                     <div style={styles.field}>
-                        <label style={styles.label}>Sono un...</label>
+                        <label style={styles.label}>{t('auth.register.role_label')}</label>
                         <div style={styles.roleToggle}>
                             <button type="button" onClick={() => updateField('ruolo', 'user')}
-                                aria-label="Seleziona ruolo studente"
+                                aria-label={t('auth.register.role_student_aria')}
                                 aria-pressed={form.ruolo === 'user'}
                                 style={{
                                     ...styles.roleBtn,
                                     background: form.ruolo === 'user' ? 'var(--elab-lime)' : 'rgba(255,255,255,0.1)',
                                     color: form.ruolo === 'user' ? 'var(--elab-hex-1a1a2e)' : 'rgba(255,255,255,0.6)',
                                 }}>
-                                Studente
+                                {t('auth.register.role_student_label')}
                             </button>
                             <button type="button" onClick={() => updateField('ruolo', 'docente')}
-                                aria-label="Seleziona ruolo professore"
+                                aria-label={t('auth.register.role_teacher_aria')}
                                 aria-pressed={form.ruolo === 'docente'}
                                 style={{
                                     ...styles.roleBtn,
@@ -258,14 +260,14 @@ export default function RegisterPage({ onNavigate }) {
                                     color: form.ruolo === 'docente' ? 'white' : 'rgba(255,255,255,0.6)',
                                     border: form.ruolo === 'docente' ? '2px solid var(--elab-lime)' : '2px solid transparent',
                                 }}>
-                                Professore
+                                {t('auth.register.role_teacher_label')}
                             </button>
                         </div>
                     </div>
 
                     <div style={styles.row}>
                         <div style={styles.field}>
-                            <label style={styles.label} htmlFor="reg-scuola">Scuola / Istituto</label>
+                            <label style={styles.label} htmlFor="reg-scuola">{t('auth.register.school_label')}</label>
                             <input
                                 id="reg-scuola"
                                 type="text"
@@ -273,14 +275,14 @@ export default function RegisterPage({ onNavigate }) {
                                 onChange={e => updateField('scuola', e.target.value)}
                                 onFocus={() => setFocusedField('scuola')}
                                 onBlur={() => setFocusedField(null)}
-                                placeholder="Es: ITIS Marconi"
+                                placeholder={t('auth.register.school_placeholder')}
                                 style={inputStyle('scuola')}
                                 autoComplete="organization"
                                 disabled={loading}
                             />
                         </div>
                         <div style={styles.field}>
-                            <label style={styles.label} htmlFor="reg-citta">Città</label>
+                            <label style={styles.label} htmlFor="reg-citta">{t('auth.register.city_label')}</label>
                             <input
                                 id="reg-citta"
                                 type="text"
@@ -288,7 +290,7 @@ export default function RegisterPage({ onNavigate }) {
                                 onChange={e => updateField('citta', e.target.value)}
                                 onFocus={() => setFocusedField('citta')}
                                 onBlur={() => setFocusedField(null)}
-                                placeholder="Es: Milano"
+                                placeholder={t('auth.register.city_placeholder')}
                                 style={inputStyle('citta')}
                                 autoComplete="address-level2"
                                 disabled={loading}
@@ -309,19 +311,19 @@ export default function RegisterPage({ onNavigate }) {
                     >
                         {loading ? (
                             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                                <Spinner /> Registrazione in corso...
+                                <Spinner /> {t('auth.register.submitting')}
                             </span>
-                        ) : 'Crea Account'}
+                        ) : t('auth.register.submit')}
                     </button>
                 </form>
 
                 <p style={styles.footer}>
-                    Hai già un account?{' '}
-                    <button onClick={() => onNavigate('login')} style={styles.link}>Accedi</button>
+                    {t('auth.register.have_account')}{' '}
+                    <button onClick={() => onNavigate('login')} style={styles.link}>{t('auth.register.login_link')}</button>
                 </p>
 
                 <button onClick={() => onNavigate('showcase')} style={styles.backBtn}>
-                    ← Scopri ELAB
+                    {t('auth.login.back_showcase')}
                 </button>
             </div>
         </div>

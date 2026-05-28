@@ -23,6 +23,7 @@
  * modalita + drawing + chat history. Toast di progresso plurale "Ragazzi…".
  */
 import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { restoreSession } from '../services/sessionRestore';
 
 const SESSIONS_KEY = 'elab_unlim_sessions';
@@ -497,6 +498,7 @@ function HomeRow({ session, onResume }) {
 }
 
 export default function HomeCronologia({ onResume }) {
+  const { t } = useTranslation();
   const [sessions, setSessions] = useState(() => loadLocalSessions());
   const [query, setQuery] = useState('');
   // Iter 35 I3 — batch description generation state
@@ -647,7 +649,7 @@ export default function HomeCronologia({ onResume }) {
         </div>
       )}
       <div style={styles.headerRow}>
-        <h2 id="cronologia-heading" style={styles.heading}>Cronologia recente</h2>
+        <h2 id="cronologia-heading" style={styles.heading}>{t('home_cronologia.heading')}</h2>
         {canGenerate && (
           <button
             type="button"
@@ -686,8 +688,8 @@ export default function HomeCronologia({ onResume }) {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Cerca tra le sessioni…"
-            aria-label="Cerca tra le sessioni passate"
+            placeholder={t('home_cronologia.search_placeholder')}
+            aria-label={t('home_cronologia.search_aria')}
             style={styles.searchInput}
             data-testid="cronologia-search"
           />

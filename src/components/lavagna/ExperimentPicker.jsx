@@ -4,6 +4,7 @@
  * (c) Andrea Marro — 02/04/2026
  */
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import EXPERIMENTS_VOL1 from '../../data/experiments-vol1';
 import EXPERIMENTS_VOL2 from '../../data/experiments-vol2';
 import EXPERIMENTS_VOL3 from '../../data/experiments-vol3';
@@ -41,6 +42,7 @@ function getChapterGroups(experiments) {
 }
 
 export default function ExperimentPicker({ open, onClose, onSelect, completedIds = [], onAskUnlim, onFreeMode }) {
+  const { t } = useTranslation();
   const [activeVol, setActiveVol] = useState(1);
   const [search, setSearch] = useState('');
   const [viewMode, setViewMode] = useState('lessons'); // 'lessons' | 'chapters'
@@ -141,13 +143,13 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
-      aria-label="Scegli un esperimento"
+      aria-label={t('experiment_picker.modal_aria')}
     >
       <div className={css.modal}>
         {/* Header */}
         <div className={css.header}>
-          <h2 className={css.title}>Scegli Esperimento</h2>
-          <button className={css.closeBtn} onClick={onClose} aria-label="Chiudi">
+          <h2 className={css.title}>{t('experiment_picker.title')}</h2>
+          <button className={css.closeBtn} onClick={onClose} aria-label={t('experiment_picker.close')}>
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
@@ -177,13 +179,13 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
             ref={searchRef}
             type="text"
             className={css.searchInput}
-            placeholder="Cerca esperimento..."
+            placeholder={t('experiment_picker.search_placeholder')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            aria-label="Cerca esperimento"
+            aria-label={t('experiment_picker.search_aria')}
           />
           {search && (
-            <button className={css.clearBtn} onClick={() => setSearch('')} aria-label="Cancella ricerca">
+            <button className={css.clearBtn} onClick={() => setSearch('')} aria-label={t('experiment_picker.clear_search')}>
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5" />
                 <path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -198,13 +200,13 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
             className={`${css.viewBtn} ${viewMode === 'lessons' ? css.viewBtnActive : ''}`}
             onClick={() => { setViewMode('lessons'); setExpandedLesson(null); }}
           >
-            Lezioni
+            {t('experiment_picker.view_lessons')}
           </button>
           <button
             className={`${css.viewBtn} ${viewMode === 'chapters' ? css.viewBtnActive : ''}`}
             onClick={() => setViewMode('chapters')}
           >
-            Tutti gli esperimenti
+            {t('experiment_picker.view_chapters')}
           </button>
         </div>
 
@@ -220,7 +222,7 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
                 <rect x="2" y="2" width="16" height="16" rx="3" stroke="var(--elab-lime)" strokeWidth="1.5" fill="none" />
                 <path d="M7 10h6M10 7v6" stroke="var(--elab-lime)" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
-              <span><strong>Lavagna libera</strong> — breadboard vuota, costruisci quello che vuoi</span>
+              <span><strong>{t('experiment_picker.free_mode_title')}</strong> — {t('experiment_picker.free_mode_body')}</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M5 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -230,14 +232,14 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
           {onAskUnlim && chapters.length > 0 && (
             <button
               className={css.unlimSuggest}
-              onClick={() => { onAskUnlim('Quale esperimento mi consigli per iniziare?'); onClose(); }}
+              onClick={() => { onAskUnlim(t('experiment_picker.unlim_help_prompt')); onClose(); }}
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <rect x="3" y="5" width="14" height="10" rx="3" fill="var(--elab-navy)" />
                 <circle cx="8" cy="10" r="1.5" fill="var(--elab-lime)" />
                 <circle cx="12" cy="10" r="1.5" fill="var(--elab-lime)" />
               </svg>
-              <span>Non sai da dove iniziare? <strong>Chiedi a UNLIM</strong></span>
+              <span>{t('experiment_picker.unlim_help_prefix')} <strong>{t('experiment_picker.unlim_help_action')}</strong></span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M5 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -245,7 +247,7 @@ export default function ExperimentPicker({ open, onClose, onSelect, completedIds
           )}
           {/* === LESSON VIEW === */}
           {viewMode === 'lessons' && lessons.length === 0 && (
-            <p className={css.empty}>Nessuna lezione trovata.</p>
+            <p className={css.empty}>{t('experiment_picker.no_lessons')}</p>
           )}
           {viewMode === 'lessons' && lessons.map(([lessonId, lesson]) => {
             const isExpanded = expandedLesson === lessonId;

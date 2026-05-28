@@ -10,6 +10,7 @@
  * a docente opens the card.
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useGalileoChat from '../lavagna/useGalileoChat.js';
 
 const CHATBOT_SAFE_INTENT_ACTIONS = new Set(['nessuno', 'mostratesto', 'citavolpag']);
@@ -126,6 +127,7 @@ const styles = {
 };
 
 export default function HomeUnlimChatInline() {
+  const { t } = useTranslation();
   const chat = useGalileoChat();
   const messages = chat.messages || [];
   const isLoading = !!chat.isLoading;
@@ -185,7 +187,7 @@ export default function HomeUnlimChatInline() {
           </div>
         ))}
         {isLoading && (
-          <div style={styles.loadingDots} role="status" aria-label="UNLIM sta scrivendo">
+          <div style={styles.loadingDots} role="status" aria-label={t('home_chat_inline.typing_aria')}>
             <span>•</span>
             <span>•</span>
             <span>•</span>
@@ -197,11 +199,11 @@ export default function HomeUnlimChatInline() {
           type="text"
           value={localInput}
           onChange={handleChange}
-          placeholder="Chiedi a UNLIM…"
+          placeholder={t('home_chat_inline.placeholder')}
           style={styles.input}
           disabled={isLoading}
           data-testid="home-unlim-chat-input"
-          aria-label="Messaggio per UNLIM"
+          aria-label={t('home_chat_inline.input_aria')}
         />
         <button
           type="submit"

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import css from './FloatingToolbar.module.css';
 import { computeNextPos, getPositionStyle } from './floatingToolbarDrag';
 
@@ -19,7 +20,7 @@ function savePos(pos) {
 const tools = [
   {
     id: 'select',
-    label: 'Seleziona',
+    labelKey: 'floating_toolbar.tool_select',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M4 2l12 7-5 2-3 5L4 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -28,7 +29,7 @@ const tools = [
   },
   {
     id: 'wire',
-    label: 'Filo',
+    labelKey: 'floating_toolbar.tool_wire',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M3 17C3 12 7 8 12 8h5M14 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -38,7 +39,7 @@ const tools = [
   { id: 'divider1', divider: true },
   {
     id: 'delete',
-    label: 'Elimina',
+    labelKey: 'floating_toolbar.tool_delete',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M3 5h14M7 5V3h6v2M8 8v7M12 8v7M5 5l1 12h8l1-12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -47,7 +48,7 @@ const tools = [
   },
   {
     id: 'undo',
-    label: 'Annulla',
+    labelKey: 'floating_toolbar.tool_undo',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M4 8h9a4 4 0 010 8H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -57,7 +58,7 @@ const tools = [
   },
   {
     id: 'redo',
-    label: 'Ripeti',
+    labelKey: 'floating_toolbar.tool_redo',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M16 8H7a4 4 0 000 8h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -68,7 +69,7 @@ const tools = [
   { id: 'divider2', divider: true },
   {
     id: 'pen',
-    label: 'Penna',
+    labelKey: 'floating_toolbar.tool_pen',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M12 3l5 5-10 10H2v-5L12 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -82,7 +83,7 @@ const tools = [
   // window CustomEvent 'elab-set-eraser-mode' che DrawingOverlay ascolta.
   {
     id: 'eraser',
-    label: 'Gomma',
+    labelKey: 'floating_toolbar.tool_eraser',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M3 16h11M5 11l7-7 4 4-7 7H5v-4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -98,6 +99,7 @@ export default function FloatingToolbar({
   leftPanelOpen = false,
   unlimSlot,
 }) {
+  const { t } = useTranslation();
   const [pos, setPos] = useState(loadPos);
   const dragRef = useRef(null);
   const barRef = useRef(null);
@@ -158,12 +160,12 @@ export default function FloatingToolbar({
       className={`${css.toolbar} ${abovePanel ? css.abovePanel : ''} ${!leftPanelOpen ? css.verticalOnLIM : ''}`}
       style={{ ...posStyle, cursor: 'grab', touchAction: 'none' }}
       role="toolbar"
-      aria-label="Strumenti lavagna"
+      aria-label={t('floating_toolbar.aria')}
       onPointerDown={handleDragStart}
       onDoubleClick={handleDoubleClick}
     >
       {/* Drag handle — area di presa ampia */}
-      <div className={css.dragHandle} aria-hidden="true" title="Trascina per spostare">
+      <div className={css.dragHandle} aria-hidden="true" title={t('floating_toolbar.drag_title')}>
         <svg width="8" height="28" viewBox="0 0 8 28" fill="none">
           <circle cx="2.5" cy="6" r="1.5" fill="currentColor" opacity="0.35"/>
           <circle cx="5.5" cy="6" r="1.5" fill="currentColor" opacity="0.35"/>
@@ -182,7 +184,7 @@ export default function FloatingToolbar({
             key={tool.id}
             className={`${css.btn} ${activeTool === tool.id ? css.btnActive : ''}`}
             onClick={() => onToolChange?.(tool.id)}
-            aria-label={tool.label}
+            aria-label={t(tool.labelKey)}
             aria-pressed={activeTool === tool.id}
           >
             {tool.icon}

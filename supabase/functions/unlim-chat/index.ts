@@ -294,12 +294,17 @@ serve(async (req: Request) => {
       // Client wire-up (collection from simulator-api) = Slice 1C scope.
       boardSnapshot?: BoardSnapshot | null;
       previousBoardSnapshot?: BoardSnapshot | null;
+      // iter 2026-05-28 i18n: optional language for per-locale system prompt selection.
+      // 'it' default (preserves existing behavior). 'en' selects LIVE_SYSTEM_PROMPT_EN.
+      language?: 'it' | 'en';
       // Andrea mandate 2026-05-26 — client sends live semantic flags +
       // normalized LIM screen snapshot. Optional: legacy clients unchanged.
       flags?: unknown;
       screenSnapshot?: unknown;
     };
     const { message, sessionId, circuitState, experimentId, simulatorContext, images, aiProfile: requestedAiProfile, aiDepth, unlimMode } = body;
+    // iter 2026-05-28 i18n: extract language with defensive default 'it'.
+    const language: 'it' | 'en' = body.language === 'en' ? 'en' : 'it';
     // iter 65 Atom 2.5 — extract V2 identifiers (defensive: empty string treated as missing).
     const teacherAnonUuid = typeof body.teacher_anon_uuid === 'string' && body.teacher_anon_uuid.trim().length > 0
       ? body.teacher_anon_uuid.trim()
@@ -1046,6 +1051,7 @@ serve(async (req: Request) => {
       capitoloFragment,
       useIntentSchema,
       activeAiProfile,
+      language,
     )
       + (ragContext ? `\n\n${ragContext}` : '')
       + onniscenzaContext

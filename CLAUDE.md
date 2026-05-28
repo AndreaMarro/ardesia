@@ -9,6 +9,7 @@
 - UNLIM prepara lezioni personalizzate basate sui volumi fisici + contesto delle sessioni passate
 - Gli studenti NON interagiscono direttamente con UNLIM ne con ELAB Tutor: vedono tutto sulla LIM (Lavagna Interattiva Multimediale) proiettata dal docente
 - Il linguaggio di UNLIM NON e rivolto direttamente all'insegnante come "fai questo" — deve fargli CAPIRE cosa fare e cosa dire ai ragazzi, usando le stesse parole del libro
+- **Principio Zero cross-locale (post i18n migration 2026-05-28)**: IT opener `"Ragazzi,"` OBBLIGATORIO. EN equivalente: `"Class,"` / `"Team,"` / `"Everyone,"` (teacher voice plurale, NEVER student-direct singular). Citazione: IT `Vol.N pag.M` / EN `Vol N p. M`. UNLIM EN system prompt `LIVE_SYSTEM_PROMPT_EN` in `supabase/functions/_shared/system-prompt.ts` — **v0 DRAFT, Andrea ratify required pre-prod**. Manuali source-of-truth ITALIAN (Morfismo Sense 2); EN drafts in `VOLUMI pdf e MD/MANUALE VOLUME {1,2,3} ENGLISH/markdown.md`.
 - I ragazzi lavorano sui kit ELAB fisici (breadboard, componenti, batterie) seguendo le istruzioni del docente che legge dal Volume + dalla schermata UNLIM
 - **CHIUNQUE** accendendo ELAB Tutor deve essere in grado, SENZA conoscenze pregresse, di giostrarsi sulla piattaforma e spiegare ai ragazzi
 - Il testo dei volumi deve essere CITATO e USATO per la lettura — le stesse parole, non parafrasi
@@ -134,6 +135,10 @@ Include:
 
 ## Stack tecnico
 - React 19 + Vite 7 (NO react-router — routing custom con useState e hash)
+- **i18n**: react-i18next 17 + i18next 26 + i18next-browser-languagedetector 8
+  - Config: `src/i18n/index.js` (fallbackLng:'it', supportedLngs:['it','en'], localStorage key `elab-locale`)
+  - Locales: `src/locales/{it,en}.json` (662+ keys, parity MANDATORY — verify `python3 scripts/check-locale-parity.py`)
+  - Pattern: `useTranslation()` hook + `t('namespace.key')`. Class components use `import i18n` direct.
 - Vitest — **baseline**: unica fonte di verità `automa/baseline-tests.txt` (aggiornata automaticamente). Target 14000 entro Sprint 8. NON citare numeri a mano, usa sempre il file.
 - Deploy: Vercel (frontend) + Supabase (backend DB)
 - Nanobot AI: Render (https://elab-galileo.onrender.com)
@@ -205,6 +210,7 @@ Include:
 3. BB_HOLE_PITCH = 7.5px, SNAP_THRESHOLD = 4.5px
 4. Bus naming: `bus-bot-plus/minus` NON `bus-bottom-plus/minus`
 5. `.trim()` su TUTTE le letture di env var (bug Vercel trailing \n)
+6. **i18n MANDATORY**: ogni nuovo testo UI usa `useTranslation()` + `t('key')`. MAI hardcode italiano JSX (post 2026-05-28). Locale parity gate: `python3 scripts/check-locale-parity.py` pre-commit.
 
 ### Qualita'
 6. `npm run build` deve passare prima di ogni deploy
@@ -622,3 +628,11 @@ Andrea verbatim "nascondi tutti quelli (con possibilità di farli tornare tutti)
 ## Sprint history archive
 
 Storia completa iter 3-82 (Sprint S/T/U close logs, ~3500 righe) archiviata in [docs/sprint-history-iter3-82-archive.md](docs/sprint-history-iter3-82-archive.md) — Fase 3 riconciliazione doc 2026-05-20. In CLAUDE.md restano solo: regole evergreen + Design Context + Narrative Arc.
+
+## i18n EN/IT Migration (2026-05-28)
+
+Branch `feat/i18n-en-it-full` (21+ commits) — 31 components bilingual end-to-end, 662 IT/EN keys parity, UNLIM backend per-locale prompt.
+- Spec: `docs/superpowers/specs/2026-05-28-english-i18n-design.md`
+- Audits: `.team-status/QUALITY-AUDIT-i18n-2026-05-28.md` + `ADVERSARIAL-REVIEW-i18n-2026-05-28.md`
+- Roadmap multilingua: memory `/Users/andreamarro/.claude/projects/-Users-andreamarro-VOLUME-3/memory/multilingua-roadmap.md`
+- **Deferred Phase 2+**: PrivacyPolicy (legal — qualified translator), TeacherDashboard + Admin (internal), LandingPNRR (IT-market), Supabase `users.preferred_language` column (Andrea ratify), `LIVE_SYSTEM_PROMPT_EN` Andrea pedagogical ratify.

@@ -5,6 +5,7 @@
 // ============================================
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { clearAllSensitiveData } from '../../utils/crypto';
 import { requestDataDeletion } from '../../services/gdprService';
 
@@ -20,6 +21,7 @@ import { requestDataDeletion } from '../../services/gdprService';
  * @param {Function} props.onCancel - Callback per annullare
  */
 export default function DataDeletion({ user, onDataDeleted, onCancel }) {
+    const { t } = useTranslation();
     const [step, setStep] = useState(1);
     const [confirmation, setConfirmation] = useState('');
     const [password, setPassword] = useState('');
@@ -29,11 +31,11 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
     const [success, setSuccess] = useState(false);
 
     const reasons = [
-        { value: 'no_longer_use', label: 'Non uso più il servizio' },
-        { value: 'privacy_concerns', label: 'Preoccupazioni sulla privacy' },
-        { value: 'data_breach', label: 'Sospetto di violazione dati' },
-        { value: 'incorrect_data', label: 'Dati non corretti' },
-        { value: 'other', label: 'Altro motivo' },
+        { value: 'no_longer_use', label: t('data_deletion.reasons.no_longer_use') },
+        { value: 'privacy_concerns', label: t('data_deletion.reasons.privacy_concerns') },
+        { value: 'data_breach', label: t('data_deletion.reasons.data_breach') },
+        { value: 'incorrect_data', label: t('data_deletion.reasons.incorrect_data') },
+        { value: 'other', label: t('data_deletion.reasons.other') },
     ];
 
     const handleStep1 = (e) => {
@@ -88,17 +90,15 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
             <div style={styles.container}>
                 <div style={styles.successCard}>
                     <div style={{ ...styles.successIcon, color: 'var(--elab-hex-28a745)' }}>&#10003;</div>
-                    <h2 style={styles.successTitle}>Dati Eliminati</h2>
+                    <h2 style={styles.successTitle}>{t('data_deletion.success_title')}</h2>
                     <p style={styles.successMessage}>
-                        Tutti i tuoi dati personali sono stati eliminati con successo.
+                        {t('data_deletion.success_message')}
                     </p>
                     <p style={styles.successSubmessage}>
-                        Hai ricevuto un'email di conferma all'indirizzo registrato.
+                        {t('data_deletion.success_submessage')}
                     </p>
                     <div style={styles.successNotice}>
-                        <strong>Nota:</strong> I backup potrebbero contenere i tuoi dati 
-                        per un massimo di 30 giorni per motivi di sicurezza, dopodiché 
-                        saranno cancellati definitivamente.
+                        <strong>{t('data_deletion.success_notice_label')}</strong> {t('data_deletion.success_notice')}
                     </div>
                 </div>
             </div>
@@ -110,20 +110,18 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
             <div style={styles.card}>
                 <div style={styles.header}>
                     <div style={styles.icon}>&#9888;</div>
-                    <h2 style={styles.title}>Elimina Account e Dati</h2>
+                    <h2 style={styles.title}>{t('data_deletion.title')}</h2>
                 </div>
 
                 <div style={styles.warningBanner}>
-                    <strong>Attenzione:</strong> Questa azione è irreversibile. 
-                    Tutti i tuoi dati saranno eliminati permanentemente.
+                    <strong>{t('data_deletion.warning_label')}</strong> {t('data_deletion.warning_body')}
                 </div>
 
                 {/* Step 1: Motivo */}
                 {step === 1 && (
                     <form onSubmit={handleStep1} style={styles.form}>
                         <p style={styles.description}>
-                            Ci dispiace vederti andare via. 
-                            Ci aiuterebbe sapere perché vuoi eliminare il tuo account:
+                            {t('data_deletion.step1_description')}
                         </p>
 
                         <div style={styles.reasonsList}>
@@ -145,10 +143,10 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
 
                         <div style={styles.buttons}>
                             <button type="submit" style={styles.continueBtn}>
-                                Continua
+                                {t('data_deletion.buttons.continue')}
                             </button>
                             <button type="button" onClick={onCancel} style={styles.cancelBtn}>
-                                Annulla
+                                {t('data_deletion.buttons.cancel')}
                             </button>
                         </div>
                     </form>
@@ -158,7 +156,9 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
                 {step === 2 && (
                     <form onSubmit={handleStep2} style={styles.form}>
                         <p style={styles.description}>
-                            Per confermare l'eliminazione, digita <strong>ELIMINA</strong> nel campo sottostante:
+                            {t('data_deletion.step2_description_prefix')}
+                            <strong>{t('data_deletion.step2_keyword')}</strong>
+                            {t('data_deletion.step2_description_suffix')}
                         </p>
 
                         <div style={styles.field}>
@@ -166,21 +166,21 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
                                 type="text"
                                 value={confirmation}
                                 onChange={(e) => setConfirmation(e.target.value)}
-                                placeholder="Digita ELIMINA"
+                                placeholder={t('data_deletion.step2_placeholder')}
                                 style={styles.input}
                                 autoFocus
                             />
                         </div>
 
                         <div style={styles.dataList}>
-                            <h4 style={styles.dataListTitle}>I seguenti dati saranno eliminati:</h4>
+                            <h4 style={styles.dataListTitle}>{t('data_deletion.data_list_title')}</h4>
                             <ul style={styles.dataListItems}>
-                                <li>Profilo utente</li>
-                                <li>Progressi e completamenti</li>
-                                <li>Log stati emotivi</li>
-                                <li>Progetti salvati</li>
-                                <li>Post e commenti</li>
-                                <li>Dati di sessione</li>
+                                <li>{t('data_deletion.data_list.profile')}</li>
+                                <li>{t('data_deletion.data_list.progress')}</li>
+                                <li>{t('data_deletion.data_list.moods')}</li>
+                                <li>{t('data_deletion.data_list.projects')}</li>
+                                <li>{t('data_deletion.data_list.posts')}</li>
+                                <li>{t('data_deletion.data_list.session')}</li>
                             </ul>
                         </div>
 
@@ -188,10 +188,10 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
 
                         <div style={styles.buttons}>
                             <button type="submit" style={styles.continueBtn}>
-                                Continua
+                                {t('data_deletion.buttons.continue')}
                             </button>
                             <button type="button" onClick={() => setStep(1)} style={styles.backBtn}>
-                                Indietro
+                                {t('data_deletion.buttons.back')}
                             </button>
                         </div>
                     </form>
@@ -201,17 +201,16 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
                 {step === 3 && (
                     <form onSubmit={handleFinalSubmit} style={styles.form}>
                         <p style={styles.description}>
-                            Inserisci la tua password per confermare definitivamente 
-                            l'eliminazione dell'account:
+                            {t('data_deletion.step3_description')}
                         </p>
 
                         <div style={styles.field}>
-                            <label style={styles.label}>Password</label>
+                            <label style={styles.label}>{t('data_deletion.password_label')}</label>
                             <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="La tua password"
+                                placeholder={t('data_deletion.password_placeholder')}
                                 style={styles.input}
                                 autoFocus
                                 disabled={loading}
@@ -226,10 +225,10 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
                                 style={{ ...styles.deleteBtn, opacity: loading ? 0.7 : 1 }}
                                 disabled={loading}
                             >
-                                {loading ? 'Eliminazione in corso...' : 'Elimina Definitivamente'}
+                                {loading ? t('data_deletion.buttons.deleting') : t('data_deletion.buttons.delete_final')}
                             </button>
                             <button type="button" onClick={() => setStep(2)} style={styles.backBtn}>
-                                Indietro
+                                {t('data_deletion.buttons.back')}
                             </button>
                         </div>
                     </form>
@@ -238,12 +237,13 @@ export default function DataDeletion({ user, onDataDeleted, onCancel }) {
                 <div style={styles.gdprInfo}>
                     <span style={styles.gdprIcon}>*</span>
                     <span>
-                        Questa funzione è fornita in conformità con l'
-                        <strong>Art. 17 del GDPR</strong> (Diritto all'oblio).
-                        Per maggiori informazioni, consulta la nostra 
+                        {t('data_deletion.gdpr_info_prefix')}
+                        <strong>{t('data_deletion.gdpr_label')}</strong>
+                        {t('data_deletion.gdpr_info_middle')}
                         <a href="/privacy" target="_blank" rel="noopener noreferrer" style={styles.link}>
-                            Privacy Policy
-                        </a>.
+                            {t('data_deletion.gdpr_info_link')}
+                        </a>
+                        {t('data_deletion.gdpr_info_suffix')}
                     </span>
                 </div>
             </div>

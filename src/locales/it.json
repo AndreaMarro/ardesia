@@ -2,27 +2,364 @@
   "app": {
     "title": "ELAB Tutor",
     "version": "unlim.1.0",
-    "status": "Online"
+    "status": "Online",
+    "tagline": "Kit fisici + volumi + software morfico"
+  },
+  "common": {
+    "loading": "Caricamento…",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "close": "Chiudi",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "yes": "Sì",
+    "no": "No",
+    "ok": "OK",
+    "confirm": "Conferma",
+    "search": "Cerca",
+    "open": "Apri",
+    "start": "Inizia",
+    "exit": "Esci",
+    "settings": "Impostazioni",
+    "language": "Lingua",
+    "error": "Errore",
+    "retry": "Riprova",
+    "tryAgain": "Riprova",
+    "comingSoon": "Presto disponibile",
+    "more": "Altro",
+    "details": "Dettagli",
+    "help": "Aiuto",
+    "feedback": "Feedback"
+  },
+  "language": {
+    "italian": "Italiano",
+    "english": "English",
+    "switchTo": "Cambia in {{lang}}",
+    "current": "Lingua attuale: {{lang}}"
   },
   "tabs": {
     "manual": "Manuale",
     "simulator": "Simulatore",
     "canvas": "Lavagna",
     "notebooks": "Taccuini",
-    "videos": "Videolezioni"
+    "videos": "Videolezioni",
+    "glossary": "Glossario",
+    "experiments": "Esperimenti",
+    "lessons": "Lezioni",
+    "dashboard": "Dashboard"
+  },
+  "header": {
+    "menu": "Menu",
+    "profile": "Profilo",
+    "logout": "Esci",
+    "login": "Accedi",
+    "register": "Registrati",
+    "admin": "Admin",
+    "play": "Avvia",
+    "pause": "Pausa",
+    "play_aria": "Avvia simulazione",
+    "pause_aria": "Pausa simulazione",
+    "unlim_toggle": "Attiva/disattiva UNLIM",
+    "experiment_label": "Esperimento corrente",
+    "back_to_home": "Torna alla Home",
+    "home_label": "Home",
+    "unlim_label": "UNLIM",
+    "unlim_show": "Mostra chat UNLIM",
+    "unlim_hide": "Nascondi chat UNLIM",
+    "unlim_title": "Apri la chat UNLIM",
+    "manual_label": "Manuale",
+    "manual_show": "Apri manuale",
+    "manual_hide": "Chiudi manuale",
+    "manual_title": "Apri il manuale del volume",
+    "video_label": "Video",
+    "video_show": "Apri video",
+    "video_hide": "Chiudi video",
+    "save_label": "Salva",
+    "save_aria": "Salva la sessione corrente",
+    "save_title": "Salva sessione (la salviamo anche automaticamente all'uscita)",
+    "fumetto_label": "Fumetto",
+    "fumetto_aria": "Apri Fumetto Report della sessione",
+    "fumetto_title": "Genera Fumetto Report",
+    "experiment_aria_clickable": "Esperimento: {{name}}. Clicca per cambiare.",
+    "experiment_aria_static": "Esperimento: {{name}}.",
+    "progress_aria": "Passo {{current}} di {{total}}",
+    "tab_lavagna": "Lavagna",
+    "tab_lezione": "Lezione Guidata",
+    "tab_classe": "Classe",
+    "tab_progressi": "Progressi",
+    "tab_classe_aria": "Dashboard classe",
+    "tab_progressi_aria": "I miei progressi"
+  },
+  "home": {
+    "loading": {
+      "unlim_chat": "Caricamento chat UNLIM…",
+      "glossario": "Caricamento glossario…",
+      "compile_editor": "Caricamento editor Arduino…"
+    },
+    "greetings_list": [
+      "Ciao Ragazzi!",
+      "Ciao 1 A!",
+      "Ciao 2 B!",
+      "Ciao 3 C!",
+      "Ciao 4ª!",
+      "Ciao 5ª!",
+      "Ciao 1ª media!",
+      "Ciao 2ª media!",
+      "Ciao 3ª media!",
+      "Pronti, classe?",
+      "Buongiorno, ragazzi!"
+    ],
+    "mascot_aria": "Saluta la mascotte UNLIM",
+    "cards": {
+      "lavagna": {
+        "title": "Lavagna libera",
+        "text": "Lavagna pulita per scrivere e parlare con UNLIM. Volumi sempre a portata. Niente circuiti.",
+        "cta": "Entra in Lavagna"
+      },
+      "tutor": {
+        "title": "ELAB Tutor completo",
+        "text": "App piena: Percorso dei volumi, esperimenti, UNLIM, voce, simulatore. Lezione completa con la classe.",
+        "cta": "Apri ELAB Tutor"
+      },
+      "videolezioni": {
+        "title": "Videolezioni",
+        "text": "I due video TikTok del kit, caricati qui dentro senza uscire dalla home.",
+        "cta": "Guarda nella card"
+      },
+      "compile_home": {
+        "title": "Compila Arduino",
+        "text": "Scrivete codice Arduino con i blocchi Blockly o in C++. Compila + carica sul Nano R4 del kit.",
+        "cta": "Apri editor"
+      },
+      "unlim_chat": {
+        "title": "Chiedi a UNLIM",
+        "text": "Parla con UNLIM senza uscire dalla home: lezioni, esperimenti, citazioni dai Volumi.",
+        "cta": "Scrivi nella card"
+      }
+    },
+    "hero": {
+      "title": "ELAB Tutor",
+      "subtitle": "Kit fisici + volumi + software morfico per la classe",
+      "cta_primary": "Inizia ora",
+      "cta_secondary": "Scopri di più",
+      "cta_login": "Accedi alla piattaforma"
+    },
+    "features": {
+      "title": "Cosa rende ELAB diverso",
+      "kits": {
+        "title": "Kit fisici reali",
+        "body": "Ogni studente costruisce sul kit Omaric. Niente solo simulazione: si tocca, si misura, si capisce."
+      },
+      "books": {
+        "title": "Volumi cartacei",
+        "body": "Tre volumi scritti dai docenti che usano il prodotto. Il software cita verbatim Vol e pagina."
+      },
+      "unlim": {
+        "title": "Tutor AI UNLIM",
+        "body": "UNLIM aiuta il docente a preparare la lezione e a spiegare alla classe — non sostituisce, supporta."
+      },
+      "morphic": {
+        "title": "Software morfico",
+        "body": "L'interfaccia si adatta alla classe, al kit, al docente. Stesso prodotto, forma diversa per chi lo usa."
+      }
+    },
+    "for_schools": {
+      "title": "Per le scuole",
+      "body": "Pensato per LIM, scuole primarie e secondarie di primo grado. Conforme PNRR e MePA.",
+      "cta": "Richiedi una demo"
+    },
+    "footer": {
+      "credits": "Homepage a cura di Andrea Marro · Teodora de Venere",
+      "credits_prefix": "Homepage a cura di ",
+      "rights": "© 2026 ELAB Tutor — Tutti i diritti riservati",
+      "privacy": "Privacy",
+      "terms": "Termini",
+      "contact": "Contatti",
+      "about_us_aria": "Chi siamo"
+    },
+    "nudge": {
+      "later": "Più tardi",
+      "got_it": "Ho capito"
+    }
+  },
+  "welcome": {
+    "title": "BENVENUTO IN ELAB TUTOR",
+    "subtitle": "Simulatore di elettronica e Arduino per la scuola",
+    "key_label": "Chiave univoca",
+    "key_placeholder": "Inserisci la tua chiave…",
+    "enter": "ENTRA",
+    "footer": "ELAB Tutor — Andrea Marro",
+    "error_required": "Inserisci la chiave per continuare",
+    "error_invalid": "Chiave non valida"
+  },
+  "auth": {
+    "login": {
+      "title": "Accedi",
+      "subtitle": "Accedi al tuo laboratorio",
+      "form_aria": "Form di accesso",
+      "email_label": "Email",
+      "email_placeholder": "la-tua@email.com",
+      "password_label": "Password",
+      "password_placeholder": "La tua password",
+      "show_password": "Mostra password",
+      "hide_password": "Nascondi password",
+      "submit": "Accedi",
+      "submitting": "Accesso in corso…",
+      "forgot": "Password dimenticata?",
+      "no_account": "Non hai un account?",
+      "register_link": "Registrati",
+      "back_showcase": "← Scopri ELAB",
+      "error_invalid": "Email o password non validi",
+      "error_network": "Errore di connessione. Riprova.",
+      "error_empty_fields": "Compila tutti i campi"
+    },
+    "register": {
+      "title": "Registrati",
+      "subtitle": "Crea il tuo account ELAB",
+      "form_aria": "Form di registrazione",
+      "name_label": "Nome completo *",
+      "name_placeholder": "Mario Rossi",
+      "email_label": "Email *",
+      "email_placeholder": "la-tua@email.com",
+      "password_label": "Password *",
+      "password_placeholder": "Min. 6 caratteri",
+      "confirm_password_label": "Conferma password *",
+      "confirm_password_placeholder": "Ripeti password",
+      "show_password": "Mostra password",
+      "hide_password": "Nascondi password",
+      "role_label": "Sono un…",
+      "role_student_label": "Studente",
+      "role_student_aria": "Seleziona ruolo studente",
+      "role_teacher_label": "Professore",
+      "role_teacher_aria": "Seleziona ruolo professore",
+      "school_label": "Scuola / Istituto",
+      "school_placeholder": "Es: ITIS Marconi",
+      "city_label": "Città",
+      "city_placeholder": "Es: Milano",
+      "privacy_accept": "Ho letto e accetto l'informativa privacy",
+      "parent_consent": "Confermo di avere il consenso di un genitore o tutore (se minorenne)",
+      "submit": "Crea account",
+      "submitting": "Registrazione in corso…",
+      "have_account": "Hai già un account?",
+      "login_link": "Accedi",
+      "error_required": "Nome, email e password sono obbligatori",
+      "error_password_length": "La password deve avere almeno 6 caratteri",
+      "error_password_mismatch": "Le password non corrispondono",
+      "error_privacy_required": "Devi accettare l'informativa privacy per continuare",
+      "error_parent_consent": "Per utenti minorenni è necessario il consenso di un genitore o tutore",
+      "password_hint": "Almeno 6 caratteri",
+      "terms_accept": "Accetto i termini di servizio e la privacy policy"
+    },
+    "logout_confirm": "Sicuro di voler uscire?"
+  },
+  "data_deletion": {
+    "title": "Elimina Account e Dati",
+    "success_title": "Dati Eliminati",
+    "success_message": "Tutti i tuoi dati personali sono stati eliminati con successo.",
+    "success_submessage": "Hai ricevuto un'email di conferma all'indirizzo registrato.",
+    "success_notice_label": "Nota:",
+    "success_notice": "I backup potrebbero contenere i tuoi dati per un massimo di 30 giorni per motivi di sicurezza, dopodiché saranno cancellati definitivamente.",
+    "warning_label": "Attenzione:",
+    "warning_body": "Questa azione è irreversibile. Tutti i tuoi dati saranno eliminati permanentemente.",
+    "step1_description": "Ci dispiace vederti andare via. Ci aiuterebbe sapere perché vuoi eliminare il tuo account:",
+    "step2_description_prefix": "Per confermare l'eliminazione, digita ",
+    "step2_description_suffix": " nel campo sottostante:",
+    "step2_keyword": "ELIMINA",
+    "step2_placeholder": "Digita ELIMINA",
+    "step3_description": "Inserisci la tua password per confermare definitivamente l'eliminazione dell'account:",
+    "password_label": "Password",
+    "password_placeholder": "La tua password",
+    "data_list_title": "I seguenti dati saranno eliminati:",
+    "data_list": {
+      "profile": "Profilo utente",
+      "progress": "Progressi e completamenti",
+      "moods": "Log stati emotivi",
+      "projects": "Progetti salvati",
+      "posts": "Post e commenti",
+      "session": "Dati di sessione"
+    },
+    "buttons": {
+      "continue": "Continua",
+      "cancel": "Annulla",
+      "back": "Indietro",
+      "delete_final": "Elimina Definitivamente",
+      "deleting": "Eliminazione in corso…"
+    },
+    "reasons": {
+      "no_longer_use": "Non uso più il servizio",
+      "privacy_concerns": "Preoccupazioni sulla privacy",
+      "data_breach": "Sospetto di violazione dati",
+      "incorrect_data": "Dati non corretti",
+      "other": "Altro motivo"
+    },
+    "gdpr_label": "Art. 17 del GDPR",
+    "gdpr_info_prefix": "Questa funzione è fornita in conformità con l'",
+    "gdpr_info_middle": " (Diritto all'oblio). Per maggiori informazioni, consulta la nostra ",
+    "gdpr_info_link": "Privacy Policy",
+    "gdpr_info_suffix": "."
+  },
+  "consent": {
+    "dialog_aria": "Consenso privacy",
+    "age_intro": "Prima di iniziare, dicci quanti anni hai. Ci serve per proteggerti al meglio!",
+    "age_question": "Quanti anni hai?",
+    "age_choose": "Scegli…",
+    "age_year_n": "{{n}} anni",
+    "age_18_plus": "18+ anni",
+    "age_next": "Avanti",
+    "child_text": "Questo sito usa dei 'biscottini' (cookie) per funzionare meglio. Non preoccuparti: non raccontiamo i tuoi segreti a nessuno!",
+    "adult_text": "Questo sito raccoglie informazioni anonime per migliorare l'esperienza. I dati sono protetti e non condivisi con terze parti.",
+    "child_privacy_link": "Cosa sono i cookie?",
+    "adult_privacy_link": "Informativa Privacy",
+    "coppa_label": "Per i genitori:",
+    "coppa_body": "Se tuo figlio ha meno di 13 anni, il consenso deve essere dato da un genitore o tutore legale.",
+    "accept_adult": "Accetto",
+    "accept_child": "Ok, va bene!",
+    "reject_adult": "Rifiuto",
+    "reject_child": "No, grazie",
+    "parental_intro": "Hai meno di 14 anni, quindi serve il permesso di un genitore o tutore. Niente paura, ci mettiamo pochissimo!",
+    "parental_explain": "Scrivi l'email di mamma o papà e noi gli mandiamo un messaggio per chiedere il permesso.",
+    "parental_email_label": "Email del genitore",
+    "parental_email_placeholder": "nome@email.com",
+    "parental_send": "Chiedi al genitore",
+    "parental_sending": "Invio in corso…",
+    "parental_note": "Intanto puoi usare ELAB in modalità limitata: i tuoi dati restano solo su questo dispositivo.",
+    "sent_intro": "Abbiamo mandato un'email a {{email}}. Chiedi al tuo genitore di confermare!",
+    "sent_note": "Intanto puoi continuare a usare ELAB. I tuoi dati restano al sicuro solo su questo dispositivo: niente analytics, niente dati inviati fuori.",
+    "banner_text": "Usiamo cookie tecnici e dati pseudonimizzati per migliorare l'esperienza didattica. Nessun tracciamento pubblicitario, nessun dato venduto. Per i minori serve consenso genitoriale.",
+    "accept": "Accetto",
+    "manage": "Gestisci preferenze",
+    "privacy_link": "Leggi la privacy policy",
+    "modal_title": "Le tue preferenze sulla privacy",
+    "essential_title": "Cookie tecnici (sempre attivi)",
+    "essential_body": "Necessari per il funzionamento della piattaforma (autenticazione, sicurezza).",
+    "analytics_title": "Analisi anonime",
+    "analytics_body": "Ci aiutano a capire come viene usata la piattaforma. Nessun dato personale.",
+    "save_preferences": "Salva preferenze"
   },
   "chat": {
-    "placeholder": "Chiedi a UNLIM...",
-    "welcome": "**Ciao! Sono UNLIM, il tuo tutor ELAB! **\n\nSono qui per aiutarti a scoprire il mondo dell'elettronica.\nChiedimi qualsiasi cosa su circuiti, LED, resistori, Arduino e molto altro!",
-    "analyzing": "Analizzo l'immagine...",
-    "error": "Errore"
+    "placeholder": "Chiedi a UNLIM…",
+    "send": "Invia",
+    "voice": "Parla con UNLIM",
+    "stop_voice": "Ferma",
+    "vision_button": "Mostra a UNLIM",
+    "welcome": "**Ciao classe! Sono UNLIM, il tutor di ELAB. **\n\nAiuto il docente a spiegare l'elettronica usando il vostro kit e i volumi. Chiedete pure: circuiti, LED, resistenze, Arduino, sensori, codice — siamo qui per costruire insieme.",
+    "analyzing": "Sto guardando l'immagine…",
+    "thinking": "Sto pensando…",
+    "error_generic": "Qualcosa non ha funzionato. Riprova fra un momento.",
+    "error_offline": "Sembra che siate offline. UNLIM ha bisogno della rete per rispondere al meglio.",
+    "rate_limit": "Tante domande in poco tempo: aspettiamo qualche secondo e riproviamo."
   },
   "quickActions": {
     "vol1": "Vol.1",
     "vol2": "Vol.2",
     "vol3": "Vol.3",
     "led": "LED",
-    "simulator": "Simulatore"
+    "simulator": "Simulatore",
+    "ask_volume": "Chiedi sul Volume",
+    "ask_experiment": "Spiega esperimento"
   },
   "manual": {
     "title": "Manuale ELAB",
@@ -34,13 +371,372 @@
       "full": "\"vol.3 pagina 20\""
     },
     "pageOpened": "Ho aperto la pagina {{page}} del Volume {{vol}}.",
-    "pageHint": "Per fartela spiegare, clicca il pulsante \"Importa\" () sopra il manuale, oppure usa la funzione \"Visione\"."
+    "pageHint": "Per fartela spiegare, clicca il pulsante \"Importa\" () sopra il manuale, oppure usa la funzione \"Visione\".",
+    "loading_page": "Carico la pagina…",
+    "page_label": "Pagina {{page}}",
+    "volume_label": "Volume {{vol}}"
+  },
+  "student_dashboard": {
+    "login_required": "Accedi per vedere la tua dashboard",
+    "hello": "Ciao, {{name}}!",
+    "close_teacher_message": "Chiudi messaggio insegnante",
+    "tabs": {
+      "panoramica": "Panoramica",
+      "diario": "Diario",
+      "meraviglie": "Meraviglie",
+      "esperimenti": "Esperimenti",
+      "mappa": "Mappa",
+      "classe": "La mia classe"
+    },
+    "stats": {
+      "points": "Punti",
+      "streak": "Streak",
+      "experiments": "Esperimenti",
+      "total_time": "Tempo totale",
+      "completed": "Completati",
+      "in_progress": "In corso",
+      "volumes_touched": "Volumi toccati"
+    },
+    "sections": {
+      "achievements": "Traguardi",
+      "open_questions": "Domande aperte ({{count}})",
+      "solved_questions": "Domande risolte ({{count}})",
+      "recent_experiments": "Ultimi esperimenti",
+      "how_feel": "Come ti senti adesso?",
+      "write_diary": "Scrivi nel tuo diario",
+      "your_diary": "Il tuo diario di bordo",
+      "recent_moods": "I tuoi mood recenti",
+      "what_wondering": "Cosa ti stai chiedendo?",
+      "all_experiments": "Tutti gli esperimenti",
+      "star_map": "La tua mappa delle stelle",
+      "concepts_explored": "Concetti esplorati ({{count}})",
+      "your_class": "La tua classe",
+      "join_class": "Entra in una classe"
+    },
+    "placeholders": {
+      "mood_note": "Vuoi aggiungere una nota? (opzionale)",
+      "diary": "Cosa hai scoperto oggi? Cosa ti ha sorpreso? Cosa è stato difficile?",
+      "question": "Scrivi la tua domanda…",
+      "class_code": "CODICE"
+    },
+    "empty": {
+      "sky_empty": "Il tuo cielo è ancora vuoto.",
+      "sky_hint": "Ogni concetto che esplori diventerà una stella."
+    },
+    "labels": {
+      "volume_short": "Vol. {{n}}",
+      "chapter_short": "Cap. {{n}}",
+      "wonder_singular": "meraviglia",
+      "wonder_plural": "meraviglie"
+    }
+  },
+  "predict_observe_explain": {
+    "title": "Prevedi, Osserva, Spiega",
+    "intro": "Sbagliare la previsione è il modo migliore per imparare.",
+    "phase1_title": "Fase 1: Prevedi",
+    "phase1_hint": "Cosa pensi che succederà? Scegli la tua risposta:",
+    "phase2_title": "Fase 2: Osserva",
+    "your_prediction": "La tua previsione",
+    "what_happens": "Cosa succede davvero",
+    "phase3_title": "Fase 3: Spiega",
+    "explain_placeholder": "Scrivi qui la tua spiegazione…",
+    "complete_title": "Ecco la spiegazione",
+    "did_you_know": "Lo sapevi?"
+  },
+  "circuit_detective": {
+    "title": "Circuit Detective",
+    "intro": "Usa i suggerimenti solo se sei davvero bloccato.",
+    "schema_title": "Schema del circuito",
+    "investigation_title": "La tua indagine",
+    "hint_label": "Suggerimento {{n}}:",
+    "answer_placeholder": "Scrivi cosa pensi sia il problema…",
+    "perfect": "Perfetto!",
+    "encourage": "La confusione è il primo passo della scoperta. Prova a usare i suggerimenti!",
+    "solution_title": "Soluzione",
+    "learned_label": "Hai imparato:",
+    "concept_label": "Concetto:"
+  },
+  "manual_tab": {
+    "upload_file_aria": "Carica file",
+    "loading_volume": "Caricamento Volume {{vol}}…",
+    "prev_page_aria": "Pagina precedente",
+    "next_page_aria": "Pagina successiva",
+    "rendering_page": "Rendering pagina {{page}}…",
+    "welcome_title": "Benvenuto nei Manuali ELAB!",
+    "welcome_subtitle": "Seleziona un volume sopra per iniziare",
+    "remove_doc_aria": "Rimuovi documento",
+    "upload_docs_title": "Carica Documenti",
+    "upload_docs_hint": "Clicca qui o trascina un file",
+    "fit_mode_aria": "Modalità visualizzazione",
+    "fit_width": "Larghezza",
+    "fit_height": "Altezza",
+    "fit_page": "Pagina",
+    "fit_free": "Libero"
+  },
+  "videos_tab": {
+    "youtube_placeholder": "Incolla link YouTube…",
+    "youtube_title": "Videolezioni YouTube",
+    "youtube_subtitle": "Incolla un link sopra oppure scegli un video consigliato",
+    "video_iframe_title": "YouTube video",
+    "meet_title": "Videochiamata con Google Meet",
+    "meet_subtitle": "Incolla un link Google Meet oppure creane uno nuovo",
+    "meet_active": "Riunione attiva",
+    "meet_brand": "Google Meet"
+  },
+  "lesson_path_panel": {
+    "note": "Nota:",
+    "cue": "Spunto:",
+    "typical_errors": "Errori tipici e come reagire:",
+    "analogy": "Analogia:",
+    "observe": "Osserva:",
+    "analogies_to_explain": "Analogie per spiegare:",
+    "say_to_class": "Da dire alla classe:",
+    "lesson_label": "Lezione",
+    "lesson_path_title": "Percorso Lezione",
+    "close": "Chiudi",
+    "close_path_aria": "Chiudi percorso",
+    "objective": "Obiettivo:",
+    "next": "Prossimo:",
+    "today_we_do": "Oggi facciamo:",
+    "material_per_group": "Materiale per ogni gruppo:",
+    "if_they_ask_more": "Se ti chiedono di più:",
+    "challenge_early": "Se qualcuno finisce prima → sfida: \"Riesci a farlo in un altro modo?\"",
+    "tip": "Suggerimento:",
+    "analogies_ready": "Analogie pronte per spiegare:",
+    "today_we_learned": "Oggi abbiamo imparato:",
+    "how_to_check": "Come capire se hanno capito:",
+    "next_time": "La prossima volta:"
+  },
+  "simulator_shell": {
+    "report_ready": "Report PDF pronto!",
+    "download_report_aria": "Scarica report PDF",
+    "download": "Scarica",
+    "close": "Chiudi",
+    "photo_saved": "Foto salvata!",
+    "wire_mode_active": "Collegamento fili attivo",
+    "wire_mode_from": "Da: {{from}} — clicca il pin destinazione",
+    "open_serial_title": "Apri Monitor Seriale",
+    "serial_monitor": "Monitor Seriale",
+    "monitor_tab": "Monitor",
+    "plotter_tab": "Plotter",
+    "welcome_title": "Benvenuto nel Simulatore!",
+    "welcome_subtitle": "Iniziare è facilissimo. Segui questi 3 passi:",
+    "step1_title": "Scegli un esperimento",
+    "step1_body": "Dalla lista a sinistra, tocca un esperimento",
+    "step2_title": "Guarda il circuito",
+    "step2_body": "Qui al centro apparirà il circuito da esplorare",
+    "step3_title": "Chiedi aiuto a UNLIM",
+    "step3_body": "Il bottone in alto a destra spiega tutto",
+    "welcome_dismiss": "Ho capito, iniziamo!",
+    "no_experiment": "Seleziona un esperimento dalla sidebar",
+    "show_experiments": "Mostra Esperimenti",
+    "open_editor_aria": "Apri editor codice",
+    "open_editor_title": "Apri Editor",
+    "editor_aria": "Editor codice",
+    "loading_blocks_editor": "Caricamento editor blocchi…"
+  },
+  "home_chat_inline": {
+    "typing_aria": "UNLIM sta scrivendo",
+    "placeholder": "Chiedi a UNLIM…",
+    "input_aria": "Messaggio per UNLIM"
+  },
+  "compile_agent_banner": {
+    "active_aria": "Agent ELAB attivo",
+    "open_compiler_aria": "Apri il Compilatore ELAB",
+    "install_mac_aria": "Installa Agent ELAB per Mac",
+    "cloud_aria": "Compilazione cloud disponibile"
+  },
+  "web_usb_banner": {
+    "ready_aria": "Browser pronto — Compila e Carica funzionano sul kit Arduino Nano R4",
+    "open_compiler_aria": "Apri il Compilatore ELAB",
+    "fallback_aria": "Aprite Chrome o Edge per usare il Compilatore"
+  },
+  "home_compile_entry": {
+    "back_home": "Torna alla home",
+    "code": "Codice",
+    "serial_aria": "Monitor Seriale Virtuale",
+    "serial": "Seriale"
+  },
+  "unlim_compile_helper": {
+    "aria": "Aiuto UNLIM compilazione",
+    "input_aria": "Scrivi a UNLIM",
+    "send_aria": "Invia a UNLIM"
+  },
+  "program_explainer": {
+    "aria": "Spiegazione del programma corrente"
+  },
+  "easter_modal": {
+    "placeholder_message": "Ragazzi, ancora niente scimpanzè qui — torneranno presto!",
+    "modal_aria": "Chi siamo — il team ELAB",
+    "close_aria": "Chiudi finestra Chi siamo"
+  },
+  "home_cronologia": {
+    "heading": "Cronologia recente",
+    "search_placeholder": "Cerca tra le sessioni…",
+    "search_aria": "Cerca tra le sessioni passate",
+    "empty_kit": "Aprite il",
+    "empty_lavagna": "Lavagna libera",
+    "empty_instruction": "kit ELAB",
+    "empty_cta": "per iniziare."
+  },
+  "lavagna_shell": {
+    "components": "Componenti",
+    "welcome_first": "Benvenuti!",
+    "welcome_back": "Bentornati!",
+    "loading_simulator": "Caricamento simulatore…",
+    "loading_dashboard": "Caricamento dashboard…",
+    "loading_progress": "Caricamento progressi…",
+    "loading_chapters": "Caricamento capitoli…",
+    "loading_chapter": "Caricamento capitolo…",
+    "chapter_select_aria": "Selezione capitolo",
+    "chapter_close_aria": "Chiudi selezione capitolo",
+    "code_panel_inline": "Il pannello codice è integrato nel simulatore",
+    "wake_word": "Ehi UNLIM"
+  },
+  "percorso_view": {
+    "no_chapter": "Nessun capitolo selezionato. Caricamento in corso o selezionare Capitolo.",
+    "close": "Chiudi percorso",
+    "custom_lesson": "Lezione personalizzata",
+    "path_adaptation": "Adattamento percorso",
+    "kit_ribbon": "Ragazzi, kit fisico ELAB",
+    "live_regia_aria": "Regia live Percorso",
+    "live_regia_title": "Regia live Percorso",
+    "morphic_budget": "Budget morfico Percorso",
+    "theory": "Teoria",
+    "transition": "Transizione",
+    "experiment_num": "Esperimento {{num}}",
+    "components": "Componenti",
+    "phases": "Fasi",
+    "next_step": "Prossimo passaggio",
+    "next_prefix": "Prossimo:"
+  },
+  "unlim_bar": {
+    "placeholder": "Chiedi a UNLIM…",
+    "input_aria": "Chiedi a UNLIM",
+    "mic_aria": "Attiva voce",
+    "mic_title": "Parla con UNLIM",
+    "send_aria": "Invia messaggio",
+    "send_title": "Invia"
+  },
+  "volume_viewer": {
+    "prev_page": "Pagina precedente",
+    "next_page": "Pagina successiva",
+    "page_number_aria": "Numero pagina",
+    "pen_undo_aria": "Annulla tratto",
+    "pen_undo_title": "Annulla",
+    "pen_clear_aria": "Cancella annotazioni",
+    "pen_clear_title": "Cancella tutto",
+    "loading": "Caricamento volume…",
+    "retry": "Riprova"
+  },
+  "docente_sidebar": {
+    "aria": "Sidebar docente — colpo d'occhio sul percorso",
+    "header": "Sidebar docente",
+    "section_step": "Step",
+    "section_cue": "Spunto",
+    "section_notes": "Note",
+    "section_typical_errors": "Errori tipici"
+  },
+  "video_float": {
+    "expand": "Espandi video",
+    "back_to_catalog": "Torna al catalogo",
+    "search_placeholder": "Cerca video… (es. LED, resistore, Arduino)",
+    "search_aria": "Cerca video",
+    "clear_search": "Cancella ricerca",
+    "search_youtube_aria": "Cerca su YouTube"
+  },
+  "session_comic": {
+    "mascot_aria": "UNLIM mascotte canonica ELAB",
+    "report_aria": "Report fumetto della sessione",
+    "title": "Ragazzi, ecco cosa abbiamo fatto oggi!",
+    "class_prefix": "Classe: {{name}}",
+    "export_pdf_aria": "Scarica PDF del report fumetto",
+    "export_pdf": "Scarica PDF",
+    "generate_images_aria": "Genera immagini del fumetto dalla sessione",
+    "generating_images": "Genero immagini",
+    "generate_images": "Genera immagini",
+    "no_context": "Contesto non sufficiente",
+    "exercises_aria": "Esercizi didattici del fumetto",
+    "exercises_title": "Esercizi sul kit fisico",
+    "quiz_aria": "Domande a crocette del fumetto",
+    "quiz_title": "Domande a crocette",
+    "notes_aria": "Spazio appunti del fumetto",
+    "notes_title": "Spazio appunti",
+    "diary_aria": "Pagina diario finale del fumetto",
+    "fingerprint": "Traccia sessione: {{fingerprint}}",
+    "footer": "Grazie ragazzi! Alla prossima lezione!",
+    "gemini_rejected": "Storyline Gemini scartata: evidenceRefs non sufficienti, report locale sobrio.",
+    "gemini_ready": "Storyline Gemini pronta: testi, quiz, diario e prompt immagini usano la sessione.",
+    "gemini_loading": "UNLIM sta preparando storyline, quiz, diario e prompt immagini dalla sessione.",
+    "gemini_unavailable": "Storyline Gemini non disponibile ora: report locale sobrio, senza inventare prove."
+  },
+  "experiment_picker": {
+    "modal_aria": "Scegli un esperimento",
+    "title": "Scegli Esperimento",
+    "close": "Chiudi",
+    "search_placeholder": "Cerca esperimento…",
+    "search_aria": "Cerca esperimento",
+    "clear_search": "Cancella ricerca",
+    "view_lessons": "Lezioni",
+    "view_chapters": "Tutti gli esperimenti",
+    "free_mode_title": "Lavagna libera",
+    "free_mode_body": "breadboard vuota, costruisci quello che vuoi",
+    "unlim_help_prefix": "Non sai da dove iniziare?",
+    "unlim_help_action": "Chiedi a UNLIM",
+    "unlim_help_prompt": "Quale esperimento mi consigli per iniziare?",
+    "no_lessons": "Nessuna lezione trovata."
+  },
+  "lavagna_path": {
+    "no_path_title": "Percorso non disponibile",
+    "no_path_body": "Questo esperimento non ha un percorso lezione dettagliato.",
+    "no_steps_body": "Questo esperimento non ha passi dettagliati.",
+    "ready_to_start": "Pronti a iniziare? Premete Avanti per il primo passo.",
+    "teacher_suggestion": "Suggerimento docente:",
+    "what_to_observe": "Cosa osservare",
+    "key_concept": "Concetto chiave",
+    "components": "Componenti",
+    "hint": "Suggerimento",
+    "phase_of": "Fase {{current}} di {{total}}",
+    "step_of": "Passo {{current}} di {{total}}",
+    "exp_pos": "Esp. {{pos}}/{{total}}",
+    "vol_page": "Vol. {{vol}}, p. {{page}}",
+    "back": "Indietro",
+    "forward": "Avanti",
+    "restart": "Ricomincia",
+    "summary": "Riepilogo",
+    "ask_unlim": "Chiedi a UNLIM",
+    "ask_unlim_phase_title": "Chiedi consiglio a UNLIM per questa fase",
+    "ask_unlim_help": "Aiutami con questo esperimento",
+    "summary_prompt": "Riepilogo della lezione \"{{title}}\". Sintetizza cosa abbiamo costruito, cosa osservare, errori comuni e riferimento Vol./pag.",
+    "chat_aria": "Scrivi a UNLIM nel percorso",
+    "chat_input_aria": "Scrivi messaggio a UNLIM nel percorso",
+    "chat_placeholder": "Scrivi a UNLIM…",
+    "chat_send_aria": "Invia messaggio a UNLIM dal percorso",
+    "expand_chat_aria": "Espandi chat UNLIM"
+  },
+  "floating_toolbar": {
+    "aria": "Strumenti lavagna",
+    "drag_title": "Trascina per spostare",
+    "tool_select": "Seleziona",
+    "tool_wire": "Filo",
+    "tool_delete": "Elimina",
+    "tool_undo": "Annulla",
+    "tool_redo": "Ripeti",
+    "tool_pen": "Penna",
+    "tool_eraser": "Gomma"
   },
   "canvas": {
+    "title": "Lavagna",
     "tools": {
       "brush": "Pennello",
       "text": "Testo",
-      "eraser": "Gomma"
+      "eraser": "Gomma",
+      "select": "Seleziona",
+      "wire": "Cavo",
+      "pen": "Penna",
+      "undo": "Annulla",
+      "redo": "Ripeti",
+      "clear": "Pulisci tutto"
     },
     "sizes": {
       "fine": "Fine",
@@ -52,21 +748,28 @@
       "uploadImage": "Carica immagine",
       "addToSlides": "Aggiungi a Slide",
       "clear": "Cancella tutto",
-      "sendToAI": "Invia a UNLIM"
+      "sendToAI": "Invia a UNLIM",
+      "save": "Salva lavagna",
+      "export": "Esporta"
     },
     "textHint": "Clicca dove vuoi inserire il testo",
-    "present": "Presenta"
+    "present": "Presenta",
+    "mode_libero": "Lavagna libera",
+    "mode_percorso": "Percorso",
+    "mode_passo_passo": "Passo passo",
+    "mode_gia_montato": "Già montato"
   },
   "videos": {
     "title": "Videolezioni",
-    "placeholder": "Incolla link YouTube (es: https://youtube.com/watch?v=...)",
+    "placeholder": "Incolla link YouTube (es: https://youtube.com/watch?v=…)",
     "load": "Carica",
     "pasteHint": "Incolla un link YouTube sopra per guardare un video",
     "recommended": "Video consigliati:"
   },
   "notebooks": {
+    "title": "Taccuini",
     "createNew": "Crea Nuova Lezione",
-    "titlePlaceholder": "Titolo lezione...",
+    "titlePlaceholder": "Titolo lezione…",
     "create": "Crea",
     "hint": "Usa \"Crea\" per iniziare un taccuino vuoto o con il disegno corrente.",
     "saved": "Lezioni Salvate",
@@ -95,13 +798,22 @@
     "copyCode": "Copia Codice",
     "openWokwi": "Apri in Wokwi",
     "selectExperiment": "Seleziona un esperimento",
-    "selectHint": "Scegli un esperimento dalla lista a sinistra per iniziare"
+    "selectHint": "Scegli un esperimento dalla lista a sinistra per iniziare",
+    "play": "Avvia",
+    "pause": "Pausa",
+    "reset": "Reset",
+    "upload": "Carica su Arduino",
+    "compile": "Compila"
   },
   "code": {
     "editor": "Editor Arduino",
     "compile": "Compila",
     "simulate": "Simula",
-    "compiling": "Compilando..."
+    "compiling": "Compilando…",
+    "compile_success": "Compilazione riuscita.",
+    "compile_error": "Errore di compilazione.",
+    "upload_success": "Caricamento riuscito.",
+    "upload_error": "Errore di caricamento."
   },
   "responses": {
     "ledOn": "Fatto! LED acceso.",
@@ -116,5 +828,27 @@
     "notebooksOpened": "Ecco i tuoi taccuini.",
     "canvasCleared": "Lavagna pulita.",
     "operationCancelled": "Operazione annullata."
+  },
+  "toast": {
+    "saved": "Salvato",
+    "deleted": "Eliminato",
+    "copied": "Copiato negli appunti",
+    "error": "Si è verificato un errore",
+    "offline": "Sei offline",
+    "online": "Sei tornato online",
+    "session_expired": "Sessione scaduta. Accedi di nuovo."
+  },
+  "errors": {
+    "boundary_title": "Ops! Qualcosa è andato storto",
+    "boundary_body": "Non preoccuparti! Prova a ricaricare la pagina. Se il problema continua, contattaci.",
+    "boundary_reload": "Ricarica la pagina",
+    "boundary_clear_cache": "Pulisci cache + ricarica",
+    "boundary_clear_cache_title": "Pulisce la cache locale e ricarica con la versione più recente",
+    "boundary_show_details": "Mostra dettagli tecnici",
+    "boundary_hide_details": "Nascondi dettagli",
+    "boundary_copy_details": "Copia dettagli",
+    "not_found_title": "Pagina non trovata",
+    "not_found_body": "La pagina che cerchi non esiste o è stata spostata.",
+    "not_found_home": "Torna alla Home"
   }
 }

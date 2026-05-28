@@ -5,10 +5,12 @@
  * (c) Andrea Marro — 02/04/2026
  */
 import React, { useState, useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import MascotPresence from './MascotPresence';
 import css from './UnlimBar.module.css';
 
 export default function UnlimBar({ onSend, onMicClick, onExpandChat, mascotSrc, speaking = false }) {
+  const { t } = useTranslation();
   const [text, setText] = useState('');
   const inputRef = useRef(null);
 
@@ -43,16 +45,16 @@ export default function UnlimBar({ onSend, onMicClick, onExpandChat, mascotSrc, 
           ref={inputRef}
           type="text"
           className={css.input}
-          placeholder="Chiedi a UNLIM..."
+          placeholder={t('unlim_bar.placeholder')}
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
-          aria-label="Chiedi a UNLIM"
+          aria-label={t('unlim_bar.input_aria')}
         />
       </form>
 
       {/* Mic button */}
-      <button className={css.iconBtn} onClick={onMicClick} aria-label="Attiva voce" title="Parla con UNLIM">
+      <button className={css.iconBtn} onClick={onMicClick} aria-label={t('unlim_bar.mic_aria')} title={t('unlim_bar.mic_title')}>
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <rect x="7" y="2" width="6" height="10" rx="3" stroke="currentColor" strokeWidth="1.5" />
           <path d="M4 10c0 3.3 2.7 6 6 6s6-2.7 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -65,8 +67,8 @@ export default function UnlimBar({ onSend, onMicClick, onExpandChat, mascotSrc, 
         className={`${css.iconBtn} ${css.sendBtn}`}
         onClick={handleSubmit}
         disabled={!text.trim()}
-        aria-label="Invia messaggio"
-        title="Invia"
+        aria-label={t('unlim_bar.send_aria')}
+        title={t('unlim_bar.send_title')}
       >
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M3 10l14-7-7 14V10H3z" fill="currentColor" />

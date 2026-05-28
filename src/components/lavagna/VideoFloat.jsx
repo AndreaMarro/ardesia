@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useCallback, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import FloatingWindow from './FloatingWindow';
 import unlimVideos from '../../data/unlim-videos';
 import { VIDEO_COURSES } from '../../data/video-courses';
@@ -179,6 +180,7 @@ export default function VideoFloat({
   onRestore,
   unlockedVolumes = [],
 }) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(TAB_YOUTUBE);
   const [searchInput, setSearchInput] = useState('');
   const [activeVideo, setActiveVideo] = useState(null);
@@ -242,7 +244,7 @@ export default function VideoFloat({
       <button
         className={css.pipThumb}
         onClick={onRestore}
-        aria-label="Espandi video"
+        aria-label={t('video_float.expand')}
       >
         {activeVideo?.type === 'youtube' && activeVideo.videoId ? (
           <img
@@ -284,7 +286,7 @@ export default function VideoFloat({
             ) : (
               <YouTubePlayer videoId={activeVideo.videoId} title={activeVideo.title} />
             )}
-            <button className={css.backBtn} onClick={handleBack} aria-label="Torna al catalogo">
+            <button className={css.backBtn} onClick={handleBack} aria-label={t('video_float.back_to_catalog')}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -326,17 +328,17 @@ export default function VideoFloat({
                     ref={searchRef}
                     className={css.searchInput}
                     type="search"
-                    placeholder="Cerca video... (es. LED, resistore, Arduino)"
+                    placeholder={t('video_float.search_placeholder')}
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    aria-label="Cerca video"
+                    aria-label={t('video_float.search_aria')}
                   />
                   {searchInput && (
                     <button
                       type="button"
                       className={css.clearBtn}
                       onClick={() => { setSearchInput(''); searchRef.current?.focus(); }}
-                      aria-label="Cancella ricerca"
+                      aria-label={t('video_float.clear_search')}
                     >
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                         <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -378,7 +380,7 @@ export default function VideoFloat({
                 <button
                   className={css.youtubeSearchBtn}
                   onClick={handleOpenYouTube}
-                  aria-label="Cerca su YouTube"
+                  aria-label={t('video_float.search_youtube_aria')}
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <rect x="1" y="3" width="14" height="10" rx="3" fill="var(--elab-red)" />

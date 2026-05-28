@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Buffer } from 'buffer'
 import App from './App.jsx'
+import './i18n'  // i18n init (IT default, EN supported, IT fallback) — must run before App render
 import { initCodeProtection } from './utils/codeProtection.js'
 import studentTracker from './services/studentTracker.js'
 import './index.css'

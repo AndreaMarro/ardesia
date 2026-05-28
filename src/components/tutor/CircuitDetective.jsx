@@ -6,6 +6,7 @@
 // ============================================
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BROKEN_CIRCUITS } from '../../data/broken-circuits';
 import studentTracker from '../../services/studentTracker';
 import { LayerBadge, DifficultyBadge, ConceptBadge, LAYER_COLORS } from './shared/LayerBadge';
@@ -32,6 +33,7 @@ const STAR_MESSAGES = {
 };
 
 export default function CircuitDetective({ onSendToUNLIM, onOpenSimulator, logSession }) {
+  const { t } = useTranslation();
   const { saveScore, getScore, getAllScores } = useGameScore('detective');
   const [selectedCircuit, setSelectedCircuit] = useState(null);
   const [currentHintIndex, setCurrentHintIndex] = useState(-1);
@@ -140,7 +142,7 @@ export default function CircuitDetective({ onSendToUNLIM, onOpenSimulator, logSe
               <path d="M8 11h6" />
             </svg>
           </span>
-          <h2>Circuit Detective</h2>
+          <h2>{t('circuit_detective.title')}</h2>
           <p>
             Ogni circuito ha un guasto nascosto. Il tuo compito: trovarlo!
             <br />Usa i suggerimenti solo se sei davvero bloccato.
@@ -266,7 +268,7 @@ export default function CircuitDetective({ onSendToUNLIM, onOpenSimulator, logSe
                 type="text"
                 value={studentGuess}
                 onChange={e => setStudentGuess(e.target.value)}
-                placeholder="Scrivi cosa pensi sia il problema..."
+                placeholder={t('circuit_detective.answer_placeholder')}
                 className="elab-tool__input"
                 onKeyDown={e => e.key === 'Enter' && submitGuess()}
                 disabled={guessSubmitted}
@@ -290,8 +292,8 @@ export default function CircuitDetective({ onSendToUNLIM, onOpenSimulator, logSe
         {guessSubmitted && studentGuess === 'Non lo so' && !showSolution && (
           <div className={`elab-tool__result elab-tool__result--correct ${css.resultMargin}`}>
             <span className="elab-tool__result-icon">?</span>
-            <p className="elab-tool__result-text">Perfetto!</p>
-            <p className="elab-tool__result-sub">La confusione è il primo passo della scoperta. Prova a usare i suggerimenti!</p>
+            <p className="elab-tool__result-text">{t('circuit_detective.perfect')}</p>
+            <p className="elab-tool__result-sub">{t('circuit_detective.encourage')}</p>
           </div>
         )}
 

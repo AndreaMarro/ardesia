@@ -4,6 +4,7 @@
  * (c) Andrea Marro — 03/04/2026
  */
 import React, { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { setClassKey } from '../services/supabaseSync';
 
 const S = {
@@ -93,6 +94,7 @@ const S = {
 };
 
 export default function WelcomePage({ onNavigate }) {
+  const { t } = useTranslation();
   const [key, setKey] = useState('');
   const [error, setError] = useState('');
 
@@ -112,12 +114,12 @@ export default function WelcomePage({ onNavigate }) {
     e.preventDefault();
     const trimmed = key.trim();
     if (!trimmed) {
-      setError('Inserisci la chiave univoca');
+      setError(t('welcome.error_required'));
       return;
     }
     // Validazione chiave — password hardcoded unica
     if (trimmed.toUpperCase() !== 'ELAB2026') {
-      setError('Chiave non valida. Controlla la tua chiave e riprova.');
+      setError(t('welcome.error_invalid'));
       return;
     }
     // Salva la chiave e vai alla Lavagna
@@ -135,16 +137,16 @@ export default function WelcomePage({ onNavigate }) {
           alt="UNLIM"
           style={S.logo}
         />
-        <h1 style={S.title}>BENVENUTO IN ELAB TUTOR</h1>
-        <p style={S.subtitle}>Simulatore di elettronica e Arduino per la scuola</p>
+        <h1 style={S.title}>{t('welcome.title')}</h1>
+        <p style={S.subtitle}>{t('welcome.subtitle')}</p>
 
         <form onSubmit={handleSubmit}>
-          <label style={S.label} htmlFor="license-key">Chiave univoca</label>
+          <label style={S.label} htmlFor="license-key">{t('welcome.key_label')}</label>
           <input
             id="license-key"
             style={S.input}
             type="text"
-            placeholder="Inserisci la tua chiave..."
+            placeholder={t('welcome.key_placeholder')}
             value={key}
             onChange={(e) => { setKey(e.target.value); setError(''); }}
             autoFocus
@@ -157,11 +159,11 @@ export default function WelcomePage({ onNavigate }) {
             onMouseEnter={(e) => e.target.style.background = 'var(--elab-hex-3d6620)'}
             onMouseLeave={(e) => e.target.style.background = 'var(--elab-lime)'}
           >
-            ENTRA
+            {t('welcome.enter')}
           </button>
         </form>
       </div>
-      <div style={S.footer}>ELAB Tutor — Andrea Marro</div>
+      <div style={S.footer}>{t('welcome.footer')}</div>
     </div>
   );
 }

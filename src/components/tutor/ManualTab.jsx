@@ -5,6 +5,7 @@
 // ============================================
 
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { processDocumentUpload } from './utils/documentConverters';
 import { showToast } from '../common/Toast';
 
@@ -35,6 +36,7 @@ export default function ManualTab({
     isFullscreen,
     docViewerRef,
 }) {
+    const { t } = useTranslation();
     const docInputRef = useRef(null);
 
     const handleDocumentUpload = async (e) => {
@@ -67,7 +69,7 @@ export default function ManualTab({
                         <button className={`v4-toggle-btn ${viewMode === 'document' ? 'active' : ''}`} onClick={() => onSetViewMode('document')} aria-pressed={viewMode === 'document'}>Documenti</button>
                     </div>
 
-                    <input type="file" ref={docInputRef} onChange={handleDocumentUpload} accept="image/*,.pdf,.docx,.pptx,.txt,.md,.csv,.json,.xml,.ino,.c,.cpp,.py,.js,.css,.html" multiple style={{ display: 'none' }} aria-label="Carica file" />
+                    <input type="file" ref={docInputRef} onChange={handleDocumentUpload} accept="image/*,.pdf,.docx,.pptx,.txt,.md,.csv,.json,.xml,.ino,.c,.cpp,.py,.js,.css,.html" multiple style={{ display: 'none' }} aria-label={t('manual_tab.upload_file_aria')} />
                     <button className="v4-toolbar-btn" onClick={() => docInputRef.current?.click()} aria-label="Carica file">Carica</button>
                     <button className="v4-toolbar-btn primary" onClick={onSendDocScreenshot} aria-label="Invia questa pagina a UNLIM per fartela spiegare">Spiega questa pagina</button>
 
@@ -96,7 +98,7 @@ export default function ManualTab({
                     {loadingVolume !== null && (
                         <div className="v4-loading">
                             <div className="v4-spinner"></div>
-                            <h3>Caricamento Volume {loadingVolume}...</h3>
+                            <h3>{t('manual_tab.loading_volume', { vol: loadingVolume })}</h3>
                             {/* S112: Download progress bar */}
                             {volumeProgress !== null && volumeProgress !== undefined && (
                                 <div style={{ width: '60%', maxWidth: 300, margin: '12px auto', background: 'var(--elab-hex-e0e0e0)', borderRadius: 6, height: 8, overflow: 'hidden' }}>
@@ -115,10 +117,10 @@ export default function ManualTab({
                     {!loadingVolume && selectedVolume && volumePages[selectedVolume]?.length > 0 && (
                         <>
                             <div className="v4-page-nav">
-                                <button onClick={() => onSetCurrentDocPage(p => Math.max(0, p - 1))} disabled={currentDocPage === 0} aria-label="Pagina precedente"><span aria-hidden="true">←</span></button>
+                                <button onClick={() => onSetCurrentDocPage(p => Math.max(0, p - 1))} disabled={currentDocPage === 0} aria-label={t('manual_tab.prev_page_aria')}><span aria-hidden="true">←</span></button>
                                 <input type="number" className="v4-page-input" value={currentDocPage + 1} onChange={(e) => { const p = parseInt(e.target.value) - 1; if (p >= 0 && p < volumePages[selectedVolume].length) onSetCurrentDocPage(p); }} min="1" max={volumePages[selectedVolume].length} aria-label="Numero pagina" />
                                 <span className="v4-page-count">/ {volumePages[selectedVolume].length}</span>
-                                <button onClick={() => onSetCurrentDocPage(p => Math.min(volumePages[selectedVolume].length - 1, p + 1))} disabled={currentDocPage >= volumePages[selectedVolume].length - 1} aria-label="Pagina successiva"><span aria-hidden="true">→</span></button>
+                                <button onClick={() => onSetCurrentDocPage(p => Math.min(volumePages[selectedVolume].length - 1, p + 1))} disabled={currentDocPage >= volumePages[selectedVolume].length - 1} aria-label={t('manual_tab.next_page_aria')}><span aria-hidden="true">→</span></button>
                                 <ZoomControls fitMode={fitMode} onSetFitMode={onSetFitMode} pdfZoom={pdfZoom} onSetPdfZoom={onSetPdfZoom} />
                             </div>
 
@@ -137,7 +139,7 @@ export default function ManualTab({
                                     /* S112: Lazy page placeholder — page renders on navigation */
                                     <div className="v4-loading" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                         <div className="v4-spinner"></div>
-                                        <p style={{ marginTop: 12, color: 'var(--elab-hex-737373)' }}>Rendering pagina {currentDocPage + 1}...</p>
+                                        <p style={{ marginTop: 12, color: 'var(--elab-hex-737373)' }}>{t('manual_tab.rendering_page', { page: currentDocPage + 1 })}</p>
                                     </div>
                                 )}
                             </div>
@@ -147,8 +149,8 @@ export default function ManualTab({
                     {!loadingVolume && !selectedVolume && (
                         <div className="v4-placeholder">
                             <div className="v4-icon"></div>
-                            <h3>Benvenuto nei Manuali ELAB!</h3>
-                            <p>Seleziona un volume sopra per iniziare</p>
+                            <h3>{t('manual_tab.welcome_title')}</h3>
+                            <p>{t('manual_tab.welcome_subtitle')}</p>
                         </div>
                     )}
                 </>
@@ -176,7 +178,7 @@ export default function ManualTab({
                                         onSetUploadedDocs(prev => prev.filter(d => d.id !== currentDoc.id));
                                         onSetCurrentDoc(null);
                                     }}
-                                    aria-label="Rimuovi documento"
+                                    aria-label={t('manual_tab.remove_doc_aria')}
                                 ><span aria-hidden="true">✕</span></button>
                             )}
                         </div>
@@ -186,9 +188,9 @@ export default function ManualTab({
                         <>
                             {currentDoc.pages.length > 1 && (
                                 <div className="v4-page-nav">
-                                    <button onClick={() => onSetCurrentDocPage(p => Math.max(0, p - 1))} disabled={currentDocPage === 0} aria-label="Pagina precedente"><span aria-hidden="true">←</span></button>
+                                    <button onClick={() => onSetCurrentDocPage(p => Math.max(0, p - 1))} disabled={currentDocPage === 0} aria-label={t('manual_tab.prev_page_aria')}><span aria-hidden="true">←</span></button>
                                     <span className="v4-page-count">Pagina {currentDocPage + 1} / {currentDoc.pages.length}</span>
-                                    <button onClick={() => onSetCurrentDocPage(p => Math.min(currentDoc.pages.length - 1, p + 1))} disabled={currentDocPage >= currentDoc.pages.length - 1} aria-label="Pagina successiva"><span aria-hidden="true">→</span></button>
+                                    <button onClick={() => onSetCurrentDocPage(p => Math.min(currentDoc.pages.length - 1, p + 1))} disabled={currentDocPage >= currentDoc.pages.length - 1} aria-label={t('manual_tab.next_page_aria')}><span aria-hidden="true">→</span></button>
                                     <ZoomControls fitMode={fitMode} onSetFitMode={onSetFitMode} pdfZoom={pdfZoom} onSetPdfZoom={onSetPdfZoom} />
                                 </div>
                             )}
@@ -220,8 +222,8 @@ export default function ManualTab({
                             }}
                         >
                             <div className="v4-icon"></div>
-                            <h3>Carica Documenti</h3>
-                            <p>Clicca qui o trascina un file</p>
+                            <h3>{t('manual_tab.upload_docs_title')}</h3>
+                            <p>{t('manual_tab.upload_docs_hint')}</p>
                             <div className="v4-upload-formats">
                                 <span>PDF</span><span>DOCX</span><span>PPTX</span><span>JPG/PNG</span><span>TXT/CSV</span><span>INO/PY/JS</span>
                             </div>
@@ -240,11 +242,11 @@ export default function ManualTab({
 function ZoomControls({ fitMode, onSetFitMode, pdfZoom, onSetPdfZoom }) {
     return (
         <div className="v4-zoom-controls">
-            <select value={fitMode} onChange={(e) => onSetFitMode(e.target.value)} aria-label="Modalità visualizzazione">
-                <option value="width">Larghezza</option>
-                <option value="height">Altezza</option>
-                <option value="page">Pagina</option>
-                <option value="free">Libero</option>
+            <select value={fitMode} onChange={(e) => onSetFitMode(e.target.value)} aria-label={t('manual_tab.fit_mode_aria')}>
+                <option value="width">{t('manual_tab.fit_width')}</option>
+                <option value="height">{t('manual_tab.fit_height')}</option>
+                <option value="page">{t('manual_tab.fit_page')}</option>
+                <option value="free">{t('manual_tab.fit_free')}</option>
             </select>
             {fitMode === 'free' && (
                 <>
