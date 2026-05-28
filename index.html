@@ -126,15 +126,50 @@
     module load with "Expected a JavaScript-or-Wasm module script". React
     never boots. Main.jsx cannot register its own handler because it is
     inside the failed module graph.
-    This inline capture-phase listener fires during the load failure window,
-    unregisters the stale service worker, purges all caches, and reloads
-    exactly once (sessionStorage guard prevents loops). After reload, the
-    browser hits the origin directly and receives the fresh index.html.
+
+    2026-05-28 upgrade (fix/prod-stale-chunks-recover): the original 4-22 fix
+    used a permanent sessionStorage flag (`elab-stale-module-reload === '1'`)
+    which jammed users into a no-recovery state if the first reload was
+    intercepted by the same stale SW (edge-cache lag, SW activation race,
+    or hard-reload preserving sessionStorage). Three improvements:
+
+      (1) Timestamp cooldown (30s) replaces permanent flag — second attempt
+          is allowed after 30s with HARD cache-bust query `?cb=<ts>` to
+          bypass even a misbehaving SW.
+      (2) Failure counter — if 2 consecutive attempts fail, nuclear path:
+          location.href = '/?elab-cachebust=' + Date.now() to force a fresh
+          navigation entirely outside SW scope.
+      (3) Healthy-load auto-clear — when the page reaches DOMContentLoaded
+          + 3s without further chunk errors, all guards are wiped so future
+          deploys recover cleanly.
+
+    After recovery, the browser hits origin directly and receives fresh HTML.
   -->
   <script>
     (function () {
       var RELOAD_KEY = 'elab-stale-module-reload';
-      if (sessionStorage.getItem(RELOAD_KEY) === '1') return;
+      var COUNT_KEY = 'elab-stale-module-fail-count';
+      var COOLDOWN_MS = 30000;
+      var NUCLEAR_THRESHOLD = 2;
+
+      var lastReload = parseInt(sessionStorage.getItem(RELOAD_KEY) || '0', 10) || 0;
+      var failCount = parseInt(sessionStorage.getItem(COUNT_KEY) || '0', 10) || 0;
+      var now = Date.now();
+      var withinCooldown = lastReload > 0 && (now - lastReload) < COOLDOWN_MS;
+
+      // Healthy-load auto-clear: if DOMContentLoaded fires + 3s pass without
+      // any /assets/ error tripping the listener below, the page rendered OK.
+      // Wipe both guards so the NEXT deploy's stale-precache window recovers
+      // cleanly instead of inheriting our flag.
+      window.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+          try {
+            sessionStorage.removeItem(RELOAD_KEY);
+            sessionStorage.removeItem(COUNT_KEY);
+          } catch (_e) { /* best effort */ }
+        }, 3000);
+      });
+
       window.addEventListener('error', function (event) {
         var target = event && event.target;
         if (!target || target === window) return;
@@ -142,7 +177,19 @@
         if (tag !== 'SCRIPT' && tag !== 'LINK') return;
         var src = target.src || target.href || '';
         if (src.indexOf('/assets/') === -1) return;
-        sessionStorage.setItem(RELOAD_KEY, '1');
+
+        // Cooldown gate: prevent reload-loop within 30s window.
+        if (withinCooldown) return;
+
+        // Bump failure counter so we can escalate to nuclear path.
+        var nextFailCount = failCount + 1;
+        try {
+          sessionStorage.setItem(COUNT_KEY, String(nextFailCount));
+          sessionStorage.setItem(RELOAD_KEY, String(now));
+        } catch (_e) { /* best effort */ }
+
+        var goNuclear = nextFailCount >= NUCLEAR_THRESHOLD;
+
         var cleanup = Promise.resolve();
         if ('serviceWorker' in navigator) {
           cleanup = navigator.serviceWorker.getRegistrations()
@@ -155,7 +202,17 @@
             return Promise.all(names.map(function (n) { return caches.delete(n); }));
           });
         }).catch(function () { /* best effort */ });
-        cleanup.then(function () { window.location.reload(); });
+
+        cleanup.then(function () {
+          if (goNuclear) {
+            // Nuclear: force a brand-new navigation with cache-bust query so
+            // the URL falls outside any SW route match, the browser bypasses
+            // the HTTP cache, and the user lands on a fresh document graph.
+            window.location.href = '/?elab-cachebust=' + Date.now();
+          } else {
+            window.location.reload();
+          }
+        });
       }, true);
     })();
   </script>
