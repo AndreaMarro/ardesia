@@ -61,27 +61,28 @@ export function isWebSerialSupported() {
 
 /**
  * Prompt the user to pick a serial port. Throws if no port is granted.
- * Filters match Arduino-branded USB-to-serial bridges.
+ *
+ * 2026-05-28 (Andrea live test: Chrome WebSerial picker showed "Nessun
+ * dispositivo compatibile trovato" with an attached Arduino board). The
+ * previous hardcoded `filters` array missed common school-board USB-serial
+ * chips — Prolific PL2303 (0x067b), Espressif (0x303a), Atmel SAM-BA
+ * (0x03eb), generic AVR-USB stack (0x16c0) — and Chrome's WebSerial picker
+ * has no "show all" toggle once `filters` is set. So any unknown VID is
+ * INVISIBLE to the docente, blocking upload even with a working cable.
+ *
+ * Strategy: call `requestPort()` with no filter. The picker enumerates
+ * every serial device the OS exposes. Trade-off: Bluetooth modules,
+ * modem-class devices, and other unrelated ports appear too. If the
+ * docente picks the wrong port → stk500 sync fails with a clear
+ * "scollega/ricollega USB" message (describeUploadError + protocol).
+ * This mirrors Arduino IDE's tools-port-list UX, which schools already
+ * use, and unblocks every clone shipped to ELAB schools.
  */
 export async function requestSerialPort() {
   if (!isWebSerialSupported()) {
     throw new Error('WebSerial non supportato in questo browser. Usa Chrome o Edge.');
   }
-  const filters = [
-    // Arduino LLC / SA classic Nano (FT232 / CH340 clones often pair)
-    { usbVendorId: 0x2341 },
-    // Arduino SRL
-    { usbVendorId: 0x2a03 },
-    // FTDI FT232 (clone Nano)
-    { usbVendorId: 0x0403 },
-    // CH340 / CH341 (cheap clone Nano)
-    { usbVendorId: 0x1a86 },
-    // Silicon Labs CP210x
-    { usbVendorId: 0x10c4 },
-    // QinHeng (CH9102)
-    { usbVendorId: 0x1a86 },
-  ];
-  return navigator.serial.requestPort({ filters });
+  return navigator.serial.requestPort();
 }
 
 /**
