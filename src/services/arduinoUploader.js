@@ -158,7 +158,15 @@ export async function uploadToBoard({ boardId, fqbn, hexText, onProgress }) {
   }
 }
 
-export function describeUploadError(category) {
+/**
+ * @param {string} category — error tag from uploadToBoard result.
+ * @param {string} [protocol] — `stk500v1`/`stk500v2`/`dfu`/`bossa`/`esptool`.
+ *   When known, sync_failed branches per physical recovery action: STK500
+ *   bootloaders auto-reset via DTR pulse → "scollegate/ricollegate USB";
+ *   DFU bootloaders (Renesas Nano R4) need manual double-tap RESET.
+ *   Without protocol, falls back to a board-agnostic message.
+ */
+export function describeUploadError(category, protocol) {
   switch (category) {
     case 'unknown_board':
       return 'Ragazzi, scheda non riconosciuta. Avvisate l\'insegnante.';
@@ -173,7 +181,13 @@ export function describeUploadError(category) {
     case 'permission_denied':
       return 'Ragazzi, il browser ha negato l\'accesso USB. Avvisate l\'insegnante.';
     case 'sync_failed':
-      return 'Ragazzi, la scheda non risponde. Premete due volte RESET sulla scheda e riprovate.';
+      if (protocol === 'dfu') {
+        return 'Ragazzi, la Nano R4 non risponde. Premete due volte il tasto RESET sulla scheda e riprovate.';
+      }
+      if (protocol === 'stk500v1' || protocol === 'stk500v2') {
+        return 'Ragazzi, la scheda non risponde. Scollegate e ricollegate il cavo USB, poi riprovate.';
+      }
+      return 'Ragazzi, la scheda non risponde. Riprovate il caricamento.';
     case 'unexpected_flash_address':
       return 'Ragazzi, il programma compilato non è per questa scheda. Caricamento annullato.';
     case 'hex_invalid':

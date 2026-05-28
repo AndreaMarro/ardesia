@@ -460,25 +460,25 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
             compilationErrors={compileErrors}
             compilationWarnings={compileWarnings}
             compilationSize={compileSize}
-            // iter 80 80.A2 (Codex Pattern V iter 79 HIGH IDE-1) + 80.A3
-            // (MED IDE-3) combined: editorMode-aware source selection +
-            // honest label. Source = cppCode when "Codice C++" tab active
-            // (CodeEditorCM6 direct entry), scratchCode when Blockly tab
-            // (ScratchEditor onChange xml/code → C++ via scratchGenerator).
-            // Label override "Compila" because Home handler calls compileCode
-            // only — physical upload routes via separate CompileUploadButton.
-            sketchCode={activeSketchCode}
+            // 2026-05-28 (Andrea report "non va, non va nessuna pagina e non
+            // va l'upload"): drop `sketchCode` so ScratchCompileBar skips
+            // its built-in CompileUploadButton path. That legacy button was
+            // hardcoded to Nano R4 (boardId={DEFAULT_BOARD_ID}, copy
+            // "Collegate il Nano R4", DFU protocol) and ignored the
+            // BoardPicker below, dispatching DFU upload at an attached
+            // UNO R3. Single upload UI now = BoardPicker + UniversalUploadButton,
+            // which honors the picker and routes per-board protocol.
             compileButtonLabel="Compila"
-            boardId={DEFAULT_BOARD_ID}
+            boardId={targetBoardId}
             port={null}
           />
-          {/* Andrea 2026-05-27 — board picker + universal upload. Surfaces a
-              concretely-usable upload entry next to the existing compile bar
-              so the docente picks target board once + flashes any model
-              (Nano R4 via WebUSB DFU, AVR family via WebSerial stk500). */}
+          {/* Andrea 2026-05-27 — board picker + universal upload. Single
+              upload entry after 2026-05-28 dedup. UniversalUploadButton
+              gets key={targetBoardId} so a board switch unmounts/remounts
+              with fresh state — clears lingering error message + status. */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '12px 0' }}>
             <BoardPicker boardId={targetBoardId} onChange={handleBoardChange} hint="Scheda di destinazione" />
-            <UniversalUploadButton boardId={targetBoardId} hexText={compiledHex || ''} />
+            <UniversalUploadButton key={targetBoardId} boardId={targetBoardId} hexText={compiledHex || ''} />
           </div>
           {/* Iter 97 atom C — UnlimCompileHelper static mascot scaffold per
               Andrea iter 97 PM screenshot feedback "qui sarebbe bello unlim

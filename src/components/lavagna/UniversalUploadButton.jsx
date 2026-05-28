@@ -100,7 +100,9 @@ export default function UniversalUploadButton({
       }, 4500);
     } else {
       setState(STATE.ERROR);
-      const msg = describeUploadError(result.errorCategory);
+      // Forward protocol so STK500 boards get USB-replug guidance instead
+      // of Nano-R4-specific "double-tap RESET" copy (Andrea report 2026-05-28).
+      const msg = describeUploadError(result.errorCategory, result.protocol);
       setMessage(msg);
       if (typeof onError === 'function') onError({ ...result, message: msg });
     }

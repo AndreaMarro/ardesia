@@ -63,7 +63,13 @@ describe('describeUploadError', () => {
   test('returns docente plurale message for each known category', () => {
     expect(describeUploadError('port_missing')).toMatch(/Ragazzi.*USB/);
     expect(describeUploadError('no_webusb')).toMatch(/Chrome|Edge/);
-    expect(describeUploadError('sync_failed')).toMatch(/RESET/);
+    // sync_failed message is protocol-aware (Andrea 2026-05-28 fix): DFU
+    // bootloaders need RESET tap, STK500 boards reseat USB. Default still
+    // mentions retry guidance even when protocol unknown.
+    expect(describeUploadError('sync_failed', 'dfu')).toMatch(/RESET/);
+    expect(describeUploadError('sync_failed', 'stk500v1')).toMatch(/USB/);
+    expect(describeUploadError('sync_failed', 'stk500v2')).toMatch(/USB/);
+    expect(describeUploadError('sync_failed')).toMatch(/non risponde/);
     expect(describeUploadError('protocol_not_implemented')).toMatch(/non.*ancora pronto/);
   });
 
