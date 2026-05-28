@@ -40,9 +40,21 @@ const DEFAULTS = Object.freeze({
   baudRate: 57600,
   pageSize: 128,
   flashSize: 32 * 1024,
-  syncRetries: 8,
-  syncDelayMs: 50,
-  resetPulseMs: 60,
+  // 2026-05-28: bumped sync timing after Andrea reproduced
+  // "stk500 sync failed" on a genuine Arduino UNO R3 (optiboot). Root cause:
+  // WebSerial `setSignals` has a non-deterministic 50–150 ms latency before
+  // DTR actually reaches the ATmega16U2 USB-serial bridge, which then drives
+  // RESET on the ATmega328P. Optiboot only opens a ~1 s window after RESET
+  // releases before chaining to the user sketch. Old defaults (60 ms pulse +
+  // 8 × 50 ms sync = ~400 ms) cut it too close once browser+OS latency stacks
+  // on top. New defaults (100 ms pulse + 50 ms post-release settle +
+  // 15 × 100 ms sync = ~1700 ms) sit comfortably inside the window for
+  // optiboot 4.x (UNO R3, Nano optiboot) and the longer-window legacy
+  // stk500v1 bootloader (Nano old, 57600).
+  syncRetries: 15,
+  syncDelayMs: 100,
+  resetPulseMs: 100,
+  postResetSettleMs: 50,
   readTimeoutMs: 1500,
   // arduino-cli set_device payload for atmega328p (avrdude.conf canonical).
   deviceParams: [
@@ -320,8 +332,32 @@ export async function flashHex(port, hexText, options = {}) {
   const prog = new StkProgrammer(port, options);
   await prog.open();
   try {
-    await prog.resetBoard();
-    await prog.sync();
+    // 2026-05-28: two-cycle reset+sync. WebSerial setSignals latency on
+    // Chrome + macOS occasionally leaves DTR un-asserted for ~150 ms after
+    // the call returns, so the bootloader RESET may arrive AFTER our first
+    // sync attempt window has already drained. If the first cycle fails
+    // with "sync failed", we let the port settle then retry the reset+sync
+    // exactly once before propagating the error. Genuine docente case from
+    // Andrea 2026-05-28 PM on UNO R3 ATmega16U2.
+    const settle = prog.opts.postResetSettleMs ?? 0;
+    let lastSyncErr = null;
+    for (let cycle = 0; cycle < 2; cycle++) {
+      try {
+        await prog.resetBoard();
+        if (settle > 0) {
+          await new Promise((r) => setTimeout(r, settle));
+        }
+        await prog.sync();
+        lastSyncErr = null;
+        break;
+      } catch (err) {
+        lastSyncErr = err;
+        if (!/sync/i.test(err?.message || '')) throw err;
+        // brief pause before the next reset cycle so DTR settles cleanly
+        await new Promise((r) => setTimeout(r, 200));
+      }
+    }
+    if (lastSyncErr) throw lastSyncErr;
     await prog.enterProgmode();
     await prog.writeFlash(data);
     await prog.leaveProgmode();
