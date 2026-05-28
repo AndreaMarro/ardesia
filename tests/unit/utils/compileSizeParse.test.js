@@ -18,8 +18,9 @@ const SAMPLE_HEX =
   ':00000001FF\n';
 
 describe('parseFlashFromStdout', () => {
-  it('parses real flash usage from the Sketch-uses line', () => {
-    expect(parseFlashFromStdout(LIVE_STDOUT)).toEqual({ bytes: 39048, percent: 14 });
+  it('parses real flash usage + total from the Sketch-uses + Maximum lines', () => {
+    // 2026-05-28 PR #183: total now derived from "Maximum is N bytes" line.
+    expect(parseFlashFromStdout(LIVE_STDOUT)).toEqual({ bytes: 39048, percent: 14, total: 262144 });
   });
 
   it('matches the Sketch line, NOT the Global variables (RAM) line', () => {
@@ -27,9 +28,22 @@ describe('parseFlashFromStdout', () => {
     expect(parseFlashFromStdout(LIVE_STDOUT).bytes).toBe(39048);
   });
 
-  it('strips thousands separators from the byte count', () => {
-    expect(parseFlashFromStdout('Sketch uses 39.048 bytes (14%) of program storage space.'))
-      .toEqual({ bytes: 39048, percent: 14 });
+  it('parses UNO R3 flash total 32256 from picker-aware Maximum line', () => {
+    // arduino-cli for `arduino:avr:uno` (ATmega328P) emits 32256 max.
+    // Verifies the denominator no longer leaks Nano R4's 262144 figure
+    // when the docente picks UNO R3 in BoardPicker.
+    const unoStdout = 'Sketch uses 924 bytes (2%) of program storage space. Maximum is 32256 bytes.\n';
+    expect(parseFlashFromStdout(unoStdout)).toEqual({ bytes: 924, percent: 2, total: 32256 });
+  });
+
+  it('strips thousands separators from the byte count + total', () => {
+    expect(parseFlashFromStdout('Sketch uses 39.048 bytes (14%) of program storage space. Maximum is 262.144 bytes.'))
+      .toEqual({ bytes: 39048, percent: 14, total: 262144 });
+  });
+
+  it('returns total:null when Maximum line absent (legacy stdout)', () => {
+    expect(parseFlashFromStdout('Sketch uses 39048 bytes (14%) of program storage space.'))
+      .toEqual({ bytes: 39048, percent: 14, total: null });
   });
 
   it('returns null on no match / non-string input', () => {

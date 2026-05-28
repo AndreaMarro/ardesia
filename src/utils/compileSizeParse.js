@@ -16,8 +16,11 @@ export const FLASH_TOTAL_NANO_R4 = 262144;
 /**
  * Parse real flash usage from arduino-cli stdout.
  * Matches "Sketch uses 39048 bytes (14%) of program storage space."
+ * 2026-05-28: also captures the "Maximum is N bytes" line so the panel
+ * denominator matches the picker-selected board's flash size (UNO R3
+ * 32256 bytes, Nano R4 262144, etc.) instead of the hardcoded Nano R4.
  * @param {string} stdout
- * @returns {{bytes:number, percent:number}|null}
+ * @returns {{bytes:number, percent:number, total:number|null}|null}
  */
 export function parseFlashFromStdout(stdout) {
   if (typeof stdout !== 'string') return null;
@@ -26,7 +29,14 @@ export function parseFlashFromStdout(stdout) {
   const bytes = parseInt(m[1].replace(/[.,]/g, ''), 10);
   const percent = parseInt(m[2], 10);
   if (!Number.isFinite(bytes) || !Number.isFinite(percent)) return null;
-  return { bytes, percent };
+  // arduino-cli emits "Maximum is 32256 bytes." (or 262144 for Nano R4)
+  // on the same stdout block. Use it as authoritative total when present.
+  const maxMatch = stdout.match(/Maximum is\s+([\d.,]+)\s+bytes/i);
+  const totalParsed = maxMatch
+    ? parseInt(maxMatch[1].replace(/[.,]/g, ''), 10)
+    : NaN;
+  const total = Number.isFinite(totalParsed) ? totalParsed : null;
+  return { bytes, percent, total };
 }
 
 /**
@@ -62,7 +72,15 @@ export function resolveCompileFlash(result) {
   if (!result) return null;
   const fromStdout = parseFlashFromStdout(result.output);
   if (fromStdout) {
-    return { bytes: fromStdout.bytes, total: FLASH_TOTAL_NANO_R4, percent: fromStdout.percent };
+    // 2026-05-28: prefer the parsed "Maximum is N bytes" total so the
+    // denominator matches the picker-selected board. Falls back to the
+    // Nano R4 256 KB constant only when the backend stdout omits the
+    // Maximum line.
+    return {
+      bytes: fromStdout.bytes,
+      total: fromStdout.total != null ? fromStdout.total : FLASH_TOTAL_NANO_R4,
+      percent: fromStdout.percent,
+    };
   }
   if (!result.hex) return null;
   let hexText = String(result.hex);
