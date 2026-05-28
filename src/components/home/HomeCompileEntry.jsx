@@ -83,6 +83,40 @@ import styles from './HomeCompileEntry.module.css';
 import BoardPicker from '../lavagna/BoardPicker';
 import UniversalUploadButton from '../lavagna/UniversalUploadButton';
 import { getBoardById } from '../../services/arduinoBoards';
+// 2026-05-29 orchestrator integration: 5-swarm V2 wiring.
+// V2 layout = Swarm 2 (HomeCompileLayoutV2 edukit-inspired)
+// V2 chat   = Swarm 3 (HomeUnlimChatV2 full compile-context integration)
+// Polish    = Swarm 4 (HomeCompilePolishProvider + home-compile-polish.css)
+// Enabled via URL `?v2=1` OR localStorage `elab.home_compile.v2`.
+// Default OFF for one deploy cycle so docente prod path stays untouched
+// until Andrea ratifies V2 on hardware. Toggle promotes to default later.
+import HomeCompileLayoutV2 from './HomeCompileLayoutV2';
+import HomeUnlimChatV2 from './HomeUnlimChatV2';
+import HomeCompilePolishProvider from './HomeCompilePolishProvider';
+import '../../styles/home-compile-polish.css';
+
+function isV2Enabled() {
+  try {
+    if (typeof window === 'undefined') return false;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('v2') === '1' || params.get('layout') === 'v2') return true;
+    return window.localStorage?.getItem('elab.home_compile.v2') === '1';
+  } catch (_) {
+    return false;
+  }
+}
+
+// V2 layout expects { flashUsed, flashTotal, flashPercent }; resolveCompileFlash
+// returns { bytes, total, percent } — adapter keeps V2 component free of
+// legacy state shape.
+function adaptCompileSizeForV2(legacy) {
+  if (!legacy) return null;
+  return {
+    flashUsed: legacy.bytes,
+    flashTotal: legacy.total,
+    flashPercent: legacy.percent,
+  };
+}
 
 // iter 85 close integration Sub-project A: localStorage persistence key
 // Andrea ratify gruppo 17 voce 2 verbose explicit naming
@@ -360,6 +394,111 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     // panel kept saying "38.1 KB / 256 KB" (Nano R4 build) while the picker
     // said UNO R3.
   }, [scratchCode, targetBoardId]);
+
+  // 2026-05-29 orchestrator integration: V2 opt-in path. When the docente
+  // visits `/?v2=1#compile-home` (or has `elab.home_compile.v2='1'` in
+  // localStorage), render the Swarm 2 edukit-inspired layout with the
+  // Swarm 3 always-present UNLIM chat and the Swarm 4 polish provider.
+  // Default OFF keeps PR #176-186 working prod path untouched until Andrea
+  // ratifies V2 on his hardware.
+  if (isV2Enabled()) {
+    const activeBoard = getBoardById(targetBoardId);
+    const v2BoardLabel = activeBoard?.label || 'Arduino Nano R4';
+    return (
+      <HomeCompilePolishProvider>
+        <div
+          data-testid="home-compile-entry"
+          data-elab-mode="compile-home"
+          data-elab-layout="hcv2-edukit"
+        >
+          <HomeCompileLayoutV2
+            boardLabel={v2BoardLabel}
+            compileStatus={compileStatus}
+            compileSize={adaptCompileSizeForV2(compileSize)}
+            sketchCode={activeSketchCode}
+            canCompile={Boolean(activeSketchCode && activeSketchCode.trim())}
+            canUpload={Boolean(compiledHex)}
+            onCompile={() => handleCompile(activeSketchCode)}
+            onUpload={() => {
+              try {
+                const btn = document.querySelector('[data-testid="universal-upload-btn"]');
+                btn?.click();
+              } catch (_) { /* defensive */ }
+            }}
+            onAskUnlim={(question) => {
+              try {
+                if (typeof window !== 'undefined') {
+                  window.localStorage.setItem('elab-unlim-seed', String(question || ''));
+                  // surface to in-page chat via custom event if listener exists
+                  window.dispatchEvent(new CustomEvent('elab:home_unlim_v2:ask', { detail: { question } }));
+                }
+              } catch (_) { /* defensive */ }
+            }}
+            onBackHome={onBackHome}
+            editorSlot={(
+              <ScratchErrorBoundary>
+                {editorMode === MODE_CODE ? (
+                  <CodeEditorCM6
+                    code={cppCode}
+                    onChange={(next) => setCppCode(next)}
+                    onCompile={() => handleCompile(cppCode)}
+                  />
+                ) : (
+                  <ElabScratchModeShell
+                    workspaceReady={workspaceReady}
+                    blockCount={workspaceBlockCount}
+                    onStarterClick={handleStarterClick}
+                  >
+                    <ScratchEditor
+                      initialCode={blocklyInitialCodeRef.current}
+                      key={blocklyEditorKey}
+                      onChange={handleScratchCodeChange}
+                      onWorkspaceReady={handleWorkspaceReady}
+                      onBlockCountChange={setWorkspaceBlockCount}
+                    />
+                  </ElabScratchModeShell>
+                )}
+              </ScratchErrorBoundary>
+            )}
+            bannerSlot={USE_LOCAL_AGENT_BANNER
+              ? <CompileAgentBanner openCompilerUrl={null} />
+              : <WebUsbBanner compact openCompilerUrl={null} />}
+            boardPickerSlot={(
+              <>
+                <BoardPicker boardId={targetBoardId} onChange={handleBoardChange} hint={t('home_compile_v2.board_pick_label')} />
+                {/* UniversalUploadButton remains the actual WebSerial dispatcher;
+                    V2 layout's "Upload" pill delegates to its hidden click handler. */}
+                <div style={{ position: 'absolute', left: -10000, top: 'auto' }} aria-hidden="true">
+                  <UniversalUploadButton key={targetBoardId} boardId={targetBoardId} hexText={compiledHex || ''} />
+                </div>
+              </>
+            )}
+            unlimChatSlot={(
+              <HomeUnlimChatV2
+                compileStatus={compileStatus}
+                editorMode={editorMode}
+                sketchCode={activeSketchCode}
+                boardId={targetBoardId}
+                boardLabel={v2BoardLabel}
+                fqbn={activeBoard?.fqbn || DEFAULT_FQBN}
+                compileSize={compileSize}
+                compileErrors={compileErrors}
+                compileWarnings={compileWarnings}
+                blockCount={workspaceBlockCount}
+              />
+            )}
+            serialMonitorSlot={serialExpanded ? (
+              <VirtualSerialMonitor
+                sketchCode={activeSketchCode}
+                expanded
+                onToggle={() => setSerialExpanded((v) => !v)}
+              />
+            ) : null}
+          />
+        </div>
+      </HomeCompilePolishProvider>
+    );
+  }
 
   return (
     <div
