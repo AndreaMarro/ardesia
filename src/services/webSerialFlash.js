@@ -251,13 +251,18 @@ class StkProgrammer {
   }
 
   async sync() {
+    // 2026-05-29: per-read timeout bumped 250→500 ms (avrdude reference).
+    // Some Arduino bootloaders (factory ATmega16U2 firmware, certain optiboot
+    // builds) need longer than 250 ms to push the INSYNC byte back through
+    // the USB-serial bridge on the first sync packet after RESET release.
+    const readTimeoutMs = 500;
     for (let attempt = 0; attempt < this.opts.syncRetries; attempt++) {
       this._drainRx();
       try {
         await this._write([STK_GET_SYNC, STK_CRC_EOP]);
-        const head = await this._readBytes(1, 250);
+        const head = await this._readBytes(1, readTimeoutMs);
         if (head[0] === STK_INSYNC) {
-          const tail = await this._readBytes(1, 250);
+          const tail = await this._readBytes(1, readTimeoutMs);
           if (tail[0] === STK_OK) return true;
         }
       } catch { /* retry */ }
@@ -329,42 +334,76 @@ export async function flashHex(port, hexText, options = {}) {
   const { data, size } = parseIntelHex(hexText);
   if (size <= 0) throw new Error('HEX non contiene dati programmabili.');
 
-  const prog = new StkProgrammer(port, options);
-  await prog.open();
-  try {
-    // 2026-05-28: two-cycle reset+sync. WebSerial setSignals latency on
-    // Chrome + macOS occasionally leaves DTR un-asserted for ~150 ms after
-    // the call returns, so the bootloader RESET may arrive AFTER our first
-    // sync attempt window has already drained. If the first cycle fails
-    // with "sync failed", we let the port settle then retry the reset+sync
-    // exactly once before propagating the error. Genuine docente case from
-    // Andrea 2026-05-28 PM on UNO R3 ATmega16U2.
-    const settle = prog.opts.postResetSettleMs ?? 0;
-    let lastSyncErr = null;
-    for (let cycle = 0; cycle < 2; cycle++) {
-      try {
-        await prog.resetBoard();
-        if (settle > 0) {
-          await new Promise((r) => setTimeout(r, settle));
-        }
-        await prog.sync();
-        lastSyncErr = null;
-        break;
-      } catch (err) {
-        lastSyncErr = err;
-        if (!/sync/i.test(err?.message || '')) throw err;
-        // brief pause before the next reset cycle so DTR settles cleanly
-        await new Promise((r) => setTimeout(r, 200));
-      }
+  // 2026-05-29: baud-rate fallback. Genuine Arduino UNO R3 ships with
+  // optiboot @ 115200, but a meaningful fraction of teacher kits in the
+  // wild carry the legacy ATmegaBOOT bootloader @ 57600 (older Rev B/C,
+  // re-bootloaded clones, replaced ATmega328P chips). Without a fallback
+  // we fail every sync on the wrong-baud half of installed boards. We
+  // try the caller's requested baud first, then the alternate, before
+  // surrendering. close+reopen between attempts to flush the UART.
+  const primaryBaud = options.baudRate || DEFAULTS.baudRate;
+  const fallbackBaud = primaryBaud === 115200 ? 57600 : 115200;
+  const baudCandidates = [primaryBaud, fallbackBaud];
+  let lastErr = null;
+  let prog = null;
+
+  for (let baudIdx = 0; baudIdx < baudCandidates.length; baudIdx++) {
+    const baudRate = baudCandidates[baudIdx];
+    prog = new StkProgrammer(port, { ...options, baudRate });
+    try {
+      await prog.open();
+    } catch (err) {
+      lastErr = err;
+      // Could not open the port at this baud — try next candidate.
+      try { await prog.close(); } catch { /* ignore */ }
+      continue;
     }
-    if (lastSyncErr) throw lastSyncErr;
-    await prog.enterProgmode();
-    await prog.writeFlash(data);
-    await prog.leaveProgmode();
-  } finally {
-    await prog.close();
+    try {
+      // 2026-05-28: two-cycle reset+sync. WebSerial setSignals latency on
+      // Chrome + macOS occasionally leaves DTR un-asserted for ~150 ms after
+      // the call returns, so the bootloader RESET may arrive AFTER our first
+      // sync attempt window has already drained. If the first cycle fails
+      // with "sync failed", we let the port settle then retry the reset+sync
+      // exactly once before propagating the error. Genuine docente case from
+      // Andrea 2026-05-28 PM on UNO R3 ATmega16U2.
+      const settle = prog.opts.postResetSettleMs ?? 0;
+      let lastSyncErr = null;
+      for (let cycle = 0; cycle < 2; cycle++) {
+        try {
+          await prog.resetBoard();
+          if (settle > 0) {
+            await new Promise((r) => setTimeout(r, settle));
+          }
+          await prog.sync();
+          lastSyncErr = null;
+          break;
+        } catch (err) {
+          lastSyncErr = err;
+          if (!/sync/i.test(err?.message || '')) throw err;
+          // brief pause before the next reset cycle so DTR settles cleanly
+          await new Promise((r) => setTimeout(r, 200));
+        }
+      }
+      if (lastSyncErr) throw lastSyncErr;
+      await prog.enterProgmode();
+      await prog.writeFlash(data);
+      await prog.leaveProgmode();
+      // Success path — close at this baud and return.
+      try { await prog.close(); } catch { /* ignore */ }
+      return { bytesWritten: size };
+    } catch (err) {
+      lastErr = err;
+      // Only baud-fallback on sync_failed. Other errors (e.g. mid-flash
+      // page write failure) indicate the bootloader DID respond, so a
+      // baud change won't help — propagate immediately.
+      const isSyncFail = /sync/i.test(err?.message || '');
+      try { await prog.close(); } catch { /* ignore */ }
+      if (!isSyncFail) throw err;
+      // brief settle before trying the alternate baud
+      await new Promise((r) => setTimeout(r, 300));
+    }
   }
-  return { bytesWritten: size };
+  throw lastErr || new Error('stk500 sync failed dopo tutti i tentativi.');
 }
 
 /**
