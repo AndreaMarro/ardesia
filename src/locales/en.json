@@ -851,50 +851,29 @@
     "not_found_body": "The page you're looking for doesn't exist or has been moved.",
     "not_found_home": "Back to Home"
   },
-  "home_compile_v2": {
-    "title": "ELAB Code",
-    "back_home": "Back to home",
-    "back_short": "Home",
-    "board_label": "Selected board",
-    "banner_label": "Cross-compile browser status",
-    "editor_label": "Editor area: Arduino blocks and code",
-    "aside_label": "Compile and UNLIM panel",
-    "actions_label": "Quick actions",
-    "board_pick_label": "Pick the destination board",
-    "size_label": "Memory usage",
-    "serial_label": "Virtual serial monitor",
-    "btn": {
-      "compile": "Compile",
-      "compiling": "Compiling...",
-      "upload": "Upload",
-      "upload_disabled_hint": "Class, let's compile the code first, then we can upload to the board."
-    },
-    "status": {
-      "idle": "All set, class. When you're ready, we'll compile the code for {{board}}.",
-      "compiling": "Checking the code for {{board}}.",
-      "success": "Compile succeeded. We can now upload to {{board}}.",
-      "verified_legacy": "Code verified, but not yet for {{board}}.",
-      "error": "There's an error in the code, class. Open the chat for the details."
-    },
-    "size": {
-      "flash": "Flash memory",
-      "percent_aria": "{{pct}} percent used"
-    },
-    "sketch": {
-      "title": "Peek at the Arduino code",
-      "empty": "// Class, the editor is still empty."
-    },
-    "editor": {
-      "placeholder": "Editor loading..."
-    },
-    "unlim": {
-      "fallback_hint": "Class, UNLIM is here. You can ask about the program, the errors, or the next step."
-    },
+  "home_unlim_chat_v2": {
+    "panel_aria": "UNLIM compilation chat",
+    "context_aria": "Current context: editor, lines, board, status",
+    "welcome_hint": "Class, ask UNLIM what the code does, how to fix an error, or which experiment to try from the Volume.",
+    "typing_aria": "UNLIM is typing",
+    "input_placeholder": "Write to UNLIM...",
+    "input_aria": "Message for UNLIM",
+    "send": "Send",
+    "send_aria": "Send message to UNLIM",
+    "voice_start_aria": "Turn on voice mode with UNLIM",
+    "voice_stop_aria": "Turn off voice mode",
+    "voice_listening": "I'm listening, class.",
+    "voice_ready": "Voice ready. Press the button and speak.",
+    "expand_aria": "Show UNLIM chat",
+    "collapse_aria": "Hide UNLIM chat",
+    "quick_aria": "Quick questions to UNLIM",
     "quick": {
-      "label": "Quick questions to UNLIM",
-      "read": "Read the program",
-      "fix": "Check the errors",
-      "next": "Quick tip"
+      "explain_code": "Explain the code",
+      "what_does_it_do": "What does this program do?",
+      "help_blockly": "Help with blocks",
+      "fix_error": "Help fix the error",
+      "upload_kit": "How do we upload to the kit?",
+      "next_experiment": "Which experiment next?"
     }
   }
 }

@@ -851,50 +851,29 @@
     "not_found_body": "La pagina che cerchi non esiste o è stata spostata.",
     "not_found_home": "Torna alla Home"
   },
-  "home_compile_v2": {
-    "title": "ELAB Code",
-    "back_home": "Torna alla home",
-    "back_short": "Home",
-    "board_label": "Scheda selezionata",
-    "banner_label": "Stato browser cross-compile",
-    "editor_label": "Area editor: blocchi e codice Arduino",
-    "aside_label": "Pannello compilazione e UNLIM",
-    "actions_label": "Azioni rapide",
-    "board_pick_label": "Scegliete la scheda di destinazione",
-    "size_label": "Spazio occupato in memoria",
-    "serial_label": "Monitor seriale virtuale",
-    "btn": {
-      "compile": "Compila",
-      "compiling": "Compilo...",
-      "upload": "Carica",
-      "upload_disabled_hint": "Ragazzi, prima compiliamo il codice e poi possiamo caricare sulla scheda."
-    },
-    "status": {
-      "idle": "Tutto pronto, ragazzi. Quando volete compiliamo il codice per {{board}}.",
-      "compiling": "Sto controllando il codice per {{board}}.",
-      "success": "Compilazione riuscita. Ora possiamo caricare sulla {{board}}.",
-      "verified_legacy": "Codice verificato, ma non ancora per {{board}}.",
-      "error": "C'è un errore nel codice, ragazzi. Apriamo la chat per i dettagli."
-    },
-    "size": {
-      "flash": "Memoria flash",
-      "percent_aria": "{{pct}} percento usato"
-    },
-    "sketch": {
-      "title": "Sbircia il codice Arduino",
-      "empty": "// Ragazzi, l'editor è ancora vuoto."
-    },
-    "editor": {
-      "placeholder": "Editor in caricamento..."
-    },
-    "unlim": {
-      "fallback_hint": "Ragazzi, qui c'è UNLIM. Potete chiedere aiuto sul programma, sugli errori o sul prossimo passo."
-    },
+  "home_unlim_chat_v2": {
+    "panel_aria": "Chat UNLIM compilazione",
+    "context_aria": "Contesto attuale: editor, righe, scheda, stato",
+    "welcome_hint": "Ragazzi, chiedete a UNLIM cosa fa il codice, come correggere un errore o quale esperimento provare dal Volume.",
+    "typing_aria": "UNLIM sta scrivendo",
+    "input_placeholder": "Scrivete a UNLIM...",
+    "input_aria": "Messaggio per UNLIM",
+    "send": "Invia",
+    "send_aria": "Invia messaggio a UNLIM",
+    "voice_start_aria": "Attiva modalita voce con UNLIM",
+    "voice_stop_aria": "Spegni modalita voce",
+    "voice_listening": "Ti sto ascoltando, ragazzi.",
+    "voice_ready": "Voce pronta. Premete il pulsante e parlate.",
+    "expand_aria": "Mostra la chat UNLIM",
+    "collapse_aria": "Nascondi la chat UNLIM",
+    "quick_aria": "Domande veloci a UNLIM",
     "quick": {
-      "label": "Domande veloci a UNLIM",
-      "read": "Leggi il programma",
-      "fix": "Controlla gli errori",
-      "next": "Consiglio rapido"
+      "explain_code": "Spiegate il codice",
+      "what_does_it_do": "Cosa fa questo programma?",
+      "help_blockly": "Aiuto sui blocchi",
+      "fix_error": "Aiutate a correggere l'errore",
+      "upload_kit": "Come carichiamo sul kit?",
+      "next_experiment": "Quale esperimento dopo?"
     }
   }
 }
