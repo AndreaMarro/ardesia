@@ -850,5 +850,51 @@
     "not_found_title": "Page not found",
     "not_found_body": "The page you're looking for doesn't exist or has been moved.",
     "not_found_home": "Back to Home"
+  },
+  "home_compile_v2": {
+    "title": "ELAB Code",
+    "back_home": "Back to home",
+    "back_short": "Home",
+    "board_label": "Selected board",
+    "banner_label": "Cross-compile browser status",
+    "editor_label": "Editor area: Arduino blocks and code",
+    "aside_label": "Compile and UNLIM panel",
+    "actions_label": "Quick actions",
+    "board_pick_label": "Pick the destination board",
+    "size_label": "Memory usage",
+    "serial_label": "Virtual serial monitor",
+    "btn": {
+      "compile": "Compile",
+      "compiling": "Compiling...",
+      "upload": "Upload",
+      "upload_disabled_hint": "Class, let's compile the code first, then we can upload to the board."
+    },
+    "status": {
+      "idle": "All set, class. When you're ready, we'll compile the code for {{board}}.",
+      "compiling": "Checking the code for {{board}}.",
+      "success": "Compile succeeded. We can now upload to {{board}}.",
+      "verified_legacy": "Code verified, but not yet for {{board}}.",
+      "error": "There's an error in the code, class. Open the chat for the details."
+    },
+    "size": {
+      "flash": "Flash memory",
+      "percent_aria": "{{pct}} percent used"
+    },
+    "sketch": {
+      "title": "Peek at the Arduino code",
+      "empty": "// Class, the editor is still empty."
+    },
+    "editor": {
+      "placeholder": "Editor loading..."
+    },
+    "unlim": {
+      "fallback_hint": "Class, UNLIM is here. You can ask about the program, the errors, or the next step."
+    },
+    "quick": {
+      "label": "Quick questions to UNLIM",
+      "read": "Read the program",
+      "fix": "Check the errors",
+      "next": "Quick tip"
+    }
   }
 }
