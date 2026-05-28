@@ -875,5 +875,51 @@
       "upload_kit": "Come carichiamo sul kit?",
       "next_experiment": "Quale esperimento dopo?"
     }
+  },
+  "home_compile_v2": {
+    "title": "ELAB Code",
+    "back_home": "Torna alla home",
+    "back_short": "Home",
+    "board_label": "Scheda selezionata",
+    "banner_label": "Stato browser cross-compile",
+    "editor_label": "Area editor: blocchi e codice Arduino",
+    "aside_label": "Pannello compilazione e UNLIM",
+    "actions_label": "Azioni rapide",
+    "board_pick_label": "Scegliete la scheda di destinazione",
+    "size_label": "Spazio occupato in memoria",
+    "serial_label": "Monitor seriale virtuale",
+    "btn": {
+      "compile": "Compila",
+      "compiling": "Compilo...",
+      "upload": "Carica",
+      "upload_disabled_hint": "Ragazzi, prima compiliamo il codice e poi possiamo caricare sulla scheda."
+    },
+    "status": {
+      "idle": "Tutto pronto, ragazzi. Quando volete compiliamo il codice per {{board}}.",
+      "compiling": "Sto controllando il codice per {{board}}.",
+      "success": "Compilazione riuscita. Ora possiamo caricare sulla {{board}}.",
+      "verified_legacy": "Codice verificato, ma non ancora per {{board}}.",
+      "error": "C'è un errore nel codice, ragazzi. Apriamo la chat per i dettagli."
+    },
+    "size": {
+      "flash": "Memoria flash",
+      "percent_aria": "{{pct}} percento usato"
+    },
+    "sketch": {
+      "title": "Sbircia il codice Arduino",
+      "empty": "// Ragazzi, l'editor è ancora vuoto."
+    },
+    "editor": {
+      "placeholder": "Editor in caricamento..."
+    },
+    "unlim": {
+      "fallback_hint": "Ragazzi, qui c'è UNLIM. Potete chiedere aiuto sul programma, sugli errori o sul prossimo passo."
+    },
+    "quick": {
+      "label": "Domande veloci a UNLIM",
+      "read": "Leggi il programma",
+      "fix": "Controlla gli errori",
+      "next": "Consiglio rapido"
+    }
   }
 }
