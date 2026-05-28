@@ -11,6 +11,7 @@ import { getVolumeRef } from '../data/volume-references';
 import { ensureBookCitation } from './bookCitation';
 import { getExperimentGroupContext } from '../data/lesson-groups';
 import { buildAgentDecisionSeed } from './unlimSharedStateStore';
+import { BOARDS } from './arduinoBoards';
 
 // URLs da variabili d'ambiente (Vite: VITE_ prefix)
 // In produzione: solo backend webhook. Nessun fallback localhost.
@@ -103,11 +104,11 @@ const COMPILE_TIMEOUT = 65000; // 65s for compilation (arduino-cli has 60s timeo
 const CHAT_RETRY_COUNT = 1;
 const CHAT_RETRY_BACKOFF_MS = 400;
 const DEFAULT_BOARD = 'arduino:avr:nano:cpu=atmega328old';
-const ALLOWED_COMPILE_BOARDS = new Set([
-    'arduino:avr:nano:cpu=atmega328old',
-    'arduino:avr:uno',
-    'arduino:renesas_uno:nanor4',
-]);
+// Cross-compile FQBN whitelist derived from BOARDS registry (single source
+// of truth, services/arduinoBoards.js). Andrea 2026-05-28: "crosscompilazione
+// deve funzionare per tutti i tipi di arduino". Adding to BOARDS auto-extends
+// this whitelist — no parallel edit required.
+const ALLOWED_COMPILE_BOARDS = new Set(BOARDS.map((b) => b.fqbn));
 const SOCRATIC_INSTRUCTION = [
     '[AUTOCOSCIENZA — Chi sei e cosa puoi fare]',
     'Sei UNLIM, tutor AI di ELAB con POTERI REALI sul simulatore. Non sei solo una chat: puoi ESEGUIRE azioni.',
