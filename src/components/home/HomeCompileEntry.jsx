@@ -156,6 +156,38 @@ function SerialRailIcon() {
 const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
   const { t } = useTranslation();
   const [blocklyXml, setBlocklyXml] = useState(DEFAULT_BLOCKS_BLINK);
+  // 2026-05-29 SWARM 1 fix — one-shot compile/upload bug (Andrea verbatim
+  // "succede niente se cambi i blocchi o codice e puoi compilare e caricare
+  // una sola volta"). Root cause: passing `blocklyXml` directly as
+  // ScratchEditor's `initialCode` created a circular state ping-pong. Every
+  // Blockly user-edit fires onChange → setBlocklyXml(newXml) → re-render →
+  // ScratchEditor's `useEffect[initialCode]` (panel:548-581) re-fires →
+  // workspace.clear() + reload from newXml + synthetic onChange. The
+  // visible workspace remount disturbed every edit ("sembra che succeda
+  // niente"). Downstream effect: user could not produce a meaningful
+  // second compile because the workspace kept resetting → so compile+upload
+  // appeared to work "una sola volta".
+  //
+  // FIX: pin the initialCode prop to a stable ref-held value. The ref is
+  // updated ONLY by intentional re-seeds (C++→Blocks mode switch via
+  // cppToBlocklyXml). When the ref is re-seeded, `blocklyEditorKey` is
+  // bumped → ScratchEditor remounts → its first-mount useEffect loads the
+  // new XML cleanly. User-edits still update `blocklyXml` state for the
+  // code preview + cppToBlocklyXml use, but NEVER flow back into the editor
+  // as `initialCode` → no feedback loop.
+  // File ownership: this fix is entirely in HomeCompileEntry.jsx — no
+  // touch to ScratchEditor.jsx (which other surfaces — Passo Passo, the
+  // simulator NewElabSimulator — depend on for forced-reload semantics).
+  const blocklyInitialCodeRef = useRef(DEFAULT_BLOCKS_BLINK);
+  const [blocklyEditorKey, setBlocklyEditorKey] = useState(0);
+  // Helper: re-seed the editor with new XML. Bumps the key so ScratchEditor
+  // remounts with the fresh initialCode (no in-place reload feedback loop).
+  const reseedBlocklyEditor = useCallback((xml) => {
+    if (typeof xml !== 'string' || xml.length === 0) return;
+    blocklyInitialCodeRef.current = xml;
+    setBlocklyXml(xml);
+    setBlocklyEditorKey((k) => k + 1);
+  }, []);
   const [scratchCode, setScratchCode] = useState(NANO_R4_BLINK_CPP);
   // iter 80.A2 (Codex Pattern V iter 79 HIGH IDE-1): direct C++ editor
   // state. Default seeded Blink Vol3 Cap.6 Esp.1 sketch so docente vede
@@ -212,7 +244,9 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
     if (mode === MODE_BLOCKS && editorMode === MODE_CODE) {
       const xml = cppToBlocklyXml(cppCode);
       if (xml) {
-        setBlocklyXml(xml);
+        // 2026-05-29 SWARM 1 fix — use reseedBlocklyEditor so ScratchEditor
+        // remounts with the C++-derived XML (intentional re-seed, no loop).
+        reseedBlocklyEditor(xml);
         setScratchCode(cppCode || NANO_R4_BLINK_CPP);
       }
     }
@@ -222,7 +256,7 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
         window.localStorage.setItem(EDITOR_MODE_STORAGE_KEY, mode);
       }
     } catch (_) { /* defensive — localStorage may throw (private mode, quota) */ }
-  }, [cppCode, editorMode, scratchCode]);
+  }, [cppCode, editorMode, scratchCode, reseedBlocklyEditor]);
 
   // iter 85 close integration Sub-project A: ScratchEditor optional callback
   // onWorkspaceReady — captures Blockly workspace ref for starter XML load
@@ -412,7 +446,15 @@ const HomeCompileEntry = React.memo(function HomeCompileEntry({ onBackHome }) {
                   disableAutoStarters
                 >
                   <ScratchEditor
-                    initialCode={blocklyXml}
+                    // 2026-05-29 SWARM 1 fix — `key` makes ScratchEditor
+                    // remount cleanly when reseedBlocklyEditor bumps the
+                    // counter (e.g. C++→Blocks mode switch). `initialCode`
+                    // pinned to a ref so user-driven onChange NEVER flows
+                    // back into ScratchEditor as a new prop value → breaks
+                    // the previous workspace-clear ping-pong that made the
+                    // editor feel dead after the first compile cycle.
+                    key={blocklyEditorKey}
+                    initialCode={blocklyInitialCodeRef.current}
                     onChange={handleScratchCodeChange}
                     // iter 82 PHASE 5.5 fix Codex MED-5: gate compileError by editorMode.
                     // Without gate, C++ compile error shows in Blockly overlay after tab switch.
