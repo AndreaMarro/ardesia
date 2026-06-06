@@ -127,9 +127,29 @@ Assemblaggio capsule completo = task futura M2+.
 
 **Citazione**: STATUS.md:18 documenta "Next: M2 — assemblaggio Lesson Capsule completo (timeline + concepts + exercises + questions + homework, schema §26.1)".
 
+### 4. Assemblaggio Capsule (M2-task4)
+
+Compone timeline + content in `LessonCapsule` — output finale della pipeline M2.
+
+**File**: `lessonos/capsule/assembly.py`
+
+#### LessonCapsule
+
+Capsule completa di una lezione (PLAN §26.1). Frozen dataclass.
+
+**Citazione**: `lessonos/capsule/assembly.py`:19-30 — `LessonCapsule`: `lesson_id`, `timeline` tuple `TopicSpan`, `content` `LessonContent`. Docstring: "Every `seg_id` inside has been validated against persisted segments by the segmentation and extraction steps."
+
+#### assemble_lesson_capsule
+
+Chiama `segment_lesson_topics` poi `extract_lesson_content`, ritorna `LessonCapsule`. Propaga `ValueError` se grounding fallisce in uno dei due sub-step.
+
+**Citazione**: `lessonos/capsule/assembly.py`:33-57 — `assemble_lesson_capsule(store, lesson_id, router)` completo. Nessuna persistenza aggiuntiva: il compositore delega ai sub-step già esistenti.
+
+**Grounding**: garantita dai sub-step (segmentation + extraction); l'assembler non introduce nuove citazioni.
+
 ## Test Coverage
 
-**M2 test suite**: 76 passed + 1 skipped (STATUS.md:18).
+**M2 test suite**: 81 passed + 1 skipped (STATUS.md ultima riga).
 
 Test verificano:
 - Grounding: citazione penzolante → ValueError
@@ -138,6 +158,8 @@ Test verificano:
 - Immutabilità entità frozen
 - Round-trip fixture → store → rilettura
 - Prompt espone SOLO seg_id disponibili
+- **Assembly end-to-end**: ogni citation nel capsule assemblato risolve a un segmento persistito
+- **Propagazione errori**: ValueError da segmentation/extraction bubble up attraverso `assemble_lesson_capsule`
 
 ## Design Rationale
 
