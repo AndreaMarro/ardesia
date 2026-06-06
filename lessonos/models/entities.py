@@ -63,6 +63,22 @@ class Source:
 
 
 @dataclass(frozen=True)
+class Segment:
+    """A transcript segment of a lesson (PLAN §26.1 transcript).
+
+    The grounding anchor: every citation in a Lesson Capsule must point at an
+    existing ``seg_id`` (PLAN §13.4) — no invented references. ``start``/``end``
+    are seconds into the lesson.
+    """
+
+    seg_id: str
+    lesson_id: str
+    start: int
+    end: int
+    text: str
+
+
+@dataclass(frozen=True)
 class Moment:
     """A point in a lesson timeline (PLAN §7 Moment / §14 timeline_events)."""
 

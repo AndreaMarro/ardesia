@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 from pathlib import Path as FsPath
 
-from lessonos.models.entities import Lesson, Path, Source
+from lessonos.models.entities import Lesson, Path, Segment, Source
 from lessonos.store.base import Store
 
 DEFAULT_FIXTURE_ROOT = (
@@ -56,3 +56,30 @@ def load_sample_path(
     )
     store.save_path(path)
     return path
+
+
+def ingest_lesson_segments(
+    store: Store, lesson_id: str, fixture_root: FsPath = DEFAULT_FIXTURE_ROOT
+) -> tuple[Segment, ...]:
+    """Persist a lesson's transcript segments into the store (M2 ingest).
+
+    The transcript is the grounding anchor: every Lesson Capsule citation must
+    resolve to one of these ``seg_id`` values (PLAN §13.4). Text is copied
+    verbatim from the fixture — never paraphrased — so grounding stays exact.
+    """
+    data = json.loads(
+        (fixture_root / "lessons" / f"{lesson_id}.json").read_text()
+    )
+    segments = tuple(
+        Segment(
+            seg_id=seg["seg_id"],
+            lesson_id=data["lesson_id"],
+            start=seg["start"],
+            end=seg["end"],
+            text=seg["text"],
+        )
+        for seg in data["transcript"]
+    )
+    for segment in segments:
+        store.save_segment(segment)
+    return segments

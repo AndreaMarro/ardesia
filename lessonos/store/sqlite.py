@@ -11,10 +11,10 @@ from __future__ import annotations
 import json
 import sqlite3
 
-from lessonos.models.entities import Lesson, Path, Source
+from lessonos.models.entities import Lesson, Path, Segment, Source
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -36,6 +36,13 @@ CREATE TABLE IF NOT EXISTS sources (
     source_id TEXT PRIMARY KEY,
     title     TEXT NOT NULL,
     kind      TEXT NOT NULL DEFAULT 'text'
+);
+CREATE TABLE IF NOT EXISTS segments (
+    seg_id    TEXT PRIMARY KEY,
+    lesson_id TEXT NOT NULL,
+    start     INTEGER NOT NULL,
+    "end"     INTEGER NOT NULL,
+    text      TEXT NOT NULL
 );
 """
 
@@ -141,6 +148,45 @@ class SQLiteStore(Store):
             return None
         return Source(
             source_id=row["source_id"], title=row["title"], kind=row["kind"]
+        )
+
+    # --- Segment --------------------------------------------------------
+    def save_segment(self, segment: Segment) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO segments "
+            '(seg_id, lesson_id, start, "end", text) '
+            "VALUES (?, ?, ?, ?, ?)",
+            (
+                segment.seg_id,
+                segment.lesson_id,
+                segment.start,
+                segment.end,
+                segment.text,
+            ),
+        )
+        self._conn.commit()
+
+    def get_segment(self, seg_id: str) -> Segment | None:
+        row = self._conn.execute(
+            "SELECT * FROM segments WHERE seg_id = ?", (seg_id,)
+        ).fetchone()
+        return self._row_to_segment(row) if row is not None else None
+
+    def segments_for_lesson(self, lesson_id: str) -> tuple[Segment, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM segments WHERE lesson_id = ? ORDER BY start",
+            (lesson_id,),
+        ).fetchall()
+        return tuple(self._row_to_segment(r) for r in rows)
+
+    @staticmethod
+    def _row_to_segment(row: sqlite3.Row) -> Segment:
+        return Segment(
+            seg_id=row["seg_id"],
+            lesson_id=row["lesson_id"],
+            start=row["start"],
+            end=row["end"],
+            text=row["text"],
         )
 
     def close(self) -> None:
