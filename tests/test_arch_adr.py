@@ -48,3 +48,75 @@ def test_adr_respects_no_local_models_constraint():
     text = _arch_text().lower()
     assert "modelli locali" in text  # devono comparire come scelta scartata
     assert "api-models" in text or "api models" in text
+
+
+# ---------------------------------------------------------------------------
+# ADR-002 — Lesson Capsule Pipeline M2
+# ---------------------------------------------------------------------------
+
+
+def test_adr_002_present():
+    text = _arch_text()
+    assert "ADR-002" in text
+    assert "Pipeline Lesson Capsule" in text
+    assert "accepted" in text
+
+
+def test_adr_002_documents_four_phases():
+    text = _arch_text().lower()
+    assert "ingest" in text
+    assert "segment" in text
+    assert "estration" in text or "extract" in text
+    assert "assembl" in text
+
+
+def test_adr_002_cited_modules_exist():
+    text = _arch_text()
+    root = ROOT / "lessonos"
+    files = [
+        root / "store" / "fixture_loader.py",
+        root / "capsule" / "segmentation.py",
+        root / "capsule" / "extraction.py",
+        root / "capsule" / "assembly.py",
+        root / "store" / "base.py",
+        root / "store" / "sqlite.py",
+        root / "llm" / "router.py",
+    ]
+    for f in files:
+        assert f.exists(), f"ADR-002 cita {f.name} ma il modulo manca"
+
+
+def test_adr_002_cited_lines_are_in_range():
+    """Ogni citazione file:line in ADR-002 deve puntare a righe che esistono."""
+    import re
+
+    text = _arch_text()
+    # estrai citazioni tipo lessonos/.../file.py:12-34 o :56
+    pattern = re.compile(r"`?(lessonos/[\w/]+\.py):(\d+)(?:-(\d+))?`?")
+    matches = pattern.findall(text)
+    assert matches, "nessuna citazione file:line trovata in ADR-002"
+
+    for rel_path, start_str, end_str in matches:
+        start = int(start_str)
+        end = int(end_str) if end_str else start
+        fpath = ROOT / rel_path
+        assert fpath.exists(), f"ADR-002 cita {rel_path} che non esiste"
+        lines = fpath.read_text(encoding="utf-8").splitlines()
+        assert end <= len(lines), (
+            f"ADR-002 cita {rel_path}:{start}-{end} "
+            f"ma il file ha solo {len(lines)} righe"
+        )
+
+
+def test_adr_002_grounding_invariant():
+    text = _arch_text().lower()
+    assert "grounded" in text
+    assert "valueerror" in text
+    assert "seg_id" in text
+    assert "citazione penzolante" in text or "dangling" in text or "unknown segment" in text
+
+
+def test_adr_002_no_new_deps():
+    text = _arch_text().lower()
+    assert "zero dipendenze" in text or "nessuna dipendenza" in text or "stdlib" in text
+

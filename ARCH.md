@@ -55,3 +55,70 @@ un segmento esistente).
   v0 — `kimi` usa la stdlib (`urllib`) per restare a dipendenze minime.
 - **Modelli locali (llama.cpp/ollama):** esclusi per principio (PLAN §6: open-infra
   + API-models).
+
+## ADR-002 — Pipeline Lesson Capsule (M2)
+
+- **Status:** accepted
+- **Data:** 2026-06-06
+- **Contesto:** M2 milestone. Dopo M0 (scaffold) e M1 (entità + store relazionale),
+  serve trasformare una lezione grezza (transcript + timeline + fonte) in una
+  ``LessonCapsule`` strutturata e grounded (PLAN §16.1, §26.1).
+
+### Decisioni
+
+**Ingest come ancore di grounding.**
+``ingest_lesson_segments`` e ``ingest_lesson_moments``
+(``lessonos/store/fixture_loader.py:61-114``) caricano *verbatim* segmenti di
+transcript e timeline events nello store. Sono l'unica fonte di verità per le
+citazioni della capsula: ogni ``seg_id`` citato deve risolvere a un segmento
+persistito. Nessuna parafrasi, nessun seg_id inventato.
+
+**Segmentazione topic LLM-driven, ma grounded.**
+``segment_lesson_topics`` (``lessonos/capsule/segmentation.py:49-101``) legge i
+segmenti già persistiti, costruisce un prompt deterministico
+(``build_segmentation_prompt``, riga 35-46), chiama il router e valida ogni
+``seg_id`` restituito. Citazione penzolante → ``ValueError`` (righe 86-90).
+``start``/``end`` di ogni ``TopicSpan`` sono derivati dai segmenti reali
+(``min(s.start)``, ``max(s.end)`` — righe 97-98), mai dal modello.
+
+**Estrazione content con vocab bounded.**
+``extract_lesson_content`` (``lessonos/capsule/extraction.py:113-216``) espone
+nel prompt il vocabolario ``CONCEPT_STATUS`` (riga 97) e l'elenco esatto dei
+``seg_id`` disponibili (righe 108-109). Il LLM non può inventare status né citare
+segmenti inesistenti. Ogni ``Citation.seg_id`` è validato
+(``_parse_citations``, righe 139-159); campi obbligatori (``name``, ``status``,
+``prompt``, ``question``, ``task``) sollevano ``ValueError`` se mancanti
+(righe 163-166, 178-179, 190-191, 201-202). ``ConceptExtraction.__post_init__``
+(righe 42-47) valida che ``status ∈ CONCEPT_STATUS``.
+
+**Assemblaggio puro, senza nuove citazioni.**
+``assemble_lesson_capsule`` (``lessonos/capsule/assembly.py:33-57``) compone
+``TopicSpan`` (segmentation) + ``LessonContent`` (extraction) in
+``LessonCapsule``. Non introduce nuove citazioni; il grounding è garantito dai
+sub-step. Propaga ``ValueError`` se il grounding fallisce in uno dei due passi.
+
+**Store ABC + SQLiteStore.**
+Il contratto ``Store`` (``lessonos/store/base.py:15-58``) astrae persistenza;
+``SQLiteStore`` (``lessonos/store/sqlite.py:57-239``) implementa il backend
+relazionale v0 (stdlib ``sqlite3``). Migrazioni idempotenti via
+``PRAGMA user_version`` (riga 63-68); tuple serializzate JSON
+(righe 80-81); keyword SQL quotate (``"order"``, ``"end"``).
+
+### Conseguenze
+
+- La ``LessonCapsule`` è *grounded by construction*: ogni citazione risolve a un
+  ``Segment`` persistito.
+- Fail-fast: citazione penzolante o campo obbligatorio mancante → ``ValueError``
+  immediato, mai silenzioso.
+- Testabile con mock: prompt deterministici (stabili tra run) → fixture
+  mock-keyable (``mock`` provider in ``lessonos/llm/router.py``).
+- Zero dipendenze nuove: la pipeline usa solo stdlib (``json``, ``sqlite3``).
+
+### Alternative scartate
+
+- **Estrazione monolitica in un unico prompt LLM:** scartata perché output
+troppo complesso da validare, non mock-keyabile in modo stabile, e difficile da
+diagnosticare. La pipeline a fasi separate (segmentazione → estrazione →
+assemblaggio) permette test isolati e fail-fast per fase.
+- **Citazioni generate liberamente senza validazione:** scartata perché viola
+  l'invariante anti-allucinazione PLAN §13.4 ("ogni claim → seg_id reale").
