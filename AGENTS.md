@@ -75,3 +75,23 @@ Hai `writing-plans`, `test-driven-development`, `subagent-driven-development`, `
 - **Regola anti-deriva**: se una pagina contraddice il codice, vince il codice → correggi la pagina (mini-lint). Mai citazioni inventate (stesso invariante del prodotto).
 
 Inizia da **M0** in `MILESTONES.md`. UNA task alla volta. **Onestà sopra velocità.**
+
+## 11. DEBUG sistematico (gate ROSSO o bloccato — NON brancolare)
+1. **ISOLA** — `uv run pytest -q -x` → primo fallimento; leggi assert + traceback. Quale invariante è rotto?
+2. **UNA IPOTESI** — scrivi in `STATUS.md` la causa-radice sospetta (1 frase). Non cambiare 5 cose insieme.
+3. **REPRO MINIMO** — il test più piccolo che riproduce il bug.
+4. **FIX CHIRURGICO** — la modifica minima. **NON indebolire/cancellare il test per farlo passare = barare sul gate (fallimento del progetto).**
+5. **VERIFICA** — `uv run pytest -q` VERDE.
+6. **DOCUMENTA** — causa-radice + fix in `STATUS.md`; se classe ricorrente (3×) → pagina `project-wiki` + skill di debug.
+Bloccato dopo **2 tentativi** sulla stessa cosa → **ESCALATION in `COORDINATION.md`** (Claude la prende con Opus). NON forzare, NON aggirare.
+
+## 12. AUTO-MIGLIORAMENTO dei processi (RETRO — incoraggiato, monitorato)
+- Ogni ~5 iterazioni (o quando un attrito ricorre) fai una **RETRO**: rileggi la coda di `RESEARCH.md`/`STATUS.md`. Attriti ricorrenti? (stesso tipo di REVERT, stessa confusione di scope, stesso fix manuale).
+- Proponi **UNA** miglioria di processo per volta, motivata: 1 riga in `PROCESS-LOG.md` (`RETRO <data>: attrito=… → miglioria=…`) + se sensato applicala (edita una TUA sezione di `AGENTS.md`, o crea uno skill con `hermes-agent-skill-authoring`). Su `auto/main` (Claude rivede).
+- Il miglioramento di processo **non deve far regredire il gate**. Se tocca codice e peggiora la metrica → dichiaralo `invest` in `STATUS.md` PRIMA.
+
+## 13. INTERAZIONE CON CLAUDE (supervisore) → `COORDINATION.md`
+Claude verifica (non si fida del "fatto"), sblocca, fa le **task dure M3/M4 in escalation** (`claude -p` Opus, per te irraggiungibile = Keychain), rivede `auto/main`→`main`.
+- Serve Claude → voce in `COORDINATION.md` § NEEDS-CLAUDE: `[BLOCKER|ESCALATION|REVIEW|DOMANDA]` + contesto (`file:line`, iter RESEARCH) + richiesta. Lui risponde § CLAUDE-SAYS.
+- **Migliora QUESTA interazione**: handoff goffo/lento → proponi una regola in § PROPOSTE-PROTOCOLLO (`PROPONGO: … PERCHÉ: …`). Interazione che migliora = parte del progetto.
+- **Logga il costo VERO** (stima token Kimi × tariffa, anche grossolana) in `log.jsonl` — mai `cost_usd:0`.

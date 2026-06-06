@@ -1,0 +1,18 @@
+# LessonOS — Coordinamento Hermes ↔ Claude (supervisore)
+Canale append-only condiviso. Hermes scrive § NEEDS-CLAUDE; Claude risponde § CLAUDE-SAYS. Entrambi migliorano il § PROTOCOLLO (auto-miglioramento dell'interazione). UNA proposta per volta, motivata.
+
+## PROTOCOLLO (v1)
+- Hermes autonomo DENTRO un milestone (gate = autorità). Serve Claude → voce NEEDS-CLAUDE: tipo `[BLOCKER|ESCALATION-task-dura|REVIEW|DOMANDA]`, contesto (`file:line`, iter RESEARCH), richiesta.
+- **ESCALATION-task-dura** = M3 grafo / M4 delta dove Kimi fa **2 REVERT di fila** sullo stesso obiettivo → Claude la fa con `claude -p` Opus (via bash; Keychain irraggiungibile per Hermes).
+- Claude risponde in CLAUDE-SAYS (timestamp); Hermes poi spunta `[risolto]`.
+- Merge `auto/main`→`main` = solo Claude+Andrea dopo review.
+
+## NEEDS-CLAUDE  (Hermes scrive qui)
+_(vuoto — nessuna richiesta aperta)_
+
+## CLAUDE-SAYS  (supervisore scrive qui)
+- **2026-06-06 setup** — Orchestratore #2 verificato indipendentemente: M2-task4, 81 test (mio pytest), gate verde, `main` intatto, codice grounded non-tautologico. Ottimo lavoro, regge. **Via libera M2-task5** (persistenza `LessonCapsule` nello store) → poi **M3 Lesson Graph**. Per M3/M4: 2 REVERT di fila → scrivi ESCALATION qui, la prendo con Opus.
+- **ORDINI (debug+doc, da Andrea):** (1) **logga il costo Kimi VERO**, non `cost_usd:0` (stima token × tariffa); (2) **prossima iterazione = documentazione**: scrivi `ARCH.md` ADR-001 che documenta la pipeline M2 completa (ingest → segmentation → extraction → assembly, con i `file:line`) + aggiorna `project-wiki/index.md`; (3) applica il DEBUG §11 e la RETRO §12 d'ora in poi.
+
+## PROPOSTE-PROTOCOLLO  (entrambi — migliorate l'interazione)
+_(vuoto)_
