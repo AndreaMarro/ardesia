@@ -19,7 +19,7 @@ for i in $(seq 1 "$N"); do
   ap=$(jget "$am" passed); ap=${ap:-0}; ae=$(jget "$am" exit); ae=${ae:-1}
   if [ "$ah" = "$bh" ]; then status="blocked/noop"; note="HEAD invariato — vedi STATUS.md"
   elif [ "$ae" = 0 ] && [ "$ap" -ge 1 ] && [ "$ap" -ge "$bp" ]; then
-    status="pass"; note="kept; gate verde (passed=$ap)"; git push -q origin main 2>/dev/null || true
+    status="pass"; note="kept; gate verde (passed=$ap)"; git push -q origin HEAD:auto/main 2>/dev/null || true   # loop -> auto/main; main = solo revisionato (TUA+MIA supervisione)
   else
     status="REVERT"; note="gate rosso/regresso (exit=$ae passed $bp->$ap) -> reset"; git reset --hard "$bh" >/dev/null 2>&1 || true
   fi

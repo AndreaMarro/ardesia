@@ -27,7 +27,7 @@ Sei **Hermes**, orchestratore sul Mac Mini di Andrea. Costruisci il **LessonOS C
 4. **VERIFY** — `uv run pytest -q` deve essere **VERDE**. Task LLM: mock-test verdi (+ groundedness check se eval).
 5. **COMMIT** — commit LOCALE, messaggio chiaro: cosa fatto + cosa verificato.
 6. **LOG** — 1 riga a `STATUS.md` (umano) + 1 oggetto a `log.jsonl` (macchina: `{ts,task,files,tests,codex_verdict,cost_usd}`).
-7. **PUSH** — `git push origin main` (mirror bare locale, NON GitHub).
+7. **PUSH** — lo fa il DRIVER, su **`auto/main`** (mirror bare locale, NON GitHub, **NON `main`**). Tu committi solo LOCALE. `main` = solo revisionato da Andrea/Claude (merge `auto/main`→`main` dopo review = TUA+MIA supervisione).
 **UNA task per iterazione.** Bloccato → scrivi il blocker in `STATUS.md` e **fermati** (non inventare, non forzare).
 
 ## 4. Definition of Done (per task) — non negoziabile
