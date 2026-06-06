@@ -1,11 +1,9 @@
-.env
-*.db
+# runtime artifacts (NON codice) — preservati da `git clean -fd` perché ignorati
+.iters_today
+.tick.lock
+DIGEST-latest.md
+*.log
+hourly.err
 __pycache__/
-.venv/
-driver.log
-driver.bg.log
-STOP
 .pytest_cache/
-.uv-cache/
-dist/
-*.egg-info/
+.venv/

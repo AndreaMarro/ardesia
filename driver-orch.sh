@@ -5,6 +5,9 @@
 # Uso: ~/lessonos/driver-orch.sh [N]   (default 1)   |   pausa: touch ~/lessonos/STOP
 set -uo pipefail
 export PATH="$HOME/.local/bin:$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
+# BLIND OpenAI/Codex dal subprocess Hermes -> 100% Kimi, nessun failover 429 (auth.py legge ~/.codex/auth.json via CODEX_HOME + OPENAI_API_KEY/OPENROUTER_API_KEY env)
+export CODEX_HOME="$HOME/lessonos/.no-codex"; mkdir -p "$CODEX_HOME"; [ -f "$CODEX_HOME/auth.json" ] || echo '{}' > "$CODEX_HOME/auth.json"
+unset OPENAI_API_KEY OPENROUTER_API_KEY 2>/dev/null || true
 cd "$HOME/lessonos" || { echo "no ~/lessonos"; exit 1; }
 N="${1:-1}"; LOG="$HOME/lessonos/driver.log"; RES="$HOME/lessonos/RESEARCH.md"
 CAP_FILE="$HOME/lessonos/.iters_today"; CAP_MAX="${LESSONOS_DAILY_CAP:-12}"   # cap costi: max iterazioni/giorno
@@ -13,6 +16,7 @@ jget(){ printf '%s' "$1" | grep -oE "\"$2\":[0-9]+" | grep -oE '[0-9]+'; }
 day=$(date -u +%F); [ "$(head -1 "$CAP_FILE" 2>/dev/null)" = "$day" ] || printf '%s\n0\n' "$day" > "$CAP_FILE"
 for i in $(seq 1 "$N"); do
   [ -f STOP ] && { echo "[orch] STOP — halt." | tee -a "$LOG"; break; }
+  git reset --hard HEAD >/dev/null 2>&1; git clean -fd >/dev/null 2>&1   # baseline PULITA: zero debris da iter precedenti (es. lavoro non-committato per 429) -> integrità ratchet
   dt=$(sed -n 2p "$CAP_FILE" 2>/dev/null); dt=${dt:-0}
   if [ "$dt" -ge "$CAP_MAX" ]; then echo "[orch] CAP giornaliero $CAP_MAX raggiunto — stop (costi contenuti)." | tee -a "$LOG"; break; fi
   ts=$(date -u +%FT%TZ); bh=$(git rev-parse HEAD)
