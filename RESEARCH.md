@@ -6,3 +6,4 @@
 
 | ts | iter | commit | passed | green | status | note |
 |----|------|--------|--------|-------|--------|------|
+| 2026-06-06T13:19:45Z | 1 | 0b8a91a | 76 | y | pass | kept; gate verde (passed=76) |
