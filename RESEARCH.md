@@ -7,3 +7,4 @@
 | ts | iter | commit | passed | green | status | note |
 |----|------|--------|--------|-------|--------|------|
 | 2026-06-06T13:19:45Z | 1 | 0b8a91a | 76 | y | pass | kept; gate verde (passed=76) |
+| 2026-06-06T19:33:15Z | 1 | 87539cd | 87 | y | blocked/noop | orch:HEAD invariato (244s) — vedi STATUS.md |
