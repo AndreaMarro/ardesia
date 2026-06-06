@@ -54,4 +54,16 @@ Hai `writing-plans`, `test-driven-development`, `subagent-driven-development`, `
 - `log.jsonl` — log macchina.
 - `ARCH.md` — ADR brevi che PRODUCI tu mentre decidi l'architettura.
 
+## 9. METODO AUTORESEARCH (ratchet Karpathy — github.com/karpathy/autoresearch)
+- **UNA modifica/ipotesi per iterazione.** Codex (review) rifiuta diff che spaziano >1 ipotesi: la metrica diventa non-attribuibile.
+- **Leggi la coda di `RESEARCH.md` + `STATUS.md` PRIMA di PLAN** — è la tua memoria cross-sessione (cosa provato, metrica, next, blocker).
+- **GATE FROZEN = `eval/gate.sh`**: l'evaluator immutabile del driver. **NON modificarlo, NON modificare/indebolire i test per far passare il gate.** Barare sul gate = fallimento del progetto.
+- **Ratchet**: il driver tiene il tuo commit SOLO se il gate è verde (`exit=0` & `passed>=1`) e `passed` non regredisce; altrimenti **revert automatico** (`git reset --hard`). Quindi "fatto" lo decide il gate, non tu. Scrivi codice perché il gate sia verde, non per dichiararlo.
+- **Baseline nel milestone**: ogni PLAN dichiara i numeri correnti (test passati) da non far regredire.
+- **Crash-fast**: errore al root (import rotto, typo) → fixa e ri-prova nell'iterazione; non forzare, non aggirare.
+- **Semplicità (assioma review)**: un piccolo guadagno-metrica che aggiunge complessità brutta NON vale; cancellare codice a parità-di-metrica = ottimo risultato.
+- **Skill self-authoring (regola 3×)**: se lo stesso fix/pattern ricorre 3 volte nel journal, crealo come skill (`hermes-agent-skill-authoring`). Lo sviluppo skill è parte del progetto.
+- **Investment-arc**: se serve un refactor che PEGGIORA temporaneamente la metrica, dichiaralo ESPLICITAMENTE in STATUS.md PRIMA (status=invest) — così sai che il driver lo revert-erà e pianifichi di conseguenza (spezzalo in passi che non regrediscono, o segnalo ad Andrea/Claude).
+- **NIENTE "NEVER STOP"**: autonomo DENTRO un milestone, ma merge/consolidamento/"ship" = SOLO con OK di Andrea. È un **side-project di ELAB**: bounded, zero rischio sul prodotto principale.
+
 Inizia da **M0** in `MILESTONES.md`. UNA task alla volta. **Onestà sopra velocità.**
