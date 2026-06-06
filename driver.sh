@@ -7,7 +7,7 @@ set -uo pipefail
 export PATH="$HOME/.local/bin:$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
 cd "$HOME/lessonos" || { echo "no ~/lessonos"; exit 1; }
 N="${1:-1}"; LOG="$HOME/lessonos/driver.log"; RES="$HOME/lessonos/RESEARCH.md"
-ITER_PROMPT='Progetto LessonOS in ~/lessonos. Leggi AGENTS.md (ordini), MILESTONES.md, e la CODA di RESEARCH.md + STATUS.md (la tua memoria: cosa gia provato, metrica, next, blocker). Esegui ESATTAMENTE UNA prossima task (la piu piccola verificabile) per AGENTS.md sez.3 e sez.9: PLAN -> BUILD con "./bin/opus.sh" -> REVIEW con "./bin/codex.sh" -> "uv run pytest -q" VERDE -> COMMIT locale -> aggiorna STATUS.md. UNA SOLA modifica/ipotesi. NON modificare eval/gate.sh ne i golden test (barare sul gate = fallimento). Se bloccato: scrivi il blocker in STATUS.md e FERMATI. NON COMPIACERE: "fatto" lo decide il gate, non tu.'
+ITER_PROMPT='Progetto LessonOS in ~/lessonos. Leggi AGENTS.md (ordini), MILESTONES.md, e la CODA di RESEARCH.md + STATUS.md (la tua memoria: cosa gia provato, metrica, next, blocker). Esegui ESATTAMENTE UNA prossima task (la piu piccola verificabile) per AGENTS.md sez.3 e sez.9: PLAN -> BUILD con "./bin/build.sh" (Codex worker) -> REVIEW con "./bin/codex.sh" (Codex read-only) -> "uv run pytest -q" VERDE -> COMMIT locale -> aggiorna STATUS.md. UNA SOLA modifica/ipotesi. NON modificare eval/gate.sh ne i golden test (barare sul gate = fallimento). Se bloccato: scrivi il blocker in STATUS.md e FERMATI. NON COMPIACERE: "fatto" lo decide il gate, non tu.'
 jget(){ printf '%s' "$1" | grep -oE "\"$2\":[0-9]+" | grep -oE '[0-9]+'; }
 for i in $(seq 1 "$N"); do
   [ -f STOP ] && { echo "[driver] STOP — halt." | tee -a "$LOG"; break; }
