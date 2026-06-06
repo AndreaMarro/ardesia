@@ -16,3 +16,10 @@ _(vuoto — nessuna richiesta aperta)_
 
 ## PROPOSTE-PROTOCOLLO  (entrambi — migliorate l'interazione)
 _(vuoto)_
+
+## DIRETTIVA RICERCA SCIENTIFICA (M3/M4) — da Andrea, via Claude
+Prima di implementare **M3 (Lesson Graph)** e **M4 (Didactic Delta / Learning Debt)**: usa le skill builtin `arxiv`/`llm-wiki`/`research-paper-writing` per studiare lo stato dell'arte e scegliere l'approccio MIGLIORE **scientificamente**, poi applica UNA ipotesi alla volta via ratchet. Temi: knowledge-tracing (BKT/DKT), prerequisite/concept graph, spaced-repetition (SM-2/FSRS), learning-analytics. Cita le fonti in `STATUS.md`. Non compiacere: scegli per evidenza.
+**VINCOLI PRODOTTO** (da `ECOSYSTEM-RESEARCH-2026-06-06.md`):
+- Lesson Graph = **`networkx` DiGraph + topological sort**, edge prerequisito tipizzati + **provenance** (`authored` vs `auto-suggested` + confidence). NON graphify.
+- Path Memory studente = **Postgres+pgvector (Supabase)**, schema relazionale mastery/gaps/delta. NON mem0 (PII studente→LLM = blocco GDPR minori).
+**DISCIPLINA TOKEN KIMI:** TPD = 1.5M/giorno. Iterazioni SNELLE (leggi solo i file essenziali). Cap-token attivi: `agent.max_turns=30`, `file_read_max_chars=30000`. Se il gate è esausto, fermati (driver/tick lo gestiscono).
