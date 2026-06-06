@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 from pathlib import Path as FsPath
 
-from lessonos.models.entities import Lesson, Path, Segment, Source
+from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
 from lessonos.store.base import Store
 
 DEFAULT_FIXTURE_ROOT = (
@@ -83,3 +83,32 @@ def ingest_lesson_segments(
     for segment in segments:
         store.save_segment(segment)
     return segments
+
+
+def ingest_lesson_moments(
+    store: Store, lesson_id: str, fixture_root: FsPath = DEFAULT_FIXTURE_ROOT
+) -> tuple[Moment, ...]:
+    """Persist a lesson's timeline_events as Moments into the store (M2 ingest).
+
+    Each ``timeline_events`` entry becomes a :class:`Moment` anchored at time
+    ``t`` with ``kind`` = the fixture ``event_type``. ``moment_id`` is derived
+    positionally (``<lesson_id>#m<i>``) so re-ingest is idempotent. The optional
+    ``seg_id`` keeps the moment grounded in a transcript segment (PLAN §13.4) —
+    never invented, copied straight from the event.
+    """
+    data = json.loads(
+        (fixture_root / "lessons" / f"{lesson_id}.json").read_text()
+    )
+    moments = tuple(
+        Moment(
+            moment_id=f"{data['lesson_id']}#m{i}",
+            lesson_id=data["lesson_id"],
+            t=event["t"],
+            kind=event["event_type"],
+            seg_id=event.get("seg_id"),
+        )
+        for i, event in enumerate(data["timeline_events"])
+    )
+    for moment in moments:
+        store.save_moment(moment)
+    return moments

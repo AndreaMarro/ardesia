@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from lessonos.models.entities import Lesson, Path, Segment, Source
+from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
 
 
 class Store(ABC):
@@ -44,6 +44,15 @@ class Store(ABC):
 
     @abstractmethod
     def segments_for_lesson(self, lesson_id: str) -> tuple[Segment, ...]: ...
+
+    @abstractmethod
+    def save_moment(self, moment: Moment) -> None: ...
+
+    @abstractmethod
+    def get_moment(self, moment_id: str) -> Moment | None: ...
+
+    @abstractmethod
+    def moments_for_lesson(self, lesson_id: str) -> tuple[Moment, ...]: ...
 
     @abstractmethod
     def close(self) -> None: ...

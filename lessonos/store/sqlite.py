@@ -11,10 +11,10 @@ from __future__ import annotations
 import json
 import sqlite3
 
-from lessonos.models.entities import Lesson, Path, Segment, Source
+from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -43,6 +43,13 @@ CREATE TABLE IF NOT EXISTS segments (
     start     INTEGER NOT NULL,
     "end"     INTEGER NOT NULL,
     text      TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS moments (
+    moment_id TEXT PRIMARY KEY,
+    lesson_id TEXT NOT NULL,
+    t         INTEGER NOT NULL,
+    kind      TEXT NOT NULL,
+    seg_id    TEXT
 );
 """
 
@@ -187,6 +194,45 @@ class SQLiteStore(Store):
             start=row["start"],
             end=row["end"],
             text=row["text"],
+        )
+
+    # --- Moment ---------------------------------------------------------
+    def save_moment(self, moment: Moment) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO moments "
+            "(moment_id, lesson_id, t, kind, seg_id) "
+            "VALUES (?, ?, ?, ?, ?)",
+            (
+                moment.moment_id,
+                moment.lesson_id,
+                moment.t,
+                moment.kind,
+                moment.seg_id,
+            ),
+        )
+        self._conn.commit()
+
+    def get_moment(self, moment_id: str) -> Moment | None:
+        row = self._conn.execute(
+            "SELECT * FROM moments WHERE moment_id = ?", (moment_id,)
+        ).fetchone()
+        return self._row_to_moment(row) if row is not None else None
+
+    def moments_for_lesson(self, lesson_id: str) -> tuple[Moment, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM moments WHERE lesson_id = ? ORDER BY t",
+            (lesson_id,),
+        ).fetchall()
+        return tuple(self._row_to_moment(r) for r in rows)
+
+    @staticmethod
+    def _row_to_moment(row: sqlite3.Row) -> Moment:
+        return Moment(
+            moment_id=row["moment_id"],
+            lesson_id=row["lesson_id"],
+            t=row["t"],
+            kind=row["kind"],
+            seg_id=row["seg_id"],
         )
 
     def close(self) -> None:
