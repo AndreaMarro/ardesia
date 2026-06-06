@@ -13,7 +13,7 @@ for i in $(seq 1 "$N"); do
   if [ -f STOP ]; then echo "[driver] STOP presente — halt." | tee -a "$LOG"; break; fi
   ts=$(date -u +%FT%TZ)
   echo "[driver] === iter $i/$N $ts ===" | tee -a "$LOG"
-  hermes -z --yolo "$ITER_PROMPT" 2>&1 | tee -a "$LOG"
+  hermes --yolo -z "$ITER_PROMPT" 2>&1 | tee -a "$LOG"
   echo "[driver] --- end iter $i ---" | tee -a "$LOG"
 done
 echo "[driver] done $(date -u +%FT%TZ)." | tee -a "$LOG"
