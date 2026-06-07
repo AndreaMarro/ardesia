@@ -6,3 +6,4 @@ Append-only. 1 riga per modifica.
 - 2026-06-07T16:00:00Z — wiki: cost tracking (LLMResponse.usage + estimate_kimi_cost) documentato in llm-router.md, citazioni file:line
 - 2026-06-07T22:00:00Z — wiki: M2-task5 persistenza capsule (Store ABC save_capsule/get_capsule, SQLite tabella capsules SCHEMA_VERSION 4, assembly save=True/load_capsule) documentato in capsule-pipeline.md + store.md, citazioni file:line
 - 2026-06-07T23:00:00Z — wiki: M3-task3 PathMemory (path-memory.md nuovo, index.md aggiornato): PathMemory dataclass + build_path_memory() in lessonos/graph/path_memory.py, 14 test, 136 passed
+- 2026-06-07T23:30:00Z — wiki: M4-task1 DidacticDelta (didactic-delta.md nuovo, index.md aggiornato): compute_didactic_delta() in lessonos/graph/didactic_delta.py, 15 test, 151 passed. Review Claude Code: 2 fix (empty test non usato + test tautologico). Gate VERDE 151 passed + 1 skipped (baseline 136 -> 151, no regressione).

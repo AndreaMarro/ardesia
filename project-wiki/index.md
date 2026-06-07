@@ -19,3 +19,4 @@ Ogni pagina + riassunto 1 riga.
 - **store.md** — layer persistenza astratto (Store ABC) + SQLiteStore relazionale
 - **capsule-pipeline.md** — pipeline estrazione Lesson Capsule: ingest → segmentation → extraction
 - **path-memory.md** — Path Memory: aggregazione path-level da capsules (M3-task3)
+- **didactic-delta.md** — Didactic Delta: diff tra versioni PathMemory (M4-task1, PLAN §3.3)
