@@ -20,3 +20,4 @@ Ogni pagina + riassunto 1 riga.
 - **capsule-pipeline.md** — pipeline estrazione Lesson Capsule: ingest → segmentation → extraction
 - **path-memory.md** — Path Memory: aggregazione path-level da capsules (M3-task3)
 - **didactic-delta.md** — Didactic Delta: diff tra versioni PathMemory (M4-task1, PLAN §3.3)
+- **learning-debt.md** — Learning Debt Ledger: 5 categorie di debito didattico da PathMemory + Delta (M4-task2, PLAN §3.4)
