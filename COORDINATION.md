@@ -23,3 +23,8 @@ Prima di implementare **M3 (Lesson Graph)** e **M4 (Didactic Delta / Learning De
 - Lesson Graph = **`networkx` DiGraph + topological sort**, edge prerequisito tipizzati + **provenance** (`authored` vs `auto-suggested` + confidence). NON graphify.
 - Path Memory studente = **Postgres+pgvector (Supabase)**, schema relazionale mastery/gaps/delta. NON mem0 (PII studente→LLM = blocco GDPR minori).
 **DISCIPLINA TOKEN:** brain = DeepSeek (no TPD giornaliero, solo throttle per concorrenza retryable). Iterazioni comunque SNELLE. Cap-token: agent.max_turns=30, file_read_max_chars=30000. Cap build giornaliero nel tick (costi contenuti).
+
+## WIKILLM — concetti per SVILUPPO e PRODOTTO (direttiva Andrea)
+**Sviluppo (già attivo):** `project-wiki/` = LLM-Wiki vivo del codice (ogni claim cita `file:line` reale, si aggiorna ad ogni iterazione = automiglioramento). Mantienilo SEMPRE.
+**Prodotto:** il motore LessonOS **È un wikillm-per-lezioni** — Lesson Graph + Path Memory + Course Memory = wiki didattico LLM-mantenuto e GROUNDED: ogni nodo/concetto/claim cita la fonte (lezione, timestamp, pagina, `seg_id`); il grafo si auto-aggiorna ad ogni nuova lezione (Didactic Delta); ogni lezione rende più intelligente la prossima (PLAN §3, §13.4). Costruisci M3/M4 con questa filosofia: grounding obbligatorio, provenance sugli archi, zero claim inventati.
+**Frase guida prodotto:** "Ogni lezione deve rendere più intelligente la prossima."
