@@ -24,10 +24,10 @@
 - [x] **M2-task5 (ordine Claude)**: persistenza LessonCapsule nello store come JSON blob (save_capsule/get_capsule, save=True su assemble, load_capsule helper)
 
 ## M3 — Lesson Graph + Path Memory (PLAN §3.2 + §26.2)
-- [ ] Costruisci nodi/archi del grafo dalle capsule (edge_type PLAN §14.2: explains, depends_on, repeats, prepares...).
-- [ ] `lessonos/graph/` — query: "dove è introdotto X?", "in quali lezioni torna?", prerequisiti.
-- [ ] **Path Memory** (§26.2): aggregazione progressiva (concetti canonici, lesson_index, recurring_misconceptions).
-- [ ] Test: dato il percorso 3-lezioni, il grafo collega un concetto introdotto in L1 e ripreso in L2/L3.
+- [x] Costruisci nodi/archi del grafo dalle capsule (edge_type PLAN §14.2: explains, depends_on, repeats, prepares...).
+- [x] `lessonos/graph/` — query: "dove è introdotto X?", "in quali lezioni torna?", prerequisiti.
+- [x] **Path Memory** (§26.2): aggregazione progressiva (concetti canonici, lesson_index, recurring_misconceptions).
+- [x] Test: dato il percorso 3-lezioni, il grafo collega un concetto introdotto in L1 e ripreso in L2/L3.
 
 ## M4 — Didactic Delta + Learning Debt (IL differenziatore, PLAN §3.3 + §3.4)
 - [ ] **Didactic Delta**: confronto tra versioni del percorso (cosa aggiunto/chiarito/ancora-aperto/ripetuto-troppo).
