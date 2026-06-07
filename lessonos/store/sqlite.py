@@ -12,9 +12,10 @@ import json
 import sqlite3
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
+from lessonos.models.ledger import CostLedgerEntry
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -56,9 +57,18 @@ CREATE TABLE IF NOT EXISTS capsules (
     capsule_data TEXT NOT NULL,
     created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
+CREATE TABLE IF NOT EXISTS cost_ledger (
+    entry_id         TEXT PRIMARY KEY,
+    lesson_id        TEXT,
+    model            TEXT NOT NULL,
+    provider         TEXT NOT NULL,
+    prompt_tokens    INTEGER NOT NULL,
+    completion_tokens INTEGER NOT NULL,
+    cost_usd         REAL NOT NULL,
+    label            TEXT NOT NULL DEFAULT '',
+    created_at       TEXT NOT NULL DEFAULT (datetime('now'))
+);
 """
-
-
 class SQLiteStore(Store):
     def __init__(self, db_path: str = ":memory:") -> None:
         self._conn = sqlite3.connect(db_path)
@@ -258,3 +268,50 @@ class SQLiteStore(Store):
 
     def close(self) -> None:
         self._conn.close()
+
+    # --- Cost Ledger -----------------------------------------------------
+
+    def save_ledger_entry(self, entry: CostLedgerEntry) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO cost_ledger "
+            "(entry_id, lesson_id, model, provider, "
+            "prompt_tokens, completion_tokens, cost_usd, label) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                entry.entry_id,
+                entry.lesson_id,
+                entry.model,
+                entry.provider,
+                entry.prompt_tokens,
+                entry.completion_tokens,
+                entry.cost_usd,
+                entry.label,
+            ),
+        )
+        self._conn.commit()
+
+    def get_ledger_entries(self) -> tuple[CostLedgerEntry, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM cost_ledger ORDER BY entry_id"
+        ).fetchall()
+        return tuple(self._row_to_ledger_entry(r) for r in rows)
+
+    def get_ledger_for_lesson(self, lesson_id: str) -> tuple[CostLedgerEntry, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM cost_ledger WHERE lesson_id = ? ORDER BY entry_id",
+            (lesson_id,),
+        ).fetchall()
+        return tuple(self._row_to_ledger_entry(r) for r in rows)
+
+    @staticmethod
+    def _row_to_ledger_entry(row: sqlite3.Row) -> CostLedgerEntry:
+        return CostLedgerEntry(
+            entry_id=row["entry_id"],
+            lesson_id=row["lesson_id"],
+            model=row["model"],
+            provider=row["provider"],
+            prompt_tokens=row["prompt_tokens"],
+            completion_tokens=row["completion_tokens"],
+            cost_usd=row["cost_usd"],
+            label=row["label"],
+        )

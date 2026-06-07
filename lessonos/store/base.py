@@ -10,6 +10,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
+from lessonos.models.ledger import CostLedgerEntry
 
 
 class Store(ABC):
@@ -73,3 +74,17 @@ class Store(ABC):
     @abstractmethod
     def close(self) -> None:
         ...
+
+    # --- Cost Ledger -----------------------------------------------------
+
+    @abstractmethod
+    def save_ledger_entry(self, entry: CostLedgerEntry) -> None:
+        """Persist a single cost ledger entry."""
+
+    @abstractmethod
+    def get_ledger_entries(self) -> tuple[CostLedgerEntry, ...]:
+        """Retrieve ALL cost ledger entries, ordered by entry_id."""
+
+    @abstractmethod
+    def get_ledger_for_lesson(self, lesson_id: str) -> tuple[CostLedgerEntry, ...]:
+        """Retrieve cost ledger entries for a specific lesson."""

@@ -11,11 +11,14 @@ from lessonos.models.entities import (
     Path,
     Source,
 )
+from lessonos.models.ledger import CostLedgerEntry, CostReport
 
 __all__ = [
     "CONCEPT_STATUS",
     "EDGE_TYPES",
     "Concept",
+    "CostLedgerEntry",
+    "CostReport",
     "Exercise",
     "GraphEdge",
     "GraphNode",
