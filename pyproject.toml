@@ -2,7 +2,9 @@
 name = "lessonos"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "networkx>=3.6.1",
+]
 
 [dependency-groups]
 dev = [
