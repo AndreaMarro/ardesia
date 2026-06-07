@@ -45,7 +45,7 @@ Parametri:
 7. compute_next_lesson_plan(full_memory, delta, ledger)
 ```
 
-**Citazione**: lessonos/cli.py:355-455 — `run_path()`: fasi 1-7 con print diagnostico.
+**Citazione**: lessonos/cli.py:467-477 — `run_path()`: fasi 1-7 con print diagnostico.
 
 ### 2. Mock payloads deterministici
 
@@ -56,7 +56,7 @@ Parametri:
 Ogni seg_id e citation nei mock è validato contro le fixture reali dal test
 `test_run_path_each_lesson_has_mock_fixture`.
 
-**Citazione**: lessonos/cli.py:47-256 — `_LESSON_MOCKS` per l1/l2/l3.
+**Citazione**: lessonos/cli.py:47-290 — `_LESSON_MOCKS` per l1/l2/l3/l4.
 
 ### 3. Router builder (`_build_router()`)
 
@@ -90,31 +90,34 @@ LessonOS Core Engine — End-to-End Demo
   ✓ l1_derivative_definition: 2 topics, 2 concepts, 2 exercises
   ✓ l2_derivative_rules: 3 topics, 3 concepts, 2 exercises
   ✓ l3_integral_intro: 3 topics, 3 concepts, 2 exercises
+  ✓ l4_integral_substitution: 2 topics, 1 concept, 1 exercises
 
---- Lesson Capsules ---
+|--- Lesson Capsules ---
 ... (per-lezione)
---- Path Memory ---
-  State: growing  |  Lessons: 3  |  Concepts: 7  |  Exercises: 6
---- Didactic Delta ---
-  New concepts: 3
---- Learning Debt Ledger ---
-  Total items: 3
---- Next Lesson Plan ---
-  Total agenda items: 6
+|--- Path Memory ---
+  State: growing  |  Lessons: 4  |  Concepts: 8  |  Exercises: 8
+|--- Didactic Delta (L1+L2+L3 vs L1+L2+L3+L4) ---
+  New concepts: 1 (sostituzione)
+|--- Learning Debt Ledger ---
+  Total items: 4
+|--- Next Lesson Plan ---
+  Total agenda items: 7 (varies)
 
-Summary: 3 capsules, 7 concepts in Path Memory, 3 new concepts in Delta,
-3 debt items, 6 agenda items
+Summary: 4 capsules, 8 concepts in Path Memory, 1 new concept in Delta,
+4 debt items, 7 agenda items
 ```
 
 ## Test Coverage
 
 **File**: `tests/test_cli.py` — 5 test.
 
-1. `test_run_path_produces_all_three_capsules` — strutturato: verifica return dict
-   con numeri reali (capsules=3, memory>=6, delta_new>=3, debt>=1, agenda>=1)
+1. `test_run_path_produces_all_four_capsules` — strutturato: verifica return dict
+   con 4 capsule, 8 concetti in PathMemory, 1 nuovo delta (sostituzione da L4),
+   "No mock registered" non appare (4/4 processate), "sostituzione" in output
 2. `test_run_path_each_lesson_has_mock_fixture` — ogni mock seg_id e citation
-   esiste nelle fixture reali, ogni status ∈ CONCEPT_STATUS
-3. `test_run_path_delta_detects_new_integral_concepts` — delta_new ≥ 3
+   esiste nelle fixture reali, ogni status ∈ CONCEPT_STATUS (tutte e 4 lezioni,
+   nessuna skip)
+3. `test_run_path_delta_detects_new_l4_concepts` — delta_new == 1 (sostituzione)
 4. `test_run_path_all_delta_fields_non_negative` — ricostruzione oggetti reali,
    tutti i counter ≥ 0
 5. `test_run_path_empty_fixture_shows_error` — exit code 1 su fixture assente
