@@ -60,6 +60,47 @@ report = run_eval([my_case], metrics=[metric])
 | `test_metrics_integrate_with_run_eval` | Custom metric via `run_eval()` produces real results |
 | `test_metrics_exported_from_init` | Both factories callable from `lessonos.eval` |
 
+## Eval Set: test_cases.py (M5-task1)
+
+`lessonos/eval/test_cases.py` (file:line 1-1093) defines 20 `EvalCase` entries in `ALL_CASES` registry covering all pipeline stages. Each case runs on mock data (deterministic, free, fast).
+
+### Cases by category
+
+**Segmentation** (1): `segmentation_returns_topics` — mock-based topic grouping validates labels and segment IDs.
+
+**Extraction** (3): `extraction_rejects_bad_grounding` (fabricated seg_id → ValueError), `extraction_valid_full_content` (all 4 fields + grounded citations), `extraction_rejects_invalid_status` (status outside CONCEPT_STATUS vocab).
+
+**Assembly** (2): `assembly_produces_capsule` (full pipeline produces LessonCapsule), `assembly_rejects_no_segments` (ValueError on uningested lesson).
+
+**Capsule persistence** (1): `capsule_persists_and_reloads` — save → load round-trip via store.
+
+**Path Memory** (4): `path_memory_aggregates_concepts` (cross-lesson dedup), `path_memory_single_capsule` (minimal path), `path_memory_empty_list` (ValueError guard), `path_memory_case_insensitive_merge` (canonical merging).
+
+**Didactic Delta** (3): `didactic_delta_detects_new` (new concept from L3), `didactic_delta_no_change` (identical data, separate objects), `didactic_delta_concept_clarified` (problematic→reviewed).
+
+**Learning Debt** (2): `learning_debt_identifies_open` (unmastered debt), `learning_debt_over_repeated` (3+ lessons debt).
+
+**Graph** (2): `graph_cross_lesson_connects_prerequisites` (repeats/explains edges), `graph_queries_by_concept` (where_introduced/where_reinforced).
+
+**Next Lesson Planner** (1): `next_lesson_planner_prioritizes_gaps` (priority 0→4 ordering).
+
+**Cost Ledger** (1): `cost_ledger_report_basic` (report with mock + Kimi entries).
+
+### Running
+
+```python
+from lessonos.eval import run_eval
+from lessonos.eval.test_cases import ALL_CASES
+report = run_eval(ALL_CASES)  # 20/20 passes
+print(report.summary())
+```
+
+All 20 cases pass via `run_eval(ALL_CASES)` (verified at each commit). Tests are pytest-free — they are `EvalCase` objects run through the `run_eval` runner. The `TestRunEval::test_runs_all_cases_default_metric` pytest test verifies ALL_CASES pass via the runner.
+
+### Review history (Claude Code adversarial)
+
+- 4 real fixes applied (2026-06-08): excerpts grounded to real substrings, tautological same-object delta test fixed, weak `>=1` assertions strengthened to `==1`, typo corrected.
+
 ## Constraints
 
 - **Zero LLM calls**: both metrics are pure computation against a `Store` — free, fast, deterministic

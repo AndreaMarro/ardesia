@@ -36,10 +36,10 @@
 - [x] **Test M4 end-to-end**: aggiungendo L4 (mock capsule), DidacticDelta rileva concetto nuovo + debito aperto da L2. L4 fixture reale esiste (`fixtures/sample_path/lessons/l4_integral_substitution.json`, validata da test_fixtures_sample_path.py).
 
 ## M5 — Eval harness + Cost ledger (PLAN §22 + §20)
-- [ ] Eval set: ~20 casi (domande lesson-scope + path-scope) con expected.
-- [ ] Metriche groundedness/citation-accuracy (stile Ragas/DeepEval, ma minimal custom).
-- [ ] **Cost ledger** per-lezione (§20): traccia token/costo per chiamata reale.
-- [ ] Test: l'eval gira sul mock e produce un report; groundedness check fallisce su una citazione volutamente rotta.
+- [x] Eval set: ~20 cases (domande lesson-scope + path-scope) with expected.
+- [x] Metriche groundedness/citation-accuracy (stile Ragas/DeepEval, ma minimal custom).
+- [x] **Cost ledger** per-lezione (§20): traccia token/costo per chiamata reale.
+- [x] Test: l'eval gira sul mock e produce un report; groundedness check fallisce su una citazione volutamente rotta.
 
 ## M6 (stretch) — Demo CLI/HTTP end-to-end
 - [ ] CLI `lessonos run-path fixtures/sample_path` → stampa Lesson Capsules + Path Map + Delta + Debt + Next-Plan.

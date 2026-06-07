@@ -675,6 +675,475 @@ def case_next_lesson_planner_prioritizes_gaps() -> EvalCase:
 
 
 # ---------------------------------------------------------------------------
+# Case: extraction valid full content (M5 — lesson-scope, extraction)
+# ---------------------------------------------------------------------------
+
+
+def case_extraction_valid_full_content() -> EvalCase:
+    """Extraction returns concepts + exercises + questions + homework (all valid)."""
+
+    def run():
+        store = _make_store("l1", [
+            ("l1s1", 0, 45, "Derivata formale: limite del rapporto incrementale."),
+            ("l1s2", 45, 110, "Regola della potenza: derivata di x^n = n*x^(n-1)."),
+        ])
+        segments = store.segments_for_lesson("l1")
+        prompt = build_extraction_prompt(segments)
+        payload = {
+            "concepts": [
+                {"name": "derivata", "status": "introduced",
+                 "citations": [{"seg_id": "l1s1", "excerpt": "Derivata formale"}]},
+                {"name": "regola potenza", "status": "introduced",
+                 "citations": [{"seg_id": "l1s2", "excerpt": "Regola della potenza"}]},
+            ],
+            "exercises": [
+                {"prompt": "Calcola derivata di x^2",
+                 "citations": [{"seg_id": "l1s1", "excerpt": "Derivata formale"}]},
+            ],
+            "student_questions": [
+                {"question": "Cosa succede se n=0?",
+                 "citations": [{"seg_id": "l1s2", "excerpt": "potenza"}]},
+            ],
+            "homework": [
+                {"task": "Derivate di polinomi fino a grado 3",
+                 "citations": [{"seg_id": "l1s2", "excerpt": "potenza"}]},
+            ],
+        }
+        router = _router_for(prompt, payload)
+        from lessonos.capsule.extraction import extract_lesson_content
+        content = extract_lesson_content(store, lesson_id="l1", router=router)
+        return content
+
+    def expected(result):
+        from lessonos.capsule.extraction import LessonContent
+        if not isinstance(result, LessonContent):
+            return False
+        lc: LessonContent = result
+        return (
+            len(lc.concepts) == 2
+            and len(lc.exercises) == 1
+            and len(lc.student_questions) == 1
+            and len(lc.homework) == 1
+            and lc.concepts[0].name == "derivata"
+            and lc.homework[0].task == "Derivate di polinomi fino a grado 3"
+            and lc.student_questions[0].question == "Cosa succede se n=0?"
+        )
+
+    return EvalCase(
+        name="extraction_valid_full_content",
+        description="Extraction returns concepts+exercises+questions+homework all valid.",
+        run=run,
+        expected=expected,
+        categories=("extraction",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: extraction rejects invalid concept status (M5 — extraction, vocab)
+# ---------------------------------------------------------------------------
+
+
+def case_extraction_rejects_invalid_status() -> EvalCase:
+    """Extraction raises ValueError when concept status is not in CONCEPT_STATUS vocab."""
+
+    def run():
+        store = _make_store("l1", [
+            ("l1s1", 0, 45, "Testo qualsiasi."),
+        ])
+        segments = store.segments_for_lesson("l1")
+        prompt = build_extraction_prompt(segments)
+        # Mock returns a concept with an invalid status
+        payload = {
+            "concepts": [
+                {"name": "finto", "status": "invalid_status",
+                 "citations": [{"seg_id": "l1s1", "excerpt": "testo"}]},
+            ],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }
+        router = _router_for(prompt, payload)
+        from lessonos.capsule.extraction import extract_lesson_content
+        try:
+            extract_lesson_content(store, lesson_id="l1", router=router)
+            return False  # No error = system accepted invalid status = FAIL
+        except ValueError:
+            return True  # Correctly rejected = PASS
+        except Exception:
+            return False
+
+    def expected(result):
+        return result is True  # Should raise ValueError
+
+    return EvalCase(
+        name="extraction_rejects_invalid_status",
+        description="Extraction rejects concept status not in CONCEPT_STATUS vocab.",
+        run=run,
+        expected=expected,
+        categories=("extraction", "groundedness"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: assembly rejects lesson with no segments (M5 — assembly, grounding)
+# ---------------------------------------------------------------------------
+
+
+def case_assembly_rejects_no_segments() -> EvalCase:
+    """Assembly raises ValueError when the lesson has no persisted segments."""
+
+    def run():
+        store = _make_store("l1")  # No segments
+        router = Router()
+        router.register(MockProvider({}))  # Empty — shouldn't be called
+        from lessonos.capsule.assembly import assemble_lesson_capsule
+        try:
+            assemble_lesson_capsule(store, lesson_id="l1", router=router)
+            return False  # No error = FAIL
+        except ValueError:
+            return True  # Correctly rejected = PASS
+        except Exception:
+            return False
+
+    def expected(result):
+        return result is True
+
+    return EvalCase(
+        name="assembly_rejects_no_segments",
+        description="Assembly raises ValueError when lesson has no persisted segments.",
+        run=run,
+        expected=expected,
+        categories=("assembly", "groundedness"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: PathMemory from a single capsule (M5 — path_memory, lesson-scope)
+# ---------------------------------------------------------------------------
+
+
+def case_path_memory_single_capsule() -> EvalCase:
+    """PathMemory from a single capsule — minimal viable path."""
+
+    def run():
+        l1 = _make_capsule(
+            "l1", "Introduzione",
+            concepts=[("derivata", "introduced")],
+        )
+        from lessonos.graph.path_memory import build_path_memory
+        pm = build_path_memory([l1], path_title="Minimal")
+        return pm
+
+    def expected(result):
+        from lessonos.graph.path_memory import PathMemory
+        if not isinstance(result, PathMemory):
+            return False
+        pm: PathMemory = result
+        return (
+            pm.path_title == "Minimal"
+            and pm.total_lessons == 1
+            and pm.total_concepts >= 1
+            and pm.current_state == "initial"
+            and len(pm.lesson_index) == 1
+            and pm.lesson_index[0].lesson_id == "l1"
+        )
+
+    return EvalCase(
+        name="path_memory_single_capsule",
+        description="PathMemory from single capsule with one concept.",
+        run=run,
+        expected=expected,
+        categories=("path_memory",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: PathMemory rejects empty capsule list (M5 — path_memory, edge)
+# ---------------------------------------------------------------------------
+
+
+def case_path_memory_empty_list() -> EvalCase:
+    """PathMemory raises ValueError when capsule list is empty."""
+
+    def run():
+        from lessonos.graph.path_memory import build_path_memory
+        try:
+            build_path_memory([])
+            return False  # No error = FAIL
+        except ValueError:
+            return True  # Correctly rejected = PASS
+        except Exception:
+            return False
+
+    def expected(result):
+        return result is True
+
+    return EvalCase(
+        name="path_memory_empty_list",
+        description="PathMemory raises ValueError on empty capsule list.",
+        run=run,
+        expected=expected,
+        categories=("path_memory",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: PathMemory merges concepts case-insensitively (M5 — path_memory, dedup)
+# ---------------------------------------------------------------------------
+
+
+def case_path_memory_case_insensitive_merge() -> EvalCase:
+    """Canonical concept merging: \"Derivata\" and \"derivata\" are the same concept."""
+
+    def run():
+        l1 = _make_capsule(
+            "l1", "Analisi",
+            concepts=[("Derivata", "introduced")],
+        )
+        l2 = _make_capsule(
+            "l2", "Regole",
+            concepts=[("derivata", "reinforced")],
+        )
+        from lessonos.graph.path_memory import build_path_memory
+        pm = build_path_memory([l1, l2], path_title="Test Case")
+        return pm
+
+    def expected(result):
+        from lessonos.graph.path_memory import PathMemory
+        if not isinstance(result, PathMemory):
+            return False
+        pm: PathMemory = result
+        # Should merge into exactly one concept
+        if pm.total_concepts != 1:
+            return False
+        c = pm.concept_graph[0]
+        return (
+            c.name in ("Derivata", "derivata")  # Preserves canonical form
+            and "introduced" in c.statuses
+            and "reinforced" in c.statuses
+            and len(c.lessons) == 2
+            and c.first_introduced_lesson == "l1"
+        )
+
+    return EvalCase(
+        name="path_memory_case_insensitive_merge",
+        description="Concepts 'Derivata' and 'derivata' merge into one canonical entry.",
+        run=run,
+        expected=expected,
+        categories=("path_memory",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: DidacticDelta detects no change (M5 — didactic_delta, edge)
+# ---------------------------------------------------------------------------
+
+
+def case_didactic_delta_no_change() -> EvalCase:
+    """Identical old/new PathMemory → empty delta (no new concepts, no changes)."""
+
+    def run():
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("concetto A", "introduced")],
+            exercises=["Esercizio su concetto A"],
+        )
+        l2 = _make_capsule(
+            "l2", "avanzato",
+            concepts=[("concetto A", "reinforced"), ("concetto B", "introduced")],
+            exercises=["Esercizio su concetto A avanzato", "Esercizio B"],
+        )
+        from lessonos.graph.path_memory import build_path_memory
+        from lessonos.graph.didactic_delta import compute_didactic_delta
+
+        pm = build_path_memory([l1, l2], path_title="Test")
+        # Same data, separate objects: no changes expected
+        same_pm = build_path_memory([l1, l2], path_title="Test")
+        delta = compute_didactic_delta(pm, same_pm)
+        return delta
+
+    def expected(result):
+        from lessonos.graph.didactic_delta import DidacticDelta
+        if not isinstance(result, DidacticDelta):
+            return False
+        delta: DidacticDelta = result
+        return (
+            delta.total_new_concepts == 0
+            and delta.total_clarified == 0
+            and delta.total_still_open == 0
+            and delta.total_over_repeated == 0
+            and delta.total_under_practiced == 0
+            and delta.total_new_misconceptions == 0
+            and delta.total_resolved_misconceptions == 0
+        )
+
+    return EvalCase(
+        name="didactic_delta_no_change",
+        description="Identical old/new PathMemory yields empty delta (no changes).",
+        run=run,
+        expected=expected,
+        categories=("didactic_delta",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: DidacticDelta detects clarified concept (M5 — didactic_delta)
+# ---------------------------------------------------------------------------
+
+
+def case_didactic_delta_concept_clarified() -> EvalCase:
+    """Concept moving from \"problematic\" to non-problematic is detected as clarified."""
+
+    def run():
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("concetto A", "introduced"), ("dubbio", "problematic")],
+            questions=["Non capisco concetto A"],
+        )
+        l2 = _make_capsule(
+            "l2", "chiarimento",
+            concepts=[("concetto A", "reinforced"), ("dubbio", "reviewed")],
+        )
+        from lessonos.graph.path_memory import build_path_memory
+        from lessonos.graph.didactic_delta import compute_didactic_delta
+
+        old_pm = build_path_memory([l1], path_title="Test")
+        new_pm = build_path_memory([l1, l2], path_title="Test")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        return delta
+
+    def expected(result):
+        from lessonos.graph.didactic_delta import DidacticDelta
+        if not isinstance(result, DidacticDelta):
+            return False
+        delta: DidacticDelta = result
+        clar_names = {c.name for c in delta.clarified_concepts}
+        return (
+            "dubbio" in clar_names
+            and len(clar_names) == 1
+            and delta.total_clarified == 1
+        )
+
+    return EvalCase(
+        name="didactic_delta_concept_clarified",
+        description="Concept 'dubbio' moving from problematic to reviewed is clarified.",
+        run=run,
+        expected=expected,
+        categories=("didactic_delta",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: LearningDebt detects over_repeated debt (M5 — learning_debt)
+# ---------------------------------------------------------------------------
+
+
+def case_learning_debt_over_repeated() -> EvalCase:
+    """Over-repeated concept (3+ lessons) generates over_repeated debt item."""
+
+    def run():
+        l1 = _make_capsule(
+            "l1", "L1",
+            concepts=[("ripetuto", "introduced")],
+        )
+        l2 = _make_capsule(
+            "l2", "L2",
+            concepts=[("ripetuto", "reinforced")],
+        )
+        l3 = _make_capsule(
+            "l3", "L3",
+            concepts=[("ripetuto", "reinforced")],
+        )
+        from lessonos.graph.path_memory import build_path_memory
+        from lessonos.graph.didactic_delta import compute_didactic_delta
+        from lessonos.graph.learning_debt import compute_learning_debt
+
+        old_pm = build_path_memory([l1, l2], path_title="Test")
+        new_pm = build_path_memory([l1, l2, l3], path_title="Test")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="test_p")
+        return ledger
+
+    def expected(result):
+        from lessonos.graph.learning_debt import LearningDebtLedger
+        if not isinstance(result, LearningDebtLedger):
+            return False
+        ledger: LearningDebtLedger = result
+        over_repeated = [i for i in ledger.items if i.kind == "over_repeated"]
+        return (
+            len(over_repeated) >= 1
+            and ledger.by_kind.get("over_repeated", 0) >= 1
+        )
+
+    return EvalCase(
+        name="learning_debt_over_repeated",
+        description="Concept in 3+ lessons flagged as over_repeated debt.",
+        run=run,
+        expected=expected,
+        categories=("learning_debt",),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: Cost Ledger report with mock entries (M5 — cost_ledger)
+# ---------------------------------------------------------------------------
+
+
+def case_cost_ledger_report_basic() -> EvalCase:
+    """CostLedger produces a correct basic report from mock entries."""
+
+    def run():
+        from lessonos.llm.cost_ledger import CostLedger
+        from lessonos.llm.router import LLMResponse
+        from lessonos.models.ledger import CostLedgerEntry
+
+        ledger = CostLedger()
+
+        # Mock response (no usage) — free
+        mock_resp = LLMResponse(text="segments", model="mock-model", provider="mock")
+        ledger.add_from_response(mock_resp, lesson_id="l1", label="segmentation")
+
+        # Add a pre-built entry directly
+        ledger.add_entry(CostLedgerEntry(
+            entry_id="cl:0001",
+            lesson_id="l1",
+            model="kimi-k2.5",
+            provider="kimi",
+            prompt_tokens=500,
+            completion_tokens=100,
+            cost_usd=0.0006,
+            label="extraction",
+        ))
+
+        report = ledger.report()
+        return report
+
+    def expected(result):
+        from lessonos.models.ledger import CostReport
+        if not isinstance(result, CostReport):
+            return False
+        r: CostReport = result
+        return (
+            r.total_calls == 2
+            and r.total_cost_usd == 0.0006  # Only the kimi entry costs
+            and r.total_prompt_tokens == 500
+            and r.total_completion_tokens == 100
+            and r.per_lesson.get("l1", 0) == 0.0006
+            and r.per_model.get("mock-model", 0) == 0.0
+            and r.per_model.get("kimi-k2.5", 0) == 0.0006
+            and len(r.entries) == 2
+        )
+
+    return EvalCase(
+        name="cost_ledger_report_basic",
+        description="CostLedger report aggregates mock entries correctly.",
+        run=run,
+        expected=expected,
+        categories=("cost_ledger",),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Registry
 # ---------------------------------------------------------------------------
 
@@ -689,4 +1158,15 @@ ALL_CASES: list[EvalCase] = [
     case_graph_cross_lesson_connects_prerequisites(),
     case_graph_queries_by_concept(),
     case_next_lesson_planner_prioritizes_gaps(),
+    # M5 expansion: 10 new cases
+    case_extraction_valid_full_content(),
+    case_extraction_rejects_invalid_status(),
+    case_assembly_rejects_no_segments(),
+    case_path_memory_single_capsule(),
+    case_path_memory_empty_list(),
+    case_path_memory_case_insensitive_merge(),
+    case_didactic_delta_no_change(),
+    case_didactic_delta_concept_clarified(),
+    case_learning_debt_over_repeated(),
+    case_cost_ledger_report_basic(),
 ]
