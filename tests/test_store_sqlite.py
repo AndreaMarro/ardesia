@@ -95,5 +95,5 @@ def test_real_fixture_path_round_trips() -> None:
     reloaded = store.get_path(manifest["path_id"])
     assert reloaded == p
     assert reloaded is not None
-    assert reloaded.lesson_ids == ("l1_derivative_definition", "l2_derivative_rules", "l3_integral_intro")
+    assert reloaded.lesson_ids == tuple(manifest["lessons"])
     store.close()

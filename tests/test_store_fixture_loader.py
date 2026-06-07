@@ -16,7 +16,7 @@ def _fresh_store() -> SQLiteStore:
     return SQLiteStore(":memory:")
 
 
-def test_load_persists_path_with_three_lessons() -> None:
+def test_load_persists_path_with_four_lessons() -> None:
     store = _fresh_store()
     returned = load_sample_path(store)
 
@@ -29,6 +29,7 @@ def test_load_persists_path_with_three_lessons() -> None:
         "l1_derivative_definition",
         "l2_derivative_rules",
         "l3_integral_intro",
+        "l4_integral_substitution",
     )
     store.close()
 
@@ -39,7 +40,7 @@ def test_lessons_reread_in_order() -> None:
 
     lessons = store.lessons_for_path(path.path_id)
     assert [l.lesson_id for l in lessons] == list(path.lesson_ids)
-    assert [l.order for l in lessons] == [1, 2, 3]  # ordered, not insertion-luck
+    assert [l.order for l in lessons] == [1, 2, 3, 4]  # ordered, not insertion-luck
     store.close()
 
 
@@ -81,5 +82,5 @@ def test_load_is_idempotent() -> None:
 
     path = store.get_path("path_calc_101")
     assert path is not None
-    assert len(store.lessons_for_path(path.path_id)) == 3
+    assert len(store.lessons_for_path(path.path_id)) == 4
     store.close()

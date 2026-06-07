@@ -47,12 +47,12 @@ def _load_lessons() -> list[dict]:
     return lessons
 
 
-def test_path_manifest_lists_three_lessons() -> None:
+def test_path_manifest_lists_four_lessons() -> None:
     path = _load_path()
     assert path["subject"] == "matematica"
     assert path["synthetic"] is True
-    assert len(path["lessons"]) == 3
-    assert len(set(path["lessons"])) == 3  # no duplicate ids
+    assert len(path["lessons"]) == 4
+    assert len(set(path["lessons"])) == 4  # no duplicate ids
 
 
 def test_each_lesson_file_loads_and_matches_id() -> None:

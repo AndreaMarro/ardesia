@@ -25,6 +25,7 @@ from lessonos.graph.didactic_delta import (
     DidacticDelta,
     compute_didactic_delta,
 )
+from lessonos.graph.learning_debt import compute_learning_debt
 from lessonos.graph.path_memory import build_path_memory
 
 
@@ -244,6 +245,86 @@ class TestComputeDidacticDelta:
         repeated_names = {c.name for c in delta.over_repeated_concepts}
         assert "derivata" in repeated_names
         assert delta.total_over_repeated >= 1
+
+    def test_milestones_m4_new_concept_plus_debt_from_l2(self):
+        """MILESTONES M4: adding L4, delta detects NEW concept + debt from L2.
+
+        Unit test (mock-based capsules) verifying the integration scenario
+        described in MILESTONES.md M4: given a path of 3 lessons where L2
+        introduces a problematic concept, adding L4 with a new concept
+        produces:
+          - didactic_delta: new_concepts includes the L4 concept
+          - didactic_delta: still_open_concepts includes the L2 problematic
+          - learning_debt: unmastered_concept debt from the L2 problematic
+
+        Uses _make_capsule() like all other delta tests; the concept names
+        follow the domain pattern (introduced/reinforced/problematic flow).
+        The real fixture L4 file exists for full-pipeline integration tests.
+        """
+        l1 = _make_capsule(
+            "l1", "definizione derivata",
+            concepts=[("derivata", "introduced"), ("limite", "introduced")],
+            exercises=["Calcola f'(x) per f(x)=x^2"],
+        )
+        l2 = _make_capsule(
+            "l2", "regole di derivazione",
+            concepts=[
+                ("derivata", "reinforced"),
+                ("regola potenza", "introduced"),
+                ("concetto dubbio", "problematic"),
+            ],
+            exercises=["Applica regola potenza a x^3"],
+        )
+        l3 = _make_capsule(
+            "l3", "introduzione integrale",
+            concepts=[
+                ("antiderivata", "introduced"),
+                ("integrale", "introduced"),
+                ("derivata", "reinforced"),
+                ("concetto dubbio", "problematic"),
+            ],
+            exercises=["Trova integrale di 2x"],
+        )
+        l4 = _make_capsule(
+            "l4", "integrali per sostituzione",
+            concepts=[
+                ("sostituzione", "introduced"),
+                ("integrale", "reinforced"),
+                ("concetto dubbio", "problematic"),
+            ],
+            exercises=["Integra 2x*cos(x^2) per sostituzione"],
+        )
+
+        # Old path = L1+L2+L3, New path = L1+L2+L3+L4
+        old_pm = build_path_memory([l1, l2, l3], path_title="Calcolo")
+        new_pm = build_path_memory([l1, l2, l3, l4], path_title="Calcolo")
+
+        # --- DidacticDelta: new concept from L4 ---
+        delta = compute_didactic_delta(old_pm, new_pm)
+
+        new_names = {c.name for c in delta.new_concepts}
+        assert "sostituzione" in new_names, (
+            "L4 introduces 'sostituzione' as a new concept not in L1-L3"
+        )
+        assert delta.total_new_concepts >= 1
+
+        # --- DidacticDelta: still-open concept from L2 ---
+        open_names = {c.name for c in delta.still_open_concepts}
+        assert "concetto dubbio" in open_names, (
+            "'concetto dubbio' from L2 remains problematic through L4"
+        )
+        assert delta.total_still_open >= 1
+
+        # --- Learning Debt: unmastered concept from L2 ---
+        ledger = compute_learning_debt(new_pm, delta, path_id="path_calc_101")
+
+        unmastered = [i for i in ledger.items if i.kind == "unmastered_concept"]
+        assert len(unmastered) >= 1
+        assert any("concetto dubbio" in i.description for i in unmastered), (
+            "Debt from L2: 'concetto dubbio' appears as unmastered_concept "
+            "in the learning debt ledger"
+        )
+        assert ledger.by_kind.get("unmastered_concept", 0) >= 1
 
     def test_new_lesson_introduces_concept_and_leaves_debt(self):
         """MILESTONES scenario: adding L4 fixture, delta detects new concept + debt from L2.
