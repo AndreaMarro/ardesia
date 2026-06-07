@@ -71,4 +71,4 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 
 ## Milestone
 
-M4-task3. Prossima: MILESTONES test M4 "aggiungendo una L4 fixture, il Delta rileva un concetto nuovo + un debito aperto da L2" — o passare a M5 eval harness.
+M4-task3. MILESTONES test M4 (L4 scenario) coperto da `test_milestones_m4_new_concept_plus_debt_from_l2` in `tests/test_didactic_delta.py:249-327` (mock capsule). L4 fixture reale esiste in `fixtures/sample_path/lessons/l4_integral_substitution.json`. M4 COMPLETO. Prossimo: M5 eval harness.

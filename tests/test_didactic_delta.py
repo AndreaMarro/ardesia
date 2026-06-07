@@ -259,7 +259,12 @@ class TestComputeDidacticDelta:
 
         Uses _make_capsule() like all other delta tests; the concept names
         follow the domain pattern (introduced/reinforced/problematic flow).
-        The real fixture L4 file exists for full-pipeline integration tests.
+        The L4 fixture file (fixtures/sample_path/lessons/l4_integral_substitution.json)
+        exists for structural validation via test_fixtures_sample_path.py;
+        the pipeline integration (ingest→segment→extract→assemble) uses
+        mock capsules because segmentation+extraction require the LLM router.
+        This unit test verifies the scenario logic — the fixture ensures
+        the data is well-formed for future full-pipeline integration tests.
         """
         l1 = _make_capsule(
             "l1", "definizione derivata",

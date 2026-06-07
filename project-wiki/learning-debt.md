@@ -28,3 +28,5 @@ Il Learning Debt Ledger è il "registro debito" del percorso didattico — conce
 
 ## Review
 Review Claude Code (`./bin/review.sh`): 2 fix veri — `by_kind` da dict a MappingProxyType (immutabilità frozen dataclass), debt_id indexing da `len(items)` a explicit counter locale.
+
+M4 completo (MILESTONES.md aggiornato: tutti i task M4 checkati). Prossimo: M5 eval harness.

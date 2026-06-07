@@ -120,4 +120,4 @@ Test coprono ogni categoria + edge cases:
 
 ## Milestone
 
-M4-task1. Prossima task: M4-task2 Learning Debt Ledger (debiti didattici con evidenze/citazioni).
+M4-task1. M4 completo: M4-task2 Learning Debt, M4-task3 Next Lesson Planner, MILESTONES test (L4 fixture scenario) tutti LANDATO. Prossimo: M5 eval harness.
