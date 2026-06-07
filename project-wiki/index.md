@@ -25,3 +25,4 @@ Ogni pagina + riassunto 1 riga.
 - **eval-metrics.md** — EvalMetrics: groundedness + citation-excerpt-accuracy metric factories (M5-task2, PLAN §22)
 - **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
 - **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2)
+- **api.md** — FastAPI endpoint per demo HTTP (M6-task2, opzionale PLAN §15)

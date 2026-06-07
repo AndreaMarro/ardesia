@@ -43,7 +43,7 @@
 
 ## M6 (stretch) — Demo CLI/HTTP end-to-end
 - [x] CLI `lessonos run-path fixtures/sample_path` → stampa Lesson Capsules + Path Map + Delta + Debt + Next-Plan.
-- [ ] (opz.) FastAPI minimale che espone gli endpoint PLAN §15 sul percorso-fixture.
+- [x] (opz.) FastAPI minimale che espone gli endpoint PLAN §15 sul percorso-fixture.
 - [ ] Eval reale gated (1 run con Kimi, costo loggato) — solo se Andrea dà OK.
 
 **Definition of Done progetto-v0:** M0–M5 verdi; demo M6 mostra il ciclo §3 su dati-fixture con citazioni fondate; eval report + cost ledger esistono. Onestà sopra completezza: meglio M0–M3 solidi che M0–M6 fragili.

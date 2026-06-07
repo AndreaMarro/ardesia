@@ -3,7 +3,9 @@ name = "lessonos"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.136.3",
     "networkx>=3.6.1",
+    "uvicorn[standard]>=0.49.0",
 ]
 
 [project.scripts]
@@ -11,6 +13,7 @@ lessonos = "lessonos.cli:main"
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28.1",
     "pytest",
 ]
 
