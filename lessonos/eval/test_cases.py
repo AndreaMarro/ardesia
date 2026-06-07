@@ -369,6 +369,312 @@ def case_learning_debt_identifies_open() -> EvalCase:
 
 
 # ---------------------------------------------------------------------------
+# Case: capsule persists and reloads (M5 — capsule persistence)
+# ---------------------------------------------------------------------------
+
+
+def case_capsule_persists_and_reloads() -> EvalCase:
+    """Assemble a LessonCapsule with save=True, reload it via load_capsule."""
+
+    def run():
+        store = _make_store("l1", [
+            ("l1s1", 0, 45, "Definizione formale di derivata."),
+            ("l1s2", 45, 110, "Regola della potenza."),
+        ])
+        segments = store.segments_for_lesson("l1")
+        seg_prompt = build_segmentation_prompt(segments)
+        ext_prompt = build_extraction_prompt(segments)
+
+        router = Router()
+        router.register(MockProvider({
+            seg_prompt: json.dumps([
+                {"topic": "Definizione derivata", "seg_ids": ["l1s1"]},
+                {"topic": "Regola potenza", "seg_ids": ["l1s2"]},
+            ]),
+            ext_prompt: json.dumps({
+                "concepts": [
+                    {"name": "derivata", "status": "introduced",
+                     "citations": [{"seg_id": "l1s1", "excerpt": "derivata"}]}
+                ],
+                "exercises": [],
+                "student_questions": [],
+                "homework": [],
+            }),
+        }))
+
+        from lessonos.capsule.assembly import assemble_lesson_capsule, load_capsule
+
+        # Assemble with save=True
+        assemble_lesson_capsule(store, lesson_id="l1", router=router, save=True)
+
+        # Reload from store
+        reloaded = load_capsule(store, lesson_id="l1")
+        return reloaded
+
+    def expected(result):
+        from lessonos.capsule.assembly import LessonCapsule
+
+        if not isinstance(result, LessonCapsule):
+            return False
+        caps: LessonCapsule = result
+        return (
+            caps.lesson_id == "l1"
+            and len(caps.timeline) >= 1
+            and caps.content is not None
+            and len(caps.content.concepts) >= 1
+        )
+
+    return EvalCase(
+        name="capsule_persists_and_reloads",
+        description="LessonCapsule saved to store and reloaded correctly via load_capsule.",
+        run=run,
+        expected=expected,
+        categories=("capsule_persistence", "assembly"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: graph cross-lesson connects prerequisites (M5 — graph/path-scope)
+# ---------------------------------------------------------------------------
+
+
+def case_graph_cross_lesson_connects_prerequisites() -> EvalCase:
+    """build_path_graph creates cross-lesson 'repeats' and 'depends_on' edges."""
+
+    def run():
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, ExerciseExtraction, LessonContent,
+        )
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.graph.builder import build_path_graph
+
+        l1 = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "derivata", ("s1",), 0, 60),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(ConceptExtraction(name="derivata", status="introduced"),),
+                exercises=(ExerciseExtraction(prompt="Calcola derivata"),),
+            ),
+        )
+        l2 = LessonCapsule(
+            lesson_id="l2",
+            timeline=(TopicSpan("l2", "potenza", ("s2",), 0, 50),),
+            content=LessonContent(
+                lesson_id="l2",
+                concepts=(ConceptExtraction(name="derivata", status="reinforced"),),
+                exercises=(ExerciseExtraction(prompt="Derivata di x^3"),),
+            ),
+        )
+
+        nodes, edges = build_path_graph([l1, l2])
+        return nodes, edges
+
+    def expected(result):
+        nodes, edges = result
+        if not nodes or not edges:
+            return False
+
+        edge_types = {e.edge_type for e in edges}
+        # Must have 'repeats' (cross-lesson same concept) and 'assigned_in' (lesson→exercise)
+        has_repeats = "repeats" in edge_types
+        has_explains = "explains" in edge_types
+        has_assigned = "assigned_in" in edge_types
+
+        # Concept 'derivata' appears in both lessons — there should be a repeats edge
+        repeats_edges = [e for e in edges if e.edge_type == "repeats"]
+        has_cross_lesson_edge = len(repeats_edges) >= 1
+
+        return has_repeats and has_explains and has_assigned and has_cross_lesson_edge
+
+    return EvalCase(
+        name="graph_cross_lesson_connects_prerequisites",
+        description="Path graph creates 'repeats' edges for concepts appearing across lessons.",
+        run=run,
+        expected=expected,
+        categories=("graph", "path_scope"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: graph queries by concept (M5 — graph/query path-scope)
+# ---------------------------------------------------------------------------
+
+
+def case_graph_queries_by_concept() -> EvalCase:
+    """Graph queries: find_concept, where_introduced, where_reinforced on path graph."""
+
+    def run():
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, ExerciseExtraction, LessonContent,
+        )
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.graph.builder import build_path_graph
+        from lessonos.graph.queries import (
+            build_networkx_graph, find_concept, where_introduced, where_reinforced,
+        )
+
+        l1 = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "base", ("s1",), 0, 60),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(name="limite", status="introduced"),
+                    ConceptExtraction(name="derivata", status="introduced"),
+                ),
+                exercises=(),
+            ),
+        )
+        l2 = LessonCapsule(
+            lesson_id="l2",
+            timeline=(TopicSpan("l2", "regole", ("s2",), 0, 50),),
+            content=LessonContent(
+                lesson_id="l2",
+                concepts=(
+                    ConceptExtraction(name="derivata", status="reinforced"),
+                    ConceptExtraction(name="regola potenza", status="introduced"),
+                ),
+                exercises=(),
+            ),
+        )
+
+        nodes, edges = build_path_graph([l1, l2])
+        G = build_networkx_graph(nodes, edges)
+
+        intro = where_introduced(G, "derivata")
+        reinforced = where_reinforced(G, "derivata")
+        concept_nodes = find_concept(G, "limite")
+        potenza_nodes = find_concept(G, "regola potenza")
+
+        return {
+            "intro": intro,
+            "reinforced": reinforced,
+            "concept_nodes": concept_nodes,
+            "potenza_nodes": potenza_nodes,
+            "has_derivata": len(find_concept(G, "derivata")) == 2,
+            "has_limite": len(concept_nodes) >= 1,
+        }
+
+    def expected(result):
+        if not isinstance(result, dict):
+            return False
+        d = result
+        return (
+            d.get("intro") == "l1"
+            and d.get("reinforced") == ["l2"]
+            and len(d.get("concept_nodes", [])) >= 1
+            and len(d.get("potenza_nodes", [])) >= 1
+            and d.get("has_derivata") is True
+            and d.get("has_limite") is True
+        )
+
+    return EvalCase(
+        name="graph_queries_by_concept",
+        description="Graph queries correctly identify where concepts are introduced/reinforced.",
+        run=run,
+        expected=expected,
+        categories=("graph", "path_scope", "queries"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Case: next lesson planner prioritizes gaps (M5 — full M4 path-scope pipeline)
+# ---------------------------------------------------------------------------
+
+
+def case_next_lesson_planner_prioritizes_gaps() -> EvalCase:
+    """NextLessonPlan prioritises prerequisite gaps > review > open doubt > practice > new material."""
+
+    def run():
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, ExerciseExtraction, LessonContent, QuestionExtraction,
+        )
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.graph.didactic_delta import compute_didactic_delta
+        from lessonos.graph.learning_debt import compute_learning_debt
+        from lessonos.graph.next_lesson_planner import compute_next_lesson_plan
+        from lessonos.graph.path_memory import build_path_memory
+
+        l1 = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "base", ("s1",), 0, 60),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(ConceptExtraction(name="limite", status="introduced"),),
+                exercises=(ExerciseExtraction(prompt="Calcola limite base"),),
+            ),
+        )
+        l2 = LessonCapsule(
+            lesson_id="l2",
+            timeline=(TopicSpan("l2", "derivate", ("s2",), 0, 50),),
+            content=LessonContent(
+                lesson_id="l2",
+                concepts=(
+                    ConceptExtraction(name="derivata", status="introduced"),
+                    ConceptExtraction(name="limite", status="reinforced"),
+                ),
+                exercises=(ExerciseExtraction(prompt="Derivata di x^2"),),
+                student_questions=(QuestionExtraction(question="Cosa succede se h=0?"),),
+            ),
+        )
+        l3 = LessonCapsule(
+            lesson_id="l3",
+            timeline=(TopicSpan("l3", "potenza", ("s3",), 0, 40),),
+            content=LessonContent(
+                lesson_id="l3",
+                concepts=(
+                    ConceptExtraction(name="derivata", status="reinforced"),
+                    ConceptExtraction(name="regola potenza", status="introduced"),
+                ),
+                exercises=(ExerciseExtraction(prompt="Regola potenza su x^3"),),
+            ),
+        )
+
+        old_pm = build_path_memory([l1, l2], path_title="Calcolo")
+        new_pm = build_path_memory([l1, l2, l3], path_title="Calcolo")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="path_001")
+        plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="path_001")
+
+        return plan
+
+    def expected(result):
+        from lessonos.graph.next_lesson_planner import NextLessonPlan
+
+        if not isinstance(result, NextLessonPlan):
+            return False
+        plan: NextLessonPlan = result
+
+        # Collect all items with their priorities
+        all_items = (
+            list(plan.prerequisite_gaps)
+            + list(plan.review_items)
+            + list(plan.open_doubt_items)
+            + list(plan.practice_items)
+            + list(plan.new_material_items)
+        )
+
+        if not all_items:
+            return False
+
+        # Verify items are sorted by priority (ascending)
+        priorities = [item.priority for item in all_items]
+        return priorities == sorted(priorities)
+
+    return EvalCase(
+        name="next_lesson_planner_prioritizes_gaps",
+        description="NextLessonPlan orders prerequisite gaps (0) before review (1) before new material (4).",
+        run=run,
+        expected=expected,
+        categories=("learning_debt", "path_scope", "planner"),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Registry
 # ---------------------------------------------------------------------------
 
@@ -379,4 +685,8 @@ ALL_CASES: list[EvalCase] = [
     case_path_memory_aggregates_concepts(),
     case_didactic_delta_detects_new(),
     case_learning_debt_identifies_open(),
+    case_capsule_persists_and_reloads(),
+    case_graph_cross_lesson_connects_prerequisites(),
+    case_graph_queries_by_concept(),
+    case_next_lesson_planner_prioritizes_gaps(),
 ]
