@@ -21,7 +21,7 @@ for i in $(seq 1 "$N"); do
   if [ "$dt" -ge "$CAP_MAX" ]; then echo "[orch] CAP giornaliero $CAP_MAX raggiunto — stop (costi contenuti)." | tee -a "$LOG"; break; fi
   ts=$(date -u +%FT%TZ); bh=$(git rev-parse HEAD)
   bm=$(bash eval/gate.sh 2>/dev/null | tail -1); bp=$(jget "$bm" passed); bp=${bp:-0}
-  echo "[orch] === iter $i/$N $ts | baseline passed=$bp | brain=Kimi-K2.6 | oggi $dt/$CAP_MAX ===" | tee -a "$LOG"
+  echo "[orch] === iter $i/$N $ts | baseline passed=$bp | brain=DeepSeek(orch)+ClaudeCode(build) | oggi $dt/$CAP_MAX ===" | tee -a "$LOG"
   t0=$(date +%s)
   timeout 1200 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
   t1=$(date +%s); dur=$((t1-t0))
