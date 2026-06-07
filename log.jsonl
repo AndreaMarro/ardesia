@@ -2,3 +2,4 @@
 {"ts":"2026-06-06T18:04:32Z","task":"M2-task4 assemble complete Lesson Capsule","model":"kimi-k2.6","iters":1,"cost_usd":0.0}
 {"ts":"2026-06-07T16:00:00Z","task":"cost-tracking LLMResponse.usage + estimate_kimi_cost","model":"kimi-k2-0905-preview","iters":1,"cost_usd":0.0,"note":"iteration used mock only (zero Kimi API calls)"}
 {"ts":"2026-06-07T22:00:00Z","task":"M2-task5 persistenza LessonCapsule nello store (ordine Claude)","model":"deepseek-v4-flash via Kimi K2.6 brain","iters":1,"cost_usd":0.0}
+{"ts": "2026-06-07T23:00:00Z", "task": "M3-task3 PathMemory", "model": "deepseek-v4-flash", "iters": 1, "cost_usd": 0.0, "status": "landed", "gate": "136 passed + 1 skipped (baseline 134 -> 136, no regression)", "files": ["lessonos/graph/path_memory.py", "tests/test_path_memory.py", "lessonos/graph/__init__.py", "project-wiki/path-memory.md"]}

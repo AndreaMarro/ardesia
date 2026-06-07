@@ -18,3 +18,4 @@ Ogni pagina + riassunto 1 riga.
 - **data-model.md** — 9 entità domain + vincoli vocab (EDGE_TYPES, CONCEPT_STATUS) validati a costruzione
 - **store.md** — layer persistenza astratto (Store ABC) + SQLiteStore relazionale
 - **capsule-pipeline.md** — pipeline estrazione Lesson Capsule: ingest → segmentation → extraction
+- **path-memory.md** — Path Memory: aggregazione path-level da capsules (M3-task3)
