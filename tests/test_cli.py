@@ -25,23 +25,27 @@ def _load_lesson_json(lesson_id: str) -> dict:
     return json.loads(path.read_text())
 
 
-def test_run_path_produces_all_three_capsules() -> None:
-    """The CLI processes all 3 lessons from the fixture, returns structured
-    results, and prints key section headers."""
+def test_run_path_produces_all_four_capsules() -> None:
+    """The CLI processes all 4 lessons from the fixture, returns structured
+    results, and prints key section headers. No lessons are skipped."""
     buf = io.StringIO()
     result = run_path(_FIXTURE, out=buf)
     output = buf.getvalue()
 
     # Structured return dict — real values, not strings
     assert result["path_id"] == "path_calc_101"
-    assert result["capsules"] == 3, (
-        f"expected 3 capsules, got {result['capsules']}"
+    assert result["capsules"] == 4, (
+        f"expected 4 capsules (L1+L2+L3+L4), got {result['capsules']}"
     )
-    assert result["memory"] >= 6, (
-        f"expected >=6 aggregated concepts, got {result['memory']}"
+    # L1+L2+L3+L4 = 8 canonical concepts: derivata, rapporto_incrementale,
+    # regola_della_potenza, regola_della_catena, integrale, antiderivata,
+    # teorema_fondamentale_del_calcolo, sostituzione
+    assert result["memory"] == 8, (
+        f"expected 8 concepts in Path Memory, got {result['memory']}"
     )
-    assert result["delta_new"] >= 3, (
-        f"expected >=3 new concepts (L3 integral), got {result['delta_new']}"
+    # Delta between L1+L2+L3 vs L1+L2+L3+L4: 1 new concept (sostituzione)
+    assert result["delta_new"] == 1, (
+        f"expected 1 new concept (sostituzione from L4), got {result['delta_new']}"
     )
     assert result["debt_items"] >= 1, (
         f"expected >=1 debt items, got {result['debt_items']}"
@@ -57,15 +61,25 @@ def test_run_path_produces_all_three_capsules() -> None:
     assert "Learning Debt Ledger" in output
     assert "Next Lesson Plan" in output
 
+    # No lesson was skipped
+    assert "No mock registered" not in output, (
+        "all 4 lessons should have registered mocks"
+    )
+
+    # l4's concept "sostituzione" is in the output
+    assert "sostituzione" in output, (
+        "l4 concept 'sostituzione' should appear in demo output"
+    )
+
 
 def test_run_path_each_lesson_has_mock_fixture() -> None:
     """Every lesson in the fixture path has a corresponding mock payload
-    registered in _LESSON_MOCKS (except l4 which is optional)."""
+    registered in _LESSON_MOCKS (all 4 lessons)."""
     path_json = json.loads((_FIXTURE / "path.json").read_text())
     for lid in path_json["lessons"]:
-        if lid not in _LESSON_MOCKS:
-            # l4_integral_substitution is valid to skip (not in main demo)
-            continue
+        assert lid in _LESSON_MOCKS, (
+            f"lesson {lid!r} has no mock registered in _LESSON_MOCKS"
+        )
         seg_payload, ext_payload = _LESSON_MOCKS[lid]
 
         # All seg_ids in mock must exist in the real fixture transcript
@@ -94,14 +108,14 @@ def test_run_path_each_lesson_has_mock_fixture() -> None:
                     )
 
 
-def test_run_path_delta_detects_new_integral_concepts() -> None:
-    """Delta between L1+L2 vs L1+L2+L3 detects L3 concepts as new."""
+def test_run_path_delta_detects_new_l4_concepts() -> None:
+    """Delta between L1+L2+L3 vs L1+L2+L3+L4 detects L4 concept as new."""
     buf = io.StringIO()
     result = run_path(_FIXTURE, out=buf)
 
-    # Three concepts from L3 should appear as new
-    assert result["delta_new"] >= 3, (
-        f"expected >=3 new concepts (antiderivata, integrale, teorema), "
+    # One concept from L4 should appear as new: sostituzione
+    assert result["delta_new"] == 1, (
+        f"expected 1 new concept (sostituzione from L4), "
         f"got {result['delta_new']}"
     )
 

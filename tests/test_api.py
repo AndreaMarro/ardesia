@@ -35,12 +35,12 @@ class TestDemoPipeline:
         expected_keys = {"path", "capsules", "memory", "delta", "debt", "plan"}
         assert set(data.keys()) == expected_keys
 
-    def test_demo_capsules_is_list_of_3(self) -> None:
+    def test_demo_capsules_is_list_of_4(self) -> None:
         resp = client.post("/paths/demo")
         data = resp.json()
         capsules = data["capsules"]
         assert isinstance(capsules, list)
-        assert len(capsules) == 3  # 3 lessons in sample_path
+        assert len(capsules) == 4  # 4 lessons in sample_path (L1+L2+L3+L4)
 
     def test_demo_capsule_grounded_citations(self) -> None:
         """Every citation has non-empty seg_id AND non-empty excerpt."""
@@ -67,18 +67,18 @@ class TestDemoPipeline:
         data = resp.json()
         memory = data["memory"]
         assert isinstance(memory["current_state"], str)
-        assert memory["total_lessons"] == 3
-        # 7 canonical concepts from 3 lessons: derivata, rapporto_incrementale,
+        assert memory["total_lessons"] == 4
+        # 8 canonical concepts from 4 lessons: derivata, rapporto_incrementale,
         # regola_della_potenza, regola_della_catena, integrale, antiderivata,
-        # teorema_fondamentale_del_calcolo
-        assert memory["total_concepts"] == 7
+        # teorema_fondamentale_del_calcolo, sostituzione
+        assert memory["total_concepts"] == 8
 
     def test_demo_delta_has_expected_values(self) -> None:
         resp = client.post("/paths/demo")
         data = resp.json()
         delta = data["delta"]
-        # L1+L2+L3 introduces 3 new concepts vs L1+L2
-        assert delta["total_new_concepts"] == 3
+        # L1+L2+L3+L4 introduces 1 new concept (sostituzione) vs L1+L2+L3
+        assert delta["total_new_concepts"] == 1
         assert delta["total_clarified"] == 0
         assert delta["total_still_open"] == 0
 

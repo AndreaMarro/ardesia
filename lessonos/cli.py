@@ -253,6 +253,52 @@ _LESSON_MOCKS: dict[str, tuple[list[dict], dict]] = {
             ],
         },
     ),
+    "l4_integral_substitution": (
+        # seg_payload
+        [
+            {
+                "topic": "Introduzione all'integrazione per sostituzione",
+                "seg_ids": ["l4s1", "l4s2"],
+            },
+            {
+                "topic": "Esempio pratico di sostituzione",
+                "seg_ids": ["l4s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "sostituzione",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l4s2",
+                            "excerpt": "La regola e: integrale di f(g(x))*g'(x) dx = integrale di f(u) du",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Applica la sostituzione u=sin(x) per calcolare integrale di cos(x)*e^(sin(x)) dx.",
+                    "citations": [{"seg_id": "l4s2"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Come si sceglie la sostituzione appropriata u=g(x)?",
+                    "citations": [{"seg_id": "l4s1"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Esercizi sostituzione 1-3: integra funzioni composte con sostituzione.",
+                    "citations": [{"seg_id": "l4s3"}],
+                }
+            ],
+        },
+    ),
 }
 
 
@@ -502,8 +548,8 @@ def run_path(
     memory = build_path_memory(capsules, path_title=path.title)
     print(_path_memory_summary(memory), file=out)
 
-    # --- Phase 5: Didactic Delta (L1+L2 vs L1+L2+L3) ---
-    print(_fmt_header("Didactic Delta (L1+L2 vs L1+L2+L3)", "─"), file=out)
+    # --- Phase 5: Didactic Delta (L1+L2+L3 vs L1+L2+L3+L4) ---
+    print(_fmt_header("Didactic Delta (L1+L2+L3 vs L1+L2+L3+L4)", "─"), file=out)
     if len(capsules) >= 2:
         old_memory = build_path_memory(capsules[:-1], path_title=path.title)
         delta = compute_didactic_delta(old_memory, memory)
