@@ -32,7 +32,7 @@
 ## M4 — Didactic Delta + Learning Debt (IL differenziatore, PLAN §3.3 + §3.4)
 - [ ] **Didactic Delta**: confronto tra versioni del percorso (cosa aggiunto/chiarito/ancora-aperto/ripetuto-troppo).
 - [ ] **Learning Debt Ledger** (§3.4 + §14): debiti (concetti non padroneggiati, dubbi sospesi, esercizi non corretti) con evidenze/citazioni.
-- [ ] **Next Lesson Planner** (§8.2): dato il percorso + debito → agenda prossima lezione (cosa riprendere, esercizi, fonti).
+- [x] **Next Lesson Planner** (§8.2): dato il percorso + debito → agenda prossima lezione (cosa riprendere, esercizi, fonti).
 - [ ] Test: aggiungendo una L4 fixture, il Delta rileva un concetto nuovo + un debito aperto da L2.
 
 ## M5 — Eval harness + Cost ledger (PLAN §22 + §20)
