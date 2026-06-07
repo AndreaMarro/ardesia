@@ -16,6 +16,7 @@ class LLMResponse:
     text: str
     provider: str
     model: str
+    usage: dict | None = None
 
 
 @runtime_checkable

@@ -12,9 +12,15 @@ Contratto astratto per provider LLM. Ogni provider ha `name: str` e implementa `
 
 ### LLMResponse
 
-Risposta da un provider: `text`, `provider`, `model`.
+Risposta da un provider: `text`, `provider`, `model`, `usage`.
 
-**Citazione**: lessonos/llm/router.py:14-18 — `LLMResponse` frozen dataclass.
+**Citazione**: lessonos/llm/router.py:14-19 — `LLMResponse` frozen dataclass con `usage: dict | None = None`.
+
+#### usage (cost tracking)
+
+``LLMResponse.usage`` contiene il dict ``{prompt_tokens, completion_tokens}`` restituito da Moonshot (OpenAI-compatible) per ogni chiamata Kimi. Usato per stimare il costo reale via ``estimate_kimi_cost()``.
+
+**Citazione**: lessonos/llm/kimi.py:38-51 — ``estimate_kimi_cost(usage)``: ``(prompt_tokens * input_price + completion_tokens * output_price) / 1_000_000``.
 
 ### Router
 
@@ -47,7 +53,10 @@ Provider per Moonshot Kimi (OpenAI-compatible). Key SOLO da env `KIMI_API_KEY`, 
 - lessonos/llm/kimi.py:29-71 — `KimiProvider` completo
 - lessonos/llm/kimi.py:30 — `name = "kimi"`
 - lessonos/llm/kimi.py:33-37 — `__init__()` richiede `api_key` esplicita (linea 34) o env (linea 36-37), `KimiAuthError` se assente
-- lessonos/llm/kimi.py:39-71 — `complete()` usa stdlib `urllib` (OpenAI-compatible chat/completions endpoint)
+- lessonos/llm/kimi.py:39-71 — `complete()` usa stdlib `urllib` (OpenAI-compatible chat/completions endpoint); parse `body.get("usage")` (linea 68-69) e lo include in `LLMResponse` (linea 71)
+- lessonos/llm/kimi.py:22-26 — `KIMI_PRICING` dict con tariffe ufficiali Moonshot per K2.5/K2.6
+- lessonos/llm/kimi.py:38-51 — `estimate_kimi_cost(usage)` converte token counts in USD
+- lessonos/llm/kimi.py:54-56 — `_model_pricing(model)` lookup model->(input_price, output_price)
 
 **Uso**: solo eval/integration gated, NON testato live in unit test (MILESTONES.md M0).
 
