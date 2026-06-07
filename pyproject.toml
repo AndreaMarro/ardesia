@@ -6,6 +6,9 @@ dependencies = [
     "networkx>=3.6.1",
 ]
 
+[project.scripts]
+lessonos = "lessonos.cli:main"
+
 [dependency-groups]
 dev = [
     "pytest",

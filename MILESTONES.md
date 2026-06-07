@@ -42,7 +42,7 @@
 - [x] Test: l'eval gira sul mock e produce un report; groundedness check fallisce su una citazione volutamente rotta.
 
 ## M6 (stretch) — Demo CLI/HTTP end-to-end
-- [ ] CLI `lessonos run-path fixtures/sample_path` → stampa Lesson Capsules + Path Map + Delta + Debt + Next-Plan.
+- [x] CLI `lessonos run-path fixtures/sample_path` → stampa Lesson Capsules + Path Map + Delta + Debt + Next-Plan.
 - [ ] (opz.) FastAPI minimale che espone gli endpoint PLAN §15 sul percorso-fixture.
 - [ ] Eval reale gated (1 run con Kimi, costo loggato) — solo se Andrea dà OK.
 

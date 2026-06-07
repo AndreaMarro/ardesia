@@ -1,0 +1,619 @@
+"""CLI for the LessonOS Core Engine (M6, PLAN §8.2).
+
+Provides the ``run-path`` command: load a fixture path, build all Lesson
+Capsules (mock LLM), compute Path Memory → Didactic Delta → Learning Debt
+→ Next Lesson Plan, and print the result to stdout.
+
+Usage
+-----
+    lessonos run-path [--fixture PATH]
+
+Without ``--fixture`` defaults to ``fixtures/sample_path`` relative to the
+project root.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from dataclasses import asdict
+from pathlib import Path as FsPath
+from typing import Any
+
+from lessonos.capsule.assembly import LessonCapsule, assemble_lesson_capsule
+from lessonos.capsule.extraction import build_extraction_prompt
+from lessonos.capsule.segmentation import build_segmentation_prompt
+from lessonos.graph.didactic_delta import compute_didactic_delta
+from lessonos.graph.learning_debt import compute_learning_debt
+from lessonos.graph.next_lesson_planner import compute_next_lesson_plan
+from lessonos.graph.path_memory import PathMemory, build_path_memory
+from lessonos.llm.router import MockProvider, Router
+from lessonos.store.base import Store
+from lessonos.store.fixture_loader import (
+    DEFAULT_FIXTURE_ROOT,
+    ingest_lesson_moments,
+    ingest_lesson_segments,
+    load_sample_path,
+)
+from lessonos.store.sqlite import SQLiteStore
+
+# ---------------------------------------------------------------------------
+# Mock payload definitions — one per lesson, keyed by lesson_id.
+# Each entry is (seg_payload, ext_payload) matching the schema from
+# build_segmentation_prompt / build_extraction_prompt.
+# ---------------------------------------------------------------------------
+
+_LESSON_MOCKS: dict[str, tuple[list[dict], dict]] = {
+    "l1_derivative_definition": (
+        # seg_payload
+        [
+            {
+                "topic": "Definizione di derivata",
+                "seg_ids": ["l1s1", "l1s2"],
+            },
+            {
+                "topic": "Limite e notazione",
+                "seg_ids": ["l1s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "derivata",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s1",
+                            "excerpt": "derivata come velocita istantanea",
+                        }
+                    ],
+                },
+                {
+                    "name": "rapporto incrementale",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s2",
+                            "excerpt": "rapporto incrementale",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Calcola f'(x) per f(x) = x^2 usando la definizione di derivata.",
+                    "citations": [{"seg_id": "l1s3"}],
+                },
+                {
+                    "prompt": "Verifica che la derivata di f(x) = 3x + 2 sia 3.",
+                    "citations": [{"seg_id": "l1s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Cosa succede al rapporto incrementale se h = 0?",
+                    "citations": [{"seg_id": "l1s2"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Esercizi 1-3: calcola derivate per f(x)=x^2, f(x)=2x+1, f(x)=x^3 dal primo principio.",
+                    "citations": [{"seg_id": "l1s3"}],
+                }
+            ],
+        },
+    ),
+    "l2_derivative_rules": (
+        # seg_payload
+        [
+            {
+                "topic": "Ripasso definizione di derivata",
+                "seg_ids": ["l2s1"],
+            },
+            {
+                "topic": "Regola della potenza",
+                "seg_ids": ["l2s2"],
+            },
+            {
+                "topic": "Regola del prodotto e della catena",
+                "seg_ids": ["l2s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "derivata",
+                    "status": "reinforced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s1",
+                            "excerpt": "Richiamiamo la definizione di derivata",
+                        }
+                    ],
+                },
+                {
+                    "name": "regola della potenza",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s2",
+                            "excerpt": "Regola della potenza",
+                        }
+                    ],
+                },
+                {
+                    "name": "regola della catena",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s3",
+                            "excerpt": "regola della catena",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Deriva x^3, x^5 e x^(-2) usando la regola della potenza.",
+                    "citations": [{"seg_id": "l2s2"}],
+                },
+                {
+                    "prompt": "Applica la regola del prodotto a (x^2+1)(x-1) e la regola della catena a sin(3x+1).",
+                    "citations": [{"seg_id": "l2s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Come si applica la regola della catena a funzioni composte multiple?",
+                    "citations": [{"seg_id": "l2s3"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Esercizi derivate 1-5: derivate con regola potenza, prodotto, catena.",
+                    "citations": [{"seg_id": "l2s2"}, {"seg_id": "l2s3"}],
+                }
+            ],
+        },
+    ),
+    "l3_integral_intro": (
+        # seg_payload
+        [
+            {
+                "topic": "Integrale come operazione inversa",
+                "seg_ids": ["l3s1"],
+            },
+            {
+                "topic": "Antiderivata",
+                "seg_ids": ["l3s2"],
+            },
+            {
+                "topic": "Teorema fondamentale del calcolo",
+                "seg_ids": ["l3s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "integrale",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l3s1",
+                            "excerpt": "integrale come operazione inversa",
+                        }
+                    ],
+                },
+                {
+                    "name": "antiderivata",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l3s2",
+                            "excerpt": "antiderivata",
+                        }
+                    ],
+                },
+                {
+                    "name": "teorema fondamentale del calcolo",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l3s3",
+                            "excerpt": "teorema fondamentale del calcolo",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Trova l'antiderivata di x^2 e verifica derivando.",
+                    "citations": [{"seg_id": "l3s2"}],
+                },
+                {
+                    "prompt": "Calcola l'integrale definito di x da 0 a 1 usando il teorema fondamentale.",
+                    "citations": [{"seg_id": "l3s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Perche l'integrale definito F(b)-F(a) non dipende dalla costante C?",
+                    "citations": [{"seg_id": "l3s2"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Esercizi integrali 1-4: antiderivate e integrali definiti.",
+                    "citations": [{"seg_id": "l3s3"}],
+                }
+            ],
+        },
+    ),
+}
+
+
+def _find_project_root() -> FsPath:
+    """Walk up from this file to find the project root (where pyproject.toml lives)."""
+    here = FsPath(__file__).resolve()
+    for parent in here.parents:
+        if (parent / "pyproject.toml").exists():
+            return parent
+    return here.parents[1]  # fallback
+
+
+def _build_router(
+    store: Store, lesson_id: str
+) -> Router | None:
+    """Build a mock router with payloads for ``lesson_id``.
+
+    Returns ``None`` if no mock is registered for this lesson.
+    """
+    mock_data = _LESSON_MOCKS.get(lesson_id)
+    if mock_data is None:
+        return None
+
+    seg_payload, ext_payload = mock_data
+    segments = store.segments_for_lesson(lesson_id)
+    seg_prompt = build_segmentation_prompt(segments)
+    ext_prompt = build_extraction_prompt(segments)
+
+    router = Router()
+    router.register(
+        MockProvider(
+            {
+                seg_prompt: json.dumps(seg_payload),
+                ext_prompt: json.dumps(ext_payload),
+            }
+        )
+    )
+    return router
+
+
+# ---------------------------------------------------------------------------
+# Formatting helpers
+# ---------------------------------------------------------------------------
+
+
+def _fmt_bool(v: bool) -> str:
+    return "✓" if v else "✗"
+
+
+def _fmt_header(text: str, char: str = "=", width: int = 72) -> str:
+    return f"\n{text}\n{char * width}"
+
+
+def _fmt_subheader(text: str) -> str:
+    return f"\n  {text}\n  {'─' * (len(text) + 2)}"
+
+
+def _capsule_summary(capsule: LessonCapsule) -> str:
+    lines: list[str] = []
+    lines.append(f"  Lesson: {capsule.lesson_id}")
+    lines.append(
+        f"  Topics ({len(capsule.timeline)}):"
+    )
+    for i, span in enumerate(capsule.timeline, 1):
+        lines.append(
+            f"    {i}. {span.topic} ({span.start}s - {span.end}s)"
+        )
+    cc = capsule.content
+    lines.append(
+        f"  Concepts: {len(cc.concepts)}  |  "
+        f"Exercises: {len(cc.exercises)}  |  "
+        f"Questions: {len(cc.student_questions)}  |  "
+        f"Homework: {len(cc.homework)}"
+    )
+    if cc.concepts:
+        lines.append("  Concepts detail:")
+        for c in cc.concepts:
+            prereqs = (
+                f"  prereqs: {', '.join(c.prerequisites)}"
+                if c.prerequisites
+                else ""
+            )
+            lines.append(f"    - {c.name} ({c.status}){prereqs}")
+    return "\n".join(lines)
+
+
+def _path_memory_summary(memory: PathMemory) -> str:
+    lines: list[str] = []
+    lines.append(
+        f"  State: {memory.current_state}  |  "
+        f"Lessons: {memory.total_lessons}  |  "
+        f"Concepts: {memory.total_concepts}  |  "
+        f"Exercises: {memory.total_exercises}"
+    )
+    lines.append(f"  Title: {memory.path_title or '(no title)'}")
+    lines.append(f"\n  Lesson Index ({len(memory.lesson_index)}):")
+    for entry in memory.lesson_index:
+        new_str = f"({len(entry.new_concepts)} new, {len(entry.reinforced_concepts)} reinforced)"
+        lines.append(
+            f"    {entry.lesson_id}: {entry.title} — "
+            f"{len(entry.topics)} topics, "
+            f"{entry.concept_count} concepts {new_str}"
+        )
+    if memory.recurring_misconceptions:
+        lines.append(f"\n  Recurring misconceptions ({len(memory.recurring_misconceptions)}):")
+        for m in memory.recurring_misconceptions:
+            lines.append(f"    - {m}")
+    if memory.exercise_bank:
+        lines.append(f"\n  Exercise bank: {len(memory.exercise_bank)} exercises")
+    return "\n".join(lines)
+
+
+def _delta_summary(delta: Any, path_id: str) -> str:
+    lines: list[str] = []
+    lines.append(f"  Path: {path_id}")
+    lines.append(f"  New concepts:       {len(delta.new_concepts)}")
+    lines.append(f"  Clarified concepts:  {len(delta.clarified_concepts)}")
+    lines.append(f"  Still-open concepts: {len(delta.still_open_concepts)}")
+    lines.append(f"  Over-repeated:       {len(delta.over_repeated_concepts)}")
+    lines.append(f"  Under-practiced:     {len(delta.under_practiced_concepts)}")
+    lines.append(f"  New misconceptions:  {len(delta.new_misconceptions)}")
+    lines.append(f"  Resolved:            {len(delta.resolved_misconceptions)}")
+    if delta.new_concepts:
+        names = ", ".join(c.name for c in delta.new_concepts)
+        lines.append(f"\n  New concepts: {names}")
+    if delta.clarified_concepts:
+        names = ", ".join(c.name for c in delta.clarified_concepts)
+        lines.append(f"  Clarified: {names}")
+    if delta.still_open_concepts:
+        names = ", ".join(c.name for c in delta.still_open_concepts)
+        lines.append(f"  Still open: {names}")
+    return "\n".join(lines)
+
+
+def _debt_summary(ledger: Any) -> str:
+    lines: list[str] = []
+    lines.append(f"  Total items: {ledger.total_items}")
+    lines.append(f"  By kind: {dict(ledger.by_kind)}")
+    if ledger.items:
+        lines.append("")
+        for item in ledger.items[:10]:  # show first 10
+            status = "🔴" if not item.resolved else "🟢"
+            lines.append(f"  {status} [{item.kind}] {item.description[:80]}")
+    if ledger.total_items > 10:
+        lines.append(f"  ... and {ledger.total_items - 10} more items")
+    return "\n".join(lines)
+
+
+def _plan_summary(plan: Any) -> str:
+    lines: list[str] = []
+    lines.append(f"  Total agenda items: {plan.total_agenda_items}")
+    if plan.prerequisite_gaps:
+        lines.append(f"\n  Prerequisite gaps ({len(plan.prerequisite_gaps)}):")
+        for item in plan.prerequisite_gaps:
+            lines.append(f"    🔴 {item.description[:80]}")
+    if plan.review_items:
+        lines.append(f"\n  Review items ({len(plan.review_items)}):")
+        for item in plan.review_items:
+            lines.append(f"    📝 {item.description[:80]}")
+    if plan.open_doubt_items:
+        lines.append(f"\n  Open doubts ({len(plan.open_doubt_items)}):")
+        for item in plan.open_doubt_items:
+            lines.append(f"    ❓ {item.description[:80]}")
+    if plan.practice_items:
+        lines.append(f"\n  Practice items ({len(plan.practice_items)}):")
+        for item in plan.practice_items:
+            lines.append(f"    ✏️  {item.description[:80]}")
+    if plan.new_material_items:
+        lines.append(f"\n  New material ({len(plan.new_material_items)}):")
+        for item in plan.new_material_items:
+            lines.append(f"    🌱 {item.description[:80]}")
+    lines.append(f"\n  Suggested topics ({len(plan.suggested_topics)}):")
+    for i, topic in enumerate(plan.suggested_topics, 1):
+        lines.append(f"    {i}. {topic}")
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# Core pipeline
+# ---------------------------------------------------------------------------
+
+
+def run_path(
+    fixture_root: FsPath,
+    *,
+    out=sys.stdout,
+) -> dict[str, Any]:
+    """Run the full LessonOS pipeline on a fixture path and print results.
+
+    Parameters
+    ----------
+    fixture_root : Path
+        Directory containing ``path.json``, ``lessons/``, ``sources/``.
+    out : IO, optional
+        Output stream (defaults to stdout).
+
+    Returns
+    -------
+    dict
+        Summary dict with keys: path, capsules, memory, delta, debt, plan.
+    """
+    store = SQLiteStore(":memory:")
+
+    # --- Phase 1: Load fixture ---
+    path = load_sample_path(store, fixture_root)
+    lesson_ids = path.lesson_ids
+
+    print(_fmt_header("LessonOS Core Engine — End-to-End Demo"), file=out)
+    print(file=out)
+    print(f"  Path: {path.title} ({path.path_id})", file=out)
+    print(f"  Subject: {path.subject}  |  Lessons: {len(lesson_ids)}", file=out)
+    print(file=out)
+
+    # --- Phase 2: Ingest segments + moments for each lesson ---
+    print("  [1/5] Ingesting fixture segments and moments...", file=out)
+    for lid in lesson_ids:
+        ingest_lesson_segments(store, lid, fixture_root)
+        ingest_lesson_moments(store, lid, fixture_root)
+    print(f"  Done: {len(lesson_ids)} lessons ingested.", file=out)
+
+    # --- Phase 3: Assemble mock capsules ---
+    print(f"\n  [2/5] Assembling Lesson Capsules (mock LLM)...", file=out)
+    capsules: list[LessonCapsule] = []
+    for lid in lesson_ids:
+        router = _build_router(store, lid)
+        if router is None:
+            print(f"  ⚠ No mock registered for {lid}, skipping.", file=out)
+            continue
+        capsule = assemble_lesson_capsule(store, lid, router)
+        capsules.append(capsule)
+        n_topics = len(capsule.timeline)
+        n_concepts = len(capsule.content.concepts)
+        print(
+            f"  ✓ {lid}: {n_topics} topics, {n_concepts} concepts, "
+            f"{len(capsule.content.exercises)} exercises",
+            file=out,
+        )
+
+    # --- Print individual capsules ---
+    print(_fmt_header("Lesson Capsules", "─"), file=out)
+    for capsule in capsules:
+        print(_capsule_summary(capsule), file=out)
+        print(file=out)
+
+    # --- Phase 4: Path Memory ---
+    print(_fmt_header("Path Memory", "─"), file=out)
+    memory = build_path_memory(capsules, path_title=path.title)
+    print(_path_memory_summary(memory), file=out)
+
+    # --- Phase 5: Didactic Delta (L1+L2 vs L1+L2+L3) ---
+    print(_fmt_header("Didactic Delta (L1+L2 vs L1+L2+L3)", "─"), file=out)
+    if len(capsules) >= 2:
+        old_memory = build_path_memory(capsules[:-1], path_title=path.title)
+        delta = compute_didactic_delta(old_memory, memory)
+        print(_delta_summary(delta, path.path_id), file=out)
+    else:
+        print("  (need ≥2 capsules for a meaningful delta)", file=out)
+        from lessonos.graph.didactic_delta import DidacticDelta
+
+        delta = DidacticDelta(
+            new_concepts=(),
+            clarified_concepts=(),
+            still_open_concepts=(),
+            over_repeated_concepts=(),
+            under_practiced_concepts=(),
+            new_misconceptions=(),
+            resolved_misconceptions=(),
+            total_new_concepts=0,
+            total_clarified=0,
+            total_still_open=0,
+            total_over_repeated=0,
+            total_under_practiced=0,
+            total_new_misconceptions=0,
+            total_resolved_misconceptions=0,
+        )
+
+    # --- Phase 6: Learning Debt ---
+    print(_fmt_header("Learning Debt Ledger", "─"), file=out)
+    ledger = compute_learning_debt(memory, delta, path_id=path.path_id)
+    print(_debt_summary(ledger), file=out)
+
+    # --- Phase 7: Next Lesson Plan ---
+    print(_fmt_header("Next Lesson Plan", "─"), file=out)
+    plan = compute_next_lesson_plan(
+        memory, delta, ledger, path_id=path.path_id
+    )
+    print(_plan_summary(plan), file=out)
+
+    print(file=out)
+    print(_fmt_header("End of Demo", "="), file=out)
+
+    return {
+        "path_id": path.path_id,
+        "capsules": len(capsules),
+        "memory": memory.total_concepts,
+        "delta_new": len(delta.new_concepts),
+        "debt_items": ledger.total_items,
+        "agenda_items": plan.total_agenda_items,
+    }
+
+
+def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    """Parse CLI arguments."""
+    parser = argparse.ArgumentParser(
+        description="LessonOS Core Engine — demo CLI",
+    )
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    run_parser = sub.add_parser(
+        "run-path", help="Run the full pipeline on a fixture path"
+    )
+    run_parser.add_argument(
+        "--fixture",
+        type=str,
+        default=None,
+        help="Path to fixture directory (default: fixtures/sample_path)",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Entry point for ``lessonos`` CLI.
+
+    Returns exit code (0 = success).
+    """
+    args = _parse_args(argv)
+
+    if args.command == "run-path":
+        if args.fixture:
+            fixture_root = FsPath(args.fixture).resolve()
+        else:
+            project_root = _find_project_root()
+            fixture_root = project_root / "fixtures" / "sample_path"
+
+        if not fixture_root.exists():
+            print(
+                f"Error: fixture path not found: {fixture_root}",
+                file=sys.stderr,
+            )
+            return 1
+        if not (fixture_root / "path.json").exists():
+            print(
+                f"Error: no path.json in {fixture_root}",
+                file=sys.stderr,
+            )
+            return 1
+
+        result = run_path(fixture_root)
+        # Summary line
+        print(
+            f"\nSummary: {result['capsules']} capsules, "
+            f"{result['memory']} concepts in Path Memory, "
+            f"{result['delta_new']} new concepts in Delta, "
+            f"{result['debt_items']} debt items, "
+            f"{result['agenda_items']} agenda items",
+        )
+        return 0
+
+    print(f"Unknown command: {args.command!r}", file=sys.stderr)
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
