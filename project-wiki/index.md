@@ -23,3 +23,4 @@ Ogni pagina + riassunto 1 riga.
 - **learning-debt.md** — Learning Debt Ledger: 5 categorie di debito didattico da PathMemory + Delta (M4-task2, PLAN §3.4)
 |- **next-lesson-planner.md** — Next Lesson Plan: agenda prioritizzata per la prossima lezione da PathMemory + Delta + Debt (M4-task3, PLAN §8.2)
 |- **eval-metrics.md** — EvalMetrics: groundedness + citation-excerpt-accuracy metric factories (M5-task2, PLAN §22)
+|- **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
