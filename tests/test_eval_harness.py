@@ -224,3 +224,284 @@ class TestRunEval:
         report = run_eval([c for c in ALL_CASES if "groundedness" in c.categories])
         assert report.total_passed >= 1
         assert report.total_failed == 0
+
+
+class TestEvalMetrics:
+    """build_groundedness_metric and build_citation_excerpt_accuracy_metric."""
+
+    def test_groundedness_all_valid(self) -> None:
+        """Groundedness metric passes when all citations resolve."""
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_groundedness_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="Il concetto di derivata."))
+        store.save_segment(Segment(seg_id="s2", lesson_id="l1", start=10, end=20, text="Regola della potenza."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "derivata", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="derivata", status="introduced",
+                        citations=(Citation(seg_id="s1", excerpt="derivata"),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_groundedness_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is True, f"expected all-grounded, got: {detail}"
+        assert "1.00" in detail or "all citations grounded" in detail
+
+    def test_groundedness_fails_on_broken_seg_id(self) -> None:
+        """Groundedness metric fails when a citation references a non-existent segment."""
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_groundedness_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="Testo."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "test", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="x", status="introduced",
+                        citations=(Citation(seg_id="s99", excerpt="inventato"),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_groundedness_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is False, "should fail on non-existent seg_id"
+        assert "s99" in detail
+        assert "unresolved" in detail
+
+    def test_groundedness_empty_citations_pass(self) -> None:
+        """Groundedness metric passes gracefully when there are no citations to check."""
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import LessonContent
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_groundedness_metric
+
+        store = SQLiteStore(":memory:")
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "empty", (), 0, 0),),
+            content=LessonContent(lesson_id="l1"),
+        )
+
+        metric = build_groundedness_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is True
+        assert "0 citations" in detail
+
+    def test_excerpt_accuracy_all_match(self) -> None:
+        """Citation excerpt accuracy passes when all excerpts match source text."""
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_citation_excerpt_accuracy_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="Il concetto di derivata."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "d", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="derivata", status="introduced",
+                        citations=(Citation(seg_id="s1", excerpt="concetto di derivata"),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_citation_excerpt_accuracy_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is True, f"expected matching excerpt, got: {detail}"
+        assert "all excerpts match" in detail
+
+    def test_excerpt_accuracy_fails_on_mismatch(self) -> None:
+        """Citation excerpt accuracy fails when excerpt is not in source text."""
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_citation_excerpt_accuracy_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="Il concetto di derivata."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "d", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="derivata", status="introduced",
+                        citations=(Citation(seg_id="s1", excerpt="derivata parziale"),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_citation_excerpt_accuracy_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is False, "should fail on non-matching excerpt"
+        assert "derivata parziale" in detail
+        assert "mismatch" in detail
+
+    def test_excerpt_accuracy_skips_null_excerpts(self) -> None:
+        """Excerpt accuracy skips citations with excerpt=None (optional field)."""
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_citation_excerpt_accuracy_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="Qualunque testo."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "t", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="x", status="introduced",
+                        citations=(Citation(seg_id="s1", excerpt=None),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_citation_excerpt_accuracy_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is True, f"null excerpts should pass: {detail}"
+        assert "0 excerpts" in detail
+
+    def test_excerpt_accuracy_case_sensitive(self) -> None:
+        """Excerpt matching is case-sensitive — 'Derivata' not in 'derivata'."""
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_citation_excerpt_accuracy_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="concetto di derivata"))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "d", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="derivata", status="introduced",
+                        citations=(Citation(seg_id="s1", excerpt="Derivata"),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_citation_excerpt_accuracy_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is False, "case-sensitive match should fail: 'Derivata' != 'derivata'"
+        assert "mismatch" in detail
+
+    def test_metrics_integrate_with_run_eval(self) -> None:
+        """Custom metrics can be passed to run_eval and produce results."""
+        from lessonos.capsule.extraction import Citation, ConceptExtraction, LessonContent
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_groundedness_metric
+
+        # Build a dedicated capsule with known seg_ids
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="custom_s1", lesson_id="l1", start=0, end=10, text="Testo segmento."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "x", ("custom_s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="test", status="introduced",
+                        citations=(Citation(seg_id="custom_s1", excerpt="Testo segmento"),),
+                    ),
+                ),
+            ),
+        )
+
+        dedicated_case = EvalCase(
+            name="dedicated_metrics_test",
+            description="custom-built capsule for integration test",
+            run=lambda: capsule,
+            expected=lambda r: isinstance(r, LessonCapsule) and r.lesson_id == "l1",
+            categories=("groundedness",),
+        )
+
+        metric = build_groundedness_metric(store, name="int_groundedness")
+        report = run_eval([dedicated_case], metrics=[metric])
+        assert report.total_cases == 1
+        assert report.results[0].metric_name == "int_groundedness"
+        assert report.results[0].passed is True, report.results[0].detail
+
+    def test_metrics_exported_from_init(self) -> None:
+        """build_groundedness_metric and build_citation_excerpt_accuracy_metric are exported."""
+        from lessonos.eval import (
+            build_citation_excerpt_accuracy_metric,
+            build_groundedness_metric,
+        )
+        assert callable(build_groundedness_metric)
+        assert callable(build_citation_excerpt_accuracy_metric)
