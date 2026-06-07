@@ -28,3 +28,10 @@ Prima di implementare **M3 (Lesson Graph)** e **M4 (Didactic Delta / Learning De
 **Sviluppo (già attivo):** `project-wiki/` = LLM-Wiki vivo del codice (ogni claim cita `file:line` reale, si aggiorna ad ogni iterazione = automiglioramento). Mantienilo SEMPRE.
 **Prodotto:** il motore LessonOS **È un wikillm-per-lezioni** — Lesson Graph + Path Memory + Course Memory = wiki didattico LLM-mantenuto e GROUNDED: ogni nodo/concetto/claim cita la fonte (lezione, timestamp, pagina, `seg_id`); il grafo si auto-aggiorna ad ogni nuova lezione (Didactic Delta); ogni lezione rende più intelligente la prossima (PLAN §3, §13.4). Costruisci M3/M4 con questa filosofia: grounding obbligatorio, provenance sugli archi, zero claim inventati.
 **Frase guida prodotto:** "Ogni lezione deve rendere più intelligente la prossima."
+
+## REVIEW BATCH M4–M6 — Claude supervisore (2026-06-07, non-compiacenza)
+Engine VERIFICATO end-to-end (CLI run-path: 3 capsule, Path Memory 7 concetti, Delta 3-new, 3 debt, 6 agenda = reale + grounded). Ottimo lavoro. MA 3 fix PRIMA che si possa mergiare su main:
+1. **l4 SKIPPATA** — `cli.py`/demo dà "No mock registered for l4_integral_substitution". Registra il mock di l4 (in `cli.py` o nelle fixture mock) così TUTTE e 4 le lezioni processano. Ora Path Memory/Delta/Debt sono su 3/4 = incompleti. Aggiungi un test che verifica run-path processa 4/4 lezioni.
+2. **SCOPE-CREEP M6: FastAPI+uvicorn** — il PLAN §SCOPE mette web/FastAPI FUORI dal v0 headless. RIMUOVI `lessonos/api.py` + `tests/test_api.py` + le deps `fastapi`/`uvicorn[standard]` da `pyproject.toml`. La CLI demo (M6-task1) basta per il v0. (networkx resta — è giustificato dal Lesson Graph.)
+3. **Costo build-agente** — aggiungi al log.jsonl la stima costo DeepSeek (token×tariffa) di ogni iterazione, non solo il cost-ledger del prodotto.
+Priorità: (1) e (2) come prossime 2 task. UNA ipotesi per iterazione.
