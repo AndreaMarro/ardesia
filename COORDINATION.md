@@ -22,4 +22,4 @@ Prima di implementare **M3 (Lesson Graph)** e **M4 (Didactic Delta / Learning De
 **VINCOLI PRODOTTO** (da `ECOSYSTEM-RESEARCH-2026-06-06.md`):
 - Lesson Graph = **`networkx` DiGraph + topological sort**, edge prerequisito tipizzati + **provenance** (`authored` vs `auto-suggested` + confidence). NON graphify.
 - Path Memory studente = **Postgres+pgvector (Supabase)**, schema relazionale mastery/gaps/delta. NON mem0 (PII studente→LLM = blocco GDPR minori).
-**DISCIPLINA TOKEN KIMI:** TPD = 1.5M/giorno. Iterazioni SNELLE (leggi solo i file essenziali). Cap-token attivi: `agent.max_turns=30`, `file_read_max_chars=30000`. Se il gate è esausto, fermati (driver/tick lo gestiscono).
+**DISCIPLINA TOKEN:** brain = DeepSeek (no TPD giornaliero, solo throttle per concorrenza retryable). Iterazioni comunque SNELLE. Cap-token: agent.max_turns=30, file_read_max_chars=30000. Cap build giornaliero nel tick (costi contenuti).
