@@ -16,11 +16,12 @@
 - [ ] CRUD + test: crea Path con 3 Lesson dalle fixture, rileggi, verifica integrità referenziale.
 
 ## M2 — Lesson Capsule pipeline (PLAN §16.1 percorso testo + §26.1)
-- [ ] Ingest: carica una lezione-fixture (transcript + timeline + fonte) nello store.
-- [ ] Segmentazione per argomenti (via router LLM; mock in test).
-- [ ] Estrazione concetti + esercizi + dubbi + compiti (schema §26.1).
-- [ ] **Lesson Capsule** JSON completo con **citazioni fondate** (timestamp/pagina/segmento). Ogni claim → citazione.
-- [ ] Test: capsule dalla fixture ha i campi richiesti + ogni citazione punta a un segmento esistente (no citazioni inventate).
+- [x] Ingest: carica una lezione-fixture (transcript + timeline + fonte) nello store.
+- [x] Segmentazione per argomenti (via router LLM; mock in test).
+- [x] Estrazione concetti + esercizi + dubbi + compiti (schema §26.1).
+- [x] **Lesson Capsule** JSON completo con **citazioni fondate** (timestamp/pagina/segmento). Ogni claim → citazione.
+- [x] Test: capsule dalla fixture ha i campi richiesti + ogni citazione punta a un segmento esistente (no citazioni inventate).
+- [x] **M2-task5 (ordine Claude)**: persistenza LessonCapsule nello store come JSON blob (save_capsule/get_capsule, save=True su assemble, load_capsule helper)
 
 ## M3 — Lesson Graph + Path Memory (PLAN §3.2 + §26.2)
 - [ ] Costruisci nodi/archi del grafo dalle capsule (edge_type PLAN §14.2: explains, depends_on, repeats, prepares...).

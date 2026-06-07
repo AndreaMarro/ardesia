@@ -145,6 +145,38 @@ Chiama `segment_lesson_topics` poi `extract_lesson_content`, ritorna `LessonCaps
 
 **Citazione**: `lessonos/capsule/assembly.py`:33-57 — `assemble_lesson_capsule(store, lesson_id, router)` completo. Nessuna persistenza aggiuntiva: il compositore delega ai sub-step già esistenti.
 
+### 5. Persistenza Capsule (M2-task5)
+
+Salva la Lesson Capsule assemblata come JSON blob nel layer Store (str-based, senza circular dep tra store e assembly.py). Evita di rieseguire la pipeline LLM a ogni lettura.
+
+**File**: `lessonos/capsule/assembly.py`
+
+#### assemble_lesson_capsule(..., save=True)
+
+Il parametro `save=False` opzionale persiste automaticamente il capsule dopo l'assemblaggio. `store.save_capsule(lesson_id, json.dumps(asdict(capsule)))`.
+
+**Citazione**: `lessonos/capsule/assembly.py:46` — `save: bool = False`; linee 69-70 — `if save: store.save_capsule(...)`.
+
+#### load_capsule(store, lesson_id) -> LessonCapsule | None
+
+Carica un capsule persistito e lo deserializza (ricostruisce le dataclass frozen). Ritorna `None` se non presente.
+
+**Citazione**: `lessonos/capsule/assembly.py:75-88` — `load_capsule()`: legge JSON da `store.get_capsule()`, chiama `_deserialise_capsule` (linee 96-171) che ricostruisce `LessonCapsule` con `TopicSpan`, `Citation`, `ConceptExtraction`, `ExerciseExtraction`, `QuestionExtraction`, `HomeworkExtraction`, `LessonContent` dalle strutture JSON.
+
+#### Store ABC: save_capsule / get_capsule
+
+Metodi str-based nel contratto astratto: `save_capsule(lesson_id: str, capsule_data: str) -> None` e `get_capsule(lesson_id: str) -> str | None`.
+
+**Citazione**: `lessonos/store/base.py:55-72` — nuovi metodi astratti per capsule persistence.
+
+#### SQLiteStore: tabella capsules
+
+Schema: `lesson_id` TEXT PRIMARY KEY, `capsule_data` TEXT NOT NULL, `created_at` TEXT DEFAULT datetime('now'). SCHEMA_VERSION 3->4.
+
+**Citazione**: `lessonos/store/sqlite.py:17` — `SCHEMA_VERSION = 4`; linee 54-58 — tabella `capsules`; linee 243-259 — `save_capsule()` / `get_capsule()` implementazioni con `INSERT OR REPLACE`.
+
+**Grounding**: Non introduce nuove citazioni o validazioni — il capsule era già grounded prima della persistenza (validato da segmentation + extraction). Al reload tutte le citazioni risolvono ai segmenti originali.
+
 **Grounding**: garantita dai sub-step (segmentation + extraction); l'assembler non introduce nuove citazioni.
 
 ## Test Coverage

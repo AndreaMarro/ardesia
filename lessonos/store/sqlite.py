@@ -14,7 +14,7 @@ import sqlite3
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -50,6 +50,11 @@ CREATE TABLE IF NOT EXISTS moments (
     t         INTEGER NOT NULL,
     kind      TEXT NOT NULL,
     seg_id    TEXT
+);
+CREATE TABLE IF NOT EXISTS capsules (
+    lesson_id    TEXT PRIMARY KEY,
+    capsule_data TEXT NOT NULL,
+    created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
 """
 
@@ -234,6 +239,22 @@ class SQLiteStore(Store):
             kind=row["kind"],
             seg_id=row["seg_id"],
         )
+
+    # --- Capsule ---------------------------------------------------------
+    def save_capsule(self, lesson_id: str, capsule_data: str) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO capsules (lesson_id, capsule_data) "
+            "VALUES (?, ?)",
+            (lesson_id, capsule_data),
+        )
+        self._conn.commit()
+
+    def get_capsule(self, lesson_id: str) -> str | None:
+        row = self._conn.execute(
+            "SELECT capsule_data FROM capsules WHERE lesson_id = ?",
+            (lesson_id,),
+        ).fetchone()
+        return row["capsule_data"] if row is not None else None
 
     def close(self) -> None:
         self._conn.close()

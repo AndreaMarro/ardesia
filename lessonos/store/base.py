@@ -55,4 +55,21 @@ class Store(ABC):
     def moments_for_lesson(self, lesson_id: str) -> tuple[Moment, ...]: ...
 
     @abstractmethod
-    def close(self) -> None: ...
+    def save_capsule(self, lesson_id: str, capsule_data: str) -> None:
+        """Persist a serialised Lesson Capsule (JSON blob) for a lesson.
+
+        The capsule is the output of the M2 pipeline (PLAN §26.1). Storing it
+        avoids re-running the LLM pipeline on every read. ``capsule_data`` is a
+        JSON-serialised :class:`~lessonos.capsule.assembly.LessonCapsule` —
+        the store does not parse it, so there is no circular dependency.
+        """
+        ...
+
+    @abstractmethod
+    def get_capsule(self, lesson_id: str) -> str | None:
+        """Retrieve a previously persisted capsule blob, or ``None``."""
+        ...
+
+    @abstractmethod
+    def close(self) -> None:
+        ...

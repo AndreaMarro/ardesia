@@ -20,7 +20,8 @@ Definisce i metodi CRUD per le entità: Path, Lesson, Source, Segment, Moment. I
   - `save_source`, `get_source` (linea 33-37)
   - `save_segment`, `get_segment`, `segments_for_lesson` (linea 39-46)
   - `save_moment`, `get_moment`, `moments_for_lesson` (linea 48-55)
-  - `close` (linea 57-58)
+  - `save_capsule`, `get_capsule` (linea 57-68) — str-based, nessun circular dep
+  - `close` (linea 70-71)
 
 ## SQLiteStore (implementazione)
 
@@ -28,8 +29,8 @@ Backend SQLite per v0. Usa stdlib `sqlite3`, zero deps nuove. Schema version tra
 
 **Citazioni**:
 - lessonos/store/sqlite.py:1-7 — docstring: "SQLite-backed Store for v0 (stdlib sqlite3, no new deps)"
-- lessonos/store/sqlite.py:17 — `SCHEMA_VERSION = 3` (attuale)
-- lessonos/store/sqlite.py:19-54 — `_SCHEMA` SQL: tabelle `paths`, `lessons`, `sources`, `segments`, `moments`
+- lessonos/store/sqlite.py:17 — `SCHEMA_VERSION = 4` (attuale)
+- lessonos/store/sqlite.py:19-58 — `_SCHEMA` SQL: tabelle `paths`, `lessons`, `sources`, `segments`, `moments`, `capsules`
 - lessonos/store/sqlite.py:58-61 — `__init__(db_path=":memory:")` + `row_factory = sqlite3.Row`
 - lessonos/store/sqlite.py:63-68 — `_migrate()` idempotente: crea schema se `user_version < SCHEMA_VERSION`
 
@@ -59,6 +60,11 @@ Backend SQLite per v0. Usa stdlib `sqlite3`, zero deps nuove. Schema version tra
 **Schema**: `moment_id` TEXT PRIMARY KEY, `lesson_id`, `t` INTEGER, `kind` TEXT, `seg_id` TEXT nullable.
 
 **Citazione**: lessonos/store/sqlite.py:47-53.
+
+#### capsules
+**Schema**: `lesson_id` TEXT PRIMARY KEY, `capsule_data` TEXT NOT NULL (JSON serializzato), `created_at` TEXT DEFAULT datetime('now').
+
+**Citazione**: lessonos/store/sqlite.py:54-58. Store str-based (nessun circular dep tra store e capsule/assembly.py). `save_capsule()`/`get_capsule()` linee 243-259.
 
 ### Serializzazione Tuple
 
