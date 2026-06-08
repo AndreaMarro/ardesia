@@ -1,8 +1,9 @@
 # Cost Ledger — Per-LLM-Call Cost Tracker (PLAN §20, M5-task3)
 
 Traccia costi per chiamata LLM in un percorso. Mock calls sono gratis
-(usage=None → cost=0, tokens=0). Chiamate Kimi reali stimano il costo
-dalla documentazione dei prezzi via `estimate_kimi_cost`.
+(usage=None → cost=0, tokens=0). Chiamate API reali (Kimi o DeepSeek)
+stimano il costo dalla documentazione dei prezzi via provider-specific
+estimators (`estimate_kimi_cost` o `estimate_deepseek_api_cost`).
 
 ## Modulo
 
@@ -41,8 +42,10 @@ Accumulatore append-only.
 
 - `add_entry(entry)` — aggiunge una entry pre-costruita (linea 43)
 - `add_from_response(response, lesson_id, label)` — crea e aggiunge una
-  entry da `LLMResponse`: se `response.usage` è presente (Kimi), stima
-  costo via `estimate_kimi_cost`; altrimenti (mock) cost=0 (linee 46-72)
+  entry da `LLMResponse`: se `response.usage` è presente, stima costo via
+  provider-specific estimator (`estimate_deepseek_api_cost` per provider
+  `"deepseek"`, `estimate_kimi_cost` per `"kimi"` o altri); se usage=None
+  (mock), cost=0 (linee 46-72)
 - `report()` → `CostReport` — somma i costi per lezione/modello/label,
   con chiave vuota `""` per path-level (linee 74-118)
 - `total_cost()` → float — shortcut (linee 120-121)
@@ -63,10 +66,11 @@ Accumulatore append-only.
 
 ## Test
 
-**File**: `tests/test_cost_ledger.py` — 21 test non-tautologici.
+**File**: `tests/test_cost_ledger.py` — 24 test non-tautologici.
 
 Copertura:
-- add_entry / add_from_response: mock=free (cost=0), Kimi=stima realistica
+- add_entry / add_from_response: mock=free (cost=0), Kimi=stima realistica,
+  DeepSeek=stima realistica con routing per provider (chat e reasoner)
 - Report: total_cost, per_lesson, per_model, per_label, empty
 - Validazione: tokens negativi, cost negativo, entry_id vuoto → ValueError
 - JSON round-trip: campi preservati, report match
@@ -77,3 +81,6 @@ Copertura:
 
 Mock calls: gratis (tokens=0, cost=0 per entry via `add_from_response`).
 Kimi calls: costo stimato da `usage` dict via tariffe K2.5/K2.6.
+DeepSeek calls: costo stimato da `usage` dict via tariffe deepseek-chat/deepseek-reasoner
+(`lessonos/llm/deepseek.py:90-93`). Il routing è per-provider in
+`add_from_response()` (`lessonos/llm/cost_ledger.py:56-63`).
