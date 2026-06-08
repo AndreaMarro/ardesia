@@ -125,6 +125,7 @@ class LearningDebtItem:
     description: str
     lesson_id: str | None = None
     resolved: bool = False
+    severity: float = 1.0
     citations: tuple[str, ...] = ()
 
 

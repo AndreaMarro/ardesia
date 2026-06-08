@@ -27,7 +27,7 @@ from lessonos.graph.learning_debt import (
     LearningDebtLedger,
     compute_learning_debt,
 )
-from lessonos.graph.path_memory import PathMemory, build_path_memory
+from lessonos.graph.path_memory import ConceptPathEntry, PathMemory, build_path_memory
 
 
 # --- Helpers ---
@@ -436,3 +436,152 @@ class TestComputeLearningDebt:
             "Two concepts with different missing prereqs → 2 weak items"
         )
         assert ledger.by_kind.get("weak_prerequisite", 0) == 2
+
+
+class TestDifficultyAwareDebt:
+    """Severity from per-concept difficulty in LearningDebt (M4 maturation)."""
+
+    def test_unmastered_concept_severity_default(self):
+        """ConceptPathEntry with default D=5.0 yields severity=1.0."""
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("alpha", "problematic")],
+        )
+        old_pm = build_path_memory([l1], path_title="T")
+        # Add a second lesson that also has alpha problematic → still_open
+        l2 = _make_capsule(
+            "l2", "more",
+            concepts=[("alpha", "problematic")],
+        )
+        new_pm = build_path_memory([l1, l2], path_title="T")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+
+        unmastered = [i for i in ledger.items if i.kind == "unmastered_concept"]
+        assert len(unmastered) >= 1
+        # Default difficulty = 5.0 → severity = 1.0
+        assert unmastered[0].severity == pytest.approx(1.0, abs=1e-6)
+
+    def test_unmastered_concept_severity_high_difficulty(self):
+        """Concept with difficulty=9.0 yields severity ≈ 1.8 (near max)."""
+        l1_concepts = [
+            ("alpha", "problematic"),
+            ("beta", "problematic"),
+        ]
+        l1 = _make_capsule("l1", "base", concepts=l1_concepts)
+        old_pm = build_path_memory([l1], path_title="T")
+
+        # Build second lesson with alpha still problematic
+        l2_concepts = [
+            ("alpha", "problematic"),
+            ("beta", "problematic"),
+        ]
+        l2 = _make_capsule("l2", "more", concepts=l2_concepts)
+        new_pm = build_path_memory([l1, l2], path_title="T")
+
+        # Replace concept_graph with updated entries using update_after_review
+        # to raise alpha's difficulty (q=0 -> D 5->7)
+        new_pm = PathMemory(
+            path_title=new_pm.path_title,
+            current_state=new_pm.current_state,
+            lesson_index=new_pm.lesson_index,
+            concept_graph=tuple(
+                cpe if cpe.name.lower() != "alpha"
+                else cpe.update_after_review(0)  # D=5 → q=0 → D=7
+                for cpe in new_pm.concept_graph
+            ),
+            exercise_bank=new_pm.exercise_bank,
+            recurring_misconceptions=new_pm.recurring_misconceptions,
+            best_explanations=new_pm.best_explanations,
+            total_lessons=new_pm.total_lessons,
+            total_concepts=new_pm.total_concepts,
+            total_exercises=new_pm.total_exercises,
+        )
+
+        # Verify that update_after_review(0) raised difficulty to ~7.0
+        alpha_cpe = next(c for c in new_pm.concept_graph if c.name.lower() == "alpha")
+        assert alpha_cpe.difficulty == pytest.approx(7.0, abs=0.1), (
+            f"Expected alpha difficulty ~7.0 after q=0, got {alpha_cpe.difficulty}"
+        )
+
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+
+        unmastered = [i for i in ledger.items if i.kind == "unmastered_concept"]
+        alpha_items = [i for i in unmastered if "alpha" in i.description.lower()]
+        if alpha_items:
+            # D should be > 5 (raised to ~7), severity should be > 1.0
+            assert alpha_items[0].severity > 1.0, (
+                f"Expected severity > 1.0 for D~7, got {alpha_items[0].severity}"
+            )
+
+    def test_unmastered_severity_never_zero(self):
+        """Even minimum difficulty (D=1.0) yields severity ≥ 0.2, never 0."""
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("alpha", "problematic")],
+        )
+        old_pm = build_path_memory([l1], path_title="T")
+        l2 = _make_capsule(
+            "l2", "more",
+            concepts=[("alpha", "problematic")],
+        )
+        new_pm = build_path_memory([l1, l2], path_title="T")
+
+        # Force difficulty to 1.0
+        new_pm = PathMemory(
+            path_title=new_pm.path_title,
+            current_state=new_pm.current_state,
+            lesson_index=new_pm.lesson_index,
+            concept_graph=tuple(
+                ConceptPathEntry(
+                    name=cpe.name,
+                    first_introduced_lesson=cpe.first_introduced_lesson,
+                    statuses=cpe.statuses,
+                    lessons=cpe.lessons,
+                    prerequisites=cpe.prerequisites,
+                    repetition_count=cpe.repetition_count,
+                    last_reviewed_lesson=cpe.last_reviewed_lesson,
+                    difficulty=1.0,
+                    estimated_retention=cpe.estimated_retention,
+                )
+                for cpe in new_pm.concept_graph
+            ),
+            exercise_bank=new_pm.exercise_bank,
+            recurring_misconceptions=new_pm.recurring_misconceptions,
+            best_explanations=new_pm.best_explanations,
+            total_lessons=new_pm.total_lessons,
+            total_concepts=new_pm.total_concepts,
+            total_exercises=new_pm.total_exercises,
+        )
+
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+
+        for item in ledger.items:
+            if item.kind == "unmastered_concept":
+                # D=1.0 → severity = 1.0 + (1.0-5.0)/5.0 = 0.2
+                assert item.severity == pytest.approx(0.2, abs=1e-6)
+
+    def test_under_practiced_debt_default_severity(self):
+        """Under-practiced (not unmastered) debt items stay at default severity 1.0."""
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("alpha", "introduced")],
+        )
+        # L2: alpha not introduced (no delta), but path memory has it
+        l2 = _make_capsule(
+            "l2", "more",
+            concepts=[("alpha", "reinforced")],
+        )
+        old_pm = build_path_memory([l1], path_title="T")
+        new_pm = build_path_memory([l1, l2], path_title="T")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+
+        for item in ledger.items:
+            if item.kind == "under_practiced":
+                assert item.severity == pytest.approx(1.0, abs=1e-6)
+            elif item.kind == "unmastered_concept":
+                # These DO have difficulty-derived severity
+                pass

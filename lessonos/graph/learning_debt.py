@@ -81,10 +81,28 @@ def _detect_unmastered(
        (including newly-introduced problematic concepts).
 
     Dedup by concept name to avoid duplicate debt items.
+
+    ``severity`` is derived from per-concept difficulty (FSRS-style):
+    ``severity = 1.0 + (difficulty - 5.0) / 5.0``, clamped to [0.2, 2.0].
+    Higher difficulty = more urgent debt.
     """
     seen: set[str] = set()
     items: list[LearningDebtItem] = []
     idx: int = 0
+
+    # Build a difficulty lookup from PathMemory concept_graph
+    _diff_lookup: dict[str, float] = {}
+    for cpe in memory.concept_graph:
+        _diff_lookup[cpe.name.lower()] = cpe.difficulty or 5.0
+
+    def _severity_from_difficulty(d: float) -> float:
+        """Map difficulty D ∈ [1,10] to severity ∈ [0.2, 2.0].
+
+        D=5.0 → 1.0 (neutral baseline)
+        D=10.0 → 2.0 (2x more urgent)
+        D=1.0 → 0.2 (5x less urgent)
+        """
+        return max(0.2, min(2.0, 1.0 + (d - 5.0) / 5.0))
 
     # From delta: still-open concepts (problematic then and now)
     for i, change in enumerate(delta.still_open_concepts):
@@ -93,11 +111,13 @@ def _detect_unmastered(
         seen.add(change.name.lower())
         lesson_ids = change.new_lessons
         last_lesson = lesson_ids[-1] if lesson_ids else None
+        diff = _diff_lookup.get(change.name.lower(), 5.0)
         items.append(
             LearningDebtItem(
                 debt_id=_build_debt_id(path_id, "unmastered_concept", idx),
                 path_id=path_id,
                 kind="unmastered_concept",
+                severity=_severity_from_difficulty(diff),
                 description=(
                     f'Concept "{change.name}" is still problematic '
                     f"(statuses: {', '.join(change.new_statuses)}). "
@@ -120,6 +140,7 @@ def _detect_unmastered(
             seen.add(cpe.name.lower())
             lesson_ids = cpe.lessons
             last_lesson = lesson_ids[-1] if lesson_ids else None
+            diff = _diff_lookup.get(cpe.name.lower(), 5.0)
             items.append(
                 LearningDebtItem(
                     debt_id=_build_debt_id(
@@ -127,6 +148,7 @@ def _detect_unmastered(
                     ),
                     path_id=path_id,
                     kind="unmastered_concept",
+                    severity=_severity_from_difficulty(diff),
                     description=(
                         f'Concept "{cpe.name}" is problematic '
                         f"(statuses: {', '.join(cpe.statuses)}). "

@@ -179,12 +179,22 @@ def _build_review_items(
 
     downstream = downstream_prereqs or frozenset()
 
+    # Build severity lookup from debt items (by concept name)
+    _debt_severity: dict[str, float] = {}
+    for debt in ledger.items:
+        if debt.kind == "unmastered_concept":
+            # Extract concept name from description
+            m = re.search(r'Concept "([^"]+)"', debt.description)
+            if m:
+                _debt_severity[m.group(1).lower()] = debt.severity
+
     # Sort by retrievability urgency:
     # 1. (retention path) estimated_retention ascending (lowest = most urgent)
     # 2. (both paths) is_downstream_prerequisite (True = blocks other learning)
-    # 3. (both paths) difficulty descending (hardest concepts first, default 5.0)
-    # 4. (retention path) description (stable tiebreaker)
-    # 5. (fallback path, when retention is None) repetition_count ascending,
+    # 3. (both paths) severity descending (higher severity = more urgent)
+    # 4. (both paths) difficulty descending (hardest concepts first, default 5.0)
+    # 5. (retention path) description (stable tiebreaker)
+    # 6. (fallback path, when retention is None) repetition_count ascending,
     #    then last_reviewed_lesson, then description
     if memory and items:
         _concept_rep_map: dict[str, dict] = {}
@@ -204,6 +214,7 @@ def _build_review_items(
             info = _concept_rep_map.get(concept_name, {})
             retention = info.get("retention")
             difficulty_val: float = info.get("difficulty", 5.0)
+            severity_val: float = _debt_severity.get(concept_name, 1.0)
 
             # Check if this concept is a downstream prerequisite
             is_downstream = concept_name in downstream
@@ -211,12 +222,14 @@ def _build_review_items(
             if retention is not None:
                 # Primary: retention ascending (0.0 = forgotten -> urgent).
                 # Secondary: prerequisites first (0 = blocking, 1 = not blocking).
-                # Tertiary: difficulty descending (harder concepts first).
+                # Tertiary: severity descending (higher severity = more urgent).
+                # Quaternary: difficulty descending (harder concepts first).
                 # Tiebreaker: description for stable sorting.
                 return (
                     0,
                     retention,
                     0 if is_downstream else 1,
+                    -severity_val,
                     -difficulty_val,
                     item.description,
                 )
@@ -228,6 +241,7 @@ def _build_review_items(
                 rep_count,
                 last_idx,
                 0 if is_downstream else 1,
+                -severity_val,
                 -difficulty_val,
                 item.description,
             )

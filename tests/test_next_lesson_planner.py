@@ -32,7 +32,7 @@ from lessonos.graph.next_lesson_planner import (
     NextLessonPlan,
     compute_next_lesson_plan,
 )
-from lessonos.graph.path_memory import PathMemory, build_path_memory
+from lessonos.graph.path_memory import ConceptPathEntry, PathMemory, build_path_memory
 
 
 # --- Helpers ---
@@ -845,4 +845,95 @@ class TestDownstreamPrerequisitePrioritisation:
         review_descs = " ".join(i.description.lower() for i in plan.review_items)
         assert "algebra" not in review_descs, (
             "'algebra' is not problematic — should not be in review"
+        )
+
+
+class TestSeverityAwarePlanner:
+    """Severity from difficulty affects review item sort order (M4 maturation)."""
+
+    def test_severity_tiebreaker_in_review_sort(self):
+        """Within same retention tier, higher severity concept appears first."""
+        # Three unmastered concepts with different difficulties
+        # L1 introduces alpha, beta, gamma — all problematic
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[
+                ("alpha", "problematic"),
+                ("beta", "problematic"),
+                ("gamma", "problematic"),
+            ],
+        )
+        # L2 reinforces them — still problematic → still_open in delta
+        l2 = _make_capsule(
+            "l2", "more",
+            concepts=[
+                ("alpha", "problematic"),
+                ("beta", "problematic"),
+                ("gamma", "problematic"),
+            ],
+        )
+        old_pm = build_path_memory([l1], path_title="Test")
+        new_pm = build_path_memory([l1, l2], path_title="Test")
+
+        # Manually set per-concept difficulties:
+        # alpha = D 8.0 (very hard) → severity ~1.6
+        # beta  = D 5.0 (neutral)  → severity ~1.0
+        # gamma = D 2.0 (easy)     → severity ~0.4
+        diff_map = {"alpha": 8.0, "beta": 5.0, "gamma": 2.0}
+        new_concept_graph = tuple(
+            ConceptPathEntry(
+                name=cpe.name,
+                first_introduced_lesson=cpe.first_introduced_lesson,
+                statuses=cpe.statuses,
+                lessons=cpe.lessons,
+                prerequisites=cpe.prerequisites,
+                repetition_count=cpe.repetition_count,
+                last_reviewed_lesson=cpe.last_reviewed_lesson,
+                difficulty=diff_map.get(cpe.name.lower(), 5.0),
+                estimated_retention=cpe.estimated_retention,
+            )
+            for cpe in new_pm.concept_graph
+        )
+
+        new_pm = PathMemory(
+            path_title=new_pm.path_title,
+            current_state=new_pm.current_state,
+            lesson_index=new_pm.lesson_index,
+            concept_graph=new_concept_graph,
+            exercise_bank=new_pm.exercise_bank,
+            recurring_misconceptions=new_pm.recurring_misconceptions,
+            best_explanations=new_pm.best_explanations,
+            total_lessons=new_pm.total_lessons,
+            total_concepts=new_pm.total_concepts,
+            total_exercises=new_pm.total_exercises,
+        )
+
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="p1")
+
+        # Verify all three concepts share the same retention tier
+        # (prerequisite for severity being the actual tiebreaker)
+        alpha_cpe = next(c for c in new_pm.concept_graph if c.name.lower() == "alpha")
+        beta_cpe = next(c for c in new_pm.concept_graph if c.name.lower() == "beta")
+        gamma_cpe = next(c for c in new_pm.concept_graph if c.name.lower() == "gamma")
+        assert alpha_cpe.estimated_retention == beta_cpe.estimated_retention == gamma_cpe.estimated_retention, (
+            "All three concepts must share same retention tier for severity tiebreaker test"
+        )
+
+        # All 3 should appear in review items (same retention tier since they
+        # share the same lesson gap pattern). Within that tier, alpha (severity
+        # ~1.6) should come before beta (1.0) before gamma (0.4).
+        review_descs = [i.description.lower() for i in plan.review_items]
+        alpha_pos = next(i for i, d in enumerate(review_descs) if "alpha" in d)
+        beta_pos = next(i for i, d in enumerate(review_descs) if "beta" in d)
+        gamma_pos = next(i for i, d in enumerate(review_descs) if "gamma" in d)
+
+        assert alpha_pos < beta_pos, (
+            f"alpha (severity ~1.6) should precede beta (severity ~1.0), "
+            f"positions: alpha={alpha_pos}, beta={beta_pos}"
+        )
+        assert beta_pos < gamma_pos, (
+            f"beta (severity ~1.0) should precede gamma (severity ~0.4), "
+            f"positions: beta={beta_pos}, gamma={gamma_pos}"
         )
