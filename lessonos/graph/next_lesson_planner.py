@@ -19,6 +19,7 @@ already-structured data into an actionable teaching plan.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 from lessonos.graph.didactic_delta import DidacticDelta
@@ -147,26 +148,23 @@ def _build_review_items(
                 cpe.last_reviewed_lesson,
             )
 
+        # Precompute lesson_id → index for O(1) lookup
+        _lesson_index_map: dict[str, int] = {
+            entry.lesson_id: i
+            for i, entry in enumerate(memory.lesson_index)
+        }
+
         def _review_sort_key(item: LessonAgendaItem) -> tuple[int, int, str]:
             # Extract concept name from description like
             # 'Review and clarify concept: Concept "name" is ...'
-            desc = item.description
-            # Find the concept name between quotes after 'Concept "'
-            import re as _re
-
-            m = _re.search(r'Concept "([^"]+)"', desc)
-            concept_name = m.group(1).lower() if m else desc.lower()
+            m = re.search(r'Concept "([^"]+)"', item.description)
+            concept_name = m.group(1).lower() if m else item.description.lower()
             rep_count, last_lesson = _concept_rep_map.get(
                 concept_name, (0, None)
             )
             # Lower repetition_count -> higher urgency.
             # Earlier (farther past) last_reviewed_lesson -> higher urgency.
-            last_idx = 0
-            if last_lesson and memory:
-                for i, entry in enumerate(memory.lesson_index):
-                    if entry.lesson_id == last_lesson:
-                        last_idx = i
-                        break
+            last_idx = _lesson_index_map.get(last_lesson, 0) if last_lesson else 0
             # Sort key: low rep first, low last_idx first (farther past)
             return (rep_count, last_idx, item.description)
 
