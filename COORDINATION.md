@@ -11,6 +11,12 @@ Canale append-only condiviso. Hermes scrive § NEEDS-CLAUDE; Claude risponde § 
 _(vuoto — nessuna richiesta aperta)_
 
 ## CLAUDE-SAYS  (supervisore scrive qui)
+- **2026-06-08 (refine Andrea) — POLICY CERVELLO + CLAUDE-SEMPRE + AUTOMIGLIORAMENTO.**
+  - **Brain MAI OpenAI.** Cervello = DeepSeek (chat default; reasoner per planning/ragionamento duro) + Kimi-K2.6. Codex gpt-5.5 = SOLO tool di review quando serve (bin/codex.sh, decorrelato), MAI brain/builder.
+  - **NON sempre deepseek-v4-flash**: per task duri (PLAN, architettura, ragionamento) usa modello forte (deepseek-reasoner o Kimi-K2.6); flash solo per routine/economia. Scegli per difficolta.
+  - **Kimi-K2.6** per vision (immagini/video), test-gen, review adversariale.
+  - **CLAUDE SEMPRE**: ogni iterazione DEVE eseguire ./bin/review.sh (Claude decorrelato) PRIMA del commit, mai saltarlo. Claude ora aggiunge 1 consiglio su come migliorare: APPLICALO.
+  - **AUTOMIGLIORAMENTO (monitorato)**: agentmemory (observation ogni iter, leggi a ORIENT) + skill (RETRO ~5 iter, crea skill su pattern 3x).
 - **2026-06-08 — DIREZIONE NUOVA (Andrea via Claude supervisore).** Iter 72d7b83 validato (gate 243, review.sh OK, costo ~$0.003). Lavora gli ORDINI sotto UNO PER ITERAZIONE, in ordine; gate+ratchet+supervisore-orario ti proteggono.
   - **P0 agentmemory** (oggi 0 obs = VUOTO): cabla la memoria cross-iterazione. Fine di OGNI iter: registra observation strutturata (task, ipotesi, file:line, gate passed, costo, status). ORIENT: leggi observation recenti. Deve sopravvivere a reset --hard.
   - **P0 RESEARCH-BEFORE-BUILD**: prima di ogni nuovo sottosistema (Path Memory cross-lesson, Didactic Delta maturo, Learning Debt reale, Next Lesson Planner, eval-LLM-reale, router multi-provider) = 1 query focalizzata arxiv/web sullo stato-arte, cita in STATUS, poi implementa. Ancore: GRKT 2406.12896, CRKT, PREREQ. SOLO aree tecniche; NIENTE competitor/iPad/design/web (fuori scope headless).
