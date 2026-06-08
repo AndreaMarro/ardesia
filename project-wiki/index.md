@@ -28,3 +28,4 @@ Ogni pagina + riassunto 1 riga.
 - **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
 |- **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2)
 |- **pipeline.md** — PipelineOrchestrator: run_pipeline() + PipelineResult (P2 product-API, lessonos/pipeline.py)
+|- **cross-fixture.md** — Multi-fixture hardening: second fixture path spaced_path (SM-2/FSRS), pattern per aggiungere nuovi fixture path
