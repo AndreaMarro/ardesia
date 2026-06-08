@@ -3,6 +3,10 @@ import os
 import pytest
 
 from lessonos.llm import KimiAuthError, KimiProvider, LLMResponse, Router
+from lessonos.llm.deepseek import (
+    DEEPSEEK_PRICING,
+    estimate_deepseek_cost,
+)
 from lessonos.llm.kimi import estimate_kimi_cost, KIMI_PRICING
 from lessonos.llm.router import LLMProvider
 
@@ -99,3 +103,69 @@ class TestKimiPricing:
             assert inp > 0, f"{model}: input price must be > 0"
             assert out > 0, f"{model}: output price must be > 0"
             assert inp < out, f"{model}: output ({out}) must cost more than input ({inp})"
+
+
+# --- DeepSeek agent cost estimation ---
+
+
+class TestEstimateDeepSeekCost:
+    """estimate_deepseek_cost — USD cost for DeepSeek brain iterations."""
+
+    def test_defaults_estimate(self) -> None:
+        """Default (1K input + 500 output) at cache-miss rates."""
+        cost = estimate_deepseek_cost()
+        # (1000 * 0.14 + 500 * 0.28) / 1_000_000 = 0.00014 + 0.00014 = 0.00028
+        assert cost == pytest.approx(0.00028, rel=1e-6)
+
+    def test_exact_counts(self) -> None:
+        """10K input + 2K output at cache-miss rates."""
+        cost = estimate_deepseek_cost(input_tokens=10_000, output_tokens=2_000)
+        # (10000 * 0.14 + 2000 * 0.28) / 1_000_000 = 0.0014 + 0.00056 = 0.00196
+        assert cost == pytest.approx(0.00196, rel=1e-6)
+
+    def test_zero_tokens_zero_cost(self) -> None:
+        assert estimate_deepseek_cost(input_tokens=0, output_tokens=0) == 0.0
+
+    def test_negative_input_raises(self) -> None:
+        with pytest.raises(ValueError):
+            estimate_deepseek_cost(input_tokens=-1, output_tokens=500)
+
+    def test_negative_output_raises(self) -> None:
+        with pytest.raises(ValueError):
+            estimate_deepseek_cost(input_tokens=100, output_tokens=-50)
+
+    def test_custom_rates(self) -> None:
+        """Custom per-model rates (e.g. deepseek-v4-pro)."""
+        cost = estimate_deepseek_cost(
+            input_tokens=10_000,
+            output_tokens=2_000,
+            input_price=0.435,
+            output_price=0.87,
+        )
+        # (10000 * 0.435 + 2000 * 0.87) / 1_000_000 = 0.00435 + 0.00174 = 0.00609
+        assert cost == pytest.approx(0.00609, rel=1e-6)
+
+    def test_large_iteration(self) -> None:
+        """Large iteration: 50K input + 10K output (heavy analysis)."""
+        cost = estimate_deepseek_cost(input_tokens=50_000, output_tokens=10_000)
+        # (50000 * 0.14 + 10000 * 0.28) / 1_000_000 = 0.007 + 0.0028 = 0.0098
+        assert cost == pytest.approx(0.0098, rel=1e-6)
+
+
+class TestDeepSeekPricing:
+    """DEEPSEEK_PRICING table invariants."""
+
+    def test_prices_positive_and_ordered(self) -> None:
+        for model, (cache_miss, cache_hit, out) in DEEPSEEK_PRICING.items():
+            assert cache_miss > 0, f"{model}: cache_miss must be > 0"
+            assert cache_hit > 0, f"{model}: cache_hit must be > 0"
+            assert out > 0, f"{model}: output must be > 0"
+            # Cache hit should be cheaper than cache miss
+            assert cache_hit < cache_miss, (
+                f"{model}: cache_hit ({cache_hit}) must be cheaper than "
+                f"cache_miss ({cache_miss})"
+            )
+            # Output is always more expensive than input (cache miss)
+            assert out > cache_miss, (
+                f"{model}: output ({out}) must cost more than input ({cache_miss})"
+            )
