@@ -13,8 +13,10 @@ Live API calls are NOT tested here (use the realtime eval for that).
 
 from __future__ import annotations
 
+import json
 import os
 import tempfile
+import urllib.error
 
 import pytest
 
@@ -170,3 +172,166 @@ class TestParseEnvFile:
     def test_file_not_found(self) -> None:
         result = _parse_env_file("/nonexistent/.env")
         assert result == {}
+
+
+# ---------------------------------------------------------------------------
+# Mocked HTTP tests for DeepSeekProvider.complete()
+# ---------------------------------------------------------------------------
+
+
+class _MockResponse:
+    """Minimal mock for urllib.request.urlopen return value."""
+
+    def __init__(self, json_body: dict) -> None:
+        self._body = json.dumps(json_body).encode("utf-8")
+
+    def read(self) -> bytes:
+        return self._body
+
+    def __enter__(self) -> _MockResponse:
+        return self
+
+    def __exit__(self, *args) -> None:
+        pass
+
+
+def _make_mock_urlopen(json_body: dict, status: int = 200):
+    """Factory: returns a callable that replaces urlopen for one call.
+
+    When status >= 400, raises HTTPError so the provider's error-handling
+    branch is exercised.
+    """
+
+    def _mock_urlopen(request, *, timeout=None):
+        if status >= 400:
+            raise urllib.error.HTTPError(
+                url=request.full_url or "",
+                code=status,
+                msg="mocked error",
+                hdrs={},
+                fp=None,
+            )
+        return _MockResponse(json_body)
+
+    return _mock_urlopen
+
+
+class TestDeepSeekProviderCompleteMocked:
+    """Test DeepSeekProvider.complete() with mocked HTTP (urllib).
+
+    No live API calls — all responses are synthetic.
+
+    DeepSeek API contract (v1/chat/completions):
+    - Auth: Bearer token in Authorization header
+    - Request: POST /chat/completions with {model, messages}
+    - Success response: {"choices": [{"message": {"content": str}}], "usage": dict | None}
+    - Error: HTTPError on 4xx/5xx with error body
+    """
+
+    SIMPLE_RESPONSE = {
+        "choices": [{"message": {"content": "Ecco la risposta."}}],
+        "usage": {"prompt_tokens": 50, "completion_tokens": 10},
+    }
+
+    def test_successful_complete(self, monkeypatch) -> None:
+        """Normal response returns LLMResponse with correct fields."""
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(self.SIMPLE_RESPONSE),
+        )
+        provider = DeepSeekProvider(api_key="sk-test")
+        response = provider.complete("Ciao modello.")
+        assert response.text == "Ecco la risposta."
+        assert response.provider == "deepseek"
+        assert response.model == "deepseek-chat"
+        assert response.usage == {"prompt_tokens": 50, "completion_tokens": 10}
+
+    def test_complete_with_custom_model(self, monkeypatch) -> None:
+        """Custom model is passed through to the response."""
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(self.SIMPLE_RESPONSE),
+        )
+        provider = DeepSeekProvider(api_key="sk-test", model="deepseek-reasoner")
+        response = provider.complete("Ragiona.")
+        assert response.model == "deepseek-reasoner"
+
+    def test_complete_override_model(self, monkeypatch) -> None:
+        """Per-call model override works."""
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(self.SIMPLE_RESPONSE),
+        )
+        provider = DeepSeekProvider(api_key="sk-test")
+        response = provider.complete("Ciao.", model="deepseek-reasoner")
+        assert response.model == "deepseek-reasoner"
+
+    def test_http_401_raises_runtime_error(self, monkeypatch) -> None:
+        """HTTP 401 (unauthorized) raises RuntimeError with message."""
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen({}, status=401),
+        )
+        provider = DeepSeekProvider(api_key="sk-wrong")
+        with pytest.raises(RuntimeError, match="401"):
+            provider.complete("test")
+
+    def test_missing_choices_key_raises_runtime_error(self, monkeypatch) -> None:
+        """Malformed response (no 'choices' key) raises RuntimeError."""
+        bad_body = {"not_choices": []}
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(bad_body),
+        )
+        provider = DeepSeekProvider(api_key="sk-test")
+        with pytest.raises(RuntimeError, match="missing expected fields"):
+            provider.complete("test")
+
+    def test_empty_choices_raises_runtime_error(self, monkeypatch) -> None:
+        """Empty choices list raises RuntimeError."""
+        bad_body = {"choices": [], "usage": {}}
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(bad_body),
+        )
+        provider = DeepSeekProvider(api_key="sk-test")
+        with pytest.raises(RuntimeError, match="missing expected fields"):
+            provider.complete("test")
+
+    def test_no_usage_returns_none(self, monkeypatch) -> None:
+        """Response without usage dict returns usage=None."""
+        no_usage = {
+            "choices": [{"message": {"content": "ok"}}],
+        }
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(no_usage),
+        )
+        provider = DeepSeekProvider(api_key="sk-test")
+        response = provider.complete("test")
+        assert response.text == "ok"
+        assert response.usage is None
+
+    def test_router_integration_via_complete(self, monkeypatch) -> None:
+        """Router dispatches to DeepSeekProvider.complete() correctly."""
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen(self.SIMPLE_RESPONSE),
+        )
+        router = Router()
+        provider = DeepSeekProvider(api_key="sk-test")
+        router.register(provider)
+        response = router.complete("Ciao.", provider="deepseek")
+        assert response.text == "Ecco la risposta."
+        assert response.provider == "deepseek"
+        assert response.usage == {"prompt_tokens": 50, "completion_tokens": 10}
+
+    def test_http_500_raised_as_runtime_error(self, monkeypatch) -> None:
+        """HTTP 500 (server error) raises RuntimeError."""
+        monkeypatch.setattr(
+            "urllib.request.urlopen",
+            _make_mock_urlopen({}, status=500),
+        )
+        provider = DeepSeekProvider(api_key="sk-test")
+        with pytest.raises(RuntimeError, match="500"):
+            provider.complete("test")
