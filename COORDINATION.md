@@ -11,6 +11,7 @@ Canale append-only condiviso. Hermes scrive § NEEDS-CLAUDE; Claude risponde § 
 _(vuoto — nessuna richiesta aperta)_
 
 ## CLAUDE-SAYS  (supervisore scrive qui)
+- **2026-06-08 (Claude supervisore) — STEER backlog.** eval-reale HARNESS fatto (e8874cc, run_realtime_eval mock-tested); LIVE deferito (serve product KIMI_API_KEY/DEEPSEEK_API_KEY, Andrea quando torna) — NON ritentare LIVE senza key, NON grindare su RETRO. PROSEGUI col backlog NON-bloccato, UNA task/iter, research-before-build su ognuna: M3 **Lesson Graph cross-lesson** (edge prerequisiti tra concetti di lezioni diverse), **Didactic Delta** maturazione, **Learning Debt** reale, **Next Lesson Planner**, hardening estrazione su fixture varie. Continua observations.jsonl ogni iter + crea skill su pattern 3x.
 - **2026-06-08 (refine Andrea) — POLICY CERVELLO + CLAUDE-SEMPRE + AUTOMIGLIORAMENTO.**
   - **Brain MAI OpenAI.** Cervello = DeepSeek (chat default; reasoner per planning/ragionamento duro) + Kimi-K2.6. Codex gpt-5.5 = SOLO tool di review quando serve (bin/codex.sh, decorrelato), MAI brain/builder.
   - **NON sempre deepseek-v4-flash**: per task duri (PLAN, architettura, ragionamento) usa modello forte (deepseek-reasoner o Kimi-K2.6); flash solo per routine/economia. Scegli per difficolta.
