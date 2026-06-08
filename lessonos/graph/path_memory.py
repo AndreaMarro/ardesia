@@ -230,6 +230,103 @@ def compute_difficulty_update(
     return max(1.0, min(10.0, new_d))
 
 
+def predict_stability(
+    review_history: list[int],
+    *,
+    initial_stability: float = 0.5,
+    stability_multiplier: float = 1.5,
+    difficulty: float = 5.0,
+) -> float:
+    """Predict concept stability from review quality history (FSRS-style).
+
+    Stability (S) represents how long a concept is expected to be retained.
+    It grows with each successful review, modulated by the response quality.
+
+    Each review contributes to stability growth proportionally to quality:
+    - q=5 (perfect): full growth
+    - q=4 (good): ~80% growth
+    - q=3 (hard): ~50% growth
+    - q=0-2 (poor/forgotten): minimal growth (~20%)
+
+    The total stability after N reviews:
+
+        ``S = S₀ * ∏_{i=1}^{N} (1 + (mult - 1) * w(qᵢ) * difficulty_scaling)``
+
+    Where w(q) is the quality weight and difficulty_scaling = (11 - D) / 6.
+
+    This is a simplified heuristic for v0. The full FSRS-5 model (Ye 2023)
+    learns per-review stability deltas via maximum likelihood estimation:
+    https://github.com/open-spaced-repetition/fsrs4anki
+
+    Parameters
+    ----------
+    review_history : list[int]
+        Sequence of SM-2 quality scores (0–5) for past reviews of this concept.
+        Must not be empty.
+    initial_stability : float
+        Base stability after first exposure (default 0.5).
+    stability_multiplier : float
+        How much stability grows per good review at neutral difficulty
+        (default 1.5). Only applies to reviews.
+    difficulty : float
+        Per-concept difficulty D ∈ [1.0, 10.0] (default 5.0).
+
+    Returns
+    -------
+    float
+        Predicted stability after the review history.
+
+    Raises
+    ------
+    ValueError
+        If review_history is empty, or parameters are out of range.
+    """
+    if not review_history:
+        raise ValueError("review_history must not be empty")
+    if not (1.0 <= difficulty <= 10.0):
+        raise ValueError(f"difficulty must be in [1.0, 10.0], got {difficulty}")
+    if initial_stability <= 0:
+        raise ValueError(
+            f"initial_stability must be > 0, got {initial_stability}"
+        )
+    if stability_multiplier <= 0:
+        raise ValueError(
+            f"stability_multiplier must be > 0, got {stability_multiplier}"
+        )
+
+    # Quality weight mapping: how much of the multiplier each quality level uses
+    # q=5 (perfect): 100%, q=4 (good): 80%, q=3 (hard): 50%
+    # q=0-2 (poor/forgotten): reset stability to initial (concept not retained)
+    def _quality_weight(q: int) -> float:
+        if q >= 5:
+            return 1.0
+        elif q >= 4:
+            return 0.8
+        elif q >= 3:
+            return 0.5
+        else:
+            return 0.0  # Poor recall = no stability growth (reset below)
+
+    difficulty_scaling = (11.0 - difficulty) / 6.0
+
+    stability = initial_stability
+    for q in review_history:
+        if not (0 <= q <= 5):
+            raise ValueError(
+                f"response_quality must be in [0, 5], got {q}"
+            )
+        if q < 3:
+            # Failed/forgotten review: reset stability to initial
+            # The concept was not retained, so stability shouldn't grow
+            stability = initial_stability
+        else:
+            w = _quality_weight(q)
+            effective_mult = 1.0 + (stability_multiplier - 1.0) * w * difficulty_scaling
+            stability = stability * effective_mult
+
+    return stability
+
+
 def compute_retention(
     rep_count: int,
     lessons_since_review: int,

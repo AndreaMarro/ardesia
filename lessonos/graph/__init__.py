@@ -24,6 +24,7 @@ from lessonos.graph.path_memory import (
     build_path_memory,
     compute_difficulty_update,
     compute_retention,
+    predict_stability,
 )
 from lessonos.graph.queries import (
     all_prerequisites_deep,
@@ -57,6 +58,7 @@ __all__ = [
     "compute_learning_debt",
     "compute_next_lesson_plan",
     "compute_retention",
+    "predict_stability",
     "find_concept",
     "lesson_of_concept",
     "prerequisites_of",
