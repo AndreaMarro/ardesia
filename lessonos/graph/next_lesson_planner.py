@@ -156,9 +156,9 @@ def _compute_downstream_prerequisites(
 def _estimate_scheduled_review_day(
     cpe: ConceptPathEntry,
     memory: PathMemory,
-    target_retention: float = 0.9,
 ) -> int | None:
-    """Estimate the recommended review day for a concept from its retention data.
+    """Estimate the recommended review day for a concept from its retention data,
+    using optimal desired retention modulated by difficulty and repetition count.
 
     Inverts the power-law decay formula R = 1/(1 + t/S) to find S, then uses
     compute_scheduled_review_day to find the day.
@@ -169,7 +169,10 @@ def _estimate_scheduled_review_day(
     unknown, returns 0 (suggest immediate review in the next lesson) — this is
     the safe/conservative choice for unmastered concepts.
     """
-    from lessonos.graph.path_memory import compute_scheduled_review_day
+    from lessonos.graph.path_memory import (
+        compute_scheduled_review_day,
+        optimal_desired_retention,
+    )
 
     if cpe.estimated_retention is None:
         return None
@@ -196,8 +199,13 @@ def _estimate_scheduled_review_day(
     S = t * R / (1.0 - R)
     if S <= 0:
         return 0
+    # Optimal target retention modulated by difficulty and repetition count
+    target = optimal_desired_retention(
+        difficulty=cpe.difficulty or 5.0,
+        repetition_count=cpe.repetition_count or 1,
+    )
     try:
-        return compute_scheduled_review_day(S, target_retention=target_retention)
+        return compute_scheduled_review_day(S, target_retention=target)
     except ValueError:
         return 0
 
@@ -230,7 +238,7 @@ def _build_review_items(
                 for cpe in memory.concept_graph:
                     if cpe.name.lower() == concept_name.lower():
                         review_day = _estimate_scheduled_review_day(
-                            cpe, memory, target_retention=0.9
+                            cpe, memory
                         )
                         break
             items.append(

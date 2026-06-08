@@ -433,6 +433,89 @@ def compute_retention(
     return 1.0 / (1.0 + lessons_since_review / stability)
 
 
+def optimal_desired_retention(
+    difficulty: float = 5.0,
+    repetition_count: int = 1,
+) -> float:
+    """Compute the optimal desired retention for a concept, modulated by its
+    difficulty and repetition count (FSRS-inspired).
+
+    Concepts are not equal: a concept with difficulty D=2 (easy) and 10
+    repetitions can afford a higher desired retention (longer gaps between
+    reviews), while a concept with D=9 (hard) and 1 repetition needs lower
+    desired retention (more frequent checks).
+
+    The base retention is 0.9 (90%), modulated as follows:
+
+    - **Difficulty modulation**: D ∈ [1, 10].
+      D=1 (easiest) → R += +0.05 (can afford longer gaps).
+      D=10 (hardest) → R -= −0.10 (needs more frequent review).
+
+    - **Repetition modulation**: rep_count ≥ 5 → R += +0.03 (stable).
+      rep_count ≤ 1 → R -= −0.05 (fragile, first review).
+
+    The final value is clamped to [0.75, 0.95].
+
+    Parameters
+    ----------
+    difficulty : float
+        Concept difficulty in [1.0, 10.0]. Default 5.0 (neutral).
+    repetition_count : int
+        Number of times the concept has been reviewed. Must be >= 1.
+
+    Returns
+    -------
+    float
+        Desired retention in (0, 1), clamped to [0.75, 0.95].
+
+    Raises
+    ------
+    ValueError
+        If difficulty is outside [1.0, 10.0] or repetition_count < 1.
+
+    Examples
+    --------
+    >>> optimal_desired_retention(5.0, 1)
+    0.85
+    >>> optimal_desired_retention(2.0, 5)
+    0.93
+    >>> optimal_desired_retention(9.0, 1)
+    0.75
+    """
+    if not (1.0 <= difficulty <= 10.0):
+        raise ValueError(
+            f"difficulty must be in [1.0, 10.0], got {difficulty}"
+        )
+    if repetition_count < 1:
+        raise ValueError(
+            f"repetition_count must be >= 1, got {repetition_count}"
+        )
+
+    # Base: 0.9
+    r_target = 0.9
+
+    # Difficulty modulation: D=1 → +0.05, D=10 → −0.10, linear
+    # Formula: shift = 0.05 - (difficulty - 1.0) * (0.15 / 9.0)
+    # D=1: shift = +0.05, D=5: shift = +0.05 - 4*0.01667 = −0.0167 ≈ 0.0
+    # D=10: shift = +0.05 - 9*0.01667 = −0.10
+    # (euristica, calibrazione empirica v0 — ispirata a SM-2/FSRS difficulty weighting)
+    diff_shift = 0.05 - (difficulty - 1.0) * (0.15 / 9.0)
+    r_target += diff_shift
+
+    # Repetition modulation
+    if repetition_count >= 5:
+        r_target += 0.03  # stable concept, can space out
+    elif repetition_count <= 1:
+        r_target -= 0.05  # fragile, first review
+
+    # Clamp to safe bounds
+    if r_target < 0.75:
+        r_target = 0.75
+    elif r_target > 0.95:
+        r_target = 0.95
+    return r_target
+
+
 def compute_scheduled_review_day(
     stability: float,
     *,
