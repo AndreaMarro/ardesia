@@ -70,6 +70,38 @@ response = router.complete(prompt, provider="mock")
 
 **Esempio reale**: lessonos/capsule/segmentation.py:72 — `router.complete(prompt, provider=provider, model=model)`.
 
+### Router.has_provider()
+
+Controllo di registrazione senza attivare il provider: `router.has_provider("mock")` ritorna True/False.
+
+**Citazione**: lessonos/llm/router.py:56-58 — `has_provider(name)` evita accesso `_providers` privato dall'esterno.
+
+## TaskPolicy — Routing per-task (P1)
+
+`TaskPolicy` è un dataclass frozen che definisce policy di routing per ogni task prodotto. Decisione a livello prodotto, sopra il Router.
+
+### Attributi
+
+- `name` — task name (es. "extraction", "segmentation")
+- `primary` — provider principale
+- `fallback` — provider fallback opzionale
+- `max_cost_usd` — cap costo opzionale
+- `require_json` — richiede JSON strutturato (vincola il modello)
+- `require_citations` — hint per preferire modelli citation-aware
+- `preferred_model` / `fallback_model` — modelli specifici per provider
+- `json_capable_models` — override locale della whitelist globale `_JSON_CAPABLE_MODELS`
+
+### route_for_task()
+
+```python
+provider = route_for_task(policy, router)  # -> provider name
+provider = route_for_task(policy, router, prefer_fallback=True)  # fallback
+```
+
+Chiama `policy.validate(router)` prima di risolvere. Solleva `KeyError`/`ValueError` se insoddisfacibile.
+
+**Citazione**: lessonos/llm/task_policy.py:28-57 — `TaskPolicy` dataclass
+
 ## Design Rationale
 
 1. **Abstraction** — chiamanti non dipendono da provider specifico

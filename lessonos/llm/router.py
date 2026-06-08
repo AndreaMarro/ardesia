@@ -53,6 +53,10 @@ class Router:
     def __init__(self) -> None:
         self._providers: dict[str, LLMProvider] = {}
 
+    def has_provider(self, name: str) -> bool:
+        """Check if a provider is registered by name."""
+        return name in self._providers
+
     def register(self, provider: LLMProvider) -> None:
         self._providers[provider.name] = provider
 
