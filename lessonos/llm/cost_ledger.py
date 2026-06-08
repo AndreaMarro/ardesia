@@ -1,8 +1,9 @@
 """Cost Ledger: per-LLM-call cost accumulator (PLAN §20, M5-task3).
 
 Tracks estimated USD cost for every LLM call within a path run. Mock calls
-(no usage dict) are free; real Kimi calls are estimated from documented
-pricing via ``estimate_kimi_cost``.
+(no usage dict) are free; Kimi and DeepSeek API calls (with usage dict) are
+estimated from their respective documented pricing via provider-specific
+estimators.
 
 Usage::
 
@@ -20,6 +21,7 @@ from __future__ import annotations
 
 import json
 
+from lessonos.llm.deepseek import estimate_deepseek_api_cost
 from lessonos.llm.kimi import estimate_kimi_cost
 from lessonos.llm.router import LLMResponse
 from lessonos.models.ledger import CostLedgerEntry, CostReport
@@ -49,13 +51,19 @@ class CostLedger:
         """Build and append an entry from an ``LLMResponse``.
 
         Mock responses (no ``usage`` dict) produce zero tokens and zero
-        cost. Kimi responses (with ``usage``) are estimated via
-        ``estimate_kimi_cost``.
+        cost. Real API responses (Kimi or DeepSeek) are estimated from their
+        respective documented pricing via provider-specific estimators.
         """
         if response.usage:
             prompt_tokens = response.usage.get("prompt_tokens", 0)
             completion_tokens = response.usage.get("completion_tokens", 0)
-            cost = estimate_kimi_cost(response.usage)
+            if response.provider == "deepseek":
+                cost = estimate_deepseek_api_cost(
+                    response.usage, model=response.model or "deepseek-chat"
+                )
+            else:
+                # Default to Kimi pricing for kimi provider or unknown providers
+                cost = estimate_kimi_cost(response.usage)
         else:
             prompt_tokens = 0
             completion_tokens = 0

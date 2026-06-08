@@ -373,3 +373,66 @@ def test_store_multiple_entries_order() -> None:
         entries = store.get_ledger_entries()
         assert [e.entry_id for e in entries] == ["cl:0000", "cl:0001", "cl:0002"]
         store.close()
+
+
+# ---------------------------------------------------------------------------
+# Multi-provider cost routing
+# ---------------------------------------------------------------------------
+
+
+def _deepseek_usage(prompt: int = 100_000, completion: int = 10_000) -> dict:
+    """Simulate a DeepSeek API usage dict."""
+    return {"prompt_tokens": prompt, "completion_tokens": completion}
+
+
+def test_add_from_response_deepseek_uses_deepseek_pricing() -> None:
+    """DeepSeek responses with usage dict must use DeepSeek pricing (not Kimi)."""
+    ledger = CostLedger()
+    usage = _deepseek_usage(prompt=100_000, completion=10_000)
+    resp = _make_response(
+        provider="deepseek", model="deepseek-chat", usage=usage
+    )
+    entry = ledger.add_from_response(resp, lesson_id="l1", label="segmentation")
+    # DeepSeek deepseek-chat rates: 100K*0.14 + 10K*0.28 = 0.014 + 0.0028 = 0.0168 USD
+    assert entry.prompt_tokens == 100_000
+    assert entry.completion_tokens == 10_000
+    assert entry.cost_usd == 0.0168
+    assert entry.provider == "deepseek"
+    assert entry.model == "deepseek-chat"
+
+
+def test_add_from_response_deepseek_with_reasoner_model() -> None:
+    """DeepSeek reasoner model uses its own pricing tier."""
+    ledger = CostLedger()
+    usage = _deepseek_usage(prompt=50_000, completion=5_000)
+    resp = _make_response(
+        provider="deepseek", model="deepseek-reasoner", usage=usage
+    )
+    entry = ledger.add_from_response(resp, lesson_id="l2", label="reasoning")
+    # Reasoner rates: 50K*0.55 + 5K*2.19 = 0.0275 + 0.01095 = 0.03845 USD
+    assert entry.cost_usd == 0.03845
+    assert entry.model == "deepseek-reasoner"
+
+
+def test_add_from_response_kimi_and_deepseek_in_same_ledger() -> None:
+    """Mixed provider calls produce correct per-provider costs in the ledger."""
+    ledger = CostLedger()
+    # One Kimi call
+    kimi_usage = {"prompt_tokens": 100_000, "completion_tokens": 10_000}
+    ledger.add_from_response(
+        _make_response(provider="kimi", model="kimi-k2-0905-preview", usage=kimi_usage),
+        lesson_id="l1", label="segmentation",
+    )
+    # One DeepSeek call
+    ds_usage = {"prompt_tokens": 100_000, "completion_tokens": 10_000}
+    ledger.add_from_response(
+        _make_response(provider="deepseek", model="deepseek-chat", usage=ds_usage),
+        lesson_id="l1", label="extraction",
+    )
+    report = ledger.report()
+    assert report.total_calls == 2
+    # Kimi: 100K*0.60 + 10K*3.00 = 0.06 + 0.03 = 0.09
+    # DeepSeek: 100K*0.14 + 10K*0.28 = 0.014 + 0.0028 = 0.0168
+    assert report.total_cost_usd == pytest.approx(0.1068, rel=1e-6)
+    assert report.per_model["kimi-k2-0905-preview"] == pytest.approx(0.09, rel=1e-6)
+    assert report.per_model["deepseek-chat"] == pytest.approx(0.0168, rel=1e-6)
