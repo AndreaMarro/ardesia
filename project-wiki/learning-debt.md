@@ -8,8 +8,8 @@ Il Learning Debt Ledger è il "registro debito" del percorso didattico — conce
 - Esportato via `lessonos/graph/__init__.py`
 
 ## Categorie di debito (5, da PLAN §3.4 + §26.2)
-1. **unmastered_concept** — concetti con status "problematic" nel PathMemory (da delta.still_open + scan diretto PathMemory.concept_graph, deduplicati per nome)
-2. **under_practiced** — concetti in ≥2 lezioni ma pochi esercizi (keyword-match su exercise_bank vs n_lesson)
+1. **unmastered_concept** — concetti con status "problematic" nel PathMemory (da delta.still_open + scan diretto PathMemory.concept_graph, deduplicati per nome). **severity** derivata da per-concept difficulty FSRS: `severity = 1.0 + (D-5.0)/5.0`, clamped a [0.2, 2.0] (`file:line 84-113`)
+2. **under_practiced** — concetti in ≥2 lezioni ma pochi esercizi (keyword-match su exercise_bank vs n_lesson). severity default=1.0 (non derivata da difficulty) 
 3. **over_repeated** — concetti in 3+ lezioni (soglia PLAN §3.3 §14.2 ripetizione eccessiva)
 4. **open_doubt** — domande/errori ricorrenti da PathMemory.recurring_misconceptions
 5. **weak_prerequisite** — prerequisiti dichiarati in ConceptExtraction.prerequisites ma MAI introdotti nel PathMemory.concept_graph (analisi nuova rispetto al Delta)
