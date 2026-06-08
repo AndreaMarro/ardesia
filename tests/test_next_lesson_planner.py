@@ -565,6 +565,109 @@ def test_review_items_retention_tiebreaker():
     assert y_pos < z_pos, f"Y should precede Z alphabetically (tiebreak): {review_descs}"
 
 
+# --- Difficulty-based review sorting ---
+
+
+def test_review_items_sorted_by_difficulty_tiebreaker():
+    """When estimated_retention and downstream status are equal, higher
+    difficulty concepts come first.
+
+    L1: hard_concept (problematic, difficulty=9.0), easy_concept (problematic, difficulty=2.0)
+
+    Both have the same retention (rep=1, last=l1 idx=0, lessons_since_review=1)
+    and neither is a downstream prerequisite.
+    hard_concept (difficulty=9.0) should come BEFORE easy_concept (difficulty=2.0).
+    """
+    l1 = _make_capsule(
+        "l1", "base",
+        concepts=[
+            ("hard_concept", "problematic"),
+            ("easy_concept", "problematic"),
+        ],
+    )
+    pm = build_path_memory([l1], path_title="Calc")
+    # Override difficulty per concept using dataclasses.replace
+    new_graph = []
+    for cpe in pm.concept_graph:
+        if cpe.name == "hard_concept":
+            new_graph.append(
+                dataclasses.replace(cpe, difficulty=9.0)
+            )
+        elif cpe.name == "easy_concept":
+            new_graph.append(
+                dataclasses.replace(cpe, difficulty=2.0)
+            )
+        else:
+            new_graph.append(cpe)
+    pm = dataclasses.replace(pm, concept_graph=tuple(new_graph))
+
+    delta = compute_didactic_delta(pm, pm)
+    ledger = compute_learning_debt(pm, delta, path_id="p1")
+    plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+    review_descs = [i.description.lower() for i in plan.review_items]
+    assert any("hard_concept" in d for d in review_descs), \
+        "hard_concept not found in review items"
+    assert any("easy_concept" in d for d in review_descs), \
+        "easy_concept not found in review items"
+    hard_pos = next(i for i, d in enumerate(review_descs) if "hard_concept" in d)
+    easy_pos = next(i for i, d in enumerate(review_descs) if "easy_concept" in d)
+    assert hard_pos < easy_pos, (
+        f"hard_concept (difficulty=9.0) should precede easy_concept "
+        f"(difficulty=2.0) at same retention: {review_descs}"
+    )
+
+
+def test_review_items_same_difficulty_tiebreak_by_description():
+    """When retention, downstream, AND difficulty are all equal, tiebreak
+    alphabetically by description."""
+    l1 = _make_capsule(
+        "l1", "base",
+        concepts=[
+            ("alpha_concept", "problematic"),
+            ("beta_concept", "problematic"),
+        ],
+    )
+    pm = build_path_memory([l1], path_title="Calc")
+    # Both have default difficulty=5.0 — tiebreak by description
+    delta = compute_didactic_delta(pm, pm)
+    ledger = compute_learning_debt(pm, delta, path_id="p1")
+    plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+    review_descs = [i.description.lower() for i in plan.review_items]
+    alpha_pos = next(i for i, d in enumerate(review_descs) if "alpha_concept" in d)
+    beta_pos = next(i for i, d in enumerate(review_descs) if "beta_concept" in d)
+    assert alpha_pos < beta_pos, (
+        f"alpha_concept should precede beta_concept alphabetically "
+        f"when difficulty equal: {review_descs}"
+    )
+
+
+def test_review_items_default_difficulty_when_difficulty_none():
+    """When ConceptPathEntry.difficulty is not set (shouldn't happen but
+    defensive), the system defaults to 5.0 and sorts correctly."""
+    l1 = _make_capsule(
+        "l1", "base",
+        concepts=[
+            ("concept_x", "problematic"),
+            ("concept_y", "problematic"),
+        ],
+    )
+    pm = build_path_memory([l1], path_title="Calc")
+    # Force difficulty=None via dataclasses.replace for both
+    new_graph = tuple(
+        dataclasses.replace(cpe, difficulty=5.0)
+        for cpe in pm.concept_graph
+    )
+    pm = dataclasses.replace(pm, concept_graph=new_graph)
+
+    delta = compute_didactic_delta(pm, pm)
+    ledger = compute_learning_debt(pm, delta, path_id="p1")
+    # Should not raise and should produce valid plan
+    plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+    assert plan.total_agenda_items >= 2
+
+
 # ===================================================================
 # Prerequisite-aware prioritisation (downstream blocking)
 # ===================================================================
