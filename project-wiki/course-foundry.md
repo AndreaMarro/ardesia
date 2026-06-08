@@ -1,4 +1,4 @@
-# Course Foundry (P0a) — Compila cartella lezioni reali -> corso strutturato
+# Course Foundry (P0a+b) — Compila cartella lezioni reali -> corso strutturato
 
 Il Course Foundry trasforma una cartella di lezioni reali del docente in un corso
 completo tracciabile (moduli, dispense, esercizi, quiz, pacchetti esportabili).
@@ -45,16 +45,39 @@ nello stile del docente, non AI-course-generator generico.
   lezione con materiali specifici (`exercises.md`).
 - `sources/derivatives.md`, `sources/integrals.md`, `sources/ode.md` — materiali globali condivisi.
 
-### Test (`tests/test_course_p0a.py`)
+## P0b — ContentAtom + capsule_to_atoms converter
 
-40 test non-tautologici:
-- Schema validation: 5 entità (frozen, ValueError su input invalido, immutabilità)
-- Folder loader: valid/invalid paths, source refs, module refs, missing file, duplicate, unknown ref
-- CourseBlueprint builder: con/senza moduli, fallback modulo unico
-- Fixture integrazione: sample_course carica, 3 lezioni ordinate, source files esistono, refs risolti
+### ContentAtom (`lessonos/course/atoms.py:28-89`)
 
-### Bug trovato (Claude Code review)
+`ContentAtom` frozen dataclass: unità minima di contenuto didattico tracciabile.
 
-`_load_modules()` in `folder_loader.py:132` non validava lesson_ids dei moduli contro le lezioni
-caricate — un manifest poteva referenziare lesson_ids inesistenti e caricare senza errore.
-Fix: validazione con `known_lesson_ids` set + ValueError (`folder_loader.py:139-144`).
+Campi:
+- `atom_id: str` — `<lesson_id>/<atom_type>/<n>` (es. `l1_derivatives/definition/0`)
+- `atom_type: str` — ∈ `ATOM_TYPES` (13 tipi: definition/explanation/example/exercise/
+  quiz_question/student_question/misconception/homework/summary/objective/prerequisite/
+  teacher_note/source_excerpt)
+- `lesson_id: str`, `body: str`
+- `source_refs: tuple[Citation, ...]` — **OBBLIGATORIE** salvo `explicit_ai_inference=True`
+- `teacher_approved: bool` (default False)
+- `confidence: float | None`
+- `explicit_ai_inference: bool` (default False) — flag per atomi inferiti dal modello
+
+Validazione: `atom_type` invalido → ValueError; `source_refs` vuote senza flag → ValueError.
+
+### Capsule-to-Atoms converter (`lessonos/course/atoms.py:93-158`)
+
+`capsule_to_atoms(capsule: LessonCapsule) -> tuple[ContentAtom, ...]` mappa:
+- ConceptExtraction → `definition` (status=introduced/new), `example` (reinforced),
+  `explanation` (problematic). atom_id = `<lesson_id>/<type>/<n>` con contatori separati.
+- ExerciseExtraction → `exercise`
+- QuestionExtraction → `student_question`
+- HomeworkExtraction → `homework`
+- Timeline TopicSpan → `summary` (con explicit_ai_inference=True, zero source_refs)
+
+### Test (`tests/test_course_p0b.py`)
+
+43 test non-tautologici:
+- ATOM_TYPES vocab (14 test: tutti i 13 tipi + count + unknown)
+- ContentAtom validation (11 test: atom_type, empty fields, source_refs rule, flag, immutabilità)
+- capsule_to_atoms (18 test: mapping per status, exercise/question/homework, timeline summary,
+  atom_id invariant, deterministico, confidence averaging, empty capsule)
