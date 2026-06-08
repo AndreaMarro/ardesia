@@ -12,4 +12,10 @@ prompt="Sei il REVIEWER decorrelato di LessonOS (motore didattico Python headles
 
 === DIFF ===
 $diff"
-exec env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model "$m" "$prompt"
+# retry su auth-loop/timeout: la review Claude e MANDATORIA, non deve saltare (mirror opus.sh)
+for try in 1 2; do
+  out="$(timeout 240 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model "$m" "$prompt" 2>&1)"; rc=$?
+  if [ "$rc" = 124 ] || printf "%s" "$out" | grep -qiE "not logged in|please run /login|unauthorized|invalid api key"; then sleep 8; continue; fi
+  printf "%s\n" "$out"; exit 0
+done
+printf "%s\n" "$out"; exit 1
