@@ -21,6 +21,7 @@ from lessonos.graph.path_memory import (
     LessonIndexEntry,
     PathMemory,
     build_path_memory,
+    compute_difficulty_update,
     compute_retention,
 )
 from lessonos.graph.queries import (
@@ -50,6 +51,7 @@ __all__ = [
     "build_path_graph",
     "build_path_memory",
     "compute_didactic_delta",
+    "compute_difficulty_update",
     "compute_learning_debt",
     "compute_next_lesson_plan",
     "compute_retention",

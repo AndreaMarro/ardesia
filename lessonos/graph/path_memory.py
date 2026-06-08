@@ -104,6 +104,131 @@ class ConceptPathEntry:
                 f"difficulty must be in [1.0, 10.0], got {self.difficulty}"
             )
 
+    def update_after_review(self, quality: int) -> ConceptPathEntry:
+        """Return a new ConceptPathEntry with difficulty updated after a review.
+
+        Uses ``compute_difficulty_update`` to adjust the concept's difficulty
+        based on the student's response quality (SM-2 scale 0-5). Leaves all
+        other fields unchanged.
+
+        Parameters
+        ----------
+        quality : int
+            Student response quality on SM-2 scale: 0 (worst) to 5 (best).
+
+        Returns
+        -------
+        ConceptPathEntry
+            A new entry with updated difficulty. All other fields (name,
+            statuses, lessons, etc.) are identical to ``self``.
+
+        Raises
+        ------
+        ValueError
+            If ``quality`` is outside [0, 5].
+        """
+        new_difficulty = compute_difficulty_update(self.difficulty, quality)
+        return ConceptPathEntry(
+            name=self.name,
+            first_introduced_lesson=self.first_introduced_lesson,
+            statuses=self.statuses,
+            lessons=self.lessons,
+            prerequisites=self.prerequisites,
+            repetition_count=self.repetition_count,
+            last_reviewed_lesson=self.last_reviewed_lesson,
+            difficulty=new_difficulty,
+            estimated_retention=self.estimated_retention,
+        )
+
+
+def compute_difficulty_update(
+    difficulty: float,
+    response_quality: int,
+) -> float:
+    """Update concept difficulty D based on student response quality (SM-2 / FSRS style).
+
+    Models how a concept's difficulty changes after a student attempts an exercise
+    or answers a question. The update follows a simplified SM-2 / FSRS approach:
+
+    - **Good response (q=4, q=5)**: difficulty decreases (concept becomes easier
+      for this student). Higher quality = stronger decrease.
+      ``D' = D - (q - 3) * 0.3``
+      q=5: -0.6, q=4: -0.3
+
+    - **Hard response (q=3)**: slight difficulty increase to reflect struggle.
+      ``D' = D + 0.1``
+
+    - **Poor response (q=0,1,2)**: difficulty increases significantly.
+      ``D' = D + (4 - q) * 0.5``
+      q=0: +2.0, q=1: +1.5, q=2: +1.0
+
+    Result is clamped to [1.0, 10.0].
+
+    This is a simplified heuristic for LessonOS v0 (calibration empirica). The
+    ratio of penalty-to-reward (~3.3:1, i.e., a poor response hurts 3.3x more
+    than a good response helps) creates a pessimistic bias — once difficulty
+    rises, it takes more good responses to bring it back down. This is
+    intentional for v0: underestimating a student is safer than
+    overestimating (avoids recommending material beyond their level).
+
+    The full FSRS model (Ye 2023) learns per-card stability and difficulty
+    from review history via maximum likelihood estimation with ~12 parameters.
+    LessonOS v0 uses a simpler heuristic that preserves the directional
+    behaviour of spaced-repetition theory without the cold-start problem of
+    MLE. Future versions may calibrate these coefficients from real student
+    data (Plan §19).
+
+    Parameters
+    ----------
+    difficulty : float
+        Current difficulty D ∈ [1.0, 10.0].
+    response_quality : int
+        Student response quality on SM-2 scale: 0 (worst) to 5 (best).
+
+    Returns
+    -------
+    float
+        Updated difficulty, clamped to [1.0, 10.0].
+
+    Raises
+    ------
+    ValueError
+        If ``difficulty`` is outside [1.0, 10.0] or ``response_quality``
+        outside [0, 5].
+
+    Examples
+    --------
+    >>> compute_difficulty_update(5.0, 5)  # perfect response, easier now
+    4.4
+    >>> compute_difficulty_update(5.0, 0)  # terrible response, much harder
+    7.0
+    >>> compute_difficulty_update(5.0, 3)  # hard response, slightly harder
+    5.1
+    """
+    if not (1.0 <= difficulty <= 10.0):
+        raise ValueError(
+            f"difficulty must be in [1.0, 10.0], got {difficulty}"
+        )
+    if not (0 <= response_quality <= 5):
+        raise ValueError(
+            f"response_quality must be in [0, 5], got {response_quality}"
+        )
+
+    if response_quality >= 4:
+        # Good response: difficulty decreases
+        delta = (response_quality - 3) * 0.3
+        new_d = difficulty - delta
+    elif response_quality == 3:
+        # Hard response: slight increase
+        new_d = difficulty + 0.1
+    else:
+        # Poor response: significant increase
+        # response_quality in {0,1,2} -> (4-q) in {4,3,2}
+        delta = (4 - response_quality) * 0.5
+        new_d = difficulty + delta
+
+    return max(1.0, min(10.0, new_d))
+
 
 def compute_retention(
     rep_count: int,

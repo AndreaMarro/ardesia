@@ -636,3 +636,195 @@ def test_stability_never_decreases_with_reps_for_any_difficulty():
         assert r_3 >= r_2 >= r_1, (
             f"D={D}: stability must grow monotonically with reps"
         )
+
+
+# --- FSRS Difficulty Update (post-review) ---
+
+
+def test_compute_difficulty_update_perfect_decreases():
+    """Perfect response (q=5) decreases difficulty."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    result = compute_difficulty_update(5.0, 5)
+    assert result < 5.0  # easier now
+    assert result == pytest.approx(4.4)  # 5.0 - (5-3)*0.3 = 4.4
+
+
+def test_compute_difficulty_update_good_decreases():
+    """Good response (q=4) decreases difficulty slightly."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    result = compute_difficulty_update(5.0, 4)
+    assert result < 5.0
+    assert result == pytest.approx(4.7)  # 5.0 - (4-3)*0.3 = 4.7
+
+
+def test_compute_difficulty_update_hard_increases_slightly():
+    """Hard response (q=3) increases difficulty slightly."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    result = compute_difficulty_update(5.0, 3)
+    assert result > 5.0
+    assert result == pytest.approx(5.1)  # 5.0 + 0.1 = 5.1
+
+
+def test_compute_difficulty_update_poor_increases_significantly():
+    """Poor response (q=2) increases difficulty significantly."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    result = compute_difficulty_update(5.0, 2)
+    assert result > 5.1  # more than 'hard' increase
+    assert result == pytest.approx(6.0)  # 5.0 + (4-2)*0.5 = 6.0
+
+
+def test_compute_difficulty_update_worst_increases_most():
+    """Worst response (q=0) increases difficulty the most."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    result = compute_difficulty_update(5.0, 0)
+    assert result == pytest.approx(7.0)  # 5.0 + (4-0)*0.5 = 7.0
+
+
+def test_compute_difficulty_update_clamp_bounds():
+    """Result is clamped to [1.0, 10.0]."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    # Already at min, good response shouldn't go below 1.0
+    near_min = compute_difficulty_update(1.2, 5)  # 1.2 - 0.6 = 0.6 -> clamp to 1.0
+    assert near_min == 1.0
+
+    # Already at max, bad response shouldn't go above 10.0
+    near_max = compute_difficulty_update(9.5, 0)  # 9.5 + 2.0 = 11.5 -> clamp to 10.0
+    assert near_max == 10.0
+
+    # Normal values stay in bounds
+    mid = compute_difficulty_update(5.0, 3)
+    assert 1.0 <= mid <= 10.0
+
+    # Edge: starting at exact boundary
+    assert compute_difficulty_update(1.0, 5) == 1.0  # 1.0 - 0.6 = 0.4 -> clamp 1.0
+    assert compute_difficulty_update(10.0, 0) == 10.0  # 10.0 + 2.0 = 12.0 -> clamp 10.0
+
+
+def test_compute_difficulty_update_input_validation():
+    """Invalid inputs raise ValueError."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    with pytest.raises(ValueError, match="difficulty must be in"):
+        compute_difficulty_update(0.9, 5)
+    with pytest.raises(ValueError, match="difficulty must be in"):
+        compute_difficulty_update(10.1, 5)
+    with pytest.raises(ValueError, match="response_quality must be in"):
+        compute_difficulty_update(5.0, -1)
+    with pytest.raises(ValueError, match="response_quality must be in"):
+        compute_difficulty_update(5.0, 6)
+
+
+def test_compute_difficulty_update_monotonic():
+    """Higher response_quality should always give lower (or equal) difficulty."""
+    from lessonos.graph.path_memory import compute_difficulty_update
+
+    results = [compute_difficulty_update(5.0, q) for q in range(6)]
+    # Each successive improvement should not increase difficulty
+    for i in range(5):
+        assert results[i] >= results[i + 1], (
+            f"q={i} ({results[i]}) > q={i+1} ({results[i+1]}) violates monotonicity"
+        )
+
+
+def test_compute_difficulty_update_exported():
+    """compute_difficulty_update is exported from lessonos.graph."""
+    from lessonos.graph import compute_difficulty_update
+
+    result = compute_difficulty_update(5.0, 5)
+    assert result < 5.0
+
+
+# --- ConceptPathEntry.update_after_review ---
+
+
+def test_update_after_review_returns_new_entry():
+    """update_after_review returns a new ConceptPathEntry with updated difficulty."""
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    entry = ConceptPathEntry(
+        name="derivata",
+        first_introduced_lesson="l1",
+        statuses=("introduced",),
+        lessons=("l1",),
+        prerequisites=(),
+        difficulty=7.0,
+    )
+
+    updated = entry.update_after_review(5)  # perfect response
+    assert updated is not entry  # new object
+    assert updated.difficulty < 7.0  # difficulty decreased
+    assert updated.name == entry.name  # other fields unchanged
+    assert updated.lessons == entry.lessons
+
+
+def test_update_after_review_immutability():
+    """Original entry is unchanged after update_after_review."""
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    entry = ConceptPathEntry(
+        name="derivata",
+        first_introduced_lesson="l1",
+        statuses=("introduced",),
+        lessons=("l1",),
+        prerequisites=(),
+        difficulty=7.0,
+    )
+
+    original_d = entry.difficulty
+    entry.update_after_review(0)  # terrible response
+    assert entry.difficulty == original_d  # unchanged
+
+
+def test_update_after_review_sequence():
+    """Sequential updates produce predictable difficulty trajectory."""
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    entry = ConceptPathEntry(
+        name="integrali",
+        first_introduced_lesson="l1",
+        statuses=("introduced",),
+        lessons=("l1",),
+        prerequisites=(),
+        difficulty=5.0,
+    )
+
+    # Good response: easier
+    e1 = entry.update_after_review(5)
+    assert e1.difficulty == pytest.approx(4.4)  # 5.0 - 0.6
+
+    # Then terrible response: much harder, but not exceeding 10.0
+    e2 = e1.update_after_review(0)
+    assert e2.difficulty == pytest.approx(6.4)  # 4.4 + 2.0
+
+    # Then good again: comes back down
+    e3 = e2.update_after_review(5)
+    assert e3.difficulty == pytest.approx(5.8)  # 6.4 - 0.6
+
+    # After a perfect and a bad, difficulty is higher than start
+    # (pessimistic bias: 3.3:1 ratio)
+    assert e3.difficulty > entry.difficulty
+
+
+def test_update_after_review_validation():
+    """Invalid quality raises ValueError."""
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    entry = ConceptPathEntry(
+        name="test",
+        first_introduced_lesson="l1",
+        statuses=("introduced",),
+        lessons=("l1",),
+        prerequisites=(),
+    )
+
+    with pytest.raises(ValueError, match="response_quality must be in"):
+        entry.update_after_review(-1)
+
+    with pytest.raises(ValueError, match="response_quality must be in"):
+        entry.update_after_review(6)
