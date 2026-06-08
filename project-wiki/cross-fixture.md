@@ -22,6 +22,16 @@ Domino: learning science — SM-2 e FSRS spaced repetition. 2 lezioni (l1 SM-2, 
 - **Mock payloads**: in `lessonos/pipeline.py` LESSON_MOCKS come `l1_sm2_intro` (3 concetti: spaced repetition, SM-2, fattore-di-facilita) + `l2_fsrs_advanced` (4 concetti: FSRS, stabilita-del-ricordo, funzione-di-ritenzione, ottimizzazione-cross-entropia)
 - **Citazione**: `fixtures/spaced_path/path.json:1-13` — manifest; `fixtures/spaced_path/lessons/l1_sm2_intro.json:1-17` — lezione 1; `fixtures/spaced_path/lessons/l2_fsrs_advanced.json:1-22` — lezione 2
 
+### `fixtures/bio_path/` — Biologia (2 lezioni)
+
+Dominio: biologia — fotosintesi clorofilliana. 2 lezioni (l1 introduzione fotosintesi, l2 reazioni luce). Terzo fixture per hardening multi-dominio (biologia ≠ calculus ≠ learning science).
+
+- **path_id**: `path_bio_101`
+- **sorgente**: `fotosintesi_primer.txt`
+- **Creato**: 2026-06-08 (iterazione P2, commit b79d922)
+- **Mock payloads**: in `lessonos/pipeline.py` LESSON_MOCKS come `l1_fotosintesi_intro` (2 concetti: fotosintesi clorofilliana, cloroplasto) + `l2_reazioni_luce` (3 concetti: tilacoide, catena di trasporto elettronico, ciclo di Calvin)
+- **Citazione**: `fixtures/bio_path/path.json:1-11` — manifest; `fixtures/bio_path/lessons/l1_fotosintesi_intro.json:1-18` — lezione 1; `fixtures/bio_path/lessons/l2_reazioni_luce.json:1-21` — lezione 2
+
 ## Regressione e multi-path
 
 - `test_pipeline.py::test_mocks_cover_all_lessons` usa `issubset` (non `==`) per evitare di dover aggiornare il test ogni volta che si aggiungono mock per nuovi fixture path. **Citazione**: `tests/test_pipeline.py:233-241`
