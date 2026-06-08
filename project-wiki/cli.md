@@ -31,6 +31,36 @@ Parametri:
 
 **Citazione**: lessonos/cli.py:340-350 — `run_path()`: pipeline completa a 7 fasi.
 
+### `lessonos eval-real [--fixture PATH] [--lesson ID] [--n-runs N]`
+
+Esegue `run_realtime_eval()` su una singola lezione mock e stampa le metriche
+di quality (groundedness, excerpt-accuracy, costo). Mock di default (nessuna
+chiamata API reale); per LIVE serve `DEEPSEEK_API_KEY` o `KIMI_API_KEY`.
+
+Parametri:
+- `--fixture PATH` — percorso al fixture directory (default: `fixtures/sample_path/`)
+- `--lesson ID` — lezione da valutare (default: `l1_derivative_definition`)
+- `--n-runs N` — numero di run per distribuzione (default: 1; usa >1 per `MultiRunEvalReport`)
+
+**Citazione**: lessonos/cli.py:787-835 — handler `eval-real`: carica fixture, ingerisce
+segmenti, costruisce mock router, chiama `run_realtime_eval()` o `run_realtime_eval_n_runs()`.
+
+## Test Coverage
+
+**File**: `tests/test_cli_eval_real.py` — 9 test.
+
+1. `test_eval_real_default_lesson` — exit code 0 su lezione mock di default
+2. `test_eval_real_output_contains_groundedness` — verifica groundedness= in output con parsing score
+3. `test_eval_real_explicit_lesson` — `--lesson` esplicito funziona
+4. `test_eval_real_n_runs_3` — distribuzione multi-run: output include `(3 runs)` e `run 1:`/`run 3:`
+5. `test_eval_real_n_runs_1_default` — single run (default) non crasha
+6. `test_eval_real_unknown_lesson_returns_1` — lezione inesistente → errore
+7. `test_eval_real_missing_fixture_returns_1` — fixture mancante → errore
+8. `test_eval_real_no_mock_lesson_returns_1` — lezione reale ma senza mock → errore
+9. `test_eval_real_missing_path_json_returns_1` — path.json mancante → errore
+
+**Citazione**: tests/test_cli_eval_real.py:1-158 — 9 test non-tautologici, copertura error path + output parsing.
+
 ## Architettura
 
 ### 1. Fasi della pipeline (`run_path()`, linee 340-455)

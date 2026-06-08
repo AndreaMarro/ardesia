@@ -31,6 +31,10 @@ from lessonos.graph.learning_debt import compute_learning_debt
 from lessonos.graph.next_lesson_planner import compute_next_lesson_plan
 from lessonos.graph.path_memory import PathMemory, build_path_memory
 from lessonos.llm.router import MockProvider, Router
+from lessonos.eval.realtime import (
+    run_realtime_eval,
+    run_realtime_eval_n_runs,
+)
 from lessonos.store.base import Store
 from lessonos.store.fixture_loader import (
     DEFAULT_FIXTURE_ROOT,
@@ -703,6 +707,28 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=10,
         help="Max observations to show (default: 10)",
     )
+
+    eval_parser = sub.add_parser(
+        "eval-real", help="Run realtime eval on a fixture lesson (mock in test)"
+    )
+    eval_parser.add_argument(
+        "--fixture",
+        type=str,
+        default=None,
+        help="Path to fixture directory (default: fixtures/sample_path)",
+    )
+    eval_parser.add_argument(
+        "--lesson",
+        type=str,
+        default="l1_derivative_definition",
+        help="Lesson ID to evaluate (default: l1_derivative_definition)",
+    )
+    eval_parser.add_argument(
+        "--n-runs",
+        type=int,
+        default=1,
+        help="Number of eval runs (default: 1, use >1 for distribution)",
+    )
     return parser.parse_args(argv)
 
 
@@ -751,6 +777,67 @@ def main(argv: list[str] | None = None) -> int:
             print(summary)
         else:
             print("No observations found.")
+        return 0
+
+    if args.command == "eval-real":
+        project_root = _find_project_root()
+        if args.fixture:
+            fixture_root = FsPath(args.fixture).resolve()
+        else:
+            fixture_root = project_root / "fixtures" / "sample_path"
+
+        if not fixture_root.exists():
+            print(
+                f"Error: fixture path not found: {fixture_root}",
+                file=sys.stderr,
+            )
+            return 1
+        if not (fixture_root / "path.json").exists():
+            print(
+                f"Error: no path.json in {fixture_root}",
+                file=sys.stderr,
+            )
+            return 1
+
+        store = SQLiteStore(":memory:")
+        from lessonos.store.fixture_loader import load_sample_path, ingest_lesson_segments
+
+        path_obj = load_sample_path(store, fixture_root)
+        if args.lesson not in path_obj.lesson_ids:
+            print(
+                f"Error: lesson '{args.lesson}' not found in fixture "
+                f"(available: {', '.join(path_obj.lesson_ids)})",
+                file=sys.stderr,
+            )
+            return 1
+
+        # Ingest segments so _build_router can build prompts
+        ingest_lesson_segments(store, args.lesson, fixture_root)
+
+        # Build mock router using the same _LESSON_MOCKS pattern
+        router = _build_router(store, args.lesson)
+        if router is None:
+            print(
+                f"Error: no mock registered for lesson '{args.lesson}'",
+                file=sys.stderr,
+            )
+            return 1
+
+        if args.n_runs > 1:
+            report = run_realtime_eval_n_runs(
+                lesson_id=args.lesson,
+                fixture_root=fixture_root,
+                router=router,
+                n=args.n_runs,
+            )
+        else:
+            report = run_realtime_eval(
+                lesson_id=args.lesson,
+                fixture_root=fixture_root,
+                router=router,
+            )
+
+        print(report.summary())
         return 0
 
     print(f"Unknown command: {args.command!r}", file=sys.stderr)

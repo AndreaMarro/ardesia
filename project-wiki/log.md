@@ -50,4 +50,5 @@ Append-only. 1 riga per modifica.
 - **2026-06-10(current) — P2: test DeepSeekProvider.complete() with mocked HTTP**: 687 passed.
 - **2026-06-10(current) — P2: optimal_desired_retention(D, rep_count)**: 704 passed.
 - 2026-06-10(current) — FM2 timeout+retry: lessonos/llm/_retry.py. 739 passed.
-- **2026-06-10(current) — Fix test_search_observations fragility (gate ripristino 776 pass)**: test query "add" matchava commit SHA → fix a "add-". Review Claude: regressione copertura rilevata. observation aggiornata con commit reale. Gate VERDE 776 pass.
+|- **2026-06-10(current) — Fix test_search_observations fragility (gate ripristino 776 pass)**: test query "add" matchava commit SHA → fix a "add-". Review Claude: regressione copertura rilevata. observation aggiornata con commit reale. Gate VERDE 776 pass.
+|- **2026-06-10(current) — P2 CLI eval-real subcommand**: lessonos eval-real [--fixture PATH] [--lesson ID] [--n-runs N] per eval mock on-demand. 9 test, 785 passed.
