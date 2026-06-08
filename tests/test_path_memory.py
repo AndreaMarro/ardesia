@@ -828,3 +828,170 @@ def test_update_after_review_validation():
 
     with pytest.raises(ValueError, match="response_quality must be in"):
         entry.update_after_review(6)
+
+
+# ---------------------------------------------------------------------------
+# apply_review_feedback tests
+# ---------------------------------------------------------------------------
+
+
+def _make_minimal_memory(
+    concept_names: list[str] | None = None,
+) -> PathMemory:
+    """Build a minimal PathMemory for testing review feedback.
+
+    Each concept gets default difficulty 5.0.
+    """
+    from lessonos.graph.path_memory import (
+        ConceptPathEntry,
+        LessonIndexEntry,
+        PathMemory,
+    )
+
+    if concept_names is None:
+        concept_names = ["derivata", "integrale"]
+
+    concepts = tuple(
+        ConceptPathEntry(
+            name=name,
+            first_introduced_lesson="l1",
+            statuses=("introduced",),
+            lessons=("l1",),
+            prerequisites=(),
+            difficulty=5.0,
+            repetition_count=1,
+            last_reviewed_lesson="l1",
+        )
+        for name in concept_names
+    )
+
+    return PathMemory(
+        path_title="test path",
+        current_state="initial",
+        lesson_index=(
+            LessonIndexEntry(
+                lesson_id="l1",
+                title="test lesson",
+                topics=("test topic",),
+                concept_count=len(concepts),
+                exercise_count=0,
+                new_concepts=(concept_names[0],) if concept_names else (),
+                reinforced_concepts=(),
+            ),
+        ),
+        concept_graph=concepts,
+        recurring_misconceptions=(),
+        exercise_bank=(),
+        best_explanations=(),
+        total_lessons=1,
+        total_concepts=len(concepts),
+        total_exercises=0,
+    )
+
+
+class TestApplyReviewFeedback:
+    """Tests for apply_review_feedback."""
+
+    def test_good_quality_lowers_difficulty(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        updated = apply_review_feedback(memory, {"derivata": 5})
+
+        orig_d = memory.concept_graph[0].difficulty
+        new_d = updated.concept_graph[0].difficulty
+        # 5.0 - 0.6 = 4.4
+        assert new_d == pytest.approx(4.4)
+        assert new_d < orig_d
+
+    def test_poor_quality_raises_difficulty(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        updated = apply_review_feedback(memory, {"derivata": 0})
+
+        orig_d = memory.concept_graph[0].difficulty
+        new_d = updated.concept_graph[0].difficulty
+        # 5.0 + 2.0 = 7.0
+        assert new_d == pytest.approx(7.0)
+        assert new_d > orig_d
+
+    def test_unknown_concept_raises_valueerror(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        with pytest.raises(ValueError, match="not found in PathMemory"):
+            apply_review_feedback(memory, {"inesistente": 5})
+
+    def test_empty_dict_returns_same_difficulties(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata", "integrale"])
+        updated = apply_review_feedback(memory, {})
+
+        for orig, new in zip(memory.concept_graph, updated.concept_graph):
+            assert orig.difficulty == new.difficulty
+        # Should be same object identity (no mutation)
+        assert updated is not memory
+
+    def test_multiple_concepts_partial_update(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata", "integrale"])
+        updated = apply_review_feedback(memory, {"derivata": 0})
+
+        # derivata: difficulty up
+        assert updated.concept_graph[0].difficulty == pytest.approx(7.0)
+        # integrale: unchanged (5.0)
+        assert updated.concept_graph[1].difficulty == pytest.approx(5.0)
+
+    def test_preserves_other_fields(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        updated = apply_review_feedback(memory, {"derivata": 5})
+
+        orig = memory.concept_graph[0]
+        new = updated.concept_graph[0]
+        assert new.name == orig.name
+        assert new.first_introduced_lesson == orig.first_introduced_lesson
+        assert new.statuses == orig.statuses
+        assert new.lessons == orig.lessons
+        assert new.prerequisites == orig.prerequisites
+        assert new.repetition_count == orig.repetition_count
+        assert new.last_reviewed_lesson == orig.last_reviewed_lesson
+
+    def test_original_memory_unchanged(self):
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        orig_d = memory.concept_graph[0].difficulty
+        apply_review_feedback(memory, {"derivata": 0})
+
+        # Original memory's difficulty unchanged
+        assert memory.concept_graph[0].difficulty == orig_d
+
+    def test_case_insensitive_lookup(self):
+        """Case-insensitive lookup: uppercase key matches lowercase concept."""
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        updated = apply_review_feedback(memory, {"Derivata": 5})
+
+        assert updated.concept_graph[0].difficulty == pytest.approx(4.4)
+
+    def test_duplicate_case_insensitive_raises_valueerror(self):
+        """Duplicate concept names (case-insensitive) raise ValueError."""
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        with pytest.raises(ValueError, match="duplicate concept name"):
+            apply_review_feedback(memory, {"derivata": 5, "Derivata": 3})
+
+    def test_diff_case_unknown_concept_raises_valueerror(self):
+        """Unknown concept with different case still raises ValueError."""
+        from lessonos.graph.path_memory import apply_review_feedback
+
+        memory = _make_minimal_memory(["derivata"])
+        with pytest.raises(ValueError, match="not found in PathMemory"):
+            apply_review_feedback(memory, {"INTEGRALE": 5})

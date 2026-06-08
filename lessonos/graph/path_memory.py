@@ -431,6 +431,101 @@ def _collect_misconceptions(
     return tuple(questions)
 
 
+def apply_review_feedback(
+    memory: PathMemory,
+    review_qualities: dict[str, int],
+) -> PathMemory:
+    """Apply student review feedback to update concept difficulties.
+
+    Takes a PathMemory and a mapping of ``{concept_name: SM-2 quality}``,
+    returns a new PathMemory with updated difficulty values for the
+    specified concepts. Uses ``ConceptPathEntry.update_after_review``
+    internally.
+
+    Parameters
+    ----------
+    memory : PathMemory
+        Current PathMemory to update.
+    review_qualities : dict[str, int]
+        Mapping of concept name (case-insensitive) to SM-2 quality score
+        (0–5). Only concepts in this dict are updated; other concepts
+        retain their original difficulty.
+
+    Returns
+    -------
+    PathMemory
+        A new PathMemory with updated concept difficulties. The original
+        ``memory`` is not mutated.
+
+    Raises
+    ------
+    ValueError
+        If any concept name in ``review_qualities`` is not found in
+        ``memory.concept_graph``.
+    """
+    # Build case-insensitive lookup: lower_name -> index
+    name_to_idx: dict[str, int] = {}
+    for i, entry in enumerate(memory.concept_graph):
+        name_to_idx[entry.name.lower()] = i
+
+    # Normalize input to lowercase for case-insensitive matching
+    review_norm: dict[str, int] = {}
+    for k, v in review_qualities.items():
+        kl = k.lower()
+        if kl in review_norm:
+            raise ValueError(
+                f"duplicate concept name (case-insensitive): '{k}' conflicts with "
+                f"another key that normalises to '{kl}'"
+            )
+        review_norm[kl] = v
+
+    # Validate all concept names exist
+    unknown = set(review_norm) - set(name_to_idx.keys())
+    if unknown:
+        raise ValueError(
+            f"concept(s) not found in PathMemory: {sorted(unknown)}"
+        )
+
+    if not review_norm:
+        # Empty dict: no changes, but return a new object (immutability
+        # contract — the caller expects a fresh copy)
+        return PathMemory(
+            path_title=memory.path_title,
+            current_state=memory.current_state,
+            lesson_index=memory.lesson_index,
+            concept_graph=memory.concept_graph,
+            recurring_misconceptions=memory.recurring_misconceptions,
+            exercise_bank=memory.exercise_bank,
+            best_explanations=memory.best_explanations,
+            total_lessons=memory.total_lessons,
+            total_concepts=memory.total_concepts,
+            total_exercises=memory.total_exercises,
+        )
+
+    # Build updated concept graph
+    new_concepts: list[ConceptPathEntry] = []
+    for entry in memory.concept_graph:
+        key = entry.name.lower()
+        if key in review_norm:
+            new_entry = entry.update_after_review(review_norm[key])
+            new_concepts.append(new_entry)
+        else:
+            new_concepts.append(entry)
+
+    return PathMemory(
+        path_title=memory.path_title,
+        current_state=memory.current_state,
+        lesson_index=memory.lesson_index,
+        concept_graph=tuple(new_concepts),
+        recurring_misconceptions=memory.recurring_misconceptions,
+        exercise_bank=memory.exercise_bank,
+        best_explanations=memory.best_explanations,
+        total_lessons=memory.total_lessons,
+        total_concepts=memory.total_concepts,
+        total_exercises=memory.total_exercises,
+    )
+
+
 def _collect_exercise_bank(
     capsules: list[LessonCapsule],
 ) -> tuple[str, ...]:

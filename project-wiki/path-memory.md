@@ -107,4 +107,20 @@ Stima il retention rate con power-law decay, modulata da difficulty D (FSRS).
 ## Dipendenze
 
 - `lessonos/capsule/assembly.py` — `LessonCapsule`
+
+### apply_review_feedback(memory, review_qualities) -> PathMemory
+
+Applica feedback studente (SM-2 quality 0–5) per aggiornare difficulty D dei concetti in PathMemory.
+Case-insensitive matching, normalizzazione centralizzata.
+
+**Citazione**: `lessonos/graph/path_memory.py:431-535` — `apply_review_feedback()`:
+riceve `PathMemory` + `dict[str, int]`, restituisce nuova PathMemory con `concept_graph` aggiornato.
+Usa `ConceptPathEntry.update_after_review()` internamente. Solleva `ValueError` per concetti inesistenti
+o duplicati case-insensitive.
+
+**Test**: `tests/test_path_memory.py::TestApplyReviewFeedback` — 10 test (qualità buona/cattiva,
+concept sconosciuto, dict vuoto, aggiornamento parziale, preservazione campi, immutabilità originale,
+case-insensitive lookup, duplicati case-insensitive, case diverso su concept sconosciuto).
+
+Esportato da `lessonos/graph/__init__.py:__all__`.
 - `lessonos/capsule/extraction.py` — `ConceptExtraction`
