@@ -105,8 +105,20 @@ Stima il retention rate con power-law decay, modulata da difficulty D (FSRS).
 |
 |**Test**: `tests/test_predict_stability.py` — 11 test: singola/buona/multiplicativa/qualita-pesata/
 |reset-fallimenti/empty-valueerror/integrazione-con-compute_retention.
-|Review Claude Code: 5 fix (bug semantico reset q<3, bound rotto, naming, asserzioni esatte).
-|445 passed + 2 skipped (baseline 434).
+||Review Claude Code: 5 fix (bug semantico reset q<3, bound rotto, naming, asserzioni esatte).
+||445 passed + 2 skipped (baseline 434).
+
+### compute_scheduled_review_day(stability, *, target_retention=0.9) -> int
+
+Inverte la formula power-law `R = 1/(1 + t/S)` per trovare il numero di lezioni
+dopo cui la retention scende sotto `target_retention`. Formula: `t = floor(S * (1/R - 1))`.
+
+- **Input**: stability (float > 0), target_retention (float in (0,1), default 0.9)
+- **Output**: int (≥ 0), lezioni fino alla prossima review raccomandata
+- **Grounding**: non cita paper falsi; ispirato a FSRS scheduling (Ye 2023) + power-law decay (Reddy et al. arXiv 1602.07032)
+- **Test**: `tests/test_scheduled_review.py` (20 test su esempi) + `tests/test_scheduled_review_properties.py` (7 Hypothesis property-based: monotonicità stabilità, monotonicità retention, formula inversa, determinismo, validità retention schedulata)
+
+**Citazione**: `lessonos/graph/path_memory.py:434-497`
 |
 |## Design Rationale
 
@@ -120,7 +132,7 @@ Stima il retention rate con power-law decay, modulata da difficulty D (FSRS).
 
 **File**: `tests/test_path_memory.py` — ~40 test (concept path, retention, difficulty, update, aggregation).
 
-**Citazione**: STATUS.md — ultimo: 390 passed + 2 skipped.
+|**Citazione**: STATUS.md — ultimo: 535 passed + 2 skipped (baseline 508 → 535, +27: +20 scheduled review + 7 property-based).
 
 ## Dipendenze
 

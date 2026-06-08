@@ -433,6 +433,67 @@ def compute_retention(
     return 1.0 / (1.0 + lessons_since_review / stability)
 
 
+def compute_scheduled_review_day(
+    stability: float,
+    *,
+    target_retention: float = 0.9,
+) -> int:
+    """Compute the optimal review day for a concept given stability and desired retention.
+
+    Inverts the power-law decay formula::
+
+        R = 1 / (1 + t / S)  →  t = S * (1/R - 1)
+
+    Where:
+      - R is the target retention probability (0 < R < 1)
+      - S is the current stability (in lesson-units)
+      - t is the number of lessons after which retention drops to R
+
+    The result is floored to an integer count of lessons (ceiling on over-retention
+    would be too conservative — we schedule the lesson *before* retention drops
+    below target).
+
+    Parameters
+    ----------
+    stability : float
+        Current concept stability (in lesson-units). Must be > 0.
+    target_retention : float
+        Desired retention probability (0 < target_retention < 1).
+        Default 0.9 (90% retention is a common SRS threshold).
+
+    Returns
+    -------
+    int
+        Number of lessons until the concept should be reviewed next
+        (max 0 — a stability of 0 or lower yields immediate review).
+
+    Raises
+    ------
+    ValueError
+        If stability <= 0 or target_retention not in (0, 1).
+
+    Examples
+    --------
+    >>> compute_scheduled_review_day(5.0)
+    0
+    >>> compute_scheduled_review_day(10.0, target_retention=0.9)
+    1
+    >>> compute_scheduled_review_day(50.0, target_retention=0.9)
+    5
+    """
+    if stability <= 0:
+        raise ValueError(f"stability must be > 0, got {stability}")
+    if not (0 < target_retention < 1):
+        raise ValueError(
+            f"target_retention must be in (0, 1), got {target_retention}"
+        )
+
+    # Inverse of power-law decay: t = S * (1/R - 1)
+    # Cast to int (floor) to get the last lesson where retention >= target
+    days = stability * (1.0 / target_retention - 1.0)
+    return max(int(days), 0)
+
+
 def _aggregate_concepts(
     capsules: list[LessonCapsule],
 ) -> tuple[ConceptPathEntry, ...]:
