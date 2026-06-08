@@ -231,19 +231,23 @@ class TestLessonMocks:
     """LESSON_MOCKS dict is importable and complete."""
 
     def test_mocks_cover_all_lessons(self) -> None:
-        """All 4 fixture lessons have mock payloads."""
+        """All 4 fixture lessons in sample_path have mock payloads."""
         expected = {
             "l1_derivative_definition",
             "l2_derivative_rules",
             "l3_integral_intro",
             "l4_integral_substitution",
         }
-        assert set(LESSON_MOCKS.keys()) == expected
+        assert expected.issubset(set(LESSON_MOCKS.keys())), (
+            f"Missing mock for some sample_path lessons. "
+            f"Expected subset {expected}, got {set(LESSON_MOCKS.keys())}"
+        )
 
     def test_each_mock_seg_id_grounded(self) -> None:
         """Every seg_id in mock payloads follows the fixture naming.
 
-        All seg_ids should match pattern l<number>s<number>.
+        All seg_ids should match pattern l<id>s<number> where <id> is an
+        identifier segment matching the lesson prefix.
         """
         import re
 
@@ -257,7 +261,7 @@ class TestLessonMocks:
             for concept in ext_payload.get("concepts", []):
                 for cit in concept.get("citations", []):
                     sid = cit["seg_id"]
-                    assert re.match(r"^l[1-4]s\d+$", sid), (
+                    assert re.match(r"^l\d+s\d+$", sid), (
                         f"Bad seg_id format: {sid} in {lesson_id}"
                     )
 

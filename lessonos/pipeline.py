@@ -300,6 +300,140 @@ LESSON_MOCKS: dict[str, tuple[list[dict], dict]] = {
             ],
         },
     ),
+    # ------------------------------------------------------------------ #
+    # Spaced Path (2 lessons): spaced_repetition domain (SM-2, FSRS)
+    # ------------------------------------------------------------------ #
+    "l1_sm2_intro": (
+        # seg_payload
+        [
+            {"topic": "Ripetizione spaziata e SM-2", "seg_ids": ["l1s1", "l1s2"]},
+            {"topic": "Formula SM-2 e intervalli", "seg_ids": ["l1s3"]},
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "spaced repetition",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s1",
+                            "excerpt": "ripetizione spaziata come tecnica di apprendimento",
+                        }
+                    ],
+                },
+                {
+                    "name": "SM-2",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s2",
+                            "excerpt": "SM-2 di SuperMemo con sei livelli",
+                        }
+                    ],
+                },
+                {
+                    "name": "fattore di facilita",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s3",
+                            "excerpt": "EF' = EF + (0.1 - (5-q)*(0.08+(5-q)*0.02))",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Calcola il prossimo intervallo SM-2 dato EF=2.5 e qualita=4.",
+                    "citations": [{"seg_id": "l1s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Qual e il significato del fattore di facilita inferiore a 1.3?",
+                    "citations": [{"seg_id": "l1s3"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Implementa la funzione SM-2 in Python: aggiornamento EF e intervallo.",
+                    "citations": [{"seg_id": "l1s3"}],
+                }
+            ],
+        },
+    ),
+    "l2_fsrs_advanced": (
+        # seg_payload
+        [
+            {"topic": "FSRS e parametri base", "seg_ids": ["l2s1"]},
+            {"topic": "Funzione di ritenzione e aggiornamento", "seg_ids": ["l2s2"]},
+            {"topic": "Ottimizzazione FSRS su dataset", "seg_ids": ["l2s3"]},
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "FSRS",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s1",
+                            "excerpt": "FSRS con tre parametri: stabilita, difficolta, retrievability",
+                        }
+                    ],
+                },
+                {
+                    "name": "stabilita del ricordo",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s1",
+                            "excerpt": "stabilita S del ricordo",
+                        }
+                    ],
+                },
+                {
+                    "name": "funzione di ritenzione",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s2",
+                            "excerpt": "R(t) = exp(-t/S)",
+                        }
+                    ],
+                },
+                {
+                    "name": "ottimizzazione cross-entropia",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s3",
+                            "excerpt": "minimizzazione della cross-entropia",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Calcola la retrievability dopo 7 giorni con stabilita S=14.",
+                    "citations": [{"seg_id": "l2s2"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Come differisce FSRS da SM-2 nella gestione della difficolta?",
+                    "citations": [{"seg_id": "l2s1"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Implementa la funzione di ritenzione R(t) e un passo di aggiornamento di S dopo una risposta.",
+                    "citations": [{"seg_id": "l2s2"}],
+                }
+            ],
+        },
+    ),
 }
 
 
