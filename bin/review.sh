@@ -4,7 +4,7 @@
 # Token re-iniettato (Hermes sanitizza l'env del subprocess). Usage: ./bin/review.sh [tier]
 tier="${1:-sonnet}"
 case "$tier" in haiku) m="claude-haiku-4-5";; opus) m="claude-opus-4-8";; *) m="claude-sonnet-4-5";; esac
-[ -z "${CLAUDE_CODE_OAUTH_TOKEN:-}" ] && eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
+eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
 cd "$HOME/lessonos" || exit 1
 diff="$(git --no-pager diff; git --no-pager diff --staged; echo '--- UNTRACKED ---'; git ls-files --others --exclude-standard | while read f; do echo "### $f"; sed -n '1,200p' "$f"; done)"
 [ -z "$(echo "$diff" | tr -d '[:space:]')" ] && { echo "REVIEW: nessun diff da rivedere."; exit 0; }
@@ -13,7 +13,7 @@ prompt="Sei il REVIEWER decorrelato di LessonOS (motore didattico Python headles
 === DIFF ===
 $diff"
 # retry su auth-loop/timeout: la review Claude e MANDATORIA, non deve saltare (mirror opus.sh)
-for try in 1 2; do
+for try in 1 2 3; do
   out="$(timeout 240 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model "$m" "$prompt" 2>&1)"; rc=$?
   if [ "$rc" = 124 ] || printf "%s" "$out" | grep -qiE "not logged in|please run /login|unauthorized|invalid api key"; then sleep 8; continue; fi
   printf "%s\n" "$out"; exit 0
