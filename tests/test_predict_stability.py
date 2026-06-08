@@ -94,6 +94,22 @@ def test_max_quality_five():
     assert s > 0.0
 
 
+def test_multiplier_below_one_raises_valueerror():
+    """stability_multiplier < 1.0 causes stability decay on good reviews (bug found
+    via Hypothesis property testing)."""
+    from lessonos.graph.path_memory import predict_stability, compute_retention
+
+    with pytest.raises(ValueError, match="stability_multiplier must be >= 1.0"):
+        predict_stability([5], stability_multiplier=0.5)
+
+    with pytest.raises(ValueError, match="stability_multiplier must be >= 1.0"):
+        compute_retention(rep_count=1, lessons_since_review=1, stability_multiplier=0.5)
+
+    # Edge: exactly 1.0 should work
+    s = predict_stability([5], stability_multiplier=1.0)
+    assert s > 0.0
+
+
 def test_varied_history_lengths():
     """Different history lengths produce different stability."""
     from lessonos.graph.path_memory import predict_stability

@@ -293,6 +293,11 @@ def predict_stability(
         raise ValueError(
             f"stability_multiplier must be > 0, got {stability_multiplier}"
         )
+    if stability_multiplier < 1.0:
+        raise ValueError(
+            f"stability_multiplier must be >= 1.0 (below 1.0 causes stability "
+            f"decay on good reviews), got {stability_multiplier}"
+        )
 
     # Quality weight mapping: how much of the multiplier each quality level uses
     # q=5 (perfect): 100%, q=4 (good): 80%, q=3 (hard): 50%
@@ -400,6 +405,11 @@ def compute_retention(
     if stability_multiplier <= 0:
         raise ValueError(
             f"stability_multiplier must be > 0, got {stability_multiplier}"
+        )
+    if stability_multiplier < 1.0:
+        raise ValueError(
+            f"stability_multiplier must be >= 1.0 (below 1.0 causes stability "
+            f"decay on good reviews), got {stability_multiplier}"
         )
     if not (1.0 <= difficulty <= 10.0):
         raise ValueError(
