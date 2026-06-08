@@ -12,7 +12,7 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 
 #### NextLessonPlan (frozen dataclass)
 
-`lessonos/graph/next_lesson_planner.py:88-115` — piano completo per la prossima lezione:
+`lessonos/graph/next_lesson_planner.py:75-103` — piano completo per la prossima lezione:
 - `path_id` — qualificatore del percorso
 - `review_items` — concetti da ripassare (da debito unmastered_concept)
 - `practice_items` — esercizi da assegnare (da debito under_practiced)
@@ -20,10 +20,11 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 - `prerequisite_gaps` — prerequisiti da coprire prima (da debito weak_prerequisite)
 - `open_doubt_items` — domande studente da affrontare (da debito open_doubt)
 - `suggested_topics` — topic suggeriti in ordine di priorità
+- `downstream_prerequisite_concepts` — concetti che sono prerequisiti per altri concetti nel path (bloccano apprendimento downstream)
 
 #### LessonAgendaItem (frozen dataclass)
 
-`lessonos/graph/next_lesson_planner.py:18-49` — item singolo dell'agenda:
+`lessonos/graph/next_lesson_planner.py:33-58` — item singolo dell'agenda:
 - `kind` — `prerequisite_gap`, `review`, `open_doubt`, `practice`, `new_material`
 - `description` — descrizione umana di cosa fare
 - `source_debt_ids` — riferimenti ai LearningDebtItem.debt_id che hanno originato l'item
@@ -33,7 +34,7 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 
 ### compute_next_lesson_plan(memory, delta, ledger, path_id="p1")
 
-`lessonos/graph/next_lesson_planner.py:193-256` — calcola il piano.
+`lessonos/graph/next_lesson_planner.py:237-335` — calcola il piano.
 
 | Parametro | Tipo | Descrizione |
 |-----------|------|-------------|
@@ -45,6 +46,21 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 **Ritorna**: `NextLessonPlan` con item raggruppati per categoria.
 
 **Raises**: `ValueError` se `memory.concept_graph` è vuoto.
+
+### Downstream Prerequisite Chain Detection (2026-06-10)
+
+`lessonos/graph/next_lesson_planner.py:52-68` — `_compute_downstream_prerequisites(memory)`
+
+Automaticamente rileva concetti che sono prerequisiti per altri concetti nel path (cross-reference su PathMemory.concept_graph). Questi concetti hanno urgenza maggiore nel piano perché risolverli sblocca apprendimento downstream. Ispirato da GRKT (arXiv 2406.12896) graph-based knowledge tracing.
+
+**Meccanismo**:
+1. Scansiona ogni `ConceptPathEntry.prerequisites`
+2. Per ogni prerequisito dichiarato, verifica che esista nel concept_graph
+3. I nomi di concetto esistenti nel path che sono prerequisiti per altri vengono aggiunti a `downstream_prerequisite_concepts`
+
+**Ordinamento**:
+- `_build_review_items` (`:75-108`): concetti downstream sorted BEFORE non-downstream a parità di retention (tertiary sort key dopo retention)
+- `_build_prerequisite_gap_items` (`:188-210`): gap items che sono anche downstream blocker sorted BEFORE
 
 ## Ordine di Priorità
 
