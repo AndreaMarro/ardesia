@@ -9,3 +9,4 @@
 | 2026-06-06T13:19:45Z | 1 | 0b8a91a | 76 | y | pass | kept; gate verde (passed=76) |
 | 2026-06-06T19:33:15Z | 1 | 87539cd | 87 | y | blocked/noop | orch:HEAD invariato (244s) — vedi STATUS.md |
 | 2026-06-07T16:34:38Z | 1 | 6d8c13a | 235 | y | REVERT | orch:gate rosso/regresso (exit=0 passed 246->235; 227s) -> reset |
+| 2026-06-08T00:13:28Z | 1 | 72d7b83 | 243 | y | pass | orch:kept; gate verde (passed=243; 292s) |
