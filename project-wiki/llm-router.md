@@ -102,6 +102,18 @@ Chiama `policy.validate(router)` prima di risolvere. Solleva `KeyError`/`ValueEr
 
 **Citazione**: lessonos/llm/task_policy.py:28-57 — `TaskPolicy` dataclass
 
+### Test
+
+TaskPolicy ha 29 unit test in `tests/test_task_policy.py`:
+
+- **Registrazione provider** (5 test): primary/falback registrati/mancanti, fallback=None (`file:line 35-63`)
+- **require_json** (5 test): JSON-capable, incapace, override lista, globale default, fallback model validation (`file:line 67-123`)
+- **route_for_task** (9 test): primary default, prefer_fallback, no-fallback graceful, model hints, max_cost, citations hint (`file:line 127-185`)
+- **Invariants dataclass** (7 test): frozen, defaults, eguaglianza (`file:line 191-232`)
+- **Edge cases** (3 test): router vuoto, override vuoto, require_json con prefer_fallback (`file:line 239-297`)
+
+Bug trovati dai test: `MockProvider.name` non configurabile (`lessonos/llm/router.py:38-41`), `()` falsy in Python (`lessonos/llm/task_policy.py:84`), fallback_model non validato per require_json (`lessonos/llm/task_policy.py:96-101`).
+
 ## Design Rationale
 
 1. **Abstraction** — chiamanti non dipendono da provider specifico
