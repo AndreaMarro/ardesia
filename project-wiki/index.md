@@ -26,4 +26,5 @@ Ogni pagina + riassunto 1 riga.
 - **realtime-eval.md** — P1 eval LLM reale: run_realtime_eval con Kimi su fixture, misura qualità + costo
 - **observation.md** — Observation Store: cross-iterazione structured memory file-based JSONL (poiché Hermes memory disabilitato + agentmemory :3111 non HTTP-reachable)
 - **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
-- **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2)
+|- **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2)
+|- **pipeline.md** — PipelineOrchestrator: run_pipeline() + PipelineResult (P2 product-API, lessonos/pipeline.py)
