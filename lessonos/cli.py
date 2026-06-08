@@ -23,6 +23,7 @@ from pathlib import Path as FsPath
 from typing import Any
 
 from lessonos.capsule.assembly import LessonCapsule, assemble_lesson_capsule
+from lessonos.observations import JSONL_PATH, load_recent_observations
 from lessonos.capsule.extraction import build_extraction_prompt
 from lessonos.capsule.segmentation import build_segmentation_prompt
 from lessonos.graph.didactic_delta import compute_didactic_delta
@@ -633,6 +634,49 @@ def run_path(
     }
 
 
+# ---------------------------------------------------------------------------
+# Observations CLI
+# ---------------------------------------------------------------------------
+
+
+def _observations_summary(
+    store_path: str | None = None,
+    *,
+    limit: int = 10,
+) -> str:
+    """Format recent observations for CLI display.
+
+    Parameters
+    ----------
+    store_path : str or None
+        Path to observations.jsonl. If None, uses the default path.
+    limit : int
+        Max observations to show (default 10).
+
+    Returns
+    -------
+    str
+        Formatted multi-line summary, or empty string if no observations.
+    """
+    if limit <= 0:
+        raise ValueError(f"limit must be positive, got {limit}")
+    obs_path = store_path if store_path is not None else JSONL_PATH
+    obs = load_recent_observations(n=limit, store_path=obs_path)
+    if not obs:
+        return ""
+
+    lines: list[str] = []
+    for i, o in enumerate(obs, 1):
+        lines.append(
+            f"  {i}. [{o.ts[:10]}] {o.task}  "
+            f"(gate={o.gate_passed}, status={o.status}, "
+            f"cost=${o.cost_usd:.4f}, commit={o.commit})"
+        )
+        if o.note:
+            lines.append(f"       {o.note[:80]}")
+    return "\n".join(lines)
+
+
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """Parse CLI arguments."""
     parser = argparse.ArgumentParser(
@@ -648,6 +692,16 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         type=str,
         default=None,
         help="Path to fixture directory (default: fixtures/sample_path)",
+    )
+
+    obs_parser = sub.add_parser(
+        "observations", help="Show recent cross-iteration observations"
+    )
+    obs_parser.add_argument(
+        "--limit",
+        type=int,
+        default=10,
+        help="Max observations to show (default: 10)",
     )
     return parser.parse_args(argv)
 
@@ -688,6 +742,15 @@ def main(argv: list[str] | None = None) -> int:
             f"{result['debt_items']} debt items, "
             f"{result['agenda_items']} agenda items",
         )
+        return 0
+
+    if args.command == "observations":
+        summary = _observations_summary(limit=args.limit)
+        if summary:
+            print("Recent observations:")
+            print(summary)
+        else:
+            print("No observations found.")
         return 0
 
     print(f"Unknown command: {args.command!r}", file=sys.stderr)
