@@ -71,6 +71,13 @@ class ConceptPathEntry:
     Aggregates all occurrences of a concept across lessons: where it was first
     introduced, all lessons where it appears, all statuses it has held, and
     its declared prerequisites.
+
+    Repetition tracking (SM-2 inspired):
+    - ``repetition_count``: how many lessons have covered this concept
+      (1 = just introduced, 2+ = reviewed/reinforced)
+    - ``last_reviewed_lesson``: the most recent lesson that included this
+      concept (used to identify overdue concepts for retrieval-based
+      scheduling in NextLessonPlan)
     """
 
     name: str
@@ -78,6 +85,8 @@ class ConceptPathEntry:
     statuses: tuple[str, ...]
     lessons: tuple[str, ...]
     prerequisites: tuple[str, ...]
+    repetition_count: int = 1
+    last_reviewed_lesson: str | None = None
 
 
 def _aggregate_concepts(
@@ -133,6 +142,10 @@ def _aggregate_concepts(
             statuses=tuple(sorted(e["statuses"])),
             lessons=tuple(_ordered_lessons(e["lessons"], capsules)),
             prerequisites=tuple(sorted(e["prereqs"])),
+            repetition_count=len(_ordered_lessons(e["lessons"], capsules)),
+            last_reviewed_lesson=_ordered_lessons(e["lessons"], capsules)[-1]
+            if e["lessons"]
+            else None,
         )
         for e in sorted_entries
     )

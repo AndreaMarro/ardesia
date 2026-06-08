@@ -112,8 +112,15 @@ class NextLessonPlan:
 
 def _build_review_items(
     ledger: LearningDebtLedger,
+    memory: PathMemory | None = None,
 ) -> list[LessonAgendaItem]:
-    """Build review agenda items from unmastered concept debt."""
+    """Build review agenda items from unmastered concept debt.
+
+    Uses PathMemory's ``repetition_count`` and ``last_reviewed_lesson``
+    (SM-2 inspired retrievability tracking) to sort review items so that
+    concepts with fewer repetitions and the most distant last review
+    appear first — they are at highest risk of forgetting.
+    """
     items: list[LessonAgendaItem] = []
     for debt in ledger.items:
         if debt.kind == "unmastered_concept":
@@ -127,6 +134,44 @@ def _build_review_items(
                     priority=_PRIORITY_MAP["review"],
                 )
             )
+
+    # Sort by retrievability urgency: lower repetition_count first,
+    # then earlier last_reviewed_lesson (farther in past = more urgent).
+    # This is the SM-2 insight: concepts seen long ago or only once need
+    # review before concepts seen recently or many times.
+    if memory and items:
+        _concept_rep_map: dict[str, tuple[int, str | None]] = {}
+        for cpe in memory.concept_graph:
+            _concept_rep_map[cpe.name.lower()] = (
+                cpe.repetition_count,
+                cpe.last_reviewed_lesson,
+            )
+
+        def _review_sort_key(item: LessonAgendaItem) -> tuple[int, int, str]:
+            # Extract concept name from description like
+            # 'Review and clarify concept: Concept "name" is ...'
+            desc = item.description
+            # Find the concept name between quotes after 'Concept "'
+            import re as _re
+
+            m = _re.search(r'Concept "([^"]+)"', desc)
+            concept_name = m.group(1).lower() if m else desc.lower()
+            rep_count, last_lesson = _concept_rep_map.get(
+                concept_name, (0, None)
+            )
+            # Lower repetition_count -> higher urgency.
+            # Earlier (farther past) last_reviewed_lesson -> higher urgency.
+            last_idx = 0
+            if last_lesson and memory:
+                for i, entry in enumerate(memory.lesson_index):
+                    if entry.lesson_id == last_lesson:
+                        last_idx = i
+                        break
+            # Sort key: low rep first, low last_idx first (farther past)
+            return (rep_count, last_idx, item.description)
+
+        items.sort(key=_review_sort_key)
+
     return items
 
 
@@ -206,7 +251,7 @@ def _build_new_material_items(
     # (already being reinforced, so they need less urgent follow-up)
     well_covered: set[str] = set()
     for cpe in memory.concept_graph:
-        if len(cpe.lessons) >= 2:
+        if cpe.repetition_count >= 2:
             well_covered.add(cpe.name.lower())
 
     for change in delta.new_concepts:
@@ -323,7 +368,7 @@ def compute_next_lesson_plan(
         )
 
     # Build each category
-    review_items = _build_review_items(ledger)
+    review_items = _build_review_items(ledger, memory=memory)
     practice_items = _build_practice_items(ledger)
     prerequisite_gaps = _build_prerequisite_gap_items(ledger)
     open_doubt_items = _build_open_doubt_items(ledger)

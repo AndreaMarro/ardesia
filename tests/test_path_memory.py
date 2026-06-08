@@ -360,3 +360,58 @@ def test_path_memory_prerequisites_propagation():
 
     derivata = next(c for c in pm.concept_graph if c.name == "derivata")
     assert derivata.prerequisites == ()
+
+
+# --- Repetition count and last_reviewed_lesson ---
+
+
+def test_concept_repetition_count_single_appearance():
+    """Concept appearing in only 1 lesson has repetition_count=1."""
+    capsule = _make_capsule(
+        "l1", "t", [("concetto_a", "introduced")]
+    )
+    pm = build_path_memory([capsule])
+    c = next(e for e in pm.concept_graph if e.name == "concetto_a")
+    assert c.repetition_count == 1
+    assert c.last_reviewed_lesson == "l1"
+
+
+def test_concept_repetition_count_cross_lessons():
+    """Concept appearing across multiple lessons has correct count and last lesson."""
+    l1 = _make_capsule(
+        "l1", "base", [("derivata", "introduced")]
+    )
+    l2 = _make_capsule(
+        "l2", "potenza", [("derivata", "reinforced")]
+    )
+    l3 = _make_capsule(
+        "l3", "catena", [("derivata", "reinforced")]
+    )
+    pm = build_path_memory([l1, l2, l3])
+
+    derivata = next(c for c in pm.concept_graph if c.name == "derivata")
+    assert derivata.repetition_count == 3
+    assert derivata.last_reviewed_lesson == "l3", (
+        f"expected l3, got {derivata.last_reviewed_lesson}"
+    )
+
+
+def test_concept_repetition_count_mixed():
+    """Different concepts have different repetition counts."""
+    l1 = _make_capsule(
+        "l1", "base",
+        concepts=[("A", "introduced"), ("B", "introduced")],
+    )
+    l2 = _make_capsule(
+        "l2", "prog",
+        concepts=[("A", "reinforced")],
+    )
+    pm = build_path_memory([l1, l2])
+
+    c_a = next(c for c in pm.concept_graph if c.name == "A")
+    c_b = next(c for c in pm.concept_graph if c.name == "B")
+
+    assert c_a.repetition_count == 2  # appears in L1 and L2
+    assert c_a.last_reviewed_lesson == "l2"
+    assert c_b.repetition_count == 1  # appears only in L1
+    assert c_b.last_reviewed_lesson == "l1"
