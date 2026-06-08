@@ -51,4 +51,6 @@ Append-only. 1 riga per modifica.
 - **2026-06-10(current) — P2: optimal_desired_retention(D, rep_count)**: 704 passed.
 - 2026-06-10(current) — FM2 timeout+retry: lessonos/llm/_retry.py. 739 passed.
 |- **2026-06-10(current) — Fix test_search_observations fragility (gate ripristino 776 pass)**: test query "add" matchava commit SHA → fix a "add-". Review Claude: regressione copertura rilevata. observation aggiornata con commit reale. Gate VERDE 776 pass.
-|- **2026-06-10(current) — P2 CLI eval-real subcommand**: lessonos eval-real [--fixture PATH] [--lesson ID] [--n-runs N] per eval mock on-demand. 9 test, 785 passed.
+||- **2026-06-10(current) — P2 CLI eval-real subcommand**: lessonos eval-real [--fixture PATH] [--lesson ID] [--n-runs N] per eval mock on-demand. 9 test, 785 passed.
+|- **2026-06-10(current) — P2 log_iteration helper**: one-shot dual-write observation+log.jsonl. 792 passed.
+|- **2026-06-08(current) — RETRO #7**: 15 iterazioni da RETRO #6 (561→792 test, +231, no regressione). Attriti: log_iteration creato, skill non caricato automaticamente, collision SHA/hex (2x), Claude auth-loop cronico. PROCESS-LOG.md aggiornato. 792 passed.
