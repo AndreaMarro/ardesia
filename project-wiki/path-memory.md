@@ -88,9 +88,27 @@ Raccoglie tutte le `student_questions` come misconception testuali.
 Stima il retention rate con power-law decay, modulata da difficulty D (FSRS).
 
 **Citazione**: `lessonos/graph/path_memory.py:110-201` — `compute_retention()`:
-`R = 1.0 / (1.0 + lessons_since_review / stability)` con scaling per difficulty.
-
-## Design Rationale
+|`R = 1.0 / (1.0 + lessons_since_review / stability)` con scaling per difficulty.
+|
+|### predict_stability(review_history, *, initial_stability, stability_multiplier, difficulty) -> float
+|
+|Predice la stabilita per-concept da una sequenza di SM-2 quality scores (review history).
+|FSRS-style: la qualita di ogni review modula la crescita:
+|q=5: 100%, q=4: 80%, q=3: 50%, q<3: reset a initial_stability (fallimento = non ritenuto).
+|
+|**Citazione**: `lessonos/graph/path_memory.py:236-322` — `predict_stability()`:
+|`S = S₀ * ∏(1 + (mult-1) * w(q) * scaling(D))` per review buone;
+|fallimenti (q<3) resettano a S₀. `difficulty_scaling = (11 - D) / 6`.
+|Empty history -> ValueError. Deterministico.
+|
+|Esportato da `lessonos/graph/__init__.py`.
+|
+|**Test**: `tests/test_predict_stability.py` — 11 test: singola/buona/multiplicativa/qualita-pesata/
+|reset-fallimenti/empty-valueerror/integrazione-con-compute_retention.
+|Review Claude Code: 5 fix (bug semantico reset q<3, bound rotto, naming, asserzioni esatte).
+|445 passed + 2 skipped (baseline 434).
+|
+|## Design Rationale
 
 1. **Pure derivazione** — ogni campo è calcolato deterministicamente dai capsule, zero LLM calls
 2. **Case-insensitive** — i concetti si uniscono a prescindere dal casing (test: `test_concept_case_insensitive_aggregation`)
