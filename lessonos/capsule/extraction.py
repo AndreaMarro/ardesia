@@ -175,6 +175,8 @@ def extract_lesson_content(
     *,
     provider: str = "mock",
     model: str | None = None,
+    defensive: bool = False,
+    dropped: list[str] | None = None,
 ) -> LessonContent:
     """Extract concepts/exercises/questions/homework from persisted segments.
 
@@ -186,6 +188,14 @@ def extract_lesson_content(
 
     Paraphrased excerpts are auto-repaired (snapped to the closest real substring)
     or dropped with ``excerpt_repaired=True``.
+
+    When ``defensive`` is False (default) any malformed item raises (strict
+    grounding — no fabricated references reach the capsule). When ``defensive``
+    is True (FM4), a malformed *single* item — a citation whose ``seg_id`` does
+    not resolve to a persisted segment, a missing/``None`` required field, a
+    ``TypeError`` — is DROPPED and recorded in ``dropped`` instead of aborting
+    the whole extraction. Zero-allucinazione is preserved: bad items are dropped,
+    never invented. A bad citation drops only that citation, not the item.
     """
     segments = store.segments_for_lesson(lesson_id)
     if not segments:
@@ -194,6 +204,8 @@ def extract_lesson_content(
         )
     valid_ids = frozenset(seg.seg_id for seg in segments)
     seg_text_map: dict[str, str] = {seg.seg_id: seg.text for seg in segments}
+
+    drop = dropped if dropped is not None else []
 
     prompt = build_extraction_prompt(segments)
     response = router.complete(prompt, provider=provider, model=model)
@@ -204,86 +216,111 @@ def extract_lesson_content(
             return ()
         cites = []
         for c in raw:
-            seg_id = c.get("seg_id")
-            if not seg_id:
-                raise ValueError(f"citation missing seg_id: {c!r}")
-            if seg_id not in valid_ids:
-                raise ValueError(
-                    f"citation cites unknown segment {seg_id!r} "
-                    f"(not persisted for lesson {lesson_id!r})"
+            try:
+                seg_id = c.get("seg_id")
+                if not seg_id:
+                    raise ValueError(f"citation missing seg_id: {c!r}")
+                if seg_id not in valid_ids:
+                    raise ValueError(
+                        f"citation cites unknown segment {seg_id!r} "
+                        f"(not persisted for lesson {lesson_id!r})"
+                    )
+                raw_excerpt: str | None = c.get("excerpt")
+                repaired: bool = False
+                excerpt: str | None = raw_excerpt
+                # FM1 guard: validate excerpt against verbatim segment text
+                if raw_excerpt is not None and seg_id in seg_text_map:
+                    segment_text = seg_text_map[seg_id]
+                    if raw_excerpt not in segment_text:
+                        # Paraphrased excerpt — attempt repair
+                        repaired_excerpt = _repair_excerpt(raw_excerpt, segment_text)
+                        if repaired_excerpt is not None:
+                            excerpt = repaired_excerpt
+                        else:
+                            excerpt = None
+                        repaired = True
+                cites.append(
+                    Citation(
+                        seg_id=seg_id,
+                        excerpt=excerpt,
+                        confidence=c.get("confidence"),
+                        excerpt_repaired=repaired,
+                    )
                 )
-            raw_excerpt: str | None = c.get("excerpt")
-            repaired: bool = False
-            excerpt: str | None = raw_excerpt
-            # FM1 guard: validate excerpt against verbatim segment text
-            if raw_excerpt is not None and seg_id in seg_text_map:
-                segment_text = seg_text_map[seg_id]
-                if raw_excerpt not in segment_text:
-                    # Paraphrased excerpt — attempt repair
-                    repaired_excerpt = _repair_excerpt(raw_excerpt, segment_text)
-                    if repaired_excerpt is not None:
-                        excerpt = repaired_excerpt
-                    else:
-                        excerpt = None
-                    repaired = True
-            cites.append(
-                Citation(
-                    seg_id=seg_id,
-                    excerpt=excerpt,
-                    confidence=c.get("confidence"),
-                    excerpt_repaired=repaired,
-                )
-            )
+            except (ValueError, TypeError, KeyError, AttributeError) as exc:
+                if not defensive:
+                    raise
+                drop.append(f"citation dropped ({type(exc).__name__}): {exc}")
         return tuple(cites)
 
     concepts = []
     for c in data.get("concepts", []):
-        if not c.get("name"):
-            raise ValueError(f"concept missing name: {c!r}")
-        if not c.get("status"):
-            raise ValueError(f"concept missing status: {c!r}")
-        concepts.append(
-            ConceptExtraction(
-                name=c["name"],
-                status=c["status"],
-                prerequisites=tuple(c.get("prerequisites", [])),
-                citations=_parse_citations(c.get("citations")),
+        try:
+            if not c.get("name"):
+                raise ValueError(f"concept missing name: {c!r}")
+            if not c.get("status"):
+                raise ValueError(f"concept missing status: {c!r}")
+            concepts.append(
+                ConceptExtraction(
+                    name=c["name"],
+                    status=c["status"],
+                    prerequisites=tuple(c.get("prerequisites", [])),
+                    citations=_parse_citations(c.get("citations")),
+                )
             )
-        )
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+            if not defensive:
+                raise
+            drop.append(f"concept dropped ({type(exc).__name__}): {exc}")
 
     exercises = []
     for e in data.get("exercises", []):
-        if not e.get("prompt"):
-            raise ValueError(f"exercise missing prompt: {e!r}")
-        exercises.append(
-            ExerciseExtraction(
-                prompt=e["prompt"],
-                solution=e.get("solution"),
-                citations=_parse_citations(e.get("citations")),
+        try:
+            if not e.get("prompt"):
+                raise ValueError(f"exercise missing prompt: {e!r}")
+            exercises.append(
+                ExerciseExtraction(
+                    prompt=e["prompt"],
+                    solution=e.get("solution"),
+                    citations=_parse_citations(e.get("citations")),
+                )
             )
-        )
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+            if not defensive:
+                raise
+            drop.append(f"exercise dropped ({type(exc).__name__}): {exc}")
 
     questions = []
     for q in data.get("student_questions", []):
-        if not q.get("question"):
-            raise ValueError(f"student_question missing question: {q!r}")
-        questions.append(
-            QuestionExtraction(
-                question=q["question"],
-                citations=_parse_citations(q.get("citations")),
+        try:
+            if not q.get("question"):
+                raise ValueError(f"student_question missing question: {q!r}")
+            questions.append(
+                QuestionExtraction(
+                    question=q["question"],
+                    citations=_parse_citations(q.get("citations")),
+                )
             )
-        )
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+            if not defensive:
+                raise
+            drop.append(f"student_question dropped ({type(exc).__name__}): {exc}")
 
     homework = []
     for h in data.get("homework", []):
-        if not h.get("task"):
-            raise ValueError(f"homework missing task: {h!r}")
-        homework.append(
-            HomeworkExtraction(
-                task=h["task"],
-                citations=_parse_citations(h.get("citations")),
+        try:
+            if not h.get("task"):
+                raise ValueError(f"homework missing task: {h!r}")
+            homework.append(
+                HomeworkExtraction(
+                    task=h["task"],
+                    citations=_parse_citations(h.get("citations")),
+                )
             )
-        )
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+            if not defensive:
+                raise
+            drop.append(f"homework dropped ({type(exc).__name__}): {exc}")
 
     return LessonContent(
         lesson_id=lesson_id,

@@ -153,6 +153,90 @@ def test_propagates_extraction_grounding_error() -> None:
     store.close()
 
 
+def test_defensive_drops_bad_citation_and_none_field() -> None:
+    """FM4: defensive=True drops a fabricated-seg_id citation and a None-field
+    item (instead of crashing), keeping valid items and recording drops.
+
+    Non-tautological: the SAME extraction payload carries (a) a concept whose
+    only citation cites a fabricated seg_id, (b) a concept with ``name=None``,
+    and (c) a fully valid concept. The capsule must keep (a) WITHOUT the bad
+    citation, keep (c), DROP (b), and expose a non-empty ``dropped`` list.
+    """
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    seg_prompt = build_segmentation_prompt(store.segments_for_lesson(L1))
+    ext_prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+
+    seg_payload = [{"topic": "ok", "seg_ids": ["l1s1"]}]
+    ext_payload = {
+        "concepts": [
+            # (a) fabricated citation seg_id -> citation dropped, concept kept
+            {
+                "name": "kept_with_bad_cite",
+                "status": "introduced",
+                "citations": [{"seg_id": "l1s99"}, {"seg_id": "l1s1"}],
+            },
+            # (b) None required field -> whole concept dropped
+            {"name": None, "status": "introduced", "citations": []},
+            # (c) fully valid concept -> kept
+            {
+                "name": "valid",
+                "status": "introduced",
+                "citations": [{"seg_id": "l1s2"}],
+            },
+        ],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_for_both(seg_prompt, seg_payload, ext_prompt, ext_payload)
+
+    capsule = assemble_lesson_capsule(store, L1, router, defensive=True)
+
+    names = [c.name for c in capsule.content.concepts]
+    assert names == ["kept_with_bad_cite", "valid"]
+
+    # (a) kept concept lost its fabricated citation, kept the valid one.
+    bad = capsule.content.concepts[0]
+    assert [c.seg_id for c in bad.citations] == ["l1s1"]
+    assert all(c.seg_id != "l1s99" for c in bad.citations)
+
+    # dropped list is non-empty and records both the bad citation and concept.
+    assert capsule.dropped, "expected non-empty dropped list"
+    assert any("l1s99" in d for d in capsule.dropped)
+    assert any("concept dropped" in d for d in capsule.dropped)
+
+    # Zero-allucinazione: every surviving citation resolves to a real segment.
+    by_id = {s.seg_id for s in store.segments_for_lesson(L1)}
+    for concept in capsule.content.concepts:
+        for c in concept.citations:
+            assert c.seg_id in by_id
+    store.close()
+
+
+def test_defensive_false_still_raises_on_bad_seg_id() -> None:
+    """Default (strict) assembly still propagates fabricated seg_ids."""
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    seg_prompt = build_segmentation_prompt(store.segments_for_lesson(L1))
+    ext_prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+
+    seg_payload = [{"topic": "ok", "seg_ids": ["l1s1"]}]
+    ext_payload = {
+        "concepts": [
+            {"name": "ghost", "status": "introduced", "citations": [{"seg_id": "l1s99"}]}
+        ],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_for_both(seg_prompt, seg_payload, ext_prompt, ext_payload)
+
+    with pytest.raises(ValueError, match="l1s99"):
+        assemble_lesson_capsule(store, L1, router)  # defensive defaults False
+    store.close()
+
+
 def test_no_segments_ingested_raises() -> None:
     store = SQLiteStore()
     router = Router()

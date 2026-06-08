@@ -162,6 +162,7 @@ def run_raw_transcript_eval(
     source_type: str = "raw",
     router: Router | None = None,
     model: str = "deepseek-chat",
+    defensive: bool = False,
 ) -> RawTranscriptEvalReport:
     """Run the full LessonOS pipeline on raw transcript text.
 
@@ -186,6 +187,12 @@ def run_raw_transcript_eval(
         LLM router. If None, tries DeepSeek from env then Kimi.
     model : str
         Model name (default ``"deepseek-chat"``).
+    defensive : bool
+        When True (FM4), malformed single items from the LLM (fabricated
+        seg_ids, missing/None fields) are dropped and recorded in
+        ``capsule.dropped`` instead of failing the run. The eval then ALWAYS
+        returns a capsule with ``error=None`` on a real transcript. Default
+        False preserves strict grounding (fabricated seg_id ⇒ error report).
 
     Returns
     -------
@@ -316,6 +323,7 @@ def run_raw_transcript_eval(
     try:
         capsule = assemble_lesson_capsule(
             store, lesson_id, router, provider=provider_name,
+            defensive=defensive,
         )
     except Exception as exc:
         cost = ledger.total_cost()

@@ -364,6 +364,79 @@ class TestRawTranscriptEvalMockRoundtrip:
         assert report.error is not None
         assert "Assembly failed" in report.error
 
+    def test_defensive_drops_bad_seg_id_returns_capsule(self) -> None:
+        """FM4: defensive=True drops a fabricated-seg_id citation and never crashes.
+
+        Non-tautological: the extraction payload carries a concept whose only
+        citation cites a fabricated seg_id PLUS a fully valid concept. With
+        defensive=True the run must ALWAYS return a capsule (error is None),
+        drop the bad citation (recorded in capsule.dropped), and keep the
+        valid concept — zero-allucinazione preserved.
+        """
+        raw_text = _load_placeholder_text()
+        chunk_result = chunk_raw_text(raw_text)
+        store = SQLiteStore(":memory:")
+        _ingest_chunk_result(store, "defensive_test", chunk_result)
+        segments = store.segments_for_lesson("defensive_test")
+        assert len(segments) > 0
+        real_seg_ids = [s.seg_id for s in segments]
+
+        seg_prompt = build_segmentation_prompt(segments)
+        ext_prompt = build_extraction_prompt(segments)
+
+        seg_payload = [{"topic": "A", "seg_ids": list(real_seg_ids)}]
+        ext_payload = {
+            "concepts": [
+                # fabricated seg_id -> citation dropped, concept kept (cite-less)
+                {
+                    "name": "fake_cite",
+                    "status": "introduced",
+                    "citations": [{"seg_id": "fake_s99", "excerpt": "fake text"}],
+                },
+                # valid concept grounded on a real seg_id -> kept intact
+                {
+                    "name": "real_concept",
+                    "status": "introduced",
+                    "citations": [
+                        {"seg_id": real_seg_ids[0], "excerpt": segments[0].text[:40]}
+                    ],
+                },
+            ],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }
+
+        router = Router()
+        router.register(
+            MockProvider(
+                {
+                    seg_prompt: json.dumps(seg_payload),
+                    ext_prompt: json.dumps(ext_payload),
+                }
+            )
+        )
+
+        report = run_raw_transcript_eval(
+            raw_text,
+            lesson_id="defensive_test",
+            router=router,
+            defensive=True,
+        )
+        # Always a capsule, never an error.
+        assert report.error is None, f"Unexpected error: {report.error}"
+        assert report.capsule is not None
+        # Both concepts survive; the bad one just lost its citation.
+        names = [c.name for c in report.capsule.content.concepts]
+        assert names == ["fake_cite", "real_concept"]
+        assert report.capsule.content.concepts[0].citations == ()
+        # Drop was recorded for the fabricated seg_id.
+        assert report.capsule.dropped
+        assert any("fake_s99" in d for d in report.capsule.dropped)
+        # Groundedness stays perfect — no fabricated seg_id reached the capsule.
+        assert report.groundedness_score == 1.0
+        assert report.groundedness_passed is True
+
     def test_quality_metrics_populated(self) -> None:
         """Quality metrics (chunks, topics, concepts, ratio) are populated."""
         raw_text = _load_placeholder_text()

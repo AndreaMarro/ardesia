@@ -33,6 +33,7 @@ class LessonCapsule:
     lesson_id: str
     timeline: tuple[TopicSpan, ...]
     content: LessonContent
+    dropped: tuple[str, ...] = ()
 
 
 def assemble_lesson_capsule(
@@ -43,6 +44,7 @@ def assemble_lesson_capsule(
     provider: str = "mock",
     model: str | None = None,
     save: bool = False,
+    defensive: bool = False,
 ) -> LessonCapsule:
     """Assemble a full Lesson Capsule for ``lesson_id``.
 
@@ -52,17 +54,27 @@ def assemble_lesson_capsule(
 
     When ``save=True``, the assembled capsule is automatically persisted in
     the store as a JSON blob (idempotent — subsequent calls overwrite).
+
+    When ``defensive=True`` (FM4), the sub-steps drop malformed single items
+    (fabricated ``seg_id`` that does not resolve, missing/``None`` field,
+    ``TypeError``) instead of raising, recording each in ``capsule.dropped``.
+    Zero-allucinazione is preserved (items dropped, never invented); a real
+    transcript always yields a capsule rather than crashing the pipeline.
     """
+    drop: list[str] = []
     timeline = segment_lesson_topics(
-        store, lesson_id, router, provider=provider, model=model
+        store, lesson_id, router, provider=provider, model=model,
+        defensive=defensive, dropped=drop,
     )
     content = extract_lesson_content(
-        store, lesson_id, router, provider=provider, model=model
+        store, lesson_id, router, provider=provider, model=model,
+        defensive=defensive, dropped=drop,
     )
     capsule = LessonCapsule(
         lesson_id=lesson_id,
         timeline=timeline,
         content=content,
+        dropped=tuple(drop),
     )
 
     if save:
@@ -167,4 +179,5 @@ def _deserialise_capsule(raw: str, lesson_id: str) -> LessonCapsule:
         lesson_id=lesson_id,
         timeline=timeline,
         content=content,
+        dropped=tuple(data.get("dropped", ())),
     )

@@ -55,6 +55,8 @@ def segment_lesson_topics(
     *,
     provider: str = "mock",
     model: str | None = None,
+    defensive: bool = False,
+    dropped: list[str] | None = None,
 ) -> tuple[TopicSpan, ...]:
     """Group a lesson's persisted segments into grounded :class:`TopicSpan`s.
 
@@ -62,6 +64,10 @@ def segment_lesson_topics(
     router to group them, then validates every cited ``seg_id`` against the
     persisted segments. A dangling citation, an empty topic, or a missing
     ``topic`` label raises ``ValueError`` — no fabricated timeline.
+
+    When ``defensive`` is True (FM4) an unknown ``seg_id`` is dropped from its
+    topic (recorded in ``dropped``) instead of aborting; a topic left with no
+    valid segment is dropped whole. Strict mode (default) is unchanged.
     """
     segments = store.segments_for_lesson(lesson_id)
     if not segments:
@@ -70,34 +76,50 @@ def segment_lesson_topics(
         )
     by_id = {seg.seg_id: seg for seg in segments}
 
+    drop = dropped if dropped is not None else []
+
     prompt = build_segmentation_prompt(segments)
     response = router.complete(prompt, provider=provider, model=model)
     topics = extract_json(response.text)
 
     spans: list[TopicSpan] = []
     for entry in topics:
-        topic = entry.get("topic")
-        seg_ids = tuple(entry.get("seg_ids", ()))
-        if not topic:
-            raise ValueError(f"topic entry missing label: {entry!r}")
-        if not seg_ids:
-            raise ValueError(f"topic {topic!r} cites no segments")
-        cited = []
-        for sid in seg_ids:
-            seg = by_id.get(sid)
-            if seg is None:
-                raise ValueError(
-                    f"topic {topic!r} cites unknown segment {sid!r} "
-                    f"(not persisted for lesson {lesson_id!r})"
+        try:
+            topic = entry.get("topic")
+            seg_ids = tuple(entry.get("seg_ids", ()))
+            if not topic:
+                raise ValueError(f"topic entry missing label: {entry!r}")
+            if not seg_ids:
+                raise ValueError(f"topic {topic!r} cites no segments")
+            cited = []
+            kept_ids: list[str] = []
+            for sid in seg_ids:
+                seg = by_id.get(sid)
+                if seg is None:
+                    if defensive:
+                        drop.append(
+                            f"topic {topic!r} seg_id dropped: unknown {sid!r}"
+                        )
+                        continue
+                    raise ValueError(
+                        f"topic {topic!r} cites unknown segment {sid!r} "
+                        f"(not persisted for lesson {lesson_id!r})"
+                    )
+                cited.append(seg)
+                kept_ids.append(sid)
+            if not cited:
+                raise ValueError(f"topic {topic!r} cites no segments")
+            spans.append(
+                TopicSpan(
+                    lesson_id=lesson_id,
+                    topic=topic,
+                    seg_ids=tuple(kept_ids),
+                    start=min(s.start for s in cited),
+                    end=max(s.end for s in cited),
                 )
-            cited.append(seg)
-        spans.append(
-            TopicSpan(
-                lesson_id=lesson_id,
-                topic=topic,
-                seg_ids=seg_ids,
-                start=min(s.start for s in cited),
-                end=max(s.end for s in cited),
             )
-        )
+        except (ValueError, TypeError, KeyError, AttributeError) as exc:
+            if not defensive:
+                raise
+            drop.append(f"topic dropped ({type(exc).__name__}): {exc}")
     return tuple(spans)
