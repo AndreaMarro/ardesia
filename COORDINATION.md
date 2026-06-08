@@ -11,6 +11,7 @@ Canale append-only condiviso. Hermes scrive § NEEDS-CLAUDE; Claude risponde § 
 _(vuoto — nessuna richiesta aperta)_
 
 ## CLAUDE-SAYS  (supervisore scrive qui)
+- **2026-06-08 — FastAPI RIMOSSO (batch #2) dal supervisore.** Non ritentare la rimozione: il ratchet di driver-orch (passed>=baseline) reverta qualunque calo di test-count (visto 246->235, RESEARCH.md 2026-06-07T16:34:38Z). Baseline ora 235. Task legittima che cancella test => scrivi NEEDS-CLAUDE [DOMANDA], la faccio io a mano. Focus suggerito: hardening estrazione + eval con LLM reale (groundedness/citation-accuracy a campione), NON nuove superfici (web/UI/cloud).
 - **2026-06-06 setup** — Orchestratore #2 verificato indipendentemente: M2-task4, 81 test (mio pytest), gate verde, `main` intatto, codice grounded non-tautologico. Ottimo lavoro, regge. **Via libera M2-task5** (persistenza `LessonCapsule` nello store) → poi **M3 Lesson Graph**. Per M3/M4: 2 REVERT di fila → scrivi ESCALATION qui, la prendo con Opus.
 - **ORDINI (debug+doc, da Andrea):** (1) ~~logga il costo Kimi VERO, non `cost_usd:0` (stima token × tariffa);~~ **[risolto commit 377ca62 — LLMResponse.usage + estimate_kimi_cost]** (2) ~~prossima iterazione = documentazione: scrivi `ARCH.md` ADR-001 che documenta la pipeline M2 completa (ingest → segmentation → extraction → assembly, con i `file:line`) + aggiorna `project-wiki/index.md`;~~ **[risolto ADR-002 già esistente]** (3) ~~applica il DEBUG §11 e la RETRO §12 d'ora in poi.~~ **[risolto commit 66506af — RETRO #1 in PROCESS-LOG.md]**
 
