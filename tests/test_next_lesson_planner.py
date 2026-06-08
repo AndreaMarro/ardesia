@@ -563,3 +563,183 @@ def test_review_items_retention_tiebreaker():
     assert x_pos < z_pos, f"X (0.264) should precede Z (1.0): {review_descs}"
     # TIEBREAK: Y and Z both have 1.0 retention; alphabetical order: Y < Z
     assert y_pos < z_pos, f"Y should precede Z alphabetically (tiebreak): {review_descs}"
+
+
+# ===================================================================
+# Prerequisite-aware prioritisation (downstream blocking)
+# ===================================================================
+
+
+class TestDownstreamPrerequisitePrioritisation:
+    """Tests for automatic detection of downstream prerequisite chains.
+
+    Concepts that are prerequisites for other concepts in the path (via
+    ConceptExtraction.prerequisites on other capsules) should get elevated
+    urgency in the NextLessonPlan because unresolved issues there block
+    downstream learning.
+
+    This is derived directly from PathMemory.concept_graph (cross-referencing
+    concepts against prerequisites declared on other concepts), without
+    needing the Lesson Graph builder.
+    """
+
+    def test_downstream_prerequisite_detected_from_prereqs(self):
+        """Concept that is a prerequisite for another concept is flagged.
+
+        L1: algebra (introduced)
+        L2: derivata (introduced, prereqs=[algebra])
+        -> 'algebra' is a downstream prerequisite for 'derivata'
+        """
+        l1 = _make_capsule_with_prereqs(
+            "l1", "algebra",
+            concepts=[("algebra", "introduced", [])],
+        )
+        l2 = _make_capsule_with_prereqs(
+            "l2", "calc",
+            concepts=[("derivata", "introduced", ["algebra"])],
+        )
+        pm = build_path_memory([l1, l2], path_title="Test")
+        delta = compute_didactic_delta(pm, pm)
+        ledger = compute_learning_debt(pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        assert "algebra" in plan.downstream_prerequisite_concepts, (
+            f"Expected 'algebra' in downstream prereq set: "
+            f"{plan.downstream_prerequisite_concepts}"
+        )
+        assert "derivata" not in plan.downstream_prerequisite_concepts, (
+            "'derivata' depends on 'algebra' but nothing depends on 'derivata'"
+        )
+
+    def test_downstream_prerequisite_requires_exists_in_path(self):
+        """A prerequisite that doesn't exist in the path is NOT flagged as
+        downstream (it's already handled as a weak_prerequisite gap)."""
+        l1 = _make_capsule_with_prereqs(
+            "l1", "calc",
+            concepts=[("derivata", "introduced", ["limite"])],
+        )
+        pm = build_path_memory([l1], path_title="Test")
+        delta = compute_didactic_delta(pm, pm)
+        ledger = compute_learning_debt(pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        # 'limite' does not exist in the path — not a downstream prereq
+        assert "limite" not in plan.downstream_prerequisite_concepts, (
+            "Missing prerequisite 'limite' should NOT be in downstream set"
+        )
+
+    def test_no_prereqs_means_empty_downstream(self):
+        """A path where no concept declares prerequisites = empty downstream set."""
+        l1 = _make_capsule("l1", "base", [("A", "introduced")])
+        l2 = _make_capsule("l2", "advanced", [("B", "introduced")])
+        pm = build_path_memory([l1, l2], path_title="Test")
+        delta = compute_didactic_delta(pm, pm)
+        ledger = compute_learning_debt(pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        assert plan.downstream_prerequisite_concepts == ()
+
+    def test_downstream_ordering_review_items(self):
+        """Within review items, downstream prerequisite concepts with same
+        retention are sorted before non-prereq concepts.
+
+        L1: algebra (problematic), trig (problematic)
+        L2: derivata (introduced, prereqs=[algebra, trig])
+
+        Both 'algebra' and 'trig' are problematic and in review.
+        Both have the same retention (rep=1, last idx=0, one lesson since).
+        BUT 'algebra' and 'trig' are both prerequisites for 'derivata' —
+        they should still be sorted as they were (retention is the primary
+        key, downstream prereq is secondary within same tier).
+
+        Actually — both have same retention and same downstream status,
+        so they sort alphabetically by description tiebreaker.
+        """
+        l1 = _make_capsule_with_prereqs(
+            "l1", "precalc",
+            concepts=[
+                ("algebra", "problematic", []),
+                ("trig", "problematic", []),
+            ],
+        )
+        l2 = _make_capsule_with_prereqs(
+            "l2", "calc",
+            concepts=[("derivata", "introduced", ["algebra", "trig"])],
+        )
+        old_pm = build_path_memory([l1], path_title="Math")
+        new_pm = build_path_memory([l1, l2], path_title="Math")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="p1")
+
+        # Both 'algebra' and 'trig' are downstream prereqs
+        downstream_names = [n.lower() for n in plan.downstream_prerequisite_concepts]
+        assert "algebra" in downstream_names
+        assert "trig" in downstream_names
+
+    def test_downstream_ordering_precedes_non_downstream(self):
+        """Among review items with the SAME retention, a downstream
+        prerequisite concept comes BEFORE a non-prereq concept.
+
+        L1: algebra (problematic) — downstream prereq for B
+        L2: B (introduced, prereqs=[algebra])
+           geometria (problematic) — NOT a downstream prereq
+
+        Both 'algebra' and 'geometria' have the same retention
+        (rep=1, last=l1, same lesson distance), but 'algebra' is a
+        downstream prereq — should come first.
+        """
+        l1 = _make_capsule_with_prereqs(
+            "l1", "foundations",
+            concepts=[("algebra", "problematic", [])],
+        )
+        l2 = _make_capsule_with_prereqs(
+            "l2", "mixed",
+            concepts=[
+                ("B", "introduced", ["algebra"]),
+                ("geometria", "problematic", []),
+            ],
+        )
+        old_pm = build_path_memory([l1], path_title="Math")
+        new_pm = build_path_memory([l1, l2], path_title="Math")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="p1")
+
+        review_descs = [i.description.lower() for i in plan.review_items]
+        algebra_pos = next(
+            i for i, d in enumerate(review_descs) if "algebra" in d
+        )
+        geometria_pos = next(
+            i for i, d in enumerate(review_descs) if "geometria" in d
+        )
+        assert algebra_pos < geometria_pos, (
+            f"'algebra' (downstream prereq) should precede 'geometria' "
+            f"(non-prereq) at same retention: {review_descs}"
+        )
+
+    def test_downstream_ordering_non_problematic_not_in_review(self):
+        """A concept that is a downstream prerequisite but NOT problematic
+        does NOT appear in review items — only problematic concepts do."""
+        l1 = _make_capsule_with_prereqs(
+            "l1", "base",
+            concepts=[("algebra", "introduced", [])],
+        )
+        l2 = _make_capsule_with_prereqs(
+            "l2", "adv",
+            concepts=[("calcolo", "introduced", ["algebra"])],
+        )
+        old_pm = build_path_memory([l1], path_title="Math")
+        new_pm = build_path_memory([l1, l2], path_title="Math")
+        delta = compute_didactic_delta(old_pm, new_pm)
+        ledger = compute_learning_debt(new_pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="p1")
+
+        # 'algebra' is a downstream prereq but NOT problematic
+        # It should appear in downstream_prerequisite_concepts
+        assert "algebra" in plan.downstream_prerequisite_concepts
+        # But NOT in review items (not unmastered)
+        review_descs = " ".join(i.description.lower() for i in plan.review_items)
+        assert "algebra" not in review_descs, (
+            "'algebra' is not problematic — should not be in review"
+        )

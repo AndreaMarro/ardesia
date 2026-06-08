@@ -99,6 +99,12 @@ class NextLessonPlan:
         a fixed curriculum.
     total_agenda_items : int
         Total number of individual actionable items across all categories.
+    downstream_prerequisite_concepts : tuple[str, ...]
+        Concept names (canonical) that are prerequisites for at least one other
+        concept in the path. These are higher urgency because unresolved issues
+        here block downstream learning. Derived from PathMemory's concept_graph
+        where concepts declare prerequisites on other concepts that exist in
+        the path.
     """
 
     path_id: str
@@ -109,11 +115,41 @@ class NextLessonPlan:
     open_doubt_items: tuple[LessonAgendaItem, ...]
     suggested_topics: tuple[str, ...]
     total_agenda_items: int
+    downstream_prerequisite_concepts: tuple[str, ...] = ()
+
+
+def _compute_downstream_prerequisites(
+    memory: PathMemory,
+) -> frozenset[str]:
+    """Compute the set of concept names (lowercase) that are prerequisites
+    for at least one other concept in the path.
+
+    Walks PathMemory.concept_graph: for each concept that has prerequisites
+    declared, those prerequisites are downstream-blocking if they exist in
+    the path (i.e., another concept depends on them).
+
+    Returns a frozenset of lowercase concept names.
+    """
+    downstream: set[str] = set()
+    for cpe in memory.concept_graph:
+        if cpe.prerequisites:
+            for prereq in cpe.prerequisites:
+                # Check that this prerequisite actually exists in the path
+                # (only add it if it's a known concept — not a missing one)
+                prereq_lower = prereq.lower()
+                exists = any(
+                    other.name.lower() == prereq_lower
+                    for other in memory.concept_graph
+                )
+                if exists:
+                    downstream.add(prereq_lower)
+    return frozenset(downstream)
 
 
 def _build_review_items(
     ledger: LearningDebtLedger,
     memory: PathMemory | None = None,
+    downstream_prereqs: frozenset[str] | None = None,
 ) -> list[LessonAgendaItem]:
     """Build review agenda items from unmastered concept debt.
 
@@ -123,6 +159,9 @@ def _build_review_items(
 
     Falls back to ``repetition_count`` + ``last_reviewed_lesson`` ordering
     (SM-2 style) if estimated_retention is unavailable.
+
+    Within the same retention tier, concepts that are downstream prerequisites
+    (blocking other concepts) are sorted first.
     """
     items: list[LessonAgendaItem] = []
     for debt in ledger.items:
@@ -138,11 +177,13 @@ def _build_review_items(
                 )
             )
 
+    downstream = downstream_prereqs or frozenset()
+
     # Sort by retrievability urgency:
     # 1. estimated_retention ascending (lowest retention = most urgent)
-    #    — FSRS-inspired Ebbinghaus decay model
-    # 2. Fallback: repetition_count ascending, then last_reviewed_lesson
-    #    (farthest in past = more urgent) — SM-2 style
+    # 2. is_downstream_prerequisite (True = more urgent, blocks other learning)
+    # 3. Fallback: repetition_count ascending, then last_reviewed_lesson
+    # 4. description (stable tiebreaker)
     if memory and items:
         _concept_rep_map: dict[str, dict] = {}
         for cpe in memory.concept_graph:
@@ -159,14 +200,30 @@ def _build_review_items(
             concept_name = m.group(1).lower() if m else item.description.lower()
             info = _concept_rep_map.get(concept_name, {})
             retention = info.get("retention")
+
+            # Check if this concept is a downstream prerequisite
+            is_downstream = concept_name in downstream
+
             if retention is not None:
                 # Primary: retention ascending (0.0 = forgotten -> urgent).
+                # Secondary: prerequisites first (0 = blocking, 1 = not blocking).
                 # Tiebreaker: description for stable sorting.
-                return (0, retention, item.description)
+                return (
+                    0,
+                    retention,
+                    0 if is_downstream else 1,
+                    item.description,
+                )
             # Fallback: SM-2 style (rep_count asc, last_idx asc)
             rep_count = info.get("rep_count", 0)
             last_idx = info.get("last_idx", 0)
-            return (1, rep_count, last_idx, item.description)
+            return (
+                1,
+                rep_count,
+                last_idx,
+                0 if is_downstream else 1,
+                item.description,
+            )
 
         items.sort(key=_review_sort_key)
 
@@ -207,8 +264,14 @@ def _build_practice_items(
 
 def _build_prerequisite_gap_items(
     ledger: LearningDebtLedger,
+    downstream_prereqs: frozenset[str] | None = None,
 ) -> list[LessonAgendaItem]:
-    """Build prerequisite gap agenda items from weak_prerequisite debt."""
+    """Build prerequisite gap agenda items from weak_prerequisite debt.
+
+    Within prerequisite gaps, items whose concept is a downstream prerequisite
+    (i.e., blocking other concepts in the path) are sorted first.
+    """
+    downstream = downstream_prereqs or frozenset()
     items: list[LessonAgendaItem] = []
     for debt in ledger.items:
         if debt.kind == "weak_prerequisite":
@@ -222,6 +285,17 @@ def _build_prerequisite_gap_items(
                     priority=_PRIORITY_MAP["prerequisite_gap"],
                 )
             )
+
+    # Sort: missing prerequisites that are ALSO downstream blockers come first.
+    items.sort(
+        key=lambda i: (
+            0 if any(
+                p.lower() in downstream
+                for p in re.findall(r'"([^"]+)"', i.description)
+            ) else 1,
+            i.description,
+        )
+    )
     return items
 
 
@@ -351,6 +425,13 @@ def compute_next_lesson_plan(
     Combines the current path state, what changed, and what's still owed into
     a structured agenda for the teacher/instructor.
 
+    The planner automatically cross-references PathMemory to detect
+    downstream prerequisite chains: if concept A is a prerequisite for
+    concept B (both exist in the path), then issues with concept A are
+    more urgent because they block concept B. This is inspired by graph-based
+    knowledge tracing (GRKT, arXiv 2406.12896) which shows that concept
+    prerequisite chains are critical for prioritising remedial instruction.
+
     Parameters
     ----------
     memory : PathMemory
@@ -377,10 +458,17 @@ def compute_next_lesson_plan(
             "PathMemory has no concepts — cannot plan next lesson"
         )
 
-    # Build each category
-    review_items = _build_review_items(ledger, memory=memory)
+    # Build downstream prerequisite set from PathMemory concept_graph
+    downstream_prereqs = _compute_downstream_prerequisites(memory)
+
+    # Build each category with prerequisite awareness
+    review_items = _build_review_items(
+        ledger, memory=memory, downstream_prereqs=downstream_prereqs
+    )
     practice_items = _build_practice_items(ledger)
-    prerequisite_gaps = _build_prerequisite_gap_items(ledger)
+    prerequisite_gaps = _build_prerequisite_gap_items(
+        ledger, downstream_prereqs=downstream_prereqs
+    )
     open_doubt_items = _build_open_doubt_items(ledger)
     new_material_items = _build_new_material_items(delta, memory)
 
@@ -402,6 +490,17 @@ def compute_next_lesson_plan(
         + len(open_doubt_items)
     )
 
+    # Build the sorted list of downstream prerequisite concept names
+    if downstream_prereqs:
+        # Resolve to canonical names from the concept graph
+        downstream_canonical: list[str] = []
+        for cpe in memory.concept_graph:
+            if cpe.name.lower() in downstream_prereqs:
+                downstream_canonical.append(cpe.name)
+        is_downstream = tuple(sorted(downstream_canonical))
+    else:
+        is_downstream = ()
+
     return NextLessonPlan(
         path_id=path_id,
         review_items=tuple(review_items),
@@ -411,4 +510,5 @@ def compute_next_lesson_plan(
         open_doubt_items=tuple(open_doubt_items),
         suggested_topics=tuple(suggested_topics),
         total_agenda_items=total,
+        downstream_prerequisite_concepts=is_downstream,
     )
