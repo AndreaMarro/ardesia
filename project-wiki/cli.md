@@ -72,7 +72,16 @@ Helper privati `_capsule_summary()`, `_path_memory_summary()`, `_delta_summary()
 `_debt_summary()`, `_plan_summary()` producono output leggibile con icone e
 gerarchia visiva.
 
-**Citazione**: lessonos/cli.py:309-393 — helper di formattazione.
+`_plan_summary()` ora accetta `memory` opzionale e, se disponibile, mostra
+metriche FSRS per ogni review item e prerequisite gap:
+- **`review day=N`** — giorno raccomandato per il ripasso (da `compute_scheduled_review_day`)
+- **`D=N.N`** — difficoltà per-concept (solo se ≠ default 5.0)
+- **`R=NN%`** — retention stimata (solo se disponibile)
+- **`reps=N`** — conteggio ripetizioni (solo se > 1)
+
+I valori di default (D=5.0, R=None, reps=1) sono nascosti per output più pulito.
+
+**Citazione**: lessonos/cli.py:449-483 — `_plan_summary(plan, memory=...)` con `_fsrs_suffix()` helper.
 
 ## Esempio di output
 
@@ -109,7 +118,7 @@ Summary: 4 capsules, 8 concepts in Path Memory, 1 new concept in Delta,
 
 ## Test Coverage
 
-**File**: `tests/test_cli.py` — 5 test.
+**File**: `tests/test_cli.py` — 6 test.
 
 1. `test_run_path_produces_all_four_capsules` — strutturato: verifica return dict
    con 4 capsule, 8 concetti in PathMemory, 1 nuovo delta (sostituzione da L4),
@@ -121,6 +130,10 @@ Summary: 4 capsules, 8 concepts in Path Memory, 1 new concept in Delta,
 4. `test_run_path_all_delta_fields_non_negative` — ricostruzione oggetti reali,
    tutti i counter ≥ 0
 5. `test_run_path_empty_fixture_shows_error` — exit code 1 su fixture assente
+6. `test_plan_summary_shows_fsrs_metrics_for_review_items` — unit test di
+   `_plan_summary()` con `FakeMemory`: verifica rendering di review_day,
+   difficulty D, retention R% e reps, edge case default nascosti (D=5.0,
+   R=None, reps=1), review_day=0 visibile, empty plan non crasha
 
 **Citazione**: tests/test_cli.py:1-6 — docstring: test non-tautologici, non solo string output.
 

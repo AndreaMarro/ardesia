@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import re
 from dataclasses import asdict
 from pathlib import Path as FsPath
 from typing import Any
@@ -447,17 +448,49 @@ def _debt_summary(ledger: Any) -> str:
     return "\n".join(lines)
 
 
-def _plan_summary(plan: Any) -> str:
+def _plan_summary(plan: Any, memory: Any = None) -> str:
     lines: list[str] = []
     lines.append(f"  Total agenda items: {plan.total_agenda_items}")
+
+    # Build FSRS lookup from memory if available (for recommended_review_day + difficulty)
+    _concept_info: dict[str, dict] = {}
+    if memory is not None and hasattr(memory, "concept_graph"):
+        for cpe in memory.concept_graph:
+            _concept_info[cpe.name.lower()] = {
+                "name": cpe.name,
+                "difficulty": cpe.difficulty,
+                "retention": cpe.estimated_retention,
+                "repetitions": cpe.repetition_count,
+            }
+
+    def _fsrs_suffix(description: str, review_day: int | None) -> str:
+        parts: list[str] = []
+        if review_day is not None:
+            parts.append(f"review day={review_day}")
+        # Try to extract concept name for lookup
+        m_name = re.search(r'[Cc]oncept "([^"]+)"', description)
+        if m_name:
+            key = m_name.group(1).lower()
+            info = _concept_info.get(key)
+            if info:
+                if info["difficulty"] != 5.0:  # only show if non-default
+                    parts.append(f"D={info['difficulty']:.1f}")
+                if info["retention"] is not None:
+                    parts.append(f"R={info['retention']:.0%}")
+                if info["repetitions"] > 1:
+                    parts.append(f"reps={info['repetitions']}")
+        return " [" + ", ".join(parts) + "]" if parts else ""
+
     if plan.prerequisite_gaps:
         lines.append(f"\n  Prerequisite gaps ({len(plan.prerequisite_gaps)}):")
         for item in plan.prerequisite_gaps:
-            lines.append(f"    🔴 {item.description[:80]}")
+            s = _fsrs_suffix(item.description, item.recommended_review_day)
+            lines.append(f"    🔴 {item.description[:80]}{s}")
     if plan.review_items:
         lines.append(f"\n  Review items ({len(plan.review_items)}):")
         for item in plan.review_items:
-            lines.append(f"    📝 {item.description[:80]}")
+            s = _fsrs_suffix(item.description, item.recommended_review_day)
+            lines.append(f"    📝 {item.description[:80]}{s}")
     if plan.open_doubt_items:
         lines.append(f"\n  Open doubts ({len(plan.open_doubt_items)}):")
         for item in plan.open_doubt_items:
@@ -585,7 +618,7 @@ def run_path(
     plan = compute_next_lesson_plan(
         memory, delta, ledger, path_id=path.path_id
     )
-    print(_plan_summary(plan), file=out)
+    print(_plan_summary(plan, memory=memory), file=out)
 
     print(file=out)
     print(_fmt_header("End of Demo", "="), file=out)

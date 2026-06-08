@@ -173,3 +173,138 @@ def test_run_path_empty_fixture_shows_error(tmp_path: FsPath) -> None:
     bad_path = tmp_path / "nonexistent"
     exit_code = main(["run-path", "--fixture", str(bad_path)])
     assert exit_code == 1, f"expected exit code 1, got {exit_code}"
+
+
+def test_plan_summary_shows_fsrs_metrics_for_review_items() -> None:
+    """``_plan_summary`` renders FSRS metrics (review day, difficulty, retention,
+    repetitions) for review items that have a recommended_review_day and
+    concept_info available from memory.
+
+    This is a unit test of the display function, avoiding dependency on
+    specific fixture debt patterns.
+    """
+    from lessonos.graph.next_lesson_planner import (
+        LessonAgendaItem,
+        NextLessonPlan,
+    )
+
+    # Build a minimal NextLessonPlan with one review item that has a
+    # recommended_review_day (mimicking a real FSRS-scheduled item)
+    plan = NextLessonPlan(
+        path_id="test_path",
+        review_items=(
+            LessonAgendaItem(
+                kind="review",
+                description='Review and clarify concept: Concept "derivata" is unmastered',
+                source_debt_ids=("d1",),
+                priority=1,
+                recommended_review_day=3,
+            ),
+        ),
+        practice_items=(),
+        new_material_items=(),
+        prerequisite_gaps=(),
+        open_doubt_items=(),
+        suggested_topics=("Review unmastered concepts",),
+        total_agenda_items=1,
+    )
+
+    # Build a partial PathMemory-like object with ConceptPathEntry data
+    # for the concept referenced in the review item
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    class FakeMemory:
+        """Minimal PathMemory stand-in with concept_graph attribute."""
+        def __init__(self, entries):
+            self.concept_graph = entries
+
+    memory = FakeMemory([
+        ConceptPathEntry(
+            name="derivata",
+            first_introduced_lesson="l1",
+            statuses=("introduced", "reinforced"),
+            lessons=("l1", "l2"),
+            prerequisites=(),
+            difficulty=7.2,  # non-default to test D display
+            estimated_retention=0.45,  # low retention for display
+            repetition_count=3,  # >1 for reps display
+        ),
+    ])
+
+    from lessonos.cli import _plan_summary
+    summary = _plan_summary(plan, memory=memory)
+
+    # Verify each FSRS metric appears correctly
+    assert "review day=3" in summary, (
+        "expected recommended_review_day=3 in summary"
+    )
+    assert "D=7.2" in summary, (
+        "expected difficulty D=7.2 in summary"
+    )
+    assert "R=45%" in summary, (
+        "expected retention R=45% in summary"
+    )
+    assert "reps=3" in summary, (
+        "expected repetition count reps=3 in summary"
+    )
+
+    # Verify that non-default display only happens for non-default values
+    # A concept with D=5.0 should NOT show D= (default, hidden)
+    no_d_plan = NextLessonPlan(
+        path_id="test_path",
+        review_items=(
+            LessonAgendaItem(
+                kind="review",
+                description='Review and clarify concept: Concept "algebra" is unmastered',
+                source_debt_ids=("d2",),
+                priority=1,
+                recommended_review_day=0,  # immediate review
+            ),
+        ),
+        practice_items=(),
+        new_material_items=(),
+        prerequisite_gaps=(),
+        open_doubt_items=(),
+        suggested_topics=("Review",),
+        total_agenda_items=1,
+    )
+    no_d_memory = FakeMemory([
+        ConceptPathEntry(
+            name="algebra",
+            first_introduced_lesson="l1",
+            statuses=("introduced",),
+            lessons=("l1",),
+            prerequisites=(),
+            difficulty=5.0,  # default — should be hidden
+            estimated_retention=None,  # no retention data
+            repetition_count=1,  # default — should be hidden
+        ),
+    ])
+    no_d_summary = _plan_summary(no_d_plan, memory=no_d_memory)
+    assert "D=5.0" not in no_d_summary, (
+        "default difficulty D=5.0 should NOT appear in summary"
+    )
+    assert "R=None" not in no_d_summary, (
+        "None retention should NOT appear in summary"
+    )
+    assert "reps=1" not in no_d_summary, (
+        "default repetition count 1 should NOT appear in summary"
+    )
+    # But review day should still show for item with review_day=0
+    assert "review day=0" in no_d_summary, (
+        "recommended_review_day=0 should still appear"
+    )
+
+    # Verify no-review-items plan doesn't crash
+    empty_plan = NextLessonPlan(
+        path_id="empty",
+        review_items=(),
+        practice_items=(),
+        new_material_items=(),
+        prerequisite_gaps=(),
+        open_doubt_items=(),
+        suggested_topics=(),
+        total_agenda_items=0,
+    )
+    empty_summary = _plan_summary(empty_plan, memory=memory)
+    assert "Total agenda items: 0" in empty_summary
