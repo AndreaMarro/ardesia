@@ -127,8 +127,10 @@ class TestSaveAndLoad:
             assert len(found) == 1
             assert found[0].task == "add-didactic-delta"
 
-            found2 = search_observations("add", store_path=tmppath)
-            assert len(found2) == 2  # add-llm-router + add-didactic-delta
+            # Multi-match: "add-" matcha 2 task names ma non il commit SHA (e.g. "add9acf")
+            found2 = search_observations("add-", store_path=tmppath)
+            assert len(found2) == 2
+            assert {obs.task for obs in found2} == {"add-llm-router", "add-didactic-delta"}
 
             found3 = search_observations("nonexistent", store_path=tmppath)
             assert len(found3) == 0
