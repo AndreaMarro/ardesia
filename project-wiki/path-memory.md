@@ -7,6 +7,23 @@ Costruita da `build_path_memory()` in `lessonos/graph/path_memory.py`.
 
 **File**: `lessonos/graph/path_memory.py`
 
+### _collect_misconceptions(capsules) -> tuple[str, ...]
+
+Raccoglie tutte le `student_questions` come misconception testuali.
+
+**Citazione**: `lessonos/graph/path_memory.py:292-305`.
+
+### compute_difficulty_update(difficulty, response_quality) -> float
+
+Aggiorna il fattore di difficolta D dopo una risposta dello studente (post-review).
+Formula SM-2 euristica con pessimistic bias 3.3:1 (penalizza errore piu del premio).
+
+**Citazione**: `lessonos/graph/path_memory.py:159-258` — `compute_difficulty_update()`:
+q>=4 (corretto) → D' = D - (q-3)*0.3; q=3 (hard) → D' = D + 0.1;
+q<=2 (errato) → D' = D + (4-q)*0.5. Clamp in [1.0, 10.0].
+
+Esportato da `lessonos/graph/__init__.py`.
+
 ## Entità
 
 ### PathMemory (frozen dataclass)
@@ -31,12 +48,14 @@ Entry nel lesson index: ordine, topics, conteggio concetti/esercizi, split new/r
 Concetto aggregato across lezioni: dove introdotto, tutti gli status, tutte le lezioni, prerequisiti,
 conteggio ripetizioni (SM-2 inspired), ultima lezione di revisione, fattore di difficolta D (FSRS).
 
-**Citazione**: `lessonos/graph/path_memory.py:68-113` — `ConceptPathEntry`: `name`,
+**Citazione**: `lessonos/graph/path_memory.py:68-147` — `ConceptPathEntry`: `name`,
 `first_introduced_lesson` (None se reinforced senza introduced), `statuses`, `lessons`, `prerequisites`,
 `repetition_count` (default=1, quante lezioni coprono il concetto), `last_reviewed_lesson` (default=None,
 la lezione piu recente in cui e apparso), `difficulty` (default=5.0, FSRS D factor in [1.0, 10.0]),
 `estimated_retention` (None se non calcolato, power-law decay R = 1/(1+t/S) con scaling per difficolta).
 `__post_init__` valida difficulty in [1.0, 10.0] — `lessonos/graph/path_memory.py:100-105`.
+`update_after_review(quality)` — `lessonos/graph/path_memory.py:106-147`: ritorna un nuovo entità con
+difficulty aggiornata dopo una risposta studente (quality 0-5, SM-2 scale), immutabile.
 
 ## Funzioni
 
@@ -58,6 +77,19 @@ Aggrega concetti con case-insensitive matching. Ordina per lezione di prima intr
 **Citazione**: `lessonos/graph/path_memory.py:93-139` — `_aggregate_concepts()`:
 aggregazione via dict key `.lower()`, `first_intro` track al primo `status=="introduced"`.
 
+### _collect_misconceptions(capsules) -> tuple[str, ...]
+
+Raccoglie tutte le `student_questions` come misconception testuali.
+
+**Citazione**: `lessonos/graph/path_memory.py:292-305`.
+
+### compute_retention(rep_count, lessons_since_review, ...) -> float
+
+Stima il retention rate con power-law decay, modulata da difficulty D (FSRS).
+
+**Citazione**: `lessonos/graph/path_memory.py:110-201` — `compute_retention()`:
+`R = 1.0 / (1.0 + lessons_since_review / stability)` con scaling per difficulty.
+
 ## Design Rationale
 
 1. **Pure derivazione** — ogni campo è calcolato deterministicamente dai capsule, zero LLM calls
@@ -68,9 +100,9 @@ aggregazione via dict key `.lower()`, `first_intro` track al primo `status=="int
 
 ## Test Coverage
 
-**File**: `tests/test_path_memory.py` — 14 test.
+**File**: `tests/test_path_memory.py` — ~40 test (concept path, retention, difficulty, update, aggregation).
 
-**Citazione**: STATUS.md:22 — "Gate VERDE: 136 passed + 1 skipped (baseline 134 → 136, no regressione)."
+**Citazione**: STATUS.md — ultimo: 390 passed + 2 skipped.
 
 ## Dipendenze
 
