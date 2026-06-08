@@ -27,6 +27,7 @@ import os
 import urllib.error
 import urllib.request
 
+from lessonos.llm._retry import retry_on_timeout
 from lessonos.llm.router import LLMResponse
 
 DEFAULT_BASE_URL = "https://api.deepseek.com/v1"
@@ -177,7 +178,7 @@ class DeepSeekProvider:
         api_key: str | None = None,
         model: str = DEFAULT_MODEL,
         base_url: str | None = None,
-        timeout: float = 30.0,
+        timeout: float = 120.0,
     ) -> None:
         key = api_key or os.environ.get("DEEPSEEK_API_KEY")
         if not key:
@@ -226,7 +227,8 @@ class DeepSeekProvider:
             },
         )
         try:
-            with urllib.request.urlopen(request, timeout=self._timeout) as response:
+            _urlopen = retry_on_timeout(urllib.request.urlopen, max_attempts=3, backoff_base=1.0)
+            with _urlopen(request, timeout=self._timeout) as response:
                 body = json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
             error_body = exc.read().decode("utf-8", errors="replace")

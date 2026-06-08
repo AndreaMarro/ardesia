@@ -335,3 +335,56 @@ class TestDeepSeekProviderCompleteMocked:
         provider = DeepSeekProvider(api_key="sk-test")
         with pytest.raises(RuntimeError, match="500"):
             provider.complete("test")
+
+    def test_timeout_retried_three_times(self, monkeypatch) -> None:
+        """URLError (network timeout) is retried 3 times, then raised."""
+        call_count = [0]
+
+        def _failing_urlopen(request, *, timeout=None):
+            call_count[0] += 1
+            raise urllib.error.URLError("timed out")
+
+        monkeypatch.setattr("urllib.request.urlopen", _failing_urlopen)
+        provider = DeepSeekProvider(api_key="sk-test")
+        with pytest.raises(urllib.error.URLError, match="timed out"):
+            provider.complete("test")
+        # Should have been called 3 times (1 initial + 2 retries)
+        assert call_count[0] == 3
+
+    def test_timeout_retry_then_succeed(self, monkeypatch) -> None:
+        """Fails twice with URLError, succeeds on third attempt."""
+        call_count = [0]
+        GOOD_RESPONSE = {
+            "choices": [{"message": {"content": "finally ok"}}],
+            "usage": {"prompt_tokens": 10, "completion_tokens": 5},
+        }
+
+        def _flaky_urlopen(request, *, timeout=None):
+            call_count[0] += 1
+            if call_count[0] <= 2:
+                raise urllib.error.URLError("timeout")
+            return _MockResponse(GOOD_RESPONSE)
+
+        monkeypatch.setattr("urllib.request.urlopen", _flaky_urlopen)
+        provider = DeepSeekProvider(api_key="sk-test")
+        response = provider.complete("test")
+        assert response.text == "finally ok"
+        assert response.usage == {"prompt_tokens": 10, "completion_tokens": 5}
+        assert call_count[0] == 3
+
+    def test_httperror_not_retried(self, monkeypatch) -> None:
+        """HTTP 429 is NOT retried -> raises RuntimeError immediately."""
+        call_count = [0]
+
+        def _rate_limit_urlopen(request, *, timeout=None):
+            call_count[0] += 1
+            raise urllib.error.HTTPError(
+                url="", code=429, msg="rate limited", hdrs={}, fp=None
+            )
+
+        monkeypatch.setattr("urllib.request.urlopen", _rate_limit_urlopen)
+        provider = DeepSeekProvider(api_key="sk-test")
+        with pytest.raises(RuntimeError, match="429"):
+            provider.complete("test")
+        # Only 1 attempt — HTTPError is not retried
+        assert call_count[0] == 1

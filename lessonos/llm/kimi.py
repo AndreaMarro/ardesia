@@ -14,8 +14,10 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.error
 import urllib.request
 
+from lessonos.llm._retry import retry_on_timeout
 from lessonos.llm.router import LLMResponse
 
 # Moonshot Kimi token pricing (per 1M tokens, USD).
@@ -70,7 +72,7 @@ class KimiProvider:
         api_key: str | None = None,
         model: str = DEFAULT_MODEL,
         base_url: str | None = None,
-        timeout: float = 30.0,
+        timeout: float = 120.0,
     ) -> None:
         key = api_key or os.environ.get("KIMI_API_KEY")
         if not key:
@@ -100,8 +102,21 @@ class KimiProvider:
                 "Content-Type": "application/json",
             },
         )
-        with urllib.request.urlopen(request, timeout=self._timeout) as response:
-            body = json.loads(response.read().decode("utf-8"))
-        text = body["choices"][0]["message"]["content"]
-        usage = body.get("usage")
+        try:
+            _urlopen = retry_on_timeout(urllib.request.urlopen, max_attempts=3, backoff_base=1.0)
+            with _urlopen(request, timeout=self._timeout) as response:
+                body = json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            error_body = exc.read().decode("utf-8", errors="replace")
+            raise RuntimeError(
+                f"Kimi API returned HTTP {exc.code}: {error_body[:500]}"
+            ) from exc
+        try:
+            text = body["choices"][0]["message"]["content"]
+            usage = body.get("usage")
+        except (KeyError, IndexError) as exc:
+            raise RuntimeError(
+                f"Kimi API response missing expected fields: {exc}. "
+                f"Response: {json.dumps(body, indent=2, default=str)[:500]}"
+            ) from exc
         return LLMResponse(text=text, provider=self.name, model=used_model, usage=usage)
