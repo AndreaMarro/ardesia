@@ -49,12 +49,19 @@ class LessonAgendaItem:
     priority : int
         Lower means higher urgency. 0=prerequisite_gap, 1=review, 2=open_doubt,
         3=practice, 4=new_material.
+    recommended_review_day : int | None
+        Recommended lesson-day for review, computed from the concept's current
+        stability and a target retention of 0.9 (inverse of power-law decay
+        formula ``R = 1 / (1 + t / S)``). ``None`` when the concept has no
+        stability data (e.g., prerequisite gaps with no path history, or
+        new material not yet reviewed).
     """
 
     kind: str
     description: str
     source_debt_ids: tuple[str, ...] = ()
     priority: int = 4
+    recommended_review_day: int | None = None
 
 
 # Priority values by kind (lower = more urgent)
@@ -146,6 +153,55 @@ def _compute_downstream_prerequisites(
     return frozenset(downstream)
 
 
+def _estimate_scheduled_review_day(
+    cpe: ConceptPathEntry,
+    memory: PathMemory,
+    target_retention: float = 0.9,
+) -> int | None:
+    """Estimate the recommended review day for a concept from its retention data.
+
+    Inverts the power-law decay formula R = 1/(1 + t/S) to find S, then uses
+    compute_scheduled_review_day to find the day.
+
+    S = t * R / (1 - R)  where t = lessons_since_review and R = estimated_retention.
+
+    When R >= 1.0 (just reviewed, no decay yet) or last_reviewed_lesson is
+    unknown, returns 0 (suggest immediate review in the next lesson) — this is
+    the safe/conservative choice for unmastered concepts.
+    """
+    from lessonos.graph.path_memory import compute_scheduled_review_day
+
+    if cpe.estimated_retention is None:
+        return None
+    if cpe.last_reviewed_lesson is None:
+        return 0  # conservative: review next lesson
+
+    # Find how many lessons since last review
+    review_idx: int | None = None
+    for i, entry in enumerate(memory.lesson_index):
+        if entry.lesson_id == cpe.last_reviewed_lesson:
+            review_idx = i
+            break
+    if review_idx is None:
+        return 0  # unknown lesson — conservative default
+    lessons_since = len(memory.lesson_index) - 1 - review_idx
+    if lessons_since <= 0:
+        return 0  # just reviewed, schedule next lesson
+
+    # Invert R = 1/(1 + t/S) -> S = t * R / (1 - R)
+    R = cpe.estimated_retention
+    if R >= 1.0:
+        return 0  # no decay yet, schedule next lesson
+    t = float(lessons_since)
+    S = t * R / (1.0 - R)
+    if S <= 0:
+        return 0
+    try:
+        return compute_scheduled_review_day(S, target_retention=target_retention)
+    except ValueError:
+        return 0
+
+
 def _build_review_items(
     ledger: LearningDebtLedger,
     memory: PathMemory | None = None,
@@ -166,6 +222,17 @@ def _build_review_items(
     items: list[LessonAgendaItem] = []
     for debt in ledger.items:
         if debt.kind == "unmastered_concept":
+            # Extract concept name for scheduled review day lookup
+            m_name = re.search(r'Concept "([^"]+)"', debt.description)
+            concept_name = m_name.group(1) if m_name else ""
+            review_day: int | None = None
+            if concept_name and memory:
+                for cpe in memory.concept_graph:
+                    if cpe.name.lower() == concept_name.lower():
+                        review_day = _estimate_scheduled_review_day(
+                            cpe, memory, target_retention=0.9
+                        )
+                        break
             items.append(
                 LessonAgendaItem(
                     kind="review",
@@ -174,6 +241,7 @@ def _build_review_items(
                     ),
                     source_debt_ids=(debt.debt_id,),
                     priority=_PRIORITY_MAP["review"],
+                    recommended_review_day=review_day,
                 )
             )
 

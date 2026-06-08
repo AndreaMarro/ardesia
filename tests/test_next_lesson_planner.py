@@ -11,6 +11,7 @@ Tests verify:
 """
 
 import dataclasses
+from dataclasses import FrozenInstanceError
 
 import pytest
 
@@ -937,3 +938,113 @@ class TestSeverityAwarePlanner:
             f"beta (severity ~1.0) should precede gamma (severity ~0.4), "
             f"positions: beta={beta_pos}, gamma={gamma_pos}"
         )
+
+
+class TestScheduledReviewDay:
+    """recommended_review_day field in LessonAgendaItem (scheduling FSRS)."""
+
+    def test_review_item_has_recommended_review_day(self, path_with_all_debt_types):
+        """Review items from unmastered concepts carry a recommended_review_day."""
+        pm, delta, ledger = path_with_all_debt_types
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        # At least one review item should have recommended_review_day set
+        review_days = [i.recommended_review_day for i in plan.review_items]
+        non_none = [d for d in review_days if d is not None]
+        assert len(non_none) >= 1, (
+            f"Expected at least one review item with scheduled day, "
+            f"got all None: {review_days}"
+        )
+        # All should be non-negative
+        for d in non_none:
+            assert d >= 0
+
+    def test_no_review_items_on_simple_path(self, simple_path):
+        """A single-lesson zero-change path produces no review items
+        (consequently no recommended_review_day)."""
+        pm, delta, ledger = simple_path
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        # No review items (single-lesson path, zero-change)
+        assert len(plan.review_items) == 0
+
+    def test_review_day_zero_for_just_reviewed_concept(self):
+        """A concept with retention=1.0 (just reviewed) gets day=0
+        (schedule next lesson) when it's unmastered."""
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("derivata", "problematic")],
+        )
+        pm = build_path_memory([l1], path_title="Test")
+        delta = compute_didactic_delta(pm, pm)
+        ledger = compute_learning_debt(pm, delta, path_id="p1")
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        # pm vs pm = zero-change delta → still_open_concepts from first capsule
+        for item in plan.review_items:
+            if "derivata" in item.description.lower():
+                # Just introduced retention=1.0 → schedule next lesson
+                assert item.recommended_review_day == 0, (
+                    f"Expected 0 for just-reviewed concept, "
+                    f"got {item.recommended_review_day}"
+                )
+                return
+        pytest.fail("Expected 'derivata' in review items")
+
+    def test_agenda_item_frozen_with_recommended_review_day(self):
+        """AgendaItem with recommended_review_day is still frozen (immutable)."""
+        item = LessonAgendaItem(
+            kind="review",
+            description='Review and clarify concept: "derivata" is problematic',
+            source_debt_ids=("d1",),
+            priority=1,
+            recommended_review_day=3,
+        )
+        with pytest.raises(FrozenInstanceError):
+            item.recommended_review_day = 5  # type: ignore[misc]
+
+    def test_review_day_from_decayed_retention(self):
+        """A concept where retention has decayed (< 1.0) yields a positive
+        recommended_review_day computed from inverted power-law formula."""
+        # L1: derivata introduced
+        l1 = _make_capsule(
+            "l1", "base",
+            concepts=[("derivata", "problematic")],
+        )
+        # L2: altro concetto (derivata not in L2) → lessons_since_review = 1
+        l2 = _make_capsule(
+            "l2", "other",
+            concepts=[("calcolo", "introduced")],
+        )
+        pm = build_path_memory([l1, l2], path_title="Test")
+        delta = compute_didactic_delta(pm, pm)
+        ledger = compute_learning_debt(pm, delta, path_id="p1")
+
+        # 'derivata' should have retention < 1.0 (not reviewed in L2)
+        cpe = next(c for c in pm.concept_graph if c.name.lower() == "derivata")
+        assert cpe.estimated_retention < 1.0, \
+            f"Expected retention < 1.0 for concept skipped in L2, got {cpe.estimated_retention}"
+        assert cpe.last_reviewed_lesson is not None
+
+        plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
+
+        for item in plan.review_items:
+            if "derivata" in item.description.lower():
+                # With decay, recommended_review_day should be computable
+                assert item.recommended_review_day is not None, (
+                    f"Expected non-None day for decayed concept, "
+                    f"retention={cpe.estimated_retention}"
+                )
+                assert item.recommended_review_day >= 0
+                return
+        pytest.fail("Expected 'derivata' in review items for decayed retention test")
+
+    def test_default_none(self):
+        """New LessonAgendaItem defaults recommended_review_day to None."""
+        item = LessonAgendaItem(
+            kind="review",
+            description="test",
+            source_debt_ids=("d1",),
+            priority=1,
+        )
+        assert item.recommended_review_day is None
