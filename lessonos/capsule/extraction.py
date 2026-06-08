@@ -9,12 +9,64 @@ the LLM cites, but we validate against persisted segments (PLAN §13.4).
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+import re
+from dataclasses import dataclass, field
+from difflib import SequenceMatcher
 
 from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
 from lessonos.models import CONCEPT_STATUS
 from lessonos.store.base import Store
+
+
+def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
+    """Try to locate the closest substring of ``segment_text`` matching ``excerpt``.
+
+    Strategy (3-tier):
+      1. If excerpt is already a verbatim substring → return excerpt as-is.
+      2. Longest common substring via ``difflib.SequenceMatcher.find_longest_match``
+         — if length >= 3 characters, return that substring.
+      3. Word-by-word greedy scan: try to find the longest prefix of excerpt words
+         that still appears in segment_text; if at least 1 word matches, return the
+         matched span.
+
+    Returns the repaired substring or ``None`` if no meaningful match is found.
+    """
+    if not excerpt or not segment_text:
+        return None
+
+    # Tier 1 — verbatim substring
+    if excerpt in segment_text:
+        return excerpt
+
+    # Tier 2 — longest common substring
+    matcher = SequenceMatcher(None, excerpt, segment_text)
+    match = matcher.find_longest_match(
+        0, len(excerpt), 0, len(segment_text)
+    )
+    # Require match to be at least 40% of excerpt length OR at least 8 chars
+    # to avoid accidental 3-char matches like 'uan' from 'quantum'
+    if match.size >= max(8, int(len(excerpt) * 0.4)):
+        return segment_text[match.b : match.b + match.size]
+
+    # Tier 3 — word-by-word greedy scan (case-insensitive)
+    excerpt_lower = excerpt.lower()
+    seg_lower = segment_text.lower()
+    words = excerpt_lower.split()
+    # Find the longest prefix of words that appears consecutively in segment_text
+    best_end = 0
+    for i in range(len(words), 0, -1):
+        candidate = " ".join(words[:i])
+        if candidate in seg_lower:
+            best_end = i
+            break  # Found longest match
+    if best_end > 0:
+        # Map back to the segment's actual text (preserves original casing)
+        matched_lower = " ".join(words[:best_end])
+        idx = seg_lower.index(matched_lower)
+        return segment_text[idx : idx + len(matched_lower)]
+
+    return None
 
 
 @dataclass(frozen=True)
@@ -24,11 +76,15 @@ class Citation:
     ``seg_id`` must resolve to a persisted Segment for the lesson. ``excerpt``
     is the snippet being cited (optional, for readability). ``confidence`` is
     the model's self-assessed certainty (0.0–1.0, optional).
+
+    ``excerpt_repaired`` is ``True`` when the original excerpt from the LLM was
+    paraphrased and has been auto-repaired or dropped by the excerpt guard.
     """
 
     seg_id: str
     excerpt: str | None = None
     confidence: float | None = None
+    excerpt_repaired: bool = False
 
 
 @dataclass(frozen=True)
@@ -123,8 +179,12 @@ def extract_lesson_content(
 
     Reads the segments from the store (they must be ingested first), asks the
     router to extract content, then validates every ``Citation.seg_id`` against
-    persisted segments. A dangling citation raises ``ValueError`` — no fabricated
-    references (PLAN §13.4).
+    persisted segments (PLAN §13.4: no invented references) and every
+    ``Citation.excerpt`` against the verbatim segment text (PLAN §13.4: no
+    paraphrased excerpts — FM1 guard).
+
+    Paraphrased excerpts are auto-repaired (snapped to the closest real substring)
+    or dropped with ``excerpt_repaired=True``.
     """
     segments = store.segments_for_lesson(lesson_id)
     if not segments:
@@ -132,6 +192,7 @@ def extract_lesson_content(
             f"no segments persisted for lesson {lesson_id!r}; ingest first"
         )
     valid_ids = frozenset(seg.seg_id for seg in segments)
+    seg_text_map: dict[str, str] = {seg.seg_id: seg.text for seg in segments}
 
     prompt = build_extraction_prompt(segments)
     response = router.complete(prompt, provider=provider, model=model)
@@ -150,11 +211,26 @@ def extract_lesson_content(
                     f"citation cites unknown segment {seg_id!r} "
                     f"(not persisted for lesson {lesson_id!r})"
                 )
+            raw_excerpt: str | None = c.get("excerpt")
+            repaired: bool = False
+            excerpt: str | None = raw_excerpt
+            # FM1 guard: validate excerpt against verbatim segment text
+            if raw_excerpt is not None and seg_id in seg_text_map:
+                segment_text = seg_text_map[seg_id]
+                if raw_excerpt not in segment_text:
+                    # Paraphrased excerpt — attempt repair
+                    repaired_excerpt = _repair_excerpt(raw_excerpt, segment_text)
+                    if repaired_excerpt is not None:
+                        excerpt = repaired_excerpt
+                    else:
+                        excerpt = None
+                    repaired = True
             cites.append(
                 Citation(
                     seg_id=seg_id,
-                    excerpt=c.get("excerpt"),
+                    excerpt=excerpt,
                     confidence=c.get("confidence"),
+                    excerpt_repaired=repaired,
                 )
             )
         return tuple(cites)

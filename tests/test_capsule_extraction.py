@@ -19,6 +19,7 @@ from lessonos.capsule.extraction import (
     ExerciseExtraction,
     HomeworkExtraction,
     QuestionExtraction,
+    _repair_excerpt,
     build_extraction_prompt,
     extract_lesson_content,
 )
@@ -278,3 +279,220 @@ def test_citation_dataclass_immutable() -> None:
     cite = Citation(seg_id="l1s1", excerpt="test")
     with pytest.raises(Exception):  # FrozenInstanceError
         cite.seg_id = "l1s2"  # type: ignore
+
+
+# --- FM1 excerpt-guard tests ------------------------------------------------
+
+
+def test_excerpt_verbatim_unchanged() -> None:
+    """A verbatim substring excerpt must pass through unchanged (no repair)."""
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    payload = {
+        "concepts": [{
+            "name": "derivata",
+            "status": "introduced",
+            "citations": [{"seg_id": "l1s3", "excerpt": "la derivata f'(x)"}],
+        }],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_returning(prompt, payload)
+    content = extract_lesson_content(store, L1, router)
+    cite = content.concepts[0].citations[0]
+    assert cite.excerpt == "la derivata f'(x)"
+    assert cite.excerpt_repaired is False
+    store.close()
+
+
+def test_paraphrased_excerpt_is_repaired() -> None:
+    """A paraphrased excerpt (words present, rephrased) must be auto-repaired.
+
+    The original excerpt 'derivative f prime' is not a verbatim substring of
+    segment l1s3 ('Quando il limite esiste, il suo valore e la derivata f'(x)
+    nel punto x.'), but words match — the guard should snap to a real substring.
+    """
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    payload = {
+        "concepts": [{
+            "name": "derivata",
+            "status": "introduced",
+            "citations": [{"seg_id": "l1s3", "excerpt": "derivative f prime"}],
+        }],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_returning(prompt, payload)
+
+    content = extract_lesson_content(store, L1, router)
+    cite = content.concepts[0].citations[0]
+
+    # The excerpt should have been repaired — it's different from original
+    assert cite.excerpt_repaired is True
+    assert cite.excerpt != "derivative f prime"  # Must have been modified
+    # The repaired excerpt must be a verbatim substring of the segment text
+    seg = store.get_segment("l1s3")
+    assert seg is not None
+    assert cite.excerpt is None or cite.excerpt in seg.text
+    store.close()
+
+
+def test_completely_invented_excerpt_is_dropped() -> None:
+    """An excerpt with no words matching the segment must be dropped (excerpt=None)."""
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    payload = {
+        "concepts": [{
+            "name": "derivata",
+            "status": "introduced",
+            "citations": [{
+                "seg_id": "l1s3",
+                "excerpt": "quantum mechanics wave function collapse",
+            }],
+        }],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_returning(prompt, payload)
+
+    content = extract_lesson_content(store, L1, router)
+    cite = content.concepts[0].citations[0]
+
+    assert cite.excerpt_repaired is True
+    assert cite.excerpt is None
+    store.close()
+
+
+def test_paraphrased_excerpt_partial_match_keeps_valid_part() -> None:
+    """A paraphrased excerpt that partially overlaps should snap to a real substring.
+
+    'derivata funzione' — 'derivata' appears in l1s3 text but 'funzione' does not.
+    The guard should repair to 'derivata' (at least 1 matching word).
+    """
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    payload = {
+        "concepts": [{
+            "name": "derivata",
+            "status": "introduced",
+            "citations": [{"seg_id": "l1s3", "excerpt": "derivata funzione"}],
+        }],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_returning(prompt, payload)
+
+    content = extract_lesson_content(store, L1, router)
+    cite = content.concepts[0].citations[0]
+
+    assert cite.excerpt_repaired is True
+    assert cite.excerpt is not None
+    seg = store.get_segment("l1s3")
+    assert seg is not None
+    assert cite.excerpt in seg.text
+    store.close()
+
+
+def test_excerpt_from_different_segment_is_repaired() -> None:
+    """An excerpt matching a *different* segment's text must be repaired to match
+    the *target* segment's text (not accepted as-is on the wrong segment)."""
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    # l1s1 = "Oggi introduciamo la derivata come velocita istantanea..."
+    # l1s3 = "Quando il limite esiste, il suo valore e la derivata f'(x)..."
+    # excerpt from l1s1 cited as belonging to l1s3
+    payload = {
+        "concepts": [{
+            "name": "derivata",
+            "status": "introduced",
+            "citations": [{
+                "seg_id": "l1s3",
+                "excerpt": "introduciamo la derivata",
+            }],
+        }],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_returning(prompt, payload)
+
+    content = extract_lesson_content(store, L1, router)
+    cite = content.concepts[0].citations[0]
+
+    assert cite.excerpt_repaired is True
+    assert cite.excerpt is not None
+    seg = store.get_segment("l1s3")
+    assert seg is not None
+    assert cite.excerpt in seg.text
+    store.close()
+
+
+def test_excerpt_repair_applies_to_exercises_too() -> None:
+    """The excerpt guard must apply to all citation-bearing entities, not just concepts.
+
+    All excerpts here happen to be verbatim substrings — they should pass through
+    unrepaired.
+    """
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    payload = {
+        "concepts": [],
+        "exercises": [{
+            "prompt": "Calcola la derivata",
+            "citations": [{"seg_id": "l1s3", "excerpt": "la derivata f'(x) nel punto"}],
+        }],
+        "student_questions": [{
+            "question": "Cosa significa?",
+            "citations": [{"seg_id": "l1s1", "excerpt": "velocita istantanea di variazione"}],
+        }],
+        # l1s2 homework uses a verbatim excerpt
+        "homework": [{
+            "task": "Fai esercizi",
+            "citations": [{"seg_id": "l1s2", "excerpt": "rapporto incrementale"}],
+        }],
+    }
+    router = _router_returning(prompt, payload)
+
+    content = extract_lesson_content(store, L1, router)
+
+    # All excerpts are verbatim substrings — should not be repaired
+    assert content.exercises[0].citations[0].excerpt_repaired is False
+    assert content.student_questions[0].citations[0].excerpt_repaired is False
+    assert content.homework[0].citations[0].excerpt_repaired is False
+    store.close()
+
+
+def test_excerpt_repair_functions_independently() -> None:
+    """Verify _repair_excerpt directly (unit-level)."""
+    text = "Quando il limite esiste, il suo valore e la derivata f'(x) nel punto x."
+
+    # Tier 1: verbatim
+    assert _repair_excerpt("la derivata f'(x)", text) == "la derivata f'(x)"  # type: ignore[arg-type]
+
+    # Tier 2: longest common substring (e.g. rearranged word order)
+    result = _repair_excerpt("derivata f'(x) la", text)
+    assert result is not None  # 'la derivata f'(x)' or 'derivata f'(x)' is in text
+    assert result in text
+
+    # Tier 3: word-by-word (partial overlap, tier 2 fails due to case mismatch)
+    result2 = _repair_excerpt("DERIVATA quantum", text)
+    assert result2 is not None  # tier 3 finds 'derivata' (case-insensitive)
+    assert result2 in text
+
+    # No match at all
+    assert _repair_excerpt("quantum mechanics", text) is None
+
+    # Edge: empty
+    assert _repair_excerpt("", text) is None
+    assert _repair_excerpt("test", "") is None
