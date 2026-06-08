@@ -176,8 +176,12 @@ def test_stability_bounded(history, initial_stability, stability_multiplier, dif
     # Upper bound: all q=5, D=1.0, full growth each step
     max_growth_per_step = 1.0 + (stability_multiplier - 1.0) * 1.0 * max_difficulty_scaling
     upper_bound = initial_stability * (max_growth_per_step ** len(history))
-    # Upper bound is an overestimate; actual growth depends on actual qualities
-    assert s <= upper_bound + 1e-6, (
+    # Upper bound is an overestimate; actual growth depends on actual qualities.
+    # Use a relative tolerance because values can span many orders of magnitude
+    # (up to 10^10+), where the absolute 1e-6 was too tight for floating-point
+    # multiplication order differences (actual: delta ~3.8e-6 at value 23e9).
+    tol = 1e-6  # relative tolerance for floating-point at large values
+    assert s <= upper_bound * (1.0 + tol), (
         f"Stability {s} exceeds theoretical upper bound {upper_bound}, "
         f"history={history}, D={difficulty}"
     )
