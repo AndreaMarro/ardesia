@@ -119,6 +119,12 @@ dopo cui la retention scende sotto `target_retention`. Formula: `t = floor(S * (
 - **Test**: `tests/test_scheduled_review.py` (20 test su esempi) + `tests/test_scheduled_review_properties.py` (7 Hypothesis property-based: monotonicità stabilità, monotonicità retention, formula inversa, determinismo, validità retention schedulata)
 
 **Citazione**: `lessonos/graph/path_memory.py:434-497`
+
+### Integrazione con NextLessonPlan (2026-06-08)
+
+`_estimate_scheduled_review_day(cpe, memory)` in `lessonos/graph/next_lesson_planner.py:159-196` inverte `R = 1/(1 + t/S)` → `S = t*R/(1-R)` per stimare la stability dal retention corrente di un `ConceptPathEntry`, poi chiama `compute_scheduled_review_day(S)` per produrre `LessonAgendaItem.recommended_review_day`.
+
+**Citazione**: `lessonos/graph/next_lesson_planner.py:159-196`
 |
 |## Design Rationale
 

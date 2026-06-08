@@ -24,11 +24,12 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 
 #### LessonAgendaItem (frozen dataclass)
 
-`lessonos/graph/next_lesson_planner.py:33-58` — item singolo dell'agenda:
+`lessonos/graph/next_lesson_planner.py:33-63` — item singolo dell'agenda:
 - `kind` — `prerequisite_gap`, `review`, `open_doubt`, `practice`, `new_material`
 - `description` — descrizione umana di cosa fare
 - `source_debt_ids` — riferimenti ai LearningDebtItem.debt_id che hanno originato l'item
 - `priority` — 0 (più urgente, prerequisiti) → 4 (meno urgente, materiale nuovo)
+- `recommended_review_day` — giorno lezione raccomandato per la revisione (da FSRS power-law scheduling), `None` se non disponibile
 
 ## Funzione Principale
 
