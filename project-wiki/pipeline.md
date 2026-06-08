@@ -18,6 +18,8 @@ from lessonos.pipeline import run_pipeline, PipelineResult
 result = run_pipeline()
 # Or with custom fixture root:
 result = run_pipeline(fixture_root=Path("path/to/fixtures"))
+# Or with review feedback (post-lesson FSRS difficulty update):
+result = run_pipeline(review_feedback={"derivata": 3, "rapporto incrementale": 5})
 
 print(result.summary)
 for capsule in result.capsules:
@@ -41,6 +43,12 @@ print(f"Plan: {result.plan.total_agenda_items} items")
 - `total_cost_usd` — mock = $0.0; real provider = logged from CostLedger
 - `total_llm_calls` — 2 per lesson (segmentation + extraction)
 
+## Parameters
+
+- `fixture_root` (Path, optional) — path to fixture directory, defaults to `fixtures/sample_path`
+- `store` (Store, optional) — existing Store instance; creates in-memory SQLiteStore if None
+- `review_feedback` (dict[str, int], optional) — SM-2 quality scores (0–5) per concept name. If provided, `apply_review_feedback` is called after PathMemory build, updating difficulty values. The updated memory feeds into Delta, Debt, and Plan computation. See `lessonos/pipeline.py:516-591`, `lessonos/graph/path_memory.py:434-526`
+
 ## Validation
 
 - `run_pipeline(fixture_root)` validates the path exists and contains `path.json`
@@ -48,6 +56,6 @@ print(f"Plan: {result.plan.total_agenda_items} items")
 
 ## Files
 
-- `lessonos/pipeline.py` — 464 line module (`file:line 1-464`)
-- `tests/test_pipeline.py` — 21 tests non-tautologici (`file:line 1-331`)
+- `lessonos/pipeline.py` — 623 line module (`file:line 1-623`)
+- `tests/test_pipeline.py` — 401 test non-tautologici (`file:line 1-401`)
 - `lessonos/cli.py` — unchanged, cli imports mock payloads internally (old pattern for backward compat)

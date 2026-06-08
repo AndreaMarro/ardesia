@@ -31,7 +31,11 @@ from lessonos.graph.builder import build_path_graph
 from lessonos.graph.didactic_delta import DidacticDelta, compute_didactic_delta
 from lessonos.graph.learning_debt import LearningDebtLedger, compute_learning_debt
 from lessonos.graph.next_lesson_planner import NextLessonPlan, compute_next_lesson_plan
-from lessonos.graph.path_memory import PathMemory, build_path_memory
+from lessonos.graph.path_memory import (
+    PathMemory,
+    apply_review_feedback,
+    build_path_memory,
+)
 from lessonos.llm.router import MockProvider, Router
 from lessonos.store.base import Store
 from lessonos.store.fixture_loader import (
@@ -511,6 +515,7 @@ def run_pipeline(
     fixture_root: Path = DEFAULT_FIXTURE_ROOT,
     *,
     store: Store | None = None,
+    review_feedback: dict[str, int] | None = None,
 ) -> PipelineResult:
     """Run the full LessonOS pipeline on a fixture path.
 
@@ -522,6 +527,11 @@ def run_pipeline(
     store : Store, optional
         An existing Store instance. If ``None``, creates an in-memory
         ``SQLiteStore``.
+    review_feedback : dict[str, int], optional
+        SM-2 quality scores (0–5) per concept name for post-lezione review
+        feedback. If provided, ``apply_review_feedback`` is called after
+        PathMemory build, updating difficulty values. The updated memory
+        feeds into Delta, Debt, and Plan computation.
 
     Returns
     -------
@@ -573,6 +583,10 @@ def run_pipeline(
 
     # --- Phase 5: Path Memory ---
     memory = build_path_memory(final_capsules, path_title=path.title)
+
+    # --- Phase 5b: Apply review feedback (optional hook) ---
+    if review_feedback:
+        memory = apply_review_feedback(memory, review_feedback)
 
     # --- Phase 6: Didactic Delta (first N-1 vs all N) ---
     if len(final_capsules) >= 2:
