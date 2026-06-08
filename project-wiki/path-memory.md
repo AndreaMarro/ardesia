@@ -28,10 +28,13 @@ Entry nel lesson index: ordine, topics, conteggio concetti/esercizi, split new/r
 
 ### ConceptPathEntry (frozen dataclass)
 
-Concetto aggregato across lezioni: dove introdotto, tutti gli status, tutte le lezioni, prerequisiti.
+Concetto aggregato across lezioni: dove introdotto, tutti gli status, tutte le lezioni, prerequisiti,
+conteggio ripetizioni (SM-2 inspired), ultima lezione di revisione.
 
-**Citazione**: `lessonos/graph/path_memory.py:155-165` — `ConceptPathEntry`: `name`,
-`first_introduced_lesson` (None se reinforced senza introduced), `statuses`, `lessons`, `prerequisites`.
+**Citazione**: `lessonos/graph/path_memory.py:68-96` — `ConceptPathEntry`: `name`,
+`first_introduced_lesson` (None se reinforced senza introduced), `statuses`, `lessons`, `prerequisites`,
+`repetition_count` (default=1, quante lezioni coprono il concetto), `last_reviewed_lesson` (default=None,
+la lezione più recente in cui è apparso).
 
 ## Funzioni
 
