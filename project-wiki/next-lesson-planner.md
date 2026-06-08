@@ -29,7 +29,7 @@ Il Next Lesson Planner produce un'agenda strutturata per la prossima lezione del
 - `description` — descrizione umana di cosa fare
 - `source_debt_ids` — riferimenti ai LearningDebtItem.debt_id che hanno originato l'item
 - `priority` — 0 (più urgente, prerequisiti) → 4 (meno urgente, materiale nuovo)
-- `recommended_review_day` — giorno lezione raccomandato per la revisione (da FSRS power-law scheduling), `None` se non disponibile
+| `recommended_review_day` — giorno lezione raccomandato per la revisione (da FSRS scheduling con target retention ottimale: `optimal_desired_retention(D, rep_count)` modulata per difficoltà e ripetizioni, NON fissa a 0.9)
 
 ## Funzione Principale
 
