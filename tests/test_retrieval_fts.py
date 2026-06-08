@@ -359,6 +359,264 @@ class TestSearchResult:
         assert ranks == sorted(ranks)
 
 
+# ── Tests: _capsule_to_text ──────────────────────────────────────────────
+
+
+class TestCapsuleToText:
+    """Tests for the _capsule_to_text helper used by build_index()."""
+
+    def _make_capsule_data(self) -> str:
+        """Build a serialised capsule dict for _capsule_to_text testing."""
+        from lessonos.capsule.assembly import _serialise_capsule
+
+        capsule = _make_dummy_capsule("l1")
+        return _serialise_capsule(capsule)
+
+    def test_extracts_topic_names(self) -> None:
+        """topic names from the timeline appear in the output."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        raw = self._make_capsule_data()
+        text = _capsule_to_text(raw)
+        assert "Derivatives and Rate of Change" in text
+        assert "Power Rule and Chain Rule" in text
+
+    def test_extracts_concept_names(self) -> None:
+        """concept names from the content appear in the output."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        raw = self._make_capsule_data()
+        text = _capsule_to_text(raw)
+        assert "derivative" in text
+        assert "power rule" in text
+        assert "chain rule" in text
+
+    def test_extracts_exercise_prompts(self) -> None:
+        """exercise prompts appear in the output."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        raw = self._make_capsule_data()
+        text = _capsule_to_text(raw)
+        assert "Find the derivative of x^4 using the power rule" in text
+
+    def test_extracts_student_questions(self) -> None:
+        """student questions appear in the output."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        raw = self._make_capsule_data()
+        text = _capsule_to_text(raw)
+        assert "When do we use the chain rule vs product rule" in text
+
+    def test_extracts_homework_tasks(self) -> None:
+        """homework tasks appear in the output."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        raw = self._make_capsule_data()
+        text = _capsule_to_text(raw)
+        assert "Complete problems 1-10 from the derivative worksheet" in text
+
+    def test_all_extracted_fields_present_in_output(self) -> None:
+        """All 5 field categories (topics, concepts, exercises, questions,
+        homework) are present in the extracted text — not just the first."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        raw = self._make_capsule_data()
+        text = _capsule_to_text(raw)
+        assert len(text.strip()) > 0
+        # Every word from the content should be findable
+        assert all(
+            word in text
+            for word in [
+                "Derivatives",
+                "Rate",
+                "Change",
+                "derivative",
+                "power rule",
+                "chain rule",
+            ]
+        )
+
+    def test_malformed_json_returns_empty_string(self) -> None:
+        """Invalid JSON input returns empty string."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        assert _capsule_to_text("not json") == ""
+        assert _capsule_to_text("{broken") == ""
+
+    def test_empty_dict_returns_empty_string(self) -> None:
+        """Empty dict JSON returns empty string."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        assert _capsule_to_text("{}") == ""
+
+    def test_non_dict_input_triggers_decode_error(self) -> None:
+        """Non-dict valid JSON returns empty (no timeline/content to scan)."""
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        # A valid JSON array has no lesson_id/content/timeline keys
+        assert _capsule_to_text("[1, 2, 3]") == ""
+
+    def test_topic_only_capsule_output_has_no_concepts(self) -> None:
+        """A capsule with only topics (no concepts) extracts topic names
+        but NOT concept names — proves the extraction logic is selective."""
+        import json
+
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        data = {
+            "lesson_id": "l1",
+            "timeline": [{"topic": "Introduction to Derivatives", "seg_ids": ["l1s1"]}],
+            "content": {
+                "concepts": [],
+                "exercises": [],
+                "student_questions": [],
+                "homework": [],
+            },
+        }
+        text = _capsule_to_text(json.dumps(data))
+        assert "Introduction to Derivatives" in text
+        # Concept fields explicitly empty — no derivative concept extracted
+        assert "derivative" not in text
+
+    def test_concept_only_capsule_omits_missing_exercises(self) -> None:
+        """A capsule with concepts but no exercises/outputs omits
+        exercise-related text — verifies selective extraction."""
+        import json
+
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        data = {
+            "lesson_id": "l2",
+            "timeline": [{"topic": "Power Rule Examples", "seg_ids": ["l2s1"]}],
+            "content": {
+                "concepts": [{"name": "power rule", "status": "introduced"}],
+                "exercises": [],
+                "student_questions": [],
+                "homework": [],
+            },
+        }
+        text = _capsule_to_text(json.dumps(data))
+        assert "Power Rule Examples" in text
+        assert "power rule" in text
+        # No exercise text present
+        assert "f(x)" not in text
+
+    def test_mixed_empty_and_full_sections(self) -> None:
+        """A capsule with empty student_questions but filled homework
+        extracts homework but no questions."""
+        import json
+
+        from lessonos.retrieval.fts import _capsule_to_text
+
+        data = {
+            "lesson_id": "l3",
+            "timeline": [{"topic": "Integration Intro", "seg_ids": ["l3s1"]}],
+            "content": {
+                "concepts": [],
+                "exercises": [],
+                "student_questions": [{"question": "What is integration?"}],
+                "homework": [{"task": "Complete integration worksheet"}],
+            },
+        }
+        text = _capsule_to_text(json.dumps(data))
+        assert "Integration Intro" in text
+        assert "What is integration" in text
+        assert "integration worksheet" in text
+
+
+# ── Tests: rebuild_index ─────────────────────────────────────────────────
+
+
+class TestRebuildIndex:
+    """Tests for the rebuild_index method of FTSRetriever."""
+
+    def test_rebuild_on_empty_store_is_idempotent(self, store: SQLiteStore) -> None:
+        """rebuild_index on an empty store succeeds and doesn't raise."""
+        r = FTSRetriever(store)
+        r.build_index()
+        r.rebuild_index()
+        assert r._index_built is True
+
+    def test_rebuild_drops_and_repopulates(
+        self, store_with_segments: SQLiteStore
+    ) -> None:
+        """rebuild_index drops and repopulates the index."""
+        r = FTSRetriever(store_with_segments)
+        r.build_index()
+
+        # Search before rebuild
+        before = r.search("derivative", top_k=5)
+        assert len(before) > 0
+
+        # Rebuild
+        r.rebuild_index()
+        assert r._index_built is True
+
+        # Search after rebuild — results should still be present
+        after = r.search("derivative", top_k=5)
+        assert len(after) > 0
+        assert {r.source_id for r in after} == {r.source_id for r in before}
+
+    def test_rebuild_clears_and_rebuilds(
+        self, store_with_segments: SQLiteStore
+    ) -> None:
+        """rebuild_index clears stale results from the old index."""
+        r = FTSRetriever(store_with_segments)
+        r.build_index()
+
+        # Confirm 'power rule' is found in l1s2
+        before = r.search("power rule", top_k=5)
+        assert len(before) >= 1
+
+        # Rebuild
+        r.rebuild_index()
+
+        # Same query still finds the same segment
+        after = r.search("power rule", top_k=5)
+        assert len(after) >= 1
+        assert any(res.source_id == "l1s2" for res in after)
+
+    def test_rebuild_with_capsules_still_finds_them(
+        self, store_with_capsules: SQLiteStore
+    ) -> None:
+        """rebuild_index with capsule data still finds capsule content."""
+        r = FTSRetriever(store_with_capsules)
+        r.build_index()
+
+        # Confirm 'chain rule' is found in both segment and capsule
+        before = r.search("chain rule", top_k=5)
+        capsule_before = [res for res in before if res.source == "capsule"]
+        assert len(capsule_before) >= 1
+
+        # Rebuild
+        r.rebuild_index()
+
+        # Same query after rebuild
+        after = r.search("chain rule", top_k=5)
+        capsule_after = [res for res in after if res.source == "capsule"]
+        assert len(capsule_after) >= 1
+
+    def test_rebuild_twice_no_error(
+        self, store_with_segments: SQLiteStore
+    ) -> None:
+        """Calling rebuild_index twice in a row doesn't raise."""
+        r = FTSRetriever(store_with_segments)
+        r.build_index()
+        r.rebuild_index()
+        r.rebuild_index()  # second rebuild
+        assert r._index_built is True
+
+    def test_rebuild_then_search_empty(
+        self, store: SQLiteStore
+    ) -> None:
+        """rebuild_index on an empty store, then search returns nothing."""
+        r = FTSRetriever(store)
+        r.build_index()
+        r.rebuild_index()
+        results = r.search("anything", top_k=5)
+        assert results == []
+
+
 # ── Tests: Type enforcement ──────────────────────────────────────────────
 
 

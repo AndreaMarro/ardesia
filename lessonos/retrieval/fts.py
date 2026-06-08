@@ -114,6 +114,9 @@ def _capsule_to_text(raw: str) -> str:
 
     parts: list[str] = []
 
+    if not isinstance(data, dict):
+        return ""
+
     # Topic timeline
     for span in data.get("timeline", []):
         if isinstance(span, dict):
