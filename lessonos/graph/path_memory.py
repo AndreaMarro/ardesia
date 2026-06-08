@@ -78,11 +78,13 @@ class ConceptPathEntry:
     - ``last_reviewed_lesson``: the most recent lesson that included this
       concept (used to identify overdue concepts for retrieval-based
       scheduling in NextLessonPlan)
-    - ``estimated_retention``: Ebbinghaus-decay estimate of the probability
+    - ``difficulty``: per-concept difficulty factor D ∈ [1.0, 10.0]
+      (FSRS v4/v5 style). Higher = harder to retain. Default 5.0 (neutral).
+    - ``estimated_retention``: power-law decay estimate of the probability
       the student still remembers this concept (0.0 to 1.0). Based on
-      ``R = e^(-lessons_since_review / stability)`` where stability
-      increases with each repetition (FSRS-inspired). Higher = better
-      retained; lower = more urgent to review.
+      ``R = 1 / (1 + t/S)`` where stability (S) grows with each repetition,
+      modulated by difficulty (D). Higher = better retained; lower = more
+      urgent to review.
     """
 
     name: str
@@ -92,7 +94,15 @@ class ConceptPathEntry:
     prerequisites: tuple[str, ...]
     repetition_count: int = 1
     last_reviewed_lesson: str | None = None
+    difficulty: float = 5.0
     estimated_retention: float | None = None
+
+    def __post_init__(self) -> None:
+        """Validate difficulty is in [1.0, 10.0]."""
+        if not (1.0 <= self.difficulty <= 10.0):
+            raise ValueError(
+                f"difficulty must be in [1.0, 10.0], got {self.difficulty}"
+            )
 
 
 def compute_retention(
@@ -101,24 +111,31 @@ def compute_retention(
     *,
     initial_stability: float = 0.5,
     stability_multiplier: float = 1.5,
+    difficulty: float = 5.0,
 ) -> float:
-    """Estimate concept retention using a power-law decay model.
+    """Estimate concept retention using a power-law decay model with per-concept difficulty.
 
     Formula: ``R = 1.0 / (1.0 + lessons_since_review / stability)``
 
-    Where stability (S) grows with each repetition:
-    ``S = initial_stability * stability_multiplier^(rep_count - 1)``
+    Where stability (S) grows with each repetition, modulated by difficulty:
+    ``S = initial_stability * (stability_multiplier * difficulty_scaling) ** (rep_count - 1)``
+
+    The ``difficulty_scaling = (11 - D) / 6`` factor (FSRS v4/v5 inspired) normalises
+    so that D=5.0 (neutral) gives same growth as the base multiplier.
+    Higher D = harder concept = slower stability growth = faster decay.
 
     Power-law decay (vs classic Ebbinghaus exponential e^{-t/S}) produces
     slower initial forgetting and a longer retention tail, a common
     simplification in SRS (Spaced Repetition Scheduling) research.
-    The heat equation model of memory (Reddy et al., arXiv 1602.07032,
-    \"Unbounded Human Learning\") shows that forgetting follows a
-    power-law-like decay pattern, not a pure exponential.
+    The heat equation model of memory (Reddy et al., arXiv 1602.07032)
+    shows that forgetting follows a power-law-like decay pattern.
 
-    This is a simplified heuristic for LessonOS v0: in a production SRS
-    (e.g. FSRS v4.5), stability is learned per-card from review
-    performance. We approximate it from repetition count and lesson gaps.
+    This is a simplified heuristic for LessonOS v0: the full FSRS model
+    learns stability per-card from review performance with ~12 optimisable
+    parameters (Ye 2023, FSRS v4: A Modern Spaced Repetition Algorithm,
+    https://github.com/open-spaced-repetition/fsrs4anki). We approximate
+    it from repetition count and lesson gaps, now with per-concept
+    difficulty awareness.
 
     Parameters
     ----------
@@ -130,7 +147,12 @@ def compute_retention(
     initial_stability : float
         Base stability after first exposure (default 0.5).
     stability_multiplier : float
-        How much stability grows per repetition (default 1.5).
+        How much stability grows per repetition at neutral difficulty
+        (default 1.5).
+    difficulty : float
+        Per-concept difficulty D ∈ [1.0, 10.0] (default 5.0).
+        Higher = harder concept = slower stability growth.
+        5.0 = neutral (base multiplier applies as-is).
 
     Returns
     -------
@@ -140,7 +162,8 @@ def compute_retention(
     Raises
     ------
     ValueError
-        If rep_count < 1, lessons_since_review < 0, or stability params <= 0.
+        If rep_count < 1, lessons_since_review < 0,
+        stability params <= 0, or difficulty outside [1.0, 10.0].
     """
     if rep_count < 1:
         raise ValueError(f"rep_count must be >= 1, got {rep_count}")
@@ -156,12 +179,25 @@ def compute_retention(
         raise ValueError(
             f"stability_multiplier must be > 0, got {stability_multiplier}"
         )
+    if not (1.0 <= difficulty <= 10.0):
+        raise ValueError(
+            f"difficulty must be in [1.0, 10.0], got {difficulty}"
+        )
 
     # No decay for concepts just seen
     if lessons_since_review == 0:
         return 1.0
 
-    stability = initial_stability * (stability_multiplier ** (rep_count - 1))
+    # FSRS-inspired difficulty scaling: (11 - D) / 6
+    # D=5 (neutral) -> scaling = 1.0 (no change to base multiplier)
+    # D=10 (hardest) -> scaling = 0.167 (much slower growth, but always >= 1.0)
+    # D=1 (easiest) -> scaling = 1.667 (much faster growth)
+    difficulty_scaling = (11.0 - difficulty) / 6.0
+    # effective_mult = 1 + (multiplier - 1) * scaling
+    # ensures stability never decreases with reps for any D in [1, 10]
+    effective_mult = 1.0 + (stability_multiplier - 1.0) * difficulty_scaling
+
+    stability = initial_stability * (effective_mult ** (rep_count - 1))
     return 1.0 / (1.0 + lessons_since_review / stability)
 
 
@@ -233,6 +269,7 @@ def _aggregate_concepts(
                 prerequisites=tuple(sorted(e["prereqs"])),
                 repetition_count=len(ordered),
                 last_reviewed_lesson=ordered[-1],
+                difficulty=5.0,  # default neutral difficulty; overridable in future
                 estimated_retention=compute_retention(
                     rep_count=len(ordered),
                     lessons_since_review=(

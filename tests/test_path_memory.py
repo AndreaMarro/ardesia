@@ -500,3 +500,139 @@ def test_estimated_retention_just_seen_is_one():
     c = next(e for e in pm.concept_graph if e.name == "A")
     # lessons_since_review = 3-1-2 = 0 -> retention = 1.0
     assert c.estimated_retention == 1.0
+
+
+# --- FSRS Difficulty Factor D ---
+
+
+def test_concept_path_entry_has_default_difficulty():
+    """ConceptPathEntry default difficulty is 5.0 (neutral)."""
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    entry = ConceptPathEntry(
+        name="derivata",
+        first_introduced_lesson="l1",
+        statuses=("introduced",),
+        lessons=("l1",),
+        prerequisites=(),
+    )
+    assert entry.difficulty == 5.0
+    assert 1.0 <= entry.difficulty <= 10.0
+
+
+def test_concept_path_entry_difficulty_validation():
+    """Difficulty outside [1.0, 10.0] raises ValueError."""
+    from lessonos.graph.path_memory import ConceptPathEntry
+
+    with pytest.raises(ValueError, match="difficulty must be in"):
+        ConceptPathEntry(
+            name="hard_concept",
+            first_introduced_lesson="l1",
+            statuses=("introduced",),
+            lessons=("l1",),
+            prerequisites=(),
+            difficulty=0.5,
+        )
+
+    with pytest.raises(ValueError, match="difficulty must be in"):
+        ConceptPathEntry(
+            name="max_concept",
+            first_introduced_lesson="l1",
+            statuses=("introduced",),
+            lessons=("l1",),
+            prerequisites=(),
+            difficulty=10.5,
+        )
+
+
+def test_compute_retention_difficulty_default():
+    """compute_retention at default D=5.0 gives same result as before (neutral)."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r_default = compute_retention(1, 3)
+    r_explicit = compute_retention(1, 3, difficulty=5.0)
+    assert r_default == r_explicit
+
+
+def test_compute_retention_higher_difficulty_lower_retention():
+    """Higher difficulty leads to lower retention (same reps, same gaps)."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r_easy = compute_retention(2, 3, difficulty=2.0)
+    r_hard = compute_retention(2, 3, difficulty=9.0)
+    assert r_easy > r_hard
+
+
+def test_compute_retention_difficulty_effects_accumulate_with_reps():
+    """Difficulty gap widens with more repetitions (compounding effect)."""
+    from lessonos.graph.path_memory import compute_retention
+
+    # After 1 rep: D barely matters (initial_stability independent of D)
+    r_easy_1 = compute_retention(1, 3, difficulty=2.0)
+    r_hard_1 = compute_retention(1, 3, difficulty=9.0)
+    # First rep always uses initial_stability only (rep_count-1 = 0 -> stability^(0) = 1)
+    assert r_easy_1 == r_hard_1
+
+    # After 3 reps: D matters
+    r_easy_3 = compute_retention(3, 3, difficulty=2.0)
+    r_hard_3 = compute_retention(3, 3, difficulty=9.0)
+    assert r_easy_3 > r_hard_3
+    # The gap after 3 reps is larger than the gap after 1 rep (where gap=0)
+    assert (r_easy_3 - r_hard_3) > (r_easy_1 - r_hard_1)
+
+
+def test_compute_retention_difficulty_edge_values():
+    """Boundary difficulty values D=1 (easiest) and D=10 (hardest) are accepted."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r_min = compute_retention(2, 3, difficulty=1.0)
+    r_max = compute_retention(2, 3, difficulty=10.0)
+    assert r_min > r_max
+    assert 0.0 < r_max <= 1.0
+    assert 0.0 < r_min <= 1.0
+
+
+def test_compute_retention_difficulty_validation():
+    """Invalid difficulty raises ValueError."""
+    from lessonos.graph.path_memory import compute_retention
+
+    with pytest.raises(ValueError, match="difficulty must be in"):
+        compute_retention(1, 0, difficulty=0.9)
+    with pytest.raises(ValueError, match="difficulty must be in"):
+        compute_retention(1, 0, difficulty=10.1)
+
+
+def test_build_path_memory_populates_default_difficulty():
+    """build_path_memory sets difficulty=5.0 for all concepts (current default)."""
+    l1 = _make_capsule(
+        "l1", "base", [("A", "introduced"), ("B", "introduced")]
+    )
+    l2 = _make_capsule("l2", "prog", [("A", "reinforced")])
+    pm = build_path_memory([l1, l2])
+
+    for entry in pm.concept_graph:
+        assert 1.0 <= entry.difficulty <= 10.0
+        assert entry.difficulty == 5.0  # all default for now
+
+
+def test_difficulty_does_not_affect_intro_retention():
+    """Difficulty does not affect retention when lessons_since_review=0."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r_easy = compute_retention(1, 0, difficulty=1.0)
+    r_hard = compute_retention(1, 0, difficulty=10.0)
+    assert r_easy == 1.0
+    assert r_hard == 1.0
+
+
+def test_stability_never_decreases_with_reps_for_any_difficulty():
+    """Stability must never decrease with reps for any valid D."""
+    from lessonos.graph.path_memory import compute_retention
+
+    for D in [1.0, 3.0, 5.0, 7.0, 9.0, 10.0]:
+        r_1 = compute_retention(1, 5, difficulty=D)
+        r_2 = compute_retention(2, 5, difficulty=D)
+        r_3 = compute_retention(3, 5, difficulty=D)
+        assert r_3 >= r_2 >= r_1, (
+            f"D={D}: stability must grow monotonically with reps"
+        )
