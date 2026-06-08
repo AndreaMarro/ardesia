@@ -81,7 +81,7 @@ class TaskPolicy:
             )
 
         if self.require_json:
-            capable = self.json_capable_models or _JSON_CAPABLE_MODELS
+            capable = self.json_capable_models if self.json_capable_models is not None else _JSON_CAPABLE_MODELS
             # Determine the actual model that would be used:
             # 1. preferred_model if explicitly set
             # 2. Provider's model attribute if available (MockProvider._model)
@@ -92,6 +92,13 @@ class TaskPolicy:
                     f"TaskPolicy '{self.name}': require_json=True but "
                     f"primary model {model!r} not in JSON-capable models "
                     f"{capable}"
+                )
+            # Also validate fallback model if present
+            if self.fallback_model and self.fallback_model not in capable:
+                raise ValueError(
+                    f"TaskPolicy '{self.name}': require_json=True but "
+                    f"fallback model {self.fallback_model!r} not in "
+                    f"JSON-capable models {capable}"
                 )
 
 

@@ -31,11 +31,21 @@ class MockProvider:
 
     Unknown prompts raise KeyError rather than fabricating output, so tests stay
     reproducible and groundedness is never faked.
+
+    Args:
+        fixtures: Mapping from exact prompt string to response text.
+        model: Model name string. Default ``"mock-1"``.
+        name: Provider name for routing. Default ``"mock"``.
     """
 
-    name = "mock"
-
-    def __init__(self, fixtures: dict[str, str], *, model: str = "mock-1") -> None:
+    def __init__(
+        self,
+        fixtures: dict[str, str],
+        *,
+        model: str = "mock-1",
+        name: str = "mock",
+    ) -> None:
+        self.name = name
         self._fixtures = dict(fixtures)
         self._model = model
 
