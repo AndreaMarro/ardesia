@@ -25,7 +25,8 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
     Strategy (3-tier):
       1. If excerpt is already a verbatim substring → return excerpt as-is.
       2. Longest common substring via ``difflib.SequenceMatcher.find_longest_match``
-         — if length >= 3 characters, return that substring.
+         — requires match length >= max(8, 40% of excerpt length) to avoid
+         accidental short matches like 3-char 'uan' from 'quantum'.
       3. Word-by-word greedy scan: try to find the longest prefix of excerpt words
          that still appears in segment_text; if at least 1 word matches, return the
          matched span.
