@@ -53,4 +53,5 @@ Append-only. 1 riga per modifica.
 |- **2026-06-10(current) — Fix test_search_observations fragility (gate ripristino 776 pass)**: test query "add" matchava commit SHA → fix a "add-". Review Claude: regressione copertura rilevata. observation aggiornata con commit reale. Gate VERDE 776 pass.
 ||- **2026-06-10(current) — P2 CLI eval-real subcommand**: lessonos eval-real [--fixture PATH] [--lesson ID] [--n-runs N] per eval mock on-demand. 9 test, 785 passed.
 |- **2026-06-10(current) — P2 log_iteration helper**: one-shot dual-write observation+log.jsonl. 792 passed.
-|- **2026-06-08(current) — RETRO #7**: 15 iterazioni da RETRO #6 (561→792 test, +231, no regressione). Attriti: log_iteration creato, skill non caricato automaticamente, collision SHA/hex (2x), Claude auth-loop cronico. PROCESS-LOG.md aggiornato. 792 passed.
+||- **2026-06-08(current) — RETRO #7**: 15 iterazioni da RETRO #6 (561→792 test, +231, no regressione). Attriti: log_iteration creato, skill non caricato automaticamente, collision SHA/hex (2x), Claude auth-loop cronico. PROCESS-LOG.md aggiornato. 792 passed.
+|- **2026-06-08(current) — P0a Course Foundry (COORDINATION.md pivot)**: lessonos/course/ (schema.py + folder_loader.py) + fixtures/sample_course/ (3 lezioni ordinate, 3 sorgenti, 3 moduli). 40 test, 832 passed. Review Claude: 1 bug (module lesson_ids non validati).

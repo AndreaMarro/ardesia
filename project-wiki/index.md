@@ -34,3 +34,7 @@ Ogni pagina + riassunto 1 riga.
 - **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
 - **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
 - **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
+
+## Course Foundry (nuovo)
+
+- **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
