@@ -139,15 +139,24 @@ class TestRealtimeEvalMockRoundtrip:
         assert report.total_tokens == 0
         assert report.llm_calls == 2  # segmentation + extraction
 
-    def test_mock_run_no_router_raises(self) -> None:
-        """Without router and without KIMI_API_KEY, run_realtime_eval raises."""
-        # Ensure no key
+    def test_mock_run_no_router_raises(self, monkeypatch) -> None:
+        """Without router and without any API key, run_realtime_eval raises."""
         import os
+        import tempfile
 
-        if os.environ.get("KIMI_API_KEY"):
-            pytest.skip("KIMI_API_KEY is set — test only valid without it")
-        with pytest.raises(RuntimeError, match="KIMI_API_KEY"):
-            run_realtime_eval()
+        # Remove both API keys from env
+        monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+        monkeypatch.delenv("KIMI_API_KEY", raising=False)
+
+        # chdir to a temp dir so .env is not found by DeepSeekProvider
+        old_cwd = os.getcwd()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            try:
+                os.chdir(tmpdir)
+                with pytest.raises(RuntimeError, match="DEEPSEEK_API_KEY|KIMI_API_KEY"):
+                    run_realtime_eval()
+            finally:
+                os.chdir(old_cwd)
 
     def test_mock_run_unknown_lesson(self) -> None:
         """Requesting a non-existent lesson returns an error report."""

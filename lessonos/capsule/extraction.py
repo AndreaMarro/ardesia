@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 
+from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
 from lessonos.models import CONCEPT_STATUS
 from lessonos.store.base import Store
@@ -134,7 +135,7 @@ def extract_lesson_content(
 
     prompt = build_extraction_prompt(segments)
     response = router.complete(prompt, provider=provider, model=model)
-    data = json.loads(response.text)
+    data = extract_json(response.text)
 
     def _parse_citations(raw) -> tuple[Citation, ...]:
         if not raw:

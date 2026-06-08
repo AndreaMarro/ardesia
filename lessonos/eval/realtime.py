@@ -36,6 +36,7 @@ from lessonos.eval.metrics import (
 )
 from lessonos.eval.models import EvalMetric
 from lessonos.llm.cost_ledger import CostLedger
+from lessonos.llm.deepseek import DeepSeekProvider
 from lessonos.llm.kimi import KimiProvider
 from lessonos.llm.router import LLMResponse, Router
 from lessonos.store.fixture_loader import (
@@ -161,16 +162,35 @@ def run_realtime_eval(
     ledger = CostLedger()
 
     if router is None:
-        # Create a real Kimi router
-        api_key = os.environ.get("KIMI_API_KEY")
-        if not api_key:
-            raise RuntimeError(
-                "No router provided and KIMI_API_KEY not set. "
-                "Provide a mock Router for tests, or export KIMI_API_KEY."
+        # Try DeepSeek first (primary brain per POLICY CERVELLO), then Kimi.
+        api_key = os.environ.get("DEEPSEEK_API_KEY")
+        deepseek_provider = None
+        if api_key:
+            deepseek_provider = DeepSeekProvider(
+                api_key=api_key, model=model or "deepseek-chat"
             )
-        kimi = KimiProvider(api_key=api_key, model=model)
-        router = Router()
-        router.register(kimi)
+        else:
+            # Fallback: try .env file in project root
+            try:
+                deepseek_provider = DeepSeekProvider(model=model or "deepseek-chat")
+            except RuntimeError:
+                pass
+
+        if deepseek_provider is not None:
+            router = Router()
+            router.register(deepseek_provider)
+        else:
+            # Fall back to Kimi
+            api_key = os.environ.get("KIMI_API_KEY")
+            if not api_key:
+                raise RuntimeError(
+                    "No router provided and neither DEEPSEEK_API_KEY nor "
+                    "KIMI_API_KEY are set. "
+                    "Provide a mock Router for tests, or export one of the keys."
+                )
+            kimi = KimiProvider(api_key=api_key, model=model or "kimi-k2-0905-preview")
+            router = Router()
+            router.register(kimi)
 
     # Wrap router to track costs through the ledger
     original_complete = router.complete
@@ -190,9 +210,14 @@ def run_realtime_eval(
 
     # --- Phase 3: Assemble capsule ---
     try:
-        # Determine provider name: if we created the router (Kimi), use "kimi";
-        # if a mock router was provided, use "mock" (the assembly default).
-        provider_name = "kimi" if router.has_provider("kimi") else "mock"
+        # provider_name is already set above when building the router;
+        # if a mock router was provided, use "mock".
+        if router.has_provider("deepseek"):
+            provider_name = "deepseek"
+        elif router.has_provider("kimi"):
+            provider_name = "kimi"
+        else:
+            provider_name = "mock"
         capsule = assemble_lesson_capsule(
             store, lesson_id, router, provider=provider_name,
         )

@@ -12,7 +12,9 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
+from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -70,7 +72,7 @@ def segment_lesson_topics(
 
     prompt = build_segmentation_prompt(segments)
     response = router.complete(prompt, provider=provider, model=model)
-    topics = json.loads(response.text)
+    topics = extract_json(response.text)
 
     spans: list[TopicSpan] = []
     for entry in topics:
