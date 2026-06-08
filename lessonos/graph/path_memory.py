@@ -14,7 +14,6 @@ Debt) build on top of this foundation.
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 
 from lessonos.capsule.assembly import LessonCapsule
@@ -103,16 +102,23 @@ def compute_retention(
     initial_stability: float = 0.5,
     stability_multiplier: float = 1.5,
 ) -> float:
-    """Estimate concept retention using an Ebbinghaus-decay model (FSRS-inspired).
+    """Estimate concept retention using a power-law decay model.
 
-    Formula: ``R = e^(-lessons_since_review / stability)``
+    Formula: ``R = 1.0 / (1.0 + lessons_since_review / stability)``
 
     Where stability (S) grows with each repetition:
     ``S = initial_stability * stability_multiplier^(rep_count - 1)``
 
-    This is a simplified model: in a real FSRS, stability is learned per-card
-    from review performance. For LessonOS v0, we approximate it from the
-    repetition count and the number of lessons since last review.
+    Power-law decay (vs classic Ebbinghaus exponential e^{-t/S}) produces
+    slower initial forgetting and a longer retention tail, a common
+    simplification in SRS (Spaced Repetition Scheduling) research.
+    The heat equation model of memory (Reddy et al., arXiv 1602.07032,
+    \"Unbounded Human Learning\") shows that forgetting follows a
+    power-law-like decay pattern, not a pure exponential.
+
+    This is a simplified heuristic for LessonOS v0: in a production SRS
+    (e.g. FSRS v4.5), stability is learned per-card from review
+    performance. We approximate it from repetition count and lesson gaps.
 
     Parameters
     ----------
@@ -156,7 +162,7 @@ def compute_retention(
         return 1.0
 
     stability = initial_stability * (stability_multiplier ** (rep_count - 1))
-    return math.exp(-lessons_since_review / stability)
+    return 1.0 / (1.0 + lessons_since_review / stability)
 
 
 def _aggregate_concepts(

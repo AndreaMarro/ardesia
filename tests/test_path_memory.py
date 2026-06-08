@@ -438,7 +438,7 @@ def test_compute_retention_decays_with_lessons():
 
     assert r0 == 1.0
     assert r1 > r3
-    assert r3 < 0.1
+    assert r3 < 0.5  # power-law: 1/(1+3/0.5)=0.143
 
 
 def test_compute_retention_increases_with_repetitions():

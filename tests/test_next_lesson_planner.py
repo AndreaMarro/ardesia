@@ -478,11 +478,11 @@ def test_review_items_sorted_by_retention():
     L2: concetto_A (reinforced) — B stays at rep=1, A at rep=2
     L3: empty lesson
 
-    Retention estimates:
+    Retention estimates (FSRS power-law):
     - concetto_A: rep=2, last=l2 idx=1, lessons_since_review=3-1-1=1
-      stability=0.5*1.5^1=0.75, R=e^(-1/0.75)~0.264
+      stability=0.5*1.5^1=0.75, R=1/(1+1/0.75)=1/(1+1.333)=0.429
     - concetto_B: rep=1, last=l1 idx=0, lessons_since_review=3-1-0=2
-      stability=0.5, R=e^(-2/0.5)=e^(-4)~0.0183
+      stability=0.5, R=1/(1+2/0.5)=1/(1+4)=0.200
 
     B has LOWER retention -> should appear BEFORE A.
     """
@@ -510,8 +510,8 @@ def test_review_items_sorted_by_retention():
     b_pos = next(i for i, d in enumerate(review_descs) if "concetto_b" in d.lower())
     a_pos = next(i for i, d in enumerate(review_descs) if "concetto_a" in d.lower())
     assert b_pos < a_pos, (
-        f"concetto_B (retention 0.018) should precede concetto_A "
-        f"(retention 0.264) in review order: {review_descs}"
+        f"concetto_B (retention 0.200) should precede concetto_A "
+        f"(retention 0.429) in review order: {review_descs}"
     )
 
 
@@ -522,12 +522,12 @@ def test_review_items_retention_tiebreaker():
     L2: concetto_Y (problematic), concetto_X (reinforced)
     L3: concetto_Y (reinforced), concetto_Z (problematic)
 
-    Retention estimates:
-    - X: rep=2, last=l2 idx=1, lessons_since_review=1 -> R~0.264
+    Retention estimates (FSRS power-law):
+    - X: rep=2, last=l2 idx=1, lessons_since_review=1 -> R=1/(1+1/0.75)=0.429
     - Y: rep=2, last=l3 idx=2, lessons_since_review=0 -> R=1.0
     - Z: rep=1, last=l3 idx=2, lessons_since_review=0 -> R=1.0
 
-    Order: X (0.264) first, then Y and Z (both 1.0, alphabetical).
+    Order: X (0.429) first, then Y and Z (both 1.0, alphabetical).
     """
     l1 = _make_capsule(
         "l1", "base",
