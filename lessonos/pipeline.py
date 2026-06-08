@@ -19,11 +19,15 @@ import json
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from lessonos.models.entities import GraphEdge, GraphNode
 
 from lessonos.capsule.assembly import LessonCapsule, assemble_lesson_capsule
 from lessonos.capsule.extraction import build_extraction_prompt
 from lessonos.capsule.segmentation import build_segmentation_prompt
+from lessonos.graph.builder import build_path_graph
 from lessonos.graph.didactic_delta import DidacticDelta, compute_didactic_delta
 from lessonos.graph.learning_debt import LearningDebtLedger, compute_learning_debt
 from lessonos.graph.next_lesson_planner import NextLessonPlan, compute_next_lesson_plan
@@ -457,6 +461,8 @@ class PipelineResult:
     debt: LearningDebtLedger
     plan: NextLessonPlan
     store: Any  # SQLiteStore; typed as Any to avoid import coupling
+    graph_nodes: tuple[GraphNode, ...] = ()
+    graph_edges: tuple[GraphEdge, ...] = ()
     elapsed_seconds: float = 0.0
     total_cost_usd: float = 0.0
     total_llm_calls: int = 0
@@ -471,6 +477,8 @@ class PipelineResult:
             f"{len(self.delta.new_concepts)} new-delta, "
             f"{self.debt.total_items} debt, "
             f"{self.plan.total_agenda_items} agenda, "
+            f"{len(self.graph_nodes)} graph-nodes, "
+            f"{len(self.graph_edges)} graph-edges, "
             f"${self.total_cost_usd:.4f} cost, "
             f"{self.elapsed_seconds:.1f}s"
         )
@@ -560,10 +568,13 @@ def run_pipeline(
 
     final_capsules: list[LessonCapsule] = capsules
 
-    # --- Phase 4: Path Memory ---
+    # --- Phase 4: Lesson Graph (cross-lesson) ---
+    g_nodes, g_edges = build_path_graph(final_capsules)
+
+    # --- Phase 5: Path Memory ---
     memory = build_path_memory(final_capsules, path_title=path.title)
 
-    # --- Phase 5: Didactic Delta (first N-1 vs all N) ---
+    # --- Phase 6: Didactic Delta (first N-1 vs all N) ---
     if len(final_capsules) >= 2:
         old_memory = build_path_memory(final_capsules[:-1], path_title=path.title)
         delta = compute_didactic_delta(old_memory, memory)
@@ -585,10 +596,10 @@ def run_pipeline(
             total_resolved_misconceptions=0,
         )
 
-    # --- Phase 6: Learning Debt ---
+    # --- Phase 7: Learning Debt ---
     debt = compute_learning_debt(memory, delta, path_id=path.path_id)
 
-    # --- Phase 7: Next Lesson Plan ---
+    # --- Phase 8: Next Lesson Plan ---
     plan = compute_next_lesson_plan(memory, delta, debt, path_id=path.path_id)
 
     elapsed = time.monotonic() - start_ts
@@ -599,6 +610,8 @@ def run_pipeline(
     return PipelineResult(
         path_id=path.path_id,
         capsules=tuple(final_capsules),
+        graph_nodes=tuple(g_nodes),
+        graph_edges=tuple(g_edges),
         memory=memory,
         delta=delta,
         debt=debt,

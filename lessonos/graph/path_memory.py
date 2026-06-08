@@ -14,6 +14,7 @@ Debt) build on top of this foundation.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 
 from lessonos.capsule.assembly import LessonCapsule
@@ -72,12 +73,17 @@ class ConceptPathEntry:
     introduced, all lessons where it appears, all statuses it has held, and
     its declared prerequisites.
 
-    Repetition tracking (SM-2 inspired):
+    Repetition tracking (SM-2 / FSRS inspired):
     - ``repetition_count``: how many lessons have covered this concept
       (1 = just introduced, 2+ = reviewed/reinforced)
     - ``last_reviewed_lesson``: the most recent lesson that included this
       concept (used to identify overdue concepts for retrieval-based
       scheduling in NextLessonPlan)
+    - ``estimated_retention``: Ebbinghaus-decay estimate of the probability
+      the student still remembers this concept (0.0 to 1.0). Based on
+      ``R = e^(-lessons_since_review / stability)`` where stability
+      increases with each repetition (FSRS-inspired). Higher = better
+      retained; lower = more urgent to review.
     """
 
     name: str
@@ -87,6 +93,70 @@ class ConceptPathEntry:
     prerequisites: tuple[str, ...]
     repetition_count: int = 1
     last_reviewed_lesson: str | None = None
+    estimated_retention: float | None = None
+
+
+def compute_retention(
+    rep_count: int,
+    lessons_since_review: int,
+    *,
+    initial_stability: float = 0.5,
+    stability_multiplier: float = 1.5,
+) -> float:
+    """Estimate concept retention using an Ebbinghaus-decay model (FSRS-inspired).
+
+    Formula: ``R = e^(-lessons_since_review / stability)``
+
+    Where stability (S) grows with each repetition:
+    ``S = initial_stability * stability_multiplier^(rep_count - 1)``
+
+    This is a simplified model: in a real FSRS, stability is learned per-card
+    from review performance. For LessonOS v0, we approximate it from the
+    repetition count and the number of lessons since last review.
+
+    Parameters
+    ----------
+    rep_count : int
+        Number of times the concept has appeared in lessons (1+).
+    lessons_since_review : int
+        Number of lessons elapsed since the concept was last seen.
+        Must be >= 0.
+    initial_stability : float
+        Base stability after first exposure (default 0.5).
+    stability_multiplier : float
+        How much stability grows per repetition (default 1.5).
+
+    Returns
+    -------
+    float
+        Estimated retention probability, in (0.0, 1.0].
+
+    Raises
+    ------
+    ValueError
+        If rep_count < 1, lessons_since_review < 0, or stability params <= 0.
+    """
+    if rep_count < 1:
+        raise ValueError(f"rep_count must be >= 1, got {rep_count}")
+    if lessons_since_review < 0:
+        raise ValueError(
+            f"lessons_since_review must be >= 0, got {lessons_since_review}"
+        )
+    if initial_stability <= 0:
+        raise ValueError(
+            f"initial_stability must be > 0, got {initial_stability}"
+        )
+    if stability_multiplier <= 0:
+        raise ValueError(
+            f"stability_multiplier must be > 0, got {stability_multiplier}"
+        )
+
+    # No decay for concepts just seen
+    if lessons_since_review == 0:
+        return 1.0
+
+    stability = initial_stability * (stability_multiplier ** (rep_count - 1))
+    return math.exp(-lessons_since_review / stability)
 
 
 def _aggregate_concepts(
@@ -135,20 +205,38 @@ def _aggregate_concepts(
 
     sorted_entries = sorted(aggregated.values(), key=_lesson_order_key)
 
-    return tuple(
-        ConceptPathEntry(
-            name=e["name"],
-            first_introduced_lesson=e["first_intro"],
-            statuses=tuple(sorted(e["statuses"])),
-            lessons=tuple(_ordered_lessons(e["lessons"], capsules)),
-            prerequisites=tuple(sorted(e["prereqs"])),
-            repetition_count=len(_ordered_lessons(e["lessons"], capsules)),
-            last_reviewed_lesson=_ordered_lessons(e["lessons"], capsules)[-1]
-            if e["lessons"]
-            else None,
+    # Precompute lesson -> index mapping for retention calculation
+    total_lessons = len(capsules)
+    lesson_index_map = {c.lesson_id: i for i, c in enumerate(capsules)}
+
+    # Build entries with explicit ordered lessons variable
+    entries: list[ConceptPathEntry] = []
+    for e in sorted_entries:
+        ordered = _ordered_lessons(e["lessons"], capsules)
+        if not ordered:
+            # Every concept in aggregated must have at least one lesson
+            # (invariant: we only add to aggregated when we see a concept
+            # in a capsule's content)
+            continue
+        entries.append(
+            ConceptPathEntry(
+                name=e["name"],
+                first_introduced_lesson=e["first_intro"],
+                statuses=tuple(sorted(e["statuses"])),
+                lessons=tuple(ordered),
+                prerequisites=tuple(sorted(e["prereqs"])),
+                repetition_count=len(ordered),
+                last_reviewed_lesson=ordered[-1],
+                estimated_retention=compute_retention(
+                    rep_count=len(ordered),
+                    lessons_since_review=(
+                        total_lessons - 1 - lesson_index_map[ordered[-1]]
+                    ),
+                ),
+            )
         )
-        for e in sorted_entries
-    )
+
+    return tuple(entries)
 
 
 def _ordered_lessons(

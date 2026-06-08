@@ -1,184 +1,458 @@
-"""Test Lesson Graph builder (lessonos/graph/builder.py, M3-task1).
+"""Tests for Lesson Graph construction (build_lesson_graph, build_path_graph) and queries.
 
-Verifies that build_lesson_graph extracts nodes (lesson, concepts, exercises)
-and edges (explains, assigned_in) from a grounded Lesson Capsule.
+These test the cross-lesson graph builder (M3) that was previously orphaned —
+untested and unwired. Tests cover:
+  - build_lesson_graph: per-lesson nodes/edges (lesson, concept, exercise + explains, assigned_in)
+  - build_path_graph: cross-lesson edges (repeats, depends_on) + DAG validation
+  - queries: find_concept, where_introduced, where_reinforced, prerequisites_of,
+    all_prerequisites_deep, topological_concepts
 """
 
-import json
-
-import pytest
-
-from lessonos.capsule.assembly import assemble_lesson_capsule
-from lessonos.capsule.extraction import build_extraction_prompt
-from lessonos.capsule.segmentation import build_segmentation_prompt
-from lessonos.graph.builder import build_lesson_graph
-from lessonos.llm.router import MockProvider, Router
-from lessonos.models.entities import EDGE_TYPES
-from lessonos.store.fixture_loader import (
-    ingest_lesson_moments,
-    ingest_lesson_segments,
+from lessonos.capsule.assembly import LessonCapsule
+from lessonos.capsule.extraction import (
+    Citation,
+    ConceptExtraction,
+    ExerciseExtraction,
+    HomeworkExtraction,
+    LessonContent,
+    QuestionExtraction,
 )
-from lessonos.store.sqlite import SQLiteStore
+from lessonos.capsule.segmentation import TopicSpan
+from lessonos.graph.builder import build_lesson_graph, build_path_graph
+from lessonos.graph.queries import (
+    all_prerequisites_deep,
+    build_networkx_graph,
+    find_concept,
+    lesson_of_concept,
+    prerequisites_of,
+    topological_concepts,
+    where_introduced,
+    where_reinforced,
+)
+from lessonos.models.entities import EDGE_TYPES, GraphEdge, GraphNode
 
-L1 = "l1_derivative_definition"
+# ---------------------------------------------------------------------------
+# Helpers: build minimal LessonCapsules for testing
+# ---------------------------------------------------------------------------
 
 
-def _mock_router() -> Router:
-    """Create a mock router that returns realistic payloads for L1."""
-    store = SQLiteStore()
-    segs = ingest_lesson_segments(store, L1)
-    seg_prompt = build_segmentation_prompt(segs)
-    ext_prompt = build_extraction_prompt(segs)
-    store.close()
-
-    seg_payload = [
-        {"topic": "definizione derivata", "seg_ids": ["l1s1", "l1s2"]},
-        {"topic": "limite del rapporto incrementale", "seg_ids": ["l1s3"]},
-    ]
-    ext_payload = {
-        "concepts": [
-            {
-                "name": "derivata",
-                "status": "introduced",
-                "citations": [{"seg_id": "l1s1"}],
-            },
-            {
-                "name": "limite",
-                "status": "introduced",
-                "citations": [{"seg_id": "l1s3"}],
-            },
-        ],
-        "exercises": [
-            {
-                "prompt": "Calcola f'(x) per f(x)=x^2",
-                "citations": [{"seg_id": "l1s2"}],
-            }
-        ],
-        "student_questions": [
-            {"question": "Cosa succede se h=0?", "citations": [{"seg_id": "l1s2"}]}
-        ],
-        "homework": [{"task": "Esercizi 1-3", "citations": [{"seg_id": "l1s3"}]}],
-    }
-
-    router = Router()
-    router.register(
-        MockProvider(
-            {
-                seg_prompt: json.dumps(seg_payload),
-                ext_prompt: json.dumps(ext_payload),
-            }
-        )
+def _make_capsule(
+    lesson_id: str,
+    concepts: list[dict],
+    exercises: list[str] | None = None,
+    topics: list[str] | None = None,
+) -> LessonCapsule:
+    """Build a minimal LessonCapsule for graph testing."""
+    content = LessonContent(
+        lesson_id=lesson_id,
+        concepts=tuple(
+            ConceptExtraction(
+                name=c["name"],
+                status=c.get("status", "introduced"),
+                prerequisites=tuple(c.get("prerequisites", [])),
+                citations=(
+                    Citation(seg_id=lesson_id + "s1"),
+                ),
+            )
+            for c in concepts
+        ),
+        exercises=tuple(
+            ExerciseExtraction(
+                prompt=ex if isinstance(ex, str) else ex["prompt"],
+                solution=ex.get("solution") if isinstance(ex, dict) else None,
+                citations=(Citation(seg_id=lesson_id + "s1"),),
+            )
+            for ex in (exercises or [])
+        ),
+        student_questions=(),
+        homework=(),
     )
-    return router
+    if topics is None:
+        topics = ["Topic 1"]
+    timeline = tuple(
+        TopicSpan(
+            lesson_id=lesson_id, topic=t, seg_ids=(lesson_id + "s1",), start=0, end=30
+        )
+        for t in topics
+    )
+    return LessonCapsule(
+        lesson_id=lesson_id,
+        timeline=timeline,
+        content=content,
+    )
 
 
-def test_build_lesson_graph_creates_nodes_and_edges():
-    """Build graph from a real capsule: nodes + edges exist and are valid."""
-    store = SQLiteStore()
-    ingest_lesson_segments(store, L1)
-    ingest_lesson_moments(store, L1)
-
-    router = _mock_router()
-    capsule = assemble_lesson_capsule(store, L1, router)
-
-    # Build graph
-    nodes, edges = build_lesson_graph(capsule)
-
-    # Should have: 1 lesson node + N concept nodes + M exercise nodes
-    assert len(nodes) > 0, "should create at least the lesson node"
-
-    lesson_nodes = [n for n in nodes if n.node_type == "lesson"]
-    concept_nodes = [n for n in nodes if n.node_type == "concept"]
-    exercise_nodes = [n for n in nodes if n.node_type == "exercise"]
-
-    assert len(lesson_nodes) == 1, "should have exactly one lesson node"
-    assert lesson_nodes[0].node_id == L1
-    assert lesson_nodes[0].ref_id == L1
-
-    # Concepts from the mock fixture (2 concepts: derivata, limite)
-    assert len(concept_nodes) == 2, "should have 2 concept nodes from the capsule"
-    for i, node in enumerate(concept_nodes):
-        assert node.node_id == f"{L1}:concept:{i}"
-        assert node.node_type == "concept"
-        assert node.label is not None, "concept nodes should have a label (name)"
-
-    # Exercises from the mock fixture (1 exercise)
-    assert len(exercise_nodes) == 1, "should have 1 exercise node from the capsule"
-    for i, node in enumerate(exercise_nodes):
-        assert node.node_id == f"{L1}:exercise:{i}"
-        assert node.node_type == "exercise"
-
-    # Edges: "explains" from lesson to concepts, "assigned_in" from lesson to exercises
-    assert len(edges) > 0, "should create edges"
-
-    explains_edges = [e for e in edges if e.edge_type == "explains"]
-    assigned_edges = [e for e in edges if e.edge_type == "assigned_in"]
-
-    assert len(explains_edges) == len(
-        concept_nodes
-    ), "one 'explains' edge per concept"
-    assert len(assigned_edges) == len(
-        exercise_nodes
-    ), "one 'assigned_in' edge per exercise"
-
-    for edge in edges:
-        # All edge_type should be valid (GraphEdge.__post_init__ validates)
-        assert edge.edge_type in EDGE_TYPES, f"invalid edge_type: {edge.edge_type}"
-        # Edge IDs are deterministic
-        assert "-" in edge.edge_id, "edge_id should be <source>-<type>-><target>"
-
-    store.close()
+# ===================================================================
+# build_lesson_graph
+# ===================================================================
 
 
-def test_build_lesson_graph_node_ids_deterministic():
-    """Node and edge IDs are deterministic (same capsule → same IDs)."""
-    store = SQLiteStore()
-    ingest_lesson_segments(store, L1)
-    ingest_lesson_moments(store, L1)
+class TestBuildLessonGraph:
+    def test_single_concept_produces_lesson_and_concept_nodes(self):
+        """A lesson with 1 concept gets a lesson node + 1 concept node + explains edge."""
+        capsule = _make_capsule("l1", [{"name": "Derivative"}])
+        nodes, edges = build_lesson_graph(capsule)
+        node_ids = {n.node_id for n in nodes}
+        assert "l1" in node_ids  # lesson node
+        assert "l1:concept:0" in node_ids  # concept node
+        assert len(nodes) == 2  # lesson + concept
 
-    router = _mock_router()
-    capsule = assemble_lesson_capsule(store, L1, router)
+    def test_exercise_adds_exercise_node_and_assigned_in_edge(self):
+        """An exercise creates an exercise node + 'assigned_in' edge from lesson."""
+        capsule = _make_capsule(
+            "l1", [{"name": "Derivative"}], exercises=["Solve f'(x) = 2x"]
+        )
+        nodes, edges = build_lesson_graph(capsule)
+        node_ids = {n.node_id for n in nodes}
+        assert "l1:exercise:0" in node_ids
+        edge_ids = {e.edge_id for e in edges}
+        expected = "l1-assigned_in->l1:exercise:0"
+        assert expected in edge_ids
 
-    # Build graph twice
-    nodes1, edges1 = build_lesson_graph(capsule)
-    nodes2, edges2 = build_lesson_graph(capsule)
+    def test_explains_edge_from_lesson_to_each_concept(self):
+        """Each concept gets an 'explains' edge from the lesson."""
+        capsule = _make_capsule(
+            "l1",
+            [{"name": "Derivative"}, {"name": "Limit"}],
+        )
+        _, edges = build_lesson_graph(capsule)
+        explains_edges = [
+            e
+            for e in edges
+            if e.edge_type == "explains"
+            and e.source == "l1"
+        ]
+        assert len(explains_edges) == 2
+        targets = {e.target for e in explains_edges}
+        assert "l1:concept:0" in targets
+        assert "l1:concept:1" in targets
 
-    # Should be identical
-    assert len(nodes1) == len(nodes2)
-    assert len(edges1) == len(edges2)
+    def test_node_has_correct_label_from_concept_name(self):
+        """The concept node carries the concept name as its label."""
+        capsule = _make_capsule("l1", [{"name": "Derivative"}])
+        nodes, _ = build_lesson_graph(capsule)
+        concept_node = next(n for n in nodes if n.node_type == "concept")
+        assert concept_node.label == "Derivative"
 
-    for n1, n2 in zip(nodes1, nodes2):
-        assert n1.node_id == n2.node_id
-        assert n1.node_type == n2.node_type
-        assert n1.ref_id == n2.ref_id
-        assert n1.label == n2.label
+    def test_lesson_node_type_is_lesson(self):
+        """The lesson node has node_type='lesson'."""
+        capsule = _make_capsule("l1", [{"name": "Derivative"}])
+        nodes, _ = build_lesson_graph(capsule)
+        lesson_node = next(n for n in nodes if n.node_type == "lesson")
+        assert lesson_node.node_id == "l1"
+        assert lesson_node.ref_id == "l1"
 
-    for e1, e2 in zip(edges1, edges2):
-        assert e1.edge_id == e2.edge_id
-        assert e1.source == e2.source
-        assert e1.target == e2.target
-        assert e1.edge_type == e2.edge_type
+    def test_edge_ids_are_deterministic(self):
+        """Same input produces identical node/edge IDs."""
+        caps1 = _make_capsule("l1", [{"name": "Derivative"}])
+        caps2 = _make_capsule("l1", [{"name": "Derivative"}])
+        n1, e1 = build_lesson_graph(caps1)
+        n2, e2 = build_lesson_graph(caps2)
+        assert n1 == n2
+        assert e1 == e2
 
-    store.close()
+    def test_edge_types_are_valid_against_EDGE_TYPES(self):
+        """All edge_type values must be in the EDGE_TYPES vocabulary."""
+        capsule = _make_capsule(
+            "l1",
+            [{"name": "Derivative"}],
+            exercises=["Problem 1"],
+        )
+        _, edges = build_lesson_graph(capsule)
+        for e in edges:
+            assert e.edge_type in EDGE_TYPES, f"Invalid edge_type: {e.edge_type}"
 
 
-def test_build_lesson_graph_edge_types_validated():
-    """All created edges have valid edge_type ∈ EDGE_TYPES."""
-    store = SQLiteStore()
-    ingest_lesson_segments(store, L1)
-    ingest_lesson_moments(store, L1)
+# ===================================================================
+# build_path_graph
+# ===================================================================
 
-    router = _mock_router()
-    capsule = assemble_lesson_capsule(store, L1, router)
 
-    nodes, edges = build_lesson_graph(capsule)
+class TestBuildPathGraph:
+    def test_two_lessons_produce_combined_nodes(self):
+        """Two lessons produce combined nodes from both."""
+        capsule1 = _make_capsule("l1", [{"name": "Derivative"}])
+        capsule2 = _make_capsule("l2", [{"name": "Integral"}])
+        nodes, edges = build_path_graph([capsule1, capsule2])
+        node_ids = {n.node_id for n in nodes}
+        assert "l1" in node_ids
+        assert "l2" in node_ids
+        assert "l1:concept:0" in node_ids
+        assert "l2:concept:0" in node_ids
 
-    # Every edge should have a valid edge_type (GraphEdge validates in __post_init__)
-    for edge in edges:
-        assert edge.edge_type in EDGE_TYPES
+    def test_repeats_edge_when_concept_in_both_lessons(self):
+        """Same concept in both lessons creates a 'repeats' edge."""
+        capsule1 = _make_capsule("l1", [{"name": "Derivative"}])
+        capsule2 = _make_capsule("l2", [{"name": "Derivative"}])
+        _, edges = build_path_graph([capsule1, capsule2])
+        repeats = [e for e in edges if e.edge_type == "repeats"]
+        assert len(repeats) >= 1
+        # Edge from l1:concept:0 to l2:concept:0
+        expected = "l1:concept:0-repeats->l2:concept:0"
+        edge_ids = {e.edge_id for e in edges}
+        assert expected in edge_ids
 
-    # The builder creates only "explains" and "assigned_in" for now
-    edge_types_used = {e.edge_type for e in edges}
-    assert edge_types_used <= {"explains", "assigned_in"}
+    def test_repeats_edge_has_auto_suggested_provenance(self):
+        """'repeats' edges carry provenance metadata."""
+        capsule1 = _make_capsule("l1", [{"name": "Derivative"}])
+        capsule2 = _make_capsule("l2", [{"name": "Derivative"}])
+        _, edges = build_path_graph([capsule1, capsule2])
+        repeats = [e for e in edges if e.edge_type == "repeats"]
+        assert len(repeats) == 1
+        assert repeats[0].metadata == {
+            "provenance": "auto-suggested",
+            "confidence": "0.7",
+        }
 
-    store.close()
+    def test_depends_on_edge_from_concept_to_prerequisite(self):
+        """A concept with prerequisites gets a 'depends_on' edge to its prereq node."""
+        # l1 introduces "Derivative", l2 introduces "Integral" depending on "Derivative"
+        capsule1 = _make_capsule("l1", [{"name": "Derivative"}])
+        capsule2 = _make_capsule(
+            "l2",
+            [{"name": "Integral", "prerequisites": ["Derivative"]}],
+        )
+        _, edges = build_path_graph([capsule1, capsule2])
+        depends_on = [e for e in edges if e.edge_type == "depends_on"]
+        assert len(depends_on) >= 1
+        # Integral depends on Derivative: l2:concept:0-depends_on->l1:concept:0
+        expected = "l2:concept:0-depends_on->l1:concept:0"
+        edge_ids = {e.edge_id for e in edges}
+        assert expected in edge_ids
+
+    def test_depends_on_has_auto_suggested_provenance(self):
+        """'depends_on' edges carry provenance metadata."""
+        capsule1 = _make_capsule("l1", [{"name": "Derivative"}])
+        capsule2 = _make_capsule(
+            "l2",
+            [{"name": "Integral", "prerequisites": ["Derivative"]}],
+        )
+        _, edges = build_path_graph([capsule1, capsule2])
+        depends_on = [e for e in edges if e.edge_type == "depends_on"]
+        assert len(depends_on) == 1
+        assert depends_on[0].metadata == {
+            "provenance": "auto-suggested",
+            "confidence": "0.8",
+        }
+
+    def test_dag_validation_rejects_cycle(self):
+        """A cycle in the graph raises ValueError."""
+        # l1: A depends_on B, l2: B depends_on A
+        capsule1 = _make_capsule(
+            "l1",
+            [{"name": "A", "prerequisites": ["B"]}],
+        )
+        capsule2 = _make_capsule(
+            "l2",
+            [{"name": "B", "prerequisites": ["A"]}],
+        )
+        import pytest
+        with pytest.raises(ValueError, match="cycle"):
+            build_path_graph([capsule1, capsule2])
+
+    def test_no_duplicate_edges(self):
+        """Same edge is not added twice."""
+        capsule1 = _make_capsule("l1", [{"name": "Derivative"}])
+        capsule2 = _make_capsule("l2", [{"name": "Derivative"}])
+        _, edges = build_path_graph([capsule1, capsule2])
+        edge_ids = [e.edge_id for e in edges]
+        assert len(edge_ids) == len(set(edge_ids)), "Duplicate edge IDs found"
+
+    def test_full_path_three_lessons_cross_links(self):
+        """Three-lesson path: cross-lesson repeats + depends_on edges."""
+        capsule1 = _make_capsule(
+            "l1",
+            [{"name": "Derivative"}, {"name": "Limit"}],
+        )
+        capsule2 = _make_capsule(
+            "l2",
+            [{"name": "Derivative"}, {"name": "Chain Rule", "prerequisites": ["Derivative"]}],
+        )
+        capsule3 = _make_capsule(
+            "l3",
+            [{"name": "Chain Rule"}, {"name": "Integral"}],
+        )
+        nodes, edges = build_path_graph([capsule1, capsule2, capsule3])
+
+        # Check cross-lesson repeats: Derivative in l1+l2, Chain Rule in l2+l3
+        repeats = [e for e in edges if e.edge_type == "repeats"]
+        assert len(repeats) == 2  # derivative(l1->l2), chain_rule(l2->l3)
+
+        # Check depends_on: Chain Rule depends_on Derivative
+        depends_on = [e for e in edges if e.edge_type == "depends_on"]
+        assert len(depends_on) == 1
+        assert "depends_on" in depends_on[0].edge_id
+
+        # Verify total nodes: 3 lesson + 4 concept nodes (Derivative, Limit, Chain Rule, Integral)
+        concept_nodes = [n for n in nodes if n.node_type == "concept"]
+        # Note: Derivative appears twice (l1:concept:0, l2:concept:0) but is one canonical concept
+        # Plus Chain Rule appears twice (l2:concept:1, l3:concept:0)
+        assert len(concept_nodes) == 6  # 2(l1) + 2(l2) + 2(l3)
+
+    def test_empty_capsules_list_returns_empty(self):
+        """Empty capsules list returns empty nodes and edges."""
+        nodes, edges = build_path_graph([])
+        assert nodes == []
+        assert edges == []
+
+    def test_single_capsule_no_cross_edges(self):
+        """Single capsule: no cross-lesson edges (no repeats, no depends_on cross)."""
+        capsule = _make_capsule("l1", [{"name": "Derivative"}])
+        nodes, edges = build_path_graph([capsule])
+        # Only intra-lesson edges (explains, assigned_in if any)
+        cross_types = {"repeats", "depends_on"}
+        cross_edges = [e for e in edges if e.edge_type in cross_types]
+        assert len(cross_edges) == 0
+        # But has explain edges
+        explains = [e for e in edges if e.edge_type == "explains"]
+        assert len(explains) == 1
+
+
+# ===================================================================
+# Graph queries
+# ===================================================================
+
+
+class TestGraphQueries:
+    @classmethod
+    def setup_class(cls):
+        """Build a reusable 2-lesson graph for query tests."""
+        cls.capsule1 = _make_capsule(
+            "l1",
+            [{"name": "Derivative"}, {"name": "Limit"}],
+        )
+        cls.capsule2 = _make_capsule(
+            "l2",
+            [{"name": "Integral", "prerequisites": ["Derivative"]}],
+        )
+        cls.nodes, cls.edges = build_path_graph(
+            [cls.capsule1, cls.capsule2]
+        )
+        cls.G = build_networkx_graph(cls.nodes, cls.edges)
+
+    def test_find_concept_matches_by_label(self):
+        """find_concept returns node IDs matching a label (case-insensitive)."""
+        matches = find_concept(self.G, "derivative")
+        assert len(matches) == 1
+        assert matches[0] == "l1:concept:0"
+
+    def test_find_concept_case_insensitive(self):
+        """find_concept is case-insensitive."""
+        matches_upper = find_concept(self.G, "DERIVATIVE")
+        matches_lower = find_concept(self.G, "derivative")
+        assert matches_upper == matches_lower
+
+    def test_find_concept_unknown_returns_empty(self):
+        """Unknown concept name returns empty list."""
+        assert find_concept(self.G, "Quantum") == []
+
+    def test_lesson_of_concept_returns_explaining_lesson(self):
+        """lesson_of_concept finds the lesson that explains a concept."""
+        lesson = lesson_of_concept(self.G, "l1:concept:0")
+        assert lesson == "l1"
+
+    def test_lesson_of_concept_unknown_node_returns_none(self):
+        """Unknown node ID returns None."""
+        assert lesson_of_concept(self.G, "nonexistent") is None
+
+    def test_where_introduced_returns_first_lesson(self):
+        """where_introduced returns the first lesson with the concept."""
+        # Derivative is introduced in l1
+        intro = where_introduced(self.G, "Derivative")
+        assert intro == "l1"
+        # Integral is introduced in l2
+        intro2 = where_introduced(self.G, "Integral")
+        assert intro2 == "l2"
+
+    def test_where_introduced_unknown_returns_none(self):
+        """Unknown concept returns None."""
+        assert where_introduced(self.G, "NonExistent") is None
+
+    def test_where_reinforced_for_non_repeated_returns_empty(self):
+        """A concept appearing only once has no reinforcement lessons."""
+        # Limit only in l1
+        reinforced = where_reinforced(self.G, "Limit")
+        assert reinforced == []
+
+    def test_prerequisites_of_returns_direct_prereqs(self):
+        """prerequisites_of returns direct prerequisites of a concept."""
+        prereqs = prerequisites_of(self.G, "Integral")
+        assert "Derivative" in prereqs
+
+    def test_prerequisites_of_unknown_concept_returns_empty(self):
+        """Unknown concept returns empty list."""
+        assert prerequisites_of(self.G, "NonExistent") == []
+
+    def test_prerequisites_of_concept_without_prereqs_returns_empty(self):
+        """A concept with no prerequisites returns empty list."""
+        assert prerequisites_of(self.G, "Derivative") == []
+
+    def test_all_prerequisites_deep_returns_transitive(self):
+        """all_prerequisites_deep finds transitive prerequisites."""
+        # For a 2-level graph, direct = transitive
+        prereqs = all_prerequisites_deep(self.G, "Integral")
+        assert "Derivative" in prereqs
+
+    def test_all_prerequisites_deep_unknown_returns_empty(self):
+        """Unknown concept returns empty list."""
+        assert all_prerequisites_deep(self.G, "NonExistent") == []
+
+    def test_topological_concepts_ordered_by_lesson(self):
+        """topological_concepts returns concepts in lesson-first order."""
+        ordered = topological_concepts(self.G)
+        assert ordered == ["Derivative", "Limit", "Integral"]
+
+    def test_topological_concepts_no_duplicates(self):
+        """topological_concepts deduplicates concepts."""
+        ordered = topological_concepts(self.G)
+        assert len(ordered) == len(set(ordered))
+
+    def test_build_networkx_graph_preserves_node_attributes(self):
+        """networkx graph carries node_type, ref_id, label attributes."""
+        G = build_networkx_graph(self.nodes, self.edges)
+        for nid, data in G.nodes(data=True):
+            assert "node_type" in data
+            assert "ref_id" in data
+
+    def test_build_networkx_graph_preserves_edge_attributes(self):
+        """networkx graph carries edge_type and metadata on edges."""
+        G = build_networkx_graph(self.nodes, self.edges)
+        for u, v, data in G.edges(data=True):
+            assert "edge_type" in data
+
+
+# ===================================================================
+# Integration: graph module exports
+# ===================================================================
+
+
+class TestGraphModuleExports:
+    def test_build_lesson_graph_exported(self):
+        """build_lesson_graph is importable from lessonos.graph."""
+        from lessonos.graph import build_lesson_graph as blg
+        assert callable(blg)
+
+    def test_build_path_graph_exported(self):
+        """build_path_graph is importable from lessonos.graph."""
+        from lessonos.graph import build_path_graph as bpg
+        assert callable(bpg)
+
+    def test_graph_node_and_edge_types_usable(self):
+        """GraphNode and GraphEdge can be constructed."""
+        node = GraphNode(node_id="test", node_type="concept", ref_id="test")
+        assert node.node_id == "test"
+        edge = GraphEdge(
+            edge_id="a->b", source="a", target="b", edge_type="explains"
+        )
+        assert edge.edge_type == "explains"
+
+    def test_graph_edge_rejects_invalid_type(self):
+        """GraphEdge raises ValueError on invalid edge_type."""
+        import pytest
+        with pytest.raises(ValueError, match="invalid edge_type"):
+            GraphEdge(
+                edge_id="a->b",
+                source="a",
+                target="b",
+                edge_type="invalid_type",
+            )

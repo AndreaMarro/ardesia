@@ -468,17 +468,23 @@ class TestComputeNextLessonPlan:
         assert len(delta.new_concepts) == 0
 
 
-# --- Retrievability-based review sorting ---
+# --- Retention-based review sorting (FSRS-inspired Ebbinghaus decay) ---
 
 
-def test_review_items_sorted_by_retrievability():
-    """Review items sorted by repetition_count ascending, then last_reviewed
-    ascending (farthest lesson first = highest retrieval urgency).
+def test_review_items_sorted_by_retention():
+    """Review items sorted by estimated_retention ascending (lowest = most urgent).
 
     L1: concetto_A (problematic), concetto_B (problematic)
     L2: concetto_A (reinforced) — B stays at rep=1, A at rep=2
-    Both are unmastered. B should appear BEFORE A in review items
-    because B has lower repetition_count (1 < 2).
+    L3: empty lesson
+
+    Retention estimates:
+    - concetto_A: rep=2, last=l2 idx=1, lessons_since_review=3-1-1=1
+      stability=0.5*1.5^1=0.75, R=e^(-1/0.75)~0.264
+    - concetto_B: rep=1, last=l1 idx=0, lessons_since_review=3-1-0=2
+      stability=0.5, R=e^(-2/0.5)=e^(-4)~0.0183
+
+    B has LOWER retention -> should appear BEFORE A.
     """
     l1 = _make_capsule(
         "l1", "base",
@@ -491,37 +497,37 @@ def test_review_items_sorted_by_retrievability():
         "l2", "prog",
         concepts=[("concetto_A", "reinforced")],
     )
+    l3 = _make_capsule("l3", "empty", [])
 
     old_pm = build_path_memory([l1], path_title="Calc")
-    new_pm = build_path_memory([l1, l2], path_title="Calc")
+    new_pm = build_path_memory([l1, l2, l3], path_title="Calc")
     delta = compute_didactic_delta(old_pm, new_pm)
     ledger = compute_learning_debt(new_pm, delta, path_id="p1")
 
     plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="p1")
 
-    # Verify: concetto_B (rep=1, last=l1) should be before concetto_A (rep=2, last=l2)
     review_descs = [i.description for i in plan.review_items]
-    # Find the positions — search case-insensitively
     b_pos = next(i for i, d in enumerate(review_descs) if "concetto_b" in d.lower())
     a_pos = next(i for i, d in enumerate(review_descs) if "concetto_a" in d.lower())
     assert b_pos < a_pos, (
-        f"concetto_B (rep=1) should precede concetto_A (rep=2) in review "
-        f"order: {review_descs}"
+        f"concetto_B (retention 0.018) should precede concetto_A "
+        f"(retention 0.264) in review order: {review_descs}"
     )
 
 
-def test_review_items_same_rep_count_sorted_by_last_reviewed():
-    """When repetition_count is equal, concepts reviewed more distantly
-    in the past should come first.
+def test_review_items_retention_tiebreaker():
+    """When estimated_retention is equal, tiebreak by description.
 
     L1: concetto_X (problematic)
     L2: concetto_Y (problematic), concetto_X (reinforced)
     L3: concetto_Y (reinforced), concetto_Z (problematic)
-       → X: rep=2, last=l2
-       → Y: rep=2, last=l3
-       → Z: rep=1, last=l3
 
-    Z (rep=1) comes first, then X (rep=2, last=l2) before Y (rep=2, last=l3).
+    Retention estimates:
+    - X: rep=2, last=l2 idx=1, lessons_since_review=1 -> R~0.264
+    - Y: rep=2, last=l3 idx=2, lessons_since_review=0 -> R=1.0
+    - Z: rep=1, last=l3 idx=2, lessons_since_review=0 -> R=1.0
+
+    Order: X (0.264) first, then Y and Z (both 1.0, alphabetical).
     """
     l1 = _make_capsule(
         "l1", "base",
@@ -550,13 +556,10 @@ def test_review_items_same_rep_count_sorted_by_last_reviewed():
     plan = compute_next_lesson_plan(new_pm, delta, ledger, path_id="p1")
 
     review_descs = [i.description for i in plan.review_items]
-    # Z (rep=1) comes first — search case-insensitively
-    z_pos = next(i for i, d in enumerate(review_descs) if "concetto_z" in d.lower())
     x_pos = next(i for i, d in enumerate(review_descs) if "concetto_x" in d.lower())
     y_pos = next(i for i, d in enumerate(review_descs) if "concetto_y" in d.lower())
-    assert z_pos < x_pos, f"Z (rep=1) should precede X (rep=2): {review_descs}"
-    assert z_pos < y_pos, f"Z (rep=1) should precede Y (rep=2): {review_descs}"
-    # X (last=l2) should precede Y (last=l3) — X reviewed longer ago
-    assert x_pos < y_pos, (
-        f"X (last=l2) should precede Y (last=l3): {review_descs}"
-    )
+    z_pos = next(i for i, d in enumerate(review_descs) if "concetto_z" in d.lower())
+    assert x_pos < y_pos, f"X (0.264) should precede Y (1.0): {review_descs}"
+    assert x_pos < z_pos, f"X (0.264) should precede Z (1.0): {review_descs}"
+    # TIEBREAK: Y and Z both have 1.0 retention; alphabetical order: Y < Z
+    assert y_pos < z_pos, f"Y should precede Z alphabetically (tiebreak): {review_descs}"

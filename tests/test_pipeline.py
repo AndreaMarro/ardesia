@@ -275,6 +275,56 @@ class TestLessonMocks:
                 )
 
 
+class TestPipelineGraph:
+    """Tests that the Lesson Graph is wired into pipeline output."""
+
+    def test_graph_nodes_produced(self) -> None:
+        """Pipeline produces graph nodes from build_path_graph."""
+        result = run_pipeline()
+        assert len(result.graph_nodes) > 0, "Expected graph nodes"
+
+    def test_graph_edges_include_explains(self) -> None:
+        """Every concept node gets an 'explains' edge — edge count matches concept count."""
+        result = run_pipeline()
+        concept_count = len(
+            [n for n in result.graph_nodes if n.node_type == "concept"]
+        )
+        explains = [e for e in result.graph_edges if e.edge_type == "explains"]
+        assert len(explains) == concept_count, (
+            f"Expected {concept_count} explains edges (one per concept), "
+            f"got {len(explains)}"
+        )
+
+    def test_graph_edges_include_cross_lesson_repeats(self) -> None:
+        """Pipeline graph has cross-lesson 'repeats' edges for shared concepts."""
+        result = run_pipeline()
+        repeats = [e for e in result.graph_edges if e.edge_type == "repeats"]
+        assert len(repeats) >= 1, (
+            f"Expected >=1 repeats edges, got {len(repeats)}"
+        )
+
+    def test_graph_nodes_are_frozen(self) -> None:
+        """Graph nodes from pipeline are immutable."""
+        result = run_pipeline()
+        with pytest.raises(AttributeError):
+            result.graph_nodes[0].node_id = "changed"  # type: ignore[misc]
+
+    def test_graph_edges_have_valid_types(self) -> None:
+        """All graph edge types are in the EDGE_TYPES vocabulary."""
+        from lessonos.models.entities import EDGE_TYPES
+        result = run_pipeline()
+        for e in result.graph_edges:
+            assert e.edge_type in EDGE_TYPES, (
+                f"Invalid edge_type: {e.edge_type}"
+            )
+
+    def test_summary_includes_graph_counts(self) -> None:
+        """Pipeline summary includes graph nodes and edges counts."""
+        result = run_pipeline()
+        assert "graph-nodes" in result.summary
+        assert "graph-edges" in result.summary
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------

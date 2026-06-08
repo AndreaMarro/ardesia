@@ -117,10 +117,12 @@ def _build_review_items(
 ) -> list[LessonAgendaItem]:
     """Build review agenda items from unmastered concept debt.
 
-    Uses PathMemory's ``repetition_count`` and ``last_reviewed_lesson``
-    (SM-2 inspired retrievability tracking) to sort review items so that
-    concepts with fewer repetitions and the most distant last review
-    appear first — they are at highest risk of forgetting.
+    Uses PathMemory's ``estimated_retention`` (FSRS-inspired Ebbinghaus decay)
+    to sort review items so that concepts with the lowest estimated retention
+    (highest forgetting risk) appear first.
+
+    Falls back to ``repetition_count`` + ``last_reviewed_lesson`` ordering
+    (SM-2 style) if estimated_retention is unavailable.
     """
     items: list[LessonAgendaItem] = []
     for debt in ledger.items:
@@ -136,41 +138,51 @@ def _build_review_items(
                 )
             )
 
-    # Sort by retrievability urgency: lower repetition_count first,
-    # then earlier last_reviewed_lesson (farther in past = more urgent).
-    # This is the SM-2 insight: concepts seen long ago or only once need
-    # review before concepts seen recently or many times.
+    # Sort by retrievability urgency:
+    # 1. estimated_retention ascending (lowest retention = most urgent)
+    #    — FSRS-inspired Ebbinghaus decay model
+    # 2. Fallback: repetition_count ascending, then last_reviewed_lesson
+    #    (farthest in past = more urgent) — SM-2 style
     if memory and items:
-        _concept_rep_map: dict[str, tuple[int, str | None]] = {}
+        _concept_rep_map: dict[str, dict] = {}
         for cpe in memory.concept_graph:
-            _concept_rep_map[cpe.name.lower()] = (
-                cpe.repetition_count,
-                cpe.last_reviewed_lesson,
-            )
+            _concept_rep_map[cpe.name.lower()] = {
+                "retention": cpe.estimated_retention,
+                "rep_count": cpe.repetition_count,
+                "last_idx": _lesson_idx(cpe.last_reviewed_lesson, memory),
+            }
 
-        # Precompute lesson_id → index for O(1) lookup
-        _lesson_index_map: dict[str, int] = {
-            entry.lesson_id: i
-            for i, entry in enumerate(memory.lesson_index)
-        }
-
-        def _review_sort_key(item: LessonAgendaItem) -> tuple[int, int, str]:
+        def _review_sort_key(item: LessonAgendaItem) -> tuple:
             # Extract concept name from description like
             # 'Review and clarify concept: Concept "name" is ...'
             m = re.search(r'Concept "([^"]+)"', item.description)
             concept_name = m.group(1).lower() if m else item.description.lower()
-            rep_count, last_lesson = _concept_rep_map.get(
-                concept_name, (0, None)
-            )
-            # Lower repetition_count -> higher urgency.
-            # Earlier (farther past) last_reviewed_lesson -> higher urgency.
-            last_idx = _lesson_index_map.get(last_lesson, 0) if last_lesson else 0
-            # Sort key: low rep first, low last_idx first (farther past)
-            return (rep_count, last_idx, item.description)
+            info = _concept_rep_map.get(concept_name, {})
+            retention = info.get("retention")
+            if retention is not None:
+                # Primary: retention ascending (0.0 = forgotten -> urgent).
+                # Tiebreaker: description for stable sorting.
+                return (0, retention, item.description)
+            # Fallback: SM-2 style (rep_count asc, last_idx asc)
+            rep_count = info.get("rep_count", 0)
+            last_idx = info.get("last_idx", 0)
+            return (1, rep_count, last_idx, item.description)
 
         items.sort(key=_review_sort_key)
 
     return items
+
+
+def _lesson_idx(
+    lesson_id: str | None, memory: PathMemory
+) -> int:
+    """Return the index of a lesson in the path, or 0 if None/unknown."""
+    if lesson_id is None:
+        return 0
+    for i, entry in enumerate(memory.lesson_index):
+        if entry.lesson_id == lesson_id:
+            return i
+    return 0
 
 
 def _build_practice_items(

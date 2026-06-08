@@ -415,3 +415,88 @@ def test_concept_repetition_count_mixed():
     assert c_a.last_reviewed_lesson == "l2"
     assert c_b.repetition_count == 1  # appears only in L1
     assert c_b.last_reviewed_lesson == "l1"
+
+
+# --- Estimated retention (FSRS-inspired Ebbinghaus decay) ---
+
+
+def test_compute_retention_just_introduced():
+    """A concept just seen has retention = 1.0 (no decay)."""
+    from lessonos.graph.path_memory import compute_retention
+
+    assert compute_retention(1, 0) == 1.0
+    assert compute_retention(5, 0) == 1.0  # even with many reps
+
+
+def test_compute_retention_decays_with_lessons():
+    """Retention decays exponentially as lessons since review increase."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r0 = compute_retention(1, 0)
+    r1 = compute_retention(1, 1)
+    r3 = compute_retention(1, 3)
+
+    assert r0 == 1.0
+    assert r1 > r3
+    assert r3 < 0.1
+
+
+def test_compute_retention_increases_with_repetitions():
+    """More repetitions slow the decay (higher stability = higher retention)."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r1 = compute_retention(1, 3)
+    r2 = compute_retention(2, 3)
+    r3 = compute_retention(3, 3)
+
+    assert r1 < r2
+    assert r2 < r3
+
+
+def test_compute_retention_validation():
+    """Invalid inputs raise ValueError."""
+    from lessonos.graph.path_memory import compute_retention
+
+    with pytest.raises(ValueError, match="rep_count must be >= 1"):
+        compute_retention(0, 0)
+    with pytest.raises(ValueError, match="lessons_since_review must be >= 0"):
+        compute_retention(1, -1)
+    with pytest.raises(ValueError, match="initial_stability must be > 0"):
+        compute_retention(1, 0, initial_stability=0)
+    with pytest.raises(ValueError, match="stability_multiplier must be > 0"):
+        compute_retention(1, 0, stability_multiplier=0)
+
+
+def test_compute_retention_custom_parameters():
+    """Custom stability parameters affect retention as expected."""
+    from lessonos.graph.path_memory import compute_retention
+
+    r_low = compute_retention(1, 3, initial_stability=0.5)
+    r_high = compute_retention(1, 3, initial_stability=1.0)
+    assert r_low < r_high
+
+    r_mul_low = compute_retention(3, 3, stability_multiplier=1.2)
+    r_mul_high = compute_retention(3, 3, stability_multiplier=2.0)
+    assert r_mul_low < r_mul_high
+
+
+def test_concept_path_entry_has_estimated_retention():
+    """build_path_memory populates estimated_retention on ConceptPathEntry."""
+    l1 = _make_capsule("l1", "base", concepts=[("concetto_A", "introduced")])
+    l2 = _make_capsule("l2", "prog", concepts=[("concetto_A", "reinforced")])
+    pm = build_path_memory([l1, l2])
+
+    c = next(e for e in pm.concept_graph if e.name == "concetto_A")
+    assert c.estimated_retention is not None
+    assert 0 < c.estimated_retention <= 1.0
+
+
+def test_estimated_retention_just_seen_is_one():
+    """Concept just seen in latest lesson has retention = 1.0 (no decay)."""
+    l1 = _make_capsule("l1", "base", [("A", "introduced")])
+    l2 = _make_capsule("l2", "prog", [])
+    l3 = _make_capsule("l3", "adv", [("A", "reinforced")])
+    pm = build_path_memory([l1, l2, l3])
+    c = next(e for e in pm.concept_graph if e.name == "A")
+    # lessons_since_review = 3-1-2 = 0 -> retention = 1.0
+    assert c.estimated_retention == 1.0
