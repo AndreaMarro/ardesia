@@ -442,6 +442,135 @@ LESSON_MOCKS: dict[str, tuple[list[dict], dict]] = {
             ],
         },
     ),
+    # ------------------------------------------------------------------ #
+    # Bio Path (2 lessons): fotosintesi domain (biologia)
+    # ------------------------------------------------------------------ #
+    "l1_fotosintesi_intro": (
+        # seg_payload
+        [
+            {
+                "topic": "Fotosintesi clorofilliana",
+                "seg_ids": ["l1s1", "l1s2"],
+            },
+            {
+                "topic": "Reazione complessiva",
+                "seg_ids": ["l1s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "fotosintesi clorofilliana",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s1",
+                            "excerpt": "convertono l'energia luminosa in energia chimica",
+                        }
+                    ],
+                },
+                {
+                    "name": "cloroplasto",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s2",
+                            "excerpt": "cloroplasti, organelli che contengono clorofilla",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Bilancia la reazione di fotosintesi e identifica i reagenti e i prodotti.",
+                    "citations": [{"seg_id": "l1s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Perche le foglie appaiono verdi se la clorofilla assorbe blu e rosso?",
+                    "citations": [{"seg_id": "l1s2"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Disegna un diagramma del cloroplasto e etichetta tilacoidi e stroma.",
+                    "citations": [{"seg_id": "l1s2"}],
+                }
+            ],
+        },
+    ),
+    "l2_reazioni_luce": (
+        # seg_payload
+        [
+            {
+                "topic": "Reazioni luminose nei tilacoidi",
+                "seg_ids": ["l2s1"],
+            },
+            {
+                "topic": "Catena di trasporto elettronico e ATP",
+                "seg_ids": ["l2s2"],
+            },
+            {
+                "topic": "Riduzione di NADP+ e ciclo di Calvin",
+                "seg_ids": ["l2s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "tilacoide",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s1",
+                            "excerpt": "tilacoidi dei cloroplasti",
+                        }
+                    ],
+                },
+                {
+                    "name": "catena di trasporto elettronico",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s2",
+                            "excerpt": "catena di trasporto elettronico",
+                        }
+                    ],
+                },
+                {
+                    "name": "ciclo di Calvin",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s3",
+                            "excerpt": "ciclo di Calvin per la fissazione della CO2",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Descrivi il percorso degli elettroni eccitati dalla clorofilla al NADPH.",
+                    "citations": [{"seg_id": "l2s2"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Perche l'ossigeno prodotto nella fotosintesi deriva dall'acqua e non dalla CO2?",
+                    "citations": [{"seg_id": "l2s3"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Confronta fase luminosa e ciclo di Calvin in una tabella: input, output, localizzazione.",
+                    "citations": [{"seg_id": "l2s1"}, {"seg_id": "l2s3"}],
+                }
+            ],
+        },
+    ),
 }
 
 

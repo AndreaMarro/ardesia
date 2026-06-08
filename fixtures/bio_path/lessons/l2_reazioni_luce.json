@@ -1,0 +1,20 @@
+{
+  "lesson_id": "l2_reazioni_luce",
+  "path_id": "path_bio_101",
+  "title": "Reazioni dipendenti dalla luce",
+  "order": 2,
+  "source_id": "fotosintesi_primer",
+  "transcript": [
+    {"seg_id": "l2s1", "start": 0, "end": 55, "text": "Le reazioni luminose avvengono nei tilacoidi dei cloroplasti. La clorofilla assorbe fotoni e trasferisce l'energia agli elettroni che vengono eccitati."},
+    {"seg_id": "l2s2", "start": 55, "end": 120, "text": "Gli elettroni eccitati percorrono la catena di trasporto elettronico, generando un gradiente protonico che viene utilizzato dall'ATP sintasi per produrre ATP."},
+    {"seg_id": "l2s3", "start": 120, "end": 185, "text": "Il NADP+ viene ridotto a NADPH dagli elettroni terminali. L'ATP e il NADPH prodotti passano al ciclo di Calvin per la fissazione della CO2 in glucosio."}
+  ],
+  "timeline_events": [
+    {"event_type": "transcript_segment", "t": 0, "seg_id": "l2s1"},
+    {"event_type": "concept_introduced", "t": 30, "seg_id": "l2s1", "concept": "tilacoide"},
+    {"event_type": "concept_introduced", "t": 60, "seg_id": "l2s2", "concept": "catena di trasporto elettronico"},
+    {"event_type": "marker_important", "t": 70, "seg_id": "l2s2"},
+    {"event_type": "marker_error", "t": 140, "seg_id": "l2s3"},
+    {"event_type": "marker_homework", "t": 170, "seg_id": "l2s3"}
+  ]
+}
