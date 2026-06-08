@@ -12,6 +12,7 @@ from lessonos.observations import (
     save_observation,
     load_recent_observations,
     search_observations,
+    log_iteration,
 )
 
 
@@ -180,3 +181,127 @@ class TestSaveAndLoad:
             assert l.note == original.note
         finally:
             os.unlink(tmppath)
+
+
+class TestLogIteration:
+    """log_iteration writes both observations.jsonl and log.jsonl."""
+
+    def test_log_iteration_returns_observation(self):
+        """log_iteration returns a valid Observation."""
+        from datetime import datetime, timezone
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            obs_path = os.path.join(tmpdir, "observations.jsonl")
+            log_path = os.path.join(tmpdir, "log.jsonl")
+
+            # Monkey-patch paths
+            import lessonos.observations as obs_mod
+            orig_obs_path = obs_mod.JSONL_PATH
+            orig_log_path = obs_mod._LOG_PATH
+            obs_mod.JSONL_PATH = obs_path
+            obs_mod._LOG_PATH = log_path
+            try:
+                obs = log_iteration(
+                    task="test-log-iter",
+                    hypothesis="writes both files",
+                    gate_passed=788,
+                    cost_usd=0.002,
+                    status="pass",
+                    files=["lessonos/observations.py", "tests/test_observations.py"],
+                    note="RETRO #7 + log_iteration helper",
+                )
+                assert obs.task == "test-log-iter"
+                assert obs.gate_passed == 788
+                assert obs.cost_usd == 0.002
+                assert obs.status == "pass"
+                # Verify file_line is constructed from files (join with ", ")
+                assert obs.file_line == (
+                    "lessonos/observations.py, tests/test_observations.py"
+                )
+                # Verify both files were actually written
+                assert os.path.exists(obs_path)
+                assert os.path.exists(log_path)
+            finally:
+                obs_mod.JSONL_PATH = orig_obs_path
+                obs_mod._LOG_PATH = orig_log_path
+
+    def test_log_iteration_writes_both_files(self):
+        """Both observations.jsonl and log.jsonl are written."""
+        import lessonos.observations as obs_mod
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            obs_path = os.path.join(tmpdir, "observations.jsonl")
+            log_path = os.path.join(tmpdir, "log.jsonl")
+            orig_obs = obs_mod.JSONL_PATH
+            orig_log = obs_mod._LOG_PATH
+            obs_mod.JSONL_PATH = obs_path
+            obs_mod._LOG_PATH = log_path
+            try:
+                log_iteration(
+                    task="dual-write", gate_passed=100, cost_usd=0.01,
+                    files=["a.py"],
+                )
+                assert os.path.exists(obs_path), "observations.jsonl missing"
+                assert os.path.exists(log_path), "log.jsonl missing"
+
+                with open(obs_path) as f:
+                    obs_line = json.loads(f.readline().strip())
+                assert obs_line["task"] == "dual-write"
+                assert obs_line["gate_passed"] == 100
+
+                with open(log_path) as f:
+                    log_line = json.loads(f.readline().strip())
+                assert log_line["task"] == "dual-write"
+                assert log_line["cost_usd"] == 0.01
+                assert log_line["status"] == "pass"
+                assert log_line["files"] == ["a.py"]
+            finally:
+                obs_mod.JSONL_PATH = orig_obs
+                obs_mod._LOG_PATH = orig_log
+
+    def test_log_iteration_files_list(self):
+        """Files list is written both as file_line in obs and files in log."""
+        import lessonos.observations as obs_mod
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            obs_path = os.path.join(tmpdir, "observations.jsonl")
+            log_path = os.path.join(tmpdir, "log.jsonl")
+            orig_obs = obs_mod.JSONL_PATH
+            orig_log = obs_mod._LOG_PATH
+            obs_mod.JSONL_PATH = obs_path
+            obs_mod._LOG_PATH = log_path
+            try:
+                log_iteration(
+                    task="files-test", files=["a.py:10", "b.py:20"],
+                )
+                with open(obs_path) as f:
+                    obs_line = json.loads(f.readline().strip())
+                assert "a.py:10" in obs_line["file_line"]
+                assert "b.py:20" in obs_line["file_line"]
+
+                with open(log_path) as f:
+                    log_line = json.loads(f.readline().strip())
+                assert log_line["files"] == ["a.py:10", "b.py:20"]
+            finally:
+                obs_mod.JSONL_PATH = orig_obs
+                obs_mod._LOG_PATH = orig_log
+
+    def test_log_iteration_no_files(self):
+        """Omitting files produces empty strings/lists, not errors."""
+        import lessonos.observations as obs_mod
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            obs_path = os.path.join(tmpdir, "observations.jsonl")
+            log_path = os.path.join(tmpdir, "log.jsonl")
+            orig_obs = obs_mod.JSONL_PATH
+            orig_log = obs_mod._LOG_PATH
+            obs_mod.JSONL_PATH = obs_path
+            obs_mod._LOG_PATH = log_path
+            try:
+                log_iteration(task="no-files", gate_passed=50)
+                with open(log_path) as f:
+                    log_line = json.loads(f.readline().strip())
+                assert log_line["files"] == []
+            finally:
+                obs_mod.JSONL_PATH = orig_obs
+                obs_mod._LOG_PATH = orig_log
