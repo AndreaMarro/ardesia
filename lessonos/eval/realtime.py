@@ -5,6 +5,11 @@
 (default: Kimi), then scores the output with the existing groundedness and
 citation-excerpt-accuracy metrics.
 
+``run_realtime_eval_n_runs()`` runs the pipeline N times and returns a
+distribution report with min/mean/max for groundedness, excerpt-accuracy,
+and n-concepts. Useful because real LLM outputs are non-deterministic
+(FM3 — COORDINATION.md ordine #3 di 3).
+
 All costs are tracked through the CostLedger and returned in the report.
 
 Usage (live, with KIMI_API_KEY set)::
@@ -26,7 +31,8 @@ Design constraints (AGENTS.md §5):
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+import statistics
+from dataclasses import dataclass, field
 from pathlib import Path as FsPath
 
 from lessonos.capsule.assembly import LessonCapsule, assemble_lesson_capsule
@@ -92,6 +98,76 @@ class RealtimeEvalReport:
             f"llm_calls={self.llm_calls}",
         ]
         return f"[EVAL] {self.lesson_id}: {' | '.join(parts)}"
+
+
+@dataclass(frozen=True)
+class MultiRunEvalReport:
+    """Distribution report from N eval runs on the same fixture.
+
+    Provides min/mean/max for groundedness, excerpt-accuracy, and
+    n-concepts — reflecting the non-determinism of real LLM outputs.
+
+    Attributes:
+        lesson_id: The lesson that was processed.
+        n_runs: Number of runs.
+        groundedness_scores: List of per-run groundedness scores.
+        groundedness_min: Minimum groundedness score across runs.
+        groundedness_mean: Mean groundedness score across runs.
+        groundedness_max: Maximum groundedness score across runs.
+        excerpt_accuracy_scores: List of per-run excerpt-accuracy scores.
+        excerpt_accuracy_min: Minimum excerpt-accuracy score.
+        excerpt_accuracy_mean: Mean excerpt-accuracy score.
+        excerpt_accuracy_max: Maximum excerpt-accuracy score.
+        n_concepts_list: List of per-run concept counts.
+        n_concepts_min: Minimum concept count.
+        n_concepts_mean: Mean concept count.
+        n_concepts_max: Maximum concept count.
+        total_cost_usd: Total cost across all runs.
+        total_tokens: Total tokens across all runs.
+        run_reports: Individual per-run reports.
+        error: Error message if any run failed, None otherwise.
+    """
+
+    lesson_id: str
+    n_runs: int
+    groundedness_scores: tuple[float, ...]
+    groundedness_min: float
+    groundedness_mean: float
+    groundedness_max: float
+    excerpt_accuracy_scores: tuple[float, ...]
+    excerpt_accuracy_min: float
+    excerpt_accuracy_mean: float
+    excerpt_accuracy_max: float
+    n_concepts_list: tuple[int, ...]
+    n_concepts_min: int
+    n_concepts_mean: float
+    n_concepts_max: int
+    total_cost_usd: float
+    total_tokens: int
+    run_reports: tuple[RealtimeEvalReport, ...]
+    error: str | None = None
+
+    def summary(self) -> str:
+        """Multi-line summary of distribution results."""
+        if self.error:
+            return f"[ERROR] {self.lesson_id}: {self.error}"
+        lines = [
+            f"[EVAL-MULTI] {self.lesson_id} ({self.n_runs} runs)",
+            f"  groundedness: min={self.groundedness_min:.2f} "
+            f"mean={self.groundedness_mean:.2f} "
+            f"max={self.groundedness_max:.2f}",
+            f"  excerpt_accuracy: min={self.excerpt_accuracy_min:.2f} "
+            f"mean={self.excerpt_accuracy_mean:.2f} "
+            f"max={self.excerpt_accuracy_max:.2f}",
+            f"  n_concepts: min={self.n_concepts_min} "
+            f"mean={self.n_concepts_mean:.1f} "
+            f"max={self.n_concepts_max}",
+            f"  total_cost=${self.total_cost_usd:.6f} "
+            f"tokens={self.total_tokens}",
+        ]
+        for i, r in enumerate(self.run_reports):
+            lines.append(f"    run {i+1}: {r.summary()}")
+        return "\n".join(lines)
 
 
 def run_realtime_eval(
@@ -280,10 +356,84 @@ def run_realtime_eval(
     )
 
 
+def run_realtime_eval_n_runs(
+    lesson_id: str = "l1_derivative_definition",
+    fixture_root: FsPath | None = None,
+    router: Router | None = None,
+    n: int = 3,
+    *,
+    model: str = "kimi-k2-0905-preview",
+) -> MultiRunEvalReport:
+    """Run the realtime eval N times and return a distribution report.
+
+    Args:
+        lesson_id: Which lesson to process.
+        fixture_root: Fixture directory.
+        router: Mock or real Router. Each run re-ingests into a fresh store.
+            If None, a live router is built (requires API key).
+        n: Number of runs (default 3, must be >= 1).
+        model: Model name.
+
+    Returns:
+        A MultiRunEvalReport with min/mean/max statistics across runs.
+    """
+    if n < 1:
+        raise ValueError(f"n must be >= 1, got {n}")
+
+    root = fixture_root or DEFAULT_FIXTURE_ROOT
+    reports: list[RealtimeEvalReport] = []
+    total_cost = 0.0
+    total_tokens = 0
+
+    for _ in range(n):
+        report = run_realtime_eval(
+            lesson_id=lesson_id,
+            fixture_root=root,
+            router=router,
+            model=model,
+        )
+        reports.append(report)
+        total_cost += report.total_cost_usd
+        total_tokens += report.total_tokens
+
+    g_scores = tuple(r.groundedness_score for r in reports)
+    e_scores = tuple(r.excerpt_accuracy_score for r in reports)
+
+    # Guard: if all capsules failed, set error
+    error: str | None = None
+    if all(r.capsule is None for r in reports):
+        error = "All runs failed to produce a capsule"
+
+    c_counts = tuple(len(r.capsule.content.concepts) if r.capsule else 0
+                     for r in reports)
+
+    return MultiRunEvalReport(
+        lesson_id=lesson_id,
+        n_runs=len(reports),
+        groundedness_scores=g_scores,
+        groundedness_min=min(g_scores),
+        groundedness_mean=statistics.mean(g_scores),
+        groundedness_max=max(g_scores),
+        excerpt_accuracy_scores=e_scores,
+        excerpt_accuracy_min=min(e_scores),
+        excerpt_accuracy_mean=statistics.mean(e_scores),
+        excerpt_accuracy_max=max(e_scores),
+        n_concepts_list=c_counts,
+        n_concepts_min=min(c_counts),
+        n_concepts_mean=statistics.mean(c_counts),
+        n_concepts_max=max(c_counts),
+        total_cost_usd=total_cost,
+        total_tokens=total_tokens,
+        run_reports=tuple(reports),
+        error=error,
+    )
+
+
 def _parse_score(detail: str) -> float:
     """Extract the numeric score from a metric detail string.
 
     Detail format examples::
+
         "score=1.00 (3/3) — all citations grounded"
         "score=0.50 (1/2); unresolved seg_ids: ['s99']"
         "0 citations to check (score=1.0)"
