@@ -54,6 +54,33 @@ def test_compile_course_parser_custom_output():
     assert args.output == "/tmp/out"
 
 
+def test_compile_course_parser_review():
+    """Flag --review settato correttamente."""
+    args = _parse_args(
+        ["compile-course", "/tmp/test", "--review"]
+    )
+    assert args.review is True
+    assert args.approve is False
+
+
+def test_compile_course_parser_approve():
+    """Flag --approve settato correttamente."""
+    args = _parse_args(
+        ["compile-course", "/tmp/test", "--approve"]
+    )
+    assert args.approve is True
+    assert args.review is False
+
+
+def test_compile_course_parser_review_and_approve():
+    """Flag --review + --approve insieme."""
+    args = _parse_args(
+        ["compile-course", "/tmp/test", "--review", "--approve"]
+    )
+    assert args.review is True
+    assert args.approve is True
+
+
 # ── Error paths ─────────────────────────────────────────────────────────────
 
 
@@ -210,3 +237,82 @@ def test_compile_course_output_dir_created():
         assert rc == 0
         assert out.exists()
         assert (out / "course.md").exists()
+
+
+# ── Teacher review integration ──────────────────────────────────────────────
+
+
+def test_compile_course_review_flag(capsys):
+    """--review mostra status revisione a 0 note."""
+    rc = main(
+        [
+            "compile-course",
+            _fixture_path(),
+            "--review",
+        ]
+    )
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "Review status:" in out
+    assert "0 note(s)" in out
+    assert "approved=False" in out
+
+
+def test_compile_course_approve_flag(capsys):
+    """--approve auto-approva il corso."""
+    rc = main(
+        [
+            "compile-course",
+            _fixture_path(),
+            "--approve",
+        ]
+    )
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "Course approved:" in out
+    assert "Review status:" in out
+    assert "1 note(s)" in out
+    assert "approved=True" in out
+
+
+def test_compile_course_review_and_approve(capsys):
+    """--review + --approve insieme."""
+    rc = main(
+        [
+            "compile-course",
+            _fixture_path(),
+            "--review",
+            "--approve",
+        ]
+    )
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "Review status:" in out
+    assert "approved=True" in out
+
+
+def test_compile_course_review_with_custom_output(capsys):
+    """--review con --output personalizzato: review.json scritto."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        rc = main(
+            [
+                "compile-course",
+                _fixture_path(),
+                "--target",
+                "markdown",
+                "--output",
+                tmpdir,
+                "--review",
+            ]
+        )
+        assert rc == 0
+        captured = capsys.readouterr().out
+        assert "Review status:" in captured
+        assert "Review notes saved:" in captured
+        out = Path(tmpdir)
+        assert (out / "course.md").exists()
+        assert (out / "review.json").exists()
+        import json
+        review_data = json.loads((out / "review.json").read_text())
+        assert review_data["course_id"] == "Calcolo 2 — Integrali e ODE"
+        assert len(review_data["notes"]) == 0

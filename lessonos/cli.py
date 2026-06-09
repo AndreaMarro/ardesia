@@ -48,6 +48,12 @@ from lessonos.course.planner import plan_course
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
 from lessonos.export.quarto import QuartoCoursePack, export_quarto
+from lessonos.course.teacher_review import (
+    TeacherReviewSet,
+    make_empty_review_set,
+    make_review_note,
+    is_course_approved,
+)
 
 # ---------------------------------------------------------------------------
 # Mock payload definitions — one per lesson, keyed by lesson_id.
@@ -762,6 +768,18 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=False,
         help="Include AI-inferred atoms in output (default: False)",
     )
+    cc_parser.add_argument(
+        "--review",
+        action="store_true",
+        default=False,
+        help="Print teacher review status for the compiled course (creates empty review set)",
+    )
+    cc_parser.add_argument(
+        "--approve",
+        action="store_true",
+        default=False,
+        help="Auto-approve the course after compilation (sets APPROVE at COURSE scope)",
+    )
     return parser.parse_args(argv)
 
 
@@ -879,6 +897,47 @@ def main(argv: list[str] | None = None) -> int:
             f"{n_materials} source materials, "
             f"{n_files} files written to {output_dir}/"
         )
+        # Teacher review integration
+        if args.review or args.approve:
+            review_set = make_empty_review_set(result.blueprint.title)
+
+            if args.approve:
+                from datetime import datetime, timezone
+
+                note_id = f"auto-approve-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}"
+                note = make_review_note(
+                    note_id=note_id,
+                    action="approve",
+                    scope="course",
+                    target_id=result.blueprint.title,
+                    comment="Auto-approved via CLI --approve flag.",
+                    reviewer="CLI",
+                )
+                review_set = review_set.add_note(note)
+                print(f"  ✅ Course approved: {result.blueprint.title}")
+
+            # Serialize review_set to output dir for persistence
+            review_path = FsPath(output_dir) / "review.json"
+            review_path.parent.mkdir(parents=True, exist_ok=True)
+            import dataclasses
+
+            def _serialize_note(n):
+                d = dataclasses.asdict(n)
+                d["action"] = d["action"].value if hasattr(d["action"], "value") else d["action"]
+                d["scope"] = d["scope"].value if hasattr(d["scope"], "value") else d["scope"]
+                return d
+
+            review_data = {
+                "course_id": review_set.course_id,
+                "notes": [_serialize_note(n) for n in review_set.notes],
+            }
+            review_path.write_text(json.dumps(review_data, indent=2))
+            print(f"  💾 Review notes saved: {review_path}")
+            print(
+                f"  📋 Review status: {len(review_set)} note(s), "
+                f"approved={is_course_approved(review_set)}"
+            )
+
         return 0
 
     if args.command == "eval-real":
