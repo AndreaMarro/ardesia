@@ -33,3 +33,14 @@ for try in 1 2 3; do
   printf "%s\n" "$out"; exit 0
 done
 printf "%s\n" "$out"; exit 1
+
+# ── AUTO-OBSERVATION HOOK (RETRO #9 fix #2) ──
+# Se manca observation per questo commit, registra una automatically.
+# Evita le iterazioni con observation saltata (3/8 rate in RETRO #9).
+obs_file="$HOME/lessonos/observations.jsonl"
+head_sha="$(git rev-parse --short HEAD 2>/dev/null || echo 'pre-commit')"
+if [ -f "$obs_file" ] && ! grep -q "$head_sha" "$obs_file" 2>/dev/null; then
+  ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  diff_files="$(git diff --name-only HEAD~1..HEAD 2>/dev/null | tr '\n' ',' | sed 's/,$//')"
+  echo "{\"ts\":\"$ts\",\"commit\":\"$head_sha\",\"task\":\"(auto-observation review.sh pre-commit)\",\"files\":[\"$diff_files\"],\"cost_usd\":0.0,\"status\":\"pending\"}" >> "$obs_file"
+fi

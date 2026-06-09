@@ -68,4 +68,8 @@ Append-only. 1 riga per modifica.
 - **2026-06-11(current+6) — P1 Teacher-review stub**: teacher_review.py — TeacherReviewNote, ReviewAction/ReviewScope enums, TeacherReviewSet, make_review_note(), is_course_approved(). 50 test. Gate 1149 (+50, no regression). COORDINATION.md roadmap completato.
 - **2026-06-11(current+7) — P1 teacher-review CLI integration**: --review (print status + review.json), --approve (auto-approve). Compile-course 22 test, gate 1156 (+7).
 |- **2026-06-11(current+8) — P2 Quarto Slides (revealjs) exporter**: export_quarto_slides() + QuartoSlidesPack + _build_quarto_slides_yml. CLI wiring --target quarto-slides. 23 test, gate 1215 (+27).
-||- **2026-06-12(current+10) — P2: --target all per compile-course**: lessonos compile-course --target all esegue 5 esportatori in sequenza. target='all' scelta valida. --output /custom + all scrive /custom/<target>/. --review/--approve solo sul primo target. 3 nuovi test. Review Claude: 4 bug fix. Gate 1226 (+3).
+|||- **2026-06-12(current+10) — P2: --target all per compile-course**: lessonos compile-course --target all esegue 5 esportatori in sequenza. target='all' scelta valida. --output /custom + all scrive /custom/<target>/. --review/--approve solo sul primo target. 3 nuovi test. Review Claude: 4 bug fix. Gate 1226 (+3).
+
+- **2026-06-15(current+13) — P1: GeneratedArtifact lineage tracking**: lessonos/course/lineage.py — GeneratedArtifact, SourceLink, build_{markdown,liascript,quarto,slides}_pack.artifact. REGOLA LINEAGE COORDINATION.md. 421 test. Gate 1266 (+40).
+
+|- **2026-06-15(current+14) — RETRO #9**: 8 iterazioni da RETRO #8 (1156→1266 test, +110, no regression). Attriti chiusi: grounding seg_id (3x), test >= deterministici (3x). Aperti: observations saltate (2x), excerpt non grounded in lineage (2x). check-frictions.sh: 0 warning.

@@ -19,6 +19,7 @@ mappings=(
   "non caricat|autoload|carico esplicito|skill .* esist::skills/review-autoload.md"
   "JSON fenced|extract_json|fence markdown::lessonos/capsule/parsing.py"
   "auth-loop|Keychain::accepted"
+  "observations saltat|obs .* saltat|Observations saltat::accepted"
 )
 
 # Estrai le righe-attrito che segnalano ricorrenza.
