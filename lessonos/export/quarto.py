@@ -417,6 +417,7 @@ def export_quarto_slides(
     filename: str = "slides.qmd",
     include_ai_atoms: bool = False,
     materials: SourceMaterialPack | None = None,
+    theme: str = "simple",
 ) -> QuartoSlidesPack:
     """Esporta un CourseBlueprint in formato Quarto slides (revealjs).
 
@@ -430,18 +431,29 @@ def export_quarto_slides(
         output_dir: Directory di output. Se vuota, solo in memoria.
         filename: Nome del file qmd slides (default: ``slides.qmd``).
         include_ai_atoms: Se True, include atomi con explicit_ai_inference=True.
+        theme: Tema revealjs (default: ``simple``). Temi validi: simple, beige,
+            black, blood, league, moon, night, serif, sky, solarized, white.
 
     Returns:
         QuartoSlidesPack con _quarto.yml + slides.qmd.
 
     ZERO-LLM, deterministico, pura trasformazione dati.
     """
+    VALID_THEMES = {
+        "simple", "beige", "black", "blood", "league",
+        "moon", "night", "serif", "sky", "solarized", "white",
+    }
+    if theme not in VALID_THEMES:
+        raise ValueError(
+            f"Invalid theme '{theme}'. Valid: {sorted(VALID_THEMES)}"
+        )
+
     files: Dict[str, str] = {}
     if not blueprint.modules:
         raise ValueError("course has no modules -- nothing to export")
 
     # ── _quarto.yml (revealjs) ──────────────────────────────────────────────
-    quarto_yml = _build_quarto_slides_yml(blueprint)
+    quarto_yml = _build_quarto_slides_yml(blueprint, theme=theme)
     files["_quarto.yml"] = quarto_yml
 
     # ── slides.qmd ──────────────────────────────────────────────────────────
@@ -516,8 +528,13 @@ def export_quarto_slides(
     return QuartoSlidesPack(files=files)
 
 
-def _build_quarto_slides_yml(blueprint: CourseBlueprint) -> str:
-    """Build _quarto.yml for revealjs slides format."""
+def _build_quarto_slides_yml(blueprint: CourseBlueprint, *, theme: str = "simple") -> str:
+    """Build _quarto.yml for revealjs slides format.
+
+    Args:
+        blueprint: CourseBlueprint to export.
+        theme: revealjs theme name (default: ``simple``).
+    """
     lines: list[str] = []
     lines.append("project:")
     lines.append("  type: book")
@@ -530,7 +547,7 @@ def _build_quarto_slides_yml(blueprint: CourseBlueprint) -> str:
     lines.append("")
     lines.append("format:")
     lines.append("  revealjs:")
-    lines.append("    theme: simple")
+    lines.append(f"    theme: {theme}")
     lines.append("    slide-number: true")
     lines.append("    incremental: true")
     lines.append("")

@@ -33,10 +33,19 @@ lessons compile-course <folder> --target quarto-slides  # revealjs slides
 
 ## Test
 
-73 test totali (50 book + 23 slides) in `tests/test_export_quarto.py`.
+|35|73 test totali (50 book + 23 slides) in `tests/test_export_quarto.py`.
+
+## P2: Slide theme customization (2026-06-12)
+
+`export_quarto_slides()` accetta `theme` param (default: `simple`). Validazione strict: solo 11 temi revealjs ufficiali (simple, beige, black, blood, league, moon, night, serif, sky, solarized, white). Tema invalido → `ValueError`.
+
+CLI: `lessons compile-course <folder> --target quarto-slides --theme beige`
+
+Test: 8 nuovi (5 unit + 3 CLI integration) — `TestQuartoSlidesTheme` + `test_compile_course_quarto_slides_theme/default_theme`.
 
 Source: `lessonos/export/quarto.py` (file:line)
 - `export_quarto()`: quarto.py:47-242
-- `export_quarto_slides()`: quarto.py:396-552
+- `export_quarto_slides()`: quarto.py:396-552 (ora con validazione theme)
 - `_build_quarto_yml()`: quarto.py:248-292
-- `_build_quarto_slides_yml()`: quarto.py:555-583
+- `_build_quarto_slides_yml()`: quarto.py:519-546 (ora accetta theme)
+- `VALID_THEMES`: quarto.py:443-449

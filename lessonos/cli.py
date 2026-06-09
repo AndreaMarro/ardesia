@@ -781,6 +781,13 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=False,
         help="Auto-approve the course after compilation (sets APPROVE at COURSE scope)",
     )
+    cc_parser.add_argument(
+        "--theme",
+        type=str,
+        default="simple",
+        help="revealjs theme for --target quarto-slides (default: simple). "
+        "Valid themes: simple, beige, black, blood, league, moon, night, serif, sky, solarized, white",
+    )
     return parser.parse_args(argv)
 
 
@@ -912,6 +919,7 @@ def main(argv: list[str] | None = None) -> int:
                     output_dir=output_dir,
                     include_ai_atoms=args.include_ai_atoms,
                     materials=mat_pack,
+                    theme=args.theme,
                 )
             else:
                 print(

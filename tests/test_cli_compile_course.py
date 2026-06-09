@@ -356,3 +356,44 @@ def test_compile_course_invalid_target():
             ]
         )
     assert exc_info.value.code == 2
+
+
+# ── P2: quarto-slides --theme CLI integration ───────────────────────────────
+
+
+def test_compile_course_quarto_slides_theme():
+    """--target quarto-slides --theme beige produce _quarto.yml con theme beige."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        rc = main(
+            [
+                "compile-course",
+                _fixture_path(),
+                "--target",
+                "quarto-slides",
+                "--output",
+                tmpdir,
+                "--theme",
+                "beige",
+            ]
+        )
+        assert rc == 0
+        yml = (Path(tmpdir) / "_quarto.yml").read_text()
+        assert "theme: beige" in yml
+
+
+def test_compile_course_quarto_slides_default_theme():
+    """--target quarto-slides senza --theme usa default simple."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        rc = main(
+            [
+                "compile-course",
+                _fixture_path(),
+                "--target",
+                "quarto-slides",
+                "--output",
+                tmpdir,
+            ]
+        )
+        assert rc == 0
+        yml = (Path(tmpdir) / "_quarto.yml").read_text()
+        assert "theme: simple" in yml

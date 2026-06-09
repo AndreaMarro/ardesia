@@ -67,4 +67,5 @@ Append-only. 1 riga per modifica.
 - **2026-06-11(current+5) — P1 LLM-planner stub**: planner.py — plan_course() + PlannerResult/PlannerMaterial frozen. 21 test. CLI wiring. Review: 1 false positive (quick-diff limit). Gate 1099 (+21).
 - **2026-06-11(current+6) — P1 Teacher-review stub**: teacher_review.py — TeacherReviewNote, ReviewAction/ReviewScope enums, TeacherReviewSet, make_review_note(), is_course_approved(). 50 test. Gate 1149 (+50, no regression). COORDINATION.md roadmap completato.
 - **2026-06-11(current+7) — P1 teacher-review CLI integration**: --review (print status + review.json), --approve (auto-approve). Compile-course 22 test, gate 1156 (+7).
-- **2026-06-11(current+8) — P2 Quarto Slides (revealjs) exporter**: export_quarto_slides() + QuartoSlidesPack + _build_quarto_slides_yml. CLI wiring --target quarto-slides. 23 test, gate 1215 (+27).
+|- **2026-06-11(current+8) — P2 Quarto Slides (revealjs) exporter**: export_quarto_slides() + QuartoSlidesPack + _build_quarto_slides_yml. CLI wiring --target quarto-slides. 23 test, gate 1215 (+27).
+|- **2026-06-12(current+9) — P2 Slide theme customization (--theme)**: export_quarto_slides(theme=) + CLI --theme + validazione 11 temi revealjs strict. 8 nuovi test (5 unit + 3 CLI). Review Claude: 3 fix (validazione, test edge, CLI integration). Gate 1223 (+8).

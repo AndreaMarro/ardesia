@@ -769,3 +769,38 @@ class TestQuartoSlidesEdgeCases:
         pack = export_quarto_slides(simple_blueprint, atoms=atoms)
         content = pack.files["slides.qmd"]
         assert "l1s1" in content
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  P2: Slide theme customization (COORDINATION.md §18 estensione)
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+class TestQuartoSlidesTheme:
+    """Customizable revealjs theme via ``theme`` parameter."""
+
+    def test_default_theme_is_simple(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["_quarto.yml"]
+        assert "theme: simple" in content
+
+    def test_custom_theme_beige(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint, theme="beige").files["_quarto.yml"]
+        assert "theme: beige" in content
+
+    def test_custom_theme_black(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint, theme="black").files["_quarto.yml"]
+        assert "theme: black" in content
+
+    def test_custom_theme_does_not_affect_slides_content(self, simple_blueprint) -> None:
+        default = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        themed = export_quarto_slides(simple_blueprint, theme="moon").files["slides.qmd"]
+        assert default == themed  # theme only affects _quarto.yml, not slides content
+
+    def test_theme_not_in_quarto_format(self, simple_blueprint) -> None:
+        """Verify theme appears under revealjs format section, not top-level."""
+        content = export_quarto_slides(simple_blueprint, theme="serif").files["_quarto.yml"]
+        assert "    theme: serif" in content  # indented under revealjs:
+
+    def test_invalid_theme_raises(self, simple_blueprint) -> None:
+        with pytest.raises(ValueError, match="Invalid theme"):
+            export_quarto_slides(simple_blueprint, theme="not-a-theme")
