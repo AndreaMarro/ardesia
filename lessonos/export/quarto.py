@@ -393,6 +393,159 @@ def _format_quiz_in_quarto(atom: ContentAtom) -> str:
     return "\n".join(lines)
 
 
+# ── Slides format (revealjs) ─────────────────────────────────────────────────
+
+
+@dataclass(frozen=True)
+class QuartoSlidesPack:
+    """Risultato dell'esportazione Quarto slides (revealjs).
+
+    Includes:
+      - _quarto.yml      — Quarto project config with revealjs format
+      - slides.qmd        — slide deck with H1 sections per module
+    """
+
+    files: Dict[str, str] = field(default_factory=dict)
+    """Mappa file_path relativo → contenuto (.qmd or _quarto.yml)."""
+
+
+def export_quarto_slides(
+    blueprint: CourseBlueprint,
+    atoms: Dict[str, Tuple[ContentAtom, ...]] | None = None,
+    *,
+    output_dir: str = "",
+    filename: str = "slides.qmd",
+    include_ai_atoms: bool = False,
+    materials: SourceMaterialPack | None = None,
+) -> QuartoSlidesPack:
+    """Esporta un CourseBlueprint in formato Quarto slides (revealjs).
+
+    Produce:
+      _quarto.yml  — project config with format: revealjs
+      slides.qmd   — slide deck: H1 = modulo, H2 = lesson/content slides
+
+    Args:
+        blueprint: CourseBlueprint da esportare.
+        atoms: Opzionale. Mappa lesson_id → tuple di ContentAtom.
+        output_dir: Directory di output. Se vuota, solo in memoria.
+        filename: Nome del file qmd slides (default: ``slides.qmd``).
+        include_ai_atoms: Se True, include atomi con explicit_ai_inference=True.
+
+    Returns:
+        QuartoSlidesPack con _quarto.yml + slides.qmd.
+
+    ZERO-LLM, deterministico, pura trasformazione dati.
+    """
+    files: Dict[str, str] = {}
+    if not blueprint.modules:
+        raise ValueError("course has no modules -- nothing to export")
+
+    # ── _quarto.yml (revealjs) ──────────────────────────────────────────────
+    quarto_yml = _build_quarto_slides_yml(blueprint)
+    files["_quarto.yml"] = quarto_yml
+
+    # ── slides.qmd ──────────────────────────────────────────────────────────
+    slide_lines: list[str] = []
+    slide_lines.append(f"# {blueprint.title}")
+    slide_lines.append("")
+    if blueprint.audience:
+        slide_lines.append(f"**Pubblico:** {blueprint.audience}")
+    if blueprint.level:
+        slide_lines.append(f"**Livello:** {blueprint.level}")
+    slide_lines.append("")
+
+    # Materiali nella slide introduttiva
+    _add_quarto_materials_section(slide_lines, materials)
+
+    slide_lines.append("---")
+    slide_lines.append("")
+
+    for mod_idx, mod in enumerate(blueprint.modules):
+        slide_lines.append(f"## Modulo {mod_idx + 1}: {mod.title}")
+        slide_lines.append("")
+
+        if mod.objectives:
+            slide_lines.append("### Obiettivi")
+            slide_lines.append("")
+            for obj in mod.objectives:
+                slide_lines.append(f"- {obj}")
+            slide_lines.append("---")
+            slide_lines.append("")
+
+        # Lesson list
+        slide_lines.append("### Lezioni")
+        slide_lines.append("")
+        for lid in mod.lesson_ids:
+            slide_lines.append(f"- {lid}")
+        slide_lines.append("---")
+        slide_lines.append("")
+
+        # Atoms for this module
+        if atoms is not None:
+            for lid in mod.lesson_ids:
+                lesson_atoms = atoms.get(lid, ())
+                for atom in lesson_atoms:
+                    if not include_ai_atoms and atom.explicit_ai_inference:
+                        continue
+                    if mod.content_atom_ids:
+                        if atom.atom_id not in set(mod.content_atom_ids):
+                            continue
+                    slide_lines.append(f"### {atom.atom_type.replace('_', ' ').title()}")
+                    slide_lines.append("")
+                    slide_lines.append(atom.body)
+                    slide_lines.append("")
+                    if atom.source_refs:
+                        src_hint = "; ".join(
+                            f"`{c.seg_id}`" for c in atom.source_refs[:3]
+                        )
+                        slide_lines.append(f"*Fonte: {src_hint}*")
+                        slide_lines.append("")
+                    slide_lines.append("---")
+                    slide_lines.append("")
+
+    files[filename] = "\n".join(slide_lines).strip() + "\n"
+
+    # ── Write to disk if output_dir provided ───────────────────────────────
+    if output_dir:
+        for rel_path, content in files.items():
+            abs_path = os.path.join(output_dir, rel_path)
+            os.makedirs(os.path.dirname(abs_path), exist_ok=True)
+            with open(abs_path, "w", encoding="utf-8") as f:
+                f.write(content)
+
+    return QuartoSlidesPack(files=files)
+
+
+def _build_quarto_slides_yml(blueprint: CourseBlueprint) -> str:
+    """Build _quarto.yml for revealjs slides format."""
+    lines: list[str] = []
+    lines.append("project:")
+    lines.append("  type: book")
+    lines.append("")
+    lines.append(f'title: "{_escape_yaml(blueprint.title)}"')
+    if blueprint.audience:
+        lines.append(f'author: "{_escape_yaml(blueprint.audience)}"')
+    if blueprint.level:
+        lines.append(f'description: "{_escape_yaml(blueprint.level)}"')
+    lines.append("")
+    lines.append("format:")
+    lines.append("  revealjs:")
+    lines.append("    theme: simple")
+    lines.append("    slide-number: true")
+    lines.append("    incremental: true")
+    lines.append("")
+    lines.append("book:")
+    lines.append("  title: " + (
+        f'"{_escape_yaml(blueprint.title)}"'
+        if " " in blueprint.title
+        else blueprint.title
+    ))
+    lines.append("  chapters:")
+    lines.append("    - slides.qmd")
+
+    return "\n".join(lines)
+
+
 def _add_quarto_materials_section(
     lines: list[str],
     materials: SourceMaterialPack | None,

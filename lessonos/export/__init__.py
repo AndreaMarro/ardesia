@@ -18,16 +18,18 @@ from lessonos.export.docling_adapter import docling_extract
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 from lessonos.export.moodle_xml import MoodleXMLQuizPack, export_moodle_xml
-from lessonos.export.quarto import QuartoCoursePack, export_quarto
+from lessonos.export.quarto import QuartoCoursePack, QuartoSlidesPack, export_quarto, export_quarto_slides
 
 __all__ = [
     "LiaScriptCoursePack",
     "MoodleXMLQuizPack",
     "MarkdownCoursePack",
     "QuartoCoursePack",
+    "QuartoSlidesPack",
     "docling_extract",
     "export_course_markdown",
     "export_liascript",
     "export_moodle_xml",
     "export_quarto",
+    "export_quarto_slides",
 ]

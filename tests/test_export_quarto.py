@@ -8,6 +8,7 @@ Test categories:
   5. Output to disk (write real files)
   6. Edge cases: no atoms, empty modules ValueError, AI-only excluded
   7. Formatting helpers: _slugify, _escape_yaml
+  8. export_quarto_slides: revealjs slides format (P2)
 """
 
 from __future__ import annotations
@@ -21,7 +22,10 @@ from lessonos.course.atoms import ContentAtom
 from lessonos.course.schema import CourseBlueprint, ModuleBlueprint
 from lessonos.export.quarto import (
     QuartoCoursePack,
+    QuartoSlidesPack,
     export_quarto,
+    export_quarto_slides,
+    _build_quarto_slides_yml,
     _escape_yaml,
     _format_content_atom,
     _slugify,
@@ -158,7 +162,7 @@ class TestEscapeYaml:
         assert _escape_yaml("plain text") == "plain text"
 
     def test_colon_escaped(self) -> None:
-        assert "\\\"" in _escape_yaml('text: "quote"')
+        assert '\\"' in _escape_yaml('text: "quote"')
 
     def test_special_chars_quoted(self) -> None:
         result = _escape_yaml("value with # hash")
@@ -547,3 +551,221 @@ class TestOutputToDisk:
     def test_empty_output_dir_no_disk_write(self, simple_blueprint) -> None:
         pack = export_quarto(simple_blueprint)
         assert "_quarto.yml" in pack.files  # still returns pack in memory
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  P2: export_quarto_slides — revealjs slides format (COORDINATION.md §18)
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+class TestQuartoSlidesBasic:
+    """Fundamental structure of the slides export."""
+
+    def test_returns_quartoslidespack(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint)
+        assert isinstance(pack, QuartoSlidesPack)
+
+    def test_quarto_yml_present(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint)
+        assert "_quarto.yml" in pack.files
+
+    def test_quarto_yml_has_revealjs_format(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["_quarto.yml"]
+        assert "revealjs:" in content
+        assert "format:" in content
+        assert "project:" in content
+
+    def test_quarto_yml_has_slides_chapter(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["_quarto.yml"]
+        assert "slides.qmd" in content
+
+    def test_quarto_yml_has_slide_config(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["_quarto.yml"]
+        assert "theme: simple" in content
+        assert "slide-number: true" in content
+        assert "incremental: true" in content
+
+    def test_slides_qmd_present(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint)
+        assert "slides.qmd" in pack.files
+
+    def test_slides_qmd_has_title(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert "# Analisi Matematica" in content
+
+    def test_slides_qmd_has_module_headers(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert "## Modulo 1: Derivate" in content
+        assert "## Modulo 2: Integrali" in content
+
+    def test_slides_qmd_has_lesson_listings(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert "l1_intro_derivatives" in content
+        assert "l2_derivative_rules" in content
+        assert "l3_integrals" in content
+
+    def test_slides_qmd_has_audience(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert "Studenti universitari" in content
+
+    def test_slides_qmd_has_level(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert "base" in content
+
+    def test_slides_qmd_objectives(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert "Comprendere il concetto di derivata" in content
+
+    def test_slides_qmd_slide_separators(self, simple_blueprint) -> None:
+        content = export_quarto_slides(simple_blueprint).files["slides.qmd"]
+        assert content.count("---") >= 2  # at least 2 slide separators
+
+
+class TestQuartoSlidesFilename:
+    """Customizable filename for the slides deck."""
+
+    def test_default_filename(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint)
+        assert "slides.qmd" in pack.files
+
+    def test_custom_filename(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint, filename="presentation.qmd")
+        assert "presentation.qmd" in pack.files
+        assert "slides.qmd" not in pack.files
+
+
+class TestQuartoSlidesAtoms:
+    """ContentAtom rendering in slide format."""
+
+    def test_definition_atom_rendered(self, simple_blueprint) -> None:
+        atoms = {
+            "l1_intro_derivatives": (
+                _make_atom("l1_intro_derivatives/definition/0",
+                           "definition", "l1_intro_derivatives",
+                           "La derivata e il limite"),
+            ),
+        }
+        pack = export_quarto_slides(simple_blueprint, atoms=atoms, include_ai_atoms=True)
+        content = pack.files["slides.qmd"]
+        assert "Definition" in content
+        assert "La derivata e il limite" in content
+
+    def test_ai_inferred_excluded_default(self, simple_blueprint) -> None:
+        atoms = {
+            "l1_intro_derivatives": (
+                _make_atom("l1/objective/0", "objective",
+                           "l1_intro_derivatives", "AI slide content"),
+            ),
+        }
+        pack = export_quarto_slides(simple_blueprint, atoms=atoms)
+        assert "AI slide content" not in pack.files["slides.qmd"]
+
+    def test_include_ai_atoms_flag(self, simple_blueprint) -> None:
+        atoms = {
+            "l1_intro_derivatives": (
+                _make_atom("l1/objective/0", "objective",
+                           "l1_intro_derivatives", "AI slide content"),
+            ),
+        }
+        pack = export_quarto_slides(simple_blueprint, atoms=atoms, include_ai_atoms=True)
+        assert "AI slide content" in pack.files["slides.qmd"]
+
+    def test_atoms_appear_as_slides(self, simple_blueprint) -> None:
+        atoms = {
+            "l1_intro_derivatives": (
+                _make_atom("l1/def/0", "definition", "l1_intro_derivatives",
+                           "Definition body"),
+                _make_atom("l1/exercise/0", "exercise", "l1_intro_derivatives",
+                           "Exercise body"),
+                _make_atom("l1/quiz/0", "quiz_question", "l1_intro_derivatives",
+                           "Quiz body"),
+            ),
+        }
+        pack = export_quarto_slides(simple_blueprint, atoms=atoms, include_ai_atoms=True)
+        content = pack.files["slides.qmd"]
+        assert "Definition" in content
+        assert "Exercise" in content
+        assert "Quiz" in content
+        assert "Definition body" in content
+        assert "Exercise body" in content
+        assert "Quiz body" in content
+
+    def test_empty_atoms_no_crash(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint, atoms={})
+        assert "slides.qmd" in pack.files
+
+    def test_content_atom_ids_filter_slides(self) -> None:
+        bp = CourseBlueprint(
+            title="Test",
+            modules=(
+                ModuleBlueprint(
+                    title="M1",
+                    lesson_ids=("l1",),
+                    content_atom_ids=("l1/def/0",),
+                ),
+            ),
+            audience="test",
+            source_lessons=("l1",),
+        )
+        atoms = {
+            "l1": (
+                _make_atom("l1/def/0", "definition", "l1", "Incluso"),
+                _make_atom("l1/def/1", "definition", "l1", "Escluso"),
+            ),
+        }
+        pack = export_quarto_slides(bp, atoms=atoms, include_ai_atoms=True)
+        content = pack.files["slides.qmd"]
+        assert "Incluso" in content
+        assert "Escluso" not in content
+
+
+class TestQuartoSlidesEdgeCases:
+    """Edge cases and validation."""
+
+    def test_empty_modules_raises_valueerror(self) -> None:
+        bp = CourseBlueprint(
+            title="Vuoto",
+            modules=(),
+        )
+        with pytest.raises(ValueError, match="no modules"):
+            export_quarto_slides(bp)
+
+    def test_single_module(self, single_mod_blueprint) -> None:
+        pack = export_quarto_slides(single_mod_blueprint)
+        content = pack.files["slides.qmd"]
+        assert "## Modulo 1: Meccanica" in content
+        assert "l1_kinematics" in content
+
+    def test_output_to_disk(self, single_mod_blueprint, tmp_path) -> None:
+        pack = export_quarto_slides(single_mod_blueprint, output_dir=str(tmp_path))
+        assert (tmp_path / "_quarto.yml").exists()
+        assert (tmp_path / "slides.qmd").exists()
+
+    def test_disk_content_matches_pack(self, single_mod_blueprint, tmp_path) -> None:
+        pack = export_quarto_slides(single_mod_blueprint, output_dir=str(tmp_path))
+        disk_content = (tmp_path / "slides.qmd").read_text(encoding="utf-8")
+        assert disk_content == pack.files["slides.qmd"]
+
+    def test_no_disk_write_when_no_output_dir(self, simple_blueprint) -> None:
+        pack = export_quarto_slides(simple_blueprint)
+        assert "_quarto.yml" in pack.files
+        assert "slides.qmd" in pack.files
+        assert len(pack.files) == 2  # _quarto.yml + slides.qmd, no modules/ subdir
+
+    def test_source_refs_in_slides(self, simple_blueprint) -> None:
+        atoms = {
+            "l1_intro_derivatives": (
+                ContentAtom(
+                    atom_id="l1/def/0",
+                    atom_type="definition",
+                    lesson_id="l1_intro_derivatives",
+                    body="Def with source",
+                    source_refs=(
+                        Citation(seg_id="l1s1", excerpt="Def"),
+                    ),
+                ),
+            ),
+        }
+        pack = export_quarto_slides(simple_blueprint, atoms=atoms)
+        content = pack.files["slides.qmd"]
+        assert "l1s1" in content
