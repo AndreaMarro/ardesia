@@ -23,6 +23,7 @@ from typing import Dict, Tuple
 
 from lessonos.course.atoms import ContentAtom
 from lessonos.course.schema import CourseBlueprint
+from lessonos.export.source_extractor import SourceMaterialPack
 
 # ContentAtom types that map to Quarto special blocks
 _QUIZ_TYPES = frozenset({"quiz_question"})
@@ -50,6 +51,7 @@ def export_quarto(
     output_dir: str = "",
     filename: str = "index.qmd",
     include_ai_atoms: bool = False,
+    materials: SourceMaterialPack | None = None,
 ) -> QuartoCoursePack:
     """Esporta un CourseBlueprint in formato Quarto (.qmd files + _quarto.yml).
 
@@ -108,6 +110,9 @@ def export_quarto(
             f"- [{mod.title}]({link}) — {n_lessons} lezioni{atom_suffix}"
         )
     index_lines.append("")
+
+    # ── Materials section in index.qmd ──────────────────────────────────────
+    _add_quarto_materials_section(index_lines, materials)
 
     files[filename] = "\n".join(index_lines).strip() + "\n"
 
@@ -283,7 +288,6 @@ def _build_quarto_yml(
     lines.append("    documentclass: scrreport")
     lines.append("  epub:")
     lines.append("    cover: \"\"")
-    lines.append("")
 
     return "\n".join(lines)
 
@@ -291,7 +295,7 @@ def _build_quarto_yml(
 def _escape_yaml(value: str) -> str:
     """Escape a string for YAML."""
     if any(c in value for c in '\":#{}[]&*!|>%@`'):
-        escaped = value.replace("\\", "\\\\").replace('"', '\\"')
+        escaped = value.replace("\\\\", "\\\\\\\\").replace('"', '\\"')
         return f'"{escaped}"'
     return value
 
@@ -387,3 +391,44 @@ def _format_quiz_in_quarto(atom: ContentAtom) -> str:
     if atom.teacher_approved:
         lines.append("*✅ Approvato dal docente*")
     return "\n".join(lines)
+
+
+def _add_quarto_materials_section(
+    lines: list[str],
+    materials: SourceMaterialPack | None,
+) -> None:
+    """Aggiunge la sezione Materiali del corso a index.qmd.
+
+    Salta i materiali con errori (error != None).
+    Materials per-lezione riportano il lesson_id tra parentesi.
+
+    Args:
+        lines: Lista di linee qmd da modificare in-place.
+        materials: SourceMaterialPack con i materiali estratti, o None.
+
+    ZERO-LLM, deterministico, pura trasformazione dati.
+    """
+    if not materials or not materials.materials:
+        return
+
+    valid_mats = [
+        (src_id, mat)
+        for src_id, mat in sorted(materials.materials.items())
+        if mat.error is None
+    ]
+    if not valid_mats:
+        return
+
+    lines.append("")
+    lines.append("## Materiali del corso")
+    lines.append("")
+    lines.append(
+        "Materiali didattici, dispense e risorse utilizzate nel corso."
+    )
+    lines.append("")
+    for src_id, mat in valid_mats:
+        lesson_tag = f" (lezione: `{mat.lesson_id}`)" if mat.lesson_id else ""
+        lines.append(
+            f"- **{mat.filename}** — `{mat.source_type}`{lesson_tag}"
+        )
+    lines.append("")

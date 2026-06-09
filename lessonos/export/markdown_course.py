@@ -21,6 +21,7 @@ from typing import Dict, Sequence, Tuple
 
 from lessonos.course.atoms import ATOM_TYPES, ContentAtom
 from lessonos.course.schema import CourseBlueprint, ModuleBlueprint
+from lessonos.export.source_extractor import SourceMaterialPack
 
 # ContentAtom types that map to separate aggregate files
 _EXERCISE_TYPES = frozenset({"exercise"})
@@ -45,6 +46,7 @@ def export_course_markdown(
     *,
     output_dir: str = "",
     include_ai_atoms: bool = False,
+    materials: SourceMaterialPack | None = None,
 ) -> MarkdownCoursePack:
     """Esporta un CourseBlueprint in una struttura di file markdown.
 
@@ -89,6 +91,9 @@ def export_course_markdown(
         course_lines.append(
             f"{i + 1}. **{mod.title}** — {n_lessons} lezioni{atom_suffix}"
         )
+
+    # ── Materials section in course.md ──────────────────────────────────────
+    _add_materials_section(course_lines, materials)
 
     files["course.md"] = "\n".join(course_lines)
 
@@ -239,3 +244,40 @@ def _slugify(title: str) -> str:
             # skip other chars (accents, parens, etc.)
             pass
     return "".join(result).strip("_") or "module"
+
+
+def _add_materials_section(
+    lines: list[str],
+    materials: SourceMaterialPack | None,
+) -> None:
+    """Aggiunge la sezione Materiali del corso a una lista di linee markdown.
+
+    Salta i materiali con errori (error != None).
+    Materials per-lezione riportano il lesson_id tra parentesi.
+
+    Args:
+        lines: Lista di linee markdown da modificare in-place.
+        materials: SourceMaterialPack con i materiali estratti, o None.
+
+    ZERO-LLM, deterministico, pura trasformazione dati.
+    """
+    if not materials or not materials.materials:
+        return
+
+    valid_materials = [
+        (src_id, mat)
+        for src_id, mat in sorted(materials.materials.items())
+        if mat.error is None
+    ]
+    if not valid_materials:
+        return
+
+    lines.append("")
+    lines.append("## Materiali del corso")
+    lines.append("")
+    for src_id, mat in valid_materials:
+        lesson_tag = f" (lezione: `{mat.lesson_id}`)" if mat.lesson_id else ""
+        lines.append(
+            f"- **{mat.filename}** — `{mat.source_type}`{lesson_tag}"
+        )
+    lines.append("")

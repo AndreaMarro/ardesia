@@ -22,6 +22,7 @@ from typing import Dict, Tuple
 
 from lessonos.course.atoms import ContentAtom
 from lessonos.course.schema import CourseBlueprint
+from lessonos.export.source_extractor import SourceMaterialPack
 
 # ContentAtom types that map to LiaScript interactive elements
 _QUIZ_TYPES = frozenset({"quiz_question"})
@@ -48,6 +49,7 @@ def export_liascript(
     output_dir: str = "",
     filename: str = "course.md",
     include_ai_atoms: bool = False,
+    materials: SourceMaterialPack | None = None,
 ) -> LiaScriptCoursePack:
     """Esporta un CourseBlueprint in formato LiaScript (.md interattivo).
 
@@ -107,6 +109,26 @@ def export_liascript(
             anchor = _module_anchor(mod.title, i)
             lines.append(f"- [{mod.title}](#{anchor})")
         lines.append("")
+        lines.append("")
+
+    # -- Materials section ----------------------------------------------------
+    if materials and materials.materials:
+        valid_mats = [
+            (src_id, mat)
+            for src_id, mat in sorted(materials.materials.items())
+            if mat.error is None
+        ]
+        if valid_mats:
+            lines.append("## Materiali del corso")
+            lines.append("")
+            for src_id, mat in valid_mats:
+                lesson_tag = (
+                    f" (lezione: `{mat.lesson_id}`)" if mat.lesson_id else ""
+                )
+                lines.append(
+                    f"- **{mat.filename}** — `{mat.source_type}`{lesson_tag}"
+                )
+            lines.append("")
 
     # -- Modules -----------------------------------------------------------
     for mod_idx, mod in enumerate(blueprint.modules):

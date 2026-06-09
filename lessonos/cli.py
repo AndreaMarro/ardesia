@@ -862,23 +862,43 @@ def main(argv: list[str] | None = None) -> int:
 
         # Route to target exporter
         try:
+            # Convert PlannerMaterial dict to SourceMaterialPack for exporters
+            from lessonos.export.source_extractor import SourceMaterial, SourceMaterialPack
+
+            mat_pack = SourceMaterialPack(
+                materials={
+                    sid: SourceMaterial(
+                        source_id=sid,
+                        filename=pm.filename,
+                        source_type=pm.source_type,
+                        content=pm.content,
+                        lesson_id=pm.lesson_id,
+                    )
+                    for sid, pm in result.materials.items()
+                    if pm.content
+                },
+            )
+
             if args.target == "markdown":
                 pack = export_course_markdown(
                     blueprint,
                     output_dir=output_dir,
                     include_ai_atoms=args.include_ai_atoms,
+                    materials=mat_pack,
                 )
             elif args.target == "liascript":
                 pack = export_liascript(
                     blueprint,
                     output_dir=output_dir,
                     include_ai_atoms=args.include_ai_atoms,
+                    materials=mat_pack,
                 )
             elif args.target == "quarto":
                 pack = export_quarto(
                     blueprint,
                     output_dir=output_dir,
                     include_ai_atoms=args.include_ai_atoms,
+                    materials=mat_pack,
                 )
             elif args.target == "moodle-xml":
                 pack = export_moodle_xml(
