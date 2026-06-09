@@ -1,6 +1,7 @@
 import { useState, useRef, type CSSProperties } from "react"
 import { Excalidraw } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
+import MathComposer from "./MathComposer"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -15,6 +16,7 @@ function getRoomId(): string {
 export default function Room() {
   const [room] = useState(getRoomId)
   const [videoOn, setVideoOn] = useState(false)
+  const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
   const shareUrl = `${location.origin}${location.pathname}#${room}`
 
@@ -37,6 +39,7 @@ export default function Room() {
         <span style={{ opacity: 0.6 }}>·</span>
         <span style={{ opacity: 0.8 }}>stanza {room}</span>
         <button onClick={copyLink} style={btn}>{copied ? "✓ copiato" : "copia link studente"}</button>
+        <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
         <button onClick={() => setVideoOn(v => !v)} style={{ ...btn, marginLeft: "auto", background: videoOn ? "#e0245e" : "#1763ff" }}>
           {videoOn ? "chiudi video" : "avvia video"}
         </button>
@@ -44,6 +47,7 @@ export default function Room() {
 
       <div style={{ flex: 1, position: "relative" }}>
         <Excalidraw />
+        {mathOn && <MathComposer onClose={() => setMathOn(false)} />}
         {videoOn && <VideoPanel room={room} />}
       </div>
     </div>
