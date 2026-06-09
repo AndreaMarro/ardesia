@@ -83,26 +83,48 @@ esplicito concetto→esercizio — M4-task2 Learning Debt può raffinare).
 
 **Citazione**: `lessonos/graph/didactic_delta.py:116-136` — `_count_exercises_for_concept()`
 
-## Test Coverage
+## M7 — Difficulty-Aware Severity (difficulty-weighted)
 
-**File**: `tests/test_didactic_delta.py` — 15 test.
+### Modulo
 
-Test coprono ogni categoria + edge cases:
-- `test_detects_new_concepts`: concetti nuovi dalla nuova lezione
-- `test_detects_clarified_concepts`: problematic → non-problematic
-- `test_detects_still_open_concepts`: problematic persistente
-- `test_detects_over_repeated_concepts`: 3+ lezioni
-- `test_new_lesson_introduces_concept_and_leaves_debt`: scenario MILESTONES M4
-- `test_detects_new_misconceptions`: nuove domande studente
-- `test_detects_resolved_misconceptions`: domande rimosse
-- `test_identical_versions_produce_empty_delta`: nessuna differenza
-- `test_raises_on_empty_old`: ValueError per PathMemory vuota
-- `test_under_practiced_concept_detected`: esercizi < lezioni
-- `test_delta_immutable`: frozen dataclass
-- `test_concept_change_same_fields`: DeltaConceptChange old/new statuses
-- `test_delta_deterministic`: stessi input → stesso output
-- `test_delta_concept_change_immutable`: DeltaConceptChange frozen
-- `test_didactic_delta_summary_counts_match`: total_* = len(categoria)
+**File**: `lessonos/graph/didactic_delta.py`
+
+### Nuovi campi
+
+**DeltaConceptChange** (linee 47-48):
+- `difficulty: float | None` — FSRS D-factor dal PathMemory (None → neutral 5.0)
+- `severity: float` — weighted urgency = base_severity(categoria) × difficulty_factor(D)
+
+**DidacticDelta** (linee 101-102):
+- `severity_weighted_avg: float` — media di tutte le severità non-zero
+- `severity_max: float` — severità massima tra tutti i concetti attivi
+
+### Helper
+
+- `_difficulty_to_factor()` (`didactic_delta.py:39-51`): D ∈ [1.0, 10.0] → [0.5, 1.5]. Formula: `0.5 + (D - 1.0) / 9.0`. Ispirato a FSRS (open-spaced-repetition/fsrs4anki).
+- `_compute_severity()` (`didactic_delta.py:54-63`): `base_severity[categoria] × difficulty_factor(D)`. Base: still_open=1.0, under_practiced=0.9, new=0.8, over_repeated=0.5, clarified=0.0.
+- `_build_difficulty_map()` (`didactic_delta.py:170-181`): lookup {nome_lower → D} da concepto_graph.
+
+### Severità per categoria
+
+| Categoria | Base | Esempio D=10 (factor 1.5) | Esempio D=1 (factor 0.5) |
+|-----------|------|--------------------------|--------------------------|
+| still_open | 1.0 | 1.5 | 0.5 |
+| under_practiced | 0.9 | 1.35 | 0.45 |
+| new | 0.8 | 1.2 | 0.4 |
+| over_repeated | 0.5 | 0.75 | 0.25 |
+| clarified | 0.0 | 0.0 | 0.0 |
+
+### Test — 7 nuovi (23 totali, +7 da baseline 16)
+
+`tests/test_didactic_delta.py`:
+- `test_delta_concept_change_default_severity` — default None/0.0
+- `test_difficulty_weighted_severity_new_concept_easy` — D=1 → severity=0.4
+- `test_difficulty_weighted_severity_new_concept_hard` — D=10 → severity=1.2
+- `test_severity_still_open_high_vs_low_difficulty` — high D > low D severity
+- `test_severity_clarified_always_zero` — clarified=0.0 regardless of D
+- `test_severity_weighted_avg_computed` — avg/max computed
+- `test_severity_under_practiced_difficulty_aware` — difficulty propagates to severity
 
 ## Design Rationale
 

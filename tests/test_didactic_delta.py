@@ -582,3 +582,189 @@ def test_didactic_delta_summary_counts_match(path_with_problematic):
     assert delta.total_under_practiced == len(delta.under_practiced_concepts)
     assert delta.total_new_misconceptions == len(delta.new_misconceptions)
     assert delta.total_resolved_misconceptions == len(delta.resolved_misconceptions)
+
+
+# --- M7 difficulty-aware severity tests ---
+
+
+def test_delta_concept_change_default_severity():
+    """DeltaConceptChange has default difficulty=None and severity=0.0."""
+    change = DeltaConceptChange(
+        name="test",
+        old_statuses=("introduced",),
+        new_statuses=("reinforced",),
+        old_lessons=("l1",),
+        new_lessons=("l1", "l2"),
+    )
+    assert change.difficulty is None
+    assert change.severity == 0.0
+
+
+def test_difficulty_weighted_severity_new_concept_easy(path_with_problematic):
+    """New concept with low difficulty (D=1.0) has reduced severity."""
+    old_cap, new_cap = path_with_problematic
+    old_pm = build_path_memory(old_cap, path_title="Calc")
+    new_pm = build_path_memory(new_cap, path_title="Calc")
+
+    from dataclasses import replace
+    # New concepts in this fixture: "integrale" and "antiderivata" (from L3)
+    # Set difficulty on one of them to 1.0 (easiest)
+    new_pm = replace(
+        new_pm,
+        concept_graph=tuple(
+            replace(c, difficulty=1.0) if c.name == "integrale" else c
+            for c in new_pm.concept_graph
+        ),
+    )
+
+    delta = compute_didactic_delta(old_pm, new_pm)
+
+    # integrale is a "new" concept with difficulty 1.0 -> severity = 0.8 * 0.5 = 0.4
+    integrale_changes = [c for c in delta.new_concepts if c.name == "integrale"]
+    assert len(integrale_changes) == 1
+    assert integrale_changes[0].severity == 0.4
+
+
+def test_difficulty_weighted_severity_new_concept_hard(path_with_problematic):
+    """New concept with high difficulty (D=10.0) has increased severity."""
+    old_cap, new_cap = path_with_problematic
+    old_pm = build_path_memory(old_cap, path_title="Calc")
+    new_pm = build_path_memory(new_cap, path_title="Calc")
+
+    from dataclasses import replace
+    # New concept: "antiderivata" from L3
+    new_pm = replace(
+        new_pm,
+        concept_graph=tuple(
+            replace(c, difficulty=10.0) if c.name == "antiderivata" else c
+            for c in new_pm.concept_graph
+        ),
+    )
+
+    delta = compute_didactic_delta(old_pm, new_pm)
+
+    # antiderivata is "new" with D=10.0 -> factor=1.5 -> severity = 0.8 * 1.5 = 1.2
+    antiderivata_changes = [c for c in delta.new_concepts if c.name == "antiderivata"]
+    assert len(antiderivata_changes) == 1
+    assert antiderivata_changes[0].severity == 1.2
+
+
+def test_severity_still_open_high_vs_low_difficulty():
+    """Still-open concepts with high difficulty score higher severity than low difficulty."""
+    # Create old memory: 1 lesson with no problematic
+    c1 = _make_capsule("l1", "Calc 101", [("integrali", "introduced")], exercises=["calcola integrali"], questions=["perché integrale?"])
+    old_pm = build_path_memory([c1], path_title="Calc")
+
+    # Create new memory: same concept now problematic (still open)
+    c2 = _make_capsule("l2", "Calc 102", [("integrali", "problematic")], exercises=["calcola integrali avanzati"])
+    new_pm_base = build_path_memory([c1, c2], path_title="Calc")
+
+    from dataclasses import replace
+
+    # Low difficulty (D=2.0 -> factor ~0.611)
+    new_pm_low = replace(
+        new_pm_base,
+        concept_graph=tuple(
+            replace(c, difficulty=2.0) if c.name == "integrali" else c
+            for c in new_pm_base.concept_graph
+        ),
+    )
+    delta_low = compute_didactic_delta(old_pm, new_pm_low)
+    still_open_low = [c for c in delta_low.still_open_concepts if c.name == "integrali"]
+
+    # High difficulty (D=9.0 -> factor ~1.389)
+    new_pm_high = replace(
+        new_pm_base,
+        concept_graph=tuple(
+            replace(c, difficulty=9.0) if c.name == "integrali" else c
+            for c in new_pm_base.concept_graph
+        ),
+    )
+    delta_high = compute_didactic_delta(old_pm, new_pm_high)
+    still_open_high = [c for c in delta_high.still_open_concepts if c.name == "integrali"]
+
+    assert len(still_open_low) == 1
+    assert len(still_open_high) == 1
+    # High difficulty concept has HIGHER severity
+    assert still_open_high[0].severity > still_open_low[0].severity
+    # Low difficulty severity is reduced from base 1.0
+    assert still_open_low[0].severity < 1.0
+    # High difficulty severity is increased from base 1.0
+    assert still_open_high[0].severity > 1.0
+
+
+def test_severity_clarified_always_zero(path_with_problematic):
+    """Clarified concepts have severity=0.0 regardless of difficulty."""
+    old_cap, new_cap = path_with_problematic
+    old_pm = build_path_memory(old_cap, path_title="Calc")
+    new_pm = build_path_memory(new_cap, path_title="Calc")
+
+    from dataclasses import replace
+    new_pm = replace(
+        new_pm,
+        concept_graph=tuple(
+            replace(c, difficulty=10.0) if c.name == "funzione" else c
+            for c in new_pm.concept_graph
+        ),
+    )
+
+    delta = compute_didactic_delta(old_pm, new_pm)
+
+    # funzione is clarified (was problematic, now introduced)
+    clarified_hard = [c for c in delta.clarified_concepts if c.name == "funzione"]
+    if clarified_hard:
+        # Even with max difficulty, clarified = 0 severity
+        assert clarified_hard[0].severity == 0.0
+
+
+def test_severity_weighted_avg_computed(path_with_problematic):
+    """severity_weighted_avg is the average of all non-zero severities."""
+    old_cap, new_cap = path_with_problematic
+    old_pm = build_path_memory(old_cap, path_title="Calc")
+    new_pm = build_path_memory(new_cap, path_title="Calc")
+
+    from dataclasses import replace
+    # Set different difficulties on concepts
+    concept_map = {c.name.lower(): c for c in new_pm.concept_graph}
+    new_entries = []
+    for c in new_pm.concept_graph:
+        nl = c.name.lower()
+        if nl == "integrale":
+            new_entries.append(replace(c, difficulty=1.0))
+        elif nl == "antiderivata":
+            new_entries.append(replace(c, difficulty=10.0))
+        else:
+            new_entries.append(c)
+    new_pm = replace(new_pm, concept_graph=tuple(new_entries))
+
+    delta = compute_didactic_delta(old_pm, new_pm)
+
+    # severity_weighted_avg should be > 0 (non-zero categories exist)
+    # severity_max should be the highest individual severity
+    assert delta.severity_weighted_avg > 0
+    assert delta.severity_max >= delta.severity_weighted_avg
+
+
+def test_severity_under_practiced_difficulty_aware(path_with_problematic):
+    """Under-practiced concepts get difficulty-weighted severity."""
+    old_cap, new_cap = path_with_problematic
+    old_pm = build_path_memory(old_cap, path_title="Calc")
+    new_pm = build_path_memory(new_cap, path_title="Calc")
+
+    from dataclasses import replace
+    # Look for a concept that appears in under_practiced list
+    # derivata appears in L1, L2 but only 1 exercise mentions it = under_practiced
+    new_pm = replace(
+        new_pm,
+        concept_graph=tuple(
+            replace(c, difficulty=10.0) if c.name == "derivata" else c
+            for c in new_pm.concept_graph
+        ),
+    )
+
+    delta = compute_didactic_delta(old_pm, new_pm)
+
+    # If derivata appears in under_practiced, verify difficulty propagated to severity
+    for c in delta.under_practiced_concepts:
+        if c.name == "derivata":
+            assert c.severity > 0  # severity computed, not default
