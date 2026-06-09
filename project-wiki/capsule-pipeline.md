@@ -179,6 +179,31 @@ Schema: `lesson_id` TEXT PRIMARY KEY, `capsule_data` TEXT NOT NULL, `created_at`
 
 **Grounding**: garantita dai sub-step (segmentation + extraction); l'assembler non introduce nuove citazioni.
 
+### 6. Defensive Mode (FM4 — Robustezza su Dati Reali)
+
+Quando `defensive=True`, l'estrazione e l'assemblaggio NON crashano su un singolo
+item malformato — lo droppano e registrano in `capsule.dropped`. Questo garantisce
+zero-allucinazione (nessuna citation fabbricata sopravvive) preservando la lezione
+da una singola citation cattiva (Claude eval reale 2026-06-08).
+
+**File**: `lessonos/capsule/extraction.py:linee 186-198` — `_parse_citations()`: se
+`defensive=True`, cattura `ValueError`/`TypeError`/`KeyError`/`AttributeError` per
+ogni citation e lo droppa invece di propagare.
+
+**File**: `lessonos/capsule/extraction.py:linee 214-230` — I loop per concepts/
+exercises/questions/homework passano ciascuno per `_parse_citations()`, quindi
+TUTTI e 4 gli item types godono della protezione defensive.
+
+**Copertura test**: `tests/test_capsule_assembly.py`:
+- `test_defensive_drops_bad_citation_and_none_field` — concept con bad seg_id + None field
+- `test_defensive_false_still_raises_on_bad_seg_id` — strict mode crasha ancora
+- `test_defensive_drops_bad_citation_per_item_type` (parametrizzato, 4 casi) — OGNI
+  item type (concept, exercise, student_question, homework) droppa citation fabbricata
+  e mantiene quella valida, registrando in `dropped`
+
+**Citazione**: `tests/test_capsule_assembly.py:156-210` — test parametrizzato con
+`_ITEM_SPECS` che mappa ogni item type alla sua struttura dati.
+
 ## Test Coverage
 
 **M2 test suite**: 81 passed + 1 skipped (STATUS.md ultima riga).
