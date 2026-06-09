@@ -9,11 +9,11 @@ Aula di insegnamento **tutto-in-una-finestra**, posseduta dal docente. Per i 10 
 - **Excalidraw 0.18** (MIT) — lavagna
 - **MathLive 0.110** (MIT) — composer formule; **MathJax CDN** — LaTeX→SVG per inserirle sulla lavagna
 - **pdfjs-dist 6** (Apache) — PDF→immagini (worker Vite-native `?url`)
-- **Jitsi** (`meet.jit.si` iframe) — video/audio/screen-share
+- **Video = Google Meet ESTERNO** (bottone "apri Meet", niente embed — decisione 10/06; ex-Jitsi rimosso)
 
 ## Feature (tutte verificate live, git)
-- Lavagna Excalidraw full-screen + header (stanza, copia-link-studente, video, formula, carica)
-- **Video** in-finestra (Jitsi, stessa stanza dal link)
+- Lavagna Excalidraw full-screen + header (stanza, copia-link-studente, apri-Meet, formula, carica)
+- **Video**: Google Meet esterno via bottone (la lezione vive sulla lavagna, non nel video)
 - **Math**: composer MathLive → "inserisci sulla lavagna" (SVG image, spostabile)
 - **Carica immagini/PDF** sulla lavagna (PDF = pagine-immagine impilate). [PDF: testare con file reale]
 - **Persistenza** localStorage per-stanza (`✓ salvato`) — la lezione non sparisce al refresh

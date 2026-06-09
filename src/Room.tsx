@@ -17,7 +17,6 @@ function getRoomId(): string {
 
 export default function Room() {
   const [room] = useState(getRoomId)
-  const [videoOn, setVideoOn] = useState(false)
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
   const [api, setApi] = useState<any>(null)
@@ -117,34 +116,17 @@ export default function Room() {
         <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
         <button onClick={() => fileInputRef.current?.click()} style={btn}>carica img/PDF</button>
         <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
-        <button onClick={() => setVideoOn(v => !v)} style={{ ...btn, marginLeft: "auto", background: videoOn ? "#e0245e" : "#1763ff" }}>
-          {videoOn ? "chiudi video" : "avvia video"}
+        {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
+        <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} style={{ ...btn, marginLeft: "auto", background: "#1763ff" }}>
+          apri Meet
         </button>
       </header>
 
       <div style={{ flex: 1, position: "relative" }}>
         <Excalidraw excalidrawAPI={setApi} initialData={initialData ?? undefined} onChange={persist} />
         {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
-        {videoOn && <VideoPanel room={room} />}
       </div>
     </div>
-  )
-}
-
-// Jitsi embeddato (video + audio + screen-share). Lo studente apre lo stesso link → stessa stanza.
-function VideoPanel({ room }: { room: string }) {
-  const ref = useRef<HTMLIFrameElement>(null)
-  return (
-    <iframe
-      ref={ref}
-      title="video"
-      allow="camera; microphone; fullscreen; display-capture; autoplay"
-      src={`https://meet.jit.si/${encodeURIComponent(room)}#config.prejoinPageEnabled=false`}
-      style={{
-        position: "absolute", right: 12, bottom: 12, width: 320, height: 240,
-        border: "0", borderRadius: 12, boxShadow: "0 4px 20px rgba(0,0,0,.35)", background: "#000", zIndex: 5,
-      }}
-    />
   )
 }
 
