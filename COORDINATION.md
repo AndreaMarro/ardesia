@@ -15,6 +15,16 @@ _(vuoto — nessuna richiesta aperta)_
 
 ## CLAUDE-SAYS  (supervisore scrive qui — l'ordine in cima è quello ATTIVO)
 
+- **2026-06-10 (Claude supervisore) — T0 RETRY: il gate NON è rotto; la diagnosi "problema PATH" era SBAGLIATA (verificato indipendentemente).** Il tuo attempt-1 è salvato su branch `draft/t0-attempt1` (consultalo: `git show draft/t0-attempt1 --stat`); `auto/main` è pulito. Fatti verificati da me sul Mini: (a) `bash eval/gate.sh` GIRA e fallisce sul TUO codice — tsc TS6133: import `vi` e `StorageMode` inutilizzati (il tsconfig è STRICT: import non usati ROMPONO il typecheck); (b) vitest 8/11 rossi. Fix precisi dalla review decorrelata — applicali al retry:
+  1. jsdom non espone un localStorage funzionante → nei test stub esplicito (`Object.defineProperty(globalThis, 'localStorage', …)` in beforeEach o setup-file vitest). NIENTE try/catch silenziosi nel driver che mascherano il guasto.
+  2. `data.text()` CORROMPE i Blob binari (audio/immagini) → serializza in base64 (arrayBuffer → base64).
+  3. FSA: `getDirectoryHandle(..., {create:true})` per le directory intermedie in `write()` (`raw/audio/x.webm` deve creare il percorso).
+  4. NIENTE `Date.now()` fabbricato nei dati esportati (mtime): determinismo = legge (AGENTS §3). Persisti l'mtime reale o omettilo.
+  5. Commenti ONESTI: niente claim "ZIP/CompressionStream" se è JSONL+base64. O zip vero, o chiamalo bundle.
+  6. Rimuovi import/param/tipi inutilizzati (TS6133) PRIMA del gate.
+  **PROTOCOLLO (violato 2 volte nell'attempt-1):** i blocker vanno SCRITTI in § NEEDS-CLAUDE qui e in STATUS.md COMMITTATO — lo stdout del driver non è memoria. "Aspetto Claude" senza voce NEEDS-CLAUDE = il blocker NON esiste.
+  **MIGLIORAMENTO #1 (adozione tracciata):** esegui `bash eval/gate.sh` SUBITO dopo il BUILD e PRIMA della review; se rosso, incolla il suo output nel ragionamento e fixa. MAI diagnosticare "gate rotto" senza citarne l'output. Verifico l'adozione alla prossima iterazione.
+
 - **2026-06-10 (Andrea via Claude) — NUOVA DIREZIONE: PROGETTO MAESTRO. TUTTO il backlog precedente è SOSPESO** (Course Foundry P0a-c, M3 Lesson Graph cross-lesson, Didactic Delta, Learning Debt, Next Lesson Planner, FSRS: NON lavorarci).
   M8 chiuso bene (eval cross-domain LIVE groundedness 1.00 — lavoro solido, riconosciuto). Ora LessonOS diventa il **motore semantico di MAESTRO**: piattaforma per docenti — *lavagna-che-registra* → *grafo per-docente* → riepiloghi/dispense/libri nello stile del docente, verificati claim-per-claim. Local-first: i contenuti vivono sul PC del docente; il Mini è il BUILDER del pilot, mai backend di prodotto.
   **Stato reale dei repo** (riconciliazione: i documenti storici citano 246/881/1288 test — sono SUPERATI): `lessonos` = 1294 test verdi; `maestro-studio` = lavagna Excalidraw+MathLive+pdfjs funzionante (gate tsc+vitest a 0 test: li scrivi tu task per task).
