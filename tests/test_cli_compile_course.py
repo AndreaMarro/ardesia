@@ -35,9 +35,15 @@ def test_compile_course_parser_has_minimal_args():
 
 def test_compile_course_parser_all_targets():
     """Parser accetta tutti i target validi."""
-    for target in ("markdown", "liascript", "quarto", "moodle-xml"):
+    for target in ("markdown", "liascript", "quarto", "moodle-xml", "quarto-slides"):
         args = _parse_args(["compile-course", "/tmp/test", "--target", target])
         assert args.target == target
+
+
+def test_compile_course_parser_all():
+    """Parser accetta --target all."""
+    args = _parse_args(["compile-course", "/tmp/test", "--target", "all"])
+    assert args.target == "all"
 
 
 def test_compile_course_parser_include_ai_atoms():
@@ -397,3 +403,64 @@ def test_compile_course_quarto_slides_default_theme():
         assert rc == 0
         yml = (Path(tmpdir) / "_quarto.yml").read_text()
         assert "theme: simple" in yml
+
+
+# ── P2: --target all (multi-export) ─────────────────────────────────────────
+
+
+def test_compile_course_all_targets():
+    """--target all produce tutti e 5 i formati in _build/all/."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        import shutil
+
+        src = Path(_fixture_path())
+        dst = Path(tmpdir) / "sample_course"
+        if dst.exists():
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+
+        rc = main(
+            [
+                "compile-course",
+                str(dst),
+                "--target",
+                "all",
+                "--include-ai-atoms",
+            ]
+        )
+        assert rc == 0
+        build_dir = dst / "_build"
+        assert (build_dir / "markdown" / "course.md").exists()
+        assert (build_dir / "liascript" / "course.md").exists()
+        assert (build_dir / "quarto" / "_quarto.yml").exists()
+        assert (build_dir / "moodle-xml" / "quiz.xml").exists()
+        assert (build_dir / "quarto-slides" / "slides.qmd").exists()
+
+
+def test_compile_course_all_with_review(capsys):
+    """--target all --review produce review notes solo nel primo target."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        import shutil
+
+        src = Path(_fixture_path())
+        dst = Path(tmpdir) / "sample_course"
+        if dst.exists():
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+
+        rc = main(
+            [
+                "compile-course",
+                str(dst),
+                "--target",
+                "all",
+                "--review",
+            ]
+        )
+        assert rc == 0
+        out = capsys.readouterr().out
+        assert "Review status:" in out
+        assert "0 note(s)" in out
+        # Review notes saved should appear exactly once (not 5 times)
+        assert out.count("Review status:") == 1
+        assert out.count("Review notes saved:") == 1

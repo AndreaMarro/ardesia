@@ -754,7 +754,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--target",
         type=str,
         default="markdown",
-        choices=["markdown", "liascript", "quarto", "quarto-slides", "moodle-xml"],
+        choices=["markdown", "liascript", "quarto", "quarto-slides", "moodle-xml", "all"],
         help="Export target format (default: markdown)",
     )
     cc_parser.add_argument(
@@ -886,99 +886,118 @@ def main(argv: list[str] | None = None) -> int:
                 },
             )
 
-            if args.target == "markdown":
-                pack = export_course_markdown(
-                    blueprint,
-                    output_dir=output_dir,
-                    include_ai_atoms=args.include_ai_atoms,
-                    materials=mat_pack,
-                )
-            elif args.target == "liascript":
-                pack = export_liascript(
-                    blueprint,
-                    output_dir=output_dir,
-                    include_ai_atoms=args.include_ai_atoms,
-                    materials=mat_pack,
-                )
-            elif args.target == "quarto":
-                pack = export_quarto(
-                    blueprint,
-                    output_dir=output_dir,
-                    include_ai_atoms=args.include_ai_atoms,
-                    materials=mat_pack,
-                )
-            elif args.target == "moodle-xml":
-                pack = export_moodle_xml(
-                    blueprint,
-                    output_dir=output_dir,
-                    include_ai_atoms=args.include_ai_atoms,
-                )
-            elif args.target == "quarto-slides":
-                pack = export_quarto_slides(
-                    blueprint,
-                    output_dir=output_dir,
-                    include_ai_atoms=args.include_ai_atoms,
-                    materials=mat_pack,
-                    theme=args.theme,
-                )
-            else:
-                print(
-                    f"Error: unknown target: {args.target}",
-                    file=sys.stderr,
-                )
-                return 1
+            targets = (
+                [t for t in ("markdown", "liascript", "quarto", "quarto-slides", "moodle-xml")]
+                if args.target == "all"
+                else [args.target]
+            )
+
+            for target in targets:
+                if args.output:
+                    target_output_dir = (
+                        str(FsPath(args.output) / target)
+                        if args.target == "all"
+                        else args.output
+                    )
+                else:
+                    target_output_dir = str(folder_path / "_build" / target)
+
+                if target == "markdown":
+                    pack = export_course_markdown(
+                        blueprint,
+                        output_dir=target_output_dir,
+                        include_ai_atoms=args.include_ai_atoms,
+                        materials=mat_pack,
+                    )
+                elif target == "liascript":
+                    pack = export_liascript(
+                        blueprint,
+                        output_dir=target_output_dir,
+                        include_ai_atoms=args.include_ai_atoms,
+                        materials=mat_pack,
+                    )
+                elif target == "quarto":
+                    pack = export_quarto(
+                        blueprint,
+                        output_dir=target_output_dir,
+                        include_ai_atoms=args.include_ai_atoms,
+                        materials=mat_pack,
+                    )
+                elif target == "moodle-xml":
+                    pack = export_moodle_xml(
+                        blueprint,
+                        output_dir=target_output_dir,
+                        include_ai_atoms=args.include_ai_atoms,
+                    )
+                elif target == "quarto-slides":
+                    pack = export_quarto_slides(
+                        blueprint,
+                        output_dir=target_output_dir,
+                        include_ai_atoms=args.include_ai_atoms,
+                        materials=mat_pack,
+                        theme=args.theme,
+                    )
+
+                n_files = len(pack.files)
+                n_materials = len(result.materials)
+                if len(targets) == 1:
+                    print(
+                        f"Course compiled ({target}): {len(blueprint.modules)} modules, "
+                        f"{len(blueprint.source_lessons)} lessons, "
+                        f"{n_materials} source materials, "
+                        f"{n_files} files written to {target_output_dir}/"
+                    )
+                else:
+                    print(
+                        f"{target}: {len(blueprint.modules)} modules, "
+                        f"{len(blueprint.source_lessons)} lessons, "
+                        f"{n_materials} source materials, "
+                        f"{n_files} files written to {target_output_dir}/"
+                    )
+
+                # Teacher review integration (only for the first target when --target all)
+                if (args.review or args.approve) and target == targets[0]:
+                    review_set = make_empty_review_set(result.blueprint.title)
+
+                    if args.approve:
+                        from datetime import datetime, timezone
+
+                        note_id = f"auto-approve-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}"
+                        note = make_review_note(
+                            note_id=note_id,
+                            action="approve",
+                            scope="course",
+                            target_id=result.blueprint.title,
+                            comment="Auto-approved via CLI --approve flag.",
+                            reviewer="CLI",
+                        )
+                        review_set = review_set.add_note(note)
+                        print(f"  ✅ Course approved: {result.blueprint.title}")
+
+                    # Serialize review_set to output dir for persistence
+                    review_path = FsPath(target_output_dir) / "review.json"
+                    review_path.parent.mkdir(parents=True, exist_ok=True)
+                    import dataclasses
+
+                    def _serialize_note(n):
+                        d = dataclasses.asdict(n)
+                        d["action"] = d["action"].value if hasattr(d["action"], "value") else d["action"]
+                        d["scope"] = d["scope"].value if hasattr(d["scope"], "value") else d["scope"]
+                        return d
+
+                    review_data = {
+                        "course_id": review_set.course_id,
+                        "notes": [_serialize_note(n) for n in review_set.notes],
+                    }
+                    review_path.write_text(json.dumps(review_data, indent=2))
+                    print(f"  💾 Review notes saved: {review_path}")
+                    print(
+                        f"  📋 Review status: {len(review_set)} note(s), "
+                        f"approved={is_course_approved(review_set)}"
+                    )
         except ValueError as e:
             print(f"Error during export: {e}", file=sys.stderr)
             return 1
-
-        n_files = len(pack.files)
-        n_materials = len(result.materials)
-        print(
-            f"Course compiled: {len(blueprint.modules)} modules, "
-            f"{len(blueprint.source_lessons)} lessons, "
-            f"{n_materials} source materials, "
-            f"{n_files} files written to {output_dir}/"
-        )
-        # Teacher review integration
-        if args.review or args.approve:
-            review_set = make_empty_review_set(result.blueprint.title)
-
-            if args.approve:
-                from datetime import datetime, timezone
-
-                note_id = f"auto-approve-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}"
-                note = make_review_note(
-                    note_id=note_id,
-                    action="approve",
-                    scope="course",
-                    target_id=result.blueprint.title,
-                    comment="Auto-approved via CLI --approve flag.",
-                    reviewer="CLI",
-                )
-                review_set = review_set.add_note(note)
-                print(f"  ✅ Course approved: {result.blueprint.title}")
-
-            # Serialize review_set to output dir for persistence
-            review_path = FsPath(output_dir) / "review.json"
-            review_path.parent.mkdir(parents=True, exist_ok=True)
-            import dataclasses
-
-            def _serialize_note(n):
-                d = dataclasses.asdict(n)
-                d["action"] = d["action"].value if hasattr(d["action"], "value") else d["action"]
-                d["scope"] = d["scope"].value if hasattr(d["scope"], "value") else d["scope"]
-                return d
-
-            review_data = {
-                "course_id": review_set.course_id,
-                "notes": [_serialize_note(n) for n in review_set.notes],
-            }
-            review_path.write_text(json.dumps(review_data, indent=2))
-            print(f"  💾 Review notes saved: {review_path}")
-            print(
-                f"  📋 Review status: {len(review_set)} note(s), "
-                f"approved={is_course_approved(review_set)}"
-            )
 
         return 0
 
