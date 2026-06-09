@@ -741,6 +741,18 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=1,
         help="Number of eval runs (default: 1, use >1 for distribution)",
     )
+    eval_parser.add_argument(
+        "--live",
+        action="store_true",
+        default=False,
+        help="Run with a real LLM (DeepSeek/Kimi) instead of mock. Requires DEEPSEEK_API_KEY.",
+    )
+    eval_parser.add_argument(
+        "--model",
+        type=str,
+        default=None,
+        help="LLM model name for --live (default: deepseek-chat for DeepSeek, auto-detect per provider)",
+    )
 
     cc_parser = sub.add_parser(
         "compile-course", help="Compile a course folder into export format"
@@ -1036,14 +1048,17 @@ def main(argv: list[str] | None = None) -> int:
         # Ingest segments so _build_router can build prompts
         ingest_lesson_segments(store, args.lesson, fixture_root)
 
-        # Build mock router using the same _LESSON_MOCKS pattern
-        router = _build_router(store, args.lesson)
-        if router is None:
-            print(
-                f"Error: no mock registered for lesson '{args.lesson}'",
-                file=sys.stderr,
-            )
-            return 1
+        if args.live:
+            router = None  # run_realtime_eval will build a live DeepSeek/Kimi provider
+        else:
+            # Build mock router using the same _LESSON_MOCKS pattern
+            router = _build_router(store, args.lesson)
+            if router is None:
+                print(
+                    f"Error: no mock registered for lesson '{args.lesson}'",
+                    file=sys.stderr,
+                )
+                return 1
 
         if args.n_runs > 1:
             report = run_realtime_eval_n_runs(
@@ -1051,12 +1066,14 @@ def main(argv: list[str] | None = None) -> int:
                 fixture_root=fixture_root,
                 router=router,
                 n=args.n_runs,
+                model=args.model or "deepseek-chat",
             )
         else:
             report = run_realtime_eval(
                 lesson_id=args.lesson,
                 fixture_root=fixture_root,
                 router=router,
+                model=args.model or "deepseek-chat",
             )
 
         print(report.summary())

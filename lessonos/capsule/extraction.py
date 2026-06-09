@@ -264,7 +264,7 @@ def extract_lesson_content(
                 ConceptExtraction(
                     name=c["name"],
                     status=c["status"],
-                    prerequisites=tuple(c.get("prerequisites", [])),
+                    prerequisites=tuple(c.get("prerequisites") or []),
                     citations=_parse_citations(c.get("citations")),
                 )
             )

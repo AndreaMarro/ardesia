@@ -296,6 +296,7 @@ def run_realtime_eval(
             provider_name = "mock"
         capsule = assemble_lesson_capsule(
             store, lesson_id, router, provider=provider_name,
+            defensive=True,
         )
     except Exception as exc:
         return RealtimeEvalReport(

@@ -165,3 +165,51 @@ def test_eval_real_missing_path_json_returns_1(tmp_path) -> None:
         sys.stderr = old_err
     assert exit_code == 1
     assert "no path.json" in stderr.getvalue()
+
+
+def test_eval_real_live_flag_parses() -> None:
+    """eval-real --live is accepted as a parser argument (mock-tested)."""
+    from io import StringIO
+
+    # In test env without DEEPSEEK_API_KEY, --live should exit with error
+    # (key not found) — not a parser error
+    stdout = StringIO()
+    stderr = StringIO()
+    old_out = sys.stdout
+    old_err = sys.stderr
+    sys.stdout = stdout
+    sys.stderr = stderr
+    try:
+        exit_code = cli_main(["eval-real", "--live"])
+    finally:
+        sys.stdout = old_out
+        sys.stderr = old_err
+    # If DEEPSEEK_API_KEY is set, it exits 0; otherwise RuntimeError (no key)
+    # Either is acceptable — the parser accepts --live in both cases
+    # The important thing is that it does NOT raise SystemExit from argparse
+    assert exit_code in (0, 1), f"Unexpected exit code: {exit_code}"
+    if exit_code == 1:
+        # Verify the error is about missing API key, not parser rejection
+        assert any(
+            msg in (stdout.getvalue() + stderr.getvalue()).lower()
+            for msg in ["key", "api_key", "api key"]
+        ), f"Unexpected error: {stderr.getvalue()}"
+
+
+def test_eval_real_live_flag_with_n_runs() -> None:
+    """eval-real --live --n-runs 3 is accepted (tries live or raises)."""
+    from io import StringIO
+
+    stdout = StringIO()
+    stderr = StringIO()
+    old_out = sys.stdout
+    old_err = sys.stderr
+    sys.stdout = stdout
+    sys.stderr = stderr
+    try:
+        exit_code = cli_main(["eval-real", "--live", "--n-runs", "3"])
+    finally:
+        sys.stdout = old_out
+        sys.stderr = old_err
+    # Same as above: live might work with key, or fail gracefully without
+    assert exit_code in (0, 1), f"Unexpected exit code: {exit_code}"

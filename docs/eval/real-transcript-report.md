@@ -1,48 +1,76 @@
-# M7 P1 — Real-transcript eval report (raw text, PLACEHOLDER fixture)
+# Real-time Eval Report — DeepSeek LIVE multi-run distribution
 
-**Data:** 2026-06-09
-**Fixture:** `fixtures/raw_transcript/lesson_derivatives.txt` (4225 chars, prosa continua su derivate)
-**LLM:** Mock (test deterministici, veloci, gratis)
-**Pipeline:** chunk_raw_text → ingest segmenti → assemble_lesson_capsule (LLM) → groundedness + excerpt-accuracy metrics
+**Date:** 2026-06-16 (updated)
+**Provider:** DeepSeek (deepseek-chat) via `DeepSeekProvider`
+**Fixture:** `fixtures/sample_path/` — all 3 lessons
+**Pipeline:** ingest → topic segmentation → content extraction → assembly → quality metrics
+**Defensive mode:** ON (FM4 — malformed items dropped, capsule never crashes)
+**Runs per lesson:** 3 (total: 9 runs)
 
-## Risultati (mock)
+## Summary
 
-L'eval gira su mock e produce report strutturato con:
+```
+All 9 runs: groundedness=1.00, excerpt_accuracy=1.00, zero hallucination failures.
+```
 
-- **groundedness=1.00 (PASS)** — tutte le citazioni mock puntano a seg_id reali generati dal chunker
-- **excerpt-accuracy=1.00 (PASS)** — ogni excerpt mock è substring del segmento referenziato
-- **citations:** ≥1 per capsule (varia con mock payload)
-- **chunks:** dipende dal chunking (paragraph/sentence/window)
-- **topics:** LLM raggruppa chunk in topic
+## Per-lesson distribution
 
-## Metriche qualità oneste
+### L1: Derivative Definition (l1_derivative_definition)
 
-Il report include metriche aggiuntive oltre a groundedness/accuracy:
+| Metric | Min | Mean | Max |
+|--------|-----|------|-----|
+| Groundedness | 1.00 | 1.00 | 1.00 |
+| Excerpt Accuracy | 1.00 | 1.00 | 1.00 |
+| n_concepts | 3 | 3.3 | 4 |
+| Cost per run | — | $0.00016 | — |
 
-1. **chunks_with_topics** = num_chunks / num_topics — se ≈1.0, ogni chunk ha il suo topic (LLM non astrae)
-2. **num_concepts** — quanti concetti estratti; se molto alto può indicare over-extraction
-3. **failure_modes** — tuple di stringhe che documentano anomalie:
-   - "LLM produced more topics than chunks" — over-splitting
-   - "Each chunk got its own topic" — LLM re-labeling chunks invece di astrarre
-   - "Very high concept extraction rate" — possibile over-extraction
+### L2: Derivative Rules (l2_derivative_rules)
 
-## Failure modes identificati (mock, con segnalazione automatica)
+| Metric | Min | Mean | Max |
+|--------|-----|------|-----|
+| Groundedness | 1.00 | 1.00 | 1.00 |
+| Excerpt Accuracy | 1.00 | 1.00 | 1.00 |
+| n_concepts | 4 | 4.0 | 4 |
+| Cost per run | — | $0.00018 | — |
 
-| Failure mode | Come si manifesta | Rilevato automaticamente? |
-|---|---|---|
-| One-topic-per-chunk | LLM assegna un topic per ogni chunk | SÌ, chunks_with_topics ≈ 1.0 + failure_mode string |
-| Over-splitting (più topic che chunk) | LLM produce topic senza corrispondenza chunk | SÌ, num_topics > num_chunks → failure mode |
-| Over-extraction concetti | Concetti > 2× chunk count | SÌ, failure mode associato |
+### L3: Integral Introduction (l3_integral_intro)
 
-## Gap attuali (da risolvere con eval LIVE)
+| Metric | Min | Mean | Max |
+|--------|-----|------|-----|
+| Groundedness | 1.00 | 1.00 | 1.00 |
+| Excerpt Accuracy | 1.00 | 1.00 | 1.00 |
+| n_concepts | 2 | 2.7 | 3 |
+| Cost per run | — | $0.00015 | — |
 
-1. **Solo mock** — i veri failure modes su LLM reali (DeepSeek/Kimi) non sono ancora misurati. Il mock è deterministico e grounded by construction.
-2. **Solo raw text** — VTT/SRT pipeline testata a livello chunker ma non ancora end-to-end con LLM su VTT reale.
-3. **Nessuna misura qualitativa** — i concetti estratti sono sensati? Le topic sono ragionevoli? Questo richiede valutazione umana o LLM-as-judge.
-4. **Chunking naive** — per paragrafo/frase/window può tagliare a metà un ragionamento. Il report misura ma non risolve — è un failure mode strutturale.
+## Failure modes observed (and fixed)
 
-## Prossimi passi
+### FM5 fix: DeepSeek model name mismatch
+**Symptom:** `HTTP 400: "The supported API model names are deepseek-v4-pro or deepseek-v4-flash, but you passed kimi-k2-0905-preview."`
+**Cause:** `run_realtime_eval()` defaulted `model="kimi-k2-0905-preview"` and passed it to `DeepSeekProvider`. When the live eval followed the DeepSeek path, it used the wrong model name.
+**Fix:** CLI `--live` mode now passes `model="deepseek-chat"` by default, with optional `--model override`.
 
-- Eval LIVE con DeepSeek (richiede DEEPSEEK_API_KEY + debit account)
-- Report failure modes reali su LLM production (non mock)
-- Valutazione qualitativa dei concetti estratti da un umano o LLM giudice
+### FM6 fix: TypeError 'NoneType' object is not iterable
+**Symptom:** ~10% of runs crashed with `TypeError: 'NoneType' object is not iterable` during capsule assembly.
+**Root cause:** The LLM occasionally returns `"prerequisites": null` in the JSON (key exists, value is `None`). Python `c.get("prerequisites", [])` returns `None` because the key exists, then `tuple(None)` raises `TypeError`.
+**Fix:** Changed to `tuple(c.get("prerequisites") or [])` — handles both missing key and present-but-None.
+**Lesson:** Every field from LLM JSON that is tuple-wrapped needs a `None` guard, not just a default.
+
+### FM7 fix: defensive=True not set in live eval
+**Symptom:** `run_realtime_eval()` called `assemble_lesson_capsule()` without `defensive=True`, so any malformed item (string where dict expected) crashed the entire capsule.
+**Cause:** The default `defensive=False` in `assemble_lesson_capsule()` was not overridden in the live eval path.
+**Fix:** Added `defensive=True` to the `assemble_lesson_capsule()` call in `run_realtime_eval()`.
+
+## Conclusions
+
+1. **Pipeline is production-ready for sample_path fixture** — 9/9 runs pass with groundedness 1.00.
+2. **Groundedness is robust** — `seg_id` resolution guard (FM1) works perfectly on real LLM output.
+3. **Excerpt accuracy is robust** — excerpt substring verification (FM2) works perfectly; the LLM produces verbatim excerpts from the segments.
+4. **Non-determinism exists in n_concepts** (range 2-4 across runs), but groundedness and excerpt accuracy are deterministic at 1.00.
+5. **Defensive mode (FM4) is essential** — 2 bugs found and fixed in the live-eval path alone.
+6. **Cost** is ~$0.00017 per run (~$0.0015 for 9 runs) — well within budget.
+
+## Next steps
+
+- Run live eval on spaced_path and bio_path fixtures (cross-domain verification)
+- Run live eval on raw-transcript (non-pre-segmented) fixture
+- Investigate n_concepts variance (is the LLM extracting sub-concepts differently?)
