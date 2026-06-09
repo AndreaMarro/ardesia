@@ -74,6 +74,9 @@ class ModuleBlueprint:
     objectives: tuple[str, ...] = ()
     """Obiettivi di apprendimento del modulo."""
 
+    content_atom_ids: tuple[str, ...] = ()
+    """ContentAtoms che appartengono a questo modulo (P0c)."""
+
     def __post_init__(self) -> None:
         if not self.title:
             raise ValueError("title must be non-empty")

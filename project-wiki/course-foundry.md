@@ -81,3 +81,26 @@ Validazione: `atom_type` invalido → ValueError; `source_refs` vuote senza flag
 - ContentAtom validation (11 test: atom_type, empty fields, source_refs rule, flag, immutabilità)
 - capsule_to_atoms (18 test: mapping per status, exercise/question/homework, timeline summary,
   atom_id invariant, deterministico, confidence averaging, empty capsule)
+
+## P0c — CourseBlueprint builder with content_atom_ids (`lessonos/course/blueprint.py`)
+
+### Builder (`lessonos/course/blueprint.py:1-102`)
+
+`build_course_blueprint(course, atoms=None, audience="", level="")` — builder determinista.
+
+- Se `course.modules` esiste, li usa come base; altrimenti modulo unico fallback (backward compat).
+- Se `atoms` (dict lesson_id → tuple[ContentAtom]) è fornito: assegna ogni atom_id al modulo che contiene la sua lesson_id.
+- `audience`/`level` pass-through su CourseBlueprint.
+- `source_lessons` = lesson_id ordinate del course (inferenza automatica).
+
+### Schema (`lessonos/course/schema.py:75-77`)
+
+`ModuleBlueprint.content_atom_ids: tuple[str, ...] = ()` — nuovo campo P0c, backward compatible (default `()`). Contiene gli atomi assegnati al modulo.
+
+### Test (`tests/test_course_p0c.py`)
+
+13 test non-tautologici:
+- Backward compat: 4 test (nessun atoms, moduli esistenti, empty course)
+- Atom assignment: 5 test (single/multiple/unknown/empty/cross-module)
+- Audience/level: 3 test (empty/default/partial)
+- Integration: 1 test su sample_course reale con 3 moduli
