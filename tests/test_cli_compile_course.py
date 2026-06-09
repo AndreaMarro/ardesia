@@ -9,6 +9,8 @@ from __future__ import annotations
 import tempfile
 from pathlib import Path
 
+import pytest
+
 from lessonos.cli import _parse_args, main
 
 
@@ -33,7 +35,7 @@ def test_compile_course_parser_has_minimal_args():
 
 def test_compile_course_parser_all_targets():
     """Parser accetta tutti i target validi."""
-    for target in ("markdown", "liascript", "quarto"):
+    for target in ("markdown", "liascript", "quarto", "moodle-xml"):
         args = _parse_args(["compile-course", "/tmp/test", "--target", target])
         assert args.target == target
 
@@ -316,3 +318,41 @@ def test_compile_course_review_with_custom_output(capsys):
         review_data = json.loads((out / "review.json").read_text())
         assert review_data["course_id"] == "Calcolo 2 — Integrali e ODE"
         assert len(review_data["notes"]) == 0
+
+
+def test_compile_course_moodle_xml_target(capsys):
+    """--target moodle-xml produce quiz.xml."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        rc = main(
+            [
+                "compile-course",
+                _fixture_path(),
+                "--target",
+                "moodle-xml",
+                "--output",
+                tmpdir,
+            ]
+        )
+        assert rc == 0
+        captured = capsys.readouterr().out
+        assert "files written" in captured
+        out = Path(tmpdir)
+        assert (out / "quiz.xml").exists()
+        content = (out / "quiz.xml").read_text()
+        assert "<?xml version" in content
+        assert "<quiz>" in content
+        assert "</quiz>" in content
+
+
+def test_compile_course_invalid_target():
+    """--target non valido da SystemExit (argparse enforced)."""
+    with pytest.raises(SystemExit) as exc_info:
+        main(
+            [
+                "compile-course",
+                _fixture_path(),
+                "--target",
+                "invalido",
+            ]
+        )
+    assert exc_info.value.code == 2

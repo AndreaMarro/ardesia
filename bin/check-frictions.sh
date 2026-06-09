@@ -7,12 +7,12 @@
 # Uso: bin/check-frictions.sh [--strict]   (--strict: exit non-zero se ci sono WARNING)
 set -uo pipefail
 cd "$(dirname "$0")/.." || exit 1
-LOG="PROCESS-LOG.md"; SKILLS="skills"
+LOG="PROCESS-LOG.md"
 strict=0; [ "${1:-}" = "--strict" ] && strict=1
 [ -f "$LOG" ] || { echo "check-frictions: $LOG mancante"; exit 1; }
 
 # Mappa keyword-attrito -> copertura (skill in skills/ oppure 'accepted' come decisione).
-# Ogni riga: <regex-keyword>|<copertura>  (copertura = path skill OPPURE la parola accepted)
+# Ogni riga: <regex-keyword>::<copertura>  (copertura = path skill OPPURE la parola accepted)
 mappings=(
   "grounding|seg_id|excerpt|citazion|docstring|claim non|case-insensitive::skills/lessonos-grounding-check.md"
   "SHA|hex|>=|determinist::skills/test-determinism.md"
@@ -37,23 +37,23 @@ while IFS= read -r line; do
   done
   snippet="$(printf '%s' "$line" | sed -E 's/^[0-9]+://; s/^[[:space:]]*//' | cut -c1-90)"
   if [ -z "$hit" ]; then
-    echo "  [WARN] L$lineno attrito ricorrente NON mappato a skill/guard: $snippet…"
+    echo "  [WARN] L$lineno attrito ricorrente NON mappato a skill/guard: $snippet..."
     warnings=$((warnings+1))
   elif [ "$hit" = "accepted" ]; then
-    echo "  [OK/accepted] L$lineno vincolo architetturale accettato: $snippet…"
+    echo "  [OK/accepted] L$lineno vincolo architetturale accettato: $snippet..."
     covered=$((covered+1))
   elif [ -f "$hit" ]; then
     echo "  [OK] L$lineno coperto da $hit"
     covered=$((covered+1))
   else
-    echo "  [WARN] L$lineno attrito mappato a $hit MA il file MANCA: $snippet…"
+    echo "  [WARN] L$lineno attrito mappato a $hit MA il file MANCA: $snippet..."
     warnings=$((warnings+1))
   fi
 done <<< "$recurring"
 
 echo "check-frictions: coperti=$covered warning=$warnings"
 if [ "$warnings" -gt 0 ]; then
-  echo "check-frictions: $warnings attrito/i ricorrente/i SENZA skill o guard — crea una skill in $SKILLS/ o un guard."
+  echo "check-frictions: $warnings attrito/i ricorrente/i SENZA skill o guard — crea una skill in skills/ o un guard."
   [ "$strict" = 1 ] && exit 2
 fi
 exit 0

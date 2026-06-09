@@ -47,6 +47,7 @@ from lessonos.course.folder_loader import load_course_folder
 from lessonos.course.planner import plan_course
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
+from lessonos.export.moodle_xml import MoodleXMLQuizPack, export_moodle_xml
 from lessonos.export.quarto import QuartoCoursePack, export_quarto
 from lessonos.course.teacher_review import (
     TeacherReviewSet,
@@ -753,7 +754,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--target",
         type=str,
         default="markdown",
-        choices=["markdown", "liascript", "quarto"],
+        choices=["markdown", "liascript", "quarto", "moodle-xml"],
         help="Export target format (default: markdown)",
     )
     cc_parser.add_argument(
@@ -875,6 +876,12 @@ def main(argv: list[str] | None = None) -> int:
                 )
             elif args.target == "quarto":
                 pack = export_quarto(
+                    blueprint,
+                    output_dir=output_dir,
+                    include_ai_atoms=args.include_ai_atoms,
+                )
+            elif args.target == "moodle-xml":
+                pack = export_moodle_xml(
                     blueprint,
                     output_dir=output_dir,
                     include_ai_atoms=args.include_ai_atoms,
