@@ -1,5 +1,5 @@
 import { useState, useRef, type CSSProperties } from "react"
-import { Excalidraw, convertToExcalidrawElements } from "@excalidraw/excalidraw"
+import { Excalidraw, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
@@ -20,6 +20,24 @@ export default function Room() {
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
   const [api, setApi] = useState<any>(null)
+  const [saved, setSaved] = useState(false)
+
+  // Persistenza locale per-stanza: la lezione NON sparisce al refresh (la lezione resta tua).
+  // Fase-0 = localStorage (per-browser). Sync cross-device/cloud = Fase-1 (Supabase).
+  const STORAGE_KEY = `studio-scene:${room}`
+  const [initialData] = useState(() => {
+    try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : null } catch { return null }
+  })
+  const saveTimer = useRef<number | null>(null)
+  function persist(elements: any, appState: any, files: any) {
+    if (saveTimer.current) window.clearTimeout(saveTimer.current)
+    saveTimer.current = window.setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, serializeAsJSON(elements, appState, files, "local"))
+        setSaved(true); window.setTimeout(() => setSaved(false), 1200)
+      } catch { /* quota/serialize: non bloccare la lezione */ }
+    }, 700)
+  }
 
   // Inserisce la formula come immagine SVG sulla lavagna Excalidraw.
   async function insertMath(latex: string) {
@@ -50,6 +68,7 @@ export default function Room() {
         <strong style={{ letterSpacing: 0.3 }}>Studio</strong>
         <span style={{ opacity: 0.6 }}>·</span>
         <span style={{ opacity: 0.8 }}>stanza {room}</span>
+        {saved && <span style={{ color: "#5fd38a", fontSize: 12 }}>✓ salvato</span>}
         <button onClick={copyLink} style={btn}>{copied ? "✓ copiato" : "copia link studente"}</button>
         <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
         <button onClick={() => setVideoOn(v => !v)} style={{ ...btn, marginLeft: "auto", background: videoOn ? "#e0245e" : "#1763ff" }}>
@@ -58,7 +77,7 @@ export default function Room() {
       </header>
 
       <div style={{ flex: 1, position: "relative" }}>
-        <Excalidraw excalidrawAPI={setApi} />
+        <Excalidraw excalidrawAPI={setApi} initialData={initialData ?? undefined} onChange={persist} />
         {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
         {videoOn && <VideoPanel room={room} />}
       </div>
