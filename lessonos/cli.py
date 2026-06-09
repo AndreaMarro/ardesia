@@ -43,7 +43,8 @@ from lessonos.store.fixture_loader import (
     load_sample_path,
 )
 from lessonos.store.sqlite import SQLiteStore
-from lessonos.course.folder_loader import load_course_folder, build_course_blueprint
+from lessonos.course.folder_loader import load_course_folder
+from lessonos.course.planner import plan_course
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
 from lessonos.export.quarto import QuartoCoursePack, export_quarto
@@ -826,19 +827,14 @@ def main(argv: list[str] | None = None) -> int:
             )
             return 1
 
-        # Load course
+        # Plan course (load + blueprint + materials)
         try:
-            course = load_course_folder(str(folder_path))
+            result = plan_course(str(folder_path))
         except ValueError as e:
-            print(f"Error loading course: {e}", file=sys.stderr)
+            print(f"Error planning course: {e}", file=sys.stderr)
             return 1
 
-        # Build blueprint
-        try:
-            blueprint = build_course_blueprint(course)
-        except ValueError as e:
-            print(f"Error building blueprint: {e}", file=sys.stderr)
-            return 1
+        blueprint = result.blueprint
 
         # Determine output dir
         output_dir = args.output or str(
@@ -876,9 +872,11 @@ def main(argv: list[str] | None = None) -> int:
             return 1
 
         n_files = len(pack.files)
+        n_materials = len(result.materials)
         print(
             f"Course compiled: {len(blueprint.modules)} modules, "
             f"{len(blueprint.source_lessons)} lessons, "
+            f"{n_materials} source materials, "
             f"{n_files} files written to {output_dir}/"
         )
         return 0

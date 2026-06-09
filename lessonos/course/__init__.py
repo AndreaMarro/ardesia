@@ -8,6 +8,7 @@ P0c: CourseBlueprint builder con content_atom_ids (deterministic, zero-LLM).
 from lessonos.course.atoms import ATOM_TYPES, ContentAtom, capsule_to_atoms
 from lessonos.course.blueprint import build_course_blueprint
 from lessonos.course.folder_loader import load_course_folder
+from lessonos.course.planner import PlannerMaterial, PlannerResult, plan_course
 from lessonos.course.schema import (
     CourseBlueprint,
     CourseFolder,
@@ -27,4 +28,7 @@ __all__ = [
     "CourseSourceRef",
     "ModuleBlueprint",
     "load_course_folder",
+    "PlannerMaterial",
+    "PlannerResult",
+    "plan_course",
 ]
