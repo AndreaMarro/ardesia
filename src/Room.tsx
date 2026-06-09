@@ -1,7 +1,8 @@
 import { useState, useRef, type CSSProperties } from "react"
-import { Excalidraw } from "@excalidraw/excalidraw"
+import { Excalidraw, convertToExcalidrawElements } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import MathComposer from "./MathComposer"
+import { latexToImage } from "./latexToImage"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -18,6 +19,17 @@ export default function Room() {
   const [videoOn, setVideoOn] = useState(false)
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [api, setApi] = useState<any>(null)
+
+  // Inserisce la formula come immagine SVG sulla lavagna Excalidraw.
+  async function insertMath(latex: string) {
+    if (!api || !latex.trim()) return
+    const { dataURL, width, height } = await latexToImage(latex)
+    const fileId = (crypto.randomUUID?.() ?? String(Math.random()).slice(2)) as string
+    api.addFiles([{ id: fileId, dataURL, mimeType: "image/svg+xml", created: Date.now(), lastRetrieved: Date.now() }])
+    const els = convertToExcalidrawElements([{ type: "image", x: 160, y: 120, width, height, fileId } as any])
+    api.updateScene({ elements: [...api.getSceneElements(), ...els] })
+  }
   const shareUrl = `${location.origin}${location.pathname}#${room}`
 
   function copyLink() {
@@ -46,8 +58,8 @@ export default function Room() {
       </header>
 
       <div style={{ flex: 1, position: "relative" }}>
-        <Excalidraw />
-        {mathOn && <MathComposer onClose={() => setMathOn(false)} />}
+        <Excalidraw excalidrawAPI={setApi} />
+        {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
         {videoOn && <VideoPanel room={room} />}
       </div>
     </div>

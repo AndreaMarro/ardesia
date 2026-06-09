@@ -6,7 +6,7 @@ MathfieldElement.fontsDirectory = "https://unpkg.com/mathlive/fonts"
 MathfieldElement.soundsDirectory = null
 
 // Composer formule: il docente scrive math (render live, LaTeX), copia per incollarla sulla lavagna.
-export default function MathComposer({ onClose }: { onClose: () => void }) {
+export default function MathComposer({ onClose, onInsert }: { onClose: () => void; onInsert: (latex: string) => void | Promise<void> }) {
   const host = useRef<HTMLDivElement>(null)
   const mfRef = useRef<MathfieldElement | null>(null)
 
@@ -25,17 +25,22 @@ export default function MathComposer({ onClose }: { onClose: () => void }) {
     const v = mfRef.current?.value ?? ""
     navigator.clipboard?.writeText(v)
   }
+  async function insert() {
+    const v = mfRef.current?.value ?? ""
+    if (v.trim()) { await onInsert(v); onClose() }
+  }
 
   return (
     <div style={panel}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
         <strong style={{ fontSize: 14 }}>Formula</strong>
+        <button onClick={insert} style={{ ...mini, background: "#0a8a3a" }}>inserisci sulla lavagna</button>
         <button onClick={copyLatex} style={mini}>copia LaTeX</button>
-        <button onClick={onClose} style={{ ...mini, marginLeft: "auto" }}>chiudi</button>
+        <button onClick={onClose} style={{ ...mini, marginLeft: "auto", background: "#888" }}>chiudi</button>
       </div>
       <div ref={host} />
       <p style={{ fontSize: 11, color: "#888", margin: "8px 2px 0" }}>
-        Scrivi (es. <code>x^2</code>, <code>\int</code>, <code>\frac</code>). Render live. Inserimento diretto sulla lavagna = prossimo step.
+        Scrivi (es. <code>x^2</code>, <code>\int</code>, <code>\frac</code>). "Inserisci sulla lavagna" la mette come immagine sul canvas (spostabile/ridimensionabile).
       </p>
     </div>
   )
