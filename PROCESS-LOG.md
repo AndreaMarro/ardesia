@@ -45,3 +45,5 @@ Append-only. Una riga per retro: `RETRO <data>: attrito=… → miglioria=… [a
   5. **Citations in lineage con excerpt non grounded (pattern 2x) — FALSO POSITIVO (review Claude).** lineage.py non ha SourceLink con excerpt — usa solo source_ids/lesson_ids/atom_ids. Non c'e' excerpt da validare. Il pattern era un suggestion della RETRO pre-review non del codice. [nessuna azione — falso positivo da review Claude Code]
   6. **No new skills created in 5+ RETROs** — zero nuovi skill da RETRO #6 a #9. Attriti chiusi da skill/guard esistenti. check-frictions.sh: 0 warning (dopo fix). [ok — sistema maturo, nessuna nuova skill necessaria]
   [fix applicati: review.sh auto-observation hook. check-frictions.sh: 0 warning (--strict).]
+
+- **2026-06-16 RETRO #9 fix — Pre-commit guard creato (CHIUSO attrito #3 e #4).** I due pattern 3x di RETRO #9 (grounding seg_id inventati, >= deterministici) sono ora bloccati strutturalmente da `bin/pre-commit-guard.sh` + `.git/hooks/pre-commit`. Non solo loggati — il guard blocca il commit. Review Claude Code: 7 fix applicati. [applicata: bin/pre-commit-guard.sh + git hook installato]
