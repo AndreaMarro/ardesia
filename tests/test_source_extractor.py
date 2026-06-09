@@ -326,8 +326,8 @@ class TestExtractEdgeCases:
         pack = extract_source_materials(bad_course)
         assert "slides" in pack.errors
         assert "doc" in pack.errors
-        assert "Formato 'pdf' richiede Docling adapter" in pack.errors["slides"]
-        assert "Formato 'docx' richiede Docling adapter" in pack.errors["doc"]
+        assert "Richiede pdftotext" in pack.errors["slides"]
+        assert "Richiede pandoc" in pack.errors["doc"]
 
     def test_unknown_format(
         self, course_folder: CourseFolder, sample_course_path: Path

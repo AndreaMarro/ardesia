@@ -1,17 +1,13 @@
-"""Source Material Extractor — reads source files from CourseFolder (P1 Docling-adapter foundation).
+"""Source Material Extractor — reads source files from CourseFolder (P1 Docling-adapter).
 
-Reads source files (markdown, text, and eventually PDF, DOCX) from a CourseFolder's
-sources/ and per-lesson sources/ directories, extracts text content, and produces
-SourceMaterial objects with content + metadata for use in exports.
+Reads source files (markdown, text) from a CourseFolder's sources/ and per-lesson
+sources/ directories via stdlib-only. Uses Docling-adapter (subprocess + stdlib)
+for PDF, DOCX, HTML, VTT, SRT with graceful fallback.
 
-Deterministic, zero-LLM, stdlib-only for markdown/text. PDF extraction uses subprocess
-(pdftotext) if available, with graceful fallback.
+Deterministic, zero-LLM, zero new Python deps.
 
 COORDINATION.md §18 roadmap: CourseFolder->Atoms->Blueprint->MarkdownPack->LiaScript->
 Quarto->MoodleXML->**Docling-adapter**->LLM-planner->Teacher-review
-
-This module is the first step toward the Docling-adapter: source-to-text conversion
-for course materials.
 """
 
 from __future__ import annotations
@@ -22,6 +18,7 @@ from pathlib import Path
 from typing import Dict, List, Sequence
 
 from lessonos.course.schema import CourseFolder, CourseSourceRef
+from lessonos.export.docling_adapter import docling_extract
 
 
 @dataclass(frozen=True)
@@ -197,19 +194,35 @@ def _extract_single_source(
                 error=str(e),
             )
 
-    # Formati non ancora supportati (estensione futura)
-    docling_supported = ("pdf", "docx", "html", "vtt", "srt", "pptx")
+    # Formati via Docling-adapter (subprocess + stdlib, graceful fallback)
+    docling_supported = ("pdf", "docx", "html", "vtt", "srt")
     if source_type in docling_supported:
+        content = docling_extract(file_path, source_type)
+        if content is not None:
+            return SourceMaterial(
+                source_id=src.source_id,
+                filename=src.filename,
+                source_type=src.source_type,
+                content=content,
+                lesson_id=lesson_id,
+            )
+        # Fallback: tool non disponibile o estrazione fallita
+        _help = {
+            "pdf": "Richiede pdftotext (poppler) — esegui 'brew install poppler'",
+            "docx": "Richiede pandoc — esegui 'brew install pandoc'",
+            "html": "Parsing HTML fallito (file vuoto o malformato)",
+            "vtt": "Parsing VTT fallito (file vuoto o malformato)",
+            "srt": "Parsing SRT fallito (file vuoto o malformato)",
+        }
         return SourceMaterial(
             source_id=src.source_id,
             filename=src.filename,
             source_type=src.source_type,
             content="",
             lesson_id=lesson_id,
-            error=(
-                f"Formato '{source_type}' richiede Docling adapter "
-                f"(disponibile in una futura iterazione). "
-                f"Usa formato markdown o text."
+            error=_help.get(
+                source_type,
+                f"Estrazione fallita per formato '{source_type}'",
             ),
         )
 
@@ -230,7 +243,7 @@ def _extract_lesson_sources(
 ) -> Dict[str, SourceMaterial]:
     """Estrae tutti i sorgenti da una cartella sources/ di una lezione.
 
-    Cerca file .txt, .md, .markdown nella cartella.
+    Cerca file .txt, .md, .markdown, .pdf, .docx, .html, .vtt, .srt nella cartella.
     Ogni file viene trattato come un CourseSourceRef con source_id = filename
     (senza estensione) e source_type dedotto dall'estensione.
     """
@@ -238,16 +251,25 @@ def _extract_lesson_sources(
     if not sources_dir.is_dir():
         return materials
 
+    ext_to_type = {
+        ".md": "markdown",
+        ".markdown": "markdown",
+        ".txt": "text",
+        ".pdf": "pdf",
+        ".docx": "docx",
+        ".html": "html",
+        ".htm": "html",
+        ".vtt": "vtt",
+        ".srt": "srt",
+    }
+
     for file_path in sorted(sources_dir.iterdir()):
         if not file_path.is_file():
             continue
 
         ext = file_path.suffix.lower()
-        if ext == ".md":
-            source_type = "markdown"
-        elif ext == ".txt":
-            source_type = "text"
-        else:
+        source_type = ext_to_type.get(ext)
+        if source_type is None:
             # Salta formati non supportati
             continue
 

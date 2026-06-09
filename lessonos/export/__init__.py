@@ -9,9 +9,12 @@ Formati pianificati:
   - quarto: _quarto.yml + .qmd -> HTML/PDF/slides
   - moodle_xml: quiz XML per Moodle
 
+Docling-adapter: PDF, DOCX, HTML, VTT, SRT extraction via subprocess + stdlib.
+
 COORDINATION.md §18: P1 export — render DETERMINISTICO no-LLM.
 """
 
+from lessonos.export.docling_adapter import docling_extract
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 from lessonos.export.moodle_xml import MoodleXMLQuizPack, export_moodle_xml
@@ -22,6 +25,7 @@ __all__ = [
     "MoodleXMLQuizPack",
     "MarkdownCoursePack",
     "QuartoCoursePack",
+    "docling_extract",
     "export_course_markdown",
     "export_liascript",
     "export_moodle_xml",
