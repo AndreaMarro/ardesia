@@ -45,6 +45,23 @@ Ogni chiamata LLM è tracciata dal `CostLedger` (wrapper su `router.complete`). 
 
 **100% pass rate, zero hallucination failures.** Report completo: `docs/eval/real-transcript-report.md`.
 
+## Cross-domain LIVE results (M8-task3, 2026-06-16+4)
+
+**DeepSeek (deepseek-chat), single run per lesson, all 3 domains.**
+
+| Domain | Fixture | Lesson | groundedness | excerpt | citations | cost |
+|--------|---------|--------|-------------|---------|-----------|------|
+| Calculus | sample_path | l1 | 1.00 | 1.00 | 3-4 | $0.00016 |
+| Calculus | sample_path | l2 | 1.00 | 1.00 | 4 | $0.00018 |
+| Calculus | sample_path | l3 | 1.00 | 1.00 | 2-3 | $0.00015 |
+| Learning Science | spaced_path | l1_sm2_intro | 1.00 | 1.00 | 11 | $0.000427 |
+| Learning Science | spaced_path | l2_fsrs_advanced | 1.00 | 1.00 | 9 | $0.000368 |
+| Biology | bio_path | l1_fotosintesi_intro | 1.00 | 1.00 | 4 | $0.000245 |
+| Biology | bio_path | l2_reazioni_luce | 1.00 | 1.00 | 15 | $0.000320 |
+
+**100% pass rate across all 7 live runs (3 domains). Total cost: ~$0.0019.**
+Cross-domain robustness verified. Report: `docs/eval/real-transcript-report.md`.
+
 ## Cross-domain mock (M8-task2, 2026-06-16)
 
 `_LESSON_MOCKS` estesa in `lessonos/cli.py:320-587` con 4 nuovi mock:
