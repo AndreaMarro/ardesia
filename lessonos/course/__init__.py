@@ -16,6 +16,15 @@ from lessonos.course.schema import (
     CourseSourceRef,
     ModuleBlueprint,
 )
+from lessonos.course.teacher_review import (
+    ReviewAction,
+    ReviewScope,
+    TeacherReviewNote,
+    TeacherReviewSet,
+    is_course_approved,
+    make_empty_review_set,
+    make_review_note,
+)
 
 __all__ = [
     "ATOM_TYPES",
@@ -31,4 +40,11 @@ __all__ = [
     "PlannerMaterial",
     "PlannerResult",
     "plan_course",
+    "ReviewAction",
+    "ReviewScope",
+    "TeacherReviewNote",
+    "TeacherReviewSet",
+    "is_course_approved",
+    "make_empty_review_set",
+    "make_review_note",
 ]
