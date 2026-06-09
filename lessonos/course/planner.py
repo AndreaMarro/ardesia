@@ -13,8 +13,9 @@ Deterministic, zero-LLM, frozen/ValueError pattern.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Sequence
+from typing import Dict, Sequence, Tuple
 
+from lessonos.course.atoms import ContentAtom
 from lessonos.course.blueprint import build_course_blueprint
 from lessonos.course.folder_loader import load_course_folder
 from lessonos.course.schema import CourseBlueprint, CourseFolder
@@ -136,6 +137,7 @@ def plan_course(
     audience: str = "",
     level: str = "",
     include_source_materials: bool = True,
+    atoms_per_lesson: Dict[str, Tuple[ContentAtom, ...]] | None = None,
 ) -> PlannerResult:
     """Course planner — produce a PlannerResult from a course folder path.
 
@@ -143,12 +145,20 @@ def plan_course(
     source materials. This establishes the interface that an LLM-based
     planner will later implement with actual content analysis.
 
+    When ``atoms_per_lesson`` is provided (dict lesson_id → tuple of
+    ContentAtom), the atoms are forwarded to ``build_course_blueprint()``
+    so the resulting ``CourseBlueprint`` includes ``content_atom_ids``
+    in each ``ModuleBlueprint``.
+
     Args:
         folder_path: Path to the course folder (must contain course.json).
         audience: Optional audience description (pass-through to blueprint).
         level: Optional level description (pass-through to blueprint).
         include_source_materials: If True, loads and attaches source materials.
             Default True. Only set False for tests that don't need materials.
+        atoms_per_lesson: Optional mapping of lesson_id → ContentAtom tuple
+            to pass to build_course_blueprint for content_atom_ids assignment.
+            Default None (backward compatible).
 
     Returns:
         PlannerResult with blueprint + loaded materials.
@@ -160,7 +170,8 @@ def plan_course(
     ZERO-LLM, deterministic, frozen/ValueError pattern.
     """
     course = load_course_folder(folder_path)
-    blueprint = build_course_blueprint(course, audience=audience, level=level)
+    blueprint = build_course_blueprint(course, audience=audience, level=level,
+                                       atoms=atoms_per_lesson)
     source_lessons = tuple(c.lesson_id for c in course.lessons)
 
     materials: Dict[str, PlannerMaterial] = {}

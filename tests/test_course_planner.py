@@ -9,6 +9,7 @@ import json
 import os
 import tempfile
 
+from lessonos.course.atoms import ContentAtom
 from lessonos.course.planner import (
     PlannerMaterial,
     PlannerResult,
@@ -307,3 +308,63 @@ class TestPlanCourse:
             folder = self._create_sample_course(tmp)
             result = plan_course(folder, include_source_materials=True)
             assert len(result.warnings) == 0
+
+    def test_plan_with_atoms_per_lesson(self) -> None:
+        """atoms_per_lesson forwarded to build_course_blueprint → content_atom_ids."""
+
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self._create_sample_course(tmp)
+            atoms = {
+                "l1_derivatives": (
+                    ContentAtom(
+                        atom_id="l1_derivatives/definition/0",
+                        atom_type="definition",
+                        lesson_id="l1_derivatives",
+                        body="Derivative is the slope",
+                        source_refs=(),
+                        explicit_ai_inference=True,
+                    ),
+                    ContentAtom(
+                        atom_id="l1_derivatives/example/0",
+                        atom_type="example",
+                        lesson_id="l1_derivatives",
+                        body="f(x)=x^2 → f'(x)=2x",
+                        source_refs=(),
+                        explicit_ai_inference=True,
+                    ),
+                ),
+                "l2_integrals": (
+                    ContentAtom(
+                        atom_id="l2_integrals/definition/0",
+                        atom_type="definition",
+                        lesson_id="l2_integrals",
+                        body="Integral is the area",
+                        source_refs=(),
+                        explicit_ai_inference=True,
+                    ),
+                ),
+            }
+            result = plan_course(folder, atoms_per_lesson=atoms)
+            assert result.blueprint.modules[0].content_atom_ids == (
+                "l1_derivatives/definition/0",
+                "l1_derivatives/example/0",
+            )
+            assert result.blueprint.modules[1].content_atom_ids == (
+                "l2_integrals/definition/0",
+            )
+
+    def test_plan_with_atoms_per_lesson_empty(self) -> None:
+        """Empty atoms_per_lesson dict produces empty content_atom_ids."""
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self._create_sample_course(tmp)
+            result = plan_course(folder, atoms_per_lesson={})
+            for mod in result.blueprint.modules:
+                assert mod.content_atom_ids == ()
+
+    def test_plan_with_atoms_per_lesson_none(self) -> None:
+        """None atoms_per_lesson (default) produces empty content_atom_ids (backward compat)."""
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self._create_sample_course(tmp)
+            result = plan_course(folder)
+            for mod in result.blueprint.modules:
+                assert mod.content_atom_ids == ()
