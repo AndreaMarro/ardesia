@@ -44,3 +44,4 @@ Ogni pagina + riassunto 1 riga.
 |||- **moodle-xml-export.md** — P1: Moodle XML Quiz Exporter: quiz_question atoms → quiz.xml formato standard Moodle (ZERO-LLM, stdlib-only)
 
 |||- **cli-compile-course.md** — P1: CLI `lessons compile-course <folder> --target` wiring CourseFolder → exporter (ZERO-LLM, zero deps)
+|- **source-extractor.md** — P1: SourceMaterial + extract_source_materials da CourseFolder (Docling-adapter foundation, stdlib-only)
