@@ -1,8 +1,9 @@
-import { useState, useRef, type CSSProperties } from "react"
+import { useState, useRef, type CSSProperties, type ChangeEvent } from "react"
 import { Excalidraw, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
+import { imageToDataURL, pdfToImages } from "./loadFile"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -39,14 +40,57 @@ export default function Room() {
     }, 700)
   }
 
-  // Inserisce la formula come immagine SVG sulla lavagna Excalidraw.
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  // Aggiunge N immagini sulla lavagna Excalidraw in un solo update (math, immagini, pagine-PDF).
+  function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number }[]) {
+    if (!api || !items.length) return
+    const files = items.map((it) => {
+      const id = (crypto.randomUUID?.() ?? String(Math.random()).slice(2)) as string
+      return { ...it, _id: id, file: { id, dataURL: it.dataURL, mimeType: it.mimeType, created: Date.now(), lastRetrieved: Date.now() } }
+    })
+    api.addFiles(files.map((f) => f.file))
+    const els = convertToExcalidrawElements(
+      files.map((f) => ({ type: "image", x: f.x, y: f.y, width: f.width, height: f.height, fileId: f._id }) as any)
+    )
+    api.updateScene({ elements: [...api.getSceneElements(), ...els] })
+  }
+
+  // Formula → immagine SVG sulla lavagna.
   async function insertMath(latex: string) {
     if (!api || !latex.trim()) return
     const { dataURL, width, height } = await latexToImage(latex)
-    const fileId = (crypto.randomUUID?.() ?? String(Math.random()).slice(2)) as string
-    api.addFiles([{ id: fileId, dataURL, mimeType: "image/svg+xml", created: Date.now(), lastRetrieved: Date.now() }])
-    const els = convertToExcalidrawElements([{ type: "image", x: 160, y: 120, width, height, fileId } as any])
-    api.updateScene({ elements: [...api.getSceneElements(), ...els] })
+    addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
+  }
+
+  // Carica immagine o PDF → sulla lavagna (PDF = una pagina-immagine ciascuna, impilate).
+  async function handleFile(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = ""
+    if (!file || !api) return
+    try {
+      if (file.type === "application/pdf") {
+        const pages = await pdfToImages(file)
+        let y = 100
+        const items = pages.map((p) => {
+          const width = Math.min(720, p.width)
+          const height = Math.round(width * (p.height / p.width))
+          const it = { dataURL: p.dataURL, mimeType: "image/png", width, height, x: 160, y }
+          y += height + 24
+          return it
+        })
+        addImages(items)
+      } else if (file.type.startsWith("image/")) {
+        const { dataURL, width, height } = await imageToDataURL(file)
+        const w = Math.min(600, width)
+        const h = Math.round(w * (height / width))
+        addImages([{ dataURL, mimeType: file.type, width: w, height: h, x: 160, y: 120 }])
+      } else {
+        alert("Formato non supportato (usa immagine o PDF).")
+      }
+    } catch (err) {
+      alert("Caricamento non riuscito: " + (err as Error).message)
+    }
   }
   const shareUrl = `${location.origin}${location.pathname}#${room}`
 
@@ -71,6 +115,8 @@ export default function Room() {
         {saved && <span style={{ color: "#5fd38a", fontSize: 12 }}>✓ salvato</span>}
         <button onClick={copyLink} style={btn}>{copied ? "✓ copiato" : "copia link studente"}</button>
         <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
+        <button onClick={() => fileInputRef.current?.click()} style={btn}>carica img/PDF</button>
+        <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
         <button onClick={() => setVideoOn(v => !v)} style={{ ...btn, marginLeft: "auto", background: videoOn ? "#e0245e" : "#1763ff" }}>
           {videoOn ? "chiudi video" : "avvia video"}
         </button>
