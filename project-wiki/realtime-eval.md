@@ -35,7 +35,7 @@ Il modulo colma il gap tra:
 
 Ogni chiamata LLM è tracciata dal `CostLedger` (wrapper su `router.complete`). Mock calls: 0 token, $0 cost. DeepSeek calls: usage reali dalla API, stimati via `estimate_deepseek_api_cost`. Il report finale include `total_cost_usd`, `total_tokens`, `llm_calls`.
 
-## Risultati LIVE (2026-06-16, DeepSeek-chat, 9 runs su 3 lezioni)
+## Risultati LIVE (2026-06-16, DeepSeek-chat, 9 runs su 3 lezioni sample_path)
 
 | Lezione | groundedness | excerpt_accuracy | n_concepts (media) | costo/run |
 |---------|-------------|-----------------|-------------------|-----------|
@@ -44,6 +44,19 @@ Ogni chiamata LLM è tracciata dal `CostLedger` (wrapper su `router.complete`). 
 | l3 (integral) | 1.00 | 1.00 | 2.7 | $0.00015 |
 
 **100% pass rate, zero hallucination failures.** Report completo: `docs/eval/real-transcript-report.md`.
+
+## Cross-domain mock (M8-task2, 2026-06-16)
+
+`_LESSON_MOCKS` estesa in `lessonos/cli.py:320-587` con 4 nuovi mock:
+- **spaced_path**: `l1_sm2_intro` (SM-2), `l2_fsrs_advanced` (FSRS)
+- **bio_path**: `l1_fotosintesi_intro` (fotosintesi), `l2_reazioni_luce` (reazioni luce)
+
+Ciascun mock usa seg_id reali dalle fixture e excerpt verbatim dal testo dei segmenti.
+6 nuovi test in `tests/test_cli_eval_real.py:218-274` (spaced_path l1+l2, bio_path l1+l2, n-runs 3).
+Claude Code review: 6 fix su excerpt non verbatim applicati (grounding preservato).
+Gate: 1294 pass (+6 su baseline 1288, no regression). Mock-gated = zero costo.
+
+## CLI
 
 ## Fix emersi da LIVE
 

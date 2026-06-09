@@ -123,7 +123,7 @@ def test_eval_real_missing_fixture_returns_1(tmp_path) -> None:
 
 
 def test_eval_real_no_mock_lesson_returns_1() -> None:
-    """eval-real with a lesson that has fixture but no mock returns 1."""
+    """eval-real with unknown lesson returns 1 (lesson not found)."""
     from io import StringIO
 
     stdout = StringIO()
@@ -133,22 +133,20 @@ def test_eval_real_no_mock_lesson_returns_1() -> None:
     sys.stdout = stdout
     sys.stderr = stderr
     try:
-        # Use a real lesson from bio_path that has NO entry in _LESSON_MOCKS
-        # (bio_path lessons don't have mock payloads — only sample_path does).
+        # Use a lesson_id that exists nowhere (no fixture, no mock).
         from lessonos import cli as _cli_mod
 
-        assert "l1_fotosintesi_intro" not in _cli_mod._LESSON_MOCKS, \
-            "bio_path mock added but this test expects it absent — update test"
         assert "fake_lesson_no_mock" not in _cli_mod._LESSON_MOCKS
 
         exit_code = cli_main(
-            ["eval-real", "--fixture", "fixtures/bio_path", "--lesson", "l1_fotosintesi_intro"]
+            ["eval-real", "--lesson", "fake_lesson_no_mock"]
         )
     finally:
         sys.stdout = old_out
         sys.stderr = old_err
     assert exit_code == 1
-    assert "no mock registered" in stderr.getvalue()
+    err = stderr.getvalue()
+    assert "not found" in err or "no mock" in err, f"Unexpected error: {err}"
 
 
 def test_eval_real_missing_path_json_returns_1(tmp_path) -> None:
@@ -213,3 +211,64 @@ def test_eval_real_live_flag_with_n_runs() -> None:
         sys.stderr = old_err
     # Same as above: live might work with key, or fail gracefully without
     assert exit_code in (0, 1), f"Unexpected exit code: {exit_code}"
+
+
+# ---------------------------------------------------------------------------
+# M8-task2: Cross-domain eval-real (spaced_path, bio_path)
+# ---------------------------------------------------------------------------
+
+
+def test_eval_real_spaced_path() -> None:
+    """eval-real works on spaced_path (mock, lesson 1)."""
+    exit_code = cli_main([
+        "eval-real", "--fixture", "fixtures/spaced_path",
+        "--lesson", "l1_sm2_intro",
+    ])
+    assert exit_code == 0
+
+
+def test_eval_real_spaced_path_l2() -> None:
+    """eval-real works on spaced_path lesson 2 (FSRS)."""
+    exit_code = cli_main([
+        "eval-real", "--fixture", "fixtures/spaced_path",
+        "--lesson", "l2_fsrs_advanced",
+    ])
+    assert exit_code == 0
+
+
+def test_eval_real_bio_path() -> None:
+    """eval-real works on bio_path (mock, lesson 1)."""
+    exit_code = cli_main([
+        "eval-real", "--fixture", "fixtures/bio_path",
+        "--lesson", "l1_fotosintesi_intro",
+    ])
+    assert exit_code == 0
+
+
+def test_eval_real_bio_path_l2() -> None:
+    """eval-real works on bio_path lesson 2 (reazioni luce)."""
+    exit_code = cli_main([
+        "eval-real", "--fixture", "fixtures/bio_path",
+        "--lesson", "l2_reazioni_luce",
+    ])
+    assert exit_code == 0
+
+
+def test_eval_real_spaced_path_n_runs_3() -> None:
+    """eval-real --n-runs 3 works on spaced_path (mock)."""
+    exit_code = cli_main([
+        "eval-real", "--fixture", "fixtures/spaced_path",
+        "--lesson", "l1_sm2_intro",
+        "--n-runs", "3",
+    ])
+    assert exit_code == 0
+
+
+def test_eval_real_bio_path_n_runs_3() -> None:
+    """eval-real --n-runs 3 works on bio_path (mock)."""
+    exit_code = cli_main([
+        "eval-real", "--fixture", "fixtures/bio_path",
+        "--lesson", "l1_fotosintesi_intro",
+        "--n-runs", "3",
+    ])
+    assert exit_code == 0

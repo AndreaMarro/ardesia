@@ -317,6 +317,278 @@ _LESSON_MOCKS: dict[str, tuple[list[dict], dict]] = {
             ],
         },
     ),
+
+    # --- spaced_path (Learning Science -- Spaced Repetition) ---
+
+    "l1_sm2_intro": (
+        # seg_payload
+        [
+            {
+                "topic": "Introduzione alla ripetizione spaziata",
+                "seg_ids": ["l1s1", "l1s2"],
+            },
+            {
+                "topic": "Formula SM-2 e qualita di risposta",
+                "seg_ids": ["l1s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "ripetizione spaziata",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s1",
+                            "excerpt": "ripetizione spaziata e una tecnica di apprendimento",
+                        }
+                    ],
+                },
+                {
+                    "name": "SM-2",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s2",
+                            "excerpt": "SM-2 di SuperMemo utilizza sei livelli di qualita",
+                        }
+                    ],
+                },
+                {
+                    "name": "EF formula",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s3",
+                            "excerpt": "formula SM-2 calcola EF",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Calcola l intervallo dopo una risposta di qualita 5 con EF=2.5.",
+                    "citations": [{"seg_id": "l1s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Perche il sistema SM-2 usa 6 livelli e non una scala continua?",
+                    "citations": [{"seg_id": "l1s2"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Implementa un simulatore SM-2 in Python: date le qualita di risposta, calcola EF e intervalli.",
+                    "citations": [{"seg_id": "l1s3"}],
+                }
+            ],
+        },
+    ),
+
+    "l2_fsrs_advanced": (
+        # seg_payload
+        [
+            {
+                "topic": "FSRS: Free Spaced Repetition Scheduler",
+                "seg_ids": ["l2s1", "l2s2"],
+            },
+            {
+                "topic": "Ottimizzazione FSRS e cross-entropia",
+                "seg_ids": ["l2s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "FSRS",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s1",
+                            "excerpt": "FSRS e un algoritmo moderno",
+                        }
+                    ],
+                },
+                {
+                    "name": "funzione di ritenzione",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s2",
+                            "excerpt": "funzione di ritenzione R(t) = exp",
+                        }
+                    ],
+                },
+                {
+                    "name": "cross-entropia",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s3",
+                            "excerpt": "minimizzazione della cross-entropia",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Confronta SM-2 e FSRS: quali parametri FSRS rendono l algoritmo piu flessibile?",
+                    "citations": [{"seg_id": "l2s1"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Come viene ottimizzata la cross-entropia in FSRS su larga scala?",
+                    "citations": [{"seg_id": "l2s3"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Implementa la formula R(t)=exp(-t/S) in Python. Calcola R per t=1,2,7 con S=3,5,10.",
+                    "citations": [{"seg_id": "l2s2"}],
+                }
+            ],
+        },
+    ),
+
+    # --- bio_path (Biologia -- Fotosintesi Clorofilliana) ---
+
+    "l1_fotosintesi_intro": (
+        # seg_payload
+        [
+            {
+                "topic": "Introduzione alla fotosintesi",
+                "seg_ids": ["l1s1", "l1s2"],
+            },
+            {
+                "topic": "Reazione complessiva",
+                "seg_ids": ["l1s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "fotosintesi clorofilliana",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s1",
+                            "excerpt": "fotosintesi clorofilliana e il processo",
+                        }
+                    ],
+                },
+                {
+                    "name": "cloroplasti",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s2",
+                            "excerpt": "cloroplasti, organelli che contengono clorofilla",
+                        }
+                    ],
+                },
+                {
+                    "name": "equazione della fotosintesi",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l1s3",
+                            "excerpt": "6 CO2 + 6 H2O + luce -> C6H12O6 + 6 O2",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Bilancia l equazione della fotosintesi e identifica i reagenti e i prodotti.",
+                    "citations": [{"seg_id": "l1s3"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Perche i cloroplasti hanno una doppia membrana?",
+                    "citations": [{"seg_id": "l1s2"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Disegna uno schema del cloroplasto e descrivi il ruolo di tilacoidi e stroma.",
+                    "citations": [{"seg_id": "l1s2"}],
+                }
+            ],
+        },
+    ),
+
+    "l2_reazioni_luce": (
+        # seg_payload
+        [
+            {
+                "topic": "Reazioni luminose e catena di trasporto",
+                "seg_ids": ["l2s1", "l2s2"],
+            },
+            {
+                "topic": "NADPH e ATP",
+                "seg_ids": ["l2s3"],
+            },
+        ],
+        # ext_payload
+        {
+            "concepts": [
+                {
+                    "name": "fotosintesi clorofilliana",
+                    "status": "reinforced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s1",
+                            "excerpt": "reazioni luminose avvengono nei tilacoidi",
+                        }
+                    ],
+                },
+                {
+                    "name": "catena di trasporto elettronico",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s2",
+                            "excerpt": "catena di trasporto elettronico",
+                        }
+                    ],
+                },
+                {
+                    "name": "NADPH",
+                    "status": "introduced",
+                    "citations": [
+                        {
+                            "seg_id": "l2s3",
+                            "excerpt": "NADP+ viene ridotto a NADPH",
+                        }
+                    ],
+                },
+            ],
+            "exercises": [
+                {
+                    "prompt": "Segui il percorso di un elettrone dalla clorofilla al NADP+. Quante molecole di ATP vengono prodotte?",
+                    "citations": [{"seg_id": "l2s2"}],
+                },
+            ],
+            "student_questions": [
+                {
+                    "question": "Perche il gradiente protonico e necessario per la sintesi di ATP?",
+                    "citations": [{"seg_id": "l2s2"}],
+                }
+            ],
+            "homework": [
+                {
+                    "task": "Confronta il numero di molecole di ATP e NADPH prodotte per ogni molecola di glucosio.",
+                    "citations": [{"seg_id": "l2s3"}],
+                }
+            ],
+        },
+    ),
 }
 
 
