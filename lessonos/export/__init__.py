@@ -12,8 +12,12 @@ Formati pianificati:
 COORDINATION.md §18: P1 export — render DETERMINISTICO no-LLM.
 """
 
-from lessonos.export.markdown_course import export_course_markdown
+from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
+from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 
 __all__ = [
+    "LiaScriptCoursePack",
+    "MarkdownCoursePack",
     "export_course_markdown",
+    "export_liascript",
 ]
