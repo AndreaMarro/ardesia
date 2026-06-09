@@ -10,6 +10,9 @@ Gli ORDINI con i criteri di accettazione = `~/lessonos/COORDINATION.md` § CLAUD
 ORIENT (STATUS.md + ordini + codice) → PLAN (la PRIMA task M0 non completata; UNA ipotesi) → BUILD (codice + test vitest NON tautologici) → REVIEW (`./bin/review.sh`, applica i fix VERI) → GATE `bash eval/gate.sh` VERDE → COMMIT + append STATUS.md + append log.jsonl.
 
 ## 3. Regole tecniche (gotcha REALI già pagati — non ri-sbattere)
+- tsconfig è STRICT (`noUnusedLocals`/`noUnusedParameters`): import/variabili inutilizzati FALLISCONO il gate (TS6133) — pulisci prima di consegnare.
+- jsdom di vitest NON fornisce un localStorage completo: nei test stub esplicito (`Object.defineProperty(globalThis, 'localStorage', …)`) in beforeEach/setup — niente try/catch silenziosi che mascherano il guasto.
+- Blob binari (audio/immagini): MAI `data.text()` per serializzare — corrompe i byte; usa arrayBuffer → base64.
 - React duplicato: `resolve.dedupe ['react','react-dom']` già in vite.config — NON rimuovere.
 - Nuova dipendenza → `npm install` aggiorna package.json + package-lock.json: COMMITTALI entrambi. I test girano headless (vitest), niente dev server nel loop.
 - DOM nei test: devDep `jsdom` (già installata) + `// @vitest-environment jsdom` in testa al file di test.
