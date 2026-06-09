@@ -49,6 +49,16 @@ Pipeline:
 
 Zero-LLM, deterministico, frozen/ValueError pattern.
 
+## plan_course() atoms_per_lesson
+
+`plan_course(folder_path, ..., atoms_per_lesson=None)` — P1 bridge completato:
+
+- `atoms_per_lesson: Dict[str, tuple[ContentAtom, ...]] | None` — opzionale, forwardato a `build_course_blueprint(atoms=...)` per assegnare `content_atom_ids` ai moduli
+- Backward compatible: default `None` produce moduli senza `content_atom_ids`
+- ZERO-LLM, deterministico, pura data transformation
+- **Citazione**: `lessonos/course/planner.py:136-178` — parametro + forward a build_course_blueprint
+- **Test**: `tests/test_course_planner.py:312-371` — 3 nuovi test (atoms forniti, dict vuoto, None default)
+
 ## CLI Wiring
 
 `lessonos/cli.py` (`compile-course` handler, `lessonos/cli.py:814-884`):
