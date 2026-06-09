@@ -14,10 +14,13 @@ COORDINATION.md §18: P1 export — render DETERMINISTICO no-LLM.
 
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
+from lessonos.export.quarto import QuartoCoursePack, export_quarto
 
 __all__ = [
     "LiaScriptCoursePack",
     "MarkdownCoursePack",
+    "QuartoCoursePack",
     "export_course_markdown",
     "export_liascript",
+    "export_quarto",
 ]
