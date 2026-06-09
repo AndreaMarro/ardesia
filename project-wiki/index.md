@@ -30,10 +30,11 @@ Ogni pagina + riassunto 1 riga.
 - **pipeline.md** — PipelineOrchestrator: run_pipeline() + PipelineResult (P2 product-API, lessonos/pipeline.py)
 - **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2) + `lessonos observations` subcommand
 - **cross-fixture.md** — Multi-fixture hardening: second fixture path spaced_path (SM-2/FSRS), pattern per aggiungere nuovi fixture path
-- **retrieval-fts-cross-fixture.md** — Cross-fixture FTS integration tests: 3 domains (calculus, spaced repetition, biology), 21 test, rebuild consistency, domain isolation
-- **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
-- **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
-- **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
+|- **retrieval-fts-cross-fixture.md** — Cross-fixture FTS integration tests: 3 domains (calculus, spaced repetition, biology), 21 test, rebuild consistency, domain isolation
+|- **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
+|- **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
+|- **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
+|- **cross-fixture-grounding-audit.md** — P2: Grounding audit cross-fixture (run_pipeline su tutte e 3 le fixture, verifica seg_id+excerpt su ogni citazione)
 
 ## Course Foundry (nuovo)
 

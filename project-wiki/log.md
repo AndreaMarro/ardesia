@@ -73,3 +73,4 @@ Append-only. 1 riga per modifica.
 - **2026-06-15(current+13) — P1: GeneratedArtifact lineage tracking**: lessonos/course/lineage.py — GeneratedArtifact, SourceLink, build_{markdown,liascript,quarto,slides}_pack.artifact. REGOLA LINEAGE COORDINATION.md. 421 test. Gate 1266 (+40).
 
 |- **2026-06-15(current+14) — RETRO #9**: 8 iterazioni da RETRO #8 (1156→1266 test, +110, no regression). Attriti chiusi: grounding seg_id (3x), test >= deterministici (3x). Aperti: observations saltate (2x), excerpt non grounded in lineage (2x). check-frictions.sh: 0 warning.
+|- **2026-06-16(current+15) — P2 Cross-fixture grounding audit**: tests/test_pipeline_cross_fixture_grounding.py — 6 test che esegue run_pipeline su ogni fixture path (3) e verifica grounding su TUTTE le citazioni (seg_id risolve, excerpt in text). Claude review: 4 fix. Gate 1272 (+6). project-wiki/cross-fixture-grounding-audit.md nuovo.
