@@ -42,3 +42,5 @@ Ogni pagina + riassunto 1 riga.
 |||- **liascript-export.md** — P1: LiaScript Course Exporter: CourseBlueprint + ContentAtoms → corso interattivo .md con quiz, esercizi, anchor TOC (ZERO-LLM)
 |||- **quarto-export.md** — P1: Quarto Course Exporter: CourseBlueprint + ContentAtoms → _quarto.yml + .qmd files per HTML/PDF/slides (ZERO-LLM)
 |||- **moodle-xml-export.md** — P1: Moodle XML Quiz Exporter: quiz_question atoms → quiz.xml formato standard Moodle (ZERO-LLM, stdlib-only)
+
+|||- **cli-compile-course.md** — P1: CLI `lessons compile-course <folder> --target` wiring CourseFolder → exporter (ZERO-LLM, zero deps)

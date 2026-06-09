@@ -43,6 +43,10 @@ from lessonos.store.fixture_loader import (
     load_sample_path,
 )
 from lessonos.store.sqlite import SQLiteStore
+from lessonos.course.folder_loader import load_course_folder, build_course_blueprint
+from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
+from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
+from lessonos.export.quarto import QuartoCoursePack, export_quarto
 
 # ---------------------------------------------------------------------------
 # Mock payload definitions — one per lesson, keyed by lesson_id.
@@ -729,6 +733,34 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=1,
         help="Number of eval runs (default: 1, use >1 for distribution)",
     )
+
+    cc_parser = sub.add_parser(
+        "compile-course", help="Compile a course folder into export format"
+    )
+    cc_parser.add_argument(
+        "folder",
+        type=str,
+        help="Path to course folder containing course.json",
+    )
+    cc_parser.add_argument(
+        "--target",
+        type=str,
+        default="markdown",
+        choices=["markdown", "liascript", "quarto"],
+        help="Export target format (default: markdown)",
+    )
+    cc_parser.add_argument(
+        "--output",
+        type=str,
+        default="",
+        help="Output directory (default: <course_folder>/_build/<target>)",
+    )
+    cc_parser.add_argument(
+        "--include-ai-atoms",
+        action="store_true",
+        default=False,
+        help="Include AI-inferred atoms in output (default: False)",
+    )
     return parser.parse_args(argv)
 
 
@@ -777,6 +809,78 @@ def main(argv: list[str] | None = None) -> int:
             print(summary)
         else:
             print("No observations found.")
+        return 0
+
+    if args.command == "compile-course":
+        folder_path = FsPath(args.folder).resolve()
+        if not folder_path.exists():
+            print(
+                f"Error: course folder not found: {folder_path}",
+                file=sys.stderr,
+            )
+            return 1
+        if not (folder_path / "course.json").exists():
+            print(
+                f"Error: no course.json in {folder_path}",
+                file=sys.stderr,
+            )
+            return 1
+
+        # Load course
+        try:
+            course = load_course_folder(str(folder_path))
+        except ValueError as e:
+            print(f"Error loading course: {e}", file=sys.stderr)
+            return 1
+
+        # Build blueprint
+        try:
+            blueprint = build_course_blueprint(course)
+        except ValueError as e:
+            print(f"Error building blueprint: {e}", file=sys.stderr)
+            return 1
+
+        # Determine output dir
+        output_dir = args.output or str(
+            folder_path / "_build" / args.target
+        )
+
+        # Route to target exporter
+        try:
+            if args.target == "markdown":
+                pack = export_course_markdown(
+                    blueprint,
+                    output_dir=output_dir,
+                    include_ai_atoms=args.include_ai_atoms,
+                )
+            elif args.target == "liascript":
+                pack = export_liascript(
+                    blueprint,
+                    output_dir=output_dir,
+                    include_ai_atoms=args.include_ai_atoms,
+                )
+            elif args.target == "quarto":
+                pack = export_quarto(
+                    blueprint,
+                    output_dir=output_dir,
+                    include_ai_atoms=args.include_ai_atoms,
+                )
+            else:
+                print(
+                    f"Error: unknown target: {args.target}",
+                    file=sys.stderr,
+                )
+                return 1
+        except ValueError as e:
+            print(f"Error during export: {e}", file=sys.stderr)
+            return 1
+
+        n_files = len(pack.files)
+        print(
+            f"Course compiled: {len(blueprint.modules)} modules, "
+            f"{len(blueprint.source_lessons)} lessons, "
+            f"{n_files} files written to {output_dir}/"
+        )
         return 0
 
     if args.command == "eval-real":
