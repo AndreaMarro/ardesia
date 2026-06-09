@@ -37,6 +37,7 @@ Ogni pagina + riassunto 1 riga.
 
 ## Course Foundry (nuovo)
 
-||- **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
+|||- **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
 ||- **markdown-export.md** — P1: Markdown Course Exporter: CourseBlueprint + ContentAtoms → course.md + modules + exercises.md + quiz.md (ZERO-LLM)
 ||- **liascript-export.md** — P1: LiaScript Course Exporter: CourseBlueprint + ContentAtoms → corso interattivo .md con quiz, esercizi, anchor TOC (ZERO-LLM)
+||- **quarto-export.md** — P1: Quarto Course Exporter: CourseBlueprint + ContentAtoms → _quarto.yml + .qmd files per HTML/PDF/slides (ZERO-LLM)
