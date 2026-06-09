@@ -153,6 +153,63 @@ def test_propagates_extraction_grounding_error() -> None:
     store.close()
 
 
+# Map payload keys (used in ext_payload dict) to LessonContent attribute names.
+# Extraction uses plural keys; attributes are also plural.
+_ITEM_SPECS = [
+    ("concepts", lambda good, bad: {
+        "name": "p1", "status": "introduced",
+        "citations": [{"seg_id": bad}, {"seg_id": good}],
+    }),
+    ("exercises", lambda good, bad: {
+        "prompt": "do this",
+        "citations": [{"seg_id": bad}, {"seg_id": good}],
+    }),
+    ("student_questions", lambda good, bad: {
+        "question": "why?",
+        "citations": [{"seg_id": bad}, {"seg_id": good}],
+    }),
+    ("homework", lambda good, bad: {
+        "task": "read p.3",
+        "citations": [{"seg_id": bad}, {"seg_id": good}],
+    }),
+]
+
+
+@pytest.mark.parametrize("item_key,item_maker", _ITEM_SPECS, ids=[s[0] for s in _ITEM_SPECS])
+def test_defensive_drops_bad_citation_per_item_type(
+    item_key: str, item_maker,
+) -> None:
+    """FM4: defensive=True drops a fabricated-seg_id citation from EVERY item
+    type (concept, exercise, student_question, homework), keeping the item
+    without the bad citation and recording the drop.
+
+    Non-tautological: the extraction payload carries one valid seg_id (l1s1)
+    and one fabricated seg_id (l1s99); only the real seg_id survives.
+    """
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    seg_prompt = build_segmentation_prompt(store.segments_for_lesson(L1))
+    ext_prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+
+    seg_payload = [{"topic": "ok", "seg_ids": ["l1s1"]}]
+    item = item_maker("l1s1", "l1s99")
+    ext_payload: dict = {"concepts": [], "exercises": [], "student_questions": [], "homework": []}
+    ext_payload[item_key] = [item]
+
+    router = _router_for_both(seg_prompt, seg_payload, ext_prompt, ext_payload)
+    capsule = assemble_lesson_capsule(store, L1, router, defensive=True)
+
+    items = getattr(capsule.content, item_key)
+    assert len(items) == 1, f"expected 1 {item_key}, got {len(items)}"
+    seg_ids = [c.seg_id for c in items[0].citations]
+    assert seg_ids == ["l1s1"], f"{item_key}: bad seg_id survived: {seg_ids}"
+    assert capsule.dropped, f"{item_key}: expected non-empty dropped list"
+    assert any(
+        isinstance(d, str) and "l1s99" in d for d in capsule.dropped
+    ), f"{item_key}: dropped list should mention l1s99: {capsule.dropped}"
+    store.close()
+
+
 def test_defensive_drops_bad_citation_and_none_field() -> None:
     """FM4: defensive=True drops a fabricated-seg_id citation and a None-field
     item (instead of crashing), keeping valid items and recording drops.
@@ -203,8 +260,8 @@ def test_defensive_drops_bad_citation_and_none_field() -> None:
 
     # dropped list is non-empty and records both the bad citation and concept.
     assert capsule.dropped, "expected non-empty dropped list"
-    assert any("l1s99" in d for d in capsule.dropped)
-    assert any("concept dropped" in d for d in capsule.dropped)
+    assert any(isinstance(d, str) and "l1s99" in d for d in capsule.dropped)
+    assert any(isinstance(d, str) and "concept dropped" in d for d in capsule.dropped)
 
     # Zero-allucinazione: every surviving citation resolves to a real segment.
     by_id = {s.seg_id for s in store.segments_for_lesson(L1)}
