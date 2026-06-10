@@ -51,18 +51,27 @@ with open(os.path.expanduser("~/.hermes/config.yaml")) as f:
 if not key:
     sys.exit("kimi key non trovata in config")
 
+feedback = ""
+fb_path = os.path.join(OUTDIR, "TRIAGE-FEEDBACK.md")
+if os.path.exists(fb_path):
+    feedback = "\n\n=== FEEDBACK DEL SUPERVISORE SUI TUOI REPORT PRECEDENTI (calibrati di conseguenza) ===\n" + open(fb_path).read()[:3000]
+
 prompt = f"""Sei HERMES-2, red-team ADVERSARIALE del progetto MAESTRO (onestà brutale, zero compiacenza).
 Un altro agente ha committato questo lavoro nel repo {repo} ed è passato dal gate. Il tuo compito è ROMPERLO.
 Cerca SOLO problemi VERI, in ordine di gravità: (1) bug reali con input realistici; (2) test tautologici o che
 non testano il comportamento dichiarato; (3) edge case mancanti che morderanno; (4) DEBITO TECNICO e manutenibilità
 (duplicazione, accoppiamenti, nomi ingannevoli, codice morto); (5) violazioni degli invarianti MAESTRO
 (formati aperti, model-agnostic, niente cloud non autorizzato, GDPR Mode A, niente ELAB/Numeria).
-Per ogni problema: file:line + perché è vero + fix preciso. Se un problema è grave, inizia la riga con "CRITICO:".
-Se il lavoro regge davvero, scrivi "REGGE" e UNA debolezza residua. Max 350 parole, italiano.
+FORMATO: PRIMA riga = verdetto secco ("REGGE" oppure "N problemi, di cui M CRITICI"). Poi i problemi:
+file:line + perché è vero + input reale che lo innesca + fix preciso.
+SEVERITÀ (vincolante): "CRITICO:" SOLO se (perdita/corruzione di dati o lavoro) ∨ (violazione invariante di
+prodotto: groundedness, replay deterministico, GDPR Mode A, local-first, raw immutabile) ∨ (sicurezza reale).
+Se la garanzia appartiene a una dipendenza matura (SQLite, browser, OS), NON è critico: una riga come NOTA.
+Se il lavoro regge davvero, scrivi "REGGE" e UNA debolezza residua. Max 350 parole, italiano.{feedback}
 
 COMMIT: {subject}
 {stat}
-DIFF (troncato a 60k):
+DIFF (troncato a 40k):
 {diff}"""
 
 # kimi-k2.6 = reasoning model: accetta SOLO temperature=1 (400 altrimenti); max_tokens copre reasoning+risposta.
