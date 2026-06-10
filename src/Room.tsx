@@ -1,9 +1,10 @@
-import { useState, useRef, type CSSProperties, type ChangeEvent } from "react"
+import { useState, useRef, useEffect, type CSSProperties, type ChangeEvent } from "react"
 import { Excalidraw, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
+import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -15,27 +16,71 @@ function getRoomId(): string {
   return h
 }
 
-export default function Room() {
+export default function Room({ store }: { store?: WorkspaceStore }) {
+  const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
-  const [api, setApi] = useState<any>(null)
   const [saved, setSaved] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [storageError, setStorageError] = useState<string | null>(null)
+  /** Dati scena caricati async dallo store (null = nessun dato salvato) */
+  const [sceneData, setSceneData] = useState<any>(null)
 
-  // Persistenza locale per-stanza: la lezione NON sparisce al refresh (la lezione resta tua).
-  // Fase-0 = localStorage (per-browser). Sync cross-device/cloud = Fase-1 (Supabase).
-  const STORAGE_KEY = `studio-scene:${room}`
-  const [initialData] = useState(() => {
-    try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : null } catch { return null }
-  })
+  const apiRef = useRef<any>(null)
   const saveTimer = useRef<number | null>(null)
+  // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
+  const initialLoadDone = useRef(false)
+
+  // All'avvio, inizializza lo store e carica la scena dal driver attivo (FSA → localStorage).
+  // Excalidraw monta SOLO dopo il caricamento (render condizionale), evitando race condition
+  // sul ciclo di vita di Excalidraw: initialData è sempre al primo mount.
+  useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    actualStore.init()
+      .then(() => actualStore.loadScene(room))
+      .then((data) => {
+        if (cancelled) return
+        if (data) {
+          try {
+            setSceneData(JSON.parse(data))
+          } catch {
+            // JSON malformato — si parte da zero
+          }
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setStorageError("Caricamento scena fallito: " + (err as Error).message)
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          initialLoadDone.current = true
+          setLoading(false)
+        }
+      })
+    return () => { cancelled = true }
+  }, [room, actualStore])
+
+  // Persistenza via WorkspaceStore.
+  // La scena viene salvata sul driver attivo (FSA → localStorage come cache/fallback).
+  // Gestione quota 5MB esplicita e visibile — MAI try/catch muto.
   function persist(elements: any, appState: any, files: any) {
+    if (!initialLoadDone.current) return // ignora onChange durante il caricamento iniziale
     if (saveTimer.current) window.clearTimeout(saveTimer.current)
-    saveTimer.current = window.setTimeout(() => {
+    saveTimer.current = window.setTimeout(async () => {
       try {
-        localStorage.setItem(STORAGE_KEY, serializeAsJSON(elements, appState, files, "local"))
-        setSaved(true); window.setTimeout(() => setSaved(false), 1200)
-      } catch { /* quota/serialize: non bloccare la lezione */ }
+        const serialized = serializeAsJSON(elements, appState, files, "local")
+        await actualStore.saveScene(room, serialized)
+        setStorageError(null)
+        setSaved(true)
+        window.setTimeout(() => setSaved(false), 1200)
+      } catch (err) {
+        // Quota esaurita o errore di scrittura — mostra all'utente, MAI try/catch muto
+        setStorageError("Salvataggio non riuscito: " + (err as Error).message)
+      }
     }, 700)
   }
 
@@ -43,21 +88,21 @@ export default function Room() {
 
   // Aggiunge N immagini sulla lavagna Excalidraw in un solo update (math, immagini, pagine-PDF).
   function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number }[]) {
-    if (!api || !items.length) return
+    if (!apiRef.current || !items.length) return
     const files = items.map((it) => {
       const id = (crypto.randomUUID?.() ?? String(Math.random()).slice(2)) as string
       return { ...it, _id: id, file: { id, dataURL: it.dataURL, mimeType: it.mimeType, created: Date.now(), lastRetrieved: Date.now() } }
     })
-    api.addFiles(files.map((f) => f.file))
+    apiRef.current.addFiles(files.map((f) => f.file))
     const els = convertToExcalidrawElements(
       files.map((f) => ({ type: "image", x: f.x, y: f.y, width: f.width, height: f.height, fileId: f._id }) as any)
     )
-    api.updateScene({ elements: [...api.getSceneElements(), ...els] })
+    apiRef.current.updateScene({ elements: [...apiRef.current.getSceneElements(), ...els] })
   }
 
   // Formula → immagine SVG sulla lavagna.
   async function insertMath(latex: string) {
-    if (!api || !latex.trim()) return
+    if (!apiRef.current || !latex.trim()) return
     const { dataURL, width, height } = await latexToImage(latex)
     addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
   }
@@ -66,7 +111,7 @@ export default function Room() {
   async function handleFile(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     e.target.value = ""
-    if (!file || !api) return
+    if (!file || !apiRef.current) return
     try {
       if (file.type === "application/pdf") {
         const pages = await pdfToImages(file)
@@ -111,7 +156,16 @@ export default function Room() {
         <strong style={{ letterSpacing: 0.3 }}>Studio</strong>
         <span style={{ opacity: 0.6 }}>·</span>
         <span style={{ opacity: 0.8 }}>stanza {room}</span>
+        {loading && <span style={{ color: "#888", fontSize: 12 }}>caricamento…</span>}
         {saved && <span style={{ color: "#5fd38a", fontSize: 12 }}>✓ salvato</span>}
+        {storageError && (
+          <span
+            style={{ color: "#ff6b6b", fontSize: 12, maxWidth: 300, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+            title={storageError}
+          >
+            ⚠ {storageError}
+          </span>
+        )}
         <button onClick={copyLink} style={btn}>{copied ? "✓ copiato" : "copia link studente"}</button>
         <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
         <button onClick={() => fileInputRef.current?.click()} style={btn}>carica img/PDF</button>
@@ -123,7 +177,15 @@ export default function Room() {
       </header>
 
       <div style={{ flex: 1, position: "relative" }}>
-        <Excalidraw excalidrawAPI={setApi} initialData={initialData ?? undefined} onChange={persist} />
+        {/* Excalidraw monta SOLO dopo il caricamento: initialData al primo mount = scena restorata correttamente.
+            Se sceneData è null e loading è false, initialData=undefined = scena vuota. */}
+        {!loading && (
+          <Excalidraw
+            excalidrawAPI={(eapi) => { apiRef.current = eapi }}
+            initialData={sceneData ?? undefined}
+            onChange={persist}
+          />
+        )}
         {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
       </div>
     </div>
