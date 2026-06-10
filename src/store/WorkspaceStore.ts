@@ -3,7 +3,7 @@
 //   FSA (File System Access) → localStorage (cache/fallback) → bundle export/import.
 // La fonte di verità è la cartella FSA (o il bundle .lesson). localStorage è CACHE.
 
-import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode } from "./types"
+import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type StorageUsage } from "./types"
 import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
@@ -67,6 +67,12 @@ export class WorkspaceStore {
 
   async list(prefix?: string): Promise<FileEntry[]> {
     return this.driver.list(prefix)
+  }
+
+  /** Uso/quota storage del driver attivo. null = quota non applicabile (es. FSA) */
+  async storageUsage(): Promise<StorageUsage | null> {
+    if (!this.driver.usage) return null
+    return this.driver.usage()
   }
 
   // --- OPERAZIONI SCENA (Excalidraw) ---

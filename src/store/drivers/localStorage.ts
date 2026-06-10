@@ -2,12 +2,14 @@
 // NOTA: localStorage NON è la fonte di verità; la fonte = cartella FSA / export bundle.
 // I dati binari (audio etc.) sono codificati in base64 per non corrompersi.
 
-import { type WorkspaceDriver, type FileEntry } from "../types"
+import { type WorkspaceDriver, type FileEntry, type StorageUsage } from "../types"
 import { blobToBase64, base64ToBlob } from "../codec"
 
 const PREFIX = "maestro:"
 const MTIME_SUFFIX = ":mtime"
 const TYPE_SUFFIX = ":type"
+/** Quota tipica localStorage per-origin (5MB) — il limite REALE che oggi tronca le scene */
+const LOCALSTORAGE_QUOTA_BYTES = 5 * 1024 * 1024
 
 export class LocalStorageDriver implements WorkspaceDriver {
   readonly name = "localStorage"
@@ -25,6 +27,24 @@ export class LocalStorageDriver implements WorkspaceDriver {
 
   async init(): Promise<boolean> {
     return this.available()
+  }
+
+  /**
+   * Uso storage REALE: somma key+value di TUTTO il localStorage dell'origin
+   * (la quota è per-origin, non per-prefisso) in byte UTF-16 (2 byte/char).
+   */
+  async usage(): Promise<StorageUsage> {
+    let usedBytes = 0
+    try {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i)
+        if (!key) continue
+        usedBytes += (key.length + (localStorage.getItem(key)?.length ?? 0)) * 2
+      }
+    } catch {
+      // localStorage non disponibile: 0 usato, quota comunque riportata
+    }
+    return { usedBytes, quotaBytes: LOCALSTORAGE_QUOTA_BYTES }
   }
 
   private key(path: string): string {

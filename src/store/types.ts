@@ -7,9 +7,18 @@ export interface FileEntry {
   mtime: number      // epoch ms (ultima modifica)
 }
 
+/** Uso storage del driver (per indicatore quota in UI) */
+export interface StorageUsage {
+  usedBytes: number
+  quotaBytes: number
+}
+
 export interface WorkspaceDriver {
   /** Nome leggibile del driver (per debug/log) */
   readonly name: string
+
+  /** Uso/quota storage. Assente quando la quota non è applicabile (es. FSA = disco vero) */
+  usage?(): Promise<StorageUsage>
 
   /** Legge un file dal path relativo. null = non trovato */
   read(path: string): Promise<Blob | null>

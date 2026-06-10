@@ -299,6 +299,124 @@ describe("AudioRecorder", () => {
     recorder.consent = false
     expect(recorder.recording).toBe(false)
   })
+
+  // --- T2b punto 1: revoca consenso = CANCELLAZIONE dei chunk (GDPR-delete) ---
+
+  it("revoca consenso CANCELLA tutti i chunk audio dallo store (GDPR-delete)", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    mrHelper.emitChunk(0)
+    mrHelper.emitChunk(0)
+    await vi.waitFor(async () => {
+      const entries = await store.list("raw/audio/")
+      expect(entries).toHaveLength(2)
+    }, { timeout: 500, interval: 10 })
+
+    // Revoca: i dati NON devono più esistere (il filtro in export non basta)
+    recorder.consent = false
+    await recorder.lastRevoke
+
+    const entries = await store.list("raw/audio/")
+    expect(entries).toHaveLength(0)
+
+    // E la revoca è persistita in session.yaml
+    await vi.waitFor(async () => {
+      const blob = await store.read("raw/session.yaml")
+      expect(blob).not.toBeNull()
+      expect(await blob!.text()).toContain("audioConsent: false")
+    }, { timeout: 500, interval: 10 })
+  })
+
+  it("chunk tardivo dopo la revoca NON viene scritto né marcato (nessun dato post-revoca)", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    recorder.consent = false
+    await recorder.lastRevoke
+
+    // dataavailable tardivo (MediaRecorder.stop() emette il chunk parziale finale)
+    mrHelper.emitChunk(0)
+    await new Promise((r) => setTimeout(r, 20))
+
+    const entries = await store.list("raw/audio/")
+    expect(entries).toHaveLength(0)
+    expect(chunks).toHaveLength(0)
+  })
+
+  // --- T2b punto 2a: onerror rilascia il MediaStream (HERMES-0816) ---
+
+  it("onerror rilascia il MediaStream: il microfono si spegne anche su errore", async () => {
+    const trackStop = vi.fn()
+    vi.stubGlobal("navigator", {
+      ...navigator,
+      mediaDevices: {
+        getUserMedia: vi.fn().mockResolvedValue({
+          getTracks: () => [{ stop: trackStop }],
+        } as unknown as MediaStream),
+      },
+    })
+
+    recorder.consent = true
+    await recorder.start()
+    expect(recorder.recording).toBe(true)
+
+    mrHelper.instances[0].onerror?.()
+
+    expect(recorder.recording).toBe(false)
+    expect(trackStop).toHaveBeenCalled()
+  })
+
+  // --- T2b punto 2b: chunk su store PRIMA del marker journal (HERMES-0816) ---
+
+  it("marker journal emesso solo DOPO che la write del chunk è riuscita", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    let resolveWrite: () => void = () => {}
+    const writeSpy = vi.spyOn(store, "write").mockImplementationOnce(
+      () => new Promise<void>((resolve) => { resolveWrite = resolve })
+    )
+
+    mrHelper.emitChunk(0)
+    await vi.waitFor(() => {
+      expect(writeSpy).toHaveBeenCalledWith("raw/audio/chunk-0.webm", expect.any(Blob))
+    }, { timeout: 500, interval: 10 })
+
+    // Write in sospeso ⇒ il marker NON deve ancora esistere
+    expect(chunks).toHaveLength(0)
+
+    resolveWrite()
+    await vi.waitFor(() => {
+      expect(chunks).toHaveLength(1)
+    }, { timeout: 500, interval: 10 })
+  })
+
+  it("write del chunk fallita ⇒ NESSUN marker journal (niente marker orfani)", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    const writeSpy = vi.spyOn(store, "write").mockRejectedValueOnce(new Error("disk full"))
+
+    mrHelper.emitChunk(0)
+    await vi.waitFor(() => {
+      expect(writeSpy).toHaveBeenCalled()
+    }, { timeout: 500, interval: 10 })
+    await new Promise((r) => setTimeout(r, 20))
+
+    expect(chunks).toHaveLength(0)
+    const entries = await store.list("raw/audio/")
+    expect(entries).toHaveLength(0)
+  })
+
+  it("double-stop non lancia eccezioni", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    await recorder.stop()
+    await expect(recorder.stop()).resolves.toBeUndefined()
+    expect(recorder.recording).toBe(false)
+  })
 })
 
 // --- Tests per i parser YAML ---

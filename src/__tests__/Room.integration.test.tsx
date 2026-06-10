@@ -413,4 +413,43 @@ describe("Room ↔ WorkspaceStore integration", () => {
     vi.unstubAllGlobals()
     root.unmount()
   })
+
+  // --- T2b punto 4: indicatore quota REALE in header ---
+
+  it("header mostra l'indicatore quota cache (uso/quota da storageUsage)", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "storageUsage").mockResolvedValue({
+      usedBytes: 4.2 * 1048576,
+      quotaBytes: 5 * 1048576,
+    })
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("cache 4.2/5 MB")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("nessun indicatore quota quando non applicabile (driver senza usage, es. FSA)", async () => {
+    // MockDriver non implementa usage() ⇒ storageUsage() = null
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    expect(document.body.textContent).not.toContain("cache ")
+
+    root.unmount()
+  })
 })

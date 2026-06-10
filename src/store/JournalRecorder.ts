@@ -187,7 +187,11 @@ export class JournalRecorder {
 
   private scheduleFlush(): void {
     if (this.flushTimer !== null) return
-    this.flushTimer = setTimeout(() => this.flush(), 500)
+    this.flushTimer = setTimeout(() => {
+      // Write fallita dal timer: gli eventi tornano nel buffer (recovery in flush),
+      // riprova al prossimo tick invece di morire in unhandled rejection
+      this.flush().catch(() => this.scheduleFlush())
+    }, 500)
   }
 
   /** Promise chain per serializzare flush concorrenti (timer + cleanup su unmount) */
@@ -196,9 +200,11 @@ export class JournalRecorder {
   /**
    * Flush buffer su store: legge events.jsonl esistente, concatena, riscrive.
    * Serializzato via promise chain per evitare race tra timer e flush esplicito.
+   * Recovery: una write fallita rimette il batch in testa al buffer (ordine
+   * preservato, retry al flush successivo) e la chain NON resta avvelenata.
    */
   async flush(): Promise<void> {
-    this._pendingFlush = this._pendingFlush.then(async () => {
+    const run = this._pendingFlush.then(async () => {
       if (this.flushTimer !== null) {
         clearTimeout(this.flushTimer)
         this.flushTimer = null
@@ -206,23 +212,33 @@ export class JournalRecorder {
       if (this.buffer.length === 0) return
 
       const batch = this.buffer.splice(0)
-      const newLines = batch.map((e) => JSON.stringify(e)).join("\n") + "\n"
+      try {
+        const newLines = batch.map((e) => JSON.stringify(e)).join("\n") + "\n"
 
-      const existing = await this.store.read(PATHS.JOURNAL)
-      let content = ""
-      if (existing) {
-        const text = await existing.text()
-        if (text.trim()) {
-          content = text.replace(/\n$/, "") + "\n"
+        const existing = await this.store.read(PATHS.JOURNAL)
+        let content = ""
+        if (existing) {
+          const text = await existing.text()
+          if (text.trim()) {
+            content = text.replace(/\n$/, "") + "\n"
+          }
         }
+        content += newLines
+        await this.store.write(
+          PATHS.JOURNAL,
+          new Blob([content], { type: "application/x-ndjson" }),
+        )
+      } catch (err) {
+        this.buffer.unshift(...batch)
+        throw err
       }
-      content += newLines
-      await this.store.write(
-        PATHS.JOURNAL,
-        new Blob([content], { type: "application/x-ndjson" }),
-      )
     })
-    return this._pendingFlush
+    // La chain prosegue anche dopo un errore; il caller di flush() lo vede comunque
+    this._pendingFlush = run.then(
+      () => {},
+      () => {},
+    )
+    return run
   }
 
   /** Esposto per test: buffer corrente non ancora flushato */

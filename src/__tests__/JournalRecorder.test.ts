@@ -5,7 +5,7 @@
 // ReplayEngine: ricostruzione scena da journal, comparabile a board.excalidraw.
 // NON tautologici: ogni test verifica una proprietà DISTINTA del sistema.
 
-import { describe, it, expect, beforeEach } from "vitest"
+import { describe, it, expect, beforeEach, vi } from "vitest"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { JournalRecorder } from "../store/JournalRecorder"
@@ -267,6 +267,58 @@ describe("JournalRecorder", () => {
     expect(lines).toHaveLength(2)
     expect(lines[0]).toContain("element.add")
     expect(lines[1]).toContain("element.update")
+  })
+
+  // --- T2b punto 3: recovery della flush chain (write fallita NON avvelena _pendingFlush) ---
+
+  it("write fallita NON avvelena la flush chain: eventi recuperati al flush successivo", async () => {
+    recorder.recordMathInsert("E=mc^2")
+    const writeSpy = vi.spyOn(store, "write").mockRejectedValueOnce(new Error("quota esaurita"))
+
+    // Il caller vede l'errore (onestà), ma gli eventi NON sono persi
+    await expect(recorder.flush()).rejects.toThrow("quota esaurita")
+    expect(recorder.getBuffer()).toHaveLength(1)
+
+    // La chain NON è avvelenata: il flush successivo scrive davvero
+    await recorder.flush()
+    expect(recorder.getBuffer()).toHaveLength(0)
+    const blob = await store.read(PATHS.JOURNAL)
+    expect(blob).not.toBeNull()
+    const text = await blob!.text()
+    expect(text).toContain("E=mc^2")
+    writeSpy.mockRestore()
+  })
+
+  it("recovery preserva l'ordine: il batch fallito precede gli eventi nuovi", async () => {
+    recorder.recordMathInsert("primo")
+    const writeSpy = vi.spyOn(store, "write").mockRejectedValueOnce(new Error("disk"))
+    await expect(recorder.flush()).rejects.toThrow("disk")
+
+    recorder.recordMathInsert("secondo")
+    await recorder.flush()
+
+    const text = await (await store.read(PATHS.JOURNAL))!.text()
+    const latex = text.trim().split("\n").map((l) => (JSON.parse(l) as { latex: string }).latex)
+    expect(latex).toEqual(["primo", "secondo"])
+    writeSpy.mockRestore()
+  })
+
+  it("due write fallite di fila: la chain resta viva e il terzo flush recupera tutto", async () => {
+    recorder.recordMathInsert("a")
+    const writeSpy = vi
+      .spyOn(store, "write")
+      .mockRejectedValueOnce(new Error("fail-1"))
+      .mockRejectedValueOnce(new Error("fail-2"))
+
+    await expect(recorder.flush()).rejects.toThrow("fail-1")
+    await expect(recorder.flush()).rejects.toThrow("fail-2")
+    expect(recorder.getBuffer()).toHaveLength(1)
+
+    await recorder.flush()
+    expect(recorder.getBuffer()).toHaveLength(0)
+    const text = await (await store.read(PATHS.JOURNAL))!.text()
+    expect(text).toContain('"a"')
+    writeSpy.mockRestore()
   })
 })
 

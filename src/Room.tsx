@@ -5,6 +5,7 @@ import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
+import { type StorageUsage } from "./store/types"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { AudioRecorder } from "./store/AudioRecorder"
@@ -38,6 +39,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [audioRecording, setAudioRecording] = useState(false)
   /** Stato export .lesson */
   const [exporting, setExporting] = useState(false)
+  /** Uso/quota storage (null = quota non applicabile, es. FSA) */
+  const [quota, setQuota] = useState<StorageUsage | null>(null)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -104,6 +107,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         if (!cancelled) {
           initialLoadDone.current = true
           setLoading(false)
+          actualStore.storageUsage()
+            .then((u) => { if (!cancelled) setQuota(u) })
+            .catch(() => {})
           // Esponi test harness per Playwright kill-test (solo dev)
           if (import.meta.env.DEV) {
             ;(window as any).__MAESTRO_TEST__ = {
@@ -130,7 +136,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         saveTimer.current = null
       }
       // Flush journal rimanente e dispose AudioRecorder
-      journalRef.current?.flush()
+      journalRef.current?.flush().catch(() => {})
       audioRecorderRef.current?.dispose()
       journalRef.current = null
       audioRecorderRef.current = null
@@ -154,6 +160,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           setStorageError(null)
           setSaved(true)
           window.setTimeout(() => setSaved(false), 1200)
+          actualStore.storageUsage().then(setQuota).catch(() => {})
         } catch (err) {
           setStorageError("Salvataggio non riuscito: " + (err as Error).message)
         }
@@ -173,10 +180,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const ar = audioRecorderRef.current
     if (!ar) return
     if (ar.consent) {
-      // Spegni
+      // Spegni: la revoca CANCELLA i chunk (GDPR) — a fine purge aggiorna la quota
       ar.consent = false
       setAudioOn(false)
       setAudioRecording(false)
+      ar.lastRevoke
+        .then(() => actualStore.storageUsage().then(setQuota))
+        .catch(() => {})
     } else {
       // Accendi
       ar.consent = true
@@ -283,6 +293,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         <span style={{ opacity: 0.8 }}>stanza {room}</span>
         {loading && <span style={{ color: "#888", fontSize: 12 }}>caricamento…</span>}
         {saved && <span style={{ color: "#5fd38a", fontSize: 12 }}>✓ salvato</span>}
+        {quota && (
+          <span
+            style={{ color: quota.usedBytes / quota.quotaBytes > 0.8 ? "#ffb347" : "#888", fontSize: 12 }}
+            title="Spazio cache localStorage usato (la fonte di verità è la cartella workspace)"
+          >
+            cache {(quota.usedBytes / 1048576).toFixed(1)}/{Math.round(quota.quotaBytes / 1048576)} MB
+          </span>
+        )}
         {storageError && (
           <span
             style={{ color: "#ff6b6b", fontSize: 12, maxWidth: 300, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}

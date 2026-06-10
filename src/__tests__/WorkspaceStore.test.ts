@@ -5,6 +5,7 @@ import { describe, it, expect, beforeEach } from "vitest"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { type WorkspaceDriver, type FileEntry } from "../store/types"
 import { createBundleBlob, parseBundleBlob } from "../store/zipBundle"
+import { LocalStorageDriver } from "../store/drivers/localStorage"
 
 // jsdom non espone localStorage funzionante — stub esplicito.
 let storage: Record<string, string> = {}
@@ -165,6 +166,28 @@ describe("WorkspaceStore", () => {
     const audioList = await store.list("raw/audio/")
     expect(audioList.length).toBe(1)
     expect(audioList[0].path).toBe("raw/audio/chunk1.webm")
+  })
+
+  // --- T2b punto 4: uso/quota storage ---
+
+  it("storageUsage() = null quando il driver non espone usage (es. FSA)", async () => {
+    // MockDriver non implementa usage(): quota non applicabile
+    expect(await store.storageUsage()).toBeNull()
+  })
+
+  it("LocalStorageDriver.usage() conta i byte reali (UTF-16) e riporta quota 5MB", async () => {
+    const driver = new LocalStorageDriver()
+    const before = (await driver.usage()).usedBytes
+
+    await driver.write("raw/test.bin", new Blob(["x".repeat(1000)]))
+
+    const after = await driver.usage()
+    expect(after.quotaBytes).toBe(5 * 1024 * 1024)
+    // base64 di 1000 byte ≈ 1336 char × 2 byte UTF-16 (più chiavi e mtime)
+    expect(after.usedBytes - before).toBeGreaterThanOrEqual(2 * 1336)
+
+    await driver.delete("raw/test.bin")
+    expect((await driver.usage()).usedBytes).toBe(before)
   })
 })
 

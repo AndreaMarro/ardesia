@@ -11,6 +11,7 @@
 // - session.yaml registra il consenso: audioConsent + audioStartEpoch.
 
 import { type WorkspaceStore } from "./WorkspaceStore"
+import { PATHS } from "./types"
 
 // --- Tipi per session.yaml ---
 
@@ -86,6 +87,7 @@ export class AudioRecorder {
   private _stream: MediaStream | null = null
   private _chunkStartEpoch: number | null = null
   private createMediaRecorder: (stream: MediaStream) => MediaRecorder
+  private _lastRevoke: Promise<void> = Promise.resolve()
 
   constructor(options: AudioRecorderOptions) {
     this.store = options.store
@@ -109,7 +111,8 @@ export class AudioRecorder {
   /**
    * Imposta il consenso e persiste in session.yaml.
    * Se consent passa da false→true: registra audioStartEpoch in session.yaml.
-   * Se consent passa da true→false: ferma registrazione in corso.
+   * Se consent passa da true→false: ferma la registrazione E CANCELLA tutti i
+   * chunk audio (GDPR: revoca = i dati non devono esistere, il filtro in export non basta).
    */
   set consent(val: boolean) {
     if (this._consent === val) return
@@ -122,7 +125,23 @@ export class AudioRecorder {
     // Persiste SEMPRE: ON (audioConsent + startEpoch) e OFF (revoca)
     this.persistSession().catch(() => {})
     if (!val) {
-      this.stop().catch(() => {})
+      this._lastRevoke = (async () => {
+        await this.stop()
+        await this.purgeAudioChunks()
+      })().catch(() => {})
+    }
+  }
+
+  /** Promise dell'ultima revoca (stop + cancellazione chunk) — awaitabile da UI e test */
+  get lastRevoke(): Promise<void> {
+    return this._lastRevoke
+  }
+
+  /** GDPR-DELETE: cancella TUTTI i chunk audio dal workspace */
+  async purgeAudioChunks(): Promise<void> {
+    const entries = await this.store.list(PATHS.AUDIO_DIR)
+    for (const entry of entries) {
+      await this.store.delete(entry.path)
     }
   }
 
@@ -145,7 +164,10 @@ export class AudioRecorder {
       }
 
       recorder.onerror = () => {
+        // Rilascia il microfono ANCHE su errore: senza releaseStream il
+        // MediaStream resta attivo dopo un guasto del recorder (HERMES-0816)
         this.stopInternal()
+        this.releaseStream()
       }
 
       recorder.onstop = () => {
@@ -167,12 +189,20 @@ export class AudioRecorder {
   async stop(): Promise<void> {
     if (!this._recording) return
 
-    if (this._mediaRecorder && this._mediaRecorder.state !== "inactive") {
-      this._mediaRecorder.stop()
-    } else {
-      this.stopInternal()
-      this.releaseStream()
+    // _recording=false PRIMA di mediaRecorder.stop(): un dataavailable tardivo
+    // (chunk parziale emesso dallo stop) non deve scrivere chunk orfani —
+    // critico nella revoca GDPR, dove la purge corre subito dopo
+    this._recording = false
+    const mr = this._mediaRecorder
+    this._mediaRecorder = null
+    if (mr && mr.state !== "inactive") {
+      try {
+        mr.stop()
+      } catch {
+        // double-stop → InvalidStateError: già fermo, nulla da fare
+      }
     }
+    this.releaseStream()
   }
 
   /** Reimposta consenso senza persistere (per caricamento da session.yaml all'avvio) */
@@ -194,19 +224,20 @@ export class AudioRecorder {
 
   /** Gestisce un chunk ricevuto da MediaRecorder */
   private async handleChunk(data: Blob): Promise<void> {
-    if (!this._recording) return
+    if (!this._recording || !this._consent) return
     const now = this.clock()
     const chunkStart = this._chunkStartEpoch ?? now
     const index = this._chunkIndex
-    const fileName = `raw/audio/chunk-${index}.webm`
+    const fileName = `${PATHS.AUDIO_DIR}chunk-${index}.webm`
 
     // Incrementa PRIMA dell'await per evitare race su chunkIndex
     this._chunkIndex++
     this._chunkStartEpoch = now
 
-    this.onChunk?.(index, chunkStart, now)
-
+    // Chunk su disco PRIMA del marker journal: se la write fallisce il journal
+    // non deve contenere marker per un chunk inesistente (HERMES-0816)
     await this.store.write(fileName, data)
+    this.onChunk?.(index, chunkStart, now)
   }
 
   private stopInternal(): void {
