@@ -85,6 +85,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           if (import.meta.env.DEV) {
             ;(window as any).__MAESTRO_TEST__ = {
               ready: true,
+              room,
               store: actualStore,
               recorder: journalRef.current,
               apiRef,

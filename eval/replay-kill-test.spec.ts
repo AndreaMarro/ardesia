@@ -32,6 +32,12 @@ test("replay kill-test: da journal reale ricostruisce scena equivalente a board.
       return new Promise((r) => setTimeout(r, ms))
     }
 
+    // Helper per early-exit: restituisce match:false con mismatches POPOLATO (mai undefined)
+    function fail(error: string, extra: Record<string, any> = {}): Record<string, any> {
+      return { match: false, error, mismatches: [error], truthLength: 0, replayedLength: 0,
+               renderedLength: 0, journalEventCount: 0, journalLinesCount: 0, elementIds: "", ...extra }
+    }
+
     // Helper: elemento Excalidraw minimale
     function makeEl(
       id: string,
@@ -122,16 +128,16 @@ test("replay kill-test: da journal reale ricostruisce scena equivalente a board.
     await wait(1500)
 
     // --- FASE 2: Leggi board.excalidraw dallo store (la "verità" persistita) ---
-    const sceneBlob = await store.read(PATHS.SCENE)
-    if (!sceneBlob) {
-      return { match: false, error: "board.excalidraw non trovato" }
+    // Usa store.loadScene(room) con fallback per-room (raw/<room>/board.excalidraw) -> legacy -> localStorage
+    const sceneText = await store.loadScene(H.room)
+    if (!sceneText) {
+      return fail("board.excalidraw non trovato via loadScene", { room: H.room })
     }
-    const sceneText = await sceneBlob.text()
     let sceneParsed: any
     try {
       sceneParsed = JSON.parse(sceneText)
     } catch {
-      return { match: false, error: "board.excalidraw JSON non valido" }
+      return fail("board.excalidraw JSON non valido")
     }
     const truthElements: Record<string, any>[] = sceneParsed.elements ?? []
     const truthMap = new Map<string, Record<string, any>>()
@@ -144,7 +150,7 @@ test("replay kill-test: da journal reale ricostruisce scena equivalente a board.
     await wait(200)
     const journalBlob = await store.read(PATHS.JOURNAL)
     if (!journalBlob) {
-      return { match: false, error: "journal non trovato", truthLength: truthElements.length }
+      return fail("journal non trovato", { truthLength: truthElements.length })
     }
     const journalText = await journalBlob.text()
     const journalLines = journalText.trim().split("\n").filter(Boolean)
@@ -153,7 +159,7 @@ test("replay kill-test: da journal reale ricostruisce scena equivalente a board.
     const engine = new ReplayEngineCls()
     const events = deserialize(journalText)
     if (events.length === 0) {
-      return { match: false, error: "zero eventi nel journal", truthLength: truthElements.length }
+      return fail("zero eventi nel journal", { truthLength: truthElements.length })
     }
     const replayed = engine.replay(events)
 
@@ -210,7 +216,7 @@ test("replay kill-test: da journal reale ricostruisce scena equivalente a board.
       journalEventCount: events.length,
       journalLinesCount: journalLines.length,
       elementIds: Array.from(allIds).sort().join(","),
-      mismatches: mismatches.length > 0 ? mismatches : undefined,
+      mismatches: mismatches.length > 0 ? mismatches : [],
     }
   })
 

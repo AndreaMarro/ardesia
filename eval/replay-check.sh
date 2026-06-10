@@ -15,7 +15,7 @@ cleanup() {
 trap cleanup EXIT
 
 echo "[replay-check] Avvio Vite dev server..."
-npx vite &
+npx vite --strictPort &
 VITE_PID=$!
 
 # Aspetta che Vite sia pronto (fino a 30 secondi)
