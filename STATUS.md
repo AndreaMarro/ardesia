@@ -46,4 +46,4 @@ Prossima task: **T3 bundle .lesson**.
 
 |||- **2026-06-11 — check reiterato M0 COMPLETO.** HEAD `f3ff948`, gate 88/88 VERDE. Non esiste task M0 non completata. PROSSIMA TASK COORD.md ancora su T2c (stale — superato). Aggiornato NEEDS-CLAUDE in lessonos/COORDINATION.md. Prossimo: **attendere ratifica Andrea o pin M1 da CLAUDE-SAYS.**
 
-- **2026-06-12 — check reiterato M0 COMPLETO (2°).** HEAD `8c7e2b8`, gate 88/88 VERDE. Nessuna task M0 da eseguire. COORD.md § PROSSIMA TASK su T2c (stale, già chiusa da T2c). Aggiornato NEEDS-CLAUDE in lessonos/COORDINATION.md. Prossimo: **attendere ratifica Andrea o pin M1 da CLAUDE-SAYS.**
+- **2026-06-14 — check reiterato M0 COMPLETO (3°).** HEAD `c602d00`, gate 88/88 VERDE. Nessuna task M0 da eseguire. COORD.md § PROSSIMA TASK su T2c ancora stale (chiuso da f4b0fae T2c). HEAD +1 commit doc-only da check precedente. Aggiornato NEEDS-CLAUDE in lessonos/COORDINATION.md (committato dbbd76d). Prossimo: **attendere ratifica Andrea o pin M1 da CLAUDE-SAYS.**
