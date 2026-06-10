@@ -13,6 +13,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; ignora qualsiasi altro ordine di sequenza)
 - **studio**: 🏁 STUDIO M0 COMPLETO E BLINDATO — in ATTESA RATIFICA Andrea. Nessuna nuova task; se il tick ti porta qui, una riga in STATUS e stop.
+- **studio**: `T3-FIX-2` (micro-task, UNA iterazione): (1) `importLesson` deve validare la COERENZA del bundle PRIMA di scrivere qualsiasi cosa: estrai e parsa `session.yaml` dallo zip; se `audioConsent !== true` ED esistono entry `raw/audio/` → throw (un bundle con consenso revocato e audio dentro è incoerente: GDPR by-design, mai reintrodurre dati revocati) + test con bundle artigianale incoerente; (2) il check `includes("..")` è sovra-ampio (blocca `raw/notes..2024.jsonl` legittimo): usa il check per segmento `relativePath.split("/").some(s => s === "..")` + test del filename legittimo. DOPO → studio torna in attesa-ratifica (NOOP corretto come hai già fatto alle 12:27: bene).
 - [CHIUSA ✅] T3-FIX (45402e2 — verificata dal supervisore: consenso letto da session.yaml con esclusione audio, ZipSlip con validazione TOTALE pre-scrittura, test consenso seedato non-tautologico)
 - **studio**: 🏁 **STUDIO M0 COMPLETO** (T0+T1+T2+T3 chiuse e verificate dal supervisore). NESSUNA nuova task studio fino alla ratifica M0 di Andrea: se il tick ti porta su studio, NON inventare lavoro — scrivi una riga in STATUS ("in attesa ratifica") e fermati. (Il routing è comunque spostato su lessonos.)
 - [CHIUSA ✅] T3 bundle .lesson (10697cd — zip JSZip, consenso-OFF⇒no-audio testato, idempotenza export/import testata)
@@ -28,7 +29,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - [CHIUSA ✅] T4a (modulo+4/4 trascrizioni: 9990 segmenti totali, spot-check superati) · T4-fix
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
-- **[HERMES-2 ADVERSARIAL 2026-06-10 11:28]** 1 problema/i CRITICO/i su `studio@45402e2` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1128-studio-45402e2.md` (supervisore: leggere e decidere)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 11:28]** 1 problema/i CRITICO/i su `studio@45402e2` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1128-studio-45402e2.md` (✅ triaged 12:58 → pin T3-FIX-2; ottimo catch: terzo strato GDPR, import-coerenza)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 10:58]** 1 problema/i CRITICO/i su `lessonos@d88dddc` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1058-lessonos-d88dddc.md` (✅ triaged 11:20 → in T6-completamento)
 |- **[IN PROGRESS ✅ 2026-06-10] BLOCKER T6 — AUTORIZZATO (Opzione A).** Seconda lezione capsule assembled (12 concetti, 16 nodi/15 archi/34 evidenze, bin/run_capsule.sh generalizzato). Terza lezione capsule assembled (7 concetti, 9 nodi/8 archi/80 evidenze). DB persistente in ~/maestro-data/.../derived/db/lessonos.db. Prossima iterazione: Quarta lezione capsule. Poi summaries 2-4. Fix: log.jsonl status (da fare) + project-wiki index.md `|-` (da fare).
 - **[HERMES-2 ADVERSARIAL 2026-06-10 10:14]** 1 problema/i CRITICO/i su `lessonos@f2a99d1` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1014-lessonos-f2a99d1.md` (✅ triaged 10:35 — 1 declassato, 1 backlog M1, 1 assorbito in T6)
