@@ -11,6 +11,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - Naming: il progetto si chiama **MAESTRO** (codename provvisorio). MAI "Numeria" (progetto separato di Andrea). ZERO codice/brand ELAB.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 02:52]** 2 problema/i CRITICO/i su `studio@7a45e1c` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0252-studio-7a45e1c.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 02:15]** 2 problema/i CRITICO/i su `lessonos@a01a9c9` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0215-lessonos-a01a9c9.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 01:23]** 2 problema/i CRITICO/i su `studio@20964d7` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0123-studio-20964d7.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 01:04]** 12 problema/i CRITICO/i su `studio@251a983` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0104-studio-251a983.md` (supervisore: leggere e decidere)
