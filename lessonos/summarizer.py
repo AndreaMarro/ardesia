@@ -78,11 +78,43 @@ def _capped(items, cap, *, key=None):
     return ordered[:cap], len(items) - cap
 
 
-def _build_summary_prompt(capsule: LessonCapsule) -> str:
+def _cited_seg_texts(store: Store, capsule: LessonCapsule) -> dict[str, str]:
+    """Collect the source text of every segment cited in the capsule.
+
+    The summary LLM can only quote verbatim from text it SEES: the capsule
+    citations carry short (often repaired) excerpts, so without the source
+    segments the model cannot produce substantive >=30-char excerpts — the root
+    cause of the confetti-citation problem measured on the real summaries.
+    Returns ``{seg_id: text}`` (text truncated at 300 chars), insertion-ordered,
+    capped at 200 unique segments to bound the prompt.
+    """
+    out: dict[str, str] = {}
+    for grp in (
+        capsule.content.concepts,
+        capsule.content.exercises,
+        capsule.content.student_questions,
+        capsule.content.homework,
+    ):
+        for item in grp:
+            for cit in item.citations:
+                if cit.seg_id in out or len(out) >= 200:
+                    continue
+                seg = store.get_segment(cit.seg_id)
+                if seg is not None:
+                    out[cit.seg_id] = seg.text[:300]
+    return out
+
+
+def _build_summary_prompt(
+    capsule: LessonCapsule,
+    seg_texts: dict[str, str] | None = None,
+) -> str:
     """Build a deterministic summary-generation prompt from *capsule*.
 
     Returns a string that is AST-stable for the same capsule (used as the
-    ``MockProvider`` fixture key in tests).
+    ``MockProvider`` fixture key in tests). When *seg_texts* is given, the
+    cited segments' source text is appended so the model can copy substantive
+    verbatim excerpts (omitting it keeps the prompt byte-identical to legacy).
     """
     lines = [
         "Genera un riepilogo strutturato di questa lezione in formato JSON.",
@@ -180,6 +212,14 @@ def _build_summary_prompt(capsule: LessonCapsule) -> str:
             lines.append(f"[{i}] {h.task} citations=[{cit_str}]")
         if om_h:
             lines.append(f"(+{om_h} altri compiti nel grafo, non elencati)")
+
+    if seg_texts:
+        lines.append("")
+        lines.append(
+            "=== TESTI DEI SEGMENTI CITATI (copia gli excerpt VERBATIM da qui) ==="
+        )
+        for sid, text in seg_texts.items():
+            lines.append(f"[{sid}] {text}")
 
     lines.append("")
     lines.append("ISTRUZIONI:")
@@ -430,8 +470,9 @@ def generate_lesson_summary(
     """
     lesson_id = capsule.lesson_id
 
-    # Step 1: Build deterministic prompt
-    prompt = _build_summary_prompt(capsule)
+    # Step 1: Build deterministic prompt (with cited-segment texts so the
+    # model can copy substantive verbatim excerpts — anti-confetti)
+    prompt = _build_summary_prompt(capsule, _cited_seg_texts(store, capsule))
 
     # Step 2: Call router
     response = router.complete(prompt, provider=provider, model=model)

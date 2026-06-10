@@ -40,6 +40,7 @@ from lessonos.store.sqlite import SQLiteStore
 from lessonos.summarizer import (
     SummaryPack,
     _build_summary_prompt,
+    _cited_seg_texts,
     _parse_summary_response,
     _render_summary_markdown,
     _repair_summary_citations,
@@ -301,6 +302,18 @@ class TestBuildSummaryPrompt:
         assert "l1#s2" in prompt
         assert "rate of change" in prompt
 
+    def test_seg_texts_section_included_when_passed(self, store: SQLiteStore) -> None:
+        """With seg_texts the prompt carries the cited segments' SOURCE text so
+        the model can copy substantive verbatim excerpts (anti-confetti)."""
+        capsule = _make_capsule()
+        seg_texts = _cited_seg_texts(store, capsule)
+        assert seg_texts["l1#s0"] == _SEG0  # full source text collected
+        prompt = _build_summary_prompt(capsule, seg_texts)
+        assert "TESTI DEI SEGMENTI CITATI" in prompt
+        assert _SEG0 in prompt
+        # without seg_texts the section is absent (legacy byte-identical)
+        assert "TESTI DEI SEGMENTI CITATI" not in _build_summary_prompt(capsule)
+
 
 class TestParseSummaryResponse:
     """JSON parsing of LLM responses."""
@@ -426,7 +439,9 @@ class TestGenerateLessonSummary:
         router = Router()
         mock_provider = MockProvider(
             fixtures={
-                _build_summary_prompt(capsule): _DETERMINISTIC_LLM_RESPONSE,
+                _build_summary_prompt(
+                    capsule, _cited_seg_texts(store, capsule)
+                ): _DETERMINISTIC_LLM_RESPONSE,
             }
         )
         router.register(mock_provider)
@@ -462,7 +477,11 @@ class TestGenerateLessonSummary:
         )
         router = Router()
         mock_provider = MockProvider(
-            fixtures={_build_summary_prompt(capsule): bad_payload}
+            fixtures={
+                _build_summary_prompt(
+                    capsule, _cited_seg_texts(store, capsule)
+                ): bad_payload
+            }
         )
         router.register(mock_provider)
 
@@ -478,7 +497,9 @@ class TestGenerateLessonSummary:
         router = Router()
         mock_provider = MockProvider(
             fixtures={
-                _build_summary_prompt(capsule): _DETERMINISTIC_LLM_RESPONSE,
+                _build_summary_prompt(
+                    capsule, _cited_seg_texts(store, capsule)
+                ): _DETERMINISTIC_LLM_RESPONSE,
             }
         )
         router.register(mock_provider)
