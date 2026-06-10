@@ -27,6 +27,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - [CHIUSA ✅] T4a (modulo+4/4 trascrizioni: 9990 segmenti totali, spot-check superati) · T4-fix
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 11:28]** 1 problema/i CRITICO/i su `studio@45402e2` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1128-studio-45402e2.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 10:58]** 1 problema/i CRITICO/i su `lessonos@d88dddc` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1058-lessonos-d88dddc.md` (✅ triaged 11:20 → in T6-completamento)
 |- **[BLOCKER T6 2026-06-10] T6 code + test completati (1371 pass), ma criterio accettazione 4/4 lezioni non raggiungibile: capsule per Seconda/Terza/Quarta lezione NON assemblati. Solo prima_lezione ha capsule (appena creato in FASE C). Serve autorizzazione: (A) assemble capsule 2-4 in iterazioni separate POI T6 completa? Oppure (B) passa a T7 SCHEMA.md e lascia T6 aperta? Costo stimato assemble 3 capsule: ~$0.002 (DeepSeek, ~100 seg ciascuno). Se (A), serve specificare lesson_id da usare (id nel ASR adapter) e se salvare capsule nel DB o solo in memoria.
 - **[HERMES-2 ADVERSARIAL 2026-06-10 10:14]** 1 problema/i CRITICO/i su `lessonos@f2a99d1` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1014-lessonos-f2a99d1.md` (✅ triaged 10:35 — 1 declassato, 1 backlog M1, 1 assorbito in T6)
