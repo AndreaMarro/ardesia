@@ -46,6 +46,13 @@ export interface JournalPdfPageView {
   totalPages: number
 }
 
+export interface JournalAudioChunk {
+  type: "audio.chunk"
+  chunkIndex: number
+  startEpoch: number
+  endEpoch: number
+}
+
 export type JournalEventBody =
   | JournalElementAdd
   | JournalElementUpdate
@@ -54,6 +61,7 @@ export type JournalEventBody =
   | JournalT1
   | JournalMathInsert
   | JournalPdfPageView
+  | JournalAudioChunk
 
 export type JournalEvent = JournalEventBody & {
   /** Timestamp epoch ms */
@@ -168,6 +176,12 @@ export class JournalRecorder {
   /** Cambio pagina PDF visualizzata */
   recordPdfPageView(page: number, totalPages: number): void {
     this.buffer.push({ t: this.now(), type: "pdf.page.view", page, totalPages })
+    this.scheduleFlush()
+  }
+
+  /** Marker chunk audio allineato al clock del journal (stesso epoch del recorder) */
+  recordAudioChunk(chunkIndex: number, startEpoch: number, endEpoch: number): void {
+    this.buffer.push({ t: this.now(), type: "audio.chunk", chunkIndex, startEpoch, endEpoch })
     this.scheduleFlush()
   }
 

@@ -26,7 +26,7 @@ export class ReplayEngine {
       case "element.delete":
         this.elements.delete(event.elementId)
         break
-      // t0, t1, math.insert, pdf.page.view — non modificano lo stato elementi
+      // t0, t1, math.insert, pdf.page.view, audio.chunk — non modificano lo stato elementi
     }
   }
 

@@ -353,4 +353,64 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
     root.unmount()
   })
+
+  // --- Audio toggle tests ---
+
+  it("header mostra bottone audio default OFF", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    // Bottone audio presente con label OFF
+    expect(document.body.textContent).toContain("🎤 audio")
+
+    root.unmount()
+  })
+
+  it("click su audio button tenta di attivare registrazione", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    // Stub getUserMedia per jsdom
+    vi.stubGlobal("navigator", {
+      ...navigator,
+      mediaDevices: {
+        getUserMedia: vi.fn().mockResolvedValue({
+          getTracks: () => [{ stop: vi.fn() }],
+        } as unknown as MediaStream),
+      },
+    })
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    // Trova il bottone audio e cliccalo
+    const allButtons = document.querySelectorAll("button")
+    const audioBtn = Array.from(allButtons).find((b) => b.textContent?.includes("🎤"))
+    expect(audioBtn).toBeDefined()
+    audioBtn!.click()
+
+    // In jsdom MediaRecorder non esiste → start() fallisce → button torna a 🎤 audio
+    await vi.waitFor(() => {
+      expect(audioBtn!.textContent).toBe("🎤 audio")
+    }, { timeout: 500, interval: 10 })
+
+    // Verifica che getUserMedia sia stato chiamato
+    expect(navigator.mediaDevices.getUserMedia).toHaveBeenCalledWith({ audio: true })
+
+    vi.unstubAllGlobals()
+    root.unmount()
+  })
 })

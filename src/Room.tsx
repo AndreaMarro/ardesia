@@ -7,6 +7,7 @@ import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
+import { AudioRecorder } from "./store/AudioRecorder"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -18,6 +19,11 @@ function getRoomId(): string {
   return h
 }
 
+/** Clock condiviso tra JournalRecorder e AudioRecorder (stesso epoch) */
+function sharedClock(): number {
+  return Date.now()
+}
+
 export default function Room({ store }: { store?: WorkspaceStore }) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
@@ -26,6 +32,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
   const [storageError, setStorageError] = useState<string | null>(null)
+  /** Audio toggle: default OFF (GDPR by design — nessuna registrazione nascosta) */
+  const [audioOn, setAudioOn] = useState(false)
+  /** Mostra stato registrazione nell'header */
+  const [audioRecording, setAudioRecording] = useState(false)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -35,23 +45,36 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const initialLoadDone = useRef(false)
   // Riferimento al JournalRecorder (creato dopo init store)
   const journalRef = useRef<JournalRecorder | null>(null)
+  // Riferimento all'AudioRecorder (creato dopo init store)
+  const audioRecorderRef = useRef<AudioRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
   const _pendingSave = useRef<Promise<void>>(Promise.resolve())
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (FSA → localStorage).
-  // Excalidraw monta SOLO dopo il caricamento (render condizionale), evitando race condition
-  // sul ciclo di vita di Excalidraw: initialData è sempre al primo mount.
   useEffect(() => {
     let cancelled = false
     setLoading(true)
     actualStore.init()
       .then(() => {
         if (cancelled) return
-        // Crea JournalRecorder dopo init store
-        const jr = new JournalRecorder(actualStore)
+        const clock = sharedClock
+
+        // Crea JournalRecorder dopo init store con clock condiviso
+        const jr = new JournalRecorder(actualStore, clock)
         journalRef.current = jr
+
+        // Crea AudioRecorder con clock condiviso
+        const ar = new AudioRecorder({
+          store: actualStore,
+          clock,
+          onChunk: (chunkIndex, startEpoch, endEpoch) => {
+            jr.recordAudioChunk(chunkIndex, startEpoch, endEpoch)
+          },
+        })
+        audioRecorderRef.current = ar
+
         return actualStore.loadScene(room)
       })
       .then((data) => {
@@ -61,8 +84,6 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             const parsed = JSON.parse(data)
             setSceneData(parsed)
             // Seed journal con elementi esistenti: NON registrarli come element.add
-            // Deve avvenire PRIMA di initialLoadDone=true per evitare che handleChange
-            // registri la scena caricata come nuovi eventi.
             const jr = journalRef.current
             if (jr && parsed?.elements) {
               jr.seed(parsed.elements)
@@ -88,10 +109,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               room,
               store: actualStore,
               recorder: journalRef.current,
+              audioRecorder: audioRecorderRef.current,
               apiRef,
               ReplayEngine,
               serializeEvents,
               deserializeEvents,
+              AudioRecorder,
               PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
             }
           }
@@ -104,9 +127,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         window.clearTimeout(saveTimer.current)
         saveTimer.current = null
       }
-      // Flush journal rimanente e unsubscribe pointer events
+      // Flush journal rimanente e dispose AudioRecorder
       journalRef.current?.flush()
+      audioRecorderRef.current?.dispose()
       journalRef.current = null
+      audioRecorderRef.current = null
       // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
       for (const unsub of unsubsRef.current) {
         unsub()
@@ -116,11 +141,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   }, [room, actualStore])
 
   // Persistenza via WorkspaceStore.
-  // La scena viene salvata sul driver attivo (FSA → localStorage come cache/fallback).
-  // Gestione quota 5MB esplicita e visibile — MAI try/catch muto.
-  // Promise-chain mutex serializza salvataggi async sovrapposti.
   function persist(elements: any, appState: any, files: any) {
-    if (!initialLoadDone.current) return // ignora onChange durante il caricamento iniziale
+    if (!initialLoadDone.current) return
     if (saveTimer.current) window.clearTimeout(saveTimer.current)
     saveTimer.current = window.setTimeout(() => {
       _pendingSave.current = _pendingSave.current.then(async () => {
@@ -131,25 +153,44 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           setSaved(true)
           window.setTimeout(() => setSaved(false), 1200)
         } catch (err) {
-          // Quota esaurita o errore di scrittura — mostra all'utente, MAI try/catch muto
           setStorageError("Salvataggio non riuscito: " + (err as Error).message)
         }
       })
     }, 700)
   }
 
-  /** Handler composito: salva scena + registra eventi journal.
-   *  Non registra eventi durante il caricamento iniziale: la scena caricata
-   *  è già stata seedata dal then() di loadScene prima che initialLoadDone diventi true. */
+  /** Handler composito: salva scena + registra eventi journal */
   function handleChange(elements: any, appState: any, files: any) {
     persist(elements, appState, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)
   }
 
+  /** Toggle audio: ON = chiede consenso + avvia registrazione, OFF = ferma */
+  function toggleAudio() {
+    const ar = audioRecorderRef.current
+    if (!ar) return
+    if (ar.consent) {
+      // Spegni
+      ar.consent = false
+      setAudioOn(false)
+      setAudioRecording(false)
+    } else {
+      // Accendi
+      ar.consent = true
+      setAudioOn(true)
+      ar.start().then(() => {
+        setAudioRecording(ar.recording)
+        // Se start fallisce (permesso negato), reset stato
+        if (!ar.recording) {
+          setAudioOn(false)
+        }
+      })
+    }
+  }
+
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Aggiunge N immagini sulla lavagna Excalidraw in un solo update (math, immagini, pagine-PDF).
   function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number }[]) {
     if (!apiRef.current || !items.length) return
     const files = items.map((it) => {
@@ -163,7 +204,6 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     apiRef.current.updateScene({ elements: [...apiRef.current.getSceneElements(), ...els] })
   }
 
-  // Formula → immagine SVG sulla lavagna.
   async function insertMath(latex: string) {
     if (!apiRef.current || !latex.trim()) return
     const { dataURL, width, height } = await latexToImage(latex)
@@ -171,7 +211,6 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     journalRef.current?.recordMathInsert(latex)
   }
 
-  // Carica immagine o PDF → sulla lavagna (PDF = una pagina-immagine ciascuna, impilate).
   async function handleFile(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     e.target.value = ""
@@ -234,6 +273,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
         <button onClick={() => fileInputRef.current?.click()} style={btn}>carica img/PDF</button>
         <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
+        {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
+        <button onClick={toggleAudio} style={{ ...btn, background: audioOn ? (audioRecording ? "#e74c3c" : "#1763ff") : "#333" }}>
+          {audioOn ? (audioRecording ? "🔴 registra" : "⏹ audio") : "🎤 audio"}
+        </button>
         {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
         <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} style={{ ...btn, marginLeft: "auto", background: "#1763ff" }}>
           apri Meet
@@ -241,13 +284,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       </header>
 
       <div style={{ flex: 1, position: "relative" }}>
-        {/* Excalidraw monta SOLO dopo il caricamento: initialData al primo mount = scena restorata correttamente.
-            Se sceneData è null e loading è false, initialData=undefined = scena vuota. */}
         {!loading && (
           <Excalidraw
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
-              // Sottoscrivi pointer events per journal t0/t1
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()

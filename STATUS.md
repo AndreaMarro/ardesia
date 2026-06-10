@@ -17,3 +17,6 @@ Formato voce: `data — task — ipotesi — file:line — gate (passed) — cos
   (b) `mismatches` undefined negli early-exit del kill-test: l'assertion stampava `JSON.stringify(undefined)` = inutile. Fix: funzione helper `fail()` che restituisce SEMPRE `mismatches: [error]`; final return usa `mismatches: []` invece di `undefined`.
   Plus: `--strictPort` in replay-check.sh (Vite esclusivo).
   **Gate VERDE 44/44** (43 vitest + 1 replay-check Playwright). Prossima task: **T2 Audio Mode A**.
+
+|- **2026-06-10 — T2 AUDIO MODE A.** AudioRecorder con clock iniettato, mock MediaRecorder via factory, chunk 30s → `raw/audio/chunk-N.webm`, session.yaml persistente (consenso ON/OFF + audioStartEpoch). Evento `audio.chunk` in JournalEventBody (no-op in ReplayEngine). UI minimale header: toggle 🎤 audio default OFF → 🔴 registra durante registrazione (GDPR by design — nessuna registrazione nascosta). 5 fix review: revoca consenso persistita, permesso negato persiste, clock iniettato in persistSession, test tautologico corretto, commento Meet restaurato. File: `src/store/AudioRecorder.ts`, `src/store/JournalRecorder.ts`, `src/store/ReplayEngine.ts`, `src/Room.tsx`, `src/__tests__/AudioRecorder.test.ts`, `src/__tests__/Room.integration.test.tsx`. **Gate VERDE 59/59** (58 vitest + 1 replay-check). <fable.sh rate-limitato al PLAN-CHECK>.
+Prossima task: **T3 bundle .lesson**.
