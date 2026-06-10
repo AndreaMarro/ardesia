@@ -19,6 +19,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **[RISOLTO ✅]** T4-fix: 3 CRITICI ASR fatti — verify-transcription via sys.argv[1], run_asr_pipeline skip .wav ffmpeg (fix VERO, non aggiramento), segments_from_jsonl try/except. 6 test nuovi. Commit d87659b.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[T4a-step3 ✅ DONE 2026-06-10 08:20] T4a-step3 completato: 4/4 lezioni trascritte.** Prima, Seconda, Terza, Quarta lezione trascritte con large-v3-turbo int8 CPU + VAD Silero. Output in `~/maestro-data/teoria-segnali-2021/derived/asr/`. Gate invariato (1328+2). Cost ~$0. T4b (ingest→segment→capsule su lezione 1) pronto se il supervisore conferma. Next lessonos task?
 - **[HERMES-2 ADVERSARIAL 2026-06-10 05:31]** 2 problema/i CRITICO/i su `studio@53149f4` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0531-studio-53149f4.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 04:55]** 2 problema/i CRITICO/i su `lessonos@c1a404c` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0455-lessonos-c1a404c.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 04:21]** 2 problema/i CRITICO/i su `studio@88e6d73` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0421-studio-88e6d73.md` (supervisore: leggere e decidere)
