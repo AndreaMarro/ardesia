@@ -18,6 +18,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **[RISOLTO ✅]** T4-fix: 3 CRITICI ASR fatti — verify-transcription via sys.argv[1], run_asr_pipeline skip .wav ffmpeg (fix VERO, non aggiramento), segments_from_jsonl try/except. 6 test nuovi. Commit d87659b.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 05:31]** 2 problema/i CRITICO/i su `studio@53149f4` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0531-studio-53149f4.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 04:55]** 2 problema/i CRITICO/i su `lessonos@c1a404c` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0455-lessonos-c1a404c.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 04:21]** 2 problema/i CRITICO/i su `studio@88e6d73` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0421-studio-88e6d73.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 03:49]** 1 problema/i CRITICO/i su `lessonos@e248a76` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0349-lessonos-e248a76.md` (supervisore: leggere e decidere)
