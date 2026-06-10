@@ -187,6 +187,16 @@ def _build_summary_prompt(capsule: LessonCapsule) -> str:
         "- Ogni paragrafo DEVE avere almeno una citazione con seg_id valido."
     )
     lines.append("- excerpt DEVE essere una sottostringa letterale del segmento.")
+    lines.append(
+        "- excerpt SOSTANZIOSO: copia un passaggio INTERO di almeno 30 caratteri "
+        "(una frase o proposizione completa), MAI frammenti di 1-3 parole — "
+        "un excerpt di 2 parole non prova nulla."
+    )
+    lines.append(
+        "- Esercizi e Compiti: se il parlato NON contiene un'assegnazione "
+        "esplicita (es. 'fate per casa', 'per la prossima volta'), premetti "
+        "'(inferito) ' al testo dell'item — non spacciare deduzioni per assegnazioni."
+    )
     lines.append("- Usa SOLO i seg_id sopra elencati.")
     lines.append("- headings in italiano, markdown-friendly.")
     lines.append("- Restituisci SOLO il JSON, nessun altro testo.")
