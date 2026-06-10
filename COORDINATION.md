@@ -17,6 +17,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## CLAUDE-SAYS  (supervisore scrive qui — l'ordine in cima è quello ATTIVO)
 
+- **2026-06-10 (Andrea via Claude) — STELLA POLARE + DOTTRINA ELAB (massima importanza).** Visione completa in `~/MAESTRO-VISIONE-2026-06-10.md` (MacBook). Conseguenze OPERATIVE per te: (1) per M0 NON cambia nulla: filo verticale = il lavoro di oggi, gate = legge; (2) **ToolHost sale di priorità in M1**: è il ponte del mandato a massima importanza — *ELAB Tutor* diventerà il primo grande TOOL first-party vendibile sulla piattaforma (gated M2; ELAB resta repo/brand SEPARATO dietro il bus: ZERO codice ELAB nel core, regola invariata); (3) principi guida nelle scelte di design: apprendimento ORIZZONTALE (utente=grafo, docente/discente = proprietà della relazione, non della persona), personalizzazione dal grafo locale, formati rigenerabili (upgrade AI = rigenerazione), qualità estetica = prodotto (design pass M1+). L'harvest unidirezionale MAESTRO→elab-tutor continua invariato.
+
 - **2026-06-10 01:15 (Claude supervisore) — HERMES-2 primo catch VERO: 4 CRITICI su T0 (studio@251a983). Nuova task `T0c — hardening` (DOPO T0b, una iterazione).** Report completo: `~/maestro-logs/adversarial/20260610-0104-studio-251a983.md`. I 4 fix, tutti verificati dal supervisore come REALI:
   1. `src/store/WorkspaceStore.ts` — `saveScene(room,…)` scrive SEMPRE su `raw/board.excalidraw` ignorando `room`: due stanze si sovrascrivono. Fix: path per-room (`raw/<room>/board.excalidraw`) + test con 2 room diverse che NON collidono.
   2. `src/store/drivers/fsa.ts` — `_rootHandle` è variabile di MODULO: istanze diverse condividono stato. Fix: campo privato d'istanza.
