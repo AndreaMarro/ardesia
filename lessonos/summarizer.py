@@ -31,7 +31,8 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from lessonos.capsule.assembly import LessonCapsule
-from lessonos.graph.grounding import is_verified_excerpt, verify_citation
+from lessonos.capsule.extraction import _repair_excerpt
+from lessonos.graph.grounding import is_verified_excerpt
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -254,34 +255,48 @@ def _parse_summary_response(raw: str) -> list[dict[str, Any]]:
 # ── Citation validation ───────────────────────────────────────────────
 
 
-def _validate_summary_citations(
+def _repair_summary_citations(
     store: Store,
     sections: list[dict[str, Any]],
     lesson_id: str,
-) -> None:
-    """Validate every citation in the summary sections.
+) -> tuple[int, int]:
+    """Make every summary citation either verbatim-grounded or excluded.
 
-    Each citation's ``seg_id`` must resolve to a persisted segment,
-    belong to the same lesson, and every ``excerpt`` must be a verbatim
-    substring (reuses ``verify_citation`` from graph/grounding.py).
+    RESILIENT — does NOT raise on LLM noise (strict raising crashed the macinata
+    summaries: DeepSeek paraphrases excerpts and occasionally invents references).
+    For each citation, in place:
 
-    Raises ``ValueError`` on first violation.
+      * seg_id does not resolve, or resolves to a different lesson → NULL the
+        excerpt (the renderer excludes NULL-excerpt citations);
+      * excerpt already a verbatim substring of its segment → keep;
+      * excerpt paraphrased → repair to the closest real substring
+        (``_repair_excerpt``); if that fails → NULL it.
+
+    The underlying knowledge is already grounded in the graph; the summary shows
+    only what it can verbatim-verify. Returns ``(verified, excluded)`` counts.
     """
+    verified = 0
+    excluded = 0
     for sec in sections:
         for para in sec.get("paragraphs", []):
             for cit in para.get("citations", []):
                 seg_id = cit.get("seg_id", "")
-                if not seg_id:
-                    raise ValueError(
-                        f"citation missing seg_id in section "
-                        f"{sec['heading']!r}: {cit!r}"
-                    )
-                verify_citation(
-                    store=store,
-                    seg_id=seg_id,
-                    excerpt=cit.get("excerpt"),
-                    lesson_id=lesson_id,
-                )
+                seg = store.get_segment(seg_id) if seg_id else None
+                if seg is None or (lesson_id and seg.lesson_id != lesson_id):
+                    cit["excerpt"] = None  # unresolvable / cross-lesson → exclude
+                    excluded += 1
+                    continue
+                excerpt = cit.get("excerpt")
+                if excerpt and excerpt in seg.text:
+                    verified += 1
+                    continue
+                repaired = _repair_excerpt(excerpt, seg.text) if excerpt else None
+                cit["excerpt"] = repaired
+                if repaired is not None:
+                    verified += 1
+                else:
+                    excluded += 1
+    return verified, excluded
 
 
 # ── Markdown renderer ────────────────────────────────────────────────
@@ -414,8 +429,8 @@ def generate_lesson_summary(
     # Step 3: Parse JSON
     sections = _parse_summary_response(response.text)
 
-    # Step 4: Validate every citation mechanically
-    _validate_summary_citations(store, sections, lesson_id)
+    # Step 4: Repair/exclude citations (resilient — verbatim-grounded or dropped)
+    _repair_summary_citations(store, sections, lesson_id)
 
     # Step 5: Render markdown
     markdown = _render_summary_markdown(capsule, sections)
