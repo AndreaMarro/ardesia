@@ -15,10 +15,21 @@ vi.mock("@excalidraw/excalidraw", () => {
     Excalidraw: vi.fn((props: any) => {
       if (props.excalidrawAPI) {
         setTimeout(() => {
+          const unsubs: Array<() => void> = []
           props.excalidrawAPI({
             getSceneElements: vi.fn(() => []),
             updateScene: vi.fn(),
             addFiles: vi.fn(),
+            onPointerDown: vi.fn(() => {
+              const unsub = () => {}
+              unsubs.push(unsub)
+              return unsub
+            }),
+            onPointerUp: vi.fn(() => {
+              const unsub = () => {}
+              unsubs.push(unsub)
+              return unsub
+            }),
           })
         }, 0)
       }

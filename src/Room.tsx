@@ -5,6 +5,7 @@ import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
+import { JournalRecorder } from "./store/JournalRecorder"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -31,6 +32,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const saveTimer = useRef<number | null>(null)
   // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
   const initialLoadDone = useRef(false)
+  // Riferimento al JournalRecorder (creato dopo init store)
+  const journalRef = useRef<JournalRecorder | null>(null)
+  // Unsubscribe handle per pointer events Excalidraw
+  const unsubsRef = useRef<Array<() => void>>([])
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (FSA → localStorage).
   // Excalidraw monta SOLO dopo il caricamento (render condizionale), evitando race condition
@@ -39,12 +44,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     let cancelled = false
     setLoading(true)
     actualStore.init()
-      .then(() => actualStore.loadScene(room))
+      .then(() => {
+        if (cancelled) return
+        // Crea JournalRecorder dopo init store
+        const jr = new JournalRecorder(actualStore)
+        journalRef.current = jr
+        return actualStore.loadScene(room)
+      })
       .then((data) => {
         if (cancelled) return
         if (data) {
           try {
-            setSceneData(JSON.parse(data))
+            const parsed = JSON.parse(data)
+            setSceneData(parsed)
+            // Seed journal con elementi esistenti: NON registrarli come element.add
+            // Deve avvenire PRIMA di initialLoadDone=true per evitare che handleChange
+            // registri la scena caricata come nuovi eventi.
+            const jr = journalRef.current
+            if (jr && parsed?.elements) {
+              jr.seed(parsed.elements)
+            }
           } catch {
             // JSON malformato — si parte da zero
           }
@@ -61,7 +80,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           setLoading(false)
         }
       })
-    return () => { cancelled = true }
+    return () => {
+      cancelled = true
+      // Flush journal rimanente e unsubscribe pointer events
+      journalRef.current?.flush()
+      journalRef.current = null
+      // Pulisci tutte le subscription Excalidraw (onPointerDown/onPointerUp)
+      for (const unsub of unsubsRef.current) {
+        unsub()
+      }
+      unsubsRef.current = []
+    }
   }, [room, actualStore])
 
   // Persistenza via WorkspaceStore.
@@ -82,6 +111,15 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         setStorageError("Salvataggio non riuscito: " + (err as Error).message)
       }
     }, 700)
+  }
+
+  /** Handler composito: salva scena + registra eventi journal.
+   *  Non registra eventi durante il caricamento iniziale: la scena caricata
+   *  è già stata seedata dal then() di loadScene prima che initialLoadDone diventi true. */
+  function handleChange(elements: any, appState: any, files: any) {
+    persist(elements, appState, files)
+    if (!initialLoadDone.current) return
+    journalRef.current?.recordChange(elements)
   }
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -105,6 +143,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     if (!apiRef.current || !latex.trim()) return
     const { dataURL, width, height } = await latexToImage(latex)
     addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
+    journalRef.current?.recordMathInsert(latex)
   }
 
   // Carica immagine o PDF → sulla lavagna (PDF = una pagina-immagine ciascuna, impilate).
@@ -181,9 +220,24 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             Se sceneData è null e loading è false, initialData=undefined = scena vuota. */}
         {!loading && (
           <Excalidraw
-            excalidrawAPI={(eapi) => { apiRef.current = eapi }}
+            excalidrawAPI={(eapi) => {
+              apiRef.current = eapi
+              // Sottoscrivi pointer events per journal t0/t1
+              if (typeof eapi.onPointerDown === "function") {
+                const unsubDown = eapi.onPointerDown(() => {
+                  journalRef.current?.recordPointerDown()
+                })
+                unsubsRef.current.push(unsubDown)
+              }
+              if (typeof eapi.onPointerUp === "function") {
+                const unsubUp = eapi.onPointerUp(() => {
+                  journalRef.current?.recordPointerUp()
+                })
+                unsubsRef.current.push(unsubUp)
+              }
+            }}
             initialData={sceneData ?? undefined}
-            onChange={persist}
+            onChange={handleChange}
           />
         )}
         {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
