@@ -175,59 +175,57 @@ describe("Room ↔ WorkspaceStore integration", () => {
     root.unmount()
   })
 
-  it("non chiama saveScene durante il caricamento iniziale — anche dopo debounce", async () => {
+  it("persist serializza salvataggi async sovrapposti via mutex", async () => {
     const { store } = await createMockStore()
-    const saveSpy = vi.spyOn(store, "saveScene")
-    vi.useFakeTimers()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
-    // Delay loadScene
-    vi.spyOn(store, "loadScene").mockImplementationOnce(
-      () => new Promise((resolve) => setTimeout(() => resolve(null), 200))
-    )
+    // Deferred promise: primo saveScene si blocca finché non la risolviamo
+    let resolveFirst: (value: unknown) => void = () => {}
+    const firstPromise = new Promise((resolve) => { resolveFirst = resolve })
+    const saveSpy = vi.spyOn(store, "saveScene")
+    // Primo saveScene restituisce una promise in sospeso, poi saveScene normale
+    saveSpy.mockImplementationOnce(() => firstPromise as Promise<void>)
 
     const root = createRoot(document.getElementById("root")!)
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    // Aspetta che Excalidraw sia montato... ma Excalidraw monta solo dopo load!
-    // Invece proviamo a chiamare onChange direttamente e avanzare i timer
-    const { Excalidraw } = await import("@excalidraw/excalidraw")
-
-    // Al primo render, Excalidraw NON è chiamato perché loading=true impedisce il mount
-    // Aspetta che loadScene finisca
-    await vi.advanceTimersByTimeAsync(300)
-
-    // Ora loading = false, Excalidraw si monta
+    // Aspetta che Excalidraw sia montato (loading finito)
     await vi.waitFor(() => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 1000, interval: 10 })
 
-    // Prendi onChange
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
     const call = vi.mocked(Excalidraw).mock.calls.at(-1)
     const onChangeFn = call?.[0]?.onChange
-    if (onChangeFn) {
-      onChangeFn([], { isLoading: false } as any, {})
-    }
+    expect(onChangeFn).toBeDefined()
 
-    // Avanza il timer oltre il debounce di 700ms
-    await vi.advanceTimersByTimeAsync(800)
+    const makeEl = (v: number) => ({ id: "a", version: v, type: "rectangle", x: 0, y: 0, width: 100, height: 50, strokeColor: "#000", backgroundColor: "#fff", fillStyle: "solid" as const, strokeWidth: 1, strokeStyle: "solid" as const, roughness: 1, opacity: 100, angle: 0, groupIds: [] as string[], boundElements: null, updated: v, link: null, locked: false, versionNonce: v * 10, isDeleted: false, seed: v * 100, roundness: null })
 
-    // saveScene NON deve essere chiamato — ma ora non lo controlliamo perché
-    // dopo che loading termina, initialLoadDone è true, quindi onChange funziona
-    // Questo test ora verifica che DURANTE il caricamento onChange non funzioni,
-    // ma quando Excalidraw monta (dopo loading), onChange è già abilitato.
-    // Il significato del test originale (guardia durante caricamento) è garantito
-    // dal fatto che Excalidraw non monta finché loading=true — onChange non può
-    // essere chiamato perché non c'è Excalidraw che lo chiami.
-    // Verifichiamo invece che senza il guard, onChange passerebbe:
-    // (non può succedere, la guardia è strutturale: render condizionale)
+    // Primo onChange: saveScene sarà deferred (in sospeso)
+    onChangeFn!([makeEl(1)] as any, {} as any, {})
 
-    // Dopo che loadScene finisce, onChange funziona normalemente
+    // Aspetta che il debounce scatti e saveScene venga chiamato (promessa bloccata)
     await vi.waitFor(() => {
-      expect(saveSpy).toHaveBeenCalled()
-    }, { timeout: 1000, interval: 50 })
+      expect(saveSpy).toHaveBeenCalledTimes(1)
+    }, { timeout: 1500, interval: 50 })
 
-    vi.useRealTimers()
+    // Mentre il primo save è bloccato, secondo onChange — deve accodarsi
+    onChangeFn!([makeEl(2)] as any, {} as any, {})
+
+    // Rilascia il primo save
+    resolveFirst(undefined)
+
+    // Dopo che il primo save si completa, il secondo save con mutex deve eseguire
+    await vi.waitFor(() => {
+      // Il mutex serializza: secondo save parte solo dopo che primo termina
+      expect(saveSpy).toHaveBeenCalledTimes(2)
+    }, { timeout: 2000, interval: 50 })
+
+    // Verifica ordine: secondo save ha version 2
+    const secondCall = saveSpy.mock.calls[1]
+    expect(secondCall[0]).toBe("test-room-1")
+
     root.unmount()
   })
 

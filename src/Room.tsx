@@ -37,6 +37,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const journalRef = useRef<JournalRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
+  // Promise-chain mutex per serializzare salvataggi async sovrapposti
+  const _pendingSave = useRef<Promise<void>>(Promise.resolve())
 
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (FSA → localStorage).
   // Excalidraw monta SOLO dopo il caricamento (render condizionale), evitando race condition
@@ -96,6 +98,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       })
     return () => {
       cancelled = true
+      // Pulisci il debounce timer persist() se ancora in sospeso
+      if (saveTimer.current) {
+        window.clearTimeout(saveTimer.current)
+        saveTimer.current = null
+      }
       // Flush journal rimanente e unsubscribe pointer events
       journalRef.current?.flush()
       journalRef.current = null
@@ -110,20 +117,23 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   // Persistenza via WorkspaceStore.
   // La scena viene salvata sul driver attivo (FSA → localStorage come cache/fallback).
   // Gestione quota 5MB esplicita e visibile — MAI try/catch muto.
+  // Promise-chain mutex serializza salvataggi async sovrapposti.
   function persist(elements: any, appState: any, files: any) {
     if (!initialLoadDone.current) return // ignora onChange durante il caricamento iniziale
     if (saveTimer.current) window.clearTimeout(saveTimer.current)
-    saveTimer.current = window.setTimeout(async () => {
-      try {
-        const serialized = serializeAsJSON(elements, appState, files, "local")
-        await actualStore.saveScene(room, serialized)
-        setStorageError(null)
-        setSaved(true)
-        window.setTimeout(() => setSaved(false), 1200)
-      } catch (err) {
-        // Quota esaurita o errore di scrittura — mostra all'utente, MAI try/catch muto
-        setStorageError("Salvataggio non riuscito: " + (err as Error).message)
-      }
+    saveTimer.current = window.setTimeout(() => {
+      _pendingSave.current = _pendingSave.current.then(async () => {
+        try {
+          const serialized = serializeAsJSON(elements, appState, files, "local")
+          await actualStore.saveScene(room, serialized)
+          setStorageError(null)
+          setSaved(true)
+          window.setTimeout(() => setSaved(false), 1200)
+        } catch (err) {
+          // Quota esaurita o errore di scrittura — mostra all'utente, MAI try/catch muto
+          setStorageError("Salvataggio non riuscito: " + (err as Error).message)
+        }
+      })
     }, 700)
   }
 

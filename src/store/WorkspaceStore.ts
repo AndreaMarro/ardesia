@@ -14,6 +14,11 @@ export interface WorkspaceState {
   room: string
 }
 
+/** Costruisce il path della scena per una specifica room */
+function roomScenePath(room: string): string {
+  return `raw/${room}/board.excalidraw`
+}
+
 export class WorkspaceStore {
   private driver: WorkspaceDriver
   private fallback: LocalStorageDriver
@@ -67,18 +72,24 @@ export class WorkspaceStore {
 
   async saveScene(room: string, sceneJson: string): Promise<void> {
     const blob = new Blob([sceneJson], { type: "application/json" })
-    await this.write(PATHS.SCENE, blob)
+    // Path per-room: raw/<room>/board.excalidraw — due room NON si sovrascrivono
+    await this.write(roomScenePath(room), blob)
     // Sync su localStorage come cache
     this.fallback.setLegacyScene(room, sceneJson)
   }
 
   async loadScene(room: string): Promise<string | null> {
-    // Prima: tenta dal driver primario
-    const blob = await this.read(PATHS.SCENE)
+    // Prima: tenta dal driver primario con path per-room
+    const blob = await this.read(roomScenePath(room))
     if (blob) {
       return await blob.text()
     }
-    // Fallback: legacy localStorage
+    // Fallback: scena esistente su FSA al vecchio path (migrazione)
+    const legacyBlob = await this.read(PATHS.SCENE)
+    if (legacyBlob) {
+      return await legacyBlob.text()
+    }
+    // Fallback: legacy localStorage (chiave studio-scene:{room})
     return this.fallback.getLegacyScene(room)
   }
 

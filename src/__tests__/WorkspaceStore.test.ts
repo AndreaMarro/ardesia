@@ -92,6 +92,15 @@ describe("WorkspaceStore", () => {
     expect(loaded).toBe(scene)
   })
 
+  it("saveScene con 2 room diverse NON collide (room-aware path)", async () => {
+    await store.saveScene("roomA", JSON.stringify({ room: "A" }))
+    await store.saveScene("roomB", JSON.stringify({ room: "B" }))
+    const roomA = await store.loadScene("roomA")
+    const roomB = await store.loadScene("roomB")
+    expect(roomA).toBe(JSON.stringify({ room: "A" }))
+    expect(roomB).toBe(JSON.stringify({ room: "B" }))
+  })
+
   it("write e read di blob binario (non-UTF8) preserva i byte", async () => {
     const original = new Uint8Array([0, 255, 128, 42, 0, 200])
     await store.write("raw/binary.bin", new Blob([original]))
@@ -99,6 +108,16 @@ describe("WorkspaceStore", () => {
     expect(blob).not.toBeNull()
     const result = new Uint8Array(await blob!.arrayBuffer())
     expect(Array.from(result)).toEqual(Array.from(original))
+  })
+
+  it("saveScene e loadScene via localStorage driver preserva MIME type", async () => {
+    // Usa localStorage driver direttamente per test MIME roundtrip
+    const { localStorageDriver } = await import("../store/drivers/localStorage")
+    const imageBytes = new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]) // PNG magic
+    await localStorageDriver.write("raw/img.png", new Blob([imageBytes], { type: "image/png" }))
+    const loaded = await localStorageDriver.read("raw/img.png")
+    expect(loaded).not.toBeNull()
+    expect(loaded!.type).toBe("image/png")
   })
 
   it("exportBundle e importBundle roundtrip", async () => {
@@ -179,5 +198,22 @@ describe("zipBundle", () => {
     expect(parsed.length).toBe(1)
     const result = new Uint8Array(await parsed[0].data.arrayBuffer())
     expect(Array.from(result)).toEqual(Array.from(originalBytes))
+  })
+
+  it("preserva MIME type nel roundtrip bundle", async () => {
+    const pngBytes = new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]) // PNG header
+    const entries: FileEntry[] = [
+      { path: "raw/img.png", mtime: 3000, data: new Blob([pngBytes], { type: "image/png" }) },
+      { path: "raw/data.bin", mtime: 3001, data: new Blob([new Uint8Array([0, 1, 2])]) },
+    ]
+    const blob = await createBundleBlob(entries)
+    const parsed = await parseBundleBlob(blob)
+    expect(parsed.length).toBe(2)
+    const pngEntry = parsed.find((e) => e.path === "raw/img.png")
+    expect(pngEntry).toBeDefined()
+    expect(pngEntry!.data.type).toBe("image/png")
+    const binEntry = parsed.find((e) => e.path === "raw/data.bin")
+    expect(binEntry).toBeDefined()
+    expect(binEntry!.data.type).toBe("application/octet-stream")
   })
 })

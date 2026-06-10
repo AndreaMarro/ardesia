@@ -4,10 +4,9 @@
 
 import { type WorkspaceDriver, type FileEntry } from "../types"
 
-let _rootHandle: FileSystemDirectoryHandle | null = null
-
 export class FSADriver implements WorkspaceDriver {
   readonly name = "FSA"
+  private _rootHandle: FileSystemDirectoryHandle | null = null
 
   available(): boolean {
     return typeof window !== "undefined" && "showDirectoryPicker" in window
@@ -16,7 +15,7 @@ export class FSADriver implements WorkspaceDriver {
   async init(): Promise<boolean> {
     if (!this.available()) return false
     try {
-      _rootHandle = await (window as any).showDirectoryPicker({
+      this._rootHandle = await (window as any).showDirectoryPicker({
         id: "maestro-workspace",
         mode: "readwrite",
         startIn: "documents",
@@ -35,10 +34,11 @@ export class FSADriver implements WorkspaceDriver {
     path: string,
     createMissing: boolean = false,
   ): Promise<{ parent: FileSystemDirectoryHandle; basename: string } | null> {
-    if (!_rootHandle) return null
+    if (!this._rootHandle) return null
     const parts = path.split("/").filter(Boolean)
+    if (parts.length === 0) return null
     const basename = parts.pop()!
-    let parent: FileSystemDirectoryHandle = _rootHandle
+    let parent: FileSystemDirectoryHandle = this._rootHandle
     for (const dir of parts) {
       try {
         parent = await parent.getDirectoryHandle(dir, { create: createMissing })
@@ -50,9 +50,9 @@ export class FSADriver implements WorkspaceDriver {
   }
 
   private async ensureDir(relPath: string): Promise<void> {
-    if (!_rootHandle) return
+    if (!this._rootHandle) return
     const parts = relPath.split("/").filter(Boolean)
-    let dir = _rootHandle
+    let dir = this._rootHandle
     for (const p of parts) {
       dir = await dir.getDirectoryHandle(p, { create: true })
     }
@@ -95,9 +95,9 @@ export class FSADriver implements WorkspaceDriver {
   }
 
   async list(prefix?: string): Promise<FileEntry[]> {
-    if (!_rootHandle) return []
+    if (!this._rootHandle) return []
     const entries: FileEntry[] = []
-    await this.walkDir(_rootHandle, "", prefix, entries)
+    await this.walkDir(this._rootHandle, "", prefix, entries)
     return entries
   }
 
@@ -124,7 +124,7 @@ export class FSADriver implements WorkspaceDriver {
   }
 }
 
-/** Crea un driver FSA; condivide l'handle radice */
+/** Crea un driver FSA; ogni istanza ha il proprio handle radice */
 export function createFSADriver(): FSADriver {
   return new FSADriver()
 }

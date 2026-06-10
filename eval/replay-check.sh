@@ -6,9 +6,10 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 cleanup() {
-  # Uccide tutto il process group (vite + eventuali orfani)
+  # Killa SOLO il PID di vite (non il process-group — in shell non-interattiva
+  # kill del PGID uccide anche SE STESSA = exit 255 esterno).
   if [ -n "${VITE_PID:-}" ]; then
-    kill -- "-$(ps -o pgid= -p "$VITE_PID" 2>/dev/null | tr -d ' ')" 2>/dev/null || true
+    kill "$VITE_PID" 2>/dev/null || true
   fi
 }
 trap cleanup EXIT

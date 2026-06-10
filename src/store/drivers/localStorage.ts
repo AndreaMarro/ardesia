@@ -3,29 +3,11 @@
 // I dati binari (audio etc.) sono codificati in base64 per non corrompersi.
 
 import { type WorkspaceDriver, type FileEntry } from "../types"
+import { blobToBase64, base64ToBlob } from "../codec"
 
 const PREFIX = "maestro:"
 const MTIME_SUFFIX = ":mtime"
-
-/** Converte Blob → base64 usando arrayBuffer (NON text() — corrompe byte binari) */
-async function blobToBase64(blob: Blob): Promise<string> {
-  const buf = await blob.arrayBuffer()
-  const bytes = new Uint8Array(buf)
-  let binary = ""
-  for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCharCode(bytes[i])
-  }
-  return btoa(binary)
-}
-
-function base64ToBlob(b64: string, type?: string): Blob {
-  const binaryStr = atob(b64)
-  const bytes = new Uint8Array(binaryStr.length)
-  for (let i = 0; i < binaryStr.length; i++) {
-    bytes[i] = binaryStr.charCodeAt(i)
-  }
-  return new Blob([bytes], type ? { type } : { type: "application/octet-stream" })
-}
+const TYPE_SUFFIX = ":type"
 
 export class LocalStorageDriver implements WorkspaceDriver {
   readonly name = "localStorage"
@@ -57,7 +39,8 @@ export class LocalStorageDriver implements WorkspaceDriver {
     try {
       const raw = localStorage.getItem(this.key(path))
       if (raw === null) return null
-      return base64ToBlob(raw)
+      const type = localStorage.getItem(PREFIX + TYPE_SUFFIX + path) ?? undefined
+      return base64ToBlob(raw, type)
     } catch {
       return null
     }
@@ -67,25 +50,30 @@ export class LocalStorageDriver implements WorkspaceDriver {
     const b64 = await blobToBase64(data)
     localStorage.setItem(this.key(path), b64)
     localStorage.setItem(this.mtimeKey(path), String(Date.now()))
+    if (data.type) {
+      localStorage.setItem(PREFIX + TYPE_SUFFIX + path, data.type)
+    }
   }
 
   async delete(path: string): Promise<void> {
     localStorage.removeItem(this.key(path))
     localStorage.removeItem(this.mtimeKey(path))
+    localStorage.removeItem(PREFIX + TYPE_SUFFIX + path)
   }
 
   async list(prefix?: string): Promise<FileEntry[]> {
     const entries: FileEntry[] = []
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i)
-      if (!key || !key.startsWith(PREFIX) || key.endsWith(MTIME_SUFFIX)) continue
+      if (!key || !key.startsWith(PREFIX) || key.endsWith(MTIME_SUFFIX) || key.startsWith(PREFIX + TYPE_SUFFIX)) continue
       const path = key.slice(PREFIX.length)
       if (prefix && !path.startsWith(prefix)) continue
       const raw = localStorage.getItem(key)!
       const mtimeRaw = localStorage.getItem(this.mtimeKey(path))
+      const typeRaw = localStorage.getItem(PREFIX + TYPE_SUFFIX + path)
       entries.push({
         path,
-        data: base64ToBlob(raw),
+        data: base64ToBlob(raw, typeRaw || undefined),
         mtime: mtimeRaw ? parseInt(mtimeRaw, 10) : 0,
       })
     }
