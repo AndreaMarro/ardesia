@@ -40,9 +40,12 @@ esac
 PATH_ID="teoria_segnali_2021"
 SOURCE_ID="teoria_segnali_source"
 TRANSCRIPT="${HOME}/maestro-data/teoria-segnali-2021/derived/asr/${BASENAME}.speech.segment.jsonl"
-DB_DIR="${HOME}/maestro-data/teoria-segnali-2021/derived/db"; mkdir -p "$DB_DIR"
-DB_PATH="${DB_DIR}/lessonos.db"
-WIKI_DIR="${HOME}/maestro-data/teoria-segnali-2021/derived/wiki"; mkdir -p "$WIKI_DIR"
+# DB_PATH/WIKI_DIR/MIN_CHARS overridable via env (A/B su DB separato senza
+# toccare il deliverable corrente). MIN_CHARS>0 = coalescing anti-coriandoli.
+DB_PATH="${DB_PATH:-${HOME}/maestro-data/teoria-segnali-2021/derived/db/lessonos.db}"
+mkdir -p "$(dirname "$DB_PATH")"
+WIKI_DIR="${WIKI_DIR:-${HOME}/maestro-data/teoria-segnali-2021/derived/wiki}"; mkdir -p "$WIKI_DIR"
+MIN_CHARS="${MIN_CHARS:-0}"
 
 [ -f "$TRANSCRIPT" ] || { echo "ERROR: transcript not found: $TRANSCRIPT"; exit 1; }
 LINE_COUNT=$(wc -l < "$TRANSCRIPT" | tr -d ' ')
@@ -59,7 +62,7 @@ if [ -f .env ]; then export "$(grep '^DEEPSEEK_API_KEY=' .env)"; fi
 echo "DeepSeek key: ${DEEPSEEK_API_KEY:0:8}... (present)"
 echo ""
 
-export LESSON_ID PATH_ID SOURCE_ID TRANSCRIPT MAX_SEGMENTS ORDER DB_PATH WIKI_DIR TITLE
+export LESSON_ID PATH_ID SOURCE_ID TRANSCRIPT MAX_SEGMENTS ORDER DB_PATH WIKI_DIR TITLE MIN_CHARS
 
 uv run python3 -c "
 import os, sys, re
@@ -88,7 +91,10 @@ store = SQLiteStore(DB_PATH)
 old = store.segments_for_lesson(LESSON_ID)
 if old:
     print(f'Re-ingesting over {len(old)} existing segments (upsert by seg_id)...')
-segments = ingest_asr_jsonl(store, TRANSCRIPT, LESSON_ID, max_segments=MAX_SEG)
+MIN_CHARS = int(os.environ.get('MIN_CHARS', '0'))
+if MIN_CHARS:
+    print(f'Coalescing attivo: min_chars={MIN_CHARS}')
+segments = ingest_asr_jsonl(store, TRANSCRIPT, LESSON_ID, max_segments=MAX_SEG, min_chars=MIN_CHARS)
 print(f'Ingested {len(segments)} segments ({segments[0].seg_id} – {segments[-1].seg_id})')
 assert segments[0].seg_id == f'{LESSON_ID}#s1', f'CONTRACT: first seg_id {segments[0].seg_id} != {LESSON_ID}#s1'
 
