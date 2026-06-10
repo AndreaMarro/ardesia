@@ -16,6 +16,7 @@
 import JSZip from "jszip"
 import type { WorkspaceStore } from "./WorkspaceStore"
 import type { FileEntry } from "./types"
+import { parseSessionYaml } from "./AudioRecorder"
 
 /** Nome del file bundle .lesson */
 export const LESSON_EXTENSION = ".lesson"
@@ -46,8 +47,17 @@ export async function exportLesson(
   const allRaw = await store.list("raw/")
   const entries = new Map<string, FileEntry>()
 
+  // Legge session.yaml per verificare il consenso audio (GDPR Mode A)
+  // Se audioConsent !== true, i chunk raw/audio/ NON devono finire nel bundle
+  let audioConsent: boolean | undefined
+  const sessionBlob = await store.read(LESSON_PATHS.SESSION)
+  if (sessionBlob) {
+    const sessionText = await sessionBlob.text()
+    audioConsent = parseSessionYaml(sessionText).audioConsent
+  }
+
   // Filtra: escludi scene per-room (raw/<room>/board.excalidraw etc.)
-  // e tieni solo file flat in raw/ o raw/audio/
+  // e tieni solo file flat in raw/ o raw/audio/ (se consentito)
   for (const entry of allRaw) {
     // Salta scene per-room (es. raw/sala123/board.excalidraw),
     // ma tieni raw/audio/chunk-*.webm
@@ -56,6 +66,12 @@ export async function exportLesson(
       // raw/<room>/board.excalidraw → skip (verrà iniettato flat)
       continue
     }
+
+    // GDPR: se audioConsent !== true, escludi TUTTI i file raw/audio/
+    if (entry.path.startsWith(LESSON_PATHS.AUDIO_DIR) && audioConsent !== true) {
+      continue
+    }
+
     // raw/events.jsonl, raw/session.yaml, raw/audio/chunk-*.webm → keep
     entries.set(entry.path, entry)
   }
@@ -90,15 +106,27 @@ export async function importLesson(
 ): Promise<void> {
   const zip = await JSZip.loadAsync(blob)
 
-  const promises: Array<Promise<void>> = []
+  // Prima passata: valida TUTTI i path prima di scrivere (ZipSlip protection)
+  // I path devono stare dentro raw/, non contenere .. e non essere assoluti
+  const entriesToWrite: Array<{ path: string; dataPromise: Promise<Blob> }> = []
   zip.forEach((relativePath, zipEntry) => {
     if (zipEntry.dir) return
-    promises.push(
-      zipEntry.async("blob").then((data: Blob) => {
-        return store.write(relativePath, data)
-      }),
-    )
+
+    if (
+      !relativePath.startsWith("raw/") ||
+      relativePath.includes("..")
+    ) {
+      throw new Error(
+        `ZipSlip: path rifiutato "${relativePath}" — deve iniziare con raw/ e non contenere ..`,
+      )
+    }
+
+    entriesToWrite.push({ path: relativePath, dataPromise: zipEntry.async("blob") })
   })
 
-  await Promise.all(promises)
+  // Seconda passata: tutte le validazioni passate, scrivi
+  for (const entry of entriesToWrite) {
+    const data = await entry.dataPromise
+    await store.write(entry.path, data)
+  }
 }

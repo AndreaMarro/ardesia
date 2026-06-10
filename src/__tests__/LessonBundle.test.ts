@@ -103,12 +103,14 @@ describe("LessonBundle", () => {
     expect(paths).toContain(LESSON_PATHS.SCENE)
   })
 
-  // --- TEST (1): consenso OFF ⇒ bundle NON contiene audio ---
+  // --- TEST (1): consenso OFF ⇒ bundle NON contiene audio (anche se chunk su disco) ---
 
-  it("consenso OFF (nessun chunk audio) — bundle non contiene raw/audio/", async () => {
+  it("consenso OFF con chunk audio su disco — bundle non contiene raw/audio/", async () => {
     await store.write(LESSON_PATHS.JOURNAL, new Blob(['{"t":100,"type":"element.add"}'], { type: "application/x-ndjson" }))
     await store.saveSessionYaml("v: 1\ncreated: 1000\naudioConsent: false\n")
     await store.saveScene(ROOM, JSON.stringify({ type: "excalidraw", elements: [] }))
+    // Seeda chunk audio come se fossero ancora su disco (consenso revocato)
+    await store.write("raw/audio/chunk-0.webm", new Blob(["audio-data-0"], { type: "audio/webm" }))
 
     const bundle = await exportLesson(store, ROOM)
     const paths = await listZipPaths(bundle)
@@ -223,5 +225,39 @@ describe("LessonBundle", () => {
     expect(sceneText).not.toBeNull()
     const sceneParsed = JSON.parse(sceneText!)
     expect(sceneParsed.type).toBe("excalidraw")
+  })
+
+  // --- TEST ZipSlip: path malevoli rifiutati ---
+
+  it.each([
+    ["../../etc/passwd", "path con .."],
+    ["raw/../../etc/passwd", "path con .. dopo raw/"],
+  ])("importLesson rifiuta path malevolo: %s", async (maliciousPath) => {
+    const zip = new JSZip()
+    zip.file(maliciousPath, new Blob(["evil"], { type: "text/plain" }))
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).rejects.toThrow(/ZipSlip/)
+  })
+
+  it("zip misto (entry valida + malevola) — reject E store2 vuoto", async () => {
+    const zip = new JSZip()
+    zip.file("raw/events.jsonl", '{"t":1,"type":"element.add"}')
+    zip.file("../../etc/passwd", "evil")
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).rejects.toThrow(/ZipSlip/)
+
+    // Store deve essere vuoto — nessuna write parziale
+    const all = await store2.list()
+    expect(all).toHaveLength(0)
   })
 })
