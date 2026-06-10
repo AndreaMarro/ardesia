@@ -1,4 +1,4 @@
-"""Lesson Graph construction, query, Didactic Delta, and Learning Debt (PLAN §3.2 + M3 + M4)."""
+"""Lesson Graph construction, query, Didactic Delta, Learning Debt, and graph_writer (T5)."""
 
 from lessonos.graph.builder import build_lesson_graph, build_path_graph
 from lessonos.graph.didactic_delta import (
@@ -36,6 +36,7 @@ from lessonos.graph.queries import (
     where_introduced,
     where_reinforced,
 )
+from lessonos.graph.writer import GraphWriter, write_capsule_graph
 
 __all__ = [
     "ConceptPathEntry",
@@ -60,6 +61,8 @@ __all__ = [
     "compute_retention",
     "predict_stability",
     "find_concept",
+    "GraphWriter",
+    "write_capsule_graph",
     "lesson_of_concept",
     "prerequisites_of",
     "topological_concepts",

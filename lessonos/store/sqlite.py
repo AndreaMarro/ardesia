@@ -11,11 +11,11 @@ from __future__ import annotations
 import json
 import sqlite3
 
-from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
+from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
 from lessonos.models.ledger import CostLedgerEntry
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 5
+SCHEMA_VERSION = 6
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -67,6 +67,29 @@ CREATE TABLE IF NOT EXISTS cost_ledger (
     cost_usd         REAL NOT NULL,
     label            TEXT NOT NULL DEFAULT '',
     created_at       TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS nodes (
+    node_id    TEXT PRIMARY KEY,
+    lesson_id  TEXT NOT NULL,
+    node_type  TEXT NOT NULL,
+    ref_id     TEXT NOT NULL,
+    label      TEXT
+);
+CREATE TABLE IF NOT EXISTS edges (
+    edge_id    TEXT PRIMARY KEY,
+    lesson_id  TEXT NOT NULL,
+    source     TEXT NOT NULL,
+    target     TEXT NOT NULL,
+    edge_type  TEXT NOT NULL,
+    metadata   TEXT NOT NULL DEFAULT '{}'
+);
+CREATE TABLE IF NOT EXISTS evidence (
+    evidence_id TEXT PRIMARY KEY,
+    edge_id     TEXT NOT NULL,
+    seg_id      TEXT NOT NULL,
+    excerpt     TEXT,
+    confidence  REAL,
+    lesson_id   TEXT NOT NULL
 );
 """
 class SQLiteStore(Store):
@@ -314,4 +337,109 @@ class SQLiteStore(Store):
             completion_tokens=row["completion_tokens"],
             cost_usd=row["cost_usd"],
             label=row["label"],
+        )
+
+    # --- Graph tables (T5 graph_writer) ------------------------------------
+
+    def save_graph_node(self, lesson_id: str, node: GraphNode) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO nodes "
+            "(node_id, lesson_id, node_type, ref_id, label) "
+            "VALUES (?, ?, ?, ?, ?)",
+            (node.node_id, lesson_id, node.node_type, node.ref_id, node.label),
+        )
+        self._conn.commit()
+
+    def get_graph_nodes_for_lesson(self, lesson_id: str) -> tuple[GraphNode, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM nodes WHERE lesson_id = ? ORDER BY node_id",
+            (lesson_id,),
+        ).fetchall()
+        return tuple(
+            GraphNode(
+                node_id=r["node_id"],
+                node_type=r["node_type"],
+                ref_id=r["ref_id"],
+                label=r["label"],
+            )
+            for r in rows
+        )
+
+    def save_graph_edge(self, lesson_id: str, edge: GraphEdge) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO edges "
+            "(edge_id, lesson_id, source, target, edge_type, metadata) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                edge.edge_id,
+                lesson_id,
+                edge.source,
+                edge.target,
+                edge.edge_type,
+                json.dumps(edge.metadata),
+            ),
+        )
+        self._conn.commit()
+
+    def get_graph_edges_for_lesson(self, lesson_id: str) -> tuple[GraphEdge, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM edges WHERE lesson_id = ? ORDER BY edge_id",
+            (lesson_id,),
+        ).fetchall()
+        return tuple(
+            GraphEdge(
+                edge_id=r["edge_id"],
+                source=r["source"],
+                target=r["target"],
+                edge_type=r["edge_type"],
+                metadata=json.loads(r["metadata"]),
+            )
+            for r in rows
+        )
+
+    def save_evidence(self, evidence: GraphEvidence) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO evidence "
+            "(evidence_id, edge_id, seg_id, excerpt, confidence, lesson_id) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                evidence.evidence_id,
+                evidence.edge_id,
+                evidence.seg_id,
+                evidence.excerpt,
+                evidence.confidence,
+                evidence.lesson_id,
+            ),
+        )
+        self._conn.commit()
+
+    def get_evidence_for_edge(self, edge_id: str) -> tuple[GraphEvidence, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM evidence WHERE edge_id = ? ORDER BY evidence_id",
+            (edge_id,),
+        ).fetchall()
+        return tuple(self._row_to_evidence(r) for r in rows)
+
+    def get_all_evidence_for_lesson(self, lesson_id: str) -> tuple[GraphEvidence, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM evidence WHERE lesson_id = ? ORDER BY evidence_id",
+            (lesson_id,),
+        ).fetchall()
+        return tuple(self._row_to_evidence(r) for r in rows)
+
+    def delete_graph_for_lesson(self, lesson_id: str) -> None:
+        self._conn.execute("DELETE FROM nodes WHERE lesson_id = ?", (lesson_id,))
+        self._conn.execute("DELETE FROM edges WHERE lesson_id = ?", (lesson_id,))
+        self._conn.execute("DELETE FROM evidence WHERE lesson_id = ?", (lesson_id,))
+        self._conn.commit()
+
+    @staticmethod
+    def _row_to_evidence(row: sqlite3.Row) -> GraphEvidence:
+        return GraphEvidence(
+            evidence_id=row["evidence_id"],
+            edge_id=row["edge_id"],
+            seg_id=row["seg_id"],
+            excerpt=row["excerpt"],
+            confidence=row["confidence"],
+            lesson_id=row["lesson_id"],
         )

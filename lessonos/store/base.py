@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from lessonos.models.entities import Lesson, Moment, Path, Segment, Source
+from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
 from lessonos.models.ledger import CostLedgerEntry
 
 
@@ -88,3 +88,37 @@ class Store(ABC):
     @abstractmethod
     def get_ledger_for_lesson(self, lesson_id: str) -> tuple[CostLedgerEntry, ...]:
         """Retrieve cost ledger entries for a specific lesson."""
+
+    # --- Graph tables (T5 graph_writer) ----------------------------------
+
+    @abstractmethod
+    def save_graph_node(self, lesson_id: str, node: GraphNode) -> None:
+        """Persist a graph node for a lesson."""
+
+    @abstractmethod
+    def get_graph_nodes_for_lesson(self, lesson_id: str) -> tuple[GraphNode, ...]:
+        """Retrieve all graph nodes for a lesson."""
+
+    @abstractmethod
+    def save_graph_edge(self, lesson_id: str, edge: GraphEdge) -> None:
+        """Persist a graph edge for a lesson."""
+
+    @abstractmethod
+    def get_graph_edges_for_lesson(self, lesson_id: str) -> tuple[GraphEdge, ...]:
+        """Retrieve all graph edges for a lesson."""
+
+    @abstractmethod
+    def save_evidence(self, evidence: GraphEvidence) -> None:
+        """Persist a piece of graph evidence."""
+
+    @abstractmethod
+    def get_evidence_for_edge(self, edge_id: str) -> tuple[GraphEvidence, ...]:
+        """Retrieve all evidence for a graph edge."""
+
+    @abstractmethod
+    def get_all_evidence_for_lesson(self, lesson_id: str) -> tuple[GraphEvidence, ...]:
+        """Retrieve all evidence for a lesson's graph."""
+
+    @abstractmethod
+    def delete_graph_for_lesson(self, lesson_id: str) -> None:
+        """Delete all graph data (nodes, edges, evidence) for a lesson."""

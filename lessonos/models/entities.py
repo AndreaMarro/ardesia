@@ -155,3 +155,20 @@ class GraphEdge:
                 f"invalid edge_type: {self.edge_type!r} "
                 f"(expected one of {sorted(EDGE_TYPES)})"
             )
+
+
+@dataclass(frozen=True)
+class GraphEvidence:
+    """A piece of evidence grounding a graph edge to a real transcript segment (T5).
+
+    Every edge in the Lesson Graph must have at least one piece of evidence
+    that proves the edge is grounded in the actual transcript. The ``excerpt``
+    is a verbatim substring of the segment text — never a paraphrase.
+    """
+
+    evidence_id: str
+    edge_id: str
+    seg_id: str
+    excerpt: str | None = None
+    confidence: float | None = None
+    lesson_id: str = ""
