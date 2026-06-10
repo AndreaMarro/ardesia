@@ -21,6 +21,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - [CHIUSA ✅] T4a (modulo+4/4 trascrizioni: 9990 segmenti totali, spot-check superati) · T4-fix
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 08:58]** 2 problema/i CRITICO/i su `lessonos@4013e76` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0858-lessonos-4013e76.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 08:16]** 2 problema/i CRITICO/i su `studio@98188db` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0816-studio-98188db.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 07:37]** 2 problema/i CRITICO/i su `lessonos@23fec77` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0737-lessonos-23fec77.md` (supervisore: leggere e decidere)
 ||- **[T1d ✅ DONE 2026-06-10 08:53] T1d FIX REGRESSIONE REPLAY — gate 44/44 VERDE (43 vitest + 1 replay-check Playwright).** Commit `07fc0f2` su `auto/main`. Due bug fixati: (a) kill-test usava store.read(PATHS.SCENE) = old path, ora usa store.loadScene(room) con fallback per-room (raw/<room>/board.excalidraw); (b) mismatches undefined negli early-exit → sempre popolato. Plus --strictPort in replay-check.sh. Prossima task: T2 Audio Mode A.
