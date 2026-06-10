@@ -70,7 +70,7 @@ payload = {
     "model": "kimi-k2.6",
     "messages": [{"role": "user", "content": prompt}],
     "temperature": 1,
-    "max_tokens": 4096,
+    "max_tokens": 8192,  # k2.6 ragiona a lungo prima di scrivere: il budget copre reasoning+report
 }
 req = urllib.request.Request(
     "https://api.moonshot.ai/v1/chat/completions",
