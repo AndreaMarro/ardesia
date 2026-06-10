@@ -11,6 +11,7 @@ import os
 import re
 import subprocess
 import sys
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
@@ -75,6 +76,9 @@ try:
     with urllib.request.urlopen(req, timeout=180) as r:
         body = json.load(r)
     text = body["choices"][0]["message"]["content"]
+except urllib.error.HTTPError as e:  # diagnostica vera nel log, mai bloccare il tick
+    print(f"HERMES-2 SALTATO (kimi HTTP {e.code}: {e.read()[:300]!r})")
+    sys.exit(0)
 except Exception as e:  # rete/quota: non bloccare mai il tick
     print(f"HERMES-2 SALTATO (kimi non raggiungibile: {e})")
     sys.exit(0)
