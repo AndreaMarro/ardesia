@@ -31,7 +31,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from lessonos.capsule.assembly import LessonCapsule
-from lessonos.graph.grounding import verify_citation
+from lessonos.graph.grounding import is_verified_excerpt, verify_citation
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -259,26 +259,60 @@ def _render_summary_markdown(
     lines.append(f"- **Compiti**: {len(capsule.content.homework)}")
     lines.append("")
 
+    # T6R anti-false-verde: render ONLY verified citations (verbatim excerpt).
+    # A citation with no excerpt quotes nothing — it is excluded, never shown as
+    # a bare [seg_id] link. A paragraph left with zero verified citations is an
+    # unsupported claim and is dropped from the grounded body. Both exclusions
+    # are disclosed in a footer (omitted entirely when nothing was excluded, so
+    # a fully-grounded summary renders byte-identically to before).
+    excluded_citations = 0
+    dropped_paragraphs = 0
+
     for sec in sections:
         heading = sec["heading"]
-        lines.append(f"## {heading}")
-        lines.append("")
+        rendered_paras: list[str] = []
         for para in sec.get("paragraphs", []):
             text = para["text"]
             citations = para.get("citations", [])
-            # Append inline citations
-            if citations:
-                cite_links = []
-                for c in citations:
-                    seg_id = c["seg_id"]
-                    excerpt = c.get("excerpt", "")
-                    if excerpt:
-                        cite_links.append(f"[{excerpt}]({seg_id})")
-                    else:
-                        cite_links.append(f"[{seg_id}]")
-                text = f"{text} ({'; '.join(cite_links)})"
-            lines.append(text)
+            verified_links: list[str] = []
+            for c in citations:
+                seg_id = c["seg_id"]
+                excerpt = c.get("excerpt")
+                if is_verified_excerpt(excerpt):
+                    verified_links.append(f"[{excerpt}]({seg_id})")
+                else:
+                    excluded_citations += 1
+            if citations and not verified_links:
+                # had citations, none verifiable → unsupported claim, drop it
+                dropped_paragraphs += 1
+                continue
+            if verified_links:
+                text = f"{text} ({'; '.join(verified_links)})"
+            rendered_paras.append(text)
+        if not rendered_paras:
+            # whole section collapsed to unsupported claims → skip
+            continue
+        lines.append(f"## {heading}")
+        lines.append("")
+        for t in rendered_paras:
+            lines.append(t)
             lines.append("")
+
+    if excluded_citations or dropped_paragraphs:
+        lines.append("---")
+        lines.append("")
+        note = (
+            f"> ⚠️ Grounding: {excluded_citations} citazioni non verificate "
+            f"(excerpt non verbatim) escluse"
+        )
+        if dropped_paragraphs:
+            note += (
+                f"; {dropped_paragraphs} paragrafi senza citazioni "
+                f"verificate rimossi"
+            )
+        note += "."
+        lines.append(note)
+        lines.append("")
 
     return "\n".join(lines)
 

@@ -158,7 +158,11 @@ def build_extraction_prompt(segments) -> str:
         "student_questions: [{question, citations}].",
         "homework: [{task, citations}].",
         "",
-        "citations: [{seg_id, excerpt?, confidence?}].",
+        "citations: [{seg_id, excerpt, confidence?}].",
+        "OGNI citazione DEVE avere excerpt = testo VERBATIM copiato-incollato dal "
+        "segmento citato (NON parafrasato, NON riassunto): una sottostringa "
+        "letterale del testo del segmento. Senza excerpt verbatim la citazione "
+        "viene scartata.",
         "Usa SOLO i seg_id elencati; non inventarne.",
         "",
         "Segmenti:",

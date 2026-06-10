@@ -514,3 +514,67 @@ class TestGenerateLessonSummary:
                 disk_content = f.read()
             # Should match the in-memory pack
             assert disk_content == pack.files["l1.md"]
+
+
+class TestRenderExcludesUnverified:
+    """T6R anti-false-verde: null-excerpt citations excluded from the rendered
+    summary; paragraphs left unsupported are dropped; exclusions are disclosed.
+    """
+
+    def test_fully_grounded_has_no_footer(self) -> None:
+        """All citations verified → byte-identical to legacy render, no footer."""
+        capsule = _make_capsule()
+        sections = _parse_summary_response(_DETERMINISTIC_LLM_RESPONSE)
+        md = _render_summary_markdown(capsule, sections)
+        assert "⚠️ Grounding:" not in md
+        assert md == _EXPECTED_MARKDOWN
+
+    def test_null_excerpt_citation_dropped_and_disclosed(self) -> None:
+        capsule = _make_capsule()
+        sections = [
+            {
+                "heading": "Panoramica dei temi",
+                "paragraphs": [
+                    {
+                        "text": "Claim verificato.",
+                        "citations": [
+                            {"seg_id": "l1#s0", "excerpt": "rate of change"}
+                        ],
+                    },
+                    {
+                        "text": "Claim non verificato.",
+                        "citations": [{"seg_id": "l1#s1"}],  # no excerpt
+                    },
+                ],
+            }
+        ]
+        md = _render_summary_markdown(capsule, sections)
+        # verified claim + link kept
+        assert "Claim verificato. ([rate of change](l1#s0))" in md
+        # unverified paragraph dropped, bare seg_id NEVER rendered
+        assert "Claim non verificato." not in md
+        assert "[l1#s1]" not in md
+        # disclosure footer
+        assert "⚠️ Grounding:" in md
+        assert "1 paragrafi senza citazioni verificate rimossi" in md
+
+    def test_partial_paragraph_keeps_only_verified_links(self) -> None:
+        capsule = _make_capsule()
+        sections = [
+            {
+                "heading": "Concetti chiave",
+                "paragraphs": [
+                    {
+                        "text": "Misto.",
+                        "citations": [
+                            {"seg_id": "l1#s0", "excerpt": "rate of change"},
+                            {"seg_id": "l1#s1"},  # unverified → excluded
+                        ],
+                    },
+                ],
+            }
+        ]
+        md = _render_summary_markdown(capsule, sections)
+        assert "Misto. ([rate of change](l1#s0))" in md
+        assert "l1#s1" not in md  # unverified link never appears
+        assert "1 citazioni non verificate" in md
