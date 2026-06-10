@@ -215,6 +215,10 @@ class DeepSeekProvider:
             {
                 "model": used_model,
                 "messages": [{"role": "user", "content": prompt}],
+                # Senza max_tokens DeepSeek applica il default 4096 e TRONCA gli
+                # output lunghi a meta' JSON (incidente macinata: summary con
+                # excerpt coalesced -> "Unterminated string"). 8192 = max chat.
+                "max_tokens": 8192,
             }
         ).encode("utf-8")
         request = urllib.request.Request(

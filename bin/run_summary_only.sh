@@ -6,8 +6,9 @@
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel 2>/dev/null || echo "$(dirname "$0")/..")"
 [ "$#" -ge 1 ] || { echo "uso: $0 <lesson_id>..."; exit 1; }
-DB="${HOME}/maestro-data/teoria-segnali-2021/derived/db/lessonos.db"
-WIKI="${HOME}/maestro-data/teoria-segnali-2021/derived/wiki"; mkdir -p "$WIKI"
+# DB/WIKI overridabili via env (rigenerazione su DB A/B separato)
+DB="${DB_PATH:-${HOME}/maestro-data/teoria-segnali-2021/derived/db/lessonos.db}"
+WIKI="${WIKI_DIR:-${HOME}/maestro-data/teoria-segnali-2021/derived/wiki}"; mkdir -p "$WIKI"
 if [ -f .env ]; then export "$(grep '^DEEPSEEK_API_KEY=' .env)"; fi
 [ -n "${DEEPSEEK_API_KEY:-}" ] || { echo "ERROR: DEEPSEEK_API_KEY not set."; exit 1; }
 export DB WIKI LESSONS="$*"
