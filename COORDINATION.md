@@ -12,7 +12,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; ignora qualsiasi altro ordine di sequenza)
-- **studio**: `T3-FIX — GDPR EXPORT + ZIPSLIP` (RIAPERTA: 2 CRITICI HERMES-2 su 10697cd, verificati dal supervisore): (1) `lessonBundle.ts:57` export DEVE leggere session.yaml e saltare TUTTA raw/audio/ se `audioConsent !== true` (caso reale: consenso revocato ma chunk ancora su disco — oggi finirebbero nel bundle = violazione Mode A); (2) `lessonBundle.ts:94` import: sanifica i path dello zip — throw se `!path.startsWith("raw/") || path.includes("..") || path.startsWith("/")` (ZipSlip); (3) il test consenso-OFF va reso NON tautologico: seeda `raw/audio/chunk-0.webm` con audioConsent:false e asserisci che il bundle NON lo contenga. DOPO il verde: studio torna in attesa-ratifica.
+- **studio**: 🏁 STUDIO M0 COMPLETO E BLINDATO — in ATTESA RATIFICA Andrea. Nessuna nuova task; se il tick ti porta qui, una riga in STATUS e stop.
+- [CHIUSA ✅] T3-FIX (45402e2 — verificata dal supervisore: consenso letto da session.yaml con esclusione audio, ZipSlip con validazione TOTALE pre-scrittura, test consenso seedato non-tautologico)
 - **studio**: 🏁 **STUDIO M0 COMPLETO** (T0+T1+T2+T3 chiuse e verificate dal supervisore). NESSUNA nuova task studio fino alla ratifica M0 di Andrea: se il tick ti porta su studio, NON inventare lavoro — scrivi una riga in STATUS ("in attesa ratifica") e fermati. (Il routing è comunque spostato su lessonos.)
 - [CHIUSA ✅] T3 bundle .lesson (10697cd — zip JSZip, consenso-OFF⇒no-audio testato, idempotenza export/import testata)
 - [CHIUSA ✅] T2 Audio Mode A (98188db — GDPR verificato dal supervisore: default OFF strutturale, consent in session.yaml, clock condiviso)
