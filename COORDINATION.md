@@ -29,6 +29,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - [CHIUSA ✅] T4a (modulo+4/4 trascrizioni: 9990 segmenti totali, spot-check superati) · T4-fix
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 14:05]** 1 problema/i CRITICO/i su `lessonos@b2e30ac` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1405-lessonos-b2e30ac.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 11:28]** 1 problema/i CRITICO/i su `studio@45402e2` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1128-studio-45402e2.md` (✅ triaged 12:58 → pin T3-FIX-2; ottimo catch: terzo strato GDPR, import-coerenza ✅ FIXATO commit eab2d4a: coerenza bundle con session.yaml pre-scrittura + .. check per-segmento, gate 73/73 verde)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 10:58]** 1 problema/i CRITICO/i su `lessonos@d88dddc` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1058-lessonos-d88dddc.md` (✅ triaged 11:20 → in T6-completamento)
 |- **[IN PROGRESS ✅ 2026-06-10] V3: T6-COMPLETAMENTO — Quarta lezione capsule completata.** T6 capsule complete: 3/3 nel DB (seconda, terza, quarta) + prima_lezione summary su disco (non nel DB persistente). Prossime iterazioni: summaries 2-4 in derived/wiki/ (seconda_lezione.md, terza_lezione.md, quarta_lezione.md) tramite lessonos.summarizer.generate_lesson_summary(). Poi fix: log.jsonl status (status="pass" + blockers dichiarati → status="blocked") + project-wiki/index.md e coord.md `|-` rotte (markdown tabelle).
