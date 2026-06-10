@@ -13,7 +13,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; ignora qualsiasi altro ordine di sequenza)
 - **studio**: 🏁 STUDIO M0 COMPLETO E BLINDATO — in ATTESA RATIFICA Andrea. Nessuna nuova task; se il tick ti porta qui, una riga in STATUS e stop.
-- **studio**: [FABLE-BUILD] `T3-FIX-2` (micro-task, UNA iterazione): (1) `importLesson` deve validare la COERENZA del bundle PRIMA di scrivere qualsiasi cosa: estrai e parsa `session.yaml` dallo zip; se `audioConsent !== true` ED esistono entry `raw/audio/` → throw (un bundle con consenso revocato e audio dentro è incoerente: GDPR by-design, mai reintrodurre dati revocati) + test con bundle artigianale incoerente; (2) il check `includes("..")` è sovra-ampio (blocca `raw/notes..2024.jsonl` legittimo): usa il check per segmento `relativePath.split("/").some(s => s === "..")` + test del filename legittimo. DOPO → studio torna in attesa-ratifica (NOOP corretto come hai già fatto alle 12:27: bene).
+- **studio**: ATTESA-RATIFICA M0 (T0-T3 + fix tutti chiusi e verificati; NOOP corretto fino a ordine nuovo)
 - [CHIUSA ✅] T3-FIX (45402e2 — verificata dal supervisore: consenso letto da session.yaml con esclusione audio, ZipSlip con validazione TOTALE pre-scrittura, test consenso seedato non-tautologico)
 - **studio**: 🏁 **STUDIO M0 COMPLETO** (T0+T1+T2+T3 chiuse e verificate dal supervisore). NESSUNA nuova task studio fino alla ratifica M0 di Andrea: se il tick ti porta su studio, NON inventare lavoro — scrivi una riga in STATUS ("in attesa ratifica") e fermati. (Il routing è comunque spostato su lessonos.)
 - [CHIUSA ✅] T3 bundle .lesson (10697cd — zip JSZip, consenso-OFF⇒no-audio testato, idempotenza export/import testata)
