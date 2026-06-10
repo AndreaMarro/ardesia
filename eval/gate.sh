@@ -17,5 +17,18 @@ fi
 vout=$(npx vitest run --passWithNoTests --reporter=json 2>/dev/null); vrc=$?
 passed=$(printf '%s' "$vout" | grep -oE '"numPassedTests":[0-9]+' | grep -oE '[0-9]+' | head -1)
 failed=$(printf '%s' "$vout" | grep -oE '"numFailedTests":[0-9]+' | grep -oE '[0-9]+' | head -1)
-echo "{\"passed\":${passed:-0},\"failed\":${failed:-0},\"exit\":${vrc}}"
+passed=${passed:-0}; failed=${failed:-0}
+
+# KILL-TEST T1 nel gate (aggiunto dal supervisore 10/06 dopo regressione replay sfuggita al solo vitest):
+# il replay deterministico è l'invariante di prodotto — se esiste lo script, DEVE essere verde.
+if [ "$vrc" -eq 0 ] && [ -x eval/replay-check.sh ] && [ "${SKIP_REPLAY:-0}" != "1" ]; then
+  if bash eval/replay-check.sh >/tmp/replay-gate.log 2>&1; then
+    passed=$((passed+1))
+  else
+    failed=$((failed+1)); vrc=1
+    tail -5 /tmp/replay-gate.log >&2
+  fi
+fi
+
+echo "{\"passed\":${passed},\"failed\":${failed},\"exit\":${vrc}}"
 exit "$vrc"
