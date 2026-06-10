@@ -400,3 +400,104 @@ class TestEdgeCases:
             transcribe_audio(fake_wav, model_size="tiny", language="it")
 
         assert captured_kwargs.get("language") == "it"
+
+
+class TestRunAsrPipelineStem:
+    """Tests for run_asr_pipeline stem handling (double-conversion fix)."""
+
+    def test_stem_from_m4a(self, tmp_path: Path):
+        """Calling run_asr_pipeline with .m4a produces JSONL without _16k_mono suffix."""
+        audio = tmp_path / "Terza_lezione_teoria_dei_segnali.m4a"
+        audio.write_bytes(b"\x00" * 1024)
+        out_dir = str(tmp_path / "out")
+
+        with (
+            patch("lessonos.asr.pipeline.convert_to_wav") as mock_convert,
+            patch("lessonos.asr.pipeline.transcribe_with_fallback") as mock_transcribe,
+        ):
+            mock_convert.return_value = str(tmp_path / "converted.wav")
+            mock_transcribe.return_value = [SpeechSegment(0.0, 1.0, "test")]
+
+            result = run_asr_pipeline(str(audio), out_dir)
+
+        # JSONL should be named from m4a stem, NOT _16k_mono
+        expected_name = "Terza_lezione_teoria_dei_segnali.speech.segment.jsonl"
+        assert result.endswith(expected_name), f"Expected {expected_name}, got {result}"
+
+    def test_stem_from_wav_strips_16k_mono(self, tmp_path: Path):
+        """Calling run_asr_pipeline on a _16k_mono.wav (re-run) strips the suffix.
+        AND skips ffmpeg conversion entirely (true double-conversion fix).
+        """
+        audio = tmp_path / "Terza_lezione_teoria_dei_segnali_16k_mono.wav"
+        audio.write_bytes(b"\x00" * 1024)
+        out_dir = str(tmp_path / "out2")
+
+        with (
+            patch("lessonos.asr.pipeline.convert_to_wav") as mock_convert,
+            patch("lessonos.asr.pipeline.transcribe_with_fallback") as mock_transcribe,
+        ):
+            mock_transcribe.return_value = [SpeechSegment(0.0, 1.0, "test")]
+
+            result = run_asr_pipeline(str(audio), out_dir)
+
+        # JSONL should have clean stem without _16k_mono
+        expected_name = "Terza_lezione_teoria_dei_segnali.speech.segment.jsonl"
+        assert result.endswith(expected_name), f"Expected {expected_name}, got {result}"
+        # convert_to_wav should NOT be called for WAV input (true fix)
+        mock_convert.assert_not_called()
+
+    def test_stem_from_plain_wav(self, tmp_path: Path):
+        """Calling run_asr_pipeline on a plain .wav skips conversion, preserves stem."""
+        audio = tmp_path / "lecture.wav"
+        audio.write_bytes(b"\x00" * 1024)
+        out_dir = str(tmp_path / "out3")
+
+        with (
+            patch("lessonos.asr.pipeline.convert_to_wav") as mock_convert,
+            patch("lessonos.asr.pipeline.transcribe_with_fallback") as mock_transcribe,
+        ):
+            mock_transcribe.return_value = [SpeechSegment(0.0, 1.0, "test")]
+
+            result = run_asr_pipeline(str(audio), out_dir)
+
+        expected_name = "lecture.speech.segment.jsonl"
+        assert result.endswith(expected_name), f"Expected {expected_name}, got {result}"
+        mock_convert.assert_not_called()
+
+
+class TestSegmentsFromJsonlMalformed:
+    """Tests for segments_from_jsonl graceful handling of malformed lines."""
+
+    def test_skips_malformed_json_line(self, tmp_path: Path):
+        """A single malformed JSON line does not crash the reader."""
+        path = tmp_path / "malformed.jsonl"
+        path.write_text(
+            '{"start": 0.0, "end": 1.0, "text": "good"}\n'
+            "NOT JSON\n"
+            '{"start": 1.0, "end": 2.0, "text": "also good"}\n'
+        )
+        segs = list(segments_from_jsonl(str(path)))
+        assert len(segs) == 2
+        assert segs[0].text == "good"
+        assert segs[1].text == "also good"
+
+    def test_all_malformed_returns_empty(self, tmp_path: Path):
+        """If every line is malformed, returns empty list (no crash)."""
+        path = tmp_path / "all_bad.jsonl"
+        path.write_text("NOT JSON\nALSO NOT\n")
+        segs = list(segments_from_jsonl(str(path)))
+        assert segs == []
+
+    def test_partial_malformed_with_missing_key(self, tmp_path: Path):
+        """Line with valid JSON but missing required key is skipped."""
+        path = tmp_path / "missing_key.jsonl"
+        path.write_text(
+            '{"start": 0.0, "end": 1.0, "text": "ok"}\n'
+            # missing 'end' key — should raise KeyError and be skipped
+            '{"start": 1.0, "text": "bad"}\n'
+            '{"start": 2.0, "end": 3.0, "text": "ok2"}\n'
+        )
+        segs = list(segments_from_jsonl(str(path)))
+        assert len(segs) == 2
+        assert segs[0].text == "ok"
+        assert segs[1].text == "ok2"

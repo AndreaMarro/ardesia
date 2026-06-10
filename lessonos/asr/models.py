@@ -61,13 +61,25 @@ def segments_to_jsonl(segments: list[SpeechSegment], output_path: str) -> None:
 def segments_from_jsonl(path: str) -> Iterator[SpeechSegment]:
     """Yield SpeechSegment from a JSONL file, one per line.
 
+    Malformed JSON lines are skipped with a logger warning to prevent a
+    single corrupt line from aborting the entire read. The caller can
+    check log output for skip count to detect data corruption.
+
     Args:
         path: Path to JSONL file.
     """
     import json
+    import logging
+
+    logger = logging.getLogger(__name__)
 
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if line:
+            if not line:
+                continue
+            try:
                 yield SpeechSegment.from_dict(json.loads(line))
+            except (json.JSONDecodeError, KeyError, TypeError) as e:
+                logger.warning("Skipping malformed JSONL line: %s", e)
+                continue

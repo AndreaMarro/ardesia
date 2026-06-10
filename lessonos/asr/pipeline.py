@@ -56,9 +56,13 @@ def run_asr_pipeline(
     out_dir = Path(output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Step 1: convert to WAV
-    logger.info("Converting %s to 16kHz mono WAV ...", audio.name)
-    wav_path = convert_to_wav(str(audio), str(out_dir))
+    # Step 1: convert to WAV (skip if already a WAV file)
+    if audio.suffix.lower() in (".wav", ".wave"):
+        logger.info("Input %s is already a WAV file — skipping ffmpeg conversion.", audio.name)
+        wav_path = str(audio)
+    else:
+        logger.info("Converting %s to 16kHz mono WAV ...", audio.name)
+        wav_path = convert_to_wav(str(audio), str(out_dir))
 
     # Step 2: transcribe
     logger.info(
@@ -78,7 +82,10 @@ def run_asr_pipeline(
     logger.info("Got %d speech segments.", len(segments))
 
     # Step 3: write JSONL
+    # Clean stem: strip _16k_mono suffix if present (handles re-run on existing WAV)
     stem = audio.stem.replace(" ", "_").replace("(", "").replace(")", "")
+    if stem.endswith("_16k_mono"):
+        stem = stem[: -len("_16k_mono")]
     jsonl_path = str(out_dir / f"{stem}.speech.segment.jsonl")
     segments_to_jsonl(segments, jsonl_path)
     logger.info("Segments written to %s", jsonl_path)

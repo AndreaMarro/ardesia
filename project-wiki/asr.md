@@ -4,6 +4,8 @@
 
 The ASR (Automatic Speech Recognition) module provides on-device transcription of lecture audio using faster-whisper (CTranslate2 backend, no GPU required). Zero cloud — all processing on the Mac Mini.
 
+> **2026-06-10 T4-fix:** `run_asr_pipeline` ora salta ffmpeg conversion se l'input è già un `.wav` (evita double-conversion). `verify-transcription.sh` passa il path via `sys.argv[1]` (no shell injection). `segments_from_jsonl` gestisce linee JSON malformate con try/except + logger.warning. Tutti i 3 CRITICI ASR da COORDINATION.md fixati.
+
 ## Architecture
 
 ```

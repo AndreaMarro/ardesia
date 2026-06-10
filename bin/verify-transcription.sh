@@ -2,6 +2,7 @@
 # Verify ASR transcription: exists, monotonic timestamps, spot-check, confidence
 # Usage: bin/verify-transcription.sh <jsonl-path>
 # Python-only (no bc/jq deps), guards for short files, honest verdict.
+# Path is passed as sys.argv[1] (NOT shell-interpolated into Python code)
 set -euo pipefail
 
 JSONL="${1:?Usage: $0 <jsonl-path>}"
@@ -16,7 +17,10 @@ echo "=== Timestamp monotonicity check ==="
 # All numeric comparisons in Python to avoid bc dependency
 python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     lines = [json.loads(l.strip()) for l in f if l.strip()]
 total = len(lines)
 overlaps = 0
@@ -39,19 +43,26 @@ else:
     print(f'  {overlaps} overlap(s) + {inverted} inverted found')
 print(f'TOTAL_SEGMENTS={total}')
 print(f'OVERLAPS={overlaps}', flush=True)
-" 2>&1
+" "$JSONL" 2>&1
+
 # Extract metrics from Python output
 total_seg=$(python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     print(sum(1 for l in f if l.strip()))
-")
+" "$JSONL")
 
 echo ""
 echo "=== Duration ==="
 python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     segs = [json.loads(l.strip()) for l in f if l.strip()]
 if segs:
     first = segs[0]['start']
@@ -60,13 +71,16 @@ if segs:
     print(f'  First start: {first}s, Last end: {last}s, Total: {total}s ({total/60:.1f} min)')
 else:
     print('  [WARN] No segments')
-"
+" "$JSONL"
 
 echo ""
 echo "=== Spot-check: first 3 segments (actual content) ==="
 python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     segs = [json.loads(l.strip()) for l in f if l.strip()]
 n = min(3, len(segs))
 for i in range(n):
@@ -74,13 +88,16 @@ for i in range(n):
     print(f'  Segment {i+1} [{s[\"start\"]}s-{s[\"end\"]}s] conf={s[\"confidence\"]}: \"{s[\"text\"]}\"')
 if n < 3:
     print(f'  (only {n} segments available)')
-"
+" "$JSONL"
 
 echo ""
 echo "=== Spot-check: last 2 segments ==="
 python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     segs = [json.loads(l.strip()) for l in f if l.strip()]
 n = len(segs)
 if n >= 2:
@@ -92,13 +109,16 @@ elif n == 1:
     print(f'  Segment 1 [{s[\"start\"]}s-{s[\"end\"]}s] conf={s[\"confidence\"]}: \"{s[\"text\"]}\"')
 else:
     print('  (no segments)')
-"
+" "$JSONL"
 
 echo ""
 echo "=== Confidence summary ==="
 python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     segs = [json.loads(l.strip()) for l in f if l.strip()]
 if segs:
     confs = [s['confidence'] for s in segs]
@@ -107,13 +127,16 @@ if segs:
     print(f'  Max:  {max(confs):.4f}')
     low = [c for c in confs if c < 0.3]
     print(f'  Low-confidence (<0.3): {len(low)}/{len(confs)} ({len(low)/len(confs)*100:.1f}%)')
-"
+" "$JSONL"
 
 echo ""
 echo "=== VERDETTO ==="
 python3 -c "
 import json
-with open('$JSONL') as f:
+import sys
+
+path = sys.argv[1]
+with open(path) as f:
     segs = [json.loads(l.strip()) for l in f if l.strip()]
 if not segs:
     print('[FAIL] Empty transcription')
@@ -143,4 +166,4 @@ if passed:
     print(f'✓ PASS — {len(segs)} segments, timestamps monotonic, conf ok, content present')
 else:
     print(f'⚠  ISSUES FOUND — see above')
-" 2>&1
+" "$JSONL" 2>&1
