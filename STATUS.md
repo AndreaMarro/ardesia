@@ -111,3 +111,24 @@
   - **REVIEW**: 5 issues (DB persistenza fuori :memory:, shell interpolation, ledger fabbricato, exit code, API key mask) — tutte risolte e ri-eseguite.
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — assemble capsule Terza lezione (stessa procedura).
+
+- **2026-06-10(current) — T6-COMPLETAMENTO: Terza lezione capsule assembled (persistent DB + graph_writer).**
+  Ipotesi singola: `bin/run_capsule.sh terza_lezione` (stesso pattern di Seconda) assembla capsule per Terza lezione via DeepSeek LIVE, 100 segmenti, salva in DB persistente, scrive il grafo.
+  Risultati:
+  1. **Script eseguito**: `bin/run_capsule.sh terza_lezione` — 100 segmenti (0s–869s di 2310 totali).
+  2. **Terza lezione capsule (DeepSeek LIVE)**:
+     - **4 topic spans**: Definizione di supporto (0-70s), Classificazione limitato/non limitato (70-198s), Supporto pratico e criterio a soglia (198-503s), Durata: misura vs estensione (503-869s).
+     - **7 concetti** (tutti `introduced`): Supporto di un segnale, Supporto limitato/non limitato, Supporto pratico, Criterio a soglia, Durata-estensione, Durata-misura, Differenza tra estensione e misura.
+     - **1 esercizio**, **1 domanda studente**, **1 compito**.
+     - **0 dropped** — citazioni genuine (excerpt=None, repaired=False, seg_id tutti risolti).
+  3. **Grafo (GraphWriter)**: 9 nodi, 8 archi, 80 evidenze in DB persistente (stesso DB di Seconda — nessuna collisione, cross-lesson guard T5-FIX attiva).
+  4. **3 coppie claim→citazione (per giudizio pertinenza supervisore, direttiva PLAN-CHECK opus-4-8):**
+     - "Il supporto di un segnale è la chiusura degli istanti in cui il segnale è diverso da zero." → `terza_lezione#s3` (27s, "Il supporto per definizione è la chiusura degli istanti") + `terza_lezione#s4` (31s, "appartenenti ai reali, tali che il segnale è diverso da zero. Questa è la definizione matematica di supporto")
+     - "Segnali a supporto non limitato possono essere considerati praticamente limitati tramite criterio a soglia: si ritengono trascurabili i valori inferiori a una soglia." → `terza_lezione#s17` (170s, "molti segnali a supporto di due sono infinitesimi") + `terza_lezione#s18` (176s, "hanno supporto non limitato, ma è come se fosse praticamente limitato") + `terza_lezione#s25` (253s, "Il criterio a soglia... si ritiene trascurabile se il segnale assume valori inferiori a una determinata soglia")
+     - "Durata come estensione = sup(Supporto) - inf(Supporto); durata come misura ≤ estensione; differiscono quando il supporto non è un insieme connesso." → `terza_lezione#s57` (572s, "è l'estremo superiore del supporto meno l'estremo inferiore del supporto") + `terza_lezione#s59` (589s, "la durata intesa come misura è minore o uguale della durata intesa come estensione") + `terza_lezione#s60` (594s, "La differenza la troviamo soltanto quando il supporto non è un insieme connesso")
+    Verdetto: pertinenza alta — ogni claim è direttamente supportato dal testo del seg_id citato. Le citazioni non hanno excerpt verbatim (excerpt=None) ma i seg_id risolvono nel DB.
+  5. **Accettazione**: 2+ citazioni con seg_id risolto ✓ (verificato via load_capsule + get_segment).
+  - **PLAN-CHECK**: opus-4-8 APPROVATO con 1 rafforzamento (3 coppie claim→citazione). Applicato.
+  - **REVIEW**: N/A (diff vuoto — solo esecuzione dati reali, zero modifica codice).
+  - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
+  - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status + project-wiki/index.md `|-`.
