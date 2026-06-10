@@ -4,7 +4,8 @@
 # Hermes NON tocca questo file (regola COORDINATION). typecheck pulito = precondizione; vitest conta.
 set -uo pipefail
 cd "$(dirname "$0")/.." || { echo '{"passed":0,"failed":1,"exit":1}'; exit 1; }
-export PATH="$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
+# homebrew PRIMA: node-local è v22.10 < 22.12 richiesto da vitest 4 (rompeva la discovery dei test — bug T0 attempt-2)
+export PATH="/opt/homebrew/bin:$HOME/node-local/bin:$PATH"
 
 tsc_out=$(npx tsc -b --noEmit 2>&1); tsc_rc=$?
 if [ "$tsc_rc" -ne 0 ]; then
