@@ -23,6 +23,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - [CHIUSA ✅] T4a (modulo+4/4 trascrizioni: 9990 segmenti totali, spot-check superati) · T4-fix
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+|- **[T3 ✅ DONE 2026-06-10 11:27] T3 BUNDLE .lesson — gate 65/65 VERDE (64 vitest + 1 replay-check).** Commit `10697cd` su `auto/main`. Export ZIP .lesson via JSZip con raw/ immutabile. Bottone "📦 export .lesson" nell'header. 3 criteri di accettazione soddisfatti: (1) consenso OFF ⇒ bundle no audio (test); (2) export→import→export idempotente (stessi file e contenuti, test); (3) struttura raw/ conforme (events.jsonl + session.yaml + board.excalidraw sempre presenti, test). **M0 lato studio COMPLETO. In attesa ratifica Andrea per passaggio a M1.**
 - **[HERMES-2 ADVERSARIAL 2026-06-10 08:58]** 2 problema/i CRITICO/i su `lessonos@4013e76` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0858-lessonos-4013e76.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 08:16]** 2 problema/i CRITICO/i su `studio@98188db` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0816-studio-98188db.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 07:37]** 2 problema/i CRITICO/i su `lessonos@23fec77` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0737-lessonos-23fec77.md` (supervisore: leggere e decidere)
