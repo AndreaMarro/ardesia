@@ -35,7 +35,7 @@ if any(f"-{repo}-{sha}.md" in f for f in os.listdir(OUTDIR)):
 subject = git("log", "-1", "--pretty=%s").strip()
 # diff vs primo parent: con `git show` un MERGE produce diff vuoto (bug scoperto al primo smoke)
 stat = git("diff", "--stat", f"{sha}~1..{sha}") or git("show", sha, "--stat")
-diff = (git("diff", f"{sha}~1..{sha}") or git("show", sha))[:60000]
+diff = (git("diff", f"{sha}~1..{sha}") or git("show", sha))[:40000]
 if not diff.strip():
     print(f"HERMES-2 SALTATO: diff vuoto per {repo}@{sha}")
     sys.exit(0)
@@ -78,7 +78,7 @@ req = urllib.request.Request(
     headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
 )
 try:
-    with urllib.request.urlopen(req, timeout=180) as r:
+    with urllib.request.urlopen(req, timeout=360) as r:  # reasoning su diff grossi = lento, è un job batch
         body = json.load(r)
     msg = body["choices"][0]["message"]
     text = (msg.get("content") or "").strip()
