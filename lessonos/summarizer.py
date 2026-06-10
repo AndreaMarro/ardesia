@@ -32,7 +32,7 @@ from typing import Any
 
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import _repair_excerpt
-from lessonos.graph.grounding import is_verified_excerpt
+from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO, is_verified_excerpt
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -401,12 +401,13 @@ def _render_summary_markdown(
                     verified_links.append(f"[{excerpt}]({seg_id})")
                 else:
                     excluded_citations += 1
-            if citations and not verified_links:
-                # had citations, none verifiable → unsupported claim, drop it
+            if not verified_links:
+                # no verified citation — including the citations=[] case the
+                # parser accepts (deepreview B1: such paragraphs rendered
+                # ungrounded AND undisclosed) → unsupported claim, drop it
                 dropped_paragraphs += 1
                 continue
-            if verified_links:
-                text = f"{text} ({'; '.join(verified_links)})"
+            text = f"{text} ({'; '.join(verified_links)})"
             rendered_paras.append(text)
         if not rendered_paras:
             # whole section collapsed to unsupported claims → skip
@@ -489,8 +490,24 @@ def generate_lesson_summary(
     # Step 3: Parse JSON
     sections = _parse_summary_response(response.text)
 
-    # Step 4: Repair/exclude citations (resilient — verbatim-grounded or dropped)
-    _repair_summary_citations(store, sections, lesson_id)
+    # Step 4: Repair/exclude citations (resilient — verbatim-grounded or
+    # dropped) and GATE the result (deepreview B1: the counts were discarded,
+    # so a summary with zero or mostly-fabricated citations sailed through).
+    # Fail-closed: zero citations or >20% excluded = the summary is not
+    # acceptably grounded — regenerate, don't ship.
+    verified, excluded = _repair_summary_citations(store, sections, lesson_id)
+    total_cits = verified + excluded
+    if total_cits == 0:
+        raise ValueError(
+            f"summary for {lesson_id!r} carries ZERO citations — "
+            f"ungrounded summary refused (fail-closed)"
+        )
+    if excluded / total_cits > MAX_UNVERIFIED_RATIO:
+        raise ValueError(
+            f"summary for {lesson_id!r}: {excluded}/{total_cits} citations "
+            f"unverifiable ({excluded / total_cits:.0%} > "
+            f"{MAX_UNVERIFIED_RATIO:.0%}) — refused (fail-closed)"
+        )
 
     # Step 5: Render markdown
     markdown = _render_summary_markdown(capsule, sections)

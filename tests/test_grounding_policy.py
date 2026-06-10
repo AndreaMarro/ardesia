@@ -70,8 +70,12 @@ class TestAssertGroundingThreshold:
         with pytest.raises(ValueError, match="100%"):
             assert_grounding_threshold([None] * 80, "terza_lezione")
 
-    def test_empty_passes(self) -> None:
-        assert_grounding_threshold([], "l1")  # 0/0 = 0.0, no raise
+    def test_empty_fails_closed(self) -> None:
+        """ZERO citations must FAIL: 'nothing to verify' is not a pass.
+        (The old 0/0=PASS semantics was a false-green hole cemented by its
+        own test — deepreview finding.)"""
+        with pytest.raises(ValueError, match="zero citations"):
+            assert_grounding_threshold([], "l1")
 
     def test_threshold_constant_is_twenty_percent(self) -> None:
         assert MAX_UNVERIFIED_RATIO == 0.20

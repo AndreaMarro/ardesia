@@ -127,6 +127,29 @@ class TestJournalToSegments:
         segs = journal_to_segments(ev, L)
         assert [s.text for s in segs] == ["tieni"]
 
+    def test_delete_then_readd_resurrects(self) -> None:
+        """Excalidraw UNDO restores the SAME element id: delete -> re-add must
+        keep the re-added text (deepreview B2: permanent `deleted` set lost it
+        — with a single-text board the whole ingest failed)."""
+        ev = _events(
+            _text_add(1000, "a", "testo originale"),
+            {"t": 2000, "type": "element.delete", "elementId": "a"},
+            _text_add(5000, "a", "testo ripristinato"),
+        )
+        segs = journal_to_segments(ev, L)
+        assert [s.text for s in segs] == ["testo ripristinato"]
+        # fresh record: timing restarts at the undo moment (4s after t0)
+        assert segs[0].start == 4
+
+    def test_delete_without_readd_stays_deleted(self) -> None:
+        ev = _events(
+            _text_add(1000, "a", "sparisce"),
+            {"t": 2000, "type": "element.delete", "elementId": "a"},
+            _text_add(3000, "b", "resta."),
+        )
+        segs = journal_to_segments(ev, L)
+        assert [s.text for s in segs] == ["resta."]
+
     def test_non_text_and_empty_skipped(self) -> None:
         ev = _events(
             {"t": 1000, "type": "element.add",

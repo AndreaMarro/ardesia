@@ -225,6 +225,20 @@ class SQLiteStore(Store):
         ).fetchall()
         return tuple(self._row_to_segment(r) for r in rows)
 
+    def delete_segments_for_lesson(self, lesson_id: str) -> int:
+        """Delete ALL segments of a lesson; returns the number removed.
+
+        Re-ingesting with different segmentation (e.g. coalescing 1351→258)
+        via the upsert-only ``save_segment`` left STALE rows beyond the new
+        count, silently mixed back by ``segments_for_lesson`` (deepreview B3).
+        Runners must call this before a re-ingest.
+        """
+        cur = self._conn.execute(
+            "DELETE FROM segments WHERE lesson_id = ?", (lesson_id,)
+        )
+        self._conn.commit()
+        return cur.rowcount
+
     @staticmethod
     def _row_to_segment(row: sqlite3.Row) -> Segment:
         return Segment(

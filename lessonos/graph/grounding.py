@@ -108,8 +108,17 @@ def assert_grounding_threshold(
 ) -> None:
     """Raise ``ValueError`` if more than *max_unverified_ratio* of the citations
     are unverified (no verbatim excerpt). The anti-false-verde acceptance gate.
+
+    FAIL-CLOSED: ZERO citations also raises — "nothing to verify" is not a
+    pass (deepreview: the old 0/0=PASS semantics, cemented by its own test,
+    let an empty extraction sail through acceptance).
     """
     total, unverified, ratio = grounding_ratio(excerpts)
+    if total == 0:
+        raise ValueError(
+            f"lesson {lesson_id!r}: zero citations — nothing to verify is "
+            f"NOT a pass (fail-closed acceptance gate)"
+        )
     if ratio > max_unverified_ratio:
         raise ValueError(
             f"lesson {lesson_id!r}: {unverified}/{total} citations unverified "

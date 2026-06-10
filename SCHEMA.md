@@ -65,6 +65,10 @@ Da `segments` in poi la pipeline è identica per entrambi.
 - Solo microfono del docente, **default OFF**, consenso registrato in
   `session.yaml` (`audioConsent`).
 - Audio **mai** in cloud; nessuna voce di studenti/minori; nessuno speaker-embedding.
+- **Onestà sul testo**: il TESTO trascritto (ASR locale) e il testo lavagna
+  PASSANO dal provider LLM cloud (oggi DeepSeek) per capsule/riepiloghi — è il
+  testo, non l'audio. Va dichiarato al docente nel consenso; alternativa
+  full-local possibile (modello locale) a qualità ridotta.
 - Revoca del consenso ⇒ i dati audio non devono **esistere** (cancellazione, non
   solo filtro in export).
 - `ingest_bundle` **rifiuta** un `.lesson` che contiene `raw/audio/*` con

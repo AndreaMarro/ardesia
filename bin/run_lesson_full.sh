@@ -84,13 +84,13 @@ DB_PATH = os.environ['DB_PATH']; WIKI_DIR = os.environ['WIKI_DIR']; TITLE = os.e
 
 store = SQLiteStore(DB_PATH)
 
-# Step 1: ingest. save_segment is INSERT OR REPLACE (upsert by seg_id); the
-# macinata only grows coverage (100 -> full), so upsert overwrites #s1..#sK and
-# adds the rest with no stale rows. The graph is rebuilt clean by GraphWriter
-# (delete_graph_for_lesson) and the capsule is overwritten (save=True).
-old = store.segments_for_lesson(LESSON_ID)
-if old:
-    print(f'Re-ingesting over {len(old)} existing segments (upsert by seg_id)...')
+# Step 1: ingest su tabella PULITA. L'upsert da solo NON basta: una
+# ri-segmentazione che riduce il conteggio (es. coalescing 1351→258) lascia
+# righe stale oltre il nuovo massimo, rimescolate da segments_for_lesson
+# (deepreview B3). Delete esplicita prima di ogni re-ingest.
+removed = store.delete_segments_for_lesson(LESSON_ID)
+if removed:
+    print(f'Rimossi {removed} segmenti esistenti (re-ingest pulito, no stale)...')
 MIN_CHARS = int(os.environ.get('MIN_CHARS', '0'))
 if MIN_CHARS:
     print(f'Coalescing attivo: min_chars={MIN_CHARS}')

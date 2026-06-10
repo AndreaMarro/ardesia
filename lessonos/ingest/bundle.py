@@ -151,6 +151,12 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
             eid = el.get("id")
             if not eid:
                 continue
+            # delete -> re-add resurrects (Excalidraw UNDO restores the SAME
+            # element id): a permanent `deleted` set would lose the text
+            # forever (deepreview B2). Re-add starts a fresh record at the
+            # undo time — the pre-delete timestamps belong to a text the
+            # teacher chose to remove.
+            deleted.discard(eid)
             text = (el.get("text") or "").strip()
             rec = texts.get(eid)
             if rec is None:
@@ -162,6 +168,7 @@ def journal_to_segments(events_jsonl: str, lesson_id: str) -> list[Segment]:
             eid = ev.get("elementId")
             if eid:
                 deleted.add(eid)
+                texts.pop(eid, None)  # gone; a later re-add records fresh
 
     rows = [
         (rec["start"], rec["end"], rec["text"])

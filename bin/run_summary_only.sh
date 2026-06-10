@@ -30,11 +30,18 @@ for L in os.environ['LESSONS'].split():
     if cap is None:
         print(f'  ❌ {L}: nessuna capsule nel DB'); rc = 1; continue
     n = len(cap.content.concepts)
-    pack = generate_lesson_summary(store, cap, router, output_dir=wiki, provider='deepseek', model='deepseek-chat')
+    try:
+        pack = generate_lesson_summary(store, cap, router, output_dir=wiki, provider='deepseek', model='deepseek-chat')
+    except ValueError as exc:
+        # gate fail-closed del summarizer (zero/troppo-unverified): FAIL della
+        # lezione, ma le altre vengono comunque tentate (deepreview B1)
+        print(f'  ❌ {L}: summary RIFIUTATO dal gate grounding: {exc}'); rc = 1; continue
     txt = pack.files.get(f'{L}.md', '')
     if re.findall(rf'{L}#s0\b', txt):
         print(f'  ❌ {L}: summary contiene citazione 0-indexed'); rc = 1; continue
     cites = len(re.findall(rf'\]\({L}#s\d+\)', txt))
+    if cites == 0:
+        print(f'  ❌ {L}: 0 citazioni risolte nel markdown — non accettabile'); rc = 1; continue
     print(f'  ✅ {L}: summary {len(txt)} byte, {cites} citazioni risolte, {n} concetti nel grafo -> {wiki}/{L}.md')
 sys.exit(rc)
 " 2>&1

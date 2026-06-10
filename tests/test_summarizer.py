@@ -452,11 +452,12 @@ class TestGenerateLessonSummary:
         assert "l1.md" in pack.files
         assert pack.files["l1.md"] == _EXPECTED_MARKDOWN
 
-    def test_unresolvable_citation_excluded_not_raised(
+    def test_fully_fabricated_summary_refused(
         self, store: SQLiteStore
     ) -> None:
-        """Seg_id not in store → citation excluded, summary still generated
-        (resilient — a single bad LLM cite must NOT crash the whole summary)."""
+        """A summary whose ONLY citation is fabricated = 100% unverifiable →
+        REFUSED with ValueError (deepreview B1: before, the repair counts were
+        discarded and this shipped as a 'grounded' summary)."""
         capsule = _make_capsule()
         bad_payload = json.dumps(
             {
@@ -485,11 +486,34 @@ class TestGenerateLessonSummary:
         )
         router.register(mock_provider)
 
-        pack = generate_lesson_summary(store, capsule, router, provider="mock")
-        md = pack.files["l1.md"]
-        # fabricated reference never appears; paragraph dropped + disclosed
-        assert "l1#s99" not in md
-        assert "⚠️ Grounding:" in md
+        with pytest.raises(ValueError, match="unverifiable|fail-closed"):
+            generate_lesson_summary(store, capsule, router, provider="mock")
+
+    def test_zero_citation_summary_refused(self, store: SQLiteStore) -> None:
+        """citations=[] everywhere → ZERO citations → refused (fail-closed)."""
+        capsule = _make_capsule()
+        empty_payload = json.dumps(
+            {
+                "sections": [
+                    {
+                        "heading": "X",
+                        "paragraphs": [{"text": "claim nudo", "citations": []}],
+                    }
+                ]
+            }
+        )
+        router = Router()
+        router.register(
+            MockProvider(
+                fixtures={
+                    _build_summary_prompt(
+                        capsule, _cited_seg_texts(store, capsule)
+                    ): empty_payload
+                }
+            )
+        )
+        with pytest.raises(ValueError, match="ZERO citations"):
+            generate_lesson_summary(store, capsule, router, provider="mock")
 
     def test_output_file_written(self, store: SQLiteStore) -> None:
         """When output_dir is set, the markdown file is created on disk."""
@@ -556,6 +580,28 @@ class TestRenderExcludesUnverified:
         assert "Claim non verificato." not in md
         assert "[l1#s1]" not in md
         # disclosure footer
+        assert "⚠️ Grounding:" in md
+        assert "1 paragrafi senza citazioni verificate rimossi" in md
+
+    def test_empty_citations_paragraph_dropped_and_disclosed(self) -> None:
+        """citations=[] (legit parser output) must NOT render ungrounded and
+        undisclosed (deepreview B1 repro)."""
+        capsule = _make_capsule()
+        sections = [
+            {
+                "heading": "X",
+                "paragraphs": [
+                    {
+                        "text": "Con grounding.",
+                        "citations": [{"seg_id": "l1#s0", "excerpt": "rate of change"}],
+                    },
+                    {"text": "Claim nudo senza citazioni.", "citations": []},
+                ],
+            }
+        ]
+        md = _render_summary_markdown(capsule, sections)
+        assert "Con grounding." in md
+        assert "Claim nudo senza citazioni." not in md
         assert "⚠️ Grounding:" in md
         assert "1 paragrafi senza citazioni verificate rimossi" in md
 
