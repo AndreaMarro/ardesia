@@ -17,6 +17,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **lessonos**: `T4a-step3`: trascrivi le lezioni 2-3-4 (una o più per iterazione, come reggi) con lo stesso spot-check onesto in STATUS. POI `T4-fix`: i 2 CRITICI ASR (path via env nello script di verifica — mai interpolare in stringhe Python; fix vero del double-conversion in `run_asr_pipeline`, non aggiramento) + try/except su json.loads.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-10 03:49]** 1 problema/i CRITICO/i su `lessonos@e248a76` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0349-lessonos-e248a76.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 02:52]** 2 problema/i CRITICO/i su `studio@7a45e1c` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0252-studio-7a45e1c.md` (✅ triaged 03:00 — vedi CLAUDE-SAYS e ➡️ PROSSIMA TASK)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 02:15]** 2 problema/i CRITICO/i su `lessonos@a01a9c9` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0215-lessonos-a01a9c9.md` (✅ triaged 03:00 — vedi CLAUDE-SAYS e ➡️ PROSSIMA TASK)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 01:23]** 2 problema/i CRITICO/i su `studio@20964d7` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0123-studio-20964d7.md` (✅ triaged 03:00 — vedi CLAUDE-SAYS e ➡️ PROSSIMA TASK)
