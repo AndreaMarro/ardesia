@@ -54,6 +54,29 @@ class SummaryPack:
 # The prompt MUST be deterministic so MockProvider can fixture-key on it.
 
 
+# T6R: bound the summary prompt so a HUGE capsule (100+ concepts from a full
+# real lecture) cannot make the LLM emit an output that overflows its token
+# limit and arrives truncated (the JSONDecodeError that killed summaries 2-4 in
+# the macinata). The caps are NO-OP at/under threshold, so small capsules — the
+# mock tests — render byte-identically to the legacy prompt. The full detail
+# stays in the graph; the summary is the bounded human-readable digest.
+_SUMMARY_CONCEPT_CAP = 40
+_SUMMARY_ITEM_CAP = 15
+_SUMMARY_TIMELINE_CAP = 40
+
+
+def _capped(items, cap, *, key=None):
+    """Return ``(shown, omitted)``. At/under *cap* this is the identity (order
+    preserved, no sort) so under-cap capsules are byte-identical to before. Over
+    *cap*, optionally rank by *key* (descending) and keep the top *cap*.
+    """
+    items = list(items)
+    if len(items) <= cap:
+        return items, 0
+    ordered = sorted(items, key=key, reverse=True) if key else items
+    return ordered[:cap], len(items) - cap
+
+
 def _build_summary_prompt(capsule: LessonCapsule) -> str:
     """Build a deterministic summary-generation prompt from *capsule*.
 
@@ -93,12 +116,19 @@ def _build_summary_prompt(capsule: LessonCapsule) -> str:
         "=== TOPIC TIMELINE ===",
     ]
 
-    for i, span in enumerate(capsule.timeline):
+    shown_timeline, om_tl = _capped(capsule.timeline, _SUMMARY_TIMELINE_CAP)
+    for i, span in enumerate(shown_timeline):
         lines.append(f"[{i}] {span.topic} (seg_ids: {', '.join(span.seg_ids)})")
+    if om_tl:
+        lines.append(f"(+{om_tl} altri argomenti nel grafo, non elencati)")
 
     lines.append("")
     lines.append("=== CONCETTI ===")
-    for i, c in enumerate(capsule.content.concepts):
+    shown_concepts, om_c = _capped(
+        capsule.content.concepts, _SUMMARY_CONCEPT_CAP,
+        key=lambda c: len(c.citations),
+    )
+    for i, c in enumerate(shown_concepts):
         cit_str = "; ".join(
             f"{cit.seg_id}: {cit.excerpt or '(no excerpt)'}"
             for cit in c.citations
@@ -108,36 +138,47 @@ def _build_summary_prompt(capsule: LessonCapsule) -> str:
             f"prereq=[{', '.join(c.prerequisites)}] "
             f"citations=[{cit_str}]"
         )
+    if om_c:
+        lines.append(f"(+{om_c} altri concetti nel grafo, meno citati, non elencati)")
 
     if capsule.content.exercises:
         lines.append("")
         lines.append("=== ESERCIZI ===")
-        for i, e in enumerate(capsule.content.exercises):
+        shown_ex, om_e = _capped(capsule.content.exercises, _SUMMARY_ITEM_CAP)
+        for i, e in enumerate(shown_ex):
             cit_str = "; ".join(
                 f"{cit.seg_id}: {cit.excerpt or '(no excerpt)'}"
                 for cit in e.citations
             )
             lines.append(f"[{i}] {e.prompt} citations=[{cit_str}]")
+        if om_e:
+            lines.append(f"(+{om_e} altri esercizi nel grafo, non elencati)")
 
     if capsule.content.student_questions:
         lines.append("")
         lines.append("=== DOMANDE STUDENTI ===")
-        for i, q in enumerate(capsule.content.student_questions):
+        shown_q, om_q = _capped(capsule.content.student_questions, _SUMMARY_ITEM_CAP)
+        for i, q in enumerate(shown_q):
             cit_str = "; ".join(
                 f"{cit.seg_id}: {cit.excerpt or '(no excerpt)'}"
                 for cit in q.citations
             )
             lines.append(f"[{i}] {q.question} citations=[{cit_str}]")
+        if om_q:
+            lines.append(f"(+{om_q} altre domande nel grafo, non elencate)")
 
     if capsule.content.homework:
         lines.append("")
         lines.append("=== COMPITI ===")
-        for i, h in enumerate(capsule.content.homework):
+        shown_hw, om_h = _capped(capsule.content.homework, _SUMMARY_ITEM_CAP)
+        for i, h in enumerate(shown_hw):
             cit_str = "; ".join(
                 f"{cit.seg_id}: {cit.excerpt or '(no excerpt)'}"
                 for cit in h.citations
             )
             lines.append(f"[{i}] {h.task} citations=[{cit_str}]")
+        if om_h:
+            lines.append(f"(+{om_h} altri compiti nel grafo, non elencati)")
 
     lines.append("")
     lines.append("ISTRUZIONI:")
@@ -176,7 +217,11 @@ def _parse_summary_response(raw: str) -> list[dict[str, Any]]:
         elif "```" in text:
             text = text[: text.rindex("```")].rstrip()
 
-    data = json.loads(text)
+    # strict=False tolerates literal control chars (newlines/tabs) inside JSON
+    # string values — DeepSeek emits them, raw json.loads crashes on them. This
+    # was the "Invalid control character" failure in the macinata. Truncation
+    # (the other failure) is prevented upstream by the summary-prompt bounding.
+    data = json.loads(text, strict=False)
     sections = data.get("sections")
     if not isinstance(sections, list):
         raise ValueError(

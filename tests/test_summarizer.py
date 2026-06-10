@@ -578,3 +578,51 @@ class TestRenderExcludesUnverified:
         assert "Misto. ([rate of change](l1#s0))" in md
         assert "l1#s1" not in md  # unverified link never appears
         assert "1 citazioni non verificate" in md
+
+
+class TestParseToleratesControlChars:
+    """T6R: DeepSeek emits literal control chars inside JSON strings; strict
+    json.loads crashed the macinata summaries. Parser must tolerate them."""
+
+    def test_literal_newline_in_string_value(self) -> None:
+        # An ACTUAL newline char inside the "text" value (not escaped \\n).
+        raw = (
+            '{"sections": [{"heading": "H", "paragraphs": '
+            '[{"text": "riga uno\nriga due", "citations": []}]}]}'
+        )
+        sections = _parse_summary_response(raw)
+        assert sections[0]["heading"] == "H"
+        assert "riga uno\nriga due" in sections[0]["paragraphs"][0]["text"]
+
+
+class TestSummaryPromptBounding:
+    """T6R: a huge capsule (full real lecture) must not overflow the LLM output
+    (truncated JSON). The prompt caps items — NO-OP under the cap."""
+
+    def test_small_capsule_no_cap_notes(self) -> None:
+        prompt = _build_summary_prompt(_make_capsule())  # 2 concepts
+        assert "altri concetti nel grafo" not in prompt
+        assert "altri argomenti nel grafo" not in prompt
+
+    def test_large_capsule_caps_concepts(self) -> None:
+        from lessonos.summarizer import _SUMMARY_CONCEPT_CAP
+
+        n = _SUMMARY_CONCEPT_CAP + 10
+        concepts = tuple(
+            ConceptExtraction(
+                name=f"concetto{i}",
+                status="introduced",
+                citations=(Citation(seg_id="l1#s0", excerpt="rate of change"),),
+            )
+            for i in range(n)
+        )
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(),
+            content=LessonContent(lesson_id="l1", concepts=concepts),
+            dropped=(),
+        )
+        prompt = _build_summary_prompt(capsule)
+        assert "(+10 altri concetti nel grafo" in prompt
+        # exactly the cap is listed
+        assert prompt.count("(status=introduced)") == _SUMMARY_CONCEPT_CAP
