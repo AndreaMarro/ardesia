@@ -25,14 +25,29 @@ def git(*args):
     return subprocess.run(["git", "-C", DIR, *args], capture_output=True, text=True).stdout
 
 
-sha = git("rev-parse", "--short", "HEAD").strip()
+# Revisiona l'ultimo commit con CODICE, non l'ultimo in assoluto: un commit
+# doc-only (STATUS/log/coord/digest) non ha nulla da rompere e fa revisionare
+# kimi AL BUIO sulle descrizioni (incidente 20260610-1811: review del commit
+# STATUS-only invece del codice di T2b). Cammina indietro max 5 commit.
+_DOC_ONLY = {"STATUS.md", "log.jsonl", "COORDINATION.md", "DIGEST-latest.md",
+             "RESEARCH.md", "project-wiki/index.md"}
+sha = ""
+for back in range(5):
+    cand = git("rev-parse", "--short", f"HEAD~{back}").strip()
+    if not cand:
+        break
+    files = [f for f in git("diff", "--name-only", f"{cand}~1..{cand}").splitlines() if f]
+    if files and all(f in _DOC_ONLY for f in files):
+        continue  # doc-only: nulla da rompere, guarda il parent
+    sha = cand
+    break
 if not sha:
-    sys.exit(f"repo {DIR} non leggibile")
+    sys.exit(f"repo {DIR} non leggibile (o solo commit doc-only)")
 if any(f"-{repo}-{sha}.md" in f for f in os.listdir(OUTDIR)):
     print(f"già revisionato {repo}@{sha}")
     sys.exit(0)
 
-subject = git("log", "-1", "--pretty=%s").strip()
+subject = git("log", "-1", "--pretty=%s", sha).strip()
 # diff vs primo parent: con `git show` un MERGE produce diff vuoto (bug scoperto al primo smoke)
 stat = git("diff", "--stat", f"{sha}~1..{sha}") or git("show", sha, "--stat")
 diff = (git("diff", f"{sha}~1..{sha}") or git("show", sha))[:40000]
