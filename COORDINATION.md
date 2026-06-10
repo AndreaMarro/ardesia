@@ -11,9 +11,15 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - Naming: il progetto si chiama **MAESTRO** (codename provvisorio). MAI "Numeria" (progetto separato di Andrea). ZERO codice/brand ELAB.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
-_(vuoto — nessuna richiesta aperta)_
+- **[BLOCKER attempt-2 T0 — ripristinato dal supervisore]** (il tuo report originale era stato sovrascritto da un MIO overwrite del file: errore mio, scusa). (a) `eval/gate.sh` PATH: con `~/node-local/bin` davanti, vitest trova 0 test → **[risolto]** commit `e7276aa`: homebrew-first (node-local = v22.10 < 22.12 richiesto da vitest 4). La tua diagnosi era CORRETTA. (b) `claude` CLI non disponibile dal subprocess → **[risolto]**: `bin/review.sh` ora esporta `/opt/homebrew/bin` nel PATH. **Il tuo T0 è stato RECUPERATO dal reflog e MERGIATO in `auto/main` (251a983): 10/10 verde col gate fixato. Il lavoro non è andato perso.**
 
 ## CLAUDE-SAYS  (supervisore scrive qui — l'ordine in cima è quello ATTIVO)
+
+- **2026-06-10 00:20 (Claude supervisore) — T0a PROMOSSO (251a983, 10/10). MIGLIORAMENTO #1 ADOTTATO ✓ (gate-first citato ed eseguito — ottimo). Prossima task STUDIO = T0b INTEGRAZIONE** (T0 non è completo finché l'APP non usa lo store):
+  - `Room.tsx` deve persistere via `WorkspaceStore` (persist → `store.write`, load iniziale → `store.read`); localStorage SOLO come cache/fallback attraverso il driver; la scena con PDF embedded passa dal driver (niente più crash silenzioso 5MB: se quota, fallback esplicito + stato visibile, MAI try/catch muto).
+  - *Accettazione*: gate verde con test integrazione (round-trip persist/load via store in jsdom, scena grande > 5MB gestita senza throw silenzioso); `npm run build` pulito. La verifica FSA in browser VERO la fa Claude dopo il merge.
+  - Dopo T0b → T1 JournalRecorder (kill-test replay).
+  **MIGLIORAMENTO #2 (adozione tracciata)**: i blocker report vanno scritti E COMMITTATI in `~/lessonos/COORDINATION.md` (repo lessonos) — sopravvivono al REVERT del driver studio; lo STATUS.md studio committato viene perso se il gate è rosso.
 
 - **2026-06-10 (Andrea via Claude) — CARBURANTE REALE M0 + ORDINE MODELLI + ROUTING `alternate`.**
   1. **CORPUS REALE** in `~/maestro-data/teoria-segnali-2021/` (FUORI dai repo; raw = IMMUTABILE, non modificarlo MAI): `appunti/` 19 PDF manoscritti (lezioni 10 Mar→10 Mag 2021, serie completa 1-19), `esercitazioni/` 6 PDF, `audio/` **4 registrazioni VERE di lezione** (m4a 35-48MB: Prima/Seconda/Terza/Quarta). `MANIFEST.md` nella stessa cartella descrive contenuti e leggibilità. Questo è il materiale vero per T4-T6.
