@@ -34,29 +34,43 @@ class GraphWriter:
         self.store = store
 
     def write_capsule_graph(self, capsule: LessonCapsule) -> int:
-        """Write graph tables for *capsule*. Returns count of edges written.
+        """Write graph tables for *capsule* in a single transaction.
+
+        Returns count of edges written.
+
+        The entire DELETE+INSERT sequence is wrapped in an explicit SQLite
+        transaction, so a crash mid-way does not leave the graph tables in
+        a corrupted state (T5-FIX CRITICO-2).
 
         Workflow:
-        1. Delete any existing graph data for this lesson (idempotent).
-        2. Build nodes/edges via ``build_lesson_graph`` (ZERO LLM).
-        3. Save each node.
-        4. For each edge, collect evidence from capsule citations and save
+        1. Begin SQLite transaction.
+        2. Delete any existing graph data for this lesson (idempotent).
+        3. Build nodes/edges via ``build_lesson_graph`` (ZERO LLM).
+        4. Save each node.
+        5. For each edge, collect evidence from capsule citations and save
            both edge + evidence.
+        6. Commit transaction (or roll back on any exception).
         """
         lesson_id = capsule.lesson_id
-        self.store.delete_graph_for_lesson(lesson_id)
+        self.store.begin_transaction()
+        try:
+            self.store.delete_graph_for_lesson(lesson_id)
 
-        nodes, edges = build_lesson_graph(capsule)
-        for node in nodes:
-            self.store.save_graph_node(lesson_id, node)
+            nodes, edges = build_lesson_graph(capsule)
+            for node in nodes:
+                self.store.save_graph_node(lesson_id, node)
 
-        for edge in edges:
-            evidence_list = self._collect_evidence(capsule, edge)
-            self.store.save_graph_edge(lesson_id, edge)
-            for ev in evidence_list:
-                self.store.save_evidence(ev)
+            for edge in edges:
+                evidence_list = self._collect_evidence(capsule, edge)
+                self.store.save_graph_edge(lesson_id, edge)
+                for ev in evidence_list:
+                    self.store.save_evidence(ev)
 
-        return len(edges)
+            self.store.commit_transaction()
+            return len(edges)
+        except BaseException:
+            self.store.rollback_transaction()
+            raise
 
     def _collect_evidence(
         self, capsule: LessonCapsule, edge: GraphEdge
@@ -89,6 +103,15 @@ class GraphWriter:
                 raise ValueError(
                     f"evidence seg_id {cit.seg_id!r} does not resolve to a "
                     f"persisted segment (edge={edge.edge_id})"
+                )
+            # Grounding check 1b: segment MUST belong to the capsule's lesson
+            # (prevents cross-lesson contamination where a verbatim excerpt
+            # from another lesson's segment could be cited)
+            if seg.lesson_id != capsule.lesson_id:
+                raise ValueError(
+                    f"evidence seg_id {cit.seg_id!r} resolves to lesson "
+                    f"{seg.lesson_id!r} but capsule is for lesson "
+                    f"{capsule.lesson_id!r} (cross-lesson contamination)"
                 )
             # Grounding check 2: excerpt MUST be a verbatim substring
             excerpt = self._resolve_excerpt(cit)

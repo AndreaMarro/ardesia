@@ -122,3 +122,22 @@ class Store(ABC):
     @abstractmethod
     def delete_graph_for_lesson(self, lesson_id: str) -> None:
         """Delete all graph data (nodes, edges, evidence) for a lesson."""
+
+    # --- Transaction support ------------------------------------------------
+
+    @abstractmethod
+    def begin_transaction(self) -> None:
+        """Begin an explicit SQLite transaction.
+
+        Inside a transaction, auto-commits on save/delete methods are
+        suppressed. Callers MUST pair with commit_transaction or
+        rollback_transaction.
+        """
+
+    @abstractmethod
+    def commit_transaction(self) -> None:
+        """Commit the current transaction."""
+
+    @abstractmethod
+    def rollback_transaction(self) -> None:
+        """Roll back the current transaction, discarding all changes since begin."""

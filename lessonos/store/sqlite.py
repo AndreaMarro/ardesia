@@ -96,6 +96,7 @@ class SQLiteStore(Store):
     def __init__(self, db_path: str = ":memory:") -> None:
         self._conn = sqlite3.connect(db_path)
         self._conn.row_factory = sqlite3.Row
+        self._in_transaction: bool = False
         self._migrate()
 
     def _migrate(self) -> None:
@@ -348,7 +349,8 @@ class SQLiteStore(Store):
             "VALUES (?, ?, ?, ?, ?)",
             (node.node_id, lesson_id, node.node_type, node.ref_id, node.label),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_graph_nodes_for_lesson(self, lesson_id: str) -> tuple[GraphNode, ...]:
         rows = self._conn.execute(
@@ -379,7 +381,8 @@ class SQLiteStore(Store):
                 json.dumps(edge.metadata),
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_graph_edges_for_lesson(self, lesson_id: str) -> tuple[GraphEdge, ...]:
         rows = self._conn.execute(
@@ -411,7 +414,8 @@ class SQLiteStore(Store):
                 evidence.lesson_id,
             ),
         )
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     def get_evidence_for_edge(self, edge_id: str) -> tuple[GraphEvidence, ...]:
         rows = self._conn.execute(
@@ -431,7 +435,8 @@ class SQLiteStore(Store):
         self._conn.execute("DELETE FROM nodes WHERE lesson_id = ?", (lesson_id,))
         self._conn.execute("DELETE FROM edges WHERE lesson_id = ?", (lesson_id,))
         self._conn.execute("DELETE FROM evidence WHERE lesson_id = ?", (lesson_id,))
-        self._conn.commit()
+        if not self._in_transaction:
+            self._conn.commit()
 
     @staticmethod
     def _row_to_evidence(row: sqlite3.Row) -> GraphEvidence:
@@ -443,3 +448,23 @@ class SQLiteStore(Store):
             confidence=row["confidence"],
             lesson_id=row["lesson_id"],
         )
+
+    # --- Transaction support ------------------------------------------------
+
+    def begin_transaction(self) -> None:
+        """Begin an explicit SQLite transaction."""
+        assert not self._in_transaction, "Nested transactions are not supported"
+        self._conn.execute("BEGIN")
+        self._in_transaction = True
+
+    def commit_transaction(self) -> None:
+        """Commit the current transaction."""
+        assert self._in_transaction, "No active transaction to commit"
+        self._conn.commit()
+        self._in_transaction = False
+
+    def rollback_transaction(self) -> None:
+        """Roll back the current transaction."""
+        assert self._in_transaction, "No active transaction to roll back"
+        self._conn.rollback()
+        self._in_transaction = False

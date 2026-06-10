@@ -380,6 +380,82 @@ class TestGraphWriterIdempotent:
 
 
 # ===================================================================
+# Grounding invariants (T5-FIX CRITICI-1 and CRITICI-2)
+# ===================================================================
+
+
+class TestGroundingInvariants:
+    """Cross-lesson contamination prevention + transaction atomicity."""
+
+    @pytest.fixture
+    def cross_lesson_store(self) -> SQLiteStore:
+        """Store with segments from two different lessons, sharing verbatim text."""
+        s = SQLiteStore(":memory:")
+        s.save_segment(Segment(seg_id="l1#s0", lesson_id="l1", start=0, end=15, text=_SEG0))
+        s.save_segment(Segment(seg_id="l1#s1", lesson_id="l1", start=15, end=30, text=_SEG1))
+        # l2 segment with verbatim-identical text to l1#s0 — cross-lesson threat
+        s.save_segment(Segment(seg_id="l2#s0", lesson_id="l2", start=0, end=15, text=_SEG0))
+        return s
+
+    def test_cross_lesson_segment_rejected(self, cross_lesson_store: SQLiteStore):
+        """Capsule from l1 citing l2#s0 → ValueError (cross-lesson contamination)."""
+        # Build a minimal l1 capsule that cites l2#s0 with a verbatim excerpt
+        content = LessonContent(
+            lesson_id="l1",
+            concepts=(
+                ConceptExtraction(
+                    name="CrossLesson",
+                    status="introduced",
+                    citations=(
+                        Citation(seg_id="l2#s0", excerpt=_SEG0[:20], confidence=0.9),
+                    ),
+                ),
+            ),
+            exercises=(),
+            student_questions=(),
+            homework=(),
+        )
+        capsule = LessonCapsule(lesson_id="l1", timeline=(), content=content)
+        writer = GraphWriter(cross_lesson_store)
+        with pytest.raises(ValueError, match="cross-lesson contamination"):
+            writer.write_capsule_graph(capsule)
+
+    def test_transaction_rollback_on_error(self, store: SQLiteStore):
+        """On crash mid-write, the graph tables remain clean (rollback)."""
+        # First write a valid capsule so there's data to corrupt
+        valid_capsule = _make_capsule(concept_names=["Derivative"], lesson_id="l1")
+        writer = GraphWriter(store)
+        writer.write_capsule_graph(valid_capsule)
+        assert len(store.get_graph_nodes_for_lesson("l1")) == 2
+
+        # Now attempt a write that will fail mid-way (non-existent seg_id)
+        bad_content = LessonContent(
+            lesson_id="l1",
+            concepts=(
+                ConceptExtraction(
+                    name="BadRef",
+                    status="introduced",
+                    citations=(
+                        Citation(seg_id="l1#nonexistent", excerpt="fake"),
+                    ),
+                ),
+            ),
+            exercises=(),
+            student_questions=(),
+            homework=(),
+        )
+        bad_capsule = LessonCapsule(lesson_id="l1", timeline=(), content=bad_content)
+        with pytest.raises(ValueError, match="does not resolve"):
+            writer.write_capsule_graph(bad_capsule)
+
+        # After rollback, graph tables must be back to the first write's state
+        # (delete rolled back, pre-existing data preserved)
+        assert len(store.get_graph_nodes_for_lesson("l1")) == 2
+        assert len(store.get_graph_edges_for_lesson("l1")) == 1
+        assert len(store.get_all_evidence_for_lesson("l1")) == 1
+
+
+# ===================================================================
 # convenience write_capsule_graph function
 # ===================================================================
 
