@@ -132,3 +132,22 @@
   - **REVIEW**: N/A (diff vuoto — solo esecuzione dati reali, zero modifica codice).
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status + project-wiki/index.md `|-`.
+
+- **2026-06-10(current) — T6-COMPLETAMENTO: Quarta lezione capsule assembled + graph_writer (DeepSeek LIVE, 100 seg, persistent DB).**
+  Ipotesi singola: `bin/run_capsule.sh quarta_lezione` (script esistente, già usato per Seconda/Terza) assembla capsule Quarta lezione via DeepSeek LIVE, 100 segmenti (0-362s), salva in DB persistente, scrive il grafo.
+  Risultati:
+  1. **Script eseguito**: `bin/run_capsule.sh quarta_lezione` — 100 segmenti (0s–362s di 2883 totali).
+  2. **Quarta lezione capsule (DeepSeek LIVE)**:
+     - **4 topic spans**: Definizione di ordine superiore (0-114s), Definizione di ordine alfa/limite finito (116-186s), Precisazioni sul valore assoluto e confronto (187-239s), Ordine inferiore e riepilogo dei casi (240-362s).
+     - **4 concetti**: Ordine superiore rispetto a T^alfa, Ordine alfa rispetto a T^alfa (limite finito), Ordine inferiore rispetto a T^alfa, Confronto di infinitesimi (reinforced).
+     - **0 esercizi**, **3 domande studenti**, **0 compiti**.
+     - **0 dropped** — citazioni genuine (2 repaired=True su 14 — errori fonetici trascrizione).
+  3. **Grafo (GraphWriter)**: 5 nodi, 4 archi, 14 evidenze in DB persistente (stesso DB — cross-lesson guard T5-FIX attiva).
+  4. **2 citazioni verificate**:
+     - `quarta_lezione#s3` (9s) — "ordine superiore significa che T nel modulo di S di T" — verbatim ✓
+     - `quarta_lezione#s6` (65s) — "e mi viene 0, allora è di ordine superiore." — verbatim ✓
+  5. **Capsule complete in DB**: `quarta_lezione` ora presente. Totale: 3 capsule (seconda, terza, quarta) + prima_lezione summary su disco.
+  - **PLAN-CHECK**: fable.sh timeout (rate-limit) — proceduto per dottrina.
+  - **REVIEW**: N/A (diff vuoto — solo esecuzione dati reali, zero modifica codice).
+  - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
+  - Next: T6-COMPLETAMENTO continua — **Summaries 2-4** in derived/wiki/ (seconda_lezione.md, terza_lezione.md, quarta_lezione.md, stesso pattern di prima_lezione). Poi fix log.jsonl status (blocker->status blocked) + project-wiki/index.md `|-` + coord.md `|-`.
