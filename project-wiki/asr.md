@@ -99,3 +99,41 @@ Confidence is `math.exp(avg_logprob)` from faster-whisper, clamped by constructi
 ### Verification script
 
 `bin/verify-transcription.sh` — Python-only (no bc/jq dep), checks: file exists, timestamps monotonic, duration, spot-check first/last segments, confidence distribution, multi-aspect PASS/FAIL verdict. 3 real bugs found and fixed by Claude Code review (opus-4-8): (1) `bc -l` false PASS on missing dep, (2) short-file crash, (3) overclaiming verdict on single metric.
+
+---
+
+## Real transcription results (Seconda lezione, 2026-06-10)
+
+**Method:** `transcribe_with_fallback(language='it')` via direct call (matching T4a-step2 procedure for consistency). PLAN-CHECK opus-4-8 approved.
+
+**Model:** `large-v3-turbo` int8 CPU, beam_size=5, VAD enabled. 83min audio.
+
+**Output:** `~/maestro-data/teoria-segnali-2021/derived/asr/Seconda_lezione_teoria_dei_segnali.speech.segment.jsonl`
+- **3446 segments**, 328KB, timestamps 0.0s-4980.1s (83.0min)
+- **Monotonicity**: 100% — all segments non-overlapping, non-inverted.
+- **Gap between segments**: 13.0s total (0.3% of duration) — 8 gaps, largest 6.9s. VAD pre-processing removed 16min37s of silence (from inference log).
+
+### Content quality assessment
+
+| Metric | Value | Interpretation |
+|--------|-------|----------------|
+| Mean confidence | 0.7341 | Good for CPU int8, comparable to Prima (0.731) |
+| Low conf (<0.3) | 5/3446 (0.1%) | Better than Prima (1.7%) — only 5 garbled segments |
+| segnal hits | 90 | Core topic coverage |
+| seno/coseno/sin | 132 | Heavy sinusoidal signal coverage |
+| energia/potenza | 29/31 | Major energy/power classification discussion |
+| continuo/a | 45 | Continuous-time signals classification |
+| analogico/digitale | 8/7 | Analog/digital signal discussion |
+| sinc | 3 | Present (unlike Prima where 0) |
+| triangolo | 0 | Not detected |
+
+### Health issues (rilevate da Claude Code review, 2026-06-10)
+1. **ampiezza -> ambienza systematic error**: The ASR consistently transcribes "ampiezza" as "ambienza" (8 segments/10 occurrences). This is a known phonetic weakness of whisper on Italian — the two words sound similar to a non-native model. Downstream processing (T4b capsule) should be aware of this.
+2. **High fragmentation**: 3446 segments for 83min (41 segments/min) vs Prima's 19 seg/min. The VAD (min_silence_duration=500ms) is breaking speech into very short chunks — many 1-2 word fragments. This may affect grounding quality (shorter citations).
+3. **Middle segments very short**: Segments ~1500 are 1-word fragments (e.g., "ammettono", "un", "numero", "finito", "di", "discontinuita") — typical of fast lecture delivery where the speaker pauses between every word group.
+4. **triangolo = 0 hits**: Either not covered or missed by ASR. sinc appeared (3 hits, unlike Prima).
+5. **Codomain confusion**: "ambienza continua"/"ambienza discreta" likely refers to "ampiezza continua"/"ampiezza discreta" (continuous/discrete amplitude). Context makes the intended meaning clear — the lecturer is classifying signals by domain (time: cont/discrete) and codomain (amplitude: cont/discrete).
+
+### Verdict
+
+Usable for M0 capsule pipeline (T4b). Content is clearly Teoria dei Segnali (signal classification, energy/power analysis, sinusoidal signals, sampling/ADC). More fragmented than Prima but sufficient for grounded extraction. The ambienza/ampiezza error is systematic and should be tracked downstream. Next: Terza lezione transcription or T4b capsule pilot.
