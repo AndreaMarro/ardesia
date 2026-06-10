@@ -54,7 +54,7 @@ Da `segments` in poi la pipeline è identica per entrambi.
 
 | Stadio | Modulo | Note |
 |--------|--------|------|
-| segments | `asr/adapter.py` · `ingest/bundle.py` | seg_id 1-indexed |
+| segments | `asr/adapter.py` · `ingest/bundle.py` | seg_id 1-indexed; ASR con **coalescing** `min_chars=120` (VAD frammenta a ~11-18 char/seg: un excerpt verbatim non supera mai il suo segmento, quindi la qualità delle citazioni si decide QUI; dedup anti loop-allucinazione whisper) |
 | capsule | `capsule/assembly.py` | **windowed** (`window_size=100`); merge cross-window: concept dedup-per-nome + union citazioni, ex/q/hw dedup-per-testo |
 | extraction | `capsule/extraction.py` | excerpt **obbligatorio** nel prompt; `_repair_excerpt` snap a substring o None |
 | graph | `graph/writer.py` | proiezione pura **ZERO LLM**, grounding validato, DELETE+INSERT in transazione atomica, no cross-lesson |
