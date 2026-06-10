@@ -36,6 +36,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [audioOn, setAudioOn] = useState(false)
   /** Mostra stato registrazione nell'header */
   const [audioRecording, setAudioRecording] = useState(false)
+  /** Stato export .lesson */
+  const [exporting, setExporting] = useState(false)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -189,6 +191,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }
 
+  /** Export .lesson: genera ZIP e avvia download */
+  async function handleExportLesson() {
+    setExporting(true)
+    try {
+      const zipBlob = await actualStore.exportLesson(room)
+      const url = URL.createObjectURL(zipBlob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `lezione-${room}.lesson`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } catch (err) {
+      setStorageError("Export fallito: " + (err as Error).message)
+    } finally {
+      setExporting(false)
+    }
+  }
+
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   function addImages(items: { dataURL: string; mimeType: string; width: number; height: number; x: number; y: number }[]) {
@@ -276,6 +298,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
         <button onClick={toggleAudio} style={{ ...btn, background: audioOn ? (audioRecording ? "#e74c3c" : "#1763ff") : "#333" }}>
           {audioOn ? (audioRecording ? "🔴 registra" : "⏹ audio") : "🎤 audio"}
+        </button>
+        {/* Export .lesson: scarica lo ZIP con raw/ immutabile */}
+        <button onClick={handleExportLesson} disabled={exporting} style={{ ...btn, background: exporting ? "#555" : "#333" }}>
+          {exporting ? "⏳ export…" : "📦 export .lesson"}
         </button>
         {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
         <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} style={{ ...btn, marginLeft: "auto", background: "#1763ff" }}>

@@ -7,6 +7,7 @@ import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode } from ".
 import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
+import { exportLesson as buildLessonExport, importLesson as parseLessonImport } from "./lessonBundle"
 
 export interface WorkspaceState {
   mode: StorageMode
@@ -111,6 +112,16 @@ export class WorkspaceStore {
     for (const entry of entries) {
       await this.write(entry.path, entry.data)
     }
+  }
+
+  // --- EXPORT/IMPORT .lesson (ZIP) ---
+
+  async exportLesson(room: string): Promise<Blob> {
+    return buildLessonExport(this, room)
+  }
+
+  async importLessonBlob(blob: Blob): Promise<void> {
+    await parseLessonImport(this, blob)
   }
 }
 
