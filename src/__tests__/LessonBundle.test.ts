@@ -260,4 +260,96 @@ describe("LessonBundle", () => {
     const all = await store2.list()
     expect(all).toHaveLength(0)
   })
+
+  // --- T3-FIX-2: coerenza bundle (GDPR — import non deve reintrodurre dati revocati) ---
+
+  it("bundle incoerente (audioConsent:false + raw/audio/ esistenti) — reject E store vuoto", async () => {
+    // Costruisce bundle artigianale con session.yaml = audioConsent:false + chunk audio
+    const zip = new JSZip()
+    zip.file(LESSON_PATHS.JOURNAL, '{"t":1,"type":"element.add"}')
+    zip.file(LESSON_PATHS.SESSION, "v: 1\ncreated: 1000\naudioConsent: false\naudioStartEpoch: 500\n")
+    zip.file(LESSON_PATHS.SCENE, JSON.stringify({ elements: [] }))
+    zip.file("raw/audio/chunk-0.webm", "fake-audio-data")
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).rejects.toThrow(/Bundle incoerente|incoerente/)
+
+    // Store deve rimanere vuoto — nessuna write parziale
+    const all = await store2.list()
+    expect(all).toHaveLength(0)
+  })
+
+  it("bundle coerente (audioConsent:true + audio) — import OK", async () => {
+    const zip = new JSZip()
+    zip.file(LESSON_PATHS.JOURNAL, '{"t":1,"type":"element.add"}')
+    zip.file(LESSON_PATHS.SESSION, "v: 1\ncreated: 1000\naudioConsent: true\naudioStartEpoch: 500\n")
+    zip.file(LESSON_PATHS.SCENE, JSON.stringify({ elements: [] }))
+    zip.file("raw/audio/chunk-0.webm", "fake-audio-data")
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).resolves.toBeUndefined()
+
+    const journalBlob = await store2.read(LESSON_PATHS.JOURNAL)
+    expect(journalBlob).not.toBeNull()
+    const audioBlob = await store2.read("raw/audio/chunk-0.webm")
+    expect(audioBlob).not.toBeNull()
+  })
+
+  it("bundle legacy senza session.yaml + audio — import OK (nessuna informazione consenso)", async () => {
+    // Bundle senza session.yaml (pre-T2): non possiamo validare coerenza audio
+    const zip = new JSZip()
+    zip.file(LESSON_PATHS.JOURNAL, '{"t":1,"type":"element.add"}')
+    zip.file(LESSON_PATHS.SCENE, JSON.stringify({ elements: [] }))
+    zip.file("raw/audio/chunk-0.webm", "fake-audio-data")
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).resolves.toBeUndefined()
+
+    const audioBlob = await store2.read("raw/audio/chunk-0.webm")
+    expect(audioBlob).not.toBeNull()
+  })
+
+  // --- T3-FIX-2: .. check per-segmento (non include("..") che è sovra-ampio) ---
+
+  it('filename legittimo con ".." nel nome (raw/notes..2024.jsonl) passa', async () => {
+    const zip = new JSZip()
+    zip.file("raw/notes..2024.jsonl", '{"t":1}')
+    zip.file(LESSON_PATHS.SESSION, "v: 1\ncreated: 1\naudioConsent: false\n")
+    zip.file(LESSON_PATHS.JOURNAL, '{"t":1,"type":"element.add"}')
+    zip.file(LESSON_PATHS.SCENE, JSON.stringify({ elements: [] }))
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).resolves.toBeUndefined()
+
+    const notesBlob = await store2.read("raw/notes..2024.jsonl")
+    expect(notesBlob).not.toBeNull()
+  })
+
+  it("path malevolo raw/../etc/passwd ancora rifiutato (check per-segmento catcha ..)", async () => {
+    const zip = new JSZip()
+    zip.file("raw/../etc/passwd", "evil")
+    const blob = await zip.generateAsync({ type: "blob" })
+
+    const store2 = new WorkspaceStore()
+    const mock2 = new MockDriver()
+    withMockDriver(store2, mock2)
+
+    await expect(importLesson(store2, blob)).rejects.toThrow(/ZipSlip/)
+  })
 })

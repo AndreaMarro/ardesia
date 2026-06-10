@@ -99,6 +99,12 @@ export async function exportLesson(
 /**
  * Importa una lezione da un Blob .lesson (ZIP).
  * Scrive ogni entry sullo store.
+ *
+ * Validazioni PRIMA della scrittura:
+ *   1. ZipSlip: path devono iniziare con raw/ e nessun segmento deve essere ".."
+ *   2. Coerenza GDPR: se session.yaml riporta audioConsent=false,
+ *      il bundle NON deve contenere entry raw/audio/ (dati revocati che
+ *      non devono mai essere reintrodotti)
  */
 export async function importLesson(
   store: WorkspaceStore,
@@ -106,23 +112,50 @@ export async function importLesson(
 ): Promise<void> {
   const zip = await JSZip.loadAsync(blob)
 
-  // Prima passata: valida TUTTI i path prima di scrivere (ZipSlip protection)
-  // I path devono stare dentro raw/, non contenere .. e non essere assoluti
+  // Legge session.yaml dal bundle (se presente) per validare coerenza GDPR
+  // Il parse è best-effort: se il file manca (bundle legacy pre-T2), saltiamo
+  // la validazione coerenza audio — non possiamo giudicare un consenso assente.
+  let audioConsent: boolean | undefined
+  const sessionEntry = zip.file(LESSON_PATHS.SESSION)
+  if (sessionEntry && !sessionEntry.dir) {
+    const sessionText = await sessionEntry.async("text")
+    audioConsent = parseSessionYaml(sessionText).audioConsent
+  }
+
+  // Prima passata: valida TUTTI i path + rileva entry audio (tutto prima di scrivere)
   const entriesToWrite: Array<{ path: string; dataPromise: Promise<Blob> }> = []
+  let hasAudioEntry = false
+
   zip.forEach((relativePath, zipEntry) => {
     if (zipEntry.dir) return
 
+    // ZipSlip: per-segment check (non includes("..") che blocca filename
+    // legittimi come "raw/notes..2024.jsonl")
     if (
       !relativePath.startsWith("raw/") ||
-      relativePath.includes("..")
+      relativePath.split("/").some((s) => s === "..")
     ) {
       throw new Error(
-        `ZipSlip: path rifiutato "${relativePath}" — deve iniziare con raw/ e non contenere ..`,
+        `ZipSlip: path rifiutato "${relativePath}" — deve iniziare con raw/ e non contenere .. come segmento`,
       )
+    }
+
+    // Rileva entry audio per validazione coerenza
+    if (relativePath.startsWith(LESSON_PATHS.AUDIO_DIR)) {
+      hasAudioEntry = true
     }
 
     entriesToWrite.push({ path: relativePath, dataPromise: zipEntry.async("blob") })
   })
+
+  // Coerenza GDPR: bundle con audioConsent=false MA con chunk audio dentro è
+  // incoerente (dati revocati che non devono MAI essere reintrodotti).
+  // Se session.yaml manca (legacy), audioConsent è undefined — saltiamo il check.
+  if (audioConsent === false && hasAudioEntry) {
+    throw new Error(
+      `Bundle incoerente: session.yaml riporta audioConsent=false ma il bundle contiene file raw/audio/`,
+    )
+  }
 
   // Seconda passata: tutte le validazioni passate, scrivi
   for (const entry of entriesToWrite) {
