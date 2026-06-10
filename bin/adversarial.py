@@ -61,11 +61,12 @@ COMMIT: {subject}
 DIFF (troncato a 60k):
 {diff}"""
 
+# kimi-k2.6 = reasoning model: accetta SOLO temperature=1 (400 altrimenti); max_tokens copre reasoning+risposta.
 payload = {
     "model": "kimi-k2.6",
     "messages": [{"role": "user", "content": prompt}],
-    "temperature": 0.3,
-    "max_tokens": 1200,
+    "temperature": 1,
+    "max_tokens": 3000,
 }
 req = urllib.request.Request(
     "https://api.moonshot.ai/v1/chat/completions",
