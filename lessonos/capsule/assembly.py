@@ -45,6 +45,7 @@ def assemble_lesson_capsule(
     model: str | None = None,
     save: bool = False,
     defensive: bool = False,
+    window_size: int = 100,
 ) -> LessonCapsule:
     """Assemble a full Lesson Capsule for ``lesson_id``.
 
@@ -64,11 +65,11 @@ def assemble_lesson_capsule(
     drop: list[str] = []
     timeline = segment_lesson_topics(
         store, lesson_id, router, provider=provider, model=model,
-        defensive=defensive, dropped=drop,
+        defensive=defensive, dropped=drop, window_size=window_size,
     )
     content = extract_lesson_content(
         store, lesson_id, router, provider=provider, model=model,
-        defensive=defensive, dropped=drop,
+        defensive=defensive, dropped=drop, window_size=window_size,
     )
     capsule = LessonCapsule(
         lesson_id=lesson_id,

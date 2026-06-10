@@ -145,6 +145,20 @@ class LessonContent:
     homework: tuple[HomeworkExtraction, ...] = ()
 
 
+def _window(segments, size: int):
+    """Split *segments* into consecutive windows of at most *size* items.
+
+    A non-positive *size* — or a lesson at/under the window — yields a SINGLE
+    window equal to the full list, so short lessons run exactly as the
+    pre-batching one-shot path (backward-compatible and mock-keyable). Long
+    lessons (the real lectures: 1351–3446 segments) are split so the prompt
+    never overflows the model context window (T6R batching).
+    """
+    if size <= 0 or len(segments) <= size:
+        return [list(segments)]
+    return [segments[i : i + size] for i in range(0, len(segments), size)]
+
+
 def build_extraction_prompt(segments) -> str:
     """Deterministic prompt for content extraction (stable → mock-keyable)."""
     lines = [
@@ -181,6 +195,7 @@ def extract_lesson_content(
     model: str | None = None,
     defensive: bool = False,
     dropped: list[str] | None = None,
+    window_size: int = 100,
 ) -> LessonContent:
     """Extract concepts/exercises/questions/homework from persisted segments.
 
@@ -210,10 +225,6 @@ def extract_lesson_content(
     seg_text_map: dict[str, str] = {seg.seg_id: seg.text for seg in segments}
 
     drop = dropped if dropped is not None else []
-
-    prompt = build_extraction_prompt(segments)
-    response = router.complete(prompt, provider=provider, model=model)
-    data = extract_json(response.text)
 
     def _parse_citations(raw) -> tuple[Citation, ...]:
         if not raw:
@@ -257,78 +268,119 @@ def extract_lesson_content(
                 drop.append(f"citation dropped ({type(exc).__name__}): {exc}")
         return tuple(cites)
 
-    concepts = []
-    for c in data.get("concepts", []):
-        try:
-            if not c.get("name"):
-                raise ValueError(f"concept missing name: {c!r}")
-            if not c.get("status"):
-                raise ValueError(f"concept missing status: {c!r}")
-            concepts.append(
-                ConceptExtraction(
+    # T6R batching: one LLM call per window, then merge across windows.
+    # concepts dedup by normalised name (union citations + prerequisites,
+    # keep first-seen name/status/order); exercises/questions/homework dedup
+    # by their text. A single-window lesson reduces to the original behaviour.
+    concepts_by_name: dict[str, ConceptExtraction] = {}
+    concept_order: list[str] = []
+    exercises: list[ExerciseExtraction] = []
+    seen_exercise: set[str] = set()
+    questions: list[QuestionExtraction] = []
+    seen_question: set[str] = set()
+    homework: list[HomeworkExtraction] = []
+    seen_homework: set[str] = set()
+
+    for window in _window(segments, window_size):
+        prompt = build_extraction_prompt(window)
+        response = router.complete(prompt, provider=provider, model=model)
+        data = extract_json(response.text)
+
+        for c in data.get("concepts", []):
+            try:
+                if not c.get("name"):
+                    raise ValueError(f"concept missing name: {c!r}")
+                if not c.get("status"):
+                    raise ValueError(f"concept missing status: {c!r}")
+                ce = ConceptExtraction(
                     name=c["name"],
                     status=c["status"],
                     prerequisites=tuple(c.get("prerequisites") or []),
                     citations=_parse_citations(c.get("citations")),
                 )
-            )
-        except (ValueError, TypeError, KeyError, AttributeError) as exc:
-            if not defensive:
-                raise
-            drop.append(f"concept dropped ({type(exc).__name__}): {exc}")
+            except (ValueError, TypeError, KeyError, AttributeError) as exc:
+                if not defensive:
+                    raise
+                drop.append(f"concept dropped ({type(exc).__name__}): {exc}")
+                continue
+            key = ce.name.strip().lower()
+            if key in concepts_by_name:
+                prev = concepts_by_name[key]
+                concepts_by_name[key] = ConceptExtraction(
+                    name=prev.name,
+                    status=prev.status,
+                    prerequisites=tuple(
+                        dict.fromkeys(prev.prerequisites + ce.prerequisites)
+                    ),
+                    citations=prev.citations + ce.citations,
+                )
+            else:
+                concepts_by_name[key] = ce
+                concept_order.append(key)
 
-    exercises = []
-    for e in data.get("exercises", []):
-        try:
-            if not e.get("prompt"):
-                raise ValueError(f"exercise missing prompt: {e!r}")
-            exercises.append(
-                ExerciseExtraction(
+        for e in data.get("exercises", []):
+            try:
+                if not e.get("prompt"):
+                    raise ValueError(f"exercise missing prompt: {e!r}")
+                ee = ExerciseExtraction(
                     prompt=e["prompt"],
                     solution=e.get("solution"),
                     citations=_parse_citations(e.get("citations")),
                 )
-            )
-        except (ValueError, TypeError, KeyError, AttributeError) as exc:
-            if not defensive:
-                raise
-            drop.append(f"exercise dropped ({type(exc).__name__}): {exc}")
+            except (ValueError, TypeError, KeyError, AttributeError) as exc:
+                if not defensive:
+                    raise
+                drop.append(f"exercise dropped ({type(exc).__name__}): {exc}")
+                continue
+            key = ee.prompt.strip()
+            if key in seen_exercise:
+                continue
+            seen_exercise.add(key)
+            exercises.append(ee)
 
-    questions = []
-    for q in data.get("student_questions", []):
-        try:
-            if not q.get("question"):
-                raise ValueError(f"student_question missing question: {q!r}")
-            questions.append(
-                QuestionExtraction(
+        for q in data.get("student_questions", []):
+            try:
+                if not q.get("question"):
+                    raise ValueError(f"student_question missing question: {q!r}")
+                qe = QuestionExtraction(
                     question=q["question"],
                     citations=_parse_citations(q.get("citations")),
                 )
-            )
-        except (ValueError, TypeError, KeyError, AttributeError) as exc:
-            if not defensive:
-                raise
-            drop.append(f"student_question dropped ({type(exc).__name__}): {exc}")
+            except (ValueError, TypeError, KeyError, AttributeError) as exc:
+                if not defensive:
+                    raise
+                drop.append(
+                    f"student_question dropped ({type(exc).__name__}): {exc}"
+                )
+                continue
+            key = qe.question.strip()
+            if key in seen_question:
+                continue
+            seen_question.add(key)
+            questions.append(qe)
 
-    homework = []
-    for h in data.get("homework", []):
-        try:
-            if not h.get("task"):
-                raise ValueError(f"homework missing task: {h!r}")
-            homework.append(
-                HomeworkExtraction(
+        for h in data.get("homework", []):
+            try:
+                if not h.get("task"):
+                    raise ValueError(f"homework missing task: {h!r}")
+                he = HomeworkExtraction(
                     task=h["task"],
                     citations=_parse_citations(h.get("citations")),
                 )
-            )
-        except (ValueError, TypeError, KeyError, AttributeError) as exc:
-            if not defensive:
-                raise
-            drop.append(f"homework dropped ({type(exc).__name__}): {exc}")
+            except (ValueError, TypeError, KeyError, AttributeError) as exc:
+                if not defensive:
+                    raise
+                drop.append(f"homework dropped ({type(exc).__name__}): {exc}")
+                continue
+            key = he.task.strip()
+            if key in seen_homework:
+                continue
+            seen_homework.add(key)
+            homework.append(he)
 
     return LessonContent(
         lesson_id=lesson_id,
-        concepts=tuple(concepts),
+        concepts=tuple(concepts_by_name[k] for k in concept_order),
         exercises=tuple(exercises),
         student_questions=tuple(questions),
         homework=tuple(homework),

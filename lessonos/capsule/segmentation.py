@@ -14,6 +14,7 @@ import json
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from lessonos.capsule.extraction import _window
 from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
@@ -57,6 +58,7 @@ def segment_lesson_topics(
     model: str | None = None,
     defensive: bool = False,
     dropped: list[str] | None = None,
+    window_size: int = 100,
 ) -> tuple[TopicSpan, ...]:
     """Group a lesson's persisted segments into grounded :class:`TopicSpan`s.
 
@@ -78,48 +80,51 @@ def segment_lesson_topics(
 
     drop = dropped if dropped is not None else []
 
-    prompt = build_segmentation_prompt(segments)
-    response = router.complete(prompt, provider=provider, model=model)
-    topics = extract_json(response.text)
-
+    # T6R batching: one LLM call per window; spans concatenated across windows.
+    # A topic split at a window boundary becomes two adjacent spans — accepted
+    # for M0 (still grounded). A single-window lesson is identical to before.
     spans: list[TopicSpan] = []
-    for entry in topics:
-        try:
-            topic = entry.get("topic")
-            seg_ids = tuple(entry.get("seg_ids", ()))
-            if not topic:
-                raise ValueError(f"topic entry missing label: {entry!r}")
-            if not seg_ids:
-                raise ValueError(f"topic {topic!r} cites no segments")
-            cited = []
-            kept_ids: list[str] = []
-            for sid in seg_ids:
-                seg = by_id.get(sid)
-                if seg is None:
-                    if defensive:
-                        drop.append(
-                            f"topic {topic!r} seg_id dropped: unknown {sid!r}"
+    for window in _window(segments, window_size):
+        prompt = build_segmentation_prompt(window)
+        response = router.complete(prompt, provider=provider, model=model)
+        topics = extract_json(response.text)
+        for entry in topics:
+            try:
+                topic = entry.get("topic")
+                seg_ids = tuple(entry.get("seg_ids", ()))
+                if not topic:
+                    raise ValueError(f"topic entry missing label: {entry!r}")
+                if not seg_ids:
+                    raise ValueError(f"topic {topic!r} cites no segments")
+                cited = []
+                kept_ids: list[str] = []
+                for sid in seg_ids:
+                    seg = by_id.get(sid)
+                    if seg is None:
+                        if defensive:
+                            drop.append(
+                                f"topic {topic!r} seg_id dropped: unknown {sid!r}"
+                            )
+                            continue
+                        raise ValueError(
+                            f"topic {topic!r} cites unknown segment {sid!r} "
+                            f"(not persisted for lesson {lesson_id!r})"
                         )
-                        continue
-                    raise ValueError(
-                        f"topic {topic!r} cites unknown segment {sid!r} "
-                        f"(not persisted for lesson {lesson_id!r})"
+                    cited.append(seg)
+                    kept_ids.append(sid)
+                if not cited:
+                    raise ValueError(f"topic {topic!r} cites no segments")
+                spans.append(
+                    TopicSpan(
+                        lesson_id=lesson_id,
+                        topic=topic,
+                        seg_ids=tuple(kept_ids),
+                        start=min(s.start for s in cited),
+                        end=max(s.end for s in cited),
                     )
-                cited.append(seg)
-                kept_ids.append(sid)
-            if not cited:
-                raise ValueError(f"topic {topic!r} cites no segments")
-            spans.append(
-                TopicSpan(
-                    lesson_id=lesson_id,
-                    topic=topic,
-                    seg_ids=tuple(kept_ids),
-                    start=min(s.start for s in cited),
-                    end=max(s.end for s in cited),
                 )
-            )
-        except (ValueError, TypeError, KeyError, AttributeError) as exc:
-            if not defensive:
-                raise
-            drop.append(f"topic dropped ({type(exc).__name__}): {exc}")
+            except (ValueError, TypeError, KeyError, AttributeError) as exc:
+                if not defensive:
+                    raise
+                drop.append(f"topic dropped ({type(exc).__name__}): {exc}")
     return tuple(spans)
