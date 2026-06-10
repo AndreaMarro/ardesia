@@ -94,3 +94,20 @@
 |  - Gate: 1371 passed + 2 skipped (+17 da baseline T5 1353). cost_usd: ~$0.001 (2 DeepSeek chiamate).
 |  - **BLOCKER**: il criterio di accettazione T6 è 4/4 lezioni, ma i capsule per lezioni 2-4 (Seconda, Terza, Quarta) NON sono mai stati assemblati. Solo `prima_lezione` ha un capsule (appena creato). Serve autorizzazione per assemblare capsule 2-4 prima di dichiarare T6 completa. Vedi COORDINATION.md § NEEDS-CLAUDE.
 |  - Next: T7 SCHEMA.md (ultimo task lessonos M0) OPPURE assemble capsule 2-4, secondo decisione di Claude in NEEDS-CLAUDE.
+
+- **2026-06-10(current) — T6-COMPLETAMENTO: Seconda lezione capsule assembled (persistent DB + graph_writer).**
+  Ipotesi singola: il script generalizzato `bin/run_capsule.sh` può assemblare una capsule per Seconda lezione via DeepSeek LIVE, salvarla in DB persistente e scrivere il grafo — esercitando T5 su dati reali.
+  Risultati:
+  1. **Script**: `bin/run_capsule.sh <lesson_id> [--max-segments N]` — bash 3 compat, env var pass-through (no shell injection), DB persistente in `~/maestro-data/teoria-segnali-2021/derived/db/lessonos.db`, ledger senza token fabbricati (prompt_tokens=0, stima costo in label).
+  2. **Seconda lezione capsule (DeepSeek LIVE, 100 seg, 0–566s)**:
+     - **9 topic spans**: Classificazione tempo/ambienza, Analogici, Campionamento, Quantizzati, Digitali, Sequenze, Classificazione energetica (tempo continuo + sequenze + potenza media).
+     - **12 concetti** (1 `problematic` per delta di Dirac), **3 esercizi**, **2 domande**, **3 compiti**.
+     - **0 dropped items** — tutte citazioni verbatim (3 repaired=True su 34, ACCETTABILE per trascrizione reale rumorosa).
+  3. **Grafo scritto (GraphWriter)**: 16 nodi, 15 archi, 34 evidenze in DB persistente.
+  4. **Verifica DB**: capsule ricaricata OK (12 concetti, 9 timeline), nodi/archi/evidenze tutte presenti.
+  5. **Accettazione**: 2+ citazioni con seg_id risolto + excerpt verbatim ✓.
+  6. Costo stimato: ~$0.00084 (2 chiamate DeepSeek chat).
+  - **PLAN-CHECK**: fable.sh timeout (rate-limit) — proceduto per dottrina, annotato.
+  - **REVIEW**: 5 issues (DB persistenza fuori :memory:, shell interpolation, ledger fabbricato, exit code, API key mask) — tutte risolte e ri-eseguite.
+  - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
+  - Next: T6-COMPLETAMENTO continua — assemble capsule Terza lezione (stessa procedura).

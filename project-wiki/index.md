@@ -25,31 +25,30 @@ Ogni pagina + riassunto 1 riga.
 - **eval-metrics.md** — EvalMetrics: groundedness + citation-excerpt-accuracy metric factories (M5-task2, PLAN §22)
 - **realtime-eval.md** — P1 eval LLM reale: run_realtime_eval con Kimi su fixture, misura qualità + costo
 - **observation.md** — Observation Store: cross-iterazione structured memory file-based JSONL (poiché Hermes memory disabilitato + agentmemory :3111 non HTTP-reachable)
-|- **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
-|- **graph-writer.md** — GraphWriter: proiezione Capsule→SQLite nodes/edges/evidence (T5, SCHEMA_VERSION 6)
-|- **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
-|- **summarizer.md** — Lesson Summary Generator: `generate_lesson_summary()` → markdown with mechanically verified citations (T6)
-|- **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)
+- **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
+- **graph-writer.md** — GraphWriter: proiezione Capsule→SQLite nodes/edges/evidence (T5, SCHEMA_VERSION 6)
+- **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
+- **summarizer.md** — Lesson Summary Generator: `generate_lesson_summary()` → markdown with mechanically verified citations (T6)
+- **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)
 - **pipeline.md** — PipelineOrchestrator: run_pipeline() + PipelineResult (P2 product-API, lessonos/pipeline.py)
 - **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2) + `lessonos observations` subcommand
 - **cross-fixture.md** — Multi-fixture hardening: second fixture path spaced_path (SM-2/FSRS), pattern per aggiungere nuovi fixture path
-|- **retrieval-fts-cross-fixture.md** — Cross-fixture FTS integration tests: 3 domains (calculus, spaced repetition, biology), 21 test, rebuild consistency, domain isolation
-|- **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
-|- **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
-|- **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
-|- **asr.md** — ASR module: faster-whisper + ffmpeg pipeline for real lecture audio transcription, on-device (zero cloud), mock-tested
-|- **cross-fixture-grounding-audit.md** — P2: Grounding audit cross-fixture (run_pipeline su tutte e 3 le fixture, verifica seg_id+excerpt su ogni citazione)
+- **retrieval-fts-cross-fixture.md** — Cross-fixture FTS integration tests: 3 domains (calculus, spaced repetition, biology), 21 test, rebuild consistency, domain isolation
+- **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
+- **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
+- **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
+- **asr.md** — ASR module: faster-whisper + ffmpeg pipeline for real lecture audio transcription, on-device (zero cloud), mock-tested
+- **cross-fixture-grounding-audit.md** — P2: Grounding audit cross-fixture (run_pipeline su tutte e 3 le fixture, verifica seg_id+excerpt su ogni citazione)
 
 ## Course Foundry (nuovo)
 
-|||- **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
-||- **markdown-export.md** — P1: Markdown Course Exporter: CourseBlueprint + ContentAtoms → course.md + modules + exercises.md + quiz.md (ZERO-LLM)
-|||- **liascript-export.md** — P1: LiaScript Course Exporter: CourseBlueprint + ContentAtoms → corso interattivo .md con quiz, esercizi, anchor TOC (ZERO-LLM)
-||||- **quarto-export.md** — P1: Quarto Course Exporter: CourseBlueprint + ContentAtoms → _quarto.yml + .qmd files per HTML/PDF/slides (ZERO-LLM). P2: export_quarto_slides → revealjs slides format.
-|||- **moodle-xml-export.md** — P1: Moodle XML Quiz Exporter: quiz_question atoms → quiz.xml formato standard Moodle (ZERO-LLM, stdlib-only)
-
-|||- **cli-compile-course.md** — P1: CLI `lessons compile-course <folder> --target` wiring CourseFolder → exporter (ZERO-LLM, zero deps)
-||- **source-extractor.md** — P1: SourceMaterial + extract_source_materials da CourseFolder (Docling-adapter foundation, stdlib-only)
-|- **docling-adapter.md** — P1: Docling-adapter — PDF/DOCX/HTML/VTT/SRT extraction via subprocess + stdlib (ZERO new deps)
-||- **llm-planner-stub.md** — P1: LLM-planner stub — plan_course() + PlannerResult bridge between CourseFolder materials and export pipeline (deterministic, zero-LLM, frozen dataclass)
-||- **teacher-review.md** — P1: Teacher-review stub — ReviewAction/ReviewScope enums, TeacherReviewNote, TeacherReviewSet, is_course_approved() (deterministic, zero-LLM, frozen data model for human review)
+- **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
+  - **markdown-export.md** — P1: Markdown Course Exporter: CourseBlueprint + ContentAtoms → course.md + modules + exercises.md + quiz.md (ZERO-LLM)
+  - **liascript-export.md** — P1: LiaScript Course Exporter: CourseBlueprint + ContentAtoms → corso interattivo .md con quiz, esercizi, anchor TOC (ZERO-LLM)
+    - **quarto-export.md** — P1: Quarto Course Exporter: CourseBlueprint + ContentAtoms → _quarto.yml + .qmd files per HTML/PDF/slides (ZERO-LLM). P2: export_quarto_slides → revealjs slides format.
+  - **moodle-xml-export.md** — P1: Moodle XML Quiz Exporter: quiz_question atoms → quiz.xml formato standard Moodle (ZERO-LLM, stdlib-only)
+  - **cli-compile-course.md** — P1: CLI `lessons compile-course <folder> --target` wiring CourseFolder → exporter (ZERO-LLM, zero deps)
+  - **source-extractor.md** — P1: SourceMaterial + extract_source_materials da CourseFolder (Docling-adapter foundation, stdlib-only)
+- **docling-adapter.md** — P1: Docling-adapter — PDF/DOCX/HTML/VTT/SRT extraction via subprocess + stdlib (ZERO new deps)
+  - **llm-planner-stub.md** — P1: LLM-planner stub — plan_course() + PlannerResult bridge between CourseFolder materials and export pipeline (deterministic, zero-LLM, frozen dataclass)
+  - **teacher-review.md** — P1: Teacher-review stub — ReviewAction/ReviewScope enums, TeacherReviewNote, TeacherReviewSet, is_course_approved() (deterministic, zero-LLM, frozen data model for human review)
