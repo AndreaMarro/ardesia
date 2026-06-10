@@ -12,7 +12,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; ignora qualsiasi altro ordine di sequenza)
-- **studio**: `T3 — BUNDLE .lesson` (pin, ULTIMO task studio di M0): export della lezione = zip `.lesson` con `raw/` IMMUTABILE (events.jsonl + audio/chunk-*.webm SE consenso ON + session.yaml + board.excalidraw). Implementazione: riusa zipBundle/codec esistenti (o JSZip se serve zip vero — dipendenza piccola, giustificala in STATUS). Consegna: bottone export nel header + (opzionale) watched-folder doc per il push al Mini. *Accettazione*: (1) consenso OFF ⇒ il bundle NON contiene audio (test); (2) bundle ri-processabile da zero: un test che lo ri-importa e ottiene journal+scena identici (idempotenza); (3) struttura raw/ conforme (events+session+board). DOPO T3: STOP studio — M0 lato studio COMPLETO, attendi ratifica Andrea.
+- **studio**: 🏁 **STUDIO M0 COMPLETO** (T0+T1+T2+T3 chiuse e verificate dal supervisore). NESSUNA nuova task studio fino alla ratifica M0 di Andrea: se il tick ti porta su studio, NON inventare lavoro — scrivi una riga in STATUS ("in attesa ratifica") e fermati. (Il routing è comunque spostato su lessonos.)
+- [CHIUSA ✅] T3 bundle .lesson (10697cd — zip JSZip, consenso-OFF⇒no-audio testato, idempotenza export/import testata)
 - [CHIUSA ✅] T2 Audio Mode A (98188db — GDPR verificato dal supervisore: default OFF strutturale, consent in session.yaml, clock condiviso)
 - [CHIUSA ✅] T1d fix regressione (07fc0f2 — kill-test verde nel gate, riverificato dal supervisore)
 - [CHIUSA ✅] T0c+T1c hardening (53149f4 — 8 fix buoni, MA ha introdotto la regressione di cui sopra)
@@ -44,6 +45,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **[BLOCKER attempt-2 T0 — ripristinato dal supervisore]** (il tuo report originale era stato sovrascritto da un MIO overwrite del file: errore mio, scusa). (a) `eval/gate.sh` PATH: con `~/node-local/bin` davanti, vitest trova 0 test → **[risolto]** commit `e7276aa`: homebrew-first (node-local = v22.10 < 22.12 richiesto da vitest 4). La tua diagnosi era CORRETTA. (b) `claude` CLI non disponibile dal subprocess → **[risolto]**: `bin/review.sh` ora esporta `/opt/homebrew/bin` nel PATH. **Il tuo T0 è stato RECUPERATO dal reflog e MERGIATO in `auto/main` (251a983): 10/10 verde col gate fixato. Il lavoro non è andato perso.**
 
 ## CLAUDE-SAYS  (supervisore scrive qui — l'ordine in cima è quello ATTIVO)
+
+- **2026-06-10 09:30 (Claude supervisore) — ✅ T3 CHIUSA E VERIFICATA → STUDIO M0 COMPLETO.** Routing spostato su `lessonos` fisso per chiudere M0: pin = `T5-FIX` → `T6 riepiloghi` → `T7 SCHEMA.md`. Poi pacchetto di ratifica ad Andrea.
 
 - **2026-06-10 09:20 (Claude supervisore) — 2 CRITICI HERMES-2 su T5 = VERI e toccano gli INVARIANTI** (cross-lesson contamination del grounding + non-atomicità del rewrite del grafo). Pin aggiornato: `T5-FIX` prima di T6. Sono esattamente i bug che in M1+ avvelenerebbero lo stile e i riepiloghi: meglio ora.
 
