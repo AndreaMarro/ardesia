@@ -285,6 +285,8 @@ describe("AudioRecorder", () => {
     expect(recorder.recording).toBe(true)
 
     recorder.dispose()
+    // stop() ora ha await _pendingChunkWrites — attendi microtask
+    await new Promise((r) => setTimeout(r, 0))
     expect(recorder.consent).toBe(false)
     expect(recorder.recording).toBe(false)
   })
@@ -297,6 +299,8 @@ describe("AudioRecorder", () => {
     expect(recorder.recording).toBe(true)
 
     recorder.consent = false
+    // stop() ora ha await _pendingChunkWrites — attendi microtask
+    await new Promise((r) => setTimeout(r, 0))
     expect(recorder.recording).toBe(false)
   })
 
@@ -416,6 +420,68 @@ describe("AudioRecorder", () => {
     await recorder.stop()
     await expect(recorder.stop()).resolves.toBeUndefined()
     expect(recorder.recording).toBe(false)
+  })
+
+  // --- T2c punto 1: purge fallisce → lastRevoke RIGETTA (non più silenzio) ---
+
+  it("purgeAudioChunks fallita → lastRevoke rigetta con errore visibile", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    mrHelper.emitChunk(0)
+    await vi.waitFor(async () => {
+      const entries = await store.list("raw/audio/")
+      expect(entries).toHaveLength(1)
+    }, { timeout: 500, interval: 10 })
+
+    // Mock store.delete per fallire — purge non riesce a cancellare il chunk
+    const deleteMock = vi.spyOn(store, "delete").mockRejectedValue(
+      new Error("file locked by OS")
+    )
+
+    recorder.consent = false
+
+    // lastRevoke deve RIGETTARE con l'errore della purge (non silenziarlo)
+    await expect(recorder.lastRevoke).rejects.toThrow("file locked by OS")
+
+    deleteMock.mockRestore()
+  })
+
+  // --- T2c punto 2: chunk in volo (write delay) NON sopravvive alla revoca ---
+
+  it("chunk in volo durante la revoca non sopravvive: store.list(audio) vuoto a fine corsa", async () => {
+    recorder.consent = true
+    await recorder.start()
+
+    // Defer della write del chunk — handleChunk parte ma store.write è in sospeso
+    let resolveWrite: () => void = () => {}
+    const writeSpy = vi.spyOn(store, "write").mockImplementationOnce(
+      () => new Promise<void>((resolve) => { resolveWrite = resolve })
+    )
+
+    mrHelper.emitChunk(0)
+
+    // Attendi che handleChunk abbia chiamato store.write (ora in sospeso)
+    await vi.waitFor(() => {
+      expect(writeSpy).toHaveBeenCalledWith(
+        "raw/audio/chunk-0.webm",
+        expect.any(Blob)
+      )
+    }, { timeout: 500, interval: 10 })
+
+    // Il chunk è in volo — la write non è ancora atterrata
+    // FLIP consenso OFF: stop() attende _pendingChunkWrites (che include questa write)
+    recorder.consent = false
+
+    // Risolvi la write in sospeso — ora il chunk atterra, poi purge lo cancella
+    resolveWrite()
+
+    // lastRevoke deve risolversi senza errori (purge ha cancellato il chunk atterrato)
+    await expect(recorder.lastRevoke).resolves.toBeUndefined()
+
+    // Verifica finale: nessun chunk sopravvissuto
+    const entries = await store.list("raw/audio/")
+    expect(entries).toHaveLength(0)
   })
 })
 

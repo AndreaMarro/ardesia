@@ -186,7 +186,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       setAudioRecording(false)
       ar.lastRevoke
         .then(() => actualStore.storageUsage().then(setQuota))
-        .catch(() => {})
+        .catch((err) => {
+          setStorageError("Revoca dati audio fallita: " + (err as Error).message)
+        })
     } else {
       // Accendi
       ar.consent = true

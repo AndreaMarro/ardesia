@@ -33,3 +33,10 @@ Prossima task: **T3 bundle .lesson**.
   (3) **Flush chain journal con recovery**: `try/catch` in `flush()` ripristina buffer via `unshift`; `_pendingFlush` sempre risolta (`.then(()=>{}, ()=>{})`); `scheduleFlush` retry su fallimento. 3 test: fallisce->recupera, ordine preservato, 2 fallimenti di fila.
   (4) **Indicatore quota REALE**: `StorageUsage` type + `WorkspaceDriver.usage?()` opzionale; `LocalStorageDriver.usage()` conta byte UTF-16 reali; `cache X.X/Y MB` nell'header Room.tsx aggiornato a init e dopo ogni persist.
   <review.sh rate-limit (fable-5, annotato per dottrina)>. File: src/Room.tsx, src/store/{AudioRecorder,JournalRecorder,WorkspaceStore}.ts, src/store/types.ts, src/store/drivers/localStorage.ts, src/__tests__/ (+13 test). Prossima: **M0 lato studio COMPLETO. Attendere ratifica Andrea.**
+
+|- **2026-06-10 — T2c REVOCA GDPR SENZA SILENZI (micro-fix, 2 residui T2b).** Gate 88/88 (86 ereditati + 2 test T2c nuovi). Fixes:
+|  (1) **Purge che fallisce non più silenzioso**: rimosso `.catch(()=>{})` dalla catena `_lastRevoke` — errori si propagano. `purgeAudioChunks()` verifica `store.list()` vuoto dopo cancellazione (retry una volta, poi throw). UI mostra errore via `setStorageError`.
+|  (2) **Write di chunk IN VOLO non sopravvive alla revoca**: `_pendingChunkWrites` promise chain serializza le write di `handleChunk`. `stop()` attende `_pendingChunkWrites` PRIMA di fermare il recorder e rilasciare lo stream, garantendo che `purgeAudioChunks` trovi tutti i chunk atterrati (e li cancelli).
+|  <review.sh rate-limit fable-5; PLAN-CHECK rate-limit fable-5 — annotato per dottrina>.
+|  File: `src/store/AudioRecorder.ts`, `src/Room.tsx`, `src/__tests__/AudioRecorder.test.ts`.
+|  Prossima: **M0 lato studio COMPLETO. Attendere ratifica Andrea.**

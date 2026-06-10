@@ -88,6 +88,8 @@ export class AudioRecorder {
   private _chunkStartEpoch: number | null = null
   private createMediaRecorder: (stream: MediaStream) => MediaRecorder
   private _lastRevoke: Promise<void> = Promise.resolve()
+  /** Chain di promise per chunk write in volo: stop() le attende prima di fermarsi */
+  private _pendingChunkWrites: Promise<void> = Promise.resolve()
 
   constructor(options: AudioRecorderOptions) {
     this.store = options.store
@@ -128,7 +130,7 @@ export class AudioRecorder {
       this._lastRevoke = (async () => {
         await this.stop()
         await this.purgeAudioChunks()
-      })().catch(() => {})
+      })()
     }
   }
 
@@ -137,11 +139,24 @@ export class AudioRecorder {
     return this._lastRevoke
   }
 
-  /** GDPR-DELETE: cancella TUTTI i chunk audio dal workspace */
+  /** GDPR-DELETE: cancella TUTTI i chunk audio dal workspace con verifica post-operazione */
   async purgeAudioChunks(): Promise<void> {
     const entries = await this.store.list(PATHS.AUDIO_DIR)
     for (const entry of entries) {
       await this.store.delete(entry.path)
+    }
+    // Verifica: store.list vuoto — se non vuoto, retry una volta
+    const remaining = await this.store.list(PATHS.AUDIO_DIR)
+    if (remaining.length > 0) {
+      for (const entry of remaining) {
+        await this.store.delete(entry.path)
+      }
+      const stillThere = await this.store.list(PATHS.AUDIO_DIR)
+      if (stillThere.length > 0) {
+        throw new Error(
+          `GDPR purge fallita: ${stillThere.length} chunk rimasti dopo retry`
+        )
+      }
     }
   }
 
@@ -185,9 +200,14 @@ export class AudioRecorder {
     }
   }
 
-  /** Ferma registrazione */
+  /** Ferma registrazione — attende chunk write in volo prima di fermare */
   async stop(): Promise<void> {
     if (!this._recording) return
+
+    // Attende che tutti i chunk write in volo siano completati PRIMA di fermare
+    // il recorder e rilasciare lo stream. Critico per la revoca GDPR: senza questo
+    // await, purgeAudioChunks può correre prima che un chunk atterri su store.
+    await this._pendingChunkWrites
 
     // _recording=false PRIMA di mediaRecorder.stop(): un dataavailable tardivo
     // (chunk parziale emesso dallo stop) non deve scrivere chunk orfani —
@@ -234,10 +254,16 @@ export class AudioRecorder {
     this._chunkIndex++
     this._chunkStartEpoch = now
 
-    // Chunk su disco PRIMA del marker journal: se la write fallisce il journal
-    // non deve contenere marker per un chunk inesistente (HERMES-0816)
-    await this.store.write(fileName, data)
-    this.onChunk?.(index, chunkStart, now)
+    // Incatena la write sulla _pendingChunkWrites chain: stop() attende
+    // questa promise prima di tornare, garantendo che purgeAudioChunks
+    // NON corra prima che il chunk sia atterrato su store (T2c — write in volo).
+    // Il .catch finale evita che una write fallita blocchi la chain.
+    this._pendingChunkWrites = this._pendingChunkWrites
+      .then(() => this.store.write(fileName, data))
+      .then(() => { this.onChunk?.(index, chunkStart, now) })
+      .catch(() => {})
+
+    await this._pendingChunkWrites
   }
 
   private stopInternal(): void {
