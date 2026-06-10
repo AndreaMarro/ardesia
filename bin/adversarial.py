@@ -33,8 +33,12 @@ if any(f"-{repo}-{sha}.md" in f for f in os.listdir(OUTDIR)):
     sys.exit(0)
 
 subject = git("log", "-1", "--pretty=%s").strip()
-stat = git("show", sha, "--stat")
-diff = git("show", sha)[:60000]  # cap input
+# diff vs primo parent: con `git show` un MERGE produce diff vuoto (bug scoperto al primo smoke)
+stat = git("diff", "--stat", f"{sha}~1..{sha}") or git("show", sha, "--stat")
+diff = (git("diff", f"{sha}~1..{sha}") or git("show", sha))[:60000]
+if not diff.strip():
+    print(f"HERMES-2 SALTATO: diff vuoto per {repo}@{sha}")
+    sys.exit(0)
 
 # Key kimi dalla config hermes (mai stamparla)
 key = None
@@ -66,7 +70,7 @@ payload = {
     "model": "kimi-k2.6",
     "messages": [{"role": "user", "content": prompt}],
     "temperature": 1,
-    "max_tokens": 3000,
+    "max_tokens": 4096,
 }
 req = urllib.request.Request(
     "https://api.moonshot.ai/v1/chat/completions",
@@ -76,7 +80,13 @@ req = urllib.request.Request(
 try:
     with urllib.request.urlopen(req, timeout=180) as r:
         body = json.load(r)
-    text = body["choices"][0]["message"]["content"]
+    msg = body["choices"][0]["message"]
+    text = (msg.get("content") or "").strip()
+    if not text:  # reasoning model: risposta finita nei token di reasoning → tieni il reasoning, segnala
+        text = "(content vuoto — reasoning grezzo:)\n" + (msg.get("reasoning_content") or "").strip()
+    if len(text) < 60:  # niente report vuoti/monchi: NIENTE file → il prossimo tick riprova
+        print(f"HERMES-2 FALLITO: risposta vuota per {repo}@{sha} (finish={body['choices'][0].get('finish_reason')}) — riproverà")
+        sys.exit(0)
 except urllib.error.HTTPError as e:  # diagnostica vera nel log, mai bloccare il tick
     print(f"HERMES-2 SALTATO (kimi HTTP {e.code}: {e.read()[:300]!r})")
     sys.exit(0)
