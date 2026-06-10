@@ -122,3 +122,28 @@ diagnosticare. La pipeline a fasi separate (segmentazione → estrazione →
 assemblaggio) permette test isolati e fail-fast per fase.
 - **Citazioni generate liberamente senza validazione:** scartata perché viola
   l'invariante anti-allucinazione PLAN §13.4 ("ogni claim → seg_id reale").
+
+## ADR-013 — Contratto seg_id: 1-indexed `lezione#sN` (T6R-1a)
+
+- **Status:** accepted
+- **Data:** 2026-06-10
+- **Contesto:** STRATEGOS ha rilevato off-by-one: adapter genera `#s1` (1-indexed) ma riepilogo prima_lezione.md originale usava `#s0` (0-indexed) — grounding non verificabile meccanicamente. Le capsule per Seconda/Terza/Quarta nel DB hanno seg_id 1-indexed corretti (`#s1`..`#s99`), ma prima_lezione era fuori dal DB persistente.
+
+### Decisione
+
+Contratto vincolante: ogni seg_id segue il formato `<lesson_id>#s<N>` dove N ≥ 1 (1-indexed). L'adapter (`asr/adapter.py:67`) è il punto verità — `#s0` non esiste in nessun contesto. Il formato `lezione#sN` è documentato in docstring e contratti mai in codice C/Python che usa offset.
+
+### Implementazione T6R-1a
+
+- Ingest di prima_lezione nel DB persistente con seg_id 1-indexed (`#s1`–`#s100`), verificato inline
+- Capsule DeepSeek LIVE (8 concetti, 0 dropped, save=True): tutte le citazioni 1-indexed
+- Grafo GraphWriter scritto: 10 nodi, 9 archi, 23 evidenze nel DB persistente
+- Summary rigenerato in `derived/wiki/prima_lezione.md` — ZERO citazioni `#s0` presenti
+- Script di esecuzione: `bin/run_prima_lezione_full.sh`
+
+### Conseguenze
+
+- Ogni nuovo ingest DEVE verificare che il primo seg_id sia `#s1`, non `#s0`
+- La verifica meccanica (`verify_citation` in `grounding.py`) protegge già: `#s0` non risolve se il primo segmento è `#s1` (ValueError)
+- Il vecchio summary `prima_lezione.md` su disco è stato sovrascritto con citazioni valide
+- Le capsule esistenti (Seconda/Terza/Quarta) sono già conformi al contratto

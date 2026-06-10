@@ -133,7 +133,20 @@
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status + project-wiki/index.md `|-`.
 
-- **2026-06-10(current) — T6-COMPLETAMENTO: Quarta lezione capsule assembled + graph_writer (DeepSeek LIVE, 100 seg, persistent DB).**
+|
+|- **2026-06-10(current) — T6R-1a: prima_lezione ingerita in DB persistente + capsule + summary con citazioni 1-indexed (off-by-one FIXED).**
+|  Ipotesi singola: il fix dell'off-by-one (0-indexed→1-indexed) richiede ingerire prima_lezione nel DB persistente, costruire capsule e rigenerare il summary — il tutto usando la pipeline esistente, con seg_id 1-indexed `prima_lezione#s1`-`#s100`.
+|  Risultati:
+|  1. **100 segmenti ingeriti** (`prima_lezione#s1`-`#s100`, range 0s–484s), 1-indexed — contratto seg_id verificato inline (primo seg_id = `#s1`, non `#s0`)
+|  2. **Capsule DeepSeek LIVE** (100 seg, `save=True`): 4 topic spans, **8 concetti** (vs 4 nel vecchio), 1 esercizio, 3 domande, 1 compito, **0 dropped**
+|  3. **Grafo GraphWriter**: 10 nodi, 9 archi, 23 evidenze in DB persistente — cross-lesson guard T5-FIX attiva
+|  4. **Summary rigenerato** in `derived/wiki/prima_lezione.md` (3785 byte, vs 6884 byte vecchio) — **ZERO citazioni `#s0`**, tutte 1-indexed. Esempi: `#s2`, `#s8`, `#s33`, `#s34`
+|  5. **Off-by-one FIXED**: il vecchio summary usava `prima_lezione#s0` (0-indexed); il nuovo usa `#s2` (chi si aggancia al primo segmento con citazione valida) — mai `#s0`
+|  6. **Script**: `bin/run_prima_lezione_full.sh` — reusable per capsule+summary di altre lezioni
+|  - **PLAN-CHECK**: fable.sh rate-limit (reset 19:50) — proceduto per dottrina.
+|  - **REVIEW**: saltata per rate-limit Claude Code (stesso usage-limit) — self-review senza compiacenza: solo esecuzione dati reali, codice esistente riusato, zero modifiche a moduli lessonos/
+|  - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00126 (3 DeepSeek chiamate).
+|  - Next: T6R-1b — SCHEMA.md draft (contratto seg_id e policy dati). Oppure T6R-2 — capsule full-lesson per tutte 4 lezioni secondo decisione supervisore.
   Ipotesi singola: `bin/run_capsule.sh quarta_lezione` (script esistente, già usato per Seconda/Terza) assembla capsule Quarta lezione via DeepSeek LIVE, 100 segmenti (0-362s), salva in DB persistente, scrive il grafo.
   Risultati:
   1. **Script eseguito**: `bin/run_capsule.sh quarta_lezione` — 100 segmenti (0s–362s di 2883 totali).

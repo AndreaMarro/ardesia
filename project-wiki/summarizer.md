@@ -22,7 +22,9 @@ Genera riepiloghi markdown delle lezioni da una LessonCapsule, con citazioni ver
 
 ## LIVE run
 
-DeepSeek `deepseek-chat` su 100 segmenti reali della Prima lezione → `~/maestro-data/teoria-segnali-2021/derived/wiki/prima_lezione.md` (6884 bytes).
+DeepSeek `deepseek-chat` su 100 segmenti reali della Prima lezione → `~/maestro-data/teoria-segnali-2021/derived/wiki/prima_lezione.md` (6884 bytes, ORIG — 0-indexed #s0 bug).
+
+**T6R-1a (2026-06-10)**: regen con 1-indexed `prima_lezione#s2,#s8,#s33,...` (NO #s0). Capsule+grafo+summary in DB persistente.
 
 ## File
 
