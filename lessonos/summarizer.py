@@ -61,9 +61,13 @@ class SummaryPack:
 # the macinata). The caps are NO-OP at/under threshold, so small capsules — the
 # mock tests — render byte-identically to the legacy prompt. The full detail
 # stays in the graph; the summary is the bounded human-readable digest.
-_SUMMARY_CONCEPT_CAP = 40
-_SUMMARY_ITEM_CAP = 15
-_SUMMARY_TIMELINE_CAP = 40
+# Caps tuned on real data: with coalesced segments (~270-char texts) the model
+# quotes long excerpts — 40 concepts × multi-citation output exceeded even
+# DeepSeek's 8192-token output cap (truncated JSON at ~32KB, measured). 25/10
+# keeps the JSON comfortably under budget; the full detail stays in the graph.
+_SUMMARY_CONCEPT_CAP = 25
+_SUMMARY_ITEM_CAP = 10
+_SUMMARY_TIMELINE_CAP = 30
 
 
 def _capped(items, cap, *, key=None):
@@ -228,9 +232,14 @@ def _build_summary_prompt(
     )
     lines.append("- excerpt DEVE essere una sottostringa letterale del segmento.")
     lines.append(
-        "- excerpt SOSTANZIOSO: copia un passaggio INTERO di almeno 30 caratteri "
-        "(una frase o proposizione completa), MAI frammenti di 1-3 parole — "
-        "un excerpt di 2 parole non prova nulla."
+        "- excerpt SOSTANZIOSO ma CONTENUTO: copia un passaggio INTERO di 30-120 "
+        "caratteri (una frase o proposizione completa), MAI frammenti di 1-3 "
+        "parole e MAI interi capoversi — un excerpt di 2 parole non prova nulla, "
+        "uno di 300 caratteri sfonda il budget."
+    )
+    lines.append(
+        "- Massimo 2 citazioni per paragrafo; il JSON COMPLETO deve restare "
+        "sotto i 12000 caratteri (sintetizza, il dettaglio vive nel grafo)."
     )
     lines.append(
         "- Esercizi e Compiti: se il parlato NON contiene un'assegnazione "
