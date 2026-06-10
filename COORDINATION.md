@@ -11,22 +11,9 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - Naming: il progetto si chiama **MAESTRO** (codename provvisorio). MAI "Numeria" (progetto separato di Andrea). ZERO codice/brand ELAB.
 
 
-## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; ignora qualsiasi altro ordine di sequenza)
-- **studio**: 🏁 STUDIO M0 COMPLETO E BLINDATO — in ATTESA RATIFICA Andrea. Nessuna nuova task; se il tick ti porta qui, una riga in STATUS e stop.
-- **studio**: ATTESA-RATIFICA M0 (T0-T3 + fix tutti chiusi e verificati; NOOP corretto fino a ordine nuovo)
-- [CHIUSA ✅] T3-FIX (45402e2 — verificata dal supervisore: consenso letto da session.yaml con esclusione audio, ZipSlip con validazione TOTALE pre-scrittura, test consenso seedato non-tautologico)
-- **studio**: 🏁 **STUDIO M0 COMPLETO** (T0+T1+T2+T3 chiuse e verificate dal supervisore). NESSUNA nuova task studio fino alla ratifica M0 di Andrea: se il tick ti porta su studio, NON inventare lavoro — scrivi una riga in STATUS ("in attesa ratifica") e fermati. (Il routing è comunque spostato su lessonos.)
-- [CHIUSA ✅] T3 bundle .lesson (10697cd — zip JSZip, consenso-OFF⇒no-audio testato, idempotenza export/import testata)
-- [CHIUSA ✅] T2 Audio Mode A (98188db — GDPR verificato dal supervisore: default OFF strutturale, consent in session.yaml, clock condiviso)
-- [CHIUSA ✅] T1d fix regressione (07fc0f2 — kill-test verde nel gate, riverificato dal supervisore)
-- [CHIUSA ✅] T0c+T1c hardening (53149f4 — 8 fix buoni, MA ha introdotto la regressione di cui sopra)
-- [CHIUSA ✅] T1b kill-test
-- **lessonos**: [CHIUSA ✅] T5-FIX — INVARIANTI GRAFO (d4ecdeb+7a118a0, gate 1353+2). Cross-lesson grounding + transaction atomicity.
-- **lessonos**: `T6-COMPLETAMENTO (opzione A autorizzata)`: (1) assembla le capsule di Seconda/Terza/Quarta lezione (lesson_id = quelli dell'adapter ASR; SALVALE nel DB e scrivi anche il grafo con graph_writer — esercita T5 su dati veri); (2) genera i riepiloghi 2-4 in derived/wiki/ con la stessa qualità del primo; (3) fix dal red-team: in log.jsonl lo `status` NON può essere "pass" se dichiari un blocker → usa status="blocked" o campo `blockers:[…]`; sistema anche le voci `|-` in project-wiki/index.md (markdown rotto). *Accettazione*: 4/4 riepiloghi con citazioni verificate + 3 coppie claim→citazione per lezione in STATUS (giudizio di pertinenza del supervisore). DOPO → T7.
-- **lessonos**: [FABLE-BUILD] `T6 — RIEPILOGO-LEZIONE` (pin): markdown in `wiki/lessons/` per OGNI lezione trascritta (parti dalla Prima), generato dalla capsule (LLM via router, mockabile nei tests; LIVE deepseek sanzionato per il run reale). OGNI claim fattuale cita un `seg_id` risolvibile (verifica meccanica nel test: ogni citazione presente nel riepilogo risolve a un segmento del DB e l'excerpt è substring reale). I riepiloghi delle lezioni VERE vanno in `~/maestro-data/teoria-segnali-2021/derived/wiki/` (NON nel repo); nel repo solo codice+test+fixture sintetica. *Accettazione*: 4/4 lezioni → riepilogo con citazioni verificate meccanicamente; il giudizio 'utile' lo darà Andrea (pacchetto ratifica M0). DOPO → T7 SCHEMA.md (ultimo task lessonos di M0).
-- [CHIUSA ✅] T5 graph_writer (4013e76 — schema+1, evidence substring-verbatim, rebuild idempotente, +14 test)
-- [CHIUSA ✅] T4b filo-nel-motore (23fec77 — capsule LIVE da lezione reale, 2 citazioni verbatim verificate, accettazione punto-per-punto)
-- [CHIUSA ✅] T4a (modulo+4/4 trascrizioni: 9990 segmenti totali, spot-check superati) · T4-fix
+## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
+- **studio**: ATTESA-RATIFICA M0 — T0-T3 e tutti i fix chiusi e verificati dal supervisore; NOOP corretto fino a nuovo ordine.
+- **lessonos**: [FABLE-BUILD] `T6 — RIEPILOGHI 2-4 + fix minori`: genera `seconda_lezione.md`, `terza_lezione.md`, `quarta_lezione.md` in `~/maestro-data/teoria-segnali-2021/derived/wiki/` (stesso pattern di `prima_lezione.md`: panoramica + concetti + esercizi + domande + compiti, OGNI claim con citazioni `lezione#sN` il cui excerpt è verbatim; marca `(inferito)` ciò che non è esplicito nel parlato — gli esercizi/compiti della prima erano probabilmente inferiti, non dichiararli come fatti). In più: test deterministico mock-LLM anti-tautologia (input fisso → riepilogo atteso fisso), fix `log.jsonl` (status=blocked quando c'è un blocker, mai pass+blocker-nel-note), fix prefissi `|-`→`-` in project-wiki/index.md. *Accettazione*: 4/4 riepiloghi esistono e le citazioni risolvono meccanicamente; 2 esempi VERI incollati in STATUS. DOPO → `T7 — SCHEMA.md` (anch'essa [FABLE-BUILD]: regole di manutenzione grafo/wiki per i job successivi, raw immutabile + derived rigenerabile, come si aggiorna e come si verifica).
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 14:05]** 1 problema/i CRITICO/i su `lessonos@b2e30ac` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-1405-lessonos-b2e30ac.md` (supervisore: leggere e decidere)
