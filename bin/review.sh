@@ -4,6 +4,8 @@
 # v3 (10/06, Claude supervisore): ladder fable-5 -> opus-4-8 (retry+fallback); multi-repo via REVIEW_REPO;
 # blurb progetto da REVIEW-CONTEXT.md se presente; auto-observation hook reso RAGGIUNGIBILE (prima: dead code dopo exit).
 # Token re-iniettato (Hermes sanitizza l'env del subprocess). Usage: ./bin/review.sh [tier]  tier: fable(default)|opus|sonnet|haiku
+# PATH esplicito: hermes sanitizza l'env del subprocess → claude/node invisibili senza questo (blocker attempt-2).
+export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 tier="${1:-fable}"
 case "$tier" in
   haiku)  models="claude-haiku-4-5";;

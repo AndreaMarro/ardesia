@@ -4,7 +4,8 @@
 # (FUORI dai repo: il reset --hard non lo cancella — fix del journal-loss bug noto di driver-orch).
 # Uso: ~/lessonos/driver-studio.sh [N]   (default 1)   |   pausa: touch ~/lessonos/STOP (kill-switch unico)
 set -uo pipefail
-export PATH="$HOME/.local/bin:$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
+# homebrew PRIMA di node-local: node-local è v22.10 (< 22.12 richiesto da vitest 4 → discovery test rotta, bug attempt-2)
+export PATH="/opt/homebrew/bin:$HOME/.local/bin:$HOME/node-local/bin:$PATH"
 # BLIND OpenAI/Codex dal subprocess Hermes (stesso pattern di driver-orch.sh)
 export CODEX_HOME="$HOME/lessonos/.no-codex"; mkdir -p "$CODEX_HOME"; [ -f "$CODEX_HOME/auth.json" ] || echo '{}' > "$CODEX_HOME/auth.json"
 unset OPENAI_API_KEY OPENROUTER_API_KEY 2>/dev/null || true
