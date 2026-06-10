@@ -76,6 +76,27 @@ Confidence is `math.exp(avg_logprob)` from faster-whisper, clamped by constructi
 - **Monotonicity**: 100% — all segments have non-overlapping, non-inverted timestamps. Verified via `bin/verify-transcription.sh`.
 - **VAD coverage**: 312s total gap (7.3%) — typical for lecture pauses.
 
+## ASR → Lesson Capsule adapter (T4b, 2026-06-10)
+
+The bridge between real ASR output and the LessonOS capsule pipeline lives in ``lessonos/asr/adapter.py``:
+
+- ``asr_jsonl_to_segments(jsonl_path, lesson_id, max_segments=50)`` → ``tuple[Segment, ...]``
+  Reads ASR JSONL (``SpeechSegment`` format), generates ``seg_id = <lesson_id>#s<N>`` (1-indexed),
+  casts ``start``/``end`` from float to ``int`` seconds. Empty-text lines are silently skipped.
+  ``max_segments`` caps ingestion for LLM cost control.
+
+- ``ingest_asr_jsonl(store, jsonl_path, lesson_id, max_segments=50)`` → ``tuple[Segment, ...]``
+  Same as above but also persists to the store.
+
+- ``bin/run_t4b.sh`` — acceptance script that pipes a real ASR JSONL through the full capsule
+  pipeline (ingest → DeepSeek segmentation → DeepSeek extraction → assembly) and enforces
+  ≥2 citations with verbatim excerpts at exit.
+
+**Live test (2026-06-10):** DeepSeek ``deepseek-chat`` on 50 segments of the Prima lezione
+(0s–332s). Produced 4 topic spans, 5 concepts, 3 exercises, student questions, and homework —
+all with verbatim citations (``repaired=False``). Cost: ~$0.00056 (est. 2000 input + 1000 output
+tokens). See ``STATUS.md`` for full acceptance citations.
+
 ### Content quality assessment
 
 | Metric | Value | Interpretation |
