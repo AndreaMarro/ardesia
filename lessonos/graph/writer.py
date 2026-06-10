@@ -5,7 +5,7 @@ LessonCapsule (already stored), builds nodes/edges via ``build_lesson_graph``,
 and persists them to the Store's graph tables together with grounded evidence
 from the capsule's citations. Every ``excerpt`` in evidence is a verbatim
 substring of the actual segment text (PLAN §13.4 grounding invariant) —
-validated at write time via ``store.get_segment`` (writer.py:83-90).
+validated at write time via ``lessonos.graph.grounding.verify_citation``.
 """
 
 from __future__ import annotations
@@ -15,6 +15,7 @@ import re
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import Citation
 from lessonos.graph.builder import build_lesson_graph
+from lessonos.graph.grounding import verify_citation
 from lessonos.models.entities import GraphEdge, GraphEvidence
 from lessonos.store.base import Store
 
@@ -81,10 +82,10 @@ class GraphWriter:
         For ``assigned_in`` edges: evidence comes from the exercise's citations.
         For other edge types: no evidence (they come from path-level processing).
 
-        Grounding validation (writer.py:83-90): every ``seg_id`` is resolved
-        via ``store.get_segment`` and every ``excerpt`` is verified as a
-        verbatim substring of the segment text. Raises ``ValueError`` if
-        either check fails.
+        Grounding validation is delegated to
+        ``lessonos.graph.grounding.verify_citation`` — every seg_id is resolved
+        via ``store.get_segment`` and every excerpt is verified as a
+        verbatim substring. Raises ``ValueError`` if either check fails.
         """
         lesson_id = capsule.lesson_id
         evidence: list[GraphEvidence] = []
@@ -97,29 +98,13 @@ class GraphWriter:
             return evidence  # No evidence for other edge types yet
 
         for i, cit in enumerate(citations):
-            # Grounding check 1: seg_id MUST resolve to a persisted segment
-            seg = self.store.get_segment(cit.seg_id)
-            if seg is None:
-                raise ValueError(
-                    f"evidence seg_id {cit.seg_id!r} does not resolve to a "
-                    f"persisted segment (edge={edge.edge_id})"
-                )
-            # Grounding check 1b: segment MUST belong to the capsule's lesson
-            # (prevents cross-lesson contamination where a verbatim excerpt
-            # from another lesson's segment could be cited)
-            if seg.lesson_id != capsule.lesson_id:
-                raise ValueError(
-                    f"evidence seg_id {cit.seg_id!r} resolves to lesson "
-                    f"{seg.lesson_id!r} but capsule is for lesson "
-                    f"{capsule.lesson_id!r} (cross-lesson contamination)"
-                )
-            # Grounding check 2: excerpt MUST be a verbatim substring
             excerpt = self._resolve_excerpt(cit)
-            if excerpt is not None and excerpt not in seg.text:
-                raise ValueError(
-                    f"evidence excerpt {excerpt!r} is not a verbatim substring "
-                    f"of segment {cit.seg_id}: {seg.text!r}"
-                )
+            verify_citation(
+                store=self.store,
+                seg_id=cit.seg_id,
+                excerpt=excerpt,
+                lesson_id=lesson_id,
+            )
             evidence.append(
                 GraphEvidence(
                     evidence_id=f"{edge.edge_id}#ev{i}",
