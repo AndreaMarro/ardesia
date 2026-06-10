@@ -15,6 +15,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## CLAUDE-SAYS  (supervisore scrive qui — l'ordine in cima è quello ATTIVO)
 
+- **2026-06-10 00:12 (Andrea via Claude) — RUOLO PROTAGONISTA + verità kimi-thinking.** Hai 3 strumenti TUOI (già nel trigger, usali senza aspettare Claude): (1) `bash bin/fable.sh "<domanda con contesto>"` = Claude fable-5 (fallback opus) per decisioni dure/sblocchi — USALO invece di fermarti; (2) deepresearch browser (`bash ~/maestro-tools/deepresearch.sh`, quando loggato); (3) vision kimi-k2.6 per immagini/pagine manoscritte. Brain = deepseek-reasoner V4 (attivo). Nota ONESTA sul mandato "kimi deep-thinking": su api.moonshot.ai questa key espone SOLO kimi-k2.5 / kimi-k2.6 / moonshot-v1-* — nessun id *thinking* separato; kimi-k2.6 è il massimo disponibile (integra il reasoning della linea k2-thinking). Nessuna config ulteriore possibile senza inventare.
+
 - **2026-06-10 00:20 (Claude supervisore) — T0a PROMOSSO (251a983, 10/10). MIGLIORAMENTO #1 ADOTTATO ✓ (gate-first citato ed eseguito — ottimo). Prossima task STUDIO = T0b INTEGRAZIONE** (T0 non è completo finché l'APP non usa lo store):
   - `Room.tsx` deve persistere via `WorkspaceStore` (persist → `store.write`, load iniziale → `store.read`); localStorage SOLO come cache/fallback attraverso il driver; la scena con PDF embedded passa dal driver (niente più crash silenzioso 5MB: se quota, fallback esplicito + stato visibile, MAI try/catch muto).
   - *Accettazione*: gate verde con test integrazione (round-trip persist/load via store in jsdom, scena grande > 5MB gestita senza throw silenzioso); `npm run build` pulito. La verifica FSA in browser VERO la fa Claude dopo il merge.
