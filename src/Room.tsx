@@ -6,6 +6,7 @@ import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { JournalRecorder } from "./store/JournalRecorder"
+import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -78,6 +79,19 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         if (!cancelled) {
           initialLoadDone.current = true
           setLoading(false)
+          // Esponi test harness per Playwright kill-test (solo dev)
+          if (import.meta.env.DEV) {
+            ;(window as any).__MAESTRO_TEST__ = {
+              ready: true,
+              store: actualStore,
+              recorder: journalRef.current,
+              apiRef,
+              ReplayEngine,
+              serializeEvents,
+              deserializeEvents,
+              PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
+            }
+          }
         }
       })
     return () => {
