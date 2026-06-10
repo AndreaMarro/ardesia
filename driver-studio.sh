@@ -25,7 +25,7 @@ for i in $(seq 1 "$N"); do
   bm=$(bash eval/gate.sh 2>/dev/null | tail -1); bp=$(jget "$bm" passed); bp=${bp:-0}
   echo "[studio] === iter $i/$N $ts | baseline passed=$bp | oggi $dt/$CAP_MAX ===" | tee -a "$LOG"
   t0=$(date +%s)
-  timeout 1800 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
+  timeout 2400 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
   t1=$(date +%s); dur=$((t1-t0))
   ah=$(git rev-parse HEAD); am=$(bash eval/gate.sh 2>/dev/null | tail -1)
   ap=$(jget "$am" passed); ap=${ap:-0}; ae=$(jget "$am" exit); ae=${ae:-1}
