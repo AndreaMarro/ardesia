@@ -25,9 +25,11 @@ Ogni pagina + riassunto 1 riga.
 - **eval-metrics.md** — EvalMetrics: groundedness + citation-excerpt-accuracy metric factories (M5-task2, PLAN §22)
 - **realtime-eval.md** — P1 eval LLM reale: run_realtime_eval con Kimi su fixture, misura qualità + costo
 - **observation.md** — Observation Store: cross-iterazione structured memory file-based JSONL (poiché Hermes memory disabilitato + agentmemory :3111 non HTTP-reachable)
-- **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
-- **graph-writer.md** — GraphWriter: proiezione Capsule→SQLite nodes/edges/evidence (T5, SCHEMA_VERSION 6)
-- **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)
+|- **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
+|- **graph-writer.md** — GraphWriter: proiezione Capsule→SQLite nodes/edges/evidence (T5, SCHEMA_VERSION 6)
+|- **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
+|- **summarizer.md** — Lesson Summary Generator: `generate_lesson_summary()` → markdown with mechanically verified citations (T6)
+|- **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)
 - **pipeline.md** — PipelineOrchestrator: run_pipeline() + PipelineResult (P2 product-API, lessonos/pipeline.py)
 - **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2) + `lessonos observations` subcommand
 - **cross-fixture.md** — Multi-fixture hardening: second fixture path spaced_path (SM-2/FSRS), pattern per aggiungere nuovi fixture path
