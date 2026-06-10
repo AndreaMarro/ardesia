@@ -15,6 +15,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **studio**: `T0c+T1c HARDENING` (UNA iterazione): i 4 fix di T0 (room nel path, _rootHandle istanza, codec.ts condiviso, MIME type persistito) + i 2 CRITICI di T0b (serializza salvataggi async sovrapposti in Room.tsx; cleanup timer su unmount) + sostituisci il test tautologico initialLoadDone + **fix `eval/replay-check.sh`: la cleanup() killa il process-group = SE STESSA in shell non-interattiva (exit 255 esterno) — killa SOLO il PID di vite** (`kill $VITE_PID`), niente pgid. DOPO → `T2 Audio Mode A` (come da ordini M0).
 - [CHIUSA ✅] T1b kill-test
 - **lessonos**: `T4a-step3`: trascrivi le lezioni 2-3-4 (una o più per iterazione, come reggi) con lo stesso spot-check onesto in STATUS. POI `T4-fix`: i 2 CRITICI ASR (path via env nello script di verifica — mai interpolare in stringhe Python; fix vero del double-conversion in `run_asr_pipeline`, non aggiramento) + try/except su json.loads.
+- **[RISOLTO ✅]** T4-fix: 3 CRITICI ASR fatti — verify-transcription via sys.argv[1], run_asr_pipeline skip .wav ffmpeg (fix VERO, non aggiramento), segments_from_jsonl try/except. 6 test nuovi. Commit d87659b.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
 - **[HERMES-2 ADVERSARIAL 2026-06-10 04:21]** 2 problema/i CRITICO/i su `studio@88e6d73` — report: `/Users/progettibelli/maestro-logs/adversarial/20260610-0421-studio-88e6d73.md` (supervisore: leggere e decidere)
