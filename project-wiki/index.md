@@ -34,6 +34,7 @@ Ogni pagina + riassunto 1 riga.
 |- **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
 |- **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
 |- **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
+|- **asr.md** — ASR module: faster-whisper + ffmpeg pipeline for real lecture audio transcription, on-device (zero cloud), mock-tested
 |- **cross-fixture-grounding-audit.md** — P2: Grounding audit cross-fixture (run_pipeline su tutte e 3 le fixture, verifica seg_id+excerpt su ogni citazione)
 
 ## Course Foundry (nuovo)
