@@ -1,14 +1,19 @@
 |
 
-- **2026-06-10(current) — T4-fix: 3 CRITICI ASR fixati + run_asr_pipeline ora salta conversione per input WAV.**
-  Ipotesi singola: i 3 CRITICI ASR da COORDINATION.md vanno fissati nel codice (non aggirati via chiamata diretta a transcribe_with_fallback). Risultati:
-  1. **verify-transcription.sh** — shell variable interpolation (`$JSONL` in stringhe Python) sostituita con `sys.argv[1]`: path passato come argomento CLI, mai interpolato (sicurezza, no injection). Claude review fable-5 conferma: funzionalmente equivalente.
-  2. **double-conversion in run_asr_pipeline** — FIX VERO (non aggiramento): se input è già `.wav`, `convert_to_wav` è SKIPPATO (non chiamato). Prima lo skip era solo sul nome del JSONL (strip `_16k_mono` dal nome) = aggiramento. Claude review fable-5 ha beccato il falso fix. Ora: `if audio.suffix.lower() in (".wav", ".wave"): wav_path = str(audio)` — niente subprocess ffmpeg.
-  3. **try/except su json.loads** — `segments_from_jsonl` ora cattura `json.JSONDecodeError`, `KeyError`, `TypeError` con logger.warning + skip. Docstring corretta (non "silently skipped" ma con warning).
-  4. **6 nuovi test** (3 stem + 3 malformed) — 34/34 ASR test, 1328 total + 2 skipped (gate invariato).
-  - Gate: 1328 passed + 2 skipped (invariato). cost_usd: ~$0 (mock).
-  - PLAN-CHECK fable.sh timeout — proceduto col piano, annotato in STATUS.
-  - T4a-step3 transcription: Terza lezione avviata (background proc_dd53e8defa59, ~2h CPU). In attesa completamento per spot-check.
+- **2026-06-10(current) — T5-FIX: 2 CRITICI grafo fixati (cross-lesson grounding + transaction atomicity).**
+  Ipotesi singola: i 2 CRITICI HERMES-2 su graph_writer (4013e76) vanno fissati nel codice — (1) cross-lesson contamination in `_collect_evidence` e (2) write_capsule_graph senza transazione.
+  Risultati:
+  1. **Cross-lesson grounding** (`lessonos/graph/writer.py:93-101`): dopo `if seg is None: raise ValueError`, ora `if seg.lesson_id != capsule.lesson_id: raise ValueError(...cross-lesson contamination...)`. Previene che una citazione da lezione A punti a un segmento di lezione B (anche se excerpt matcha verbatim).
+  2. **Transaction atomicity** (`lessonos/store/base.py:128-140`): 3 nuovi metodi astratti `begin_transaction`/`commit_transaction`/`rollback_transaction` in Store ABC. Implementati in `SQLiteStore` (`lessonos/store/sqlite.py:99,456-470`) con flag `_in_transaction`. I 4 metodi graph save (`save_graph_node/save_graph_edge/save_evidence/delete_graph_for_lesson`) sopprimono auto-commit quando `_in_transaction` è True.
+  3. **Transactional write** (`lessonos/graph/writer.py:38-75`): `write_capsule_graph` ora wrappa DELETE+INSERT in `begin_transaction()`...`commit_transaction()` (con rollback su eccezione). Crash a metà = grafo intatto.
+  4. **2 nuovi test** (16 totali su test_graph_writer.py):
+     - `test_cross_lesson_segment_rejected`: capsule l1 cita l2#s0 (verbatim-matching) → ValueError (cross-lesson contamination)
+     - `test_transaction_rollback_on_error`: primo write → poi secondo write fallisce → rollback preserva dati del primo write
+  5. **Stub aggiornato**: `_SimpleStore` in `tests/test_excerpt_repair.py` con i 3 metodi transaction.
+  - **PLAN-CHECK**: fable.sh timeout (rate-limit) — proceduto col piano, annotato.
+  - **REVIEW**: `bin/review.sh` timeout (rate-limit Claude Code) — self-review senza compiacenza: `BaseException` deliberato per atomicità (re-raise, non sopprimere), zero regressioni.
+  - Gate: 1353 passed + 2 skipped (invariato — +2 dal baseline 1351). cost_usd: ~$0 (mock).
+  - Next: T6 — riepilogo-lezione (markdown da capsule + citazioni verificate, come da PROSSIMA TASK in COORDINATION.md).
 
 - **2026-06-10(current) — M0 T4a-step2: REAL transcription of Prima lezione (verified, honest spot-check).** Ipotesi singola: faster-whisper large-v3-turbo int8 CPU puo trascrivere 71min di lezione reale di Teoria dei Segnali (italiano) e produrre segmenti con timestamp utili. Esecuzione: chiamata diretta `transcribe_with_fallback(language='it')` come da correzione Claude (PLAN-CHECK opus-4-8). Output: `~/maestro-data/teoria-segnali-2021/derived/asr/Prima_lezione_teoria_dei_segnali.speech.segment.jsonl` — 1351 segmenti, 153KB. Verifica con `bin/verify-transcription.sh`. **Risultati VERI:**
   - Timestamp: 1351/1351 monotoni, da 0.0s a 4254.48s (70.9min) — gap VAD totale 312s (7.3%)

@@ -40,18 +40,34 @@ Proietta una `LessonCapsule` in tabelle SQLite relazionali (`nodes`, `edges`, `e
 
 ### `write_capsule_graph(capsule) → int`
 
-1. `store.delete_graph_for_lesson(lesson_id)` (idempotenza)
-2. `build_lesson_graph(capsule)` → (nodes, edges) — ZERO LLM
-3. Per ogni node: `store.save_graph_node(lesson_id, node)`
-4. Per ogni edge: `_collect_evidence(capsule, edge)` → evidence list, poi salva edge + evidence
+1. `store.begin_transaction()` — inizia transazione esplicita
+2. `store.delete_graph_for_lesson(lesson_id)` (idempotenza)
+3. `build_lesson_graph(capsule)` → (nodes, edges) — ZERO LLM
+4. Per ogni node: `store.save_graph_node(lesson_id, node)`
+5. Per ogni edge: `_collect_evidence(capsule, edge)` → evidence list, poi salva edge + evidence
+6. `store.commit_transaction()` — atomico: crash a metà = rollback
 
 Ritorna il numero di edges scritti.
 
-### Grounding validation (`writer.py:83-90`)
+**Invariante T5-FIX**: l'intera sequenza DELETE+INSERT è wrappata in `begin_transaction()/commit_transaction()`. Se `_collect_evidence` solleva `ValueError` (es. cross-lesson, seg_id inesistente, excerpt non verbatim), il `rollback_transaction()` ripristina lo stato precedente — nessun grafo corrotto (`writer.py:38-75`).
 
-Ogni evidence ha 2 controlli di grounding:
+### Grounding validation (`writer.py:83-101`)
+
+Ogni evidence ha 3 controlli di grounding:
 1. **seg_id risolto**: `store.get_segment(cit.seg_id)` → `ValueError` se `None`
-2. **excerpt verbatim**: se excerpt non è `None`, deve essere substring di `seg.text` → `ValueError` se non lo è
+2. **cross-lesson**: `seg.lesson_id != capsule.lesson_id` → `ValueError` (T5-FIX CRITICO-1, `writer.py:93-101`)
+3. **excerpt verbatim**: se excerpt non è `None`, deve essere substring di `seg.text` → `ValueError` se non lo è
+
+Il controllo cross-lesson previene contaminazione: una citazione da lezione A non può puntare a un segmento di lezione B, anche se il testo dell'excerpt matcha verbatim.
+
+### Transaction support (`store/base.py:128-140`)
+
+3 nuovi metodi astratti in `Store` ABC:
+- `begin_transaction()` — BEGIN esplicito, sopprime auto-commit nei metodi graph save
+- `commit_transaction()` — COMMIT, riattiva auto-commit
+- `rollback_transaction()` — ROLLBACK, riattiva auto-commit
+
+Implementazione in `SQLiteStore` (`sqlite.py:456-470`) con flag `_in_transaction`. Ogni `save_graph_node`/`save_graph_edge`/`save_evidence`/`delete_graph_for_lesson` fa `commit()` solo quando `not self._in_transaction`. Nested transactions non supportate (assert).
 
 ### Edge→citation mapping
 
@@ -76,22 +92,27 @@ Ogni evidence ha 2 controlli di grounding:
 
 ## Test
 
-`tests/test_graph_writer.py` — 14 test:
+|`tests/test_graph_writer.py` — 16 test:
 
-- write_smoke: nodes/edges/evidence scritti correttamente
-- real-excerpt: ogni evidence.excerpt è substring del segmento
-- no-citations: edge senza citazioni → salvato senza evidence
-- ValueError su seg_id inesistente
-- ValueError su excerpt non verbatim
-- idempotenza: 2 scritture → stesso risultato (nodes, edges, evidence)
-- convenience function `write_capsule_graph` a livello di modulo
+|- write_smoke: nodes/edges/evidence scritti correttamente
+|- real-excerpt: ogni evidence.excerpt è substring del segmento
+|- no-citations: edge senza citazioni → salvato senza evidence
+|- ValueError su seg_id inesistente
+|- ValueError su excerpt non verbatim
+|- idempotenza: 2 scritture → stesso risultato (nodes, edges, evidence)
+|- convenience function `write_capsule_graph` a livello di modulo
+|- **cross-lesson**: segmento di altra lezione → ValueError (T5-FIX)
+|- **transaction rollback**: crash a metà → dati precedenti preservati (T5-FIX)
 
 ## Citazioni
 
-- `lessonos/graph/writer.py` — GraphWriter: 139 righe
+- `lessonos/graph/writer.py` — GraphWriter: 155 righe (+ cross-lesson check + transaction wrap)
 - `lessonos/store/sqlite.py:18` — SCHEMA_VERSION 6
 - `lessonos/store/sqlite.py:70-93` — tabelle nodes/edges/evidence
-- `lessonos/store/base.py:93-123` — 8 metodi astratti
+- `lessonos/store/base.py:93-123` — 8 metodi astratti graph
+- `lessonos/store/base.py:128-140` — 3 metodi astratti transaction (T5-FIX)
+- `lessonos/store/sqlite.py:99` — flag `_in_transaction`
+- `lessonos/store/sqlite.py:456-470` — implementazione begin/commit/rollback_transaction
 - `lessonos/models/entities.py:160-173` — GraphEvidence dataclass
-- `tests/test_graph_writer.py` — 14 test
+- `tests/test_graph_writer.py` — 16 test
 - `tests/test_excerpt_repair.py:196-203` — _SimpleStore stub fix
