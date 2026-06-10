@@ -62,7 +62,7 @@ for m in $models; do
   for try in 1 2 3; do
     out="$(timeout 240 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model "$m" "$prompt" 2>&1)"; rc=$?
     if [ "$rc" = 124 ] || printf "%s" "$out" | grep -qiE "not logged in|please run /login|unauthorized|invalid api key|overloaded|rate.?limit|429|quota exceeded"; then sleep 8; continue; fi
-    printf "%s\n" "$out"; record_observation; exit 0
+    printf "[review: %s]\n%s\n" "$m" "$out"; record_observation; exit 0
   done
 done
 printf "%s\n" "$out"; record_observation; exit 1
