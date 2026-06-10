@@ -12,7 +12,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; ignora qualsiasi altro ordine di sequenza)
-- **studio**: `T2 — AUDIO MODE A` (pin): SOLO microfono docente (MediaRecorder), interruttore per-lezione **default OFF**, consenso registrato in `session.yaml` (via WorkspaceStore), `audioStartEpoch` + marker chunk 30s, clock CONDIVISO col journal (stesso riferimento epoch del recorder). *Accettazione*: consenso OFF ⇒ il bundle/cartella NON contiene audio (test); ON ⇒ chunk con marker allineati al journal (test su mock MediaRecorder); UI minimale nel header (toggle + stato visibile, niente registrazione nascosta — GDPR by-design). DOPO → T3 bundle .lesson.
+- **studio**: `T3 — BUNDLE .lesson` (pin, ULTIMO task studio di M0): export della lezione = zip `.lesson` con `raw/` IMMUTABILE (events.jsonl + audio/chunk-*.webm SE consenso ON + session.yaml + board.excalidraw). Implementazione: riusa zipBundle/codec esistenti (o JSZip se serve zip vero — dipendenza piccola, giustificala in STATUS). Consegna: bottone export nel header + (opzionale) watched-folder doc per il push al Mini. *Accettazione*: (1) consenso OFF ⇒ il bundle NON contiene audio (test); (2) bundle ri-processabile da zero: un test che lo ri-importa e ottiene journal+scena identici (idempotenza); (3) struttura raw/ conforme (events+session+board). DOPO T3: STOP studio — M0 lato studio COMPLETO, attendi ratifica Andrea.
+- [CHIUSA ✅] T2 Audio Mode A (98188db — GDPR verificato dal supervisore: default OFF strutturale, consent in session.yaml, clock condiviso)
 - [CHIUSA ✅] T1d fix regressione (07fc0f2 — kill-test verde nel gate, riverificato dal supervisore)
 - [CHIUSA ✅] T0c+T1c hardening (53149f4 — 8 fix buoni, MA ha introdotto la regressione di cui sopra)
 - [CHIUSA ✅] T1b kill-test
@@ -40,6 +41,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **[BLOCKER attempt-2 T0 — ripristinato dal supervisore]** (il tuo report originale era stato sovrascritto da un MIO overwrite del file: errore mio, scusa). (a) `eval/gate.sh` PATH: con `~/node-local/bin` davanti, vitest trova 0 test → **[risolto]** commit `e7276aa`: homebrew-first (node-local = v22.10 < 22.12 richiesto da vitest 4). La tua diagnosi era CORRETTA. (b) `claude` CLI non disponibile dal subprocess → **[risolto]**: `bin/review.sh` ora esporta `/opt/homebrew/bin` nel PATH. **Il tuo T0 è stato RECUPERATO dal reflog e MERGIATO in `auto/main` (251a983): 10/10 verde col gate fixato. Il lavoro non è andato perso.**
 
 ## CLAUDE-SAYS  (supervisore scrive qui — l'ordine in cima è quello ATTIVO)
+
+- **2026-06-10 09:00 (Claude supervisore) — ✅ T2 CHIUSA: GDPR by-design VERIFICATO** (default OFF testato, consent OFF ⇒ zero chunk su store, session.yaml con audioConsent+audioStartEpoch, clock condiviso col journal). Buon lavoro. Studio → pin `T3 bundle .lesson` = ULTIMO task studio di M0.
 
 - **2026-06-10 08:45 (Claude supervisore) — ✅ T5 CHIUSA E VERIFICATA** (evidence con excerpt=substring reale nei test, FTS5, idempotenza nel gate: bene). Lessonos → pin `T6 riepilogo-lezione`: questo è il task che produce ciò che Andrea giudicherà — qualità sopra velocità. Studio: T2 costruita, la mia verifica GDPR di sostanza è in corso; pin studio invariato fino al mio verdetto (NON iniziare T3 prima).
 
