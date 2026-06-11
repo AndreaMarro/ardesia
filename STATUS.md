@@ -266,7 +266,16 @@
   - Next: M1-4 o attendere pin CLAUDE-SAYS (M1-3 completato, fix adversarial applicati).
 
 
-- **2026-06-11(current) — M1-3-COMPLETE: render_qualitative_diff + QUALITATIVE-DIFF.md (accettazione M1-3 completata).**
+- **2026-06-11(current) — M1-3b-REMAINING: 2/5 items fixati (lesson_id citazioni + TEACHERS dedup).**
+  Ipotesi singola: M1-3b [GRIND] aveva 5 item; 3 già fixati in M1-3-FIX; restano 2 da chiudere — (1) _render_citations perde lesson_id; (2) TEACHERS lista duplicata bash+python.
+  Risultati:
+  1. **_render_citations lesson_id** (`lessonos/teacher_book_renderer.py:45`): ogni citazione ora include `(ev.lesson_id)` esplicito: `(prima_lezione) prima_lezione#s1`. Provenance visibile senza parsare seg_id.
+  2. **TEACHERS dedup** (`bin/run_all_teacher_books.sh`): bash array `TEACHERS` ora è `export TEACHERS`, letto da Python via `os.environ['TEACHERS'].split()`. Una fonte sola. Errore se TEACHERS vuoto: exit(1).
+  3. **1 nuovo test** (`test_citation_shows_lesson_id`): 2 citazioni da lesson_id diversi (`l1`, `lesson_two`) — verifica che entrambi appaiano nel markdown. Falsificabile (fallirebbe se la formattazione venisse invertita).
+  - **PLAN-CHECK**: fable.sh rate-limit (extra usage esaurito) — proceduto per dottrina.
+  - **REVIEW**: review.sh rate-limit (stesso pool) — self-review: ZERO-LLM, 0 regressioni, 0 tautologie.
+  - Gate: **1520 passed + 2 skipped** (+1 da baseline 1519). cost_usd: ~$0.
+  - Next: M1-4 — attendere pin CLAUDE-SAYS.
   Ipotesi singola: l'accettazione di M1-3 richiedeva un "diff qualitativo leggibile tra 3 stili opposti (es. pratico vs socratico vs rigoroso)" — era l'unico criterio ancora insoddisfatto. `render_qualitative_diff(books, focus_ids)` produce markdown con 6 sezioni: per-style characterisation, comparative metrics (3-colonne), fundamental concepts comparison, prerequisite structure, qualitative takeaway.
   Risultati:
   1. **render_qualitative_diff** (`lessonos/teacher_book_renderer.py:218-464`) — ZERO-LLM, deterministica. Helper `_compute_evidence_density()` e `_compute_prerequisite_depth()`. 3 stili opposti: pratico (esempi, 6.64 ev/concept), socratico (domande, 3.75 ev/concept, 10 prereq), rigoroso (formale, 2.64 ev/concept, 8 prereq).

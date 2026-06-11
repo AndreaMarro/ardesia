@@ -11,6 +11,7 @@ TEACHERS=(
   prof_rigoroso prof_caotico prof_dialettale prof_veloce prof_pedante
   prof_socratico prof_pratico prof_aneddotico prof_esitante prof_audiopessimo
 )
+export TEACHERS
 
 echo "=== Building TeacherBooks for ${#TEACHERS[@]} teachers ==="
 
@@ -33,10 +34,11 @@ from lessonos.teacher_book_renderer import (
 db = os.path.expandvars('$HOME/maestro-data/fisica1-sim/derived/db/fisica1.db')
 store = SQLiteStore(db)
 
-teachers = [
-    'prof_rigoroso','prof_caotico','prof_dialettale','prof_veloce','prof_pedante',
-    'prof_socratico','prof_pratico','prof_aneddotico','prof_esitante','prof_audiopessimo',
-]
+teachers_str = os.environ.get('TEACHERS', '')
+if not teachers_str:
+    print('ERROR: TEACHERS env var not set or empty')
+    exit(1)
+teachers = teachers_str.split()
 
 out_dir = os.path.expandvars('$HOME/maestro-data/fisica1-sim/derived/teacher_book')
 os.makedirs(out_dir, exist_ok=True)

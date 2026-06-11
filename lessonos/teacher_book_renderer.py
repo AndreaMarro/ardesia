@@ -42,7 +42,7 @@ def _render_citations(concept: TeacherConcept) -> str:
         excerpt = ev.excerpt or "(no excerpt)"
         if len(excerpt) > 100:
             excerpt = excerpt[:97] + "..."
-        lines.append(f"  - `{ev.seg_id}`: _{excerpt}_")
+        lines.append(f"  - `({ev.lesson_id}) {ev.seg_id}`: _{excerpt}_")
     if len(concept.citations) > 5:
         lines.append(f"  - _+{len(concept.citations) - 5} more citations_")
     return "\n".join(lines)

@@ -248,6 +248,51 @@ class TestRenderTeacherBook:
         # Should have truncated with "..."
         assert "..._" in md
 
+    def test_citation_shows_lesson_id(self) -> None:
+        """Citations show lesson_id provenance in output."""
+        ev1 = GraphEvidence(
+            evidence_id="ev1",
+            edge_id="e1",
+            seg_id="l1#s1",
+            excerpt="First citation",
+            confidence=1.0,
+            lesson_id="l1",
+        )
+        ev2 = GraphEvidence(
+            evidence_id="ev2",
+            edge_id="e2",
+            seg_id="l2#s3",
+            excerpt="Cross-lesson citation",
+            confidence=1.0,
+            lesson_id="lesson_two",
+        )
+        concept = TeacherConcept(
+            name="MultiLesson",
+            canonical="multilesson",
+            status="introduced",
+            lesson_ids=("l1", "lesson_two"),
+            edge_count=2,
+            evidence_count=2,
+            citations=(ev1, ev2),
+        )
+        book = TeacherBook(
+            teacher_id="test",
+            total_concepts=1,
+            total_lessons=2,
+            total_edges=2,
+            total_evidence=2,
+            fundamental_concepts=(concept,),
+            problematic_concepts=(),
+            progression=(),
+            prerequisites=(),
+        )
+        md = render_teacher_book(book)
+        # Both lesson_ids should appear explicitly in citation footer
+        assert "(l1)" in md
+        assert "(lesson_two)" in md
+        assert "l1#s1" in md
+        assert "l2#s3" in md
+
     def test_more_than_five_citations_shows_note(self) -> None:
         """Concepts with >5 citations show '+N more' note."""
         evs = tuple(
