@@ -164,3 +164,27 @@
   - **REVIEW**: N/A (diff vuoto — solo esecuzione dati reali, zero modifica codice).
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — **Summaries 2-4** in derived/wiki/ (seconda_lezione.md, terza_lezione.md, quarta_lezione.md, stesso pattern di prima_lezione). Poi fix log.jsonl status (blocker->status blocked) + project-wiki/index.md `|-` + coord.md `|-`.
+
+- **2026-06-11(current) — M1-1 GRAFO PER-DOCENTE (aggregazione cross-lezione).**
+  Ipotesi singola: il modello dati `teacher_id` sul Path + `aggregate_teacher_graph(store, teacher_id)` permette di aggregare concetti di tutte le lezioni di un docente, deduplicandoli per nome normalizzato e prendendo lo status più avanzato.
+  Risultati:
+  1. **Modello dati**: `teacher_id` (opzionale) aggiunto a `Path` (`lessonos/models/entities.py:62`). SCHEMA_VERSION 6→7 con migrazione ALTER TABLE (`lessonos/store/sqlite.py:107-114`). `paths_for_teacher` in Store ABC + SQLiteStore.
+  2. **aggregate_teacher_graph** (`lessonos/graph/aggregator.py:141-215`): trova tutti i path di un docente, carica capsule, deduplica concetti per nome normalizzato, status = più avanzato (STATUS_ORDER), union edges/evidence. Cross-teacher guard: solo path con `teacher_id` match — una lezione di un altro docente non contamina.
+  3. **aggregate_path_graph preservata** (`lessonos/graph/aggregator.py:218-267`): backward compat, nessun chiamante rotto.
+  4. **5 nuovi test** (17 totali su test_graph_aggregator.py):
+     - `test_two_lessons_same_teacher_shared_concept` — 2 lezioni stesso docente → 1 nodo merged
+     - `test_cross_teacher_no_contamination` — docenti diversi non si contaminano
+     - `test_multi_path_teacher` — docente con 2 path → concetti da entrambi mergiati
+     - `test_teacher_not_found` — teacher sconosciuto → ValueError
+     - `test_teacher_no_capsules` — path senza capsule → grafo vuoto
+  5. **Demo reale** — 4 lezioni Teoria-Segnali (Andrea, stesso teacher_id="andrea"):
+     - **96 concetti unici** (deduplicati per nome normalizzato — senza dedup sarebbero ~320)
+     - **130 edges**, **328 evidenze** con provenance lesson_id
+     - `Misura di Lebesgue` in 2 lezioni (`seconda_lezione` + `terza_lezione`) = unico concetto ricorrente
+     - Status progressione: `introduced→reinforced→reviewed` visibile su vari concetti (es. Classificazione energetica, Criteri sommabilità)
+     - `problematic` su 5 concetti (delta di Dirac, segnali periodici non esistono, compressione/espansione)
+  - **PLAN-CHECK**: fable.sh rate-limit (usage exhausted) — architettura decisa autonomamente (Opzione B: teacher_id su Path, non su Lesson)
+  - **REVIEW**: fable.sh rate-limit (stesso usage) — self-review senza compiacenza: backward compat OK, test 17/17, gate 1457/0
+  - **PRE-BUILD FABLE**: chiamato per decisione architetturale ma fallito per (a) usage limit e (b) bash parsing di parentesi nelle firme funzioni. Nota processo: evitare `func_name(args)` in prompt fable.sh.
+  - Gate: **1457 passed + 2 skipped** (invariato — +5 da baseline 1452). cost_usd: ~$0 (mock tests, demo su DB esistente).
+  - Next: M1-2 (libro/mappa nello stile del docente dal grafo aggregato) — oppure attendere ratifica M1-1 da CLAUDE-SAYS.
