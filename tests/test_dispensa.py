@@ -28,8 +28,10 @@ from lessonos.dispensa import (
     build_dispensa_prompt,
     generate_dispensa,
     render_dispensa_md,
+    verify_and_clean_dispensa,
     verify_dispensa,
 )
+from lessonos.graph.resolution import GlobalResolution, ResolutionAlias, ResolutionEntry
 from lessonos.llm.router import MockProvider, Router
 from lessonos.style import StyleProfile
 from lessonos.store.base import Store
@@ -477,6 +479,44 @@ class TestVerifyDispensa:
         assert report.dropped == 1
         assert report.passed
 
+    def test_cleaned_doc_declares_dropped_in_footer(self) -> None:
+        """verify_and_clean_dispensa → render: dropped paragraphs DECLARED.
+
+        The report-only ``verify_dispensa`` discards the cleaned doc, so a
+        caller rendering the ORIGINAL doc would silently omit the disclosure.
+        This is the runner's actual code path (M1-6 Fase F acceptance:
+        'footer dichiara eventuali paragrafi droppati').
+        """
+        store = _StoreStub()
+        for i, word in enumerate(["energia", "potenza", "lavoro", "calore", "tempo"], 1):
+            store._segments[f"l#s{i}"] = _SegStub(seg_id=f"l#s{i}", text=word, lesson_id="l")
+        paragraphs = [
+            DispensaParagraph(
+                text=f"Good{i}",
+                claims=(DispensaClaim(text=w, seg_id=f"l#s{i}", excerpt=w),),
+            )
+            for i, w in enumerate(["energia", "potenza", "lavoro", "calore", "tempo"], 1)
+        ]
+        paragraphs.append(
+            DispensaParagraph(
+                text="Paragrafo non fondato",
+                claims=(DispensaClaim(text="B", seg_id="l#s99", excerpt="x"),),
+            )
+        )
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(DispensaSection(title="E", paragraphs=tuple(paragraphs)),),
+        )
+        cleaned, report = verify_and_clean_dispensa(doc, store)
+        assert cleaned.dropped_paragraphs == ("Paragrafo non fondato",)
+        # The original doc is untouched (frozen) — rendering IT would hide the drop
+        assert doc.dropped_paragraphs == ()
+        md = render_dispensa_md(cleaned, report)
+        assert "## Paragrafi non verificati" in md
+        assert "- Paragrafo non fondato" in md
+        assert "5/6 claim verificati" in md
+        assert "1 scartati" in md
+
 
 class TestResolveConcepts:
     """Tests for _resolve_concepts_from_capsules (M1-4b fix)."""
@@ -597,6 +637,149 @@ class TestResolveConcepts:
         # The first lid in insertion order wins
         assert result[0] is l1_ext
         assert result[0].status == "introduced"
+
+
+class TestResolveConceptsGlobalResolution:
+    """Tests for the M1-1c alias-match step in _resolve_concepts_from_capsules."""
+
+    @staticmethod
+    def _resolution() -> GlobalResolution:
+        """Mapping: 'Energia' (l1) + 'Energia del segnale' (l2) → 'energia dei segnali'."""
+        return GlobalResolution(
+            teacher_id="t",
+            entries=(
+                ResolutionEntry(
+                    canonical="energia dei segnali",
+                    aliases=(
+                        ResolutionAlias(
+                            lesson_id="l1", original_name="Energia",
+                            original_canonical="energia", evidence_count=1,
+                        ),
+                        ResolutionAlias(
+                            lesson_id="l2", original_name="Energia del segnale",
+                            original_canonical="energia del segnale", evidence_count=1,
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+    def test_alias_match_resolves_global_canonical(self) -> None:
+        """tc.name = global canonical, capsule has only the per-lesson alias.
+
+        Exact match fails ('energia' != 'energia dei segnali'), edit-distance
+        ratio ~0.54 < 0.85 fails — ONLY the alias lookup can resolve this.
+        Falsifiable: without the step-3 alias match this raises ValueError.
+        """
+        ext = ConceptExtraction(
+            name="Energia", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="energia"),),
+        )
+        capsules_map = {"l1": {"Energia": ext}}
+        tc = TeacherConcept(
+            name="Energia dei segnali", canonical="energia dei segnali",
+            status="introduced", evidence_count=1,
+        )
+        result = _resolve_concepts_from_capsules(
+            (tc,), capsules_map, resolution=self._resolution()
+        )
+        assert len(result) == 1
+        assert result[0] is ext
+
+    def test_without_resolution_same_input_raises(self) -> None:
+        """Same input WITHOUT resolution → fail-closed ValueError (proves step 3 did the work)."""
+        ext = ConceptExtraction(
+            name="Energia", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="energia"),),
+        )
+        capsules_map = {"l1": {"Energia": ext}}
+        tc = TeacherConcept(
+            name="Energia dei segnali", canonical="energia dei segnali",
+            status="introduced", evidence_count=1,
+        )
+        with pytest.raises(ValueError, match="no matching"):
+            _resolve_concepts_from_capsules((tc,), capsules_map)
+
+    def test_alias_match_deterministic_first_lesson_wins(self) -> None:
+        """Two lessons both fold to the canonical → sorted-lid order picks l1, always.
+
+        Both alias labels are FAR from the canonical (edit-distance < 0.85),
+        so neither step 1 nor step 2 can match — only step 3 resolves, and
+        it must do so deterministically via sorted lesson ids.
+        """
+        resolution = GlobalResolution(
+            teacher_id="t",
+            entries=(
+                ResolutionEntry(
+                    canonical="energia dei segnali",
+                    aliases=(
+                        ResolutionAlias(
+                            lesson_id="l1", original_name="Energia",
+                            original_canonical="energia", evidence_count=1,
+                        ),
+                        ResolutionAlias(
+                            lesson_id="l2", original_name="Integrale del modulo quadro",
+                            original_canonical="integrale del modulo quadro",
+                            evidence_count=1,
+                        ),
+                    ),
+                ),
+            ),
+        )
+        l1_ext = ConceptExtraction(
+            name="Energia", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="energia"),),
+        )
+        l2_ext = ConceptExtraction(
+            name="Integrale del modulo quadro", status="reinforced",
+            citations=(Citation(seg_id="l2#s1", excerpt="integrale"),),
+        )
+        # Insertion order deliberately l2-first: sorted() must still pick l1
+        capsules_map = {
+            "l2": {"Integrale del modulo quadro": l2_ext},
+            "l1": {"Energia": l1_ext},
+        }
+        tc = TeacherConcept(
+            name="Energia dei segnali", canonical="energia dei segnali",
+            status="introduced", evidence_count=2,
+        )
+        result = _resolve_concepts_from_capsules(
+            (tc,), capsules_map, resolution=resolution
+        )
+        assert result[0] is l1_ext
+
+    def test_exact_match_beats_alias_match(self) -> None:
+        """A capsule concept with the exact tc name wins over an alias in another lesson."""
+        exact_ext = ConceptExtraction(
+            name="Energia dei segnali", status="introduced",
+            citations=(Citation(seg_id="l3#s1", excerpt="energia dei segnali"),),
+        )
+        alias_ext = ConceptExtraction(
+            name="Energia", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="energia"),),
+        )
+        capsules_map = {"l1": {"Energia": alias_ext}, "l3": {"Energia dei segnali": exact_ext}}
+        tc = TeacherConcept(
+            name="Energia dei segnali", canonical="energia dei segnali",
+            status="introduced", evidence_count=2,
+        )
+        result = _resolve_concepts_from_capsules(
+            (tc,), capsules_map, resolution=self._resolution()
+        )
+        assert result[0] is exact_ext
+
+    def test_alias_without_citations_skipped(self) -> None:
+        """Alias-matched concept WITHOUT citations cannot ground → ValueError."""
+        no_cit = ConceptExtraction(name="Energia", status="introduced", citations=())
+        capsules_map = {"l1": {"Energia": no_cit}}
+        tc = TeacherConcept(
+            name="Energia dei segnali", canonical="energia dei segnali",
+            status="introduced", evidence_count=1,
+        )
+        with pytest.raises(ValueError, match="no matching"):
+            _resolve_concepts_from_capsules(
+                (tc,), capsules_map, resolution=self._resolution()
+            )
 
 
 class TestNameSimilar:

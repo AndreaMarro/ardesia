@@ -24,6 +24,7 @@ from typing import Protocol
 from lessonos.capsule.assembly import load_capsule
 from lessonos.capsule.extraction import ConceptExtraction
 from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO
+from lessonos.graph.resolution import GlobalResolution
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 from lessonos.style import StyleProfile
@@ -151,19 +152,24 @@ def _name_similar(a: str, b: str, threshold: float = 0.85) -> bool:
 def _resolve_concepts_from_capsules(
     fundamental_concepts: tuple,
     capsules_map: dict[str, dict[str, ConceptExtraction]],
+    resolution: GlobalResolution | None = None,
 ) -> tuple[ConceptExtraction, ...]:
     """Resolve TeacherBook fundamental concepts to ``ConceptExtraction`` with citations.
 
     Matching strategy (in order, never silent fallback):
       1. Exact normalized match (``norm_ext == norm_tc``)
       2. Edit-distance match (``_name_similar``, threshold ≥0.85)
-      3. If no match found → ``ValueError`` (fail-closed — never create an
+      3. Global-resolution alias match (M1-1c): a capsule concept whose
+         ``(lesson_id, name)`` folds to the same global canonical as
+         ``tc.canonical`` is the same concept under a different label
+      4. If no match found → ``ValueError`` (fail-closed — never create an
          ungrounded ConceptExtraction from TeacherBook data alone)
 
     Raises:
         ValueError: If a concept has no matching ``ConceptExtraction`` with
             citations across any of the teacher's capsules.
     """
+    lookup = resolution.alias_lookup() if resolution is not None else None
     resolved: list[ConceptExtraction] = []
     for tc in fundamental_concepts:
         norm_tc = tc.name.lower().strip()
@@ -186,6 +192,17 @@ def _resolve_concepts_from_capsules(
                     best = ext
             if best_ratio == 1.0:
                 break
+        # Step 3: global-resolution alias match (M1-1c)
+        if best is None and lookup is not None and tc.canonical:
+            for lid in sorted(capsules_map):
+                for cname, ext in capsules_map[lid].items():
+                    if not ext.citations:
+                        continue
+                    if lookup.get((lid, cname.lower().strip())) == tc.canonical:
+                        best = ext
+                        break
+                if best is not None:
+                    break
         if best is None:
             raise ValueError(
                 f"concept {tc.name!r} from TeacherBook has no matching "
@@ -276,6 +293,7 @@ def generate_dispensa(
     provider: str = "mock",
     model: str | None = None,
     style: StyleProfile | None = None,
+    resolution: GlobalResolution | None = None,
 ) -> DispensaDoc:
     """Generate a style-aware dispensa for *teacher_id*.
 
@@ -286,6 +304,9 @@ def generate_dispensa(
         provider: Provider name for the router.
         model: Optional model override.
         style: Pre-computed ``StyleProfile``. If ``None``, derived on-the-fly.
+        resolution: Optional global concept mapping (M1-1c) for this teacher.
+            Passed to ``build_teacher_book`` (cross-lesson concept linking)
+            and to concept resolution (alias-aware matching).
 
     Returns:
         A ``DispensaDoc`` with all sections and claims.
@@ -294,7 +315,7 @@ def generate_dispensa(
         ValueError: If no data exists, or grounding threshold fails.
     """
     # 1. Load teacher data
-    book = build_teacher_book(store, teacher_id)
+    book = build_teacher_book(store, teacher_id, resolution=resolution)
     if not book.fundamental_concepts:
         raise ValueError(f"teacher {teacher_id!r} has no fundamental concepts — cannot generate dispensa")
 
@@ -317,7 +338,9 @@ def generate_dispensa(
 
     # 4. Resolve concepts from TeacherBook's fundamental list to
     #    ConceptExtraction objects with citations (exact → edit-distance → ValueError)
-    all_concepts = _resolve_concepts_from_capsules(book.fundamental_concepts, capsules_map)
+    all_concepts = _resolve_concepts_from_capsules(
+        book.fundamental_concepts, capsules_map, resolution=resolution
+    )
 
     # 5. Build prompt and call LLM
     prompt = build_dispensa_prompt(teacher_id, style, tuple(all_concepts))
@@ -387,12 +410,12 @@ def _parse_dispensa_response(raw: str) -> tuple[DispensaSection, ...]:
 # ── Verification  ──────────────────────────────────────────────────────
 
 
-def verify_dispensa(
+def verify_and_clean_dispensa(
     doc: DispensaDoc,
     store: Store,
     *,
     max_unverified_ratio: float = MAX_UNVERIFIED_RATIO,
-) -> GroundingReport:
+) -> tuple[DispensaDoc, GroundingReport]:
     """Verify every claim in a dispensa against the store.
 
     Uses ``graph/grounding.verify_citation`` to check:
@@ -403,7 +426,9 @@ def verify_dispensa(
     Ungrounded paragraphs are dropped (moved to ``doc.dropped_paragraphs``).
 
     Returns:
-        ``GroundingReport`` with counts and pass/fail.
+        ``(cleaned_doc, report)`` — the cleaned doc keeps only verified
+        paragraphs and records the dropped ones in ``dropped_paragraphs``
+        (so ``render_dispensa_md`` can declare them in the footer).
 
     Raises:
         ValueError: If total claims is zero or unverified ratio exceeds threshold.
@@ -470,13 +495,30 @@ def verify_dispensa(
             f"insufficient grounding for acceptance"
         )
 
-    return GroundingReport(
+    return doc, GroundingReport(
         total_claims=total_claims,
         verified=verified,
         dropped=dropped_count,
         unverified_ratio=ratio,
         passed=passed,
     )
+
+
+def verify_dispensa(
+    doc: DispensaDoc,
+    store: Store,
+    *,
+    max_unverified_ratio: float = MAX_UNVERIFIED_RATIO,
+) -> GroundingReport:
+    """Report-only wrapper around ``verify_and_clean_dispensa`` (same contract).
+
+    Callers that need the cleaned doc (dropped paragraphs declared in the
+    rendered footer) must use ``verify_and_clean_dispensa`` instead.
+    """
+    _, report = verify_and_clean_dispensa(
+        doc, store, max_unverified_ratio=max_unverified_ratio
+    )
+    return report
 
 
 # ── Markdown rendering (ZERO-LLM)  ────────────────────────────────────
@@ -544,14 +586,16 @@ def render_dispensa_md(
             lines.append(f"- {note}")
         lines.append("")
 
-    # Grounding footer
-    if report.passed:
+    # Grounding footer — honest: dropped claims are declared even when the
+    # gate passes ("Tutti" only when truly all verified)
+    if report.dropped == 0 and report.passed:
         grounding_str = (
             f"✓ Tutti i {report.verified}/{report.total_claims} claim verificati"
         )
     else:
+        mark = "✓" if report.passed else "⚠"
         grounding_str = (
-            f"⚠ {report.verified}/{report.total_claims} claim verificati, "
+            f"{mark} {report.verified}/{report.total_claims} claim verificati, "
             f"{report.dropped} scartati"
         )
 

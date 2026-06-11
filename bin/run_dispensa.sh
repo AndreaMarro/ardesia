@@ -1,76 +1,65 @@
 #!/bin/bash
-# MAESTRO runner — genere dispensa stilizzata per uno o piu docenti (M1-4).
-# Pattern: run_global_resolution.sh / run_capsule.sh
+# MAESTRO runner — dispense stilizzate LIVE (M1-6 Fase F).
+#
+# Routing per docente (UNA fonte, lezione H2-1011):
+#   prof_*  -> DB fisica1-sim,        output fisica1-sim/derived/dispense/
+#   andrea  -> DB teoria-segnali-2021 (reale) + mapping globale M1-1c,
+#              output teoria-segnali-2021/derived/dispense/
 #
 # Usage:
-#   bash bin/run_dispensa.sh prof_pratico               # singolo docente
-#   bash bin/run_dispensa.sh pratico socratico rigoroso  # piu docenti
-#   bash bin/run_dispensa.sh                             # default: 3 sim + andrea
+#   bash bin/run_dispensa.sh                      # default: 3 sim + andrea
+#   bash bin/run_dispensa.sh prof_pratico         # singolo docente
 #
-# Environment:
-#   DB_PATH       — SQLite database (default: ~/maestro-data/teoria-segnali-2021/derived/db/lessonos.db)
-#   DERIVED_DIR   — output directory (default: ~/maestro-data/teoria-segnali-2021/derived/dispense/)
-#   GLOBAL_RES    — global resolution mapping JSON (optional)
-#   PROVIDER      — LLM provider (default: deepseek-chat via provider=deepseek, model=deepseek-chat)
-#   MODEL         — LLM model override
+# Environment (override):
+#   SIM_DB / SIM_OUT       — DB e output dir per i docenti sim
+#   REAL_DB / REAL_OUT     — DB e output dir per andrea
+#   GLOBAL_RES             — mapping globale M1-1c per andrea (JSON)
+#   MODEL                  — modello DeepSeek (default deepseek-chat)
 #
-# Requires: uv run (Python 3.12+), API key in env (DEEPSEEK_API_KEY per DeepSeek)
+# Requires: uv, DEEPSEEK_API_KEY in env o .env nella repo root.
 
 set -euo pipefail
 
-# ── Paths ─────────────────────────────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$SCRIPT_DIR"
 export PYTHONPATH="${SCRIPT_DIR}:${PYTHONPATH:-}"
 
-DB_PATH="${DB_PATH:-$HOME/maestro-data/teoria-segnali-2021/derived/db/lessonos.db}"
-DERIVED_DIR="${DERIVED_DIR:-$HOME/maestro-data/teoria-segnali-2021/derived/dispense}"
-GLOBAL_RES="${GLOBAL_RES:-}"
-PROVIDER="${PROVIDER:-deepseek}"
+DATA_ROOT="$HOME/maestro-data"
+SIM_DB="${SIM_DB:-$DATA_ROOT/fisica1-sim/derived/db/fisica1.db}"
+SIM_OUT="${SIM_OUT:-$DATA_ROOT/fisica1-sim/derived/dispense}"
+REAL_DB="${REAL_DB:-$DATA_ROOT/teoria-segnali-2021/derived/db/lessonos.db}"
+REAL_OUT="${REAL_OUT:-$DATA_ROOT/teoria-segnali-2021/derived/dispense}"
+GLOBAL_RES="${GLOBAL_RES:-$DATA_ROOT/teoria-segnali-2021/derived/global_resolution/andrea.json}"
 MODEL="${MODEL:-deepseek-chat}"
 
-# ── Teacher list ──────────────────────────────────────────────────────
 if [ $# -ge 1 ]; then
     TEACHERS=("$@")
 else
     TEACHERS=("prof_pratico" "prof_socratico" "prof_rigoroso" "andrea")
 fi
 
-mkdir -p "$DERIVED_DIR"
+mkdir -p "$SIM_OUT" "$REAL_OUT"
 
-echo "=== M1-4 Dispensa Stilizzata ==="
-echo "DB:       $DB_PATH"
-echo "Output:   $DERIVED_DIR"
-echo "Provider: $PROVIDER / $MODEL"
+echo "=== M1-6 Fase F — Dispense LIVE ==="
+echo "Sim DB:   $SIM_DB -> $SIM_OUT"
+echo "Real DB:  $REAL_DB -> $REAL_OUT (mapping: $GLOBAL_RES)"
+echo "Model:    $MODEL"
 echo "Teachers: ${TEACHERS[*]}"
 echo ""
 
+FAILED=0
 for TID in "${TEACHERS[@]}"; do
-    echo "--- Generating dispensa for $TID ..."
-    OUTPUT="$DERIVED_DIR/${TID}.md"
-
-    # Build Python command
-    PY_CMD="from lessonos.dispensa import generate_dispensa, verify_dispensa, render_dispensa_md; "
-    PY_CMD+="from lessonos.store.sqlite import SQLiteStore; "
-    PY_CMD+="from lessonos.llm.router import Router; "
-    PY_CMD+="from lessonos.llm.deepseek import DeepSeekProvider; "
-    PY_CMD+="import os; "
-    PY_CMD+="store = SQLiteStore(os.environ.get('DB_PATH', '$DB_PATH')); "
-    PY_CMD+="router = Router(); "
-    PY_CMD+="router.register(DeepSeekProvider(api_key=os.environ.get('DEEPSEEK_API_KEY', ''), model='$MODEL')); "
-    PY_CMD+="doc = generate_dispensa(store, '$TID', router, provider='$PROVIDER', model='$MODEL'); "
-    PY_CMD+="report = verify_dispensa(doc, store); "
-    PY_CMD+="md = render_dispensa_md(doc, report); "
-    PY_CMD+="with open(os.environ.get('OUTPUT', '$OUTPUT'), 'w') as f: f.write(md); "
-    PY_CMD+="print(f'Dispensa {report.verified}/{report.total_claims} claims verificati, {report.dropped} scartati, ratio {report.unverified_ratio:.0%}'); "
-
-    DB_PATH="$DB_PATH" OUTPUT="$OUTPUT" uv run python -c "$PY_CMD" 2>&1 || {
-        echo "  [WARN] Dispensa for $TID failed — check DB and API key" >&2
-        continue
-    }
-
-    echo "  -> $OUTPUT"
+    echo "--- $TID"
+    if [ "$TID" = "andrea" ]; then
+        ARGS=(--db "$REAL_DB" --teacher "$TID" --out "$REAL_OUT/$TID.md" --resolution "$GLOBAL_RES")
+    else
+        ARGS=(--db "$SIM_DB" --teacher "$TID" --out "$SIM_OUT/$TID.md")
+    fi
+    if ! uv run python bin/run_dispensa.py "${ARGS[@]}" --model "$MODEL"; then
+        echo "  [FAIL] dispensa per $TID" >&2
+        FAILED=1
+    fi
     echo ""
 done
 
-echo "=== Done ==="
-echo "Generated ${#TEACHERS[@]} dispense in $DERIVED_DIR"
+exit "$FAILED"
