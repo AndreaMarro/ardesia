@@ -518,6 +518,114 @@ class TestVerifyDispensa:
         assert "1 scartati" in md
 
 
+class TestVerifyRepairsExcerpts:
+    """Excerpt repair in verify_and_clean_dispensa (same invariant as M0 summarizer)."""
+
+    @staticmethod
+    def _store() -> _StoreStub:
+        store = _StoreStub()
+        store._segments["l#s1"] = _SegStub(
+            seg_id="l#s1",
+            text="L'energia del segnale è l'integrale del modulo quadro",
+            lesson_id="l",
+        )
+        return store
+
+    @staticmethod
+    def _doc(excerpt: str) -> DispensaDoc:
+        return DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="P1",
+                            claims=(DispensaClaim(text="E", seg_id="l#s1", excerpt=excerpt),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+    def test_paraphrased_excerpt_repaired_to_verbatim(self) -> None:
+        """Case-mismatched excerpt → repaired to the REAL substring, claim kept.
+
+        Without the repair pass this paragraph is dropped → zero kept claims
+        → ValueError (zero-claims gate): the test fails loudly.
+        """
+        # Verbatim except casing: tier-3 repair finds the real span
+        doc = self._doc("l'energia del segnale è l'integrale")
+        cleaned, report = verify_and_clean_dispensa(doc, self._store())
+        assert report.verified == 1
+        assert report.repaired == 1
+        assert report.dropped == 0
+        kept = cleaned.sections[0].paragraphs[0].claims[0]
+        # Tier-2 longest-common-substring: the case-mismatched leading "l" is
+        # excluded; the result IS a verbatim substring of the segment
+        assert kept.excerpt == "'energia del segnale è l'integrale"
+        assert kept.excerpt in self._store()._segments["l#s1"].text
+        md = render_dispensa_md(cleaned, report)
+        assert "1 excerpt riparati a substring verbatim reale" in md
+
+    def test_hallucinated_excerpt_still_dropped(self) -> None:
+        """Excerpt with no real counterpart in the segment → repair fails → drop."""
+        doc = self._doc("la trasformata di Laplace converge nel semipiano destro")
+        with pytest.raises(ValueError, match="zero claims|unverified"):
+            # Single paragraph dropped → 1/1 unverified (100% > 20%) → ValueError
+            verify_and_clean_dispensa(doc, self._store())
+
+    def test_negation_inversion_rejected(self) -> None:
+        """Excerpt 'non è l'integrale...' vs segment 'è l'integrale...' → semantic
+        inversion: the negation guard must reject the repair (drop, not keep)."""
+        doc = self._doc("non è l'integrale del modulo quadro")
+        with pytest.raises(ValueError, match="unverified"):
+            verify_and_clean_dispensa(doc, self._store())
+
+    def test_repaired_in_dropped_paragraph_not_counted(self) -> None:
+        """A repairable claim sharing a paragraph with an unverifiable one:
+        the paragraph is dropped and report.repaired stays 0 (no overcount)."""
+        store = self._store()
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Good",
+                            claims=(
+                                DispensaClaim(
+                                    text="E", seg_id="l#s1",
+                                    excerpt="L'energia del segnale",
+                                ),
+                            ),
+                        ),
+                        DispensaParagraph(
+                            text="Mixed",
+                            claims=(
+                                # repairable (case mismatch)...
+                                DispensaClaim(
+                                    text="E", seg_id="l#s1",
+                                    excerpt="l'energia del segnale è l'integrale",
+                                ),
+                                # ...followed by an unresolvable seg_id
+                                DispensaClaim(text="X", seg_id="l#s99", excerpt="x"),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        cleaned, report = verify_and_clean_dispensa(
+            doc, store, max_unverified_ratio=1.0
+        )
+        assert report.verified == 1
+        assert report.dropped == 2
+        assert report.repaired == 0  # repair happened in a DROPPED paragraph
+        assert cleaned.dropped_paragraphs == ("Mixed",)
+
+
 class TestResolveConcepts:
     """Tests for _resolve_concepts_from_capsules (M1-4b fix)."""
 

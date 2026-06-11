@@ -71,13 +71,20 @@ class DispensaDoc:
 
 @dataclass(frozen=True)
 class GroundingReport:
-    """Result of verifying a dispensa's grounding."""
+    """Result of verifying a dispensa's grounding.
+
+    ``repaired`` counts claims whose paraphrased excerpt was repaired to a
+    real verbatim substring (same machinery as the M0 summarizer:
+    ``capsule.extraction._repair_excerpt``, negation-aware, fail-closed).
+    Repaired claims are included in ``verified``.
+    """
 
     total_claims: int
     verified: int
     dropped: int
     unverified_ratio: float
     passed: bool
+    repaired: int = 0
 
 
 # ── Prompt building  ───────────────────────────────────────────────────
@@ -433,36 +440,70 @@ def verify_and_clean_dispensa(
     Raises:
         ValueError: If total claims is zero or unverified ratio exceeds threshold.
     """
+    from lessonos.capsule.extraction import _repair_excerpt
     from lessonos.graph.grounding import verify_citation
 
     total_claims = 0
     verified = 0
+    repaired_count = 0
     dropped_count = 0
     dropped_texts: list[str] = []
     kept_sections: list[DispensaSection] = []
 
+    def _verify_or_repair(claim: DispensaClaim) -> tuple[DispensaClaim, bool] | None:
+        """Return ``(claim, was_repaired)`` or ``None`` if unverifiable.
+
+        Same invariant as the M0 summarizer (``_repair_summary_citations``):
+        a paraphrased excerpt is repaired to the closest REAL substring of the
+        segment (negation-aware, anti-hallucination floors); if repair fails
+        the claim is unverifiable. Never relaxes the verbatim requirement —
+        the repaired excerpt is re-checked by ``verify_citation``.
+        """
+        if not claim.seg_id:
+            return None
+        # Resolve lesson_id from seg_id prefix
+        lesson_id = claim.seg_id.split("#")[0] if "#" in claim.seg_id else doc.teacher_id
+        try:
+            verify_citation(store, claim.seg_id, lesson_id, claim.excerpt)
+            return claim, False
+        except ValueError:
+            pass
+        if claim.excerpt is None:
+            return None  # seg_id unresolvable or wrong lesson — unrepairable
+        seg = store.get_segment(claim.seg_id)
+        if seg is None or seg.lesson_id != lesson_id:
+            return None
+        fixed = _repair_excerpt(claim.excerpt, seg.text)
+        if fixed is None:
+            return None
+        try:
+            verify_citation(store, claim.seg_id, lesson_id, fixed)
+        except ValueError:
+            return None
+        return DispensaClaim(text=claim.text, seg_id=claim.seg_id, excerpt=fixed), True
+
     for sec in doc.sections:
         kept_paragraphs: list[DispensaParagraph] = []
         for para in sec.paragraphs:
+            total_claims += len(para.claims)
+            checked: list[DispensaClaim] = []
+            para_repairs = 0
+            all_valid = bool(para.claims)
             for claim in para.claims:
-                total_claims += 1
-            # Verify each claim's citations
-            all_valid = True
-            for claim in para.claims:
-                if not claim.seg_id:
+                result = _verify_or_repair(claim)
+                if result is None:
                     all_valid = False
                     break
-                try:
-                    # Resolve lesson_id from seg_id prefix
-                    lesson_id = claim.seg_id.split("#")[0] if "#" in claim.seg_id else doc.teacher_id
-                    verify_citation(store, claim.seg_id, lesson_id, claim.excerpt)
-                except ValueError:
-                    all_valid = False
-                    break
+                fixed_claim, was_repaired = result
+                checked.append(fixed_claim)
+                para_repairs += int(was_repaired)
 
-            if all_valid and para.claims:
-                kept_paragraphs.append(para)
-                verified += len(para.claims)
+            if all_valid:
+                kept_paragraphs.append(
+                    DispensaParagraph(text=para.text, claims=tuple(checked))
+                )
+                verified += len(checked)
+                repaired_count += para_repairs
             else:
                 dropped_count += len(para.claims)
                 dropped_texts.append(para.text)
@@ -501,6 +542,7 @@ def verify_and_clean_dispensa(
         dropped=dropped_count,
         unverified_ratio=ratio,
         passed=passed,
+        repaired=repaired_count,
     )
 
 
@@ -597,6 +639,10 @@ def render_dispensa_md(
         grounding_str = (
             f"{mark} {report.verified}/{report.total_claims} claim verificati, "
             f"{report.dropped} scartati"
+        )
+    if report.repaired:
+        grounding_str += (
+            f" ({report.repaired} excerpt riparati a substring verbatim reale)"
         )
 
     lines.append("---")
