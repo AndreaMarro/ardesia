@@ -344,3 +344,16 @@
   - **PLAN-CHECK**: fable.sh rate-limit (quota out, 97min al reset) — proceduto per dottrina, annotato.
   - **REVIEW**: fable-5 — 3 fix (test 2-call non falsificabile, docstring status-discriminator senza assert, assert non discriminante). Tutti applicati.
   - Gate: 1585 passed + 2 skipped (+1 da baseline 1584, nessuna regressione). cost_usd: ~$0 (mock).
+
+- **2026-06-11(current) — ⏸️ LESSONOS-NOOP: pin M1-5 stale, nessuna task disponibile.**
+  ORIENT: COORD.md § PROSSIMA TASK riga 16 punta ancora a M1-5 (REDO guidato) — task GIÀ CONSEGNATA (5/5 sotto-task, vedi entry M1-5.5 sopra).
+  VERIFICATO (ri-eseguito ORA, non dichiarato):
+  - Gate `bash eval/gate.sh` → 1585 passed / 0 failed, exit 0 — VERDE.
+  - Criteri di accettazione M1-5 punto per punto, presenti nel codice a HEAD `de0306c`:
+    1. purge_lesson transazionale + delete_capsule → store/base.py:79-88, store/sqlite.py:343-355 (commit 83adbff) ✅
+    2. _lesson_ids_from_path fonte primaria + 4 call-site → graph/aggregator.py:42,254,339,407 + teacher_book.py:305 (commit 289b936) ✅
+    3. negation-aware repair → _NEGATION_TOKENS capsule/extraction.py:33 con guard tier-2/tier-3 (commit fe5065e) ✅
+    4. run_ingest → pipeline.py:775 (commit 8e84978) ✅
+    5. test determinismo H2-1327 → tests/test_dispensa.py test_multiple_exact_matches_deterministic (commit f3775ab) ✅
+  ATTESO (non verificabile da qui): chiusura del pin da parte del supervisore in CLAUDE-SAYS.
+  Nessuna build eseguita (UNA task = quella pinnata = già consegnata). NEEDS-CLAUDE aggiornato. Attendo pin per M1-6 (Fase F dispense live + blind-test).
