@@ -29,6 +29,17 @@ pubblica/privata. Bella, avanguardista, plastica.
   EU-ML-compliant; TeachFX manda voci studenti in cloud. Nessuno copia il local-first senza
   ri-architettura.
 
+## 3-bis. PERSONA & GTM (DECISIONE 11/06 sera — osservazione Andrea, ratifica supervisore)
+**La piattaforma è TUTOR-FIRST.** Il marketplace (prezzo proprio, vetrina, recensioni, "i tutor capaci
+guadagnano") è strutturalmente per docenti INDIPENDENTI, non per insegnanti di ruolo.
+- **Motion 1 — TUTOR (subito)**: B2C/prosumer, ~€15/mese (i 10 piloti SONO questo segmento), zero
+  procurement, iterazione veloce, flywheel marketplace. È anche il segmento dove NotebookLM fa meno male:
+  Google vende alle scuole via Workspace, non al tutor che vuole vetrina+reddito.
+- **Motion 2 — SCUOLE (dopo)**: per-istituto via Privacy Pack (R2) + MePA (canale Davide). Più lenta, più
+  grossa. Qui vive anche ELAB → separare le motion nel tempo evita collisioni di brand.
+- **Implicazioni**: motore identico per entrambi; cambiano linguaggio/pricing/copy della vetrina
+  (tutor-first). **Mode A INVARIATO**: i tutor lavorano spesso con minori, e Motion 2 lo esige comunque.
+
 ## 4. MONETIZZAZIONE
 1. Docente vende contenuti/lezioni al SUO prezzo (o gratis); recensioni; la piattaforma trattiene fee.
 2. **Piani a potenza**: più paghi → generazione con più compute (modello migliore, più pass di
