@@ -23,20 +23,23 @@ for i in $(seq 1 "$N"); do
   bm=$(bash eval/gate.sh 2>/dev/null | tail -1); bp=$(jget "$bm" passed); bp=${bp:-0}
   echo "[orch] === iter $i/$N $ts | baseline passed=$bp | brain=DeepSeek(orch)+ClaudeCode(build) | oggi $dt/$CAP_MAX ===" | tee -a "$LOG"
   t0=$(date +%s)
-  # FABLE-BUILD (ordine Andrea 10/06): se il pin di questo repo è marcato [FABLE-BUILD],
-  # costruisce Claude fable-5 ULTRACODE al posto di Hermes. Gate e ratchet INVARIATI.
+  # BUILDER DEFAULT = fable-5 ULTRACODE (ordine Andrea 11/06: "fable per la maggior
+  # parte dei processi su macmini"). Hermes-DeepSeek SOLO se il pin e' marcato
+  # [GRIND] (esecuzione di script-dati a basso costo, niente codice creativo) o
+  # come FALLBACK quando fable e' rate-limited. Gate e ratchet INVARIATI.
   PIN_LINE=$(sed -n '/## ➡️ PROSSIMA TASK/,/## NEEDS-CLAUDE/p' "$HOME/lessonos/COORDINATION.md" 2>/dev/null | grep -m1 -- '- \*\*lessonos\*\*')
-  if printf '%s' "$PIN_LINE" | grep -q 'FABLE-BUILD'; then
-    echo "[driver] BUILDER=fable-5-ultracode (pin FABLE-BUILD)" | tee -a "$LOG"
+  if printf '%s' "$PIN_LINE" | grep -qE '\[GRIND\]|\[DEEPSEEK\]|\[HERMES\]'; then
+    echo "[driver] BUILDER=Hermes-DeepSeek (pin GRIND, basso costo)" | tee -a "$LOG"
+    timeout 2400 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
+  else
+    echo "[driver] BUILDER=fable-5-ultracode (default)" | tee -a "$LOG"
     eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
-    fable_out=$(timeout 2400 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 'ultracode — Sei il BUILDER fable del progetto MAESTRO, nella directory corrente del repo. Esegui ESATTAMENTE UNA task: quella marcata [FABLE-BUILD] per QUESTO repo nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri di accettazione compresi). Prima leggi AGENTS.md e STATUS.md del repo. Scrivi codice e test di qualita massima (orchestra subagenti per le parti indipendenti e per la verifica avversaria del tuo stesso lavoro), esegui bash eval/gate.sh e consegna VERDE, poi git add dei file pertinenti e commit con messaggio chiaro, e appendi a STATUS.md (separando VERIFICATO da atteso, con i criteri di accettazione punto per punto) e a log.jsonl. Vincoli identici a Hermes: NON toccare eval/gate.sh, nessuna dipendenza nuova ingiustificata, MAI contenuto del corpus nei commit (path si, contenuto no), UNA task sola, onesta brutale: fatto = gate verde eseguito. Se la task non e fattibile scrivi il blocker in NEEDS-CLAUDE di COORDINATION e fermati.' 2>&1)
+    fable_out=$(timeout 2400 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 'ultracode — Sei il BUILDER fable del progetto MAESTRO, nella directory corrente del repo. Esegui ESATTAMENTE UNA task: quella pinnata per QUESTO repo nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri di accettazione compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md del repo, e le skill in skills/. Scrivi codice e test di qualita massima (orchestra subagenti per le parti indipendenti e per la verifica avversaria del tuo stesso lavoro), esegui bash eval/gate.sh e consegna VERDE, poi git add dei file pertinenti e commit con messaggio chiaro, e appendi a STATUS.md (separando VERIFICATO da atteso, con i criteri di accettazione punto per punto) e a log.jsonl. Vincoli: NON toccare eval/gate.sh, nessuna dipendenza nuova ingiustificata, MAI contenuto del corpus nei commit (path si, contenuto no), UNA task sola, onesta brutale: fatto = gate verde eseguito. Verifica il VALORE sui dati, non solo il gate verde. Se la task non e fattibile scrivi il blocker in NEEDS-CLAUDE di COORDINATION e fermati.' 2>&1)
     printf '%s\n' "$fable_out" | tee -a "$LOG"
     if printf '%s' "$fable_out" | grep -qiE "out of extra usage|usage limit|rate.?limit|overloaded|not logged in|unauthorized"; then
-      echo "[driver] fable indisponibile -> fallback Hermes (stessa iterazione)" | tee -a "$LOG"
+      echo "[driver] fable indisponibile -> fallback Hermes-DeepSeek (stessa iterazione)" | tee -a "$LOG"
       timeout 2400 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
     fi
-  else
-    timeout 2400 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
   fi
   t1=$(date +%s); dur=$((t1-t0))
   ah=$(git rev-parse HEAD); am=$(bash eval/gate.sh 2>/dev/null | tail -1)
