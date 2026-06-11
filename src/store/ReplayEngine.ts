@@ -49,6 +49,71 @@ export class ReplayEngine {
     )
   }
 
+  /**
+   * getSceneAt: stato della scena al tempo t.
+   * Riavvolge il journal fino a t (incluso) e restituisce gli elementi come array.
+   * NON muta lo stato interno di ReplayEngine — chiamate multiple sono safe.
+   * O(n) su numero di eventi; n < 200k per sessioni tipiche.
+   */
+  getSceneAt(events: JournalEvent[], t: number): Record<string, unknown>[] {
+    const scene = new Map<string, Record<string, unknown>>()
+    for (const ev of events) {
+      if (ev.t > t) break
+      switch (ev.type) {
+        case "element.add":
+        case "element.update":
+          scene.set(ev.element.id as string, { ...ev.element })
+          break
+        case "element.delete":
+          scene.delete(ev.elementId)
+          break
+      }
+    }
+    return Array.from(scene.values()).sort((a, b) =>
+      String(a.id).localeCompare(String(b.id)),
+    )
+  }
+
+  /**
+   * getActiveElements: elementi creati o modificati nella finestra [t0, t1].
+   *
+   * Per ogni elemento, traccia firstSeen (creazione) e lastModified (ultimo update).
+   * Un elemento è "attivo" nella finestra se firstSeen o lastModified cade in [t0, t1].
+   * Lo stato restituito è quello dell'elemento AL TEMPO t1 (fine finestra).
+   *
+   * Elementi cancellati DENTRO [t0, t1] → esclusi (non esistono a t1).
+   * Elementi cancellati DOPO t1 ma attivi nella finestra → inclusi (erano attivi).
+   */
+  getActiveElements(events: JournalEvent[], t0: number, t1: number): Record<string, unknown>[] {
+    // Passata 1: applica tutti gli eventi fino a t1 per avere lo stato a fine finestra
+    const scene = new Map<string, Record<string, unknown>>()
+    // Traccia se un elemento era attivo nella finestra
+    const active = new Set<string>()
+
+    for (const ev of events) {
+      if (ev.t > t1) break
+      switch (ev.type) {
+        case "element.add":
+        case "element.update": {
+          const id = ev.element.id as string
+          scene.set(id, { ...ev.element })
+          if (ev.t >= t0 && ev.t <= t1) {
+            active.add(id)
+          }
+          break
+        }
+        case "element.delete":
+          scene.delete(ev.elementId)
+          break
+      }
+    }
+
+    // Filtra solo gli elementi attivi nella finestra
+    return Array.from(scene.values())
+      .filter((el) => active.has(el.id as string))
+      .sort((a, b) => String(a.id).localeCompare(String(b.id)))
+  }
+
   /** Resetta lo stato */
   reset(): void {
     this.elements.clear()
