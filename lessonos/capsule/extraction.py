@@ -19,6 +19,23 @@ from lessonos.models import CONCEPT_STATUS
 from lessonos.store.base import Store
 
 
+# Negation guard shared by tier 2 & 3
+def _negation_preserved(original: str, repaired: str) -> bool:
+    """Return False if a negation token from *original* is absent in *repaired*."""
+    orig_lower = original.lower()
+    repaired_lower = repaired.lower()
+    for token in _NEGATION_TOKENS:
+        if token in orig_lower and token not in repaired_lower:
+            return False
+    return True
+
+# Italian negation tokens — stripping any would flip the meaning of the claim
+_NEGATION_TOKENS: frozenset[str] = frozenset({
+    "non", "mai", "né", "nessun", "nessuna", "nessuno",
+    "senza", "no", "neppure", "neanche", "nemmeno",
+    "nulla", "niente",
+})
+
 def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
     """Try to locate the closest substring of ``segment_text`` matching ``excerpt``.
 
@@ -31,6 +48,12 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
          that still appears in segment_text; if at least 1 word matches, return the
          matched span.
 
+    Negation guard (tier 2 & 3): if the original excerpt contains Italian negation
+    tokens (non, mai, né, nessun, senza, no, neppure, neanche, nemmeno, nulla,
+    niente) and the repaired match no longer carries them, the repair is rejected
+    (returns ``None``). This prevents an LLM false positive like "non è lineare"
+    being repaired to "è lineare" (semantic inversion).
+
     Returns the repaired substring or ``None`` if no meaningful match is found.
     """
     if not excerpt or not segment_text:
@@ -40,6 +63,16 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
     if excerpt in segment_text:
         return excerpt
 
+    # Negation guard shared by tier 2 & 3
+    def _negation_preserved(original: str, repaired: str) -> bool:
+        """Return False if a negation token from *original* is absent in *repaired*."""
+        orig_lower = original.lower()
+        repaired_lower = repaired.lower()
+        for token in _NEGATION_TOKENS:
+            if token in orig_lower and token not in repaired_lower:
+                return False
+        return True
+
     # Tier 2 — longest common substring
     matcher = SequenceMatcher(None, excerpt, segment_text)
     match = matcher.find_longest_match(
@@ -48,7 +81,10 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
     # Require match to be at least 40% of excerpt length OR at least 8 chars
     # to avoid accidental 3-char matches like 'uan' from 'quantum'
     if match.size >= max(8, int(len(excerpt) * 0.4)):
-        return segment_text[match.b : match.b + match.size]
+        candidate = segment_text[match.b : match.b + match.size]
+        if not _negation_preserved(excerpt, candidate):
+            return None
+        return candidate
 
     # Tier 3 — word-by-word greedy scan (case-insensitive)
     excerpt_lower = excerpt.lower()
@@ -80,7 +116,11 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
             r"(?<!\w)" + re.escape(matched_lower) + r"(?!\w)", seg_lower
         )
         idx = idx_m.start()
-        return segment_text[idx : idx + len(matched_lower)]
+        tier3_result = segment_text[idx : idx + len(matched_lower)]
+        # Negation guard: if the repaired span dropped a negation, reject
+        if not _negation_preserved(excerpt, tier3_result):
+            return None
+        return tier3_result
 
     return None
 

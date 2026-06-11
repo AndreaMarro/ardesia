@@ -438,8 +438,7 @@ class TestRepairExcerptAdversarial:
     """Bug-hunt §4 test #5: adversarial cases for _repair_excerpt.
 
     Covers bug-hunt #3 (tier-3 floor: totally hallucinated excerpt with
-    article word → None) and the known-limitation on #4 (negation
-    stripping — semantic repair deferred to M1-5).
+    article word → None) and M1-5 #4 (negation — guard active on tier 2 & 3).
     """
 
     # ── bug-hunt #4: negation awareness (KNOWN LIMITATION, deferred to M1-5) ──
@@ -462,25 +461,21 @@ class TestRepairExcerptAdversarial:
         # Tier 1: verbatim match → returned as-is
         assert result == "non è continua"
 
-    def test_negation_stripping_lcs_known_limitation(self):
-        """LCS-based repair strips negation (known limitation).
+    def test_negation_stripping_lcs_guard(self):
+        """Negation guard rejects LCS-repaired span that dropped negation.
 
         If the excerpt is 'non è continua in zero' but the segment is
         'la funzione è continua in zero, è derivabile', the LCS finds
-        ' è continua in zero' — stripping the negation. This is the
-        bug-hunt #4 pattern.
-
-        Current behavior: LCS wins, returns negated-free span.
-        This test documents the limitation; M1-5 will add the guard.
+        ' è continua in zero' — stripping the negation. The negation
+        guard detects 'non' is missing from the repaired span and
+        returns None (M1-5 fix).
         """
         result = _repair_excerpt(
             "non è continua in zero",
             "la funzione è continua in zero, è derivabile",
         )
-        # Tier 2: LCS finds ' è continua in zero' — negation stripped
-        assert result is not None
-        assert "non" not in result
-        assert "continua in zero" in result
+        # Tier 2: LCS finds ' è continua in zero' — negation guard rejects
+        assert result is None
 
     # ── bug-hunt #3: tier-3 floor ──────────────────────────────────────
 
