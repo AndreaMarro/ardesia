@@ -35,11 +35,18 @@ for i in $(seq 1 "$N"); do
   else
     echo "[driver] BUILDER=fable-5-ultracode (default)" | tee -a "$LOG"
     eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
-    fable_out=$(timeout 3600 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 'ultracode — Sei il BUILDER fable di MAESTRO-Studio (TypeScript/React/Vite, lavagna Excalidraw), nella dir corrente ~/maestro-studio. Esegui ESATTAMENTE UNA task: quella pinnata per studio nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md e le skill in skills/. Scrivi codice e test vitest di qualita massima (orchestra subagenti per parti indipendenti e verifica avversaria), esegui bash eval/gate.sh (tsc+vitest) e consegna VERDE, poi git add dei file pertinenti e commit chiaro IMMEDIATO — COMMITTA APPENA IL GATE E VERDE, prima di STATUS/log: il driver SCARTA il lavoro non committato a timeout — poi appendi STATUS.md e log.jsonl. Vincoli: NON toccare eval/gate.sh, niente dipendenze ingiustificate, UNA task sola, onesta brutale: fatto = gate verde eseguito. Se non fattibile scrivi il blocker in ~/lessonos/COORDINATION.md NEEDS-CLAUDE E COMMITTALO nel repo lessonos, poi fermati.' 2>&1)
-    printf '%s\n' "$fable_out" | tee -a "$LOG"
-    if printf '%s' "$fable_out" | grep -qiE "out of extra usage|usage limit|rate.?limit|overloaded|not logged in|unauthorized"; then
-      echo "[driver] fable indisponibile -> fallback Hermes-DeepSeek (stessa iterazione)" | tee -a "$LOG"
+    if ! bash "$HOME/lessonos/bin/quota.sh" check >/dev/null 2>&1; then
+      bash "$HOME/lessonos/bin/quota.sh" check 2>&1 | tee -a "$LOG" || true
+      echo "[driver] finestra quota-out nota -> salto fable, Hermes diretto" | tee -a "$LOG"
       timeout 2400 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
+    else
+      fable_out=$(timeout 3600 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 'ultracode — Sei il BUILDER fable di MAESTRO-Studio (TypeScript/React/Vite, lavagna Excalidraw), nella dir corrente ~/maestro-studio. Esegui ESATTAMENTE UNA task: quella pinnata per studio nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md e le skill in skills/. Scrivi codice e test vitest di qualita massima (orchestra subagenti per parti indipendenti e verifica avversaria), esegui bash eval/gate.sh (tsc+vitest) e consegna VERDE, poi git add dei file pertinenti e commit chiaro IMMEDIATO — COMMITTA APPENA IL GATE E VERDE, prima di STATUS/log: il driver SCARTA il lavoro non committato a timeout — poi appendi STATUS.md e log.jsonl. Vincoli: NON toccare eval/gate.sh, niente dipendenze ingiustificate, UNA task sola, onesta brutale: fatto = gate verde eseguito. Se non fattibile scrivi il blocker in ~/lessonos/COORDINATION.md NEEDS-CLAUDE E COMMITTALO nel repo lessonos, poi fermati.' 2>&1)
+      printf '%s\n' "$fable_out" | tee -a "$LOG"
+      if printf '%s' "$fable_out" | grep -qiE "out of extra usage|usage limit|rate.?limit|overloaded|not logged in|unauthorized"; then
+        printf '%s' "$fable_out" | bash "$HOME/lessonos/bin/quota.sh" mark 2>&1 | tee -a "$LOG" || true
+        echo "[driver] fable indisponibile -> fallback Hermes-DeepSeek (stessa iterazione)" | tee -a "$LOG"
+        timeout 2400 hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
+      fi
     fi
   fi
   t1=$(date +%s); dur=$((t1-t0))
