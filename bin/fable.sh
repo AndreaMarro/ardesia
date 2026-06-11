@@ -1,15 +1,17 @@
 #!/bin/bash
-# MAESTRO worker — Claude come CERVELLO INDIRETTO di Hermes. Routing per ruolo (decisione Andrea 10/06):
-#   PLAN-CHECK (ogni iterazione, alto volume)  -> ladder opus-4-8 -> sonnet-4-6  (fable-5 NON nel grind: rate-limit Max)
-#   escalation/decisioni dure (raro, pesante)  -> ladder fable-5 -> opus-4-8 -> sonnet-4-6
-# Il routing è automatico sul contenuto: se il prompt inizia con "PLAN-CHECK" usa la ladder opus.
+# MAESTRO worker — FABLE-5 come CERVELLO INDIRETTO di Hermes (ordine Andrea 11/06: "fable cervello indiretto su macmini").
+#   PLAN-CHECK (sanity pre-build)  -> ladder fable-5 -> opus-4-8 -> sonnet-4-6  (fable PRIMO; fallback su rate-limit)
+#   escalation/decisioni dure       -> fable-5 ULTRACODE -> opus-4-8 -> sonnet-4-6
+# Nota: ora che fable e' il BUILDER di default, PLAN-CHECK serve solo nelle iterazioni Hermes ([GRIND]/fallback),
+# quindi volume basso -> fable-first e sostenibile. PLAN-CHECK NON e' ultracode (check rapido, non multi-agente).
+# Il routing è automatico sul contenuto: se il prompt inizia con "PLAN-CHECK" usa la ladder PLAN-CHECK.
 # Prima riga di output = [fable.sh -> <modello>] per l'audit. Login Max OAuth headless.
 # Usage: ./bin/fable.sh "domanda/spec con contesto (file:line, cosa hai provato, output gate)"
 export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
 PROMPT="$*"
 case "$1" in
-  PLAN-CHECK*) MODELS="claude-opus-4-8 claude-sonnet-4-6"; T=110; TRIES=1;;  # corsia veloce: sotto il terminal.timeout di hermes
+  PLAN-CHECK*) MODELS="claude-fable-5 claude-opus-4-8 claude-sonnet-4-6"; T=130; TRIES=1;;  # fable cervello indiretto; fallback opus/sonnet su rate-limit
   *)
     # ESCALATION = fable-5 in modalità ULTRACODE (ordine Andrea 10/06): orchestrazione multi-agente
     # per le decisioni dure — il keyword attiva l'opt-in del Workflow tool nella sessione headless.
