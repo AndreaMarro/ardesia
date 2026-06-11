@@ -33,6 +33,7 @@ with open(f, "w") as fh:
     fh.write(str(int(t.timestamp())))
 print(f"[quota] out fino alle {t:%H:%M}")
 PY
+    touch "$HOME/.fable_catchup_pending"
     ;;
   check)
     [ -f "$F" ] || exit 0

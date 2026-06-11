@@ -31,6 +31,13 @@ else
   fi
   printf '%s\n%s\n' "$day" "$((bt+1))" > "$cf"
 fi
+# FABLE-CATCHUP (ordine Andrea 11/06 "fable a massima potenza"): quota appena
+# riaperta -> burst fable = strategos audita la finestra quota-out e propone.
+if [ -f "$HOME/.fable_catchup_pending" ] && bash "$HOME/lessonos/bin/quota.sh" check >/dev/null 2>&1; then
+  rm -f "$HOME/.fable_catchup_pending"
+  echo "[tick] quota riaperta -> fable catchup (strategos burst)"
+  nohup "$HOME/maestro-tools/strategos.sh" "8 hours ago" >> "$HOME/maestro-logs/strategos/launchd.log" 2>&1 &
+fi
 ~/lessonos/bin/hourly-digest.sh >> ~/lessonos/hourly.log 2>&1 || true
 # HERMES-2 (red-team kimi, idempotente per commit): rivede l'ultimo commit KEPT del repo del tick. Mai bloccante.
 ~/lessonos/bin/adversarial.sh "$repo" >> ~/lessonos/hourly.log 2>&1 || true
