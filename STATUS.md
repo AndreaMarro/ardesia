@@ -188,3 +188,18 @@
   - **PRE-BUILD FABLE**: chiamato per decisione architetturale ma fallito per (a) usage limit e (b) bash parsing di parentesi nelle firme funzioni. Nota processo: evitare `func_name(args)` in prompt fable.sh.
   - Gate: **1457 passed + 2 skipped** (invariato — +5 da baseline 1452). cost_usd: ~$0 (mock tests, demo su DB esistente).
   - Next: M1-2 (libro/mappa nello stile del docente dal grafo aggregato) — oppure attendere ratifica M1-1 da CLAUDE-SAYS.
+
+- **2026-06-11(current) — M1-1b CANONICALIZZAZIONE CONCETTI (collante cross-lezione, COORD § PROSSIMA TASK).**
+  Ipotesi singola: Opzione A — in extraction l'LLM assegna `canonical` (nome breve normalizzato come 'segnale', 'energia', 'delta di Dirac'); l'aggregatore deduplica per `canonical` invece che per label esatta. Il problema: aggregate_teacher_graph(M1-1) deduplica per nome ESATTO normalizzato — sui 4 capsule reali Teoria-Segnali solo 1/96 concetti RICORRE tra lezioni, perche' i nomi variano ('definizione di segnale' vs 'il segnale come grandezza fisica').
+  Risultati:
+  1. **ConceptExtraction.canonical** (`lessonos/capsule/extraction.py:98`) — campo opzionale `str = ''`. Prompt LLM aggiornato (`build_extraction_prompt`: schema `{name, canonical, status, prerequisites?, citations}` + istruzioni canonical). Batching merge preserva canonical.
+  2. **Deserialize backward compat** (`lessonos/capsule/assembly.py:150`) — `c.get("canonical", "")` legge capsule vecchie (senza canonical) senza crash.
+  3. **Aggregatore dedup per canonical** (`lessonos/graph/aggregator.py:65`) — `key = concept.canonical if concept.canonical else _normalize_name(concept.name)`. Fallback pulito su normalized name per capsule vecchie.
+  4. **4 nuovi test** (21 totali su test_graph_aggregator.py):
+     - `test_canonical_dedup_different_names` — 'Definizione di segnale' e 'Il segnale come grandezza fisica' con stesso canonical='segnale' → 1 merged node ✓
+     - `test_canonical_fallback_to_name` — canonical='' → normalized name dedup (backward compat) ✓
+     - `test_canonical_no_merge_without_match` — canonical diversi → nodi separati ✓
+     - `test_canonical_cross_teacher_no_contamination` — stesso canonical ma docenti diversi → non contaminano ✓
+  - **PRE-BUILD FABLE**: usage-limit Claude esaurito — Opzione A scelta autonomamente secondo preferenza dichiarata da Claude in COORD.
+  - **REVIEW**: `bin/review.sh` usage-limit Claude Code (stesso usage) — self-review: 0 tautologie, backward compat, grounding preservato.
+  - Gate: **1461 passed + 2 skipped** (+4 da baseline 1457). cost_usd: ~$0.
