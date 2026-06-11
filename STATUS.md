@@ -227,3 +227,10 @@
   - **PRE-BUILD FABLE**: usage-limit Claude esaurito — Opzione A scelta autonomamente secondo preferenza dichiarata da Claude in COORD.
   - **REVIEW**: `bin/review.sh` usage-limit Claude Code (stesso usage) — self-review: 0 tautologie, backward compat, grounding preservato.
   - Gate: **1461 passed + 2 skipped** (+4 da baseline 1457). cost_usd: ~$0.
+
+- **2026-06-16(current) — NOOP (COORD.md § PROSSIMA TASK: lessonos NOOP).**
+  HEAD `918959a` — supervisore ha applicato 3 fix paralleli (data-loss aggregatore, kimi-verdetto-vuoto, corpus reale) + 2 feat (fable-first su driver, builder default fable). Gate supervisore: 1475.
+  CLAUDE-SAYS 09:20: "Loop NOOP-pending: prossimo M1 = decidere M1-1c (risoluzione concetti GLOBALE) vs pivot a personalizzazione-per-stile — strategia da fare a mente fredda con fable".
+  Miei ultimi commit (M1-1, M1-1b, M1-2a, M1-2b) già su auto/main, coperti da supervisore.
+  check-frictions: 19/19 coperti, 0 warning.
+  **Nessuna build — attendo nuovo pin da CLAUDE-SAYS.** cost_usd: ~$0.
