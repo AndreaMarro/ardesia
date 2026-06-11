@@ -34,7 +34,7 @@ for i in $(seq 1 "$N"); do
   else
     echo "[driver] BUILDER=fable-5-ultracode (default)" | tee -a "$LOG"
     eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
-    fable_out=$(timeout 2400 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 'ultracode — Sei il BUILDER fable del progetto MAESTRO, nella directory corrente del repo. Esegui ESATTAMENTE UNA task: quella pinnata per QUESTO repo nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri di accettazione compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md del repo, e le skill in skills/. Scrivi codice e test di qualita massima (orchestra subagenti per le parti indipendenti e per la verifica avversaria del tuo stesso lavoro), esegui bash eval/gate.sh e consegna VERDE, poi git add dei file pertinenti e commit con messaggio chiaro, e appendi a STATUS.md (separando VERIFICATO da atteso, con i criteri di accettazione punto per punto) e a log.jsonl. Vincoli: NON toccare eval/gate.sh, nessuna dipendenza nuova ingiustificata, MAI contenuto del corpus nei commit (path si, contenuto no), UNA task sola, onesta brutale: fatto = gate verde eseguito. Verifica il VALORE sui dati, non solo il gate verde. Se la task non e fattibile scrivi il blocker in NEEDS-CLAUDE di COORDINATION e fermati.' 2>&1)
+    fable_out=$(timeout 3600 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 'ultracode — Sei il BUILDER fable del progetto MAESTRO, nella directory corrente del repo. Esegui ESATTAMENTE UNA task: quella pinnata per QUESTO repo nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri di accettazione compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md del repo, e le skill in skills/. Scrivi codice e test di qualita massima (orchestra subagenti per le parti indipendenti e per la verifica avversaria del tuo stesso lavoro), esegui bash eval/gate.sh e consegna VERDE, poi IMMEDIATAMENTE git add dei file pertinenti e commit con messaggio chiaro — COMMITTA APPENA IL GATE E VERDE, prima di STATUS/log: il driver SCARTA il lavoro non committato quando scade il timeout, e appendi a STATUS.md (separando VERIFICATO da atteso, con i criteri di accettazione punto per punto) e a log.jsonl. Vincoli: NON toccare eval/gate.sh, nessuna dipendenza nuova ingiustificata, MAI contenuto del corpus nei commit (path si, contenuto no), UNA task sola, onesta brutale: fatto = gate verde eseguito. Verifica il VALORE sui dati, non solo il gate verde. Se la task non e fattibile scrivi il blocker in NEEDS-CLAUDE di COORDINATION e fermati.' 2>&1)
     printf '%s\n' "$fable_out" | tee -a "$LOG"
     if printf '%s' "$fable_out" | grep -qiE "out of extra usage|usage limit|rate.?limit|overloaded|not logged in|unauthorized"; then
       echo "[driver] fable indisponibile -> fallback Hermes-DeepSeek (stessa iterazione)" | tee -a "$LOG"
@@ -44,7 +44,15 @@ for i in $(seq 1 "$N"); do
   t1=$(date +%s); dur=$((t1-t0))
   ah=$(git rev-parse HEAD); am=$(bash eval/gate.sh 2>/dev/null | tail -1)
   ap=$(jget "$am" passed); ap=${ap:-0}; ae=$(jget "$am" exit); ae=${ae:-1}
-  if [ "$ah" = "$bh" ]; then status="blocked/noop"; note="HEAD invariato (${dur}s) — vedi STATUS.md"
+  if [ "$ah" = "$bh" ]; then
+    status="blocked/noop"; note="HEAD invariato (${dur}s) — vedi STATUS.md"
+    # RESCUE lavoro orfano (bug 11/06: builder killed/uscito SENZA commit -> il
+    # reset+clean del tick successivo distruggeva tutto; perse 2 build M1-1c).
+    # Tree sporco + HEAD fermo = stash -u; il supervisore decide cosa farne.
+    if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+      git stash push -u -m "rescue iter $ts (no-commit, gate misurato passed=$ap)" >/dev/null 2>&1 || true
+      note="HEAD invariato (${dur}s) — LAVORO ORFANO STASHATO (passed=$ap) — vedi STATUS.md"
+    fi
   elif [ "$ae" = 0 ] && [ "$ap" -ge 1 ] && [ "$ap" -ge "$bp" ]; then
     status="pass"; note="kept; gate verde (passed=$ap; ${dur}s)"; git push -q origin HEAD:auto/main 2>/dev/null || true
   else
