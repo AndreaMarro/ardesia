@@ -752,10 +752,8 @@ class TestSecondLessonReachesAggregate:
         via_for_path = {l.lesson_id for l in store.lessons_for_path("p1")}
         # lessons_for_path reflects reality (both lessons saved)
         assert via_for_path == {"l1", "l2"}
-        # aggregate_path_graph must work even when lesson_ids is stale;
-        # only l1 has its lesson_id in the path's lesson_ids, so only l1
-        # produces merged nodes (l2 graph data exists but l2's lesson_id
-        # is not in the path's lesson_ids list — M1-5 will fix this).
+        # aggregate_path_graph now uses lessons_for_path as primary source
+        # (M1-5 fix — _lesson_ids_from_path prefers DB-backed data).
         graph = aggregate_path_graph(store, "p1")
-        assert len(graph.merged_nodes) == 1
+        assert len(graph.merged_nodes) == 2
 

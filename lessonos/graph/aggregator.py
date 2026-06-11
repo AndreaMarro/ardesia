@@ -25,6 +25,7 @@ from lessonos.models.entities import (
     AggregatedPathNode,
     GraphEdge,
     GraphEvidence,
+    Path,
 )
 from lessonos.store.base import Store
 
@@ -36,6 +37,23 @@ def _normalize_name(name: str) -> str:
     the resolution mapping is keyed on the same rule.
     """
     return name.strip().lower()
+
+
+def _lesson_ids_from_path(store: Store, path: Path) -> list[str]:
+    """Get lesson IDs for *path*, preferring the DB's lessons_for_path.
+
+    Primary source: ``store.lessons_for_path(path.path_id)`` — the DB is the
+    single source of truth for which lessons belong to a path. Fallback:
+    ``path.lesson_ids`` for backward compat with paths that have no lessons
+    stored independently (pre-M1-5 fixture paths).
+
+    Returns lesson IDs in insertion/order order (preserved from the DB query).
+    """
+    db_lessons = store.lessons_for_path(path.path_id)
+    if db_lessons:
+        return [l.lesson_id for l in db_lessons]
+    # Fallback: the path blob knows its children
+    return list(path.lesson_ids)
 
 
 def dedup_key_for(
@@ -233,7 +251,7 @@ def load_path_capsules(
         raise ValueError(f"path {path_id!r} does not exist in the store")
 
     capsules: list[LessonCapsule] = []
-    for lesson_id in path.lesson_ids:
+    for lesson_id in _lesson_ids_from_path(store, path):
         cap = load_capsule(store, lesson_id)
         if cap is not None:
             capsules.append(cap)
@@ -318,7 +336,7 @@ def aggregate_teacher_graph(
     lesson_ids: list[str] = []
     seen_lessons: set[str] = set()
     for path in paths:
-        for lid in path.lesson_ids:
+        for lid in _lesson_ids_from_path(store, path):
             if lid not in seen_lessons:
                 lesson_ids.append(lid)
                 seen_lessons.add(lid)
@@ -386,7 +404,7 @@ def aggregate_path_graph(
     )
 
     all_edges, all_evidence = _collect_edges_and_evidence(
-        store, list(path.lesson_ids)
+        store, _lesson_ids_from_path(store, path)
     )
 
     return AggregatedPathGraph(

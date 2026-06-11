@@ -27,6 +27,7 @@ from __future__ import annotations
 
 from lessonos.capsule.assembly import LessonCapsule, load_capsule
 from lessonos.graph.aggregator import (
+    _lesson_ids_from_path,
     _normalize_name,
     aggregate_teacher_graph,
     dedup_key_for,
@@ -301,7 +302,7 @@ def _get_ordered_lesson_ids(
     seen: set[str] = set()
     paths = store.paths_for_teacher(teacher_id)
     for path in paths:
-        for lid in path.lesson_ids:
+        for lid in _lesson_ids_from_path(store, path):
             if lid not in seen:
                 ordered.append(lid)
                 seen.add(lid)
