@@ -30,8 +30,18 @@ EDGE_TYPES: frozenset[str] = frozenset(
 
 # PLAN §26.1 — concept status within a Lesson Capsule.
 CONCEPT_STATUS: frozenset[str] = frozenset(
-    {"introduced", "reinforced", "reviewed", "problematic"}
+    {"introduced", "reinforced", "reviewed", "problematic", "mastered"}
 )
+
+# Progression order: from least to most advanced (M1-1 per-docente aggregate).
+# A merged concept takes the most advanced status among its occurrences.
+STATUS_ORDER: dict[str, int] = {
+    "introduced": 0,
+    "reinforced": 1,
+    "reviewed": 2,
+    "problematic": 3,
+    "mastered": 4,
+}
 
 
 @dataclass(frozen=True)
@@ -172,3 +182,43 @@ class GraphEvidence:
     excerpt: str | None = None
     confidence: float | None = None
     lesson_id: str = ""
+
+
+@dataclass(frozen=True)
+class AggregatedPathNode:
+    """A concept node aggregated across all lessons in a path (M1-1).
+
+    Unlike ``GraphNode`` which is per-lesson, this carries provenance from
+    every lesson where the concept appears. The ``status`` is the most
+    advanced status among all occurrences (see STATUS_ORDER).
+    """
+
+    node_id: str
+    label: str
+    status: str
+    lesson_ids: tuple[str, ...] = ()
+    evidence_count: int = 0
+
+    def __post_init__(self) -> None:
+        if self.status not in CONCEPT_STATUS:
+            raise ValueError(
+                f"invalid aggregated concept status: {self.status!r} "
+                f"(expected one of {sorted(CONCEPT_STATUS)})"
+            )
+
+
+@dataclass(frozen=True)
+class AggregatedPathGraph:
+    """The aggregated graph for an entire path/teacher (M1-1).
+
+    ``merged_nodes`` — one AggregatedPathNode per unique concept across all
+    path lessons, deduplicated by normalized name.
+    ``existing_edges`` — all GraphEdges from all path lessons (union).
+    ``path_evidence`` — all GraphEvidence from all path lessons (union).
+    Each carries its original lesson_id for provenance.
+    """
+
+    path_id: str
+    merged_nodes: tuple[AggregatedPathNode, ...] = ()
+    existing_edges: tuple[GraphEdge, ...] = ()
+    path_evidence: tuple[GraphEvidence, ...] = ()

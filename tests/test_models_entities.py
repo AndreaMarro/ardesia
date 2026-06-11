@@ -41,9 +41,9 @@ def test_edge_types_match_plan_vocab_exactly() -> None:
 
 
 def test_concept_status_vocab_matches_plan() -> None:
-    # PLAN §26.1
+    # PLAN §26.1 + M1-1 'mastered' — added for path-level status progression.
     assert CONCEPT_STATUS == frozenset(
-        {"introduced", "reinforced", "reviewed", "problematic"}
+        {"introduced", "reinforced", "reviewed", "problematic", "mastered"}
     )
 
 
@@ -60,7 +60,7 @@ def test_graph_edge_accepts_valid_edge_type() -> None:
 
 def test_concept_rejects_unknown_status() -> None:
     with pytest.raises(ValueError):
-        Concept("c1", "derivata", status="mastered")
+        Concept("c1", "derivata", status="unknown")
 
 
 def test_concept_accepts_valid_status() -> None:
