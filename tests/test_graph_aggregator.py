@@ -158,6 +158,7 @@ def _make_capsule(
             ConceptExtraction(
                 name=c["name"],
                 status=c.get("status", "introduced"),
+                canonical=c.get("canonical", ""),
                 prerequisites=tuple(c.get("prerequisites", [])),
                 citations=(
                     Citation(seg_id=seg_id, excerpt="test excerpt"),
@@ -481,3 +482,60 @@ class TestAggregatePathGraph:
 
         result = aggregate_path_graph(store, "p1")
         assert result.merged_nodes[0].status == "problematic"
+
+    def test_canonical_dedup_different_names(self):
+        """2 lessons with different names but SAME canonical -> 1 merged node."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1", "l2"])
+        c1 = _make_capsule("l1", [{"name": "Definizione di segnale", "status": "introduced", "canonical": "segnale"}])
+        c2 = _make_capsule("l2", [{"name": "Il segnale come grandezza fisica", "status": "reinforced", "canonical": "segnale"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        result = aggregate_path_graph(store, "p1")
+        assert len(result.merged_nodes) == 1, f"expected 1 merged node, got {len(result.merged_nodes)}"
+        node = result.merged_nodes[0]
+        assert node.label == "Definizione di segnale"  # first-seen name preserved
+        assert node.status == "reinforced"  # most advanced
+        assert node.lesson_ids == ("l1", "l2")
+
+    def test_canonical_fallback_to_name(self):
+        """Concepts with empty canonical fall back to normalized name (backward compat)."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1", "l2"])
+        c1 = _make_capsule("l1", [{"name": "Segnale", "status": "introduced"}])  # no canonical
+        c2 = _make_capsule("l2", [{"name": "Segnale", "status": "reinforced"}])  # no canonical
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        result = aggregate_path_graph(store, "p1")
+        assert len(result.merged_nodes) == 1
+        assert result.merged_nodes[0].status == "reinforced"
+
+    def test_canonical_no_merge_without_match(self):
+        """Different canonical values produce separate nodes (no false merging)."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1", "l2"])
+        c1 = _make_capsule("l1", [{"name": "Energia", "status": "introduced", "canonical": "energia"}])
+        c2 = _make_capsule("l2", [{"name": "Potenza", "status": "introduced", "canonical": "potenza"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        result = aggregate_path_graph(store, "p1")
+        assert len(result.merged_nodes) == 2
+
+    def test_canonical_cross_teacher_no_contamination(self):
+        """Canonical dedup does NOT cross teacher boundaries (guard preserved)."""
+        store = _PathStore()
+        _register_path(store, "pa", ["a1"], teacher_id="andrea")
+        _register_path(store, "pb", ["b1"], teacher_id="marco")
+        c1 = _make_capsule("a1", [{"name": "Def segnale", "status": "introduced", "canonical": "segnale"}])
+        c2 = _make_capsule("b1", [{"name": "Il segnale", "status": "reinforced", "canonical": "segnale"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        result = aggregate_teacher_graph(store, "andrea")
+        assert len(result.merged_nodes) == 1
+        assert result.merged_nodes[0].label == "Def segnale"
+        assert result.merged_nodes[0].lesson_ids == ("a1",)  # only andrea's lesson
+

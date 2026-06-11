@@ -45,47 +45,50 @@ def _most_advanced_status(statuses: list[str]) -> str:
 def _merge_concept_nodes(
     capsules: list[LessonCapsule],
 ) -> tuple[list[AggregatedPathNode], dict[str, str]]:
-    """Deduplicate concept nodes by normalized name across capsules.
+    """Deduplicate concept nodes by canonical name across capsules.
+
+    Dedup key: ``concept.canonical`` (M1-1b) if present, else the normalized
+    ``concept.name`` (backward compat with old capsules that lack canonical).
 
     Returns:
         merged_nodes: List of AggregatedPathNode (one per unique concept).
-        name_to_id: Mapping from normalized name to assigned node_id.
+        name_to_id: Mapping from dedup key to assigned node_id.
     """
-    # Accumulate per-normalized-name: label, statuses, lesson_ids, evidence_count
+    # Accumulate per-key: label, statuses, lesson_ids, evidence_count
     accum: dict[str, dict] = {}
-    # Track first concept_id seen for each name (for deterministic node_id)
-    name_to_first_concept: dict[str, str] = {}
+    # Track first concept_id seen for each key (for deterministic node_id)
+    key_to_first_concept: dict[str, str] = {}
 
     for capsule in capsules:
         lid = capsule.lesson_id
         for idx, concept in enumerate(capsule.content.concepts):
-            name = _normalize_name(concept.name)
-            if not name:
+            key = concept.canonical if concept.canonical else _normalize_name(concept.name)
+            if not key:
                 continue
-            if name not in accum:
-                accum[name] = {
+            if key not in accum:
+                accum[key] = {
                     "label": concept.name,
                     "statuses": [],
                     "lesson_ids": [],
                     "ev_count": 0,
                 }
-            d = accum[name]
+            d = accum[key]
             d["statuses"].append(concept.status)
             if lid not in d["lesson_ids"]:
                 d["lesson_ids"].append(lid)
             d["ev_count"] += len(concept.citations)
 
-            # Remember the first concept_id for this name (deterministic)
-            if name not in name_to_first_concept:
-                name_to_first_concept[name] = f"{lid}:concept:{idx}"
+            # Remember the first concept_id for this key (deterministic)
+            if key not in key_to_first_concept:
+                key_to_first_concept[key] = f"{lid}:concept:{idx}"
 
-    # Build AggregatedPathNode list and name_to_id mapping
+    # Build AggregatedPathNode list and key_to_id mapping
     merged_nodes: list[AggregatedPathNode] = []
-    name_to_id: dict[str, str] = {}
+    key_to_id: dict[str, str] = {}
     node_ids_seen: set[str] = set()
 
-    for name, d in accum.items():
-        first_conc = name_to_first_concept[name]
+    for key, d in accum.items():
+        first_conc = key_to_first_concept[key]
         node_id = f"path:{first_conc}"
         base_id = node_id
         counter = 1
@@ -93,7 +96,7 @@ def _merge_concept_nodes(
             node_id = f"{base_id}__{counter}"
             counter += 1
         node_ids_seen.add(node_id)
-        name_to_id[name] = node_id
+        key_to_id[key] = node_id
 
         status = _most_advanced_status(d["statuses"])
         merged_nodes.append(
@@ -106,7 +109,7 @@ def _merge_concept_nodes(
             )
         )
 
-    return merged_nodes, name_to_id
+    return merged_nodes, key_to_id
 
 
 def load_path_capsules(

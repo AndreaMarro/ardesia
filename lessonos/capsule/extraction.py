@@ -90,10 +90,18 @@ class Citation:
 
 @dataclass(frozen=True)
 class ConceptExtraction:
-    """A concept extracted from a lesson (PLAN §26.1 concepts array)."""
+    """A concept extracted from a lesson (PLAN §26.1 concepts array).
+
+    ``canonical`` (M1-1b) is a short normalised concept name for cross-lesson
+    deduplication, assigned by the LLM at extraction time (e.g. ``'segnale'``
+    for both ``'Definizione di segnale'`` and ``'Il segnale come grandezza
+    fisica'``). When empty (``''``) — e.g. old persisted capsules — the
+    aggregator falls back to the normalised ``name``.
+    """
 
     name: str
     status: str  # ∈ CONCEPT_STATUS
+    canonical: str = ''
     prerequisites: tuple[str, ...] = ()
     citations: tuple[Citation, ...] = ()
 
@@ -101,7 +109,7 @@ class ConceptExtraction:
         if self.status not in CONCEPT_STATUS:
             raise ValueError(
                 f"invalid concept status: {self.status!r} "
-                f"(expected one of {sorted(CONCEPT_STATUS)})"
+                f"(expected one of {sorted(CONCEPT_STATUS)}"
             )
 
 
@@ -160,22 +168,26 @@ def _window(segments, size: int):
 
 
 def build_extraction_prompt(segments) -> str:
-    """Deterministic prompt for content extraction (stable → mock-keyable)."""
+    """Deterministic prompt for content extraction (stable -> mock-keyable)."""
     lines = [
         "Estrai il contenuto della lezione: concetti, esercizi, domande, compiti.",
         'Restituisci JSON con: {"concepts": [...], "exercises": [...], "student_questions": [...], "homework": [...]}.',
         "",
-        "Concepts: [{name, status, prerequisites?, citations}].",
-        f"status ∈ {sorted(CONCEPT_STATUS)}.",
+        "Concepts: [{name, canonical, status, prerequisites?, citations}].",
+        f"status in {sorted(CONCEPT_STATUS)}.",
         "",
         "Exercises: [{prompt, solution?, citations}].",
         "student_questions: [{question, citations}].",
         "homework: [{task, citations}].",
         "",
         "citations: [{seg_id, excerpt, confidence?}].",
-        "OGNI citazione DEVE avere excerpt = testo VERBATIM copiato-incollato dal "
-        "segmento citato (NON parafrasato, NON riassunto): una sottostringa "
-        "letterale del testo del segmento. Senza excerpt verbatim la citazione "
+        "canonical: nome BREVE normalizzato per deduplicazione cross-lezione",
+        "(es. 'segnale' invece di 'definizione di segnale' o",
+        "'il segnale come grandezza fisica'). Stabile tra lezioni: stesso",
+        "concetto con nomi diversi deve avere lo STESSO canonical.",
+        "OGNI citazione DEVE avere excerpt = testo VERBATIM copiato-incollato dal",
+        "segmento citato (NON parafrasato, NON riassunto): una sottostringa",
+        "letterale del testo del segmento. Senza excerpt verbatim la citazione",
         "viene scartata.",
         "Usa SOLO i seg_id elencati; non inventarne.",
         "",
@@ -295,6 +307,7 @@ def extract_lesson_content(
                 ce = ConceptExtraction(
                     name=c["name"],
                     status=c["status"],
+                    canonical=c.get("canonical", ""),
                     prerequisites=tuple(c.get("prerequisites") or []),
                     citations=_parse_citations(c.get("citations")),
                 )
@@ -303,11 +316,12 @@ def extract_lesson_content(
                     raise
                 drop.append(f"concept dropped ({type(exc).__name__}): {exc}")
                 continue
-            key = ce.name.strip().lower()
+            key = ce.canonical if ce.canonical else ce.name.strip().lower()
             if key in concepts_by_name:
                 prev = concepts_by_name[key]
                 concepts_by_name[key] = ConceptExtraction(
                     name=prev.name,
+                    canonical=prev.canonical,
                     status=prev.status,
                     prerequisites=tuple(
                         dict.fromkeys(prev.prerequisites + ce.prerequisites)

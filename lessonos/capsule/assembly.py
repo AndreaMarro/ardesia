@@ -147,6 +147,7 @@ def _deserialise_capsule(raw: str, lesson_id: str) -> LessonCapsule:
             ConceptExtraction(
                 name=c["name"],
                 status=c["status"],
+                canonical=c.get("canonical", ""),
                 prerequisites=tuple(c.get("prerequisites", [])),
                 citations=_cites(c.get("citations")),
             )
