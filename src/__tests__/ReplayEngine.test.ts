@@ -2,14 +2,19 @@
 // MAESTRO-Studio — Test R4-step1: ReplayEngine time-window query
 //
 // getSceneAt(t): stato della scena al tempo t (riavvolgimento deterministico).
-// getActiveElements(t0, t1): elementi creati/modificati nella finestra [t0, t1].
+// getActiveElements(t0, t1): elementi visibili nella finestra [t0, t1].
 // NON tautologici: journal sintetico noto → risultato atteso preciso.
 //
-// Contratto dichiarato per finestra che taglia uno stroke a metà:
-// - Se element.add è prima di t0 MA element.update è dentro [t0, t1]:
-//   l'elemento ERA attivo nella finestra → INCLUDED (con stato a t1).
-// - Elementi cancellati DOPO t1 ma attivi dentro [t0, t1] → inclusi.
-// - Elementi cancellati DENTRO [t0, t1] → esclusi (non esistono a fine finestra).
+// Contratto getActiveElements (non degenere):
+//   Un elemento è "attivo" se esisteva in scena in QUALUNQUE istante di [t0,t1]:
+//     - esisteva già a t0 (anche se cancellato dentro la finestra), OPPURE
+//     - è stato aggiunto/modificato/cancellato in (t0, t1].
+//   Lo stato restituito è a t1 per elementi vivi; ultimo stato noto per
+//   elementi cancellati dentro la finestra.
+// - Elementi cancellati DENTRO [t0, t1] → INCLUSI (erano visibili).
+// - Elementi cancellati DOPO t1 ma attivi nella finestra → inclusi.
+// - Elementi nati PRIMA di t0, senza eventi in finestra, vivi a t1 → inclusi
+//   (esistevano già a t0).
 
 import { describe, it, expect, beforeEach } from "vitest"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "../store/ReplayEngine"
@@ -151,13 +156,18 @@ describe("ReplayEngine — getActiveElements", () => {
     expect(active).toHaveLength(0)
   })
 
-  it("finestra [1050, 1150]: contiene add d1 → attivi r1 (creato prima) e d1 (creato in finestra)", () => {
+  it("finestra [1050, 1150]: r1 esisteva a t0, d1 aggiunto in finestra → entrambi attivi", () => {
     const active = engine.getActiveElements(makeKnownJournal(), 1050, 1150)
-    // r1: add a 1000 (prima), update a 1200 (dopo). Nessun evento nella finestra → non è "attivo" qui
+    // r1: add a 1000 (prima di t0), update a 1200 (dopo t1). Esisteva a t0, vivo a t1 → attivo (visibile in finestra)
     // d1: add a 1100 (dentro finestra) → attivo
-    // Quindi solo d1
-    expect(active).toHaveLength(1)
-    expect(active[0].id).toBe("d1")
+    expect(active).toHaveLength(2)
+    const ids = active.map((e) => e.id).sort()
+    expect(ids).toEqual(["d1", "r1"])
+    // r1: stato a t1=1150 = v1 (update a 1200 non ancora applicato)
+    const r1 = active.find((e) => e.id === "r1")
+    expect(r1).toBeDefined()
+    expect(r1!.x).toBe(0)
+    expect(r1!.version).toBe(1)
   })
 
   it("finestra [900, 1150]: include r1.add + d1.add → r1 e d1 attivi", () => {
@@ -189,6 +199,23 @@ describe("ReplayEngine — getActiveElements", () => {
     expect(active[0].version).toBe(2)
   })
 
+  it("elemento add<t0, update>t1, vivo a t1 → attivo (esisteva a t0)", () => {
+    const journal = deserializeEvents(
+      serializeEvents([
+        { t: 500, type: "element.add", element: makeElement("pre", 1) },
+        { t: 2500, type: "element.update", element: makeElement("pre", 2, { x: 999 }) },
+      ]),
+    )
+    // Finestra [1000, 2000]: add a 500 (prima di t0), update a 2500 (dopo t1).
+    // pre esisteva a t0 ed è vivo a t1 → attivo via aliveAtT0
+    const active = engine.getActiveElements(journal, 1000, 2000)
+    expect(active).toHaveLength(1)
+    expect(active[0].id).toBe("pre")
+    // Stato a t1=2000 = v1 (update a 2500 non ancora applicato)
+    expect(active[0].version).toBe(1)
+    expect(active[0].x).toBe(0)
+  })
+
   it("elemento cancellato DOPO la finestra ma attivo nella finestra → incluso", () => {
     const journal = deserializeEvents(
       serializeEvents([
@@ -203,7 +230,7 @@ describe("ReplayEngine — getActiveElements", () => {
     // Lo stato restituito è quello a fine finestra (t1=1500), quando esisteva ancora
   })
 
-  it("elemento cancellato DENTRO la finestra → escluso (non esiste a t1)", () => {
+  it("elemento cancellato DENTRO la finestra → incluso (era visibile prima della cancellazione)", () => {
     const journal = deserializeEvents(
       serializeEvents([
         { t: 1000, type: "element.add", element: makeElement("flash", 1) },
@@ -211,8 +238,11 @@ describe("ReplayEngine — getActiveElements", () => {
       ]),
     )
     const active = engine.getActiveElements(journal, 900, 1500)
-    // flash è stato aggiunto e cancellato dentro la finestra: a t1 non esiste → escluso
-    expect(active).toHaveLength(0)
+    // flash era visibile da t=1000 a t=1100, dentro [900, 1500] → incluso
+    // Lo stato restituito è l'ultimo noto prima della cancellazione (v1)
+    expect(active).toHaveLength(1)
+    expect(active[0].id).toBe("flash")
+    expect(active[0].version).toBe(1)
   })
 
   it("journal vuoto → array vuoto, nessun crash", () => {
