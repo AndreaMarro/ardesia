@@ -93,4 +93,4 @@ Append-only. 1 riga per modifica.
 
 - **2026-06-11(current+32) — M1-1 Teacher Graph Aggregator**: teacher_id su Path + paths_for_teacher + aggregate_teacher_graph(). SCHEMA v6->v7. 5 test. Demo reale: 4 lezioni Teoria-Segnali->96 concetti unici, 130 edges, 328 evidence. Gate 1457 (+5). project-wiki/teacher-graph.md nuovo.
 
-- **2026-06-11(current+33) — M1-1b Concetti canonical (collante cross-lezione)**: ConceptExtraction.canonical (str=''), prompt extraction chiede canonical, aggregatore deduplica per canonical (fallback normalized name per capsule vecchie). 4 test. Gate 1461 (+4). project-wiki/teacher-graph.md aggiornato (sezione Canonicalizzazione).
+|- **2026-06-11(current+34) — M1-2a TeacherBook builder (ZERO-LLM)**: `build_teacher_book(store, teacher_id)` → `TeacherBook` con 5 sezioni (overview, fundamental, problematic, progression, prerequisites). Nuove entità entities.py. 9 test. Gate 1472 (+11). project-wiki/teacher-book.md nuovo.

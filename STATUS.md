@@ -189,7 +189,31 @@
   - Gate: **1457 passed + 2 skipped** (invariato — +5 da baseline 1452). cost_usd: ~$0 (mock tests, demo su DB esistente).
   - Next: M1-2 (libro/mappa nello stile del docente dal grafo aggregato) — oppure attendere ratifica M1-1 da CLAUDE-SAYS.
 
-- **2026-06-11(current) — M1-1b CANONICALIZZAZIONE CONCETTI (collante cross-lezione, COORD § PROSSIMA TASK).**
+- **2026-06-11(current) — M1-2a TEACHERBOOK: data model + structured builder (ZERO-LLM).**
+  Ipotesi singola: l'AggregatedPathGraph (M1-1 con canonical M1-1b) si puo' strutturare deterministicamente in un TeacherBook organizzato per sezioni tematiche, zero LLM — overview, concetti fondamentali, problematici, progressione, prerequisiti.
+  Risultati:
+  1. **Nuovo modulo** `lessonos/teacher_book.py` (398 righe) — `build_teacher_book(store, teacher_id) → TeacherBook`. Determina:
+     - `total_concepts/lessons/edges/evidence` da `AggregatedPathGraph`
+     - `fundamental_concepts`: sorted by `evidence_count` desc (pedagogical emphasis)
+     - `problematic_concepts`: filtered by `status=='problematic'`
+     - `progression`: per ogni concetto, canonical-matched status cross-lezione (introduced→reinforced)
+     - `prerequisites`: depends_on edges come PrerequisiteChain
+  2. **Nuove entita'** in `lessonos/models/entities.py`: `TeacherConcept`, `ConceptProgression`, `PrerequisiteChain`, `TeacherBook` — tutte frozen dataclass con `__post_init__` per validazione status.
+  3. **Internals**: per-lesson node map bridging, edge counting, canonical resolution from capsule loading, prerequisite chain extraction.
+  4. **9 test** (`tests/test_teacher_book.py`):
+     - Single teacher two lessons (4 canonical concepts merged da 6 nominali) ✓
+     - Teacher not found → ValueError ✓
+     - Empty graph → empty book, no crash ✓
+     - Single lesson no edges ✓
+     - Fundamental ranked by evidence_count ✓
+     - Problematic filtered ✓
+     - Status progression (canonical-matched cross-lezione) ✓
+     - Prerequisite chains from depends_on edges ✓
+     - Multi-path teacher aggregation ✓
+  - **PLAN-CHECK**: fable.sh rate-limit (Claude usage esaurito ~10:50) — proceduto autonomamente, annotato.
+  - **REVIEW**: review.sh rate-limit (stesso usage) — self-review: 0 tautologie, canonical matching fixato durante test (no regressioni).
+  - Gate: **1472 passed + 2 skipped** (+11 da baseline 1461). cost_usd: ~$0 (ZERO-LLM).
+  - Next: M1-2b — markdown renderer per TeacherBook (da TeacherBook struct → markdown documento).
   Ipotesi singola: Opzione A — in extraction l'LLM assegna `canonical` (nome breve normalizzato come 'segnale', 'energia', 'delta di Dirac'); l'aggregatore deduplica per `canonical` invece che per label esatta. Il problema: aggregate_teacher_graph(M1-1) deduplica per nome ESATTO normalizzato — sui 4 capsule reali Teoria-Segnali solo 1/96 concetti RICORRE tra lezioni, perche' i nomi variano ('definizione di segnale' vs 'il segnale come grandezza fisica').
   Risultati:
   1. **ConceptExtraction.canonical** (`lessonos/capsule/extraction.py:98`) — campo opzionale `str = ''`. Prompt LLM aggiornato (`build_extraction_prompt`: schema `{name, canonical, status, prerequisites?, citations}` + istruzioni canonical). Batching merge preserva canonical.
