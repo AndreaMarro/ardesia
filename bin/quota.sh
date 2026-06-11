@@ -6,7 +6,12 @@
 #                                  # in ~/.fable_quota_until (senza orario: now+60min conservativo)
 #   bash bin/quota.sh check        # exit 0 = quota disponibile; exit 1 = quota-out (stampa minuti)
 set -euo pipefail
-F="$HOME/.fable_quota_until"
+# Account-aware (multi-account 11/06): A1 = file legacy, A2 = suffisso .A2.
+ACC="${2:-A1}"
+case "$ACC" in
+  A2) F="$HOME/.fable_quota_until.A2" ;;
+  *)  F="$HOME/.fable_quota_until" ;;
+esac
 case "${1:-}" in
   mark)
     QTXT="$(tail -c 4000 || true)" F="$F" python3 - <<'PY'
@@ -47,7 +52,7 @@ PY
     exit 1
     ;;
   *)
-    echo "uso: quota.sh mark (testo su stdin) | check" >&2
+    echo "uso: quota.sh mark [A1|A2] (testo su stdin) | check [A1|A2]" >&2
     exit 2
     ;;
 esac

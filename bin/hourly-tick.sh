@@ -42,7 +42,7 @@ else
 fi
 # FABLE-CATCHUP (ordine Andrea 11/06 "fable a massima potenza"): quota appena
 # riaperta -> burst fable = strategos audita la finestra quota-out e propone.
-if [ -f "$HOME/.fable_catchup_pending" ] && bash "$HOME/lessonos/bin/quota.sh" check >/dev/null 2>&1; then
+if [ -f "$HOME/.fable_catchup_pending" ] && bash "$HOME/lessonos/bin/acct.sh" pick >/dev/null 2>&1; then
   rm -f "$HOME/.fable_catchup_pending"
   echo "[tick] quota riaperta -> fable-catchup (skill-coach + retro-review + strategos)"
   # SINCRONO sotto lock: skill-coach scrive in skills/ e committa; strategos parte async da dentro.
