@@ -73,6 +73,13 @@ Da `segments` in poi la pipeline è identica per entrambi.
   solo filtro in export).
 - `ingest_bundle` **rifiuta** un `.lesson` che contiene `raw/audio/*` con
   `audioConsent != true` (integrità del bundle).
+- **Erasure per-lezione** (bug-hunt #7): `Store.purge_lesson(lesson_id)` cancella
+  in UNA transazione segments + moments + capsule + nodes + edges + evidence +
+  riga `lessons` + righe `cost_ledger` e rimuove la lezione da ogni
+  `paths.lesson_ids` (idempotente, all-or-nothing). L'erasure COMPLETA (DB +
+  `derived/wiki/<lesson>.md`) è `pipeline.erase_lesson(store, lesson_id,
+  wiki_dir=...)`. `raw/` (file su disco) si cancella a mano o col proprio runner:
+  fuori dal contratto Store.
 
 ## 7. Come si verifica
 

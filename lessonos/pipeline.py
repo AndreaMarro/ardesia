@@ -814,3 +814,27 @@ def run_ingest(
     write_capsule_graph(store, capsule)
 
     return capsule
+
+
+def erase_lesson(
+    store: Store,
+    lesson_id: str,
+    *,
+    wiki_dir: str | Path | None = None,
+) -> int:
+    """GDPR erasure entry point: purge every trace of *lesson_id*.
+
+    Calls ``store.purge_lesson`` (all DB tables, transactional) and, when
+    *wiki_dir* is given, also unlinks the derived summary file
+    ``<wiki_dir>/<lesson_id>.md``. Returns the total number of deleted
+    rows/items (the wiki file counts as 1).
+
+    Idempotent: erasing an already-erased lesson returns 0.
+    """
+    total = store.purge_lesson(lesson_id)
+    if wiki_dir is not None:
+        wiki_file = Path(wiki_dir) / f"{lesson_id}.md"
+        if wiki_file.exists():
+            wiki_file.unlink()
+            total += 1
+    return total

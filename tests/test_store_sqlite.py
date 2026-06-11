@@ -131,3 +131,200 @@ def test_real_fixture_path_round_trips() -> None:
     assert reloaded is not None
     assert reloaded.lesson_ids == tuple(manifest["lessons"])
     store.close()
+
+
+# ── M1-5.1b: purge_lesson / delete_capsule on the REAL SQLiteStore ──────────
+# (retro-review 2026-06-11 CRITICO: the GDPR erasure primitive was never
+#  executed against the real backend — only against hand-written stubs.)
+
+from lessonos.models.entities import (  # noqa: E402
+    GraphEdge,
+    GraphEvidence,
+    GraphNode,
+    Moment,
+    Segment,
+)
+from lessonos.models.ledger import CostLedgerEntry  # noqa: E402
+from lessonos.pipeline import erase_lesson  # noqa: E402
+
+
+def _populate_lesson(store: SQLiteStore, lesson_id: str, path_id: str) -> None:
+    """Write one full set of rows for *lesson_id* across every table."""
+    store.save_lesson(
+        Lesson(lesson_id=lesson_id, path_id=path_id, title=f"T {lesson_id}", order=1)
+    )
+    store.save_segment(
+        Segment(seg_id=f"{lesson_id}#s1", lesson_id=lesson_id, start=0, end=10,
+                text=f"testo di {lesson_id}")
+    )
+    store.save_moment(
+        Moment(moment_id=f"{lesson_id}#m1", lesson_id=lesson_id, t=5, kind="topic")
+    )
+    store.save_capsule(lesson_id, f'{{"lesson_id": "{lesson_id}"}}')
+    store.save_graph_node(
+        lesson_id,
+        GraphNode(node_id=f"{lesson_id}#n1", node_type="concept", ref_id="c1"),
+    )
+    store.save_graph_edge(
+        lesson_id,
+        GraphEdge(edge_id=f"{lesson_id}#e1", source=f"{lesson_id}#n1",
+                  target=f"{lesson_id}#n1", edge_type="explains"),
+    )
+    store.save_evidence(
+        GraphEvidence(evidence_id=f"{lesson_id}#ev1", edge_id=f"{lesson_id}#e1",
+                      seg_id=f"{lesson_id}#s1", excerpt=f"testo di {lesson_id}",
+                      lesson_id=lesson_id)
+    )
+    store.save_ledger_entry(
+        CostLedgerEntry(entry_id=f"cl:{lesson_id}", lesson_id=lesson_id,
+                        model="mock-1", provider="mock", prompt_tokens=0,
+                        completion_tokens=0, cost_usd=0.0, label="extraction")
+    )
+
+
+def _assert_no_trace(store: SQLiteStore, lesson_id: str) -> None:
+    assert store.get_lesson(lesson_id) is None
+    assert store.segments_for_lesson(lesson_id) == ()
+    assert store.get_segment(f"{lesson_id}#s1") is None
+    assert store.moments_for_lesson(lesson_id) == ()
+    assert store.get_capsule(lesson_id) is None
+    assert store.get_graph_nodes_for_lesson(lesson_id) == ()
+    assert store.get_graph_edges_for_lesson(lesson_id) == ()
+    assert store.get_all_evidence_for_lesson(lesson_id) == ()
+    assert store.get_ledger_for_lesson(lesson_id) == ()
+
+
+def test_purge_lesson_erases_every_db_trace_and_spares_others() -> None:
+    """GDPR contract: after purge no read path serves l1; l2 fully intact."""
+    store = SQLiteStore()
+    store.save_path(Path(path_id="p1", title="P", subject="s",
+                         lesson_ids=("l1", "l2")))
+    _populate_lesson(store, "l1", "p1")
+    _populate_lesson(store, "l2", "p1")
+
+    deleted = store.purge_lesson("l1")
+    # 1 segment + 1 moment + 1 evidence + 1 edge + 1 node + 1 ledger
+    # + 1 lessons row + 1 capsule + 1 path update = 9
+    assert deleted == 9
+
+    _assert_no_trace(store, "l1")
+    # The path no longer references l1 — but keeps l2.
+    p = store.get_path("p1")
+    assert p is not None and p.lesson_ids == ("l2",)
+
+    # l2 is untouched, table by table.
+    assert store.get_lesson("l2") is not None
+    assert len(store.segments_for_lesson("l2")) == 1
+    assert len(store.moments_for_lesson("l2")) == 1
+    assert store.get_capsule("l2") is not None
+    assert len(store.get_graph_nodes_for_lesson("l2")) == 1
+    assert len(store.get_graph_edges_for_lesson("l2")) == 1
+    assert len(store.get_all_evidence_for_lesson("l2")) == 1
+    assert len(store.get_ledger_for_lesson("l2")) == 1
+    store.close()
+
+
+def test_purge_lesson_idempotent_second_purge_returns_zero() -> None:
+    store = SQLiteStore()
+    store.save_path(Path(path_id="p1", title="P", subject="s", lesson_ids=("l1",)))
+    _populate_lesson(store, "l1", "p1")
+    assert store.purge_lesson("l1") > 0
+    assert store.purge_lesson("l1") == 0
+    assert store.purge_lesson("never_existed") == 0
+    store.close()
+
+
+def test_purge_lesson_rolls_back_atomically_on_midway_failure() -> None:
+    """If any step fails, NO partial deletion may survive (all-or-nothing)."""
+    store = SQLiteStore()
+    store.save_path(Path(path_id="p1", title="P", subject="s", lesson_ids=("l1",)))
+    _populate_lesson(store, "l1", "p1")
+
+    boom = RuntimeError("disk exploded")
+
+    def _failing_delete_capsule(lesson_id: str) -> bool:
+        raise boom
+
+    store.delete_capsule = _failing_delete_capsule  # type: ignore[method-assign]
+    with pytest.raises(RuntimeError):
+        store.purge_lesson("l1")
+
+    # Rollback: every row deleted before the failure must be back.
+    assert store.get_lesson("l1") is not None
+    assert len(store.segments_for_lesson("l1")) == 1
+    assert len(store.moments_for_lesson("l1")) == 1
+    assert store.get_capsule("l1") is not None
+    assert len(store.get_graph_nodes_for_lesson("l1")) == 1
+    assert len(store.get_all_evidence_for_lesson("l1")) == 1
+    assert len(store.get_ledger_for_lesson("l1")) == 1
+    p = store.get_path("p1")
+    assert p is not None and p.lesson_ids == ("l1",)
+
+    # The store is usable afterwards: restore and purge for real.
+    del store.delete_capsule  # type: ignore[misc]
+    assert store.purge_lesson("l1") == 9
+    _assert_no_trace(store, "l1")
+    store.close()
+
+
+def test_purge_lesson_keeps_path_level_ledger_entries() -> None:
+    """Ledger rows with lesson_id=None (path-level calls) must survive."""
+    store = SQLiteStore()
+    _populate_lesson(store, "l1", "p1")
+    store.save_ledger_entry(
+        CostLedgerEntry(entry_id="cl:path", lesson_id=None, model="mock-1",
+                        provider="mock", prompt_tokens=0, completion_tokens=0,
+                        cost_usd=0.0, label="path-level")
+    )
+    store.purge_lesson("l1")
+    remaining = store.get_ledger_entries()
+    assert [e.entry_id for e in remaining] == ["cl:path"]
+    store.close()
+
+
+def test_delete_capsule_real_store_idempotent() -> None:
+    store = SQLiteStore()
+    store.save_capsule("l1", '{"lesson_id": "l1"}')
+    assert store.delete_capsule("l1") is True
+    assert store.get_capsule("l1") is None
+    assert store.delete_capsule("l1") is False
+    store.close()
+
+
+def test_purge_lesson_persists_across_reopen(tmp_path: FsPath) -> None:
+    """The purge is durable: a fresh connection sees no trace."""
+    db = str(tmp_path / "purge.db")
+    s1 = SQLiteStore(db)
+    s1.save_path(Path(path_id="p1", title="P", subject="s", lesson_ids=("l1",)))
+    _populate_lesson(s1, "l1", "p1")
+    s1.purge_lesson("l1")
+    s1.close()
+
+    s2 = SQLiteStore(db)
+    _assert_no_trace(s2, "l1")
+    p = s2.get_path("p1")
+    assert p is not None and p.lesson_ids == ()
+    s2.close()
+
+
+def test_erase_lesson_removes_wiki_file_and_spares_others(tmp_path: FsPath) -> None:
+    """pipeline.erase_lesson = store purge + derived/wiki/<lesson>.md unlink."""
+    store = SQLiteStore()
+    store.save_path(Path(path_id="p1", title="P", subject="s",
+                         lesson_ids=("l1", "l2")))
+    _populate_lesson(store, "l1", "p1")
+    _populate_lesson(store, "l2", "p1")
+    wiki = tmp_path / "wiki"
+    wiki.mkdir()
+    (wiki / "l1.md").write_text("# riepilogo l1")
+    (wiki / "l2.md").write_text("# riepilogo l2")
+
+    deleted = erase_lesson(store, "l1", wiki_dir=wiki)
+    assert deleted == 10  # 9 DB items + 1 wiki file
+    assert not (wiki / "l1.md").exists()
+    assert (wiki / "l2.md").exists()
+    _assert_no_trace(store, "l1")
+
+    # Idempotent including the missing wiki file.
+    assert erase_lesson(store, "l1", wiki_dir=wiki) == 0
+    store.close()

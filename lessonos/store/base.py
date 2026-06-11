@@ -86,11 +86,17 @@ class Store(ABC):
 
     @abstractmethod
     def purge_lesson(self, lesson_id: str) -> int:
-        """Fully erase every trace of *lesson_id* from the store.
+        """Fully erase every DB trace of *lesson_id* from the store.
 
-        Deletes segments, moments, capsule, graph nodes, graph edges, and
-        evidence in a single transaction (all-or-nothing). Returns the total
-        number of rows/items deleted.
+        Deletes segments, moments, capsule, graph nodes, graph edges,
+        evidence, cost-ledger rows, the lesson row itself, and removes the
+        lesson from every path's ``lesson_ids`` — in a single transaction
+        (all-or-nothing). Returns the total number of rows/items deleted.
+
+        This is the GDPR erasure primitive for the DB (Mode A): after it
+        returns, no store read can serve data for *lesson_id*. Filesystem
+        artifacts (``derived/wiki/<lesson>.md``) are NOT the store's job —
+        callers wanting full erasure use ``pipeline.erase_lesson``.
 
         Idempotent: a second purge on the same lesson returns 0.
         """

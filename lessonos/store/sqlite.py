@@ -353,11 +353,25 @@ class SQLiteStore(Store):
         return cur.rowcount > 0
 
     def purge_lesson(self, lesson_id: str) -> int:
-        """Fully erase every trace of *lesson_id* in a single transaction."""
+        """Erase every DB trace of *lesson_id* in a single transaction.
+
+        Covers segments, moments, evidence, edges, nodes, cost_ledger rows,
+        the ``lessons`` row, the capsule, and removes the lesson from every
+        ``paths.lesson_ids``. Filesystem artifacts (``derived/wiki``) are
+        outside the store contract — see ``pipeline.erase_lesson``.
+        """
         self.begin_transaction()
         total = 0
         try:
-            for table in ("segments", "moments", "evidence", "edges", "nodes"):
+            for table in (
+                "segments",
+                "moments",
+                "evidence",
+                "edges",
+                "nodes",
+                "cost_ledger",
+                "lessons",
+            ):
                 cur = self._conn.execute(
                     f"DELETE FROM {table} WHERE lesson_id = ?", (lesson_id,)
                 )
@@ -365,6 +379,18 @@ class SQLiteStore(Store):
             # Capsule is keyed on lesson_id, not lesson_id column
             if self.delete_capsule(lesson_id):
                 total += 1
+            rows = self._conn.execute(
+                "SELECT path_id, lesson_ids FROM paths"
+            ).fetchall()
+            for row in rows:
+                ids = json.loads(row["lesson_ids"])
+                if lesson_id in ids:
+                    remaining = [lid for lid in ids if lid != lesson_id]
+                    self._conn.execute(
+                        "UPDATE paths SET lesson_ids = ? WHERE path_id = ?",
+                        (json.dumps(remaining), row["path_id"]),
+                    )
+                    total += 1
             self.commit_transaction()
         except BaseException:
             self.rollback_transaction()
