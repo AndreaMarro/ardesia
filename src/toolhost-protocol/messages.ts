@@ -115,18 +115,21 @@ export const StorageDeleteResultSchema = z.strictObject({})
 export const StorageListParamsSchema = z.strictObject({ prefix: z.string().max(256).optional() })
 export const StorageListResultSchema = z.strictObject({ keys: z.array(z.string()) })
 
-// ---- Registro metodi tool→host: method → capability richiesta + schema params ----
-// Deny-by-default: un metodo fuori da questo registro NON esiste.
+// ---- Registro metodi tool→host: method → capability richiesta + schemi ----
+// Deny-by-default: un metodo fuori da questo registro NON esiste. In v0 il wire
+// copre SOLO board.* e storage.* (pin T1); llm/graph/net/ui restano capability
+// dichiarabili a manifest ma senza metodi raggiungibili finché T2/T3 non li aggiunge.
 export interface MethodSpec {
   cap: CapabilityName
   params: z.ZodType
+  result: z.ZodType
 }
 
 export const TOOL_METHODS: Record<string, MethodSpec> = {
-  "board.read": { cap: "board.read", params: BoardReadParamsSchema },
-  "board.write": { cap: "board.write", params: BoardWriteParamsSchema },
-  "storage.get": { cap: "storage", params: StorageGetParamsSchema },
-  "storage.set": { cap: "storage", params: StorageSetParamsSchema },
-  "storage.delete": { cap: "storage", params: StorageDeleteParamsSchema },
-  "storage.list": { cap: "storage", params: StorageListParamsSchema },
+  "board.read": { cap: "board.read", params: BoardReadParamsSchema, result: BoardReadResultSchema },
+  "board.write": { cap: "board.write", params: BoardWriteParamsSchema, result: BoardWriteResultSchema },
+  "storage.get": { cap: "storage", params: StorageGetParamsSchema, result: StorageGetResultSchema },
+  "storage.set": { cap: "storage", params: StorageSetParamsSchema, result: StorageSetResultSchema },
+  "storage.delete": { cap: "storage", params: StorageDeleteParamsSchema, result: StorageDeleteResultSchema },
+  "storage.list": { cap: "storage", params: StorageListParamsSchema, result: StorageListResultSchema },
 }
