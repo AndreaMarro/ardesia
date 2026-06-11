@@ -21,13 +21,17 @@ from lessonos.store.base import Store
 
 # Negation guard shared by tier 2 & 3
 def _negation_preserved(original: str, repaired: str) -> bool:
-    """Return False if a negation token from *original* is absent in *repaired*."""
-    orig_lower = original.lower()
-    repaired_lower = repaired.lower()
-    for token in _NEGATION_TOKENS:
-        if token in orig_lower and token not in repaired_lower:
-            return False
-    return True
+    """Return False if a negation WORD from *original* is absent in *repaired*.
+
+    Word-boundary tokenisation, not substring match (retro-review MAJOR):
+    substring matching let "nonostante" satisfy a required "non" (semantic
+    inversion passes the guard) and made "no" ⊂ "sono"/"nota" reject nearly
+    every Italian repair (recall collapse).
+    """
+    orig_words = set(re.findall(r"\w+", original.lower()))
+    repaired_words = set(re.findall(r"\w+", repaired.lower()))
+    missing = (_NEGATION_TOKENS & orig_words) - repaired_words
+    return not missing
 
 # Italian negation tokens — stripping any would flip the meaning of the claim
 _NEGATION_TOKENS: frozenset[str] = frozenset({
@@ -62,16 +66,6 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
     # Tier 1 — verbatim substring
     if excerpt in segment_text:
         return excerpt
-
-    # Negation guard shared by tier 2 & 3
-    def _negation_preserved(original: str, repaired: str) -> bool:
-        """Return False if a negation token from *original* is absent in *repaired*."""
-        orig_lower = original.lower()
-        repaired_lower = repaired.lower()
-        for token in _NEGATION_TOKENS:
-            if token in orig_lower and token not in repaired_lower:
-                return False
-        return True
 
     # Tier 2 — longest common substring
     matcher = SequenceMatcher(None, excerpt, segment_text)

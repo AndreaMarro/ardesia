@@ -6,7 +6,7 @@ import json
 
 import pytest
 
-from lessonos.capsule.extraction import _repair_excerpt
+from lessonos.capsule.extraction import _negation_preserved, _repair_excerpt
 from lessonos.models.entities import Segment
 
 
@@ -544,3 +544,59 @@ class TestRepairExcerptAdversarial:
 
         assert is_verified_excerpt(None) is False
         assert is_verified_excerpt("") is False
+
+
+class TestNegationGuardWordBoundary:
+    """Retro-review MAJOR (M1-5.3b): the negation guard must tokenise to
+    words. Substring matching had two failure modes:
+    (a) bypass — "non" ⊂ "nonostante" satisfied the guard with the actual
+        negation stripped (semantic inversion passes);
+    (b) over-rejection — "no" ⊂ "sono"/"nota" made the guard fire on nearly
+        every Italian excerpt, collapsing tier-2/3 repair recall.
+    """
+
+    def test_nonostante_does_not_satisfy_required_non(self):
+        """Bypass closed: 'nonostante' in the repair is NOT the word 'non'."""
+        assert _negation_preserved(
+            "non è lineare", "nonostante sia lineare"
+        ) is False
+
+    def test_no_inside_sono_does_not_trigger_guard(self):
+        """Over-rejection fixed: 'no' ⊂ 'sono' is not a negation word."""
+        assert _negation_preserved(
+            "i valori sono finiti", "valori finiti"
+        ) is True
+
+    def test_real_negation_word_preserved_passes(self):
+        assert _negation_preserved(
+            "non converge", "la serie non converge mai"
+        ) is True
+
+    def test_real_negation_word_dropped_rejects(self):
+        assert _negation_preserved(
+            "non converge", "la serie converge"
+        ) is False
+
+    def test_tier2_rejects_candidate_whose_non_is_only_nonostante(self):
+        """E2E: LCS repair drops 'non' but keeps 'nonostante' → reject.
+
+        excerpt 'non è continua nonostante tutto' vs segment 'la funzione è
+        continua nonostante tutto': tier 2 finds ' è continua nonostante
+        tutto' — the negation 'non' is gone, but the substring guard was
+        satisfied by 'nonostante'. The word guard must return None.
+        """
+        result = _repair_excerpt(
+            "non è continua nonostante tutto",
+            "la funzione è continua nonostante tutto",
+        )
+        assert result is None
+
+    def test_tier2_repair_recall_restored_for_sono(self):
+        """E2E: excerpt with 'sono' (substring 'no') repairs fine when the
+        candidate carries no negation — the old guard rejected this."""
+        result = _repair_excerpt(
+            "i valori sono limitati e finiti",
+            "tutti i valori limitati e finiti qui",
+        )
+        assert result is not None
+        assert "limitati e finiti" in result
