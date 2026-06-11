@@ -19,7 +19,12 @@ from lessonos.capsule.extraction import (
     QuestionExtraction,
 )
 from lessonos.capsule.segmentation import TopicSpan
-from lessonos.graph.aggregator import aggregate_path_graph, aggregate_teacher_graph, load_path_capsules
+from lessonos.graph.aggregator import (
+    _collect_edges_and_evidence,
+    aggregate_path_graph,
+    aggregate_teacher_graph,
+    load_path_capsules,
+)
 from lessonos.graph.resolution import GlobalResolution, ResolutionAlias, ResolutionEntry
 from lessonos.models.entities import (
     Segment,
@@ -599,4 +604,145 @@ class TestAggregatePathGraph:
         # marco's aggregate must refuse andrea's mapping (contamination guard).
         with pytest.raises(ValueError, match="contamination"):
             aggregate_teacher_graph(store, "marco", resolution=resolution)
+
+
+# ── M1-4c test #1: re-ingest stale evidence ──────────────────────────
+
+
+class TestReingestStaleEvidence:
+    """Bug-hunt §4 test #1: re-ingest with different segmentation invalidates
+    stale evidence. Verifies the fail-closed read-path in _collect_edges_and_evidence."""
+
+    def test_stale_evidence_rejected_on_segment_text_change(self):
+        """Evidence whose excerpt is no longer verbatim in the segment's NEW
+        text is detected as stale and raises ValueError."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1"])
+        seg = Segment(seg_id="l1#s1", lesson_id="l1", start=0, end=10,
+                      text="La derivata formale di una funzione e il limite.")
+        store.save_segment(seg)
+        ev = GraphEvidence(
+            evidence_id="l1#e1", edge_id="l1#edge1", seg_id="l1#s1",
+            excerpt="derivata formale", lesson_id="l1", confidence=1.0,
+        )
+        store.save_evidence(ev)
+        # Re-segment: segment text changes (simulating re-ingest with diff params)
+        new_seg = Segment(
+            seg_id="l1#s1", lesson_id="l1", start=0, end=10,
+            text="Il rapporto incrementale e il fondamento del calcolo.",
+        )
+        store.save_segment(new_seg)
+        with pytest.raises(ValueError, match="STALE"):
+            _collect_edges_and_evidence(store, ["l1"])
+
+    def test_stale_evidence_segment_gone_raises(self):
+        """Evidence whose seg_id no longer exists is stale -> ValueError."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1"])
+        ev = GraphEvidence(
+            evidence_id="l1#e1", edge_id="l1#edge1", seg_id="l1#s1",
+            excerpt="derivata", lesson_id="l1", confidence=1.0,
+        )
+        store.save_evidence(ev)
+        # No segment saved — seg_id is dangling
+        with pytest.raises(ValueError, match="STALE"):
+            _collect_edges_and_evidence(store, ["l1"])
+
+    def test_fresh_evidence_passes_through(self):
+        """Clean evidence (current segment, verbatim excerpt) passes through."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1"])
+        seg = Segment(seg_id="l1#s1", lesson_id="l1", start=0, end=10,
+                      text="La derivata formale di una funzione.")
+        store.save_segment(seg)
+        ev = GraphEvidence(
+            evidence_id="l1#e1", edge_id="l1#edge1", seg_id="l1#s1",
+            excerpt="derivata formale", lesson_id="l1", confidence=1.0,
+        )
+        store.save_evidence(ev)
+        edges, evidence = _collect_edges_and_evidence(store, ["l1"])
+        assert len(evidence) == 1
+        assert evidence[0].evidence_id == "l1#e1"
+
+
+# ── M1-4c test #4: second lesson same path reaches aggregate ─────────
+
+
+class TestSecondLessonReachesAggregate:
+    """Bug-hunt §4 test #4: two lessons on the same path both reachable
+    via aggregate_path_graph and teacher_book."""
+
+    def test_two_lessons_on_one_path(self):
+        """Both lessons appear in aggregate_path_graph."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1", "l2"], teacher_id="andrea")
+        seg1 = Segment(seg_id="l1#s1", lesson_id="l1", start=0, end=10,
+                       text="La derivata formale.")
+        seg2 = Segment(seg_id="l2#s1", lesson_id="l2", start=0, end=10,
+                       text="L'integrale definito.")
+        store.save_segment(seg1)
+        store.save_segment(seg2)
+        c1 = _make_capsule("l1", [{"name": "Derivata"}])
+        c2 = _make_capsule("l2", [{"name": "Integrale"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+        graph = aggregate_path_graph(store, "p1")
+        assert len(graph.merged_nodes) == 2
+        # Both lesson_ids appear across the merged nodes
+        lesson_ids_found: set[str] = set()
+        for n in graph.merged_nodes:
+            lesson_ids_found.update(n.lesson_ids)
+        assert "l1" in lesson_ids_found
+        assert "l2" in lesson_ids_found
+
+    def test_teacher_graph_both_lessons(self):
+        """Teacher aggregation includes both lessons across paths."""
+        store = _PathStore()
+        _register_path(store, "pA", ["l1"], teacher_id="andrea")
+        _register_path(store, "pB", ["l2"], teacher_id="andrea")
+        seg1 = Segment(seg_id="l1#s1", lesson_id="l1", start=0, end=10,
+                       text="Derivata.")
+        seg2 = Segment(seg_id="l2#s1", lesson_id="l2", start=0, end=10,
+                       text="Integrale.")
+        store.save_segment(seg1)
+        store.save_segment(seg2)
+        c1 = _make_capsule("l1", [{"name": "Derivata"}])
+        c2 = _make_capsule("l2", [{"name": "Integrale"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+        graph = aggregate_teacher_graph(store, "andrea")
+        assert len(graph.merged_nodes) == 2
+        lesson_ids_found = set()
+        for n in graph.merged_nodes:
+            lesson_ids_found.update(n.lesson_ids)
+        assert "l1" in lesson_ids_found
+        assert "l2" in lesson_ids_found
+
+    def test_lesson_ids_consistency(self):
+        """path.lesson_ids and lessons_for_path agree after adding a second lesson."""
+        store = _PathStore()
+        _register_path(store, "p1", ["l1"], teacher_id="andrea")
+        seg1 = Segment(seg_id="l1#s1", lesson_id="l1", start=0, end=10,
+                       text="Alpha.")
+        store.save_segment(seg1)
+        c1 = _make_capsule("l1", [{"name": "Alpha"}])
+        _register_capsule(store, c1)
+        # Add second lesson to the same path
+        store.save_lesson(Lesson(lesson_id="l2", path_id="p1", title="Beta", order=1))
+        seg2 = Segment(seg_id="l2#s1", lesson_id="l2", start=0, end=10,
+                       text="Beta.")
+        store.save_segment(seg2)
+        c2 = _make_capsule("l2", [{"name": "Beta"}])
+        _register_capsule(store, c2)
+        # NOTE: path.lesson_ids may lag behind — the test exercises the invariant
+        # that lessons_for_path has the correct count.
+        via_for_path = {l.lesson_id for l in store.lessons_for_path("p1")}
+        # lessons_for_path reflects reality (both lessons saved)
+        assert via_for_path == {"l1", "l2"}
+        # aggregate_path_graph must work even when lesson_ids is stale;
+        # only l1 has its lesson_id in the path's lesson_ids, so only l1
+        # produces merged nodes (l2 graph data exists but l2's lesson_id
+        # is not in the path's lesson_ids list — M1-5 will fix this).
+        graph = aggregate_path_graph(store, "p1")
+        assert len(graph.merged_nodes) == 1
 

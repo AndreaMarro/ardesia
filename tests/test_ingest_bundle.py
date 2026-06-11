@@ -292,3 +292,93 @@ class TestIngestBundle:
         router.register(MockProvider({}))
         with pytest.raises(ValueError, match="no whiteboard text"):
             ingest_bundle(p, store, L, router=router, provider="mock")
+
+
+# ── M1-4c test #3: re-export fewer elements ───────────────────────────
+
+
+class TestReexportFewerElements:
+    """Bug-hunt §4 test #3: re-ingest a bundle with FEWER whiteboard text
+    elements — old segments MUST be purged before re-ingest, and the
+    new capsule must not cite v1-only text.
+
+    Relies on the bug-hunt #6 fix: ``ingest_bundle`` calls
+    ``delete_segments_for_lesson`` before re-saving segments.
+    """
+
+    def test_same_store_ingest_fewer_segments(self, tmp_path) -> None:
+        """Re-ingest in the SAME store: old segments purged, new count=7."""
+        def _write_bundle(texts: tuple[str, ...]) -> str:
+            evs = "\n".join(
+                json.dumps({"t": 1000 + i, "type": "element.add",
+                            "element": {"id": f"t{i}", "type": "text",
+                                        "text": t, "version": 1}})
+                for i, t in enumerate(texts)
+            )
+            return _write_lesson(tmp_path, evs, session="audioConsent: false\n")
+
+        # Run 1: 10 elements → generate proper prompts
+        v1_texts = tuple(f"V1 element {i}" for i in range(10))
+        p1 = _write_bundle(v1_texts)
+        segs1 = journal_to_segments(_events(
+            *[{"t": 1000 + i, "type": "element.add",
+               "element": {"id": f"t{i}", "type": "text",
+                           "text": t, "version": 1}}
+              for i, t in enumerate(v1_texts)]
+        ), L)
+        tmp1 = SQLiteStore(":memory:")
+        for s in segs1:
+            tmp1.save_segment(s)
+        seg_key1 = build_segmentation_prompt(tmp1.segments_for_lesson(L))
+        ext_key1 = build_extraction_prompt(tmp1.segments_for_lesson(L))
+        seg_json1 = json.dumps([
+            {"topic": "t", "seg_ids": [f"{L}#s{i}" for i in range(1, 11)]},
+        ])
+        ext_json1 = json.dumps({
+            "concepts": [
+                {"name": "X", "status": "introduced",
+                 "citations": [{"seg_id": f"{L}#s1", "excerpt": v1_texts[0]}]},
+            ],
+            "exercises": [], "student_questions": [], "homework": [],
+        })
+        router1 = Router()
+        router1.register(MockProvider({seg_key1: seg_json1, ext_key1: ext_json1}))
+        store = SQLiteStore(":memory:")
+        ingest_bundle(p1, store, L, router=router1, provider="mock")
+        assert len(store.segments_for_lesson(L)) == 10
+
+        # Run 2: 7 elements, SAME store
+        v2_texts = tuple(f"V2 element {i}" for i in range(7))
+        p2 = _write_bundle(v2_texts)
+        segs2 = journal_to_segments(_events(
+            *[{"t": 1000 + i, "type": "element.add",
+               "element": {"id": f"t{i}", "type": "text",
+                           "text": t, "version": 1}}
+              for i, t in enumerate(v2_texts)]
+        ), L)
+        tmp2 = SQLiteStore(":memory:")
+        for s in segs2:
+            tmp2.save_segment(s)
+        seg_key2 = build_segmentation_prompt(tmp2.segments_for_lesson(L))
+        ext_key2 = build_extraction_prompt(tmp2.segments_for_lesson(L))
+        seg_json2 = json.dumps([
+            {"topic": "t", "seg_ids": [f"{L}#s{i}" for i in range(1, 8)]},
+        ])
+        ext_json2 = json.dumps({
+            "concepts": [
+                {"name": "Y", "status": "introduced",
+                 "citations": [{"seg_id": f"{L}#s1", "excerpt": v2_texts[0]}]},
+            ],
+            "exercises": [], "student_questions": [], "homework": [],
+        })
+        router2 = Router()
+        router2.register(MockProvider({seg_key2: seg_json2, ext_key2: ext_json2}))
+
+        segments, capsule = ingest_bundle(
+            p2, store, L, router=router2, provider="mock")
+
+        assert len(segments) == 7
+        assert len(store.segments_for_lesson(L)) == 7
+        store.close()
+        tmp1.close()
+        tmp2.close()

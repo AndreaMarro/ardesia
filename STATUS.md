@@ -317,3 +317,16 @@
   - **REVIEW**: review.sh rate-limit Claude Code (extra usage out) — self-review senza compiacenza: 0 tautologie, 0 regressioni, zero nuove dipendenze, gate non modificato.
   - Gate: **1553 passed + 2 skipped** (+33 da baseline 1520). cost_usd: ~$0 (mock tests).
   - Next: Fase F — LIVE run dispense per prof_pratico/socratico/rigoroso (sim) + andrea (reale). verify_dispensa PASS su tutte e 4. Diff stilistico 10 righe in STATUS.
+
+- **2026-06-11(current) — M1-4c [GRIND]: 5 test obbligati bug-hunt report §4 (gate 1580/0, +17).**
+  Ipotesi singola: i 5 test di robustezza identificati dal bug-hunt (docs/audits/BUGHUNT-2026-06-11.md §4) vanno scritti per cementare i 4 SUBITO fix mergiati dal supervisore (gate-before-save, purge in ingest_bundle, tier-3 floor, fail-closed read-path aggregator).
+  Risultati:
+  1. **Test #1 — re-ingest stale evidence** (test_graph_aggregator.py, 3 test): `_collect_edges_and_evidence` con segment text cambiato → ValueError (STALE); seg_id inesistente → ValueError; fresh passa.
+  2. **Test #2 — gate-before-save capsule** (test_capsule_assembly.py, 3 test): `assemble_lesson_capsule` con citation excerpt=None → ValueError (gate fail) + `get_capsule(None)` verifica; segments preservati; zero citations → ValueError.
+  3. **Test #3 — bundle re-export fewer** (test_ingest_bundle.py, 1 test): 10 elementi → re-ingest con 7 → `segments_for_lesson==7` (purge funziona).
+  4. **Test #4 — second lesson aggregate** (test_graph_aggregator.py, 3 test): 2 lezioni stesso path → entrambe in aggregate_path_graph e teacher_graph; lessons_for_path consistent.
+  5. **Test #5 — repair adversarial** (test_excerpt_repair.py, 7 test): negazione stripping documentato (M1-5 deferred); allucinato+articolo → None; article+verbatim passa; word-boundary defense-in-depth; repaired=True in is_verified_excerpt; None/empty → False.
+  - **PLAN-CHECK**: fable.sh timeout (rate-limit) — proceduto per dottrina, annotato.
+  - **REVIEW**: fable-5 (4 fix veri: docstring onesta word-boundary, import inutilizzato rimosso, assert deterministico, dead code rimosso). Tutti applicati.
+  - Gate: **1580 passed + 2 skipped** (+17 da baseline 1563). cost_usd: ~$0 (mock).
+  - Next: M1-5 [FABLE] — purge_lesson transazionale, aggregazione da lessons_for_path, negation-aware repair, consolidamento pipeline.run_ingest. Oppure attendere pin CLAUDE-SAYS.

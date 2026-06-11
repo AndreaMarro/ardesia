@@ -426,3 +426,123 @@ class TestRepairExcerptEdge:
         # Split-based matching: individual words still match
         assert result is not None
         assert result in "La derivata di una funzione è"
+
+
+# ── M1-4c test #5: repair adversarial ──────────────────────────────────
+
+
+class TestRepairExcerptAdversarial:
+    """Bug-hunt §4 test #5: adversarial cases for _repair_excerpt.
+
+    Covers bug-hunt #3 (tier-3 floor: totally hallucinated excerpt with
+    article word → None) and the known-limitation on #4 (negation
+    stripping — semantic repair deferred to M1-5).
+    """
+
+    # ── bug-hunt #4: negation awareness (KNOWN LIMITATION, deferred to M1-5) ──
+
+    def test_negation_stripping_known_limitation(self):
+        """Negation-aware repair is NOT yet implemented (M1-5).
+
+        'non è continua' vs 'la funzione non è continua in zero' is
+        VERBATIM (tier 1 wins) so it passes through unmodified. This
+        test documents the known limitation — the negation-semantic
+        guard will be added in M1-5 (#4 part b).
+
+        The test asserts CURRENT behavior so any future change is
+        deliberate.
+        """
+        result = _repair_excerpt(
+            "non è continua",
+            "la funzione non è continua in zero",
+        )
+        # Tier 1: verbatim match → returned as-is
+        assert result == "non è continua"
+
+    def test_negation_stripping_lcs_known_limitation(self):
+        """LCS-based repair strips negation (known limitation).
+
+        If the excerpt is 'non è continua in zero' but the segment is
+        'la funzione è continua in zero, è derivabile', the LCS finds
+        ' è continua in zero' — stripping the negation. This is the
+        bug-hunt #4 pattern.
+
+        Current behavior: LCS wins, returns negated-free span.
+        This test documents the limitation; M1-5 will add the guard.
+        """
+        result = _repair_excerpt(
+            "non è continua in zero",
+            "la funzione è continua in zero, è derivabile",
+        )
+        # Tier 2: LCS finds ' è continua in zero' — negation stripped
+        assert result is not None
+        assert "non" not in result
+        assert "continua in zero" in result
+
+    # ── bug-hunt #3: tier-3 floor ──────────────────────────────────────
+
+    def test_hallucinated_excerpt_with_article_returns_none(self):
+        """Tier-3 floor rejects excerpt reduced to 1-2 short words.
+
+        'la trasformata di Fourier' vs 'il calcolo delle derivate':
+        - Tier 1/2 fail (no common substring beyond 'la' vs 'il' + 'di')
+        - Tier 3 word-by-word: 'la' not verbatim, 'trasformata' not in seg,
+          so best_end=0 → None.
+        The bug-hunt #3 fix prevents an allucinated excerpt from being
+        reduced to a single short word and counted VERIFIED.
+        """
+        result = _repair_excerpt(
+            "la trasformata di Fourier",
+            "il calcolo delle derivate",
+        )
+        assert result is None
+
+    def test_article_first_word_plus_verbatim_rest_passes(self):
+        """Tier-3 floor still allows genuine matches even when first
+        word is an article (common in Italian)."""
+        result = _repair_excerpt(
+            "la derivata di una funzione",
+            "La derivata di una funzione misura la pendenza",
+        )
+        assert result is not None
+        assert "derivata di una funzione" in result
+
+    def test_word_boundary_guard(self):
+        """Bug-hunt #3 word-boundary guard (defense-in-depth with floor).
+
+        ``_repair_excerpt('abc la', 'della funzione')``:
+        - Tier 1: 'abc la' NOT in 'della funzione' → fails
+        - Tier 2: LCS 'la' (2 chars) < threshold max(8, 6*0.4)=8 → fails
+        - Tier 3: first-prefix 'abc' not in seg → best_end=0, None returned.
+          The word-boundary guard (regex ``(?<!\\w)``) is defense-in-depth
+          alongside the length floor (``len < 6``). The fix that matters
+          is the combined floor+boundary; neither alone is sufficient.
+        """
+        result = _repair_excerpt(
+            "abc la",
+            "della funzione",
+        )
+        assert result is None
+
+    # ── repaired flag vs is_verified_excerpt ───────────────────────────
+
+    def test_repaired_excerpt_verified_by_is_verified(self):
+        """``is_verified_excerpt`` returns True for repaired excerpts
+        (current behavior — the function does not check the repair flag).
+
+        This documents the policy: a repaired excerpt that passes the
+        floor and produces a genuine segment substring IS counted as
+        verified. The repair flag is metadata for the renderer to
+        disclose, not a gate criterion.
+        """
+        from lessonos.graph.grounding import is_verified_excerpt
+
+        assert is_verified_excerpt("derivata") is True
+        assert is_verified_excerpt("non è continua") is True
+
+    def test_none_excerpt_not_verified(self):
+        """``is_verified_excerpt`` returns False for None/empty excerpts."""
+        from lessonos.graph.grounding import is_verified_excerpt
+
+        assert is_verified_excerpt(None) is False
+        assert is_verified_excerpt("") is False

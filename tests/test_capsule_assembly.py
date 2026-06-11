@@ -312,3 +312,96 @@ def test_capsule_is_frozen() -> None:
     )
     with pytest.raises(Exception):  # FrozenInstanceError
         capsule.lesson_id = "l2"  # type: ignore
+
+
+# ── M1-4c test #2: crash-midway capsule not persisted ────────────────
+
+
+class TestGateBeforeSave:
+    """Bug-hunt §4 test #2: pipeline crash midway (gate fails) leaves
+    consistent state — capsule NOT persisted, store unchanged."""
+
+    def test_unverified_capsule_not_saved_on_gate_fail(self):
+        """When the grounding threshold fails, the capsule is NOT persisted
+        (gate-before-save invariant — bug-hunt #2 fix)."""
+        store = SQLiteStore()
+        segs = ingest_lesson_segments(store, L1)
+        seg_prompt = build_segmentation_prompt(store.segments_for_lesson(L1))
+        ext_prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+
+        # Valid segmentation
+        seg_payload = [{"topic": "ok", "seg_ids": [s.seg_id for s in segs]}]
+        # Extraction with ALL citations having excerpt=None — grounding fails
+        ext_payload = {
+            "concepts": [
+                {
+                    "name": "ghost",
+                    "status": "introduced",
+                    "citations": [{"seg_id": segs[0].seg_id}],  # no excerpt
+                }
+            ],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }
+        router = _router_for_both(seg_prompt, seg_payload, ext_prompt, ext_payload)
+
+        with pytest.raises(ValueError, match="unverified|grounding|threshold"):
+            assemble_lesson_capsule(store, L1, router, save=True)
+
+        # The capsule MUST NOT be persisted (gate before save — bug-hunt #2)
+        assert store.get_capsule(L1) is None
+        store.close()
+
+    def test_segments_preserved_on_capsule_gate_fail(self):
+        """Segments survive even when capsule gate fails."""
+        store = SQLiteStore()
+        segs = ingest_lesson_segments(store, L1)
+        seg_prompt = build_segmentation_prompt(store.segments_for_lesson(L1))
+        ext_prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+
+        seg_payload = [{"topic": "ok", "seg_ids": [s.seg_id for s in segs]}]
+        ext_payload = {
+            "concepts": [
+                {
+                    "name": "ghost",
+                    "status": "introduced",
+                    "citations": [{"seg_id": segs[0].seg_id}],
+                }
+            ],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }
+        router = _router_for_both(seg_prompt, seg_payload, ext_prompt, ext_payload)
+
+        with pytest.raises(ValueError):
+            assemble_lesson_capsule(store, L1, router, save=True)
+
+        # Segments must survive the failed capsule attempt
+        remaining = store.segments_for_lesson(L1)
+        assert len(remaining) == len(segs)
+        store.close()
+
+    def test_empty_citations_all_None_raises(self):
+        """Zero citations (all None/unverified) raises — fail-closed gate."""
+        store = SQLiteStore()
+        segs = ingest_lesson_segments(store, L1)
+        seg_prompt = build_segmentation_prompt(store.segments_for_lesson(L1))
+        ext_prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+
+        seg_payload = [{"topic": "ok", "seg_ids": [s.seg_id for s in segs]}]
+        # No concepts, exercises, questions, homework at all — zero citations
+        ext_payload = {
+            "concepts": [],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }
+        router = _router_for_both(seg_prompt, seg_payload, ext_prompt, ext_payload)
+
+        with pytest.raises(ValueError, match="zero citations"):
+            assemble_lesson_capsule(store, L1, router, save=True)
+
+        assert store.get_capsule(L1) is None
+        store.close()
