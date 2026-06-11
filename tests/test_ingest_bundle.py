@@ -67,6 +67,18 @@ class TestParseSessionYaml:
     def test_empty(self) -> None:
         assert parse_session_yaml("") == {}
 
+    def test_duplicate_consent_last_wins_gdpr(self) -> None:
+        """Chiave duplicata → vince l'ULTIMA (YAML + GDPR): consenso revocato
+        DOPO non deve essere mascherato da un `true` precedente."""
+        d = parse_session_yaml("audioConsent: true\naudioStartEpoch: 100\naudioConsent: false\n")
+        assert d["audioConsent"] is False  # mai True
+        d2 = parse_session_yaml("audioConsent: false\naudioConsent: true\n")
+        assert d2["audioConsent"] is True
+
+    def test_duplicate_epoch_last_wins(self) -> None:
+        d = parse_session_yaml("audioStartEpoch: 100\naudioStartEpoch: 200\n")
+        assert d["audioStartEpoch"] == 200
+
 
 # ── ZipSlip guard ─────────────────────────────────────────────────────
 

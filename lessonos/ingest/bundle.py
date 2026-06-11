@@ -68,13 +68,17 @@ def parse_session_yaml(text: str) -> dict:
 
     Reads the two GDPR-relevant keys; unknown keys are ignored.
     """
+    # LAST-WINS su chiave duplicata (deepreview: era first-match). Semantica
+    # YAML + GDPR-critica: un bundle con `audioConsent: true` seguito da
+    # `audioConsent: false` (revoca registrata dopo) DEVE leggere `false`, mai
+    # `true` — altrimenti audio revocato verrebbe processato.
     data: dict = {}
-    m = re.search(r"^audioConsent:\s*(true|false)\s*$", text, re.M)
-    if m:
-        data["audioConsent"] = m.group(1) == "true"
-    m = re.search(r"^audioStartEpoch:\s*(\d+)\s*$", text, re.M)
-    if m:
-        data["audioStartEpoch"] = int(m.group(1))
+    consents = re.findall(r"^audioConsent:\s*(true|false)\s*$", text, re.M)
+    if consents:
+        data["audioConsent"] = consents[-1] == "true"
+    epochs = re.findall(r"^audioStartEpoch:\s*(\d+)\s*$", text, re.M)
+    if epochs:
+        data["audioStartEpoch"] = int(epochs[-1])
     return data
 
 
