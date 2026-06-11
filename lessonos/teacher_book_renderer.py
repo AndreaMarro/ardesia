@@ -207,6 +207,248 @@ def render_teacher_book(book: TeacherBook) -> str:
     return "\n".join(lines)
 
 
+_STYLE_LABELS: dict[str, str] = {
+    "pratico": "**Practical / Example-Driven** — prioritises real-world examples, "
+    "high evidence density per concept, extensive prerequisite chains.",
+    "socratico": "**Socratic / Question-Driven** — builds deep dependency "
+    "structures, high prerequisite count, moderate evidence per concept.",
+    "rigoroso": "**Rigorous / Formal** — balanced structure, moderate evidence "
+    "density, clear prerequisite chains, formal concept organisation.",
+}
+
+
+def _compute_evidence_density(book: TeacherBook) -> float:
+    """Compute evidence per concept ratio (pedagogical density)."""
+    if book.total_concepts == 0:
+        return 0.0
+    return round(book.total_evidence / book.total_concepts, 2)
+
+
+def _compute_prerequisite_depth(book: TeacherBook) -> float:
+    """Compute average prerequisites per chain (dependency depth)."""
+    if not book.prerequisites:
+        return 0.0
+    depths = [len(c.prerequisites) for c in book.prerequisites]
+    return round(sum(depths) / len(depths), 2)
+
+
+def render_qualitative_diff(
+    books: dict[str, TeacherBook],
+    focus_ids: tuple[str, ...] = ("prof_pratico", "prof_socratico", "prof_rigoroso"),
+) -> str:
+    """Render a qualitative diff between 3 opposite teaching styles.
+
+    Compares pedagogical structure, evidence density, prerequisite
+    complexity, and fundamental concept emphasis across the selected
+    teachers. ZERO-LLM, fully grounded.
+
+    Args:
+        books: Mapping of ``teacher_id → TeacherBook``.
+        focus_ids: Three teacher IDs to compare (default: opposite styles).
+
+    Returns:
+        Markdown document with per-style characterisation, comparison
+        tables, and qualitative takeaways.
+    """
+    lines: list[str] = []
+    short_names: list[str] = [t.replace("prof_", "") for t in focus_ids]
+
+    # --- Title ---
+    lines.append("# Qualitative Style Diff")
+    lines.append("")
+    lines.append(
+        "Comparative analysis of pedagogical structure across "
+        f"**{short_names[0]}**, **{short_names[1]}**, and **{short_names[2]}** "
+        "— three opposite teaching styles. "
+    )
+    lines.append("")
+    lines.append(
+        "Metrics are computed from the aggregated graph structure "
+        "(ZERO-LLM, fully grounded). All citations preserved with provenance."
+    )
+    lines.append("")
+
+    # --- Per-style characterisation ---
+    lines.append("## Per-Style Characterisation")
+    lines.append("")
+    for tid in focus_ids:
+        book = books.get(tid)
+        if book is None:
+            continue
+        label = tid.replace("prof_", "")
+        char = _STYLE_LABELS.get(label, f"**{label}** — (no predefined characterisation).")
+        lines.append(f"### {char}")
+        lines.append("")
+        lines.append(
+            f"- **{book.total_concepts}** concepts, **{book.total_edges}** edges, "
+            f"**{book.total_evidence}** evidence, "
+            f"**{len(book.prerequisites)}** prerequisite chains."
+        )
+        density = _compute_evidence_density(book)
+        depth = _compute_prerequisite_depth(book)
+        lines.append(f"- Evidence density: **{density}** evidence/concept.")
+        lines.append(f"- Prerequisite depth: **{depth}** prerequisites/chain (avg).")
+        # Top-3 fundamental concepts
+        if book.fundamental_concepts:
+            top3 = [tc.name for tc in book.fundamental_concepts[:3]]
+            lines.append(
+                f"- Emphasises: {', '.join(f'`{c}`' for c in top3)}"
+            )
+        if book.problematic_concepts:
+            lines.append(
+                f"- Features **{len(book.problematic_concepts)}** problematic "
+                f"concept(s) — students systematically struggle here."
+            )
+        lines.append("")
+
+    # --- Comparative metrics table (3-column) ---
+    lines.append("## Comparative Metrics")
+    lines.append("")
+    lines.append("| Metric | " + " | ".join(f"**{s}**" for s in short_names) + " |")
+    lines.append("| --- | " + " | ".join("---" for _ in short_names) + " |")
+
+    metrics: list[tuple[str, list[str]]] = [
+        ("Concepts", []),
+        ("Edges", []),
+        ("Evidence", []),
+        ("Evidence/Concept", []),
+        ("Prerequisite Chains", []),
+        ("Prereqs/Chain (avg)", []),
+        ("Problematic", []),
+    ]
+    for tid in focus_ids:
+        book = books.get(tid)
+        if book is None:
+            for row in metrics:
+                row[1].append("—")
+            continue
+        metrics[0][1].append(str(book.total_concepts))
+        metrics[1][1].append(str(book.total_edges))
+        metrics[2][1].append(str(book.total_evidence))
+        metrics[3][1].append(str(_compute_evidence_density(book)))
+        metrics[4][1].append(str(len(book.prerequisites)))
+        metrics[5][1].append(str(_compute_prerequisite_depth(book)))
+        metrics[6][1].append(str(len(book.problematic_concepts)))
+
+    for label, vals in metrics:
+        lines.append("| " + label + " | " + " | ".join(vals) + " |")
+    lines.append("")
+
+    # --- Fundamental concepts comparison ---
+    lines.append("## Fundamental Concepts Comparison")
+    lines.append("")
+    lines.append(
+        "How each style ranks its most emphasised concepts "
+        "(by evidence count / citations)."
+    )
+    lines.append("")
+    for tid in focus_ids:
+        book = books.get(tid)
+        if book is None:
+            continue
+        label = tid.replace("prof_", "")
+        lines.append(f"### {label}")
+        lines.append("")
+        if book.fundamental_concepts:
+            for i, tc in enumerate(book.fundamental_concepts[:5], 1):
+                lines.append(
+                    f"{i}. **{tc.name}** — {tc.evidence_count} evidence, "
+                    f"{tc.edge_count} edges (status: _{tc.status}_)"
+                )
+        else:
+            lines.append("_(no fundamental concepts)_")
+        lines.append("")
+
+    # --- Prerequisite analysis ---
+    lines.append("## Prerequisite Structure")
+    lines.append("")
+    lines.append(
+        "How each style builds conceptual dependencies — breadth vs depth."
+    )
+    lines.append("")
+    for tid in focus_ids:
+        book = books.get(tid)
+        if book is None:
+            continue
+        label = tid.replace("prof_", "")
+        lines.append(f"### {label}")
+        lines.append("")
+        if book.prerequisites:
+            lines.append(
+                f"- **{len(book.prerequisites)}** prerequisite chains, "
+                f"avg depth **{_compute_prerequisite_depth(book)}**."
+            )
+            # Show the deepest chain
+            deepest = sorted(
+                book.prerequisites,
+                key=lambda c: len(c.prerequisites),
+                reverse=True,
+            )[0]
+            prereqs = ", ".join(f"`{p}`" for p in deepest.prerequisites)
+            lines.append(f"- Deepest chain: `{deepest.concept}` requires {prereqs}")
+        else:
+            lines.append(
+                "_(no prerequisite chains — concepts introduced "
+                "independently)_"
+            )
+        lines.append("")
+
+    # --- Qualitative takeaway ---
+    lines.append("## Qualitative Takeaway")
+    lines.append("")
+    takeaways: dict[str, str] = {
+        "pratico": (
+            "The practical style emphasises evidence density "
+            "(**{density}** evidence/concept). This teacher provides "
+            "many examples and applications per concept, building "
+            "understanding through concrete cases rather than formal "
+            "definitions. High prerequisite count (**{prereqs_chain}** chains) "
+            "suggests structured dependency scaffolding."
+        ),
+        "socratico": (
+            "The Socratic style builds deep prerequisite structures "
+            "(**{prereqs_chain}** chains, avg depth **{depth}**). "
+            "Evidence density is moderate (**{density}** evidence/concept) — "
+            "the emphasis is on connecting concepts through dependency "
+            "chains and guided questioning rather than exhaustive examples."
+        ),
+        "rigoroso": (
+            "The rigorous style balances formal structure with moderate "
+            "evidence density (**{density}** evidence/concept, "
+            "**{prereqs_chain}** prerequisite chains). "
+            "Concepts are organised cleanly with clear dependency "
+            "relationships. This style is suitable for courses where "
+            "mathematical precision and formal definitions are paramount."
+        ),
+    }
+    for tid in focus_ids:
+        book = books.get(tid)
+        if book is None:
+            continue
+        label = tid.replace("prof_", "")
+        t = takeaways.get(label)
+        if t is None:
+            continue
+        lines.append(
+            t.format(
+                density=_compute_evidence_density(book),
+                prereqs_chain=len(book.prerequisites),
+                depth=_compute_prerequisite_depth(book),
+            )
+        )
+        lines.append("")
+
+    # --- Footer ---
+    lines.append("---")
+    lines.append("")
+    lines.append(
+        "_Generated by LessonOS — ZERO-LLM, fully grounded. "
+        f"Compared {len(focus_ids)} teachers._"
+    )
+
+    return "\n".join(lines)
+
+
 def render_comparative_report(
     books: dict[str, TeacherBook],
 ) -> str:

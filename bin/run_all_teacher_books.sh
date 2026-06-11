@@ -25,6 +25,7 @@ import os, json
 from lessonos.store.sqlite import SQLiteStore
 from lessonos.teacher_book import build_teacher_book
 from lessonos.teacher_book_renderer import (
+    render_qualitative_diff,
     render_teacher_book,
     render_comparative_report,
 )
@@ -56,5 +57,13 @@ report = render_comparative_report(books)
 with open(report_path, 'w') as f:
     f.write(report)
 print(f'Written: {report_path} ({len(report)} bytes)')
-print('DONE -- all 10 teacher books + report generated.')
+
+# Qualitative diff between 3 opposite styles
+diff_path = os.path.join(out_dir, 'QUALITATIVE-DIFF.md')
+diff = render_qualitative_diff(books)
+with open(diff_path, 'w') as f:
+    f.write(diff)
+print(f'Written: {diff_path} ({len(diff)} bytes)')
+
+print('DONE -- all 10 teacher books + report + qualitative diff generated.')
 PYEOF

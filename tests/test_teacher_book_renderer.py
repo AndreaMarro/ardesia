@@ -11,6 +11,7 @@ from lessonos.models.entities import (
 )
 from lessonos.teacher_book_renderer import (
     render_comparative_report,
+    render_qualitative_diff,
     render_teacher_book,
 )
 
@@ -370,4 +371,140 @@ class TestRenderComparativeReport:
         }
         md1 = render_comparative_report(books)
         md2 = render_comparative_report(books)
+        assert md1 == md2
+
+
+class TestRenderQualitativeDiff:
+    """Tests for ``render_qualitative_diff``."""
+
+    def test_basic_structure(self) -> None:
+        """Diff has all expected sections."""
+        books = {
+            "prof_pratico": TeacherBook(
+                teacher_id="prof_pratico",
+                total_concepts=14,
+                total_lessons=1,
+                total_edges=24,
+                total_evidence=93,
+                fundamental_concepts=(
+                    _make_concept("Caduta dei gravi", 5),
+                    _make_concept("Spostamento vs distanza", 4),
+                    _make_concept("Tempo di reazione", 3),
+                ),
+                problematic_concepts=(),
+                progression=(),
+                prerequisites=(
+                    PrerequisiteChain(
+                        concept="Acceleration",
+                        canonical="acceleration",
+                        prerequisites=("Velocity",),
+                        lesson_ids=("l1",),
+                    ),
+                ),
+            ),
+            "prof_socratico": TeacherBook(
+                teacher_id="prof_socratico",
+                total_concepts=12,
+                total_lessons=1,
+                total_edges=17,
+                total_evidence=45,
+                fundamental_concepts=(
+                    _make_concept("Questions", 3),
+                    _make_concept("Dialectic", 2),
+                ),
+                problematic_concepts=(),
+                progression=(),
+                prerequisites=(
+                    PrerequisiteChain(
+                        concept="Logic",
+                        canonical="logic",
+                        prerequisites=("Premise", "Conclusion"),
+                        lesson_ids=("l1",),
+                    ),
+                    PrerequisiteChain(
+                        concept="Induction",
+                        canonical="induction",
+                        prerequisites=("Observation",),
+                        lesson_ids=("l1",),
+                    ),
+                ),
+            ),
+            "prof_rigoroso": TeacherBook(
+                teacher_id="prof_rigoroso",
+                total_concepts=14,
+                total_lessons=1,
+                total_edges=18,
+                total_evidence=37,
+                fundamental_concepts=(
+                    _make_concept("Theorem", 4),
+                    _make_concept("Proof", 3),
+                ),
+                problematic_concepts=(
+                    _make_concept("Hard Proof", 1, status="problematic"),
+                ),
+                progression=(),
+                prerequisites=(
+                    PrerequisiteChain(
+                        concept="Proof",
+                        canonical="proof",
+                        prerequisites=("Axiom", "Definition"),
+                        lesson_ids=("l1",),
+                    ),
+                ),
+            ),
+        }
+        md = render_qualitative_diff(books)
+        assert md.startswith("# Qualitative Style Diff")
+        assert "## Per-Style Characterisation" in md
+        assert "## Comparative Metrics" in md
+        assert "## Fundamental Concepts Comparison" in md
+        assert "## Prerequisite Structure" in md
+        assert "## Qualitative Takeaway" in md
+        assert "ZERO-LLM, fully grounded" in md
+
+    def test_empty_books_no_crash(self) -> None:
+        """Empty or missing books don't crash."""
+        md = render_qualitative_diff({})
+        assert md.startswith("# Qualitative Style Diff")
+        assert "0 teachers" in md or "Compared 3 teachers" in md
+
+    def test_deterministic(self) -> None:
+        """Same input produces same output."""
+        books = {
+            "prof_pratico": TeacherBook(
+                teacher_id="prof_pratico",
+                total_concepts=10,
+                total_lessons=1,
+                total_edges=10,
+                total_evidence=10,
+                fundamental_concepts=(_make_concept("A", 2),),
+                problematic_concepts=(),
+                progression=(),
+                prerequisites=(),
+            ),
+            "prof_socratico": TeacherBook(
+                teacher_id="prof_socratico",
+                total_concepts=10,
+                total_lessons=1,
+                total_edges=10,
+                total_evidence=10,
+                fundamental_concepts=(_make_concept("B", 1),),
+                problematic_concepts=(),
+                progression=(),
+                prerequisites=(),
+            ),
+            "prof_rigoroso": TeacherBook(
+                teacher_id="prof_rigoroso",
+                total_concepts=10,
+                total_lessons=1,
+                total_edges=10,
+                total_evidence=10,
+                fundamental_concepts=(_make_concept("C", 1),),
+                problematic_concepts=(),
+                progression=(),
+                prerequisites=(),
+            ),
+        }
+        md1 = render_qualitative_diff(books)
+        md2 = render_qualitative_diff(books)
         assert md1 == md2
