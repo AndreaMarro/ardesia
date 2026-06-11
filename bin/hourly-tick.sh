@@ -34,3 +34,4 @@ fi
 ~/lessonos/bin/hourly-digest.sh >> ~/lessonos/hourly.log 2>&1 || true
 # HERMES-2 (red-team kimi, idempotente per commit): rivede l'ultimo commit KEPT del repo del tick. Mai bloccante.
 ~/lessonos/bin/adversarial.sh "$repo" >> ~/lessonos/hourly.log 2>&1 || true
+~/maestro-tools/evolution-collector.sh >> ~/lessonos/hourly.log 2>&1 || true
