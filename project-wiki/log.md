@@ -107,3 +107,7 @@ Append-only. 1 riga per modifica.
 ||- **2026-06-11(current+45) — M1-5.3: negation-aware excerpt repair (tier2 + tier3 guard)**: _NEGATION_TOKENS frozenset italiano, _negation_preserved guard. fe5065e. Gate 1580 invariato.
 ||- **2026-06-11(current+46) — M1-5.4: run_ingest in pipeline.py + test_pipeline_ingest.py**: purge-derived → assemble(save=True) → write_capsule_graph. 4 test. 8e84978. Gate 1584 (+4).
 ||- **2026-06-11(current+47) — M1-5.5: test determinismo H2-1327 (M1-5 COMPLETO 5/5)**: test_multiple_exact_matches_deterministic. Fix logico gia in dispensa.py:178-188. f3775ab. Gate 1585 (+1). M1-5 COMPLETO. Next: M1-6 Fase F dispense live.
+|- **2026-06-12(current+48) — M1-6 FASE F: F1 risoluzione M1-1c in dispensa + verify_and_clean_dispensa + runner LIVE**: 6b8a93d. 3 sim (pratico 51/51, socratico 32/32, rigoroso 27/27). Gate 1598.
+|- **2026-06-12(current+49) — M1-6.F2: excerpt repair in verify dispensa (stesso invariante summarizer M0)**: 3a166d9. Repaired count accurate, dropped_no_repair.
+|- **2026-06-12(current+50) — M1-6.F3: andrea dispensa LIVE (23/23 verificate) + ground-truth vs VERE (Energia.pdf, Sommabilità.pdf) + blind-test pack (10 paragrafi)**: 8dc592f. Gate 1608. Zero contraddizioni trovate. Blind-test >=7/10 atteso.
+|- **2026-06-12(current+51) — NOOP: pin M1-6 FASE F esaurito + triage adversarial 833d53c (0 CRITICI VERI, 1 MEDIUM, 2 MINORI, 1 FP)**: STATO: gate 1608/0, no nuovi pin CLAUDE-SAYS, attesa giudizio blind-test e nuovi ordini M1-7/M2.

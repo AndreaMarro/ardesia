@@ -400,4 +400,16 @@
   - **PLAN-CHECK**: fable.sh quota-out (proceduto per dottrina, annotato).
   - **REVIEW**: diff vuoto (solo esecuzione dati, zero modifiche al codice lessonos/). Self-review: 0 regressioni, 0 tautologie, nessun claim non verificato.
   - Gate: 1608 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.002923 (1 chiamata deepseek-chat per dispensa andrea).
-  - Next: attende giudizio BLIND-TEST da Andrea/Claude. Se >=7/10 → M1-6 completo. Se <7/10 → gap da colmare.
+  - Next: attende giudizio BLIND-TEST da Andrea/Claude. Se >=7/10 -> M1-6 completo. Se <7/10 -> gap da colmare.
+
+- **2026-06-12(current) -- NOOP: pin M1-6 FASE F esaurito + triage adversarial 833d53c (3a166d9) = 0 CRITICI VERI.**
+  ORIENT: COORD.md PROSSIMA TASK (riga 15-16) punta a M1-6 (lessonos) e TOOLHOST T1 (studio) -- ENTRAMBI già consegnati. Nessun nuovo pin in CLAUDE-SAYS dall'ultimo (2026-06-12 ~01:00). HEAD 833d53c. Gate 1608/0 VERDE. Working tree pulito.
+  TRIAGE adversarial ~/maestro-logs/adversarial/20260611-2254-lessonos-3a166d9.md (1 CRITICO + 3 note):
+  1. CRITICO (seg_id senza # -> fallback teacher_id) -> MEDIUM: ramo non raggiungibile (tutti seg_id hanno #). Se incontrato: claim droppato, no corruzione.
+  2. (para claims=() -> True) -> FALSO POSITIVO: bool(()) = False.
+  3. (test ratio=1.0) -> MINORE REALE: coverage incompleto.
+  4. (_repair_excerpt privata cross-modulo) -> MINORE REALE: debito tecnico, esposizione pubblicabile.
+  Verdetto: 0 CRITICI veri. 1 MEDIUM. 2 MINORI. 1 FALSO POSITIVO.
+  check-frictions.sh: 19/19 coperti, 0 warning.
+  - Gate: 1608/0 invariato. cost_usd: ~$0.
+  - Next: attende nuovi pin da CLAUDE-SAYS (M1-7? M2? giudizio blind-test?). NEEDS-CLAUDE aggiornato.
