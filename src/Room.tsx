@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type CSSProperties, type ChangeEvent } from "react"
+import { useState, useRef, useEffect, type ChangeEvent } from "react"
 import { Excalidraw, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import MathComposer from "./MathComposer"
@@ -284,49 +284,54 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
-      <header
-        style={{
-          display: "flex", alignItems: "center", gap: 10, padding: "8px 12px",
-          background: "#111", color: "#fff", fontFamily: "-apple-system,system-ui,sans-serif", fontSize: 14,
-        }}
-      >
-        <strong style={{ letterSpacing: 0.3 }}>Studio</strong>
-        <span style={{ opacity: 0.6 }}>·</span>
-        <span style={{ opacity: 0.8 }}>stanza {room}</span>
-        {loading && <span style={{ color: "#888", fontSize: 12 }}>caricamento…</span>}
-        {saved && <span style={{ color: "#5fd38a", fontSize: 12 }}>✓ salvato</span>}
-        {quota && (
-          <span
-            style={{ color: quota.usedBytes / quota.quotaBytes > 0.8 ? "#ffb347" : "#888", fontSize: 12 }}
-            title="Spazio cache localStorage usato (la fonte di verità è la cartella workspace)"
+      <header className="st-bar">
+        <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
+          <span className="st-word">maestro</span>
+          <span className="st-bdot" aria-hidden />
+          <span className="st-sub">studio</span>
+        </div>
+        <span className="st-room" title="Stanza condivisa: chi apre il tuo link entra qui">{room}</span>
+
+        <div className="st-status">
+          {loading && <span className="st-quiet">caricamento…</span>}
+          {!loading && saved && (
+            <span className="st-savewrap"><span className="st-led" aria-hidden />salvato</span>
+          )}
+          {quota && (
+            <span
+              className="st-cache"
+              title={`Cache locale ${(quota.usedBytes / 1048576).toFixed(1)}/${Math.round(quota.quotaBytes / 1048576)} MB — la fonte di verità è la cartella workspace`}
+            >
+              <span className="st-cachebar" data-warn={quota.usedBytes / quota.quotaBytes > 0.8 || undefined}>
+                <span style={{ width: `${Math.min(100, (quota.usedBytes / quota.quotaBytes) * 100)}%` }} />
+              </span>
+            </span>
+          )}
+          {storageError && <span className="st-err" title={storageError}>⚠ {storageError}</span>}
+        </div>
+
+        <div className="st-actions">
+          <button onClick={copyLink} className="st-ghost">{copied ? "✓ copiato" : "invita studente"}</button>
+          <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
+          <button onClick={() => fileInputRef.current?.click()} className="st-ghost">media</button>
+          <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
+          {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
+          <button
+            onClick={toggleAudio}
+            className={audioOn ? (audioRecording ? "st-ghost st-rec" : "st-ghost st-on") : "st-ghost"}
+            title="Registra SOLO il microfono del docente. Default spento."
           >
-            cache {(quota.usedBytes / 1048576).toFixed(1)}/{Math.round(quota.quotaBytes / 1048576)} MB
-          </span>
-        )}
-        {storageError && (
-          <span
-            style={{ color: "#ff6b6b", fontSize: 12, maxWidth: 300, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-            title={storageError}
-          >
-            ⚠ {storageError}
-          </span>
-        )}
-        <button onClick={copyLink} style={btn}>{copied ? "✓ copiato" : "copia link studente"}</button>
-        <button onClick={() => setMathOn(v => !v)} style={{ ...btn, background: mathOn ? "#1763ff" : "#333" }}>∑ formula</button>
-        <button onClick={() => fileInputRef.current?.click()} style={btn}>carica img/PDF</button>
-        <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
-        {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
-        <button onClick={toggleAudio} style={{ ...btn, background: audioOn ? (audioRecording ? "#e74c3c" : "#1763ff") : "#333" }}>
-          {audioOn ? (audioRecording ? "🔴 registra" : "⏹ audio") : "🎤 audio"}
-        </button>
-        {/* Export .lesson: scarica lo ZIP con raw/ immutabile */}
-        <button onClick={handleExportLesson} disabled={exporting} style={{ ...btn, background: exporting ? "#555" : "#333" }}>
-          {exporting ? "⏳ export…" : "📦 export .lesson"}
-        </button>
-        {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
-        <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} style={{ ...btn, marginLeft: "auto", background: "#1763ff" }}>
-          apri Meet
-        </button>
+            {audioOn ? (audioRecording ? <><span className="st-recdot" aria-hidden />registrando</> : "audio attivo") : "audio"}
+          </button>
+          {/* Export .lesson: scarica lo ZIP con raw/ immutabile */}
+          <button onClick={handleExportLesson} disabled={exporting} className="st-primary">
+            {exporting ? "esporto…" : "esporta lezione"}
+          </button>
+          {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
+          <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} className="st-ghost st-meet">
+            Meet<span className="st-ext" aria-hidden>↗</span>
+          </button>
+        </div>
       </header>
 
       <div style={{ flex: 1, position: "relative" }}>
@@ -357,7 +362,3 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   )
 }
 
-const btn: CSSProperties = {
-  border: 0, background: "#333", color: "#fff", padding: "6px 12px",
-  borderRadius: 8, fontSize: 13, cursor: "pointer",
-}

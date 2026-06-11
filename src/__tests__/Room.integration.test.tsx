@@ -368,8 +368,13 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 1000, interval: 10 })
 
-    // Bottone audio presente con label OFF
-    expect(document.body.textContent).toContain("🎤 audio")
+    // Bottone audio presente con label OFF (shell v1: testo "audio", MAI
+    // "audio attivo"/"registrando" — default GDPR spento)
+    const audioBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "audio")
+    expect(audioBtn).toBeDefined()
+    expect(document.body.textContent).not.toContain("audio attivo")
+    expect(document.body.textContent).not.toContain("registrando")
 
     root.unmount()
   })
@@ -396,15 +401,15 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 1000, interval: 10 })
 
-    // Trova il bottone audio e cliccalo
+    // Trova il bottone audio e cliccalo (shell v1: label esatta "audio")
     const allButtons = document.querySelectorAll("button")
-    const audioBtn = Array.from(allButtons).find((b) => b.textContent?.includes("🎤"))
+    const audioBtn = Array.from(allButtons).find((b) => b.textContent?.trim() === "audio")
     expect(audioBtn).toBeDefined()
     audioBtn!.click()
 
-    // In jsdom MediaRecorder non esiste → start() fallisce → button torna a 🎤 audio
+    // In jsdom MediaRecorder non esiste → start() fallisce → button torna a "audio" (OFF)
     await vi.waitFor(() => {
-      expect(audioBtn!.textContent).toBe("🎤 audio")
+      expect(audioBtn!.textContent?.trim()).toBe("audio")
     }, { timeout: 500, interval: 10 })
 
     // Verifica che getUserMedia sia stato chiamato
@@ -428,8 +433,13 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
+    // Shell v1: la quota è una micro-barra .st-cachebar; i numeri REALI da
+    // storageUsage stanno nel title (verifica che il dato fluisca, non l'estetica)
     await vi.waitFor(() => {
-      expect(document.body.textContent).toContain("cache 4.2/5 MB")
+      const cache = document.querySelector(".st-cache")
+      expect(cache).not.toBeNull()
+      expect(cache!.getAttribute("title")).toContain("4.2/5 MB")
+      expect(document.querySelector(".st-cachebar > span")).not.toBeNull()
     }, { timeout: 1000, interval: 10 })
 
     root.unmount()
