@@ -15,7 +15,7 @@ existing aggregator test suite (same conventions).
 """
 
 from lessonos.graph.aggregator import aggregate_teacher_graph, aggregate_path_graph
-from lessonos.models.entities import GraphEdge, GraphEvidence
+from lessonos.models.entities import GraphEdge, GraphEvidence, Segment
 
 from tests.test_graph_aggregator import _PathStore, _register_path
 
@@ -50,6 +50,11 @@ def test_teacher_no_capsules_but_edges_and_evidence_not_lost():
     )
     store.save_graph_edge("a1", edge)
     store.save_evidence(evidence)
+    # Fixture onesta (bug-hunt #1b): il segmento citato esiste e contiene l'excerpt.
+    store.save_segment(Segment(
+        seg_id="a1#s1", lesson_id="a1", start=0, end=1,
+        text=(evidence.excerpt or "supporto") + " — nel contesto della lezione.",
+    ))
 
     result = aggregate_teacher_graph(store, "andrea")
 
@@ -89,6 +94,11 @@ def test_path_no_capsules_but_edges_and_evidence_not_lost():
     )
     store.save_graph_edge("a1", edge)
     store.save_evidence(evidence)
+    # Fixture onesta (bug-hunt #1b): il segmento citato esiste e contiene l'excerpt.
+    store.save_segment(Segment(
+        seg_id="a1#s1", lesson_id="a1", start=0, end=1,
+        text=(evidence.excerpt or "supporto") + " — nel contesto della lezione.",
+    ))
 
     result = aggregate_path_graph(store, "path_a")
 

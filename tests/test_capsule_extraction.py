@@ -485,10 +485,12 @@ def test_excerpt_repair_functions_independently() -> None:
     assert result is not None  # 'la derivata f'(x)' or 'derivata f'(x)' is in text
     assert result in text
 
-    # Tier 3: word-by-word (partial overlap, tier 2 fails due to case mismatch)
+    # Tier 3 (bug-hunt #3): 'DERIVATA quantum' copre solo il 50% dell'excerpt
+    # con 1 parola — sotto la regola probatoria (coverage>=60% o >=3 parole+15ch)
+    # il frammento NON e' prova: prima tornava 'derivata' e il gate lo contava
+    # VERIFIED (porta delle citazioni allucinate). Ora: None.
     result2 = _repair_excerpt("DERIVATA quantum", text)
-    assert result2 is not None  # tier 3 finds 'derivata' (case-insensitive)
-    assert result2 in text
+    assert result2 is None
 
     # No match at all
     assert _repair_excerpt("quantum mechanics", text) is None

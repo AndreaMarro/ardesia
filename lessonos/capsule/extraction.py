@@ -58,13 +58,28 @@ def _repair_excerpt(excerpt: str, segment_text: str) -> str | None:
     best_end = 0
     for i in range(len(words), 0, -1):
         candidate = " ".join(words[:i])
-        if candidate in seg_lower:
+        # Bug-hunt #3: match a CONFINE di parola — 'la' non deve matchare
+        # dentro 'della' (re.escape: il testo excerpt e' input non fidato).
+        if re.search(r"(?<!\w)" + re.escape(candidate) + r"(?!\w)", seg_lower):
             best_end = i
             break  # Found longest match
     if best_end > 0:
-        # Map back to the segment's actual text (preserves original casing)
         matched_lower = " ".join(words[:best_end])
-        idx = seg_lower.index(matched_lower)
+        # Bug-hunt #3, regola probatoria: la riparazione vale solo se
+        # (a) copre >=60% delle parole dell'excerpt ORIGINALE (caso tipico:
+        #     puro case-mismatch, 'rapporto incrementale' -> verbatim reale), o
+        # (b) e' sostanziosa di suo (>=3 parole e >=15 char).
+        # Minimo assoluto 6 char: un frammento piu corto non prova niente.
+        # Senza questi floor un excerpt ALLUCINATO si riduceva a 1 parolina
+        # e il gate anti-falso-verde la contava VERIFIED.
+        coverage = best_end / len(words)
+        substantial = best_end >= 3 and len(matched_lower) >= 15
+        if len(matched_lower) < 6 or (coverage < 0.6 and not substantial):
+            return None
+        idx_m = re.search(
+            r"(?<!\w)" + re.escape(matched_lower) + r"(?!\w)", seg_lower
+        )
+        idx = idx_m.start()
         return segment_text[idx : idx + len(matched_lower)]
 
     return None

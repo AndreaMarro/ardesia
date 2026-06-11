@@ -161,6 +161,7 @@ def _collect_edges_and_evidence(
     edge_ids_seen: set[str] = set()
     all_evidence: list[GraphEvidence] = []
     ev_ids_seen: set[str] = set()
+    stale_evidence: list[str] = []
 
     for lid in lesson_ids:
         for edge in store.get_graph_edges_for_lesson(lid):
@@ -168,9 +169,25 @@ def _collect_edges_and_evidence(
                 all_edges.append(edge)
                 edge_ids_seen.add(edge.edge_id)
         for ev in store.get_all_evidence_for_lesson(lid):
-            if ev.evidence_id not in ev_ids_seen:
-                all_evidence.append(ev)
-                ev_ids_seen.add(ev.evidence_id)
+            if ev.evidence_id in ev_ids_seen:
+                continue
+            # Bug-hunt #1b — FAIL-CLOSED anche in LETTURA: il write-path
+            # verifica al momento della scrittura, ma un re-ingest interrotto
+            # ricicla i seg_id posizionali su testo diverso e le evidence
+            # vecchie sopravvivono. Mai servirle a TeacherBook/dispense.
+            seg = store.get_segment(ev.seg_id)
+            if seg is None or (ev.excerpt and ev.excerpt not in seg.text):
+                stale_evidence.append(ev.evidence_id)
+                continue
+            all_evidence.append(ev)
+            ev_ids_seen.add(ev.evidence_id)
+
+    if stale_evidence:
+        raise ValueError(
+            f"{len(stale_evidence)} evidence STALE (seg_id mancante o excerpt "
+            f"non piu verbatim nel segmento) — re-ingest incompleto? Rigenera "
+            f"la lezione prima di servire il grafo. Esempi: {stale_evidence[:5]}"
+        )
 
     return all_edges, all_evidence
 

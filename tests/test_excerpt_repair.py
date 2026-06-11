@@ -52,15 +52,17 @@ class TestRepairExcerptDirect:
         assert result is None
 
     def test_tier3_word_by_word_greedy(self):
-        """Tier 3: word-by-word greedy scan when LCS too short."""
-        # "vett xyz" (8 chars) vs "una lista di vettori"
-        # Tier1: not verbatim. Tier2: LCS "vett" (4 chars) < 8 threshold → falls to tier3.
-        # Tier3: "vett" is the first word of excerpt and appears in segment → matches.
+        """Tier 3 (bug-hunt #3): un frammento di 1 parola corta NON e' prova.
+
+        Prima ritornava "vett" (4 char, 50% dell'excerpt — e nemmeno a confine
+        di parola: 'vett' sta dentro 'vettori') e il gate lo contava VERIFIED:
+        la porta d'ingresso delle citazioni allucinate. Ora: None.
+        """
         result = _repair_excerpt(
             "vett xyz",
             "una lista di vettori",
         )
-        assert result == "vett"
+        assert result is None
 
     def test_tier3_preserves_segment_casing(self):
         """Tier 3 returns substring from segment preserving original casing."""
@@ -101,10 +103,10 @@ class TestRepairExcerptDirect:
             "integrale e derivata sono concetti",
             "la derivata e integrale nel calcolo",
         )
-        # Should find something (either tier2 LCS or tier3 word prefix)
-        assert result is not None
-        # The result must be a substring of the segment text
-        assert result in "la derivata e integrale nel calcolo"
+        # Bug-hunt #3: questo e' una PARAFRASI (ordine parole diverso), non un
+        # near-miss verbatim. Ripararla a un frammento qualsiasi significava
+        # contare VERIFIED una citazione che non esiste. Ora: None.
+        assert result is None
 
 
 # ── _repair_excerpt: edge tier3 cases ──────────────────────────────

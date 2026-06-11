@@ -22,6 +22,7 @@ from lessonos.capsule.segmentation import TopicSpan
 from lessonos.graph.aggregator import aggregate_path_graph, aggregate_teacher_graph, load_path_capsules
 from lessonos.graph.resolution import GlobalResolution, ResolutionAlias, ResolutionEntry
 from lessonos.models.entities import (
+    Segment,
     EDGE_TYPES,
     GraphEdge,
     GraphEvidence,
@@ -223,6 +224,13 @@ def _register_capsule(
     if evidence:
         for ev in evidence:
             store.save_evidence(ev)
+            # Fixture onesta (bug-hunt #1b): ogni evidence punta a un segmento
+            # ESISTENTE il cui testo contiene l'excerpt (contratto del writer).
+            if store.get_segment(ev.seg_id) is None:
+                store.save_segment(Segment(
+                    seg_id=ev.seg_id, lesson_id=capsule.lesson_id, start=0, end=1,
+                    text=(ev.excerpt or "testo di supporto fixture") + " — contesto.",
+                ))
 
 
 # ---------------------------------------------------------------------------

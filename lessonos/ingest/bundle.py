@@ -223,6 +223,10 @@ def ingest_bundle(
             f"bundle {zip_path!r} yielded no whiteboard text segments "
             f"(no text written on the board)"
         )
+    # Bug-hunt #6: purge PRIMA del re-ingest, DENTRO la funzione (il runner
+    # T8 lo dimenticava): un re-export con meno elementi lasciava righe stale
+    # e shift posizionale dei seg_id (classe B3).
+    store.delete_segments_for_lesson(lesson_id)
     for seg in segments:
         store.save_segment(seg)
     capsule = assemble_lesson_capsule(

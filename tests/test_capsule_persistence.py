@@ -65,16 +65,16 @@ def _make_router(store) -> Router:
             {
                 "name": "derivata",
                 "status": "introduced",
-                "citations": [{"seg_id": "l1s1"}],
+                "citations": [{"seg_id": "l1s1", "excerpt": "la derivata come velocita istantanea"}],
             }
         ],
         "exercises": [
-            {"prompt": "Calcola f'(x) per f(x)=x^2", "citations": [{"seg_id": "l1s3"}]}
+            {"prompt": "Calcola f'(x) per f(x)=x^2", "citations": [{"seg_id": "l1s3", "excerpt": "la derivata f'(x) nel punto x"}]}
         ],
         "student_questions": [
-            {"question": "Cosa succede se h=0?", "citations": [{"seg_id": "l1s2"}]}
+            {"question": "Cosa succede se h=0?", "citations": [{"seg_id": "l1s2", "excerpt": "il rapporto incrementale"}]}
         ],
-        "homework": [{"task": "Esercizi 1-3", "citations": [{"seg_id": "l1s3"}]}],
+        "homework": [{"task": "Esercizi 1-3", "citations": [{"seg_id": "l1s3", "excerpt": "Quando il limite esiste"}]}],
     }
     router = Router()
     router.register(

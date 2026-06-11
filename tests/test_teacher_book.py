@@ -22,6 +22,7 @@ from lessonos.capsule.extraction import (
 )
 from lessonos.capsule.segmentation import TopicSpan
 from lessonos.models.entities import (
+    Segment,
     GraphEdge,
     GraphEvidence,
     GraphNode,
@@ -255,6 +256,12 @@ def _add_edge(
                 excerpt=ev.get("excerpt"),
                 lesson_id=lesson_id,
             ))
+            # Fixture onesta (bug-hunt #1b): segmento di supporto reale.
+            if store.get_segment(ev["seg_id"]) is None:
+                store.save_segment(Segment(
+                    seg_id=ev["seg_id"], lesson_id=lesson_id, start=0, end=1,
+                    text=(ev.get("excerpt") or "testo di supporto fixture") + " — contesto.",
+                ))
 
 
 # ---------------------------------------------------------------------------

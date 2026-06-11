@@ -79,6 +79,25 @@ def assemble_lesson_capsule(
     )
 
     if save:
+        # Bug-hunt #2: il gate anti-falso-verde DEVE precedere la persistenza.
+        # Prima i runner lo chiamavano DOPO il save: su gate-fail la capsule
+        # bocciata restava in tabella (e INSERT OR REPLACE sovrascriveva una
+        # capsule buona con quella rifiutata). Ora il save e' possibile solo
+        # se la soglia di grounding passa.
+        from lessonos.graph.grounding import assert_grounding_threshold
+
+        excerpts = [
+            c.excerpt
+            for grp in (
+                content.concepts,
+                content.exercises,
+                content.student_questions,
+                content.homework,
+            )
+            for it in grp
+            for c in it.citations
+        ]
+        assert_grounding_threshold(excerpts, lesson_id)
         store.save_capsule(lesson_id, _serialise_capsule(capsule))
 
     return capsule
