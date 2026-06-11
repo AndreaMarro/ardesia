@@ -14,7 +14,7 @@ from __future__ import annotations
 import json
 import pytest
 
-from lessonos.capsule.extraction import ConceptExtraction
+from lessonos.capsule.extraction import ConceptExtraction, Citation
 from lessonos.dispensa import (
     DispensaDoc,
     DispensaClaim,
@@ -23,6 +23,8 @@ from lessonos.dispensa import (
     DispensaDoc,
     GroundingReport,
     _parse_dispensa_response,
+    _name_similar,
+    _resolve_concepts_from_capsules,
     build_dispensa_prompt,
     generate_dispensa,
     render_dispensa_md,
@@ -31,7 +33,7 @@ from lessonos.dispensa import (
 from lessonos.llm.router import MockProvider, Router
 from lessonos.style import StyleProfile
 from lessonos.store.base import Store
-from lessonos.models.entities import Path
+from lessonos.models.entities import TeacherConcept, Path
 
 
 # ── Mock store for dispensa tests  ────────────────────────────────────
@@ -305,14 +307,30 @@ class TestRenderDispensaMd:
         assert "Generato da LessonOS" in md
 
     def test_dropped_paragraphs_disclosed(self) -> None:
-        """Dropped paragraphs are listed in the footer."""
+        """Dropped paragraphs preserve the actual paragraph text."""
         doc = DispensaDoc(
-            teacher_id="t", title="T", dropped_paragraphs=("Dropped 2 unverified claims",)
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="S1",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Questo paragrafo è stato scartato per grounding insufficiente.",
+                            claims=(DispensaClaim(text="X", seg_id="fake#s1", excerpt="x"),),
+                        ),
+                    ),
+                ),
+            ),
+            dropped_paragraphs=(
+                "Questo paragrafo è stato scartato per grounding insufficiente.",
+            ),
         )
-        report = GroundingReport(total_claims=2, verified=0, dropped=2, unverified_ratio=1.0, passed=False)
+        report = GroundingReport(total_claims=1, verified=0, dropped=1, unverified_ratio=1.0, passed=False)
         md = render_dispensa_md(doc, report)
         assert "Paragrafi non verificati" in md
-        assert "Dropped 2" in md
+        assert "Questo paragrafo è stato scartato" in md
+        # Must show the actual text, not a generic count
+        assert "Dropped" not in md
 
     def test_deterministic(self) -> None:
         """Same input → same output byte-for-byte."""
@@ -444,6 +462,125 @@ class TestVerifyDispensa:
         assert report.verified == 5
         assert report.dropped == 1
         assert report.passed
+
+
+class TestResolveConcepts:
+    """Tests for _resolve_concepts_from_capsules (M1-4b fix)."""
+
+    def test_exact_normalized_match(self) -> None:
+        """Same normalized name → matched by exact rule."""
+        ext = ConceptExtraction(name="Energia", status="introduced",
+                                citations=(Citation(seg_id="l1#s1", excerpt="energia"),))
+        capsules_map = {"l1": {"Energia": ext}}
+        result = _resolve_concepts_from_capsules(
+            (TeacherConcept(name="Energia", canonical="energia", status="introduced", evidence_count=1),),
+            capsules_map,
+        )
+        assert len(result) == 1
+        assert result[0] is ext
+
+    def test_case_insensitive_match(self) -> None:
+        """Case difference → still matches exact normalized."""
+        ext = ConceptExtraction(name="energia", status="introduced",
+                                citations=(Citation(seg_id="l1#s1", excerpt="energia"),))
+        capsules_map = {"l1": {"energia": ext}}
+        result = _resolve_concepts_from_capsules(
+            (TeacherConcept(name="Energia", canonical="energia", status="introduced", evidence_count=1),),
+            capsules_map,
+        )
+        assert len(result) == 1
+        assert result[0] is ext
+
+    def test_cross_lesson_no_substring_match(self) -> None:
+        """Concepts from different lessons don't cross-match via substring.
+
+        L1 has 'Fourier' (canonical), L2 has 'Trasformata di Fourier' (canonical).
+        OLD substring code: 'fourier' in 'trasformata di fourier' → TRUE (wrong match).
+        NEW code: 'fourier' vs 'trasformata di fourier' → SequenceMatcher ratio ~0.53 < 0.85 → no match.
+        TeacherBook asks for 'Fourier' → matches L1 only (via exact normalized match).
+        """
+        l1_ext = ConceptExtraction(name="Fourier", status="introduced",
+                                    citations=(Citation(seg_id="l1#s1", excerpt="fourier"),))
+        l2_ext = ConceptExtraction(name="Trasformata di Fourier", status="introduced",
+                                    citations=(Citation(seg_id="l2#s1", excerpt="trasformata"),))
+        capsules_map = {"l1": {"Fourier": l1_ext}, "l2": {"Trasformata di Fourier": l2_ext}}
+        result = _resolve_concepts_from_capsules(
+            (TeacherConcept(name="Fourier", canonical="fourier", status="introduced", evidence_count=1),),
+            capsules_map,
+        )
+        assert len(result) == 1
+        assert result[0] is l1_ext  # exact match, NOT substring to L2
+
+    def test_edit_distance_fallback(self) -> None:
+        """Slight spelling difference → edit-distance match."""
+        ext = ConceptExtraction(name="Teorema Fondamentale", status="introduced",
+                                citations=(Citation(seg_id="l1#s1", excerpt="teorema"),))
+        capsules_map = {"l1": {"Teorema Fondamentale": ext}}
+        result = _resolve_concepts_from_capsules(
+            (TeacherConcept(name="Teorema Fondamentale", canonical="teorema", status="introduced", evidence_count=1),),
+            capsules_map,
+        )
+        assert len(result) == 1
+
+    def test_no_match_raises_value_error(self) -> None:
+        """No matching ConceptExtraction with citations → ValueError."""
+        ext = ConceptExtraction(name="Altro Concetto", status="introduced",
+                                citations=(Citation(seg_id="l1#s1", excerpt="altro"),))
+        capsules_map = {"l1": {"Altro Concetto": ext}}
+        with pytest.raises(ValueError, match="no matching"):
+            _resolve_concepts_from_capsules(
+                (TeacherConcept(name="Energia", canonical="energia", status="introduced", evidence_count=1),),
+                capsules_map,
+            )
+
+    def test_concept_without_citations_skipped(self) -> None:
+        """ConceptExtraction without citations → skipped (cannot ground)."""
+        no_cit = ConceptExtraction(name="Energia", status="introduced", citations=())
+        good_cit = ConceptExtraction(name="Energia", status="introduced",
+                                      citations=(Citation(seg_id="l1#s1", excerpt="energia"),))
+        capsules_map = {"l1": {"Energia": no_cit}, "l2": {"Energia": good_cit}}
+        result = _resolve_concepts_from_capsules(
+            (TeacherConcept(name="Energia", canonical="energia", status="introduced", evidence_count=1),),
+            capsules_map,
+        )
+        assert len(result) == 1
+        assert result[0] is good_cit  # picks the one WITH citations
+
+
+class TestNameSimilar:
+    """Tests for _name_similar helper."""
+
+    def test_identical(self) -> None:
+        assert _name_similar("fourier", "fourier")
+
+    def test_fourier_vs_serie(self) -> None:
+        """"fourier" vs "serie di fourier" → ratio ~0.53 → below threshold."""
+        assert not _name_similar("fourier", "serie di fourier")
+
+    def test_empty_strings(self) -> None:
+        assert not _name_similar("", "fourier")
+        assert not _name_similar("fourier", "")
+
+
+class TestVerifyDispensaGate:
+    """Gate fail-closed edge cases (M1-4b fix)."""
+
+    def test_empty_claims_in_sections_raises(self) -> None:
+        """Sections exist but every paragraph has zero claims → ValueError."""
+        store = _StoreStub()
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="S1",
+                    paragraphs=(
+                        DispensaParagraph(text="Testo senza alcun claim.", claims=()),
+                    ),
+                ),
+            ),
+        )
+        with pytest.raises(ValueError, match="zero claims"):
+            verify_dispensa(doc, store)
 
 
 # ── Stylistic divergence (mock LLM)  ──────────────────────────────────

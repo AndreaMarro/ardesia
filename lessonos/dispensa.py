@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
+from difflib import SequenceMatcher
 from typing import Protocol
 
 from lessonos.capsule.assembly import load_capsule
@@ -132,6 +133,67 @@ def _concept_to_section_prompt(
         f"  Status: {concept.status}{prereq_str}\n"
         f"  Citazioni:\n{citations_str}\n"
     )
+
+
+def _name_similar(a: str, b: str, threshold: float = 0.85) -> bool:
+    """Check if two normalized names are similar via edit-distance ratio.
+
+    Uses ``difflib.SequenceMatcher`` ratio (1.0 = identical, 0.0 = completely
+    different). *threshold* must be >= 0.8 to avoid false matches between
+    superficially similar but distinct concepts (e.g. 'fourier' vs
+    'serie di fourier' → ratio ~0.53 < 0.85).
+    """
+    if not a or not b:
+        return False
+    return SequenceMatcher(None, a, b).ratio() >= threshold
+
+
+def _resolve_concepts_from_capsules(
+    fundamental_concepts: tuple,
+    capsules_map: dict[str, dict[str, ConceptExtraction]],
+) -> tuple[ConceptExtraction, ...]:
+    """Resolve TeacherBook fundamental concepts to ``ConceptExtraction`` with citations.
+
+    Matching strategy (in order, never silent fallback):
+      1. Exact normalized match (``norm_ext == norm_tc``)
+      2. Edit-distance match (``_name_similar``, threshold ≥0.85)
+      3. If no match found → ``ValueError`` (fail-closed — never create an
+         ungrounded ConceptExtraction from TeacherBook data alone)
+
+    Raises:
+        ValueError: If a concept has no matching ``ConceptExtraction`` with
+            citations across any of the teacher's capsules.
+    """
+    resolved: list[ConceptExtraction] = []
+    for tc in fundamental_concepts:
+        norm_tc = tc.name.lower().strip()
+        best: ConceptExtraction | None = None
+        best_ratio = 0.0
+        for lid, cmap in capsules_map.items():
+            for cname, ext in cmap.items():
+                norm_ext = cname.lower().strip()
+                if not ext.citations:
+                    continue  # ghost concept without evidence, cannot ground
+                # Step 1: exact normalized
+                if norm_ext == norm_tc:
+                    best = ext
+                    best_ratio = 1.0
+                    break
+                # Step 2: edit-distance fallback
+                ratio = SequenceMatcher(None, norm_ext, norm_tc).ratio()
+                if ratio >= 0.85 and ratio > best_ratio:
+                    best_ratio = ratio
+                    best = ext
+            if best_ratio == 1.0:
+                break
+        if best is None:
+            raise ValueError(
+                f"concept {tc.name!r} from TeacherBook has no matching "
+                f"ConceptExtraction with citations across any capsule — "
+                f"cannot generate dispensa without grounded source data"
+            )
+        resolved.append(best)
+    return tuple(resolved)
 
 
 def build_dispensa_prompt(
@@ -253,33 +315,9 @@ def generate_dispensa(
         if cap is not None:
             capsules_map[lid] = {c.name: c for c in cap.content.concepts}
 
-    # 4. Collect concepts from TeacherBook's fundamental list, pulling full
-    #    ConceptExtraction objects when available
-    all_concepts: list[ConceptExtraction] = []
-    for tc in book.fundamental_concepts:
-        # Try to find a matching ConceptExtraction from any capsule
-        found = False
-        for lid, cmap in capsules_map.items():
-            for cname, ext in cmap.items():
-                norm_ext = cname.lower().strip()
-                norm_tc = tc.name.lower().strip()
-                if norm_ext == norm_tc or norm_ext in norm_tc or norm_tc in norm_ext:
-                    all_concepts.append(ext)
-                    found = True
-                    break
-            if found:
-                break
-        if not found:
-            # Create a minimal ConceptExtraction from TeacherBook data
-            all_concepts.append(
-                ConceptExtraction(
-                    name=tc.name,
-                    status=tc.status or "introduced",
-                )
-            )
-
-    if not all_concepts:
-        raise ValueError(f"no concepts could be resolved for teacher {teacher_id!r}")
+    # 4. Resolve concepts from TeacherBook's fundamental list to
+    #    ConceptExtraction objects with citations (exact → edit-distance → ValueError)
+    all_concepts = _resolve_concepts_from_capsules(book.fundamental_concepts, capsules_map)
 
     # 5. Build prompt and call LLM
     prompt = build_dispensa_prompt(teacher_id, style, tuple(all_concepts))
@@ -375,6 +413,7 @@ def verify_dispensa(
     total_claims = 0
     verified = 0
     dropped_count = 0
+    dropped_texts: list[str] = []
     kept_sections: list[DispensaSection] = []
 
     for sec in doc.sections:
@@ -401,6 +440,7 @@ def verify_dispensa(
                 verified += len(para.claims)
             else:
                 dropped_count += len(para.claims)
+                dropped_texts.append(para.text)
 
         if kept_paragraphs:
             kept_sections.append(DispensaSection(title=sec.title, paragraphs=tuple(kept_paragraphs)))
@@ -415,7 +455,7 @@ def verify_dispensa(
         title=doc.title,
         sections=tuple(kept_sections),
         style_profile=doc.style_profile,
-        dropped_paragraphs=(f"Dropped {dropped_count} unverified claims",),
+        dropped_paragraphs=tuple(dropped_texts),
     )
 
     if total_claims == 0:
