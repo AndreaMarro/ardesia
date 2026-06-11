@@ -26,18 +26,24 @@ def git(*args):
 
 
 # Revisiona l'ultimo commit con CODICE, non l'ultimo in assoluto: un commit
-# doc-only (STATUS/log/coord/digest) non ha nulla da rompere e fa revisionare
-# kimi AL BUIO sulle descrizioni (incidente 20260610-1811: review del commit
-# STATUS-only invece del codice di T2b). Cammina indietro max 5 commit.
-_DOC_ONLY = {"STATUS.md", "log.jsonl", "COORDINATION.md", "DIGEST-latest.md",
-             "RESEARCH.md", "project-wiki/index.md"}
+# doc-only (STATUS/log/coord/digest/wiki) non ha nulla da rompere e fa revisionare
+# kimi AL BUIO sulle descrizioni. Incidenti: 20260610-1811 (review STATUS invece
+# di T2b) e 20260611 (review 311a739 doc invece del codice M1-1 in f814e18).
+def _is_doc(f):
+    # doc = qualunque .md, .jsonl (log/obs), o file sotto project-wiki/ — niente
+    # codice da rompere. Il CODICE e' .py/.sh/.ts/.tsx/.sql ecc.
+    return (f.endswith((".md", ".jsonl", ".txt"))
+            or f.startswith("project-wiki/")
+            or f in {"DIGEST-latest.md", ".builds_today"})
+
+
 sha = ""
-for back in range(5):
+for back in range(6):
     cand = git("rev-parse", "--short", f"HEAD~{back}").strip()
     if not cand:
         break
     files = [f for f in git("diff", "--name-only", f"{cand}~1..{cand}").splitlines() if f]
-    if files and all(f in _DOC_ONLY for f in files):
+    if files and all(_is_doc(f) for f in files):
         continue  # doc-only: nulla da rompere, guarda il parent
     sha = cand
     break
