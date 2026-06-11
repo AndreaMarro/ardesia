@@ -554,6 +554,44 @@ class TestResolveConcepts:
         assert len(result) == 1
         assert result[0] is good_cit  # picks the one WITH citations
 
+    def test_multiple_exact_matches_deterministic(self) -> None:
+        """Same concept exact-matched in 2+ capsules → first lid wins (deterministic).
+
+        The break-on-exact-match logic in ``_resolve_concepts_from_capsules``
+        (dispensa.py:178-188) breaks BOTH loops when an exact normalized match
+        is found. With Python 3.7+ dict insertion order, the first-encountered
+        lesson's ConceptExtraction wins deterministically.
+
+        This test verifies WHICH candidate is selected — if the resolver
+        flip-flopped, the identity check would fail.
+        """
+        l1_ext = ConceptExtraction(
+            name="Energia", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="energia"),),
+        )
+        l2_ext = ConceptExtraction(
+            name="Energia", status="reinforced",
+            citations=(Citation(seg_id="l2#s1", excerpt="energia cinetica"),),
+        )
+        capsules_map = {
+            "l1": {"Energia": l1_ext},
+            "l2": {"Energia": l2_ext},
+        }
+        concepts = (
+            TeacherConcept(
+                name="Energia", canonical="energia",
+                status="introduced", evidence_count=2,
+            ),
+        )
+
+        # Single call — deterministic: first exact match wins (l1)
+        result = _resolve_concepts_from_capsules(concepts, capsules_map)
+
+        assert len(result) == 1
+        # The first lid in insertion order wins
+        assert result[0] is l1_ext
+        assert result[0].status == "introduced"
+
 
 class TestNameSimilar:
     """Tests for _name_similar helper."""
