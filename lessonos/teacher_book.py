@@ -11,15 +11,27 @@ Sections produced:
     (``status=problematic``).
   * Status progression — how each concept evolved across lessons
     (introduced → reinforced → reviewed → mastered).
-  * Prerequisite chains — ``depends_on`` relationships derived from edges.
+  * Prerequisite chains — ``depends_on`` edges unioned with the
+    ``prerequisites`` declared on capsule concepts.
 
 Every entry carries its lesson provenance and grounded evidence references.
+
+M1-1c: when a ``GlobalResolution`` mapping is passed, concepts whose labels
+differ across lessons are bridged through their global ``dedup_key`` —
+progression and prerequisites then connect cross-lesson occurrences that the
+per-lesson canonical (M1-1b) could not link. Consumption is ZERO-LLM: the
+mapping is plain persisted data.
 """
 
 from __future__ import annotations
 
-from lessonos.capsule.assembly import load_capsule
-from lessonos.graph.aggregator import _normalize_name, aggregate_teacher_graph
+from lessonos.capsule.assembly import LessonCapsule, load_capsule
+from lessonos.graph.aggregator import (
+    _normalize_name,
+    aggregate_teacher_graph,
+    dedup_key_for,
+)
+from lessonos.graph.resolution import GlobalResolution
 from lessonos.models.entities import (
     AggregatedPathGraph,
     AggregatedPathNode,
@@ -33,29 +45,55 @@ from lessonos.models.entities import (
 from lessonos.store.base import Store
 
 
-def _build_per_lesson_node_map(
+def _load_capsules(
     store: Store,
     lesson_ids: set[str],
-) -> dict[tuple[str, str], str]:
-    """Build map ``{(lesson_id, normalized_concept_name) -> per_lesson_node_id}``.
-
-    Needed to bridge per-lesson graph node IDs (used in edges/evidence) with
-    aggregated concept nodes. Loads capsules from the store — cheap for real
-    courses (4-40 lessons).
-    """
-    mapping: dict[tuple[str, str], str] = {}
+) -> dict[str, LessonCapsule]:
+    """Load each lesson's capsule once (real capsules are large JSON blobs)."""
+    capsules: dict[str, LessonCapsule] = {}
     for lid in lesson_ids:
         cap = load_capsule(store, lid)
-        if cap is None:
-            continue
+        if cap is not None:
+            capsules[lid] = cap
+    return capsules
+
+
+def _build_key_maps(
+    capsules: dict[str, LessonCapsule],
+    lookup: dict[tuple[str, str], str] | None,
+) -> tuple[dict[tuple[str, str], set[str]], dict[str, str]]:
+    """Bridge per-lesson graph node IDs with aggregated dedup keys.
+
+    Returns:
+        key_map: ``{(lesson_id, dedup_key) -> {per_lesson_node_id, ...}}``
+            (a set — the same concept can be mentioned more than once in a
+            lesson and merged under one key).
+        plid_to_key: ``{per_lesson_node_id -> dedup_key}`` (reverse lookup
+            for edge endpoints).
+    """
+    key_map: dict[tuple[str, str], set[str]] = {}
+    plid_to_key: dict[str, str] = {}
+    for lid, cap in capsules.items():
         for idx, conc in enumerate(cap.content.concepts):
-            key = (lid, _normalize_name(conc.name))
-            mapping[key] = f"{lid}:concept:{idx}"
-    return mapping
+            key = dedup_key_for(conc, lid, lookup)
+            plid = f"{lid}:concept:{idx}"
+            key_map.setdefault((lid, key), set()).add(plid)
+            plid_to_key[plid] = key
+    return key_map, plid_to_key
+
+
+def _per_lesson_ids_for_node(
+    node: AggregatedPathNode,
+    key_map: dict[tuple[str, str], set[str]],
+) -> set[str]:
+    """All per-lesson graph node IDs that were merged into *node*."""
+    ids: set[str] = set()
+    for lid in node.lesson_ids:
+        ids |= key_map.get((lid, node.dedup_key), set())
+    return ids
 
 
 def _count_edges_for_concept(
-    node: AggregatedPathNode,
     per_lesson_ids: set[str],
     edges: tuple[GraphEdge, ...],
 ) -> int:
@@ -67,23 +105,16 @@ def _count_edges_for_concept(
 
 
 def _build_citations(
-    node: AggregatedPathNode,
     per_lesson_ids: set[str],
     edges: tuple[GraphEdge, ...],
     evidence: tuple[GraphEvidence, ...],
 ) -> tuple[GraphEvidence, ...]:
-    """Collect all evidence connected to edges referencing this concept.
-
-    Finds edges whose source or target matches any per-lesson node ID for
-    this concept, then collects all evidence for those edges.
-    """
-    # Find edge_ids where this concept is source or target
+    """Collect all evidence connected to edges referencing this concept."""
     concept_edge_ids: set[str] = set()
     for e in edges:
         if e.source in per_lesson_ids or e.target in per_lesson_ids:
             concept_edge_ids.add(e.edge_id)
 
-    # Collect all evidence for those edges
     all_cits: list[GraphEvidence] = []
     seen: set[str] = set()
     for ev in evidence:
@@ -95,140 +126,129 @@ def _build_citations(
 
 
 def _build_progression(
-    store: Store,
     node: AggregatedPathNode,
+    capsules: dict[str, LessonCapsule],
     lesson_ids_ordered: list[str],
+    lookup: dict[tuple[str, str], str] | None,
 ) -> ConceptProgression | None:
     """Build a concept's status progression across lessons.
 
-    Loads each lesson's capsule to find the concept's per-lesson status.
-    Matches by canonical name (M1-1b) so that 'Definizione di segnale'
-    and 'Il segnale come grandezza fisica' (same canonical='segnale')
-    are recognised as the same concept across lessons.
+    Occurrences are matched through the node's ``dedup_key`` — with a global
+    resolution mapping (M1-1c) this links lessons where the concept appears
+    under a different label (e.g. 'Definizione di segnale' →
+    'Il segnale come grandezza fisica').
 
     Returns ``None`` if no capsule data is available.
     """
     status_seq: list[str] = []
     lesson_seq: list[str] = []
-    found_first: str | None = None
-
-    # Build a canonical→status mapping from all capsules for the node's lessons
-    # Use the first concept's canonical as the lookup key
-    first_canonical: str | None = None
-    first_name_norm: str = _normalize_name(node.label)
 
     for lid in lesson_ids_ordered:
         if lid not in node.lesson_ids:
             continue
-        cap = load_capsule(store, lid)
+        cap = capsules.get(lid)
         if cap is None:
             continue
         for conc in cap.content.concepts:
-            conc_canonical = conc.canonical if conc.canonical else _normalize_name(conc.name)
-            # Determine the canonical key from the first match
-            if first_canonical is None:
-                if _normalize_name(conc.name) == first_name_norm:
-                    first_canonical = conc_canonical
-                    status_seq.append(conc.status)
-                    lesson_seq.append(lid)
-                    found_first = lid
-                    break
-            else:
-                if conc_canonical == first_canonical:
-                    status_seq.append(conc.status)
-                    lesson_seq.append(lid)
-                    break
+            if dedup_key_for(conc, lid, lookup) == node.dedup_key:
+                status_seq.append(conc.status)
+                lesson_seq.append(lid)
+                break
 
     if not status_seq:
         return None
 
     return ConceptProgression(
         name=node.label,
-        canonical=first_canonical or "",
-        first_lesson=found_first or "",
+        canonical=node.dedup_key,
+        first_lesson=lesson_seq[0],
         status_sequence=tuple(status_seq),
         lesson_sequence=tuple(lesson_seq),
     )
+
+
+def _capsule_prerequisites(
+    node: AggregatedPathNode,
+    capsules: dict[str, LessonCapsule],
+    lookup: dict[tuple[str, str], str] | None,
+    key_to_node: dict[str, AggregatedPathNode],
+) -> list[str]:
+    """Prerequisites declared on the concept itself in the lesson capsules.
+
+    Each prerequisite name is resolved to its aggregated node (through the
+    resolution mapping when available, else the normalised name) so the chain
+    points at the merged concept's label; names that match no node (e.g.
+    out-of-course prerequisites like 'limiti') are kept verbatim.
+    """
+    names: list[str] = []
+    for lid in node.lesson_ids:
+        cap = capsules.get(lid)
+        if cap is None:
+            continue
+        for conc in cap.content.concepts:
+            if dedup_key_for(conc, lid, lookup) != node.dedup_key:
+                continue
+            for prereq in conc.prerequisites:
+                key = None
+                if lookup:
+                    key = lookup.get((lid, _normalize_name(prereq)))
+                if key is None:
+                    key = _normalize_name(prereq)
+                target = key_to_node.get(key)
+                if target is not None and target.dedup_key == node.dedup_key:
+                    continue  # self-reference, skip
+                names.append(target.label if target is not None else prereq)
+    return names
 
 
 def _build_prerequisites(
     node: AggregatedPathNode,
     per_lesson_ids: set[str],
     edges: tuple[GraphEdge, ...],
-    all_nodes: tuple[AggregatedPathNode, ...],
-    per_lesson_node_map: dict[tuple[str, str], str],
+    plid_to_key: dict[str, str],
+    key_to_node: dict[str, AggregatedPathNode],
+    capsules: dict[str, LessonCapsule],
+    lookup: dict[tuple[str, str], str] | None,
 ) -> PrerequisiteChain | None:
-    """Find ``depends_on`` prerequisites for a concept.
+    """Find prerequisites for a concept.
 
-    Scans all ``depends_on`` edges targeting any of this concept's per-lesson
-    node IDs and resolves the source concept's name.
+    Two grounded sources, unioned:
+      * ``depends_on`` edges targeting any of this concept's per-lesson node
+        IDs (source concept resolved through its dedup key);
+      * ``prerequisites`` declared on the concept in the lesson capsules
+        (the only source present in corpora whose graphs carry no
+        ``depends_on`` edges).
     """
     prereq_names: list[str] = []
     for edge in edges:
         if edge.edge_type != "depends_on":
             continue
         if edge.target in per_lesson_ids:
-            # Find the source concept name
-            source_node = _find_aggregated_node_for_per_lesson_id(
-                edge.source, all_nodes, per_lesson_node_map
+            source_key = plid_to_key.get(edge.source)
+            source_node = (
+                key_to_node.get(source_key) if source_key is not None else None
             )
-            if source_node and source_node.label != node.label:
+            if source_node and source_node.dedup_key != node.dedup_key:
                 prereq_names.append(source_node.label)
+
+    prereq_names.extend(
+        _capsule_prerequisites(node, capsules, lookup, key_to_node)
+    )
 
     if not prereq_names:
         return None
 
     return PrerequisiteChain(
         concept=node.label,
-        canonical="",
+        canonical=node.dedup_key,
         prerequisites=tuple(sorted(set(prereq_names))),
         lesson_ids=node.lesson_ids,
     )
 
 
-def _find_aggregated_node_for_per_lesson_id(
-    per_lesson_id: str,
-    all_nodes: tuple[AggregatedPathNode, ...],
-    per_lesson_node_map: dict[tuple[str, str], str],
-) -> AggregatedPathNode | None:
-    """Find the aggregated node that contains a per-lesson node ID.
-
-    Reverses the mapping built by ``_build_per_lesson_node_map``.
-    """
-    # Try to match by stripping lesson prefix
-    for node in all_nodes:
-        for lid in node.lesson_ids:
-            for conc_name_norm, node_id in per_lesson_node_map.items():
-                if conc_name_norm[0] == lid and node_id == per_lesson_id:
-                    if _normalize_name(node.label) == conc_name_norm[1]:
-                        return node
-    return None
-
-
-def _resolve_canonical(
-    store: Store,
-    node: AggregatedPathNode,
-) -> str:
-    """Resolve the canonical name for an aggregated concept from its capsule data.
-
-    Tries each lesson's capsule to find the concept's ``canonical`` field
-    (M1-1b). Returns empty string if not found.
-    """
-    for lid in node.lesson_ids:
-        cap = load_capsule(store, lid)
-        if cap is None:
-            continue
-        for conc in cap.content.concepts:
-            if _normalize_name(conc.name) == _normalize_name(node.label):
-                return conc.canonical
-    return ""
-
-
 def _build_teacher_concepts(
-    store: Store,
     graph: AggregatedPathGraph,
-    per_lesson_node_map: dict[tuple[str, str], str],
-    lesson_ids_ordered: list[str],
+    key_map: dict[tuple[str, str], set[str]],
 ) -> tuple[list[TeacherConcept], list[TeacherConcept]]:
     """Build fundamental and problematic concept lists from merged nodes.
 
@@ -241,27 +261,18 @@ def _build_teacher_concepts(
     problematic_list: list[TeacherConcept] = []
 
     for node in graph.merged_nodes:
-        # Get per-lesson node IDs for edge matching
-        node_per_lesson: set[str] = set()
-        for lid in node.lesson_ids:
-            key = (lid, _normalize_name(node.label))
-            if key in per_lesson_node_map:
-                node_per_lesson.add(per_lesson_node_map[key])
+        node_per_lesson = _per_lesson_ids_for_node(node, key_map)
 
-        # Count edges referencing this concept
         edge_count = _count_edges_for_concept(
-            node, node_per_lesson, graph.existing_edges
+            node_per_lesson, graph.existing_edges
         )
-
-        # Collect evidence for edges referencing this concept
-        citations = _build_citations(node, node_per_lesson, graph.existing_edges, graph.path_evidence)
-
-        # Resolve canonical name from capsule data
-        canonical = _resolve_canonical(store, node)
+        citations = _build_citations(
+            node_per_lesson, graph.existing_edges, graph.path_evidence
+        )
 
         tc = TeacherConcept(
             name=node.label,
-            canonical=canonical,
+            canonical=node.dedup_key,
             status=node.status,
             lesson_ids=node.lesson_ids,
             edge_count=edge_count,
@@ -281,49 +292,7 @@ def _build_teacher_concepts(
     return all_concepts, problematic_list
 
 
-def _build_all_progressions(
-    store: Store,
-    graph: AggregatedPathGraph,
-    lesson_ids_ordered: list[str],
-) -> tuple[ConceptProgression, ...]:
-    """Build status progression for every concept with capsule data."""
-    progressions: list[ConceptProgression] = []
-    for node in graph.merged_nodes:
-        prog = _build_progression(store, node, lesson_ids_ordered)
-        if prog is not None:
-            progressions.append(prog)
-    return tuple(progressions)
-
-
-def _build_all_prerequisites(
-    graph: AggregatedPathGraph,
-    per_lesson_node_map: dict[tuple[str, str], str],
-) -> tuple[PrerequisiteChain, ...]:
-    """Build prerequisite chains for concepts that have ``depends_on`` edges."""
-    chains: list[PrerequisiteChain] = []
-    seen: set[str] = set()
-    for node in graph.merged_nodes:
-        node_per_lesson: set[str] = set()
-        for lid in node.lesson_ids:
-            key = (lid, _normalize_name(node.label))
-            if key in per_lesson_node_map:
-                node_per_lesson.add(per_lesson_node_map[key])
-
-        chain = _build_prerequisites(
-            node, node_per_lesson, graph.existing_edges,
-            graph.merged_nodes, per_lesson_node_map,
-        )
-        if chain is not None and chain.concept not in seen:
-            chains.append(chain)
-            seen.add(chain.concept)
-
-    # Sort by number of prerequisites descending
-    chains.sort(key=lambda c: (-len(c.prerequisites), c.concept))
-    return tuple(chains)
-
-
 def _get_ordered_lesson_ids(
-    graph: AggregatedPathGraph,
     store: Store,
     teacher_id: str,
 ) -> list[str]:
@@ -342,48 +311,73 @@ def _get_ordered_lesson_ids(
 def build_teacher_book(
     store: Store,
     teacher_id: str,
+    *,
+    resolution: GlobalResolution | None = None,
 ) -> TeacherBook:
     """Build a structured TeacherBook from a teacher's aggregated graph.
 
     Fully deterministic (ZERO-LLM), grounded in the store's capsules and
-    graph tables.
+    graph tables. When *resolution* (M1-1c global concept mapping, plain
+    persisted data) is provided, cross-lesson occurrences with different
+    labels are linked through their global canonical — progression and
+    prerequisites then span lessons.
 
     Args:
         store: Persistence layer.
         teacher_id: The teacher to build the map for.
+        resolution: Optional global concept mapping for this teacher.
 
     Returns:
         A ``TeacherBook`` with structured sections, or an empty book for
         an unknown/empty teacher.
 
     Raises:
-        ValueError: If the teacher has no paths in the store.
+        ValueError: If the teacher has no paths in the store, or the
+            resolution mapping belongs to a different teacher.
     """
-    # Step 1: get aggregated graph
-    graph = aggregate_teacher_graph(store, teacher_id)
+    # Step 1: get aggregated graph (validates teacher + resolution match)
+    graph = aggregate_teacher_graph(store, teacher_id, resolution=resolution)
     if not graph.merged_nodes:
         # Teacher exists but has no capsules — return empty book
         return TeacherBook(teacher_id=teacher_id)
 
+    lookup = resolution.alias_lookup() if resolution is not None else None
+
     # Step 2: collect metadata
-    lesson_ids = _get_ordered_lesson_ids(graph, store, teacher_id)
+    lesson_ids = _get_ordered_lesson_ids(store, teacher_id)
     all_lesson_ids: set[str] = set()
     for node in graph.merged_nodes:
         all_lesson_ids.update(node.lesson_ids)
 
-    # Step 3: build per-lesson node ID mapping
-    per_lesson_node_map = _build_per_lesson_node_map(store, all_lesson_ids)
+    # Step 3: load capsules once and bridge per-lesson node IDs ↔ dedup keys
+    capsules = _load_capsules(store, all_lesson_ids)
+    key_map, plid_to_key = _build_key_maps(capsules, lookup)
+    key_to_node = {n.dedup_key: n for n in graph.merged_nodes}
 
     # Step 4: build concept sections
-    fundamental, problematic = _build_teacher_concepts(
-        store, graph, per_lesson_node_map, lesson_ids,
-    )
+    fundamental, problematic = _build_teacher_concepts(graph, key_map)
 
     # Step 5: build progression
-    progression = _build_all_progressions(store, graph, lesson_ids)
+    progression = tuple(
+        prog
+        for node in graph.merged_nodes
+        if (prog := _build_progression(node, capsules, lesson_ids, lookup))
+        is not None
+    )
 
     # Step 6: build prerequisites
-    prerequisites = _build_all_prerequisites(graph, per_lesson_node_map)
+    chains: list[PrerequisiteChain] = []
+    seen_chain: set[str] = set()
+    for node in graph.merged_nodes:
+        node_per_lesson = _per_lesson_ids_for_node(node, key_map)
+        chain = _build_prerequisites(
+            node, node_per_lesson, graph.existing_edges,
+            plid_to_key, key_to_node, capsules, lookup,
+        )
+        if chain is not None and chain.concept not in seen_chain:
+            chains.append(chain)
+            seen_chain.add(chain.concept)
+    chains.sort(key=lambda c: (-len(c.prerequisites), c.concept))
 
     return TeacherBook(
         teacher_id=teacher_id,
@@ -394,5 +388,5 @@ def build_teacher_book(
         fundamental_concepts=tuple(fundamental),
         problematic_concepts=tuple(problematic),
         progression=progression,
-        prerequisites=prerequisites,
+        prerequisites=tuple(chains),
     )

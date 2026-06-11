@@ -17,6 +17,8 @@ Invariants:
 from __future__ import annotations
 
 from lessonos.capsule.assembly import LessonCapsule, load_capsule
+from lessonos.capsule.extraction import ConceptExtraction
+from lessonos.graph.resolution import GlobalResolution
 from lessonos.models.entities import (
     STATUS_ORDER,
     AggregatedPathGraph,
@@ -28,8 +30,30 @@ from lessonos.store.base import Store
 
 
 def _normalize_name(name: str) -> str:
-    """Normalise a concept name for deduplication: lowercase, strip whitespace."""
+    """Normalise a concept name for deduplication: lowercase, strip whitespace.
+
+    Must stay in sync with ``lessonos.graph.resolution._normalize_name`` —
+    the resolution mapping is keyed on the same rule.
+    """
     return name.strip().lower()
+
+
+def dedup_key_for(
+    concept: ConceptExtraction,
+    lesson_id: str,
+    lookup: dict[tuple[str, str], str] | None = None,
+) -> str:
+    """Dedup key for one concept mention (the single source of truth).
+
+    Priority: global resolution mapping (M1-1c) -> per-lesson ``canonical``
+    (M1-1b) -> normalised ``name`` (backward compat). ZERO-LLM: *lookup* is a
+    plain dict built from a persisted mapping file.
+    """
+    if lookup:
+        key = lookup.get((lesson_id, _normalize_name(concept.name)))
+        if key:
+            return key
+    return concept.canonical if concept.canonical else _normalize_name(concept.name)
 
 
 def _most_advanced_status(statuses: list[str]) -> str:
@@ -46,16 +70,22 @@ def _most_advanced_status(statuses: list[str]) -> str:
 
 def _merge_concept_nodes(
     capsules: list[LessonCapsule],
+    resolution: GlobalResolution | None = None,
 ) -> tuple[list[AggregatedPathNode], dict[str, str]]:
     """Deduplicate concept nodes by canonical name across capsules.
 
-    Dedup key: ``concept.canonical`` (M1-1b) if present, else the normalized
+    Dedup key (see ``dedup_key_for``): global resolution mapping (M1-1c) if
+    provided, else ``concept.canonical`` (M1-1b), else the normalized
     ``concept.name`` (backward compat with old capsules that lack canonical).
+
+    The original per-lesson labels are preserved: the node ``label`` is the
+    first label seen, and the mapping file keeps the full alias list.
 
     Returns:
         merged_nodes: List of AggregatedPathNode (one per unique concept).
         name_to_id: Mapping from dedup key to assigned node_id.
     """
+    lookup = resolution.alias_lookup() if resolution is not None else None
     # Accumulate per-key: label, statuses, lesson_ids, evidence_count
     accum: dict[str, dict] = {}
     # Track first concept_id seen for each key (for deterministic node_id)
@@ -64,7 +94,7 @@ def _merge_concept_nodes(
     for capsule in capsules:
         lid = capsule.lesson_id
         for idx, concept in enumerate(capsule.content.concepts):
-            key = concept.canonical if concept.canonical else _normalize_name(concept.name)
+            key = dedup_key_for(concept, lid, lookup)
             if not key:
                 continue
             if key not in accum:
@@ -108,6 +138,7 @@ def _merge_concept_nodes(
                 status=status,
                 lesson_ids=tuple(d["lesson_ids"]),
                 evidence_count=d["ev_count"],
+                dedup_key=key,
             )
         )
 
@@ -195,6 +226,8 @@ def load_path_capsules(
 def aggregate_teacher_graph(
     store: Store,
     teacher_id: str,
+    *,
+    resolution: GlobalResolution | None = None,
 ) -> AggregatedPathGraph:
     """Build an aggregated knowledge graph for a teacher across all their paths.
 
@@ -216,6 +249,9 @@ def aggregate_teacher_graph(
     Args:
         store: Persistence layer.
         teacher_id: The teacher whose paths to aggregate.
+        resolution: Optional global concept mapping (M1-1c) produced by
+            ``lessonos.graph.resolution`` and persisted under ``derived/``.
+            Consumed as plain data — this function stays ZERO-LLM.
 
     Returns:
         An AggregatedPathGraph containing all merged concepts, edges, and
@@ -225,13 +261,21 @@ def aggregate_teacher_graph(
 
     Raises:
         ValueError: If the teacher has no paths in the store (typo or
-            unregistered teacher).
+            unregistered teacher), or if *resolution* belongs to a different
+            teacher (cross-teacher contamination guard).
 
     Cross-teacher contamination guard:
         Only paths with ``teacher_id`` matching the parameter are loaded.
         A lesson belonging to a different teacher cannot appear in the result
         because it belongs to a different path with a different ``teacher_id``.
+        A resolution mapping generated for another teacher is rejected.
     """
+    if resolution is not None and resolution.teacher_id != teacher_id:
+        raise ValueError(
+            f"resolution mapping belongs to teacher "
+            f"{resolution.teacher_id!r}, not {teacher_id!r} "
+            "(cross-teacher contamination guard)"
+        )
     paths = store.paths_for_teacher(teacher_id)
     if not paths:
         raise ValueError(
@@ -247,7 +291,9 @@ def aggregate_teacher_graph(
     # Merge concept nodes. With zero capsules this yields an empty node list —
     # but we MUST NOT early-return, or persisted edges/evidence would be lost.
     merged_nodes, _key_to_id = (
-        _merge_concept_nodes(all_capsules) if all_capsules else ([], {})
+        _merge_concept_nodes(all_capsules, resolution)
+        if all_capsules
+        else ([], {})
     )
 
     # Collect the teacher's lesson ids once (dedup across paths) so the
@@ -273,6 +319,8 @@ def aggregate_teacher_graph(
 def aggregate_path_graph(
     store: Store,
     path_id: str,
+    *,
+    resolution: GlobalResolution | None = None,
 ) -> AggregatedPathGraph:
     """Build an aggregated path-level graph from all lesson capsules.
 
@@ -287,6 +335,8 @@ def aggregate_path_graph(
     Args:
         store: Persistence layer.
         path_id: The path (teacher's course) to aggregate.
+        resolution: Optional global concept mapping (M1-1c). Must belong to
+            the path's teacher when the path has one.
 
     Returns:
         An AggregatedPathGraph with merged nodes, edge union, and evidence
@@ -294,17 +344,28 @@ def aggregate_path_graph(
         persisted for the path's lessons are still returned.
 
     Raises:
-        ValueError: If the path does not exist.
+        ValueError: If the path does not exist, or if *resolution* belongs
+            to a different teacher than the path's.
     """
     path = store.get_path(path_id)
     if path is None:
         raise ValueError(f"path {path_id!r} does not exist in the store")
+    if (
+        resolution is not None
+        and path.teacher_id is not None
+        and resolution.teacher_id != path.teacher_id
+    ):
+        raise ValueError(
+            f"resolution mapping belongs to teacher "
+            f"{resolution.teacher_id!r}, not {path.teacher_id!r} "
+            "(cross-teacher contamination guard)"
+        )
 
     capsules = load_path_capsules(store, path_id)
 
     # Merge concept nodes (empty if no capsules) — do NOT early-return.
     merged_nodes, _key_to_id = (
-        _merge_concept_nodes(capsules) if capsules else ([], {})
+        _merge_concept_nodes(capsules, resolution) if capsules else ([], {})
     )
 
     all_edges, all_evidence = _collect_edges_and_evidence(

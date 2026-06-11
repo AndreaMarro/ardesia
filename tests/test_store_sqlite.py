@@ -14,6 +14,7 @@ import pytest
 
 from lessonos.models.entities import Lesson, Path, Source
 from lessonos.store import SQLiteStore, Store
+from lessonos.store.sqlite import SCHEMA_VERSION
 
 FIXTURE = FsPath(__file__).resolve().parents[1] / "fixtures" / "sample_path"
 
@@ -77,6 +78,39 @@ def test_persists_to_disk_across_reconnect(tmp_path: FsPath) -> None:
     assert s2.get_lesson("l1") == Lesson(
         lesson_id="l1", path_id="p", title="T", order=1, source_id="s1"
     )
+    s2.close()
+
+
+def _index_names(store: SQLiteStore) -> set[str]:
+    rows = store._conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='index'"
+    ).fetchall()
+    return {r["name"] for r in rows}
+
+
+def test_fresh_db_has_paths_teacher_index() -> None:
+    store = SQLiteStore()
+    assert "idx_paths_teacher" in _index_names(store)
+    store.close()
+
+
+def test_migration_v7_to_v8_adds_paths_teacher_index(tmp_path: FsPath) -> None:
+    """A v7 DB (teacher_id column, no index) gains idx_paths_teacher on reopen."""
+    db = str(tmp_path / "v7.db")
+    s1 = SQLiteStore(db)
+    s1.save_path(Path(path_id="p1", title="T", subject="s", teacher_id="andrea"))
+    # Simulate a v7 database: drop the index, downgrade user_version.
+    s1._conn.execute("DROP INDEX idx_paths_teacher")
+    s1._conn.execute("PRAGMA user_version = 7")
+    s1._conn.commit()
+    s1.close()
+
+    s2 = SQLiteStore(db)  # migration must recreate the index
+    assert "idx_paths_teacher" in _index_names(s2)
+    assert s2._conn.execute("PRAGMA user_version").fetchone()[0] == SCHEMA_VERSION
+    # Data survives the migration untouched.
+    reloaded = s2.get_path("p1")
+    assert reloaded is not None and reloaded.teacher_id == "andrea"
     s2.close()
 
 

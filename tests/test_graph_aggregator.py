@@ -8,6 +8,8 @@ Tests cover:
 - Empty/error paths
 """
 
+import pytest
+
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import (
     Citation,
@@ -18,6 +20,7 @@ from lessonos.capsule.extraction import (
 )
 from lessonos.capsule.segmentation import TopicSpan
 from lessonos.graph.aggregator import aggregate_path_graph, aggregate_teacher_graph, load_path_capsules
+from lessonos.graph.resolution import GlobalResolution, ResolutionAlias, ResolutionEntry
 from lessonos.models.entities import (
     EDGE_TYPES,
     GraphEdge,
@@ -538,4 +541,54 @@ class TestAggregatePathGraph:
         assert len(result.merged_nodes) == 1
         assert result.merged_nodes[0].label == "Def segnale"
         assert result.merged_nodes[0].lesson_ids == ("a1",)  # only andrea's lesson
+
+    def test_mapping_cross_teacher_no_contamination(self):
+        """M1-1c: a global resolution mapping never crosses teacher boundaries.
+
+        Even if a (stale/forged) mapping for andrea names a lesson belonging
+        to marco, aggregation only ever sees andrea's lessons — marco's
+        occurrence cannot leak in via the mapping. And marco's own aggregate
+        rejects andrea's mapping outright (guard).
+        """
+        store = _PathStore()
+        _register_path(store, "pa", ["a1"], teacher_id="andrea")
+        _register_path(store, "pb", ["b1"], teacher_id="marco")
+        c1 = _make_capsule("a1", [{"name": "Def segnale", "status": "introduced", "canonical": "segnale"}])
+        c2 = _make_capsule("b1", [{"name": "Il segnale", "status": "reinforced", "canonical": "segnale"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        # Mapping for andrea that (wrongly) also references marco's lesson b1.
+        resolution = GlobalResolution(
+            teacher_id="andrea",
+            entries=(
+                ResolutionEntry(
+                    canonical="segnale globale",
+                    aliases=(
+                        ResolutionAlias(
+                            lesson_id="a1",
+                            original_name="Def segnale",
+                            original_canonical="segnale",
+                            evidence_count=1,
+                        ),
+                        ResolutionAlias(
+                            lesson_id="b1",
+                            original_name="Il segnale",
+                            original_canonical="segnale",
+                            evidence_count=1,
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+        result = aggregate_teacher_graph(store, "andrea", resolution=resolution)
+        assert len(result.merged_nodes) == 1
+        node = result.merged_nodes[0]
+        assert node.lesson_ids == ("a1",)  # b1 never aggregated for andrea
+        assert node.dedup_key == "segnale globale"
+
+        # marco's aggregate must refuse andrea's mapping (contamination guard).
+        with pytest.raises(ValueError, match="contamination"):
+            aggregate_teacher_graph(store, "marco", resolution=resolution)
 

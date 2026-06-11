@@ -168,6 +168,9 @@ class DeepSeekProvider:
         model: Model name (default: ``deepseek-chat``).
         base_url: API base URL (default: ``https://api.deepseek.com/v1``).
         timeout: HTTP request timeout in seconds.
+        temperature: Optional sampling temperature. ``None`` (default) omits
+            the field so the API default applies; pass ``0.0`` for
+            deterministic classification passes (e.g. concept resolution).
     """
 
     name = "deepseek"
@@ -179,6 +182,7 @@ class DeepSeekProvider:
         model: str = DEFAULT_MODEL,
         base_url: str | None = None,
         timeout: float = 120.0,
+        temperature: float | None = None,
     ) -> None:
         key = api_key or os.environ.get("DEEPSEEK_API_KEY")
         if not key:
@@ -194,6 +198,7 @@ class DeepSeekProvider:
         self._model = model
         self._base_url = (base_url or DEFAULT_BASE_URL).rstrip("/")
         self._timeout = timeout
+        self._temperature = temperature
 
     def complete(self, prompt: str, *, model: str | None = None) -> LLMResponse:
         """Send a chat-completion request to DeepSeek.
@@ -211,16 +216,17 @@ class DeepSeekProvider:
             urllib.error.URLError: On network failure.
         """
         used_model = model or self._model
-        payload = json.dumps(
-            {
-                "model": used_model,
-                "messages": [{"role": "user", "content": prompt}],
-                # Senza max_tokens DeepSeek applica il default 4096 e TRONCA gli
-                # output lunghi a meta' JSON (incidente macinata: summary con
-                # excerpt coalesced -> "Unterminated string"). 8192 = max chat.
-                "max_tokens": 8192,
-            }
-        ).encode("utf-8")
+        body: dict = {
+            "model": used_model,
+            "messages": [{"role": "user", "content": prompt}],
+            # Senza max_tokens DeepSeek applica il default 4096 e TRONCA gli
+            # output lunghi a meta' JSON (incidente macinata: summary con
+            # excerpt coalesced -> "Unterminated string"). 8192 = max chat.
+            "max_tokens": 8192,
+        }
+        if self._temperature is not None:
+            body["temperature"] = self._temperature
+        payload = json.dumps(body).encode("utf-8")
         request = urllib.request.Request(
             f"{self._base_url}/chat/completions",
             data=payload,

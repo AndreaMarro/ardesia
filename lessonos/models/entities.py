@@ -197,6 +197,12 @@ class AggregatedPathNode:
     Unlike ``GraphNode`` which is per-lesson, this carries provenance from
     every lesson where the concept appears. The ``status`` is the most
     advanced status among all occurrences (see STATUS_ORDER).
+
+    ``dedup_key`` (M1-1c) is the key the aggregator merged this node under:
+    the global canonical when a resolution mapping was consumed, else the
+    per-lesson canonical (M1-1b), else the normalised label. It lets
+    downstream consumers (TeacherBook) re-find the node's per-lesson
+    occurrences even when their labels differ across lessons.
     """
 
     node_id: str
@@ -204,6 +210,7 @@ class AggregatedPathNode:
     status: str
     lesson_ids: tuple[str, ...] = ()
     evidence_count: int = 0
+    dedup_key: str = ""
 
     def __post_init__(self) -> None:
         if self.status not in CONCEPT_STATUS:

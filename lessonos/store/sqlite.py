@@ -15,7 +15,7 @@ from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, Grap
 from lessonos.models.ledger import CostLedgerEntry
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 7
+SCHEMA_VERSION = 8
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS evidence (
     confidence  REAL,
     lesson_id   TEXT NOT NULL
 );
+CREATE INDEX IF NOT EXISTS idx_paths_teacher ON paths(teacher_id);
 """
 class SQLiteStore(Store):
     def __init__(self, db_path: str = ":memory:") -> None:
@@ -103,15 +104,21 @@ class SQLiteStore(Store):
     def _migrate(self) -> None:
         current = self._conn.execute("PRAGMA user_version").fetchone()[0]
         if current < SCHEMA_VERSION:
+            # Migration →v7: add teacher_id column to a pre-existing paths
+            # table. MUST run before executescript: _SCHEMA's
+            # idx_paths_teacher index references the column. Attempted on
+            # every upgrade — OperationalError means the column already
+            # exists or the table does not exist yet (fresh DB), both fine.
+            try:
+                self._conn.execute(
+                    "ALTER TABLE paths ADD COLUMN teacher_id TEXT"
+                )
+            except sqlite3.OperationalError:
+                pass
+            # Migration v7→v8 (M1-1c micro, debito H2 0613): _SCHEMA now
+            # contains CREATE INDEX IF NOT EXISTS idx_paths_teacher — the
+            # executescript creates it on fresh, v6 and v7 databases alike.
             self._conn.executescript(_SCHEMA)
-            # Migration v6→v7: add teacher_id column to paths table
-            if current == 6:
-                try:
-                    self._conn.execute(
-                        "ALTER TABLE paths ADD COLUMN teacher_id TEXT"
-                    )
-                except sqlite3.OperationalError:
-                    pass  # column already exists (idempotent safeguard)
             self._conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
             self._conn.commit()
 
