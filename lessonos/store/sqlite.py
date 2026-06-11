@@ -15,7 +15,7 @@ from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, Grap
 from lessonos.models.ledger import CostLedgerEntry
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 6
+SCHEMA_VERSION = 7
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS paths (
     subject    TEXT NOT NULL,
     lesson_ids TEXT NOT NULL DEFAULT '[]',
     source_ids TEXT NOT NULL DEFAULT '[]',
-    synthetic  INTEGER NOT NULL DEFAULT 0
+    synthetic  INTEGER NOT NULL DEFAULT 0,
+    teacher_id TEXT
 );
 CREATE TABLE IF NOT EXISTS lessons (
     lesson_id TEXT PRIMARY KEY,
@@ -103,6 +104,14 @@ class SQLiteStore(Store):
         current = self._conn.execute("PRAGMA user_version").fetchone()[0]
         if current < SCHEMA_VERSION:
             self._conn.executescript(_SCHEMA)
+            # Migration v6→v7: add teacher_id column to paths table
+            if current == 6:
+                try:
+                    self._conn.execute(
+                        "ALTER TABLE paths ADD COLUMN teacher_id TEXT"
+                    )
+                except sqlite3.OperationalError:
+                    pass  # column already exists (idempotent safeguard)
             self._conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
             self._conn.commit()
 
@@ -110,8 +119,8 @@ class SQLiteStore(Store):
     def save_path(self, path: Path) -> None:
         self._conn.execute(
             "INSERT OR REPLACE INTO paths "
-            "(path_id, title, subject, lesson_ids, source_ids, synthetic) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
+            "(path_id, title, subject, lesson_ids, source_ids, synthetic, teacher_id) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
             (
                 path.path_id,
                 path.title,
@@ -119,6 +128,7 @@ class SQLiteStore(Store):
                 json.dumps(list(path.lesson_ids)),
                 json.dumps(list(path.source_ids)),
                 int(path.synthetic),
+                path.teacher_id,
             ),
         )
         self._conn.commit()
@@ -136,6 +146,25 @@ class SQLiteStore(Store):
             lesson_ids=tuple(json.loads(row["lesson_ids"])),
             source_ids=tuple(json.loads(row["source_ids"])),
             synthetic=bool(row["synthetic"]),
+            teacher_id=row["teacher_id"],
+        )
+
+    def paths_for_teacher(self, teacher_id: str) -> tuple[Path, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM paths WHERE teacher_id = ? ORDER BY path_id",
+            (teacher_id,),
+        ).fetchall()
+        return tuple(
+            Path(
+                path_id=r["path_id"],
+                title=r["title"],
+                subject=r["subject"],
+                lesson_ids=tuple(json.loads(r["lesson_ids"])),
+                source_ids=tuple(json.loads(r["source_ids"])),
+                synthetic=bool(r["synthetic"]),
+                teacher_id=r["teacher_id"],
+            )
+            for r in rows
         )
 
     # --- Lesson ---------------------------------------------------------

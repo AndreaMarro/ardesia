@@ -138,6 +138,83 @@ def load_path_capsules(
     return capsules
 
 
+def aggregate_teacher_graph(
+    store: Store,
+    teacher_id: str,
+) -> AggregatedPathGraph:
+    """Build an aggregated knowledge graph for a teacher across all their paths.
+
+    Finds all paths owned by *teacher_id*, loads all lesson capsules from
+    those paths, and aggregates concept nodes (deduplicated by normalized
+    name), edges (union), and evidence (union). The result is the teacher's
+    full knowledge graph — the foundation for personalised book/map generation
+    (M1-2).
+
+    Args:
+        store: Persistence layer.
+        teacher_id: The teacher whose paths to aggregate.
+
+    Returns:
+        An AggregatedPathGraph containing all merged concepts, edges, and
+        evidence from all of the teacher's paths.
+
+    Raises:
+        ValueError: If the teacher has no paths in the store (typo or
+            unregistered teacher).
+
+    Cross-teacher contamination guard:
+        Only paths with ``teacher_id`` matching the parameter are loaded.
+        A lesson belonging to a different teacher cannot appear in the result
+        because it belongs to a different path with a different ``teacher_id``.
+    """
+    paths = store.paths_for_teacher(teacher_id)
+    if not paths:
+        raise ValueError(
+            f"teacher {teacher_id!r} has no paths in the store"
+        )
+
+    # Load capsules from all paths
+    all_capsules: list[LessonCapsule] = []
+    for path in paths:
+        capsules = load_path_capsules(store, path.path_id)
+        all_capsules.extend(capsules)
+
+    if not all_capsules:
+        return AggregatedPathGraph(path_id=f"teacher:{teacher_id}")
+
+    # Merge concept nodes across all capsules
+    merged_nodes, _name_to_id = _merge_concept_nodes(all_capsules)
+
+    # Union all edges across all paths (dedup by edge_id)
+    all_edges: list[GraphEdge] = []
+    edge_ids_seen: set[str] = set()
+    for path in paths:
+        for lid in path.lesson_ids:
+            edges = store.get_graph_edges_for_lesson(lid)
+            for edge in edges:
+                if edge.edge_id not in edge_ids_seen:
+                    all_edges.append(edge)
+                    edge_ids_seen.add(edge.edge_id)
+
+    # Union all evidence (dedup by evidence_id)
+    all_evidence: list[GraphEvidence] = []
+    ev_ids_seen: set[str] = set()
+    for path in paths:
+        for lid in path.lesson_ids:
+            evidence_list = store.get_all_evidence_for_lesson(lid)
+            for ev in evidence_list:
+                if ev.evidence_id not in ev_ids_seen:
+                    all_evidence.append(ev)
+                    ev_ids_seen.add(ev.evidence_id)
+
+    return AggregatedPathGraph(
+        path_id=f"teacher:{teacher_id}",
+        merged_nodes=tuple(merged_nodes),
+        existing_edges=tuple(all_edges),
+        path_evidence=tuple(all_evidence),
+    )
+
+
 def aggregate_path_graph(
     store: Store,
     path_id: str,

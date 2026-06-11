@@ -17,7 +17,7 @@ from lessonos.capsule.extraction import (
     QuestionExtraction,
 )
 from lessonos.capsule.segmentation import TopicSpan
-from lessonos.graph.aggregator import aggregate_path_graph, load_path_capsules
+from lessonos.graph.aggregator import aggregate_path_graph, aggregate_teacher_graph, load_path_capsules
 from lessonos.models.entities import (
     EDGE_TYPES,
     GraphEdge,
@@ -55,6 +55,11 @@ class _PathStore(Store):
 
     def get_path(self, path_id: str) -> Path | None:
         return self._paths.get(path_id)
+
+    def paths_for_teacher(self, teacher_id: str) -> tuple[Path, ...]:
+        return tuple(
+            p for p in self._paths.values() if p.teacher_id == teacher_id
+        )
 
     def save_lesson(self, l: Lesson) -> None:
         self._lessons[l.lesson_id] = l
@@ -184,10 +189,12 @@ def _register_path(
     store: _PathStore,
     path_id: str,
     lesson_ids: list[str],
+    teacher_id: str | None = None,
 ) -> None:
     """Register a path + its lessons in the store so load_path_capsules works."""
     store.save_path(Path(path_id=path_id, title="Test", subject="test",
-                          lesson_ids=tuple(lesson_ids)))
+                          lesson_ids=tuple(lesson_ids),
+                          teacher_id=teacher_id))
     for i, lid in enumerate(lesson_ids):
         store.save_lesson(Lesson(lesson_id=lid, path_id=path_id,
                                  title=f"Lesson {i}", order=i))
@@ -261,6 +268,77 @@ class TestLoadPathCapsules:
         capsules = load_path_capsules(store, "p1")
         assert len(capsules) == 1
         assert capsules[0].lesson_id == "l1"
+
+
+class TestAggregateTeacherGraph:
+    """Tests for aggregate_teacher_graph (M1-1 per-docente aggregation)."""
+
+    def test_two_lessons_same_teacher_shared_concept(self):
+        """2 lessons same teacher sharing 1 concept → 1 merged node with 2 evidence."""
+        store = _PathStore()
+        _register_path(store, "path_a", ["a1", "a2"], teacher_id="andrea")
+
+        c1 = _make_capsule("a1", [{"name": "Segnale", "status": "introduced"}])
+        c2 = _make_capsule("a2", [{"name": "Segnale", "status": "reinforced"}])
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        result = aggregate_teacher_graph(store, "andrea")
+        assert result.path_id == "teacher:andrea"
+        assert len(result.merged_nodes) == 1
+        node = result.merged_nodes[0]
+        assert node.label == "Segnale"
+        assert node.status == "reinforced"
+        assert node.lesson_ids == ("a1", "a2")
+
+    def test_cross_teacher_no_contamination(self):
+        """Different teachers' concepts do not mix — cross-teacher guard active."""
+        store = _PathStore()
+        _register_path(store, "path_andrea", ["a1"], teacher_id="andrea")
+        _register_path(store, "path_marco", ["b1"], teacher_id="marco")
+
+        c_a = _make_capsule("a1", [{"name": "Segnale", "status": "introduced"}])
+        c_b = _make_capsule("b1", [{"name": "Integrale", "status": "introduced"}])
+        _register_capsule(store, c_a)
+        _register_capsule(store, c_b)
+
+        result = aggregate_teacher_graph(store, "andrea")
+        assert len(result.merged_nodes) == 1
+        assert result.merged_nodes[0].label == "Segnale"
+
+    def test_multi_path_teacher(self):
+        """Teacher with 2 paths → concepts from both paths are merged."""
+        store = _PathStore()
+        _register_path(store, "course_A", ["a1"], teacher_id="andrea")
+        _register_path(store, "course_B", ["b1"], teacher_id="andrea")
+
+        c_a = _make_capsule("a1", [{"name": "Segnale", "status": "introduced"}])
+        c_b = _make_capsule("b1", [{"name": "Rumore", "status": "introduced"}])
+        _register_capsule(store, c_a)
+        _register_capsule(store, c_b)
+
+        result = aggregate_teacher_graph(store, "andrea")
+        assert len(result.merged_nodes) == 2
+        labels = {n.label for n in result.merged_nodes}
+        assert labels == {"Segnale", "Rumore"}
+
+    def test_teacher_not_found(self):
+        """Unknown teacher raises ValueError."""
+        store = _PathStore()
+        try:
+            aggregate_teacher_graph(store, "unknown_teacher")
+            assert False, "expected ValueError"
+        except ValueError as e:
+            assert "unknown_teacher" in str(e)
+
+    def test_teacher_no_capsules(self):
+        """Teacher with paths but no capsules returns empty graph."""
+        store = _PathStore()
+        _register_path(store, "path_a", ["a1"], teacher_id="andrea")
+        # No capsules registered
+        result = aggregate_teacher_graph(store, "andrea")
+        assert result.path_id == "teacher:andrea"
+        assert len(result.merged_nodes) == 0
 
 
 class TestAggregatePathGraph:

@@ -46,7 +46,12 @@ STATUS_ORDER: dict[str, int] = {
 
 @dataclass(frozen=True)
 class Path:
-    """A learning path: ordered lessons over a subject (PLAN §7, fixtures path.json)."""
+    """A learning path: ordered lessons over a subject (PLAN §7, fixtures path.json).
+
+    ``teacher_id`` (M1-1) optionally links the path to a teacher. When set,
+    the path's lessons contribute to the teacher's aggregated knowledge graph.
+    One teacher may have multiple paths (courses).
+    """
 
     path_id: str
     title: str
@@ -54,6 +59,7 @@ class Path:
     lesson_ids: tuple[str, ...] = ()
     source_ids: tuple[str, ...] = ()
     synthetic: bool = False
+    teacher_id: str | None = None
 
 
 @dataclass(frozen=True)

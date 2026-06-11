@@ -23,6 +23,10 @@ class Store(ABC):
     def get_path(self, path_id: str) -> Path | None: ...
 
     @abstractmethod
+    def paths_for_teacher(self, teacher_id: str) -> tuple[Path, ...]:
+        """Retrieve all paths owned by *teacher_id* (M1-1)."""
+
+    @abstractmethod
     def save_lesson(self, lesson: Lesson) -> None: ...
 
     @abstractmethod
