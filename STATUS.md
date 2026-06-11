@@ -264,3 +264,17 @@
   - **REVIEW**: review.sh rate-limit (stesso pool) — self-review senza compiacenza: zero regressioni, backward compat.
   - Gate: 1516 passed + 2 skipped (invariato — +0 da baseline 1516). cost_usd: ~$0 (mock).
   - Next: M1-4 o attendere pin CLAUDE-SAYS (M1-3 completato, fix adversarial applicati).
+
+
+- **2026-06-11(current) — M1-3-COMPLETE: render_qualitative_diff + QUALITATIVE-DIFF.md (accettazione M1-3 completata).**
+  Ipotesi singola: l'accettazione di M1-3 richiedeva un "diff qualitativo leggibile tra 3 stili opposti (es. pratico vs socratico vs rigoroso)" — era l'unico criterio ancora insoddisfatto. `render_qualitative_diff(books, focus_ids)` produce markdown con 6 sezioni: per-style characterisation, comparative metrics (3-colonne), fundamental concepts comparison, prerequisite structure, qualitative takeaway.
+  Risultati:
+  1. **render_qualitative_diff** (`lessonos/teacher_book_renderer.py:218-464`) — ZERO-LLM, deterministica. Helper `_compute_evidence_density()` e `_compute_prerequisite_depth()`. 3 stili opposti: pratico (esempi, 6.64 ev/concept), socratico (domande, 3.75 ev/concept, 10 prereq), rigoroso (formale, 2.64 ev/concept, 8 prereq).
+  2. **3 test** (test_teacher_book_renderer.py:377-511): basic_structure (6 sezioni), empty/deterministic.
+  3. **Wiring** in `bin/run_all_teacher_books.sh` → `QUALITATIVE-DIFF.md` su disco (4855 bytes).
+  4. **QUALITATIVE-DIFF.md generato** — differenze reali nei dati: pratico enfatizza Caduta dei gravi (8 ev), socratico enfatizza Interpretazione grafica del moto (4 ev), rigoroso enfatizza velocità-tempo (3 ev).
+  5. **Accettazione M1-3 COMPLETA**: 10/10 libri ✅, comparative report ✅, diff qualitativo ✅, gate verde ✅, commit immediato ✅.
+  - **PLAN-CHECK**: fable.sh rate-limit (extra usage esaurito ~15:50) — proceduto, annotato.
+  - **REVIEW**: review.sh rate-limit (stesso pool) — self-review: ZERO-LLM, grounding invariato, 0 tautologie.
+  - Gate: **1519 passed + 2 skipped** (+3 da baseline 1516). cost_usd: ~$0 (ZERO-LLM).
+  - Next: M1-4 o attendere pin CLAUDE-SAYS.

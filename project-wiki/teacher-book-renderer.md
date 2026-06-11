@@ -4,11 +4,12 @@ ZERO-LLM markdown renderer che produce documenti strutturati da `TeacherBook`.
 
 ## Modulo
 
-`lessonos/teacher_book_renderer.py` (297 righe) — due funzioni pubbliche:
+`lessonos/teacher_book_renderer.py` — tre funzioni pubbliche:
 
 ```python
 render_teacher_book(book: TeacherBook) -> str
 render_comparative_report(books: dict[str, TeacherBook]) -> str
+render_qualitative_diff(books, focus_ids=("prof_pratico", "prof_socratico", "prof_rigoroso")) -> str
 ```
 
 ## Sezioni del TeacherBook markdown
@@ -27,6 +28,17 @@ render_comparative_report(books: dict[str, TeacherBook]) -> str
 - Tabella markdown con tutti i docenti e metriche (Concepts, Edges, Evidence, Lessons, Problematic, Prereqs)
 - Per-teacher highlights con top-3 concetti, problematici, prerequisite chains esemplari
 
+## Qualitative diff (stili opposti)
+
+`render_qualitative_diff(books, focus_ids)` produce un documento markdown con 6 sezioni:
+
+1. **Per-Style Characterisation** — narrativa per ogni stile (evidence density, prerequisite depth, top-3 concepts)
+2. **Comparative Metrics** — tabella 3-colonne head-to-head (Concepts, Edges, Evidence, Evidence/Concept, Prereqs, Problematic)
+3. **Fundamental Concepts Comparison** — top-5 concetti per ogni stile
+4. **Prerequisite Structure** — profondità media, deepest chain per stile
+5. **Qualitative Takeaway** — paragrafo narrativo per stile basato sulle metriche
+6. **Footer** — firma ZERO-LLM
+
 ## Invarianti
 
 1. **ZERO-LLM**: nessuna chiamata router, interamente deterministico
@@ -36,7 +48,7 @@ render_comparative_report(books: dict[str, TeacherBook]) -> str
 
 ## Test
 
-13 test in `tests/test_teacher_book_renderer.py`:
+16 test in `tests/test_teacher_book_renderer.py`:
 - Basic structure (tutte le sezioni presenti)
 - Fundamental ranking (ordine per evidence_count preservato)
 - Problematic (sezione separata, messaggio se assenti)
@@ -48,7 +60,11 @@ render_comparative_report(books: dict[str, TeacherBook]) -> str
 - Report structure (tabella + highlights)
 - Report with problematic
 - Empty report
-- Determinismo byte-per-byte
+- Determinismo byte-per-byte (report)
+- **Qualitative diff structure** (6 sezioni, ZERO-LLM footer)
+- **Qualitative diff empty books** (nessun crash)
+- **Qualitative diff deterministic** (byte-per-byte stabilità)
+- Comparative report deterministic
 
 ## Runner scripts
 
@@ -59,9 +75,10 @@ Output in `~/maestro-data/fisica1-sim/derived/teacher_book/`.
 
 ## File
 
-- `lessonos/teacher_book_renderer.py` — renderer (297 righe)
-- `tests/test_teacher_book_renderer.py` — 13 test
+- `lessonos/teacher_book_renderer.py` — renderer (3 funzioni pubbliche)
+- `tests/test_teacher_book_renderer.py` — 16 test
 - `bin/run_teacher_book.sh` — per-teacher runner
-- `bin/run_all_teacher_books.sh` — batch runner + report
+- `bin/run_all_teacher_books.sh` — batch runner + report + diff
 - `~/maestro-data/fisica1-sim/derived/teacher_book/REPORT.md` — comparative report
+- `~/maestro-data/fisica1-sim/derived/teacher_book/QUALITATIVE-DIFF.md` — qualitative style diff
 - `~/maestro-data/fisica1-sim/derived/teacher_book/<teacher_id>.md` — 10 markdown files
