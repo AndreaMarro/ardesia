@@ -95,3 +95,15 @@ class TestCoalescing:
         ])
         segs = asr_jsonl_to_segments(p, L, min_chars=5)
         assert [s.text for s in segs] == ["vera frase."]
+
+    def test_whisper_loop_hallucination_collapsed(self, tmp_path) -> None:
+        """Consecutive identical texts (whisper repetition loop on noise —
+        'per un attimino' x17 measured on seconda) collapse to ONE occurrence
+        instead of concatenating into a garbage mega-segment."""
+        rows = [_row(i * 1.0, i * 1.0 + 1.0, "per un attimino") for i in range(17)]
+        rows.append(_row(17.0, 19.0, "poi la lezione riprende davvero."))
+        p = _jsonl(tmp_path, rows)
+        segs = asr_jsonl_to_segments(p, L, min_chars=30)
+        joined = " | ".join(s.text for s in segs)
+        assert joined.count("per un attimino") == 1
+        assert "poi la lezione riprende davvero." in joined

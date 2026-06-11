@@ -58,9 +58,17 @@ def _coalesce_speech(speech_segs: list, min_chars: int) -> list:
     for seg in speech_segs:
         if acc_start is not None and seg.start - acc_end > _GAP_FLUSH_S:
             _flush()
+        text = seg.text.strip()
+        # Whisper loop-hallucination guard: on noise/silence whisper repeats the
+        # same phrase across many consecutive micro-segments ("per un attimino"
+        # x17 measured on seconda). Coalescing would concatenate the loop into
+        # one garbage mega-segment — collapse consecutive identical texts.
+        if acc_text and text == acc_text[-1]:
+            acc_end = seg.end
+            continue
         if acc_start is None:
             acc_start = seg.start
-        acc_text.append(seg.text.strip())
+        acc_text.append(text)
         acc_end = seg.end
         joined_len = sum(len(t) for t in acc_text) + len(acc_text) - 1
         if joined_len >= min_chars and seg.text.rstrip().endswith(_SENTENCE_END):
