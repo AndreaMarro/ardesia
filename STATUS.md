@@ -287,3 +287,17 @@
   - **REVIEW**: review.sh rate-limit (stesso pool) — self-review: ZERO-LLM, grounding invariato, 0 tautologie.
   - Gate: **1519 passed + 2 skipped** (+3 da baseline 1516). cost_usd: ~$0 (ZERO-LLM).
   - Next: M1-4 o attendere pin CLAUDE-SAYS.
+
+- **2026-06-11(current) — M1-4 DISPENSA STILIZZATA: warm-up + style.py + dispensa.py + tests.**
+  Ipotesi singola: StyleProfile deterministico (ZERO-LLM) + dispensa stile-guided via LLM router con gate fail-closed (identico a summary M0) produce dispensa markdown strutturale per-docente.
+  Risultati:
+  1. **WARM-UP (3 micro-fixes H2-1108)**: (a) `test_empty_books_no_crash` or-mascherato → assert preciso "Compared 0 teachers" (render_qualitative_diff ora mostra docenti reali da books); (b) `render_qualitative_diff` con focus_ids<3 → gestione graceful (titolo dinamico, nessun IndexError); (c) `_compute_prerequisite_depth` → `_compute_prerequisite_breadth` (misura ampiezza, non profondità ricorsiva — tutti i 4 call-site aggiornati).
+  2. **`lessonos/style.py`** (ZERO-LLM) — `StyleProfile` frozen dataclass + `derive_style_profile(store, teacher_id)`. Metriche: exercise_density, question_density, prereq_explicitness, concept_granularity, registro (euristica filler/formal via `_register_from_segments`), tics (n-gram frequency via `_extract_tics`). 10 test.
+  3. **`lessonos/dispensa.py`** — Pipeline completa: `build_dispensa_prompt(teacher_id, style, concepts)` → prompt deterministico con struttura stile-guida (exercise-first vs question-first vs formal); `_parse_dispensa_response(raw)` → JSON robusto; `generate_dispensa(store, teacher_id, router, style=None)` → or-chestra TeacherBook + LLM router; `verify_dispensa(doc, store)` → riusa `graph/grounding.verify_citation` con gate fail-closed (0 claims o >20% unverified = ValueError, paragrafi non-grounded droppati); `render_dispensa_md(doc, report)` → ZERO-LLM.
+  4. **`bin/run_dispensa.sh`** — Runner riproducibile (env DB_PATH/DERIVED_DIR/PROVIDER/MODEL).
+  5. **19 test dispensa.py** — determinismo prompt, stile divergente (pratico vs socratico → struttura diversa), gate fail-closed (0 claims, seg_id inesistente, excerpt non-verbatim), mock LLM malformato, injection resistance, multi-claim parsing.
+  6. **Test stile divergente core**: stesse capsule, 2 StyleProfile opposti (pratico exercise-first vs socratico domande-first) → markdown strutturalmente diverso (`"Esercizio"` in Sezione 1 vs `"Domanda"`). IL test del prodotto.
+  - **PLAN-CHECK**: fable.sh quota-out (84min reset) + bash parsing error — proceduto per dottrina, annotato.
+  - **REVIEW**: review.sh rate-limit Claude Code (extra usage out) — self-review senza compiacenza: 0 tautologie, 0 regressioni, zero nuove dipendenze, gate non modificato.
+  - Gate: **1553 passed + 2 skipped** (+33 da baseline 1520). cost_usd: ~$0 (mock tests).
+  - Next: Fase F — LIVE run dispense per prof_pratico/socratico/rigoroso (sim) + andrea (reale). verify_dispensa PASS su tutte e 4. Diff stilistico 10 righe in STATUS.

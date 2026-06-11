@@ -511,7 +511,7 @@ class TestRenderQualitativeDiff:
         """Empty or missing books don't crash."""
         md = render_qualitative_diff({})
         assert md.startswith("# Qualitative Style Diff")
-        assert "0 teachers" in md or "Compared 3 teachers" in md
+        assert "Compared 0 teachers" in md
 
     def test_deterministic(self) -> None:
         """Same input produces same output."""
