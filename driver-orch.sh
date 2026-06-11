@@ -63,7 +63,16 @@ for i in $(seq 1 "$N"); do
   elif [ "$ae" = 0 ] && [ "$ap" -ge 1 ] && [ "$ap" -ge "$bp" ]; then
     status="pass"; note="kept; gate verde (passed=$ap; ${dur}s)"; git push -q origin HEAD:auto/main 2>/dev/null || true
   else
-    status="REVERT"; note="gate rosso/regresso (exit=$ae passed $bp->$ap; ${dur}s) -> reset"; git reset --hard "$bh" >/dev/null 2>&1 || true
+    # RESCUE anche sul ramo REVERT (11/06 sera: M1-5 quasi-intera persa qui —
+    # il rescue 4320827 copriva solo il ramo noop): il tree sporco va in stash
+    # PRIMA del reset; un eventuale commit revertito resta comunque nel reflog.
+    if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+      git stash push -u -m "rescue REVERT iter $ts (gate rosso, passed=$ap)" >/dev/null 2>&1 || true
+      note="gate rosso/regresso (exit=$ae passed $bp->$ap; ${dur}s) -> reset + LAVORO STASHATO"
+    else
+      note="gate rosso/regresso (exit=$ae passed $bp->$ap; ${dur}s) -> reset"
+    fi
+    status="REVERT"; git reset --hard "$bh" >/dev/null 2>&1 || true
   fi
   printf '%s\n%s\n' "$day" "$((dt+1))" > "$CAP_FILE"
   printf '| %s | %s | %s | %s | %s | %s | orch:%s |\n' "$ts" "$i" "$(git rev-parse --short HEAD)" "$ap" "$([ "${ae:-1}" = 0 ] && echo y || echo n)" "$status" "$note" >> "$RES"
