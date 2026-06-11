@@ -329,4 +329,18 @@
   - **PLAN-CHECK**: fable.sh timeout (rate-limit) — proceduto per dottrina, annotato.
   - **REVIEW**: fable-5 (4 fix veri: docstring onesta word-boundary, import inutilizzato rimosso, assert deterministico, dead code rimosso). Tutti applicati.
   - Gate: **1580 passed + 2 skipped** (+17 da baseline 1563). cost_usd: ~$0 (mock).
-  - Next: M1-5 [FABLE] — purge_lesson transazionale, aggregazione da lessons_for_path, negation-aware repair, consolidamento pipeline.run_ingest. Oppure attendere pin CLAUDE-SAYS.
+- Next: M1-6 — Fase F dispense live 3 sim + andrea + blind-test (>=7/10). Attende pin CLAUDE-SAYS.
+
+|- **2026-06-11(current) — M1-5.5: test determinismo H2-1327 (l'unico gap residuo M1-5, M1-5 COMPLETO).**
+  Ipotesi singola: il test determinismo per _resolve_concepts_from_capsules (H2-1327, richiesto da COORD) va aggiunto — il fix logico era gia nel codice dispensa.py:178-188 da M1-4b, ma mancava il test che verifica quale candidato vince su exact-match multipli.
+  Risultati:
+  1. **Test aggiunto** (tests/test_dispensa.py:558-598): `test_multiple_exact_matches_deterministic` — stesso concetto 'Energia' exact-match in capsule l1 (introduced) e l2 (reinforced) → sempre l1 vince (primo lid in insertion order). Falsificabile: assert `result[0] is l1_ext` e `result[0].status == "introduced"`.
+  2. **M1-5 COMPLETO**: 5/5 sotto-task chiusi:
+     - M1-5.1 purge_lesson transazionale (83adbff) ✅
+     - M1-5.2 _lesson_ids_from_path fonte primaria (289b936) ✅
+     - M1-5.3 negation-aware repair (fe5065e) ✅
+     - M1-5.4 run_ingest in pipeline.py (8e84978) ✅
+     - M1-5.5 H2-1327 determinism fix+test (f3775ab) ✅
+  - **PLAN-CHECK**: fable.sh rate-limit (quota out, 97min al reset) — proceduto per dottrina, annotato.
+  - **REVIEW**: fable-5 — 3 fix (test 2-call non falsificabile, docstring status-discriminator senza assert, assert non discriminante). Tutti applicati.
+  - Gate: 1585 passed + 2 skipped (+1 da baseline 1584, nessuna regressione). cost_usd: ~$0 (mock).

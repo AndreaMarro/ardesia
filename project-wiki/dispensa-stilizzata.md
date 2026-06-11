@@ -28,6 +28,7 @@ Pipeline a 4 fasi:
 2. **`generate_dispensa(store, teacher_id, router, style=None)`** — carica TeacherBook, risolve concetti via `_resolve_concepts_from_capsules()` (exact normalized → edit-distance ≥0.85 → ValueError se nessun ConceptExtraction con citazioni), chiama LLM (via router, mock in test), parsifica risposta JSON. Budget ~$0.05/dispensa.
    - **M1-4b fix**: sostituito substring matching `norm_ext in norm_tc` con edit-distance (SequenceMatcher, soglia 0.85) + fail-closed ValueError. Eliminato silent fallback (creazione ConceptExtraction senza citazioni). (`lessonos/dispensa.py:138-200`, commit d044044)
    - **`_name_similar(a, b, threshold=0.85)`** — helper edit-distance con soglia conservativa. 'fourier' vs 'serie di fourier' (~0.53) → no match. 'fourier' vs 'fourier' (1.0) → match.
+   - **M1-5.5**: test determinismo su exact-match multipli — stesso concetto in 2 capsule → sempre primo lid in insertion order (test_multiple_exact_matches_deterministic, commit f3775ab).
 
 3. **`verify_dispensa(doc, store)`** — riusa `graph/grounding.verify_citation` su ogni claim:
    - seg_id risolvibile, stessa lezione (cross-lesson guard), excerpt verbatim
@@ -60,4 +61,4 @@ Env: `DB_PATH`, `DERIVED_DIR`, `PROVIDER`, `MODEL`.
 - `tests/test_style.py` — 10 test (file:line)
 - `bin/run_dispensa.sh` — runner
 - `docs/ORDERS-M1-4.md` — spec prodotto
-- `tests/test_dispensa.py` — 33 test (file:line, M1-4b: +10)
+- `tests/test_dispensa.py` — 34 test (file:line, M1-4b: +10, M1-5.5: +1)
