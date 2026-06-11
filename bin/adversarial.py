@@ -95,32 +95,63 @@ COMMIT: {subject}
 DIFF (troncato a 40k):
 {diff}"""
 
-# kimi-k2.6 = reasoning model: accetta SOLO temperature=1 (400 altrimenti); max_tokens copre reasoning+risposta.
-payload = {
-    "model": "kimi-k2.6",
-    "messages": [{"role": "user", "content": prompt}],
-    "temperature": 1,
-    "max_tokens": 8192,  # k2.6 ragiona a lungo prima di scrivere: il budget copre reasoning+report
-}
-req = urllib.request.Request(
-    "https://api.moonshot.ai/v1/chat/completions",
-    data=json.dumps(payload).encode(),
-    headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-)
-try:
-    with urllib.request.urlopen(req, timeout=360) as r:  # reasoning su diff grossi = lento, è un job batch
+# --- Chiamata kimi-k2.6 -------------------------------------------------------
+# kimi-k2.6 ha il THINKING abilitato di default ed e' un reasoning model.
+# Doc Moonshot: la somma dei token di reasoning_content e content deve stare entro max_tokens.
+# Con max_tokens piccolo il modello brucia tutto il budget nel reasoning e lascia
+# content vuoto (finish_reason=length): il report finiva per essere reasoning grezzo.
+# Per una REVIEW serve il VERDETTO, non la catena di pensiero: DISABILITIAMO il thinking
+# (thinking type disabled) cosi' tutto il budget va in content (verdetto strutturato).
+# In non-thinking la temperatura e' FISSA 0.6 (con thinking e' 1; altro valore -> HTTP 400).
+def _kimi(messages, max_tokens, thinking_disabled=True):
+    """Una chiamata a kimi-k2.6. Ritorna (content, reasoning, finish_reason)."""
+    payload = {
+        "model": "kimi-k2.6",
+        "messages": messages,
+        "temperature": 0.6 if thinking_disabled else 1,  # non-thinking=0.6, thinking=1 (obbligatorie)
+        "max_tokens": max_tokens,
+    }
+    if thinking_disabled:
+        payload["thinking"] = {"type": "disabled"}
+    req = urllib.request.Request(
+        "https://api.moonshot.ai/v1/chat/completions",
+        data=json.dumps(payload).encode(),
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=360) as r:  # diff grossi = lento, e' un job batch
         body = json.load(r)
-    msg = body["choices"][0]["message"]
-    text = (msg.get("content") or "").strip()
-    if not text:  # reasoning model: risposta finita nei token di reasoning → tieni il reasoning, segnala
-        text = "(content vuoto — reasoning grezzo:)\n" + (msg.get("reasoning_content") or "").strip()
-    if len(text) < 60:  # niente report vuoti/monchi: NIENTE file → il prossimo tick riprova
-        print(f"HERMES-2 FALLITO: risposta vuota per {repo}@{sha} (finish={body['choices'][0].get('finish_reason')}) — riproverà")
+    ch = body["choices"][0]
+    msg = ch["message"]
+    return (msg.get("content") or "").strip(), (msg.get("reasoning_content") or "").strip(), ch.get("finish_reason")
+
+
+try:
+    # Passo 1: review con thinking OFF -> content = verdetto strutturato, niente reasoning a sprecare budget.
+    text, reasoning, finish = _kimi(
+        [{"role": "user", "content": prompt}], max_tokens=16000, thinking_disabled=True
+    )
+    # Rete di sicurezza: se content e' vuoto ma c'e' reasoning grezzo, NON salviamo reasoning crudo:
+    # 2o passo che chiede SOLO il report finale strutturato.
+    if not text and reasoning:
+        synth = (
+            "Queste sono note di analisi grezze di una code review. "
+            "Riscrivile come REPORT FINALE pulito e strutturato, IN ITALIANO.\n"
+            "FORMATO OBBLIGATORIO: PRIMA riga = verdetto secco (REGGE oppure N problemi, di cui M CRITICI). "
+            "Poi i problemi: file:line + perche' e' vero + input reale che lo innesca + fix preciso. "
+            "Usa il prefisso CRITICO: SOLO per perdita o corruzione dati, violazione invariante di prodotto o sicurezza reale. "
+            "Max 350 parole. Niente meta-commenti, solo il report.\n\n=== NOTE GREZZE ===\n" + reasoning
+        )
+        text, _r2, _f2 = _kimi(
+            [{"role": "user", "content": synth}], max_tokens=4000, thinking_disabled=True
+        )
+        text = text.strip()
+    if len(text) < 60:  # niente report vuoti o monchi: NIENTE file -> il prossimo tick riprova
+        print(f"HERMES-2 FALLITO: risposta vuota per {repo}@{sha} (finish={finish}) - riprovera'")
         sys.exit(0)
 except urllib.error.HTTPError as e:  # diagnostica vera nel log, mai bloccare il tick
     print(f"HERMES-2 SALTATO (kimi HTTP {e.code}: {e.read()[:300]!r})")
     sys.exit(0)
-except Exception as e:  # rete/quota: non bloccare mai il tick
+except Exception as e:  # rete o quota: non bloccare mai il tick
     print(f"HERMES-2 SALTATO (kimi non raggiungibile: {e})")
     sys.exit(0)
 
