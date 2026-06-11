@@ -96,6 +96,14 @@ class _StoreStub(Store):
     def commit_transaction(self) -> None: ...
     def rollback_transaction(self) -> None: ...
 
+    def delete_capsule(self, lesson_id: str) -> bool:
+        return self._capsules.pop(lesson_id, None) is not None
+    def purge_lesson(self, lesson_id: str) -> int:
+        total = len([k for k in self._segments if k.startswith(lesson_id)])
+        self._segments = {k: v for k, v in self._segments.items() if not k.startswith(lesson_id)}
+        self.delete_capsule(lesson_id)
+        return total
+
 
 # Reuse the same stub from style tests (minimal)
 from dataclasses import dataclass

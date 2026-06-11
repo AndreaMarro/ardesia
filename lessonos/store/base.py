@@ -76,6 +76,27 @@ class Store(ABC):
         ...
 
     @abstractmethod
+    def delete_capsule(self, lesson_id: str) -> bool:
+        """Delete a persisted capsule for *lesson_id*.
+
+        Returns ``True`` if a capsule existed and was deleted, ``False`` if
+        no capsule existed (idempotent).
+        """
+        ...
+
+    @abstractmethod
+    def purge_lesson(self, lesson_id: str) -> int:
+        """Fully erase every trace of *lesson_id* from the store.
+
+        Deletes segments, moments, capsule, graph nodes, graph edges, and
+        evidence in a single transaction (all-or-nothing). Returns the total
+        number of rows/items deleted.
+
+        Idempotent: a second purge on the same lesson returns 0.
+        """
+        ...
+
+    @abstractmethod
     def close(self) -> None:
         ...
 

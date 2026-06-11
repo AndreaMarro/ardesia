@@ -340,6 +340,37 @@ class SQLiteStore(Store):
         ).fetchone()
         return row["capsule_data"] if row is not None else None
 
+    def delete_capsule(self, lesson_id: str) -> bool:
+        """Delete a persisted capsule for *lesson_id*.
+
+        Returns ``True`` if a capsule existed.
+        """
+        cur = self._conn.execute(
+            "DELETE FROM capsules WHERE lesson_id = ?", (lesson_id,)
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+        return cur.rowcount > 0
+
+    def purge_lesson(self, lesson_id: str) -> int:
+        """Fully erase every trace of *lesson_id* in a single transaction."""
+        self.begin_transaction()
+        total = 0
+        try:
+            for table in ("segments", "moments", "evidence", "edges", "nodes"):
+                cur = self._conn.execute(
+                    f"DELETE FROM {table} WHERE lesson_id = ?", (lesson_id,)
+                )
+                total += cur.rowcount
+            # Capsule is keyed on lesson_id, not lesson_id column
+            if self.delete_capsule(lesson_id):
+                total += 1
+            self.commit_transaction()
+        except BaseException:
+            self.rollback_transaction()
+            raise
+        return total
+
     def close(self) -> None:
         self._conn.close()
 

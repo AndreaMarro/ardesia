@@ -134,6 +134,16 @@ class _BookStore(Store):
     def commit_transaction(self): ...
     def rollback_transaction(self): ...
 
+    def delete_capsule(self, lesson_id: str) -> bool:
+        return self._capsules.pop(lesson_id, None) is not None
+    def purge_lesson(self, lesson_id: str) -> int:
+        total = sum(1 for s in self._segments.values()
+                    if getattr(s, 'lesson_id', None) == lesson_id)
+        self._segments = {k: v for k, v in self._segments.items()
+                          if getattr(v, 'lesson_id', None) != lesson_id}
+        self.delete_capsule(lesson_id)
+        return total
+
 
 # ---------------------------------------------------------------------------
 # Fixture helpers

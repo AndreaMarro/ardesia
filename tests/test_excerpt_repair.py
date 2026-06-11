@@ -210,6 +210,9 @@ def _make_simple_store(segment_text, *, seg_id="l1s1", lesson_id="l1"):
         def commit_transaction(self): ...
         def rollback_transaction(self): ...
 
+        def delete_capsule(self, lesson_id: str) -> bool: ...
+        def purge_lesson(self, lesson_id: str) -> int: return 0
+
     return _SimpleStore()
 
 
