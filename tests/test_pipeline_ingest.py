@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 
-from lessonos.llm.router import Router
+from lessonos.llm.router import MockProvider, Router
 from lessonos.models.entities import (
     Lesson,
     Path,
@@ -155,10 +156,34 @@ def test_ingest_store_smoke():
 def test_run_ingest_smoke():
     """run_ingest with mock provider produces a capsule + graph in store."""
     store = _IngestStore()
-    store.save_segment(_Seg(seg_id="l1#s1", lesson_id="l1", text="alpha"))
-    store.save_segment(_Seg(seg_id="l1#s2", lesson_id="l1", text="beta"))
+    seg = _Seg(seg_id="l1#s1", lesson_id="l1", text="alpha")
+    seg2 = _Seg(seg_id="l1#s2", lesson_id="l1", text="beta")
+    store.save_segment(seg)
+    store.save_segment(seg2)
+
+    from lessonos.capsule.segmentation import build_segmentation_prompt
+    from lessonos.capsule.extraction import build_extraction_prompt
+    segments = store.segments_for_lesson("l1")
+    seg_prompt = build_segmentation_prompt(segments)
+    ext_prompt = build_extraction_prompt(segments)
 
     router = Router()
+    router.register(MockProvider(fixtures={
+        seg_prompt: json.dumps([{
+            "topic": "Test topic",
+            "seg_ids": ["l1#s1", "l1#s2"],
+        }]),
+        ext_prompt: json.dumps({
+            "concepts": [{
+                "name": "Alpha",
+                "status": "introduced",
+                "citations": [{"seg_id": "l1#s1", "excerpt": "alpha"}],
+            }],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }),
+    }))
     capsule = run_ingest(store, "l1", router, provider="mock")
 
     assert capsule.lesson_id == "l1"
@@ -182,10 +207,34 @@ def test_run_ingest_smoke():
 def test_run_ingest_purge_before_save():
     """run_ingest purges existing data before writing new capsule."""
     store = _IngestStore()
-    store.save_segment(_Seg(seg_id="l1#s1", lesson_id="l1", text="alpha"))
-    store.save_segment(_Seg(seg_id="l1#s2", lesson_id="l1", text="beta"))
+    seg = _Seg(seg_id="l1#s1", lesson_id="l1", text="alpha")
+    seg2 = _Seg(seg_id="l1#s2", lesson_id="l1", text="beta")
+    store.save_segment(seg)
+    store.save_segment(seg2)
+
+    from lessonos.capsule.segmentation import build_segmentation_prompt
+    from lessonos.capsule.extraction import build_extraction_prompt
+    segments = store.segments_for_lesson("l1")
+    seg_prompt = build_segmentation_prompt(segments)
+    ext_prompt = build_extraction_prompt(segments)
 
     router = Router()
+    router.register(MockProvider(fixtures={
+        seg_prompt: json.dumps([{
+            "topic": "Test topic",
+            "seg_ids": ["l1#s1", "l1#s2"],
+        }]),
+        ext_prompt: json.dumps({
+            "concepts": [{
+                "name": "Alpha",
+                "status": "introduced",
+                "citations": [{"seg_id": "l1#s1", "excerpt": "alpha"}],
+            }],
+            "exercises": [],
+            "student_questions": [],
+            "homework": [],
+        }),
+    }))
     capsule1 = run_ingest(store, "l1", router, provider="mock")
 
     # Re-ingest (same segments, no changes)

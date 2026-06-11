@@ -36,6 +36,7 @@ from lessonos.graph.path_memory import (
     apply_review_feedback,
     build_path_memory,
 )
+from lessonos.graph.writer import write_capsule_graph
 from lessonos.llm.router import MockProvider, Router
 from lessonos.store.base import Store
 from lessonos.store.fixture_loader import (
@@ -764,3 +765,52 @@ def run_pipeline(
         total_cost_usd=0.0,
         total_llm_calls=total_calls,
     )
+
+
+# ---------------------------------------------------------------------------
+# M1-5.4: single-lesson ingest pipeline
+# ---------------------------------------------------------------------------
+
+
+def run_ingest(
+    store: Store,
+    lesson_id: str,
+    router: Router,
+    *,
+    provider: str = "mock",
+    model: str | None = None,
+) -> LessonCapsule:
+    """Run the full ingest pipeline for a single lesson.
+
+    Steps:
+    1. ``store.purge_lesson(lesson_id)`` — wipe existing data for this lesson.
+    2. ``assemble_lesson_capsule(store, lesson_id, router, *, save=True)`` —
+       run the segmentation+extraction+assembly pipeline, persist the capsule.
+    3. ``write_capsule_graph(store, capsule)`` — persist graph nodes, edges,
+       and evidence for this lesson.
+
+    Returns the assembled LessonCapsule.
+
+    Raises:
+        ValueError: If the lesson has no segments in the store.
+    """
+    segments = store.segments_for_lesson(lesson_id)
+    if not segments:
+        raise ValueError(
+            f"lesson {lesson_id!r} has no segments — cannot ingest"
+        )
+
+    # Step 1: purge derived data (capsule + graph) for this lesson.
+    # Segments are SOURCE data, not derived — they must survive.
+    store.delete_capsule(lesson_id)
+    store.delete_graph_for_lesson(lesson_id)
+
+    # Step 2: assemble and persist the capsule
+    capsule = assemble_lesson_capsule(
+        store, lesson_id, router, provider=provider, model=model, save=True
+    )
+
+    # Step 3: write the capsule graph
+    write_capsule_graph(store, capsule)
+
+    return capsule
