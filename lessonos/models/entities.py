@@ -228,3 +228,84 @@ class AggregatedPathGraph:
     merged_nodes: tuple[AggregatedPathNode, ...] = ()
     existing_edges: tuple[GraphEdge, ...] = ()
     path_evidence: tuple[GraphEvidence, ...] = ()
+
+
+@dataclass(frozen=True)
+class TeacherConcept:
+    """A concept in the teacher's book (M1-2).
+
+    Unlike ``AggregatedPathNode`` which carries aggregated metadata, this is
+    a renderable concept entry with edge connectivity stats and grounded
+    citations from every lesson where the concept appears.
+    """
+
+    name: str
+    canonical: str
+    status: str
+    lesson_ids: tuple[str, ...] = ()
+    edge_count: int = 0
+    evidence_count: int = 0
+    citations: tuple[GraphEvidence, ...] = ()
+
+    def __post_init__(self) -> None:
+        if self.status not in CONCEPT_STATUS:
+            raise ValueError(
+                f"invalid teacher concept status: {self.status!r} "
+                f"(expected one of {sorted(CONCEPT_STATUS)})"
+            )
+
+
+@dataclass(frozen=True)
+class ConceptProgression:
+    """A concept's status progression across lessons (M1-2).
+
+    ``first_lesson`` is where the concept was introduced.
+    ``status_sequence`` tracks evolution (e.g. ``("introduced", "reinforced")``).
+    ``lesson_sequence`` parallels status_sequence — the lesson where each
+    status was observed.
+    """
+
+    name: str
+    canonical: str
+    first_lesson: str
+    status_sequence: tuple[str, ...] = ()
+    lesson_sequence: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class PrerequisiteChain:
+    """A concept and its prerequisites (M1-2).
+
+    ``prerequisites`` are concept names (canonical) that this concept
+    ``depends_on``. Derived from ``depends_on`` edges in the aggregated graph.
+    """
+
+    concept: str
+    canonical: str
+    prerequisites: tuple[str, ...] = ()
+    lesson_ids: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class TeacherBook:
+    """Structured teacher's map from the aggregated graph (M1-2, ZERO-LLM).
+
+    Organizes concepts from ``AggregatedPathGraph`` into thematic sections:
+    overview statistics, fundamental (most-connected) concepts, problematic
+    concepts, status progression, and prerequisite chains. All grounded in
+    the original transcript evidence.
+
+    Produced entirely without LLM calls — deterministic, free, and testable.
+    The markdown renderer in ``teacher_book.py`` converts this to human-
+    readable output.
+    """
+
+    teacher_id: str
+    total_concepts: int = 0
+    total_lessons: int = 0
+    total_edges: int = 0
+    total_evidence: int = 0
+    fundamental_concepts: tuple[TeacherConcept, ...] = ()
+    problematic_concepts: tuple[TeacherConcept, ...] = ()
+    progression: tuple[ConceptProgression, ...] = ()
+    prerequisites: tuple[PrerequisiteChain, ...] = ()
