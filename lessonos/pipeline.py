@@ -783,7 +783,9 @@ def run_ingest(
     """Run the full ingest pipeline for a single lesson.
 
     Steps:
-    1. ``store.purge_lesson(lesson_id)`` — wipe existing data for this lesson.
+    1. ``store.delete_capsule`` + ``store.delete_graph_for_lesson`` — wipe
+       the DERIVED data for this lesson. NOT ``purge_lesson``: segments are
+       the source of the re-ingest and must survive (purge would erase them).
     2. ``assemble_lesson_capsule(store, lesson_id, router, *, save=True)`` —
        run the segmentation+extraction+assembly pipeline, persist the capsule.
     3. ``write_capsule_graph(store, capsule)`` — persist graph nodes, edges,

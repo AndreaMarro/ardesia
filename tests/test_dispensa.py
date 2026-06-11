@@ -99,10 +99,16 @@ class _StoreStub(Store):
     def delete_capsule(self, lesson_id: str) -> bool:
         return self._capsules.pop(lesson_id, None) is not None
     def purge_lesson(self, lesson_id: str) -> int:
-        total = len([k for k in self._segments if k.startswith(lesson_id)])
-        self._segments = {k: v for k, v in self._segments.items() if not k.startswith(lesson_id)}
+        # Match on the segment's lesson_id, NOT on a seg_id prefix:
+        # startswith("l1") would purge "l10" too (retro-review minor).
+        doomed = [
+            k for k, v in self._segments.items()
+            if getattr(v, "lesson_id", None) == lesson_id
+        ]
+        for k in doomed:
+            del self._segments[k]
         self.delete_capsule(lesson_id)
-        return total
+        return len(doomed)
 
 
 # Reuse the same stub from style tests (minimal)

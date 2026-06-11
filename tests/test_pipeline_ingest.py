@@ -236,18 +236,27 @@ def test_run_ingest_purge_before_save():
         }),
     }))
     capsule1 = run_ingest(store, "l1", router, provider="mock")
+    nodes_after_first = len(store.get_graph_nodes_for_lesson("l1"))
+    edges_after_first = len(store.get_graph_edges_for_lesson("l1"))
+    evidence_after_first = len(store.get_all_evidence_for_lesson("l1"))
+    assert nodes_after_first > 0 and edges_after_first > 0
 
     # Re-ingest (same segments, no changes)
     capsule2 = run_ingest(store, "l1", router, provider="mock")
 
     assert capsule2.lesson_id == "l1"
-    assert len(capsule2.content.concepts) >= 1
+    assert len(capsule2.content.concepts) == len(capsule1.content.concepts)
 
-    # Graph data written
-    nodes = store.get_graph_nodes_for_lesson("l1")
-    assert len(nodes) >= 1
-    edges = store.get_graph_edges_for_lesson("l1")
-    assert len(edges) >= 1
+    # The CLAIM of this test (retro-review: the old `>= 1` assert passed
+    # even with the purge removed): re-ingest must not duplicate graph rows
+    # in the stub's append-based tables — counts must be identical.
+    # Mutation-verified: the invariant is enforced by TWO redundant layers
+    # (run_ingest's step-1 deletes AND GraphWriter.write_capsule_graph's
+    # internal DELETE+INSERT); removing either alone still passes, removing
+    # BOTH makes these equality asserts fail (counts double).
+    assert len(store.get_graph_nodes_for_lesson("l1")) == nodes_after_first
+    assert len(store.get_graph_edges_for_lesson("l1")) == edges_after_first
+    assert len(store.get_all_evidence_for_lesson("l1")) == evidence_after_first
 
 
 def test_run_ingest_empty_lesson_raises():
