@@ -76,24 +76,40 @@
   - Next: T6 riepilogo-lezione (markdown da capsule + citazioni verificate).
 |
 |
-|- **2026-06-10(current) — T6 RIEPILOGO-LEZIONE: summarizer + grounding helper + LIVE run su Prima lezione.**
-|  Ipotesi singola: la capsule → markdown summary con citazioni verificate meccanicamente si costruisce come `generate_lesson_summary(store, capsule, router)` con (1) prompt deterministico, (2) LLM response JSON strutturato, (3) validazione meccanica di ogni seg_id+excerpt reusing `verify_citation` dal nuovo `lessonos/graph/grounding.py`.
-|  Risultati:
-|  1. **grounding.py** — helper condiviso `verify_citation(store, seg_id, lesson_id, excerpt=None)` estratto da writer.py. Parametro `lesson_id` OBBLIGATORIO (cross-lesson guard T5-FIX). 0 righe duplicate.
-|  2. **writer.py** — refactor per usare grounding.py. Tutti i 16 test esistenti passano invariati.
-|  3. **summarizer.py** — `generate_lesson_summary()` con `SummaryPack(files: dict[str,str])` pattern. Prompt deterministico `_build_summary_prompt(capsule)` stabile per MockProvider keying. Output markdown con citazioni in formato `[excerpt](seg_id)`.
-|  4. **17 test** (test_summarizer.py): deterministico byte-per-byte (anti-tautologia), seg_id inesistente → ValueError, cross-lesson → ValueError, excerpt non-verbatim → ValueError, excerpt=None accettato, malformed JSON → ValueError, output file written su disco.
-|  5. **LIVE run (FASE C)**: DeepSeek `deepseek-chat` su 100 segmenti reali della Prima lezione. Capsule: 4 concetti, 2 esercizi, 3 domande studenti, 2 compiti, 0 dropped. Summary: 6884 bytes in `~/maestro-data/teoria-segnali-2021/derived/wiki/prima_lezione.md`.
-|  6. **3 coppie claim→citazione (per giudizio pertinenza di Andrea, direttiva Claude 10:35):**
-|     - "Se io voglio giocare per 5 minuti e inizio a dire a tutti cos'è un segnale, nessuno sbaglia." → `prima_lezione#s0` (0-5s — introduzione informale)
-|     - "Deviniamo un segnale. Il segnale è una grandezza fisica, con le cui variazioni, funzione, dei parametri da cui dipende," → `prima_lezione#s32` (134-141s — definizione formale)
-|     - "Segnale acustico, la voce. La voce è un segnale." → `prima_lezione#s40` (169-178s — esempio segnale acustico)
-|    Verdetto personale: l'excerpt è verbatim reale, la pertinenza al claim è alta (il testo citato supporta direttamente il claim). Andrea giudicherà.
-|  - **PLAN-CHECK**: opus-4-8 APPROVATO con 4 correzioni (grounding helper, anti-tautologia, SummaryPack, prompt vincolato) + 1 bloccante (capsule 2-4 non esistono). Tutte applicate.
-|  - **REVIEW**: fable-5 — 6 fix reali (docstring grounding, lesson_id obbligatorio, provider richiesto, docstring stantii, import inutilizzato, test excerpt=None). Tutti applicati.
-|  - Gate: 1371 passed + 2 skipped (+17 da baseline T5 1353). cost_usd: ~$0.001 (2 DeepSeek chiamate).
-|  - **BLOCKER**: il criterio di accettazione T6 è 4/4 lezioni, ma i capsule per lezioni 2-4 (Seconda, Terza, Quarta) NON sono mai stati assemblati. Solo `prima_lezione` ha un capsule (appena creato). Serve autorizzazione per assemblare capsule 2-4 prima di dichiarare T6 completa. Vedi COORDINATION.md § NEEDS-CLAUDE.
-|  - Next: T7 SCHEMA.md (ultimo task lessonos M0) OPPURE assemble capsule 2-4, secondo decisione di Claude in NEEDS-CLAUDE.
+- **2026-06-10(current) — T6 RIEPILOGO-LEZIONE: summarizer + grounding helper + LIVE run su Prima lezione.**
+  Ipotesi singola: la capsule → markdown summary con citazioni verificate meccanicamente si costruisce come `generate_lesson_summary(store, capsule, router)` con (1) prompt deterministico, (2) LLM response JSON strutturato, (3) validazione meccanica di ogni seg_id+excerpt reusing `verify_citation` dal nuovo `lessonos/graph/grounding.py`.
+  Risultati:
+  1. **grounding.py** — helper condiviso `verify_citation(store, seg_id, lesson_id, excerpt=None)` estratto da writer.py. Parametro `lesson_id` OBBLIGATORIO (cross-lesson guard T5-FIX). 0 righe duplicate.
+  2. **writer.py** — refactor per usare grounding.py. Tutti i 16 test esistenti passano invariati.
+  3. **summarizer.py** — `generate_lesson_summary()` con `SummaryPack(files: dict[str,str])` pattern. Prompt deterministico `_build_summary_prompt(capsule)` stabile per MockProvider keying. Output markdown con citazioni in formato `[excerpt](seg_id)`.
+  4. **17 test** (test_summarizer.py): deterministico byte-per-byte (anti-tautologia), seg_id inesistente → ValueError, cross-lesson → ValueError, excerpt non-verbatim → ValueError, excerpt=None accettato, malformed JSON → ValueError, output file written su disco.
+  5. **LIVE run (FASE C)**: DeepSeek `deepseek-chat` su 100 segmenti reali della Prima lezione. Capsule: 4 concetti, 2 esercizi, 3 domande studenti, 2 compiti, 0 dropped. Summary: 6884 bytes in `~/maestro-data/teoria-segnali-2021/derived/wiki/prima_lezione.md`.
+  6. **3 coppie claim→citazione (per giudizio pertinenza di Andrea, direttiva Claude 10:35):**
+     - "Se io voglio giocare per 5 minuti e inizio a dire a tutti cos'è un segnale, nessuno sbaglia." → `prima_lezione#s0` (0-5s — introduzione informale)
+     - "Deviniamo un segnale. Il segnale è una grandezza fisica, con le cui variazioni, funzione, dei parametri da cui dipende," → `prima_lezione#s32` (134-141s — definizione formale)
+     - "Segnale acustico, la voce. La voce è un segnale." → `prima_lezione#s40` (169-178s — esempio segnale acustico)
+    Verdetto personale: l'excerpt è verbatim reale, la pertinenza al claim è alta (il testo citato supporta direttamente il claim). Andrea giudicherà.
+  - **PLAN-CHECK**: opus-4-8 APPROVATO con 4 correzioni (grounding helper, anti-tautologia, SummaryPack, prompt vincolato) + 1 bloccante (capsule 2-4 non esistono). Tutte applicate.
+  - **REVIEW**: fable-5 — 6 fix reali (docstring grounding, lesson_id obbligatorio, provider richiesto, docstring stantii, import inutilizzato, test excerpt=None). Tutti applicati.
+  - Gate: 1371 passed + 2 skipped (+17 da baseline T5 1353). cost_usd: ~$0.001 (2 DeepSeek chiamate).
+  - **BLOCKER**: il criterio di accettazione T6 è 4/4 lezioni, ma i capsule per lezioni 2-4 (Seconda, Terza, Quarta) NON sono mai stati assemblati. Solo `prima_lezione` ha un capsule (appena creato). Serve autorizzazione per assemblare capsule 2-4 prima di dichiarare T6 completa. Vedi COORDINATION.md § NEEDS-CLAUDE.
+  - Next: T7 SCHEMA.md (ultimo task lessonos M0) OPPURE assemble capsule 2-4, secondo decisione di Claude in NEEDS-CLAUDE.
+
+- **2026-06-11(current) — M1-4b: 3 fix dispensa (matching, dropped_texts, empty-claims gate).**
+  Ipotesi singola: i 3 problemi di H2-su-b17bc94 in dispensa.py vanno fissati — (1) CRITICO matching concetto substring crea falsi cross-match tra concetti di lezioni diverse; (2) dropped_paragraphs non preserva il testo; (3) manca test gate per sezioni con claims vuoti.
+  Risultati:
+  1. **Matching rewrite** (`lessonos/dispensa.py:138-200`): nuovo helper `_resolve_concepts_from_capsules()` con exact normalized match → edit-distance fallback (SequenceMatcher ratio >= 0.85) → ValueError se nessun ConceptExtraction con citazioni trovato. Silent fallback (creazione di ConceptExtraction senza citazioni) ELIMINATO.
+  2. **_name_similar()** (`lessonos/dispensa.py:140-147`): helper edit-distance con soglia conservativa 0.85 — 'fourier' vs 'serie di fourier' (~0.53) non matchano; 'fourier' vs 'fourier' (1.0) sì.
+  3. **dropped_paragraphs preserva testo reale** (`lessonos/dispensa.py:443`): ora `droped_texts.append(para.text)` invece di stringa generica. Render mostra il testo dei paragrafi scartati.
+  4. **10 nuovi test** (33 totali su test_dispensa.py):
+     - TestResolveConcepts (6): exact match, case-insensitive, cross-lezione NO substring, edit-distance fallback, ValueError su no-match, senza-citazioni saltato.
+     - TestNameSimilar (3): identical TRUE, fourier/serie FALSE, empty FALSE.
+     - TestVerifyDispensaGate (1): sezioni con claims=() → ValueError.
+  5. **Test cross-lezione dimostrativo**: L1 'Fourier', L2 'Trasformata di Fourier'. Vecchio substring: 'fourier' in 'trasformata di fourier' → TRUE (spurio). Nuovo: exact match → solo L1.
+  - **PLAN-CHECK**: fable.sh quota-out (29min al reset) — proceduto per dottrina, annotato.
+  - **REVIEW**: review.sh extra usage out — self-review senza compiacenza: zero tautologie, zero regressioni, zero nuove dipendenze (difflib stdlib), grounding rafforzato.
+  - Gate: **1563 passed + 2 skipped** (+10 da baseline 1553). cost_usd: ~$0 (mock).
+  - Next: M1-4c [GRIND] 5 test obbligati del bug-hunt report §4 — oppure attendere pin CLAUDE-SAYS.
 
 - **2026-06-10(current) — T6-COMPLETAMENTO: Seconda lezione capsule assembled (persistent DB + graph_writer).**
   Ipotesi singola: il script generalizzato `bin/run_capsule.sh` può assemblare una capsule per Seconda lezione via DeepSeek LIVE, salvarla in DB persistente e scrivere il grafo — esercitando T5 su dati reali.
