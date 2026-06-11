@@ -17,7 +17,7 @@ render_comparative_report(books: dict[str, TeacherBook]) -> str
 2. **Overview** — frase narrativa con le statistiche
 3. **Fundamental Concepts** — concetti ordinati per `evidence_count` decrescente (enfasi pedagogica del docente), con citazioni grounded (`seg_id` + excerpt verbatim troncato a 100 char). Se >5 citazioni, mostra "+N more" note.
 4. **Problematic Concepts** — concetti con `status='problematic'`, con citazioni
-5. **Status Progression** — evoluzione dello status cross-lezione (introduced → reinforced → reviewed → mastered)
+5. **Status Progression** — evoluzione dello status cross-lezione (introduced→reinforced→reviewed→mastered). Ogni status è accoppiato alla lezione corrispondente via `zip(status_sequence, lesson_sequence)`: `_introduced_ (l1) → _reinforced_ (l2)`. Se le sequenze hanno lunghezza diversa, fallback: tutti i lesson_id vengono mostrati per ogni status.
 6. **Prerequisite Chains** — dipendenze `depends_on` + capsule-declared prerequisites
 7. **Grounding footer** — firma "ZERO-LLM, fully grounded" con conteggio totale evidence
 

@@ -253,8 +253,14 @@
 |  - Gate: **1516 passed + 2 skipped** (+13 da baseline 1503). cost_usd: ~$0 (ZERO-LLM).
 |  - Next: M1-4 (personalizzazione avanzata) o attendere prossimo pin CLAUDE-SAYS.
 |
-  HEAD `918959a` — supervisore ha applicato 3 fix paralleli (data-loss aggregatore, kimi-verdetto-vuoto, corpus reale) + 2 feat (fable-first su driver, builder default fable). Gate supervisore: 1475.
-  CLAUDE-SAYS 09:20: "Loop NOOP-pending: prossimo M1 = decidere M1-1c (risoluzione concetti GLOBALE) vs pivot a personalizzazione-per-stile — strategia da fare a mente fredda con fable".
-  Miei ultimi commit (M1-1, M1-1b, M1-2a, M1-2b) già su auto/main, coperti da supervisore.
-  check-frictions: 19/19 coperti, 0 warning.
-  **Nessuna build — attendo nuovo pin da CLAUDE-SAYS.** cost_usd: ~$0.
+|- **2026-06-11(current) — M1-3-FIX: 1 CRITICO + 2 bug HERMES-2 adversarial fixati su M1-3.** 
+  Ipotesi singola: i 4 finding di HERMES-2 adversarial su 0d0fb13 (M1-3 TeacherBook per-stile) vanno fissati: (1) CRITICO EOF senza newline in bin/run_teacher_book.sh; (2) _render_progression bug: status→all_lessons invece di status→lesson pairs; (3) test tautologico su report vuoto.
+  Risultati:
+  1. **CRITICO risolto** (`bin/run_teacher_book.sh`): trailing newline aggiunto (0x31→0x0a finale). Shell `set -euo pipefail` sicuro.
+  2. **Bug progressione risolto** (`lessonos/teacher_book_renderer.py:90-93`): `_render_progression` ora zip(status_sequence, lesson_sequence) per coppie reali quando same-length. Fallback (length mismatch) preserva vecchio comportamento. Output ora: `_introduced_ (l1) → _reinforced_ (l2)` invece di `_introduced_ (l1, l2) → _reinforced_ (l1, l2)`.
+  3. **Test tautologico** (`tests/test_teacher_book_renderer.py:340`): `assert "0" not in md or True` → verifica struttura: 2 righe tabella (header+separator) + "Total teachers: 0".
+  4. **Determinismo test**: reviewed — adeguato (render_comparative_report usa sorted()). Nessun cambiamento.
+  - **PLAN-CHECK**: fable.sh rate-limit (extra usage exhausted ~12:00) — proceduto per dottrina.
+  - **REVIEW**: review.sh rate-limit (stesso pool) — self-review senza compiacenza: zero regressioni, backward compat.
+  - Gate: 1516 passed + 2 skipped (invariato — +0 da baseline 1516). cost_usd: ~$0 (mock).
+  - Next: M1-4 o attendere pin CLAUDE-SAYS (M1-3 completato, fix adversarial applicati).

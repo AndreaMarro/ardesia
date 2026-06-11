@@ -337,7 +337,10 @@ class TestRenderComparativeReport:
         """Empty books dict renders valid markdown with no teachers."""
         md = render_comparative_report({})
         assert md.startswith("# Comparative TeacherBook Report")
-        assert "0" not in md or True  # at minimum doesn't crash
+        # Empty report: table has header + separator, no data rows
+        table_lines = [l for l in md.split("\n") if l.startswith("|")]
+        assert len(table_lines) == 2, f"Expected 2 table lines, got {len(table_lines)}"
+        assert "Total teachers: 0" in md
 
     def test_report_deterministic(self) -> None:
         """Same input → same output (byte-for-byte)."""

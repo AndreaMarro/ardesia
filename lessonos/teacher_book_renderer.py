@@ -87,10 +87,17 @@ def _render_progression(
         return "_(no cross-concept progression data — only 1 lesson)_"
     rows: list[str] = []
     for prog in progression:
-        seq = " → ".join(
-            f"_{s}_ ({', '.join(prog.lesson_sequence)})"
-            for s in prog.status_sequence
-        )
+        if len(prog.status_sequence) == len(prog.lesson_sequence):
+            seq = " → ".join(
+                f"_{s}_ ({l})"
+                for s, l in zip(prog.status_sequence, prog.lesson_sequence)
+            )
+        else:
+            # Fallback: lengths differ — group all lessons per status
+            seq = " → ".join(
+                f"_{s}_ ({', '.join(prog.lesson_sequence)})"
+                for s in prog.status_sequence
+            )
         rows.append(f"- **{prog.name}**: {seq}")
     return "\n".join(rows)
 
