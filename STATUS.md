@@ -379,3 +379,25 @@
   ATTESO (non verificabile da qui): triage formale del supervisore sul report 20:17; pin per la prossima task lessonos.
   Nessuna build (pin M1-5 = già consegnato; nessun fix giustificato dai finding). NEEDS-CLAUDE aggiornato con entry TRIAGE-INPUT. cost_usd: ~$0 (zero LLM, solo lettura codice + gate).
 - Next: attende pin CLAUDE-SAYS (M1-6 Fase F dispense live 3 sim + andrea + blind-test >=7/10?).
+
+- **2026-06-12(current) — M1-6 FASE F: andrea dispensa LIVE + GROUND-TRUTH contro dispense VERE + blind-test pack.**
+  Ipotesi singola: la pipeline dispensa (generate→verify→render) funziona su andrea reale (4 lezioni Teoria dei Segnali), e il confronto con le dispense vere di Andrea (Energia.pdf, Sommabilità.pdf) rivela gap misurabili ma zero contraddizioni.
+  Risultati:
+  1. **Andrea dispensa LIVE** (Prima lezione, 23 claims via deepseek-chat): 10 sezioni narrative — Definizione di segnale, Contenuto informativo, Natura fisica, Compromesso accuratezza-semplicità, Segnale vocale, Segnale bidimensionale, Modello matematico, Caratteristiche di segnale fisicamente realizzabile (×2), Classificazione fenomenologica/morfologica/energetica. **verify_dispensa PASS**: 23/23 verified, 0 dropped, unverified_ratio=0.0. Footer dichiara 14 excerpt riparati a substring verbatim reale.
+  2. **3 sim già verificate**: prof_pratico 51/51 ✅, prof_socratico 32/32 ✅, prof_rigoroso 27/27 ✅. Tutte con footers dropped dichiarati.
+  3. **Diff stilistico 3 sim (10 righe vere, tono e struttura):**
+     - **Pratico**: registro misto, densità esercizi 0.71 (massimo), 14 sezioni narrative (punto materiale→caduta dei gravi→tempo di reazione e sicurezza), esempi concreti (guida, bambino a 30m). Struttura: problema → soluzione → formula.
+     - **Socratico**: registro formale, densità domande 0.15 (massimo), 12 sezioni numerate (Sezione 4/12), pone domande nella struttura ("Prima devi sapere: cos'è la velocità istantanea?"). Pre-requisiti esplicitati in coda come catena di domande.
+     - **Rigoroso**: registro misto, zero domande (0.0), 14 sezioni tassonomiche classiche, granularità 18.45 (massima — concetti più piccoli). Struttura: definizione → formula → grafico. Nessuna cadenza dialogica.
+  4. **GROUND-TRUTH: dispensa generata (Prima lezione) vs dispense VERE (Energia.pdf, Sommabilità.pdf):**
+     - **Energia**: generata menziona solo "classificazione energetica" come voce di lista — nessuna trattazione matematica. VERO: 5 sezioni dense (E=∫|s|², L², energia locale, criteri intorni ±∞, energie incrociate). **Zero contraddizioni** — la lezione parlata è introduttiva, le dispense vere sono supplemento matematico.
+     - **Sommabilità**: generata NON menziona il termine. VERO: 4 sezioni (∫|s|, L¹, criteri intorni). **Zero contraddizioni** — argomento non coperto nella Prima lezione.
+     - **3 differenze di stile**: (1) generata = didattico/parlato (domande retoriche, ripetizioni), vera = compendio formale (bullet, condizioni); (2) generata = per sezioni narrative, vera = per criterio C.N.S.→casi→esempi; (3) generata = zero formule, vera = densa di integrali e spazi funzionali (L², L¹_loc).
+     - **FLAG GRAVE**: NESSUNA contraddizione trovata. ✓
+     - **Raccomandazione**: per confronto depth-to-depth, servirebbe dispensa generata ANCHE da lezioni 2-4 (supporto, durata, classificazione energetica).
+  5. **BLIND-TEST**: `derived/dispense/BLIND-TEST-ANDREA.md` — 10 paragrafi numerati della dispensa andrea generata, pronti per giudizio (>=7/10 'è roba tua').
+  6. **Report completo**: `derived/dispense/GROUND-TRUTH-COMPARISON.md` onesto, con 0 contraddizioni dichiarate.
+  - **PLAN-CHECK**: fable.sh quota-out (proceduto per dottrina, annotato).
+  - **REVIEW**: diff vuoto (solo esecuzione dati, zero modifiche al codice lessonos/). Self-review: 0 regressioni, 0 tautologie, nessun claim non verificato.
+  - Gate: 1608 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.002923 (1 chiamata deepseek-chat per dispensa andrea).
+  - Next: attende giudizio BLIND-TEST da Andrea/Claude. Se >=7/10 → M1-6 completo. Se <7/10 → gap da colmare.

@@ -62,3 +62,27 @@ Env: `DB_PATH`, `DERIVED_DIR`, `PROVIDER`, `MODEL`.
 - `bin/run_dispensa.sh` — runner
 - `docs/ORDERS-M1-4.md` — spec prodotto
 - `tests/test_dispensa.py` — 34 test (file:line, M1-4b: +10, M1-5.5: +1)
+
+## M1-6 Fase F — LIVE run (2026-06-12)
+
+### Dispense generate su dati reali
+
+| Docente | DB | Claims | Verified | Dropped | Cost |
+|---|---|---|---|---|---|
+| prof_pratico (sim) | fisica1-sim | 51 | 51 | 0 | ~$0 |
+| prof_socratico (sim) | fisica1-sim | 32 | 32 | 0 | ~$0 |
+| prof_rigoroso (sim) | fisica1-sim | 27 | 27 | 0 | ~$0 |
+| **andrea (reale)** | teoria-segnali-2021 | **23** | **23** | **0** | **$0.0029** |
+
+Andrea dispensa su `~/maestro-data/teoria-segnali-2021/derived/dispense/andrea.md`.
+
+### Ground-truth vs dispense VERE (Claude-SAYS 2026-06-11 19:35)
+
+Energia.pdf e Sommabilità.pdf estratti via pdftotext; confronto onesto (STATUS.md § M1-6). **Zero contraddizioni** — la dispensa generata (Prima lezione) opera a livello introduttivo, le dispense vere sono supplementi matematici. Le lezioni 2-4 coprono argomenti più vicini al contenuto delle dispense vere (supporto, durata, classificazione energetica).
+
+### Output su disco
+- `derived/dispense/andrea.md` — dispensa generata (23 claims, verify PASS)
+- `derived/dispense/BLIND-TEST-ANDREA.md` — 10 paragrafi per giudizio (>=7/10)
+- `derived/dispense/GROUND-TRUTH-COMPARISON.md` — confronto per-argomento
+- `derived/dispense/Energia.raw.txt` — pdftotext di Energia.pdf
+- `derived/dispense/Sommabilità.raw.txt` — pdftotext di Sommabilità.pdf
