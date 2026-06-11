@@ -29,6 +29,7 @@ Ogni pagina + riassunto 1 riga.
 - **graph-writer.md** — GraphWriter: proiezione Capsule→SQLite nodes/edges/evidence (T5, SCHEMA_VERSION 6)
 - **teacher-graph.md** — Teacher Graph Aggregator: `aggregate_teacher_graph()` dedup per canonical, cross-teacher guard (M1-1 + M1-1b)
 - **teacher-book.md** — Teacher Book Builder: struttura l'aggregated graph in TeacherBook (concetti fondamentali, problematici, progressione, prerequisiti) — ZERO-LLM, deterministico (M1-2a)
+|  - **teacher-book-renderer.md** — M1-3: ZERO-LLM markdown renderer per TeacherBook + comparative report (render_teacher_book, render_comparative_report, 10 docenti sim Fisica1, 13 test)
 - **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
 - **summarizer.md** — Lesson Summary Generator: `generate_lesson_summary()` → markdown with mechanically verified citations (T6)
 - **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)
@@ -46,7 +47,6 @@ Ogni pagina + riassunto 1 riga.
 
 - **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
   - **markdown-export.md** — P1: Markdown Course Exporter: CourseBlueprint + ContentAtoms → course.md + modules + exercises.md + quiz.md (ZERO-LLM)
-  - **liascript-export.md** — P1: LiaScript Course Exporter: CourseBlueprint + ContentAtoms → corso interattivo .md con quiz, esercizi, anchor TOC (ZERO-LLM)
     - **quarto-export.md** — P1: Quarto Course Exporter: CourseBlueprint + ContentAtoms → _quarto.yml + .qmd files per HTML/PDF/slides (ZERO-LLM). P2: export_quarto_slides → revealjs slides format.
   - **moodle-xml-export.md** — P1: Moodle XML Quiz Exporter: quiz_question atoms → quiz.xml formato standard Moodle (ZERO-LLM, stdlib-only)
   - **cli-compile-course.md** — P1: CLI `lessons compile-course <folder> --target` wiring CourseFolder → exporter (ZERO-LLM, zero deps)

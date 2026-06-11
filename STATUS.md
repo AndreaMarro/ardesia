@@ -228,7 +228,31 @@
   - **REVIEW**: `bin/review.sh` usage-limit Claude Code (stesso usage) — self-review: 0 tautologie, backward compat, grounding preservato.
   - Gate: **1461 passed + 2 skipped** (+4 da baseline 1457). cost_usd: ~$0.
 
-- **2026-06-16(current) — NOOP (COORD.md § PROSSIMA TASK: lessonos NOOP).**
+|
+|- **2026-06-11(current) — M1-3 TEACHERBOOK PER-STILE 10 docenti sim Fisica1 (commit 0d0fb13).**
+|  Ipotesi singola: `build_teacher_book(store, teacher_id)` + `render_teacher_book(book)` → markdown strutturato e grounded per ogni docente, con tabella comparativa che rivela differenze misurabili nello stile didattico.
+|  Risultati:
+|  1. **Per-teacher paths** (10 paths creati in fisica1.db con teacher_id) — ogni docente ha il proprio path che punta alla sua lezione esistente, permettendo a `paths_for_teacher` + `aggregate_teacher_graph` di funzionare.
+|  2. **`lessonos/teacher_book_renderer.py`** (297 righe) — ZERO-LLM, prende TeacherBook → markdown strutturato con 5 sezioni (overview, fundamental, problematic, progression, prerequisites) + grounding footer. Citazioni con excerpt troncato a 100 char e note "+N more" oltre 5.
+|  3. **`render_comparative_report(books)`** — produce tabella markdown comparativa per tutti i docenti + per-teacher highlights.
+|  4. **10/10 TeacherBook generati** in `~/maestro-data/fisica1-sim/derived/teacher_book/`:
+|     - `prof_veloce`: 19 concetti (massimo), 30 edges, 53 evidence — stile veloce produce piu concetti ma zero prerequisiti (salta dipendenze)
+|     - `prof_pratico`: 14 concetti, 24 edges, **93 evidence** (massimo) — stile pratico ha molti esempi/evidenze
+|     - `prof_pedante`: 13 concetti, 15 edges, 38 evidence — **unico con problematici (Velocità istantanea)** e status `reinforced` su 3 concetti (maturità linguistica)
+|     - `prof_caotico`: 12 concetti, 16 edges, 27 evidence (minimo) — meno struttura
+|     - `prof_socratico`: 12 concetti, 17 edges, 45 evidence — **10 prerequisiti** (massimo — stile socratico costruisce dipendenze)
+|     - `prof_audiopessimo`: 15 concetti, 20 edges, 42 evidence — 0 prerequisiti (rumore ASR degrada struttura)
+|     - `prof_aneddotico`: 12 concetti, 16 edges, 32 evidence — 8 prerequisiti (aneddoti non impediscono struttura)
+|     - `prof_dialettale`: 10 concetti (minimo), 14 edges, 35 evidence — 8 prerequisiti (dialetto non degrada struttura)
+|     - `prof_esitante`: 15 concetti, 21 edges, 53 evidence — 0 prerequisiti (esitazione = frammentazione)
+|     - `prof_rigoroso`: 14 concetti, 18 edges, 37 evidence — 8 prerequisiti (rigore ha struttura chiara)
+|  5. **Comparative report** (`REPORT.md`) — tabella completa + per-teacher highlights con top-3 concetti e prerequisite chains esemplari.
+|  6. **13 test** — struttura, ranking, problematic, progression, prerequisites, empty, truncation, >5 citations, comparative report, determinismo.
+|  - **PLAN-CHECK**: fable.sh usage-limit Claude (annotato).
+|  - **REVIEW**: review.sh usage-limit (self-review: 0 tautologie, grounding preservato, ZERO-LLM, gate invariato).
+|  - Gate: **1516 passed + 2 skipped** (+13 da baseline 1503). cost_usd: ~$0 (ZERO-LLM).
+|  - Next: M1-4 (personalizzazione avanzata) o attendere prossimo pin CLAUDE-SAYS.
+|
   HEAD `918959a` — supervisore ha applicato 3 fix paralleli (data-loss aggregatore, kimi-verdetto-vuoto, corpus reale) + 2 feat (fable-first su driver, builder default fable). Gate supervisore: 1475.
   CLAUDE-SAYS 09:20: "Loop NOOP-pending: prossimo M1 = decidere M1-1c (risoluzione concetti GLOBALE) vs pivot a personalizzazione-per-stile — strategia da fare a mente fredda con fable".
   Miei ultimi commit (M1-1, M1-1b, M1-2a, M1-2b) già su auto/main, coperti da supervisore.

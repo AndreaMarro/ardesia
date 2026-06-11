@@ -93,4 +93,6 @@ Append-only. 1 riga per modifica.
 
 - **2026-06-11(current+32) — M1-1 Teacher Graph Aggregator**: teacher_id su Path + paths_for_teacher + aggregate_teacher_graph(). SCHEMA v6->v7. 5 test. Demo reale: 4 lezioni Teoria-Segnali->96 concetti unici, 130 edges, 328 evidence. Gate 1457 (+5). project-wiki/teacher-graph.md nuovo.
 
-|- **2026-06-11(current+34) — M1-2a TeacherBook builder (ZERO-LLM)**: `build_teacher_book(store, teacher_id)` → `TeacherBook` con 5 sezioni (overview, fundamental, problematic, progression, prerequisites). Nuove entità entities.py. 9 test. Gate 1472 (+11). project-wiki/teacher-book.md nuovo.
+||- **2026-06-11(current+34) — M1-2a TeacherBook builder (ZERO-LLM)**: `build_teacher_book(store, teacher_id)` → `TeacherBook` con 5 sezioni (overview, fundamental, problematic, progression, prerequisites). Nuove entità entities.py. 9 test. Gate 1472 (+11). project-wiki/teacher-book.md nuovo.
+|
+|- **2026-06-11(current+35) — M1-3 TeacherBook per-stile 10 docenti sim Fisica1**: `lessonos/teacher_book_renderer.py` — ZERO-LLM renderer (render_teacher_book + render_comparative_report). 10/10 TeacherBook md su disco + REPORT.md. Per-teacher paths in fisica1.db per compat. 13 test. Gate 1516 (+13). project-wiki/teacher-book-renderer.md nuovo.
