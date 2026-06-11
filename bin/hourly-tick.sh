@@ -24,12 +24,21 @@ elif [ "$bt" -ge "$CAP" ]; then echo "[tick] cap $CAP/giorno raggiunto — solo 
 else
   echo "[tick] build $((bt+1))/$CAP (repo=$repo)"
   echo "$repo" > "$HOME/.maestro_last_repo"
-  if [ "$repo" = "studio" ]; then
+  if [ "$repo" = "both" ]; then
+    # DUAL-LANE (ordine Andrea 11/06): entrambe le corsie in parallelo — repo e gate
+    # indipendenti (pytest lessonos + vitest studio reggono insieme su M4).
+    ~/lessonos/driver-orch.sh 1 >> ~/lessonos/hourly.log 2>&1 &
+    P_ORCH=$!
+    ~/lessonos/driver-studio.sh 1 >> ~/lessonos/hourly-studio.log 2>&1 &
+    P_STUDIO=$!
+    wait "$P_ORCH" 2>/dev/null; wait "$P_STUDIO" 2>/dev/null
+  elif [ "$repo" = "studio" ]; then
     ~/lessonos/driver-studio.sh 1 >> ~/lessonos/hourly.log 2>&1 || true
   else
     ~/lessonos/driver-orch.sh 1 >> ~/lessonos/hourly.log 2>&1 || true
   fi
-  printf '%s\n%s\n' "$day" "$((bt+1))" > "$cf"
+  inc=1; [ "$repo" = "both" ] && inc=2
+  printf '%s\n%s\n' "$day" "$((bt+inc))" > "$cf"
 fi
 # FABLE-CATCHUP (ordine Andrea 11/06 "fable a massima potenza"): quota appena
 # riaperta -> burst fable = strategos audita la finestra quota-out e propone.
@@ -41,5 +50,10 @@ if [ -f "$HOME/.fable_catchup_pending" ] && bash "$HOME/lessonos/bin/quota.sh" c
 fi
 ~/lessonos/bin/hourly-digest.sh >> ~/lessonos/hourly.log 2>&1 || true
 # HERMES-2 (red-team kimi, idempotente per commit): rivede l'ultimo commit KEPT del repo del tick. Mai bloccante.
-~/lessonos/bin/adversarial.sh "$repo" >> ~/lessonos/hourly.log 2>&1 || true
+if [ "$repo" = "both" ]; then
+  ~/lessonos/bin/adversarial.sh lessonos >> ~/lessonos/hourly.log 2>&1 || true
+  ~/lessonos/bin/adversarial.sh studio >> ~/lessonos/hourly.log 2>&1 || true
+else
+  ~/lessonos/bin/adversarial.sh "$repo" >> ~/lessonos/hourly.log 2>&1 || true
+fi
 ~/maestro-tools/evolution-collector.sh >> ~/lessonos/hourly.log 2>&1 || true
