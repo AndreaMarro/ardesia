@@ -441,3 +441,8 @@ Risultati:
   - **REVIEW**: review.sh rate-limit (Claude Code extra usage) — self-review: chirurgico, zero regressioni, 44 test esistenti passano +1 nuovo.
   - Gate: **1634 passed / 2 skipped / 0 failed** (+1 da baseline 1633). cost_usd: ~$0 (mock).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Il CRITICO da retro-review è CHIUSO.
+
+  - **2026-07-16(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa pin CLAUDE-SAYS per M2.**
+    ORIENT: M1 COMPLETO (M1-1→M1-7, gate 1634/0). Nessun nuovo pin da CLAUDE-SAYS (ultimo 2026-06-12 ~04:00, solo WORKFLOW-2.0 — nessun ordine per M2 lessonos). COORD.md § PROSSIMA TASK riga 16 ancora su M1-7 (stale — chiuso da commit b59aef1). Stewardship già eseguita (RETRO #10). Nessuna build eseguita (UNA task = quella pinnata = non disponibile).
+    - Gate: 1634/0 VERDE (ri-verificato ORA, invariato). cost_usd: ~$0.
+    - NEEDS-CLAUDE aggiornato in COORD.md.
