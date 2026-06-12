@@ -12,6 +12,8 @@ import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/Replay
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
+import { isRecapView } from "./store/isRecapView"
+import RecapView from "./RecapView"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -34,6 +36,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
+  const recapView = useMemo(() => isRecapView(), [])
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -85,8 +88,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         if (cancelled) return
         setStoreMode(actualStore.mode)
 
-        // In vista studente: niente JournalRecorder né AudioRecorder (sola lettura).
-        if (!studentView) {
+        // In vista studente/recap: niente JournalRecorder né AudioRecorder (sola lettura).
+        if (!studentView && !recapView) {
           const clock = sharedClock
 
           // Crea JournalRecorder dopo init store con clock condiviso
@@ -419,7 +422,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     })
   }
 
-  return (
+  return recapView ? (
+    <RecapView store={actualStore} room={room} />
+  ) : (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
       {studentView ? (
         /* Vista studente: solo wordmark + chip, niente bottoni docente */
