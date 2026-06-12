@@ -1,171 +1,77 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "./tokens.css";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* MAESTRO Studio — carta & inchiostro, un solo accento.
+   Zero hex qui: ogni colore passa da var(--m-*) (tokens.css). */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+body {
+  margin: 0;
+  font-family: var(--m-font-ui);
+  font-size: var(--m-fs-md);
+  color: var(--m-ink);
+  background: var(--m-paper);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
-
-/* ── MAESTRO Studio shell — carta & inchiostro, un solo accento ─────────── */
+/* ── shell header ─────────────────────────────────────────────────────── */
 .st-bar {
   display: flex; align-items: center; gap: 14px;
   padding: 0 14px; height: 52px; flex: 0 0 52px;
-  background: rgba(250, 249, 246, 0.92);
+  background: var(--m-paper-veil);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(20, 20, 18, 0.08);
-  font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
-  font-size: 13px; color: #1c1b18;
+  border-bottom: var(--m-rule-weight) solid var(--m-line);
+  font-family: var(--m-font-ui);
+  font-size: var(--m-fs-md); color: var(--m-ink);
 }
 .st-brand { display: flex; align-items: baseline; gap: 6px; user-select: none; }
 .st-word {
-  font-family: "Iowan Old Style", Palatino, Georgia, serif;
-  font-size: 19px; font-weight: 600; letter-spacing: 0.2px; color: #14130f;
+  font-family: var(--m-font-display);
+  font-size: var(--m-fs-xl); font-weight: 600; letter-spacing: 0.2px; color: var(--m-ink);
 }
-.st-bdot { width: 6px; height: 6px; border-radius: 50%; background: #1763ff; align-self: center; }
-.st-sub { font-size: 11px; letter-spacing: 2.2px; text-transform: uppercase; color: #8a877e; }
+.st-bdot { width: 6px; height: 6px; border-radius: 50%; background: var(--m-blue); align-self: center; }
+.st-sub { font-size: var(--m-fs-2xs); letter-spacing: var(--m-track); text-transform: uppercase; color: var(--m-ink-4); }
 .st-room {
-  font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px;
-  color: #8a877e; background: rgba(20, 20, 18, 0.05);
-  padding: 3px 9px; border-radius: 999px;
+  font-family: var(--m-font-mono); font-size: var(--m-fs-2xs);
+  color: var(--m-ink-4); background: var(--m-fill);
+  padding: 3px 9px; border-radius: var(--m-r-pill);
 }
 .st-status { display: flex; align-items: center; gap: 10px; margin-left: 2px; }
-.st-quiet { color: #8a877e; font-size: 12px; }
-.st-savewrap { display: flex; align-items: center; gap: 5px; color: #6d6a61; font-size: 12px; }
-.st-led { width: 7px; height: 7px; border-radius: 50%; background: #2da44e; box-shadow: 0 0 0 3px rgba(45,164,78,.14); }
+.st-quiet { color: var(--m-ink-4); font-size: var(--m-fs-xs); }
+.st-savewrap { display: flex; align-items: center; gap: 5px; color: var(--m-ink-3); font-size: var(--m-fs-xs); }
+.st-led { width: 7px; height: 7px; border-radius: 50%; background: var(--m-verified); box-shadow: 0 0 0 3px var(--m-verified-wash); }
 .st-cache { display: flex; align-items: center; }
 .st-cachebar {
-  width: 44px; height: 4px; border-radius: 4px; background: rgba(20,20,18,.08); overflow: hidden; display: block;
+  width: 44px; height: 4px; border-radius: 4px; background: var(--m-line); overflow: hidden; display: block;
 }
-.st-cachebar > span { display: block; height: 100%; background: #b9b5a9; border-radius: 4px; }
-.st-cachebar[data-warn] > span { background: #d4a72c; }
+.st-cachebar > span { display: block; height: 100%; background: var(--m-ink-4); border-radius: 4px; }
+.st-cachebar[data-warn] > span { background: var(--m-warn); }
 .st-err {
-  color: #b42318; font-size: 12px; max-width: 260px;
+  color: var(--m-error); font-size: var(--m-fs-xs); max-width: 260px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.st-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.st-actions { display: flex; align-items: center; gap: var(--m-sp-2); margin-left: auto; }
 .st-ghost {
-  border: 1px solid rgba(20, 20, 18, 0.14); background: transparent; color: #3a382f;
-  padding: 6px 13px; border-radius: 999px; font-size: 12.5px; cursor: pointer;
-  transition: background .15s, border-color .15s, color .15s;
+  border: 1px solid var(--m-line-2); background: transparent; color: var(--m-ink-2);
+  padding: 6px 13px; border-radius: var(--m-r-pill); font-size: var(--m-fs-sm); cursor: pointer;
+  transition: background var(--m-t-fast) var(--m-ease), border-color var(--m-t-fast) var(--m-ease), color var(--m-t-fast) var(--m-ease);
 }
-.st-ghost:hover { background: rgba(20, 20, 18, 0.05); border-color: rgba(20, 20, 18, 0.25); }
-.st-ghost.st-on { border-color: #1763ff; color: #1763ff; background: rgba(23, 99, 255, 0.06); }
-.st-ghost.st-rec { border-color: #b42318; color: #b42318; background: rgba(180, 35, 24, 0.06); }
+.st-ghost:hover { background: var(--m-fill); border-color: var(--m-line-2); }
+.st-ghost.st-on { border-color: var(--m-accent); color: var(--m-accent); background: var(--m-accent-wash); }
+.st-ghost.st-rec { border-color: var(--m-rec); color: var(--m-rec); background: var(--m-rec-wash); }
 .st-recdot {
   display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-  background: #b42318; margin-right: 6px; animation: st-pulse 1.2s ease-in-out infinite;
+  background: var(--m-rec); margin-right: 6px; animation: st-pulse 1.2s ease-in-out infinite;
 }
 @keyframes st-pulse { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .st-recdot { animation: none; } }
 .st-primary {
-  border: 1px solid #1763ff; background: #1763ff; color: #fff;
-  padding: 6px 15px; border-radius: 999px; font-size: 12.5px; font-weight: 500; cursor: pointer;
-  transition: background .15s;
+  border: 1px solid var(--m-accent); background: var(--m-accent); color: var(--m-canvas);
+  padding: 6px 15px; border-radius: var(--m-r-pill); font-size: var(--m-fs-sm); font-weight: 500; cursor: pointer;
+  transition: background var(--m-t-fast) var(--m-ease);
 }
-.st-primary:hover { background: #0e4fd6; }
-.st-primary:disabled { background: #9db9f5; border-color: #9db9f5; cursor: default; }
-.st-meet { color: #6d6a61; }
-.st-ext { margin-left: 4px; font-size: 11px; }
+.st-primary:hover { background: var(--m-accent-down); }
+.st-primary:disabled { background: var(--m-accent-off); border-color: var(--m-accent-off); cursor: default; }
+.st-meet { color: var(--m-ink-3); }
+.st-ext { margin-left: var(--m-sp-1); font-size: var(--m-fs-2xs); }

@@ -1,0 +1,43 @@
+/* DESIGN-MAESTRO-v1 §2 — design tokens DEFINITIVI "carta & inchiostro".
+   Hex ammessi SOLO qui dentro (:root e scope .excalidraw) — enforcement: design-tokens.test.ts. */
+:root {
+  /* CARTA */
+  --m-paper:#faf9f6; --m-paper-veil:rgba(250,249,246,.92); --m-canvas:#fffefb;
+  /* INCHIOSTRO */
+  --m-ink:#14130f; --m-ink-2:#3a382f; --m-ink-3:#6d6a61; --m-ink-4:#8a877e;
+  --m-line:rgba(20,20,18,.08); --m-line-2:rgba(20,20,18,.14); --m-fill:rgba(20,20,18,.05);
+  /* BLU BRAND (FISSO: wordmark/punto blu, mai plastico) */
+  --m-blue:#1763ff; --m-blue-down:#0e4fd6; --m-blue-deep:#0a3da6;
+  --m-blue-off:#9db9f5; --m-blue-wash:rgba(23,99,255,.06); --m-blue-light:rgba(23,99,255,.12);
+  /* TOKEN PLASTICI (gli UNICI 11 che PL-3 può riscrivere; default = neutro odierno) */
+  --m-accent:var(--m-blue); --m-accent-down:var(--m-blue-down); --m-accent-deep:var(--m-blue-deep);
+  --m-accent-off:var(--m-blue-off); --m-accent-wash:var(--m-blue-wash); --m-accent-light:var(--m-blue-light);
+  --m-density:1.00; --m-track:2.2px; --m-heading-font:var(--m-font-ui);
+  --m-rule-weight:1px; --m-h-scale:1.00;
+  /* SEMAFORI (MAI plastici, MAI ritematizzati) */
+  --m-rec:#cf222e; --m-rec-wash:rgba(207,34,46,.07);
+  --m-verified:#1a7f37; --m-verified-wash:rgba(26,127,55,.08);
+  --m-warn:#9a6700; --m-error:#b42318;
+  /* TIPOGRAFIA (zero webfont: local-first) */
+  --m-font-display:'Iowan Old Style',Palatino,Georgia,serif;
+  --m-font-ui:-apple-system,system-ui,'Segoe UI',sans-serif;
+  --m-font-mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --m-fs-2xs:11px; --m-fs-xs:12px; --m-fs-sm:12.5px; --m-fs-md:13px;
+  --m-fs-lg:15px; --m-fs-xl:19px; --m-fs-2xl:28px;
+  /* SPAZIO base-4 / RAGGI / OMBRE (solo 2) / MOTION */
+  --m-sp-1:4px; --m-sp-2:8px; --m-sp-3:12px; --m-sp-4:16px; --m-sp-5:24px; --m-sp-6:32px;
+  --m-r-pill:999px; --m-r-card:12px; --m-r-field:8px;
+  --m-shadow-card:0 6px 24px rgba(20,20,18,.16); --m-shadow-pop:0 2px 8px rgba(20,20,18,.10);
+  --m-t-fast:120ms; --m-t-gentle:200ms; --m-ease:cubic-bezier(.2,0,0,1);
+}
+
+/* Ponte variabili verso Excalidraw (verificate in dist 0.18.1, no fork) */
+.excalidraw {
+  --color-primary:var(--m-accent); --color-primary-darker:var(--m-accent-down);
+  --color-primary-darkest:var(--m-accent-deep); --color-primary-hover:var(--m-accent-down);
+  --color-primary-light:var(--m-accent-light);
+  --island-bg-color:rgba(250,249,246,.96); --color-surface-lowest:#faf9f6;
+  --color-surface-low:#f1efe9; --color-surface-mid:#e9e7df; --color-surface-high:#ffffff;
+  --ui-font:var(--m-font-ui); --border-radius-lg:var(--m-r-card); --border-radius-md:var(--m-r-field);
+}
+.excalidraw .default-sidebar-trigger { display:none; } /* Library nascosta in v1 */
