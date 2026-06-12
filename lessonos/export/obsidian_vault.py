@@ -154,9 +154,6 @@ def export_vault(
     """
     # ---- Resolve paths ----
     output = Path(output_dir)
-    if output.exists():
-        shutil.rmtree(output)
-    output.mkdir(parents=True, exist_ok=True)
 
     if derived_root is None:
         candidate = output.parent.parent  # .../derived/vault/ -> .../derived/
@@ -166,6 +163,34 @@ def export_vault(
             derived = Path.cwd() / "derived"
     else:
         derived = Path(derived_root)
+
+    if output.exists():
+        # Safety guard (retro-review MAJOR): never rmtree paths that could
+        # destroy raw/ user data — refuse to delete root, derived/, raw/,
+        # or any path at or above these (resolves symlinks/relatives).
+        out_str = str(Path(output).resolve(strict=False))
+        derived_str = str(derived.resolve(strict=False))
+        cwd_str = str(Path.cwd().resolve())
+        home_str = os.path.expanduser("~")
+        # Block exact match or inside derived/ or raw/
+        if out_str == derived_str or os.path.commonpath([out_str, derived_str]) == derived_str:
+            raise ValueError(
+                f"refusing to rmtree {out_str}: would destroy "
+                f"or overwrite derived/ tree"
+            )
+        raw_str = str(Path(derived_str) / "raw")
+        if out_str == raw_str or os.path.commonpath([out_str, raw_str]) == raw_str:
+            raise ValueError(
+                f"refusing to rmtree {out_str}: would destroy "
+                f"or overwrite raw/ data"
+            )
+        # Block exact match for root, cwd, home
+        if out_str in {"/", cwd_str, home_str}:
+            raise ValueError(
+                f"refusing to rmtree {out_str}: protected path"
+            )
+        shutil.rmtree(output)
+    output.mkdir(parents=True, exist_ok=True)
 
     # ---- Load global resolution for wikilink-ification ----
     resolution = _load_global_resolution(derived, teacher_id)
@@ -184,14 +209,10 @@ def export_vault(
     for node in agg.merged_nodes:
         concept_map[node.node_id] = node
 
-    # Build raw_id -> merged_node_id mapping
-    # (aggregator prefixes with "path:"; edges use the original IDs)
-    raw_to_merged: dict[str, str] = {}
-    for nid in concept_map:
-        if nid.startswith("path:"):
-            raw_to_merged[nid[5:]] = nid
-        else:
-            raw_to_merged[nid] = nid
+    # Use the aggregator's authoritative raw->merged mapping (M1-7b fix).
+    # This maps EVERY raw node id (e.g. ``l2:concept:0``) to its merged
+    # ``path:...`` node id, not just the first occurrence.
+    raw_to_merged: dict[str, str] = agg.raw_to_merged
 
     # Edges by source — only concept-to-concept relationships
     prereq_types = {"depends_on", "explains"}
@@ -204,12 +225,27 @@ def export_vault(
         if src and tgt:
             edges_by_source.setdefault(src, []).append(edge)
 
-    # Reverse map: for a concept, which edges have it as target
-    depends_on_target: dict[str, list[GraphEdge]] = {}
-    for src, edge_list in edges_by_source.items():
+    # Build dependency semantics map (M1-7b fix: correct depends_on direction).
+    # For each concept (merged_id), which other concepts are its prerequisites
+    # and which depend on it?
+    # - ``depends_on`` (A → B): A depends on B → B is prereq of A
+    #   → A's prereqs include B; A appears in Utilizzato da of B
+    # - ``explains`` (A → B): A explains B → A is prereq of B
+    #   → B's prereqs include A; B appears in Utilizzato da of A
+    prereq_of: dict[str, set[str]] = {}      # concept_id → set of prereq merged_ids
+    used_by: dict[str, set[str]] = {}         # concept_id → set of dependent merged_ids
+
+    for src_merged, edge_list in edges_by_source.items():
         for edge in edge_list:
-            tgt = raw_to_merged.get(edge.target, edge.target)
-            depends_on_target.setdefault(tgt, []).append(edge)
+            tgt_merged = raw_to_merged.get(edge.target, edge.target)
+            if edge.edge_type == "depends_on":
+                # A depends_on B: B is prereq of A, A is used_by of B
+                prereq_of.setdefault(src_merged, set()).add(tgt_merged)
+                used_by.setdefault(tgt_merged, set()).add(src_merged)
+            elif edge.edge_type == "explains":
+                # A explains B: A is prereq of B, B is used_by of A
+                prereq_of.setdefault(tgt_merged, set()).add(src_merged)
+                used_by.setdefault(src_merged, set()).add(tgt_merged)
 
     # Evidence indexed by edge_id
     evidence_by_edge: dict[str, list[GraphEvidence]] = {}
@@ -224,23 +260,21 @@ def export_vault(
         label = node.label
         slug = _slug(label)
 
-        # Prerequisites: edges where this concept is the target
-        prereq_ids: set[str] = set()
-        if node_id in depends_on_target:
-            for edge in depends_on_target[node_id]:
-                prereq_ids.add(edge.source)
+        # Prerequisites (merged IDs) from the dependency map
+        prereq_ids: set[str] = prereq_of.get(node_id, set())
 
-        # Dependent concepts: edges where this concept is the source
-        dependent_ids: set[str] = set()
-        if node_id in edges_by_source:
-            for edge in edges_by_source[node_id]:
-                tgt = raw_to_merged.get(edge.target, edge.target)
-                dependent_ids.add(tgt)
+        # Dependent concepts (merged IDs)
+        dependent_ids: set[str] = used_by.get(node_id, set())
 
         # Evidence for edges connected to this concept
+        # Match edges by their resolved merged source/target
         concept_evidence: list[GraphEvidence] = []
         for edge in agg.existing_edges:
-            if edge.source == node_id or edge.target == node_id:
+            if edge.edge_type not in prereq_types:
+                continue
+            edge_src = raw_to_merged.get(edge.source)
+            edge_tgt = raw_to_merged.get(edge.target)
+            if (edge_src == node_id or edge_tgt == node_id):
                 concept_evidence.extend(evidence_by_edge.get(edge.edge_id, []))
 
         # Build frontmatter
@@ -289,7 +323,7 @@ def export_vault(
                 if seg_lesson not in teacher_lesson_ids:
                     seg_lesson = ev.lesson_id if ev.lesson_id in teacher_lesson_ids else seg_lesson
                 block_ref = f"[[trascrizioni/{seg_lesson}#^{ev.seg_id.replace('#', '-')}]]"
-                excerpt = ev.excerpt or "(nessun excerpt)"
+                excerpt = ev.excerpt.strip() if ev.excerpt and ev.excerpt.strip() else "(nessun excerpt)"
                 body_parts.append(f"- {excerpt} — {block_ref}")
             body_parts.append("")
 
@@ -351,7 +385,7 @@ def export_vault(
     canvas_generated = False
     if canvas:
         canvas_generated = True
-        _write_canvas(output, concept_map, edges_by_source)
+        _write_canvas(output, concept_map, edges_by_source, raw_to_merged)
 
     # ---- Summary ----
     wiki_count = len(list((output / "wiki").rglob("*.md"))) if (output / "wiki").exists() else 0
@@ -374,8 +408,9 @@ def _write_canvas(
     output: Path,
     concept_map: dict[str, AggregatedPathNode],
     edges_by_source: dict[str, list[GraphEdge]],
+    raw_to_merged: dict[str, str],
 ) -> None:
-    """Write a JSON Canvas 1.0 file representing the concept graph."""
+    "Write a JSON Canvas 1.0 file representing the concept graph."
     canvas_nodes: list[dict] = []
     canvas_edges: list[dict] = []
 
@@ -390,12 +425,16 @@ def _write_canvas(
 
     for source, edge_list in edges_by_source.items():
         for edge in edge_list:
+            from_id = raw_to_merged.get(edge.source, edge.source)
+            to_id = raw_to_merged.get(edge.target, edge.target)
+            if from_id not in concept_map or to_id not in concept_map:
+                continue
             label = "spiega" if edge.edge_type == "explains" else "prerequisito"
             canvas_edges.append({
                 "id": edge.edge_id,
-                "fromNode": edge.source,
+                "fromNode": from_id,
                 "fromSide": "bottom",
-                "toNode": edge.target,
+                "toNode": to_id,
                 "toSide": "top",
                 "label": label,
             })

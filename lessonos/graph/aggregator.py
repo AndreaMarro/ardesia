@@ -89,7 +89,7 @@ def _most_advanced_status(statuses: list[str]) -> str:
 def _merge_concept_nodes(
     capsules: list[LessonCapsule],
     resolution: GlobalResolution | None = None,
-) -> tuple[list[AggregatedPathNode], dict[str, str]]:
+) -> tuple[list[AggregatedPathNode], dict[str, str], dict[str, str]]:
     """Deduplicate concept nodes by canonical name across capsules.
 
     Dedup key (see ``dedup_key_for``): global resolution mapping (M1-1c) if
@@ -102,12 +102,16 @@ def _merge_concept_nodes(
     Returns:
         merged_nodes: List of AggregatedPathNode (one per unique concept).
         name_to_id: Mapping from dedup key to assigned node_id.
+        raw_to_merged: Maps every raw node id (e.g. ``l1:concept:0``) to the
+            merged ``path:...`` node id (M1-7b fix). Empty when no capsules.
     """
     lookup = resolution.alias_lookup() if resolution is not None else None
     # Accumulate per-key: label, statuses, lesson_ids, evidence_count
     accum: dict[str, dict] = {}
     # Track first concept_id seen for each key (for deterministic node_id)
     key_to_first_concept: dict[str, str] = {}
+    # Track ALL raw IDs per key (M1-7b: full raw_to_merged mapping)
+    key_raw_ids: dict[str, list[str]] = {}
 
     for capsule in capsules:
         lid = capsule.lesson_id
@@ -131,10 +135,14 @@ def _merge_concept_nodes(
             # Remember the first concept_id for this key (deterministic)
             if key not in key_to_first_concept:
                 key_to_first_concept[key] = f"{lid}:concept:{idx}"
+            # Track every raw ID so obsidian_vault can resolve edges (M1-7b)
+            raw_id = f"{lid}:concept:{idx}"
+            key_raw_ids.setdefault(key, []).append(raw_id)
 
     # Build AggregatedPathNode list and key_to_id mapping
     merged_nodes: list[AggregatedPathNode] = []
     key_to_id: dict[str, str] = {}
+    raw_to_merged: dict[str, str] = {}
     node_ids_seen: set[str] = set()
 
     for key, d in accum.items():
@@ -148,6 +156,10 @@ def _merge_concept_nodes(
         node_ids_seen.add(node_id)
         key_to_id[key] = node_id
 
+        # Map every raw ID to this merged node (M1-7b)
+        for raw_id in key_raw_ids.get(key, []):
+            raw_to_merged[raw_id] = node_id
+
         status = _most_advanced_status(d["statuses"])
         merged_nodes.append(
             AggregatedPathNode(
@@ -160,7 +172,7 @@ def _merge_concept_nodes(
             )
         )
 
-    return merged_nodes, key_to_id
+    return merged_nodes, key_to_id, raw_to_merged
 
 
 def _collect_edges_and_evidence(
@@ -325,10 +337,10 @@ def aggregate_teacher_graph(
 
     # Merge concept nodes. With zero capsules this yields an empty node list —
     # but we MUST NOT early-return, or persisted edges/evidence would be lost.
-    merged_nodes, _key_to_id = (
+    merged_nodes, _key_to_id, raw_to_merged = (
         _merge_concept_nodes(all_capsules, resolution)
         if all_capsules
-        else ([], {})
+        else ([], {}, {})
     )
 
     # Collect the teacher's lesson ids once (dedup across paths) so the
@@ -348,6 +360,7 @@ def aggregate_teacher_graph(
         merged_nodes=tuple(merged_nodes),
         existing_edges=tuple(all_edges),
         path_evidence=tuple(all_evidence),
+        raw_to_merged=raw_to_merged,
     )
 
 
@@ -399,8 +412,8 @@ def aggregate_path_graph(
     capsules = load_path_capsules(store, path_id)
 
     # Merge concept nodes (empty if no capsules) — do NOT early-return.
-    merged_nodes, _key_to_id = (
-        _merge_concept_nodes(capsules, resolution) if capsules else ([], {})
+    merged_nodes, _key_to_id, raw_to_merged = (
+        _merge_concept_nodes(capsules, resolution) if capsules else ([], {}, {})
     )
 
     all_edges, all_evidence = _collect_edges_and_evidence(
@@ -412,4 +425,5 @@ def aggregate_path_graph(
         merged_nodes=tuple(merged_nodes),
         existing_edges=tuple(all_edges),
         path_evidence=tuple(all_evidence),
+        raw_to_merged=raw_to_merged,
     )

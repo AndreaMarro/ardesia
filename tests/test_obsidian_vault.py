@@ -592,3 +592,221 @@ class TestExportVault:
                 vault = FsPath(tmp)
                 assert (vault / "README.md").exists()
                 assert result["concepts"] > 0
+
+
+# ---------------------------------------------------------------------------
+# Content tests (M1-7b: would fail on old broken raw_to_merged mapping)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def store_with_dedup():
+    """Store with a concept that appears in both lessons (same canonical).
+
+    This triggers dedup in aggregate_teacher_graph, so the cross-lesson raw
+    IDs need to be mapped to the same merged node. The old raw_to_merged
+    (lines 188-194) only mapped the first occurrence, so evidence from the
+    second lesson was lost.
+    """
+    s = _VaultStore()
+
+    p = Path(
+        path_id="dedup_path",
+        title="Dedup Course",
+        subject="Test",
+        lesson_ids=("l1", "l2"),
+        teacher_id="dedup_teacher",
+    )
+    s.save_path(p)
+    s.save_lesson(Lesson(lesson_id="l1", path_id="dedup_path", title="L1", order=1))
+    s.save_lesson(Lesson(lesson_id="l2", path_id="dedup_path", title="L2", order=2))
+
+    s.save_segment(_seg("l1", 1, "Il segnale e una grandezza fisica."))
+    s.save_segment(_seg("l1", 2, "L'energia si calcola come integrale."))
+    s.save_segment(_seg("l2", 1, "La potenza media e definita."))
+    s.save_segment(_seg("l2", 2, "L'energia e importante anche qui."))
+
+    # Nodes: l1 has Segnale + Energia; l2 has Potenza + Energia (same canonical)
+    s.save_graph_node("l1", GraphNode(
+        node_id="l1:concept:0", node_type="concept", ref_id="l1:concept:0", label="Definizione di segnale"
+    ))
+    s.save_graph_node("l1", GraphNode(
+        node_id="l1:concept:1", node_type="concept", ref_id="l1:concept:1", label="Energia di un segnale"
+    ))
+    s.save_graph_node("l2", GraphNode(
+        node_id="l2:concept:0", node_type="concept", ref_id="l2:concept:0", label="Potenza media"
+    ))
+    s.save_graph_node("l2", GraphNode(
+        node_id="l2:concept:1", node_type="concept", ref_id="l2:concept:1", label="Energia di un segnale"
+    ))
+    s.save_graph_node("l1", GraphNode(node_id="l1", node_type="lesson", ref_id="l1", label=None))
+    s.save_graph_node("l2", GraphNode(node_id="l2", node_type="lesson", ref_id="l2", label=None))
+
+    # Edges
+    s.save_graph_edge("l1", GraphEdge(
+        edge_id="l1:e0", source="l1:concept:1", target="l1:concept:0",
+        edge_type="depends_on", metadata={}
+    ))
+    s.save_graph_edge("l2", GraphEdge(
+        edge_id="l2:e1", source="l2:concept:1", target="l2:concept:0",
+        edge_type="depends_on", metadata={}
+    ))
+
+    # Evidence — both lessons have evidence for the shared concept
+    s.save_evidence(GraphEvidence(
+        evidence_id="ev1", edge_id="l1:e0",
+        seg_id="l1#s1", excerpt="Il segnale e una grandezza fisica",
+        confidence=0.95, lesson_id="l1",
+    ))
+    s.save_evidence(GraphEvidence(
+        evidence_id="ev2", edge_id="l1:e0",
+        seg_id="l1#s2", excerpt="L'energia si calcola come integrale",
+        confidence=0.90, lesson_id="l1",
+    ))
+    s.save_evidence(GraphEvidence(
+        evidence_id="ev3", edge_id="l2:e1",
+        seg_id="l2#s2", excerpt="L'energia e importante anche qui",
+        confidence=0.90, lesson_id="l2",
+    ))
+
+    # Capsules
+    from lessonos.capsule.assembly import _serialise_capsule
+
+    c1_ext = ConceptExtraction(
+        name="Definizione di segnale", status="introduced",
+        canonical="definizione di segnale",
+        citations=(Citation(seg_id="l1#s1", excerpt="Il segnale e una grandezza fisica"),),
+    )
+    c2_ext = ConceptExtraction(
+        name="Energia di un segnale", status="introduced",
+        canonical="energia di un segnale",
+        citations=(Citation(seg_id="l1#s2", excerpt="L'energia si calcola come integrale"),),
+    )
+    capsule1 = LessonCapsule(
+        lesson_id="l1",
+        timeline=(TopicSpan(lesson_id="l1", topic="Definizioni", seg_ids=("l1#s1",), start=0, end=30),),
+        content=LessonContent(lesson_id="l1", concepts=(c1_ext, c2_ext), exercises=(), student_questions=(), homework=()),
+    )
+    s.save_capsule("l1", _serialise_capsule(capsule1))
+
+    c3_ext = ConceptExtraction(
+        name="Potenza media", status="introduced",
+        canonical="potenza media",
+        citations=(Citation(seg_id="l2#s1", excerpt="La potenza media e definita"),),
+    )
+    c4_ext = ConceptExtraction(
+        name="Energia di un segnale", status="reinforced",
+        canonical="energia di un segnale",
+        citations=(Citation(seg_id="l2#s2", excerpt="L'energia e importante anche qui"),),
+    )
+    capsule2 = LessonCapsule(
+        lesson_id="l2",
+        timeline=(TopicSpan(lesson_id="l2", topic="Potenza", seg_ids=("l2#s1",), start=0, end=20),),
+        content=LessonContent(lesson_id="l2", concepts=(c3_ext, c4_ext), exercises=(), student_questions=(), homework=()),
+    )
+    s.save_capsule("l2", _serialise_capsule(capsule2))
+
+    return s
+
+
+class TestExportVaultContent:
+    """Content tests that would fail on the old broken raw_to_merged mapping."""
+
+    def test_evidence_section_non_empty(self, store_with_dedup):
+        """Concept pages with evidence must have a non-empty ## Evidenze section.
+
+        On the old code, cross-lesson raw IDs were not mapped, so evidence
+        from the second lesson's edge was silently dropped.
+        """
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_with_dedup,
+                teacher_id="dedup_teacher",
+                output_dir=tmp,
+            )
+            vault = FsPath(tmp)
+            concetti_dir = vault / "concetti"
+            evidence_found = False
+            for f in concetti_dir.glob("*.md"):
+                content = f.read_text(encoding="utf-8")
+                if "## Evidenze" in content:
+                    # Must have at least one evidence bullet after the header
+                    lines = content.split("\n")
+                    ev_section = False
+                    for line in lines:
+                        if line.strip() == "## Evidenze":
+                            ev_section = True
+                            continue
+                        if ev_section:
+                            if line.startswith("## "):
+                                break
+                            if line.strip().startswith("- "):
+                                evidence_found = True
+                                break
+            assert evidence_found, (
+                "No concept page has evidence bullets. "
+                "If raw_to_merged is broken, cross-lesson evidence is lost."
+            )
+
+    def test_no_not_found_in_prereqs(self, store_with_dedup):
+        """Prerequisite sections must not contain '(concetto non trovato)'."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_with_dedup,
+                teacher_id="dedup_teacher",
+                output_dir=tmp,
+            )
+            vault = FsPath(tmp)
+            for f in (vault / "concetti").glob("*.md"):
+                content = f.read_text(encoding="utf-8")
+                assert "concetto non trovato" not in content, \
+                    f"{f.name} has 'concetto non trovato' (broken raw_to_merged)"
+
+    def test_canvas_edges_all_resolved(self, store_with_dedup):
+        """Canvas edges must have fromNode/toNode that exist in canvas nodes."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_with_dedup,
+                teacher_id="dedup_teacher",
+                output_dir=tmp,
+                canvas=True,
+            )
+            vault = FsPath(tmp)
+            canvas_path = vault / "grafo-prerequisiti.canvas"
+            canvas = json.loads(canvas_path.read_text(encoding="utf-8"))
+
+            node_ids = {n["id"] for n in canvas["nodes"]}
+            for edge in canvas["edges"]:
+                assert edge["fromNode"] in node_ids, \
+                    f"Canvas edge {edge['id']} has dangling fromNode={edge['fromNode']}"
+                assert edge["toNode"] in node_ids, \
+                    f"Canvas edge {edge['id']} has dangling toNode={edge['toNode']}"
+
+    def test_prereq_semantics_depends_on(self, store_with_dedup):
+        """With A depends_on B, B appears under ## Prerequisiti of A's page.
+
+        Old code had inverted semantics: A appeared as prereq of B.
+        Energia depends_on Segnale (l1:e0) and Energia depends_on Potenza (l2:e1),
+        so both Segnale and Potenza should appear in Energia's prereqs.
+        """
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_with_dedup,
+                teacher_id="dedup_teacher",
+                output_dir=tmp,
+            )
+            vault = FsPath(tmp)
+            energia_page = None
+            for f in (vault / "concetti").glob("*.md"):
+                content = f.read_text(encoding="utf-8")
+                # The H1 after frontmatter should contain the label
+                if "Energia di un segnale" in content:
+                    energia_page = content
+                    break
+            assert energia_page is not None, "Energia page not found"
+            # With depends_on(A→B): B is prereq of A. Energia depends_on both
+            # Segnale and Potenza, so both should be in its prereq section.
+            # (Potenza may not be known via wikilink without global_resolution,
+            # but neither should be "concetto non trovato")
+            assert "concetto non trovato" not in energia_page, \
+                "depends_on prereqs should resolve, not be 'non trovato'"

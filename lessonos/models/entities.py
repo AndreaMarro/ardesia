@@ -229,12 +229,15 @@ class AggregatedPathGraph:
     ``existing_edges`` — all GraphEdges from all path lessons (union).
     ``path_evidence`` — all GraphEvidence from all path lessons (union).
     Each carries its original lesson_id for provenance.
+    ``raw_to_merged`` — maps every raw node id (e.g. ``l1:concept:0``) to its
+    merged ``path:...`` node id (M1-7b fix). Empty when no capsules exist.
     """
 
     path_id: str
     merged_nodes: tuple[AggregatedPathNode, ...] = ()
     existing_edges: tuple[GraphEdge, ...] = ()
     path_evidence: tuple[GraphEvidence, ...] = ()
+    raw_to_merged: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
