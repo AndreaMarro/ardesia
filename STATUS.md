@@ -451,3 +451,8 @@ Risultati:
   ORIENT: HEAD bb64a00, gate 1634/0 VERDE (ri-verificato). Nessuna task pinnata per M2. AGENTS.md §3: dopo 2 NOOP consecutivi → stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
   cost_usd: ~$0 (zero LLM, solo gate + lettura file).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se 14+ giorni da ultimo CLAUDE-SAYS (2026-06-12), segnalare ad Andrea.
+
+- **2026-07-16(current) — ⏸️ LESSONOS-NOOP #3 (nuova iterazione): M1 completo (gate 1634/0 VERDE), pin esaurito, stewardship già fatta → stop.**
+  ORIENT: HEAD f364e0c (NOOP #2, 2026-07-16), gate 1634/0 VERDE (ri-verificato ORA). Nessuna task pinnata per M2. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (~34gg). Nessun nuovo pin ricevuto. AGENTS.md §3: 2+ NOOP già consecutivi, stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
+  cost_usd: ~$0 (zero LLM, solo gate + lettura file).
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se 14+ giorni da ultimo CLAUDE-SAYS (2026-06-12), segnalare ad Andrea.
