@@ -56,6 +56,36 @@ done <<< "$recurring"
 echo "check-frictions: coperti=$covered warning=$warnings"
 if [ "$warnings" -gt 0 ]; then
   echo "check-frictions: $warnings attrito/i ricorrente/i SENZA skill o guard — crea una skill in skills/ o un guard."
+
+### GUARD: placeholder date (M2-6)
+PLACEHOLDER_COUNT=0
+for _f in "$PROJECT_ROOT/STATUS.md" "$PROJECT_ROOT/log.jsonl" "$PROJECT_ROOT/COORDINATION.md"; do
+  if [ -f "$_f" ]; then
+    _c=$(grep -c '(current)' "$_f" 2>/dev/null || echo 0)
+    if [ "$_c" -gt 0 ]; then
+      echo "  ⚠ PLACEHOLDER DATE: $_f ha $_c occorrenze di '(current)'"
+      PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c))
+    fi
+    _c2=$(grep -c '(executed)' "$_f" 2>/dev/null || echo 0)
+    if [ "$_c2" -gt 0 ]; then
+      echo "  ⚠ PLACEHOLDER DATE: $_f ha $_c2 occorrenze di '(executed)'"
+      PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c2))
+    fi
+    # Also check for hallucinated dates (months ahead)
+    _now_month=$(date +%m)
+    _now_year=$(date +%Y)
+    # Use a broad pattern that catches dates anywhere in the line, not anchored
+    _c3=$(grep -cE "$(_now_year)-(1[3-9]|2[0-9]|0[0-9])" "$_f" 2>/dev/null || echo 0)
+    if [ "$_c3" -gt 0 ]; then
+      echo "  ⚠ HALLUCINATED DATE: $_f ha date in mesi >=13 (impossibili)"
+      PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c3))
+    fi
+  fi
+done
+if [ "$PLACEHOLDER_COUNT" -gt 0 ]; then
+  echo "  ⚠ TOTALE: $PLACEHOLDER_COUNT placeholder/hallucinated dates — bonifica con bin/fix-date-placeholders.py"
+fi
+
   [ "$strict" = 1 ] && exit 2
 fi
 exit 0

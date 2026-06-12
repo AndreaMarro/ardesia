@@ -2,7 +2,7 @@
 
 > Append-only. Ultima riga = dove sei / blocker / domande.
 
-- **2026-06-12(executed) — Adversarial triage: fix excerpt guard + test parametrizzato (adversarial 03:40 su 478f628).**
+- **2026-06-12 — Adversarial triage: fix excerpt guard + test parametrizzato (adversarial 03:40 su 478f628).**
   Ipotesi singola: il finding MINORE VERO dell'adversarial su 478f628 (03:40) — `excerpt=""` e `excerpt="   "` non coperti dal test e dal codice — va fissato. Il CRITICO (test tautologico) e la NOTA (FsPath) dell'adversarial 08:02 su b7d23c1 sono **FALSI POSITIVI** (assert gia adeguati, comparazione su stringa non FsPath).
   Risultati:
   1. **Fix codice** (lessonos/dispensa.py:474): `claim.excerpt is None or claim.excerpt == ""` -> `not claim.excerpt or not claim.excerpt.strip()`. Cattura None, "" e whitespace-only ("   "). Short-circuit safe.
@@ -16,7 +16,7 @@
   - Gate: **1651 passed / 2 skipped / 0 failed** (+2 da baseline 1649). cost_usd: ~$0 (mock).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Tutti gli adversarial lessonos triagati e chiusi.
 
-- **2026-06-10(current) — T5-FIX: 2 CRITICI grafo fixati (cross-lesson grounding + transaction atomicity).**
+- **2026-06-10 — T5-FIX: 2 CRITICI grafo fixati (cross-lesson grounding + transaction atomicity).**
   Ipotesi singola: i 2 CRITICI HERMES-2 su graph_writer (4013e76) vanno fissati nel codice — (1) cross-lesson contamination in `_collect_evidence` e (2) write_capsule_graph senza transazione.
   Risultati:
   1. **Cross-lesson grounding** (`lessonos/graph/writer.py:93-101`): dopo `if seg is None: raise ValueError`, ora `if seg.lesson_id != capsule.lesson_id: raise ValueError(...cross-lesson contamination...)`. Previene che una citazione da lezione A punti a un segmento di lezione B (anche se excerpt matcha verbatim).
@@ -31,7 +31,7 @@
   - Gate: 1353 passed + 2 skipped (invariato — +2 dal baseline 1351). cost_usd: ~$0 (mock).
   - Next: T6 — riepilogo-lezione (markdown da capsule + citazioni verificate, come da PROSSIMA TASK in COORDINATION.md).
 
-- **2026-06-10(current) — M0 T4a-step2: REAL transcription of Prima lezione (verified, honest spot-check).** Ipotesi singola: faster-whisper large-v3-turbo int8 CPU puo trascrivere 71min di lezione reale di Teoria dei Segnali (italiano) e produrre segmenti con timestamp utili. Esecuzione: chiamata diretta `transcribe_with_fallback(language='it')` come da correzione Claude (PLAN-CHECK opus-4-8). Output: `~/maestro-data/teoria-segnali-2021/derived/asr/Prima_lezione_teoria_dei_segnali.speech.segment.jsonl` — 1351 segmenti, 153KB. Verifica con `bin/verify-transcription.sh`. **Risultati VERI:**
+- **2026-06-10 — M0 T4a-step2: REAL transcription of Prima lezione (verified, honest spot-check).** Ipotesi singola: faster-whisper large-v3-turbo int8 CPU puo trascrivere 71min di lezione reale di Teoria dei Segnali (italiano) e produrre segmenti con timestamp utili. Esecuzione: chiamata diretta `transcribe_with_fallback(language='it')` come da correzione Claude (PLAN-CHECK opus-4-8). Output: `~/maestro-data/teoria-segnali-2021/derived/asr/Prima_lezione_teoria_dei_segnali.speech.segment.jsonl` — 1351 segmenti, 153KB. Verifica con `bin/verify-transcription.sh`. **Risultati VERI:**
   - Timestamp: 1351/1351 monotoni, da 0.0s a 4254.48s (70.9min) — gap VAD totale 312s (7.3%)
   - Contenuto: segnal 167 hit, energia 6, potenza 7, rettangolo 4, frequenza 11, tempo 62.
   - Confidenza: media 0.7314, min 0.1725, max 0.8994. 23/1351 (1.7%) sotto 0.3.
@@ -40,7 +40,7 @@
   - Gate: 1322 passed + 2 skipped (invariato). cost_usd: ~$0.
   - Next: T4a-step3 — trascrizione Seconda lezione.
 
-- **2026-06-10(current) — M0 T4a-step3: REAL transcription of Seconda lezione (verified, honest spot-check).** Ipotesi singola: faster-whisper large-v3-turbo int8 CPU puo trascrivere la Seconda lezione reale (83min) con qualita simile alla Prima. Procedura: `transcribe_with_fallback(language='it')` come da T4a-step2, verificata con `bin/verify-transcription.sh`. Output: `~/maestro-data/teoria-segnali-2021/derived/asr/Seconda_lezione_teoria_dei_segnali.speech.segment.jsonl` — 3446 segmenti, 328KB (83 min). PLAN-CHECK: opus-4-8 approvato con rilievo (double-conversion bug in pipeline.py non confermato sul codice attuale — accolto).
+- **2026-06-10 — M0 T4a-step3: REAL transcription of Seconda lezione (verified, honest spot-check).** Ipotesi singola: faster-whisper large-v3-turbo int8 CPU puo trascrivere la Seconda lezione reale (83min) con qualita simile alla Prima. Procedura: `transcribe_with_fallback(language='it')` come da T4a-step2, verificata con `bin/verify-transcription.sh`. Output: `~/maestro-data/teoria-segnali-2021/derived/asr/Seconda_lezione_teoria_dei_segnali.speech.segment.jsonl` — 3446 segmenti, 328KB (83 min). PLAN-CHECK: opus-4-8 approvato con rilievo (double-conversion bug in pipeline.py non confermato sul codice attuale — accolto).
   **Risultati VERI:**
   - Timestamp: 3446/3446 monotoni, da 0.0s a 4980.1s (83.0 min) — VAD rimosso 16:37 di silenzio.
   - Contenuto: segnal 90 hit, continuo/a 45, discreto/a 5, dominio 6, frequenza 6, energia 29, potenza 31, seno/coseno/sin 132, sinc 3, campionamento 3, periodico 7, analogico 8, digitale 7, impulso 2. Contenuti coerenti: classificazione segnali (continuo/discreto, analogico/digitale), energia/potenza, campionamento ADC, segnali sinusoidali.
@@ -52,7 +52,7 @@
   - cost_usd: ~$0 (solo CPU inference, zero LLM calls).
   - Next: T4a-step3-continued — trascrizione Terza lezione (stessa procedura). Oppure T4b (ingest->segment->capsule) se si vuole validare il filo. Blocker: nessuno.
 
-- **2026-06-10(current) — M0 T4a-step3: Terza + Quarta lezione transcribed (verified).** Two more lectures transcribed following the same pattern. PLAN-CHECK fable.sh timed out (rate-limit) — proceduto col piano (per dottrina STATUS annotato).
+- **2026-06-10 — M0 T4a-step3: Terza + Quarta lezione transcribed (verified).** Two more lectures transcribed following the same pattern. PLAN-CHECK fable.sh timed out (rate-limit) — proceduto col piano (per dottrina STATUS annotato).
   - **Terza lezione (verified, Terza transcription auto-completata dal background del giro prima):** 2310 segments, 90.2 min, conf media 0.6870. Contenuto: "supporto di un segnale", "dominio del tempo", "chiusura degli istanti" — chiaramente Teoria dei Segnali. 8/2310 (0.3%) sotto 0.3. VAD funziona. Verdetto: PASS ✅.
   - **Quarta lezione (verified, nuova trascrizione questa iterazione):** 2883 segments, 97.2 min, conf media 0.6788. Contenuto: "modulo di S di T", "ordine superiore" — coerente. 22/2883 (0.8%) sotto 0.3 — leggermente più alto ma accettabile. VAD rimosso 30:13 di silenzio. Verdetto: PASS ✅.
   - Gate: 1328 passed + 2 skipped (invariato — nessuna regressione).
@@ -60,7 +60,7 @@
   - **T4a-step3 completato: 4/4 lezioni trascritte** ✅ Prime due verificate esplicitamente (Prima, Seconda in iterazioni precedenti; Terza auto-completata; Quarta in questa iterazione).
   - Next: T4b — pipeline ingest→segment→capsule sulla trascrizione della lezione 1 (come da ordine COORDINATION § M0 FILO VERTICALE T4b). Oppure attendere ordine esplicito da Claude (PROSSIMA TASK in COORDINATION.md potrebbe essere cambiato). Blocker: nessuno per ASR.
 
-- **2026-06-10(current) — T4b FILO NEL MOTORE: adapter ASR→Segment + capsule DeepSeek LIVE su prima lezione reale.**
+- **2026-06-10 — T4b FILO NEL MOTORE: adapter ASR→Segment + capsule DeepSeek LIVE su prima lezione reale.**
   Ipotesi singola: adapter (`lessonos/asr/adapter.py`) da ASR JSONL (SpeechSegment: start/end/text) → Segment del lessonos store, poi pipeline capsule (assemble_lesson_capsule) con DeepSeek LIVE sulla trascrizione reale della Prima lezione, con citazioni fondate.
   **Risultati:**
   1. **Adapter** (`lessonos/asr/adapter.py:36-71`): `asr_jsonl_to_segments()` e `ingest_asr_jsonl()` — legge JSONL ASR, genera `seg_id=<lesson_id>#s<N>` (1-indexed), cast start/end float→int, skip linee vuote. 9 test mock (tests/test_asr_adapter.py).
@@ -75,7 +75,7 @@
   4. **Gate**: 1337 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00056 (2 chiamate DeepSeek chat, ~2000 input + ~1000 output token).
   - Blocker: nessuno. T4b completato ✅.
   - Next: T5 graph_writer (M0 ordini: migrazione SCHEMA_VERSION+1: tabelle segments/nodes/edges/evidence + FTS5).<br><br>
-- **2026-06-10(current) — T5 graph_writer: Capsule→SQLite graph tables (nodes/edges/evidence).**
+- **2026-06-10 — T5 graph_writer: Capsule→SQLite graph tables (nodes/edges/evidence).**
   Ipotesi singola: proiezione pura Capsule→righe SQLite con grounding validato (seg_id risolto, excerpt substring) e idempotenza. ZERO LLM.
   Risultati:
   1. **GraphEvidence** dataclass (`lessonos/models/entities.py:160-173`) — entità frozen con evidence_id, edge_id, seg_id, excerpt, confidence, lesson_id.
@@ -91,7 +91,7 @@
   - Gate: 1351 passed + 2 skipped (invariato — +14 dal baseline 1337). cost_usd: ~$0.
   - Next: T6 riepilogo-lezione (markdown da capsule + citazioni verificate).
 
-- **2026-06-10(current) — T6 RIEPILOGO-LEZIONE: summarizer + grounding helper + LIVE run su Prima lezione.**
+- **2026-06-10 — T6 RIEPILOGO-LEZIONE: summarizer + grounding helper + LIVE run su Prima lezione.**
   Ipotesi singola: la capsule → markdown summary con citazioni verificate meccanicamente si costruisce come `generate_lesson_summary(store, capsule, router)` con (1) prompt deterministico, (2) LLM response JSON strutturato, (3) validazione meccanica di ogni seg_id+excerpt reusing `verify_citation` dal nuovo `lessonos/graph/grounding.py`.
   Risultati:
   1. **grounding.py** — helper condiviso `verify_citation(store, seg_id, lesson_id, excerpt=None)` estratto da writer.py. Parametro `lesson_id` OBBLIGATORIO (cross-lesson guard T5-FIX). 0 righe duplicate.
@@ -110,7 +110,7 @@
   - **BLOCKER**: il criterio di accettazione T6 è 4/4 lezioni, ma i capsule per lezioni 2-4 (Seconda, Terza, Quarta) NON sono mai stati assemblati. Solo `prima_lezione` ha un capsule (appena creato). Serve autorizzazione per assemblare capsule 2-4 prima di dichiarare T6 completa. Vedi COORDINATION.md § NEEDS-CLAUDE.
   - Next: T7 SCHEMA.md (ultimo task lessonos M0) OPPURE assemble capsule 2-4, secondo decisione di Claude in NEEDS-CLAUDE.
 
-- **2026-06-11(current) — M1-4b: 3 fix dispensa (matching, dropped_texts, empty-claims gate).**
+- **2026-06-11 — M1-4b: 3 fix dispensa (matching, dropped_texts, empty-claims gate).**
   Ipotesi singola: i 3 problemi di H2-su-b17bc94 in dispensa.py vanno fissati — (1) CRITICO matching concetto substring crea falsi cross-match tra concetti di lezioni diverse; (2) dropped_paragraphs non preserva il testo; (3) manca test gate per sezioni con claims vuoti.
   Risultati:
   1. **Matching rewrite** (`lessonos/dispensa.py:138-200`): nuovo helper `_resolve_concepts_from_capsules()` con exact normalized match → edit-distance fallback (SequenceMatcher ratio >= 0.85) → ValueError se nessun ConceptExtraction con citazioni trovato. Silent fallback (creazione di ConceptExtraction senza citazioni) ELIMINATO.
@@ -126,7 +126,7 @@
   - Gate: **1563 passed + 2 skipped** (+10 da baseline 1553). cost_usd: ~$0 (mock).
   - Next: M1-4c [GRIND] 5 test obbligati del bug-hunt report §4 — oppure attendere pin CLAUDE-SAYS.
 
-- **2026-06-10(current) — T6-COMPLETAMENTO: Seconda lezione capsule assembled (persistent DB + graph_writer).**
+- **2026-06-10 — T6-COMPLETAMENTO: Seconda lezione capsule assembled (persistent DB + graph_writer).**
   Ipotesi singola: il script generalizzato `bin/run_capsule.sh` può assemblare una capsule per Seconda lezione via DeepSeek LIVE, salvarla in DB persistente e scrivere il grafo — esercitando T5 su dati reali.
   Risultati:
   1. **Script**: `bin/run_capsule.sh <lesson_id> [--max-segments N]` — bash 3 compat, env var pass-through (no shell injection), DB persistente in `~/maestro-data/teoria-segnali-2021/derived/db/lessonos.db`, ledger senza token fabbricati (prompt_tokens=0, stima costo in label).
@@ -143,7 +143,7 @@
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — assemble capsule Terza lezione (stessa procedura).
 
-- **2026-06-10(current) — T6-COMPLETAMENTO: Terza lezione capsule assembled (persistent DB + graph_writer).**
+- **2026-06-10 — T6-COMPLETAMENTO: Terza lezione capsule assembled (persistent DB + graph_writer).**
   Ipotesi singola: `bin/run_capsule.sh terza_lezione` (stesso pattern di Seconda) assembla capsule per Terza lezione via DeepSeek LIVE, 100 segmenti, salva in DB persistente, scrive il grafo.
   Risultati:
   1. **Script eseguito**: `bin/run_capsule.sh terza_lezione` — 100 segmenti (0s–869s di 2310 totali).
@@ -164,7 +164,7 @@
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status + project-wiki/index.md `|-`.
 
-- **2026-06-10(current) — T6R-1a: prima_lezione ingerita in DB persistente + capsule + summary con citazioni 1-indexed (off-by-one FIXED).**
+- **2026-06-10 — T6R-1a: prima_lezione ingerita in DB persistente + capsule + summary con citazioni 1-indexed (off-by-one FIXED).**
   Ipotesi singola: il fix dell'off-by-one (0-indexed→1-indexed) richiede ingerire prima_lezione nel DB persistente, costruire capsule e rigenerare il summary — il tutto usando la pipeline esistente, con seg_id 1-indexed `prima_lezione#s1`-`#s100`.
   Risultati:
   1. **100 segmenti ingeriti** (`prima_lezione#s1`-`#s100`, range 0s–484s), 1-indexed — contratto seg_id verificato inline (primo seg_id = `#s1`, non `#s0`)
@@ -195,7 +195,7 @@
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — **Summaries 2-4** in derived/wiki/ (seconda_lezione.md, terza_lezione.md, quarta_lezione.md, stesso pattern di prima_lezione). Poi fix log.jsonl status (blocker->status blocked) + project-wiki/index.md `|-` + coord.md `|-`.
 
-- **2026-06-11(current) — M1-1 GRAFO PER-DOCENTE (aggregazione cross-lezione).**
+- **2026-06-11 — M1-1 GRAFO PER-DOCENTE (aggregazione cross-lezione).**
   Ipotesi singola: il modello dati `teacher_id` sul Path + `aggregate_teacher_graph(store, teacher_id)` permette di aggregare concetti di tutte le lezioni di un docente, deduplicandoli per nome normalizzato e prendendo lo status più avanzato.
   Risultati:
   1. **Modello dati**: `teacher_id` (opzionale) aggiunto a `Path` (`lessonos/models/entities.py:62`). SCHEMA_VERSION 6→7 con migrazione ALTER TABLE (`lessonos/store/sqlite.py:107-114`). `paths_for_teacher` in Store ABC + SQLiteStore.
@@ -219,7 +219,7 @@
   - Gate: **1457 passed + 2 skipped** (invariato — +5 da baseline 1452). cost_usd: ~$0 (mock tests, demo su DB esistente).
   - Next: M1-2 (libro/mappa nello stile del docente dal grafo aggregato) — oppure attendere ratifica M1-1 da CLAUDE-SAYS.
 
-- **2026-06-11(current) — M1-2a TEACHERBOOK: data model + structured builder (ZERO-LLM).**
+- **2026-06-11 — M1-2a TEACHERBOOK: data model + structured builder (ZERO-LLM).**
   Ipotesi singola: l'AggregatedPathGraph (M1-1 con canonical M1-1b) si puo' strutturare deterministicamente in un TeacherBook organizzato per sezioni tematiche, zero LLM — overview, concetti fondamentali, problematici, progressione, prerequisiti.
   Risultati:
   1. **Nuovo modulo** `lessonos/teacher_book.py` (398 righe) — `build_teacher_book(store, teacher_id) → TeacherBook`. Determina:
@@ -258,7 +258,7 @@
   - **REVIEW**: `bin/review.sh` usage-limit Claude Code (stesso usage) — self-review: 0 tautologie, backward compat, grounding preservato.
   - Gate: **1461 passed + 2 skipped** (+4 da baseline 1457). cost_usd: ~$0.
 
-- **2026-06-11(current) — M1-3 TEACHERBOOK PER-STILE 10 docenti sim Fisica1 (commit 0d0fb13).**
+- **2026-06-11 — M1-3 TEACHERBOOK PER-STILE 10 docenti sim Fisica1 (commit 0d0fb13).**
   Ipotesi singola: `build_teacher_book(store, teacher_id)` + `render_teacher_book(book)` → markdown strutturato e grounded per ogni docente, con tabella comparativa che rivela differenze misurabili nello stile didattico.
   Risultati:
   1. **Per-teacher paths** (10 paths creati in fisica1.db con teacher_id) — ogni docente ha il proprio path che punta alla sua lezione esistente, permettendo a `paths_for_teacher` + `aggregate_teacher_graph` di funzionare.
@@ -282,7 +282,7 @@
   - Gate: **1516 passed + 2 skipped** (+13 da baseline 1503). cost_usd: ~$0 (ZERO-LLM).
   - Next: M1-4 (personalizzazione avanzata) o attendere prossimo pin CLAUDE-SAYS.
 
-- **2026-06-11(current) — M1-3-FIX: 1 CRITICO + 2 bug HERMES-2 adversarial fixati su M1-3.** 
+- **2026-06-11 — M1-3-FIX: 1 CRITICO + 2 bug HERMES-2 adversarial fixati su M1-3.** 
   Ipotesi singola: i 4 finding di HERMES-2 adversarial su 0d0fb13 (M1-3 TeacherBook per-stile) vanno fissati: (1) CRITICO EOF senza newline in bin/run_teacher_book.sh; (2) _render_progression bug: status→all_lessons invece di status→lesson pairs; (3) test tautologico su report vuoto.
   Risultati:
   1. **CRITICO risolto** (`bin/run_teacher_book.sh`): trailing newline aggiunto (0x31→0x0a finale). Shell `set -euo pipefail` sicuro.
@@ -294,7 +294,7 @@
   - Gate: 1516 passed + 2 skipped (invariato — +0 da baseline 1516). cost_usd: ~$0 (mock).
   - Next: M1-4 o attendere pin CLAUDE-SAYS (M1-3 completato, fix adversarial applicati).
 
-- **2026-06-11(current) — M1-3b-REMAINING: 2/5 items fixati (lesson_id citazioni + TEACHERS dedup).**
+- **2026-06-11 — M1-3b-REMAINING: 2/5 items fixati (lesson_id citazioni + TEACHERS dedup).**
   Ipotesi singola: M1-3b [GRIND] aveva 5 item; 3 già fixati in M1-3-FIX; restano 2 da chiudere — (1) _render_citations perde lesson_id; (2) TEACHERS lista duplicata bash+python.
   Risultati:
   1. **_render_citations lesson_id** (`lessonos/teacher_book_renderer.py:45`): ogni citazione ora include `(ev.lesson_id)` esplicito: `(prima_lezione) prima_lezione#s1`. Provenance visibile senza parsare seg_id.
@@ -316,7 +316,7 @@
   - Gate: **1519 passed + 2 skipped** (+3 da baseline 1516). cost_usd: ~$0 (ZERO-LLM).
   - Next: M1-4 o attendere pin CLAUDE-SAYS.
 
-- **2026-06-11(current) — M1-4 DISPENSA STILIZZATA: warm-up + style.py + dispensa.py + tests.**
+- **2026-06-11 — M1-4 DISPENSA STILIZZATA: warm-up + style.py + dispensa.py + tests.**
   Ipotesi singola: StyleProfile deterministico (ZERO-LLM) + dispensa stile-guided via LLM router con gate fail-closed (identico a summary M0) produce dispensa markdown strutturale per-docente.
   Risultati:
   1. **WARM-UP (3 micro-fixes H2-1108)**: (a) `test_empty_books_no_crash` or-mascherato → assert preciso "Compared 0 teachers" (render_qualitative_diff ora mostra docenti reali da books); (b) `render_qualitative_diff` con focus_ids<3 → gestione graceful (titolo dinamico, nessun IndexError); (c) `_compute_prerequisite_depth` → `_compute_prerequisite_breadth` (misura ampiezza, non profondità ricorsiva — tutti i 4 call-site aggiornati).
@@ -330,7 +330,7 @@
   - Gate: **1553 passed + 2 skipped** (+33 da baseline 1520). cost_usd: ~$0 (mock tests).
   - Next: Fase F — LIVE run dispense per prof_pratico/socratico/rigoroso (sim) + andrea (reale). verify_dispensa PASS su tutte e 4. Diff stilistico 10 righe in STATUS.
 
-- **2026-06-11(current) — M1-4c [GRIND]: 5 test obbligati bug-hunt report §4 (gate 1580/0, +17).**
+- **2026-06-11 — M1-4c [GRIND]: 5 test obbligati bug-hunt report §4 (gate 1580/0, +17).**
   Ipotesi singola: i 5 test di robustezza identificati dal bug-hunt (docs/audits/BUGHUNT-2026-06-11.md §4) vanno scritti per cementare i 4 SUBITO fix mergiati dal supervisore (gate-before-save, purge in ingest_bundle, tier-3 floor, fail-closed read-path aggregator).
   Risultati:
   1. **Test #1 — re-ingest stale evidence** (test_graph_aggregator.py, 3 test): `_collect_edges_and_evidence` con segment text cambiato → ValueError (STALE); seg_id inesistente → ValueError; fresh passa.
@@ -343,7 +343,7 @@
   - Gate: **1580 passed + 2 skipped** (+17 da baseline 1563). cost_usd: ~$0 (mock).
 - Next: M1-6 — Fase F dispense live 3 sim + andrea + blind-test (>=7/10). Attende pin CLAUDE-SAYS.
 
-- **2026-06-11(current) — M1-5.5: test determinismo H2-1327 (l'unico gap residuo M1-5, M1-5 COMPLETO).**
+- **2026-06-11 — M1-5.5: test determinismo H2-1327 (l'unico gap residuo M1-5, M1-5 COMPLETO).**
   Ipotesi singola: il test determinismo per _resolve_concepts_from_capsules (H2-1327, richiesto da COORD) va aggiunto — il fix logico era gia nel codice dispensa.py:178-188 da M1-4b, ma mancava il test che verifica quale candidato vince su exact-match multipli.
   Risultati:
   1. **Test aggiunto** (tests/test_dispensa.py:558-598): `test_multiple_exact_matches_deterministic` — stesso concetto 'Energia' exact-match in capsule l1 (introduced) e l2 (reinforced) → sempre l1 vince (primo lid in insertion order). Falsificabile: assert `result[0] is l1_ext` e `result[0].status == "introduced"`.
@@ -357,7 +357,7 @@
   - **REVIEW**: fable-5 — 3 fix (test 2-call non falsificabile, docstring status-discriminator senza assert, assert non discriminante). Tutti applicati.
   - Gate: 1585 passed + 2 skipped (+1 da baseline 1584, nessuna regressione). cost_usd: ~$0 (mock).
 
-- **2026-06-11(current) — ⏸️ LESSONOS-NOOP: pin M1-5 stale, nessuna task disponibile.**
+- **2026-06-11 — ⏸️ LESSONOS-NOOP: pin M1-5 stale, nessuna task disponibile.**
   ORIENT: COORD.md § PROSSIMA TASK riga 16 punta ancora a M1-5 (REDO guidato) — task GIÀ CONSEGNATA (5/5 sotto-task, vedi entry M1-5.5 sopra).
   VERIFICATO (ri-eseguito ORA, non dichiarato):
   - Gate `bash eval/gate.sh` → 1585 passed / 0 failed, exit 0 — VERDE.
@@ -370,7 +370,7 @@
   ATTESO (non verificabile da qui): chiusura del pin da parte del supervisore in CLAUDE-SAYS.
   Nessuna build eseguita (UNA task = quella pinnata = già consegnata). NEEDS-CLAUDE aggiornato. Attendo pin per M1-6 (Fase F dispense live + blind-test).
 
-- **2026-06-11(current) — M1-5 RETRO-FIX (M1-5.1b + M1-5.3b + M1-5.4b): chiusura retro-review CRITICO+MAJOR dentro il pin M1-5 (3 commit, gate 1598/0, +13).**
+- **2026-06-11 — M1-5 RETRO-FIX (M1-5.1b + M1-5.3b + M1-5.4b): chiusura retro-review CRITICO+MAJOR dentro il pin M1-5 (3 commit, gate 1598/0, +13).**
   ORIENT: pin riga 16 = M1-5; NEEDS-CLAUDE riga 19 = RETRO-REVIEW CRITICO con difetti DENTRO i criteri di accettazione M1-5 (sotto-task 1, 3, 4 + spec BUGHUNT #7 referenziata dal pin). Decisione: completare il pin alla sua spec invece di un secondo NOOP-rumore.
   VERIFICATO (eseguito, non dichiarato):
   1. **CRITICO purge incompleta/non testata → CHIUSO (commit 3151dc5, M1-5.1b, gate 1592/0)**: `SQLiteStore.purge_lesson` ora cancella ANCHE righe `lessons`, `cost_ledger` (solo lesson-scoped; le entry path-level con lesson_id=NULL sopravvivono — testato) e rimuove la lezione da ogni `paths.lesson_ids`, tutto in transazione. Wiki file: NUOVO `pipeline.erase_lesson(store, lesson_id, wiki_dir=...)` = purge DB + unlink `derived/wiki/<lesson>.md` (lo Store resta no-I/O, contratto documentato in base.py + SCHEMA.md §6). 7 test REALI su SQLiteStore: erasure completa tabella-per-tabella con dati altrui intatti (count == 9 sul fixture standard), idempotenza (2ª purge == 0), rollback atomico su failure a metà (monkeypatch delete_capsule che alza RuntimeError → nulla cancellato), persistenza su riapertura DB file, erase_lesson con wiki (== 10, l2.md intatto).
@@ -381,7 +381,7 @@
   - Gate: **1598 passed / 0 failed** (+13 da baseline 1585, nessuna regressione). cost_usd: ~$0 (mock, zero LLM).
 - Next: pin M1-5 ora completo ANCHE rispetto al retro-review. Attende pin CLAUDE-SAYS (M1-6 Fase F dispense live + blind-test?).
 
-- **2026-06-11(current) — ⏸️ LESSONOS-NOOP + TRIAGE-INPUT: adversarial H2 20:17 su fbb96ff verificato sul codice = 3/3 falsi positivi, zero build.**
+- **2026-06-11 — ⏸️ LESSONOS-NOOP + TRIAGE-INPUT: adversarial H2 20:17 su fbb96ff verificato sul codice = 3/3 falsi positivi, zero build.**
   ORIENT: pin COORD.md riga 16 = M1-5 — GIÀ consegnato (5/5 sotto-task + RETRO-FIX 3151dc5/9369536/fbb96ff, vedi entry sopra). Unico elemento nuovo: report adversarial `~/maestro-logs/adversarial/20260611-2017-lessonos-fbb96ff.md` (1 CRITICO + 2 note, non triagato). Decisione: verificarlo sul codice come input al triage, NON buildare (pin esaurito).
   VERIFICATO (eseguito ORA, non dichiarato):
   - Gate `bash eval/gate.sh` → `{"passed":1598,"failed":0,"exit":0}` — VERDE, nessuna regressione da fbb96ff.
@@ -392,7 +392,7 @@
   Nessuna build (pin M1-5 = già consegnato; nessun fix giustificato dai finding). NEEDS-CLAUDE aggiornato con entry TRIAGE-INPUT. cost_usd: ~$0 (zero LLM, solo lettura codice + gate).
 - Next: attende pin CLAUDE-SAYS (M1-6 Fase F dispense live 3 sim + andrea + blind-test >=7/10?).
 
-- **2026-06-12(current) — M1-6 FASE F: andrea dispensa LIVE + GROUND-TRUTH contro dispense VERE + blind-test pack.**
+- **2026-06-12 — M1-6 FASE F: andrea dispensa LIVE + GROUND-TRUTH contro dispense VERE + blind-test pack.**
   Ipotesi singola: la pipeline dispensa (generate→verify→render) funziona su andrea reale (4 lezioni Teoria dei Segnali), e il confronto con le dispense vere di Andrea (Energia.pdf, Sommabilità.pdf) rivela gap misurabili ma zero contraddizioni.
   Risultati:
   1. **Andrea dispensa LIVE** (Prima lezione, 23 claims via deepseek-chat): 10 sezioni narrative — Definizione di segnale, Contenuto informativo, Natura fisica, Compromesso accuratezza-semplicità, Segnale vocale, Segnale bidimensionale, Modello matematico, Caratteristiche di segnale fisicamente realizzabile (×2), Classificazione fenomenologica/morfologica/energetica. **verify_dispensa PASS**: 23/23 verified, 0 dropped, unverified_ratio=0.0. Footer dichiara 14 excerpt riparati a substring verbatim reale.
@@ -414,14 +414,14 @@
   - Gate: 1608 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.002923 (1 chiamata deepseek-chat per dispensa andrea).
   - Next: attende giudizio BLIND-TEST da Andrea/Claude. Se >=7/10 -> M1-6 completo. Se <7/10 -> gap da colmare.
 
-- **2026-06-12(current) — RETRO #10 + STEWARDSHIP: M1 completato, NOOP loop rotto con stewardship mode in AGENTS.md §3.**
+- **2026-06-12 — RETRO #10 + STEWARDSHIP: M1 completato, NOOP loop rotto con stewardship mode in AGENTS.md §3.**
   Processo: 14 iterazioni di build + 4 NOOP dal RETRO #9 fix. RETRO #10 in PROCESS-LOG.md: attrito NOOP loop risolto in AGENTS.md §3 (dopo 2 NOOP consecutivi → stewardship mode invece di NEEDS-CLAUDE identico).
   Stewardship eseguita: MILESTONES.md riscritto (M1-1→M1-6, gate 1608, attesa M2); project-wiki/log.md aggiornato (entry current+52); check-frictions.sh esteso (mapping stewardship).
   Prossima task: attende giudizio blind-test Andrea o pin CLAUDE-SAYS per M2. Nessuna nuova build.
   - Gate: 1608/0 invariato. cost_usd: ~$0.
   - Next: attende pin da CLAUDE-SAYS. NEEDS-CLAUDE aggiornato.
 
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa CLAUDE-SAYS. Stewardship già eseguita.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa CLAUDE-SAYS. Stewardship già eseguita.**
   ORIENT: COORD.md § PROSSIMA TASK — lessonos riga 16 (M1-6 Fase F) ✅ chiusa. Ultimo CLAUDE-SAYS 2026-06-12 ~01:00. Nessun nuovo pin per M2.
   VERIFICATO:
   - Gate `uv run pytest -q`: 1608 passed / 2 skipped / 0 failed, exit 0 — VERDE, invariato da M1-6.
@@ -431,7 +431,7 @@
 cost_usd: ~$0 (zero LLM, solo lettura file + gate).
 - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se nessun pin per 14+ giorni, segnalare ad Andrea.
 
-- **2026-06-12(executed) — M1-7b: FIX vault-export raw-to-merged mapping (retro-review CRITICO, commit ed20f62).**
+- **2026-06-12 — M1-7b: FIX vault-export raw-to-merged mapping (retro-review CRITICO, commit ed20f62).**
 Ipotesi singola: il CRITICO del retro-review (2026-06-12 06:18) — vault-export evidenze/prerequisiti/canvas codice morto per mapping raw->merged rotto — va fissato nell'aggregatore (tutti i raw_id per concetto dedup) e nel vault (usa la mappa autoritativa + fix semantica depends_on + rmtree safety + test di contenuto che fallivano).
 Risultati:
 1. **entities.py** (entities.py:238): `raw_to_merged` in `AggregatedPathGraph`.
@@ -444,7 +444,7 @@ Risultati:
 - Gate: **1649 passed / 0 failed / 2 skipped** (+4 da baseline 1645). cost_usd: ~$0 (mock).
 - Next: attende pin CLAUDE-SAYS per M2 lessonos.
 
-- **2026-06-12(current) — M1-7: VAULT-EXPORT Obsidian (read-only proiezione derived/, commit b59aef1).**
+- **2026-06-12 — M1-7: VAULT-EXPORT Obsidian (read-only proiezione derived/, commit b59aef1).**
 Ipotesi singola: il nuovo modulo lessonos/export/obsidian_vault.py proietta il database del motore (SQLite nodes/edges/evidence/segments) e i derived/ markdown (wiki, dispense, teacher_book) in un vault Obsidian navigabile, ZERO LLM, ZERO modifiche al motore.
 Risultati:
 1. **lessonos/export/obsidian_vault.py** (423 righe): 6 sottofunzioni — export_vault (orchestrazione), concetti→md con frontmatter YAML (96 concetti), trascrizioni con ^seg block anchor (4 lezioni), wiki/dispense wikilink-ificate (exact-match da global_resolution), JSON Canvas 1.0 opzionale, README anti-edit.
@@ -458,7 +458,7 @@ Risultati:
 - Gate: **1633 passed / 2 skipped / 0 failed** (+25 da baseline 1608). cost_usd: ~$0 (ZERO LLM, mock).
 - Next: M2 candidati — attende pin CLAUDE-SAYS (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
 
-- **2026-07-16(current) — CRITICO FIX: falso-verde in verify_and_clean_dispensa (retro-review CRITICO 2026-06-12, mai applicato).**
+- **2026-06-12 — CRITICO FIX: falso-verde in verify_and_clean_dispensa (retro-review CRITICO 2026-06-12, mai applicato).**
   Ipotesi singola: il CRITICO trovato dalla retro-review (2026-06-12 02:13) in _verify_or_repair — claim con excerpt=None passava come VERIFIED perché verify_citation(seg_id, excerpt=None) salta il check substring — NON era mai stato fissato. Il commit M1-6.F2 (3a166d9) conteneva la falla; M1-7 (vault-export) non tocca dispensa.py. Fix ora applicato.
   Risultati:
   1. **Fix** (dispensa.py:467-475): dopo verify_citation, controlla `claim.excerpt is None or claim.excerpt == ""` → se excerpt non presente, claim è UNVERIFIED (return None). Il vecchio codice restituiva `(claim, False)` incondizionatamente, violando la policy T6R (grounding.py:66 "VERIFIED iff non-empty excerpt").
@@ -467,19 +467,19 @@ Risultati:
   - Gate: **1634 passed / 2 skipped / 0 failed** (+1 da baseline 1633). cost_usd: ~$0 (mock).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Il CRITICO da retro-review è CHIUSO.
 
-- **2026-07-16(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa pin CLAUDE-SAYS per M2.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa pin CLAUDE-SAYS per M2.**
   ORIENT: M1 COMPLETO (M1-1→M1-7, gate 1634/0). Nessun nuovo pin da CLAUDE-SAYS (ultimo 2026-06-12 ~04:00, solo WORKFLOW-2.0 — nessun ordine per M2 lessonos). COORD.md § PROSSIMA TASK riga 16 ancora su M1-7 (stale — chiuso da commit b59aef1). Stewardship già eseguita (RETRO #10). Nessuna build eseguita (UNA task = quella pinnata = non disponibile).
   - Gate: 1634/0 VERDE (ri-verificato ORA, invariato). cost_usd: ~$0.
   - NEEDS-CLAUDE aggiornato in COORD.md.
 
-- **2026-07-16(current) — ⏸️ LESSONOS-NOOP #2 consecutivo: M1 completo, pin esaurito, stewardship già fatta → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP #2 consecutivo: M1 completo, pin esaurito, stewardship già fatta → stop.**
   ORIENT: HEAD bb64a00, gate 1634/0 VERDE (ri-verificato). Nessuna task pinnata per M2. AGENTS.md §3: dopo 2 NOOP consecutivi → stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
   cost_usd: ~$0 (zero LLM, solo gate + lettura file).
 
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `1e5e25d` (log commit). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). M2 STEWARDSHIP già eseguita (2026-12-06, commit 32a7876, +11 test). Gate 1645/0 VERDE (ri-verificato ORA). Entrambi i repo in NOOP permanente. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 — nessun pin M2. Stewardship già fatta (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
+  ORIENT: HEAD `1e5e25d` (log commit). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). M2 STEWARDSHIP già eseguita (2026-06-12, commit 32a7876, +11 test). Gate 1645/0 VERDE (ri-verificato ORA). Entrambi i repo in NOOP permanente. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 — nessun pin M2. Stewardship già fatta (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
 
-- **2026-12-06(current) — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
+- **2026-06-12 — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
   Ipotesi singola: aggiungere `lessonos status` CLI subcommand — report strutturato markdown su DB live (paths/lessons/segments/nodes/edges/evidence/teachers/cost-ledger), ZERO-LLM, deterministico, per agevolare la stewardship e i futuri build M2.
   Risultati:
   1. **lessonos/status.py** (130 righe): `build_status_report(store)` — interroga il DB via Store ABC, produce report strutturato con conteggi e per-teacher breakdown.
@@ -492,16 +492,16 @@ Risultati:
   - Gate: **1645 passed / 0 failed** (+11 da baseline 1634, nessuna regressione). cost_usd: ~$0 (ZERO LLM).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
 
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP (nuova iterazione #N+7): M1 completo, gate 1645/0 VERDE, pin M2 assente da >6 mesi, stewardship già fatta → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP (nuova iterazione #N+7): M1 completo, gate 1645/0 VERDE, pin M2 assente da >6 mesi, stewardship già fatta → stop.**
   ORIENT: HEAD ac62a48, gate **1645/0 VERDE** (ri-verificato ORA, invariato). DB reale presente (4 lezioni Teoria-Segnali). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). COORD.md § PROSSIMA TASK: entrambi i repo PIN ESAURITO. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (qualche ora fa — WORKFLOW-2.0, nessun ordine per M2). check-frictions.sh: 21/21 coperti, 0 warning. Stash rescue vecchio (1608 << 1645). Stewardship già eseguita (RETRO #10, +11 status CLI). AGENTS.md §3: stop. Nessuna build eseguita.
 
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP: M1 completo (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA), pin M2 assente (ultimo CLAUDE-SAYS 2026-06-12 ~11:30), stewardship già fatta → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1 completo (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA), pin M2 assente (ultimo CLAUDE-SAYS 2026-06-12 ~11:30), stewardship già fatta → stop.**
   ORIENT: HEAD `cf75632`, gate 1651/0 VERDE. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 attivo. Stash rescue: 1608 << 1651 non pertinente. check-frictions: 21/21 coperti, 0 warning. Nessuna build eseguita. AGENTS.md §3: stop. cost_usd: ~$0.
 
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP (nuova iterazione #N+18): M1 COMPLETO (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA su HEAD 8fbd209), pin M2 ASSENTE (ultimo CLAUDE-SAYS 2026-06-12 ~11:30 M1-7c+S-DESIGN-1 — nessun pin M2 in >18 iterazioni).**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP (nuova iterazione #N+18): M1 COMPLETO (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA su HEAD 8fbd209), pin M2 ASSENTE (ultimo CLAUDE-SAYS 2026-06-12 ~11:30 M1-7c+S-DESIGN-1 — nessun pin M2 in >18 iterazioni).**
   ORIENT: HEAD `8fbd209`, gate eseguito ORA: **1651 passed / 2 skipped / 0 failed** — VERDE, invariato. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 ✅ CHIUSO. Ultimo CLAUDE-SAYS 2026-06-12 ~11:30 — nessun pin M2 ricevuto. Stash rescue ispezionato: `stash@{0}` gate misurato 1608 ≪ 1651, non pertinente, non applicato. check-frictions.sh: 21/21 coperti, 0 warning — tutti gli attriti hanno skill/guard. PROCESS-LOG.md RETRO #10 completato: NOOP loop marcato `accepted`. AGENTS.md §3: stewardship già fatta → stop. Mai ciclare NEEDS-CLAUDE identico. Zero build, zero LLM chiamate. Solo $0.
 
- - **2026-06-12(current) — M2-3: badge per-claim nel rendering (roadmap R1, gate 1656/0 VERDE, +5).**
+ - **2026-06-12 — M2-3: badge per-claim nel rendering (roadmap R1, gate 1656/0 VERDE, +5).**
  Ipotesi singola: i 3 renderer (dispensa, teacher_book, summarizer) mostrano per OGNI claim il marcatore di verifica — ✅ (verificato excerpt verbatim), 🔧 (riparato), ✗ (non verificato/droppato). Motore grounding già esistente (`is_verified_excerpt`), ZERO LLM, riusa flag `excerpt` e nuovo flag `repaired` su `DispensaClaim`.
  Risultati:
  1. **graph/grounding.py** — `claim_badge(excerpt, *, repaired, dropped)` → ✅/🔧/✗. Helper condiviso tra tutti i renderer.
@@ -512,7 +512,7 @@ Risultati:
  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
  - **REVIEW**: review.sh quota-out (Claude usage) — self-review: ZERO LLM, 0 regressioni, 0 tautologie, solo visualizzazione.
  - Gate: **1656 passed / 2 skipped / 0 failed** (+5 da baseline 1651, nessuna regressione). cost_usd: ~$0 (mock).
- - **2026-06-12(executed) — M2-3-FIX: adversarial CRITICO + edge case su badge per-claim (test only, gate 1657/0, +1).**
+ - **2026-06-12 — M2-3-FIX: adversarial CRITICO + edge case su badge per-claim (test only, gate 1657/0, +1).**
   Ipotesi singola: il CRITICO dell'adversarial (fc747cf) su M2-3 — `test_dispensa_badge_repaired_through_claim_badge` testa `claim_badge()` in isolamento, non il pipeline reale di repair. L'edge case (nessun test per 🔧 su claim singolo in paragrafo misto) va coperto.
   Risultati:
   1. **Test tautologico rimpiazzato** (`tests/test_dispensa.py:1105-1150`): nuovo `test_dispensa_badge_repaired_end_to_end` — claim con excerpt parafrasato `"energia del segnale si calcola"` su segmento `"si calcola come integrale l'energia del segnale"` → `_verify_or_repair` tier-2 SequenceMatcher ripara a `"energia del segnale"` → `DispensaClaim(repaired=True)` → `render_dispensa_md` mostra `🔧`. Falsificabile: se repair rimosso, claim.excerpt rimane parafrasato e `verify_citation` fallisce → paragraph droppato → nessun `🔧`.
@@ -523,7 +523,7 @@ Risultati:
   - Gate: **1657 passed / 2 skipped / 0 failed** (+1 da baseline 1656). cost_usd: ~$0 (mock).
   - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 stile-scritto? M2-4 ToolHost?).
 
-- **2026-06-12(executed) — M2-2: StyleProfile v2 dallo stile SCRITTO (gate 1685/0, +28).**
+- **2026-06-12 — M2-2: StyleProfile v2 dallo stile SCRITTO (gate 1685/0, +28).**
   Ipotesi singola: estendere style.py con WrittenStyleProfile dal corpus dispense VERE di Andrea (9 PDFs via pdftotext) — metriche di lessico formale, struttura paragrafi, densità matematica — e usare ENTRAMBI i profili (parlato v1 + scritto v2) nel prompt dispensa.
   Risultati:
   1. **Corpus estratto**: `bin/extract-written-style.sh` converte tutti i 9 PDF da `raw/dispense-2026/` (read-only) a testo pulito in `derived/dispense/*.raw.txt`. pdftotext, ZERO nuove dipendenze.
@@ -570,7 +570,7 @@ Risultati:
   - Atteso (non verificato da me): C1 pre-commit-guard COORD-FORMAT (resta al supervisore, NEEDS-CLAUDE riga dedicata); triage supervisore del report adversarial 11:34 su studio.
   - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
 
-- **2026-06-12(executed) — M2-2b A/B su Energia: spoken-only (v1) vs spoken+written (v2) vs REAL Energia.pdf.**
+- **2026-06-12 — M2-2b A/B su Energia: spoken-only (v1) vs spoken+written (v2) vs REAL Energia.pdf.**
   Ipotesi singola: la dispensa generata con written-style hint (v2) e' piu vicina allo stile SCRITTO reale di Andrea (Energia.pdf) rispetto alla versione solo parlato (v1), misurato con le metriche di style.py.
   Risultati:
   1. **V2 generata** (deepseek-chat, 8 concetti, 30/30 verified, 0 dropped, $0.0016): 8 sezioni, avg 15.84 tok/frase, formal 11.88/1000t, math 17.50/1000t.
@@ -585,7 +585,7 @@ Risultati:
   - Gate: **1700 passed / 0 failed** (invariato da baseline). cost_usd: ~$0.0016 (1 chiamata deepseek-chat per v2, v1 da M1-6 gia esistente).
   - Next: M2-2b completata. Attende pin CLAUDE-SAYS per prossima task M2.
 
-|- **2026-06-12(current) — M2-5: badge nel vault (commit fa6d057, gate 1701/2, +5).**
+|- **2026-06-12 — M2-5: badge nel vault (commit fa6d057, gate 1701/2, +5).**
   Ipotesi singola: vault export deve proiettare i badge per-claim (M2-3) nelle pagine dispensa/teacher_book del vault — ZERO LLM, riusando `claim_badge()` esistente.
   Risultati:
   1. **Badge injection dispensa** (`lessonos/export/obsidian_vault.py`): nuova `_add_dispensa_badges()` post-processa il markdown dispensa nel vault — per ogni `<div class="citations">` trova le righe citazione, usa `claim_badge(excerpt)` per `✅`/`✗`. ZERO LLM.
@@ -601,10 +601,10 @@ Risultati:
   - Gate: **1701 passed / 2 skipped** (+5 da baseline 1696). cost_usd: ~$0 (ZERO LLM, mock).
   - Next: attende prossimo pin CLAUDE-SAYS per M2 lessonos.
 
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+20: M1+M2 completi (gate 1701/2 VERDE su HEAD 7a868a7), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già eseguita → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP #N+20: M1+M2 completi (gate 1701/2 VERDE su HEAD 7a868a7), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già eseguita → stop.**
   ORIENT: HEAD `7a868a7` (coord-only: AUTO-PIN studio). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 15:30 — solo cablaggio A3 + studio). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
 
-- **2026-06-12(executed) — TRIAGE ADVERSARIAL + LADDER-FIX: gradini CODEX+GEMINI in review.sh documentati, adversarial HERMES-2 su 2c5e857 triagato, fix minori (commit current, gate 1701/0).**
+- **2026-06-12 — TRIAGE ADVERSARIAL + LADDER-FIX: gradini CODEX+GEMINI in review.sh documentati, adversarial HERMES-2 su 2c5e857 triagato, fix minori (commit current, gate 1701/0).**
   Contesto: dopo NOOP #N+20, fable ha costruito 2 nuovi gradini gratuiti nella ladder di review — `codex exec` (ChatGPT sub di Andrea, 2c5e857) e `gemini` (Google AI Pro, 2a420cd) — entrambi PRIMA del kimi-k2.6 fallback. Mai documentati in STATUS. HERMES-2 adversarial 14:05 su 2c5e857 non triagato.
   **TRIAGE ADVERSARIAL (1 CRITICO, 1 MINORE, 1 DEBITO):**
   1. [FALSO POSITIVO] CRITICO GDPR: `codex exec` invia diff a OpenAI senza consenso — il diff di review.sh contiene solo codice Python tecnico (lessonos, zero PII per GDPR Mode A). Stesso contenuto già inviato a Claude + kimi dall'inizio del progetto. Nessuna azione.
@@ -615,14 +615,14 @@ Risultati:
   - Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0.
   - Next: attende pin CLAUDE-SAYS per M2 lessonos.
 
-- **2026-06-12(executed) — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/2 VERDE su HEAD 0879494), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/2 VERDE su HEAD 0879494), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
   ORIENT: HEAD `0879494` (lint coord). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale). CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo. Stash rescue: entrambi ≪ 1701, non applicati. Stewardship già fatta (RETRO #10). check-frictions: 21/21, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
   - Next: attende pin CLAUDE-SAYS per M2 (M2-1 blind-test? M2-4 ToolHost T3?). Se >14gg, segnalare ad Andrea per decisione sul futuro.
 
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP: M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5, gate 1701/0 VERDE su HEAD 7392267), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5, gate 1701/0 VERDE su HEAD 7392267), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
   ORIENT: HEAD `7392267` (log NOOP). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso da fa6d057). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 16:45 CARTA DEI RUOLI — solo direttiva FABLE/HERMES ruoli, zero nuovi pin). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (zero LLM, solo gate + lettura file).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se >14gg, segnalare ad Andrea per decisione sul futuro del progetto.
 
 - **2026-06-12(verified) — ⏸️ LESSONOS-NOOP #N+21: M1+M2 completi (gate 1701/0 VERDE su HEAD 69c1ab0), pin ESAURITO, stewardship già fatta → stop. Stash: 0 codice utile. Check-frictions: 21/21, 0 warning. Zero build.** ORIENT: HEAD `69c1ab0` (lint coord). Gate **1701 passed / 0 failed / 2 skipped** — ri-verificato ORA. M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5). COORD.md PROSSIMA TASK: entrambi i repo stale-chiusi. CLAUDE-SAYS: nessun pin M2 lessonos nuovo dall'ultimo (2026-06-12 ~15:30 CARTA DEI RUOLI). Stash rescue: stash@{0,1} ispezionati — solo STATUS NOOP (gate 1685/1608 << 1701), zero codice. check-frictions: 21/21, 0 warning. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stop. cost_usd: ~$0 (gate + lettura file).
-- **2026-07-16(new session) — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/0 VERDE su HEAD 6f2ec37), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
+- **2026-06-12 — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/0 VERDE su HEAD 6f2ec37), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
   ORIENT: HEAD `6f2ec37` (COORD-only). Gate **1701 passed / 0 failed / 2 skipped** — ri-verificato ORA. M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5). PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 dal 2026-06-12. Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stewardship già fatta → stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
