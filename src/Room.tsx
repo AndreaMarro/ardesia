@@ -47,6 +47,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [audioOn, setAudioOn] = useState(false)
   /** Mostra stato registrazione nell'header */
   const [audioRecording, setAudioRecording] = useState(false)
+  /** Hamburger menu mobile */
+  const [menuOpen, setMenuOpen] = useState(false)
   /** Stato export .lesson */
   const [exporting, setExporting] = useState(false)
   /** Nome lezione (da meta.json) — null = non ancora caricato */
@@ -493,7 +495,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
         </div>
 
-        <div className="st-actions">
+        {/* Hamburger menu mobile (visibile solo <=768px via CSS) */}
+        <button
+          className={`st-menu-btn${menuOpen ? " st-on" : ""}`}
+          onClick={() => setMenuOpen(v => !v)}
+          aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+
+        <div className={`st-actions${menuOpen ? " st-actions-open" : ""}`}>
           <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost">media</button>
