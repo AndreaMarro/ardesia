@@ -160,25 +160,45 @@ def capsule_with_concepts() -> str:
 
 @pytest.fixture
 def temp_derived_dir() -> str:
-    """Create a temporary derived/ directory with wiki and teacher_book files."""
+    """Create a temporary derived/ directory with wiki/dispense/teacher_book/vault files.
+
+    Includes boundary files for substring false-match regression:
+    all 4 subdirectories have ``andrea_backup.md`` (legit prefix variant)
+    and ``alessandro_andrea.md`` (contains ``"andrea"`` as substring,
+    must NOT match).
+    """
     with tempfile.TemporaryDirectory() as tmpdir:
         root = FsPath(tmpdir)
 
-        # wiki
+        # wiki (with boundary files)
         wiki_dir = root / "wiki"
         wiki_dir.mkdir()
         (wiki_dir / "prima_lezione.md").write_text("# Prima lezione\nContent", encoding="utf-8")
         (wiki_dir / "seconda_lezione.md").write_text("# Seconda lezione\nContent", encoding="utf-8")
+        (wiki_dir / "andrea.md").write_text("# Andrea wiki\nContent", encoding="utf-8")
+        (wiki_dir / "andrea_backup.md").write_text("# Andrea wiki backup\nContent", encoding="utf-8")
+        (wiki_dir / "alessandro_andrea.md").write_text("# Alessandro wiki\nContent", encoding="utf-8")
 
-        # dispense
+        # dispense (with boundary files)
         disp_dir = root / "dispense"
         disp_dir.mkdir()
         (disp_dir / "andrea.md").write_text("# Andrea dispensa\nContent", encoding="utf-8")
+        (disp_dir / "andrea_backup.md").write_text("# Andrea backup\nContent", encoding="utf-8")
+        (disp_dir / "alessandro_andrea.md").write_text("# Alessandro\nContent", encoding="utf-8")
 
-        # teacher_book
+        # teacher_book (with boundary files)
         tb_dir = root / "teacher_book"
         tb_dir.mkdir()
         (tb_dir / "andrea.md").write_text("# Andrea teacher book\nContent", encoding="utf-8")
+        (tb_dir / "andrea_backup.md").write_text("# Andrea tb backup\nContent", encoding="utf-8")
+        (tb_dir / "alessandro_andrea.md").write_text("# Alessandro tb\nContent", encoding="utf-8")
+
+        # vault (with boundary files)
+        vault_dir = root / "vault"
+        vault_dir.mkdir()
+        (vault_dir / "andrea.md").write_text("# Andrea vault\nContent", encoding="utf-8")
+        (vault_dir / "andrea_backup.md").write_text("# Andrea vault backup\nContent", encoding="utf-8")
+        (vault_dir / "alessandro_andrea.md").write_text("# Alessandro vault\nContent", encoding="utf-8")
 
         yield str(root)
         # temp dir auto-cleaned
@@ -310,6 +330,48 @@ class TestBuildLessonRecap:
         """Non-existent derived_dir → no materials, no crash."""
         recap = build_lesson_recap(simple_store, "prima_lezione", derived_dir="/tmp/no_such_dir_abc123")
         assert len(recap.derived_materials) == 0
+
+    def test_dispense_no_false_match(self, simple_store: _SimpleStore, temp_derived_dir: str) -> None:
+        """No substring false positives across ALL 4 material kinds.
+
+        Verifies that ``"andrea"`` does not match ``alessandro_andrea.md``
+        in any subdirectory (wiki, dispense, teacher_book, vault).
+        """
+        simple_store.add_lesson(Lesson(lesson_id="andrea", path_id="p1", title="Andrea", order=2))
+        recap = build_lesson_recap(simple_store, "andrea", derived_dir=temp_derived_dir)
+
+        # Each kind should match andrea.md (exact) + andrea_backup.md (prefix),
+        # but NOT alessandro_andrea.md (substring false-positive)
+        by_kind: dict[str, set[str]] = {}
+        for m in recap.derived_materials:
+            by_kind.setdefault(m.kind, set()).add(m.title)
+
+        for kind in ("wiki", "dispensa", "teacher_book", "vault"):
+            titles = by_kind.get(kind, set())
+            # Should have exactly the two valid matches
+            assert f"{kind}: {titles}", f"{kind} has no materials"
+            # alessandro_andrea must NOT appear in ANY kind
+            assert not any("alessandro" in t for t in titles), f"{kind} has substring false-positive"
+
+    def test_derived_materials_all_kinds(self, simple_store: _SimpleStore, temp_derived_dir: str) -> None:
+        """All 4 material kinds (wiki, dispensa, teacher_book, vault) scanned.
+        
+        With the boundary fixture, each kind has:
+        - andrea.md (exact match) ✓
+        - andrea_backup.md (prefix variant) ✓
+        - alessandro_andrea.md (substring false-positive) ✗
+        Total per-kind = 2 matches.
+        """
+        simple_store.add_lesson(Lesson(lesson_id="andrea", path_id="p1", title="Andrea", order=2))
+        recap = build_lesson_recap(simple_store, "andrea", derived_dir=temp_derived_dir)
+
+        kinds = {m.kind for m in recap.derived_materials}
+        assert kinds == {"wiki", "dispensa", "teacher_book", "vault"}
+        by_kind = {k: [m for m in recap.derived_materials if m.kind == k] for k in kinds}
+        assert len(by_kind["wiki"]) == 2          # andrea.md + andrea_backup.md
+        assert len(by_kind["dispensa"]) == 2       # andrea.md + andrea_backup.md
+        assert len(by_kind["teacher_book"]) == 2    # andrea.md + andrea_backup.md
+        assert len(by_kind["vault"]) == 2            # andrea.md + andrea_backup.md
 
     def test_json_schema_version(self, simple_store: _SimpleStore, capsule_with_concepts: str) -> None:
         """Schema version + full recap structure verified."""

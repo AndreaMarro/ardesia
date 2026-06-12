@@ -2,7 +2,7 @@
 
 ZERO LLM, pure DB + filesystem projection.  Produces a structured JSON document
 with lesson metadata, concepts (capsule-derived), open debts (problematic
-concepts), and derived materials (wiki/dispense/teacher_book files).
+concepts), and derived materials (wiki/dispense/teacher_book/vault files).
 
 Schema version is embedded in the output (``recap_schema_version``).  Increment
 it when the output schema changes so Studio can detect stale formats.
@@ -152,11 +152,28 @@ def _extract_debts(capsule_json: str | None) -> tuple[RecapDebt, ...]:
     return tuple(debts)
 
 
+def _is_lesson_file(stem: str, lesson_id: str) -> bool:
+    """Check if a filename stem matches a lesson_id (case-insensitive).
+
+    Matches when *stem* equals *lesson_id* or starts with
+    ``lesson_id + "_"`` (convention for derived files keyed by teacher or
+    lesson name).  Comparison is case-insensitive for portability across
+    case-sensitive (Linux) and case-insensitive (macOS APFS) filesystems.
+
+    ZERO-LLM, pure string check.  Prevents substring false-positives like
+    ``"andrea" in "alessandro_andrea"``.
+    """
+    return stem.lower() == lesson_id.lower() or stem.lower().startswith(lesson_id.lower() + "_")
+
+
 def _scan_derived_materials(derived_dir: str | None, lesson_id: str) -> tuple[RecapDerivedMaterial, ...]:
     """Scan *derived_dir* for material files related to *lesson_id*.
 
     ZERO-LLM: pure filesystem scan.  Scans subdirectories that match the
-    lesson_id (e.g. ``wiki/prima_lezione.md``, ``dispense/andrea.md``).
+    lesson_id (e.g. ``wiki/prima_lezione.md``, ``dispense/andrea.md``,
+    ``teacher_book/andrea.md``, ``vault/andrea.md``).
+    Uses ``_is_lesson_file`` for safe exact-or-prefix matching (no substring
+    false-positives).
     Returns empty tuple when *derived_dir* is *None* or does not exist.
     """
     if derived_dir is None:
@@ -171,9 +188,7 @@ def _scan_derived_materials(derived_dir: str | None, lesson_id: str) -> tuple[Re
     wiki_dir = root / "wiki"
     if wiki_dir.is_dir():
         for fpath in sorted(wiki_dir.iterdir()):
-            if fpath.suffix in (".md", ".txt", ".json") and (
-                fpath.stem == lesson_id or fpath.stem.startswith(lesson_id + "_")
-            ):
+            if fpath.suffix in (".md", ".txt", ".json") and _is_lesson_file(fpath.stem, lesson_id):
                 materials.append(
                     RecapDerivedMaterial(
                         kind="wiki",
@@ -186,7 +201,7 @@ def _scan_derived_materials(derived_dir: str | None, lesson_id: str) -> tuple[Re
     dispensa_dir = root / "dispense"
     if dispensa_dir.is_dir():
         for fpath in sorted(dispensa_dir.iterdir()):
-            if fpath.suffix in (".md", ".txt") and lesson_id in fpath.stem:
+            if fpath.suffix in (".md", ".txt") and _is_lesson_file(fpath.stem, lesson_id):
                 materials.append(
                     RecapDerivedMaterial(
                         kind="dispensa",
@@ -199,7 +214,7 @@ def _scan_derived_materials(derived_dir: str | None, lesson_id: str) -> tuple[Re
     tb_dir = root / "teacher_book"
     if tb_dir.is_dir():
         for fpath in sorted(tb_dir.iterdir()):
-            if fpath.suffix == ".md" and (fpath.stem == lesson_id or fpath.stem.startswith(lesson_id + "_")):
+            if fpath.suffix == ".md" and _is_lesson_file(fpath.stem, lesson_id):
                 materials.append(
                     RecapDerivedMaterial(
                         kind="teacher_book",
@@ -212,9 +227,7 @@ def _scan_derived_materials(derived_dir: str | None, lesson_id: str) -> tuple[Re
     vault_dir = root / "vault"
     if vault_dir.is_dir():
         for fpath in sorted(vault_dir.iterdir()):
-            if fpath.suffix in (".md", ".canvas") and (
-                fpath.stem == lesson_id or fpath.stem.startswith(lesson_id + "_")
-            ):
+            if fpath.suffix in (".md", ".canvas") and _is_lesson_file(fpath.stem, lesson_id):
                 materials.append(
                     RecapDerivedMaterial(
                         kind="vault",
@@ -247,7 +260,7 @@ def build_lesson_recap(
         The lesson to recap.
     derived_dir:
         Optional path to the ``derived/`` directory tree (wiki, dispense,
-        teacher_book).  When *None*, derived_materials will be empty.
+        teacher_book, vault).  When *None*, derived_materials will be empty.
 
     Returns
     -------
