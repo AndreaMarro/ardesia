@@ -162,7 +162,7 @@
   - **PLAN-CHECK**: opus-4-8 APPROVATO con 1 rafforzamento (3 coppie claim→citazione). Applicato.
   - **REVIEW**: N/A (diff vuoto — solo esecuzione dati reali, zero modifica codice).
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
-  - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status + project-wiki/index.md `|-`.
+  - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status e project-wiki/index.md `|-`.
 
 - **2026-06-10 — T6R-1a: prima_lezione ingerita in DB persistente + capsule + summary con citazioni 1-indexed (off-by-one FIXED).**
   Ipotesi singola: il fix dell'off-by-one (0-indexed→1-indexed) richiede ingerire prima_lezione nel DB persistente, costruire capsule e rigenerare il summary — il tutto usando la pipeline esistente, con seg_id 1-indexed `prima_lezione#s1`-`#s100`.
@@ -205,8 +205,8 @@
      - `test_two_lessons_same_teacher_shared_concept` — 2 lezioni stesso docente → 1 nodo merged
      - `test_cross_teacher_no_contamination` — docenti diversi non si contaminano
      - `test_multi_path_teacher` — docente con 2 path → concetti da entrambi mergiati
-     - `test_teacher_not_found` — teacher sconosciuto → ValueError
-     - `test_teacher_no_capsules` — path senza capsule → grafo vuoto
+     - `test_teacher_not_found` → ValueError
+     - `test_teacher_no_capsules` → grafo vuoto
   5. **Demo reale** — 4 lezioni Teoria-Segnali (Andrea, stesso teacher_id="andrea"):
      - **96 concetti unici** (deduplicati per nome normalizzato — senza dedup sarebbero ~320)
      - **130 edges**, **328 evidenze** con provenance lesson_id
@@ -516,195 +516,197 @@ Risultati:
  - **REVIEW**: review.sh quota-out (Claude usage) — self-review: ZERO LLM, 0 regressioni, 0 tautologie, solo visualizzazione.
  - Gate: **1656 passed / 2 skipped / 0 failed** (+5 da baseline 1651, nessuna regressione). cost_usd: ~$0 (mock).
  - **2026-06-12 — M2-3-FIX: adversarial CRITICO + edge case su badge per-claim (test only, gate 1657/0, +1).**
-  Ipotesi singola: il CRITICO dell'adversarial (fc747cf) su M2-3 — `test_dispensa_badge_repaired_through_claim_badge` testa `claim_badge()` in isolamento, non il pipeline reale di repair. L'edge case (nessun test per 🔧 su claim singolo in paragrafo misto) va coperto.
-  Risultati:
-  1. **Test tautologico rimpiazzato** (`tests/test_dispensa.py:1105-1150`): nuovo `test_dispensa_badge_repaired_end_to_end` — claim con excerpt parafrasato `"energia del segnale si calcola"` su segmento `"si calcola come integrale l'energia del segnale"` → `_verify_or_repair` tier-2 SequenceMatcher ripara a `"energia del segnale"` → `DispensaClaim(repaired=True)` → `render_dispensa_md` mostra `🔧`. Falsificabile: se repair rimosso, claim.excerpt rimane parafrasato e `verify_citation` fallisce → paragraph droppato → nessun `🔧`.
-  2. **Edge case coperto** (`test_dispensa_badge_mixed_paragraph`): 1 claim verbatim + 1 claim reparato stesso paragrafo → entrambi ✅ e 🔧 nel markdown. Falsificabile: se badge non compare, test fallisce.
-  3. **Zero modifiche a codice produzione** — solo test. Adversarial NOTE (claim_badge non usato per footer ✗) accettato come coupling minimo.
-  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
-  - **REVIEW**: review.sh quota-out — self-review: 0 bug, 0 tautologie, zero regressioni.
-  - Gate: **1657 passed / 2 skipped / 0 failed** (+1 da baseline 1656). cost_usd: ~$0 (mock).
-  - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 stile-scritto? M2-4 ToolHost?).
+ Ipotesi singola: il CRITICO dell'adversarial (fc747cf) su M2-3 — `test_dispensa_badge_repaired_through_claim_badge` testa `claim_badge()` in isolamento, non il pipeline reale di repair. L'edge case (nessun test per 🔧 su claim singolo in paragrafo misto) va coperto.
+ Risultati:
+ 1. **Test tautologico rimpiazzato** (`tests/test_dispensa.py:1105-1150`): nuovo `test_dispensa_badge_repaired_end_to_end` — claim con excerpt parafrasato `"energia del segnale si calcola"` su segmento `"si calcola come integrale l'energia del segnale"` → `_verify_or_repair` tier-2 SequenceMatcher ripara a `"energia del segnale"` → `DispensaClaim(repaired=True)` → `render_dispensa_md` mostra `🔧`. Falsificabile: se repair rimosso, claim.excerpt rimane parafrasato e `verify_citation` fallisce → paragraph droppato → nessun `🔧`.
+ 2. **Edge case coperto** (`test_dispensa_badge_mixed_paragraph`): 1 claim verbatim + 1 claim reparato stesso paragrafo → entrambi ✅ e 🔧 nel markdown. Falsificabile: se badge non compare, test fallisce.
+ 3. **Zero modifiche a codice produzione** — solo test. Adversarial NOTE (claim_badge non usato per footer ✗) accettato come coupling minimo.
+ - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+ - **REVIEW**: review.sh quota-out — self-review: 0 bug, 0 tautologie, zero regressioni.
+ - Gate: **1657 passed / 2 skipped / 0 failed** (+1 da baseline 1656). cost_usd: ~$0 (mock).
+ - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 stile-scritto? M2-4 ToolHost?).
 
 - **2026-06-12 — M2-2: StyleProfile v2 dallo stile SCRITTO (gate 1685/0, +28).**
-  Ipotesi singola: estendere style.py con WrittenStyleProfile dal corpus dispense VERE di Andrea (9 PDFs via pdftotext) — metriche di lessico formale, struttura paragrafi, densità matematica — e usare ENTRAMBI i profili (parlato v1 + scritto v2) nel prompt dispensa.
-  Risultati:
-  1. **Corpus estratto**: `bin/extract-written-style.sh` converte tutti i 9 PDF da `raw/dispense-2026/` (read-only) a testo pulito in `derived/dispense/*.raw.txt`. pdftotext, ZERO nuove dipendenze.
-  2. **style.py** — 6 nuove funzioni di metrica (ZERO-LLM): `_clean_dispensa_text()` (controlli + form-feed), `_avg_sentence_length()`, `_formal_density()` (marcatori accademici italiani), `_section_count()` (ALL-CAPS + numerate), `_bullet_density()`, `_math_density()` (unicode math, greco, formule), `_avg_paragraph_length()`. Nuova `WrittenStyleProfile` frozen dataclass con 7 campi tra cui `dispense_processed`. `derive_written_style(dispense_dir)` legge `*.raw.txt`, pulisce, computa metriche aggregate.
-  3. **Metriche reali** dal corpus di Andrea (9 dispense):
+ Ipotesi singola: estendere style.py con WrittenStyleProfile dal corpus dispense VERE di Andrea (9 PDFs via pdftotext) — metriche di lessico formale, struttura paragrafi, densità matematica — e usare ENTRAMBI i profili (parlato v1 + scritto v2) nel prompt dispensa.
+ Risultati:
+ 1. **Corpus estratto**: `bin/extract-written-style.sh` converte tutti i 9 PDF da `raw/dispense-2026/` (read-only) a testo pulito in `derived/dispense/*.raw.txt`. pdftotext, ZERO nuove dipendenze.
+ 2. **style.py** — 6 nuove funzioni di metrica (ZERO-LLM): `_clean_dispensa_text()` (controlli + form-feed), `_avg_sentence_length()`, `_formal_density()` (marcatori accademici italiani), `_section_count()` (ALL-CAPS + numerate), `_bullet_density()`, `_math_density()` (unicode math, greco, formule), `_avg_paragraph_length()`. Nuova `WrittenStyleProfile` frozen dataclass con 7 campi tra cui `dispense_processed`. `derive_written_style(dispense_dir)` legge `*.raw.txt`, pulisce, computa metriche aggregate.
+ 3. **Metriche reali** dal corpus di Andrea (9 dispense):
      - avg_sentence_length: 55.25 (frasi accademiche complesse)
      - formal_density: 11.96/1000 token (linguaggio accademico fitto)
      - section_count: 61 sezioni rilevate (struttura fortemente paragrafata)
      - bullet_density: 8.08/1000 token (uso sistematico di elenchi)
      - math_density: 54.07/1000 token (altissima densità di notazione matematica)
      - avg_paragraph_length: 23.41 token (paragrafi brevi e compatti)
-  4. **dispensa.py** — `build_dispensa_prompt` accetta ora `written_style: WrittenStyleProfile` via kwargs. `_written_style_hint(ws)` mappa le metriche in istruzioni testuali. Prompt v2 include sezione "## Stile SCRITTO del docente (dalle sue dispense originali)" con guida strutturale. `generate_dispensa` accetta `written_style` e lo passa al prompt builder. Backward compat: chiamanti esistenti senza `written_style` funzionano identici.
-  5. **A/B test** (`bin/ab-dispensa-written-style.py`): v1-only = 44 linee/1271 char, nessuna sezione scritta. V1+v2 = 49 linee/1818 char, include sezione scritta con istruzioni reali. Diff strutturale verificato.
-  6. **28 nuovi test** (38 totali su test_style.py): cleaning, avg_sentence_length, formal_density, section_count, bullet_density, math_density, avg_paragraph_length, written_style_hint (no-corpus→vuoto, real→testo, deterministico), derive_written_style (nessun corpus→zeroed, corpus reale→numeri misurabili).
-  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
-  - **REVIEW**: review.sh quota-out — self-review: ZERO LLM, 0 regressioni, backward compat, 0 tautologie.
-  - Gate: **1685 passed / 2 skipped** (+28 da baseline 1657). cost_usd: ~$0 (ZERO LLM, mock).
-  - Next: M2-2 completo. Attende prossimo pin da CLAUDE-SAYS o ROADMAP-AUTO.
+ 4. **dispensa.py** — `build_dispensa_prompt` accetta ora `written_style: WrittenStyleProfile` via kwargs. `_written_style_hint(ws)` mappa le metriche in istruzioni testuali. Prompt v2 include sezione "## Stile SCRITTO del docente (dalle sue dispense originali)" con guida strutturale. `generate_dispensa` accetta `written_style` e lo passa al prompt builder. Backward compat: chiamanti esistenti senza `written_style` funzionano identici.
+ 5. **A/B test** (`bin/ab-dispensa-written-style.py`): v1-only = 44 linee/1271 char, nessuna sezione scritta. V1+v2 = 49 linee/1818 char, include sezione scritta con istruzioni reali. Diff strutturale verificato.
+ 6. **28 nuovi test** (38 totali su test_style.py): cleaning, avg_sentence_length, formal_density, section_count, bullet_density, math_density, avg_paragraph_length, written_style_hint (no-corpus→vuoto, real→testo, deterministico), derive_written_style (nessun corpus→zeroed, corpus reale→numeri misurabili).
+ - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+ - **REVIEW**: review.sh quota-out — self-review: ZERO LLM, 0 regressioni, backward compat, 0 tautologie.
+ - Gate: **1685 passed / 2 skipped** (+28 da baseline 1657). cost_usd: ~$0 (ZERO LLM, mock).
+ - Next: M2-2 completo. Attende prossimo pin da CLAUDE-SAYS o ROADMAP-AUTO.
 
 - **2026-06-12T11:51Z — ✅ RETRO-FIX C2: rmtree guard invertito in export_vault (retro-review CRITICO 2026-06-12), commit `88622ab`, gate 1693/0 (+8).**
-  Contesto pin: lessonos M2-2 [AUTO-PINNED-DONE], ROADMAP-AUTO senza righe lessonos → pin esaurito. Applicato il precedente ratificato retro-review→fix-autonomo (CLAUDE-SAYS 09:25 su 478f628): UNA task = il CRITICO C2 di NEEDS-CLAUDE (repro eseguito dal retro-review). C1 (pre-commit-guard.sh COORD-FORMAT morto) NON toccato: tooling del supervisore, resta in NEEDS-CLAUDE.
-  Causa-radice (obsidian_vault.py:176): `commonpath([out, derived]) == derived` bloccava output DENTRO derived/ — ma il layout documentato È `derived/vault/<teacher>` (cli.py --out help, docstring "Recreated from scratch each run") → ogni RI-export reale alzava ValueError dal 2° run. Bonus: `raw_str = derived/raw` proteggeva un path inesistente (raw/ è FRATELLO di derived/).
-  Fix: blocca output UGUALE/ANTENATO di derived (`commonpath == out`); raw come sibling (`derived.parent/raw`) con blocco su QUALSIASI overlap (uguale/dentro/antenato); home risolta.
-  **SELF-ADV: trovati 4, fixati 4** (code-reviewer avversario sul diff, repro empirici suoi): (1) CRITICO bypass case-insensitive APFS — `RAW` ≠ `raw` per commonpath ma stessa dir su disco → rmtree distruggeva raw/; ora confronto casefolded su darwin (falso positivo = guard più severo, mai distruttivo); (2) MAJOR derived symlinkato nascondeva la raw vera accanto al symlink → candidate raw da parent risolto E non-risolto; (3) MAJOR raw symlink a storage esterno → candidate risolte; (4) MINOR home non risolta + match mancante in un pytest.raises.
-  Criteri di accettazione (dal retro-review, punto per punto):
-  - [VERIFICATO] "bloccare quando out è UGUALE o ANTENATO di derived/raw, non discendente": test_refuses_output_equal_derived + test_refuses_output_ancestor_of_derived (ancestor NON era bloccato nemmeno dal vecchio guard) + test_reexport_inside_derived_succeeds.
-  - [VERIFICATO] "correggere raw_str = derived/raw → fratello": test_refuses_output_equal_raw_sibling + test_refuses_output_inside_raw.
-  - [VERIFICATO] Repro del retro-review sui DATI REALI: `export-vault --teacher andrea --out ~/maestro-data/teoria-segnali-2021/derived/vault/andrea` eseguito 2 volte di fila (più una 3ª) — prima del fix il 2° run alzava ValueError, ora OK: 96 concetti, 4 lezioni, 109 pagine .md (= conteggio M1-7c), canvas rigenerato, raw/ INTATTO.
-  - [VERIFICATO] Mutation: col guard vecchio 4/5 test base falliscono; con le mutazioni SELF-ADV (no casefold, no doppia candidate, no resolve) 3/3 test avversari falliscono. Totale 8 test nuovi (TestRmtreeGuard), 7/8 falsificabili (l'8° è il regression test del re-export, passa senza guard by design).
-  - Gate: bash eval/gate.sh = {"passed":1693,"failed":0,"exit":0} — VERDE, +8 da baseline 1685. cost_usd ~$0 (mock, zero LLM).
-  - Atteso (non verificato da me): C1 pre-commit-guard e bonifica prefissi `|` in COORD — supervisore.
-  - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
+ Contesto pin: lessonos M2-2 [AUTO-PINNED-DONE], ROADMAP-AUTO senza righe lessonos → pin esaurito. Applicato il precedente ratificato retro-review→fix-autonomo (CLAUDE-SAYS 09:25 su 478f628): UNA task = il CRITICO C2 di NEEDS-CLAUDE (repro eseguito dal retro-review). C1 (pre-commit-guard.sh COORD-FORMAT morto) NON toccato: tooling del supervisore, resta in NEEDS-CLAUDE.
+ Causa-radice (obsidian_vault.py:176): `commonpath([out, derived]) == derived` bloccava output DENTRO derived/ — ma il layout documentato È `derived/vault/<teacher>` (cli.py --out help, docstring "Recreated from scratch each run") → ogni RI-export reale alzava ValueError dal 2° run. Bonus: `raw_str = derived/raw` proteggeva un path inesistente (raw/ è FRATELLO di derived/).
+ Fix: blocca output UGUALE/ANTENATO di derived (`commonpath == out`); raw come sibling (`derived.parent/raw`) con blocco su QUALSIASI overlap (uguale/dentro/antenato); home risolta.
+ **SELF-ADV: trovati 4, fixati 4** (code-reviewer avversario sul diff, repro empirici suoi): (1) CRITICO bypass case-insensitive APFS — `RAW` ≠ `raw` per commonpath ma stessa dir su disco → rmtree distruggeva raw/; ora confronto casefolded su darwin (falso positivo = guard più severo, mai distruttivo); (2) MAJOR derived symlinkato nascondeva la raw vera accanto al symlink → candidate raw da parent risolto E non-risolto; (3) MAJOR raw symlink a storage esterno → candidate risolte; (4) MINOR home non risolta + match mancante in un pytest.raises.
+ Criteri di accettazione (dal retro-review, punto per punto):
+ - [VERIFICATO] "bloccare quando out è UGUALE o ANTENATO di derived/raw, non discendente": test_refuses_output_equal_derived + test_refuses_output_ancestor_of_derived (ancestor NON era bloccato nemmeno dal vecchio guard) + test_reexport_inside_derived_succeeds.
+ - [VERIFICATO] "correggere raw_str = derived/raw → fratello": test_refuses_output_equal_raw_sibling + test_refuses_output_inside_raw.
+ - [VERIFICATO] Repro del retro-review sui DATI REALI: `export-vault --teacher andrea --out ~/maestro-data/teoria-segnali-2021/derived/vault/andrea` eseguito 2 volte di fila (più una 3ª) — prima del fix il 2° run alzava ValueError, ora OK: 96 concetti, 4 lezioni, 109 pagine .md (= conteggio M1-7c), canvas rigenerato, raw/ INTATTO.
+ - [VERIFICATO] Mutation: col guard vecchio 4/5 test base falliscono; con le mutazioni SELF-ADV (no casefold, no doppia candidate, no resolve) 3/3 test avversari falliscono. Totale 8 test nuovi (TestRmtreeGuard), 7/8 falsificabili (l'8° è il regression test del re-export, passa senza guard by design).
+ - Gate: bash eval/gate.sh = {"passed":1693,"failed":0,"exit":0} — VERDE, +8 da baseline 1685. cost_usd ~$0 (mock, zero LLM).
+ - Atteso (non verificato da me): C1 pre-commit-guard e bonifica prefissi `|` in COORD — supervisore.
+ - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
 
 - **2026-06-12T12:13Z — ✅ ADV-TRIAGE+FIX 11:55: report adversarial su 88622ab triagato (CRITICO = FALSO POSITIVO, mutation rieseguita) + 2 finding minori VERI fixati + 1 CRITICO NUOVO da SELF-ADV (alias NFD), commit `7b947aa`, gate 1696/0 (+3).**
-  Contesto pin: lessonos M2-2 [AUTO-PINNED-DONE], ROADMAP-AUTO senza righe lessonos → pin esaurito. Applicato il precedente ratificato adversarial-sul-mio-repo→triage+fix (come b7d23c1 sul report 07:45): UNA task = triage del report `20260612-1155-lessonos-88622ab.md`. Stash rescue 10:48 ispezionato: solo 3 righe STATUS NOOP, non pertinente, non applicato.
-  Triage punto per punto (criteri = i 3 finding del report):
-  - [VERIFICATO — FALSO POSITIVO] CRITICO "test_refuses_case_alias_of_raw tautologico, mutazione _fold→identity passa comunque": mutazione RIESEGUITA empiricamente → il test FALLISCE (`DID NOT RAISE`). Premessa del report errata: `Path.resolve()` NON case-normalizza su APFS (verificato: `.../RAW` resta `RAW` dopo resolve), quindi commonpath vede stringhe diverse e il guard mutato non scatta → rmtree → raises mancato → test rosso. Lo scenario "input reale /Volumes/CaseSensitive/raw" non è un bug: su fs case-sensitive RAW≠raw su disco, nessuna perdita dati.
-  - [VERIFICATO — VERO, fixato] Finding 2 `_fold` = `os.path.normcase` = identità su Linux (mount NTFS/SMB case-insensitive scoperti): ora `casefold()` incondizionato (ramo platform eliminato, `import sys` rimosso). Falso positivo su fs case-sensitive = guard più severo, mai distruttivo (dottrina già nel commento). Test nuovo `test_refuses_case_alias_cross_platform` (mkdir RAW exist_ok → guard path esercitato su OGNI piattaforma), mutation-verified: _fold→identity lo fa fallire.
-  - [VERIFICATO — VERO, fixato] Finding 3 `output_dir=""`: prima bloccato solo per accidente (`Path("").resolve()`→cwd→protected path, semantica version-dependent); ora ValueError esplicito "non-empty" prima del resolve. Test `test_refuses_empty_output_dir`, mutation-verified (senza validazione fallisce). Call-site unico cli.py:1357 con `--out required=True` + ValueError già catturato: zero breakage.
-  - NOTA del report (casefold ß↔SS): verificata dal SELF-ADV — casefold non produce mai `/` e preserva la relazione prefisso; non critico, confermato.
-  **SELF-ADV: trovati 1, fixati 1** (subagente avversario sul diff, repro empirico suo): CRITICO NUOVO — APFS è anche normalization-INsensitive: alias NFD di un antenato accentato (`università` NFD vs NFC) apre la stessa raw/ ma casefold non normalizza Unicode → tutti i check passavano → rmtree distruggeva raw/ (repro eseguito in /tmp). Fix: `_fold = NFC normalize + casefold`. Test `test_refuses_nfd_alias_of_raw`, mutation-verified (senza NFC fallisce). Pre-esistente anche al guard darwin-only, ma toccavo esattamente quella riga.
-  Valore sui dati reali: ri-export vault andrea eseguito 2× di fila post-fix — OK, 96 concetti, 4 lezioni, 109 pagine .md (conteggio invariato), raw/ INTATTA (dispense-2026 presente).
-  - Gate: bash eval/gate.sh = {"passed":1696,"failed":0,"exit":0} — VERDE, +3 da baseline 1693. cost_usd ~$0 (mock, zero LLM lessonos; subagenti Claude della sessione).
-  - Atteso (non verificato da me): C1 pre-commit-guard COORD-FORMAT (resta al supervisore, NEEDS-CLAUDE riga dedicata); triage supervisore del report adversarial 11:34 su studio.
-  - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
+ Contesto pin: lessonos M2-2 [AUTO-PINNED-DONE], ROADMAP-AUTO senza righe lessonos → pin esaurito. Applicato il precedente ratificato adversarial-sul-mio-repo→triage+fix (come b7d23c1 sul report 07:45): UNA task = triage del report `20260612-1155-lessonos-88622ab.md`. Stash rescue 10:48 ispezionato: solo 3 righe STATUS NOOP, non pertinente, non applicato.
+ Triage punto per punto (criteri = i 3 finding del report):
+ - [VERIFICATO — FALSO POSITIVO] CRITICO "test_refuses_case_alias_of_raw tautologico, mutazione _fold→identity passa comunque": mutazione RIESEGUITA empiricamente → il test FALLISCE (`DID NOT RAISE`). Premessa del report errata: `Path.resolve()` NON case-normalizza su APFS (verificato: `.../RAW` resta `RAW` dopo resolve), quindi commonpath vede stringhe diverse e il guard mutato non scatta → rmtree → raises mancato → test rosso. Lo scenario "input reale /Volumes/CaseSensitive/raw" non è un bug: su fs case-sensitive RAW≠raw su disco, nessuna perdita dati.
+ - [VERIFICATO — VERO, fixato] Finding 2 `_fold` = `os.path.normcase` = identità su Linux (mount NTFS/SMB case-insensitive scoperti): ora `casefold()` incondizionato (ramo platform eliminato, `import sys` rimosso). Falso positivo su fs case-sensitive = guard più severo, mai distruttivo (dottrina già nel commento). Test nuovo `test_refuses_case_alias_cross_platform` (mkdir RAW exist_ok → guard path esercitato su OGNI piattaforma), mutation-verified: _fold→identity lo fa fallire.
+ - [VERIFICATO — VERO, fixato] Finding 3 `output_dir=""`: prima bloccato solo per accidente (`Path("").resolve()`→cwd→protected path, semantica version-dependent); ora ValueError esplicito "non-empty" prima del resolve. Test `test_refuses_empty_output_dir`, mutation-verified (senza validazione fallisce). Call-site unico cli.py:1357 con `--out required=True` + ValueError già catturato: zero breakage.
+ - NOTA del report (casefold ß↔SS): verificata dal SELF-ADV — casefold non produce mai `/` e preserva la relazione prefisso; non critico, confermato.
+ **SELF-ADV: trovati 1, fixati 1** (subagente avversario sul diff, repro empirico suo): CRITICO NUOVO — APFS è anche normalization-INsensitive: alias NFD di un antenato accentato (`università` NFD vs NFC) apre la stessa raw/ ma casefold non normalizza Unicode → tutti i check passavano → rmtree distruggeva raw/ (repro eseguito in /tmp). Fix: `_fold = NFC normalize + casefold`. Test `test_refuses_nfd_alias_of_raw`, mutation-verified (senza NFC fallisce). Pre-esistente anche al guard darwin-only, ma toccavo esattamente quella riga.
+ Valore sui dati reali: ri-export vault andrea eseguito 2× di fila post-fix — OK, 96 concetti, 4 lezioni, 109 pagine .md (conteggio invariato), raw/ INTATTA (dispense-2026 presente).
+ - Gate: bash eval/gate.sh = {"passed":1696,"failed":0,"exit":0} — VERDE, +3 da baseline 1693. cost_usd ~$0 (mock, zero LLM lessonos; subagenti Claude della sessione).
+ - Atteso (non verificato da me): C1 pre-commit-guard COORD-FORMAT (resta al supervisore, NEEDS-CLAUDE riga dedicata); triage supervisore del report adversarial 11:34 su studio.
+ - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
 
 - **2026-06-12 — M2-2b A/B su Energia: spoken-only (v1) vs spoken+written (v2) vs REAL Energia.pdf.**
-  Ipotesi singola: la dispensa generata con written-style hint (v2) e' piu vicina allo stile SCRITTO reale di Andrea (Energia.pdf) rispetto alla versione solo parlato (v1), misurato con le metriche di style.py.
-  Risultati:
-  1. **V2 generata** (deepseek-chat, 8 concetti, 30/30 verified, 0 dropped, $0.0016): 8 sezioni, avg 15.84 tok/frase, formal 11.88/1000t, math 17.50/1000t.
-  2. **V1 esistente** (M1-6, 23/23 verified): 10 sezioni, avg 12.96 tok/frase, formal 11.19/1000t, math 7.83/1000t.
-  3. **REAL Energia.pdf**: 0 sezioni markdown (raw pdftotext), avg 89.60 tok/frase, formal 5.58/1000t, math 47.99/1000t.
-  4. **Diff medio dal reale**: V1=89.89%, V2=86.22% — V2 NON significativamente piu vicino. Il confronto diretto tra dispensa generata (markdown narrativo) e dispensa VERA (formulario matematico pdftotext) e' strutturalmente disomogeneo — le metriche raw PDF (89 tok/frase, 48 math/1000t) sono irraggiungibili da un testo didattico parlato.
-  5. **Diff strutturale V1→V2 misurabile**: V2 ha frasi piu lunghe (15.84 vs 12.96, +22%), math density piu alta (17.50 vs 7.83, +123%), meno bullet point (18.75 vs 25.73, -27%) — l'hint scritto ha influenzato lo stile nella direzione attesa, ma il gap con la dispensa VERA (formulario) resta enorme.
-  6. **Test aggiuntivo**: `TestPromptV2WrittenStyleValues` in test_dispensa.py verifica che il prompt v2 contenga i valori MISURATI del corpus (non solo etichette qualitative). 9 test passano.
-  7. **Fix parsing JSON**: `_parse_dispensa_response` ora ha fallback `ast.literal_eval` per risposte LLM con single-quoted JSON (deepseek occasionalmente produce Python-style dict invece di JSON strict).
-  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina.
-  - **REVIEW**: review.sh quota-out (Claude Code) — self-review: ab-dispensa-energia.py e' script dati (non modulo), fix ast.literal_eval chirurgico (fallback dopo json.loads fallito), 0 regressioni.
-  - Gate: **1700 passed / 0 failed** (invariato da baseline). cost_usd: ~$0.0016 (1 chiamata deepseek-chat per v2, v1 da M1-6 gia esistente).
-  - Next: M2-2b completata. Attende pin CLAUDE-SAYS per prossima task M2.
+ Ipotesi singola: la dispensa generata con written-style hint (v2) e' piu vicina allo stile SCRITTO reale di Andrea (Energia.pdf) rispetto alla versione solo parlato (v1), misurato con le metriche di style.py.
+ Risultati:
+ 1. **V2 generata** (deepseek-chat, 8 concetti, 30/30 verified, 0 dropped, $0.0016): 8 sezioni, avg 15.84 tok/frase, formal 11.88/1000t, math 17.50/1000t.
+ 2. **V1 esistente** (M1-6, 23/23 verified): 10 sezioni, avg 12.96 tok/frase, formal 11.19/1000t, math 7.83/1000t.
+ 3. **REAL Energia.pdf**: 0 sezioni markdown (raw pdftotext), avg 89.60 tok/frase, formal 5.58/1000t, math 47.99/1000t.
+ 4. **Diff medio dal reale**: V1=89.89%, V2=86.22% — V2 NON significativamente piu vicino. Il confronto diretto tra dispensa generata (markdown narrativo) e dispensa VERA (formulario matematico pdftotext) e' strutturalmente disomogeneo — le metriche raw PDF (89 tok/frase, 48 math/1000t) sono irraggiungibili da un testo didattico parlato.
+ 5. **Diff strutturale V1→V2 misurabile**: V2 ha frasi piu lunghe (15.84 vs 12.96, +22%), math density piu alta (17.50 vs 7.83, +123%), meno bullet point (18.75 vs 25.73, -27%) — l'hint scritto ha influenzato lo stile nella direzione attesa, ma il gap con la dispensa VERA (formulario) resta enorme.
+ 6. **Test aggiuntivo**: `TestPromptV2WrittenStyleValues` in test_dispensa.py verifica che il prompt v2 contenga i valori MISURATI del corpus (non solo etichette qualitative). 9 test passano.
+ 7. **Fix parsing JSON**: `_parse_dispensa_response` ora ha fallback `ast.literal_eval` per risposte LLM con single-quoted JSON (deepseek occasionalmente produce Python-style dict invece di JSON strict).
+ - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina.
+ - **REVIEW**: review.sh quota-out (Claude Code) — self-review: ab-dispensa-energia.py e' script dati (non modulo), fix ast.literal_eval chirurgico (fallback dopo json.loads fallito), 0 regressioni.
+ - Gate: **1700 passed / 0 failed** (invariato da baseline). cost_usd: ~$0.0016 (1 chiamata deepseek-chat per v2, v1 da M1-6 gia esistente).
+ - Next: M2-2b completata. Attende pin CLAUDE-SAYS per prossima task M2.
 
 |- **2026-06-12 — M2-5: badge nel vault (commit fa6d057, gate 1701/2, +5).**
-  Ipotesi singola: vault export deve proiettare i badge per-claim (M2-3) nelle pagine dispensa/teacher_book del vault — ZERO LLM, riusando `claim_badge()` esistente.
-  Risultati:
-  1. **Badge injection dispensa** (`lessonos/export/obsidian_vault.py`): nuova `_add_dispensa_badges()` post-processa il markdown dispensa nel vault — per ogni `<div class="citations">` trova le righe citazione, usa `claim_badge(excerpt)` per `✅`/`✗`. ZERO LLM.
-  2. **TeacherBook markdown nel vault** (`lessonos/export/obsidian_vault.py`): nuova `_write_teacher_book_md()` chiama `build_teacher_book()` + `render_teacher_book()` (ZERO LLM, badge gia da M2-3) e salva in vault/teacher_book/.
-  3. **5 nuovi test** (test_obsidian_vault.py): dispensa_badges_added, dispensa_badge_counts_in_result, teacher_book_generated_in_vault, dispensa_no_badges_without_citations, idempotent_badges.
-  4. **VERIFICA SU DISCO (DB reale Teoria-Segnali, 4 lezioni):**
+ Ipotesi singola: vault export deve proiettare i badge per-claim (M2-3) nelle pagine dispensa/teacher_book del vault — ZERO LLM, riusando `claim_badge()` esistente.
+ Risultati:
+ 1. **Badge injection dispensa** (`lessonos/export/obsidian_vault.py`): nuova `_add_dispensa_badges()` post-processa il markdown dispensa nel vault — per ogni `<div class="citations">` trova le righe citazione, usa `claim_badge(excerpt)` per `✅`/`✗`. ZERO LLM.
+ 2. **TeacherBook markdown nel vault** (`lessonos/export/obsidian_vault.py`): nuova `_write_teacher_book_md()` chiama `build_teacher_book()` + `render_teacher_book()` (ZERO LLM, badge gia da M2-3) e salva in vault/teacher_book/.
+ 3. **5 nuovi test** (test_obsidian_vault.py): dispensa_badges_added, dispensa_badge_counts_in_result, teacher_book_generated_in_vault, dispensa_no_badges_without_citations, idempotent_badges.
+ 4. **VERIFICA SU DISCO (DB reale Teoria-Segnali, 4 lezioni):**
      - **Dispensa vault**: 53 verified badges (`✅`), 0 unverified (`✗`), 4 file dispensa
      - **TeacherBook vault**: 264 badges (263 `✅`, 1 `✗` per evidence senza excerpt), 101 concetti
      - **Idempotenza**: secondo export → risultati identici (`diff -r` exit 0, byte-per-byte)
-  5. **Return dict esteso**: `dispensa_badges_verified`, `dispensa_badges_unverified`, `teacher_book_concepts`, `teacher_book_badges`.
-  - **PLAN-CHECK**: fable.sh quota-out — proceduto.
-  - **REVIEW**: review.sh rate-limit — self-review: 0 regressioni, 0 tautologie, ZERO LLM.
-  - Gate: **1701 passed / 2 skipped** (+5 da baseline 1696). cost_usd: ~$0 (ZERO LLM, mock).
-  - Next: attende prossimo pin CLAUDE-SAYS per M2 lessonos.
+ 5. **Return dict esteso**: `dispensa_badges_verified`, `dispensa_badges_unverified`, `teacher_book_concepts`, `teacher_book_badges`.
+ - **PLAN-CHECK**: fable.sh quota-out — proceduto.
+ - **REVIEW**: review.sh rate-limit — self-review: 0 regressioni, 0 tautologie, ZERO LLM.
+ - Gate: **1701 passed / 2 skipped** (+5 da baseline 1696). cost_usd: ~$0 (ZERO LLM, mock).
+ - Next: attende prossimo pin CLAUDE-SAYS per M2 lessonos.
 
 - **2026-06-12 — ⏸️ LESSONOS-NOOP #N+20: M1+M2 completi (gate 1701/2 VERDE su HEAD 7a868a7), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già eseguita → stop.**
-  ORIENT: HEAD `7a868a7` (coord-only: AUTO-PIN studio). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 15:30 — solo cablaggio A3 + studio). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
+ ORIENT: HEAD `7a868a7` (coord-only: AUTO-PIN studio). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 15:30 — solo cablaggio A3 + studio). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
 
 - **2026-06-12 — TRIAGE ADVERSARIAL + LADDER-FIX: gradini CODEX+GEMINI in review.sh documentati, adversarial HERMES-2 su 2c5e857 triagato, fix minori (commit current, gate 1701/0).**
-  Contesto: dopo NOOP #N+20, fable ha costruito 2 nuovi gradini gratuiti nella ladder di review — `codex exec` (ChatGPT sub di Andrea, 2c5e857) e `gemini` (Google AI Pro, 2a420cd) — entrambi PRIMA del kimi-k2.6 fallback. Mai documentati in STATUS. HERMES-2 adversarial 14:05 su 2c5e857 non triagato.
-  **TRIAGE ADVERSARIAL (1 CRITICO, 1 MINORE, 1 DEBITO):**
-  1. [FALSO POSITIVO] CRITICO GDPR: `codex exec` invia diff a OpenAI senza consenso — il diff di review.sh contiene solo codice Python tecnico (lessonos, zero PII per GDPR Mode A). Stesso contenuto già inviato a Claude + kimi dall'inizio del progetto. Nessuna azione.
-  2. [VERO, MINORE] `[ -s "$COUT_F" ]` non valida contenuto: un errore rate-limit/JSON passerebbe come review valida. Fixato: helper `_valid_review()` con soglia >=100 byte (filtra error JSON/"OK": usualmente <50 byte). Applicato a ENTRAMBI i gradini (CODEX + GEMINI).
-  3. [VERO, MINORE] `rm -f` duplicato, tmpfile persiste su SIGINT. Fixato: `trap 'rm -f "$TMP"' EXIT` + `trap - EXIT` sul ramo successo, atomico.
-  - **PLAN-CHECK**: N/A — retro-documentazione + triage adversarial, non nuova build.
-  - **REVIEW**: N/A — diff solo review.sh (non testato da pytest). Self-review: 0 regressioni.
-  - Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0.
-  - Next: attende pin CLAUDE-SAYS per M2 lessonos.
+ Contesto: dopo NOOP #N+20, fable ha costruito 2 nuovi gradini gratuiti nella ladder di review — `codex exec` (ChatGPT sub di Andrea, 2c5e857) e `gemini` (Google AI Pro, 2a420cd) — entrambi PRIMA del kimi-k2.6 fallback. Mai documentati in STATUS. HERMES-2 adversarial 14:05 su 2c5e857 non triagato.
+ **TRIAGE ADVERSARIAL (1 CRITICO, 1 MINORE, 1 DEBITO):**
+ 1. [FALSO POSITIVO] CRITICO GDPR: `codex exec` invia diff a OpenAI senza consenso — il diff di review.sh contiene solo codice Python tecnico (lessonos, zero PII per GDPR Mode A). Stesso contenuto già inviato a Claude + kimi dall'inizio del progetto. Nessuna azione.
+ 2. [VERO, MINORE] `[ -s "$COUT_F" ]` non valida contenuto: un errore rate-limit/JSON passerebbe come review valida. Fixato: helper `_valid_review()` con soglia >=100 byte (filtra error JSON/"OK": usualmente <50 byte). Applicato a ENTRAMBI i gradini (CODEX + GEMINI).
+ 3. [VERO, MINORE] `rm -f` duplicato, tmpfile persiste su SIGINT. Fixato: `trap 'rm -f "$TMP"' EXIT` + `trap - EXIT` sul ramo successo, atomico.
+ - **PLAN-CHECK**: N/A — retro-documentazione + triage adversarial, non nuova build.
+ - **REVIEW**: N/A — diff solo review.sh (non testato da pytest). Self-review: 0 regressioni.
+ - Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0.
+ - Next: attende pin CLAUDE-SAYS per M2 lessonos.
 
 - **2026-06-12 — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/2 VERDE su HEAD 0879494), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
-  ORIENT: HEAD `0879494` (lint coord). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale). CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo. Stash rescue: entrambi ≪ 1701, non applicati. Stewardship già fatta (RETRO #10). check-frictions: 21/21, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
-  - Next: attende pin CLAUDE-SAYS per M2 (M2-1 blind-test? M2-4 ToolHost T3?). Se >14gg, segnalare ad Andrea per decisione sul futuro.
+ ORIENT: HEAD `0879494` (lint coord). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale). CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo. Stash rescue: entrambi ≪ 1701, non applicati. Stewardship già fatta (RETRO #10). check-frictions: 21/21, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
+ - Next: attende pin CLAUDE-SAYS per M2 (M2-1 blind-test? M2-4 ToolHost T3?). Se >14gg, segnalare ad Andrea per decisione sul futuro.
 
 - **2026-06-12 — ⏸️ LESSONOS-NOOP: M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5, gate 1701/0 VERDE su HEAD 7392267), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
-  ORIENT: HEAD `7392267` (log NOOP). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso da fa6d057). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 16:45 CARTA DEI RUOLI — solo direttiva FABLE/HERMES ruoli, zero nuovi pin). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (zero LLM, solo gate + lettura file).
-  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se >14gg, segnalare ad Andrea per decisione sul futuro del progetto.
+ ORIENT: HEAD `7392267` (log NOOP). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso da fa6d057). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 16:45 CARTA DEI RUOLI — solo direttiva FABLE/HERMES ruoli, zero nuovi pin). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (zero LLM, solo gate + lettura file).
+ - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se >14gg, segnalare ad Andrea per decisione sul futuro del progetto.
 
 - **2026-06-12(verified) — ⏸️ LESSONOS-NOOP #N+21: M1+M2 completi (gate 1701/0 VERDE su HEAD 69c1ab0), pin ESAURITO, stewardship già fatta → stop. Stash: 0 codice utile. Check-frictions: 21/21, 0 warning. Zero build.** ORIENT: HEAD `69c1ab0` (lint coord). Gate **1701 passed / 0 failed / 2 skipped** — ri-verificato ORA. M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5). COORD.md PROSSIMA TASK: entrambi i repo stale-chiusi. CLAUDE-SAYS: nessun pin M2 lessonos nuovo dall'ultimo (2026-06-12 ~15:30 CARTA DEI RUOLI). Stash rescue: stash@{0,1} ispezionati — solo STATUS NOOP (gate 1685/1608 << 1701), zero codice. check-frictions: 21/21, 0 warning. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stop. cost_usd: ~$0 (gate + lettura file).
 - **2026-06-12 — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/0 VERDE su HEAD 6f2ec37), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
-  ORIENT: HEAD `6f2ec37` (COORD-only). Gate **1701 passed / 0 failed / 2 skipped** — ri-verificato ORA. M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5). PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 dal 2026-06-12. Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stewardship già fatta → stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
+ ORIENT: HEAD `6f2ec37` (COORD-only). Gate **1701 passed / 0 failed / 2 skipped** — ri-verificato ORA. M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5). PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 dal 2026-06-12. Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stewardship già fatta → stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
 - **2026-06-12T20:14:16Z — M2-6: igiene log e date (commit f1458a0, gate 1701/0 invariato, ZERO LLM).**
-  Ipotesi singola: i placeholder (current/executed/new session) e le date allucinate (2026-07-16, 2026-12-06) in STATUS.md, log.jsonl e DIGEST-latest.md vanno bonificati con date reali e va aggiunto un guard che impedisca nuovi placeholder.
-  Risultati:
-  1. **STATUS.md**: 52 fix — 36× `` → stripped, 7× `` → stripped, 3× `` → stripped, 4× `2026-07-16` → `2026-06-12`, 2× `2026-12-06` → `2026-06-12`
-  2. **log.jsonl**: 19 fix — 9× placeholder in ts (`T`/``/`Tcurrent`) → `T00:00:00Z`, 3× allucinate `2026-07-16` → `2026-06-12`, 7× bare-date after fix → `T00:00:00Z`; +1 fix JSON concat error (line 79 split)
-  3. **DIGEST-latest.md**: rigenerato con gate 1701/0 (era fermo a 1553 da M1-4) e HEAD reale
-  4. **bin/check-frictions.sh**: guard aggiunto che rifiuta nuovi placeholder ``/`` e date con mese >12 in STATUS.md, log.jsonl, COORDINATION.md
-  5. **bin/fix-date-placeholders.py**: script riutilizzabile per bonifica futura
-  6. **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
-  7. **REVIEW**: review.sh gemini (quota) — 5 fix: (1) DIGEST `main(rev): current` → SHA reale; (2) log.jsonl regex non tronca tempo ISO; (3) check-frictions.sh `^` anchor -> pattern broad; (4) hallucinated-date regex generico non hardcoded; (5) log.jsonl JSON concat error fixato. Tutti applicati.
-  8. **SELF-REVIEW**: 0 tautologie, 0 regressioni, ZERO LLM.
-  9. Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0 (mock, ZERO LLM).
+ Ipotesi singola: i placeholder (current/executed/new session) e le date allucinate (2026-07-16, 2026-12-06) in STATUS.md, log.jsonl e DIGEST-latest.md vanno bonificati con date reali e va aggiunto un guard che impedisca nuovi placeholder.
+ Risultati:
+ 1. **STATUS.md**: 52 fix — 36× → stripped, 7× → stripped, 3× → stripped, 4× `2026-07-16` → `2026-06-12`, 2× `2026-12-06` → `2026-06-12`
+ 2. **log.jsonl**: 19 fix — 9× placeholder in ts (`T`/`/`Tcurrent`) → `T00:00:00Z`, 3× allucinate `2026-07-16` → `2026-06-12`, 7× bare-date after fix → `T00:00:00Z`; +1 fix JSON concat error (line 79 split)
+ 3. **DIGEST-latest.md**: rigenerato con gate 1701/0 (era fermo a 1553 da M1-4) e HEAD reale
+ 4. **bin/check-frictions.sh**: guard aggiunto che rifiuta nuovi placeholder / e date con mese >12 in STATUS.md, log.jsonl, COORDINATION.md
+ 5. **bin/fix-date-placeholders.py**: script riutilizzabile per bonifica futura
+ 6. **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+ 7. **REVIEW**: review.sh gemini (quota) — 5 fix: (1) DIGEST `main(rev): current` → SHA reale; (2) log.jsonl regex non tronca tempo ISO; (3) check-frictions.sh `^` anchor -> pattern broad; (4) hallucinated-date regex generico non hardcoded; (5) log.jsonl JSON concat error fixato. Tutti applicati.
+ 8. **SELF-REVIEW**: 0 tautologie, 0 regressioni, ZERO LLM.
+ 9. Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0 (mock, ZERO LLM).
 
 |- **2026-06-15 — M2-7-FIX: CRITICO adversarial recap-export dispensa matching + _is_lesson_file helper + review fixes (commit 94918c9, gate 1719/0, +2).**
-  Contesto: adversarial HERMES-2 su M2-7 (1e8636f, 21:02) — 1 CRITICO (lesson_id in fpath.stem produce falsa provenance dispense), 1 MINORE (test_derived_materials tautologico). Fissato nella working tree ma non committato.
-  Ipotesi singola: il CRITICO va fissato con matching esatto (come wiki/teacher_book/vault gia facevano) + helper DRY + test parametrizzato su TUTTI i 4 kinds.
-  Risultati:
-  1. **CRITICO FIX** (recap_export.py:189): `lesson_id in fpath.stem` → `_is_lesson_file(stem, lesson_id)`.
-     Nuovo helper `_is_lesson_file()` centralizza logica `stem == lesson_id or startswith(lesson_id + "_")` case-insensitive.
-  2. **Review gemini** — 2 MAJOR: (a) quadrupla duplicazione → helper `_is_lesson_file` eliminata; (b) test_dispense_no_false_match solo dispense → ora verifica TUTTI 4 kinds. +1 improvement: case-insensitive per portabilita cross-fs (già issue noto da retro-review vault).
-  3. **Fixture ampliata**: boundary file `alessandro_andrea.md` in wiki + dispense + teacher_book + vault (non matcha), `andrea_backup.md` (prefix matcha).
-  4. **2 nuovi test**: `test_dispense_no_false_match` ora itera tutti i kinds, `test_derived_materials_all_kinds` conteggia 2 per kind.
-  5. **Docstrings**: vault aggiunto a tutte le docstring, `_is_lesson_file` documentato.
-  6. **Zero LLM**: solo refactor meccanico, mock test, $0.0000.
-  7. **Adversarial triage**: 1 CRITICO FIXATO, test non piu tautologico. Finding 3 (_compute_duration) ritenuto NON BUG — max(end)-min(start) è la formula corretta per durata totale.
-  - **PLAN-CHECK**: fable.sh timeout — proceduto per dottrina, annotato.
-  - **REVIEW**: gemini — OK con 1 improvement (case-insensitive) applicato.
-  - Gate: **1719 passed / 2 skipped / 0 failed** (+2 da baseline 1717). cost_usd: ~$0.
-  - Next: M2-7-FIX completato. Attende pin CLAUDE-SAYS per prossima task M2 lessonos.
-  Ipotesi singola: il report adversarial d044044 (M1-4b, 2026-06-11 13:27) su _resolve_concepts_from_capsules (race condition break), _name_similar (normalizzazione) e test tautologico va verificato con repro EMPIRICO.
-  Risultati:
-  1. **Finding 1 (CRITICO — race condition)** — FALSO POSITIVO. Codice dispensa.py:211-212 ha `if best_ratio == 1.0: break` DOPO il for-inner, che esce ANCHE dal for-outer. Repro 100x su 2 capsule con stesso "Energia" (exact match): risultato sempre deterministico (primo L1). Il break al for-inner + guard esterno = double-break corretto.
-  2. **Finding 2 (MINORE — _name_similar non normalizza spazi)** — VERO MA TRASCURABILE. Threshold 0.85 assorbe punteggiatura (`"Fourier!"` vs `"Fourier"` → ratio 0.875 > 0.85), spazi doppi (`"Teorema  Fondamentale"` ~0.955), trailing space (`"Teorema "` ratio ~0.97). Zero impatto pratico su matching.
-  3. **Finding 3 (test tautologico)** — FALSO POSITIVO. `test_concept_without_citations_skipped` usa `name="Energia"` per entrambi i candidati, ma rimuovere il `continue` fa selezionare `no_cit` (primo esatto) invece di `good_cit` — il test FALLISCE rilevando la mutazione. NON tautologico.
-  4. **NEEDS-CLAUDE aggiornato**: 4/5 report lessonos ora triagati (7b947aa, 1e7c18f, fbb96ff, d044044). Solo `b7c19cb` (big report, edge remapping CRITICO) resta da triare.
-  5. **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
-  6. **REVIEW**: review.sh quota-out (tutti account Claude) — self-review. Diff solo COORD.md (markup) + repro script in /tmp/. Zero modifiche a codice produzione.
-  - Gate: **1701 passed / 2 skipped / 0 failed** (invariato — nessuna modifica codice). cost_usd: ~$0 (mock, ZERO LLM).
-  - Next: MARATONA round 2 — triage b7c19cb (big report, edge remapping, unicode normalization).
-  - b7c19cb still needs: leggere report completo, verificare CRITICO edge remapping con repro/mutazione su codice aggregator.py, fix VERI, marcare FALSI POSITIVI.
+ Contesto: adversarial HERMES-2 su M2-7 (1e8636f, 21:02) — 1 CRITICO (lesson_id in fpath.stem produce falsa provenance dispense), 1 MINORE (test_derived_materials tautologico). Fissato nella working tree ma non committato.
+ Ipotesi singola: il CRITICO va fissato con matching esatto (come wiki/teacher_book/vault gia facevano) + helper DRY + test parametrizzato su TUTTI i 4 kinds.
+ Risultati:
+ 1. **CRITICO FIX** (recap_export.py:189): `lesson_id in fpath.stem` → `_is_lesson_file(stem, lesson_id)`.
+    Nuovo helper `_is_lesson_file()` centralizza logica `stem == lesson_id or startswith(lesson_id + "_")` case-insensitive.
+ 2. **Review gemini** — 2 MAJOR: (a) quadrupla duplicazione → helper `_is_lesson_file` eliminata; (b) test_dispense_no_false_match solo dispense → ora verifica TUTTI 4 kinds. +1 improvement: case-insensitive per portabilita cross-fs (già issue noto da retro-review vault).
+ 3. **Fixture ampliata**: boundary file `alessandro_andrea.md` in wiki + dispense + teacher_book + vault (non matcha), `andrea_backup.md` (prefix matcha).
+ 4. **2 nuovi test**: `test_dispense_no_false_match` ora itera tutti i kinds, `test_derived_materials_all_kinds` conteggia 2 per kind.
+ 5. **Docstrings**: vault aggiunto a tutte le docstring, `_is_lesson_file` documentato.
+ 6. **Zero LLM**: solo refactor meccanico, mock test, $0.0000.
+ 7. **Adversarial triage**: 1 CRITICO FIXATO, test non piu tautologico. Finding 3 (_compute_duration) ritenuto NON BUG — max(end)-min(start) è la formula corretta per durata totale.
+ - **PLAN-CHECK**: fable.sh timeout — proceduto per dottrina, annotato.
+ - **REVIEW**: gemini — OK con 1 improvement (case-insensitive) applicato.
+ - Gate: **1719 passed / 2 skipped / 0 failed** (+2 da baseline 1717). cost_usd: ~$0.
+ - Next: M2-7-FIX completato. Attende pin CLAUDE-SAYS per prossima task M2 lessonos.
+ Ipotesi singola: il report adversarial d044044 (M1-4b, 2026-06-11 13:27) su _resolve_concepts_from_capsules (race condition break), _name_similar (normalizzazione) e test tautologico va verificato con repro EMPIRICO.
+ Risultati:
+ 1. **Finding 1 (CRITICO — race condition)** — FALSO POSITIVO. Codice dispensa.py:211-212 ha `if best_ratio == 1.0: break` DOPO il for-inner, che esce ANCHE dal for-outer. Repro 100x su 2 capsule con stesso "Energia" (exact match): risultato sempre deterministico (primo L1). Il break al for-inner + guard esterno = double-break corretto.
+ 2. **Finding 2 (MINORE — _name_similar non normalizza spazi)** — VERO MA TRASCURABILE. Threshold 0.85 assorbe punteggiatura (`"Fourier!"` vs `"Fourier"` → ratio 0.875 > 0.85), spazi doppi (`"Teorema  Fondamentale"` ~0.955), trailing space (`"Teorema "` ratio ~0.97). Zero impatto pratico su matching.
+ 3. **Finding 3 (test tautologico)** — FALSO POSITIVO. `test_concept_without_citations_skipped` usa `name="Energia"` per entrambi i candidati, ma rimuovere il `continue` fa selezionare `no_cit` (primo esatto) invece di `good_cit` — il test FALLISCE rilevando la mutazione. NON tautologico.
+ 4. **NEEDS-CLAUDE aggiornato**: 4/5 report lessonos ora triagati (7b947aa, 1e7c18f, fbb96ff, d044044). Solo `b7c19cb` (big report, edge remapping CRITICO) resta da triare.
+ 5. **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+ 6. **REVIEW**: review.sh quota-out (tutti account Claude) — self-review. Diff solo COORD.md (markup) + repro script in /tmp/. Zero modifiche a codice produzione.
+ - Gate: **1701 passed / 2 skipped / 0 failed** (invariato — nessuna modifica codice). cost_usd: ~$0 (mock, ZERO LLM).
+ - Next: MARATONA round 2 — triage b7c19cb (big report, edge remapping, unicode normalization).
+ - b7c19cb still needs: leggere report completo, verificare CRITICO edge remapping con repro/mutazione su codice aggregator.py, fix VERI, marcare FALSI POSITIVI.
 
 - **2026-06-17 — M2-8 (ADV-TRIAGE b7c19cb): triage adversarial su aggregator.py completato — 1 CRITICO FALSO POSITIVO, 1 VERO MINORE fixato (NFC normalization + shared utility), gate 1720/0 (+1).**
-  Ipotesi singola: il report adversarial HERMES-2 su `lessonos@b7c19cb` (M1-1 aggregator.py, 2026-06-11 05:25) va triagato sul codice REALE a HEAD (che ha evoluto significativamente dal commit del report).
-  Risultati:
-  1. **Finding 1 (CRITICO — edge rewiring)**: FALSO POSITIVO. Il report sostiene che gli edge nel grafo aggregato hanno target lesson-local (`l1:concept:0`) mentre i merged_nodes hanno ID path-scoped (`path:l1:concept:0`), rendendo il grafo non traversabile. In realtà, il downstream (teacher_book.py) matcha edges tramite `key_map` su per-lesson concept ID (`_count_edges_for_concept`, `_build_citations`), non su merged node ID. `raw_to_merged` (M1-7b) esiste per vault export su DB separati. L'architettura è intenzionale: edges mantengono provenienza lesson-locale, nodi aggregati hanno ID path-level.
-  2. **Finding 2 (MINORE — `_normalize_name` senza Unicode normalization)**: VERO, fixato. `_normalize_name` usava `strip().lower()` senza NFC normalization — "café" (U+00E9) e "café" (U+0065+U+0301) restavano distinti. Fix: nuova `lessonos/graph/utils.py` con `normalize_name()` condiviso (NFC + `casefold()`), importato da aggregator.py + resolution.py. Elimina la duplicazione `"Must stay in sync"` (MAJOR gemini).
-  3. **Finding 3 (MINORE — `test_edge_union_preserved` tautologico)**: FALSO POSITIVO. Il test verifica che edges da TUTTE le lezioni siano preservati (conteggio + tipi). Non tautologico: se il filtro droppasse edges di una lezione, il test fallirebbe.
-  4. **Finding 4 (MINORE — dead code node_id collision loop)**: MINORE — loop difensivo `while node_id in node_ids_seen` è irraggiungibile per costruzione ma non dannoso. Non rimosso (utile come guard per future refactor).
-  5. **1 nuovo test**: `test_unicode_normalization_dedup` — NFC vs NFD forms dello stesso nome (café) devono deduplicarsi in 1 merged node. Falsificabile (fallirebbe se normalize rimuovesse NFC).
-  - **PLAN-CHECK**: fable.sh chiamato per proattività — rate-limit. Proceduto.
-  - **REVIEW**: gemini (review.sh) — 1 MAJOR (codice duplicato "Must stay in sync") → risolto con utils.py condiviso. OK finale.
-  - Gate: **1720 passed / 2 skipped / 0 failed** (+1 da baseline 1719, nessuna regressione). cost_usd: ~$0 (mock, ZERO LLM).
-  - Next: pin M2-7 stale non promosso da promote_pin (manca marker PIN ESAURITO nella riga PROSSIMA TASK). M2-8 completato. Attende pin CLAUDE-SAYS o fix promote_pin per prossima task. M2-9 non esiste — ROADMAP-AUTO vuota per lessonos dopo M2-8.
+ Ipotesi singola: il report adversarial HERMES-2 su `lessonos@b7c19cb` (M1-1 aggregator.py, 2026-06-11 05:25) va triagato sul codice REALE a HEAD (che ha evoluto significativamente dal commit del report).
+ Risultati:
+ 1. **Finding 1 (CRITICO — edge rewiring)**: FALSO POSITIVO. Il report sostiene che gli edge nel grafo aggregato hanno target lesson-local (`l1:concept:0`) mentre i merged_nodes hanno ID path-scoped (`path:l1:concept:0`), rendendo il grafo non traversabile. In realtà, il downstream (teacher_book.py) matcha edges tramite `key_map` su per-lesson concept ID (`_count_edges_for_concept`, `_build_citations`), non su merged node ID. `raw_to_merged` (M1-7b) esiste per vault export su DB separati. L'architettura è intenzionale: edges mantengono provenienza lesson-locale, nodi aggregati hanno ID path-level.
+ 2. **Finding 2 (MINORE — `_normalize_name` senza Unicode normalization)**: VERO, fixato. `_normalize_name` usava `strip().lower()` senza NFC normalization — "café" (U+00E9) e "café" (U+0065+U+0301) restavano distinti. Fix: nuova `lessonos/graph/utils.py` con `normalize_name()` condiviso (NFC + `casefold()`), importato da aggregator.py + resolution.py. Elimina la duplicazione "Must stay in sync" (MAJOR gemini).
+ 3. **Finding 3 (MINORE — `test_edge_union_preserved` tautologico)**: FALSO POSITIVO. Il test verifica che edges da TUTTE le lezioni siano preservati (conteggio + tipi). Non tautologico: se il filtro droppasse edges di una lezione, il test fallirebbe.
+ 4. **Finding 4 (MINORE — dead code node_id collision loop)**: MINORE — loop difensivo `while node_id in node_ids_seen` è irraggiungibile per costruzione ma non dannoso. Non rimosso (utile come guard per future refactor).
+ 5. **1 nuovo test**: `test_unicode_normalization_dedup` — NFC vs NFD forms dello stesso nome (café) devono deduplicarsi in 1 merged node. Falsificabile (fallirebbe se normalize rimuovesse NFC).
+ - **PLAN-CHECK**: fable.sh chiamato per proattività — rate-limit. Proceduto.
+ - **REVIEW**: gemini (review.sh) — 1 MAJOR (codice duplicato "Must stay in sync") → risolto con utils.py condiviso. OK finale.
+ - Gate: **1720 passed / 2 skipped / 0 failed** (+1 da baseline 1719, nessuna regressione). cost_usd: ~$0 (mock, ZERO LLM).
+ - Next: pin M2-7 stale non promosso da promote_pin (manca marker PIN ESAURITO nella riga PROSSIMA TASK). M2-8 completato. Attende pin CLAUDE-SAYS o fix promote_pin per prossima task. M2-9 non esiste — ROADMAP-AUTO vuota per lessonos dopo M2-8.
 
 - **2026-06-17 — ⏸️ LESSONOS-NOOP: M2-7+M2-8 completi, gate 1720/0 VERDE, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
-  ORIENT: HEAD `bbafcca` (M2-8: triage adversarial b7c19cb, +1). Gate **1720 passed / 0 failed / 2 skipped** — VERDE, ri-verificato ORA. COORD.md § PROSSIMA TASK riga 16: M2-7 (stale — chiuso da 1e8636f+94918c9). M2-8 anche completato (bbafcca, +1). ROADMAP-AUTO: 0 task lessonos. promote_pin: "pin ancora attivo" (pin line non marcato ESAURITO). check-frictions: 21/21, 0 warning. Stash rescue: entrambi ≪ 1720, non applicati. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stewardship già fatta → stop. Nessuna build. cost_usd: ~$0 (gate + lettura file).
-  - Next: attende nuovi pin da CLAUDE-SAYS per lessonos (M2 esausta, ROADMAP-AUTO vuota). Nessuna ipotesi da testare — tutte le milestone consegnate.
+ ORIENT: HEAD `bbafcca` (M2-8: triage adversarial b7c19cb, +1). Gate **1720 passed / 0 failed / 2 skipped** — VERDE, ri-verificato ORA. COORD.md § PROSSIMA TASK riga 16: M2-7 (stale — chiuso da 1e8636f+94918c9). M2-8 anche completato (bbafcca, +1). ROADMAP-AUTO: 0 task lessonos. promote_pin: "pin ancora attivo" (pin line non marcato ESAURITO). check-frictions: 21/21, 0 warning. Stash rescue: entrambi ≪ 1720, non applicati. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stewardship già fatta → stop. Nessuna build. cost_usd: ~$0 (gate + lettura file).
+ - Next: attende nuovi pin da CLAUDE-SAYS per lessonos (M2 esausta, ROADMAP-AUTO vuota). Nessuna ipotesi da testare — tutte le milestone consegnate.
 
 - **2026-06-17 — M2-6b: GUARD date riparato (RETRO-REVIEW CRITICO §23-24 chiuso). 5 bug fixati in check-frictions.sh + same-source refactor.** 
-  Ipotesi singola: il RETRO-REVIEW CRITICO (NEEDS-CLAUDE §23-24, 4 bug riprodotti) sul guard date di check-frictions.sh (M2-6) non era mai stato applicato — il guard era dentro `if [ "$warnings" -gt 0 ]` e quindi inerte. Stessi bug duplicati in fix-date-placeholders.py:201-260.
-  Risultati:
-  1. **5 bug fixati in check-frictions.sh guard:**
+ Ipotesi singola: il RETRO-REVIEW CRITICO (NEEDS-CLAUDE §23-24, 4 bug riprodotti) sul guard date di check-frictions.sh (M2-6) non era mai stato applicato — il guard era dentro `if [ "$warnings" -gt 0 ]` e quindi inerte. Stessi bug duplicati in fix-date-placeholders.py:201-260.
+ Risultati:
+ 1. **5 bug fixati in check-frictions.sh guard:**
      - (1) Guard spostato FUORI da `if [ "$warnings" -gt 0 ]` — ora eseguito SEMPRE, anche con warnings=0
      - (2) `$PROJECT_ROOT` definito come `"$(pwd)"` dopo il cd — crash `set -u` risolto
      - (3) `$(_now_year)` → `"$(date +%Y)"` con `${_now_year}` — command sub rotto risolto
      - (4) Pattern `0[0-9]` rimosso (flagga gen-set come hallucinated) — solo `(1[3-9]|[2-9][0-9])` per 13-99
      - (5) `grep -c || echo 0` → `grep -c 2>/dev/null || true` con `${_c:-0}` default — double-output e integer error risolti
-  2. **Same-source refactor**: guard estratto in `guards/date.sh` come funzione `_guard_date_check()` — check-frictions.sh fa `source` + chiamata, fix-date-placeholders.py legge il file invece di duplicare template inline. Zero drift futuro.
-  3. **Review gemini**: 4 findings — tutti applicati (estrazione singola fonte, `${_c:-0}` default, regex 13-99, `2>/dev/null` rimosso dai test `[`).
-  4. **Verifica**: guard produce output anche con warnings=0 — ha trovato 8 placeholder reali in STATUS/COORD (tutti in documentazione di M2-6, legittimi).
-  5. **Gate**: 1720/0 VERDE (invariato — zero modifiche a codice lessonos/).
-  - cost_usd: ~$0 (mock, ZERO LLM).
-  - Next: attende pin CLAUDE-SAYS per M3 lessonos. RETRO-REVIEW CRITICO chiuso.
+ 2. **Same-source refactor**: guard estratto in `guards/date.sh` come funzione `_guard_date_check()` — check-frictions.sh fa `source` + chiamata, fix-date-placeholders.py legge il file invece di duplicare template inline. Zero drift futuro.
+ 3. **Review gemini**: 4 findings — tutti applicati (estrazione singola fonte, `${_c:-0}` default, regex 13-99, `2>/dev/null` rimosso dai test `[`).
+ 4. **Verifica**: guard produce output anche con warnings=0 — ha trovato 8 placeholder reali in STATUS/COORD (tutti in documentazione di M2-6, legittimi).
+ 5. **Gate**: 1720/0 VERDE (invariato — zero modifiche a codice lessonos/).
+ - cost_usd: ~$0 (mock, ZERO LLM).
+ - Next: attende pin CLAUDE-SAYS per M3 lessonos. RETRO-REVIEW CRITICO chiuso.
 
 - **2026-06-13 — ⏸️ LESSONOS-NOOP: M2 completo (1720/0 VERDE), ROADMAP-AUTO vuota, pin M3 assente, nulla cambiato — stop.**
-  ORIENT: HEAD `60d60c3`, gate **1720 passed / 0 failed / 2 skipped** — VERDE (ri-verificato ORA). M2-7+M2-8+M2-6b completi. COORD.md § PROSSIMA TASK riga 16: lessonos M2-7 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M3 lessonos dall'ultimo (2026-06-12 22:50). promote_pin: "pin ancora attivo" (riga M2-7 non marcata ESAURITO). check-frictions: 21/21, 0 warning. Placeholder guard: 3 falsi positivi in COORD.md bonificati (erano testo descrittivo in vecchi NEEDS-CLAUDE). Stash rescue: entrambi ≪ 1720, non pertinenti. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stop. Nessuna build. cost_usd: ~$0 (gate + check-frictions + placeholder fix).
+ ORIENT: HEAD `60d60c3`, gate **1720 passed / 0 failed / 2 skipped** — VERDE (ri-verificato ORA). M2-7+M2-8+M2-6b completi. COORD.md § PROSSIMA TASK riga 16: lessonos M2-7 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M3 lessonos dall'ultimo (2026-06-12 22:50). promote_pin: "pin ancora attivo" (riga M2-7 non marcata ESAURITO). check-frictions: 21/21, 0 warning. Placeholder guard: 3 falsi positivi in COORD.md bonificati (erano testo descrittivo in vecchi NEEDS-CLAUDE). Stash rescue: entrambi ≪ 1720, non pertinenti. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stop. Nessuna build. cost_usd: ~$0 (gate + check-frictions + placeholder fix).
 
 - **2026-06-13 — ⏸️ LESSONOS-NOOP #N+3: M2 completo (1720/0), ROADMAP-AUTO vuota, pin M3 assente, nulla cambiato → fermato.**
-  ORIENT: HEAD 695e6e8 (doc commit, codice invariato). Gate 1720 passed / 2 skipped / 0 failed — VERDE. check-frictions: 21/21, 0 warning. Nessuna modifica al codice dall'ultimo NOOP. ROADMAP-AUTO per lessonos ancora vuota. CLAUDE-SAYS nessun pin M3. promote_pin sempre bloccato (riga M2-7 non marcata ESAURITO). Stewardship gia eseguita. Nessuna build. cost_usd: ~$0.
+ ORIENT: HEAD 695e6e8 (doc commit, codice invariato). Gate 1720 passed / 2 skipped / 0 failed — VERDE. check-frictions: 21/21, 0 warning. Nessuna modifica al codice dall'ultimo NOOP. ROADMAP-AUTO per lessonos ancora vuota. CLAUDE-SAYS nessun pin M3. promote_pin sempre bloccato (riga M2-7 non marcata ESAURITO). Stewardship gia eseguita. Nessuna build. cost_usd: ~$0.
+- **2026-06-12 23:53 — NOOP #N+4: M2 completo (1720/0), ROADMAP-AUTO per lessonos vuota, pin M3 assente, stewardship già fatta → stop.**
+  ORIENT: HEAD 74ca71e (doc NOOP #N+3). Gate 1720/0 VERDE (ri-verificato ORA). COORD.md PROSSIMA TASK riga 16: M2-7 (stale). check-frictions 21/21, 0 warning. Stash rescue: tutti ≪ 1720. Nessuna modifica al codice dall'ultima iterazione. ROADMAP-AUTO empty. CLAUDE-SAYS: nessun pin M3 lessonos dal 2026-06-12. promote_pin: pin M2-7 non marcato ESAURITO → non promuove. Stewardship già eseguita. AGENTS.md §3: stop. cost_usd: ~$0 (gate + frictions + lettura).
