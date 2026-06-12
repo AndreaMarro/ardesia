@@ -155,6 +155,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               deserializeEvents,
               AudioRecorder,
               PATHS: { JOURNAL: "raw/events.jsonl", SCENE: "raw/board.excalidraw" },
+              navigateToLesson,
+              flushPersist,
             }
           }
         }
@@ -244,8 +246,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     try {
       const list = await actualStore.listRooms()
       setRooms(list)
-    } catch {
+    } catch (err) {
       setRooms([])
+      setStorageError("Errore nel caricamento delle lezioni: " + (err as Error).message)
     } finally {
       setLoadingRooms(false)
     }

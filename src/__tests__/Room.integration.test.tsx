@@ -763,3 +763,104 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     root.unmount()
   })
 })
+
+describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
+  beforeEach(async () => {
+    // Resetta isStudentView a false (S-DESIGN-5 beforeEach lo imposta a true)
+    delete (window as any).__MAESTRO_TEST__
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReset()
+    vi.mocked(isStudentView).mockReturnValue(false)
+  })
+
+  it("navigateToLesson attende saveScene prima di cambiare hash (flush-persist ordering)", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    // Deferred promise: primo saveScene si blocca finché non risolviamo
+    let resolveSave: (value: unknown) => void = () => {}
+    const saveDeferred = new Promise((resolve) => { resolveSave = resolve })
+    const saveSpy = vi.spyOn(store, "saveScene")
+    saveSpy.mockImplementationOnce(() => saveDeferred as Promise<void>)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    // Aspetta che Excalidraw sia montato
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    // Assicura che il test harness sia disponibile (DEV)
+    const harness = (window as any).__MAESTRO_TEST__
+    expect(harness).toBeDefined()
+    expect(harness.navigateToLesson).toBeDefined()
+    expect(harness.flushPersist).toBeDefined()
+
+    // Chiama onChange per impostare latestElementsRef (serve a _doSave per non uscire presto)
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const call = vi.mocked(Excalidraw).mock.calls.at(-1)
+    const onChangeFn = call?.[0]?.onChange
+    expect(onChangeFn).toBeDefined()
+    const makeEl = (v: number) => ({ id: "el1", version: v, type: "rectangle", x: 0, y: 0, width: 100, height: 50, strokeColor: "#000", backgroundColor: "#fff", fillStyle: "solid" as const, strokeWidth: 1, strokeStyle: "solid" as const, roughness: 1, opacity: 100, angle: 0, groupIds: [] as string[], boundElements: null, link: null, locked: false, versionNonce: v * 10, isDeleted: false, seed: v * 100, roundness: null, updated: v })
+    onChangeFn!([makeEl(1)] as any, {} as any, {})
+
+    // Chiama navigateToLesson SENZA await: il flush blocca su saveScene deferred
+    const navPromise = harness.navigateToLesson("altra-room")
+
+    // navigateToLesson è async ma non awaitato — diamo tempo agli await interni
+    // di entrare nella coda microtask (flushPersist → _doSave → await _pendingSave)
+    await vi.waitFor(() => {
+      expect(saveSpy).toHaveBeenCalledTimes(1)
+    }, { timeout: 1000, interval: 5 })
+
+    // saveScene è in sospeso (deferred) — l'hash NON deve essere cambiato
+    expect(globalThis.location.hash).toBe("#test-room-1")
+
+    // Risolvi saveScene deferred
+    resolveSave(undefined)
+
+    // Ora navigateToLesson può proseguire: hash cambia
+    await vi.waitFor(() => {
+      expect(globalThis.location.hash).toBe("#altra-room")
+    }, { timeout: 1000, interval: 5 })
+
+    // Verifica che navPromise si risolva
+    await expect(navPromise).resolves.toBeUndefined()
+
+    root.unmount()
+  })
+
+  it("toggleDrawer mostra errore quando listRooms fallisce", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    // listRooms lancia
+    vi.spyOn(store, "listRooms").mockRejectedValue(new Error("store offline"))
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    // Aspetta che Excalidraw sia montato
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    // Trova e clicca il bottone "lezioni"
+    const lezioniBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "lezioni")
+    expect(lezioniBtn).toBeDefined()
+    lezioniBtn!.click()
+
+    // L'errore deve apparire come banner st-err nel DOM
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err).toBeDefined()
+      expect(err!.textContent).toContain("store offline")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+})
