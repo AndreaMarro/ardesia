@@ -23,7 +23,7 @@ done
 # ── COORD-FORMAT guard (12/06: edit Hermes cancellarono CLAUDE-SAYS e corruppero 177 righe) ──
 if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
   CCHK=$(git show :COORDINATION.md)
-  if printf "%s" "$CCHK" | grep -qE "^([0-9]+\|)+|^\|"; then
+  if printf "%s" "$CCHK" | grep -qE "^([0-9]+\|)+|^\|+- |^\|+\*|^\|+#|^\|+ *$"; then
     echo "COORD-FORMAT: prefissi numerati/pipe corrotti in COORDINATION.md — riscrivi le righe INTERE e pulite, mai output numerato." >&2; exit 1
   fi
   for h in "## ➡️ PROSSIMA TASK" "## NEEDS-CLAUDE" "## CLAUDE-SAYS"; do

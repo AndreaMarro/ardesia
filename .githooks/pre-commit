@@ -27,4 +27,7 @@ if [ "$violations" -gt 0 ]; then
   echo "  -> $violations warning(s). Use == on deterministic counts."
 fi
 
+# MAESTRO (12/06): incatena il guard versionato (seg-id, COORD-FORMAT, PINCOUNT).
+bash "$(git rev-parse --show-toplevel)/bin/pre-commit-guard.sh" || exit 1
+
 exit 0  # soft warning for now (non-blocking)

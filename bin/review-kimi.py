@@ -5,6 +5,7 @@ Uso: printf "%s" "$prompt" | review-kimi.py   (prompt su stdin, review su stdout
 import json
 import re
 import sys
+import urllib.error
 import urllib.request
 
 cfg = open(__import__("os").path.expanduser("~/.hermes/config.yaml"), encoding="utf-8").read()
@@ -30,8 +31,12 @@ req = urllib.request.Request(
     }).encode(),
     headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
 )
-with urllib.request.urlopen(req, timeout=340) as r:
-    body = json.load(r)
+try:
+    with urllib.request.urlopen(req, timeout=340) as r:
+        body = json.load(r)
+except urllib.error.HTTPError as e:
+    print(f"review-kimi: HTTP {e.code}: {e.read()[:300]}", file=sys.stderr)
+    sys.exit(2)
 msg = body["choices"][0]["message"]
 out = (msg.get("content") or "").strip()
 if not out:

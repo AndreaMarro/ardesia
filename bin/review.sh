@@ -13,7 +13,7 @@ case "$tier" in
   opus)   models="claude-opus-4-8";;
   *)      models="claude-fable-5 claude-opus-4-8";;
 esac
-eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
+# token per-account via acct.sh (12/06): vedi ladder sotto
 REPO_DIR="${REVIEW_REPO:-$HOME/lessonos}"
 cd "$REPO_DIR" || exit 1
 
@@ -58,11 +58,21 @@ record_observation() {
 }
 
 # Ladder: fable-5 (3 tentativi) -> opus-4-8 (3 tentativi). Retry su auth-loop/timeout/rate-limit. Review MANDATORIA.
-for m in $models; do
-  for try in 1 2 3; do
-    out="$(timeout 240 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model "$m" "$prompt" 2>&1)"; rc=$?
-    if [ "$rc" = 124 ] || printf "%s" "$out" | grep -qiE "not logged in|please run /login|unauthorized|invalid api key|overloaded|rate.?limit|429|quota exceeded"; then sleep 8; continue; fi
-    printf "[review: %s]\n%s\n" "$m" "$out"; record_observation; exit 0
+ACCS="A1"; bash "$HOME/lessonos/bin/acct.sh" has A2 && ACCS="A1 A2"
+for acc in $ACCS; do
+  bash "$HOME/lessonos/bin/quota.sh" check "$acc" >/dev/null 2>&1 || continue
+  TOK="$(bash "$HOME/lessonos/bin/acct.sh" token "$acc" 2>/dev/null)"
+  [ -n "$TOK" ] || continue
+  for m in $models; do
+    for try in 1 2 3; do
+      out="$(timeout 240 env -u ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN="$TOK" claude -p --dangerously-skip-permissions --model "$m" "$prompt" 2>&1)"; rc=$?
+      if printf "%s" "$out" | grep -qiE "out of (extra )?usage|usage limit|quota exceeded"; then
+        printf "%s" "$out" | bash "$HOME/lessonos/bin/quota.sh" mark "$acc" >/dev/null 2>&1 || true
+        continue 3
+      fi
+      if [ "$rc" = 124 ] || printf "%s" "$out" | grep -qiE "not logged in|please run /login|unauthorized|invalid api key|overloaded|rate.?limit|429"; then sleep 8; continue; fi
+      printf "[review: %s@%s]\n%s\n" "$m" "$acc" "$out"; record_observation; exit 0
+    done
   done
 done
 # M8-light (12/06): review MAI saltata. Ladder claude esaurita -> kimi-k2.6 (degradata ma reale).
