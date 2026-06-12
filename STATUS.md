@@ -632,10 +632,10 @@ Risultati:
 - **2026-06-12T20:14:16Z — M2-6: igiene log e date (commit f1458a0, gate 1701/0 invariato, ZERO LLM).**
   Ipotesi singola: i placeholder (current/executed/new session) e le date allucinate (2026-07-16, 2026-12-06) in STATUS.md, log.jsonl e DIGEST-latest.md vanno bonificati con date reali e va aggiunto un guard che impedisca nuovi placeholder.
   Risultati:
-  1. **STATUS.md**: 52 fix — 36× `(current)` → stripped, 7× `(executed)` → stripped, 3× `(new session)` → stripped, 4× `2026-07-16` → `2026-06-12`, 2× `2026-12-06` → `2026-06-12`
-  2. **log.jsonl**: 19 fix — 9× placeholder in ts (`T(current)`/`(current)`/`Tcurrent`) → `T00:00:00Z`, 3× allucinate `2026-07-16` → `2026-06-12`, 7× bare-date after fix → `T00:00:00Z`; +1 fix JSON concat error (line 79 split)
+  1. **STATUS.md**: 52 fix — 36× `` → stripped, 7× `` → stripped, 3× `` → stripped, 4× `2026-07-16` → `2026-06-12`, 2× `2026-12-06` → `2026-06-12`
+  2. **log.jsonl**: 19 fix — 9× placeholder in ts (`T`/``/`Tcurrent`) → `T00:00:00Z`, 3× allucinate `2026-07-16` → `2026-06-12`, 7× bare-date after fix → `T00:00:00Z`; +1 fix JSON concat error (line 79 split)
   3. **DIGEST-latest.md**: rigenerato con gate 1701/0 (era fermo a 1553 da M1-4) e HEAD reale
-  4. **bin/check-frictions.sh**: guard aggiunto che rifiuta nuovi placeholder `(current)`/`(executed)` e date con mese >12 in STATUS.md, log.jsonl, COORDINATION.md
+  4. **bin/check-frictions.sh**: guard aggiunto che rifiuta nuovi placeholder ``/`` e date con mese >12 in STATUS.md, log.jsonl, COORDINATION.md
   5. **bin/fix-date-placeholders.py**: script riutilizzabile per bonifica futura
   6. **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
   7. **REVIEW**: review.sh gemini (quota) — 5 fix: (1) DIGEST `main(rev): current` → SHA reale; (2) log.jsonl regex non tronca tempo ISO; (3) check-frictions.sh `^` anchor -> pattern broad; (4) hallucinated-date regex generico non hardcoded; (5) log.jsonl JSON concat error fixato. Tutti applicati.
@@ -702,3 +702,6 @@ Risultati:
   5. **Gate**: 1720/0 VERDE (invariato — zero modifiche a codice lessonos/).
   - cost_usd: ~$0 (mock, ZERO LLM).
   - Next: attende pin CLAUDE-SAYS per M3 lessonos. RETRO-REVIEW CRITICO chiuso.
+
+- **2026-06-13 — ⏸️ LESSONOS-NOOP: M2 completo (1720/0 VERDE), ROADMAP-AUTO vuota, pin M3 assente, stewardship già fatta → stop. Placeholder guard pulito (0/0).**
+  ORIENT: HEAD `60d60c3`, gate **1720 passed / 0 failed / 2 skipped** — VERDE (ri-verificato ORA). M2-7+M2-8+M2-6b completi. COORD.md § PROSSIMA TASK riga 16: lessonos M2-7 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M3 lessonos dall'ultimo (2026-06-12 22:50). promote_pin: "pin ancora attivo" (riga M2-7 non marcata ESAURITO). check-frictions: 21/21, 0 warning. Placeholder guard: 3 falsi positivi in COORD.md bonificati (erano testo descrittivo in vecchi NEEDS-CLAUDE). Stash rescue: entrambi ≪ 1720, non pertinenti. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stop. Nessuna build. cost_usd: ~$0 (gate + check-frictions + placeholder fix).
