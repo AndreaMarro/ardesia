@@ -37,12 +37,16 @@ describe("RecapView", () => {
 
   async function renderRecapView() {
     const { default: RecapView } = await import("../RecapView")
-    return new Promise<void>((resolve) => {
-      const root = createRoot(container)
-      root.render(<RecapView store={mockStore as any} room="test-room" />)
-      // React 19 flush
-      setTimeout(resolve, 50)
-    })
+    const root = createRoot(container)
+    root.render(<RecapView store={mockStore as any} room="test-room" />)
+    // Poll fino a FINE caricamento: l'header renderizza subito, quindi
+    // textContent non-vuoto non basta — serve l'uscita dallo stato "caricamento…"
+    const deadline = Date.now() + 3000
+    while (Date.now() < deadline) {
+      const text = container.textContent ?? ""
+      if (text !== "" && !text.includes("caricamento")) break
+      await new Promise((r) => setTimeout(r, 10))
+    }
   }
 
   it("mostra errore quando buildRecap fallisce", async () => {
@@ -83,7 +87,7 @@ describe("RecapView", () => {
       lastEventTime: 3661_000,
     })
     await renderRecapView()
-    expect(container.textContent).toContain("1 ora e 1 minuti")
+    expect(container.textContent).toContain("1 ora e 1 minuto")
   })
 
   it("mostra conteggio formule", async () => {
@@ -119,7 +123,8 @@ describe("RecapView", () => {
     await renderRecapView()
     const buttons = container.querySelectorAll("button")
     const exportBtn = Array.from(buttons).find((b) => b.textContent?.includes("esporta"))
-    expect(exportBtn).not.toBeNull()
+    // find() restituisce undefined, non null: not.toBeNull() passerebbe SEMPRE
+    expect(exportBtn).toBeDefined()
   })
 
   it("usa linguaggio 'appunti salvati' mai 'cache'/'flush'/'workspace'", async () => {

@@ -10,7 +10,7 @@ export interface LessonRecap {
   v: 1
   /** Nome della lezione (da meta.json) */
   title: string
-  /** Durata in millisecondi (da primo a ultimo evento journal) */
+  /** Durata in millisecondi (max-min dei timestamp journal validi) */
   durationMs: number
   /** Formula LaTeX uniche inserite durante la lezione */
   mathFormulas: string[]
@@ -83,21 +83,28 @@ export async function buildRecap(
     }
   }
 
-  const firstEventTime = events[0].t
-  const lastEventTime = events[events.length - 1].t
+  // Il journal puo essere out-of-order (merge di chunk, import): min/max, non primo/ultimo.
+  // t corrotto (boundary: file su disco) esclude l'evento SOLO dalla durata,
+  // non dalle aggregazioni (formule/elementi/pagine restano contati).
+  let firstEventTime: number | null = null
+  let lastEventTime: number | null = null
+  for (const ev of events) {
+    if (typeof ev.t !== "number" || !Number.isFinite(ev.t)) continue
+    if (firstEventTime === null || ev.t < firstEventTime) firstEventTime = ev.t
+    if (lastEventTime === null || ev.t > lastEventTime) lastEventTime = ev.t
+  }
 
   // 3. Estrai formula LaTeX uniche
   const mathFormulas = new Set<string>()
   const elementTypeCounts: Record<string, number> = {}
 
   for (const ev of events) {
-    if (ev.type === "math.insert") {
+    if (ev.type === "math.insert" && typeof ev.latex === "string") {
       mathFormulas.add(ev.latex.trim())
     }
     if (ev.type === "element.add") {
       const el = ev.element as Record<string, unknown> | null
-      if (el && typeof el === "object") {
-        el satisfies Record<string, unknown>
+      if (el && typeof el === "object" && !Array.isArray(el)) {
         const etype = typeof el.type === "string" ? el.type : "unknown"
         elementTypeCounts[etype] = (elementTypeCounts[etype] ?? 0) + 1
       }
@@ -109,12 +116,12 @@ export async function buildRecap(
   // 4. Pagine PDF uniche visualizzate
   const pdfPages = new Set<number>()
   for (const ev of events) {
-    if (ev.type === "pdf.page.view") {
+    if (ev.type === "pdf.page.view" && Number.isInteger(ev.page) && ev.page > 0) {
       pdfPages.add(ev.page)
     }
   }
 
-  const durationMs = lastEventTime - firstEventTime
+  const durationMs = firstEventTime !== null && lastEventTime !== null ? lastEventTime - firstEventTime : 0
 
   return {
     v: 1,
@@ -139,15 +146,16 @@ export function formatDuration(durationMs: number): string {
   const hours = Math.floor(totalSeconds / 3600)
   const minutes = Math.floor((totalSeconds % 3600) / 60)
 
+  const mLabel = minutes === 1 ? "minuto" : "minuti"
   if (hours > 0) {
     const hLabel = hours === 1 ? "ora" : "ore"
     if (minutes > 0) {
-      return `${hours} ${hLabel} e ${minutes} minuti`
+      return `${hours} ${hLabel} e ${minutes} ${mLabel}`
     }
     return `${hours} ${hLabel}`
   }
   if (minutes > 0) {
-    return `${minutes} minuti`
+    return `${minutes} ${mLabel}`
   }
   return "meno di un minuto"
 }

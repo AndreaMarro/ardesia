@@ -38,12 +38,21 @@ describe("formatDuration", () => {
     expect(formatDuration(180_000)).toBe("3 minuti")
   })
 
-  it("restituisce 1 minuto per 60s", () => {
-    expect(formatDuration(60_000)).toBe("1 minuti")
+  it("restituisce 1 minuto per 60s (singolare)", () => {
+    expect(formatDuration(60_000)).toBe("1 minuto")
+  })
+
+  it("restituisce 1 ora e 1 minuto (singolare nel composto)", () => {
+    expect(formatDuration(3660_000)).toBe("1 ora e 1 minuto")
   })
 
   it("restituisce ore e minuti", () => {
     expect(formatDuration(3900_000)).toBe("1 ora e 5 minuti")
+  })
+
+  it("durate limite: 59999ms arrotonda a 1 minuto, 3599999ms a 1 ora", () => {
+    expect(formatDuration(59_999)).toBe("1 minuto")
+    expect(formatDuration(3_599_999)).toBe("1 ora")
   })
 
   it("restituisce solo ore", () => {
@@ -147,6 +156,95 @@ describe("buildRecap", () => {
     const recap = await buildRecap(store, "room-1")
     expect(recap!.durationMs).toBe(0)
     expect(recap!.totalElementsAdded).toBe(0)
+  })
+
+  // S-TRIAGE-1 (report 20260612-1321): journal out-of-order non deve produrre durata negativa
+  it("journal out-of-order: durata = max-min, mai negativa", async () => {
+    const store = mockStore({
+      "raw/events.jsonl": [
+        mkEvent({ t: 9000, type: "t0" }),
+        mkEvent({ t: 1000, type: "t1" }),
+        mkEvent({ t: 5000, type: "t0" }),
+      ].map((e) => JSON.stringify(e)).join("\n"),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.firstEventTime).toBe(1000)
+    expect(recap!.lastEventTime).toBe(9000)
+    expect(recap!.durationMs).toBe(8000)
+  })
+
+  // S-TRIAGE-1: t non numerico (JSON loose da disco) escluso dalla durata
+  // ma l'evento RESTA contato nelle aggregazioni (formule/elementi)
+  it("t non numerico: durata sui validi, aggregazioni su tutti gli eventi", async () => {
+    const store = mockStore({
+      "raw/events.jsonl": [
+        JSON.stringify({ t: "non-un-numero", type: "math.insert", latex: "E = mc^2" }),
+        JSON.stringify({ t: 2000, type: "t0" }),
+        JSON.stringify({ t: 7000, type: "t1" }),
+        JSON.stringify({ type: "element.add", element: { id: "a", type: "rectangle" } }), // t mancante
+      ].join("\n"),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.firstEventTime).toBe(2000)
+    expect(recap!.lastEventTime).toBe(7000)
+    expect(recap!.durationMs).toBe(5000)
+    expect(recap!.mathFormulas).toEqual(["E = mc^2"])
+    expect(recap!.elementTypeCounts).toEqual({ rectangle: 1 })
+  })
+
+  // S-TRIAGE-1 SELF-ADV: math.insert senza latex (o non stringa) non deve far crashare buildRecap
+  it("math.insert con latex mancante/non stringa viene ignorato senza crash", async () => {
+    const store = mockStore({
+      "raw/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "math.insert" }),
+        JSON.stringify({ t: 2000, type: "math.insert", latex: 42 }),
+        JSON.stringify({ t: 3000, type: "math.insert", latex: "f(x)" }),
+      ].join("\n"),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.mathFormulas).toEqual(["f(x)"])
+  })
+
+  // SOLO eventi con t corrotto: nessuna durata, ma recap non vuoto
+  it("solo t corrotti: durata 0, first/last null", async () => {
+    const store = mockStore({
+      "raw/events.jsonl": JSON.stringify({ t: null, type: "math.insert", latex: "x" }),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.durationMs).toBe(0)
+    expect(recap!.firstEventTime).toBeNull()
+    expect(recap!.lastEventTime).toBeNull()
+    expect(recap!.mathFormulas).toEqual(["x"])
+  })
+
+  // S-TRIAGE-1: page invalida (stringa, negativa, non intera) non entra in pdfPagesViewed
+  it("pdf.page.view con page invalida viene ignorata", async () => {
+    const store = mockStore({
+      "raw/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "pdf.page.view", page: "3", totalPages: 10 }),
+        JSON.stringify({ t: 2000, type: "pdf.page.view", page: -1, totalPages: 10 }),
+        JSON.stringify({ t: 3000, type: "pdf.page.view", page: 2.5, totalPages: 10 }),
+        JSON.stringify({ t: 4000, type: "pdf.page.view", page: null, totalPages: 10 }),
+        JSON.stringify({ t: 5000, type: "pdf.page.view", page: 4, totalPages: 10 }),
+      ].join("\n"),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.pdfPagesViewed).toEqual([4])
+  })
+
+  // S-TRIAGE-1: element null/array/undefined non contati come elementi aggiunti
+  it("element.add con element null/array/undefined non viene contato", async () => {
+    const store = mockStore({
+      "raw/events.jsonl": [
+        JSON.stringify({ t: 1000, type: "element.add", element: null }),
+        JSON.stringify({ t: 2000, type: "element.add", element: [1, 2] }),
+        JSON.stringify({ t: 3000, type: "element.add" }),
+        JSON.stringify({ t: 4000, type: "element.add", element: { id: "a", type: "rectangle" } }),
+      ].join("\n"),
+    })
+    const recap = await buildRecap(store, "room-1")
+    expect(recap!.totalElementsAdded).toBe(1)
+    expect(recap!.elementTypeCounts).toEqual({ rectangle: 1 })
   })
 
   it("salta righe JSON malformate", async () => {
