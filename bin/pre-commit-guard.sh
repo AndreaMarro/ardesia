@@ -123,3 +123,15 @@ if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
     true || { echo "COORD-FORMAT: heading mancante: $h — le sezioni di COORDINATION non si cancellano MAI." >&2; exit 1; }
   done
 fi
+
+# COORD-PINCOUNT: esattamente UNA riga pin per repo (la mantiene SOLO supervisore/promote_pin)
+if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
+  CPIN=$(git show :COORDINATION.md)
+  for r in lessonos studio; do
+    PN=$(printf "%s" "$CPIN" | grep -cE "^\|*[[:space:]]*- \*\*$r\*\*:" || true)
+    if [ "$PN" -ne 1 ]; then
+      echo "COORD-PINCOUNT: $PN righe pin per '$r' (deve essere 1). Hermes: chiusure in NEEDS-CLAUDE, MAI nuove righe pin." >&2
+      exit 1
+    fi
+  done
+fi

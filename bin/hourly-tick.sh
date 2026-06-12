@@ -7,6 +7,7 @@ export PATH="$HOME/.local/bin:$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
 cd "$HOME/lessonos" || exit 0
 if [ -f .tick.lock ] && kill -0 "$(cat .tick.lock 2>/dev/null)" 2>/dev/null; then echo "[tick] skip (in corso)"; exit 0; fi
 echo $$ > .tick.lock; trap 'rm -f .tick.lock' EXIT
+bash "$HOME/lessonos/bin/coord-lint.sh" || true
 echo "[tick] === $(date -u +%FT%TZ) ==="
 day=$(date -u +%F); cf="$HOME/lessonos/.builds_today"
 [ "$(head -1 "$cf" 2>/dev/null)" = "$day" ] || printf '%s\n0\n' "$day" > "$cf"
