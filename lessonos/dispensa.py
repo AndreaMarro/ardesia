@@ -465,6 +465,14 @@ def verify_and_clean_dispensa(
         lesson_id = claim.seg_id.split("#")[0] if "#" in claim.seg_id else doc.teacher_id
         try:
             verify_citation(store, claim.seg_id, lesson_id, claim.excerpt)
+            # CRITICAL FIX (retro-review 2026-06-12): a claim whose excerpt is
+            # None or empty passes the seg_id/lesson_id checks but has NO
+            # verbatim grounding — it is UNVERIFIED per T6R policy
+            # (grounding.py:66 "VERIFIED iff non-empty excerpt"). Must NOT be
+            # counted as verified. The old code returned (claim, False) here
+            # regardless of excerpt, creating a false-verde hole.
+            if claim.excerpt is None or claim.excerpt == "":
+                return None
             return claim, False
         except ValueError:
             pass

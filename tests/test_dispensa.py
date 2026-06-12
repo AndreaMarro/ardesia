@@ -432,6 +432,33 @@ class TestVerifyDispensa:
         with pytest.raises(ValueError, match="unverified"):
             verify_dispensa(doc, store)
 
+    def test_excerpt_none_dropped(self) -> None:
+        """Claim with excerpt=None and valid seg_id → dropped (never counted as verified).
+
+        This is the CRITICAL false-verde hole (retro-review 2026-06-12):
+        verify_citation(seg_id, excerpt=None) skips the substring check, so
+        a claim with no verbatim excerpt was counted as VERIFIED by the old
+        code. After the fix, excerpt=None is treated as unverifiable → dropped.
+        """
+        store = _StoreStub()
+        store._segments["l#s1"] = _SegStub(seg_id="l#s1", text="l'energia è una grandezza", lesson_id="l")
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Text",
+                            claims=(DispensaClaim(text="E", seg_id="l#s1"),),  # excerpt=None (default)
+                        ),
+                    ),
+                ),
+            ),
+        )
+        with pytest.raises(ValueError, match="unverified"):
+            verify_dispensa(doc, store)
+
     def test_mixed_verified_and_dropped(self) -> None:
         """Some verified (5), some dropped (1) → 1/6=16.7% < 20% → passes."""
         store = _StoreStub()
