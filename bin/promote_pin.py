@@ -18,12 +18,12 @@ ROOT = os.path.expanduser("~/lessonos")
 COORD = os.path.join(ROOT, "COORDINATION.md")
 CAPF = os.path.expanduser(f"~/maestro-logs/.autopin_{repo}_{datetime.date.today().isoformat()}")
 
-# cap 6/giorno/repo
+# cap 12/giorno/repo
 n = 0
 if os.path.exists(CAPF):
     n = int(open(CAPF).read().strip() or 0)
-if n >= 6:
-    print(f"[promote_pin] cap giornaliero raggiunto ({n}/6) per {repo}")
+if n >= 12:
+    print(f"[promote_pin] cap giornaliero raggiunto ({n}/12) per {repo}")
     sys.exit(2)
 
 s = open(COORD, encoding="utf-8").read()
