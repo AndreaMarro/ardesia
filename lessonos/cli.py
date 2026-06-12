@@ -1111,6 +1111,35 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Generate JSON Canvas 1.0 graph file",
     )
 
+    # --- recap-export (M2-7) ---
+    recap_parser = sub.add_parser(
+        "recap-export", help="Export lesson recap as JSON (DB + derived files projection)"
+    )
+    recap_parser.add_argument(
+        "--lesson",
+        type=str,
+        required=True,
+        help="Lesson ID to export recap for",
+    )
+    recap_parser.add_argument(
+        "--out",
+        type=str,
+        required=True,
+        help="Output JSON file path",
+    )
+    recap_parser.add_argument(
+        "--db",
+        type=str,
+        default="",
+        help="Path to lessonos.db (required)",
+    )
+    recap_parser.add_argument(
+        "--derived",
+        type=str,
+        default="",
+        help="Path to derived/ directory (default: auto-detect from ~/maestro-data/)",
+    )
+
     # --- status ---
     status_parser = sub.add_parser(
         "status", help="Show DB status report (paths, lessons, graph counts)"
@@ -1441,6 +1470,45 @@ def main(argv: list[str] | None = None) -> int:
             )
 
         print(report.summary())
+        return 0
+
+    if args.command == "recap-export":
+        # DB path from --db or --- required
+        db_path = args.db
+        if not db_path:
+            print("Error: --db is required. Specify the path to lessonos.db.", file=sys.stderr)
+            return 1
+
+        if not FsPath(db_path).exists():
+            print(f"Error: DB not found: {db_path}", file=sys.stderr)
+            return 1
+
+        # Derived directory from --derived (optional)
+        derived_dir = args.derived or None
+
+        # Run recap export
+        from lessonos.recap_export import build_lesson_recap, render_recap_json
+
+        store = SQLiteStore(db_path)
+        try:
+            recap = build_lesson_recap(store, args.lesson, derived_dir=derived_dir or None)
+        except ValueError as e:
+            print(f"Error: {e}", file=sys.stderr)
+            return 1
+        finally:
+            store.close()
+
+        rendered = render_recap_json(recap, args.out)
+        summary_parts = [
+            f"Recap exported: {args.out}",
+            f"  - Schema version: v{recap.recap_schema_version}",
+            f"  - Title: {recap.title}",
+            f"  - Duration: {recap.duration_seconds}s",
+            f"  - Concepts: {len(recap.concepts)}",
+            f"  - Open debts: {len(recap.open_debts)}",
+            f"  - Derived materials: {len(recap.derived_materials)}",
+        ]
+        print("\n".join(summary_parts))
         return 0
 
     if args.command == "status":
