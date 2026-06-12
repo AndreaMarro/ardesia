@@ -33,3 +33,16 @@ lessonos export-vault --teacher <id> --out <path> [--db PATH] [--derived PATH] [
 - `lessonos/graph/aggregator.py` (raw_to_merged costruzione) `file:89-163`
 - `lessonos/models/entities.py` (AggregatedPathGraph.raw_to_merged) `file:238`
 - `tests/test_obsidian_vault.py` (29 test, 4 M1-7b content) `file:1-820`
+
+## Esecuzione reale (M1-7c, 2026-06-12)
+
+Eseguito su DB reale Teoria-Segnali (4 lezioni, ~700KB):
+
+- **96/96 pagine concetto** generate, tutte con Evidenze non vuota
+- **0 occorrenze "(concetto non trovato)"** in tutto il vault
+- **258 ^seg anchor** nella trascrizione prima_lezione
+- **Canvas**: 96 nodi, 0 archi (nessuna relazione concetto→concetto in questo dataset — onesto)
+- **Idempotenza**: secondo run byte-per-byte identico
+- **Nessun fix codice**: DB reale compatibile al 100%
+
+Output: `~/maestro-data/teoria-segnali-2021/derived/vault/andrea/` (114 file, 948KB)

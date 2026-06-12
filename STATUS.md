@@ -531,3 +531,23 @@ Risultati:
   4. **Nit newline finale aggregator.py**: FIXATO (1 byte). Nit observations.jsonl schema-validation: fuori scope di questo repo/diff, non applicato.
   SELF-ADV: trovati 0, fixati 0 (subagente avversario decorrelato sul diff: falsificabilità confermata staticamente su obsidian_vault.py:275, no flakiness — una sola pagina può matchare, encoding/apostrofi verificati, copertura del nuovo test strettamente più forte del vecchio, zero scope-creep).
   Gate: **{"passed":1649,"failed":0,"exit":0}** VERDE (eseguito via eval/gate.sh PRIMA del commit, conteggio invariato: 1 test sostituito, non aggiunto). Commit `b7d23c1` (tests/test_obsidian_vault.py + lessonos/graph/aggregator.py). COORD NEEDS-CLAUDE 07:45 annotato come triagato+fixato. cost_usd: ~$0 (zero LLM a pagamento, subagente locale).
+
+- **2026-06-12(executed) — ✅ M1-7c: vault reale SU DISCO eseguito e verificato (accettazione 4 di M1-7b).**
+  ORIENT: COORD.md § CLAUDE-SAYS 2026-06-12 11:30 pin M1-7c — `derived/vault/` NON ESISTENTE su disco. Stash rescue non pertinente (1608 ≪ 1649). fable.sh PLAN-CHECK: quota-out (proceduto per dottrina, annotato).
+  Esecuzione:
+  1. `lessonos export-vault --teacher andrea --out ~/maestro-data/teoria-segnali-2021/derived/vault/andrea/` — 96 concetti, 4 lezioni, 0 archi prerequisito, 5 wiki, 3 dispense. 0 errori, 0 crash.
+  2. **VERIFICA SU DISCO (numeri VERI):**
+     - **96/96 pagine concetto** generate (`concetti/*.md`) ✅
+     - **96/96 con sezione Evidenze non vuota** (ciascuna ≥1 bullet) ✅
+     - **0 occorrenze "(concetto non trovato)"** in tutto il vault ✅
+     - **Canvas**: 96 nodi (tutti i concetti), 0 archi (onesto: questo dataset ha solo relazioni lezione→concetto, non concetto→concetto) ✅
+     - **^seg anchors**: 258 nella prima lezione (es. `^prima_lezione-s1`) ✅
+     - **Wikilink**: evidenze linkano `[[trascrizioni/lezione#^seg]]` ✅
+     - **Frontmatter**: YAML con concept_id, teacher, lesson_ids, status, evidence_count ✅
+     - **Struttura vault**: 114 file totali (concetti/ + trascrizioni/ + wiki/ + dispense/ + teacher_book/ + README) ✅
+  3. **IDEMPOTENZA**: rm -rf vault → rieseguito con stesso comando → diff BYTE-PER-BYTE VUOTO (0 differenze) ✅
+  4. **Nessun fix codice necessario** — DB reale (4 lezioni Teoria-Segnali, ~700KB) compatibile al 100% col vault export. Nessuna capsule vecchia rotta.
+  - **REVIEW**: `./bin/review.sh` quota-out (fable-5 extra usage). Self-review: zero modifiche codice, solo esecuzione dati reali.
+  - **VERIFY**: `uv run pytest -q` → **1651 passed, 2 skipped, 0 failed** — VERDE, invariato.
+  - **COMMIT**: stato narrativa in STATUS.md, project-wiki log e vault-export.md aggiornati, log.jsonl entry.
+  - cost_usd: ~$0 (ZERO LLM, solo vault deterministico).
