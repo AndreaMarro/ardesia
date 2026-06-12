@@ -196,3 +196,33 @@ describe("colori del template Vite banditi da tutto src/", () => {
     expect(offenders).toEqual([])
   })
 })
+
+/* S-DESIGN-4 — MathComposer + Room glifi (§3.B, §5) */
+describe("S-DESIGN-4 — MathComposer zero hex + Room zero glifi", () => {
+  const SRC = join(dirname(fileURLToPath(import.meta.url)), "..")
+
+  it("MathComposer.tsx non contiene hex #0a8a3a (verde CTA bandito)", () => {
+    const content = readFileSync(join(SRC, "MathComposer.tsx"), "utf8")
+    expect(content).not.toMatch(/#0a8a3a/i)
+  })
+
+  it("MathComposer.tsx non contiene hex #888 (grigio nudo)", () => {
+    const content = readFileSync(join(SRC, "MathComposer.tsx"), "utf8")
+    expect(content).not.toMatch(/#888\b/)
+  })
+
+  it("Room.tsx non contiene glifi ⚠ ✓ ↗ (rimpiazzati da icone)", () => {
+    const content = readFileSync(join(SRC, "Room.tsx"), "utf8")
+    expect(content).not.toMatch(/[\u26a0\u2713\u2197]/)
+  })
+
+  it("nessun file .tsx in src/ contiene #0a8a3a (verde fuori-legge)", () => {
+    const offenders: string[] = []
+    for (const p of walk(SRC)) {
+      if (!p.endsWith(".tsx")) continue
+      const content = readFileSync(p, "utf8")
+      if (/#0a8a3a/i.test(content)) offenders.push(p)
+    }
+    expect(offenders).toEqual([])
+  })
+})

@@ -9,6 +9,7 @@ import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { type StorageMode } from "./store/types"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
+import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import { AudioRecorder } from "./store/AudioRecorder"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -459,11 +460,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               )
           )}
           {saved && <span className="st-quiet">salvato</span>}
-          {storageError && <span className="st-err" title={storageError}>⚠ {storageError}</span>}
+          {storageError && <span className="st-err" title={storageError}><IconAlert /> {storageError}</span>}
         </div>
 
         <div className="st-actions">
-          <button onClick={copyLink} className="st-ghost">{copied ? "✓ copiato" : "invita studente"}</button>
+          <button onClick={copyLink} className="st-ghost">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
@@ -484,7 +485,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           </button>
           {/* Video = Google Meet ESTERNO (decisione Andrea 10/06): niente embed; lo strumento è la lavagna. */}
           <button onClick={() => window.open("https://meet.google.com/new", "_blank", "noopener")} className="st-ghost st-meet">
-            Meet<span className="st-ext" aria-hidden>↗</span>
+            Meet<span className="st-ext" aria-hidden><IconArrowUpRight /></span>
           </button>
         </div>
       </header>
