@@ -93,22 +93,41 @@ export const BoardReadResultSchema = z.strictObject({
   elements: z.array(z.unknown()),
 })
 
+// State con tetto sul SERIALIZZATO: la scena è condivisa, un tool non deve
+// poterla gonfiare oltre misura (256 KB per embed bastano per qualunque stato v0).
+const boundedEmbedState = z.unknown().refine(
+  (s) => {
+    try {
+      const json = JSON.stringify(s)
+      return json === undefined || json.length <= 256 * 1024
+    } catch {
+      return false
+    }
+  },
+  { message: "state too large or not serializable" },
+)
+
 export const BoardWriteParamsSchema = z.strictObject({
-  embedId: z.string().min(1),
-  state: z.unknown(),
+  embedId: z.string().min(1).max(128),
+  state: boundedEmbedState,
 })
 export const BoardWriteResultSchema = z.strictObject({})
 
 // ---- storage.* v0 (tool → host): KV namespaced per-tool ----
 const STORAGE_KEY_RE = /^[A-Za-z0-9][A-Za-z0-9._/-]{0,255}$/
-const storageKey = z
-  .string()
-  .regex(STORAGE_KEY_RE)
-  .refine((k) => k.split("/").every((s) => s !== "" && s !== ".."), { message: "unsafe key" })
+
+/** Grammatica UNICA delle chiavi storage: wire schema e capability la condividono. */
+export function isValidStorageKey(key: string): boolean {
+  // niente "." per evitare alias (a/./b vs a/b) con semantiche diverse tra driver
+  return STORAGE_KEY_RE.test(key) && key.split("/").every((s) => s !== "" && s !== ".." && s !== ".")
+}
+
+const storageKey = z.string().refine(isValidStorageKey, { message: "unsafe key" })
 
 export const StorageGetParamsSchema = z.strictObject({ key: storageKey })
 export const StorageGetResultSchema = z.strictObject({ value: z.string().nullable() })
-export const StorageSetParamsSchema = z.strictObject({ key: storageKey, value: z.string() })
+// tetto wire sul singolo valore (la quota totale resta quella del manifest)
+export const StorageSetParamsSchema = z.strictObject({ key: storageKey, value: z.string().max(2 * 1024 * 1024) })
 export const StorageSetResultSchema = z.strictObject({})
 export const StorageDeleteParamsSchema = z.strictObject({ key: storageKey })
 export const StorageDeleteResultSchema = z.strictObject({})
