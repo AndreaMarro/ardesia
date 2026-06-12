@@ -32,7 +32,7 @@ from typing import Any
 
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import _repair_excerpt
-from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO, is_verified_excerpt
+from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO, claim_badge, is_verified_excerpt
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -398,7 +398,8 @@ def _render_summary_markdown(
                 seg_id = c["seg_id"]
                 excerpt = c.get("excerpt")
                 if is_verified_excerpt(excerpt):
-                    verified_links.append(f"[{excerpt}]({seg_id})")
+                    badge = claim_badge(excerpt)
+                    verified_links.append(f"{badge}[{excerpt}]({seg_id})")
                 else:
                     excluded_citations += 1
             if not verified_links:

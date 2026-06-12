@@ -542,7 +542,7 @@ class TestVerifyDispensa:
         assert doc.dropped_paragraphs == ()
         md = render_dispensa_md(cleaned, report)
         assert "## Paragrafi non verificati" in md
-        assert "- Paragrafo non fondato" in md
+        assert "- ✗ Paragrafo non fondato" in md
         assert "5/6 claim verificati" in md
         assert "1 scartati" in md
 
@@ -1068,3 +1068,84 @@ class TestPromptInjection:
         assert '"paragraphs"' in prompt
         assert '"claims"' in prompt
         assert '"seg_id"' in prompt
+
+
+class TestClaimBadge:
+    """Per-claim verification badges in rendering (M2-3, roadmap R1)."""
+
+    @staticmethod
+    def _store() -> _StoreStub:
+        store = _StoreStub()
+        store._segments["l#s1"] = _SegStub(seg_id="l#s1", text="energia del segnale", lesson_id="l")
+        store._segments["l#s2"] = _SegStub(seg_id="l#s2", text="potenza media", lesson_id="l")
+        store._segments["l#s3"] = _SegStub(seg_id="l#s3", text="segnale periodico", lesson_id="l")
+        return store
+
+    def test_dispensa_badge_verified(self) -> None:
+        """Verified claim shows ✅ badge."""
+        store = self._store()
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Energia del segnale.",
+                            claims=(DispensaClaim(text="energia", seg_id="l#s1", excerpt="energia del segnale"),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        cleaned, report = verify_and_clean_dispensa(doc, store)
+        md = render_dispensa_md(cleaned, report)
+        assert "\u2705`l#s1`" in md
+
+    def test_dispensa_badge_repaired_through_claim_badge(self):
+        """Repaired badge verified via claim_badge helper (full pipeline)."""
+        from lessonos.graph.grounding import claim_badge
+        badge = claim_badge("test", repaired=True)
+        assert "🔧" in badge
+
+    def test_dispensa_badge_dropped_in_footer(self):
+        """Dropped paragraphs show ✗ badge in footer (< 20% unverified)."""
+        store = self._store()
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(  # 5 verified claims
+                            text="Energia.",
+                            claims=(DispensaClaim(text="energia", seg_id="l#s1", excerpt="energia del segnale"),),
+                        ),
+                        DispensaParagraph(
+                            text="Potenza.",
+                            claims=(DispensaClaim(text="p", seg_id="l#s2", excerpt="potenza media"),),
+                        ),
+                        DispensaParagraph(
+                            text="Segnale.",
+                            claims=(DispensaClaim(text="s", seg_id="l#s3", excerpt="segnale periodico"),),
+                        ),
+                        DispensaParagraph(
+                            text="Altro.",
+                            claims=(DispensaClaim(text="e", seg_id="l#s1", excerpt="energia del segnale"),),
+                        ),
+                        DispensaParagraph(
+                            text="Fine.",
+                            claims=(DispensaClaim(text="p", seg_id="l#s2", excerpt="potenza media"),),
+                        ),
+                        DispensaParagraph(  # 1 dropped = 1/6 = 16.6% < 20%
+                            text="Bad claim.",
+                            claims=(DispensaClaim(text="bad", seg_id="l#s99", excerpt="nope"),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        cleaned, report = verify_and_clean_dispensa(doc, store)
+        md = render_dispensa_md(cleaned, report)
+        assert "## Paragrafi non verificati" in md
+        assert "\u2717 Bad claim." in md

@@ -16,6 +16,7 @@ Output sections:
 
 from __future__ import annotations
 
+from lessonos.graph.grounding import claim_badge
 from lessonos.models.entities import (
     ConceptProgression,
     PrerequisiteChain,
@@ -32,17 +33,19 @@ def _plural(n: int, singular: str, plural: str | None = None) -> str:
 
 
 def _render_citations(concept: TeacherConcept) -> str:
-    """Render grounded citations for a concept as a compact indented list."""
+    """Render grounded citations for a concept as a compact indented list
+    with per-evidence verification badges (M2-3)."""
     if not concept.citations:
         return ""
     lines: list[str] = []
     # Show at most 5 to keep the output readable; note total if truncated
     shown = concept.citations[:5]
     for ev in shown:
+        badge = claim_badge(ev.excerpt)
         excerpt = ev.excerpt or "(no excerpt)"
         if len(excerpt) > 100:
             excerpt = excerpt[:97] + "..."
-        lines.append(f"  - `({ev.lesson_id}) {ev.seg_id}`: _{excerpt}_")
+        lines.append(f"  - {badge}`({ev.lesson_id}) {ev.seg_id}`: _{excerpt}_")
     if len(concept.citations) > 5:
         lines.append(f"  - _+{len(concept.citations) - 5} more citations_")
     return "\n".join(lines)

@@ -86,6 +86,36 @@ def is_verified_excerpt(excerpt: str | None) -> bool:
     return excerpt is not None and excerpt != ""
 
 
+def claim_badge(
+    excerpt: str | None,
+    *,
+    repaired: bool = False,
+    dropped: bool = False,
+) -> str:
+    """Return a per-claim badge string based on verification status.
+
+    Three states (M2-3, roadmap R1):
+    - ``✅`` VERIFIED — excerpt present, not repaired
+    - ``🔧`` REPAIRED — excerpt was repaired to verbatim substring
+    - ``✗`` UNVERIFIED — excerpt absent or dropped
+
+    Args:
+        excerpt: The claim's excerpt (None means unverified).
+        repaired: True when the excerpt was repaired from a paraphrase.
+        dropped: True when the claim was explicitly dropped as unverifiable.
+
+    Returns:
+        A badge string like ``✅`` or ``🔧`` or ``✗``.
+    """
+    if dropped:
+        return "\u2717"  # ✗
+    if repaired:
+        return "\U0001f527"  # 🔧
+    if is_verified_excerpt(excerpt):
+        return "\u2705"  # ✅
+    return "\u2717"  # ✗
+
+
 def grounding_ratio(excerpts) -> tuple[int, int, float]:
     """Return ``(total, unverified, unverified_ratio)`` over an iterable of
     excerpts (each ``str | None``). Ratio is ``0.0`` for empty input.

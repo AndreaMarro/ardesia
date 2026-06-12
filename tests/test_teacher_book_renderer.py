@@ -553,3 +553,55 @@ class TestRenderQualitativeDiff:
         md1 = render_qualitative_diff(books)
         md2 = render_qualitative_diff(books)
         assert md1 == md2
+
+
+class TestBadgeInCitations:
+    """Per-claim badge in TeacherBook rendering (M2-3)."""
+
+    @staticmethod
+    def _make_evidence(seg_id: str, idx: int = 0, excerpt: str | None = "excerpt") -> GraphEvidence:
+        return GraphEvidence(
+            evidence_id=f"ev{idx}",
+            edge_id=f"e{idx}",
+            seg_id=seg_id,
+            excerpt=excerpt,
+            confidence=1.0,
+            lesson_id="test_lesson",
+        )
+
+    def test_verified_evidence_shows_badge(self) -> None:
+        """Evidence with non-empty excerpt shows ✅ badge."""
+        concept = TeacherConcept(
+            name="Test",
+            canonical="test",
+            status="introduced",
+            lesson_ids=("test_lesson",),
+            edge_count=1,
+            evidence_count=1,
+            citations=(self._make_evidence("l#s0"),),
+        )
+        book = TeacherBook(
+            teacher_id="t", total_concepts=1, total_lessons=1, total_edges=1,
+            total_evidence=1, fundamental_concepts=(concept,),
+        )
+        md = render_teacher_book(book)
+        assert "\u2705" in md
+
+    def test_unverified_evidence_shows_x_badge(self) -> None:
+        """Evidence with None excerpt shows ✗ badge."""
+        concept = TeacherConcept(
+            name="Test",
+            canonical="test",
+            status="introduced",
+            lesson_ids=("test_lesson",),
+            edge_count=1,
+            evidence_count=1,
+            citations=(self._make_evidence("l#s0", excerpt=None),),
+        )
+        book = TeacherBook(
+            teacher_id="t", total_concepts=1, total_lessons=1, total_edges=1,
+            total_evidence=1, fundamental_concepts=(concept,),
+        )
+        md = render_teacher_book(book)
+        assert "\u2717" in md
+        assert "(no excerpt)" in md

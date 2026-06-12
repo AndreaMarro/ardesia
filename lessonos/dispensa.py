@@ -23,7 +23,7 @@ from typing import Protocol
 
 from lessonos.capsule.assembly import load_capsule
 from lessonos.capsule.extraction import ConceptExtraction
-from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO
+from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO, claim_badge
 from lessonos.graph.resolution import GlobalResolution
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
@@ -35,11 +35,22 @@ from lessonos.teacher_book import build_teacher_book
 
 @dataclass(frozen=True)
 class DispensaClaim:
-    """A single grounded claim within a dispensa paragraph."""
+    """A single grounded claim within a dispensa paragraph.
+
+    ``repaired`` is True when the original excerpt was paraphrased and had
+    to be repaired to a real verbatim substring (see ``_repair_excerpt``).
+    It remains a VERIFIED claim but carries an amber indicator.
+
+    ``dropped`` is True when the claim was unverifiable and the paragraph
+    was kept (mixed-status paragraph — the claim is displayed but marked
+    as ungrounded). Set only in ``verify_and_clean_dispensa``.
+    """
 
     text: str
     seg_id: str
     excerpt: str | None = None
+    repaired: bool = False
+    dropped: bool = False
 
 
 @dataclass(frozen=True)
@@ -473,7 +484,7 @@ def verify_and_clean_dispensa(
             # regardless of excerpt, creating a false-verde hole.
             if not claim.excerpt or not claim.excerpt.strip():
                 return None
-            return claim, False
+            return claim, False  # not repaired — repaired flag stays False (default)
         except ValueError:
             pass
         if claim.excerpt is None:
@@ -488,7 +499,7 @@ def verify_and_clean_dispensa(
             verify_citation(store, claim.seg_id, lesson_id, fixed)
         except ValueError:
             return None
-        return DispensaClaim(text=claim.text, seg_id=claim.seg_id, excerpt=fixed), True
+        return DispensaClaim(text=claim.text, seg_id=claim.seg_id, excerpt=fixed, repaired=True), True
 
     for sec in doc.sections:
         kept_paragraphs: list[DispensaParagraph] = []
@@ -571,6 +582,10 @@ def verify_dispensa(
     return report
 
 
+# ── Badge helper (imported from grounding.py, M2-3) ──────────────────
+# (``claim_badge`` is in ``graph/grounding.py`` — shared across renderers)
+
+
 # ── Markdown rendering (ZERO-LLM)  ────────────────────────────────────
 
 
@@ -612,28 +627,29 @@ def render_dispensa_md(
         for para in sec.paragraphs:
             lines.append(para.text)
             lines.append("")
-            # Show citations per paragraph
+            # Show citations per paragraph with per-claim badge (M2-3)
             if para.claims:
                 lines.append("  <div class=\"citations\">")
                 for claim in para.claims:
+                    badge = claim_badge(claim.excerpt, repaired=claim.repaired)
                     excerpt_str = ""
                     if claim.excerpt:
                         if len(claim.excerpt) > 100:
                             excerpt_str = f": _{claim.excerpt[:97]}..._"
                         else:
                             excerpt_str = f": _{claim.excerpt}_"
-                    lines.append(f"  - `{claim.seg_id}`{excerpt_str}")
+                    lines.append(f"  - {badge}`{claim.seg_id}`{excerpt_str}")
                 lines.append("  </div>")
                 lines.append("")
 
-    # Dropped paragraphs disclosure
+    # Dropped paragraphs disclosure — each with ✗ badge (M2-3)
     if doc.dropped_paragraphs:
         lines.append("---")
         lines.append("")
         lines.append("## Paragrafi non verificati")
         lines.append("")
         for note in doc.dropped_paragraphs:
-            lines.append(f"- {note}")
+            lines.append(f"- ✗ {note}")
         lines.append("")
 
     # Grounding footer — honest: dropped claims are declared even when the

@@ -255,29 +255,29 @@ _EXPECTED_MARKDOWN = """# Riepilogo: l1
 
 ## Panoramica dei temi
 
-La lezione introduce il concetto di derivata come rate of change di una funzione. ([rate of change](l1#s0))
+La lezione introduce il concetto di derivata come rate of change di una funzione. (✅[rate of change](l1#s0))
 
-Viene poi presentato il limite del rapporto incrementale come definizione formale. ([difference quotient](l1#s1))
+Viene poi presentato il limite del rapporto incrementale come definizione formale. (✅[difference quotient](l1#s1))
 
-Infine si introducono le regole di derivazione, a cominciare dalla regola della potenza. ([Power rule](l1#s2))
+Infine si introducono le regole di derivazione, a cominciare dalla regola della potenza. (✅[Power rule](l1#s2))
 
 ## Concetti chiave
 
-derivata (introduced): definita come rate of change istantaneo. ([rate of change](l1#s0))
+derivata (introduced): definita come rate of change istantaneo. (✅[rate of change](l1#s0))
 
-regola della potenza (introduced): la derivata di x^n e' n per x^(n-1). ([Power rule](l1#s2))
+regola della potenza (introduced): la derivata di x^n e' n per x^(n-1). (✅[Power rule](l1#s2))
 
 ## Esercizi
 
-Calcola la derivata di x^2 usando la definizione di limite. ([difference quotient](l1#s1))
+Calcola la derivata di x^2 usando la definizione di limite. (✅[difference quotient](l1#s1))
 
 ## Domande degli studenti
 
-Cosa succede se h tende a 0 nel rapporto incrementale? ([limit as h approaches 0](l1#s1))
+Cosa succede se h tende a 0 nel rapporto incrementale? (✅[limit as h approaches 0](l1#s1))
 
 ## Compiti
 
-Esercizi 1-3: derivate dal primo principio. ([x to the n minus one](l1#s2))
+Esercizi 1-3: derivate dal primo principio. (✅[x to the n minus one](l1#s2))
 """
 
 
@@ -575,7 +575,7 @@ class TestRenderExcludesUnverified:
         ]
         md = _render_summary_markdown(capsule, sections)
         # verified claim + link kept
-        assert "Claim verificato. ([rate of change](l1#s0))" in md
+        assert "Claim verificato. (✅[rate of change](l1#s0))" in md
         # unverified paragraph dropped, bare seg_id NEVER rendered
         assert "Claim non verificato." not in md
         assert "[l1#s1]" not in md
@@ -622,7 +622,7 @@ class TestRenderExcludesUnverified:
             }
         ]
         md = _render_summary_markdown(capsule, sections)
-        assert "Misto. ([rate of change](l1#s0))" in md
+        assert "Misto. (✅[rate of change](l1#s0))" in md
         assert "l1#s1" not in md  # unverified link never appears
         assert "1 citazioni non verificate" in md
 
