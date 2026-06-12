@@ -468,5 +468,6 @@ Risultati:
   |  - Gate: **1645 passed / 0 failed** (+11 da baseline 1634, nessuna regressione). cost_usd: ~$0 (ZERO LLM).
   | - Next: attende pin CLAUDE-SAYS per M2 lessonos (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
 
-- **2026-12-XX(current) — ⏸️ LESSONOS-NOOP (nuova sessione): M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `491ff93` (log NOOP #N+1). Gate **1645/0 VERDE** (ri-verificato ORA, invariato). DB reale presente (4 lezioni Teoria-Segnali). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). M2 STEWARDSHIP già eseguita (commit 32a7876). COORD.md § PROSSIMA TASK: entrambi i repo PIN ESAURITO. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (~6 mesi fa, nessun pin M2). check-frictions.sh: 21/21 coperti, 0 warning. stash rescue presente ma non pertinente (06/2026, gate 1608 << 1645). Stewardship già fatta → stop. cost_usd: ~$0 (solo gate + lettura file). NEEDS-CLAUDE aggiornato in COORD.md.
+- **2026-06-12(current) — ⏸️ LESSONOS-NOOP (nuova iterazione #N+7): M1 completo, gate 1645/0 VERDE, pin M2 assente da >6 mesi, stewardship già fatta → stop.**
+  ORIENT: HEAD ac62a48, gate **1645/0 VERDE** (ri-verificato ORA, invariato). DB reale presente (4 lezioni Teoria-Segnali). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). COORD.md § PROSSIMA TASK: entrambi i repo PIN ESAURITO. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (qualche ora fa — WORKFLOW-2.0, nessun ordine per M2). check-frictions.sh: 21/21 coperti, 0 warning. Stash rescue vecchio (1608 << 1645). Stewardship già eseguita (RETRO #10, +11 status CLI). AGENTS.md §3: stop. Nessuna build eseguita.
+  cost_usd: ~$0.
