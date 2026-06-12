@@ -69,7 +69,9 @@
 - [x] M2-3: Badge per-claim nel rendering ✅ (commit 1e7c18f, gate 1656/0, roadmap R1)
 - [x] **M2-2: StyleProfile v2 dallo stile SCRITTO ✅ (commit CURRENT, gate 1685/0)** — WrittenStyleProfile + 6 metric functions ZERO-LLM derivate dal corpus dispense VERE di Andrea (9 PDFs via pdftotext). Prompt dispensa usa ENTRAMBI i profili (parlato v1 + scritto v2). 28 nuovi test.
 - [x] **M2-2b: A/B su Energia: spoken-only vs spoken+written vs REAL ✅ (commit CURRENT, gate 1700/0)** — V2 ha frasi piu lunghe (+22%) e math density piu alta (+123%) ma gap enorme col formulario reale. Diff medio dal reale: V1=89.89%, V2=86.22%. Fix ast.literal_eval JSON fallback. TestPromptV2WrittenStyleValues verifica valori misurati nel prompt. $0.0016.
+- [x] **M2-5: Badge nel vault ✅ (commit fa6d057 + 6e9446c, gate 1701/2, +5)** — export-vault proietta badge per-claim (M2-3) in dispensa vault (53 ✅, 0 ✗) e teacher_book vault (264 badges, 263 ✅ 1 ✗). ZERO LLM, idempotenza byte-per-byte.
 - M2-1: Giudizio blind-test M1-6 (>=7/10?)
+- M2-4: ToolHost T3 (marketplace/publish?)
 
 **Regola attuale: Hermes non costruisce fuori dai pin.** Attende nuovi ordini in COORDINATION.md § CLAUDE-SAYS.
 
