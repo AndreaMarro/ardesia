@@ -20,6 +20,31 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# ── COORD-FORMAT guard (12/06: edit Hermes cancellarono CLAUDE-SAYS e corruppero 177 righe) ──
+if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
+  CCHK=$(git show :COORDINATION.md)
+  if printf "%s" "$CCHK" | grep -qE "^([0-9]+\|)+|^\|"; then
+    echo "COORD-FORMAT: prefissi numerati/pipe corrotti in COORDINATION.md — riscrivi le righe INTERE e pulite, mai output numerato." >&2; exit 1
+  fi
+  for h in "## ➡️ PROSSIMA TASK" "## NEEDS-CLAUDE" "## CLAUDE-SAYS"; do
+    HN=$(printf "%s" "$CCHK" | grep -c "^$h")
+    [ "$HN" -eq 1 ] || { echo "COORD-FORMAT: heading '$h' presente $HN volte (deve essere 1)" >&2; exit 1; }
+    true || { echo "COORD-FORMAT: heading mancante: $h — le sezioni di COORDINATION non si cancellano MAI." >&2; exit 1; }
+  done
+fi
+
+# COORD-PINCOUNT: esattamente UNA riga pin per repo (la mantiene SOLO supervisore/promote_pin)
+if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
+  CPIN=$(git show :COORDINATION.md)
+  for r in lessonos studio; do
+    PN=$(printf "%s" "$CPIN" | grep -cE "^\|*[[:space:]]*- \*\*$r\*\*:" || true)
+    if [ "$PN" -ne 1 ]; then
+      echo "COORD-PINCOUNT: $PN righe pin per '$r' (deve essere 1). Hermes: chiusure in NEEDS-CLAUDE, MAI nuove righe pin." >&2
+      exit 1
+    fi
+  done
+fi
+
 # Se nessun file specificato, usa git diff --cached (staging area)
 if [[ ${#CHECK_FILES[@]} -eq 0 ]]; then
     if ! CHECK_FILES=($(git -C "$ROOT_DIR" diff --cached --name-only -- '*.py' 2>/dev/null)); then
@@ -109,29 +134,5 @@ if $HAS_ERRORS; then
     exit 1
 fi
 
-# ── COORD-FORMAT guard (12/06: edit Hermes cancellarono CLAUDE-SAYS e corruppero 177 righe) ──
-if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
-  CCHK=$(git show :COORDINATION.md)
-  if printf "%s" "$CCHK" | grep -qE "^([0-9]+\|)+|^\|"; then
-    echo "COORD-FORMAT: prefissi numerati/pipe corrotti in COORDINATION.md — riscrivi le righe INTERE e pulite, mai output numerato." >&2; exit 1
-  fi
-  for h in "## ➡️ PROSSIMA TASK" "## NEEDS-CLAUDE" "## CLAUDE-SAYS"; do
-    HN=$(printf "%s" "$CCHK" | grep -c "^$h")
-    [ "$HN" -eq 1 ] || { echo "COORD-FORMAT: heading '$h' presente $HN volte (deve essere 1)" >&2; exit 1; }
-    true || { echo "COORD-FORMAT: heading mancante: $h — le sezioni di COORDINATION non si cancellano MAI." >&2; exit 1; }
-  done
-fi
-
-# COORD-PINCOUNT: esattamente UNA riga pin per repo (la mantiene SOLO supervisore/promote_pin)
-if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
-  CPIN=$(git show :COORDINATION.md)
-  for r in lessonos studio; do
-    PN=$(printf "%s" "$CPIN" | grep -cE "^\|*[[:space:]]*- \*\*$r\*\*:" || true)
-    if [ "$PN" -ne 1 ]; then
-      echo "COORD-PINCOUNT: $PN righe pin per '$r' (deve essere 1). Hermes: chiusure in NEEDS-CLAUDE, MAI nuove righe pin." >&2
-      exit 1
-    fi
-  done
-fi
 
 exit 0

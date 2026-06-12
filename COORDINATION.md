@@ -272,5 +272,4 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 _(vuoto)_
 - riga corrotta di test
 - riga corrotta di test
-- **studio**: pin finto di test
 
