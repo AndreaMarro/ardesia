@@ -417,7 +417,20 @@
 ||  - check-frictions.sh: già coperto (19/19 dall'ultima stewardship).
 ||  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). NEEDS-CLAUDE aggiornato.
 cost_usd: ~$0 (zero LLM, solo lettura file + gate).
-- Next: attende pin CLAUDE-SAYS per M2. Se nessun pin per 14+ giorni, segnalare ad Andrea.
+- Next: attende pin CLAUDE-SAYS per M2 lessonos. Se nessun pin per 14+ giorni, segnalare ad Andrea.
+
+- **2026-06-12(executed) — M1-7b: FIX vault-export raw-to-merged mapping (retro-review CRITICO, commit ed20f62).**
+Ipotesi singola: il CRITICO del retro-review (2026-06-12 06:18) — vault-export evidenze/prerequisiti/canvas codice morto per mapping raw->merged rotto — va fissato nell'aggregatore (tutti i raw_id per concetto dedup) e nel vault (usa la mappa autoritativa + fix semantica depends_on + rmtree safety + test di contenuto che fallivano).
+Risultati:
+1. **entities.py** (entities.py:238): `raw_to_merged` in `AggregatedPathGraph`.
+2. **aggregator.py** (aggregator.py:89-163): `_merge_concept_nodes` traccia TUTTI i raw_id per chiave dedup, produce `raw_to_merged` (terzo return).
+3. **obsidian_vault.py**: raw_to_merged da agg.raw_to_merged; prereq_of/used_by con semantica depends_on corretta; evidence match via raw_to_merged; rmtree guard (derived/, raw/, /, ~, cwd); excerpt .strip(); canvas raw->merged resolve.
+4. **4 nuovi test** (test_obsidian_vault.py): evidence non-empty, no non-trovato, canvas edges risolti, depends_on semantica.
+5. **Test fallibili su codice vecchio**: fixture store_with_dedup — concetto Energia deduplicato cross-lezione — vecchio raw_to_merged perdeva l2 evidenze/prerequisiti.
+- **PLAN-CHECK**: fable.sh timeout — proceduto per dottrina.
+- **REVIEW**: fable-5 — 2 MAJOR fixati (test fasullo de-tautologizzato; rmtree guard con `os.path.commonpath`).
+- Gate: **1649 passed / 0 failed / 2 skipped** (+4 da baseline 1645). cost_usd: ~$0 (mock).
+- Next: attende pin CLAUDE-SAYS per M2 lessonos.
 
 - **2026-06-12(current) — M1-7: VAULT-EXPORT Obsidian (read-only proiezione derived/, commit b59aef1).**
 Ipotesi singola: il nuovo modulo lessonos/export/obsidian_vault.py proietta il database del motore (SQLite nodes/edges/evidence/segments) e i derived/ markdown (wiki, dispense, teacher_book) in un vault Obsidian navigabile, ZERO LLM, ZERO modifiche al motore.

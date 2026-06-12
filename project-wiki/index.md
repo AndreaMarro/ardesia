@@ -30,7 +30,7 @@ Ogni pagina + riassunto 1 riga.
 - **teacher-graph.md** — Teacher Graph Aggregator: `aggregate_teacher_graph()` dedup per canonical, cross-teacher guard (M1-1 + M1-1b)
 - **teacher-book.md** — Teacher Book Builder: struttura l'aggregated graph in TeacherBook (concetti fondamentali, problematici, progressione, prerequisiti) — ZERO-LLM, deterministico (M1-2a)
 |- **teacher-book-renderer.md** — M1-3: ZERO-LLM markdown renderer per TeacherBook + comparative report (render_teacher_book, render_comparative_report, 10 docenti sim Fisica1, 17 test)
-||- **dispensa-stilizzata.md** — M1-4: StyleProfile (ZERO-LLM) + dispensa stile-guided via LLM router, gate fail-closed, divergenza stilistica testabile
+||- **vault-export.md** — Obsidian Vault Export: read-only proiezione derived/ (M1-7, M1-7b fix raw->merged)
 ||- **M1-5 motore** — purge_lesson transazionale + _lesson_ids_from_path fonte primaria + negation-aware repair + pipeline.run_ingest + H2-1327 determinism test
 |- **M1-6 Fase F: dispense LIVE** — andrea dispensa generata (23/23 verified) + ground-truth vs dispense VERE (zero contraddizioni) + blind-test pack (10 paragrafi)
 - **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
