@@ -15,12 +15,12 @@ const SHOTS_ROOT = resolve(homedir(), "maestro-logs", "ui-shots")
 // Soglie per-file (euristica non-bianco):
 // Una pagina bianca a 1280x800 produce ~2-3KB PNG.
 // 01: Excalidraw + WelcomeScreen → molto contenuto (canvas, icone, font) → 100KB+
-// 02: Excalidraw + Drawer overlay → 100KB+
-// 03: Vista studente vuota (solo header + empty-state Meet) → ~10-15KB, abbassiamo a 6KB
+// 02: Excalidraw + scena demo + Drawer overlay → 50KB+
+// 03: Vista studente CON scena demo (S-DESIGN-9b: lavagna mai vuota) → ~32KB misurati
 const THRESHOLDS: Record<string, number> = {
   "01-welcome.png": 20 * 1024,
   "02-lavagna-drawer-aperto.png": 20 * 1024,
-  "03-vista-studente.png": 6 * 1024,
+  "03-vista-studente.png": 20 * 1024,
 }
 
 describe("S-DESIGN-8 visual-smoke screenshots", () => {

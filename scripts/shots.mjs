@@ -16,11 +16,23 @@ import { existsSync, mkdirSync } from "node:fs"
 import { resolve } from "node:path"
 import { homedir } from "node:os"
 import { setTimeout as sleep } from "node:timers/promises"
+import { buildDemoSeedEntries } from "./demoSeed.mjs"
 
 const PORT = 4179
 const BASE = `http://localhost:${PORT}`
 const ROOM = "visual-smoke-test"
 const SHOTS_ROOT = resolve(homedir(), "maestro-logs", "ui-shots")
+
+// S-DESIGN-9b: contenuto d'esempio DETERMINISTICO (titolo + 3 stroke + nome lezione)
+// seminato in localStorage PRIMA del load: la lavagna negli shot non è mai vuota.
+const SEED_ENTRIES = buildDemoSeedEntries(ROOM)
+
+/** Inietta la scena demo nel localStorage della pagina prima di ogni navigazione */
+async function seedDemoScene(page) {
+  await page.addInitScript((entries) => {
+    for (const [k, v] of entries) localStorage.setItem(k, v)
+  }, SEED_ENTRIES)
+}
 
 function timestamp() {
   const d = new Date()
@@ -101,9 +113,10 @@ async function main() {
       await page1.close()
       log("  ✓ 01-welcome.png salvato.")
 
-      // --- SCREENSHOT 2: Lavagna con drawer lezioni aperto ---
-      log("02-lavagna-drawer-aperto.png — drawer lezioni visibile...")
+      // --- SCREENSHOT 2: Lavagna con contenuto demo + drawer lezioni aperto ---
+      log("02-lavagna-drawer-aperto.png — scena demo + drawer lezioni visibile...")
       const page2 = await browser.newPage({ viewport: { width: 1280, height: 800 } })
+      await seedDemoScene(page2)
       await page2.goto(`${BASE}#${ROOM}`, { waitUntil: "networkidle" })
       // Attendi render Excalidraw + header docenti
       await page2.waitForSelector(".st-bar, canvas", { timeout: 15000 })
@@ -120,9 +133,10 @@ async function main() {
       await page2.close()
       log("  ✓ 02-lavagna-drawer-aperto.png salvato.")
 
-      // --- SCREENSHOT 3: Vista studente ---
-      log("03-vista-studente.png — vista studente (?vista=studente)...")
+      // --- SCREENSHOT 3: Vista studente (scena demo + chip nome lezione) ---
+      log("03-vista-studente.png — vista studente (?vista=studente) con scena demo...")
       const page3 = await browser.newPage({ viewport: { width: 1280, height: 800 } })
+      await seedDemoScene(page3)
       await page3.goto(`${BASE}/?vista=studente#${ROOM}`, { waitUntil: "networkidle" })
       // Attendi header studente visibile + eventuale empty state
       await page3.waitForSelector(".st-bar-student, .st-chip-student, .st-student-empty", {
