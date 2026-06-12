@@ -13,11 +13,10 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 12/06 11:47] **S-DESIGN-3 — lezioni con nome (spec `docs/DESIGN-MAESTRO-v1.md` §5)**: meta.json per-workspace col nome lezione, matitina di rinomina nell header, drawer lezioni recenti, flush del debounce 700ms PRIMA di ogni navigazione via. Test vitest non tautologici (rename persiste, flush chiamato pre-navigazione). Gate tsc+vitest verde, COMMIT A OGNI SOTTO-TASK VERDE.
-- **lessonos**: [PIN-DONE M1-7c — vault andrea verificato su disco, 109 pagine]
+- **lessonos**: [AUTO-PINNED 12/06 11:47] **[GRIND] M2-3 — badge per-claim nel rendering (roadmap R1, il motore esiste gia)**: riepiloghi/TeacherBook/dispense mostrano per OGNI claim il marcatore di verifica (verificato = solo excerpt verbatim PASS; droppati dichiarati con nota onesta); ZERO LLM, riusa i flag esistenti; test sul rendering con claim misti verificati/riparati/droppati. COMMIT A OGNI SOTTO-TASK VERDE.
 
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 - [AUTO-OK] studio: **S-DESIGN-4 — MathComposer nel sistema + 10 icone inchiostro (spec §5)**: veste .st-card (via il verde fuori-legge #0a8a3a), chip italiani; src/icons.tsx sprite Lucide 16px stroke 1.75 currentColor, mai icona-senza-parola, via emoji/glifi da Room.tsx. Test + grep-gate zero emoji. Gate verde, COMMIT A OGNI SOTTO-TASK VERDE.
-- [AUTO-OK] lessonos: **[GRIND] M2-3 — badge per-claim nel rendering (roadmap R1, il motore esiste gia)**: riepiloghi/TeacherBook/dispense mostrano per OGNI claim il marcatore di verifica (verificato = solo excerpt verbatim PASS; droppati dichiarati con nota onesta); ZERO LLM, riusa i flag esistenti; test sul rendering con claim misti verificati/riparati/droppati. COMMIT A OGNI SOTTO-TASK VERDE.
 - [AUTO-OK] lessonos: **[LUNGA] M2-2 — StyleProfile v2 dallo stile SCRITTO**: estendi style.py con metriche dal corpus dispense VERE di andrea (raw/dispense-2026 via pdftotext: lessico, lunghezza frasi, struttura sezioni — raw IMMUTABILE, solo lettura); il prompt dispensa usa ENTRAMBI i profili (parlato+scritto); A/B su Energia: la v2 deve avvicinarsi al vero piu della v1 (diff onesto in STATUS). Gate verde, COMMIT A OGNI SOTTO-TASK VERDE.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
