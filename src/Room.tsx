@@ -129,8 +129,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           }
         }
       })
-      // Il nome lezione serve solo all'header docente: in vista studente niente loadMeta
-      .then(() => (studentView ? null : actualStore.loadMeta(room)))
+      // Il nome lezione serve all'header docente E alla chip stanza in vista studente.
+      // Meta illeggibile = non fatale: fallback all'id, MAI "Caricamento scena fallito" fuorviante.
+      .then(() => actualStore.loadMeta(room).catch(() => null))
       .then((meta) => {
         if (cancelled) return
         if (meta && meta.name) {
@@ -436,6 +437,15 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             <span className="st-bdot" aria-hidden />
             <span className="st-sub">studio</span>
           </div>
+          {/* Chip stanza dopo il load: evita il flash dell'id prima che arrivi il nome */}
+          {!loading && (
+            <span
+              className="st-chip-student st-chip-lesson"
+              title={lessonName ? `Lezione: ${lessonName}` : `Stanza: ${room}`}
+            >
+              {lessonName ?? room}
+            </span>
+          )}
           <span className="st-chip-student">stai guardando la lavagna</span>
         </header>
       ) : (

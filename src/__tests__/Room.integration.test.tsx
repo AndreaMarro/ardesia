@@ -764,6 +764,92 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
   })
 })
 
+// ── S-DESIGN-9a: chip stanza mostra il NOME della lezione ────────
+
+describe("S-DESIGN-9a: chip stanza in vista studente (nome lezione, fallback id)", () => {
+  beforeEach(async () => {
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReturnValue(true)
+    delete (window as any).__MAESTRO_TEST__
+  })
+
+  it("con meta.json presente la chip mostra il NOME della lezione, non l'id", async () => {
+    const { store } = await createMockStore()
+    await store.saveMeta("test-room-1", { v: 1, name: "Teoria dei Segnali", createdAt: 1718000000000 })
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      const chip = document.querySelector(".st-chip-lesson")
+      expect(chip).not.toBeNull()
+      expect(chip!.textContent).toBe("Teoria dei Segnali")
+    }, { timeout: 1000, interval: 10 })
+
+    // L'id della stanza NON è il contenuto della chip quando il meta esiste
+    expect(document.querySelector(".st-chip-lesson")!.textContent).not.toContain("test-room-1")
+    // La chip informativa resta accanto a quella della lezione
+    expect(document.body.textContent).toContain("stai guardando la lavagna")
+
+    root.unmount()
+  })
+
+  it("senza meta.json la chip fa fallback all'id stanza", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      const chip = document.querySelector(".st-chip-lesson")
+      expect(chip).not.toBeNull()
+      expect(chip!.textContent).toBe("test-room-1")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("loadMeta che RIGETTA non è fatale: chip = id, nessun 'Caricamento scena fallito'", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "loadMeta").mockRejectedValue(new Error("permesso revocato"))
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      const chip = document.querySelector(".st-chip-lesson")
+      expect(chip).not.toBeNull()
+      expect(chip!.textContent).toBe("test-room-1")
+    }, { timeout: 1000, interval: 10 })
+
+    expect(document.body.textContent).not.toContain("Caricamento scena fallito")
+
+    root.unmount()
+  })
+
+  it("in vista studente loadMeta VIENE chiamato (il nome serve alla chip)", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const metaSpy = vi.spyOn(store, "loadMeta")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(metaSpy).toHaveBeenCalledWith("test-room-1")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+})
+
 describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
   beforeEach(async () => {
     // Resetta isStudentView a false (S-DESIGN-5 beforeEach lo imposta a true)
