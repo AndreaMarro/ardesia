@@ -215,3 +215,6 @@ Prossima task: **T3 bundle .lesson**.
 
 |- **2026-06-12T20:55:42Z — T4 ST2: ToolHost runtime + handshake + board.read/write caps per ELAB Sim.** Commit `324ef05` su `auto/main`. **(a)** Test ToolHost runtime: mount → session attiva con hello corretto (caps, nonce, protocol version). **(b)** Handshake completo: tool.ready → ready ack con bearerToken + grantedCaps. **(c)** Nonce sbagliato → HANDSHAKE_FAILED. **(d)** board.read scena vuota → elements vuoto. **(e)** board.write crea embed marcato (maestroTool.owner = toolId) → board.read lo restituisce. **(f)** board.write aggiorna embed esistente (stesso owner, state aggiornato). 8 test nuovi (ToolElabSimHost.test.ts). **Gate 408/408 VERDE** (400+8). Prossima: **ST3 (Blink LED demo — tool crea embed animato sulla lavagna tramite board.write).**
 |
+
+|- **2026-06-12T20:55:42Z — T4 ST3: Blink LED demo (install + mount + board.write embed + suspend/restore).** Commit `51c23b0` su `auto/main`. End-to-end lifecycle: installTool → ToolHost mount → handshake → board.write crea embed LED → board.read lo trova → suspend con stato persiste in state.json → restore consegna stato all'embed. 4 test E2E (ToolElabSimE2E.test.ts). **T4 COMPLETATO (3 sub-task ST1+ST2+ST3, gate 412/412 VERDE, 389→412, +23 test).** Prossima: **attendere promote_pin o prossimo pin CLAUDE-SAYS.**
+|
