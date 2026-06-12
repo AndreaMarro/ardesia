@@ -679,3 +679,7 @@ Risultati:
   - **REVIEW**: gemini (review.sh) — 1 MAJOR (codice duplicato "Must stay in sync") → risolto con utils.py condiviso. OK finale.
   - Gate: **1720 passed / 2 skipped / 0 failed** (+1 da baseline 1719, nessuna regressione). cost_usd: ~$0 (mock, ZERO LLM).
   - Next: pin M2-7 stale non promosso da promote_pin (manca marker PIN ESAURITO nella riga PROSSIMA TASK). M2-8 completato. Attende pin CLAUDE-SAYS o fix promote_pin per prossima task. M2-9 non esiste — ROADMAP-AUTO vuota per lessonos dopo M2-8.
+
+- **2026-06-17 — ⏸️ LESSONOS-NOOP: M2-7+M2-8 completi, gate 1720/0 VERDE, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
+  ORIENT: HEAD `bbafcca` (M2-8: triage adversarial b7c19cb, +1). Gate **1720 passed / 0 failed / 2 skipped** — VERDE, ri-verificato ORA. COORD.md § PROSSIMA TASK riga 16: M2-7 (stale — chiuso da 1e8636f+94918c9). M2-8 anche completato (bbafcca, +1). ROADMAP-AUTO: 0 task lessonos. promote_pin: "pin ancora attivo" (pin line non marcato ESAURITO). check-frictions: 21/21, 0 warning. Stash rescue: entrambi ≪ 1720, non applicati. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stewardship già fatta → stop. Nessuna build. cost_usd: ~$0 (gate + lettura file).
+  - Next: attende nuovi pin da CLAUDE-SAYS per lessonos (M2 esausta, ROADMAP-AUTO vuota). Nessuna ipotesi da testare — tutte le milestone consegnate.
