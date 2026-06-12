@@ -79,3 +79,26 @@ in corso. Verdetto al landing del workflow, non per fede.
 - **M2**: ToolHost v0 + breadboard-tool pilota · R4 journal lavagna↔parlato (zero coperture mondo) · R5 grafo editabile+export · vetrina v0 (profili+scoperta, cloud sottile).
 - **M3**: marketplace transazioni+recensioni · piani-a-potenza · ELAB-as-tool completo · MCP white-label B2B.
 - Sempre: velocità = moat (Google a 6-18 mesi dalla mossa letale).
+
+
+## §3-ter — Raffinamenti marketplace (brainstorm Andrea+co-founder 12/06, ratificati)
+1. **ELAB = primo plugin del marketplace (flagship + dogfooding).** Lo skeleton `sim/` arch-C
+   (Blockly→IR Zod→emettitore/interprete→netlist→wokwi) diventa il primo ToolHost tool reale.
+   Se l'SDK non basta a NOI per ELAB, non bastera a nessuno. Ordine permanente Andrea:
+   "ELAB come tool vendibile = massima importanza".
+2. **Tool comprati = artefatti IMMUTABILI.** Niente modifica post-acquisto, niente fork
+   ("always problems" — co-founder). Personalizzazione SOLO via settings esposti dall'autore.
+   Coerente by-design con la firma ed25519 (un tool modificato rompe la firma). Versioni nuove
+   = solo l'autore.
+3. **Recensioni a due pesi.** Docente vota il TOOL (usabilita: e lui che tocca la lavagna);
+   studente vota LEZIONE/docente (efficacia). Minori: MAI testo libero pubblico — solo segnali
+   aggregati/anonimi (GDPR Mode A).
+4. **Suggerimento tool dal grafo (R-item, NON ora).** Il grafo per-docente esiste: centralita
+   (betweenness) sui concetti dove lo studente inciampa → suggerisci il tool giusto al momento
+   giusto. Da costruire dopo T4.
+5. **CRM didattico (fase dedicata, NON ora).** Primitive gia in LessonOS (learning debt,
+   next-lesson planner, recap-export M2-7): mancano vista Studio + materiali per-studente.
+6. **Pagamenti delle lezioni: FUORI scope.** Zero percentuale, zero tracking pagamenti
+   (deciso 12/06: lo strumento non fa l'esattore). Revenue = SaaS + marketplace sui TOOL.
+7. **Feature LLM-on-canvas ("bottoncino che disegna dal prompt")**: passa dal gateway
+   piani-a-potenza (TOOLHOST-SPEC §piani) — mai gratis, mai senza cap.
