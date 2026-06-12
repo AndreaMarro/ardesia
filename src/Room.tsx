@@ -47,6 +47,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [editingName, setEditingName] = useState(false)
   /** Campo rename ref per focus */
   const renameInputRef = useRef<HTMLInputElement>(null)
+  /** Refs per i dati scena più recenti (per flushPersist) */
+  const latestElementsRef = useRef<any>(null)
+  const latestAppStateRef = useRef<any>(null)
+  const latestFilesRef = useRef<any>(null)
+  /** Drawer lezioni */
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [rooms, setRooms] = useState<any[]>([])
+  const [loadingRooms, setLoadingRooms] = useState(false)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -167,22 +175,45 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   }, [audioRecording])
 
   // Persistenza via WorkspaceStore.
+  // Aggiorna refs coi dati più recenti, poi debounce 700ms.
   function persist(elements: any, appState: any, files: any) {
     if (!initialLoadDone.current) return
+    latestElementsRef.current = elements
+    latestAppStateRef.current = appState
+    latestFilesRef.current = files
     if (saveTimer.current) window.clearTimeout(saveTimer.current)
     saveTimer.current = window.setTimeout(() => {
-      _pendingSave.current = _pendingSave.current.then(async () => {
-        try {
-          const serialized = serializeAsJSON(elements, appState, files, "local")
-          await actualStore.saveScene(room, serialized)
-          setStorageError(null)
-          setSaved(true)
-          window.setTimeout(() => setSaved(false), 1200)
-        } catch (err) {
-          setStorageError("Salvataggio non riuscito: " + (err as Error).message)
-        }
-      })
+      _doSave()
     }, 700)
+  }
+
+  /** Esegue il salvataggio con i dati più recenti (dal debounce o da flush) */
+  async function _doSave() {
+    const elements = latestElementsRef.current
+    const appState = latestAppStateRef.current
+    const files = latestFilesRef.current
+    if (!elements) return
+    _pendingSave.current = _pendingSave.current.then(async () => {
+      try {
+        const serialized = serializeAsJSON(elements, appState, files, "local")
+        await actualStore.saveScene(room, serialized)
+        setStorageError(null)
+        setSaved(true)
+        window.setTimeout(() => setSaved(false), 1200)
+      } catch (err) {
+        setStorageError("Salvataggio non riuscito: " + (err as Error).message)
+      }
+    })
+    await _pendingSave.current
+  }
+
+  /** Flush immediato: cancella il debounce e salva subito. Attende il completamento. */
+  async function flushPersist() {
+    if (saveTimer.current) {
+      window.clearTimeout(saveTimer.current)
+      saveTimer.current = null
+    }
+    await _doSave()
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -190,6 +221,39 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     persist(elements, appState, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)
+  }
+
+  /** Apre/chiude il drawer delle lezioni */
+  async function toggleDrawer() {
+    if (drawerOpen) {
+      setDrawerOpen(false)
+      return
+    }
+    setLoadingRooms(true)
+    setDrawerOpen(true)
+    try {
+      const list = await actualStore.listRooms()
+      setRooms(list)
+    } catch {
+      setRooms([])
+    } finally {
+      setLoadingRooms(false)
+    }
+  }
+
+  /** Naviga a un'altra lezione: flush persist + cambia hash + forza re-init */
+  async function navigateToLesson(targetRoom: string) {
+    if (targetRoom === room) {
+      setDrawerOpen(false)
+      return
+    }
+    // Flush prima di navigare: zero tratti persi
+    await flushPersist()
+    // Cambia hash — guidare re-init via room state
+    location.hash = targetRoom
+    setDrawerOpen(false)
+    // Forza un re-mount pulito del componente
+    window.location.reload()
   }
 
   /** Toggle audio: ON = chiede consenso + avvia registrazione, OFF = ferma */
@@ -403,6 +467,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
+          <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
+            lezioni
+          </button>
           {/* Audio toggle: default OFF (GDPR — nessuna registrazione nascosta) */}
           <button
             onClick={toggleAudio}
@@ -424,6 +491,44 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
       {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
       {audioRecording && <div className="st-recstrip" data-rec-strip />}
+
+      {/* Drawer lezioni */}
+      {drawerOpen && (
+        <div className="st-drawer-overlay" onClick={() => setDrawerOpen(false)}>
+          <div className="st-drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="st-drawer-header">
+              <span className="st-drawer-title">Lezioni</span>
+              <button className="st-ghost st-drawer-close" onClick={() => setDrawerOpen(false)}>chiudi</button>
+            </div>
+            <div className="st-drawer-body">
+              {loadingRooms ? (
+                <span className="st-quiet">caricamento…</span>
+              ) : rooms.length === 0 ? (
+                <span className="st-quiet">Nessuna lezione salvata</span>
+              ) : (
+                rooms.map((r: any) => (
+                  <div
+                    key={r.room}
+                    className={`st-card${r.room === room ? " st-card-current" : ""}`}
+                    onClick={() => navigateToLesson(r.room)}
+                  >
+                    <div className="st-card-line">
+                      <span className="st-card-name">{r.name}</span>
+                      {r.room === room && <span className="st-card-badge">attuale</span>}
+                    </div>
+                    <div className="st-card-meta">
+                      {new Date(r.mtime).toLocaleDateString("it-IT", {
+                        day: "numeric", month: "short", year: "numeric",
+                        hour: "2-digit", minute: "2-digit",
+                      })}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div style={{ flex: 1, position: "relative" }}>
         {!loading && (

@@ -129,6 +129,58 @@ body {
 /* ── RECSTRIP: striscia fissa 2px --m-rec sotto l'header ───────────── */
 .st-recstrip { height: 2px; flex: 0 0 2px; background: var(--m-rec); border: 0; }
 
+/* ── Drawer lezioni (side panel destro) ─────────────────────────────── */
+.st-drawer-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: transparent;
+  animation: st-fadein var(--m-t-gentle) var(--m-ease);
+}
+.st-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 340px; max-width: 90vw;
+  background: var(--m-paper); border-left: var(--m-rule-weight) solid var(--m-line);
+  display: flex; flex-direction: column;
+  box-shadow: var(--m-shadow-card);
+  animation: st-slidein var(--m-t-gentle) var(--m-ease);
+}
+.st-drawer-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--m-sp-4); border-bottom: var(--m-rule-weight) solid var(--m-line);
+}
+.st-drawer-title {
+  font-family: var(--m-font-display); font-size: var(--m-fs-lg); color: var(--m-ink);
+}
+.st-drawer-close { font-size: var(--m-fs-xs); }
+.st-drawer-body {
+  flex: 1; overflow-y: auto; padding: var(--m-sp-3);
+}
+.st-card {
+  padding: var(--m-sp-3); border-radius: var(--m-r-card);
+  cursor: pointer; margin-bottom: var(--m-sp-2);
+  border: 1px solid transparent;
+  transition: background var(--m-t-fast) var(--m-ease), border-color var(--m-t-fast) var(--m-ease);
+}
+.st-card:hover { background: var(--m-fill); border-color: var(--m-line-2); }
+.st-card-current {
+  background: var(--m-accent-wash); border-color: var(--m-accent-light);
+}
+.st-card-current:hover { background: var(--m-accent-light); }
+.st-card-line { display: flex; align-items: center; gap: var(--m-sp-2); }
+.st-card-name {
+  font-size: var(--m-fs-md); color: var(--m-ink); font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.st-card-badge {
+  font-size: var(--m-fs-2xs); color: var(--m-accent);
+  background: var(--m-accent-wash); padding: 1px 7px;
+  border-radius: var(--m-r-pill); flex: 0 0 auto;
+}
+.st-card-meta {
+  font-size: var(--m-fs-xs); color: var(--m-ink-4); margin-top: var(--m-sp-1);
+}
+
+@keyframes st-fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes st-slidein { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
 /* ── welcome MAESTRO (dentro WelcomeScreen Excalidraw) ────────────────── */
 .st-welcome-brand { justify-content: center; margin-bottom: var(--m-sp-3); }
 .st-welcome-brand .st-word { font-size: var(--m-fs-2xl); }
