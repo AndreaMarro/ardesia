@@ -675,13 +675,68 @@ class TestRmtreeGuard:
     def test_refuses_case_alias_of_raw(self, store_and_data, data_root):
         """SELF-ADV CRITICO: on case-insensitive APFS, RAW *is* raw — a
         case-sensitive string compare let the guard through and rmtree
-        destroyed raw/. Guard must compare casefolded on macOS."""
+        destroyed raw/. Guard must compare casefolded.
+
+        Mutation-verified (re-run 2026-06-12 vs adversarial 11:55 claim):
+        with ``_fold`` mutated to identity this test FAILS (DID NOT RAISE)
+        because ``Path.resolve()`` does NOT case-normalize on APFS."""
         out = FsPath(data_root) / "RAW"
         if not out.exists():
             pytest.skip("case-sensitive filesystem: RAW is not an alias of raw")
         with pytest.raises(ValueError, match="raw/ data"):
             self._export(store_and_data, data_root, out)
         assert (FsPath(data_root) / "raw" / "lezione.jsonl").exists()
+
+    def test_refuses_case_alias_cross_platform(self, store_and_data, data_root):
+        """Adversarial 11:55 finding 2: the guard must fold case on EVERY
+        platform (NTFS/SMB mounts on Linux are case-insensitive too).
+        ``mkdir(exist_ok=True)`` makes RAW exist on case-sensitive
+        filesystems as a distinct dir, so the guard path is exercised
+        everywhere: casefolded compare must refuse it (false positive on a
+        truly case-sensitive fs = stricter guard, never destructive)."""
+        out = FsPath(data_root) / "RAW"
+        out.mkdir(exist_ok=True)
+        with pytest.raises(ValueError, match="raw/ data"):
+            self._export(store_and_data, data_root, out)
+        assert (FsPath(data_root) / "raw" / "lezione.jsonl").exists()
+
+    def test_refuses_nfd_alias_of_raw(self, store_and_data, derived_root):
+        """SELF-ADV CRITICO (review of adversarial-11:55 fix): APFS is also
+        Unicode-NORMALIZATION-insensitive — an NFD spelling of an accented
+        ancestor opens the same raw/ dir, but ``casefold()`` alone does not
+        normalize, so every path check passed and rmtree destroyed raw/
+        (repro executed). Guard must NFC-normalize before folding."""
+        import unicodedata
+
+        nfc = unicodedata.normalize("NFC", "università")
+        nfd = unicodedata.normalize("NFD", "università")
+        assert nfc != nfd  # distinct strings, same dir on APFS
+        with tempfile.TemporaryDirectory(prefix="dataroot_") as base:
+            root = FsPath(base) / nfc
+            root.mkdir()
+            derived = root / "derived"
+            shutil.copytree(derived_root, derived)
+            raw = root / "raw"
+            raw.mkdir()
+            (raw / "lezione.jsonl").write_text('{"seg": 1}\n', encoding="utf-8")
+            out = FsPath(base) / nfd / "raw"
+            if not out.exists():
+                pytest.skip("normalization-sensitive filesystem: NFD is not an alias")
+            with pytest.raises(ValueError, match="raw/ data"):
+                export_vault(
+                    store=store_and_data,
+                    teacher_id="test_teacher",
+                    output_dir=str(out),
+                    derived_root=str(derived),
+                )
+            assert (raw / "lezione.jsonl").exists()
+
+    def test_refuses_empty_output_dir(self, store_and_data, data_root):
+        """Adversarial 11:55 finding 3: ``output_dir=""`` resolved to cwd
+        only by accident of ``Path("").resolve()`` semantics. Must be an
+        explicit, version-independent ValueError."""
+        with pytest.raises(ValueError, match="non-empty"):
+            self._export(store_and_data, data_root, "")
 
     def test_refuses_raw_sibling_of_symlinked_derived(
         self, store_and_data, derived_root

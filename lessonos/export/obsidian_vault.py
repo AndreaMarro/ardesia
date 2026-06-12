@@ -21,7 +21,7 @@ import json
 import os
 import re
 import shutil
-import sys
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -154,6 +154,8 @@ def export_vault(
           wiki_files (int), dispense_files (int), canvas (bool)
     """
     # ---- Resolve paths ----
+    if not output_dir:
+        raise ValueError("output_dir must be a non-empty path")
     output = Path(output_dir)
 
     if derived_root is None:
@@ -175,15 +177,15 @@ def export_vault(
         cwd_str = str(Path.cwd().resolve())
         home_str = str(Path.home().resolve(strict=False))
 
-        # APFS is case-insensitive by default: compare casefolded on macOS
-        # so RAW/Raw aliases cannot bypass the guard. False positives only
-        # make the guard stricter (refuse to delete), never destructive.
-        if sys.platform == "darwin":
-            def _fold(p: str) -> str:
-                return p.casefold()
-        else:
-            def _fold(p: str) -> str:
-                return os.path.normcase(p)
+        # Case-insensitive filesystems exist on every platform (APFS
+        # default, NTFS/SMB/FUSE mounts on Linux): compare casefolded
+        # everywhere so RAW/Raw aliases cannot bypass the guard. APFS is
+        # also Unicode-normalization-insensitive: NFD "università" opens
+        # the same dir as NFC, so normalize to NFC before folding. False
+        # positives only make the guard stricter (refuse to delete),
+        # never destructive.
+        def _fold(p: str) -> str:
+            return unicodedata.normalize("NFC", p).casefold()
 
         # Block when deleting output would take derived/ down with it:
         # output == derived/ or output is an ANCESTOR of derived/.
