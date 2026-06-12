@@ -198,68 +198,78 @@ costo stimato oggi: $0.000  |  iter oggi: 0/96
 
 
 def fix_check_frictions():
-    """Add guard against new placeholder dates in check-frictions.sh"""
+    """Add guard against new placeholder dates in check-frictions.sh.
+    Uses guards/date.sh as single source of truth — no duplicate logic."""
     path = os.path.join(WORKDIR, "bin", "check-frictions.sh")
-
-    guard_block = """
-### GUARD: placeholder date (M2-6)
-PLACEHOLDER_COUNT=0
-for _f in "$PROJECT_ROOT/STATUS.md" "$PROJECT_ROOT/log.jsonl" "$PROJECT_ROOT/COORDINATION.md"; do
-  if [ -f "$_f" ]; then
-    _c=$(grep -c '(current)' "$_f" 2>/dev/null || echo 0)
-    if [ "$_c" -gt 0 ]; then
-      echo "  ⚠ PLACEHOLDER DATE: $_f ha $_c occorrenze di '(current)'"
-      PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c))
-    fi
-    _c2=$(grep -c '(executed)' "$_f" 2>/dev/null || echo 0)
-    if [ "$_c2" -gt 0 ]; then
-      echo "  ⚠ PLACEHOLDER DATE: $_f ha $_c2 occorrenze di '(executed)'"
-      PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c2))
-    fi
-    # Also check for hallucinated dates (months ahead)
-    _now_month=$(date +%m)
-    _now_year=$(date +%Y)
-    # Use a broad pattern that catches dates anywhere in the line, not anchored
-    _c3=$(grep -cE "$(_now_year)-(1[3-9]|2[0-9]|0[0-9])" "$_f" 2>/dev/null || echo 0)
-    if [ "$_c3" -gt 0 ]; then
-      echo "  ⚠ HALLUCINATED DATE: $_f ha date in mesi >=13 (impossibili)"
-      PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c3))
-    fi
-  fi
-done
-if [ "$PLACEHOLDER_COUNT" -gt 0 ]; then
-  echo "  ⚠ TOTALE: $PLACEHOLDER_COUNT placeholder/hallucinated dates — bonifica con bin/fix-date-placeholders.py"
-fi
-"""
+    guard_path = os.path.join(WORKDIR, "guards", "date.sh")
 
     with open(path) as f:
         content = f.read()
 
-    if "GUARD: placeholder date" in content:
-        print("  check-frictions.sh: guard gia presente — skip")
+    if "GUARD: placeholder date" in content and os.path.isfile(guard_path):
+        print("  check-frictions.sh: guard gia presente (da guards/date.sh) — skip")
         return 0
 
-    # Insert before the final summary/footer
-    # Look for the echo totals or end
-    lines = content.split("\n")
+    if not os.path.isfile(guard_path):
+        print(f"  check-frictions.sh: guards/date.sh mancante — fallback su template inline")
+        guard_source = _default_guard_block()
+    else:
+        with open(guard_path) as f:
+            guard_source = f.read()
+
+    guard_block = f"""
+### GUARD: placeholder date (M2-6) — sourced from guards/date.sh
+PROJECT_ROOT="$(pwd)"
+{guard_source}
+_guard_date_check
+"""
+
+    # Look for insertion point after the echo totals
+    lines = content.split("\\n")
     insert_idx = len(lines)
     for i, line in enumerate(reversed(lines)):
         if line.strip().startswith("echo") and "warning" in line.lower():
             insert_idx = len(lines) - i
             break
-        if line.strip().startswith("TOTAL_WARNINGS") or line.strip().startswith("exit $"):
-            insert_idx = len(lines) - i
-            break
-    else:
-        insert_idx = len(lines)
-    
+
     lines.insert(insert_idx, guard_block)
-    new_content = "\n".join(lines)
+    new_content = "\\n".join(lines)
 
     with open(path, "w") as f:
         f.write(new_content)
-    print(f"  check-frictions.sh: guard placeholder date aggiunto (indice riga ~{insert_idx})")
+    print(f"  check-frictions.sh: guard placeholder date aggiunto da guards/date.sh (indice riga ~{insert_idx})")
     return 1
+
+
+def _default_guard_block():
+    """Fallback guard template when guards/date.sh is not available."""
+    return """_guard_date_check() {
+  PLACEHOLDER_COUNT=0
+  for _f in "$PROJECT_ROOT/STATUS.md" "$PROJECT_ROOT/log.jsonl" "$PROJECT_ROOT/COORDINATION.md"; do
+    if [ -f "$_f" ]; then
+      _c=$(grep -c '(current)' "$_f" 2>/dev/null || true)
+      if [ "${_c:-0}" -gt 0 ]; then
+        echo "  \\u26a0 PLACEHOLDER DATE: $_f ha ${_c:-0} occorrenze di '(current)'"
+        PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c))
+      fi
+      _c2=$(grep -c '(executed)' "$_f" 2>/dev/null || true)
+      if [ "${_c2:-0}" -gt 0 ]; then
+        echo "  \\u26a0 PLACEHOLDER DATE: $_f ha ${_c2:-0} occorrenze di '(executed)'"
+        PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c2))
+      fi
+      # Hallucinated dates: months 13-99
+      _now_year="$(date +%Y)"
+      _c3=$(grep -cE "${_now_year}-(1[3-9]|[2-9][0-9])" "$_f" 2>/dev/null || true)
+      if [ "${_c3:-0}" -gt 0 ]; then
+        echo "  \\u26a0 HALLUCINATED DATE: $_f ha ${_c3:-0} date con mese >=13 (impossibili)"
+        PLACEHOLDER_COUNT=$((PLACEHOLDER_COUNT + _c3))
+      fi
+    fi
+  done
+  if [ "$PLACEHOLDER_COUNT" -gt 0 ]; then
+    echo "  \\u26a0 TOTALE: $PLACEHOLDER_COUNT placeholder/hallucinated dates \\u2014 bonifica con bin/fix-date-placeholders.py"
+  fi
+}"""
 
 
 if __name__ == "__main__":

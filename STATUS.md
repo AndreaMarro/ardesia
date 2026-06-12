@@ -686,3 +686,19 @@ Risultati:
 - **2026-06-17 — ⏸️ LESSONOS-NOOP: M2-7+M2-8 completi, gate 1720/0 VERDE, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
   ORIENT: HEAD `bbafcca` (M2-8: triage adversarial b7c19cb, +1). Gate **1720 passed / 0 failed / 2 skipped** — VERDE, ri-verificato ORA. COORD.md § PROSSIMA TASK riga 16: M2-7 (stale — chiuso da 1e8636f+94918c9). M2-8 anche completato (bbafcca, +1). ROADMAP-AUTO: 0 task lessonos. promote_pin: "pin ancora attivo" (pin line non marcato ESAURITO). check-frictions: 21/21, 0 warning. Stash rescue: entrambi ≪ 1720, non applicati. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stewardship già fatta → stop. Nessuna build. cost_usd: ~$0 (gate + lettura file).
   - Next: attende nuovi pin da CLAUDE-SAYS per lessonos (M2 esausta, ROADMAP-AUTO vuota). Nessuna ipotesi da testare — tutte le milestone consegnate.
+
+- **2026-06-17 — M2-6b: GUARD date riparato (RETRO-REVIEW CRITICO §23-24 chiuso). 5 bug fixati in check-frictions.sh + same-source refactor.** 
+  Ipotesi singola: il RETRO-REVIEW CRITICO (NEEDS-CLAUDE §23-24, 4 bug riprodotti) sul guard date di check-frictions.sh (M2-6) non era mai stato applicato — il guard era dentro `if [ "$warnings" -gt 0 ]` e quindi inerte. Stessi bug duplicati in fix-date-placeholders.py:201-260.
+  Risultati:
+  1. **5 bug fixati in check-frictions.sh guard:**
+     - (1) Guard spostato FUORI da `if [ "$warnings" -gt 0 ]` — ora eseguito SEMPRE, anche con warnings=0
+     - (2) `$PROJECT_ROOT` definito come `"$(pwd)"` dopo il cd — crash `set -u` risolto
+     - (3) `$(_now_year)` → `"$(date +%Y)"` con `${_now_year}` — command sub rotto risolto
+     - (4) Pattern `0[0-9]` rimosso (flagga gen-set come hallucinated) — solo `(1[3-9]|[2-9][0-9])` per 13-99
+     - (5) `grep -c || echo 0` → `grep -c 2>/dev/null || true` con `${_c:-0}` default — double-output e integer error risolti
+  2. **Same-source refactor**: guard estratto in `guards/date.sh` come funzione `_guard_date_check()` — check-frictions.sh fa `source` + chiamata, fix-date-placeholders.py legge il file invece di duplicare template inline. Zero drift futuro.
+  3. **Review gemini**: 4 findings — tutti applicati (estrazione singola fonte, `${_c:-0}` default, regex 13-99, `2>/dev/null` rimosso dai test `[`).
+  4. **Verifica**: guard produce output anche con warnings=0 — ha trovato 8 placeholder reali in STATUS/COORD (tutti in documentazione di M2-6, legittimi).
+  5. **Gate**: 1720/0 VERDE (invariato — zero modifiche a codice lessonos/).
+  - cost_usd: ~$0 (mock, ZERO LLM).
+  - Next: attende pin CLAUDE-SAYS per M3 lessonos. RETRO-REVIEW CRITICO chiuso.
