@@ -551,3 +551,11 @@ Risultati:
   - **VERIFY**: `uv run pytest -q` → **1651 passed, 2 skipped, 0 failed** — VERDE, invariato.
   - **COMMIT**: stato narrativa in STATUS.md, project-wiki log e vault-export.md aggiornati, log.jsonl entry.
   - cost_usd: ~$0 (ZERO LLM, solo vault deterministico).
+|
+|- **2026-07-16(new iteration) — ⏸️ LESSONOS-NOOP: M1 COMPLETO, M1-7c vault reale SU DISCO verificato, pin ESAURITO, atteso M2 da CLAUDE-SAYS.**
+|  ORIENT: HEAD `7155179` (M1-7c vault reale), gate **1651/0 VERDE** (ri-verificato ORA). M1 COMPLETO (M1-1→M1-7, vault reale eseguito e verificato su disco).
+|  COORD.md § PROSSIMA TASK aggiornata: lessonos M1-7c ✅, atteso pin M2. NEEDS-CLAUDE aggiunto.
+|  Stewardship già eseguita (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning.
+|  Stash rescue ispezionato: gate 1608 ≪ 1651, non pertinente, non applicato.
+|  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). AGENTS.md §3: stop.
+|  cost_usd: ~$0 (coordinamento).
