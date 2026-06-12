@@ -638,3 +638,16 @@ Risultati:
   7. **REVIEW**: review.sh gemini (quota) — 5 fix: (1) DIGEST `main(rev): current` → SHA reale; (2) log.jsonl regex non tronca tempo ISO; (3) check-frictions.sh `^` anchor -> pattern broad; (4) hallucinated-date regex generico non hardcoded; (5) log.jsonl JSON concat error fixato. Tutti applicati.
   8. **SELF-REVIEW**: 0 tautologie, 0 regressioni, ZERO LLM.
   9. Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0 (mock, ZERO LLM).
+
+- **2026-06-12T20:34:57Z — M2-8: triage report adversarial d044044 (M1-4b dispensa matching, 3/3 FALSI POSITIVI).** + NEEDS-CLAUDE update per 4 report (7b947aa, 1e7c18f, fbb96ff, d044044) ora triagati.
+  Ipotesi singola: il report adversarial d044044 (M1-4b, 2026-06-11 13:27) su _resolve_concepts_from_capsules (race condition break), _name_similar (normalizzazione) e test tautologico va verificato con repro EMPIRICO.
+  Risultati:
+  1. **Finding 1 (CRITICO — race condition)** — FALSO POSITIVO. Codice dispensa.py:211-212 ha `if best_ratio == 1.0: break` DOPO il for-inner, che esce ANCHE dal for-outer. Repro 100x su 2 capsule con stesso "Energia" (exact match): risultato sempre deterministico (primo L1). Il break al for-inner + guard esterno = double-break corretto.
+  2. **Finding 2 (MINORE — _name_similar non normalizza spazi)** — VERO MA TRASCURABILE. Threshold 0.85 assorbe punteggiatura (`"Fourier!"` vs `"Fourier"` → ratio 0.875 > 0.85), spazi doppi (`"Teorema  Fondamentale"` ~0.955), trailing space (`"Teorema "` ratio ~0.97). Zero impatto pratico su matching.
+  3. **Finding 3 (test tautologico)** — FALSO POSITIVO. `test_concept_without_citations_skipped` usa `name="Energia"` per entrambi i candidati, ma rimuovere il `continue` fa selezionare `no_cit` (primo esatto) invece di `good_cit` — il test FALLISCE rilevando la mutazione. NON tautologico.
+  4. **NEEDS-CLAUDE aggiornato**: 4/5 report lessonos ora triagati (7b947aa, 1e7c18f, fbb96ff, d044044). Solo `b7c19cb` (big report, edge remapping CRITICO) resta da triare.
+  5. **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+  6. **REVIEW**: review.sh quota-out (tutti account Claude) — self-review. Diff solo COORD.md (markup) + repro script in /tmp/. Zero modifiche a codice produzione.
+  - Gate: **1701 passed / 2 skipped / 0 failed** (invariato — nessuna modifica codice). cost_usd: ~$0 (mock, ZERO LLM).
+  - Next: MARATONA round 2 — triage b7c19cb (big report, edge remapping, unicode normalization).
+  - b7c19cb still needs: leggere report completo, verificare CRITICO edge remapping con repro/mutazione su codice aggregator.py, fix VERI, marcare FALSI POSITIVI.
