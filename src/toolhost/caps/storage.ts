@@ -55,6 +55,14 @@ export class ToolStorage {
     this._quotaBytes = quotaMB * 1024 * 1024
   }
 
+  /** Drena le mutazioni in coda (l'uninstall lo attende prima del purge). */
+  idle(): Promise<void> {
+    return this._chain.then(
+      () => {},
+      () => {},
+    )
+  }
+
   private _serialize<T>(op: () => Promise<T>): Promise<T> {
     const p = this._chain.then(op, op)
     this._chain = p.then(

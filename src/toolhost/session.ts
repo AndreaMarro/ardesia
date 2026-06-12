@@ -26,7 +26,11 @@ export interface HostSessionConfig extends RouterConfig {
   locale?: string
   /** Iniettabile SOLO nei test; default crypto-random. Il nonce è cattura-side, non replay-side. */
   nonce?: string
+  /** Tetto per le request host→tool: un tool muto non deve appendere suspend per sempre. */
+  requestTimeoutMs?: number
 }
+
+const DEFAULT_REQUEST_TIMEOUT_MS = 10_000
 
 export function createNonce(): string {
   const bytes = new Uint8Array(16)
@@ -73,10 +77,15 @@ export class ToolHostSession {
 
   private _cfg: HostSessionConfig
   private _state: "handshaking" | "ready" | "failed" = "handshaking"
+  private _closed = false
   private _port: PortLike | null = null
   private _listener: ((ev: { data: unknown }) => void) | null = null
   private _resolveReady!: () => void
   private _rejectReady!: (e: Error) => void
+  // request host-iniziate (host.suspend/host.restore): id con prefisso "host-",
+  // mai in collisione con gli id numerici che l'SDK usa per le proprie request.
+  private _nextHostId = 1
+  private _pending = new Map<RequestId, { resolve: (v: unknown) => void; reject: (e: Error) => void }>()
 
   constructor(cfg: HostSessionConfig) {
     this._cfg = cfg
@@ -101,10 +110,43 @@ export class ToolHostSession {
   }
 
   close(): void {
+    this._closed = true
     if (this._port !== null && this._listener !== null) {
       this._port.removeEventListener("message", this._listener)
     }
     this._port?.close?.()
+    for (const waiter of this._pending.values()) waiter.reject(new Error("session closed"))
+    this._pending.clear()
+  }
+
+  /**
+   * Request host→tool sulla porta (lifecycle: host.suspend / host.restore).
+   * Con timeout: un tool muto o in loop non può lasciare l'host appeso.
+   */
+  request(method: "host.suspend" | "host.restore", params: unknown): Promise<unknown> {
+    if (this._closed) return Promise.reject(new Error("session closed"))
+    if (this._state !== "ready") return Promise.reject(new Error("session not ready"))
+    const port = this._port
+    if (port === null) return Promise.reject(new Error("session not attached"))
+    const id = `host-${this._nextHostId++}`
+    const timeoutMs = this._cfg.requestTimeoutMs ?? DEFAULT_REQUEST_TIMEOUT_MS
+    return new Promise<unknown>((resolve, reject) => {
+      const timer = setTimeout(() => {
+        this._pending.delete(id)
+        reject(new Error(`tool did not answer ${method} within ${timeoutMs}ms`))
+      }, timeoutMs)
+      this._pending.set(id, {
+        resolve: (v) => {
+          clearTimeout(timer)
+          resolve(v)
+        },
+        reject: (e) => {
+          clearTimeout(timer)
+          reject(e)
+        },
+      })
+      port.postMessage({ jsonrpc: "2.0", id, method, params })
+    })
   }
 
   private _respond(response: JsonRpcResponse): void {
@@ -117,8 +159,19 @@ export class ToolHostSession {
 
   private async _onMessage(raw: unknown): Promise<void> {
     // Le response (repliche del tool a richieste host-iniziate, es. host.suspend)
-    // non sono request: niente dispatch e niente INVALID_REQUEST di rimbalzo.
-    if (JsonRpcResponseSchema.safeParse(raw).success) return
+    // non sono request: si risolve il waiter corrispondente, mai dispatch al router.
+    // Una response con id mai emesso dall'host viene ignorata (waiter assente).
+    const asResponse = JsonRpcResponseSchema.safeParse(raw)
+    if (asResponse.success) {
+      const res = asResponse.data
+      if (res.id === null) return
+      const waiter = this._pending.get(res.id)
+      if (waiter === undefined) return
+      this._pending.delete(res.id)
+      if ("result" in res) waiter.resolve(res.result)
+      else waiter.reject(new Error(`tool error ${res.error.code}: ${res.error.message}`))
+      return
+    }
 
     const reqParse = JsonRpcRequestSchema.safeParse(raw)
     const method = reqParse.success ? reqParse.data.method : null
