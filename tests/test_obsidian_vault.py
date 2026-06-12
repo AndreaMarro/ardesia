@@ -709,14 +709,33 @@ def store_with_dedup():
     return s
 
 
+def _evidenze_bullets(content: str) -> list[str]:
+    """Extract the bullet lines of the ## Evidenze section of a concept page."""
+    bullets: list[str] = []
+    in_section = False
+    for line in content.split("\n"):
+        if line.strip() == "## Evidenze":
+            in_section = True
+            continue
+        if in_section:
+            if line.startswith("## "):
+                break
+            if line.strip().startswith("- "):
+                bullets.append(line.strip())
+    return bullets
+
+
 class TestExportVaultContent:
     """Content tests that would fail on the old broken raw_to_merged mapping."""
 
-    def test_evidence_section_non_empty(self, store_with_dedup):
-        """Concept pages with evidence must have a non-empty ## Evidenze section.
+    def test_dedup_concept_has_cross_lesson_evidence(self, store_with_dedup):
+        """The deduplicated Energia page must carry evidence from BOTH lessons.
 
-        On the old code, cross-lesson raw IDs were not mapped, so evidence
-        from the second lesson's edge was silently dropped.
+        On the old code only the first raw occurrence (l1:concept:1) was in
+        raw_to_merged, so edge l2:e1 lost its source and the l2 evidence (ev3)
+        never reached the merged Energia page. A global "any page has a bullet"
+        scan passes even on the broken code (l1 evidence still renders), so the
+        assert must target the Energia page and the l2 excerpt specifically.
         """
         with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
             export_vault(
@@ -725,27 +744,21 @@ class TestExportVaultContent:
                 output_dir=tmp,
             )
             vault = FsPath(tmp)
-            concetti_dir = vault / "concetti"
-            evidence_found = False
-            for f in concetti_dir.glob("*.md"):
+            energia = None
+            for f in (vault / "concetti").glob("*.md"):
                 content = f.read_text(encoding="utf-8")
-                if "## Evidenze" in content:
-                    # Must have at least one evidence bullet after the header
-                    lines = content.split("\n")
-                    ev_section = False
-                    for line in lines:
-                        if line.strip() == "## Evidenze":
-                            ev_section = True
-                            continue
-                        if ev_section:
-                            if line.startswith("## "):
-                                break
-                            if line.strip().startswith("- "):
-                                evidence_found = True
-                                break
-            assert evidence_found, (
-                "No concept page has evidence bullets. "
-                "If raw_to_merged is broken, cross-lesson evidence is lost."
+                if "# Energia di un segnale" in content:
+                    energia = content
+                    break
+            assert energia is not None, "Energia page not found"
+            bullets = _evidenze_bullets(energia)
+            assert bullets, "Energia page has no ## Evidenze bullets"
+            joined = "\n".join(bullets)
+            assert "L'energia si calcola come integrale" in joined, \
+                "l1 evidence (ev2) missing from Energia page"
+            assert "L'energia e importante anche qui" in joined, (
+                "l2 evidence (ev3) missing from Energia page: "
+                "raw_to_merged lost l2:concept:1"
             )
 
     def test_no_not_found_in_prereqs(self, store_with_dedup):
