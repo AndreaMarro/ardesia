@@ -500,6 +500,30 @@ class TestAggregatePathGraph:
         assert len(result.merged_nodes) == 1
         assert result.merged_nodes[0].status == "reinforced"
 
+    def test_unicode_normalization_dedup(self):
+        """NFC normalization deduplicates visually identical names encoded differently.
+
+        U+00E9 (LATIN SMALL LETTER E WITH ACUTE, precomposed) and
+        U+0065 U+0301 (LATIN SMALL LETTER E + COMBINING ACUTE ACCENT, decomposed)
+        are canonically equivalent but have different bytes. NFC normalization
+        must map both forms to the same dedup key.
+        """
+        import unicodedata
+        store = _PathStore()
+        _register_path(store, "p1", ["l1", "l2"])
+        # NFD form: e + combining acute
+        c1 = _make_capsule("l1", [{"name": "caf\u00e9", "status": "introduced"}])       # NFC: café
+        c2 = _make_capsule("l2", [{"name": "cafe\u0301", "status": "reinforced"}])      # NFD: café
+        assert len(c1.content.concepts[0].name) != len(c2.content.concepts[0].name), \
+            "fixture: precomposed and decomposed must differ in byte length"
+        _register_capsule(store, c1)
+        _register_capsule(store, c2)
+
+        result = aggregate_path_graph(store, "p1")
+        assert len(result.merged_nodes) == 1, \
+            f"expected 1 merged node (NFC dedup), got {len(result.merged_nodes)}"
+        assert result.merged_nodes[0].status == "reinforced"
+
     def test_problematic_status_dominates_introduced(self):
         """problematic > introduced in STATUS_ORDER."""
         store = _PathStore()

@@ -19,6 +19,7 @@ from __future__ import annotations
 from lessonos.capsule.assembly import LessonCapsule, load_capsule
 from lessonos.capsule.extraction import ConceptExtraction
 from lessonos.graph.resolution import GlobalResolution
+from lessonos.graph.utils import normalize_name
 from lessonos.models.entities import (
     STATUS_ORDER,
     AggregatedPathGraph,
@@ -31,12 +32,8 @@ from lessonos.store.base import Store
 
 
 def _normalize_name(name: str) -> str:
-    """Normalise a concept name for deduplication: lowercase, strip whitespace.
-
-    Must stay in sync with ``lessonos.graph.resolution._normalize_name`` —
-    the resolution mapping is keyed on the same rule.
-    """
-    return name.strip().lower()
+    """Normalise a concept name for deduplication (delegates to shared utility)."""
+    return normalize_name(name)
 
 
 def _lesson_ids_from_path(store: Store, path: Path) -> list[str]:

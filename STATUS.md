@@ -666,3 +666,16 @@ Risultati:
   - Gate: **1701 passed / 2 skipped / 0 failed** (invariato — nessuna modifica codice). cost_usd: ~$0 (mock, ZERO LLM).
   - Next: MARATONA round 2 — triage b7c19cb (big report, edge remapping, unicode normalization).
   - b7c19cb still needs: leggere report completo, verificare CRITICO edge remapping con repro/mutazione su codice aggregator.py, fix VERI, marcare FALSI POSITIVI.
+
+- **2026-06-17 — M2-8 (ADV-TRIAGE b7c19cb): triage adversarial su aggregator.py completato — 1 CRITICO FALSO POSITIVO, 1 VERO MINORE fixato (NFC normalization + shared utility), gate 1720/0 (+1).**
+  Ipotesi singola: il report adversarial HERMES-2 su `lessonos@b7c19cb` (M1-1 aggregator.py, 2026-06-11 05:25) va triagato sul codice REALE a HEAD (che ha evoluto significativamente dal commit del report).
+  Risultati:
+  1. **Finding 1 (CRITICO — edge rewiring)**: FALSO POSITIVO. Il report sostiene che gli edge nel grafo aggregato hanno target lesson-local (`l1:concept:0`) mentre i merged_nodes hanno ID path-scoped (`path:l1:concept:0`), rendendo il grafo non traversabile. In realtà, il downstream (teacher_book.py) matcha edges tramite `key_map` su per-lesson concept ID (`_count_edges_for_concept`, `_build_citations`), non su merged node ID. `raw_to_merged` (M1-7b) esiste per vault export su DB separati. L'architettura è intenzionale: edges mantengono provenienza lesson-locale, nodi aggregati hanno ID path-level.
+  2. **Finding 2 (MINORE — `_normalize_name` senza Unicode normalization)**: VERO, fixato. `_normalize_name` usava `strip().lower()` senza NFC normalization — "café" (U+00E9) e "café" (U+0065+U+0301) restavano distinti. Fix: nuova `lessonos/graph/utils.py` con `normalize_name()` condiviso (NFC + `casefold()`), importato da aggregator.py + resolution.py. Elimina la duplicazione `"Must stay in sync"` (MAJOR gemini).
+  3. **Finding 3 (MINORE — `test_edge_union_preserved` tautologico)**: FALSO POSITIVO. Il test verifica che edges da TUTTE le lezioni siano preservati (conteggio + tipi). Non tautologico: se il filtro droppasse edges di una lezione, il test fallirebbe.
+  4. **Finding 4 (MINORE — dead code node_id collision loop)**: MINORE — loop difensivo `while node_id in node_ids_seen` è irraggiungibile per costruzione ma non dannoso. Non rimosso (utile come guard per future refactor).
+  5. **1 nuovo test**: `test_unicode_normalization_dedup` — NFC vs NFD forms dello stesso nome (café) devono deduplicarsi in 1 merged node. Falsificabile (fallirebbe se normalize rimuovesse NFC).
+  - **PLAN-CHECK**: fable.sh chiamato per proattività — rate-limit. Proceduto.
+  - **REVIEW**: gemini (review.sh) — 1 MAJOR (codice duplicato "Must stay in sync") → risolto con utils.py condiviso. OK finale.
+  - Gate: **1720 passed / 2 skipped / 0 failed** (+1 da baseline 1719, nessuna regressione). cost_usd: ~$0 (mock, ZERO LLM).
+  - Next: pin M2-7 stale non promosso da promote_pin (manca marker PIN ESAURITO nella riga PROSSIMA TASK). M2-8 completato. Attende pin CLAUDE-SAYS o fix promote_pin per prossima task. M2-9 non esiste — ROADMAP-AUTO vuota per lessonos dopo M2-8.

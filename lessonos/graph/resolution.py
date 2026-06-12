@@ -32,6 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from lessonos.capsule.assembly import load_capsule
+from lessonos.graph.utils import normalize_name
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
 
@@ -43,8 +44,8 @@ _CODE_FENCE_RE = re.compile(r"^```(?:json)?\s*|\s*```$", re.MULTILINE)
 
 
 def _normalize_name(name: str) -> str:
-    """Normalise a concept name: lowercase, strip whitespace (same rule as the aggregator)."""
-    return name.strip().lower()
+    """Normalise a concept name (delegates to shared ``lessonos.graph.utils.normalize_name``)."""
+    return normalize_name(name)
 
 
 @dataclass(frozen=True)
