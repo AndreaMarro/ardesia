@@ -53,6 +53,20 @@ export const PATHS = {
   AUDIO_DIR: "raw/audio/",
 } as const
 
+/** Meta di una lezione (raw/<room>/meta.json) */
+export interface LessonMeta {
+  v: 1
+  name: string
+  createdAt: number
+}
+
+export type RoomInfo = LessonMeta & {
+  /** L'id (chiave) della room */
+  room: string
+  /** Ultima modifica in epoch ms */
+  mtime: number
+}
+
 // Schema versionato (campo `v` nei dati)
 export const SCHEMA_VERSION = 1
 

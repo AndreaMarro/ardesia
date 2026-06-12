@@ -189,7 +189,48 @@ describe("WorkspaceStore", () => {
     await driver.delete("raw/test.bin")
     expect((await driver.usage()).usedBytes).toBe(before)
   })
+
+  // --- S-DESIGN-3: lezioni con nome (meta.json + listRooms) ---
+
+  it("saveMeta/loadMeta: scrive e legge meta.json", async () => {
+    const meta = { v: 1 as const, name: "Teoria dei Segnali — cap. 3", createdAt: 1000 }
+    await store.saveMeta("room1", meta)
+    const loaded = await store.loadMeta("room1")
+    expect(loaded).not.toBeNull()
+    expect(loaded!.name).toBe("Teoria dei Segnali — cap. 3")
+    expect(loaded!.createdAt).toBe(1000)
+  })
+
+  it("loadMeta su room senza meta.json = null", async () => {
+    const loaded = await store.loadMeta("inexistent")
+    expect(loaded).toBeNull()
+  })
+
+  it("listRooms restituisce room ordinate per mtime discendente", async () => {
+    // Crea 2 room con scene
+    await store.saveScene("roomA", JSON.stringify({ v: 1 }))
+    await sleep(2)
+    await store.saveScene("roomB", JSON.stringify({ v: 1 }))
+
+    // Assegna nome a roomA
+    await store.saveMeta("roomA", { v: 1, name: "Alpha", createdAt: 1000 })
+
+    const rooms = await store.listRooms()
+    // roomB è la più recente (scritta dopo)
+    expect(rooms.length).toBe(2)
+    expect(rooms[0].room).toBe("roomB")
+    expect(rooms[0].name).toBe("roomB") // fallback-id senza meta
+    expect(rooms[1].room).toBe("roomA")
+    expect(rooms[1].name).toBe("Alpha")
+  })
+
+  it("listRooms su store vuoto = []", async () => {
+    const rooms = await store.listRooms()
+    expect(rooms).toEqual([])
+  })
 })
+
+function sleep(ms: number) { return new Promise(r => setTimeout(r, ms)) }
 
 describe("zipBundle", () => {
   it("createBundleBlob + parseBundleBlob idempotente", async () => {

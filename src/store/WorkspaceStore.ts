@@ -3,7 +3,7 @@
 //   FSA (File System Access) → localStorage (cache/fallback) → bundle export/import.
 // La fonte di verità è la cartella FSA (o il bundle .lesson). localStorage è CACHE.
 
-import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type StorageUsage } from "./types"
+import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type StorageUsage, type LessonMeta, type RoomInfo } from "./types"
 import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
 import { createFSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
@@ -115,6 +115,66 @@ export class WorkspaceStore {
     }
     // Fallback: legacy localStorage (chiave studio-scene:{room})
     return this.fallback.getLegacyScene(room)
+  }
+
+  /** Path del file meta.json per una room */
+  private roomMetaPath(room: string): string {
+    return `raw/${room}/meta.json`
+  }
+
+  // --- OPERAZIONI META (nome lezione) ---
+
+  async saveMeta(room: string, meta: LessonMeta): Promise<void> {
+    const json = JSON.stringify(meta)
+    await this.write(this.roomMetaPath(room), new Blob([json], { type: "application/json" }))
+  }
+
+  async loadMeta(room: string): Promise<LessonMeta | null> {
+    const blob = await this.read(this.roomMetaPath(room))
+    if (!blob) return null
+    try {
+      const parsed = JSON.parse(await blob.text()) as LessonMeta
+      if (parsed && typeof parsed === "object" && parsed.v === 1 && typeof parsed.name === "string") {
+        return parsed
+      }
+    } catch { /* malformed — return null */ }
+    return null
+  }
+
+  /**
+   * Elenca tutte le room disponibili (da raw/<room>/board.excalidraw)
+   * e arricchisce con meta.json se presente, altrimenti fallback-id.
+   * Ordine: mtime discendente.
+   */
+  async listRooms(): Promise<RoomInfo[]> {
+    const all = await this.list("raw/")
+    const rooms = new Map<string, { mtime: number }>()
+
+    for (const entry of all) {
+      const parts = entry.path.split("/")
+      if (parts.length >= 3 && parts[0] === "raw" && parts[2] === "board.excalidraw") {
+        const room = parts[1]
+        const existing = rooms.get(room)
+        if (!existing || entry.mtime > existing.mtime) {
+          rooms.set(room, { mtime: entry.mtime })
+        }
+      }
+    }
+
+    const result: RoomInfo[] = []
+    for (const [room, info] of rooms) {
+      const meta = await this.loadMeta(room)
+      result.push({
+        v: 1,
+        room,
+        name: meta?.name ?? room,
+        createdAt: meta?.createdAt ?? info.mtime,
+        mtime: info.mtime,
+      })
+    }
+
+    result.sort((a, b) => b.mtime - a.mtime)
+    return result
   }
 
   // --- SESSION ---
