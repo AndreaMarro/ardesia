@@ -33,6 +33,12 @@ for i in $(seq 1 "$N"); do
   # esatti ha gia ucciso 2 build gate-verdi; -s INT -k 60 = morte pulita, non KILL secco)
   FT=3600; HT=2400
   if printf '%s' "$PIN_LINE" | grep -q '\[LUNGA\]'; then FT=7200; HT=4800; fi
+  # W2-M3 fast-skip: pin esaurito/assente = niente builder, niente quota, niente commit-rumore
+  if [ -z "$PIN_LINE" ] || printf '%s' "$PIN_LINE" | grep -qiE 'PIN ESAURITO|\[PIN-DONE'; then
+    printf '| %s | %s | %s | %s | y | noop-fast | studio:pin esaurito (W2-M3, 0 builder) |\n' "$ts" "$i" "$(git rev-parse --short HEAD)" "$bp" >> "$RES"
+    echo "[studio] --- iter $i: noop-fast (pin esaurito, W2-M3) ---" | tee -a "$LOG"
+    continue
+  fi
   if printf '%s' "$PIN_LINE" | grep -qE '\[GRIND\]|\[DEEPSEEK\]|\[HERMES\]' && [ "${MAESTRO_KIMI_STATE:-ok}" != exhausted ]; then
     echo "[driver] BUILDER=Hermes-DeepSeek (pin GRIND)" | tee -a "$LOG"
     timeout -k 60 -s INT "$HT" hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
