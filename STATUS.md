@@ -618,4 +618,7 @@ Risultati:
 - **2026-06-12(executed) — ⏸️ LESSONOS-NOOP: M1+M2 completi (gate 1701/2 VERDE su HEAD 0879494), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
   ORIENT: HEAD `0879494` (lint coord). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale). CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo. Stash rescue: entrambi ≪ 1701, non applicati. Stewardship già fatta (RETRO #10). check-frictions: 21/21, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
   - Next: attende pin CLAUDE-SAYS per M2 (M2-1 blind-test? M2-4 ToolHost T3?). Se >14gg, segnalare ad Andrea per decisione sul futuro.
-|
+
+- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP: M1+M2 completi (M1-1→M1-7, M2-2→M2-3→M2-5, gate 1701/0 VERDE su HEAD 7392267), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già fatta → stop.**
+  ORIENT: HEAD `7392267` (log NOOP). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso da fa6d057). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 16:45 CARTA DEI RUOLI — solo direttiva FABLE/HERMES ruoli, zero nuovi pin). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. Stash rescue: entrambi ≪ 1701, non applicati. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (zero LLM, solo gate + lettura file).
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se >14gg, segnalare ad Andrea per decisione sul futuro del progetto.
