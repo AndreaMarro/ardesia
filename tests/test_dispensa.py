@@ -1102,11 +1102,96 @@ class TestClaimBadge:
         md = render_dispensa_md(cleaned, report)
         assert "\u2705`l#s1`" in md
 
-    def test_dispensa_badge_repaired_through_claim_badge(self):
-        """Repaired badge verified via claim_badge helper (full pipeline)."""
-        from lessonos.graph.grounding import claim_badge
-        badge = claim_badge("test", repaired=True)
-        assert "🔧" in badge
+    def test_dispensa_badge_repaired_end_to_end(self):
+        """Repaired claim goes through the real pipeline and emerges with 🔧 badge.
+
+        The claim's excerpt is NOT a verbatim substring of the segment text
+        (words in different order), so _verify_or_repair must repair it via
+        tier-2 (SequenceMatcher). The repaired claim must carry repaired=True
+        and the renderer must show 🔧.
+        """
+        store = self._store()
+        # segment text: "si calcola come integrale l'energia del segnale"
+        store._segments["l#s1"] = _SegStub(
+            seg_id="l#s1",
+            text="si calcola come integrale l'energia del segnale",
+            lesson_id="l",
+        )
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Energia.",
+                            claims=(DispensaClaim(
+                                text="energia",
+                                seg_id="l#s1",
+                                excerpt="energia del segnale si calcola",
+                            ),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        cleaned, report = verify_and_clean_dispensa(doc, store)
+        # The paragraph must survive (all claims verifiable after repair)
+        assert len(cleaned.sections) == 1
+        assert len(cleaned.sections[0].paragraphs) == 1
+        assert len(cleaned.sections[0].paragraphs[0].claims) == 1
+        claim = cleaned.sections[0].paragraphs[0].claims[0]
+        assert claim.repaired is True
+        assert claim.excerpt == "energia del segnale"
+        md = render_dispensa_md(cleaned, report)
+        assert "\U0001f527" in md  # 🔧
+
+    def test_dispensa_badge_mixed_paragraph(self):
+        """Mixed paragraph with verified + repaired claim shows both ✅ and 🔧.
+
+        Regression guard: a paragraph with one verbatim claim and one repaired
+        claim must render BOTH badges correctly — never confusing 🔧 with ✅.
+        """
+        store = self._store()
+        store._segments["l#s1"] = _SegStub(
+            seg_id="l#s1",
+            text="si calcola come integrale l'energia del segnale",
+            lesson_id="l",
+        )
+        store._segments["l#s2"] = _SegStub(
+            seg_id="l#s2",
+            text="potenza media",
+            lesson_id="l",
+        )
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Energia e potenza.",
+                            claims=(
+                                DispensaClaim(  # verified — verbatim excerpt
+                                    text="potenza",
+                                    seg_id="l#s2",
+                                    excerpt="potenza media",
+                                ),
+                                DispensaClaim(  # repaired — paraphrased
+                                    text="energia",
+                                    seg_id="l#s1",
+                                    excerpt="energia del segnale si calcola",
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        cleaned, report = verify_and_clean_dispensa(doc, store)
+        md = render_dispensa_md(cleaned, report)
+        assert "\u2705" in md  # ✅ verified badge
+        assert "\U0001f527" in md  # 🔧 repaired badge
 
     def test_dispensa_badge_dropped_in_footer(self):
         """Dropped paragraphs show ✗ badge in footer (< 20% unverified)."""
