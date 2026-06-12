@@ -34,6 +34,7 @@ Pipeline a 4 fasi:
    - seg_id risolvibile, stessa lezione (cross-lesson guard), excerpt verbatim
    - Gate fail-closed: 0 claims o >20% unverified = `ValueError`
    - Paragrafi non-grounded droppati + dichiarati nel footer (M1-4b: preserva TESTO reale dei paragrafi scartati, non stringa generica)
+   - **CRITICO FIX 2026-07-16** (commit 478f628, gate 1634/0): claim con `excerpt=None` e seg_id valido NON è più contato come VERIFIED. `_verify_or_repair` (dispensa.py:467-475) ora controlla che excerpt non sia None/'' dopo `verify_citation` — claim senza excerpt è unverifiable (return None → dropped). Precedente: `verify_citation(_, _, _, None)` saltava il check substring, e il claim passava come VERIFIED. Test: `test_excerpt_none_dropped`.
 
 4. **`render_dispensa_md(doc, report)`** — ZERO-LLM, markdown con sezioni, citazioni, footer grounding.
 

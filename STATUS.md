@@ -431,4 +431,13 @@ Risultati:
 - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
 - **REVIEW**: review.sh quota-out (Claude Code) — self-review senza compiacenza: ZERO LLM, ZERO modifiche al motore, idempotenza verificata byte-per-byte.
 - Gate: **1633 passed / 2 skipped / 0 failed** (+25 da baseline 1608). cost_usd: ~$0 (ZERO LLM, mock).
-- Next: M2 candidati — attende pin CLAUDE-SAYS (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
+|- Next: M2 candidati — attende pin CLAUDE-SAYS (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
+
+- **2026-07-16(current) — CRITICO FIX: falso-verde in verify_and_clean_dispensa (retro-review CRITICO 2026-06-12, mai applicato).**
+  Ipotesi singola: il CRITICO trovato dalla retro-review (2026-06-12 02:13) in _verify_or_repair — claim con excerpt=None passava come VERIFIED perché verify_citation(seg_id, excerpt=None) salta il check substring — NON era mai stato fissato. Il commit M1-6.F2 (3a166d9) conteneva la falla; M1-7 (vault-export) non tocca dispensa.py. Fix ora applicato.
+  Risultati:
+  1. **Fix** (dispensa.py:467-475): dopo verify_citation, controlla `claim.excerpt is None or claim.excerpt == ""` → se excerpt non presente, claim è UNVERIFIED (return None). Il vecchio codice restituiva `(claim, False)` incondizionatamente, violando la policy T6R (grounding.py:66 "VERIFIED iff non-empty excerpt").
+  2. **Test** (test_dispensa.py: test_excerpt_none_dropped): claim con seg_id valido (l#s1) ma excerpt=None → ValueError (unverified ratio 100% > 20%). Falsificabile: se fix rimosso, claim passerebbe come VERIFIED e il test fallirebbe (nessun ValueError).
+  - **REVIEW**: review.sh rate-limit (Claude Code extra usage) — self-review: chirurgico, zero regressioni, 44 test esistenti passano +1 nuovo.
+  - Gate: **1634 passed / 2 skipped / 0 failed** (+1 da baseline 1633). cost_usd: ~$0 (mock).
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Il CRITICO da retro-review è CHIUSO.
