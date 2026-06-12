@@ -13,13 +13,14 @@ day=$(date -u +%F); cf="$HOME/lessonos/.builds_today"
 bt=$(sed -n 2p "$cf" 2>/dev/null); bt=${bt:-0}; CAP="${LESSONOS_DAILY_CAP:-6}"
 # gate TPD-aware: Kimi esausto (breaker non ancora resettato)? -> niente build (no spreco token/tempo)
 kimi=$(python3 -c "import json,os,time;d=json.load(open(os.path.expanduser('~/.hermes/auth.json')));k=(d.get('credential_pool',{}).get('kimi-coding') or [{}])[0];ex=k.get('last_status')=='exhausted';r=k.get('last_error_reset_at') or 0;print('exhausted' if (ex and time.time()<r) else 'ok')" 2>/dev/null)
+export MAESTRO_KIMI_STATE="$kimi"   # W1-M3: i driver degradano invece di bruciare timeout
 repo=$(cat "$HOME/.maestro_active_repo" 2>/dev/null || echo lessonos)
 if [ "$repo" = "alternate" ]; then
   last=$(cat "$HOME/.maestro_last_repo" 2>/dev/null || echo lessonos)
   if [ "$last" = "studio" ]; then repo=lessonos; else repo=studio; fi
 fi
 if [ -f STOP ]; then echo "[tick] STOP — solo digest"
-elif [ "$kimi" = exhausted ]; then echo "[tick] Kimi TPD esausto (breaker) — salto build, solo digest"
+elif [ "$kimi" = exhausted ] && ! bash "$HOME/lessonos/bin/acct.sh" pick >/dev/null 2>&1; then echo "[tick] kimi esausto E zero account claude — salto build, solo digest (W1-M3)"
 elif [ "$bt" -ge "$CAP" ]; then echo "[tick] cap $CAP/giorno raggiunto — solo digest"
 else
   echo "[tick] build $((bt+1))/$CAP (repo=$repo)"
