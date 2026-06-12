@@ -584,3 +584,6 @@ Risultati:
   - **REVIEW**: review.sh quota-out (Claude Code) — self-review: ab-dispensa-energia.py e' script dati (non modulo), fix ast.literal_eval chirurgico (fallback dopo json.loads fallito), 0 regressioni.
   - Gate: **1700 passed / 0 failed** (invariato da baseline). cost_usd: ~$0.0016 (1 chiamata deepseek-chat per v2, v1 da M1-6 gia esistente).
   - Next: M2-2b completata. Attende pin CLAUDE-SAYS per prossima task M2.
+
+- **2026-12-06(current) — ⏸️ LESSONOS-NOOP #1 (fresh session): pin M2-2b ESAURITO (committed 95e6915), ROADMAP-AUTO M2-5 non pinnato.**
+  ORIENT: HEAD `f939437` (infra: guard+coord-lint+review-kimi). Gate rieseguito ORA: **1696 passed / 2 skipped** — VERDE. PROSSIMA TASK riga 16: `lessonos: M2-2b` ✅ — STALE (chiuso). ROADMAP-AUTO riga 21: `[AUTO-OK] M2-5 — badge nel vault` — non promosso da promote_pin.py (assente dal repo). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti. AGENTS.md §3: 1° NOOP → fermati. Nessuna build. cost_usd: ~$0.
