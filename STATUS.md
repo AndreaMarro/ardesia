@@ -703,5 +703,8 @@ Risultati:
   - cost_usd: ~$0 (mock, ZERO LLM).
   - Next: attende pin CLAUDE-SAYS per M3 lessonos. RETRO-REVIEW CRITICO chiuso.
 
-- **2026-06-13 — ⏸️ LESSONOS-NOOP: M2 completo (1720/0 VERDE), ROADMAP-AUTO vuota, pin M3 assente, stewardship già fatta → stop. Placeholder guard pulito (0/0).**
+- **2026-06-13 — ⏸️ LESSONOS-NOOP: M2 completo (1720/0 VERDE), ROADMAP-AUTO vuota, pin M3 assente, nulla cambiato — stop.**
   ORIENT: HEAD `60d60c3`, gate **1720 passed / 0 failed / 2 skipped** — VERDE (ri-verificato ORA). M2-7+M2-8+M2-6b completi. COORD.md § PROSSIMA TASK riga 16: lessonos M2-7 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M3 lessonos dall'ultimo (2026-06-12 22:50). promote_pin: "pin ancora attivo" (riga M2-7 non marcata ESAURITO). check-frictions: 21/21, 0 warning. Placeholder guard: 3 falsi positivi in COORD.md bonificati (erano testo descrittivo in vecchi NEEDS-CLAUDE). Stash rescue: entrambi ≪ 1720, non pertinenti. Stewardship già eseguita (RETRO #10). AGENTS.md §3: stop. Nessuna build. cost_usd: ~$0 (gate + check-frictions + placeholder fix).
+
+- **2026-06-13 — ⏸️ LESSONOS-NOOP #N+3: M2 completo (1720/0), ROADMAP-AUTO vuota, pin M3 assente, nulla cambiato → fermato.**
+  ORIENT: HEAD 695e6e8 (doc commit, codice invariato). Gate 1720 passed / 2 skipped / 0 failed — VERDE. check-frictions: 21/21, 0 warning. Nessuna modifica al codice dall'ultimo NOOP. ROADMAP-AUTO per lessonos ancora vuota. CLAUDE-SAYS nessun pin M3. promote_pin sempre bloccato (riga M2-7 non marcata ESAURITO). Stewardship gia eseguita. Nessuna build. cost_usd: ~$0.
