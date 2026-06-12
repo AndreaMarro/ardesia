@@ -122,4 +122,5 @@ Append-only. 1 riga per modifica.
 |- **2026-06-12(current+59) — M1-7c: vault reale SU DISCO eseguito e verificato su DB Teoria-Segnali.** 96/96 concept pages, 0 non-trovato, 96/96 Evidenze non vuote, idempotenza byte-per-byte confermata. 114 file, 948KB. Zero fix codice. Gate 1651/0 invariato.
 - 2026-07-16(current+61) — COORD-CLEANUP: M1-7c vault reale ✅ in PROSSIMA TASK. NEEDS-CLAUDE per M2. Gate 1651/0 invariato. Zero codice.
 | - **2026-06-12(current+N+18) — NOOP #N+18: M1 COMPLETO (gate 1651/0 VERDE), pin M2 ASSENTE (ultimo CLAUDE-SAYS ~11:30), stewardship gia fatta -> stop.** HEAD 8fbd209, gate 1651/0 VERDE. Mai ciclare NEEDS-CLAUDE identico.
-- **2026-06-12(current) — M2-3: badge per-claim nel rendering (commit 1e7c18f, gate 1656/0 VERDE).** claim_badge() helper in grounding.py, per-claim badge ✅/🔧/✗ in dispensa.py, teacher_book_renderer.py, summarizer.py. ZERO LLM. +5 test, zero regressioni.
+|- **2026-06-12(current) — M2-3: badge per-claim nel rendering (commit 1e7c18f, gate 1656/0 VERDE).** claim_badge() helper in grounding.py, per-claim badge ✅/🔧/✗ in dispensa.py, teacher_book_renderer.py, summarizer.py. ZERO LLM. +5 test, zero regressioni.
+|- 2026-06-12(executed) — M2-3-FIX: adversarial CRITICO (test tautologico rimpiazzato) + edge case (paragrafo misto ✅+🔧). Solo test. Gate 1657/0 (+1).

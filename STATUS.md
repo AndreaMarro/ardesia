@@ -512,4 +512,13 @@ Risultati:
  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
  - **REVIEW**: review.sh quota-out (Claude usage) — self-review: ZERO LLM, 0 regressioni, 0 tautologie, solo visualizzazione.
  - Gate: **1656 passed / 2 skipped / 0 failed** (+5 da baseline 1651, nessuna regressione). cost_usd: ~$0 (mock).
- - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 style upgrade stile-scritto? M2-4 ToolHost?).
+ - **2026-06-12(executed) — M2-3-FIX: adversarial CRITICO + edge case su badge per-claim (test only, gate 1657/0, +1).**
+  Ipotesi singola: il CRITICO dell'adversarial (fc747cf) su M2-3 — `test_dispensa_badge_repaired_through_claim_badge` testa `claim_badge()` in isolamento, non il pipeline reale di repair. L'edge case (nessun test per 🔧 su claim singolo in paragrafo misto) va coperto.
+  Risultati:
+  1. **Test tautologico rimpiazzato** (`tests/test_dispensa.py:1105-1150`): nuovo `test_dispensa_badge_repaired_end_to_end` — claim con excerpt parafrasato `"energia del segnale si calcola"` su segmento `"si calcola come integrale l'energia del segnale"` → `_verify_or_repair` tier-2 SequenceMatcher ripara a `"energia del segnale"` → `DispensaClaim(repaired=True)` → `render_dispensa_md` mostra `🔧`. Falsificabile: se repair rimosso, claim.excerpt rimane parafrasato e `verify_citation` fallisce → paragraph droppato → nessun `🔧`.
+  2. **Edge case coperto** (`test_dispensa_badge_mixed_paragraph`): 1 claim verbatim + 1 claim reparato stesso paragrafo → entrambi ✅ e 🔧 nel markdown. Falsificabile: se badge non compare, test fallisce.
+  3. **Zero modifiche a codice produzione** — solo test. Adversarial NOTE (claim_badge non usato per footer ✗) accettato come coupling minimo.
+  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+  - **REVIEW**: review.sh quota-out — self-review: 0 bug, 0 tautologie, zero regressioni.
+  - Gate: **1657 passed / 2 skipped / 0 failed** (+1 da baseline 1656). cost_usd: ~$0 (mock).
+  - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 stile-scritto? M2-4 ToolHost?).
