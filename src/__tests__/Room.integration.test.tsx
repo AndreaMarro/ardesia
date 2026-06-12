@@ -762,6 +762,44 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
 
     root.unmount()
   })
+
+  // S-TRIAGE-1 (report 20260612-1134): invariante "nessuna scrittura store" oltre
+  // l'assenza della prop onChange — si esercita il path di persistenza REALE
+  // (flushPersist → _doSave) e si verifica che in vista studente è un no-op.
+  it("vista studente: onChange (se cablato) + flushPersist non scrivono nello store", async () => {
+    const { store } = await createMockStore()
+    const sceneData = {
+      type: "excalidraw",
+      elements: [{ id: "el1", type: "rectangle" }],
+      appState: {},
+    }
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify(sceneData))
+    const saveSpy = vi.spyOn(store, "saveScene")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    let harness: any
+    await vi.waitFor(() => {
+      harness = (window as any).__MAESTRO_TEST__
+      expect(harness).toBeDefined()
+      expect(harness.ready).toBe(true)
+    }, { timeout: 1000, interval: 10 })
+
+    // Kill-test: se una regressione cablasse onChange in vista studente,
+    // questa chiamata popolerebbe i refs e flushPersist scriverebbe → rosso.
+    // Oggi onChange è undefined: optional chaining = no-op.
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+    props?.onChange?.([{ id: "el2", type: "ellipse", version: 1 }] as any, {} as any, {} as any)
+
+    // Unico path programmatico di salvataggio esposto: deve restare no-op
+    await harness.flushPersist()
+    expect(saveSpy).not.toHaveBeenCalled()
+
+    root.unmount()
+  })
 })
 
 // ── S-DESIGN-9a: chip stanza mostra il NOME della lezione ────────
