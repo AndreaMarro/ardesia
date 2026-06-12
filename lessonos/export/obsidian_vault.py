@@ -21,6 +21,7 @@ import json
 import os
 import re
 import shutil
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -169,23 +170,50 @@ def export_vault(
         # destroy raw/ user data — refuse to delete root, derived/, raw/,
         # or any path at or above these (resolves symlinks/relatives).
         out_str = str(Path(output).resolve(strict=False))
-        derived_str = str(derived.resolve(strict=False))
+        derived_resolved = derived.resolve(strict=False)
+        derived_str = str(derived_resolved)
         cwd_str = str(Path.cwd().resolve())
-        home_str = os.path.expanduser("~")
-        # Block exact match or inside derived/ or raw/
-        if out_str == derived_str or os.path.commonpath([out_str, derived_str]) == derived_str:
+        home_str = str(Path.home().resolve(strict=False))
+
+        # APFS is case-insensitive by default: compare casefolded on macOS
+        # so RAW/Raw aliases cannot bypass the guard. False positives only
+        # make the guard stricter (refuse to delete), never destructive.
+        if sys.platform == "darwin":
+            def _fold(p: str) -> str:
+                return p.casefold()
+        else:
+            def _fold(p: str) -> str:
+                return os.path.normcase(p)
+
+        # Block when deleting output would take derived/ down with it:
+        # output == derived/ or output is an ANCESTOR of derived/.
+        # Output INSIDE derived/ (documented layout, e.g. derived/vault/<t>)
+        # is the normal case and must stay deletable for re-export.
+        if os.path.commonpath([_fold(out_str), _fold(derived_str)]) == _fold(out_str):
             raise ValueError(
                 f"refusing to rmtree {out_str}: would destroy "
                 f"or overwrite derived/ tree"
             )
-        raw_str = str(Path(derived_str) / "raw")
-        if out_str == raw_str or os.path.commonpath([out_str, raw_str]) == raw_str:
-            raise ValueError(
-                f"refusing to rmtree {out_str}: would destroy "
-                f"or overwrite raw/ data"
-            )
+        # raw/ is a SIBLING of derived/ in the real data layout
+        # (~/maestro-data/<corpus>/{raw,derived}). Block any overlap:
+        # output equal to, inside, or an ancestor of raw/. Consider raw
+        # next to BOTH the resolved and the as-given derived parent (a
+        # symlinked derived/ must not hide the real raw/), and resolve
+        # each candidate (raw/ itself may be a symlink to real data).
+        raw_candidates = {
+            str((derived_resolved.parent / "raw").resolve(strict=False)),
+            str((derived.parent / "raw").resolve(strict=False)),
+        }
+        for raw_str in raw_candidates:
+            if os.path.commonpath([_fold(out_str), _fold(raw_str)]) in (
+                _fold(out_str), _fold(raw_str),
+            ):
+                raise ValueError(
+                    f"refusing to rmtree {out_str}: would destroy "
+                    f"or overwrite raw/ data"
+                )
         # Block exact match for root, cwd, home
-        if out_str in {"/", cwd_str, home_str}:
+        if _fold(out_str) in {_fold("/"), _fold(cwd_str), _fold(home_str)}:
             raise ValueError(
                 f"refusing to rmtree {out_str}: protected path"
             )

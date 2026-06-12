@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import tempfile
 from pathlib import Path as FsPath
 
@@ -592,6 +593,136 @@ class TestExportVault:
                 vault = FsPath(tmp)
                 assert (vault / "README.md").exists()
                 assert result["concepts"] > 0
+
+
+class TestRmtreeGuard:
+    """Retro-review CRITICO 2026-06-12: the old guard blocked output INSIDE
+    derived/ — but the documented layout IS derived/vault/<teacher>
+    (cli.py --out help, export_vault docstring) — so every RE-export on the
+    real layout raised ValueError. Correct semantics: block output equal to
+    or ANCESTOR of derived/, and any overlap with raw/ (sibling of derived/).
+    """
+
+    @pytest.fixture
+    def data_root(self, derived_root):
+        """Real data layout: <root>/{raw,derived} as siblings.
+
+        derived_root fixture content is copied under <root>/derived so the
+        global_resolution/wiki/dispense are where export_vault expects them.
+        """
+        with tempfile.TemporaryDirectory(prefix="dataroot_") as root:
+            derived = FsPath(root) / "derived"
+            shutil.copytree(derived_root, derived)
+            raw = FsPath(root) / "raw"
+            raw.mkdir()
+            (raw / "lezione.jsonl").write_text('{"seg": 1}\n', encoding="utf-8")
+            yield str(root)
+
+    def _export(self, store, root, out):
+        return export_vault(
+            store=store,
+            teacher_id="test_teacher",
+            output_dir=str(out),
+            derived_root=str(FsPath(root) / "derived"),
+        )
+
+    def test_reexport_inside_derived_succeeds(self, store_and_data, data_root):
+        """Documented layout derived/vault/<teacher>: re-export must work.
+
+        This is the executed repro from the retro-review: first export ok
+        (dir absent), second export raised ValueError with the old guard.
+        """
+        out = FsPath(data_root) / "derived" / "vault" / "test_teacher"
+        r1 = self._export(store_and_data, data_root, out)
+        assert (out / "README.md").exists()
+        r2 = self._export(store_and_data, data_root, out)  # must NOT raise
+        assert r1["concepts"] == r2["concepts"]
+        assert (out / "README.md").exists()
+        # raw/ untouched
+        assert (FsPath(data_root) / "raw" / "lezione.jsonl").exists()
+
+    def test_refuses_output_equal_derived(self, store_and_data, data_root):
+        out = FsPath(data_root) / "derived"
+        with pytest.raises(ValueError, match="derived/ tree"):
+            self._export(store_and_data, data_root, out)
+        # nothing deleted: fixture content still there
+        assert (out / "global_resolution" / "test_teacher.json").exists()
+
+    def test_refuses_output_ancestor_of_derived(self, store_and_data, data_root):
+        """Output = data root (ancestor of derived/): rmtree would destroy
+        derived/ AND raw/. The old guard did NOT block this case either
+        (commonpath == out, not == derived)."""
+        with pytest.raises(ValueError, match="derived/ tree"):
+            self._export(store_and_data, data_root, FsPath(data_root))
+        assert (FsPath(data_root) / "raw" / "lezione.jsonl").exists()
+        assert (FsPath(data_root) / "derived").exists()
+
+    def test_refuses_output_equal_raw_sibling(self, store_and_data, data_root):
+        """raw/ is a SIBLING of derived/ in the real layout — the old guard
+        protected derived/raw, a path that does not exist in that layout."""
+        out = FsPath(data_root) / "raw"
+        with pytest.raises(ValueError, match="raw/ data"):
+            self._export(store_and_data, data_root, out)
+        assert (out / "lezione.jsonl").exists()
+
+    def test_refuses_output_inside_raw(self, store_and_data, data_root):
+        out = FsPath(data_root) / "raw" / "sub"
+        out.mkdir()
+        with pytest.raises(ValueError, match="raw/ data"):
+            self._export(store_and_data, data_root, out)
+        assert (FsPath(data_root) / "raw" / "lezione.jsonl").exists()
+
+    def test_refuses_case_alias_of_raw(self, store_and_data, data_root):
+        """SELF-ADV CRITICO: on case-insensitive APFS, RAW *is* raw — a
+        case-sensitive string compare let the guard through and rmtree
+        destroyed raw/. Guard must compare casefolded on macOS."""
+        out = FsPath(data_root) / "RAW"
+        if not out.exists():
+            pytest.skip("case-sensitive filesystem: RAW is not an alias of raw")
+        with pytest.raises(ValueError, match="raw/ data"):
+            self._export(store_and_data, data_root, out)
+        assert (FsPath(data_root) / "raw" / "lezione.jsonl").exists()
+
+    def test_refuses_raw_sibling_of_symlinked_derived(
+        self, store_and_data, derived_root
+    ):
+        """SELF-ADV MAJOR: if derived/ is a symlink elsewhere, raw/ computed
+        only from the RESOLVED parent points away from the real raw/ sitting
+        next to the symlink — which then became deletable."""
+        with tempfile.TemporaryDirectory(prefix="elsewhere_") as elsewhere, \
+                tempfile.TemporaryDirectory(prefix="dataroot_") as root:
+            derived_target = FsPath(elsewhere) / "derived"
+            shutil.copytree(derived_root, derived_target)
+            derived_link = FsPath(root) / "derived"
+            derived_link.symlink_to(derived_target)
+            raw = FsPath(root) / "raw"
+            raw.mkdir()
+            (raw / "lezione.jsonl").write_text('{"seg": 1}\n', encoding="utf-8")
+            with pytest.raises(ValueError, match="raw/ data"):
+                export_vault(
+                    store=store_and_data,
+                    teacher_id="test_teacher",
+                    output_dir=str(raw),
+                    derived_root=str(derived_link),
+                )
+            assert (raw / "lezione.jsonl").exists()
+
+    def test_refuses_output_inside_symlinked_raw(self, store_and_data, data_root):
+        """SELF-ADV MAJOR: raw/ as symlink to external storage — output
+        inside the symlink target must still be blocked (raw candidate is
+        resolved before comparison)."""
+        with tempfile.TemporaryDirectory(prefix="external_") as ext:
+            real_raw = FsPath(ext) / "raw-storage"
+            real_raw.mkdir()
+            (real_raw / "lezione.jsonl").write_text('{"seg": 1}\n', encoding="utf-8")
+            sub = real_raw / "sub"
+            sub.mkdir()
+            root = FsPath(data_root)
+            shutil.rmtree(root / "raw")
+            (root / "raw").symlink_to(real_raw)
+            with pytest.raises(ValueError, match="raw/ data"):
+                self._export(store_and_data, data_root, sub)
+            assert (real_raw / "lezione.jsonl").exists()
 
 
 # ---------------------------------------------------------------------------
