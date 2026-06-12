@@ -36,6 +36,8 @@ from lessonos.eval.realtime import (
     run_realtime_eval_n_runs,
 )
 from lessonos.store.base import Store
+from lessonos.store.sqlite import SQLiteStore
+from lessonos.status import build_status_report
 from lessonos.export.obsidian_vault import export_vault
 from lessonos.store.fixture_loader import (
     DEFAULT_FIXTURE_ROOT,
@@ -1109,6 +1111,17 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Generate JSON Canvas 1.0 graph file",
     )
 
+    # --- status ---
+    status_parser = sub.add_parser(
+        "status", help="Show DB status report (paths, lessons, graph counts)"
+    )
+    status_parser.add_argument(
+        "--db",
+        type=str,
+        default="",
+        help="Path to lessonos.db (default: :memory: for demo/fixture use)",
+    )
+
     return parser.parse_args(argv)
 
 
@@ -1428,6 +1441,14 @@ def main(argv: list[str] | None = None) -> int:
             )
 
         print(report.summary())
+        return 0
+
+    if args.command == "status":
+        db_path = args.db if args.db else ":memory:"
+        store = SQLiteStore(db_path)
+        report = build_status_report(store)
+        print(report)
+        store.close()
         return 0
 
     print(f"Unknown command: {args.command!r}", file=sys.stderr)

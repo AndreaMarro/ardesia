@@ -174,6 +174,38 @@ class SQLiteStore(Store):
             for r in rows
         )
 
+    def all_paths(self) -> tuple[Path, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM paths ORDER BY path_id"
+        ).fetchall()
+        return tuple(
+            Path(
+                path_id=r["path_id"],
+                title=r["title"],
+                subject=r["subject"],
+                lesson_ids=tuple(json.loads(r["lesson_ids"])),
+                source_ids=tuple(json.loads(r["source_ids"])),
+                synthetic=bool(r["synthetic"]),
+                teacher_id=r["teacher_id"],
+            )
+            for r in rows
+        )
+
+    def all_lessons(self) -> tuple[Lesson, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM lessons ORDER BY lesson_id"
+        ).fetchall()
+        return tuple(
+            Lesson(
+                lesson_id=r["lesson_id"],
+                path_id=r["path_id"],
+                title=r["title"],
+                order=r["order"],
+                source_id=r["source_id"],
+            )
+            for r in rows
+        )
+
     # --- Lesson ---------------------------------------------------------
     def save_lesson(self, lesson: Lesson) -> None:
         self._conn.execute(

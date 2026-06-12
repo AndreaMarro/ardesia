@@ -26,6 +26,20 @@ class Store(ABC):
     def paths_for_teacher(self, teacher_id: str) -> tuple[Path, ...]:
         """Retrieve all paths owned by *teacher_id* (M1-1)."""
 
+    def all_paths(self) -> tuple[Path, ...]:
+        """Retrieve ALL paths in the store, ordered by path_id.
+
+        Default: NotImplementedError (not all backends need this).
+        """
+        raise NotImplementedError("all_paths not implemented by this store")
+
+    def all_lessons(self) -> tuple[Lesson, ...]:
+        """Retrieve ALL lessons in the store, ordered by lesson_id.
+
+        Default: NotImplementedError (not all backends need this).
+        """
+        raise NotImplementedError("all_lessons not implemented by this store")
+
     @abstractmethod
     def save_lesson(self, lesson: Lesson) -> None: ...
 
