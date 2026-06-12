@@ -121,3 +121,4 @@ Append-only. 1 riga per modifica.
 ||- **2026-07-16(current+57) — NOOP #4 (HEAD 46beeab): M1 completo (gate 1634/0 VERDE), >34gg da ultimo CLAUDE-SAYS, pin M2 assente, stewardship gia fatta → stop.** Segnalare ad Andrea: entrambi i repo in NOOP da ~5 settimane.
 |- **2026-06-12(current+59) — M1-7c: vault reale SU DISCO eseguito e verificato su DB Teoria-Segnali.** 96/96 concept pages, 0 non-trovato, 96/96 Evidenze non vuote, idempotenza byte-per-byte confermata. 114 file, 948KB. Zero fix codice. Gate 1651/0 invariato.
 - 2026-07-16(current+61) — COORD-CLEANUP: M1-7c vault reale ✅ in PROSSIMA TASK. NEEDS-CLAUDE per M2. Gate 1651/0 invariato. Zero codice.
+| - **2026-06-12(current+N+18) — NOOP #N+18: M1 COMPLETO (gate 1651/0 VERDE), pin M2 ASSENTE (ultimo CLAUDE-SAYS ~11:30), stewardship gia fatta -> stop.** HEAD 8fbd209, gate 1651/0 VERDE. Mai ciclare NEEDS-CLAUDE identico.

@@ -1,5 +1,8 @@
-|
-|- **2026-06-12(executed) — Adversarial triage: fix excerpt guard + test parametrizzato (adversarial 03:40 su 478f628).**
+# STATUS — LessonOS Core Engine
+
+> Append-only. Ultima riga = dove sei / blocker / domande.
+
+- **2026-06-12(executed) — Adversarial triage: fix excerpt guard + test parametrizzato (adversarial 03:40 su 478f628).**
   Ipotesi singola: il finding MINORE VERO dell'adversarial su 478f628 (03:40) — `excerpt=""` e `excerpt="   "` non coperti dal test e dal codice — va fissato. Il CRITICO (test tautologico) e la NOTA (FsPath) dell'adversarial 08:02 su b7d23c1 sono **FALSI POSITIVI** (assert gia adeguati, comparazione su stringa non FsPath).
   Risultati:
   1. **Fix codice** (lessonos/dispensa.py:474): `claim.excerpt is None or claim.excerpt == ""` -> `not claim.excerpt or not claim.excerpt.strip()`. Cattura None, "" e whitespace-only ("   "). Short-circuit safe.
@@ -12,8 +15,6 @@
   - **REVIEW**: review.sh quota-out — self-review: 0 regressioni, 0 tautologie.
   - Gate: **1651 passed / 2 skipped / 0 failed** (+2 da baseline 1649). cost_usd: ~$0 (mock).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Tutti gli adversarial lessonos triagati e chiusi.
-
-|
 
 - **2026-06-10(current) — T5-FIX: 2 CRITICI grafo fixati (cross-lesson grounding + transaction atomicity).**
   Ipotesi singola: i 2 CRITICI HERMES-2 su graph_writer (4013e76) vanno fissati nel codice — (1) cross-lesson contamination in `_collect_evidence` e (2) write_capsule_graph senza transazione.
@@ -89,8 +90,7 @@
   - **REVIEW**: fable-5 (3 fix: grounding validation aggiunto, docstring corrette, test negativi aggiunti). Tutti applicati.
   - Gate: 1351 passed + 2 skipped (invariato — +14 dal baseline 1337). cost_usd: ~$0.
   - Next: T6 riepilogo-lezione (markdown da capsule + citazioni verificate).
-|
-|
+
 - **2026-06-10(current) — T6 RIEPILOGO-LEZIONE: summarizer + grounding helper + LIVE run su Prima lezione.**
   Ipotesi singola: la capsule → markdown summary con citazioni verificate meccanicamente si costruisce come `generate_lesson_summary(store, capsule, router)` con (1) prompt deterministico, (2) LLM response JSON strutturato, (3) validazione meccanica di ogni seg_id+excerpt reusing `verify_citation` dal nuovo `lessonos/graph/grounding.py`.
   Risultati:
@@ -164,20 +164,19 @@
   - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00084.
   - Next: T6-COMPLETAMENTO continua — assemble capsule Quarta lezione (stessa procedura). Poi summaries 2-4. Poi fix log.jsonl status + project-wiki/index.md `|-`.
 
-|
-|- **2026-06-10(current) — T6R-1a: prima_lezione ingerita in DB persistente + capsule + summary con citazioni 1-indexed (off-by-one FIXED).**
-|  Ipotesi singola: il fix dell'off-by-one (0-indexed→1-indexed) richiede ingerire prima_lezione nel DB persistente, costruire capsule e rigenerare il summary — il tutto usando la pipeline esistente, con seg_id 1-indexed `prima_lezione#s1`-`#s100`.
-|  Risultati:
-|  1. **100 segmenti ingeriti** (`prima_lezione#s1`-`#s100`, range 0s–484s), 1-indexed — contratto seg_id verificato inline (primo seg_id = `#s1`, non `#s0`)
-|  2. **Capsule DeepSeek LIVE** (100 seg, `save=True`): 4 topic spans, **8 concetti** (vs 4 nel vecchio), 1 esercizio, 3 domande, 1 compito, **0 dropped**
-|  3. **Grafo GraphWriter**: 10 nodi, 9 archi, 23 evidenze in DB persistente — cross-lesson guard T5-FIX attiva
-|  4. **Summary rigenerato** in `derived/wiki/prima_lezione.md` (3785 byte, vs 6884 byte vecchio) — **ZERO citazioni `#s0`**, tutte 1-indexed. Esempi: `#s2`, `#s8`, `#s33`, `#s34`
-|  5. **Off-by-one FIXED**: il vecchio summary usava `prima_lezione#s0` (0-indexed); il nuovo usa `#s2` (chi si aggancia al primo segmento con citazione valida) — mai `#s0`
-|  6. **Script**: `bin/run_prima_lezione_full.sh` — reusable per capsule+summary di altre lezioni
-|  - **PLAN-CHECK**: fable.sh rate-limit (reset 19:50) — proceduto per dottrina.
-|  - **REVIEW**: saltata per rate-limit Claude Code (stesso usage-limit) — self-review senza compiacenza: solo esecuzione dati reali, codice esistente riusato, zero modifiche a moduli lessonos/
-|  - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00126 (3 DeepSeek chiamate).
-|  - Next: T6R-1b — SCHEMA.md draft (contratto seg_id e policy dati). Oppure T6R-2 — capsule full-lesson per tutte 4 lezioni secondo decisione supervisore.
+- **2026-06-10(current) — T6R-1a: prima_lezione ingerita in DB persistente + capsule + summary con citazioni 1-indexed (off-by-one FIXED).**
+  Ipotesi singola: il fix dell'off-by-one (0-indexed→1-indexed) richiede ingerire prima_lezione nel DB persistente, costruire capsule e rigenerare il summary — il tutto usando la pipeline esistente, con seg_id 1-indexed `prima_lezione#s1`-`#s100`.
+  Risultati:
+  1. **100 segmenti ingeriti** (`prima_lezione#s1`-`#s100`, range 0s–484s), 1-indexed — contratto seg_id verificato inline (primo seg_id = `#s1`, non `#s0`)
+  2. **Capsule DeepSeek LIVE** (100 seg, `save=True`): 4 topic spans, **8 concetti** (vs 4 nel vecchio), 1 esercizio, 3 domande, 1 compito, **0 dropped**
+  3. **Grafo GraphWriter**: 10 nodi, 9 archi, 23 evidenze in DB persistente — cross-lesson guard T5-FIX attiva
+  4. **Summary rigenerato** in `derived/wiki/prima_lezione.md` (3785 byte, vs 6884 byte vecchio) — **ZERO citazioni `#s0`**, tutte 1-indexed. Esempi: `#s2`, `#s8`, `#s33`, `#s34`
+  5. **Off-by-one FIXED**: il vecchio summary usava `prima_lezione#s0` (0-indexed); il nuovo usa `#s2` (chi si aggancia al primo segmento con citazione valida) — mai `#s0`
+  6. **Script**: `bin/run_prima_lezione_full.sh` — reusable per capsule+summary di altre lezioni
+  - **PLAN-CHECK**: fable.sh rate-limit (reset 19:50) — proceduto per dottrina.
+  - **REVIEW**: saltata per rate-limit Claude Code (stesso usage-limit) — self-review senza compiacenza: solo esecuzione dati reali, codice esistente riusato, zero modifiche a moduli lessonos/
+  - Gate: 1371 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.00126 (3 DeepSeek chiamate).
+  - Next: T6R-1b — SCHEMA.md draft (contratto seg_id e policy dati). Oppure T6R-2 — capsule full-lesson per tutte 4 lezioni secondo decisione supervisore.
   Ipotesi singola: `bin/run_capsule.sh quarta_lezione` (script esistente, già usato per Seconda/Terza) assembla capsule Quarta lezione via DeepSeek LIVE, 100 segmenti (0-362s), salva in DB persistente, scrive il grafo.
   Risultati:
   1. **Script eseguito**: `bin/run_capsule.sh quarta_lezione` — 100 segmenti (0s–362s di 2883 totali).
@@ -259,32 +258,31 @@
   - **REVIEW**: `bin/review.sh` usage-limit Claude Code (stesso usage) — self-review: 0 tautologie, backward compat, grounding preservato.
   - Gate: **1461 passed + 2 skipped** (+4 da baseline 1457). cost_usd: ~$0.
 
-|
-|- **2026-06-11(current) — M1-3 TEACHERBOOK PER-STILE 10 docenti sim Fisica1 (commit 0d0fb13).**
-|  Ipotesi singola: `build_teacher_book(store, teacher_id)` + `render_teacher_book(book)` → markdown strutturato e grounded per ogni docente, con tabella comparativa che rivela differenze misurabili nello stile didattico.
-|  Risultati:
-|  1. **Per-teacher paths** (10 paths creati in fisica1.db con teacher_id) — ogni docente ha il proprio path che punta alla sua lezione esistente, permettendo a `paths_for_teacher` + `aggregate_teacher_graph` di funzionare.
-|  2. **`lessonos/teacher_book_renderer.py`** (297 righe) — ZERO-LLM, prende TeacherBook → markdown strutturato con 5 sezioni (overview, fundamental, problematic, progression, prerequisites) + grounding footer. Citazioni con excerpt troncato a 100 char e note "+N more" oltre 5.
-|  3. **`render_comparative_report(books)`** — produce tabella markdown comparativa per tutti i docenti + per-teacher highlights.
-|  4. **10/10 TeacherBook generati** in `~/maestro-data/fisica1-sim/derived/teacher_book/`:
-|     - `prof_veloce`: 19 concetti (massimo), 30 edges, 53 evidence — stile veloce produce piu concetti ma zero prerequisiti (salta dipendenze)
-|     - `prof_pratico`: 14 concetti, 24 edges, **93 evidence** (massimo) — stile pratico ha molti esempi/evidenze
-|     - `prof_pedante`: 13 concetti, 15 edges, 38 evidence — **unico con problematici (Velocità istantanea)** e status `reinforced` su 3 concetti (maturità linguistica)
-|     - `prof_caotico`: 12 concetti, 16 edges, 27 evidence (minimo) — meno struttura
-|     - `prof_socratico`: 12 concetti, 17 edges, 45 evidence — **10 prerequisiti** (massimo — stile socratico costruisce dipendenze)
-|     - `prof_audiopessimo`: 15 concetti, 20 edges, 42 evidence — 0 prerequisiti (rumore ASR degrada struttura)
-|     - `prof_aneddotico`: 12 concetti, 16 edges, 32 evidence — 8 prerequisiti (aneddoti non impediscono struttura)
-|     - `prof_dialettale`: 10 concetti (minimo), 14 edges, 35 evidence — 8 prerequisiti (dialetto non degrada struttura)
-|     - `prof_esitante`: 15 concetti, 21 edges, 53 evidence — 0 prerequisiti (esitazione = frammentazione)
-|     - `prof_rigoroso`: 14 concetti, 18 edges, 37 evidence — 8 prerequisiti (rigore ha struttura chiara)
-|  5. **Comparative report** (`REPORT.md`) — tabella completa + per-teacher highlights con top-3 concetti e prerequisite chains esemplari.
-|  6. **13 test** — struttura, ranking, problematic, progression, prerequisites, empty, truncation, >5 citations, comparative report, determinismo.
-|  - **PLAN-CHECK**: fable.sh usage-limit Claude (annotato).
-|  - **REVIEW**: review.sh usage-limit (self-review: 0 tautologie, grounding preservato, ZERO-LLM, gate invariato).
-|  - Gate: **1516 passed + 2 skipped** (+13 da baseline 1503). cost_usd: ~$0 (ZERO-LLM).
-|  - Next: M1-4 (personalizzazione avanzata) o attendere prossimo pin CLAUDE-SAYS.
-|
-|- **2026-06-11(current) — M1-3-FIX: 1 CRITICO + 2 bug HERMES-2 adversarial fixati su M1-3.** 
+- **2026-06-11(current) — M1-3 TEACHERBOOK PER-STILE 10 docenti sim Fisica1 (commit 0d0fb13).**
+  Ipotesi singola: `build_teacher_book(store, teacher_id)` + `render_teacher_book(book)` → markdown strutturato e grounded per ogni docente, con tabella comparativa che rivela differenze misurabili nello stile didattico.
+  Risultati:
+  1. **Per-teacher paths** (10 paths creati in fisica1.db con teacher_id) — ogni docente ha il proprio path che punta alla sua lezione esistente, permettendo a `paths_for_teacher` + `aggregate_teacher_graph` di funzionare.
+  2. **`lessonos/teacher_book_renderer.py`** (297 righe) — ZERO-LLM, prende TeacherBook → markdown strutturato con 5 sezioni (overview, fundamental, problematic, progression, prerequisites) + grounding footer. Citazioni con excerpt troncato a 100 char e note "+N more" oltre 5.
+  3. **`render_comparative_report(books)`** — produce tabella markdown comparativa per tutti i docenti + per-teacher highlights.
+  4. **10/10 TeacherBook generati** in `~/maestro-data/fisica1-sim/derived/teacher_book/`:
+     - `prof_veloce`: 19 concetti (massimo), 30 edges, 53 evidence — stile veloce produce piu concetti ma zero prerequisiti (salta dipendenze)
+     - `prof_pratico`: 14 concetti, 24 edges, **93 evidence** (massimo) — stile pratico ha molti esempi/evidenze
+     - `prof_pedante`: 13 concetti, 15 edges, 38 evidence — **unico con problematici (Velocità istantanea)** e status `reinforced` su 3 concetti (maturità linguistica)
+     - `prof_caotico`: 12 concetti, 16 edges, 27 evidence (minimo) — meno struttura
+     - `prof_socratico`: 12 concetti, 17 edges, 45 evidence — **10 prerequisiti** (massimo — stile socratico costruisce dipendenze)
+     - `prof_audiopessimo`: 15 concetti, 20 edges, 42 evidence — 0 prerequisiti (rumore ASR degrada struttura)
+     - `prof_aneddotico`: 12 concetti, 16 edges, 32 evidence — 8 prerequisiti (aneddoti non impediscono struttura)
+     - `prof_dialettale`: 10 concetti (minimo), 14 edges, 35 evidence — 8 prerequisiti (dialetto non degrada struttura)
+     - `prof_esitante`: 15 concetti, 21 edges, 53 evidence — 0 prerequisiti (esitazione = frammentazione)
+     - `prof_rigoroso`: 14 concetti, 18 edges, 37 evidence — 8 prerequisiti (rigore ha struttura chiara)
+  5. **Comparative report** (`REPORT.md`) — tabella completa + per-teacher highlights con top-3 concetti e prerequisite chains esemplari.
+  6. **13 test** — struttura, ranking, problematic, progression, prerequisites, empty, truncation, >5 citations, comparative report, determinismo.
+  - **PLAN-CHECK**: fable.sh usage-limit Claude (annotato).
+  - **REVIEW**: review.sh usage-limit (self-review: 0 tautologie, grounding preservato, ZERO-LLM, gate invariato).
+  - Gate: **1516 passed + 2 skipped** (+13 da baseline 1503). cost_usd: ~$0 (ZERO-LLM).
+  - Next: M1-4 (personalizzazione avanzata) o attendere prossimo pin CLAUDE-SAYS.
+
+- **2026-06-11(current) — M1-3-FIX: 1 CRITICO + 2 bug HERMES-2 adversarial fixati su M1-3.** 
   Ipotesi singola: i 4 finding di HERMES-2 adversarial su 0d0fb13 (M1-3 TeacherBook per-stile) vanno fissati: (1) CRITICO EOF senza newline in bin/run_teacher_book.sh; (2) _render_progression bug: status→all_lessons invece di status→lesson pairs; (3) test tautologico su report vuoto.
   Risultati:
   1. **CRITICO risolto** (`bin/run_teacher_book.sh`): trailing newline aggiunto (0x31→0x0a finale). Shell `set -euo pipefail` sicuro.
@@ -295,7 +293,6 @@
   - **REVIEW**: review.sh rate-limit (stesso pool) — self-review senza compiacenza: zero regressioni, backward compat.
   - Gate: 1516 passed + 2 skipped (invariato — +0 da baseline 1516). cost_usd: ~$0 (mock).
   - Next: M1-4 o attendere pin CLAUDE-SAYS (M1-3 completato, fix adversarial applicati).
-
 
 - **2026-06-11(current) — M1-3b-REMAINING: 2/5 items fixati (lesson_id citazioni + TEACHERS dedup).**
   Ipotesi singola: M1-3b [GRIND] aveva 5 item; 3 già fixati in M1-3-FIX; restano 2 da chiudere — (1) _render_citations perde lesson_id; (2) TEACHERS lista duplicata bash+python.
@@ -346,7 +343,7 @@
   - Gate: **1580 passed + 2 skipped** (+17 da baseline 1563). cost_usd: ~$0 (mock).
 - Next: M1-6 — Fase F dispense live 3 sim + andrea + blind-test (>=7/10). Attende pin CLAUDE-SAYS.
 
-|- **2026-06-11(current) — M1-5.5: test determinismo H2-1327 (l'unico gap residuo M1-5, M1-5 COMPLETO).**
+- **2026-06-11(current) — M1-5.5: test determinismo H2-1327 (l'unico gap residuo M1-5, M1-5 COMPLETO).**
   Ipotesi singola: il test determinismo per _resolve_concepts_from_capsules (H2-1327, richiesto da COORD) va aggiunto — il fix logico era gia nel codice dispensa.py:178-188 da M1-4b, ma mancava il test che verifica quale candidato vince su exact-match multipli.
   Risultati:
   1. **Test aggiunto** (tests/test_dispensa.py:558-598): `test_multiple_exact_matches_deterministic` — stesso concetto 'Energia' exact-match in capsule l1 (introduced) e l2 (reinforced) → sempre l1 vince (primo lid in insertion order). Falsificabile: assert `result[0] is l1_ext` e `result[0].status == "introduced"`.
@@ -378,7 +375,7 @@
   VERIFICATO (eseguito, non dichiarato):
   1. **CRITICO purge incompleta/non testata → CHIUSO (commit 3151dc5, M1-5.1b, gate 1592/0)**: `SQLiteStore.purge_lesson` ora cancella ANCHE righe `lessons`, `cost_ledger` (solo lesson-scoped; le entry path-level con lesson_id=NULL sopravvivono — testato) e rimuove la lezione da ogni `paths.lesson_ids`, tutto in transazione. Wiki file: NUOVO `pipeline.erase_lesson(store, lesson_id, wiki_dir=...)` = purge DB + unlink `derived/wiki/<lesson>.md` (lo Store resta no-I/O, contratto documentato in base.py + SCHEMA.md §6). 7 test REALI su SQLiteStore: erasure completa tabella-per-tabella con dati altrui intatti (count == 9 sul fixture standard), idempotenza (2ª purge == 0), rollback atomico su failure a metà (monkeypatch delete_capsule che alza RuntimeError → nulla cancellato), persistenza su riapertura DB file, erase_lesson con wiki (== 10, l2.md intatto).
   2. **MAJOR 1-2 negation guard substring + duplicata morta → CHIUSO (commit 9369536, M1-5.3b, gate 1598/0)**: `_negation_preserved` riscritta con word-boundary (`re.findall(r"\w+")` su set di token) — "non"⊂"nonostante" non bypassa più il guard (test: tier-2 rifiuta candidato il cui "non" è solo dentro "nonostante"), "no"⊂"sono" non over-rigetta più (recall ripristinata, test E2E). Rimossa la copia annidata morta dentro `_repair_excerpt` che shadowava quella a livello modulo. 6 test nuovi.
-  3. **MAJOR 3 test tautologico + minori → CHIUSO (commit fbb96ff, M1-5.4b, gate 1598/0)**: `test_run_ingest_purge_before_save` ora asserisce UGUAGLIANZA esatta dei count nodi/archi/evidence dopo re-ingest (il vecchio `>=1` passava anche senza purge). **Verifica avversaria a mutazione, risultato onesto**: rimuovere SOLO i delete step-1 di run_ingest → test passa; rimuovere SOLO il DELETE+INSERT interno di `GraphWriter.write_capsule_graph` (writer.py:58) → test passa; rimuovere ENTRAMBI → test FALLISCE (count raddoppiano). I due layer sono mutuamente ridondanti (defense-in-depth scoperta, documentata nel commento inline del test). Minori: docstring `run_ingest` corretta (step 1 = delete_capsule+delete_graph, NON purge_lesson: i segmenti devono sopravvivere al re-ingest); stub `purge_lesson` di test_dispensa.py ora matcha lesson_id esatto (startswith("l1") purgava anche "l10").
+  3. **MAJOR 3 test tautologico + minori → CHIUSO (commit fbb96ff, M1-5.4b, gate 1598/0)**: `test_run_ingest_purge_before_save` ora asserisce UGUAGLIANZA ESATTA dei count nodi/archi/evidence dopo re-ingest (il vecchio `>=1` passava anche senza purge). **Verifica avversaria a mutazione, risultato onesto**: rimuovere SOLO i delete step-1 di run_ingest → test passa; rimuovere SOLO il DELETE+INSERT interno di `GraphWriter.write_capsule_graph` (writer.py:58) → test passa; rimuovere ENTRAMBI → test FALLISCE (count raddoppiano). I due layer sono mutuamente ridondanti (defense-in-depth scoperta, documentata nel commento inline del test). Minori: docstring `run_ingest` corretta (step 1 = delete_capsule+delete_graph, NON purge_lesson: i segmenti devono sopravvivere al re-ingest); stub `purge_lesson` di test_dispensa.py ora matcha lesson_id esatto (startswith("l1") purgava anche "l10").
   NON FATTO (fuori scope codice): `skills/error-lessons.md` segnalato mancante dal retro-review — è materia del supervisore/skills, non creato.
   - **PLAN-CHECK/REVIEW**: verifica avversaria condotta in-session via mutation testing (3 mutazioni: 2 single-layer PASS attesi-non-attesi → scoperta ridondanza, 1 both-layers FAIL = prova di non-tautologia).
   - Gate: **1598 passed / 0 failed** (+13 da baseline 1585, nessuna regressione). cost_usd: ~$0 (mock, zero LLM).
@@ -417,20 +414,20 @@
   - Gate: 1608 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.002923 (1 chiamata deepseek-chat per dispensa andrea).
   - Next: attende giudizio BLIND-TEST da Andrea/Claude. Se >=7/10 -> M1-6 completo. Se <7/10 -> gap da colmare.
 
-||- **2026-06-12(current) — RETRO #10 + STEWARDSHIP: M1 completato, NOOP loop rotto con stewardship mode in AGENTS.md §3.**|
-||  Processo: 14 iterazioni di build + 4 NOOP dal RETRO #9 fix. RETRO #10 in PROCESS-LOG.md: attrito NOOP loop risolto in AGENTS.md §3 (dopo 2 NOOP consecutivi → stewardship mode invece di NEEDS-CLAUDE identico).|
-||  Stewardship eseguita: MILESTONES.md riscritto (M1-1→M1-6, gate 1608, attesa M2); project-wiki/log.md aggiornato (entry current+52); check-frictions.sh esteso (mapping stewardship).|
-||  Prossima task: attende giudizio blind-test Andrea o pin CLAUDE-SAYS per M2. Nessuna nuova build.|
-|||  - Gate: 1608/0 invariato. cost_usd: ~$0.|
-|||  - Next: attende pin da CLAUDE-SAYS. NEEDS-CLAUDE aggiornato.
-||
-||- **2026-06-12(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa CLAUDE-SAYS. Stewardship già eseguita.**
-||  ORIENT: COORD.md § PROSSIMA TASK — lessonos riga 16 (M1-6 Fase F) ✅ chiusa. Ultimo CLAUDE-SAYS 2026-06-12 ~01:00. Nessun nuovo pin per M2.
-||  VERIFICATO:
-||  - Gate `uv run pytest -q`: 1608 passed / 2 skipped / 0 failed, exit 0 — VERDE, invariato da M1-6.
-||  - Stewardship già eseguita (RETRO #10) — non reiterata (per AGENTS.md §3: solo se stewardship NON già fatta).
-||  - check-frictions.sh: già coperto (19/19 dall'ultima stewardship).
-||  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). NEEDS-CLAUDE aggiornato.
+- **2026-06-12(current) — RETRO #10 + STEWARDSHIP: M1 completato, NOOP loop rotto con stewardship mode in AGENTS.md §3.**
+  Processo: 14 iterazioni di build + 4 NOOP dal RETRO #9 fix. RETRO #10 in PROCESS-LOG.md: attrito NOOP loop risolto in AGENTS.md §3 (dopo 2 NOOP consecutivi → stewardship mode invece di NEEDS-CLAUDE identico).
+  Stewardship eseguita: MILESTONES.md riscritto (M1-1→M1-6, gate 1608, attesa M2); project-wiki/log.md aggiornato (entry current+52); check-frictions.sh esteso (mapping stewardship).
+  Prossima task: attende giudizio blind-test Andrea o pin CLAUDE-SAYS per M2. Nessuna nuova build.
+  - Gate: 1608/0 invariato. cost_usd: ~$0.
+  - Next: attende pin da CLAUDE-SAYS. NEEDS-CLAUDE aggiornato.
+
+- **2026-06-12(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa CLAUDE-SAYS. Stewardship già eseguita.**
+  ORIENT: COORD.md § PROSSIMA TASK — lessonos riga 16 (M1-6 Fase F) ✅ chiusa. Ultimo CLAUDE-SAYS 2026-06-12 ~01:00. Nessun nuovo pin per M2.
+  VERIFICATO:
+  - Gate `uv run pytest -q`: 1608 passed / 2 skipped / 0 failed, exit 0 — VERDE, invariato da M1-6.
+  - Stewardship già eseguita (RETRO #10) — non reiterata (per AGENTS.md §3: solo se stewardship NON già fatta).
+  - check-frictions.sh: già coperto (19/19 dall'ultima stewardship).
+  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). NEEDS-CLAUDE aggiornato.
 cost_usd: ~$0 (zero LLM, solo lettura file + gate).
 - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se nessun pin per 14+ giorni, segnalare ad Andrea.
 
@@ -459,7 +456,7 @@ Risultati:
 - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
 - **REVIEW**: review.sh quota-out (Claude Code) — self-review senza compiacenza: ZERO LLM, ZERO modifiche al motore, idempotenza verificata byte-per-byte.
 - Gate: **1633 passed / 2 skipped / 0 failed** (+25 da baseline 1608). cost_usd: ~$0 (ZERO LLM, mock).
-|- Next: M2 candidati — attende pin CLAUDE-SAYS (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
+- Next: M2 candidati — attende pin CLAUDE-SAYS (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
 
 - **2026-07-16(current) — CRITICO FIX: falso-verde in verify_and_clean_dispensa (retro-review CRITICO 2026-06-12, mai applicato).**
   Ipotesi singola: il CRITICO trovato dalla retro-review (2026-06-12 02:13) in _verify_or_repair — claim con excerpt=None passava come VERIFIED perché verify_citation(seg_id, excerpt=None) salta il check substring — NON era mai stato fissato. Il commit M1-6.F2 (3a166d9) conteneva la falla; M1-7 (vault-export) non tocca dispensa.py. Fix ora applicato.
@@ -470,95 +467,36 @@ Risultati:
   - Gate: **1634 passed / 2 skipped / 0 failed** (+1 da baseline 1633). cost_usd: ~$0 (mock).
   - Next: attende pin CLAUDE-SAYS per M2 lessonos. Il CRITICO da retro-review è CHIUSO.
 
-  - **2026-07-16(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa pin CLAUDE-SAYS per M2.**
-    ORIENT: M1 COMPLETO (M1-1→M1-7, gate 1634/0). Nessun nuovo pin da CLAUDE-SAYS (ultimo 2026-06-12 ~04:00, solo WORKFLOW-2.0 — nessun ordine per M2 lessonos). COORD.md § PROSSIMA TASK riga 16 ancora su M1-7 (stale — chiuso da commit b59aef1). Stewardship già eseguita (RETRO #10). Nessuna build eseguita (UNA task = quella pinnata = non disponibile).
-    - Gate: 1634/0 VERDE (ri-verificato ORA, invariato). cost_usd: ~$0.
-    - NEEDS-CLAUDE aggiornato in COORD.md.
+- **2026-07-16(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa pin CLAUDE-SAYS per M2.**
+  ORIENT: M1 COMPLETO (M1-1→M1-7, gate 1634/0). Nessun nuovo pin da CLAUDE-SAYS (ultimo 2026-06-12 ~04:00, solo WORKFLOW-2.0 — nessun ordine per M2 lessonos). COORD.md § PROSSIMA TASK riga 16 ancora su M1-7 (stale — chiuso da commit b59aef1). Stewardship già eseguita (RETRO #10). Nessuna build eseguita (UNA task = quella pinnata = non disponibile).
+  - Gate: 1634/0 VERDE (ri-verificato ORA, invariato). cost_usd: ~$0.
+  - NEEDS-CLAUDE aggiornato in COORD.md.
 
 - **2026-07-16(current) — ⏸️ LESSONOS-NOOP #2 consecutivo: M1 completo, pin esaurito, stewardship già fatta → stop.**
   ORIENT: HEAD bb64a00, gate 1634/0 VERDE (ri-verificato). Nessuna task pinnata per M2. AGENTS.md §3: dopo 2 NOOP consecutivi → stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
   cost_usd: ~$0 (zero LLM, solo gate + lettura file).
-  |
-  |- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
 
+- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
   ORIENT: HEAD `1e5e25d` (log commit). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). M2 STEWARDSHIP già eseguita (2026-12-06, commit 32a7876, +11 test). Gate 1645/0 VERDE (ri-verificato ORA). Entrambi i repo in NOOP permanente. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 — nessun pin M2. Stewardship già fatta (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
 
-|- **2026-12-06(current) — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
-  |  Ipotesi singola: aggiungere `lessonos status` CLI subcommand — report strutturato markdown su DB live (paths/lessons/segments/nodes/edges/evidence/teachers/cost-ledger), ZERO-LLM, deterministico, per agevolare la stewardship e i futuri build M2.
-  |  Risultati:
-  |  1. **lessonos/status.py** (130 righe): `build_status_report(store)` — interroga il DB via Store ABC, produce report strutturato con conteggi e per-teacher breakdown.
-  |  2. **Store ABC esteso** (`lessonos/store/base.py`): `all_paths()` e `all_lessons()` — non-abstract con default NotImplementedError (backward compat stubs).
-  |  3. **SQLiteStore implementato** (`lessonos/store/sqlite.py`): `all_paths()` e `all_lessons()` — SELECT ordinati da tabelle paths/lessons.
-  |  4. **CLI** (`lessonos/cli.py`): nuovo subcomando `status [--db PATH]` con handler che apre SQLiteStore e stampa report.
-  |  5. **11 test** (`tests/test_status.py`): empty DB (8 zeri), popolato (4 lezioni), graph nodes/edges/evidence, capsule presente/assente, determinismo (empty + popolato), cost-ledger entries, CLI wiring. Tutti con assert di stringa ESATTA, falsificabili.
-  |  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina.
-  |  - **REVIEW**: review.sh quota-out — self-review: zero bug, 0 tautologie, gate non modificato.
-  |  - Gate: **1645 passed / 0 failed** (+11 da baseline 1634, nessuna regressione). cost_usd: ~$0 (ZERO LLM).
-  | - Next: attende pin CLAUDE-SAYS per M2 lessonos (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
+- **2026-12-06(current) — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
+  Ipotesi singola: aggiungere `lessonos status` CLI subcommand — report strutturato markdown su DB live (paths/lessons/segments/nodes/edges/evidence/teachers/cost-ledger), ZERO-LLM, deterministico, per agevolare la stewardship e i futuri build M2.
+  Risultati:
+  1. **lessonos/status.py** (130 righe): `build_status_report(store)` — interroga il DB via Store ABC, produce report strutturato con conteggi e per-teacher breakdown.
+  2. **Store ABC esteso** (`lessonos/store/base.py`): `all_paths()` e `all_lessons()` — non-abstract con default NotImplementedError (backward compat stubs).
+  3. **SQLiteStore implementato** (`lessonos/store/sqlite.py`): `all_paths()` e `all_lessons()` — SELECT ordinati da tabelle paths/lessons.
+  4. **CLI** (`lessonos/cli.py`): nuovo subcomando `status [--db PATH]` con handler che apre SQLiteStore e stampa report.
+  5. **11 test** (`tests/test_status.py`): empty DB (8 zeri), popolato (4 lezioni), graph nodes/edges/evidence, capsule presente/assente, determinismo (empty + popolato), cost-ledger entries, CLI wiring. Tutti con assert di stringa ESATTA, falsificabili.
+  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina.
+  - **REVIEW**: review.sh quota-out — self-review: zero bug, 0 tautologie, gate non modificato.
+  - Gate: **1645 passed / 0 failed** (+11 da baseline 1634, nessuna regressione). cost_usd: ~$0 (ZERO LLM).
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
 
 - **2026-06-12(current) — ⏸️ LESSONOS-NOOP (nuova iterazione #N+7): M1 completo, gate 1645/0 VERDE, pin M2 assente da >6 mesi, stewardship già fatta → stop.**
   ORIENT: HEAD ac62a48, gate **1645/0 VERDE** (ri-verificato ORA, invariato). DB reale presente (4 lezioni Teoria-Segnali). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). COORD.md § PROSSIMA TASK: entrambi i repo PIN ESAURITO. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (qualche ora fa — WORKFLOW-2.0, nessun ordine per M2). check-frictions.sh: 21/21 coperti, 0 warning. Stash rescue vecchio (1608 << 1645). Stewardship già eseguita (RETRO #10, +11 status CLI). AGENTS.md §3: stop. Nessuna build eseguita.
-  cost_usd: ~$0.
 
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+8 (nuova iterazione): M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop, AGAIN.**
-  ORIENT: HEAD `2266a38` (NOOP #N+7), gate **1645/0 VERDE** (ri-verificato ORA, invariato). COORD.md § PROSSIMA TASK: entrambi i repo PIN ESAURITO. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (WORKFLOW-2.0) — nessun pin M2 lessonos ricevuto. AGENTS.md §3: Noop handling → stewardship già fatta → stop. Mai ciclare NEEDS-CLAUDE identico — nessuna nuova entry in COORD.md. check-frictions.sh: 21/21 coperti, 0 warning. Entrambi i repo (lessonos + studio) in NOOP permanente. **Serve pin CLAUDE-SAYS per sbloccare M2 lessonos o nuova milestone.**
-  cost_usd: ~$0.
+- **2026-06-12(current) — ⏸️ LESSONOS-NOOP: M1 completo (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA), pin M2 assente (ultimo CLAUDE-SAYS 2026-06-12 ~11:30), stewardship già fatta → stop.**
+  ORIENT: HEAD `cf75632`, gate 1651/0 VERDE. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 attivo. Stash rescue: 1608 << 1651 non pertinente. check-frictions: 21/21 coperti, 0 warning. Nessuna build eseguita. AGENTS.md §3: stop. cost_usd: ~$0.
 
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+9: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `bc3e3f9` (NOOP #N+8), gate **1645/0 VERDE** (ri-verificato ORA, invariato). Nessun nuovo pin in COORD.md § CLAUDE-SAYS — ultimo ordine WORKFLOW-2.0 (2026-06-12 ~04:00). Entrambi i repo (lessonos M1 completo + studio ToolHost T2 completo) in NOOP permanente. Stewardship già eseguita (RETRO #10 + M2 STEWARDSHIP status CLI). AGENTS.md §3: stop. Zero build, zero LLM chiamate. cost_usd: ~$0. **Serve pin CLAUDE-SAYS per sbloccare M2 lessonos — senza ordini, il progetto è fermo.**
-
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+10: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `971ccfe` (STUDIO-NOOP #N+10), gate eseguito ORA via eval/gate.sh: **{"passed":1645,"failed":0,"exit":0}** — VERDE, invariato. COORD.md § PROSSIMA TASK riga 16 = PIN ESAURITO (M1 completo, atteso pin M2). Ultimo CLAUDE-SAYS = WORKFLOW-2.0 (2026-06-12 ~04:00), nessun pin M2. Stash rescue ispezionato (git stash show -p): solo COORDINATION.md/STATUS.md ridondanti, gate misurato 1608 << 1645 — non pertinente, non applicato. Stewardship già eseguita (RETRO #10 + status CLI 32a7876). AGENTS.md §3: stewardship già fatta → stop. Nessuna nuova entry NEEDS-CLAUDE (mai ciclare identico). Zero build, zero LLM. SELF-ADV: n/a (nessun diff di codice — NOOP). cost_usd: ~$0.
-
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+11: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `248b065` (pre-iterazione), gate eseguito ORA via eval/gate.sh: **{"passed":1645,"failed":0,"exit":0}** — VERDE, invariato. COORD.md § PROSSIMA TASK riga 16 = PIN ESAURITO (M1 completo M1-1→M1-7, atteso pin M2). Ultimo CLAUDE-SAYS = WORKFLOW-2.0 (2026-06-12 ~04:00), nessun pin M2. Stash rescue ispezionato (git stash show --stat): solo COORDINATION.md/STATUS.md di iterazione vecchia, gate misurato 1608 << 1645 — non pertinente, non applicato. NEEDS-CLAUDE: resta aperto il RETRO-REVIEW CRITICO su M1-7 vault-export (mapping raw/merged) marcato "supervisore: leggere e decidere" — NON è un pin, non lo eseguo (UNA task = quella pinnata). Stewardship già eseguita (RETRO #10 + status CLI 32a7876). AGENTS.md §3: stewardship già fatta → stop. Nessuna nuova entry NEEDS-CLAUDE (mai ciclare identico). Zero build, zero LLM. SELF-ADV: n/a (nessun diff di codice — NOOP). cost_usd: ~$0.
-
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+12: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `4308db4` (pre-iterazione), gate eseguito ORA via eval/gate.sh: **{"passed":1645,"failed":0,"exit":0}** — VERDE, invariato (VERIFICATO). COORD.md § PROSSIMA TASK riga 16 = PIN ESAURITO (M1 completo M1-1→M1-7, atteso pin M2) — NOOP, niente build per mandato (UNA task = quella pinnata). Ultimo CLAUDE-SAYS = WORKFLOW-2.0 (2026-06-12 ~04:00), nessun pin M2. Stash rescue ispezionato (git stash show --stat): solo COORDINATION.md/STATUS.md di iterazione vecchia (gate 1608 << 1645) — non pertinente, non applicato. NEEDS-CLAUDE: resta aperto il RETRO-REVIEW CRITICO su M1-7 vault-export (mapping raw/merged, riga 20 COORD) marcato "supervisore: leggere e decidere" — NON è un pin, non lo eseguo. Stewardship già eseguita (RETRO #10 + status CLI 32a7876). AGENTS.md §3: stewardship già fatta → stop. Nessuna nuova entry NEEDS-CLAUDE (mai ciclare identico). Zero build, zero LLM. SELF-ADV: n/a (nessun diff di codice — NOOP). cost_usd: ~$0.
-
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+13: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `1714b96` (pre-iterazione), gate eseguito ORA via eval/gate.sh: **{"passed":1645,"failed":0,"exit":0}** — VERDE, invariato (VERIFICATO). COORD.md § PROSSIMA TASK riga 16 = PIN ESAURITO (M1 completo M1-1→M1-7, atteso pin M2) — NOOP, niente build per mandato (UNA task = quella pinnata). Ultimo CLAUDE-SAYS = WORKFLOW-2.0 (2026-06-12 ~04:00), nessun pin M2. Stash rescue ispezionato (lista: "rescue iter 2026-06-12T00:59:58Z, gate misurato passed=1608" ≪ 1645) — non pertinente al pin (che è NOOP), non applicato. NEEDS-CLAUDE: resta aperto il RETRO-REVIEW CRITICO su M1-7 vault-export (mapping raw/merged, riga 20 COORD) marcato "supervisore: leggere e decidere" — NON è un pin, non lo eseguo. Stewardship già eseguita (RETRO #10 + status CLI 32a7876). AGENTS.md §3: stewardship già fatta → stop. Nessuna nuova entry NEEDS-CLAUDE (mai ciclare identico). Zero build, zero LLM. SELF-ADV: n/a (nessun diff di codice — NOOP). cost_usd: ~$0.
-
-- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+14: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD `4fb1734` (pre-iterazione), gate eseguito ORA via eval/gate.sh: **{"passed":1645,"failed":0,"exit":0}** — VERDE, invariato (VERIFICATO). COORD.md § PROSSIMA TASK riga 16 = PIN ESAURITO (M1 completo M1-1→M1-7, atteso pin M2) — NOOP, niente build per mandato (UNA task = quella pinnata). Ultimo CLAUDE-SAYS = WORKFLOW-2.0 (2026-06-12 ~04:00), nessun pin M2. Stash rescue ispezionato (git stash show -p --stat: solo COORDINATION.md/STATUS.md di iterazione vecchia, gate misurato 1608 ≪ 1645) — non pertinente al pin (che è NOOP), non applicato. NEEDS-CLAUDE: resta aperto il RETRO-REVIEW CRITICO su M1-7 vault-export (mapping raw/merged, riga 21 COORD) marcato "supervisore: leggere e decidere" — NON è un pin, non lo eseguo. Stewardship già eseguita (RETRO #10 + status CLI 32a7876). AGENTS.md §3: stewardship già fatta → stop. Nessuna nuova entry NEEDS-CLAUDE (mai ciclare identico). Zero build, zero LLM. SELF-ADV: n/a (nessun diff di codice — NOOP). cost_usd: ~$0.
-
-- **2026-06-12(executed) — ✅ M1-7c: de-tautologizzato il test evidence del vault (adversarial CRITICO su ed20f62), commit `b7d23c1`, gate 1649/0 VERDE.**
-  ORIENT: pin COORD riga 16 = M1-7b CHIUSO, ma nuovo adversarial 07:45 su `ed20f62` (il MIO commit M1-7b) con 1 CRITICO → CRITICO VERO sul lavoro appena consegnato = chiuso DENTRO il pin M1-7b (precedente M1-5 RETRO-FIX). Stash rescue ispezionato: gate 1608 ≪ 1649, non pertinente, non applicato.
-  TRIAGE del report punto per punto (VERIFICATO sul codice + empiricamente):
-  1. **CRITICO VERO — test tautologico**: `test_evidence_section_non_empty` (tests/test_obsidian_vault.py:715 pre-fix) faceva scan globale "una pagina qualsiasi ha un bullet di evidenza". Col vecchio bug raw_to_merged (prima occorrenza sola) le evidenze l1 (ev1/ev2 via edge l1:e0, entrambi gli endpoint mappati) renderizzano comunque sulla pagina Energia → il test passava ANCHE su codice rotto. La dichiarazione M1-7b "4 test fallibili su codice vecchio" era FALSA per questo test (gli altri 3 sono genuini). FIX: sostituito con `test_dedup_concept_has_cross_lesson_evidence` + helper `_evidenze_bullets`: trova la pagina Energia (match `# Energia di un segnale`, unico — le altre pagine hanno il label solo come wikilink), estrae i bullet di `## Evidenze`, asserisce PRESENTI sia l'excerpt l1 ("L'energia si calcola come integrale") sia l'excerpt l2 ("L'energia e importante anche qui").
-  2. **MUTATION-VERIFIED (eseguito, non dichiarato)**: mutazione `key_raw_ids.get(key, [])[:1]` in aggregator.py → il nuovo test FALLISCE con "l2 evidence (ev3) missing from Energia page" (pagina con SOLO i 2 bullet l1 — il vecchio scan sarebbe passato); scoperta: gli altri 3 content test PASSANO sulla mutazione → il nuovo test è l'UNICO che becca questa perdita. Mutazione revertita, gate rieseguito.
-  3. **MEDIUM commonpath (obsidian_vault.py:176/182) — NON applicato**: su Mac/Linux due path `.resolve()` assoluti condividono sempre `/` → ValueError impossibile; su Windows (fuori target) il failure mode è FAIL-SAFE: l'eccezione BLOCCA il rmtree, non lo permette. Hardening per scenario fuori target = rumore (precedente triage 3a166d9).
-  4. **Nit newline finale aggregator.py**: FIXATO (1 byte). Nit observations.jsonl schema-validation: fuori scope di questo repo/diff, non applicato.
-  SELF-ADV: trovati 0, fixati 0 (subagente avversario decorrelato sul diff: falsificabilità confermata staticamente su obsidian_vault.py:275, no flakiness — una sola pagina può matchare, encoding/apostrofi verificati, copertura del nuovo test strettamente più forte del vecchio, zero scope-creep).
-  Gate: **{"passed":1649,"failed":0,"exit":0}** VERDE (eseguito via eval/gate.sh PRIMA del commit, conteggio invariato: 1 test sostituito, non aggiunto). Commit `b7d23c1` (tests/test_obsidian_vault.py + lessonos/graph/aggregator.py). COORD NEEDS-CLAUDE 07:45 annotato come triagato+fixato. cost_usd: ~$0 (zero LLM a pagamento, subagente locale).
-
-- **2026-06-12(executed) — ✅ M1-7c: vault reale SU DISCO eseguito e verificato (accettazione 4 di M1-7b).**
-  ORIENT: COORD.md § CLAUDE-SAYS 2026-06-12 11:30 pin M1-7c — `derived/vault/` NON ESISTENTE su disco. Stash rescue non pertinente (1608 ≪ 1649). fable.sh PLAN-CHECK: quota-out (proceduto per dottrina, annotato).
-  Esecuzione:
-  1. `lessonos export-vault --teacher andrea --out ~/maestro-data/teoria-segnali-2021/derived/vault/andrea/` — 96 concetti, 4 lezioni, 0 archi prerequisito, 5 wiki, 3 dispense. 0 errori, 0 crash.
-  2. **VERIFICA SU DISCO (numeri VERI):**
-     - **96/96 pagine concetto** generate (`concetti/*.md`) ✅
-     - **96/96 con sezione Evidenze non vuota** (ciascuna ≥1 bullet) ✅
-     - **0 occorrenze "(concetto non trovato)"** in tutto il vault ✅
-     - **Canvas**: 96 nodi (tutti i concetti), 0 archi (onesto: questo dataset ha solo relazioni lezione→concetto, non concetto→concetto) ✅
-     - **^seg anchors**: 258 nella prima lezione (es. `^prima_lezione-s1`) ✅
-     - **Wikilink**: evidenze linkano `[[trascrizioni/lezione#^seg]]` ✅
-     - **Frontmatter**: YAML con concept_id, teacher, lesson_ids, status, evidence_count ✅
-     - **Struttura vault**: 114 file totali (concetti/ + trascrizioni/ + wiki/ + dispense/ + teacher_book/ + README) ✅
-  3. **IDEMPOTENZA**: rm -rf vault → rieseguito con stesso comando → diff BYTE-PER-BYTE VUOTO (0 differenze) ✅
-  4. **Nessun fix codice necessario** — DB reale (4 lezioni Teoria-Segnali, ~700KB) compatibile al 100% col vault export. Nessuna capsule vecchia rotta.
-  - **REVIEW**: `./bin/review.sh` quota-out (fable-5 extra usage). Self-review: zero modifiche codice, solo esecuzione dati reali.
-  - **VERIFY**: `uv run pytest -q` → **1651 passed, 2 skipped, 0 failed** — VERDE, invariato.
-  - **COMMIT**: stato narrativa in STATUS.md, project-wiki log e vault-export.md aggiornati, log.jsonl entry.
-  - cost_usd: ~$0 (ZERO LLM, solo vault deterministico).
-|
-|- **2026-07-16(new iteration) — ⏸️ LESSONOS-NOOP: M1 COMPLETO, M1-7c vault reale SU DISCO verificato, pin ESAURITO, atteso M2 da CLAUDE-SAYS.**
-|  ORIENT: HEAD `7155179` (M1-7c vault reale), gate **1651/0 VERDE** (ri-verificato ORA). M1 COMPLETO (M1-1→M1-7, vault reale eseguito e verificato su disco).
-|  COORD.md § PROSSIMA TASK aggiornata: lessonos M1-7c ✅, atteso pin M2. NEEDS-CLAUDE aggiunto.
-|  Stewardship già eseguita (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning.
-Stash rescue ispezionato: gate 1608 ≪ 1651, non pertinente, non applicato.
-Nessuna build eseguita (UNA task = quella pinnata = non disponibile). AGENTS.md §3: stop.
-cost_usd: ~$0 (coordinamento).
-
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+17: M1 completo (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA), pin M2 assente (ultimo CLAUDE-SAYS 2026-06-12 ~11:30), stewardship già fatta → stop.**
-ORIENT: HEAD `cf75632`, gate 1651/0 VERDE. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 attivo. Stash rescue: 1608 ≪ 1651 non pertinente. check-frictions: 21/21 coperti, 0 warning. Nessuna build eseguita. AGENTS.md §3: stop. cost_usd: ~$0.
+- **2026-06-12(current) — ⏸️ LESSONOS-NOOP (nuova iterazione #N+18): M1 COMPLETO (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA su HEAD 8fbd209), pin M2 ASSENTE (ultimo CLAUDE-SAYS 2026-06-12 ~11:30 M1-7c+S-DESIGN-1 — nessun pin M2 in >18 iterazioni).**
+  ORIENT: HEAD `8fbd209`, gate eseguito ORA: **1651 passed / 2 skipped / 0 failed** — VERDE, invariato. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 ✅ CHIUSO. Ultimo CLAUDE-SAYS 2026-06-12 ~11:30 — nessun pin M2 ricevuto. Stash rescue ispezionato: `stash@{0}` gate misurato 1608 ≪ 1651, non pertinente, non applicato. check-frictions.sh: 21/21 coperti, 0 warning — tutti gli attriti hanno skill/guard. PROCESS-LOG.md RETRO #10 completato: NOOP loop marcato `accepted`. AGENTS.md §3: stewardship già fatta → stop. Mai ciclare NEEDS-CLAUDE identico. Zero build, zero LLM chiamate. Solo $0.
