@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type ChangeEvent } from "react"
-import { Excalidraw, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
+import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
+import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
@@ -87,6 +88,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         if (data) {
           try {
             const parsed = JSON.parse(data)
+            // valori JSON falsy ("" / 0 / false) o non-oggetto = scena corrotta: parti da zero
+            if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
             setSceneData(parsed)
             // Seed journal con elementi esistenti: NON registrarli come element.add
             const jr = journalRef.current
@@ -337,6 +340,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       <div style={{ flex: 1, position: "relative" }}>
         {!loading && (
           <Excalidraw
+            langCode={EXCALIDRAW_CONFIG.langCode}
+            theme={EXCALIDRAW_CONFIG.theme}
+            aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
+            UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
               if (typeof eapi.onPointerDown === "function") {
@@ -352,9 +359,41 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                 unsubsRef.current.push(unsubUp)
               }
             }}
-            initialData={sceneData ?? undefined}
+            initialData={
+              // i default MAESTRO stanno SOTTO l'appState salvato: una scena
+              // senza appState (import/export esterni) non perde Nunito/ink/canvas
+              sceneData
+                ? { ...sceneData, appState: { ...EXCALIDRAW_CONFIG.newRoomAppState, ...sceneData.appState } }
+                : { appState: EXCALIDRAW_CONFIG.newRoomAppState }
+            }
             onChange={handleChange}
-          />
+          >
+            {/* MainMenu custom: SOLO ClearCanvas + SaveAsImage — zero Socials/link/Dark-mode */}
+            <MainMenu>
+              <MainMenu.DefaultItems.ClearCanvas />
+              <MainMenu.DefaultItems.SaveAsImage />
+            </MainMenu>
+            <WelcomeScreen>
+              <WelcomeScreen.Center>
+                <div className="st-brand st-welcome-brand">
+                  <span className="st-word">maestro</span>
+                  <span className="st-bdot" aria-hidden />
+                  <span className="st-sub">studio</span>
+                </div>
+                <WelcomeScreen.Center.Heading>
+                  <span className="st-welcome-heading">La lavagna che ricorda la tua lezione</span>
+                </WelcomeScreen.Center.Heading>
+                <div className="st-welcome-guide">
+                  <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
+                  <p>Per le formule premi «formula», per slide e immagini «media».</p>
+                  <p>L'audio parte solo se lo accendi tu, dal bottone «audio».</p>
+                </div>
+              </WelcomeScreen.Center>
+              <WelcomeScreen.Hints.ToolbarHint>
+                <p className="st-welcome-hint">Scegli una penna e inizia</p>
+              </WelcomeScreen.Hints.ToolbarHint>
+            </WelcomeScreen>
+          </Excalidraw>
         )}
         {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
       </div>

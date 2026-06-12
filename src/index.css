@@ -75,3 +75,17 @@ body {
 .st-primary:disabled { background: var(--m-accent-off); border-color: var(--m-accent-off); cursor: default; }
 .st-meet { color: var(--m-ink-3); }
 .st-ext { margin-left: var(--m-sp-1); font-size: var(--m-fs-2xs); }
+
+/* ── welcome MAESTRO (dentro WelcomeScreen Excalidraw) ────────────────── */
+.st-welcome-brand { justify-content: center; margin-bottom: var(--m-sp-3); }
+.st-welcome-brand .st-word { font-size: var(--m-fs-2xl); }
+.st-welcome-heading {
+  font-family: var(--m-font-display);
+  font-size: var(--m-fs-xl); color: var(--m-ink-2);
+}
+.st-welcome-guide {
+  margin-top: var(--m-sp-4); font-size: var(--m-fs-lg);
+  line-height: 1.7; color: var(--m-ink-3); text-align: center;
+}
+.st-welcome-guide p { margin: 0; }
+.st-welcome-hint { margin: 0; font-size: var(--m-fs-md); color: var(--m-ink-4); }

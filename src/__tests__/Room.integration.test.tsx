@@ -35,6 +35,17 @@ vi.mock("@excalidraw/excalidraw", () => {
       }
       return "mock-excalidraw"
     }),
+    MainMenu: Object.assign(vi.fn(() => null), {
+      DefaultItems: { ClearCanvas: vi.fn(() => null), SaveAsImage: vi.fn(() => null) },
+    }),
+    WelcomeScreen: Object.assign(vi.fn(() => null), {
+      Center: Object.assign(vi.fn(() => null), {
+        Heading: vi.fn(() => null),
+        Logo: vi.fn(() => null),
+      }),
+      Hints: { ToolbarHint: vi.fn(() => null), MenuHint: vi.fn(() => null), HelpHint: vi.fn(() => null) },
+    }),
+    FONT_FAMILY: { Nunito: 6 },
     convertToExcalidrawElements: vi.fn((els: any) => els),
     serializeAsJSON: vi.fn(() => serialized),
     getSceneVersion: vi.fn(() => 1),
@@ -459,6 +470,118 @@ describe("Room ↔ WorkspaceStore integration", () => {
     }, { timeout: 1000, interval: 10 })
 
     expect(document.body.textContent).not.toContain("cache ")
+
+    root.unmount()
+  })
+
+  // --- S-DESIGN-1(c): Room passa la config canonica a Excalidraw ---
+
+  it("Excalidraw riceve langCode it-IT, theme light, aiEnabled false, UIOptions canonici", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      expect(props!.langCode).toBe("it-IT")
+      expect(props!.theme).toBe("light")
+      expect(props!.aiEnabled).toBe(false)
+      expect(props!.UIOptions?.canvasActions?.loadScene).toBe(false)
+      expect(props!.UIOptions?.canvasActions?.toggleTheme).toBe(false)
+      expect(props!.UIOptions?.tools?.image).toBe(false)
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("room NUOVA: initialData.appState è NEW_ROOM_APPSTATE (Nunito, ink, canvas)", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const { EXCALIDRAW_CONFIG } = await import("../design/excalidrawConfig")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      expect((props!.initialData as any)?.appState).toEqual(EXCALIDRAW_CONFIG.newRoomAppState)
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("room ESISTENTE: appState salvato vince chiave-per-chiave, default MAESTRO sotto", async () => {
+    const { store } = await createMockStore()
+    await store.saveScene("test-room-1", JSON.stringify({
+      type: "excalidraw",
+      elements: [],
+      appState: { viewBackgroundColor: "#eeeeee" },
+    }))
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const { EXCALIDRAW_CONFIG } = await import("../design/excalidrawConfig")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      const initialData = props!.initialData as any
+      // asserzione POSITIVA: scena salvata vince dove definita…
+      expect(initialData?.appState).toEqual({
+        ...EXCALIDRAW_CONFIG.newRoomAppState,
+        viewBackgroundColor: "#eeeeee",
+      })
+      // …e gli elementi della scena restano
+      expect(initialData?.elements).toEqual([])
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("scena salvata SENZA appState (import esterno): default MAESTRO non persi", async () => {
+    const { store } = await createMockStore()
+    await store.saveScene("test-room-1", JSON.stringify({ type: "excalidraw", elements: [] }))
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const { EXCALIDRAW_CONFIG } = await import("../design/excalidrawConfig")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      expect((props!.initialData as any)?.appState).toEqual(EXCALIDRAW_CONFIG.newRoomAppState)
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("scena corrotta con JSON falsy ('\"\"') non finisce in initialData: si parte da zero", async () => {
+    const { store } = await createMockStore()
+    await store.saveScene("test-room-1", JSON.stringify(""))
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    const { EXCALIDRAW_CONFIG } = await import("../design/excalidrawConfig")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      expect(props!.initialData).toEqual({ appState: EXCALIDRAW_CONFIG.newRoomAppState })
+    }, { timeout: 1000, interval: 10 })
 
     root.unmount()
   })
