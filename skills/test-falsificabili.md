@@ -1,7 +1,7 @@
 # test-falsificabili
 
 Ogni test deve poter FALLIRE se il bug che dichiara di prevenire esistesse. Chiude le
-3 forme di "test-che-non-può-fallire" viste il 2026-06-11 (4 occorrenze in un giorno,
+5 forme di "test-che-non-può-fallire" viste il 2026-06-11/12 (6 occorrenze in 2 giorni,
 2 repo) NON coperte da test-determinism (che copre SHA/`>=`) né da grounding-check
 (che copre tautologia-da-mock).
 
@@ -36,6 +36,20 @@ Ogni test deve poter FALLIRE se il bug che dichiara di prevenire esistesse. Chiu
 - [ ] **Un assert sul VALORE, non solo sulla forma**: `toHaveLength(n)` / `len(x)==n`
   da solo non basta quando conta QUALE elemento c'è: aggiungi assert su id/nome
   dell'elemento atteso (`assert result[0].name == "EnergiaReal"`).
+- [ ] **Determinismo = seconda istanza RICOSTRUITA**: `assert f(x) == f(x)` sulla stessa
+  istanza in memoria non può mai fallire per una funzione pura — non testa il replay.
+  Esempio VERO: `tests/test_status.py:138-149` (commit 32a7876) — `test_determinism` e
+  `test_determinism_empty` chiamano `build_status_report(populated_store)` due volte
+  sullo stesso store senza mutazione (H2 2026-06-12 04:55). Fix: serializza su disco,
+  ricostruisci una SECONDA istanza store e confronta gli output cross-istanza.
+- [ ] **Il test di regressione colpisce il RAMO del fix**: per ogni bugfix, il test deve
+  (a) FALLIRE sul codice pre-fix (eseguilo mentalmente o con `git stash` sul fix) e
+  (b) coprire OGNI ramo aggiunto dal fix — parametrizza le varianti edge. Esempio VERO:
+  il fix 478f628 aggiunge `claim.excerpt is None or claim.excerpt == ""`
+  (`lessonos/dispensa.py:475`) ma `test_excerpt_none_dropped`
+  (`tests/test_dispensa.py:434`) copre solo `None`: il ramo `""` è scoperto e
+  `excerpt="   "` passa ancora come verified (H2 2026-06-12 03:40, CRITICO).
+  Fix: parametrizza `excerpt in (None, "", "   ")` → tutte droppate.
 
 ## Origine-RETRO
 
@@ -46,3 +60,9 @@ Ogni test deve poter FALLIRE se il bug che dichiara di prevenire esistesse. Chiu
 - M1-3-FIX (5e7a536) + M1-4 warm-up (b17bc94): `assert ... or True` sempre verde
   (`test_teacher_book_renderer.py:340`) — stesso anti-pattern fixato 2 volte in 2 commit.
 - Classe "test-che-non-possono-fallire" segnalata dal coach come ricorrente del giorno.
+- H2 adversarial 2026-06-12 04:55 su lessonos@32a7876: determinismo same-instance
+  tautologico (`test_status.py:138-149`) — la skill esisteva ma non copriva questa forma.
+- H2 adversarial 2026-06-12 03:40 su lessonos@478f628 (CRITICO): test di regressione del
+  fix false-verde non copre il ramo `excerpt == ""` aggiunto dal fix stesso — il bug
+  originale (retro-review 02:13) era già rimasto "mai applicato" una volta; un test che
+  non colpisce il fix lascia la porta aperta a una terza ricorrenza.
