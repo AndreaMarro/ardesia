@@ -500,3 +500,16 @@ Risultati:
 
 - **2026-06-12(current) — ⏸️ LESSONOS-NOOP (nuova iterazione #N+18): M1 COMPLETO (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA su HEAD 8fbd209), pin M2 ASSENTE (ultimo CLAUDE-SAYS 2026-06-12 ~11:30 M1-7c+S-DESIGN-1 — nessun pin M2 in >18 iterazioni).**
   ORIENT: HEAD `8fbd209`, gate eseguito ORA: **1651 passed / 2 skipped / 0 failed** — VERDE, invariato. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 ✅ CHIUSO. Ultimo CLAUDE-SAYS 2026-06-12 ~11:30 — nessun pin M2 ricevuto. Stash rescue ispezionato: `stash@{0}` gate misurato 1608 ≪ 1651, non pertinente, non applicato. check-frictions.sh: 21/21 coperti, 0 warning — tutti gli attriti hanno skill/guard. PROCESS-LOG.md RETRO #10 completato: NOOP loop marcato `accepted`. AGENTS.md §3: stewardship già fatta → stop. Mai ciclare NEEDS-CLAUDE identico. Zero build, zero LLM chiamate. Solo $0.
+
+ - **2026-06-12(current) — M2-3: badge per-claim nel rendering (roadmap R1, gate 1656/0 VERDE, +5).**
+ Ipotesi singola: i 3 renderer (dispensa, teacher_book, summarizer) mostrano per OGNI claim il marcatore di verifica — ✅ (verificato excerpt verbatim), 🔧 (riparato), ✗ (non verificato/droppato). Motore grounding già esistente (`is_verified_excerpt`), ZERO LLM, riusa flag `excerpt` e nuovo flag `repaired` su `DispensaClaim`.
+ Risultati:
+ 1. **graph/grounding.py** — `claim_badge(excerpt, *, repaired, dropped)` → ✅/🔧/✗. Helper condiviso tra tutti i renderer.
+ 2. **dispensa.py** — `render_dispensa_md()`: badge per claim (`claim_badge(claim.excerpt, repaired=claim.repaired)`). Dropped paragraphs in footer con ✗ prefix. `DispensaClaim.repaired` propagato da `_verify_or_repair`.
+ 3. **teacher_book_renderer.py** — `_render_citations()`: badge per evidenza (`claim_badge(ev.excerpt)`). Mostra ⚠/✅/✗ per ogni citazione.
+ 4. **summarizer.py** — `_render_summary_markdown()`: badge su ogni citation verificata (`✅[excerpt](seg_id)`).
+ 5. **5 nuovi test**: verified badge dispensa, claim_badge helper, dropped dispensa footer, verified evidence teacher_book, unverified evidence teacher_book.
+ - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+ - **REVIEW**: review.sh quota-out (Claude usage) — self-review: ZERO LLM, 0 regressioni, 0 tautologie, solo visualizzazione.
+ - Gate: **1656 passed / 2 skipped / 0 failed** (+5 da baseline 1651, nessuna regressione). cost_usd: ~$0 (mock).
+ - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 style upgrade stile-scritto? M2-4 ToolHost?).

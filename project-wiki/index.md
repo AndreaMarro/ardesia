@@ -32,7 +32,8 @@ Ogni pagina + riassunto 1 riga.
 |- **teacher-book-renderer.md** — M1-3: ZERO-LLM markdown renderer per TeacherBook + comparative report (render_teacher_book, render_comparative_report, 10 docenti sim Fisica1, 17 test)
 ||- **vault-export.md** — Obsidian Vault Export: read-only proiezione derived/ (M1-7, M1-7b fix raw->merged)
 ||- **M1-5 motore** — purge_lesson transazionale + _lesson_ids_from_path fonte primaria + negation-aware repair + pipeline.run_ingest + H2-1327 determinism test
-|- **M1-6 Fase F: dispense LIVE** — andrea dispensa generata (23/23 verified) + ground-truth vs dispense VERE (zero contraddizioni) + blind-test pack (10 paragrafi)
+||- **M1-6 Fase F: dispense LIVE** — andrea dispensa generata (23/23 verified) + ground-truth vs dispense VERE (zero contraddizioni) + blind-test pack (10 paragrafi)
+||- **M2-3: badge per-claim** — claim_badge() helper in grounding.py + per-claim verification badge ✅/🔧/✗ in dispensa.py, teacher_book_renderer.py, summarizer.py (M2-3, roadmap R1, ZERO LLM, 1656 test)
 - **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
 - **summarizer.md** — Lesson Summary Generator: `generate_lesson_summary()` → markdown with mechanically verified citations (T6)
 - **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)

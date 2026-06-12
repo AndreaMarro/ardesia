@@ -65,12 +65,10 @@
 
 ## M2 — In attesa di pin da CLAUDE-SAYS
 
-**M1 COMPLETO (M1-1→M1-7, gate 1633/0).** Prossimi candidati M2 (non pinnati, ordine da decidere):
+**M1 COMPLETO (M1-1→M1-7, gate 1656/0).** Prossimi candidati M2 (non pinnati, ordine da decidere):
+- [x] M2-3: Badge per-claim nel rendering ✅ (commit 1e7c18f, gate 1656/0, roadmap R1)
 - M2-1: Giudizio blind-test M1-6 (>=7/10?)
 - M2-2: Style upgrade da stile-parlato a stile-scritto usando le dispense VERE (CLAUDE-SAYS 2026-06-11 19:35)
-- M2-3: Roadmap R&D — badge per-claim verde/rosso (R1), Privacy Pack (R2)
-- M2-4: ToolHost (M2 studio, spec in docs/)
-- Altro da CLAUDE-SAYS
 
 **Regola attuale: Hermes non costruisce fuori dai pin.** Attende nuovi ordini in COORDINATION.md § CLAUDE-SAYS.
 
