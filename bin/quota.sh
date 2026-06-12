@@ -10,6 +10,7 @@ set -euo pipefail
 ACC="${2:-A1}"
 case "$ACC" in
   A2) F="$HOME/.fable_quota_until.A2" ;;
+  A3) F="$HOME/.fable_quota_until.A3" ;;
   *)  F="$HOME/.fable_quota_until" ;;
 esac
 case "${1:-}" in

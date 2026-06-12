@@ -10,10 +10,12 @@
 set -euo pipefail
 Q="$HOME/lessonos/bin/quota.sh"
 A2F="$HOME/.maestro-account2.env"
+A3F="$HOME/.maestro-account3.env"
 case "${1:-}" in
   pick)
     if bash "$Q" check A1 >/dev/null 2>&1; then echo A1; exit 0; fi
     if [ -f "$A2F" ] && bash "$Q" check A2 >/dev/null 2>&1; then echo A2; exit 0; fi
+    if [ -f "$A3F" ] && bash "$Q" check A3 >/dev/null 2>&1; then echo A3; exit 0; fi
     exit 1
     ;;
   token)
@@ -24,6 +26,12 @@ case "${1:-}" in
         . "$A2F"
         printf '%s' "${CLAUDE_CODE_OAUTH_TOKEN_2:-}"
         ;;
+      A3)
+        [ -f "$A3F" ] || exit 1
+        # shellcheck disable=SC1090
+        . "$A3F"
+        printf '%s' "${CLAUDE_CODE_OAUTH_TOKEN_3:-}"
+        ;;
       *)
         eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
         printf '%s' "${CLAUDE_CODE_OAUTH_TOKEN:-}"
@@ -31,7 +39,11 @@ case "${1:-}" in
     esac
     ;;
   has)
-    [ "${2:-}" = "A2" ] && [ -f "$A2F" ]
+    case "${2:-}" in
+      A2) [ -f "$A2F" ] ;;
+      A3) [ -f "$A3F" ] ;;
+      *) false ;;
+    esac
     ;;
   *)
     echo "uso: acct.sh pick | token <A1|A2> | has A2" >&2

@@ -27,6 +27,7 @@ case "$1" in
 esac
 ACCS="A1"
 bash "$HOME/lessonos/bin/acct.sh" has A2 && ACCS="A1 A2"
+bash "$HOME/lessonos/bin/acct.sh" has A3 && ACCS="$ACCS A3"
 out=""
 for m in $MODELS; do
   for acc in $ACCS; do

@@ -27,8 +27,7 @@ req = urllib.request.Request(
         "model": "kimi-k2.6",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 8192,
-        "temperature": 0.3,
-    }).encode(),
+            }).encode(),
     headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
 )
 try:

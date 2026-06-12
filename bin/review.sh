@@ -58,7 +58,7 @@ record_observation() {
 }
 
 # Ladder: fable-5 (3 tentativi) -> opus-4-8 (3 tentativi). Retry su auth-loop/timeout/rate-limit. Review MANDATORIA.
-ACCS="A1"; bash "$HOME/lessonos/bin/acct.sh" has A2 && ACCS="A1 A2"
+ACCS="A1"; bash "$HOME/lessonos/bin/acct.sh" has A2 && ACCS="A1 A2"; bash "$HOME/lessonos/bin/acct.sh" has A3 && ACCS="$ACCS A3"
 for acc in $ACCS; do
   bash "$HOME/lessonos/bin/quota.sh" check "$acc" >/dev/null 2>&1 || continue
   TOK="$(bash "$HOME/lessonos/bin/acct.sh" token "$acc" 2>/dev/null)"
