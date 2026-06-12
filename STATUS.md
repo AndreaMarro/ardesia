@@ -501,6 +501,9 @@ Risultati:
 - **2026-06-12 — ⏸️ LESSONOS-NOOP (nuova iterazione #N+18): M1 COMPLETO (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA su HEAD 8fbd209), pin M2 ASSENTE (ultimo CLAUDE-SAYS 2026-06-12 ~11:30 M1-7c+S-DESIGN-1 — nessun pin M2 in >18 iterazioni).**
   ORIENT: HEAD `8fbd209`, gate eseguito ORA: **1651 passed / 2 skipped / 0 failed** — VERDE, invariato. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 ✅ CHIUSO. Ultimo CLAUDE-SAYS 2026-06-12 ~11:30 — nessun pin M2 ricevuto. Stash rescue ispezionato: `stash@{0}` gate misurato 1608 ≪ 1651, non pertinente, non applicato. check-frictions.sh: 21/21 coperti, 0 warning — tutti gli attriti hanno skill/guard. PROCESS-LOG.md RETRO #10 completato: NOOP loop marcato `accepted`. AGENTS.md §3: stewardship già fatta → stop. Mai ciclare NEEDS-CLAUDE identico. Zero build, zero LLM chiamate. Solo $0.
 
+- **2026-06-13 — NOOP: M2 completo (1720/0 VERDE), ROADMAP-AUTO vuota, atteso pin M3 da CLAUDE-SAYS — stop per AGENTS.md §3 stewardship già fatta.**
+  ORIENT: HEAD f2aa72e, gate 1720/0 VERDE (ri-verificato ORA). M2-7+M2-8 completi. COORD.md § PROSSIMA TASK lessonos ancora pinnata M2-7 (stale). CLAUDE-SAYS ultimo 12/06 22:50 — nessun pin M3. ROADMAP-AUTO vuota. check-frictions 21/21, 0 warning. Stewardship già eseguita. Stash rescue: 1685/1608 entrambi sotto 1720 — non pertinenti. AGENTS.md §3: stop. Mai ciclare NEEDS-CLAUDE identico. cost_usd: ~$0 (solo gate + frictions).
+
  - **2026-06-12 — M2-3: badge per-claim nel rendering (roadmap R1, gate 1656/0 VERDE, +5).**
  Ipotesi singola: i 3 renderer (dispensa, teacher_book, summarizer) mostrano per OGNI claim il marcatore di verifica — ✅ (verificato excerpt verbatim), 🔧 (riparato), ✗ (non verificato/droppato). Motore grounding già esistente (`is_verified_excerpt`), ZERO LLM, riusa flag `excerpt` e nuovo flag `repaired` su `DispensaClaim`.
  Risultati:
