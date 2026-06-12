@@ -639,7 +639,22 @@ Risultati:
   8. **SELF-REVIEW**: 0 tautologie, 0 regressioni, ZERO LLM.
   9. Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0 (mock, ZERO LLM).
 
-- **2026-06-12T20:34:57Z — M2-8: triage report adversarial d044044 (M1-4b dispensa matching, 3/3 FALSI POSITIVI).** + NEEDS-CLAUDE update per 4 report (7b947aa, 1e7c18f, fbb96ff, d044044) ora triagati.
+|- **2026-06-15 — M2-7-FIX: CRITICO adversarial recap-export dispensa matching + _is_lesson_file helper + review fixes (commit 94918c9, gate 1719/0, +2).**
+  Contesto: adversarial HERMES-2 su M2-7 (1e8636f, 21:02) — 1 CRITICO (lesson_id in fpath.stem produce falsa provenance dispense), 1 MINORE (test_derived_materials tautologico). Fissato nella working tree ma non committato.
+  Ipotesi singola: il CRITICO va fissato con matching esatto (come wiki/teacher_book/vault gia facevano) + helper DRY + test parametrizzato su TUTTI i 4 kinds.
+  Risultati:
+  1. **CRITICO FIX** (recap_export.py:189): `lesson_id in fpath.stem` → `_is_lesson_file(stem, lesson_id)`.
+     Nuovo helper `_is_lesson_file()` centralizza logica `stem == lesson_id or startswith(lesson_id + "_")` case-insensitive.
+  2. **Review gemini** — 2 MAJOR: (a) quadrupla duplicazione → helper `_is_lesson_file` eliminata; (b) test_dispense_no_false_match solo dispense → ora verifica TUTTI 4 kinds. +1 improvement: case-insensitive per portabilita cross-fs (già issue noto da retro-review vault).
+  3. **Fixture ampliata**: boundary file `alessandro_andrea.md` in wiki + dispense + teacher_book + vault (non matcha), `andrea_backup.md` (prefix matcha).
+  4. **2 nuovi test**: `test_dispense_no_false_match` ora itera tutti i kinds, `test_derived_materials_all_kinds` conteggia 2 per kind.
+  5. **Docstrings**: vault aggiunto a tutte le docstring, `_is_lesson_file` documentato.
+  6. **Zero LLM**: solo refactor meccanico, mock test, $0.0000.
+  7. **Adversarial triage**: 1 CRITICO FIXATO, test non piu tautologico. Finding 3 (_compute_duration) ritenuto NON BUG — max(end)-min(start) è la formula corretta per durata totale.
+  - **PLAN-CHECK**: fable.sh timeout — proceduto per dottrina, annotato.
+  - **REVIEW**: gemini — OK con 1 improvement (case-insensitive) applicato.
+  - Gate: **1719 passed / 2 skipped / 0 failed** (+2 da baseline 1717). cost_usd: ~$0.
+  - Next: M2-7-FIX completato. Attende pin CLAUDE-SAYS per prossima task M2 lessonos.
   Ipotesi singola: il report adversarial d044044 (M1-4b, 2026-06-11 13:27) su _resolve_concepts_from_capsules (race condition break), _name_similar (normalizzazione) e test tautologico va verificato con repro EMPIRICO.
   Risultati:
   1. **Finding 1 (CRITICO — race condition)** — FALSO POSITIVO. Codice dispensa.py:211-212 ha `if best_ratio == 1.0: break` DOPO il for-inner, che esce ANCHE dal for-outer. Repro 100x su 2 capsule con stesso "Energia" (exact match): risultato sempre deterministico (primo L1). Il break al for-inner + guard esterno = double-break corretto.
