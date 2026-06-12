@@ -603,3 +603,14 @@ Risultati:
 
 - **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+20: M1+M2 completi (gate 1701/2 VERDE su HEAD 7a868a7), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già eseguita → stop.**
   ORIENT: HEAD `7a868a7` (coord-only: AUTO-PIN studio). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 15:30 — solo cablaggio A3 + studio). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
+
+- **2026-06-12(executed) — TRIAGE ADVERSARIAL + LADDER-FIX: gradini CODEX+GEMINI in review.sh documentati, adversarial HERMES-2 su 2c5e857 triagato, fix minori (commit current, gate 1701/0).**
+  Contesto: dopo NOOP #N+20, fable ha costruito 2 nuovi gradini gratuiti nella ladder di review — `codex exec` (ChatGPT sub di Andrea, 2c5e857) e `gemini` (Google AI Pro, 2a420cd) — entrambi PRIMA del kimi-k2.6 fallback. Mai documentati in STATUS. HERMES-2 adversarial 14:05 su 2c5e857 non triagato.
+  **TRIAGE ADVERSARIAL (1 CRITICO, 1 MINORE, 1 DEBITO):**
+  1. [FALSO POSITIVO] CRITICO GDPR: `codex exec` invia diff a OpenAI senza consenso — il diff di review.sh contiene solo codice Python tecnico (lessonos, zero PII per GDPR Mode A). Stesso contenuto già inviato a Claude + kimi dall'inizio del progetto. Nessuna azione.
+  2. [VERO, MINORE] `[ -s "$COUT_F" ]` non valida contenuto: un errore rate-limit/JSON passerebbe come review valida. Fixato: helper `_valid_review()` con soglia >=100 byte (filtra error JSON/"OK": usualmente <50 byte). Applicato a ENTRAMBI i gradini (CODEX + GEMINI).
+  3. [VERO, MINORE] `rm -f` duplicato, tmpfile persiste su SIGINT. Fixato: `trap 'rm -f "$TMP"' EXIT` + `trap - EXIT` sul ramo successo, atomico.
+  - **PLAN-CHECK**: N/A — retro-documentazione + triage adversarial, non nuova build.
+  - **REVIEW**: N/A — diff solo review.sh (non testato da pytest). Self-review: 0 regressioni.
+  - Gate: **1701 passed / 2 skipped / 0 failed** (invariato). cost_usd: ~$0.
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos.

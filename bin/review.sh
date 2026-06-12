@@ -75,23 +75,33 @@ for acc in $ACCS; do
     done
   done
 done
+# Helper: validate review output — non-empty, >=100 chars (filtra error JSON/rate-limit/"OK").
+_valid_review() {
+  local f="$1"; shift
+  [ -s "$f" ] && [ "$(wc -c < "$f")" -ge 100 ]
+}
+
 # Gradino CODEX (12/06): ChatGPT sub di Andrea = reviewer gpt decorrelato a costo zero.
 # Prompt via stdin (i diff sfondano ARG_MAX), output pulito via --output-last-message.
 COUT_F=$(mktemp)
+trap 'rm -f "$COUT_F"' EXIT
 if printf "%s" "$prompt" | timeout 300 codex exec --skip-git-repo-check -o "$COUT_F" - >/dev/null 2>&1 \
-   && [ -s "$COUT_F" ]; then
-  printf "[review: codex-gpt]\n"; cat "$COUT_F"; rm -f "$COUT_F"
+   && _valid_review "$COUT_F"; then
+  printf "[review: codex-gpt]\n"; cat "$COUT_F"
+  trap - EXIT; rm -f "$COUT_F"
   record_observation; exit 0
 fi
-rm -f "$COUT_F"
+trap - EXIT; rm -f "$COUT_F"
 
 # Gradino GEMINI (12/06): Google AI Pro di Andrea = reviewer Google $0, prompt via stdin.
 GOUT_F=$(mktemp)
-if printf "%s" "$prompt" | timeout 180 gemini > "$GOUT_F" 2>/dev/null && [ -s "$GOUT_F" ]; then
-  printf "[review: gemini]\n"; cat "$GOUT_F"; rm -f "$GOUT_F"
+trap 'rm -f "$GOUT_F"' EXIT
+if printf "%s" "$prompt" | timeout 180 gemini > "$GOUT_F" 2>/dev/null && _valid_review "$GOUT_F"; then
+  printf "[review: gemini]\n"; cat "$GOUT_F"
+  trap - EXIT; rm -f "$GOUT_F"
   record_observation; exit 0
 fi
-rm -f "$GOUT_F"
+trap - EXIT; rm -f "$GOUT_F"
 
 # M8-light (12/06): review MAI saltata. Ladder claude esaurita -> kimi-k2.6 (degradata ma reale).
 # Se fallisce anche kimi: exit 1 e il chiamante scrive NEEDS-CLAUDE — la "self-review" e' VIETATA.
