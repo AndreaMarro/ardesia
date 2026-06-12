@@ -599,3 +599,7 @@ Risultati:
   - **PLAN-CHECK**: fable.sh quota-out — proceduto.
   - **REVIEW**: review.sh rate-limit — self-review: 0 regressioni, 0 tautologie, ZERO LLM.
   - Gate: **1701 passed / 2 skipped** (+5 da baseline 1696). cost_usd: ~$0 (ZERO LLM, mock).
+  - Next: attende prossimo pin CLAUDE-SAYS per M2 lessonos.
+
+- **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+20: M1+M2 completi (gate 1701/2 VERDE su HEAD 7a868a7), pin ESAURITO, ROADMAP-AUTO vuota per lessonos, stewardship già eseguita → stop.**
+  ORIENT: HEAD `7a868a7` (coord-only: AUTO-PIN studio). Gate **1701 passed / 0 failed / 2 skipped** — VERDE, invariato da M2-5. PROSSIMA TASK COORD.md riga 16: lessonos M2-5 (stale — chiuso). ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M2 lessonos dall'ultimo (2026-06-12 15:30 — solo cablaggio A3 + studio). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build ($0).
