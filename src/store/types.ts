@@ -51,6 +51,10 @@ export const PATHS = {
   JOURNAL: "raw/events.jsonl",
   SESSION: "raw/session.yaml",
   AUDIO_DIR: "raw/audio/",
+  // Plasticità (DESIGN-MAESTRO-v1 §3.C): prodotti da lessonos / PL-3, sempre rigenerabili
+  STYLE_PROFILE: "derived/style_profile.json",
+  THEME: "derived/theme.json",
+  THEME_OVERRIDE: "derived/theme-override.json",
 } as const
 
 /** Meta di una lezione (raw/<room>/meta.json) */
