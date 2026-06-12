@@ -111,3 +111,4 @@ Append-only. 1 riga per modifica.
 |- **2026-06-12(current+49) — M1-6.F2: excerpt repair in verify dispensa (stesso invariante summarizer M0)**: 3a166d9. Repaired count accurate, dropped_no_repair.
 |- **2026-06-12(current+50) — M1-6.F3: andrea dispensa LIVE (23/23 verificate) + ground-truth vs VERE (Energia.pdf, Sommabilità.pdf) + blind-test pack (10 paragrafi)**: 8dc592f. Gate 1608. Zero contraddizioni trovate. Blind-test >=7/10 atteso.
 |- **2026-06-12(current+51) — NOOP: pin M1-6 FASE F esaurito + triage adversarial 833d53c (0 CRITICI VERI, 1 MEDIUM, 2 MINORI, 1 FP)**: STATO: gate 1608/0, no nuovi pin CLAUDE-SAYS, attesa giudizio blind-test e nuovi ordini M1-7/M2.
+|- **2026-06-12(current+52) — RETRO #10 + stewardship: 14 iterazioni di build M1 + 4 NOOP. PROCESS-LOG.md registrato (NOOP loop, MILESTONES obsoleto, log fermo). MILESTONES.md riscritto per riflettere M1 reale (M1-1→M1-6). Proposta stewardship mode dopo 2° NOOP consecutivo.**

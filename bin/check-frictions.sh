@@ -20,6 +20,7 @@ mappings=(
   "JSON fenced|extract_json|fence markdown::lessonos/capsule/parsing.py"
   "auth-loop|Keychain::accepted"
   "observations saltat|obs .* saltat|Observations saltat::accepted"
+  "NOOP loop|stewardship mode|stewardship::accepted"
 )
 
 # Estrai le righe-attrito che segnalano ricorrenza.

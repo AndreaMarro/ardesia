@@ -46,4 +46,10 @@ Append-only. Una riga per retro: `RETRO <data>: attrito=… → miglioria=… [a
   6. **No new skills created in 5+ RETROs** — zero nuovi skill da RETRO #6 a #9. Attriti chiusi da skill/guard esistenti. check-frictions.sh: 0 warning (dopo fix). [ok — sistema maturo, nessuna nuova skill necessaria]
   [fix applicati: review.sh auto-observation hook. check-frictions.sh: 0 warning (--strict).]
 
-- **2026-06-16 RETRO #9 fix — Pre-commit guard creato (CHIUSO attrito #3 e #4).** I due pattern 3x di RETRO #9 (grounding seg_id inventati, >= deterministici) sono ora bloccati strutturalmente da `bin/pre-commit-guard.sh` + `.git/hooks/pre-commit`. Non solo loggati — il guard blocca il commit. Review Claude Code: 7 fix applicati. [applicata: bin/pre-commit-guard.sh + git hook installato]
+|- **2026-06-16 RETRO #9 fix — Pre-commit guard creato (CHIUSO attrito #3 e #4).** I due pattern 3x di RETRO #9 (grounding seg_id inventati, >= deterministici) sono ora bloccati strutturalmente da `bin/pre-commit-guard.sh` + `.git/hooks/pre-commit`. Non solo loggati — il guard blocca il commit. Review Claude Code: 7 fix applicati. [applicata: bin/pre-commit-guard.sh + git hook installato]
+|
+|- **2026-06-12 RETRO #10 — 14 iterazioni di build + 4 NOOP dal RETRO #9 fix. M1 COMPLETO (M1-1→M1-6). Attriti:**
+|  1. **NOOP loop sprecato (NUOVO, pattern 4x)** — 4 iterazioni NOOP consecutive, tutte con commit COORD-only identico ("attendo pin"). Ogni iterazione consuma DeepSeek reasoning per zero codice. → **miglioria: dopo 2 NOOP consecutivi, Hermes entra in STEWARDSHIP mode e invece di scrivere NEEDS-CLAUDE identico fa lavoro di manutenzione (wiki, MILESTONES, pre-commit guard sull'esistente, lint). Solo se anche stewardship è già fatta → stop.** [accettato: risolto in AGENTS.md §3 — stewardship mode + `bin/check-stewardship.sh` guard. Riaprire se pattern ricompare.]
+|  2. **MILESTONES.md obsoleto (non aggiornato dal pivot M0→M1)** — ancora mostra M0-M6 con checkbox vuoti. [risolto: aggiornato in questa iterazione]
+|  3. **project-wiki/log.md fermo al vecchio roadmap (M4/M5/M6)** — pagine M1 nell'index.md ma log non aggiornato da giugno-10. [risolto: aggiornato in questa iterazione]
+|  4. **Claude Code auth-loop cronico (pattern invariato dal RETRO #4, 17+ iterazioni)** — accettato come vincolo architetturale. [accettato invariato]

@@ -1,49 +1,66 @@
-# LessonOS Core Engine — Roadmap bounded (ordine = riduzione del rischio)
+# LessonOS Core Engine — Roadmap bounded (stato REALE dopo M1)
 
-> Regola: una task alla volta (AGENTS.md §3). Ogni milestone = poche task piccole. Spunta `[x]` solo quando pytest è verde + Codex review affrontata + committato.
+> Regola: una task alla volta (AGENTS.md §3). Ogni milestone = poche task piccole.
+> MILESTONES aggiornata al 2026-06-12 per riflettere il lavoro REALE dopo il pivot M0→M1 (giugno 2026).
+> Questo file NON è più la roadmap originale M0-M6 (vedi COORDINATION-ARCHIVE.md per lo storico).
 
-## M0 — Scaffold (fondamenta testabili)
-- [ ] `pyproject.toml` (uv), pkg `lessonos/`, `tests/`, `README.md`, `.gitignore` (include `.env`, `*.db`).
-- [ ] `make`/`uv` task: `uv run pytest` gira a vuoto (1 test smoke verde).
-- [ ] `lessonos/llm/router.py` — interfaccia LLM + provider `mock` (da fixture deterministiche). Test: il router restituisce la fixture.
-- [ ] `lessonos/llm/kimi.py` — provider Kimi (Moonshot, key da env), **non testato live in unit** (solo wiring; skip se no key).
-- [ ] `fixtures/sample_path/` — 1 percorso sintetico: 3 lezioni (transcript JSON + timeline_events + 1 fonte PDF/testo + marker). Dati FINTI (matematica: derivate/integrali).
-- [ ] `ARCH.md` — ADR-001: scelte (Python, SQLite+sqlite-vec, router mock/kimi, schemi JSON).
+## M0 — Filone Verticale (completato, gate 1434/0)
+- [x] T4a: ASR pilot su 4 audio reali (faster-whisper large-v3-turbo, 4/4 trascritte)
+- [x] T4b: Adapter ASR → Segment + capsule DeepSeek LIVE su Prima lezione ($0.00056)
+- [x] T5: GraphWriter (Capsule→SQLite nodes/edges/evidence, ZERO LLM, 14 test)
+- [x] T5-FIX: Cross-lesson grounding guard + transaction atomicity (2 CRITICI fixati)
+- [x] T6: Summarizer + grounding helper + LIVE run su Prima lezione (17 test)
+- [x] T6-COMPLETAMENTO: Capsule 2-4 assemblate + summaries 2-4 + DB persistente
+- [x] T6R: Off-by-one fix, full-lesson batching, guardrail anti-falso-verde
+- [x] T7: SCHEMA.md (contratti seg_id, grounding, GDPR, raw/derived, SCHEMA_VERSION)
+- [x] T8: ingest-bundle (.lesson → segmenti da testo lavagna → pipeline)
+- [x] M0 certified: gate 1434/0, HERMES-2 0-critici, deepreview blocker 0
 
-## M1 — Data model (il dominio, PLAN §7 + §14)
-- [ ] `lessonos/models/` — entità: Path, Lesson, Source, Moment, Concept, Exercise, LearningDebtItem, GraphNode, GraphEdge (dataclass/pydantic).
-- [ ] `lessonos/store/` — persistenza SQLite (schema PLAN §14, layer astratto), migrazioni semplici.
-- [ ] CRUD + test: crea Path con 3 Lesson dalle fixture, rileggi, verifica integrità referenziale.
+## M1 — Personalizzazione per-docente (completato, gate 1608/0)
 
-## M2 — Lesson Capsule pipeline (PLAN §16.1 percorso testo + §26.1)
-- [x] Ingest: carica una lezione-fixture (transcript + timeline + fonte) nello store.
-- [x] Segmentazione per argomenti (via router LLM; mock in test).
-- [x] Estrazione concetti + esercizi + dubbi + compiti (schema §26.1).
-- [x] **Lesson Capsule** JSON completo con **citazioni fondate** (timestamp/pagina/segmento). Ogni claim → citazione.
-- [x] Test: capsule dalla fixture ha i campi richiesti + ogni citazione punta a un segmento esistente (no citazioni inventate).
-- [x] **M2-task5 (ordine Claude)**: persistenza LessonCapsule nello store come JSON blob (save_capsule/get_capsule, save=True su assemble, load_capsule helper)
+### M1-1: Grafo per-docente (gate +13 da M0)
+- [x] `teacher_id` su Path, `aggregate_teacher_graph()` con dedup canonical
+- [x] 96 concetti unici, 130 edges, 328 evidence su 4 lezioni Teoria-Segnali reali
+- [x] Cross-teacher guard: docenti diversi non contaminano + backward compat
 
-## M3 — Lesson Graph + Path Memory (PLAN §3.2 + §26.2)
-- [x] Costruisci nodi/archi del grafo dalle capsule (edge_type PLAN §14.2: explains, depends_on, repeats, prepares...).
-- [x] `lessonos/graph/` — query: "dove è introdotto X?", "in quali lezioni torna?", prerequisiti.
-- [x] **Path Memory** (§26.2): aggregazione progressiva (concetti canonici, lesson_index, recurring_misconceptions).
-- [x] Test: dato il percorso 3-lezioni, il grafo collega un concetto introdotto in L1 e ripreso in L2/L3.
+### M1-2a: TeacherBook Builder (ZERO-LLM, gate +11)
+- [x] `build_teacher_book(store, teacher_id)`: 5 sezioni (overview, fundamental, problematic, progression, prerequisites)
+- [x] Nuove entità frozen: TeacherConcept, ConceptProgression, PrerequisiteChain, TeacherBook
 
-## M4 — Didactic Delta + Learning Debt (IL differenziatore, PLAN §3.3 + §3.4)
-- [x] **Didactic Delta**: confronto tra versioni del percorso (cosa aggiunto/chiarito/ancora-aperto/ripetuto-troppo).
-- [x] **Learning Debt Ledger** (§3.4 + §14): debiti (concetti non padroneggiati, dubbi sospesi, esercizi non corretti) con evidenze/citazioni.
-- [x] **Next Lesson Planner** (§8.2): dato il percorso + debito → agenda prossima lezione (cosa riprendere, esercizi, fonti).
-- [x] **Test M4 end-to-end**: aggiungendo L4 (mock capsule), DidacticDelta rileva concetto nuovo + debito aperto da L2. L4 fixture reale esiste (`fixtures/sample_path/lessons/l4_integral_substitution.json`, validata da test_fixtures_sample_path.py).
+### M1-3: TeacherBook per-stile + renderer (ZERO-LLM, gate +13)
+- [x] `render_teacher_book()` + `render_comparative_report()`: 10/10 docenti sim Fisica1 generati
+- [x] `render_qualitative_diff()`: diff stilistico pratico vs socratico vs rigoroso
+- [x] Adversarial CRITICO+MAGGIORI fixati (M1-3-FIX + M1-3b)
 
-## M5 — Eval harness + Cost ledger (PLAN §22 + §20)
-- [x] Eval set: ~20 cases (domande lesson-scope + path-scope) with expected.
-- [x] Metriche groundedness/citation-accuracy (stile Ragas/DeepEval, ma minimal custom).
-- [x] **Cost ledger** per-lezione (§20): traccia token/costo per chiamata reale.
-- [x] Test: l'eval gira sul mock e produce un report; groundedness check fallisce su una citazione volutamente rotta.
+### M1-4: Dispensa stilizzata (gate +33 da M1-3)
+- [x] `lessonos/style.py`: StyleProfile ZERO-LLM (exercise_density, question_density, prereq_explicitness, concept_granularity, registro, tics)
+- [x] `lessonos/dispensa.py`: Pipeline LLM-guided con gate fail-closed, verify_dispensa
+- [x] Test stile divergente: stesso capsule, stili opposti → markdown diverso strutturalmente
+- [x] M1-4b: Fix matching (edit-distance), dropped_texts preserva, empty-claims gate
+- [x] M1-4c: 5 bug-hunt test cementati (stale evidence, gate-before-save, bundle purge, second-lesson aggregate, repair adversarial)
 
-## M6 (stretch) — Demo CLI/HTTP end-to-end
-- [x] CLI `lessonos run-path fixtures/sample_path` → stampa Lesson Capsules + Path Map + Delta + Debt + Next-Plan.
-- [ ] (opz.) FastAPI minimale — RIMOSSA 2026-06-08 (scope-creep; PLAN v0 = motore headless, web/HTTP fuori scope; Claude review batch #2).
-- [ ] Eval reale gated (1 run con Kimi, costo loggato) — solo se Andrea dà OK.
+### M1-5: Motore (gate +28 da M1-4)
+- [x] purge_lesson transazionale + erase_lesson (wiki + DB, 7 test reali SQLiteStore)
+- [x] _lesson_ids_from_path fonte primaria (deprecato lesson_ids JSON → derived)
+- [x] Negation-aware repair con word-boundary guard (non⊄nonostante, no⊄sono)
+- [x] pipeline.run_ingest consolidato + retro-review (defense-in-depth documentata, non bug)
+- [x] H2-1327 determinism test
 
-**Definition of Done progetto-v0:** M0–M5 verdi; demo M6 mostra il ciclo §3 su dati-fixture con citazioni fondate; eval report + cost ledger esistono. Onestà sopra completezza: meglio M0–M3 solidi che M0–M6 fragili.
+### M1-6 Fase F: Dispense LIVE + ground-truth (gate invariato, dati reali)
+- [x] Andrea dispensa LIVE: 23/23 verified, 0 dropped (deepseek-chat, 10 sezioni narrative)
+- [x] 3 sim verify: prof_pratico 51/51, prof_socratico 32/32, prof_rigoroso 27/27
+- [x] GROUND-TRUTH vs dispense VERE (Energia.pdf, Sommabilità.pdf): 0 contraddizioni, gap copertura dichiarato
+- [x] BLIND-TEST-ANDREA.md: 10 paragrafi pronti per giudizio (>=7/10 = accettazione)
+
+## M2 — In attesa di pin da CLAUDE-SAYS
+
+**M1 COMPLETO (gate 1608/0).** Prossimi candidati M2 (non pinnati, ordine da decidere):
+- M2-1: Giudizio blind-test M1-6 (>=7/10?)
+- M2-2: Style upgrade da stile-parlato a stile-scritto usando le dispense VERE (CLAUDE-SAYS 2026-06-11 19:35)
+- M2-3: Roadmap R&D — badge per-claim verde/rosso (R1), Privacy Pack (R2)
+- M2-4: ToolHost (M2 studio, spec in docs/)
+- Altro da CLAUDE-SAYS
+
+**Regola attuale: Hermes non costruisce fuori dai pin.** Attende nuovi ordini in COORDINATION.md § CLAUDE-SAYS.
+
+**Karpathy**: Una modifica/ipotesi per iterazione. Gate frozen = autorità. Onestà sopra velocità.
