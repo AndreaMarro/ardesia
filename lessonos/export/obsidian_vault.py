@@ -13,6 +13,13 @@ Mapping (OBSIDIAN-FIT.md §2):
 - wiki/dispense/teacher_book -> copied with exact-match wikilink-ification
 - README.md: anti-edit warning
 - Optional --canvas: JSON Canvas 1.0 graph overview
+
+M2-5 (badge nel vault):
+- dispensa pages get per-claim verification badges (``\u2705``/``\u2717``) via
+  ``_add_dispensa_badges()`` — post-processes citation lines using
+  ``claim_badge()`` from graph/grounding.py.
+- teacher_book markdown is generated ZERO-LLM inside the export via
+  ``render_teacher_book()`` (already badge-ated by M2-3 code).
 """
 
 from __future__ import annotations
@@ -26,6 +33,7 @@ from pathlib import Path
 from typing import Any
 
 from lessonos.graph.aggregator import aggregate_teacher_graph
+from lessonos.graph.grounding import claim_badge
 from lessonos.models.entities import (
     AggregatedPathNode,
     GraphEdge,
@@ -121,6 +129,110 @@ def _build_frontmatter_yaml(data: dict[str, Any]) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Badge injection for dispensa pages (M2-5, ZERO LLM)
+# ---------------------------------------------------------------------------
+
+_CITATION_LINE_RE = re.compile(
+    r"^(?P<prefix>\s*-\s*)(?:[\u2705\u2717\U0001f527])?`(?P<seg_id>[^`]+)`:?\s*(?:_(?P<excerpt>[^_]*)_)?\s*$"
+)
+
+
+def _add_dispensa_badges(vault_dispense_dir: Path) -> dict[str, int]:
+    """Post-process dispensa markdown pages in the vault to add per-claim badges.
+
+    Reads each ``.md`` file under *vault_dispense_dir*, finds lines within
+    ``<div class="citations">`` blocks that match the citation format
+    ``- `seg_id`: _excerpt_``, and prepends a ``claim_badge()`` badge
+    (``\u2705`` verified / ``\u2717`` unverified). Runs ZERO LLM — badge is
+    determined from excerpt presence alone (the dispensa source files were
+    already verified at generation time; unverified claims were dropped).
+
+    Returns:
+        ``{"verified": int, "unverified": int}`` counts across all files.
+    """
+    verified = 0
+    unverified = 0
+    for md_file in sorted(vault_dispense_dir.rglob("*.md")):
+        if not md_file.is_file():
+            continue
+        orig = md_file.read_text(encoding="utf-8")
+        if '<div class="citations">' not in orig:
+            continue
+        lines = orig.splitlines(keepends=True)
+        new_lines: list[str] = []
+        in_citations = False
+        for line in lines:
+            stripped = line.strip()
+            if stripped == '<div class="citations">':
+                in_citations = True
+                new_lines.append(line)
+                continue
+            if in_citations and stripped == "</div>":
+                in_citations = False
+                new_lines.append(line)
+                continue
+            if in_citations:
+                m = _CITATION_LINE_RE.match(stripped)
+                if m:
+                    seg_id = m.group("seg_id")
+                    excerpt = m.group("excerpt")
+                    badge = claim_badge(excerpt)  # \u2705/\u2717  (no repaired flag in markdown)
+                    # Simple approach: prepend badge after prefix
+                    prefix = m.group("prefix")
+                    rest = m.group(0)[len(prefix):]
+                    # Remove any existing badge at start of rest
+                    rest_clean = re.sub(r"^[\u2705\u2717\U0001f527]", "", rest).lstrip()
+                    new_lines.append(f"{prefix}{badge}{rest_clean}\n")
+                    if badge == "\u2705":
+                        verified += 1
+                    else:
+                        unverified += 1
+                    continue
+                # Line inside citations but doesn't match — preserve as-is
+                new_lines.append(line)
+                continue
+            new_lines.append(line)
+        new_text = "".join(new_lines)
+        if new_text != orig:
+            md_file.write_text(new_text, encoding="utf-8")
+    return {"verified": verified, "unverified": unverified}
+
+
+# ---------------------------------------------------------------------------
+# Teacher Book markdown generation (M2-5, ZERO LLM)
+# ---------------------------------------------------------------------------
+
+def _write_teacher_book_md(
+    store: Store,
+    teacher_id: str,
+    vault_teacher_book_dir: Path,
+) -> dict[str, int]:
+    """Generate teacher_book markdown from store data and write to vault.
+
+    Uses ``render_teacher_book()`` (ZERO LLM, already badge-ated by M2-3)
+    to produce structured markdown with per-evidence ``\u2705`` badges.
+
+    Returns:
+        ``{"teacher_book_concepts": int, "teacher_book_badges": int}``.
+    """
+    from lessonos.teacher_book import build_teacher_book
+    from lessonos.teacher_book_renderer import render_teacher_book
+
+    book = build_teacher_book(store, teacher_id)
+    md = render_teacher_book(book)
+    vault_teacher_book_dir.mkdir(parents=True, exist_ok=True)
+    out_path = vault_teacher_book_dir / f"{teacher_id}.md"
+    out_path.write_text(md, encoding="utf-8")
+
+    # Count badges in the generated markdown
+    badge_count = len(re.findall(r"[\u2705\u2717\U0001f527]", md))
+    return {
+        "teacher_book_concepts": len(book.fundamental_concepts) + len(book.problematic_concepts),
+        "teacher_book_badges": badge_count,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Core export function
 # ---------------------------------------------------------------------------
 
@@ -151,7 +263,9 @@ def export_vault(
     -------
     dict with keys:
         - concepts (int), lessons (int), edges (int),
-          wiki_files (int), dispense_files (int), canvas (bool)
+          wiki_files (int), dispense_files (int), canvas (bool),
+          dispensa_badges_verified (int), dispensa_badges_unverified (int),
+          teacher_book_concepts (int), teacher_book_badges (int)
     """
     # ---- Resolve paths ----
     if not output_dir:
@@ -389,6 +503,14 @@ def export_vault(
     _copy_derived_with_wikilinks(derived / "dispense", output / "dispense", canonicals)
     _copy_derived_with_wikilinks(derived / "teacher_book", output / "teacher_book", canonicals)
 
+    # ---- 4b. Write teacher_book markdown (ZERO LLM, badge-ated by M2-3) ----
+    tb_stats = _write_teacher_book_md(store, teacher_id, output / "teacher_book")
+
+    # ---- 4c. Add badges to dispensa pages (M2-5, ZERO LLM) ----
+    badge_stats = {"verified": 0, "unverified": 0}
+    if (output / "dispense").exists():
+        badge_stats = _add_dispensa_badges(output / "dispense")
+
     # ---- 5. Write README.md ----
     readme = (
         "# MAESTRO — Vault generato dal motore\n\n"
@@ -427,6 +549,10 @@ def export_vault(
         "wiki_files": wiki_count,
         "dispense_files": dispense_count,
         "canvas": canvas_generated,
+        "dispensa_badges_verified": badge_stats["verified"],
+        "dispensa_badges_unverified": badge_stats["unverified"],
+        "teacher_book_concepts": tb_stats["teacher_book_concepts"],
+        "teacher_book_badges": tb_stats["teacher_book_badges"],
     }
 
 
@@ -440,7 +566,7 @@ def _write_canvas(
     edges_by_source: dict[str, list[GraphEdge]],
     raw_to_merged: dict[str, str],
 ) -> None:
-    "Write a JSON Canvas 1.0 file representing the concept graph."
+    """Write a JSON Canvas 1.0 file representing the concept graph."""
     canvas_nodes: list[dict] = []
     canvas_edges: list[dict] = []
 

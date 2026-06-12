@@ -981,6 +981,164 @@ class TestExportVaultContent:
                 assert edge["toNode"] in node_ids, \
                     f"Canvas edge {edge['id']} has dangling toNode={edge['toNode']}"
 
+# ---------------------------------------------------------------------------
+# M2-5: Badge injection in vault (dispensa + teacher_book)
+# ---------------------------------------------------------------------------
+
+
+class TestVaultBadges:
+    """Badge projection in vault pages (M2-5: badge nel vault, ZERO LLM)."""
+
+    @pytest.fixture
+    def badge_fixtures(self, store_and_data, derived_root):
+        """Create derived/dispense with citation blocks + run export_vault."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            # Pre-populate derived/dispense with a markdown that has
+            # <div class="citations"> blocks (simulates a previously-generated
+            # dispensa that does NOT yet have M2-3 badges).
+            disp_dir = FsPath(derived_root) / "dispense"
+            disp_dir.mkdir(parents=True, exist_ok=True)
+            (disp_dir / "test_teacher.md").write_text(
+                "# Dispensa di Test Teacher\n\n"
+                "## 1. Definizione di segnale\n\n"
+                "Allora, iniziamo col dire: un segnale e una grandezza fisica.\n\n"
+                '  <div class="citations">\n'
+                "  - `prima_lezione#s1`: _Il segnale e una grandezza fisica_\n"
+                "  - `prima_lezione#s2`: _l'energia di un segnale_\n"
+                "  </div>\n\n"
+                "## 2. Energia\n\n"
+                "L'energia si calcola come integrale.\n\n"
+                '  <div class="citations">\n'
+                "  - `seconda_lezione#s3`: _La potenza media_\n"
+                "  </div>\n",
+                encoding="utf-8",
+            )
+
+            result = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+            yield FsPath(tmp), result, store_and_data
+
+    def test_dispensa_badges_added(self, badge_fixtures):
+        """Dispensa pages in the vault have per-claim badges."""
+        vault, result, _ = badge_fixtures
+        disp_file = vault / "dispense" / "test_teacher.md"
+        assert disp_file.exists(), "dispensa file should exist in vault"
+        content = disp_file.read_text(encoding="utf-8")
+        # Each citation line should have a badge prefix
+        lines = content.split("\n")
+        citation_lines_with_badge = 0
+        citation_lines_total = 0
+        in_citations = False
+        for line in lines:
+            stripped = line.strip()
+            if stripped == '<div class="citations">':
+                in_citations = True
+                continue
+            if in_citations and stripped == "</div>":
+                in_citations = False
+                continue
+            if in_citations and stripped.startswith("- "):
+                citation_lines_total += 1
+                if "\u2705" in stripped or "\u2717" in stripped:
+                    citation_lines_with_badge += 1
+        assert citation_lines_total == 3, f"expected 3 citation lines, got {citation_lines_total}"
+        assert citation_lines_with_badge == 3, (
+            f"expected all 3 citation lines to have badges, "
+            f"got {citation_lines_with_badge}"
+        )
+        # All have non-empty excerpts -> should all be verified (\u2705)
+        assert content.count("\u2705") == 3, "all 3 citations should be verified"
+        assert content.count("\u2717") == 0, "no citations should be unverified"
+
+    def test_dispensa_badge_counts_in_result(self, badge_fixtures):
+        """Return dict includes dispensa badge counts."""
+        _, result, _ = badge_fixtures
+        assert result["dispensa_badges_verified"] == 3
+        assert result["dispensa_badges_unverified"] == 0
+
+    def test_teacher_book_generated_in_vault(self, badge_fixtures):
+        """Teacher book markdown is generated and has badges."""
+        vault, result, _ = badge_fixtures
+        tb_file = vault / "teacher_book" / "test_teacher.md"
+        assert tb_file.exists(), "teacher_book markdown should exist in vault"
+        content = tb_file.read_text(encoding="utf-8")
+        # TeacherBook concepts should be positive
+        assert result["teacher_book_concepts"] > 0
+        # Badges should be present in the rendered markdown
+        assert result["teacher_book_badges"] > 0
+        assert "\u2705" in content, "teacher_book should have verified badges"
+
+    def test_dispensa_no_badges_without_citations(self, store_and_data, derived_root):
+        """Dispensa without <div class='citations'> gets no badges."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            disp_dir = FsPath(derived_root) / "dispense"
+            disp_dir.mkdir(parents=True, exist_ok=True)
+            (disp_dir / "no_cite.md").write_text(
+                "# Simple note\n\nJust regular text without citations.\n",
+                encoding="utf-8",
+            )
+            result = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+            vault = FsPath(tmp)
+            no_cite = vault / "dispense" / "no_cite.md"
+            assert no_cite.exists()
+            content = no_cite.read_text(encoding="utf-8")
+            assert "\u2705" not in content, "no badges in citation-less dispensa"
+            assert "\u2717" not in content, "no unverified badges in citation-less dispensa"
+            assert result["dispensa_badges_verified"] == 0
+            assert result["dispensa_badges_unverified"] == 0
+
+    def test_idempotent_badges(self, store_and_data, derived_root):
+        """Second vault export produces same badge counts (idempotent)."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            # First export (needs derived/dispense pre-populated)
+            disp_dir = FsPath(derived_root) / "dispense"
+            disp_dir.mkdir(parents=True, exist_ok=True)
+            (disp_dir / "idem.md").write_text(
+                "# Idem\n\n"
+                "Some text.\n\n"
+                '  <div class="citations">\n'
+                "  - `prima_lezione#s1`: _Il segnale e una grandezza fisica_\n"
+                "  </div>\n",
+                encoding="utf-8",
+            )
+
+            r1 = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+            files_1 = {}
+            for f in FsPath(tmp).rglob("*.md"):
+                files_1[str(f.relative_to(tmp))] = f.read_text(encoding="utf-8")
+
+            r2 = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+
+            # Same badge counts
+            assert r1["dispensa_badges_verified"] == r2["dispensa_badges_verified"]
+            assert r1["dispensa_badges_unverified"] == r2["dispensa_badges_unverified"]
+            assert r1["teacher_book_badges"] == r2["teacher_book_badges"]
+
+            # Same file contents byte-for-byte
+            for f in FsPath(tmp).rglob("*.md"):
+                rel = str(f.relative_to(tmp))
+                assert f.read_text(encoding="utf-8") == files_1[rel], \
+                    f"File {rel} differs on second export (badge idempotency)"
+
     def test_prereq_semantics_depends_on(self, store_with_dedup):
         """With A depends_on B, B appears under ## Prerequisiti of A's page.
 
