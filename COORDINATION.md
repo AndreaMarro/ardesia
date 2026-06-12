@@ -14,7 +14,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 |- **studio**: [AUTO-PINNED 12/06 11:47] **S-DESIGN-3 ✅ CHIUSO** (4 commit ST1-ST5, gate 263/263 VERDE). Prossimo auto-pin: sotto.
 |- **studio**: [AUTO-PINNED 12/06] **S-DESIGN-4 ✅ CHIUSO** (MathComposer unificato + 10 icone ink, gate 284/284 VERDE, 9 file, cb09e84). Prossimo auto-pin: sotto.
-|- **studio**: [AUTO-PINNED 12/06] **S-DESIGN-5 — Vista studente (§3.A)**: appending `?vista=studente` → viewModeEnabled, header wordmark + chip + 'stai guardando la lavagna', niente JournalRecorder/AudioRecorder, niente bottoni docente. Test: query=studente → zero bottoni docente, viewModeEnabled, recorder undefined.
+|- **studio**: [AUTO-PINNED 12/06] **S-DESIGN-5 ✅ CHIUSO** (vista studente ?vista=studente: viewModeEnabled + header wordmark/chip + zero recorder/bottoni docente + empty-state Meet + shareUrl docente, gate 290/290 VERDE, commit 19fccbe, base riusata da stash rescue + fix avversari). PIN ESAURITO — serve prossimo auto-pin/CLAUDE-SAYS (ROADMAP-AUTO vuota; CODA §5: recap+materiali §3.A, header responsive §3.B, track PL-1..4).
 |- **lessonos**: ✅ M2-2 [AUTO-PINNED-DONE] (1685 test, gate VERDE, 9 dispense reali processate, written-style nel prompt). Prossimo auto-pin: sotto.
 
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
