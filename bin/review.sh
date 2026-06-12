@@ -65,4 +65,8 @@ for m in $models; do
     printf "[review: %s]\n%s\n" "$m" "$out"; record_observation; exit 0
   done
 done
-printf "%s\n" "$out"; record_observation; exit 1
+# M8-light (12/06): review MAI saltata. Ladder claude esaurita -> kimi-k2.6 (degradata ma reale).
+# Se fallisce anche kimi: exit 1 e il chiamante scrive NEEDS-CLAUDE — la "self-review" e' VIETATA.
+kout="$(printf "%s" "$prompt" | timeout 360 python3 "$HOME/lessonos/bin/review-kimi.py" 2>&1)" && {
+  printf "[review: kimi-k2.6 FALLBACK]\n%s\n" "$kout"; record_observation; exit 0; }
+printf "REVIEW FALLITA su tutti i gradini (claude + kimi):\n%s\n%s\n" "$out" "$kout"; record_observation; exit 1
