@@ -85,6 +85,14 @@ if printf "%s" "$prompt" | timeout 300 codex exec --skip-git-repo-check -o "$COU
 fi
 rm -f "$COUT_F"
 
+# Gradino GEMINI (12/06): Google AI Pro di Andrea = reviewer Google $0, prompt via stdin.
+GOUT_F=$(mktemp)
+if printf "%s" "$prompt" | timeout 180 gemini > "$GOUT_F" 2>/dev/null && [ -s "$GOUT_F" ]; then
+  printf "[review: gemini]\n"; cat "$GOUT_F"; rm -f "$GOUT_F"
+  record_observation; exit 0
+fi
+rm -f "$GOUT_F"
+
 # M8-light (12/06): review MAI saltata. Ladder claude esaurita -> kimi-k2.6 (degradata ma reale).
 # Se fallisce anche kimi: exit 1 e il chiamante scrive NEEDS-CLAUDE — la "self-review" e' VIETATA.
 kout="$(printf "%s" "$prompt" | timeout 360 python3 "$HOME/lessonos/bin/review-kimi.py" 2>&1)" && {
