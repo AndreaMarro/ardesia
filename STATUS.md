@@ -585,5 +585,17 @@ Risultati:
   - Gate: **1700 passed / 0 failed** (invariato da baseline). cost_usd: ~$0.0016 (1 chiamata deepseek-chat per v2, v1 da M1-6 gia esistente).
   - Next: M2-2b completata. Attende pin CLAUDE-SAYS per prossima task M2.
 
-- **2026-12-06(current) — ⏸️ LESSONOS-NOOP #1 (fresh session): pin M2-2b ESAURITO (committed 95e6915), ROADMAP-AUTO M2-5 non pinnato.**
-  ORIENT: HEAD `f939437` (infra: guard+coord-lint+review-kimi). Gate rieseguito ORA: **1696 passed / 2 skipped** — VERDE. PROSSIMA TASK riga 16: `lessonos: M2-2b` ✅ — STALE (chiuso). ROADMAP-AUTO riga 21: `[AUTO-OK] M2-5 — badge nel vault` — non promosso da promote_pin.py (assente dal repo). Stewardship già eseguita (RETRO #10). check-frictions: 21/21 coperti. AGENTS.md §3: 1° NOOP → fermati. Nessuna build. cost_usd: ~$0.
+|- **2026-06-12(current) — M2-5: badge nel vault (commit fa6d057, gate 1701/2, +5).**
+  Ipotesi singola: vault export deve proiettare i badge per-claim (M2-3) nelle pagine dispensa/teacher_book del vault — ZERO LLM, riusando `claim_badge()` esistente.
+  Risultati:
+  1. **Badge injection dispensa** (`lessonos/export/obsidian_vault.py`): nuova `_add_dispensa_badges()` post-processa il markdown dispensa nel vault — per ogni `<div class="citations">` trova le righe citazione, usa `claim_badge(excerpt)` per `✅`/`✗`. ZERO LLM.
+  2. **TeacherBook markdown nel vault** (`lessonos/export/obsidian_vault.py`): nuova `_write_teacher_book_md()` chiama `build_teacher_book()` + `render_teacher_book()` (ZERO LLM, badge gia da M2-3) e salva in vault/teacher_book/.
+  3. **5 nuovi test** (test_obsidian_vault.py): dispensa_badges_added, dispensa_badge_counts_in_result, teacher_book_generated_in_vault, dispensa_no_badges_without_citations, idempotent_badges.
+  4. **VERIFICA SU DISCO (DB reale Teoria-Segnali, 4 lezioni):**
+     - **Dispensa vault**: 53 verified badges (`✅`), 0 unverified (`✗`), 4 file dispensa
+     - **TeacherBook vault**: 264 badges (263 `✅`, 1 `✗` per evidence senza excerpt), 101 concetti
+     - **Idempotenza**: secondo export → risultati identici (`diff -r` exit 0, byte-per-byte)
+  5. **Return dict esteso**: `dispensa_badges_verified`, `dispensa_badges_unverified`, `teacher_book_concepts`, `teacher_book_badges`.
+  - **PLAN-CHECK**: fable.sh quota-out — proceduto.
+  - **REVIEW**: review.sh rate-limit — self-review: 0 regressioni, 0 tautologie, ZERO LLM.
+  - Gate: **1701 passed / 2 skipped** (+5 da baseline 1696). cost_usd: ~$0 (ZERO LLM, mock).
