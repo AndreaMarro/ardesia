@@ -542,3 +542,17 @@ Risultati:
   - **REVIEW**: review.sh quota-out — self-review: ZERO LLM, 0 regressioni, backward compat, 0 tautologie.
   - Gate: **1685 passed / 2 skipped** (+28 da baseline 1657). cost_usd: ~$0 (ZERO LLM, mock).
   - Next: M2-2 completo. Attende prossimo pin da CLAUDE-SAYS o ROADMAP-AUTO.
+
+- **2026-06-12T11:51Z — ✅ RETRO-FIX C2: rmtree guard invertito in export_vault (retro-review CRITICO 2026-06-12), commit `88622ab`, gate 1693/0 (+8).**
+  Contesto pin: lessonos M2-2 [AUTO-PINNED-DONE], ROADMAP-AUTO senza righe lessonos → pin esaurito. Applicato il precedente ratificato retro-review→fix-autonomo (CLAUDE-SAYS 09:25 su 478f628): UNA task = il CRITICO C2 di NEEDS-CLAUDE (repro eseguito dal retro-review). C1 (pre-commit-guard.sh COORD-FORMAT morto) NON toccato: tooling del supervisore, resta in NEEDS-CLAUDE.
+  Causa-radice (obsidian_vault.py:176): `commonpath([out, derived]) == derived` bloccava output DENTRO derived/ — ma il layout documentato È `derived/vault/<teacher>` (cli.py --out help, docstring "Recreated from scratch each run") → ogni RI-export reale alzava ValueError dal 2° run. Bonus: `raw_str = derived/raw` proteggeva un path inesistente (raw/ è FRATELLO di derived/).
+  Fix: blocca output UGUALE/ANTENATO di derived (`commonpath == out`); raw come sibling (`derived.parent/raw`) con blocco su QUALSIASI overlap (uguale/dentro/antenato); home risolta.
+  **SELF-ADV: trovati 4, fixati 4** (code-reviewer avversario sul diff, repro empirici suoi): (1) CRITICO bypass case-insensitive APFS — `RAW` ≠ `raw` per commonpath ma stessa dir su disco → rmtree distruggeva raw/; ora confronto casefolded su darwin (falso positivo = guard più severo, mai distruttivo); (2) MAJOR derived symlinkato nascondeva la raw vera accanto al symlink → candidate raw da parent risolto E non-risolto; (3) MAJOR raw symlink a storage esterno → candidate risolte; (4) MINOR home non risolta + match mancante in un pytest.raises.
+  Criteri di accettazione (dal retro-review, punto per punto):
+  - [VERIFICATO] "bloccare quando out è UGUALE o ANTENATO di derived/raw, non discendente": test_refuses_output_equal_derived + test_refuses_output_ancestor_of_derived (ancestor NON era bloccato nemmeno dal vecchio guard) + test_reexport_inside_derived_succeeds.
+  - [VERIFICATO] "correggere raw_str = derived/raw → fratello": test_refuses_output_equal_raw_sibling + test_refuses_output_inside_raw.
+  - [VERIFICATO] Repro del retro-review sui DATI REALI: `export-vault --teacher andrea --out ~/maestro-data/teoria-segnali-2021/derived/vault/andrea` eseguito 2 volte di fila (più una 3ª) — prima del fix il 2° run alzava ValueError, ora OK: 96 concetti, 4 lezioni, 109 pagine .md (= conteggio M1-7c), canvas rigenerato, raw/ INTATTO.
+  - [VERIFICATO] Mutation: col guard vecchio 4/5 test base falliscono; con le mutazioni SELF-ADV (no casefold, no doppia candidate, no resolve) 3/3 test avversari falliscono. Totale 8 test nuovi (TestRmtreeGuard), 7/8 falsificabili (l'8° è il regression test del re-export, passa senza guard by design).
+  - Gate: bash eval/gate.sh = {"passed":1693,"failed":0,"exit":0} — VERDE, +8 da baseline 1685. cost_usd ~$0 (mock, zero LLM).
+  - Atteso (non verificato da me): C1 pre-commit-guard e bonifica prefissi `|` in COORD — supervisore.
+  - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
