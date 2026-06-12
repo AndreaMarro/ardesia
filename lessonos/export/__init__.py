@@ -18,6 +18,7 @@ from lessonos.export.docling_adapter import docling_extract
 from lessonos.export.liascript import LiaScriptCoursePack, export_liascript
 from lessonos.export.markdown_course import MarkdownCoursePack, export_course_markdown
 from lessonos.export.moodle_xml import MoodleXMLQuizPack, export_moodle_xml
+from lessonos.export.obsidian_vault import export_vault
 from lessonos.export.quarto import QuartoCoursePack, QuartoSlidesPack, export_quarto, export_quarto_slides
 
 __all__ = [
@@ -32,4 +33,5 @@ __all__ = [
     "export_moodle_xml",
     "export_quarto",
     "export_quarto_slides",
+    "export_vault",
 ]

@@ -1,0 +1,594 @@
+"""Deterministic tests for Obsidian Vault Export (M1-7, lessonos/export/obsidian_vault.py).
+
+Tests cover:
+- Vault directory structure (concetti/, trascrizioni/, README.md)
+- Concept pages with correct frontmatter and body
+- Prerequisite wikilinks
+- Transcript pages with ^seg-<id> blocks
+- Second-run idempotency (same output)
+- JSON Canvas 1.0 output (--canvas)
+- Edge cases: empty teacher, no global resolution
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import tempfile
+from pathlib import Path as FsPath
+
+import pytest
+
+from lessonos.capsule.assembly import LessonCapsule
+from lessonos.capsule.extraction import (
+    Citation,
+    ConceptExtraction,
+    ExerciseExtraction,
+    LessonContent,
+    QuestionExtraction,
+)
+from lessonos.capsule.segmentation import TopicSpan
+from lessonos.export.obsidian_vault import (
+    _build_canonical_set,
+    _build_frontmatter_yaml,
+    _load_global_resolution,
+    _parse_seg_id,
+    _slug,
+    _wikilinkify,
+    export_vault,
+)
+from lessonos.graph.aggregator import aggregate_teacher_graph
+from lessonos.graph.resolution import GlobalResolution, ResolutionAlias, ResolutionEntry
+from lessonos.models.entities import (
+    Segment,
+    EDGE_TYPES,
+    GraphEdge,
+    GraphEvidence,
+    GraphNode,
+    Lesson,
+    Path,
+)
+from lessonos.store.base import Store
+
+
+# ---------------------------------------------------------------------------
+# Minimal in-memory store (same pattern as test_graph_aggregator._PathStore)
+# ---------------------------------------------------------------------------
+
+class _VaultStore(Store):
+    """Minimal in-memory store stub for vault export tests."""
+
+    def __init__(self):
+        self._paths: dict[str, Path] = {}
+        self._lessons: dict[str, Lesson] = {}
+        self._capsules: dict[str, str] = {}
+        self._nodes: dict[str, list[GraphNode]] = {}
+        self._edges: dict[str, list[GraphEdge]] = {}
+        self._evidence: dict[str, list[GraphEvidence]] = {}
+        self._segments: dict[str, Segment] = {}
+
+    def save_path(self, p: Path) -> None:
+        self._paths[p.path_id] = p
+
+    def get_path(self, path_id: str) -> Path | None:
+        return self._paths.get(path_id)
+
+    def paths_for_teacher(self, teacher_id: str) -> tuple[Path, ...]:
+        return tuple(p for p in self._paths.values() if p.teacher_id == teacher_id)
+
+    def save_lesson(self, l: Lesson) -> None:
+        self._lessons[l.lesson_id] = l
+
+    def get_lesson(self, lesson_id: str) -> Lesson | None:
+        return self._lessons.get(lesson_id)
+
+    def lessons_for_path(self, path_id: str) -> tuple[Lesson, ...]:
+        return tuple(l for l in self._lessons.values() if l.path_id == path_id)
+
+    def save_capsule(self, lesson_id: str, data: str) -> None:
+        self._capsules[lesson_id] = data
+
+    def get_capsule(self, lesson_id: str) -> str | None:
+        return self._capsules.get(lesson_id)
+
+    def save_segment(self, seg: Segment) -> None:
+        self._segments[seg.seg_id] = seg
+
+    def get_segment(self, seg_id: str) -> Segment | None:
+        return self._segments.get(seg_id)
+
+    def segments_for_lesson(self, lid: str) -> tuple[Segment, ...]:
+        return tuple(s for s in self._segments.values() if s.lesson_id == lid)
+
+    def save_graph_node(self, lesson_id: str, node: GraphNode) -> None:
+        self._nodes.setdefault(lesson_id, []).append(node)
+
+    def get_graph_nodes_for_lesson(self, lesson_id: str) -> tuple[GraphNode, ...]:
+        return tuple(self._nodes.get(lesson_id, []))
+
+    def save_graph_edge(self, lesson_id: str, edge: GraphEdge) -> None:
+        self._edges.setdefault(lesson_id, []).append(edge)
+
+    def get_graph_edges_for_lesson(self, lesson_id: str) -> tuple[GraphEdge, ...]:
+        return tuple(self._edges.get(lesson_id, []))
+
+    def save_evidence(self, ev: GraphEvidence) -> None:
+        self._evidence.setdefault(ev.lesson_id, []).append(ev)
+
+    def get_evidence_for_edge(self, edge_id: str) -> tuple[GraphEvidence, ...]:
+        return tuple(ev for evs in self._evidence.values() for ev in evs if ev.edge_id == edge_id)
+
+    def get_all_evidence_for_lesson(self, lesson_id: str) -> tuple[GraphEvidence, ...]:
+        return tuple(self._evidence.get(lesson_id, []))
+
+    def delete_graph_for_lesson(self, lesson_id: str) -> None:
+        self._nodes.pop(lesson_id, None)
+        self._edges.pop(lesson_id, None)
+        self._evidence.pop(lesson_id, None)
+
+    def save_source(self, *a, **kw): ...
+    def get_source(self, *a, **kw): ...
+    def save_moment(self, *a, **kw): ...
+    def get_moment(self, *a, **kw): ...
+    def moments_for_lesson(self, *a, **kw): ...
+    def save_ledger_entry(self, *a, **kw): ...
+    def get_ledger_entries(self, *a, **kw): ...
+    def get_ledger_for_lesson(self, *a, **kw): ...
+    def close(self): ...
+    def begin_transaction(self): ...
+    def commit_transaction(self): ...
+    def rollback_transaction(self): ...
+    def delete_capsule(self, lesson_id: str) -> bool:
+        return self._capsules.pop(lesson_id, None) is not None
+
+    def purge_lesson(self, lesson_id: str) -> int:
+        total = sum(1 for s in self._segments.values() if s.lesson_id == lesson_id)
+        self._segments = {k: v for k, v in self._segments.items() if v.lesson_id != lesson_id}
+        self.delete_capsule(lesson_id)
+        self._nodes.pop(lesson_id, None)
+        self._edges.pop(lesson_id, None)
+        self._evidence.pop(lesson_id, None)
+        return total
+
+
+# ---------------------------------------------------------------------------
+# Fixtures
+# ---------------------------------------------------------------------------
+
+def _seg(lesson_id: str, idx: int, text: str) -> Segment:
+    return Segment(
+        seg_id=f"{lesson_id}#s{idx}",
+        lesson_id=lesson_id,
+        start=idx * 10,
+        end=(idx + 1) * 10,
+        text=text,
+    )
+
+
+@pytest.fixture
+def store_and_data():
+    """Build a store with 2 lessons, 3 concepts, edges, evidence, segments, capsules."""
+    s = _VaultStore()
+
+    # Path with teacher
+    p = Path(
+        path_id="test_path",
+        title="Test Course",
+        subject="Test Subject",
+        lesson_ids=("l1", "l2"),
+        teacher_id="test_teacher",
+    )
+    s.save_path(p)
+
+    # Lessons
+    s.save_lesson(Lesson(lesson_id="l1", path_id="test_path", title="Lezione 1", order=1))
+    s.save_lesson(Lesson(lesson_id="l2", path_id="test_path", title="Lezione 2", order=2))
+
+    # Segments
+    s.save_segment(_seg("l1", 1, "Il segnale e una grandezza fisica che varia nel tempo."))
+    s.save_segment(_seg("l1", 2, "l'energia di un segnale si calcola come integrale del modulo quadro."))
+    s.save_segment(_seg("l2", 1, "La potenza media e definita per segnali periodici."))
+    s.save_segment(_seg("l2", 2, "Il supporto di un segnale e la chiusura degli istanti."))
+
+    # Graph nodes (concepts)
+    s.save_graph_node("l1", GraphNode(
+        node_id="l1:concept:0", node_type="concept", ref_id="l1:concept:0", label="Definizione di segnale"
+    ))
+    s.save_graph_node("l1", GraphNode(
+        node_id="l1:concept:1", node_type="concept", ref_id="l1:concept:1", label="Energia di un segnale"
+    ))
+    s.save_graph_node("l2", GraphNode(
+        node_id="l2:concept:0", node_type="concept", ref_id="l2:concept:0", label="Potenza media"
+    ))
+    s.save_graph_node("l2", GraphNode(
+        node_id="l2:concept:1", node_type="concept", ref_id="l2:concept:1", label="Supporto di un segnale"
+    ))
+    # Lesson-level nodes
+    s.save_graph_node("l1", GraphNode(
+        node_id="l1", node_type="lesson", ref_id="l1", label=None
+    ))
+    s.save_graph_node("l2", GraphNode(
+        node_id="l2", node_type="lesson", ref_id="l2", label=None
+    ))
+
+    # Graph edges (depends_on: Supporto depends_on Energia, Energia depends_on Segnale)
+    s.save_graph_edge("l1", GraphEdge(
+        edge_id="l1:e0", source="l1:concept:1", target="l1:concept:0",
+        edge_type="depends_on", metadata={}
+    ))
+    s.save_graph_edge("l2", GraphEdge(
+        edge_id="l2:e0", source="l2:concept:1", target="l2:concept:0",
+        edge_type="depends_on", metadata={}
+    ))
+    s.save_graph_edge("l2", GraphEdge(
+        edge_id="l2:e1", source="l2:concept:0", target="l1:concept:1",
+        edge_type="depends_on", metadata={}
+    ))
+
+    # Evidence
+    s.save_evidence(GraphEvidence(
+        evidence_id="ev1", edge_id="l1:e0",
+        seg_id="l1#s1", excerpt="Il segnale e una grandezza fisica",
+        confidence=0.95, lesson_id="l1",
+    ))
+    s.save_evidence(GraphEvidence(
+        evidence_id="ev2", edge_id="l1:e0",
+        seg_id="l1#s2", excerpt="l'energia di un segnale",
+        confidence=0.90, lesson_id="l1",
+    ))
+    s.save_evidence(GraphEvidence(
+        evidence_id="ev3", edge_id="l2:e0",
+        seg_id="l2#s2", excerpt="Il supporto di un segnale",
+        confidence=0.95, lesson_id="l2",
+    ))
+
+    # Capsules (needed by aggregate_teacher_graph)
+    from lessonos.capsule.assembly import _serialise_capsule
+
+    # Capsule for l1
+    c1_ext = ConceptExtraction(
+        name="Definizione di segnale", status="introduced",
+        canonical="definizione di segnale",
+        citations=(Citation(seg_id="l1#s1", excerpt="Il segnale e una grandezza fisica"),),
+    )
+    c2_ext = ConceptExtraction(
+        name="Energia di un segnale", status="introduced",
+        canonical="energia di un segnale",
+        citations=(Citation(seg_id="l1#s2", excerpt="l'energia di un segnale"),),
+    )
+    capsule1 = LessonCapsule(
+        lesson_id="l1",
+        timeline=(
+            TopicSpan(lesson_id="l1", topic="Definizioni", seg_ids=("l1#s1",), start=0, end=30),
+            TopicSpan(lesson_id="l1", topic="Energia", seg_ids=("l1#s2",), start=30, end=60),
+        ),
+        content=LessonContent(
+            lesson_id="l1",
+            concepts=(c1_ext, c2_ext),
+            exercises=(),
+            student_questions=(),
+            homework=(),
+        ),
+    )
+    s.save_capsule("l1", _serialise_capsule(capsule1))
+
+    # Capsule for l2
+    c3_ext = ConceptExtraction(
+        name="Potenza media", status="introduced",
+        canonical="potenza media",
+        citations=(Citation(seg_id="l2#s1", excerpt="La potenza media e definita"),),
+    )
+    c4_ext = ConceptExtraction(
+        name="Supporto di un segnale", status="introduced",
+        canonical="supporto di un segnale",
+        citations=(Citation(seg_id="l2#s2", excerpt="Il supporto di un segnale"),),
+    )
+    capsule2 = LessonCapsule(
+        lesson_id="l2",
+        timeline=(
+            TopicSpan(lesson_id="l2", topic="Potenza", seg_ids=("l2#s1",), start=0, end=20),
+            TopicSpan(lesson_id="l2", topic="Supporto", seg_ids=("l2#s2",), start=20, end=40),
+        ),
+        content=LessonContent(
+            lesson_id="l2",
+            concepts=(c3_ext, c4_ext),
+            exercises=(),
+            student_questions=(),
+            homework=(),
+        ),
+    )
+    s.save_capsule("l2", _serialise_capsule(capsule2))
+
+    return s
+
+
+@pytest.fixture
+def derived_root(store_and_data):
+    """Create a temporary derived/ directory with mock global_resolution, wiki, dispense."""
+    with tempfile.TemporaryDirectory(prefix="derived_") as tmp:
+        # Create global_resolution
+        res_dir = FsPath(tmp) / "global_resolution"
+        res_dir.mkdir(parents=True)
+        res = {
+            "teacher_id": "test_teacher",
+            "entries": [
+                {"canonical": "definizione di segnale", "aliases": []},
+                {"canonical": "energia di un segnale", "aliases": []},
+                {"canonical": "potenza media", "aliases": []},
+                {"canonical": "supporto di un segnale", "aliases": []},
+            ],
+        }
+        (res_dir / "test_teacher.json").write_text(json.dumps(res), encoding="utf-8")
+
+        # Create wiki
+        wiki_dir = FsPath(tmp) / "wiki"
+        wiki_dir.mkdir()
+        (wiki_dir / "l1_riepilogo.md").write_text(
+            "# Riepilogo Lezione 1\n\n"
+            "In questa lezione abbiamo introdotto la **definizione di segnale** "
+            "e l'energia di un segnale.\n",
+            encoding="utf-8",
+        )
+        (wiki_dir / "l2_riepilogo.md").write_text(
+            "# Riepilogo Lezione 2\n\n"
+            "Abbiamo visto la **potenza media** e il **supporto di un segnale**.\n",
+            encoding="utf-8",
+        )
+
+        # Create dispense
+        disp_dir = FsPath(tmp) / "dispense"
+        disp_dir.mkdir()
+        (disp_dir / "andrea.md").write_text(
+            "# Dispensa\n\n"
+            "Il **segnale** e una grandezza. La **energia di un segnale** e importante.\n",
+            encoding="utf-8",
+        )
+
+        yield str(tmp)
+
+
+# ---------------------------------------------------------------------------
+# Helper tests
+# ---------------------------------------------------------------------------
+
+
+class TestSlug:
+    def test_basic_slug(self):
+        assert _slug("Definizione di segnale") == "definizione-di-segnale"
+
+    def test_special_chars(self):
+        assert _slug("Energia/Potenza!") == "energia-potenza"
+
+    def test_unicode(self):
+        assert _slug("Criterio d'integrazione aeiou") == "criterio-d-integrazione-aeiou"
+
+    def test_empty_string(self):
+        assert _slug("") == "unnamed"
+
+    def test_only_special(self):
+        assert _slug("!!!") == "unnamed"
+
+
+class TestParseSegId:
+    def test_standard_seg_id(self):
+        assert _parse_seg_id("prima_lezione#s3") == ("prima_lezione", "3")
+
+    def test_no_hash(self):
+        assert _parse_seg_id("prima_lezione") == ("prima_lezione", "")
+
+    def test_multiple_hash(self):
+        assert _parse_seg_id("a#s10") == ("a", "10")
+
+
+class TestWikilinkify:
+    def test_exact_match(self):
+        canonicals = {"definizione di segnale", "energia di un segnale"}
+        result = _wikilinkify(
+            "La definizione di segnale e importante. energia di un segnale pure.",
+            canonicals,
+        )
+        assert "[[definizione di segnale]]" in result
+        assert "[[energia di un segnale]]" in result
+
+    def test_no_match(self):
+        canonicals = {"segnale"}
+        assert _wikilinkify("Non c'e nulla di rilevante qui.", canonicals) == \
+            "Non c'e nulla di rilevante qui."
+
+    def test_empty_canonicals(self):
+        assert _wikilinkify("Testo normale.", set()) == "Testo normale."
+
+    def test_case_insensitive(self):
+        canonicals = {"segnale"}
+        result = _wikilinkify("Il Segnale e importante.", canonicals)
+        assert "[[segnale]]" in result
+
+    def test_longest_first(self):
+        canonicals = {"segnale", "segnale analogico"}
+        result = _wikilinkify("Il segnale analogico e un segnale.", canonicals)
+        assert "[[segnale analogico]]" in result
+        assert result.count("[[") == 2  # both matches
+
+
+class TestFrontmatterYaml:
+    def test_basic_frontmatter(self):
+        data = {"concept_id": "c1", "teacher": "andrea", "regenerable": True, "evidence_count": 5}
+        yaml = _build_frontmatter_yaml(data)
+        assert "concept_id: \"c1\"" in yaml
+        assert "teacher: \"andrea\"" in yaml
+        assert "regenerable: true" in yaml
+        assert "evidence_count: 5" in yaml
+
+    def test_list_frontmatter(self):
+        data = {"lesson_ids": ["l1", "l2"]}
+        yaml = _build_frontmatter_yaml(data)
+        assert '  - "l1"' in yaml
+        assert '  - "l2"' in yaml
+
+
+class TestLoadGlobalResolution:
+    def test_load_existing(self, derived_root):
+        res = _load_global_resolution(FsPath(derived_root), "test_teacher")
+        assert res is not None
+        assert "entries" in res
+
+    def test_load_missing(self, derived_root):
+        res = _load_global_resolution(FsPath(derived_root), "nonexistent")
+        assert res is None
+
+    def test_build_canonical_set(self, derived_root):
+        res = _load_global_resolution(FsPath(derived_root), "test_teacher")
+        canonicals = _build_canonical_set(res)
+        assert "definizione di segnale" in canonicals
+        assert "energia di un segnale" in canonicals
+
+
+# ---------------------------------------------------------------------------
+# Export vault tests
+# ---------------------------------------------------------------------------
+
+
+class TestExportVault:
+    def test_vault_structure(self, store_and_data, derived_root):
+        """Verify basic vault directory structure."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            result = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+
+            vault = FsPath(tmp)
+            assert (vault / "README.md").exists()
+            assert (vault / "concetti").is_dir()
+            assert (vault / "trascrizioni").is_dir()
+
+            # Check counts
+            assert result["concepts"] > 0
+            assert result["lessons"] == 2
+            assert result["edges"] >= 2
+
+    def test_concept_pages(self, store_and_data, derived_root):
+        """Verify concept pages have frontmatter and content."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+
+            vault = FsPath(tmp)
+            concetti_dir = vault / "concetti"
+            concept_files = list(concetti_dir.glob("*.md"))
+            assert len(concept_files) >= 2
+
+            first = concept_files[0].read_text(encoding="utf-8")
+            assert first.startswith("---")
+            assert "generated_by" in first
+            assert "concept_id" in first
+
+    def test_transcript_pages(self, store_and_data, derived_root):
+        """Verify transcript pages have seg_id blocks."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+
+            vault = FsPath(tmp)
+            tr_dir = vault / "trascrizioni"
+            tr_files = list(tr_dir.glob("*.md"))
+            assert len(tr_files) == 2
+
+            for f in tr_files:
+                content = f.read_text(encoding="utf-8")
+                assert "^l" in content or "^-" in content
+
+    def test_wikilinkified_derived(self, store_and_data, derived_root):
+        """Verify wiki and dispense files have wikilinks inserted."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            result = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+            )
+            assert result["wiki_files"] > 0
+
+            vault = FsPath(tmp)
+            wiki_dir = vault / "wiki"
+            if wiki_dir.exists():
+                for f in wiki_dir.glob("*.md"):
+                    content = f.read_text(encoding="utf-8")
+                    if "segnale" in content.lower():
+                        assert "[[" in content
+
+    def test_canvas_output(self, store_and_data, derived_root):
+        """Verify JSON Canvas 1.0 output."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+                canvas=True,
+            )
+
+            vault = FsPath(tmp)
+            canvas_path = vault / "grafo-prerequisiti.canvas"
+            assert canvas_path.exists()
+
+            canvas_data = json.loads(canvas_path.read_text(encoding="utf-8"))
+            assert "nodes" in canvas_data
+            assert "edges" in canvas_data
+            assert len(canvas_data["nodes"]) > 0
+
+    def test_idempotent(self, store_and_data, derived_root):
+        """Verify second run produces same output."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            result1 = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+                canvas=True,
+            )
+
+            vault1_files = {}
+            for f in FsPath(tmp).rglob("*.md"):
+                vault1_files[str(f.relative_to(tmp))] = f.read_text(encoding="utf-8")
+
+            result2 = export_vault(
+                store=store_and_data,
+                teacher_id="test_teacher",
+                output_dir=tmp,
+                derived_root=derived_root,
+                canvas=True,
+            )
+
+            assert result1["concepts"] == result2["concepts"]
+            assert result1["lessons"] == result2["lessons"]
+
+            for f in FsPath(tmp).rglob("*.md"):
+                rel = str(f.relative_to(tmp))
+                assert f.read_text(encoding="utf-8") == vault1_files[rel], \
+                    f"File {rel} differs on second run"
+
+    def test_no_global_resolution(self, store_and_data, derived_root):
+        """Verify export works without global resolution."""
+        with tempfile.TemporaryDirectory(prefix="vault_") as tmp:
+            with tempfile.TemporaryDirectory(prefix="empty_") as empty:
+                result = export_vault(
+                    store=store_and_data,
+                    teacher_id="test_teacher",
+                    output_dir=tmp,
+                    derived_root=empty,
+                )
+
+                vault = FsPath(tmp)
+                assert (vault / "README.md").exists()
+                assert result["concepts"] > 0

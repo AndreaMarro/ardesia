@@ -36,6 +36,7 @@ from lessonos.eval.realtime import (
     run_realtime_eval_n_runs,
 )
 from lessonos.store.base import Store
+from lessonos.export.obsidian_vault import export_vault
 from lessonos.store.fixture_loader import (
     DEFAULT_FIXTURE_ROOT,
     ingest_lesson_moments,
@@ -1072,6 +1073,42 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="revealjs theme for --target quarto-slides (default: simple). "
         "Valid themes: simple, beige, black, blood, league, moon, night, serif, sky, solarized, white",
     )
+
+    # --- export-vault ---
+    vault_parser = sub.add_parser(
+        "export-vault", help="Export Obsidian vault (read-only projection of derived/)"
+    )
+    vault_parser.add_argument(
+        "--teacher",
+        type=str,
+        default="andrea",
+        help="Teacher identifier (default: andrea)",
+    )
+    vault_parser.add_argument(
+        "--out",
+        type=str,
+        required=True,
+        help="Output vault directory (e.g. derived/vault/andrea/)",
+    )
+    vault_parser.add_argument(
+        "--db",
+        type=str,
+        default="",
+        help="Path to lessonos.db (default: auto-detect from ~/maestro-data/)",
+    )
+    vault_parser.add_argument(
+        "--derived",
+        type=str,
+        default="",
+        help="Root of derived/ directory (default: auto-detect from --out)",
+    )
+    vault_parser.add_argument(
+        "--canvas",
+        action="store_true",
+        default=False,
+        help="Generate JSON Canvas 1.0 graph file",
+    )
+
     return parser.parse_args(argv)
 
 
@@ -1283,6 +1320,48 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Error during export: {e}", file=sys.stderr)
             return 1
 
+        return 0
+
+    if args.command == "export-vault":
+        # Determine DB path
+        db_path = args.db
+        if not db_path:
+            # Auto-detect: ~/maestro-data/teoria-segnali-2021/derived/db/lessonos.db
+            candidate = FsPath.home() / "maestro-data" / "teoria-segnali-2021" / "derived" / "db" / "lessonos.db"
+            if candidate.exists():
+                db_path = str(candidate)
+            else:
+                print("Error: no DB auto-detected. Use --db to specify.", file=sys.stderr)
+                return 1
+
+        if not FsPath(db_path).exists():
+            print(f"Error: DB not found: {db_path}", file=sys.stderr)
+            return 1
+
+        store = SQLiteStore(db_path)
+
+        try:
+            result = export_vault(
+                store=store,
+                teacher_id=args.teacher,
+                output_dir=args.out,
+                derived_root=args.derived or None,
+                canvas=args.canvas,
+            )
+        except ValueError as e:
+            print(f"Error exporting vault: {e}", file=sys.stderr)
+            return 1
+
+        print(
+            f"Vault exported: {result['concepts']} concepts, "
+            f"{result['lessons']} lessons, "
+            f"{result['edges']} prerequisite edges, "
+            f"{result['wiki_files']} wiki files, "
+            f"{result['dispense_files']} dispense files"
+        )
+        if result["canvas"]:
+            print("  + JSON Canvas 1.0 (grafo-prerequisiti.canvas)")
+        print(f"  Output: {args.out}/")
         return 0
 
     if args.command == "eval-real":

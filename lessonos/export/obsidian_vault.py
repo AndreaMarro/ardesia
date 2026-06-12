@@ -1,0 +1,424 @@
+"""Obsidian Vault Export — read-only projection of derived/ (M1-7, OBSIDIAN-FIT.md §2).
+
+Produces an Obsidian vault from the real lesson DB (nodes/edges/evidence/segments)
+and the existing derived markdowns (wiki, dispense, teacher_book).
+
+ZERO LLM, ZERO modifications to the core engine: only reads from ``derived/`` and
+the SQLite store. The vault lives inside ``derived/`` and is fully regenerable.
+
+Mapping (OBSIDIAN-FIT.md §2):
+- concept -> concetti/<slug>.md  (YAML frontmatter + body)
+- prerequisite (depends_on/explains edge) -> wikilink in ## Prerequisiti section
+- evidence -> trascrizioni/<lesson>.md  (^seg-<id> block anchor)
+- wiki/dispense/teacher_book -> copied with exact-match wikilink-ification
+- README.md: anti-edit warning
+- Optional --canvas: JSON Canvas 1.0 graph overview
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import re
+import shutil
+from pathlib import Path
+from typing import Any
+
+from lessonos.graph.aggregator import aggregate_teacher_graph
+from lessonos.models.entities import (
+    AggregatedPathNode,
+    GraphEdge,
+    GraphEvidence,
+)
+from lessonos.store.base import Store
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _slug(label: str) -> str:
+    """Produce a filesystem-safe slug from a concept label.
+
+    Lowercased, non-alphanumeric replaced with hyphens, multiple hyphens collapsed.
+    """
+    s = label.lower().strip()
+    s = re.sub(r"[^a-z0-9\xe0\xe8\xe9\xec\xf2\xf9\s]+", "-", s)
+    s = re.sub(r"\s+", "-", s)
+    s = re.sub(r"-{2,}", "-", s)
+    s = s.strip("-")
+    return s if s else "unnamed"
+
+
+def _parse_seg_id(seg_id: str) -> tuple[str, str]:
+    """Split ``seg_id`` (e.g. ``prima_lezione#s3``) into ``(lesson_id, seg_number)``."""
+    if "#s" not in seg_id:
+        return seg_id, ""
+    lesson_id, s_part = seg_id.rsplit("#s", 1)
+    return lesson_id, s_part
+
+
+def _load_global_resolution(derived_root: Path, teacher_id: str) -> dict | None:
+    """Load the global resolution JSON for *teacher_id*."""
+    path = derived_root / "global_resolution" / f"{teacher_id}.json"
+    if not path.exists():
+        return None
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def _build_canonical_set(resolution: dict | None) -> set[str]:
+    """Extract the set of canonical concept names from a global resolution dict."""
+    if not resolution:
+        return set()
+    entries = resolution.get("entries", [])
+    if not isinstance(entries, list):
+        return set()
+    return {e["canonical"].strip().lower() for e in entries if isinstance(e, dict) and e.get("canonical")}
+
+
+def _wikilinkify(text: str, canonicals: set[str]) -> str:
+    """Replace exact word-boundary matches of canonical names with Obsidian wikilinks.
+
+    Only exact-case-insensitive word-boundary matches are replaced. No fuzzy matching.
+    Skip matches that are already inside ``[[`` ... ``]]`` to prevent double-wrapping.
+    Longest canonical first.
+    """
+    if not canonicals:
+        return text
+    sorted_cans = sorted(canonicals, key=len, reverse=True)
+    for canonical in sorted_cans:
+        escaped = re.escape(canonical)
+        pattern = re.compile(
+            rf"(?<!\[)\b{escaped}\b(?!\])",
+            re.IGNORECASE,
+        )
+        text = pattern.sub(f"[[{canonical}]]", text)
+    return text
+
+
+def _build_frontmatter_yaml(data: dict[str, Any]) -> str:
+    """Build a minimal YAML string from a dict (no PyYAML dependency)."""
+    lines: list[str] = []
+    for key, value in data.items():
+        if isinstance(value, bool):
+            lines.append(f"{key}: {'true' if value else 'false'}")
+        elif isinstance(value, (int, float)):
+            lines.append(f"{key}: {value}")
+        elif isinstance(value, str):
+            escaped = value.replace('"', '\\"')
+            lines.append(f'{key}: "{escaped}"')
+        elif isinstance(value, list):
+            items = [f'  - "{item}"' if isinstance(item, str) else f"  - {item}" for item in value]
+            lines.append(f"{key}:\n" + "\n".join(items))
+        else:
+            lines.append(f"{key}: {value}")
+    return "\n".join(lines) + "\n"
+
+
+# ---------------------------------------------------------------------------
+# Core export function
+# ---------------------------------------------------------------------------
+
+def export_vault(
+    store: Store,
+    teacher_id: str,
+    output_dir: str,
+    derived_root: str | None = None,
+    canvas: bool = False,
+) -> dict[str, Any]:
+    """Export an Obsidian vault (read-only projection) for *teacher_id*.
+
+    Parameters
+    ----------
+    store:
+        An open ``Store`` (SQLiteStore) pointing to the real lesson DB.
+    teacher_id:
+        Teacher identifier (e.g. ``andrea``). Used to look up the global
+        resolution file and to identify teacher-scoped paths.
+    output_dir:
+        Where to write the vault directory. Recreated from scratch each run.
+    derived_root:
+        Root of the ``derived/`` tree (default: inferred from ``output_dir``).
+    canvas:
+        If True, also generate a JSON Canvas 1.0 file (``grafo-prerequisiti.canvas``).
+
+    Returns
+    -------
+    dict with keys:
+        - concepts (int), lessons (int), edges (int),
+          wiki_files (int), dispense_files (int), canvas (bool)
+    """
+    # ---- Resolve paths ----
+    output = Path(output_dir)
+    if output.exists():
+        shutil.rmtree(output)
+    output.mkdir(parents=True, exist_ok=True)
+
+    if derived_root is None:
+        candidate = output.parent.parent  # .../derived/vault/ -> .../derived/
+        if candidate.name == "derived":
+            derived = candidate
+        else:
+            derived = Path.cwd() / "derived"
+    else:
+        derived = Path(derived_root)
+
+    # ---- Load global resolution for wikilink-ification ----
+    resolution = _load_global_resolution(derived, teacher_id)
+    canonicals = _build_canonical_set(resolution)
+
+    # ---- 1. Load teacher's aggregated graph ----
+    paths = store.paths_for_teacher(teacher_id)
+    teacher_lesson_ids: set[str] = set()
+    for p in paths:
+        teacher_lesson_ids.update(p.lesson_ids)
+
+    agg = aggregate_teacher_graph(store, teacher_id)
+
+    # Build indexed structures
+    concept_map: dict[str, AggregatedPathNode] = {}
+    for node in agg.merged_nodes:
+        concept_map[node.node_id] = node
+
+    # Build raw_id -> merged_node_id mapping
+    # (aggregator prefixes with "path:"; edges use the original IDs)
+    raw_to_merged: dict[str, str] = {}
+    for nid in concept_map:
+        if nid.startswith("path:"):
+            raw_to_merged[nid[5:]] = nid
+        else:
+            raw_to_merged[nid] = nid
+
+    # Edges by source — only concept-to-concept relationships
+    prereq_types = {"depends_on", "explains"}
+    edges_by_source: dict[str, list[GraphEdge]] = {}
+    for edge in agg.existing_edges:
+        if edge.edge_type not in prereq_types:
+            continue
+        src = raw_to_merged.get(edge.source)
+        tgt = raw_to_merged.get(edge.target)
+        if src and tgt:
+            edges_by_source.setdefault(src, []).append(edge)
+
+    # Reverse map: for a concept, which edges have it as target
+    depends_on_target: dict[str, list[GraphEdge]] = {}
+    for src, edge_list in edges_by_source.items():
+        for edge in edge_list:
+            tgt = raw_to_merged.get(edge.target, edge.target)
+            depends_on_target.setdefault(tgt, []).append(edge)
+
+    # Evidence indexed by edge_id
+    evidence_by_edge: dict[str, list[GraphEvidence]] = {}
+    for ev in agg.path_evidence:
+        evidence_by_edge.setdefault(ev.edge_id, []).append(ev)
+
+    # ---- 2. Write concetti/<slug>.md for each concept ----
+    concepts_dir = output / "concetti"
+    concepts_dir.mkdir(parents=True, exist_ok=True)
+
+    for node_id, node in concept_map.items():
+        label = node.label
+        slug = _slug(label)
+
+        # Prerequisites: edges where this concept is the target
+        prereq_ids: set[str] = set()
+        if node_id in depends_on_target:
+            for edge in depends_on_target[node_id]:
+                prereq_ids.add(edge.source)
+
+        # Dependent concepts: edges where this concept is the source
+        dependent_ids: set[str] = set()
+        if node_id in edges_by_source:
+            for edge in edges_by_source[node_id]:
+                tgt = raw_to_merged.get(edge.target, edge.target)
+                dependent_ids.add(tgt)
+
+        # Evidence for edges connected to this concept
+        concept_evidence: list[GraphEvidence] = []
+        for edge in agg.existing_edges:
+            if edge.source == node_id or edge.target == node_id:
+                concept_evidence.extend(evidence_by_edge.get(edge.edge_id, []))
+
+        # Build frontmatter
+        frontmatter = {
+            "concept_id": node_id,
+            "teacher": teacher_id,
+            "lesson_ids": list(node.lesson_ids),
+            "status": node.status,
+            "evidence_count": node.evidence_count,
+            "provenance": "lessonos",
+            "generated_by": "lessonos",
+            "regenerable": True,
+        }
+
+        # Build body
+        body_parts: list[str] = []
+
+        # Prerequisites section
+        if prereq_ids:
+            body_parts.append("## Prerequisiti\n")
+            for pid in prereq_ids:
+                if pid in concept_map:
+                    body_parts.append(f"- [[{concept_map[pid].label}]]")
+                else:
+                    body_parts.append(f"- `{pid}` (concetto non trovato)")
+            body_parts.append("")
+
+        # Dependent concepts
+        if dependent_ids:
+            body_parts.append("## Utilizzato da\n")
+            for did in dependent_ids:
+                if did in concept_map:
+                    body_parts.append(f"- [[{concept_map[did].label}]]")
+            body_parts.append("")
+
+        # Evidence section
+        if concept_evidence:
+            body_parts.append("## Evidenze\n")
+            seen = set()
+            for ev in concept_evidence:
+                key = ev.seg_id
+                if key in seen:
+                    continue
+                seen.add(key)
+                seg_lesson, seg_num = _parse_seg_id(ev.seg_id)
+                if seg_lesson not in teacher_lesson_ids:
+                    seg_lesson = ev.lesson_id if ev.lesson_id in teacher_lesson_ids else seg_lesson
+                block_ref = f"[[trascrizioni/{seg_lesson}#^{ev.seg_id.replace('#', '-')}]]"
+                excerpt = ev.excerpt or "(nessun excerpt)"
+                body_parts.append(f"- {excerpt} — {block_ref}")
+            body_parts.append("")
+
+        # Status
+        body_parts.append("---\n*Stato: " + node.status + "*\n")
+
+        # Assemble markdown
+        fm_yaml = _build_frontmatter_yaml(frontmatter)
+        content = f"---\n{fm_yaml}---\n\n# {label}\n\n" + "\n".join(body_parts) + "\n"
+        concept_path = concepts_dir / f"{slug}.md"
+        concept_path.write_text(content, encoding="utf-8")
+
+    # ---- 3. Write trascrizioni/<lesson>.md for each lesson ----
+    trascrizioni_dir = output / "trascrizioni"
+    trascrizioni_dir.mkdir(parents=True, exist_ok=True)
+
+    for lesson_id in sorted(teacher_lesson_ids):
+        segs = store.segments_for_lesson(lesson_id)
+        body_lines: list[str] = []
+        for seg in segs:
+            block_id = seg.seg_id.replace("#", "-")
+            body_lines.append(f"{seg.text}\n^{block_id}\n")
+
+        content = (
+            f"---\nlesson_id: \"{lesson_id}\"\ngenerated_by: lessonos\nregenerable: true\n---\n\n"
+            f"# {lesson_id}\n\n" + "\n".join(body_lines) + "\n"
+        )
+        lesson_path = trascrizioni_dir / f"{lesson_id}.md"
+        lesson_path.write_text(content, encoding="utf-8")
+
+    # ---- 4. Copy derived files with wikilink-ification ----
+    _copy_derived_with_wikilinks(derived / "wiki", output / "wiki", canonicals)
+    _copy_derived_with_wikilinks(derived / "dispense", output / "dispense", canonicals)
+    _copy_derived_with_wikilinks(derived / "teacher_book", output / "teacher_book", canonicals)
+
+    # ---- 5. Write README.md ----
+    readme = (
+        "# MAESTRO — Vault generato dal motore\n\n"
+        "Questo vault e una **proiezione read-only** del database del motore LessonOS.\n\n"
+        "## Avviso: Non modificare i file qui\n\n"
+        "- Le modifiche vengono **perse alla rigenerazione**.\n"
+        "- Ogni file ha frontmatter con `regenerable: true`.\n"
+        "- Per modificare contenuti, agisci sul **database del motore** (`derived/db/`)\n"
+        "  e rigenera il vault.\n\n"
+        "## Struttura\n\n"
+        "- `concetti/` — schede concetto con link a prerequisiti ed evidenze\n"
+        "- `trascrizioni/` — trascrizioni delle lezioni con blocchi `^seg-` citabili\n"
+        "- `wiki/` — riepiloghi lezione\n"
+        "- `dispense/` — dispense stilizzate\n"
+        "- `teacher_book/` — libri del docente\n\n"
+        "## Come esplorare\n\n"
+        "1. Apri questo vault in **Obsidian** (`Apri vault` -> `Aggiungi cartella esistente`)\n"
+        "2. Abilita `Graph View` per vedere le relazioni tra concetti\n"
+        "3. Clicca sulle citazioni `[[trascrizioni/...]]` per saltare al blocco verbatim\n"
+    )
+    (output / "README.md").write_text(readme, encoding="utf-8")
+
+    # ---- 6. Optional: JSON Canvas 1.0 ----
+    canvas_generated = False
+    if canvas:
+        canvas_generated = True
+        _write_canvas(output, concept_map, edges_by_source)
+
+    # ---- Summary ----
+    wiki_count = len(list((output / "wiki").rglob("*.md"))) if (output / "wiki").exists() else 0
+    dispense_count = len(list((output / "dispense").rglob("*.md"))) if (output / "dispense").exists() else 0
+    return {
+        "concepts": len(concept_map),
+        "lessons": len(teacher_lesson_ids),
+        "edges": sum(len(v) for v in edges_by_source.values()),
+        "wiki_files": wiki_count,
+        "dispense_files": dispense_count,
+        "canvas": canvas_generated,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Canvas
+# ---------------------------------------------------------------------------
+
+def _write_canvas(
+    output: Path,
+    concept_map: dict[str, AggregatedPathNode],
+    edges_by_source: dict[str, list[GraphEdge]],
+) -> None:
+    """Write a JSON Canvas 1.0 file representing the concept graph."""
+    canvas_nodes: list[dict] = []
+    canvas_edges: list[dict] = []
+
+    for node_id, node in concept_map.items():
+        slug = _slug(node.label)
+        canvas_nodes.append({
+            "id": node_id,
+            "type": "file",
+            "file": f"concetti/{slug}.md",
+            "label": node.label,
+        })
+
+    for source, edge_list in edges_by_source.items():
+        for edge in edge_list:
+            label = "spiega" if edge.edge_type == "explains" else "prerequisito"
+            canvas_edges.append({
+                "id": edge.edge_id,
+                "fromNode": edge.source,
+                "fromSide": "bottom",
+                "toNode": edge.target,
+                "toSide": "top",
+                "label": label,
+            })
+
+    canvas = {"nodes": canvas_nodes, "edges": canvas_edges}
+    (output / "grafo-prerequisiti.canvas").write_text(
+        json.dumps(canvas, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Internal helpers
+# ---------------------------------------------------------------------------
+
+def _copy_derived_with_wikilinks(src: Path, dst: Path, canonicals: set[str]) -> None:
+    """Copy a derived directory tree and wikilink-ify markdown files."""
+    if not src.exists():
+        return
+    shutil.copytree(src, dst, dirs_exist_ok=True)
+    for md_file in dst.rglob("*.md"):
+        if md_file.is_file():
+            orig_text = md_file.read_text(encoding="utf-8")
+            linked_text = _wikilinkify(orig_text, canonicals)
+            if linked_text != orig_text:
+                md_file.write_text(linked_text, encoding="utf-8")
