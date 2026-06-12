@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, type ChangeEvent } from "react"
+import { useState, useRef, useEffect, useCallback, type ChangeEvent, type KeyboardEvent } from "react"
 import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
@@ -41,6 +41,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [audioRecording, setAudioRecording] = useState(false)
   /** Stato export .lesson */
   const [exporting, setExporting] = useState(false)
+  /** Nome lezione (da meta.json) — null = non ancora caricato */
+  const [lessonName, setLessonName] = useState<string | null>(null)
+  /** Stato rename inline */
+  const [editingName, setEditingName] = useState(false)
+  /** Campo rename ref per focus */
+  const renameInputRef = useRef<HTMLInputElement>(null)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -99,6 +105,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           } catch {
             // JSON malformato — si parte da zero
           }
+        }
+      })
+      .then(() => actualStore.loadMeta(room))
+      .then((meta) => {
+        if (cancelled) return
+        if (meta && meta.name) {
+          setLessonName(meta.name)
         }
       })
       .catch((err) => {
@@ -206,6 +219,24 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }
 
+  /** Avvia rename inline del nome lezione */
+  function startRename() {
+    setEditingName(true)
+    // Focus dopo render
+    setTimeout(() => renameInputRef.current?.select(), 0)
+  }
+
+  /** Salva nome e esce da rename */
+  function saveRename(newName: string) {
+    const trimmed = newName.trim()
+    if (!trimmed) return // nome vuoto = non salvare
+    setLessonName(trimmed)
+    setEditingName(false)
+    actualStore.saveMeta(room, { v: 1, name: trimmed, createdAt: Date.now() }).catch((err) => {
+      setStorageError("Salvataggio nome fallito: " + (err as Error).message)
+    })
+  }
+
   /** Collega una cartella FSA (showDirectoryPicker) su gesto esplicito utente */
   const handleConnectFolder = useCallback(async () => {
     setStorageError(null)
@@ -308,7 +339,30 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>
-        <span className="st-room" title="Stanza condivisa: chi apre il tuo link entra qui">{room}</span>
+
+        {/* Nome lezione: editabile inline con matitina hover */}
+        {editingName ? (
+          <input
+            ref={renameInputRef}
+            className="st-name-input"
+            defaultValue={lessonName ?? room}
+            onBlur={(e) => saveRename(e.target.value)}
+            onKeyDown={(e: KeyboardEvent) => {
+              if (e.key === "Enter") saveRename((e.target as HTMLInputElement).value)
+              if (e.key === "Escape") setEditingName(false)
+            }}
+            autoFocus
+          />
+        ) : (
+          <span
+            className="st-name"
+            title={lessonName ? `Rinomina: ${lessonName}` : `Assegna un nome a questa lezione (id: ${room})`}
+            onClick={startRename}
+          >
+            <span className="st-name-text">{lessonName ?? room}</span>
+            {!lessonName && <span className="st-name-prompt">dai un nome</span>}
+          </span>
+        )}
 
         <div className="st-status">
           {loading && <span className="st-quiet">caricamento…</span>}

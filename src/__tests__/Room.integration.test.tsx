@@ -159,18 +159,20 @@ describe("Room ↔ WorkspaceStore integration", () => {
     const { store } = await createMockStore()
     // Delay loadScene per vedere lo stato loading (Excalidraw NON monta finché loading=true)
     vi.spyOn(store, "loadScene").mockImplementationOnce(
-      () => new Promise((resolve) => setTimeout(() => resolve(null), 200))
+      () => new Promise((resolve) => setTimeout(() => resolve(null), 500))
     )
+    vi.spyOn(store, "loadMeta").mockResolvedValue(null)
 
     const container = document.getElementById("root")!
     const root = createRoot(container)
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    // Subito dopo il render, "caricamento…" deve apparire (prima che loadScene finisca)
+    // Il div.st-status contiene 'caricamento…' durante il load iniziale
     await vi.waitFor(() => {
-      expect(container.textContent).toContain("caricamento")
-    }, { timeout: 500, interval: 10 })
+      const el = container.querySelector(".st-status")
+      expect(el?.textContent).toContain("caricamento")
+    }, { timeout: 300, interval: 50 })
 
     // In questo stato, Excalidraw NON è ancora montato (condizionale su !loading)
     expect(container.textContent).not.toContain("mock-excalidraw")

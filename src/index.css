@@ -37,6 +37,48 @@ body {
   color: var(--m-ink-4); background: var(--m-fill);
   padding: 3px 9px; border-radius: var(--m-r-pill);
 }
+
+/* ── nome lezione (editabile inline) ────────────────────────────────── */
+.st-name {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--m-font-ui); font-size: var(--m-fs-md);
+  color: var(--m-ink); cursor: text; padding: 3px 8px;
+  border-radius: var(--m-r-pill);
+  border: 1px solid transparent;
+  transition: border-color var(--m-t-fast) var(--m-ease), background var(--m-t-fast) var(--m-ease);
+  max-width: 280px; overflow: hidden;
+}
+.st-name:hover {
+  border-color: var(--m-line-2);
+  background: var(--m-fill);
+}
+/* matitina: piccolo indicatore visivo sull'hover (affordance "clicca per rinominare") */
+.st-name::after {
+  content: "";
+  display: inline-block; width: 12px; height: 12px;
+  background: var(--m-ink-4);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'%3E%3Cpath d='M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z'/%3E%3C/svg%3E") no-repeat center;
+  mask-size: contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'%3E%3Cpath d='M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z'/%3E%3C/svg%3E") no-repeat center;
+  -webkit-mask-size: contain;
+  opacity: 0; transition: opacity var(--m-t-fast) var(--m-ease);
+}
+.st-name:hover::after {
+  opacity: .6;
+}
+.st-name-text {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.st-name-prompt {
+  font-size: var(--m-fs-xs); color: var(--m-ink-4); font-style: italic;
+  margin-left: 2px;
+}
+.st-name-input {
+  font-family: var(--m-font-ui); font-size: var(--m-fs-md);
+  color: var(--m-ink); background: var(--m-canvas);
+  border: 1px solid var(--m-accent); border-radius: var(--m-r-pill);
+  padding: 3px 10px; outline: none; max-width: 280px;
+}
 .st-status { display: flex; align-items: center; gap: 10px; margin-left: 2px; }
 .st-quiet { color: var(--m-ink-4); font-size: var(--m-fs-xs); }
 
