@@ -12,12 +12,14 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [AUTO-PINNED 12/06 11:47] **S-DESIGN-3 ✅ CHIUSO** (4 commit ST1-ST5, gate 263/263 VERDE). Prossimo auto-pin: sotto.
-- **studio**: [AUTO-PINNED 12/06] **S-DESIGN-4 — MathComposer nel sistema + 10 icone inchiostro (spec §5)**: veste .st-card (via il verde fuori-legge #0a8a3a), chip italiani; src/icons.tsx sprite Lucide 16px stroke 1.75 currentColor, mai icona-senza-parola, via emoji/glifi da Room.tsx. Test + grep-gate zero emoji. Gate verde, COMMIT A OGNI SOTTO-TASK VERDE.
-- **lessonos**: ✅ M2-2 [AUTO-PINNED-DONE] (1685 test, gate VERDE, 9 dispense reali processate, written-style nel prompt). Prossimo auto-pin: sotto.
+|- **studio**: [AUTO-PINNED 12/06 11:47] **S-DESIGN-3 ✅ CHIUSO** (4 commit ST1-ST5, gate 263/263 VERDE). Prossimo auto-pin: sotto.
+|- **studio**: [AUTO-PINNED 12/06] **S-DESIGN-4 ✅ CHIUSO** (MathComposer unificato + 10 icone ink, gate 284/284 VERDE, 9 file, cb09e84). Prossimo auto-pin: sotto.
+|- **studio**: [AUTO-PINNED 12/06] **S-DESIGN-5 — Vista studente (§3.A)**: appending `?vista=studente` → viewModeEnabled, header wordmark + chip + 'stai guardando la lavagna', niente JournalRecorder/AudioRecorder, niente bottoni docente. Test: query=studente → zero bottoni docente, viewModeEnabled, recorder undefined.
+|- **lessonos**: ✅ M2-2 [AUTO-PINNED-DONE] (1685 test, gate VERDE, 9 dispense reali processate, written-style nel prompt). Prossimo auto-pin: sotto.
 
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] studio: **S-DESIGN-4 — MathComposer nel sistema + 10 icone inchiostro (spec §5)**: veste .st-card (via il verde fuori-legge #0a8a3a), chip italiani; src/icons.tsx sprite Lucide 16px stroke 1.75 currentColor, mai icona-senza-parola, via emoji/glifi da Room.tsx. Test + grep-gate zero emoji. Gate verde, COMMIT A OGNI SOTTO-TASK VERDE.
+|- [AUTO-OK] studio: **S-DESIGN-4 ✅ CHIUSO (12/06)** — MathComposer unificato + 10 icone ink (spec §5). Gate 284/284 VERDE.
+|- [AUTO-OK] studio: **S-DESIGN-5 — Vista studente (§3.A)**: appending `?vista=studente` → viewModeEnabled, header wordmark + chip + 'stai guardando la lavagna', niente JournalRecorder/AudioRecorder, niente bottoni docente. Test: query=studente → zero bottoni docente, viewModeEnabled, recorder undefined. ACCETTAZIONE: query=studente → zero bottoni docente, viewModeEnabled, no error.
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
 - **[HERMES-2 ADVERSARIAL 2026-06-12 10:02]** 1 problema/i CRITICO/i su `studio@a0268ba` — report: `/Users/progettibelli/maestro-logs/adversarial/20260612-1002-studio-a0268ba.md` (supervisore: leggere e decidere)
