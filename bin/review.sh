@@ -75,6 +75,16 @@ for acc in $ACCS; do
     done
   done
 done
+# Gradino CODEX (12/06): ChatGPT sub di Andrea = reviewer gpt decorrelato a costo zero.
+# Prompt via stdin (i diff sfondano ARG_MAX), output pulito via --output-last-message.
+COUT_F=$(mktemp)
+if printf "%s" "$prompt" | timeout 300 codex exec --skip-git-repo-check -o "$COUT_F" - >/dev/null 2>&1 \
+   && [ -s "$COUT_F" ]; then
+  printf "[review: codex-gpt]\n"; cat "$COUT_F"; rm -f "$COUT_F"
+  record_observation; exit 0
+fi
+rm -f "$COUT_F"
+
 # M8-light (12/06): review MAI saltata. Ladder claude esaurita -> kimi-k2.6 (degradata ma reale).
 # Se fallisce anche kimi: exit 1 e il chiamante scrive NEEDS-CLAUDE — la "self-review" e' VIETATA.
 kout="$(printf "%s" "$prompt" | timeout 360 python3 "$HOME/lessonos/bin/review-kimi.py" 2>&1)" && {
