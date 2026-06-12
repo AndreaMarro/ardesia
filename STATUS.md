@@ -556,6 +556,9 @@ Risultati:
 |  ORIENT: HEAD `7155179` (M1-7c vault reale), gate **1651/0 VERDE** (ri-verificato ORA). M1 COMPLETO (M1-1→M1-7, vault reale eseguito e verificato su disco).
 |  COORD.md § PROSSIMA TASK aggiornata: lessonos M1-7c ✅, atteso pin M2. NEEDS-CLAUDE aggiunto.
 |  Stewardship già eseguita (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning.
-|  Stash rescue ispezionato: gate 1608 ≪ 1651, non pertinente, non applicato.
-|  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). AGENTS.md §3: stop.
-|  cost_usd: ~$0 (coordinamento).
+Stash rescue ispezionato: gate 1608 ≪ 1651, non pertinente, non applicato.
+Nessuna build eseguita (UNA task = quella pinnata = non disponibile). AGENTS.md §3: stop.
+cost_usd: ~$0 (coordinamento).
+
+- **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+17: M1 completo (M1-1→M1-7, gate 1651/0 VERDE, ri-verificato ORA), pin M2 assente (ultimo CLAUDE-SAYS 2026-06-12 ~11:30), stewardship già fatta → stop.**
+ORIENT: HEAD `cf75632`, gate 1651/0 VERDE. COORD.md § PROSSIMA TASK: lessonos ✅ M1-7c, atteso pin M2; studio S-DESIGN-2 attivo. Stash rescue: 1608 ≪ 1651 non pertinente. check-frictions: 21/21 coperti, 0 warning. Nessuna build eseguita. AGENTS.md §3: stop. cost_usd: ~$0.
