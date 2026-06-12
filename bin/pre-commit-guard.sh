@@ -109,8 +109,6 @@ if $HAS_ERRORS; then
     exit 1
 fi
 
-exit 0
-
 # ── COORD-FORMAT guard (12/06: edit Hermes cancellarono CLAUDE-SAYS e corruppero 177 righe) ──
 if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
   CCHK=$(git show :COORDINATION.md)
@@ -135,3 +133,5 @@ if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
     fi
   done
 fi
+
+exit 0
