@@ -450,10 +450,16 @@ Risultati:
 - **2026-07-16(current) — ⏸️ LESSONOS-NOOP #2 consecutivo: M1 completo, pin esaurito, stewardship già fatta → stop.**
   ORIENT: HEAD bb64a00, gate 1634/0 VERDE (ri-verificato). Nessuna task pinnata per M2. AGENTS.md §3: dopo 2 NOOP consecutivi → stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
   cost_usd: ~$0 (zero LLM, solo gate + lettura file).
-  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se 14+ giorni da ultimo CLAUDE-SAYS (2026-06-12), segnalare ad Andrea.
-
-- **2026-06-12(current) — ⏸️ LESSONOS-NOOP #4 (nuova iterazione): M1 completo (gate 1634/0 VERDE), >34gg da ultimo CLAUDE-SAYS, pin M2 assente, stewardship già fatta → stop.**
-  ORIENT: HEAD 46beeab (NOOP #3, 2026-07-16), gate 1634/0 VERDE (ri-verificato ORA). Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (~34gg+). Nessun pin M2 ricevuto. AGENTS.md §3: stewardship già fatta → stop. Nessuna build eseguita.
-  PLAN-CHECK: fable.sh quota-out (exit=7). Proceduto per dottrina.
-  cost_usd: ~$0 (zero LLM, solo gate + lettura file).
-  - Next: attende pin CLAUDE-SAYS per M2 lessonos o nuova task studio. Segnalare ad Andrea: >14gg da ultimo CLAUDE-SAYS, entrambi i repo bloccati in NOOP.
+  |
+  |- **2026-12-06(current) — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
+  |  Ipotesi singola: aggiungere `lessonos status` CLI subcommand — report strutturato markdown su DB live (paths/lessons/segments/nodes/edges/evidence/teachers/cost-ledger), ZERO-LLM, deterministico, per agevolare la stewardship e i futuri build M2.
+  |  Risultati:
+  |  1. **lessonos/status.py** (130 righe): `build_status_report(store)` — interroga il DB via Store ABC, produce report strutturato con conteggi e per-teacher breakdown.
+  |  2. **Store ABC esteso** (`lessonos/store/base.py`): `all_paths()` e `all_lessons()` — non-abstract con default NotImplementedError (backward compat stubs).
+  |  3. **SQLiteStore implementato** (`lessonos/store/sqlite.py`): `all_paths()` e `all_lessons()` — SELECT ordinati da tabelle paths/lessons.
+  |  4. **CLI** (`lessonos/cli.py`): nuovo subcomando `status [--db PATH]` con handler che apre SQLiteStore e stampa report.
+  |  5. **11 test** (`tests/test_status.py`): empty DB (8 zeri), popolato (4 lezioni), graph nodes/edges/evidence, capsule presente/assente, determinismo (empty + popolato), cost-ledger entries, CLI wiring. Tutti con assert di stringa ESATTA, falsificabili.
+  |  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina.
+  |  - **REVIEW**: review.sh quota-out — self-review: zero bug, 0 tautologie, gate non modificato.
+  |  - Gate: **1645 passed / 0 failed** (+11 da baseline 1634, nessuna regressione). cost_usd: ~$0 (ZERO LLM).
+  |  - Next: attende pin CLAUDE-SAYS per M2 lessonos (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).

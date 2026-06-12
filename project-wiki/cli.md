@@ -21,6 +21,19 @@ lessonos = "lessonos.cli:main"
 
 ## Comandi
 
+### `lessonos status [--db PATH]`
+
+ZERO-LLM report strutturato del DB live: conteggio di paths, lezioni, segmenti,
+nodi/archi/evidenze del grafo, insegnanti, e voci del cost-ledger.
+
+Parametri:
+- `--db PATH` — percorso al database SQLite (default: `:memory:` per fixture)
+
+Output: report Markdown con breakdown per insegnante, avvisi su lezioni senza capsule.
+
+**File**: `lessonos/status.py` (130 righe, ZERO-LLM, deterministica).
+**Test**: `tests/test_status.py` — 11 test (empty, popolato, graph, capsule, ledger, CLI wiring).
+
 ### `lessonos run-path [--fixture PATH]`
 
 Carica un percorso fixture, assembla capsule per ogni lezione (mock LLM),
