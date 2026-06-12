@@ -260,7 +260,16 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement("a")
       a.href = url
-      a.download = `lezione-${room}.lesson`
+      // Usa il nome lezione (slugificato) se disponibile, altrimenti room id
+      const slug = lessonName
+        ? lessonName.toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-|-$/g, "")
+            .slice(0, 48)
+        : room
+      a.download = `lezione-${slug}.lesson`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
