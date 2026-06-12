@@ -27,7 +27,7 @@ from lessonos.graph.grounding import MAX_UNVERIFIED_RATIO, claim_badge
 from lessonos.graph.resolution import GlobalResolution
 from lessonos.llm.router import Router
 from lessonos.store.base import Store
-from lessonos.style import StyleProfile
+from lessonos.style import StyleProfile, WrittenStyleProfile
 from lessonos.teacher_book import build_teacher_book
 
 # ── Data model  ────────────────────────────────────────────────────────
@@ -231,10 +231,62 @@ def _resolve_concepts_from_capsules(
     return tuple(resolved)
 
 
+def _written_style_hint(ws: WrittenStyleProfile) -> str:
+    """Map WrittenStyleProfile metrics to a structural writing instruction.
+
+    Produces guidance about formal density, paragraph/sentence rhythm, and
+    section structure — derived from the teacher's actual written dispense corpus.
+    Returns empty string if no written corpus was available.
+    """
+    if ws.dispense_processed == 0:
+        return ""
+
+    parts: list[str] = []
+
+    # Sentence length
+    if ws.avg_sentence_length >= 25:
+        parts.append("frasi articolate e complesse (struttura accademica classica).")
+    elif ws.avg_sentence_length >= 15:
+        parts.append("frasi di media lunghezza, bilanciate tra chiarezza e completezza.")
+    else:
+        parts.append("frasi brevi e dirette, stile schematico.")
+
+    # Formal density
+    if ws.formal_density >= 3.0:
+        parts.append("linguaggio formale con marcatori accademici (condizione, teorema, criterio).")
+    elif ws.formal_density >= 1.0:
+        parts.append("linguaggio moderatamente formale, con alcuni termini accademici.")
+
+    # Paragraph length — exclude very short counts (corrupted PDF output)
+    if ws.avg_paragraph_length >= 60:
+        parts.append("paragrafi estesi e densi di contenuto.")
+    elif ws.avg_paragraph_length >= 30:
+        parts.append("paragrafi di media estensione.")
+    elif ws.avg_paragraph_length > 0:
+        parts.append("paragrafi brevi e compatti.")
+
+    # Section structure
+    if ws.section_count >= 10:
+        parts.append("struttura fortemente paragrafata con molte sezioni e sottosezioni.")
+    elif ws.section_count > 0:
+        parts.append("struttura con sezioni chiare ma non eccessivamente frammentate.")
+
+    # Math density
+    if ws.math_density >= 5.0:
+        parts.append("alta densità di notazione matematica (formule, operatori, variabili).")
+    elif ws.math_density >= 1.0:
+        parts.append("moderata presenza di notazione matematica.")
+
+    if not parts:
+        return ""
+    return "Nello stile SCRITTO del docente: " + " ".join(parts)
+
+
 def build_dispensa_prompt(
     teacher_id: str,
     style: StyleProfile,
     concepts: tuple[ConceptExtraction, ...],
+    **kwargs,
 ) -> str:
     """Build a complete LLM prompt for generating a dispensa.
 
@@ -242,6 +294,9 @@ def build_dispensa_prompt(
         teacher_id: Teacher identifier for context.
         style: StyleProfile driving tone and structure.
         concepts: Core concepts to cover (from TeacherBook fundamental or all).
+        **kwargs: May contain ``written_style`` (``WrittenStyleProfile | None``)
+            — if provided, the prompt also includes written-style guidance
+            from the teacher's real dispense corpus (M2-2).
 
     Returns:
         Deterministic prompt string suitable for routing through ``Router``.
@@ -251,6 +306,10 @@ def build_dispensa_prompt(
 
     structure = _structure_hint(style)
     tics_str = ", ".join(style.tics) if style.tics else "(nessuna espressione caratteristica rilevata)"
+
+    # Optional written-style hint (M2-2)
+    written_style: WrittenStyleProfile | None = kwargs.get("written_style")
+    written_hint = _written_style_hint(written_style) if written_style else ""
 
     section_prompts: list[str] = []
     for idx, conc in enumerate(concepts, 1):
@@ -267,6 +326,19 @@ def build_dispensa_prompt(
         "\n"
         f"## Struttura richiesta\n"
         f"{structure}\n"
+    )
+
+    # Add written-style hint if available (M2-2)
+    if written_hint:
+        prompt += (
+            "\n"
+            "## Stile SCRITTO del docente (dalle sue dispense originali)\n"
+            f"{written_hint}\n"
+            "- USA questo stile come riferimento per la struttura formale e il tono.\n"
+            "- Combinalo con lo stile parlato (registro, tics) per un risultato naturale.\n"
+        )
+
+    prompt += (
         "\n"
         "## Concetti da trattare (con citazioni dai transcripts)\n"
         f"{sections_block}\n"
@@ -311,6 +383,7 @@ def generate_dispensa(
     provider: str = "mock",
     model: str | None = None,
     style: StyleProfile | None = None,
+    written_style: WrittenStyleProfile | None = None,
     resolution: GlobalResolution | None = None,
 ) -> DispensaDoc:
     """Generate a style-aware dispensa for *teacher_id*.
@@ -321,7 +394,10 @@ def generate_dispensa(
         router: LLM router (mock in tests, DeepSeek at runtime).
         provider: Provider name for the router.
         model: Optional model override.
-        style: Pre-computed ``StyleProfile``. If ``None``, derived on-the-fly.
+        style: Pre-computed spoken ``StyleProfile``. If ``None``, derived on-the-fly.
+        written_style: Pre-computed ``WrittenStyleProfile`` from teacher's
+            dispense corpus (M2-2). If provided, the dispensa prompt includes
+            written-style guidance in addition to spoken style.
         resolution: Optional global concept mapping (M1-1c) for this teacher.
             Passed to ``build_teacher_book`` (cross-lesson concept linking)
             and to concept resolution (alias-aware matching).
@@ -361,7 +437,10 @@ def generate_dispensa(
     )
 
     # 5. Build prompt and call LLM
-    prompt = build_dispensa_prompt(teacher_id, style, tuple(all_concepts))
+    prompt = build_dispensa_prompt(
+        teacher_id, style, tuple(all_concepts),
+        written_style=written_style,
+    )
     response = router.complete(prompt, provider=provider, model=model)
 
     # 6. Parse response

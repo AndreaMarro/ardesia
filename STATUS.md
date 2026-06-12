@@ -522,3 +522,23 @@ Risultati:
   - **REVIEW**: review.sh quota-out — self-review: 0 bug, 0 tautologie, zero regressioni.
   - Gate: **1657 passed / 2 skipped / 0 failed** (+1 da baseline 1656). cost_usd: ~$0 (mock).
   - Next: attende prossimo pin CLAUDE-SAYS per M2 (M2-2 stile-scritto? M2-4 ToolHost?).
+
+- **2026-06-12(executed) — M2-2: StyleProfile v2 dallo stile SCRITTO (gate 1685/0, +28).**
+  Ipotesi singola: estendere style.py con WrittenStyleProfile dal corpus dispense VERE di Andrea (9 PDFs via pdftotext) — metriche di lessico formale, struttura paragrafi, densità matematica — e usare ENTRAMBI i profili (parlato v1 + scritto v2) nel prompt dispensa.
+  Risultati:
+  1. **Corpus estratto**: `bin/extract-written-style.sh` converte tutti i 9 PDF da `raw/dispense-2026/` (read-only) a testo pulito in `derived/dispense/*.raw.txt`. pdftotext, ZERO nuove dipendenze.
+  2. **style.py** — 6 nuove funzioni di metrica (ZERO-LLM): `_clean_dispensa_text()` (controlli + form-feed), `_avg_sentence_length()`, `_formal_density()` (marcatori accademici italiani), `_section_count()` (ALL-CAPS + numerate), `_bullet_density()`, `_math_density()` (unicode math, greco, formule), `_avg_paragraph_length()`. Nuova `WrittenStyleProfile` frozen dataclass con 7 campi tra cui `dispense_processed`. `derive_written_style(dispense_dir)` legge `*.raw.txt`, pulisce, computa metriche aggregate.
+  3. **Metriche reali** dal corpus di Andrea (9 dispense):
+     - avg_sentence_length: 55.25 (frasi accademiche complesse)
+     - formal_density: 11.96/1000 token (linguaggio accademico fitto)
+     - section_count: 61 sezioni rilevate (struttura fortemente paragrafata)
+     - bullet_density: 8.08/1000 token (uso sistematico di elenchi)
+     - math_density: 54.07/1000 token (altissima densità di notazione matematica)
+     - avg_paragraph_length: 23.41 token (paragrafi brevi e compatti)
+  4. **dispensa.py** — `build_dispensa_prompt` accetta ora `written_style: WrittenStyleProfile` via kwargs. `_written_style_hint(ws)` mappa le metriche in istruzioni testuali. Prompt v2 include sezione "## Stile SCRITTO del docente (dalle sue dispense originali)" con guida strutturale. `generate_dispensa` accetta `written_style` e lo passa al prompt builder. Backward compat: chiamanti esistenti senza `written_style` funzionano identici.
+  5. **A/B test** (`bin/ab-dispensa-written-style.py`): v1-only = 44 linee/1271 char, nessuna sezione scritta. V1+v2 = 49 linee/1818 char, include sezione scritta con istruzioni reali. Diff strutturale verificato.
+  6. **28 nuovi test** (38 totali su test_style.py): cleaning, avg_sentence_length, formal_density, section_count, bullet_density, math_density, avg_paragraph_length, written_style_hint (no-corpus→vuoto, real→testo, deterministico), derive_written_style (nessun corpus→zeroed, corpus reale→numeri misurabili).
+  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+  - **REVIEW**: review.sh quota-out — self-review: ZERO LLM, 0 regressioni, backward compat, 0 tautologie.
+  - Gate: **1685 passed / 2 skipped** (+28 da baseline 1657). cost_usd: ~$0 (ZERO LLM, mock).
+  - Next: M2-2 completo. Attende prossimo pin da CLAUDE-SAYS o ROADMAP-AUTO.

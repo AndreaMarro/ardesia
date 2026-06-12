@@ -255,3 +255,242 @@ def derive_style_profile(
         registro=registro,
         tics=tics,
     )
+
+
+# ═══════════════════════════════════════════════════════════════════
+# M2-2: Written-style profile from dispense corpus
+# ═══════════════════════════════════════════════════════════════════
+
+import os
+import string
+
+# Academic formality markers specific to written academic Italian (dispense corpus).
+_WRITTEN_FORMAL: frozenset[str] = frozenset({
+    "condizione", "definizione", "teorema", "dimostrazione", "criterio",
+    "necessaria", "sufficiente", "ovvero", "pertanto", "dunque",
+    "conseguentemente", "inoltre", "tuttavia", "nonché",
+    "affinché", "mediante", "qualora", "poiché", "purché",
+    "generalmente", "localmente", "rispettivamente",
+    "consideriamo", "osserviamo", "notiamo", "segue che",
+    "vale", "verifica", "soddisfa", "ricade",
+})
+
+
+def _clean_dispensa_text(raw_text: str) -> str:
+    """Clean pdftotext output for written-style analysis.
+
+    Strips control characters, page-break markers (``\\f``), and normalises
+    whitespace. Preserves actual content, including math notation remnants.
+    """
+    # Replace page breaks FIRST (before stripping control chars)
+    cleaned = raw_text.replace("\f", "\n\n")
+    # Strip remaining control characters except newlines and tabs
+    cleaned = "".join(
+        ch for ch in cleaned
+        if not (ord(ch) < 32 and ch not in ("\n", "\t"))
+    )
+    # Collapse multiple empty lines
+    while "\n\n\n" in cleaned:
+        cleaned = cleaned.replace("\n\n\n", "\n\n")
+    return cleaned.strip()
+
+
+def _avg_sentence_length(text: str) -> float:
+    """Average whitespace-delimited tokens per sentence in *text*.
+
+    Sentence boundaries are ``.``, ``!``, ``?`` followed by whitespace or end.
+    Returns 0.0 for empty or single-sentence text.
+    """
+    import re
+    # Split on sentence-ending punctuation
+    sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+    sentences = [s.strip() for s in sentences if s.strip()]
+    if not sentences:
+        return 0.0
+    token_counts = [len(s.split()) for s in sentences]
+    return round(sum(token_counts) / len(sentences), 2)
+
+
+def _formal_density(text: str) -> float:
+    """Count of formal/academic markers per 1000 whitespace-delimited tokens.
+
+    Checks ``_WRITTEN_FORMAL`` against the lowercased text.
+    """
+    tokens = text.lower().split()
+    if not tokens:
+        return 0.0
+    count = sum(1 for t in tokens if t.strip(string.punctuation) in _WRITTEN_FORMAL)
+    return round(count / len(tokens) * 1000, 4)
+
+
+def _section_count(text: str) -> int:
+    """Count section-like headings in the text.
+
+    Heuristics:
+      - Lines that are ALL-CAPS (>= 4 chars)  — section titles in dispense corpus
+      - Lines starting with a roman numeral or numbered pattern like ``1.``
+      - Lines starting with ``#`` (markdown-style, though rare in raw txt)
+    Returns the count of unique heading lines detected.
+    """
+    import re
+    headings = 0
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        # ALL-CAPS line with >= 4 chars
+        if line.isupper() and len(line) >= 4:
+            headings += 1
+            continue
+        # Numbered: starts with digit(s) followed by dot or roman numerals
+        if re.match(r"^\d+\.\s", line):
+            headings += 1
+            continue
+    return headings
+
+
+def _bullet_density(text: str) -> float:
+    """Count of bullet-like markers (•, -, *, –) per 1000 tokens."""
+    tokens = text.split()
+    if not tokens:
+        return 0.0
+    bullet_chars = frozenset({"•", "-", "–", "*"})
+    count = sum(1 for t in tokens if t and t[0] in bullet_chars)
+    return round(count / len(tokens) * 1000, 4)
+
+
+def _math_density(text: str) -> float:
+    """Estimate mathematical notation density per 1000 tokens.
+
+    Counts tokens containing Unicode math symbols common in the ``Energia.raw.txt``
+    corpus: integral signs (∫, ∑), infinity (∞), Greek letters, superscript/subscript
+    modifier chars, or tokens with mixed digits and letters (e.g. ``I∞(t0)``).
+    """
+    import re
+    tokens = text.split()
+    if not tokens:
+        return 0.0
+
+    # Unicode math-relevant ranges
+    def _is_math_token(t: str) -> bool:
+        if not t:
+            return False
+        # Direct math symbols
+        for ch in t:
+            cp = ord(ch)
+            if cp in (0x222B, 0x2211, 0x221E, 0x2207, 0x2202, 0x2264, 0x2265):
+                return True  # ∫ ∑ ∞ ∇ ∂ ≤ ≥
+            # Greek (upper + lower)
+            if 0x0391 <= cp <= 0x03C9:
+                return True
+            # Superscript/subscript modifiers
+            if 0x2070 <= cp <= 0x209F:
+                return True
+            # Box drawing / mathematical operators
+            if 0x2500 <= cp <= 0x257F:
+                return True
+        # Token starts with parenthesis (formula-like grouping)
+        if t.startswith("(") or t.startswith("["):
+            return True
+        # Token contains mixed digits and letters (e.g. "t1", "s(t)")
+        if re.search(r"\d", t) and re.search(r"[a-zA-Z]", t):
+            return True
+        return False
+
+    count = sum(1 for t in tokens if _is_math_token(t))
+    return round(count / len(tokens) * 1000, 4)
+
+
+def _avg_paragraph_length(text: str) -> float:
+    """Average token count per paragraph (blocks separated by blank lines)."""
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+    if not paragraphs:
+        return 0.0
+    counts = [len(p.split()) for p in paragraphs]
+    return round(sum(counts) / len(counts), 2)
+
+
+@dataclass(frozen=True)
+class WrittenStyleProfile:
+    """Deterministic written-style metrics derived from a teacher's dispense corpus.
+
+    All fields are computed mechanically from cleaned raw dispense texts —
+    no LLM call, no modification to the raw corpus. Extracted from the actual
+    written handouts (dispense) to complement the spoken ``StyleProfile`` (v1).
+
+    ``dispense_processed`` counts how many dispense files were successfully
+    parsed to compute these metrics. A value of 0 means no corpus was available.
+    """
+
+    avg_sentence_length: float
+    formal_density: float
+    section_count: int
+    bullet_density: float
+    math_density: float
+    avg_paragraph_length: float
+    dispense_processed: int
+
+
+def derive_written_style(
+    dispense_dir: str = os.path.expanduser(
+        "~/maestro-data/teoria-segnali-2021/derived/dispense/"
+    ),
+) -> WrittenStyleProfile:
+    """Derive a ``WrittenStyleProfile`` from a directory of dispense PDF raw text.
+
+    Reads all ``*.raw.txt`` files in *dispense_dir* (expected to be pdftotext
+    output), cleans them, and computes structural and lexical metrics.
+
+    The dispense directory is READ-ONLY — this function never writes to it.
+    If no raw text files are found, returns a zeroed profile (``dispense_processed=0``).
+
+    Args:
+        dispense_dir: Directory containing ``*.raw.txt`` files (pdftotext output).
+
+    Returns:
+        A ``WrittenStyleProfile`` with aggregate metrics across all dispense files.
+    """
+    import glob
+
+    raw_files = sorted(glob.glob(os.path.join(dispense_dir, "*.raw.txt")))
+    if not raw_files:
+        return WrittenStyleProfile(
+            avg_sentence_length=0.0,
+            formal_density=0.0,
+            section_count=0,
+            bullet_density=0.0,
+            math_density=0.0,
+            avg_paragraph_length=0.0,
+            dispense_processed=0,
+        )
+
+    all_texts: list[str] = []
+    for fp in raw_files:
+        raw = open(fp, encoding="utf-8", errors="replace").read()
+        cleaned = _clean_dispensa_text(raw)
+        if cleaned:
+            all_texts.append(cleaned)
+
+    if not all_texts:
+        return WrittenStyleProfile(
+            avg_sentence_length=0.0,
+            formal_density=0.0,
+            section_count=0,
+            bullet_density=0.0,
+            math_density=0.0,
+            avg_paragraph_length=0.0,
+            dispense_processed=0,
+        )
+
+    full_text = "\n\n".join(all_texts)
+
+    # Compute aggregate metrics across all texts
+    return WrittenStyleProfile(
+        avg_sentence_length=_avg_sentence_length(full_text),
+        formal_density=_formal_density(full_text),
+        section_count=_section_count(full_text),
+        bullet_density=_bullet_density(full_text),
+        math_density=_math_density(full_text),
+        avg_paragraph_length=_avg_paragraph_length(full_text),
+        dispense_processed=len(all_texts),
+    )

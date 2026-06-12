@@ -64,7 +64,38 @@ Env: `DB_PATH`, `DERIVED_DIR`, `PROVIDER`, `MODEL`.
 - `docs/ORDERS-M1-4.md` — spec prodotto
 - `tests/test_dispensa.py` — 34 test (file:line, M1-4b: +10, M1-5.5: +1)
 
-## M1-6 Fase F — LIVE run (2026-06-12)
+## M2-2: WrittenStyleProfile (2026-06-12)
+
+`WrittenStyleProfile` estende lo stile con metriche dal corpus **SCRITTO** (dispense VERE di Andrea, 9 PDF via pdftotext). `derive_written_style(dispense_dir)` legge `*.raw.txt` (read-only), pulisce, computa:
+
+| Metrica | Valore reale (corpus Andrea) | Descrizione |
+|---|---|---|
+| `avg_sentence_length` | 55.25 | Frasi accademiche complesse |
+| `formal_density` | 11.96/1000t | Marcatori accademici (condizione, teorema, criterio) |
+| `section_count` | 61 | Sezioni rilevate nei 9 file |
+| `bullet_density` | 8.08/1000t | Uso sistematico di elenchi puntati |
+| `math_density` | 54.07/1000t | Altissima densità di notazione matematica |
+| `avg_paragraph_length` | 23.41 tok | Paragrafi brevi e compatti |
+
+### Prompt integration
+
+- `build_dispensa_prompt` accetta `written_style: WrittenStyleProfile` via kwargs
+- `_written_style_hint(ws)` → istruzione testuale per il prompt
+- `generate_dispensa` accetta `written_style` e lo passa al prompt builder
+- LLM vede: "insegna come parli (v1) ma struttura come scrivi (v2)"
+- Backward compat: chiamanti senza `written_style` identici a prima
+
+### A/B test
+
+`bin/ab-dispensa-written-style.py`: v1-only = 44 linee/1271 char. V1+v2 = 49 linee/1818 char. Diff strutturale verificato.
+
+### File
+
+- `lessonos/style.py` — WrittenStyleProfile + 6 metric functions + derive_written_style (ZERO-LLM, file:line)
+- `lessonos/dispensa.py` — _written_style_hint + kwargs passaggio (file:line)
+- `bin/extract-written-style.sh` — conversione PDF→txt (file:line)
+- `bin/ab-dispensa-written-style.py` — A/B script (file:line)
+- `tests/test_style.py` — 28 nuovi test
 
 ### Dispense generate su dati reali
 
