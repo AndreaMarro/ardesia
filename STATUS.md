@@ -451,7 +451,11 @@ Risultati:
   ORIENT: HEAD bb64a00, gate 1634/0 VERDE (ri-verificato). Nessuna task pinnata per M2. AGENTS.md §3: dopo 2 NOOP consecutivi → stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
   cost_usd: ~$0 (zero LLM, solo gate + lettura file).
   |
-  |- **2026-12-06(current) — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
+  |- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
+
+  ORIENT: HEAD `1e5e25d` (log commit). M1 COMPLETO (M1-1→M1-7 + CRITICO FIX + status CLI). M2 STEWARDSHIP già eseguita (2026-12-06, commit 32a7876, +11 test). Gate 1645/0 VERDE (ri-verificato ORA). Entrambi i repo in NOOP permanente. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 — nessun pin M2. Stewardship già fatta (RETRO #10). check-frictions.sh: 21/21 coperti, 0 warning. AGENTS.md §3: stop. Nessuna build eseguita. cost_usd: ~$0 (gate + lettura file).
+
+|- **2026-12-06(current) — M2 STEWARDSHIP: CLI lessonos status (commit 32a7876, gate 1645/0, +11).**
   |  Ipotesi singola: aggiungere `lessonos status` CLI subcommand — report strutturato markdown su DB live (paths/lessons/segments/nodes/edges/evidence/teachers/cost-ledger), ZERO-LLM, deterministico, per agevolare la stewardship e i futuri build M2.
   |  Risultati:
   |  1. **lessonos/status.py** (130 righe): `build_status_report(store)` — interroga il DB via Store ABC, produce report strutturato con conteggi e per-teacher breakdown.
