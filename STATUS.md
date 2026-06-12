@@ -1,4 +1,19 @@
 |
+|- **2026-06-12(executed) — Adversarial triage: fix excerpt guard + test parametrizzato (adversarial 03:40 su 478f628).**
+  Ipotesi singola: il finding MINORE VERO dell'adversarial su 478f628 (03:40) — `excerpt=""` e `excerpt="   "` non coperti dal test e dal codice — va fissato. Il CRITICO (test tautologico) e la NOTA (FsPath) dell'adversarial 08:02 su b7d23c1 sono **FALSI POSITIVI** (assert gia adeguati, comparazione su stringa non FsPath).
+  Risultati:
+  1. **Fix codice** (lessonos/dispensa.py:474): `claim.excerpt is None or claim.excerpt == ""` -> `not claim.excerpt or not claim.excerpt.strip()`. Cattura None, "" e whitespace-only ("   "). Short-circuit safe.
+  2. **Test parametrizzato** (tests/test_dispensa.py:435): `test_excerpt_none_dropped` ora parametrizzato con `[None, "", "   "]` — 3 casi falsificabili.
+  3. **Triaggio adversarial completato**:
+     - 08:02 su b7d23c1 (vault test): **TUTTI FALSI POSITIVI**
+     - 03:40 su 478f628 (CRITICO fix): **1 MINORE VERO** — test gap coperto
+     - 02:13 su b72126a (WORKFLOW-2.0): non tocca lessonos, gestito da Claude
+  - **PLAN-CHECK**: fable.sh quota-out — proceduto.
+  - **REVIEW**: review.sh quota-out — self-review: 0 regressioni, 0 tautologie.
+  - Gate: **1651 passed / 2 skipped / 0 failed** (+2 da baseline 1649). cost_usd: ~$0 (mock).
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Tutti gli adversarial lessonos triagati e chiusi.
+
+|
 
 - **2026-06-10(current) — T5-FIX: 2 CRITICI grafo fixati (cross-lesson grounding + transaction atomicity).**
   Ipotesi singola: i 2 CRITICI HERMES-2 su graph_writer (4013e76) vanno fissati nel codice — (1) cross-lesson contamination in `_collect_evidence` e (2) write_capsule_graph senza transazione.

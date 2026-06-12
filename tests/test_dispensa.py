@@ -432,13 +432,15 @@ class TestVerifyDispensa:
         with pytest.raises(ValueError, match="unverified"):
             verify_dispensa(doc, store)
 
-    def test_excerpt_none_dropped(self) -> None:
-        """Claim with excerpt=None and valid seg_id → dropped (never counted as verified).
+    @pytest.mark.parametrize("bad_excerpt", [None, "", "   "])
+    def test_excerpt_none_dropped(self, bad_excerpt: str | None) -> None:
+        """Claim with missing or empty excerpt and valid seg_id → dropped.
 
-        This is the CRITICAL false-verde hole (retro-review 2026-06-12):
-        verify_citation(seg_id, excerpt=None) skips the substring check, so
-        a claim with no verbatim excerpt was counted as VERIFIED by the old
-        code. After the fix, excerpt=None is treated as unverifiable → dropped.
+        Covers excerpt=None (default), excerpt="" (empty string), and
+        excerpt="   " (whitespace-only). All three must be treated as
+        unverifiable per T6R policy (grounding.py:66 "VERIFIED iff
+        non-empty excerpt"). The whitespace case exercises the
+        .strip() guard in _verify_or_repair.
         """
         store = _StoreStub()
         store._segments["l#s1"] = _SegStub(seg_id="l#s1", text="l'energia è una grandezza", lesson_id="l")
@@ -450,7 +452,7 @@ class TestVerifyDispensa:
                     paragraphs=(
                         DispensaParagraph(
                             text="Text",
-                            claims=(DispensaClaim(text="E", seg_id="l#s1"),),  # excerpt=None (default)
+                            claims=(DispensaClaim(text="E", seg_id="l#s1", excerpt=bad_excerpt),),
                         ),
                     ),
                 ),

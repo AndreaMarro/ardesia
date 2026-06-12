@@ -471,7 +471,7 @@ def verify_and_clean_dispensa(
             # (grounding.py:66 "VERIFIED iff non-empty excerpt"). Must NOT be
             # counted as verified. The old code returned (claim, False) here
             # regardless of excerpt, creating a false-verde hole.
-            if claim.excerpt is None or claim.excerpt == "":
+            if not claim.excerpt or not claim.excerpt.strip():
                 return None
             return claim, False
         except ValueError:
