@@ -29,7 +29,7 @@ if n >= 2:
 s = open(COORD, encoding="utf-8").read()
 
 # il pin corrente e' esaurito? (testo PIN ESAURITO / PIN-DONE / vuoto)
-mpin = re.search(rf"^- \*\*{repo}\*\*:(.*)$", s, flags=re.M)
+mpin = re.search(rf"^\|*\s*- \*\*{repo}\*\*:(.*)$", s, flags=re.M)
 if not mpin:
     print(f"[promote_pin] riga pin {repo} non trovata")
     sys.exit(2)

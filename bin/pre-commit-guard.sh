@@ -114,10 +114,12 @@ exit 0
 # ── COORD-FORMAT guard (12/06: edit Hermes cancellarono CLAUDE-SAYS e corruppero 177 righe) ──
 if git diff --cached --name-only | grep -q "^COORDINATION.md$"; then
   CCHK=$(git show :COORDINATION.md)
-  if printf "%s" "$CCHK" | grep -qE "^([0-9]+\|)+|^\|#"; then
+  if printf "%s" "$CCHK" | grep -qE "^([0-9]+\|)+|^\|"; then
     echo "COORD-FORMAT: prefissi numerati/pipe corrotti in COORDINATION.md — riscrivi le righe INTERE e pulite, mai output numerato." >&2; exit 1
   fi
   for h in "## ➡️ PROSSIMA TASK" "## NEEDS-CLAUDE" "## CLAUDE-SAYS"; do
-    printf "%s" "$CCHK" | grep -q "^$h" || { echo "COORD-FORMAT: heading mancante: $h — le sezioni di COORDINATION non si cancellano MAI." >&2; exit 1; }
+    HN=$(printf "%s" "$CCHK" | grep -c "^$h")
+    [ "$HN" -eq 1 ] || { echo "COORD-FORMAT: heading '$h' presente $HN volte (deve essere 1)" >&2; exit 1; }
+    true || { echo "COORD-FORMAT: heading mancante: $h — le sezioni di COORDINATION non si cancellano MAI." >&2; exit 1; }
   done
 fi
