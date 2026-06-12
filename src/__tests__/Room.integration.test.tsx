@@ -432,25 +432,19 @@ describe("Room ↔ WorkspaceStore integration", () => {
 
   // --- T2b punto 4: indicatore quota REALE in header ---
 
-  it("header mostra l'indicatore quota cache (uso/quota da storageUsage)", async () => {
+  it("header mostra l'indicatore dati onesto (localStorage → 'solo in questo browser')", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
-    vi.spyOn(store, "storageUsage").mockResolvedValue({
-      usedBytes: 4.2 * 1048576,
-      quotaBytes: 5 * 1048576,
-    })
 
     const root = createRoot(document.getElementById("root")!)
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
-    // Shell v1: la quota è una micro-barra .st-cachebar; i numeri REALI da
-    // storageUsage stanno nel title (verifica che il dato fluisca, non l'estetica)
+    // S-DESIGN-2: l'indicatore dati sostituisce la micro-barra cache.
+    // In localStorage mode mostra "solo in questo browser" + "scegli cartella…"
     await vi.waitFor(() => {
-      const cache = document.querySelector(".st-cache")
-      expect(cache).not.toBeNull()
-      expect(cache!.getAttribute("title")).toContain("4.2/5 MB")
-      expect(document.querySelector(".st-cachebar > span")).not.toBeNull()
+      expect(document.body.textContent).toContain("solo in questo browser")
+      expect(document.querySelector(".st-indicator-connect")).not.toBeNull()
     }, { timeout: 1000, interval: 10 })
 
     root.unmount()

@@ -34,21 +34,38 @@ export class WorkspaceStore {
     return this._mode
   }
 
-  /** Tenta inizializzazione col driver migliore. Chiede la cartella all'utente se FSA disponibile. */
+  /**
+   * Inizializzazione SILENZIOSA: parte con localStorage (sempre disponibile).
+   * MAI chiedere la cartella FSA qui — connectFolder() lo fa su gesto utente.
+   */
   async init(): Promise<StorageMode> {
-    const fsa = createFSADriver()
-    if (fsa.available()) {
-      const ok = await fsa.init()
-      if (ok) {
-        this.driver = fsa
-        this._mode = "fsa"
-        return "fsa"
-      }
-    }
-    // Fallback a localStorage (sempre disponibile)
     this.driver = this.fallback
     this._mode = "localStorage"
     return "localStorage"
+  }
+
+  /**
+   * Chiede all'utente una cartella FSA (showDirectoryPicker) e migra i dati
+   * esistenti da localStorage. DA CHIAMARE SOLO SU GESTO UTENTE.
+   */
+  async connectFolder(): Promise<boolean> {
+    const fsa = createFSADriver()
+    if (!fsa.available()) return false
+    const ok = await fsa.init()
+    if (!ok) return false
+
+    // Migra i dati esistenti da localStorage → FSA
+    const existingEntries = await this.fallback.list()
+    for (const entry of existingEntries) {
+      if (entry.path.startsWith("raw/")) {
+        await fsa.write(entry.path, entry.data)
+      }
+    }
+
+    // Passa a FSA
+    this.driver = fsa
+    this._mode = "fsa"
+    return true
   }
 
   // --- OPERAZIONI FILE ---

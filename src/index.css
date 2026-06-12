@@ -39,14 +39,22 @@ body {
 }
 .st-status { display: flex; align-items: center; gap: 10px; margin-left: 2px; }
 .st-quiet { color: var(--m-ink-4); font-size: var(--m-fs-xs); }
-.st-savewrap { display: flex; align-items: center; gap: 5px; color: var(--m-ink-3); font-size: var(--m-fs-xs); }
-.st-led { width: 7px; height: 7px; border-radius: 50%; background: var(--m-verified); box-shadow: 0 0 0 3px var(--m-verified-wash); }
-.st-cache { display: flex; align-items: center; }
-.st-cachebar {
-  width: 44px; height: 4px; border-radius: 4px; background: var(--m-line); overflow: hidden; display: block;
+
+/* ── indicatore dati ONESTO ──────────────────────────────────────────── */
+.st-indicator {
+  display: flex; align-items: center; gap: 5px;
+  font-size: var(--m-fs-xs); color: var(--m-ink-3); cursor: default;
 }
-.st-cachebar > span { display: block; height: 100%; background: var(--m-ink-4); border-radius: 4px; }
-.st-cachebar[data-warn] > span { background: var(--m-warn); }
+.st-indicator .st-led { width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; }
+.st-indicator.st-local .st-led { background: var(--m-ink-3); box-shadow: none; }
+.st-indicator.st-fsa .st-led { background: var(--m-verified); box-shadow: 0 0 0 3px var(--m-verified-wash); }
+.st-indicator-connect {
+  background: none; border: none; color: var(--m-blue); cursor: pointer;
+  font-size: var(--m-fs-xs); padding: 0; text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.st-indicator-connect:hover { color: var(--m-blue-down); }
+
 .st-err {
   color: var(--m-error); font-size: var(--m-fs-xs); max-width: 260px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -75,6 +83,9 @@ body {
 .st-primary:disabled { background: var(--m-accent-off); border-color: var(--m-accent-off); cursor: default; }
 .st-meet { color: var(--m-ink-3); }
 .st-ext { margin-left: var(--m-sp-1); font-size: var(--m-fs-2xs); }
+
+/* ── RECSTRIP: striscia fissa 2px --m-rec sotto l'header ───────────── */
+.st-recstrip { height: 2px; flex: 0 0 2px; background: var(--m-rec); border: 0; }
 
 /* ── welcome MAESTRO (dentro WelcomeScreen Excalidraw) ────────────────── */
 .st-welcome-brand { justify-content: center; margin-bottom: var(--m-sp-3); }

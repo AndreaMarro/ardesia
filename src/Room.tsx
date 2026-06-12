@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type ChangeEvent } from "react"
+import { useState, useRef, useEffect, useCallback, type ChangeEvent } from "react"
 import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
@@ -6,7 +6,7 @@ import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
-import { type StorageUsage } from "./store/types"
+import { type StorageMode } from "./store/types"
 import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { AudioRecorder } from "./store/AudioRecorder"
@@ -34,14 +34,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
   const [storageError, setStorageError] = useState<string | null>(null)
+  const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
   /** Audio toggle: default OFF (GDPR by design — nessuna registrazione nascosta) */
   const [audioOn, setAudioOn] = useState(false)
   /** Mostra stato registrazione nell'header */
   const [audioRecording, setAudioRecording] = useState(false)
   /** Stato export .lesson */
   const [exporting, setExporting] = useState(false)
-  /** Uso/quota storage (null = quota non applicabile, es. FSA) */
-  const [quota, setQuota] = useState<StorageUsage | null>(null)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -58,13 +57,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   // Promise-chain mutex per serializzare salvataggi async sovrapposti
   const _pendingSave = useRef<Promise<void>>(Promise.resolve())
 
-  // All'avvio, inizializza lo store e carica la scena dal driver attivo (FSA → localStorage).
+  // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
     let cancelled = false
     setLoading(true)
     actualStore.init()
       .then(() => {
         if (cancelled) return
+        setStoreMode(actualStore.mode)
         const clock = sharedClock
 
         // Crea JournalRecorder dopo init store con clock condiviso
@@ -110,9 +110,6 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         if (!cancelled) {
           initialLoadDone.current = true
           setLoading(false)
-          actualStore.storageUsage()
-            .then((u) => { if (!cancelled) setQuota(u) })
-            .catch(() => {})
           // Esponi test harness per Playwright kill-test (solo dev)
           if (import.meta.env.DEV) {
             ;(window as any).__MAESTRO_TEST__ = {
@@ -151,6 +148,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }, [room, actualStore])
 
+  /** document.title: rec ← "● REC — maestro · studio", altrimenti "maestro · studio" */
+  useEffect(() => {
+    document.title = audioRecording ? "● REC — maestro · studio" : "maestro · studio"
+  }, [audioRecording])
+
   // Persistenza via WorkspaceStore.
   function persist(elements: any, appState: any, files: any) {
     if (!initialLoadDone.current) return
@@ -163,7 +165,6 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           setStorageError(null)
           setSaved(true)
           window.setTimeout(() => setSaved(false), 1200)
-          actualStore.storageUsage().then(setQuota).catch(() => {})
         } catch (err) {
           setStorageError("Salvataggio non riuscito: " + (err as Error).message)
         }
@@ -183,12 +184,11 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     const ar = audioRecorderRef.current
     if (!ar) return
     if (ar.consent) {
-      // Spegni: la revoca CANCELLA i chunk (GDPR) — a fine purge aggiorna la quota
+      // Spegni: la revoca CANCELLA i chunk (GDPR) — a fine purge aggiorna lo stato
       ar.consent = false
       setAudioOn(false)
       setAudioRecording(false)
       ar.lastRevoke
-        .then(() => actualStore.storageUsage().then(setQuota))
         .catch((err) => {
           setStorageError("Revoca dati audio fallita: " + (err as Error).message)
         })
@@ -205,6 +205,21 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       })
     }
   }
+
+  /** Collega una cartella FSA (showDirectoryPicker) su gesto esplicito utente */
+  const handleConnectFolder = useCallback(async () => {
+    setStorageError(null)
+    try {
+      const ok = await actualStore.connectFolder()
+      if (ok) {
+        setStoreMode("fsa")
+      } else {
+        setStorageError("Impossibile aprire la cartella. Chrome? Consenti il permesso.")
+      }
+    } catch (err) {
+      setStorageError("Errore aprendo la cartella: " + (err as Error).message)
+    }
+  }, [actualStore])
 
   /** Export .lesson: genera ZIP e avvia download */
   async function handleExportLesson() {
@@ -297,19 +312,26 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
         <div className="st-status">
           {loading && <span className="st-quiet">caricamento…</span>}
-          {!loading && saved && (
-            <span className="st-savewrap"><span className="st-led" aria-hidden />salvato</span>
+          {!loading && (
+            storeMode === "fsa"
+              ? (
+                <span className="st-indicator st-fsa" title="I tuoi dati vivono nella cartella che hai scelto">
+                  <span className="st-led" aria-hidden />
+                  salvato sul computer
+                </span>
+              )
+              : (
+                <span className="st-indicator st-local" title="Senza cartella, i dati restano solo in questo browser">
+                  <span className="st-led" aria-hidden />
+                  solo in questo browser
+                  {" — "}
+                  <button onClick={handleConnectFolder} className="st-indicator-connect">
+                    scegli cartella…
+                  </button>
+                </span>
+              )
           )}
-          {quota && (
-            <span
-              className="st-cache"
-              title={`Cache locale ${(quota.usedBytes / 1048576).toFixed(1)}/${Math.round(quota.quotaBytes / 1048576)} MB — la fonte di verità è la cartella workspace`}
-            >
-              <span className="st-cachebar" data-warn={quota.usedBytes / quota.quotaBytes > 0.8 || undefined}>
-                <span style={{ width: `${Math.min(100, (quota.usedBytes / quota.quotaBytes) * 100)}%` }} />
-              </span>
-            </span>
-          )}
+          {saved && <span className="st-quiet">salvato</span>}
           {storageError && <span className="st-err" title={storageError}>⚠ {storageError}</span>}
         </div>
 
@@ -336,6 +358,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           </button>
         </div>
       </header>
+
+      {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
+      {audioRecording && <div className="st-recstrip" data-rec-strip />}
 
       <div style={{ flex: 1, position: "relative" }}>
         {!loading && (
@@ -400,4 +425,3 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     </div>
   )
 }
-
