@@ -569,3 +569,18 @@ Risultati:
   - Gate: bash eval/gate.sh = {"passed":1696,"failed":0,"exit":0} — VERDE, +3 da baseline 1693. cost_usd ~$0 (mock, zero LLM lessonos; subagenti Claude della sessione).
   - Atteso (non verificato da me): C1 pre-commit-guard COORD-FORMAT (resta al supervisore, NEEDS-CLAUDE riga dedicata); triage supervisore del report adversarial 11:34 su studio.
   - Next: pin esaurito, attendo auto-pin/CLAUDE-SAYS (candidati CODA: M2-1 blind-test).
+
+- **2026-06-12(executed) — M2-2b A/B su Energia: spoken-only (v1) vs spoken+written (v2) vs REAL Energia.pdf.**
+  Ipotesi singola: la dispensa generata con written-style hint (v2) e' piu vicina allo stile SCRITTO reale di Andrea (Energia.pdf) rispetto alla versione solo parlato (v1), misurato con le metriche di style.py.
+  Risultati:
+  1. **V2 generata** (deepseek-chat, 8 concetti, 30/30 verified, 0 dropped, $0.0016): 8 sezioni, avg 15.84 tok/frase, formal 11.88/1000t, math 17.50/1000t.
+  2. **V1 esistente** (M1-6, 23/23 verified): 10 sezioni, avg 12.96 tok/frase, formal 11.19/1000t, math 7.83/1000t.
+  3. **REAL Energia.pdf**: 0 sezioni markdown (raw pdftotext), avg 89.60 tok/frase, formal 5.58/1000t, math 47.99/1000t.
+  4. **Diff medio dal reale**: V1=89.89%, V2=86.22% — V2 NON significativamente piu vicino. Il confronto diretto tra dispensa generata (markdown narrativo) e dispensa VERA (formulario matematico pdftotext) e' strutturalmente disomogeneo — le metriche raw PDF (89 tok/frase, 48 math/1000t) sono irraggiungibili da un testo didattico parlato.
+  5. **Diff strutturale V1→V2 misurabile**: V2 ha frasi piu lunghe (15.84 vs 12.96, +22%), math density piu alta (17.50 vs 7.83, +123%), meno bullet point (18.75 vs 25.73, -27%) — l'hint scritto ha influenzato lo stile nella direzione attesa, ma il gap con la dispensa VERA (formulario) resta enorme.
+  6. **Test aggiuntivo**: `TestPromptV2WrittenStyleValues` in test_dispensa.py verifica che il prompt v2 contenga i valori MISURATI del corpus (non solo etichette qualitative). 9 test passano.
+  7. **Fix parsing JSON**: `_parse_dispensa_response` ora ha fallback `ast.literal_eval` per risposte LLM con single-quoted JSON (deepseek occasionalmente produce Python-style dict invece di JSON strict).
+  - **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina.
+  - **REVIEW**: review.sh quota-out (Claude Code) — self-review: ab-dispensa-energia.py e' script dati (non modulo), fix ast.literal_eval chirurgico (fallback dopo json.loads fallito), 0 regressioni.
+  - Gate: **1700 passed / 0 failed** (invariato da baseline). cost_usd: ~$0.0016 (1 chiamata deepseek-chat per v2, v1 da M1-6 gia esistente).
+  - Next: M2-2b completata. Attende pin CLAUDE-SAYS per prossima task M2.

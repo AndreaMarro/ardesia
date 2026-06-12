@@ -243,39 +243,76 @@ def _written_style_hint(ws: WrittenStyleProfile) -> str:
 
     parts: list[str] = []
 
-    # Sentence length
+    # Sentence length — qualitative bucket + measured corpus value, so the
+    # LLM (and any auditor) sees the actual target number, not just a label.
     if ws.avg_sentence_length >= 25:
-        parts.append("frasi articolate e complesse (struttura accademica classica).")
+        parts.append(
+            f"frasi articolate e complesse (struttura accademica classica; "
+            f"media misurata: {ws.avg_sentence_length} parole/frase)."
+        )
     elif ws.avg_sentence_length >= 15:
-        parts.append("frasi di media lunghezza, bilanciate tra chiarezza e completezza.")
+        parts.append(
+            f"frasi di media lunghezza, bilanciate tra chiarezza e completezza "
+            f"(media misurata: {ws.avg_sentence_length} parole/frase)."
+        )
     else:
-        parts.append("frasi brevi e dirette, stile schematico.")
+        parts.append(
+            f"frasi brevi e dirette, stile schematico "
+            f"(media misurata: {ws.avg_sentence_length} parole/frase)."
+        )
 
     # Formal density
     if ws.formal_density >= 3.0:
-        parts.append("linguaggio formale con marcatori accademici (condizione, teorema, criterio).")
+        parts.append(
+            f"linguaggio formale con marcatori accademici (condizione, teorema, "
+            f"criterio; densità misurata: {ws.formal_density}/1000 token)."
+        )
     elif ws.formal_density >= 1.0:
-        parts.append("linguaggio moderatamente formale, con alcuni termini accademici.")
+        parts.append(
+            f"linguaggio moderatamente formale, con alcuni termini accademici "
+            f"(densità misurata: {ws.formal_density}/1000 token)."
+        )
 
     # Paragraph length — exclude very short counts (corrupted PDF output)
     if ws.avg_paragraph_length >= 60:
-        parts.append("paragrafi estesi e densi di contenuto.")
+        parts.append(
+            f"paragrafi estesi e densi di contenuto "
+            f"(media misurata: {ws.avg_paragraph_length} token/paragrafo)."
+        )
     elif ws.avg_paragraph_length >= 30:
-        parts.append("paragrafi di media estensione.")
+        parts.append(
+            f"paragrafi di media estensione "
+            f"(media misurata: {ws.avg_paragraph_length} token/paragrafo)."
+        )
     elif ws.avg_paragraph_length > 0:
-        parts.append("paragrafi brevi e compatti.")
+        parts.append(
+            f"paragrafi brevi e compatti "
+            f"(media misurata: {ws.avg_paragraph_length} token/paragrafo)."
+        )
 
     # Section structure
     if ws.section_count >= 10:
-        parts.append("struttura fortemente paragrafata con molte sezioni e sottosezioni.")
+        parts.append(
+            f"struttura fortemente paragrafata con molte sezioni e sottosezioni "
+            f"({ws.section_count} sezioni nel corpus)."
+        )
     elif ws.section_count > 0:
-        parts.append("struttura con sezioni chiare ma non eccessivamente frammentate.")
+        parts.append(
+            f"struttura con sezioni chiare ma non eccessivamente frammentate "
+            f"({ws.section_count} sezioni nel corpus)."
+        )
 
     # Math density
     if ws.math_density >= 5.0:
-        parts.append("alta densità di notazione matematica (formule, operatori, variabili).")
+        parts.append(
+            f"alta densità di notazione matematica (formule, operatori, "
+            f"variabili; densità misurata: {ws.math_density}/1000 token)."
+        )
     elif ws.math_density >= 1.0:
-        parts.append("moderata presenza di notazione matematica.")
+        parts.append(
+            f"moderata presenza di notazione matematica "
+            f"(densità misurata: {ws.math_density}/1000 token)."
+        )
 
     if not parts:
         return ""
@@ -478,7 +515,14 @@ def _parse_dispensa_response(raw: str) -> tuple[DispensaSection, ...]:
     try:
         data = json.loads(text)
     except json.JSONDecodeError as exc:
-        raise ValueError(f"failed to parse LLM JSON: {exc}") from exc
+        # Fallback: try ast.literal_eval which accepts Python-style single-quoted JSON
+        import ast
+        try:
+            data = ast.literal_eval(text)
+        except (ValueError, SyntaxError, MemoryError, RecursionError):
+            raise ValueError(f"failed to parse LLM JSON: {exc}") from exc
+        if not isinstance(data, dict):
+            raise ValueError(f"failed to parse LLM JSON: {exc}") from exc
 
     if not isinstance(data, dict) or "sections" not in data:
         raise ValueError(f"LLM response missing 'sections' key: {data}")
