@@ -34,9 +34,17 @@ for i in $(seq 1 "$N"); do
   if printf '%s' "$PIN_LINE" | grep -q '\[LUNGA\]'; then FT=7200; HT=4800; fi
   # W2-M3 fast-skip: pin esaurito/assente = niente builder, niente quota, niente commit-rumore
   if [ -z "$PIN_LINE" ] || printf '%s' "$PIN_LINE" | grep -qiE 'PIN ESAURITO|\[PIN-DONE'; then
+    # M18-light: pin esaurito -> prova a promuovere una task PRE-APPROVATA dalla ROADMAP-AUTO
+    if python3 "$HOME/lessonos/bin/promote_pin.py" lessonos >> "$LOG" 2>&1; then
+      PIN_LINE=$(sed -n '/## ➡️ PROSSIMA TASK/,/## NEEDS-CLAUDE/p' "$HOME/lessonos/COORDINATION.md" 2>/dev/null | grep -m1 -- '- \*\*lessonos\*\*')
+      FT=3600; HT=2400
+      if printf '%s' "$PIN_LINE" | grep -q '\[LUNGA\]'; then FT=7200; HT=4800; fi
+      echo "[orch] AUTO-PIN promosso dalla roadmap, procedo nella stessa iterazione" | tee -a "$LOG"
+    else
     printf '| %s | %s | %s | %s | y | noop-fast | orch:pin esaurito (W2-M3, 0 builder) |\n' "$ts" "$i" "$(git rev-parse --short HEAD)" "$bp" >> "$RES"
     echo "[orch] --- iter $i: noop-fast (pin esaurito, W2-M3) ---" | tee -a "$LOG"
     continue
+    fi
   fi
   if printf '%s' "$PIN_LINE" | grep -qE '\[GRIND\]|\[DEEPSEEK\]|\[HERMES\]' && [ "${MAESTRO_KIMI_STATE:-ok}" != exhausted ]; then
     echo "[driver] BUILDER=Hermes-DeepSeek (pin GRIND, basso costo)" | tee -a "$LOG"
