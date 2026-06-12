@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, type ChangeEvent, type KeyboardEvent } from "react"
+import { useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
 import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
@@ -11,6 +11,7 @@ import { JournalRecorder } from "./store/JournalRecorder"
 import { ReplayEngine, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert, IconCheck, IconArrowUpRight } from "./design/icons"
 import { AudioRecorder } from "./store/AudioRecorder"
+import { isStudentView } from "./store/studentView"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -30,6 +31,9 @@ function sharedClock(): number {
 export default function Room({ store }: { store?: WorkspaceStore }) {
   const actualStore = store ?? workspaceStore
   const [room] = useState(getRoomId)
+  // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
+  // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
+  const studentView = useMemo(() => isStudentView(), [])
   const [mathOn, setMathOn] = useState(false)
   const [copied, setCopied] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -80,21 +84,25 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       .then(() => {
         if (cancelled) return
         setStoreMode(actualStore.mode)
-        const clock = sharedClock
 
-        // Crea JournalRecorder dopo init store con clock condiviso
-        const jr = new JournalRecorder(actualStore, clock)
-        journalRef.current = jr
+        // In vista studente: niente JournalRecorder né AudioRecorder (sola lettura).
+        if (!studentView) {
+          const clock = sharedClock
 
-        // Crea AudioRecorder con clock condiviso
-        const ar = new AudioRecorder({
-          store: actualStore,
-          clock,
-          onChunk: (chunkIndex, startEpoch, endEpoch) => {
-            jr.recordAudioChunk(chunkIndex, startEpoch, endEpoch)
-          },
-        })
-        audioRecorderRef.current = ar
+          // Crea JournalRecorder dopo init store con clock condiviso
+          const jr = new JournalRecorder(actualStore, clock)
+          journalRef.current = jr
+
+          // Crea AudioRecorder con clock condiviso
+          const ar = new AudioRecorder({
+            store: actualStore,
+            clock,
+            onChunk: (chunkIndex, startEpoch, endEpoch) => {
+              jr.recordAudioChunk(chunkIndex, startEpoch, endEpoch)
+            },
+          })
+          audioRecorderRef.current = ar
+        }
 
         return actualStore.loadScene(room)
       })
@@ -116,7 +124,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           }
         }
       })
-      .then(() => actualStore.loadMeta(room))
+      // Il nome lezione serve solo all'header docente: in vista studente niente loadMeta
+      .then(() => (studentView ? null : actualStore.loadMeta(room)))
       .then((meta) => {
         if (cancelled) return
         if (meta && meta.name) {
@@ -396,7 +405,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       alert("Caricamento non riuscito: " + (err as Error).message)
     }
   }
-  const shareUrl = `${location.origin}${location.pathname}#${room}`
+  const shareUrl = studentView
+    ? `${location.origin}${location.pathname}#${room}`
+    : `${location.origin}${location.pathname}?vista=studente#${room}`
 
   function copyLink() {
     navigator.clipboard?.writeText(shareUrl).then(() => {
@@ -407,6 +418,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
+      {studentView ? (
+        /* Vista studente: solo wordmark + chip, niente bottoni docente */
+        <header className="st-bar st-bar-student">
+          <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
+            <span className="st-word">maestro</span>
+            <span className="st-bdot" aria-hidden />
+            <span className="st-sub">studio</span>
+          </div>
+          <span className="st-chip-student">stai guardando la lavagna</span>
+        </header>
+      ) : (
       <header className="st-bar">
         <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
           <span className="st-word">maestro</span>
@@ -464,7 +486,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         </div>
 
         <div className="st-actions">
-          <button onClick={copyLink} className="st-ghost">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
+          <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
@@ -489,6 +511,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
           </button>
         </div>
       </header>
+      )}
 
       {/* RECSTRIP: striscia fissa 2px --m-rec sotto l'header quando registra */}
       {audioRecording && <div className="st-recstrip" data-rec-strip />}
@@ -532,11 +555,18 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       )}
 
       <div style={{ flex: 1, position: "relative" }}>
-        {!loading && (
+        {!loading && studentView && !sceneData && (
+          /* Vista studente senza scena salvata: mostra messaggio neutro */
+          <div className="st-student-empty">
+            <p>Segui la diretta su Meet</p>
+          </div>
+        )}
+        {!loading && !(studentView && !sceneData) && (
           <Excalidraw
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}
             aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
+            viewModeEnabled={studentView}
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
@@ -560,7 +590,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                 ? { ...sceneData, appState: { ...EXCALIDRAW_CONFIG.newRoomAppState, ...sceneData.appState } }
                 : { appState: EXCALIDRAW_CONFIG.newRoomAppState }
             }
-            onChange={handleChange}
+            // In vista studente la lavagna è sola-lettura: nessun persist/journal
+            onChange={studentView ? undefined : handleChange}
           >
             {/* MainMenu custom: SOLO ClearCanvas + SaveAsImage — zero Socials/link/Dark-mode */}
             <MainMenu>

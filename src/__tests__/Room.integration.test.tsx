@@ -56,6 +56,7 @@ vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
 vi.mock("../MathComposer", () => ({ default: () => "mock-math-composer" }))
 vi.mock("../latexToImage", () => ({ latexToImage: vi.fn() }))
 vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() }))
+vi.mock("../store/studentView", () => ({ isStudentView: vi.fn(() => false) }))
 
 // --- Mock driver (supporta anche metodi legacy) ---
 
@@ -578,6 +579,186 @@ describe("Room ↔ WorkspaceStore integration", () => {
       expect(props).toBeDefined()
       expect(props!.initialData).toEqual({ appState: EXCALIDRAW_CONFIG.newRoomAppState })
     }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+})
+
+// ── S-DESIGN-5: Vista studente ───────────────────────────────────
+
+describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
+
+  beforeEach(async () => {
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReturnValue(true)
+    // L'harness resta sul window tra un test e l'altro: senza pulizia il
+    // waitFor sul recorder passerebbe su un harness stantio (falso verde)
+    delete (window as any).__MAESTRO_TEST__
+  })
+
+  it("header mostra solo wordmark + chip 'stai guardando la lavagna', zero bottoni docente", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("stai guardando la lavagna")
+    }, { timeout: 1000, interval: 10 })
+
+    // Chip studente presente
+    expect(document.querySelector(".st-chip-student")).not.toBeNull()
+
+    // ZERO bottoni docente: assert STRUTTURALE (regge anche a rinomine dei bottoni)
+    expect(document.querySelector(".st-actions")).toBeNull()
+    expect(document.querySelectorAll(".st-bar button").length).toBe(0)
+    // E in più: nessun testo bottone docente noto
+    const allButtons = document.querySelectorAll("button")
+    const buttonTexts = Array.from(allButtons).map((b) => b.textContent?.trim() ?? "")
+    expect(buttonTexts).not.toContain("audio")
+    expect(buttonTexts).not.toContain("formula")
+    expect(buttonTexts).not.toContain("media")
+    expect(buttonTexts).not.toContain("lezioni")
+    expect(buttonTexts).not.toContain("Meet")
+    expect(buttonTexts).not.toContain("esporta lezione")
+    expect(buttonTexts).not.toContain("invita studente")
+    // Nessun indicatore dati (solo docente)
+    expect(document.querySelector(".st-indicator")).toBeNull()
+
+    root.unmount()
+  })
+
+  it("Excalidraw riceve viewModeEnabled=true con scena salvata", async () => {
+    const { store } = await createMockStore()
+    // Fornisci scena dati per far montare Excalidraw
+    const sceneData = {
+      type: "excalidraw",
+      elements: [{ id: "el1", type: "rectangle" }],
+      appState: {},
+    }
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify(sceneData))
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      expect(props!.viewModeEnabled).toBe(true)
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("nessun JournalRecorder/AudioRecorder (recorder null nel test harness)", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      // Il test harness esiste (DEV), ma recorder e audioRecorder sono null.
+      // L'harness è stato cancellato nel beforeEach: questo è quello di QUESTO mount.
+      const harness = (window as any).__MAESTRO_TEST__
+      expect(harness).toBeDefined()
+      expect(harness.ready).toBe(true)
+      expect(harness.recorder).toBeNull()
+      expect(harness.audioRecorder).toBeNull()
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("mostra 'Segui la diretta su Meet' quando non ci sono scene salvate", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("Segui la diretta su Meet")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("shareUrl per vista docente: 'invita studente' copia un link con ?vista=studente", async () => {
+    // Reset isStudentView a false per vista docente
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReturnValue(false)
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const writeText = vi.fn((_text: string) => Promise.resolve())
+    const originalClipboard = Object.getOwnPropertyDescriptor(navigator, "clipboard")
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText },
+      configurable: true,
+    })
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    let inviteBtn: HTMLButtonElement | undefined
+    await vi.waitFor(() => {
+      inviteBtn = Array.from(document.querySelectorAll("button"))
+        .find((b) => b.textContent?.trim() === "invita studente")
+      expect(inviteBtn).toBeDefined()
+    }, { timeout: 1000, interval: 10 })
+
+    inviteBtn!.click()
+
+    await vi.waitFor(() => {
+      expect(writeText).toHaveBeenCalledTimes(1)
+      const copiedUrl = writeText.mock.calls[0]![0]
+      expect(copiedUrl).toContain("?vista=studente")
+      // L'hash della stanza resta nel link (stessa stanza, vista sola-lettura)
+      expect(copiedUrl).toMatch(/\?vista=studente#.+/)
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+    // Ripristina il clipboard originale: niente contaminazione dei test successivi
+    if (originalClipboard) {
+      Object.defineProperty(navigator, "clipboard", originalClipboard)
+    } else {
+      delete (navigator as any).clipboard
+    }
+  })
+
+  it("vista studente: onChange non è cablato (nessun persist dal browser dello studente)", async () => {
+    const { store } = await createMockStore()
+    const sceneData = {
+      type: "excalidraw",
+      elements: [{ id: "el1", type: "rectangle" }],
+      appState: {},
+    }
+    vi.spyOn(store, "loadScene").mockResolvedValue(JSON.stringify(sceneData))
+    const saveSpy = vi.spyOn(store, "saveScene")
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    const { Excalidraw } = await import("@excalidraw/excalidraw")
+    await vi.waitFor(() => {
+      const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
+      expect(props).toBeDefined()
+      expect(props!.viewModeEnabled).toBe(true)
+      // onChange assente in vista studente: la lavagna è sola-lettura
+      expect(props!.onChange).toBeUndefined()
+    }, { timeout: 1000, interval: 10 })
+
+    expect(saveSpy).not.toHaveBeenCalled()
 
     root.unmount()
   })
