@@ -402,10 +402,19 @@
   - Gate: 1608 passed + 2 skipped (invariato — nessuna regressione). cost_usd: ~$0.002923 (1 chiamata deepseek-chat per dispensa andrea).
   - Next: attende giudizio BLIND-TEST da Andrea/Claude. Se >=7/10 -> M1-6 completo. Se <7/10 -> gap da colmare.
 
-|- **2026-06-12(current) — RETRO #10 + STEWARDSHIP: M1 completato, NOOP loop rotto con stewardship mode in AGENTS.md §3.**|
-|  Processo: 14 iterazioni di build + 4 NOOP dal RETRO #9 fix. RETRO #10 in PROCESS-LOG.md: attrito NOOP loop risolto in AGENTS.md §3 (dopo 2 NOOP consecutivi → stewardship mode invece di NEEDS-CLAUDE identico).|
-|  Stewardship eseguita: MILESTONES.md riscritto (M1-1→M1-6, gate 1608, attesa M2); project-wiki/log.md aggiornato (entry current+52); check-frictions.sh esteso (mapping stewardship).|
-|  Prossima task: attende giudizio blind-test Andrea o pin CLAUDE-SAYS per M2. Nessuna nuova build.|
-||  - Gate: 1608/0 invariato. cost_usd: ~$0.|
-||  - Next: attende pin da CLAUDE-SAYS. NEEDS-CLAUDE aggiornato.
-|
+||- **2026-06-12(current) — RETRO #10 + STEWARDSHIP: M1 completato, NOOP loop rotto con stewardship mode in AGENTS.md §3.**|
+||  Processo: 14 iterazioni di build + 4 NOOP dal RETRO #9 fix. RETRO #10 in PROCESS-LOG.md: attrito NOOP loop risolto in AGENTS.md §3 (dopo 2 NOOP consecutivi → stewardship mode invece di NEEDS-CLAUDE identico).|
+||  Stewardship eseguita: MILESTONES.md riscritto (M1-1→M1-6, gate 1608, attesa M2); project-wiki/log.md aggiornato (entry current+52); check-frictions.sh esteso (mapping stewardship).|
+||  Prossima task: attende giudizio blind-test Andrea o pin CLAUDE-SAYS per M2. Nessuna nuova build.|
+|||  - Gate: 1608/0 invariato. cost_usd: ~$0.|
+|||  - Next: attende pin da CLAUDE-SAYS. NEEDS-CLAUDE aggiornato.
+||
+||- **2026-06-12(current) — ⏸️ LESSONOS-NOOP: M1 completo, pin esaurito, attesa CLAUDE-SAYS. Stewardship già eseguita.**
+||  ORIENT: COORD.md § PROSSIMA TASK — lessonos riga 16 (M1-6 Fase F) ✅ chiusa. Ultimo CLAUDE-SAYS 2026-06-12 ~01:00. Nessun nuovo pin per M2.
+||  VERIFICATO:
+||  - Gate `uv run pytest -q`: 1608 passed / 2 skipped / 0 failed, exit 0 — VERDE, invariato da M1-6.
+||  - Stewardship già eseguita (RETRO #10) — non reiterata (per AGENTS.md §3: solo se stewardship NON già fatta).
+||  - check-frictions.sh: già coperto (19/19 dall'ultima stewardship).
+||  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). NEEDS-CLAUDE aggiornato.
+||  cost_usd: ~$0 (zero LLM, solo lettura file + gate).
+||  - Next: attende pin CLAUDE-SAYS per M2. Se nessun pin per 14+ giorni, segnalare ad Andrea.
