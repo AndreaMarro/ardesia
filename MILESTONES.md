@@ -52,9 +52,20 @@
 - [x] GROUND-TRUTH vs dispense VERE (Energia.pdf, Sommabilità.pdf): 0 contraddizioni, gap copertura dichiarato
 - [x] BLIND-TEST-ANDREA.md: 10 paragrafi pronti per giudizio (>=7/10 = accettazione)
 
+### M1-7: Vault-export Obsidian (gate +25 da M1-6)
+- [x] `lessonos/export/obsidian_vault.py`: export_vault() + helpers (slug, wikilink, frontmatter, canvas)
+- [x] CLI `lessonos export-vault --teacher andrea --out derived/vault/andrea/ [--canvas]`
+- [x] 96 concept pages (frontmatter YAML + evidence citations + ^seg wikilinks)
+- [x] 4 trascrizioni lezione con ^seg block anchor citabili da Obsidian
+- [x] wiki/dispense/teacher_book copiati con wikilink-ificazione exact-match
+- [x] JSON Canvas 1.0 opzionale (grafo prerequisiti)
+- [x] README anti-edit nel vault
+- [x] ZERO LLM, ZERO modifiche al motore
+- [x] 25 test: smoke, idempotenza byte-per-byte, frontmatter, evidence, wikilink, canvas
+
 ## M2 — In attesa di pin da CLAUDE-SAYS
 
-**M1 COMPLETO (gate 1608/0).** Prossimi candidati M2 (non pinnati, ordine da decidere):
+**M1 COMPLETO (M1-1→M1-7, gate 1633/0).** Prossimi candidati M2 (non pinnati, ordine da decidere):
 - M2-1: Giudizio blind-test M1-6 (>=7/10?)
 - M2-2: Style upgrade da stile-parlato a stile-scritto usando le dispense VERE (CLAUDE-SAYS 2026-06-11 19:35)
 - M2-3: Roadmap R&D — badge per-claim verde/rosso (R1), Privacy Pack (R2)

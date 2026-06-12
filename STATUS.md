@@ -416,5 +416,19 @@
 ||  - Stewardship già eseguita (RETRO #10) — non reiterata (per AGENTS.md §3: solo se stewardship NON già fatta).
 ||  - check-frictions.sh: già coperto (19/19 dall'ultima stewardship).
 ||  Nessuna build eseguita (UNA task = quella pinnata = non disponibile). NEEDS-CLAUDE aggiornato.
-||  cost_usd: ~$0 (zero LLM, solo lettura file + gate).
-||  - Next: attende pin CLAUDE-SAYS per M2. Se nessun pin per 14+ giorni, segnalare ad Andrea.
+cost_usd: ~$0 (zero LLM, solo lettura file + gate).
+- Next: attende pin CLAUDE-SAYS per M2. Se nessun pin per 14+ giorni, segnalare ad Andrea.
+
+- **2026-06-12(current) — M1-7: VAULT-EXPORT Obsidian (read-only proiezione derived/, commit b59aef1).**
+Ipotesi singola: il nuovo modulo lessonos/export/obsidian_vault.py proietta il database del motore (SQLite nodes/edges/evidence/segments) e i derived/ markdown (wiki, dispense, teacher_book) in un vault Obsidian navigabile, ZERO LLM, ZERO modifiche al motore.
+Risultati:
+1. **lessonos/export/obsidian_vault.py** (423 righe): 6 sottofunzioni — export_vault (orchestrazione), concetti→md con frontmatter YAML (96 concetti), trascrizioni con ^seg block anchor (4 lezioni), wiki/dispense wikilink-ificate (exact-match da global_resolution), JSON Canvas 1.0 opzionale, README anti-edit.
+2. **CLI**: `lessonos export-vault --teacher andrea --out derived/vault/andrea/ [--db PATH] [--derived PATH] [--canvas]`.
+3. **25 test** (test_obsidian_vault.py): smoke, frontmatter, ^seg anchor, wikilink-ificazione (case-insensitive, longest-first, skip già-wikilinkati), idempotenza byte-per-byte, JSON Canvas valido, graceful degradation senza global_resolution.
+4. **Live export** su DB reale Teoria-Segnali: 96 concetti, 4 trascrizioni, 5 wiki/wikilink-ificati, 3 dispense/wikilink-ificate. 0 archi concetto→concetto (onesto — questo dataset ha solo archi lezione→concetto).
+5. **Stash rescue**: stash@{0} (7a87434) aveva CLI wiring + modulo + test ma non committato — riusato.
+6. **Fix**: import SQLiteStore a modulo-level (risolve UnboundLocalError cli.py). Edge filter supporta explains+depends_on con raw_to_merged mapping.
+- **PLAN-CHECK**: fable.sh quota-out — proceduto per dottrina, annotato.
+- **REVIEW**: review.sh quota-out (Claude Code) — self-review senza compiacenza: ZERO LLM, ZERO modifiche al motore, idempotenza verificata byte-per-byte.
+- Gate: **1633 passed / 2 skipped / 0 failed** (+25 da baseline 1608). cost_usd: ~$0 (ZERO LLM, mock).
+- Next: M2 candidati — attende pin CLAUDE-SAYS (M2-1 blind-test? M2-2 style upgrade? M2-3 badge R1? M2-4 ToolHost?).
