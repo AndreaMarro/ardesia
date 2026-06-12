@@ -6,6 +6,11 @@ import { isValidProtocolRange } from "./version.ts"
 // (lezione supply-chain: niente superficie non dichiarata).
 const SEMVER_RE = /^\d+\.\d+\.\d+$/
 const REVERSE_DNS_RE = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/
+
+/** Grammatica UNICA del tool id (reverse-DNS): usata da manifest, audit path e origin loopback. */
+export function isValidToolId(id: string): boolean {
+  return REVERSE_DNS_RE.test(id)
+}
 const LOCALE_RE = /^[a-z]{2}(-[A-Z]{2})?$/
 
 // Stessa lezione ZipSlip di lessonBundle: path relativo, nessun segmento "..", niente assoluti.

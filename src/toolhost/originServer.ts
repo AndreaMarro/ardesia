@@ -5,13 +5,12 @@
 // policy di sicurezza (CSP iniettata, nonce monouso sul document-load, path
 // safety) sta QUI, così è la stessa per qualunque binding.
 
+import { isValidToolId } from "../toolhost-protocol/index.ts"
 import type { ToolManifest } from "../toolhost-protocol/index.ts"
-
-const TOOL_ID_RE = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/
 
 /** Origin distinta per-tool (modello vscode-webview): mai l'origin dello Studio. */
 export function toolOrigin(toolId: string, port: number): string {
-  if (!TOOL_ID_RE.test(toolId)) throw new Error(`invalid tool id: ${toolId}`)
+  if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
   if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error(`invalid port: ${port}`)
   return `http://t-${toolId}.127-0-0-1.localhost:${port}`
 }

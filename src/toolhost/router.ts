@@ -7,6 +7,8 @@ import {
   isGranted,
 } from "../toolhost-protocol/index.ts"
 import type { Capabilities, JsonRpcRequest, JsonRpcResponse, RequestId } from "../toolhost-protocol/index.ts"
+import { outcomeFromResponse } from "./audit.ts"
+import type { AuditEvent } from "./audit.ts"
 
 export type MethodHandler = (params: unknown) => unknown | Promise<unknown>
 
@@ -15,6 +17,8 @@ export interface RouterConfig {
   handlers: Partial<Record<string, MethodHandler>>
   /** board.write scope "own-embeds": senza predicato di ownership NESSUN embed è scrivibile (deny-by-default). */
   isOwnEmbed?: (embedId: string) => boolean
+  /** Audit T2: invocato per OGNI request rispondibile (mai per le notification). */
+  onAudit?: (event: AuditEvent) => void
 }
 
 function errorResponse(id: RequestId | null, code: number, message: string): JsonRpcResponse {
@@ -33,8 +37,24 @@ export function extractRequestId(raw: unknown): RequestId | null {
  * Router minimo host-side (TOOLHOST-SPEC-v0 §1/§2): ogni messaggio del tool è
  * validato Zod QUI, lato host. Ritorna la response da inviare, o null se il
  * payload è una notification (JSON-RPC: alle notification non si risponde).
+ * Con onAudit configurato, OGNI request rispondibile viene registrata con esito.
  */
 export async function routeRequest(raw: unknown, cfg: RouterConfig): Promise<JsonRpcResponse | null> {
+  const response = await dispatch(raw, cfg)
+  if (response !== null && cfg.onAudit !== undefined) {
+    const candidate = typeof raw === "object" && raw !== null ? (raw as { method?: unknown }).method : undefined
+    // troncato: il nome metodo arriva dal tool, non deve poter gonfiare il log
+    const method = typeof candidate === "string" && candidate.length > 0 ? candidate.slice(0, 128) : "<malformed>"
+    try {
+      cfg.onAudit({ method, ...outcomeFromResponse(response) })
+    } catch {
+      // un audit-sink rotto non deve MAI negare la response al tool (l'azione è già avvenuta)
+    }
+  }
+  return response
+}
+
+async function dispatch(raw: unknown, cfg: RouterConfig): Promise<JsonRpcResponse | null> {
   const reqParse = JsonRpcRequestSchema.safeParse(raw)
   if (!reqParse.success) {
     if (JsonRpcNotificationSchema.safeParse(raw).success) return null
