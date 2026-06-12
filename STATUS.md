@@ -475,3 +475,6 @@ Risultati:
 - **2026-06-12(current) — ⏸️ LESSONOS-NOOP #N+8 (nuova iterazione): M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop, AGAIN.**
   ORIENT: HEAD `2266a38` (NOOP #N+7), gate **1645/0 VERDE** (ri-verificato ORA, invariato). COORD.md § PROSSIMA TASK: entrambi i repo PIN ESAURITO. Ultimo CLAUDE-SAYS 2026-06-12 ~04:00 (WORKFLOW-2.0) — nessun pin M2 lessonos ricevuto. AGENTS.md §3: Noop handling → stewardship già fatta → stop. Mai ciclare NEEDS-CLAUDE identico — nessuna nuova entry in COORD.md. check-frictions.sh: 21/21 coperti, 0 warning. Entrambi i repo (lessonos + studio) in NOOP permanente. **Serve pin CLAUDE-SAYS per sbloccare M2 lessonos o nuova milestone.**
   cost_usd: ~$0.
+
+- **2026-06-12(new session) — ⏸️ LESSONOS-NOOP #N+9: M1 completo, gate 1645/0 VERDE, pin M2 assente, stewardship già fatta → stop.**
+  ORIENT: HEAD `bc3e3f9` (NOOP #N+8), gate **1645/0 VERDE** (ri-verificato ORA, invariato). Nessun nuovo pin in COORD.md § CLAUDE-SAYS — ultimo ordine WORKFLOW-2.0 (2026-06-12 ~04:00). Entrambi i repo (lessonos M1 completo + studio ToolHost T2 completo) in NOOP permanente. Stewardship già eseguita (RETRO #10 + M2 STEWARDSHIP status CLI). AGENTS.md §3: stop. Zero build, zero LLM chiamate. cost_usd: ~$0. **Serve pin CLAUDE-SAYS per sbloccare M2 lessonos — senza ordini, il progetto è fermo.**
