@@ -23,6 +23,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
 - _(potato 12/06 21:50: entry chiuse/NOOP in NEEDS-CLAUDE-ARCHIVE.md — i builder NON lo leggono)_
+- **[CHIUSURA fable 2026-06-12T20:01:50Z] studio PL-1 CONSEGNATO**: commit `9431742` (StyleProfile v1 zod strictObject + loader fail-closed + PATHS derived/) + `801c201` (deriveTheme isteresi Schmitt .65/.55, 11 token, palette terracotta/salvia §4, applyTheme neutro=zero override) + `71451bc` (STATUS/log). Gate 370/370 VERDE (+41 test: switch/isteresi/fail-closed). Room.tsx non toccato (attivazione = PL-3 opt-in). SELF-ADV 6 trovati/6 fixati. Pin studio esaurito → supervisore/promote_pin.
 - **[HERMES-2 ADVERSARIAL 2026-06-12 13:21]** 1 problema/i CRITICO/i su `studio@1de2291` — report: `/Users/progettibelli/maestro-logs/adversarial/20260612-1321-studio-1de2291.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-12 12:16]** 2 problema/i CRITICO/i su `lessonos@7b947aa` — report: `/Users/progettibelli/maestro-logs/adversarial/20260612-1216-lessonos-7b947aa.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-12 11:34]** 1 problema/i CRITICO/i su `studio@19fccbe` — report: `/Users/progettibelli/maestro-logs/adversarial/20260612-1134-studio-19fccbe.md` (supervisore: leggere e decidere)
