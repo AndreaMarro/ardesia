@@ -446,3 +446,8 @@ Risultati:
     ORIENT: M1 COMPLETO (M1-1→M1-7, gate 1634/0). Nessun nuovo pin da CLAUDE-SAYS (ultimo 2026-06-12 ~04:00, solo WORKFLOW-2.0 — nessun ordine per M2 lessonos). COORD.md § PROSSIMA TASK riga 16 ancora su M1-7 (stale — chiuso da commit b59aef1). Stewardship già eseguita (RETRO #10). Nessuna build eseguita (UNA task = quella pinnata = non disponibile).
     - Gate: 1634/0 VERDE (ri-verificato ORA, invariato). cost_usd: ~$0.
     - NEEDS-CLAUDE aggiornato in COORD.md.
+
+- **2026-07-16(current) — ⏸️ LESSONOS-NOOP #2 consecutivo: M1 completo, pin esaurito, stewardship già fatta → stop.**
+  ORIENT: HEAD bb64a00, gate 1634/0 VERDE (ri-verificato). Nessuna task pinnata per M2. AGENTS.md §3: dopo 2 NOOP consecutivi → stewardship già fatta (RETRO #10) → stop. Nessuna build eseguita.
+  cost_usd: ~$0 (zero LLM, solo gate + lettura file).
+  - Next: attende pin CLAUDE-SAYS per M2 lessonos. Se 14+ giorni da ultimo CLAUDE-SAYS (2026-06-12), segnalare ad Andrea.
