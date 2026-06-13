@@ -186,7 +186,7 @@ class TestBuildPathGraph:
         capsule2 = _make_capsule("l2", [{"name": "Derivative"}])
         _, edges = build_path_graph([capsule1, capsule2])
         repeats = [e for e in edges if e.edge_type == "repeats"]
-        assert len(repeats) >= 1
+        assert len(repeats) == 1
         # Edge from l1:concept:0 to l2:concept:0
         expected = "l1:concept:0-repeats->l2:concept:0"
         edge_ids = {e.edge_id for e in edges}
@@ -214,7 +214,7 @@ class TestBuildPathGraph:
         )
         _, edges = build_path_graph([capsule1, capsule2])
         depends_on = [e for e in edges if e.edge_type == "depends_on"]
-        assert len(depends_on) >= 1
+        assert len(depends_on) == 1
         # Integral depends on Derivative: l2:concept:0-depends_on->l1:concept:0
         expected = "l2:concept:0-depends_on->l1:concept:0"
         edge_ids = {e.edge_id for e in edges}

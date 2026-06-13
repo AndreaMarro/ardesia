@@ -167,7 +167,7 @@ def test_lesson_of_concept(path_graph_and_store):
     G, _, _, _ = path_graph_and_store
 
     derivata_nodes = find_concept(G, "derivata")
-    assert len(derivata_nodes) >= 1
+    assert len(derivata_nodes) == 2
 
     # The first derivata node should be explained by L1
     first_lesson = lesson_of_concept(G, derivata_nodes[0])
@@ -259,7 +259,7 @@ def test_topological_concepts(path_graph_and_store):
     G, _, _, _ = path_graph_and_store
 
     concepts = topological_concepts(G)
-    assert len(concepts) >= 1
+    assert len(concepts) == 5
     # The order should have foundational concepts first
     # 'derivata' and 'limite' should appear before 'integrale' (which depends on derivata)
     if "integrale" in concepts:

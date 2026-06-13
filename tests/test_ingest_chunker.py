@@ -75,9 +75,8 @@ class TestSplitSentences:
 
     def test_sentence_ending_variants(self):
         text = "Dott. Rossi ha detto: ecco. Il sig. Bianchi? Sì."
-        # "Dott." and "sig." are not sentence boundaries (no uppercase after)
         result = _split_sentences(text)
-        assert result == [text] or len(result) >= 2
+        assert result == ["Dott.", "Rossi ha detto: ecco.", "Il sig.", "Bianchi?", "Sì."]
 
     def test_no_sentence_boundary_returns_single(self):
         text = "questo è tutto minuscolo senza punti"
@@ -142,7 +141,7 @@ class TestChunkParagraph:
         # Build a paragraph that exceeds max_chars but has sentence boundaries
         para = "Prima frase. " * 5 + "Seconda lunghissima frase di test per vedere se si rompe bene. " * 3
         chunks = _chunk_paragraph(para, max_chars=80)
-        assert len(chunks) >= 2
+        assert len(chunks) == 4
         # Every chunk should be bounded
         for chunk in chunks:
             assert len(chunk) <= 80 + 5  # slight overflow from word-alignment
@@ -150,7 +149,7 @@ class TestChunkParagraph:
     def test_single_long_sentence_hard_split(self):
         para = "Parola " * 100  # ~700 chars, exceeds 200 max_chars
         chunks = _chunk_paragraph(para, max_chars=200)
-        assert len(chunks) >= 3
+        assert len(chunks) == 4
         for chunk in chunks:
             assert len(chunk) <= 210
 
@@ -192,7 +191,7 @@ class TestChunkRawText:
         # Build ~2000 chars of text — should produce multiple chunks
         paragraphs = "\n\n".join([f"Paragrafo numero {i}. " * 15 for i in range(5)])
         result = chunk_raw_text(paragraphs)
-        assert len(result.items) >= 5  # 5 paragraphs
+        assert len(result.items) == 5  # 5 paragraphs
 
     def test_whitespace_only(self):
         result = chunk_raw_text("   \n\n  \t  ")
@@ -217,7 +216,7 @@ class TestChunkRawText:
         )
         text = fixture_path.read_text()
         result = chunk_raw_text(text)
-        assert len(result.items) >= 3  # At least a few paragraphs
+        assert len(result.items) == 9  # deterministic: fixture yields 9 paragraphs
         assert result.source_type == "raw"
         # Verify chunks preserve content order
         all_text = " ".join(item.text for item in result.items)
@@ -303,7 +302,7 @@ Definiamo il rapporto incrementale.
         )
         text = fixture_path.read_text()
         result = chunk_vtt(text)
-        assert len(result.items) >= 3  # Our VTT has 5 cues but some may have same text
+        assert len(result.items) == 5  # deterministic: 5 distinct cues, no dedup on fixture
         assert result.source_type == "vtt"
         # Verify all have timestamps
         for item in result.items:
@@ -370,7 +369,7 @@ class TestEdgeCases:
         """Very long text without sentence breaks."""
         text = "parola " * 500  # ~3000 chars
         result = chunk_raw_text(text, max_chars=400)
-        assert len(result.items) >= 6  # 3000/400 = 7.5
+        assert len(result.items) == 9  # 3000/400 = 7.5
         for item in result.items:
             assert len(item.text) <= 410  # slight overflow from word-alignment OK
 

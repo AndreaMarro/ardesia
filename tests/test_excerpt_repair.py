@@ -30,11 +30,11 @@ class TestRepairExcerptDirect:
             "la velocità istantanea (derivata) misura la variazione",
         )
         # LCS of "velocità istantanea di variazione" (27 chars) vs segment text
-        # Expected: "velocità istantanea " (19 chars, includes trailing space before '(')
-        # Threshold: max(8, int(27*0.4)) = max(8, 10) = 10. 19 >= 10 → tier2 passes
+        # Expected: "velocità istantanea " (20 chars, includes trailing space before '(')
+        # Threshold: max(8, int(27*0.4)) = max(8, 10) = 10. 20 >= 10 → tier2 passes
         assert result is not None
         assert "velocità istantanea" in result
-        assert len(result) >= 10
+        assert len(result) == 20
 
     def test_tier2_returns_verbatim_span_from_segment(self):
         """Tier 2 returns the ACTUAL text from segment (original casing)."""

@@ -217,7 +217,7 @@ class TestResolvePass:
         # stays a singleton with its own canonical
         singles = [e for e in res.entries if len(e.aliases) == 1]
         assert [e.canonical for e in singles] == ["energia"]
-        assert len(res.dropped) >= 5
+        assert len(res.dropped) == 9
 
     def test_name_mismatch_member_dropped(self):
         """A member whose echoed name does not match the index is refused.

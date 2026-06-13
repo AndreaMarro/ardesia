@@ -299,7 +299,7 @@ class TestPipelineGraph:
         """Pipeline graph has cross-lesson 'repeats' edges for shared concepts."""
         result = run_pipeline()
         repeats = [e for e in result.graph_edges if e.edge_type == "repeats"]
-        assert len(repeats) >= 1, (
+        assert len(repeats) == 1, (
             f"Expected >=1 repeats edges, got {len(repeats)}"
         )
 

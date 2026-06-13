@@ -12,7 +12,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [AUTO-PINNED 13/06 08:00] **S-UX-3 — accessibilita e responsive di rifinitura**: focus visibile, contrasti AA, aria-label sui controlli, nessun overflow <=768px; test su classi/attributi. Gate verde, COMMIT a ogni sotto-task.
+- **studio**: [PIN ESAURITO 13/06 — S-UX-3 COMPLETATO, gate 471/471, 2 sotto-task] nessun [AUTO-OK] studio in ROADMAP-AUTO: in attesa di nuovo pin CLAUDE-SAYS.
 - **lessonos**: [ARDESIA 13/06] **QA-1 — consolidamento determinismo test**: converti gli assert `len(...) >= N` su conteggi DETERMINISTICI in uguaglianze `== N` dove il valore e' noto (i 61 warning di check-no-gte-literal); NON indebolire i test, NON toccare eval/gate.sh; dove il conteggio non e' deterministico lascia >= e annotalo. Obiettivo: 0 warning gte spurii. Test: gate verde, warning gte in calo (numero in STATUS). COMMIT a ogni file bonificato.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 

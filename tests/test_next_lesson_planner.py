@@ -257,7 +257,7 @@ class TestComputeNextLessonPlan:
         pm, delta, ledger = path_with_all_debt_types
         plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p1")
 
-        assert len(plan.review_items) >= 1
+        assert len(plan.review_items) == 1
         # The problematic concept should be in review
         review_descs = " ".join(i.description for i in plan.review_items)
         assert "concetto problematico" in review_descs.lower()
@@ -265,7 +265,7 @@ class TestComputeNextLessonPlan:
         # Each review item should reference the source debt_id
         for item in plan.review_items:
             assert item.kind == "review"
-            assert len(item.source_debt_ids) >= 1
+            assert len(item.source_debt_ids) == 1
             assert item.priority == 1  # review priority
 
     def test_practice_items_from_under_practiced(
@@ -284,7 +284,7 @@ class TestComputeNextLessonPlan:
 
         for item in plan.practice_items:
             assert item.kind == "practice"
-            assert len(item.source_debt_ids) >= 1
+            assert len(item.source_debt_ids) == 1
             assert item.priority == 3  # practice priority
 
     def test_prerequisite_gaps_from_weak_prereq(
@@ -294,13 +294,13 @@ class TestComputeNextLessonPlan:
         pm, delta, ledger = path_with_weak_prereqs
         plan = compute_next_lesson_plan(pm, delta, ledger, path_id="p2")
 
-        assert len(plan.prerequisite_gaps) >= 1
+        assert len(plan.prerequisite_gaps) == 1
         gap_descs = " ".join(i.description for i in plan.prerequisite_gaps)
         assert "limite" in gap_descs.lower() or "prerequisite" in gap_descs.lower()
 
         for item in plan.prerequisite_gaps:
             assert item.kind == "prerequisite_gap"
-            assert len(item.source_debt_ids) >= 1
+            assert len(item.source_debt_ids) == 1
             assert item.priority == 0  # highest priority
 
     def test_open_doubt_items(self, path_with_all_debt_types):
@@ -311,7 +311,7 @@ class TestComputeNextLessonPlan:
         if plan.open_doubt_items:
             for item in plan.open_doubt_items:
                 assert item.kind == "open_doubt"
-                assert len(item.source_debt_ids) >= 1
+                assert len(item.source_debt_ids) == 1
                 assert item.priority == 2  # open_doubt priority
 
     def test_new_material_items_from_delta(self, path_with_new_concept_unreinforced):
@@ -321,7 +321,7 @@ class TestComputeNextLessonPlan:
 
         # 'integrale' is new in L2, not yet reinforced (only in 1 lesson)
         new_material = plan.new_material_items
-        assert len(new_material) >= 1
+        assert len(new_material) == 1
 
         new_desc = " ".join(i.description for i in new_material)
         assert "integrale" in new_desc.lower()
@@ -951,9 +951,9 @@ class TestScheduledReviewDay:
         # At least one review item should have recommended_review_day set
         review_days = [i.recommended_review_day for i in plan.review_items]
         non_none = [d for d in review_days if d is not None]
-        assert len(non_none) >= 1, (
-            f"Expected at least one review item with scheduled day, "
-            f"got all None: {review_days}"
+        assert len(non_none) == 1, (
+            f"Expected exactly one review item with scheduled day, "
+            f"got: {review_days}"
         )
         # All should be non-negative
         for d in non_none:

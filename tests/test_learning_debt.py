@@ -202,7 +202,7 @@ class TestComputeLearningDebt:
         ledger = compute_learning_debt(new_pm, delta, path_id="p1")
 
         unmastered = [i for i in ledger.items if i.kind == "unmastered_concept"]
-        assert len(unmastered) >= 1
+        assert len(unmastered) == 1
         assert any("concetto problematico" in i.description for i in unmastered)
         assert ledger.by_kind.get("unmastered_concept", 0) >= 1
 
@@ -224,7 +224,7 @@ class TestComputeLearningDebt:
         ledger = compute_learning_debt(new_pm, delta, path_id="p1")
 
         over = [i for i in ledger.items if i.kind == "over_repeated"]
-        assert len(over) >= 1
+        assert len(over) == 1
         assert any("derivata" in i.description for i in over)
         assert ledger.by_kind.get("over_repeated", 0) >= 1
 
@@ -242,9 +242,9 @@ class TestComputeLearningDebt:
         ledger = compute_learning_debt(new_pm, delta, path_id="p1")
 
         doubts = [i for i in ledger.items if i.kind == "open_doubt"]
-        assert len(doubts) >= 1
+        assert len(doubts) == 1
         assert any("Perché" in i.description for i in doubts)
-        assert ledger.by_kind.get("open_doubt", 0) >= 1
+        assert ledger.by_kind.get("open_doubt", 0) == 1
 
     def test_detects_weak_prerequisites(self, path_with_weak_prereqs):
         """Prerequisites that are never introduced become weak_prerequisite debt."""
@@ -257,9 +257,9 @@ class TestComputeLearningDebt:
         ledger = compute_learning_debt(pm, delta, path_id="p1")
 
         weak = [i for i in ledger.items if i.kind == "weak_prerequisite"]
-        assert len(weak) >= 1
+        assert len(weak) == 1
         assert any("limite" in i.description for i in weak)
-        assert ledger.by_kind.get("weak_prerequisite", 0) >= 1
+        assert ledger.by_kind.get("weak_prerequisite", 0) == 1
 
     def test_debt_ids_are_deterministic(self, path_with_all_debt_types):
         """Same inputs produce identical debt IDs."""
@@ -458,7 +458,7 @@ class TestDifficultyAwareDebt:
         ledger = compute_learning_debt(new_pm, delta, path_id="p1")
 
         unmastered = [i for i in ledger.items if i.kind == "unmastered_concept"]
-        assert len(unmastered) >= 1
+        assert len(unmastered) == 1
         # Default difficulty = 5.0 → severity = 1.0
         assert unmastered[0].severity == pytest.approx(1.0, abs=1e-6)
 

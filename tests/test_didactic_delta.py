@@ -324,7 +324,7 @@ class TestComputeDidacticDelta:
         ledger = compute_learning_debt(new_pm, delta, path_id="path_calc_101")
 
         unmastered = [i for i in ledger.items if i.kind == "unmastered_concept"]
-        assert len(unmastered) >= 1
+        assert len(unmastered) == 1
         assert any("concetto dubbio" in i.description for i in unmastered), (
             "Debt from L2: 'concetto dubbio' appears as unmastered_concept "
             "in the learning debt ledger"
@@ -386,7 +386,7 @@ class TestComputeDidacticDelta:
         delta = compute_didactic_delta(old_pm, new_pm)
 
         # L3 adds "Integrale e area sottesa?" as a new question
-        assert len(delta.new_misconceptions) >= 1
+        assert len(delta.new_misconceptions) == 1
         assert delta.total_new_misconceptions >= 1
 
     def test_detects_resolved_misconceptions(self):
@@ -415,7 +415,7 @@ class TestComputeDidacticDelta:
 
         # Old had "Dubbio da risolvere?" — new version has no questions
         resolved_texts = delta.resolved_misconceptions
-        assert len(resolved_texts) >= 1
+        assert len(resolved_texts) == 1
         assert any("Dubbio da risolvere" in m for m in resolved_texts)
 
     def test_identical_versions_produce_empty_delta(self):

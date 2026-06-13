@@ -207,7 +207,7 @@ class TestRunEval:
         'groundedness check fallisce su una citazione volutamente rotta'.
         """
         cases = [c for c in ALL_CASES if "groundedness" in c.categories]
-        assert len(cases) >= 1
+        assert len(cases) >= 1  # non-deterministic: tracks production ALL_CASES catalog (grows with new cases)
 
         for case in cases:
             # Run the case directly: it should return True (system detected fabrication)

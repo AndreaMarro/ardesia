@@ -211,7 +211,7 @@ class TestSearch:
         r = FTSRetriever(store_with_segments)
         r.build_index()
         results = r.search("derivative", top_k=5)
-        assert len(results) >= 1
+        assert len(results) == 2
         # All results should be segments
         for res in results:
             assert res.source == "segment"
@@ -231,7 +231,7 @@ class TestSearch:
         r = FTSRetriever(store_with_segments)
         r.build_index()
         results = r.search("power rule", top_k=5)
-        assert len(results) >= 1
+        assert len(results) == 1
         assert any(r.source_id == "l1s2" for r in results)
 
     def test_search_no_match_returns_empty(
@@ -260,9 +260,9 @@ class TestSearch:
         r.build_index()
         results = r.search("chain rule", top_k=5)
         # Should find both the segment (l1s3) and the capsule
-        assert len(results) >= 1
+        assert len(results) == 2
         capsule_results = [r for r in results if r.source == "capsule"]
-        assert len(capsule_results) >= 1
+        assert len(capsule_results) == 1
 
     def test_search_source_filter_segments_only(
         self, store_with_capsules: SQLiteStore
@@ -322,7 +322,7 @@ class TestSearchResult:
         r = FTSRetriever(store_with_segments)
         r.build_index()
         results = r.search("derivative")
-        assert len(results) >= 1
+        assert len(results) == 2
         res = results[0]
         assert isinstance(res.source, str)
         assert isinstance(res.source_id, str)
@@ -566,14 +566,14 @@ class TestRebuildIndex:
 
         # Confirm 'power rule' is found in l1s2
         before = r.search("power rule", top_k=5)
-        assert len(before) >= 1
+        assert len(before) == 1
 
         # Rebuild
         r.rebuild_index()
 
         # Same query still finds the same segment
         after = r.search("power rule", top_k=5)
-        assert len(after) >= 1
+        assert len(after) == 1
         assert any(res.source_id == "l1s2" for res in after)
 
     def test_rebuild_with_capsules_still_finds_them(
@@ -586,7 +586,7 @@ class TestRebuildIndex:
         # Confirm 'chain rule' is found in both segment and capsule
         before = r.search("chain rule", top_k=5)
         capsule_before = [res for res in before if res.source == "capsule"]
-        assert len(capsule_before) >= 1
+        assert len(capsule_before) == 1
 
         # Rebuild
         r.rebuild_index()
@@ -594,7 +594,7 @@ class TestRebuildIndex:
         # Same query after rebuild
         after = r.search("chain rule", top_k=5)
         capsule_after = [res for res in after if res.source == "capsule"]
-        assert len(capsule_after) >= 1
+        assert len(capsule_after) == 1
 
     def test_rebuild_twice_no_error(
         self, store_with_segments: SQLiteStore

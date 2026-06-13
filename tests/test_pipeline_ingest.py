@@ -187,8 +187,8 @@ def test_run_ingest_smoke():
     capsule = run_ingest(store, "l1", router, provider="mock")
 
     assert capsule.lesson_id == "l1"
-    assert len(capsule.timeline) >= 1
-    assert len(capsule.content.concepts) >= 1
+    assert len(capsule.timeline) == 1
+    assert len(capsule.content.concepts) == 1
 
     # Capsule is persisted
     raw = store.get_capsule("l1")
@@ -197,11 +197,11 @@ def test_run_ingest_smoke():
 
     # Graph tables are populated
     nodes = store.get_graph_nodes_for_lesson("l1")
-    assert len(nodes) >= 1
+    assert len(nodes) == 2
     edges = store.get_graph_edges_for_lesson("l1")
-    assert len(edges) >= 1
+    assert len(edges) == 1
     evidence = store.get_all_evidence_for_lesson("l1")
-    assert len(evidence) >= 1
+    assert len(evidence) == 1
 
 
 def test_run_ingest_purge_before_save():

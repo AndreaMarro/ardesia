@@ -483,7 +483,7 @@ class TestExportVault:
             vault = FsPath(tmp)
             concetti_dir = vault / "concetti"
             concept_files = list(concetti_dir.glob("*.md"))
-            assert len(concept_files) >= 2
+            assert len(concept_files) == 4
 
             first = concept_files[0].read_text(encoding="utf-8")
             assert first.startswith("---")
