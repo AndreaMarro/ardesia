@@ -307,6 +307,48 @@ def test_purge_lesson_persists_across_reopen(tmp_path: FsPath) -> None:
     s2.close()
 
 
+def test_delete_graph_for_lesson_standalone_commits_and_keeps_source(
+    tmp_path: FsPath,
+) -> None:
+    """``delete_graph_for_lesson`` called OUTSIDE a transaction must commit on
+    its own, and must wipe ONLY graph data — segments/moments/capsule (SOURCE
+    data) and a second lesson's graph stay intact.
+
+    Production wraps this in a transaction (graph/writer.py:56-58), so the
+    standalone-commit branch (sqlite.py:578) ran in no test; the re-ingest path
+    (pipeline.py:808) hits it on the real store but every test stubs the store.
+    Durability is proved cross-connection: ``s1`` closes WITHOUT an explicit
+    commit, so if the method's own commit were dropped the deferred DELETE would
+    roll back on close and ``s2`` would still serve l1's graph rows.
+    """
+    db = str(tmp_path / "graph.db")
+    s1 = SQLiteStore(db)
+    s1.save_path(Path(path_id="p1", title="P", subject="s",
+                      lesson_ids=("l1", "l2")))
+    _populate_lesson(s1, "l1", "p1")
+    _populate_lesson(s1, "l2", "p1")
+
+    assert s1._in_transaction is False  # the standalone branch under test
+    s1.delete_graph_for_lesson("l1")
+    s1.close()  # no explicit commit: durability must come from the method
+
+    s2 = SQLiteStore(db)  # fresh connection sees only committed state
+    # Graph data for l1 is gone (and the commit made it durable)...
+    assert s2.get_graph_nodes_for_lesson("l1") == ()
+    assert s2.get_graph_edges_for_lesson("l1") == ()
+    assert s2.get_all_evidence_for_lesson("l1") == ()
+    # ...but l1's SOURCE data survives — graph-erase is not lesson-purge.
+    assert s2.get_lesson("l1") is not None
+    assert len(s2.segments_for_lesson("l1")) == 1
+    assert len(s2.moments_for_lesson("l1")) == 1
+    assert s2.get_capsule("l1") is not None
+    # l2's graph is untouched.
+    assert len(s2.get_graph_nodes_for_lesson("l2")) == 1
+    assert len(s2.get_graph_edges_for_lesson("l2")) == 1
+    assert len(s2.get_all_evidence_for_lesson("l2")) == 1
+    s2.close()
+
+
 def test_erase_lesson_removes_wiki_file_and_spares_others(tmp_path: FsPath) -> None:
     """pipeline.erase_lesson = store purge + derived/wiki/<lesson>.md unlink."""
     store = SQLiteStore()
