@@ -408,8 +408,10 @@ def test_paths_for_teacher_filters_by_owner_and_orders_by_id() -> None:
     (rows inserted p2 before p1 -> without the sort the order is wrong).
     """
     store = SQLiteStore()
-    store.save_path(Path(path_id="p2", title="B", subject="s", teacher_id="andrea"))
-    store.save_path(Path(path_id="p1", title="A", subject="s", teacher_id="andrea"))
+    # Titles run opposite to path_id so the expected order can only come from
+    # ORDER BY path_id (a stray ORDER BY title would invert the result).
+    store.save_path(Path(path_id="p2", title="A", subject="s", teacher_id="andrea"))
+    store.save_path(Path(path_id="p1", title="B", subject="s", teacher_id="andrea"))
     store.save_path(Path(path_id="p9", title="X", subject="s", teacher_id="other"))
 
     got = store.paths_for_teacher("andrea")
@@ -428,13 +430,15 @@ def test_get_evidence_for_edge_filters_by_edge_and_orders_by_id() -> None:
     ORDER BY evidence_id (insertion order is reversed vs. expected).
     """
     store = SQLiteStore()
+    # Excerpts run opposite to evidence_id so the expected order can only come
+    # from ORDER BY evidence_id (a stray ORDER BY excerpt would invert it).
     store.save_evidence(
         GraphEvidence(evidence_id="l1#ev2", edge_id="l1#e1", seg_id="l1#s1",
-                      excerpt="b", lesson_id="l1")
+                      excerpt="a", lesson_id="l1")
     )
     store.save_evidence(
         GraphEvidence(evidence_id="l1#ev1", edge_id="l1#e1", seg_id="l1#s1",
-                      excerpt="a", lesson_id="l1")
+                      excerpt="z", lesson_id="l1")
     )
     store.save_evidence(
         GraphEvidence(evidence_id="l1#ev9", edge_id="l1#e2", seg_id="l1#s2",
@@ -445,6 +449,6 @@ def test_get_evidence_for_edge_filters_by_edge_and_orders_by_id() -> None:
 
     assert tuple(e.evidence_id for e in got) == ("l1#ev1", "l1#ev2")  # filtered + ordered
     assert all(e.edge_id == "l1#e1" for e in got)  # e2 excluded
-    assert got[0].excerpt == "a"  # full row hydrated, not just ids
+    assert got[0].excerpt == "z"  # full row hydrated (ev1's excerpt), not just ids
     assert store.get_evidence_for_edge("l1#missing") == ()  # empty for unknown edge
     store.close()
