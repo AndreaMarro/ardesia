@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
  * MAESTRO-Studio — Visual-smoke screenshot script (S-DESIGN-8)
- * Builda, serve preview, scatta 3 screenshot VERI in ~/maestro-logs/ui-shots/<ts>/.
+ * Builda, serve preview, scatta 4 screenshot VERI in ~/maestro-logs/ui-shots/<ts>/.
  *
  * Usage: npm run shots
  *   Prerequisito: npm run build (o tsc -b && vite build) già eseguito prima.
- *   Produce: 01-welcome.png, 02-lavagna-drawer-aperto.png, 03-vista-studente.png
+ *   Produce: 01-welcome.png, 02-lavagna-drawer-aperto.png, 03-vista-studente.png,
+ *            04-elab-blink-lavagna.png (tool ELAB Sim montato via ToolHost)
  *
  * Contract: process-group cleanup (no shell:true zombie), kill SIGKILL su timeout.
  */
@@ -147,10 +148,33 @@ async function main() {
       await page3.close()
       log("  ✓ 03-vista-studente.png salvato.")
 
-      log(`\n✅ Tutti e 3 gli screenshot salvati in ${outDir}`)
+      // --- SCREENSHOT 4: Tool ELAB Sim montato sulla lavagna (LED acceso) ---
+      log("04-elab-blink-lavagna.png — tool ELAB Sim via ToolHost, LED ON + embed sulla lavagna...")
+      const page4 = await browser.newPage({ viewport: { width: 1280, height: 800 } })
+      await page4.goto(`${BASE}/?demo=elab-blink`, { waitUntil: "networkidle" })
+      // Attendi che l'handshake host.hello→tool.ready→ReadyAck completi: il wrapper
+      // canvas espone data-elab-ready="1" SOLO dopo session.ready (i bottoni del
+      // tool si abilitano nello stesso ack). Se l'handshake fallisse, qui va in timeout.
+      await page4.waitForSelector('[data-elab-ready="1"]', { timeout: 20000 })
+      const toolFrame = page4.frameLocator("iframe.elab-tool-frame")
+      const btnToggle = toolFrame.locator("#btnToggle")
+      await btnToggle.waitFor({ state: "visible", timeout: 10000 })
+      await btnToggle.click() // accende il LED sulla breadboard
+      await toolFrame.locator("#btnPlace").click() // board.write → embed sulla lavagna
+      // Conferma OSSERVABILE che board.write è stato postato su un port pronto: il
+      // tool mostra lo status .ok "…sulla lavagna" SOLO dopo aver inviato il messaggio
+      // (altrimenti early-return "non connesso"). Niente shot a tempo cieco.
+      await toolFrame.locator("#status.ok", { hasText: "lavagna" }).waitFor({ timeout: 5000 })
+      await sleep(800) // repaint del canvas Excalidraw dopo updateScene
+      await page4.screenshot({ path: resolve(outDir, "04-elab-blink-lavagna.png"), fullPage: false })
+      await page4.close()
+      log("  ✓ 04-elab-blink-lavagna.png salvato.")
+
+      log(`\n✅ Tutti e 4 gli screenshot salvati in ${outDir}`)
       log(`  ${resolve(outDir, "01-welcome.png")}`)
       log(`  ${resolve(outDir, "02-lavagna-drawer-aperto.png")}`)
       log(`  ${resolve(outDir, "03-vista-studente.png")}`)
+      log(`  ${resolve(outDir, "04-elab-blink-lavagna.png")}`)
     } finally {
       await browser.close()
     }
