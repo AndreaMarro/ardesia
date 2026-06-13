@@ -386,6 +386,96 @@ class TestBuildLessonRecap:
         assert len(recap.open_debts) == 1
 
 
+class TestRecapMalformedCapsule:
+    """Edge branches of ``_extract_concepts`` / ``_extract_debts`` that the
+    happy-path fixtures never reach (raw capsule JSON, not produced by
+    ``_serialise_capsule``).  All ZERO-LLM, pure projection.
+    """
+
+    def test_malformed_capsule_json_yields_empty(self, simple_store: _SimpleStore) -> None:
+        """A non-JSON capsule blob must degrade to empty, never raise.
+
+        Pins the ``except (JSONDecodeError, TypeError)`` guard: drop it and
+        ``build_lesson_recap`` would propagate a JSONDecodeError instead of a
+        graceful empty recap.
+        """
+        simple_store.set_capsule("prima_lezione", "{not valid json")
+        recap = build_lesson_recap(simple_store, "prima_lezione")
+        assert recap.concepts == ()
+        assert recap.open_debts == ()
+
+    def test_citations_not_a_list_counts_zero(self, simple_store: _SimpleStore) -> None:
+        """A concept whose ``citations`` is not a list → evidence_count 0.
+
+        Pins the ``isinstance(citations, list)`` guard: an int there would
+        crash on ``len(...)`` without it; a string would wrongly count its
+        characters.
+        """
+        raw = json.dumps(
+            {"content": {"concepts": [
+                {"name": "segnale", "status": "introduced", "citations": 7},
+                {"name": "rumore", "status": "introduced", "citations": "xyz"},
+            ]}}
+        )
+        simple_store.set_capsule("prima_lezione", raw)
+        recap = build_lesson_recap(simple_store, "prima_lezione")
+        ev = {c.name: c.evidence_count for c in recap.concepts}
+        assert ev == {"segnale": 0, "rumore": 0}
+
+    def test_concept_missing_name_or_status_is_skipped(self, simple_store: _SimpleStore) -> None:
+        """Concepts lacking name OR status are dropped (``if name and status``).
+
+        Pins the AND: a malformed concept must not leak into the recap nor
+        produce a phantom debt.
+        """
+        raw = json.dumps(
+            {"content": {"concepts": [
+                {"status": "introduced", "citations": []},        # no name
+                {"name": "senza_stato", "citations": []},          # no status
+                {"name": "valido", "status": "problematic", "citations": []},
+            ]}}
+        )
+        simple_store.set_capsule("prima_lezione", raw)
+        recap = build_lesson_recap(simple_store, "prima_lezione")
+        assert [c.name for c in recap.concepts] == ["valido"]
+        # The single problematic, well-formed concept yields exactly one debt;
+        # the name-less / status-less rows must not.
+        assert [d.description for d in recap.open_debts] == [
+            "Concetto 'valido' ancora problematico"
+        ]
+
+
+class TestRecapDerivedSuffixes:
+    """The non-``.md`` derived suffixes (``.json`` wiki, ``.txt`` dispensa,
+    ``.canvas`` vault) are in the scan whitelist but no fixture exercised them.
+    """
+
+    def test_alternate_suffixes_are_matched(self, simple_store: _SimpleStore, tmp_path: FsPath) -> None:
+        (tmp_path / "wiki").mkdir()
+        (tmp_path / "wiki" / "prima_lezione.json").write_text("{}", encoding="utf-8")
+        (tmp_path / "wiki" / "prima_lezione.txt").write_text("x", encoding="utf-8")
+        (tmp_path / "dispense").mkdir()
+        (tmp_path / "dispense" / "prima_lezione.txt").write_text("x", encoding="utf-8")
+        (tmp_path / "vault").mkdir()
+        (tmp_path / "vault" / "prima_lezione.canvas").write_text("{}", encoding="utf-8")
+
+        recap = build_lesson_recap(simple_store, "prima_lezione", derived_dir=str(tmp_path))
+        by_kind: dict[str, set[str]] = {}
+        for m in recap.derived_materials:
+            by_kind.setdefault(m.kind, set()).add(FsPath(m.path).suffix)
+
+        assert by_kind["wiki"] == {".json", ".txt"}
+        assert by_kind["dispensa"] == {".txt"}
+        assert by_kind["vault"] == {".canvas"}
+
+    def test_unwhitelisted_suffix_ignored(self, simple_store: _SimpleStore, tmp_path: FsPath) -> None:
+        """A matching stem with a non-whitelisted suffix must NOT be scanned."""
+        (tmp_path / "wiki").mkdir()
+        (tmp_path / "wiki" / "prima_lezione.pdf").write_text("x", encoding="utf-8")
+        recap = build_lesson_recap(simple_store, "prima_lezione", derived_dir=str(tmp_path))
+        assert recap.derived_materials == ()
+
+
 class TestRenderRecapJson:
     """Tests for ``render_recap_json``."""
 
