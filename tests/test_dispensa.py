@@ -14,7 +14,7 @@ from __future__ import annotations
 import json
 import pytest
 
-from lessonos.capsule.extraction import ConceptExtraction, Citation
+from lessonos.capsule.extraction import ConceptExtraction, Citation, LessonContent
 from lessonos.dispensa import (
     DispensaDoc,
     DispensaClaim,
@@ -32,10 +32,11 @@ from lessonos.dispensa import (
     verify_dispensa,
 )
 from lessonos.graph.resolution import GlobalResolution, ResolutionAlias, ResolutionEntry
-from lessonos.llm.router import MockProvider, Router
-from lessonos.style import StyleProfile
+from lessonos.llm.router import LLMResponse, MockProvider, Router
+from lessonos.style import StyleProfile, WrittenStyleProfile
 from lessonos.store.base import Store
-from lessonos.models.entities import TeacherConcept, Path
+from lessonos.models.entities import GraphNode, Lesson, Segment, TeacherConcept, Path
+from lessonos.capsule.assembly import _serialise_capsule, LessonCapsule
 
 
 # ── Mock store for dispensa tests  ────────────────────────────────────
@@ -1234,3 +1235,400 @@ class TestClaimBadge:
         md = render_dispensa_md(cleaned, report)
         assert "## Paragrafi non verificati" in md
         assert "\u2717 Bad claim." in md
+
+
+# \u2500\u2500 QA-2 coverage: generate_dispensa orchestration + grounding edges \u2500\u2500\u2500\u2500\u2500\u2500
+# Gaps measured 2026-06-13 (dispensa.py 84%): generate_dispensa (449-487) was
+# imported but NEVER called; the genuine edit-distance resolution branch
+# (209-210) was unexercised (the existing test_edit_distance_fallback is an
+# EXACT match); parse/render edge branches and the entire written-style hint
+# feature (M2-2, 249-318/370) had zero coverage. All tests below are mock-only,
+# ZERO production change.
+
+
+class _GenStore(_StoreStub):
+    """Populated store for ``generate_dispensa`` end-to-end: adds graph-node,
+    lesson and per-lesson segment storage on top of the dispensa stub so
+    ``build_teacher_book`` produces real ``fundamental_concepts``."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._nodes: dict[str, list[GraphNode]] = {}
+        self._lessons: dict[str, Lesson] = {}
+
+    def save_graph_node(self, lesson_id: str, node: GraphNode) -> None:
+        self._nodes.setdefault(lesson_id, []).append(node)
+
+    def get_graph_nodes_for_lesson(self, lesson_id: str) -> tuple[GraphNode, ...]:
+        return tuple(self._nodes.get(lesson_id, []))
+
+    def save_lesson(self, lesson) -> None:
+        self._lessons[lesson.lesson_id] = lesson
+
+    def get_lesson(self, lesson_id: str):
+        return self._lessons.get(lesson_id)
+
+    def lessons_for_path(self, path_id: str):
+        return tuple(l for l in self._lessons.values() if l.path_id == path_id)
+
+    def get_segments_for_lesson(self, lesson_id: str) -> tuple:
+        return tuple(s for s in self._segments.values()
+                     if getattr(s, "lesson_id", None) == lesson_id)
+
+    def segments_for_lesson(self, lesson_id: str):
+        return self.get_segments_for_lesson(lesson_id)
+
+
+class _FixedProvider:
+    """Mock LLM provider returning a fixed JSON response for any prompt.
+
+    Keeps ``generate_dispensa`` tests focused on the orchestration it owns
+    (load \u2192 resolve \u2192 build prompt \u2192 call \u2192 parse \u2192 assemble) rather than on
+    predicting the exact prompt string of ``build_dispensa_prompt``.
+    """
+
+    name = "mock"
+
+    def __init__(self, response_text: str) -> None:
+        self._text = response_text
+
+    def complete(self, prompt: str, *, model: str | None = None) -> LLMResponse:
+        return LLMResponse(text=self._text, provider="mock", model=model or "mock-1")
+
+
+def _populate_gen_store() -> _GenStore:
+    """prof_mario / fisica1 / l1 with two grounded concepts + graph nodes."""
+    store = _GenStore()
+    store.save_path(Path(
+        path_id="fisica1", title="Fisica 1", subject="Fisica",
+        lesson_ids=("l1",), teacher_id="prof_mario",
+    ))
+    store.save_lesson(Lesson(lesson_id="l1", path_id="fisica1", title="Lezione 1", order=1))
+    store._segments["l1#s1"] = _SegStub(seg_id="l1#s1", text="energia del segnale", lesson_id="l1")
+    store._segments["l1#s2"] = _SegStub(seg_id="l1#s2", text="potenza media", lesson_id="l1")
+    capsule = LessonCapsule(
+        lesson_id="l1",
+        timeline=(),
+        content=LessonContent(
+            lesson_id="l1",
+            concepts=(
+                ConceptExtraction(name="Energia", status="introduced", canonical="energia",
+                                  citations=(Citation(seg_id="l1#s1", excerpt="energia del segnale"),)),
+                ConceptExtraction(name="Potenza", status="introduced", canonical="potenza",
+                                  citations=(Citation(seg_id="l1#s2", excerpt="potenza media"),)),
+            ),
+        ),
+    )
+    store.save_capsule("l1", _serialise_capsule(capsule))
+    for idx, name in enumerate(("Energia", "Potenza")):
+        nid = f"l1:concept:{idx}"
+        store.save_graph_node("l1", GraphNode(node_id=nid, node_type="concept", ref_id=nid, label=name))
+    return store
+
+
+_GEN_RESPONSE = json.dumps({
+    "sections": [{
+        "title": "Energia e Potenza",
+        "paragraphs": [{
+            "text": "L'energia del segnale \u00e8 una grandezza fondamentale.",
+            "claims": [{"text": "energia", "seg_id": "l1#s1", "excerpt": "energia del segnale"}],
+        }],
+    }]
+})
+
+
+class TestGenerateDispensaEndToEnd:
+    """End-to-end ``generate_dispensa`` via mock router (lines 449-487)."""
+
+    def _router(self) -> Router:
+        router = Router()
+        router.register(_FixedProvider(_GEN_RESPONSE))
+        return router
+
+    def test_orchestrates_resolution_parse_and_title(self, pratico_style) -> None:
+        """Full path: resolves concepts, calls LLM, parses, derives title.
+
+        Load-bearing asserts: the title transform (``prof_mario`` \u2192
+        ``Dispensa di Mario``) and the section/claim parsed from the mock
+        JSON \u2014 if generate_dispensa skipped parsing or mis-derived the title
+        these fail.
+        """
+        store = _populate_gen_store()
+        doc = generate_dispensa(store, "prof_mario", self._router(),
+                                provider="mock", style=pratico_style)
+        assert doc.teacher_id == "prof_mario"
+        assert doc.title == "Dispensa di Mario"
+        assert doc.style_profile is pratico_style
+        assert len(doc.sections) == 1
+        assert doc.sections[0].title == "Energia e Potenza"
+        claim = doc.sections[0].paragraphs[0].claims[0]
+        assert claim.seg_id == "l1#s1"
+        assert claim.excerpt == "energia del segnale"
+
+    def test_no_fundamental_concepts_raises(self, pratico_style) -> None:
+        """Teacher path with no capsules \u2192 no fundamental concepts \u2192 ValueError."""
+        store = _GenStore()
+        store.save_path(Path(
+            path_id="p", title="T", subject="X",
+            lesson_ids=("l1",), teacher_id="prof_vuoto",
+        ))
+        with pytest.raises(ValueError, match="no fundamental concepts"):
+            generate_dispensa(store, "prof_vuoto", self._router(),
+                              provider="mock", style=pratico_style)
+
+    def test_derives_style_when_none(self) -> None:
+        """style=None \u2192 generate_dispensa derives a StyleProfile on the fly (454-456)."""
+        store = _populate_gen_store()
+        doc = generate_dispensa(store, "prof_mario", self._router(),
+                                provider="mock", style=None)
+        assert isinstance(doc.style_profile, StyleProfile)
+        assert doc.style_profile.teacher_id == "prof_mario"
+
+
+class TestResolveEditDistanceFallback:
+    """Step-2 edit-distance match in _resolve_concepts_from_capsules (209-210).
+
+    The pre-existing ``test_edit_distance_fallback`` actually exercises the
+    EXACT-match branch ('Teorema Fondamentale' == 'Teorema Fondamentale'), so
+    the real ratio>=0.85 fallback was unexercised. Here the TeacherBook name
+    and the capsule concept name differ by a single typo: exact fails, the
+    SequenceMatcher ratio (~0.97) clears the 0.85 threshold.
+    """
+
+    def test_typo_matches_via_ratio(self) -> None:
+        # "fourier" vs "forier" (missing 'u'): no exact match, ratio ~0.97
+        typo_ext = ConceptExtraction(
+            name="Trasformata di Forier", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="trasformata"),),
+        )
+        capsules_map = {"l1": {"Trasformata di Forier": typo_ext}}
+        result = _resolve_concepts_from_capsules(
+            (TeacherConcept(name="Trasformata di Fourier", canonical="trasformata di fourier",
+                            status="introduced", evidence_count=1),),
+            capsules_map,
+        )
+        assert len(result) == 1
+        assert result[0] is typo_ext  # matched the typo'd concept via edit-distance
+
+    def test_below_threshold_does_not_match(self) -> None:
+        """A name too dissimilar (ratio < 0.85) \u2192 no match \u2192 ValueError.
+
+        Pins the threshold as load-bearing: 'energia' vs 'serie di fourier'
+        scores well under 0.85, so resolution must fail-closed.
+        """
+        ext = ConceptExtraction(
+            name="Serie di Fourier", status="introduced",
+            citations=(Citation(seg_id="l1#s1", excerpt="serie"),),
+        )
+        capsules_map = {"l1": {"Serie di Fourier": ext}}
+        with pytest.raises(ValueError, match="no matching"):
+            _resolve_concepts_from_capsules(
+                (TeacherConcept(name="Energia", canonical="energia",
+                                status="introduced", evidence_count=1),),
+                capsules_map,
+            )
+
+
+class TestParseDispensaResponseMoreEdges:
+    """Uncovered branches in _parse_dispensa_response (507-509, 524-525)."""
+
+    def test_plain_code_fence_without_json_tag(self) -> None:
+        """JSON inside a bare ``` fence (no 'json' tag) \u2192 extracted (507-509)."""
+        raw = "```\n{\"sections\": [{\"title\": \"Bare\", \"paragraphs\": []}]}\n```"
+        sections = _parse_dispensa_response(raw)
+        assert len(sections) == 1
+        assert sections[0].title == "Bare"
+
+    def test_python_literal_non_dict_raises(self) -> None:
+        """json.loads fails, ast.literal_eval yields a NON-dict \u2192 'failed to parse'.
+
+        Distinguishes 524-525 from the later 'missing sections' raise: a
+        single-quoted Python list parses via ast but is not a dict. Matching
+        the 'failed to parse' message proves this branch (not line 527) fires.
+        """
+        with pytest.raises(ValueError, match="failed to parse"):
+            _parse_dispensa_response("['sections', 'oops']")
+
+
+class TestRenderLongExcerptTruncation:
+    """Excerpt > 100 chars is truncated to 97 + ellipsis in render (line 761)."""
+
+    def test_long_excerpt_truncated(self) -> None:
+        long_excerpt = "a" * 120
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="P",
+                            claims=(DispensaClaim(text="c", seg_id="l#s1", excerpt=long_excerpt),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        report = GroundingReport(total_claims=1, verified=1, dropped=0, unverified_ratio=0.0, passed=True)
+        md = render_dispensa_md(doc, report)
+        assert ("a" * 97 + "...") in md
+        assert ("a" * 120) not in md  # full excerpt must NOT appear verbatim
+
+
+class TestVerifyUnresolvableNoneExcerpt:
+    """Fail-closed early-return for unresolvable seg_id with excerpt=None (614).
+
+    Note: behaviourally this returns the same as the fall-through path
+    (get_segment is None \u2192 615-616), so it is a defensive early-return \u2014
+    covered here but not independently mutation-verifiable.
+    """
+
+    def test_unresolvable_segid_none_excerpt_dropped(self) -> None:
+        store = _StoreStub()  # empty: ghost seg_id resolves to nothing
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="Ghost",
+                            claims=(DispensaClaim(text="g", seg_id="ghost#s1", excerpt=None),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        with pytest.raises(ValueError, match="unverified"):
+            verify_dispensa(doc, store)
+
+
+class TestStructureHintMidBuckets:
+    """_structure_hint elif (mid) buckets (110, 117, 121-122) \u2014 assert the
+    specific guidance string for mid-range style metrics."""
+
+    def test_mid_range_density_hints(self, simple_concepts) -> None:
+        mid_style = StyleProfile(
+            teacher_id="prof_mid",
+            exercise_density=0.2,     # 0.15 <= x < 0.3 \u2192 "Alterna esercizi..."
+            question_density=0.07,    # 0.05 <= x < 0.1 \u2192 "domande guida occasionali"
+            prereq_explicitness=0.2,  # 0.1 <= x < 0.3 \u2192 "Menziona brevemente i prerequisiti"
+            concept_granularity=2.0,
+            registro="neutro",
+            tics=(),
+        )
+        # build a concept WITH citations to also exercise the citation block
+        concepts = (
+            ConceptExtraction(
+                name="Concetto",
+                status="introduced",
+                citations=tuple(
+                    Citation(seg_id=f"l#s{i}", excerpt="x" * (130 if i == 0 else 5))
+                    for i in range(7)  # >5 \u2192 "(+N more)"; first excerpt >120 \u2192 truncated
+                ),
+            ),
+        )
+        prompt = build_dispensa_prompt("prof_mid", mid_style, concepts)
+        assert "Alterna esercizi e spiegazioni" in prompt
+        assert "domande guida occasionali" in prompt
+        assert "Menziona brevemente i prerequisiti" in prompt
+        # citation block (139-147): seg_id lines, long-excerpt truncation, "+N more"
+        assert "seg_id=l#s0" in prompt
+        assert "..." in prompt
+        assert "(+2 more citations)" in prompt
+
+
+class TestWrittenStyleHint:
+    """Written-style hint feature (M2-2) \u2014 _written_style_hint + the prompt
+    block (249/266/278/295/307/318, 370). Never exercised before."""
+
+    def test_high_buckets_render_measured_numbers(self, simple_concepts, pratico_style) -> None:
+        ws = WrittenStyleProfile(
+            avg_sentence_length=28.0,    # >=25 \u2192 249
+            formal_density=4.0,          # >=3.0 \u2192 266
+            section_count=12,            # >=10 \u2192 295
+            bullet_density=0.0,
+            math_density=6.0,            # >=5.0 \u2192 307
+            avg_paragraph_length=70.0,   # >=60 \u2192 278
+            dispense_processed=3,
+        )
+        prompt = build_dispensa_prompt("t", pratico_style, simple_concepts, written_style=ws)
+        # 370: the written-style block is added to the prompt
+        assert "Stile SCRITTO del docente" in prompt
+        # 318: the joined hint sentence with measured numbers
+        assert "Nello stile SCRITTO del docente" in prompt
+        assert "28.0 parole/frase" in prompt
+        assert "4.0/1000 token" in prompt
+        assert "70.0 token/paragrafo" in prompt
+        assert "12 sezioni nel corpus" in prompt
+        assert "6.0/1000 token" in prompt
+
+    def test_mid_buckets(self, simple_concepts, pratico_style) -> None:
+        ws = WrittenStyleProfile(
+            avg_sentence_length=18.0,    # 15<=x<25 \u2192 elif
+            formal_density=1.5,          # 1.0<=x<3.0 \u2192 elif
+            section_count=3,             # >0,<10 \u2192 elif
+            bullet_density=0.0,
+            math_density=2.0,            # 1.0<=x<5.0 \u2192 elif
+            avg_paragraph_length=40.0,   # 30<=x<60 \u2192 elif
+            dispense_processed=1,
+        )
+        prompt = build_dispensa_prompt("t", pratico_style, simple_concepts, written_style=ws)
+        assert "frasi di media lunghezza" in prompt
+        assert "moderatamente formale" in prompt
+        assert "paragrafi di media estensione" in prompt
+        assert "sezioni chiare ma non eccessivamente frammentate" in prompt
+        assert "moderata presenza di notazione matematica" in prompt
+
+    def test_short_buckets(self, simple_concepts, pratico_style) -> None:
+        """Short sentence (<15 \u2192 259) and short paragraph (0<x<30 \u2192 287-288) buckets."""
+        ws = WrittenStyleProfile(
+            avg_sentence_length=10.0,    # <15 \u2192 "frasi brevi e dirette"
+            formal_density=0.0,
+            section_count=0,
+            bullet_density=0.0,
+            math_density=0.0,
+            avg_paragraph_length=12.0,   # 0<x<30 \u2192 "paragrafi brevi e compatti"
+            dispense_processed=2,
+        )
+        prompt = build_dispensa_prompt("t", pratico_style, simple_concepts, written_style=ws)
+        assert "frasi brevi e dirette" in prompt
+        assert "paragrafi brevi e compatti" in prompt
+
+    def test_zero_corpus_no_block(self, simple_concepts, pratico_style) -> None:
+        """dispense_processed=0 \u2192 empty hint \u2192 no written-style block (241-242, 369 false)."""
+        ws = WrittenStyleProfile(
+            avg_sentence_length=0.0, formal_density=0.0, section_count=0,
+            bullet_density=0.0, math_density=0.0, avg_paragraph_length=0.0,
+            dispense_processed=0,
+        )
+        prompt = build_dispensa_prompt("t", pratico_style, simple_concepts, written_style=ws)
+        assert "Stile SCRITTO del docente" not in prompt
+
+
+class TestVerifyEmptySegId:
+    """Claim with an empty seg_id is unverifiable (fail-closed guard, line 597).
+
+    Like the unresolvable-seg case, this is a defensive early-return \u2014 covered
+    for the fail-closed guarantee, not independently mutation-verifiable.
+    """
+
+    def test_empty_seg_id_dropped(self) -> None:
+        store = _StoreStub()
+        store._segments["l#s1"] = _SegStub(seg_id="l#s1", text="energia", lesson_id="l")
+        doc = DispensaDoc(
+            teacher_id="t", title="T",
+            sections=(
+                DispensaSection(
+                    title="E",
+                    paragraphs=(
+                        DispensaParagraph(
+                            text="NoSeg",
+                            claims=(DispensaClaim(text="x", seg_id="", excerpt="energia"),),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        with pytest.raises(ValueError, match="unverified"):
+            verify_dispensa(doc, store)
