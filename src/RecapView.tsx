@@ -13,9 +13,17 @@ interface RecapViewProps {
   room: string
 }
 
-/** Lezione senza alcun contenuto da riepilogare: niente durata, elementi, formule, pagine. */
+/**
+ * Lezione realmente vuota: nessun evento registrato (firstEventTime === null) e
+ * nessun contenuto da riepilogare. La guardia su firstEventTime evita di marcare
+ * "vuota" una lezione con sola attività registrata ma durata 0 (es. un singolo
+ * audio.chunk: il recap non lo proietta, ma c'è stata attività — niente messaggio
+ * fuorviante "torna alla lavagna"). I check sul contenuto coprono il caso di
+ * elementi con timestamp corrotto (firstEventTime null ma aggregazioni > 0).
+ */
 function isRecapEmpty(r: LessonRecap): boolean {
   return (
+    r.firstEventTime === null &&
     r.durationMs === 0 &&
     r.totalElementsAdded === 0 &&
     r.mathFormulas.length === 0 &&
@@ -27,6 +35,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
   const [recap, setRecap] = useState<LessonRecap | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [exportError, setExportError] = useState<string | null>(null)
   const [exporting, setExporting] = useState(false)
 
   useEffect(() => {
@@ -47,6 +56,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
 
   async function handleExport() {
     setExporting(true)
+    setExportError(null)
     try {
       const zipBlob = await store.exportLesson(room)
       const url = URL.createObjectURL(zipBlob)
@@ -66,7 +76,9 @@ export default function RecapView({ store, room }: RecapViewProps) {
       document.body.removeChild(a)
       URL.revokeObjectURL(url)
     } catch (err) {
-      setError("Export fallito: " + (err as Error).message)
+      // Errore LOCALE all'azione: non nasconde il riepilogo (sarebbe contraddittorio
+      // suggerire "esporta la lezione" proprio quando l'export è fallito).
+      setExportError("Esportazione non riuscita: " + (err as Error).message + ". Riprova; se persiste, controlla lo spazio su disco.")
     } finally {
       setExporting(false)
     }
@@ -89,6 +101,14 @@ export default function RecapView({ store, room }: RecapViewProps) {
       </header>
 
       <div className="st-recap-body" style={{ padding: "24px 32px", maxWidth: "640px", margin: "0 auto" }}>
+        {exportError && (
+          <p className="st-recap-export-err" role="alert" style={{
+            fontSize: "var(--m-fs-sm)",
+            color: "var(--m-error)",
+            margin: "0 0 var(--m-sp-4)",
+            lineHeight: 1.5,
+          }}>{exportError}</p>
+        )}
         {loading && <p className="st-quiet">caricamento…</p>}
         {error && (
           <EmptyState

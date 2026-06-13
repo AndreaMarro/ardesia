@@ -114,6 +114,26 @@ describe("RecapView", () => {
     expect(container.querySelector(".st-state")).toBeNull()
   })
 
+  it("lezione con attività registrata ma durata 0 (es. solo audio) NON è vuota", async () => {
+    // firstEventTime valorizzato = c'è stato un evento (audio.chunk): un singolo
+    // evento dà durationMs 0, ma NON va marcata "vuota" (sarebbe fuorviante).
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "Test",
+      durationMs: 0,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: 5000,
+      lastEventTime: 5000,
+    })
+    await renderRecapView()
+    expect(container.querySelector(".st-recap-grid")).not.toBeNull()
+    expect(container.querySelector(".st-state")).toBeNull()
+  })
+
   it("mostra titolo della lezione", async () => {
     const { buildRecap } = await import("../store/lessonRecap")
     vi.mocked(buildRecap).mockResolvedValue({
@@ -229,6 +249,38 @@ describe("RecapView", () => {
     // La frase di dottrina compare esattamente una volta, nel sottotitolo.
     const occurrences = (container.textContent ?? "").split("appunti salvati").length - 1
     expect(occurrences).toBe(1)
+  })
+
+  it("export fallito: banner locale, il riepilogo resta visibile (no errore di pagina)", async () => {
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "Teoria dei Segnali",
+      durationMs: 3600_000,
+      mathFormulas: ["E = mc^2"],
+      elementTypeCounts: { rectangle: 1 },
+      totalElementsAdded: 1,
+      pdfPagesViewed: [],
+      firstEventTime: 1000,
+      lastEventTime: 3601_000,
+    })
+    mockStore.exportLesson = vi.fn().mockRejectedValue(new Error("disco pieno"))
+    await renderRecapView()
+    const exportBtn = Array.from(container.querySelectorAll("button"))
+      .find((b) => b.textContent?.includes("esporta"))!
+    exportBtn.click()
+    await vi.waitFor(() => {
+      expect(container.querySelector(".st-recap-export-err")).not.toBeNull()
+    })
+    const banner = container.querySelector(".st-recap-export-err")!
+    expect(banner.getAttribute("role")).toBe("alert")
+    expect(banner.textContent).toContain("Esportazione non riuscita")
+    expect(banner.textContent).toContain("disco pieno")
+    // il riepilogo NON deve sparire dietro lo stato di errore di pagina
+    expect(container.querySelector(".st-recap-grid")).not.toBeNull()
+    expect(container.querySelector(".st-state-error")).toBeNull()
+    expect(container.textContent).toContain("Teoria dei Segnali")
+    expect(EMOJI_RE.test(container.textContent ?? "")).toBe(false)
   })
 
   it("mostra elenco formule inserite", async () => {

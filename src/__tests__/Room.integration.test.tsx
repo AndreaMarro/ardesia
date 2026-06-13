@@ -676,7 +676,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     root.unmount()
   })
 
-  it("mostra 'Segui la diretta su Meet' quando non ci sono scene salvate", async () => {
+  it("vista studente senza scena: stato vuoto sobrio (cosa è successo + cosa fare), niente emoji", async () => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
 
@@ -685,8 +685,16 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     root.render(<RoomModule.default store={store} />)
 
     await vi.waitFor(() => {
-      expect(document.body.textContent).toContain("Segui la diretta su Meet")
+      const empty = document.querySelector(".st-student-empty .st-state")
+      expect(empty).not.toBeNull()
     }, { timeout: 1000, interval: 10 })
+
+    const empty = document.querySelector(".st-student-empty .st-state")!
+    expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/lavagna è ancora vuota/i)
+    // cosa fare: seguire la diretta su Meet
+    expect(empty.querySelector(".st-state-hint")?.textContent).toMatch(/diretta su Meet/i)
+    const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
+    expect(EMOJI_RE.test(empty.textContent ?? "")).toBe(false)
 
     root.unmount()
   })
@@ -984,6 +992,38 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       expect(err).toBeDefined()
       expect(err!.textContent).toContain("store offline")
     }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("drawer senza lezioni: stato vuoto compatto che spiega come crearne una", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "listRooms").mockResolvedValue([])
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    const lezioniBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "lezioni")
+    expect(lezioniBtn).toBeDefined()
+    lezioniBtn!.click()
+
+    await vi.waitFor(() => {
+      const empty = document.querySelector(".st-drawer-body .st-state-compact")
+      expect(empty).not.toBeNull()
+    }, { timeout: 1000, interval: 10 })
+
+    const empty = document.querySelector(".st-drawer-body .st-state-compact")!
+    expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/nessuna lezione/i)
+    expect(empty.querySelector(".st-state-hint")?.textContent).toMatch(/lavagna|salva/i)
+    const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
+    expect(EMOJI_RE.test(empty.textContent ?? "")).toBe(false)
 
     root.unmount()
   })

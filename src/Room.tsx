@@ -14,6 +14,7 @@ import { AudioRecorder } from "./store/AudioRecorder"
 import { isStudentView } from "./store/studentView"
 import { isRecapView } from "./store/isRecapView"
 import RecapView from "./RecapView"
+import EmptyState from "./design/EmptyState"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -557,7 +558,12 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
               {loadingRooms ? (
                 <span className="st-quiet">caricamento…</span>
               ) : rooms.length === 0 ? (
-                <span className="st-quiet">Nessuna lezione salvata</span>
+                <EmptyState
+                  compact
+                  title="Nessuna lezione salvata"
+                  detail="Qui compaiono le lezioni man mano che le crei."
+                  hint="Inizia a scrivere sulla lavagna: la lezione viene salvata in automatico."
+                />
               ) : (
                 rooms.map((r: any) => (
                   <div
@@ -585,9 +591,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
       <div style={{ flex: 1, position: "relative" }}>
         {!loading && studentView && !sceneData && (
-          /* Vista studente senza scena salvata: mostra messaggio neutro */
+          /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
-            <p>Segui la diretta su Meet</p>
+            <EmptyState
+              title="La lavagna è ancora vuota"
+              detail="Il docente non ha ancora condiviso appunti per questa lezione."
+              hint="Segui la spiegazione in diretta su Meet: appena scrive, la lavagna compare qui."
+            />
           </div>
         )}
         {!loading && !(studentView && !sceneData) && (
