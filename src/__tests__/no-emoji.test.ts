@@ -26,17 +26,34 @@ function walkUi(dir: string, out: string[] = []): string[] {
   return out
 }
 
+// Glifi tipografici monocromi usati come icone funzionali: NON sono emoji.
+// (☰ men hamburger, ✕ chiusura, ✓ check, ⚠ alert testuale — vedi commento in testa)
+const TYPOGRAPHIC_GLYPHS = new Set([
+  0x2630, // ☰ TRIGRAM FOR HEAVEN (hamburger)
+  0x2715, // ✕ MULTIPLICATION X (chiudi)
+  0x2713, // ✓ CHECK MARK (testuale)
+  0x26a0, // ⚠ WARNING SIGN (testuale, senza VS-16)
+])
+
 /** Un code point è emoji pittografico? */
 function isEmojiCodePoint(cp: number): boolean {
+  // Glifi tipografici esplicitamente ammessi.
+  if (TYPOGRAPHIC_GLYPHS.has(cp)) return false
   // Piano emoji/pittogrammi/trasporti/simboli supplementari + bandiere regionali.
   if (cp >= 0x1f000 && cp <= 0x1faff) return true
-  // Variation Selector-16: forza la presentazione emoji di un carattere base.
-  if (cp === 0xfe0f) return true
-  // Pittogrammi del BMP che NON sono glifi tipografici monocromi.
+  // Simboli vari + Dingbats: in larga parte a presentazione emoji di default
+  // (⚡⛔⚽🔔✅❌…), inclusi quelli SENZA VS-16. Si bandisce l'intero blocco,
+  // tranne i pochi glifi tipografici sopra: un anti-emoji guard non vuole
+  // nemmeno ★♠♥ nella UI, e l'allowlist resta esplicita.
+  if (cp >= 0x2600 && cp <= 0x27bf) return true
+  // Variation Selector-16 (presentazione emoji) e Combining Enclosing Keycap.
+  if (cp === 0xfe0f || cp === 0x20e3) return true
+  // Pittogrammi sparsi fuori dai blocchi sopra.
   const LEGACY_EMOJI = new Set([
-    0x2705, 0x274c, 0x274e, 0x2714, 0x2716, 0x2728, 0x2b50, 0x2b55,
-    0x2753, 0x2754, 0x2755, 0x2757, 0x203c, 0x2049, 0x231a, 0x231b,
-    0x23f0, 0x23f3, 0x1f004,
+    0x00a9, 0x00ae, 0x2122, // © ® ™
+    0x203c, 0x2049, // ‼ ⁉
+    0x2b00, 0x2b1b, 0x2b1c, 0x2b50, 0x2b55, // ⬀ ⬛ ⬜ ⭐ ⭕
+    0x231a, 0x231b, 0x2328, 0x23cf, 0x24c2, 0x25fb, 0x25fc, 0x25fd, 0x25fe,
   ])
   return LEGACY_EMOJI.has(cp)
 }
@@ -56,7 +73,11 @@ describe("S-UX-1 — zero emoji nei sorgenti UI", () => {
     // Se questo fallisce, il test sotto sarebbe vacuamente verde.
     expect(emojiOf("microfono 🎤 e led 🔴 e pacco 📦")).toEqual(["🎤", "🔴", "📦"])
     expect(emojiOf("ok ✅ no ❌")).toEqual(["✅", "❌"])
-    expect(emojiOf("warning ⚠️")).toEqual(["⚠️".charAt(1)]) // il VS-16, non il triangolo base
+    // Emoji a presentazione-default del blocco 0x2600, SENZA VS-16 (buco trovato dal red-team).
+    expect(emojiOf("⚡ ⛔ ⚽ 🔔")).toEqual(["⚡", "⛔", "⚽", "🔔"])
+    expect(emojiOf("© ® ™")).toEqual(["©", "®", "™"])
+    // Il triangolo ⚠ con VS-16 è emoji (catturo il VS-16); il triangolo nudo no.
+    expect(emojiOf("warning ⚠️")).toEqual(["⚠️".charAt(1)])
     // Glifi funzionali ammessi: nessun match.
     expect(emojiOf("☰ ✕ ● ✓ ⚠ → ⇒ ↔ ←")).toEqual([])
   })
