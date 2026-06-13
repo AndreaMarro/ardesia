@@ -752,3 +752,19 @@ Risultati:
 - 6 test in `tests/test_route_security.py` (in-gate, pytest): iniezione/cmd-subst/override-vince/routes-env/ROLE-malformato/unknown-role. Non-tautologici: rebuild dello script pre-fix → canary creato → `test_malicious_override_is_not_executed` fallisce sul bug originale.
 - SELF-ADV: trovati 0, fixati 0 (subagente avversario su diff: ~20 payload — cmd-sub, CRLF-smuggling, `printf -v` name-injection, key-clobber `_ROUTE_PATH`, BASH_REMATCH-leak — tutti inerti; tests confermati non-tautologici).
 - cost_usd: ~$0.02 (gate + 1 subagente review locale).
+
+## QA-1 — consolidamento determinismo test (gte→==) — 2026-06-13T06:30Z — commit 32c14b0 + 0eba59e
+- Pin COORD:16. Convertiti `assert len(...) >= N` → `== N` su conteggi DETERMINISTICI (mock/fixture), 14 file test, ~40 assert. Ogni valore MISURATO due volte (non a occhio) prima del pin.
+- **VERIFICATO**: gate **1726/0 VERDE** (era 1720 pre-M2-8 route, +6 dai nuovi test route già in HEAD; QA-1 non cambia il conteggio). Ogni `== N` è auto-validante: un valore sbagliato fa fallire il gate → il VERDE prova tutti i pin.
+- **Warning check-no-gte-literal: 61 → 2** (in calo). I 2 residui sono LEGITTIMI, non spurii:
+  - `test_eval_harness.py:210` `len(cases) >= 1` — catalog-coupled (ALL_CASES cresce coi case) → token `# non-deterministic`.
+  - `test_asr_coalesce.py:64` `len(s.text) >= 30` — floor min_chars su lunghezza-stringa per-unità (non un conteggio) → lasciato, non toccato.
+- Casi non banali risolti con pin onesto invece che token:
+  - `test_retrieval_fts_cross_fixture.py` Block A/B parametrizzati: aggiunto `expected_hits` per-fixture (sample=5/spaced=3/bio=1; rebuild sample=5/spaced=1/bio=1) invece di `>= 1` generico.
+  - `test_next_lesson_planner.py` 268/287/303/314 (per-item in loop): misurato source_debt_ids==1 per ogni item → `== 1`; 954 existence→`== 1` + messaggio "exactly one".
+  - `test_ingest_chunker.py:79` `_split_sentences` → lista esatta a 5 elementi.
+  - `test_excerpt_repair.py:37` `len(result)` → `== 20` (misurato; il commento diceva 19, corretto a 20).
+- GUARD bin/pre-commit-guard.sh: 0 blocchi sui file staged (verificato prima del commit).
+- **SELF-ADV: trovati 2, fixati 2** (subagente avversario code-reviewer sul diff completo). (1) ingest_chunker:79 pinnava il comportamento buggy di _split_sentences (no abbreviation-guard) avendo cancellato il commento-invariante → ripristinato commento NOTE che documenta "pin del comportamento CORRENTE; un guard abbreviazioni lo cambierebbe". (2) ingest_chunker:372 commento `# 3000/400 = 7.5` contraddiceva `== 9` → riscritto "word-aligned hard-split". Falsi positivi avversario: 0 (le 2 decisioni `>=` tenute confermate corrette). Fix in commit 0eba59e (solo commenti, assert invariati).
+- NOTA OPERATIVA: il lavoro QA-1 (staged, gate verde) è stato raccolto e committato dall'auto-driver dentro 32c14b0 mentre giravo il guard. Lezione: COMMIT appena gate verde, prima di guard/SELF-ADV. Il follow-up SELF-ADV è stato committato separatamente (0eba59e).
+- cost_usd: ~$0.03 (gate ×3 + misurazioni + 1 subagente avversario).
