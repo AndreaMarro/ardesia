@@ -1,5 +1,5 @@
-🤖 LessonOS — Sat 13/06 19:11
-gate: {"passed":1765,"failed":0,"exit":0}  |  auto/main: a5b1573  main(rev): e42db25
+🤖 LessonOS — Sun 14/06 01:10
+gate: {"passed":1766,"failed":0,"exit":0}  |  auto/main: 0eb53e5  main(rev): e42db25
 costo stimato oggi: $0.070  |  iter oggi: 38/96
 
 — ultime 3 iterazioni —
