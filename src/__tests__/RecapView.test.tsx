@@ -148,6 +148,31 @@ describe("RecapView", () => {
     expect(text).not.toMatch(/\bworkspace\b/i)
   })
 
+  it("ogni card metrica ha una label propria, 'appunti salvati' solo nel sottotitolo", async () => {
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "Test",
+      durationMs: 1000,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: 1000,
+      lastEventTime: 2000,
+    })
+    await renderRecapView()
+    const labels = Array.from(container.querySelectorAll(".st-recap-label")).map(
+      (e) => e.textContent,
+    )
+    // Tre card, tre label DISTINTE (prima del fix erano tutte "appunti salvati").
+    expect(labels).toEqual(["tempo", "lavagna", "formule"])
+    expect(new Set(labels).size).toBe(3)
+    // La frase di dottrina compare esattamente una volta, nel sottotitolo.
+    const occurrences = (container.textContent ?? "").split("appunti salvati").length - 1
+    expect(occurrences).toBe(1)
+  })
+
   it("mostra elenco formule inserite", async () => {
     const { buildRecap } = await import("../store/lessonRecap")
     vi.mocked(buildRecap).mockResolvedValue({

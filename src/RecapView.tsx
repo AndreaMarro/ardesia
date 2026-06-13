@@ -1,6 +1,7 @@
 // MAESTRO-Studio — RecapView (riepilogo lezione)
 // Route ?vista=recap per-lezione: titolo, durata, concetti, materiali esportati.
-// Linguaggio docente: "appunti salvati", mai flush/cache.
+// Linguaggio docente: "appunti salvati" (sottotitolo), mai flush/cache.
+// Ogni card ha una label propria (tempo / lavagna / formule), non ripetuta.
 
 import { useState, useEffect } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
@@ -96,6 +97,13 @@ export default function RecapView({ store, room }: RecapViewProps) {
               }}>
                 {recap.title}
               </h2>
+              <p className="st-recap-subtitle" style={{
+                fontSize: "var(--m-fs-md)",
+                color: "var(--m-ink-3)",
+                margin: "var(--m-sp-1) 0 0",
+              }}>
+                I tuoi appunti salvati, in breve.
+              </p>
             </section>
 
             <div className="st-recap-grid" style={{
@@ -110,7 +118,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
                 border: "1px solid var(--m-line-2)",
                 background: "var(--m-canvas)",
               }}>
-                <span className="st-recap-label" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-4)", display: "block" }}>appunti salvati</span>
+                <span className="st-recap-label" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-4)", display: "block" }}>tempo</span>
                 <span className="st-recap-value" style={{ fontSize: "var(--m-fs-xl)", fontWeight: 600, color: "var(--m-ink)", display: "block", margin: "4px 0" }}>{formatDuration(recap.durationMs)}</span>
                 <span className="st-recap-desc" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-3)" }}>durata della lezione</span>
               </div>
@@ -121,7 +129,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
                 border: "1px solid var(--m-line-2)",
                 background: "var(--m-canvas)",
               }}>
-                <span className="st-recap-label" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-4)", display: "block" }}>appunti salvati</span>
+                <span className="st-recap-label" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-4)", display: "block" }}>lavagna</span>
                 <span className="st-recap-value" style={{ fontSize: "var(--m-fs-xl)", fontWeight: 600, color: "var(--m-ink)", display: "block", margin: "4px 0" }}>{recap.totalElementsAdded}</span>
                 <span className="st-recap-desc" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-3)" }}>elementi sulla lavagna</span>
               </div>
@@ -132,7 +140,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
                 border: "1px solid var(--m-line-2)",
                 background: "var(--m-canvas)",
               }}>
-                <span className="st-recap-label" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-4)", display: "block" }}>appunti salvati</span>
+                <span className="st-recap-label" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-4)", display: "block" }}>formule</span>
                 <span className="st-recap-value" style={{ fontSize: "var(--m-fs-xl)", fontWeight: 600, color: "var(--m-ink)", display: "block", margin: "4px 0" }}>{recap.mathFormulas.length}</span>
                 <span className="st-recap-desc" style={{ fontSize: "var(--m-fs-xs)", color: "var(--m-ink-3)" }}>formule scritte</span>
               </div>
