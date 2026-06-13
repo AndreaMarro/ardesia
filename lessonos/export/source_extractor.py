@@ -184,7 +184,10 @@ def _extract_single_source(
                 content=content,
                 lesson_id=lesson_id,
             )
-        except Exception as e:
+        # Solo errori I/O reali (file mancante/permessi/dir) e decoding non-UTF-8
+        # diventano error-material; un bug di programmazione (es. TypeError dopo
+        # un refactor) NON deve essere mascherato come "errore di estrazione".
+        except (OSError, UnicodeDecodeError) as e:
             return SourceMaterial(
                 source_id=src.source_id,
                 filename=src.filename,

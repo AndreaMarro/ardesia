@@ -299,6 +299,34 @@ class TestExtractEdgeCases:
         assert "ghost" in pack.errors
         assert "ghost" not in pack.materials
 
+    def test_invalid_utf8_source_file(
+        self, sample_course_path: Path
+    ) -> None:
+        """File sorgente con byte non-UTF-8 → SourceMaterial con error (ramo
+        UnicodeDecodeError, distinto dal file mancante). Verifica che il read
+        fallito di decoding sia trattato come error-material, non propagato."""
+        sources_dir = sample_course_path / "sources"
+        # 0xFF 0xFE non e' una sequenza UTF-8 valida → read_text(utf-8) solleva
+        # UnicodeDecodeError, che _extract_single_source deve catturare.
+        (sources_dir / "broken.md").write_bytes(b"# titolo\n\xff\xfe testo")
+        bad_course = CourseFolder(
+            title="Bad",
+            folder_path=str(sample_course_path),
+            lessons=(),
+            sources=(
+                CourseSourceRef(
+                    source_id="broken",
+                    filename="broken.md",
+                    source_type="markdown",
+                ),
+            ),
+        )
+        pack = extract_source_materials(bad_course)
+        assert "broken" in pack.errors
+        assert "broken" not in pack.materials
+        # L'errore riportato e' un fallimento di decoding, non un file mancante.
+        assert "codec" in pack.errors["broken"] or "decode" in pack.errors["broken"]
+
     def test_unsupported_format(
         self, course_folder: CourseFolder, sample_course_path: Path
     ) -> None:
