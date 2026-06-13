@@ -784,3 +784,19 @@ Risultati:
 - SELF-ADV (subagente code-reviewer:code-reviewer avversario decorrelato sul diff): **trovati 0, fixati 0**. Tutti i vettori d'attacco respinti CON PROVA (3 mutazioni indipendenti eseguite dal reviewer, file-vs-memory, close-rollback, l2-match-l1, docstring-overclaim, flakiness). 1 nota non-difetto (accesso a `_in_transaction` privato — accettato, rispecchia la convenzione del modulo). 0 touch produzione, 0 test indeboliti.
 - check-no-gte-literal (guard pre-commit): 0 nuovi warning; i 2 residui (asr_coalesce:64, eval_harness:210) pre-esistenti e legittimi.
 - cost_usd: ~$0.03 (gate x3 + coverage + 1 subagente avversario).
+
+## QA-2 (cont.) — dispensa.py (modulo grounding/citazioni) 84%->99% — 2026-06-13T07:23Z — commit bc572c5
+- Pin QA-2 (gap copertura moduli critici grounding/purge-GDPR/recap-export). Solo test, ZERO codice produzione. Gate 1742 -> **1757 (+15)**. tests/test_dispensa.py 50->66 test.
+- VALORE sui dati (non solo gate): misurata la copertura col real coverage (effimero `uv run --with coverage`, NON dep). `grounding.py`/`recap_export.py` erano già 100% (sessioni precedenti); `dispensa.py` — che È il modulo grounding/citazioni nominato dal pin — era all'84%. Chiusi i rami scoperti portandolo al 99%.
+- TEST AGGIUNTI (8 classi):
+  - `generate_dispensa` end-to-end con provider mock fisso: orchestrazione resolve->parse->title (title "Dispensa di Mario" da teacher_id), ramo "no fundamental concepts" che solleva, ramo style=None che deriva lo stile.
+  - resolve edit-distance fallback: typo "Forier"->"Fourier" (ratio 0.9767 >= 0.85), e sotto-soglia che NON matcha.
+  - `_parse_dispensa_response`: code-fence senza tag json, literal Python non-dict che solleva "failed to parse".
+  - `render_dispensa_md`: troncamento excerpt 120 char -> 97+"...".
+  - structure-hint bucket intermedi (110/117/121-122) + blocco citazioni (139-147); written-style-hint bucket alti/medi/corti + zero-corpus no-block.
+  - 2 guardie difensive coperte e DICHIARATE tali (597 empty seg_id, 614 None-excerpt unresolvable).
+- MUTATION-VERIFIED 4x (mutazione produzione -> test RED -> restore byte-identico): (1) edit-distance branch `>= 0.85`; (2) render truncation `[:97]`; (3) ast-non-dict raise; (4) title transform `.title()`.
+- RESIDUO DICHIARATO (3 righe, 99% non 100%): 318 `return ""` irraggiungibile (tutti i bucket coperti a monte), 623-624 re-verify difensivo nel repair-path (non innescabile dal flusso reale senza forzare uno store incoerente). Non finti-coperti.
+- SELF-ADV: trovati 0, fixati 0 (subagente code-reviewer:code-reviewer avversario decorrelato sul diff). Verdetto: no false-grounding, no tautologia, no mock-nasconde-bug; 4/5 aree mutation-killable e genuine; le 2 guardie difensive coverage-only ma dichiarate -> accettabili, non must-fix.
+- check-no-gte-literal: 0 nuovi warning.
+- cost_usd: ~$0.03 (gate x2 + coverage + 1 subagente avversario).
