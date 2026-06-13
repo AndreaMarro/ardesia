@@ -398,3 +398,53 @@ def test_erase_lesson_db_only_without_wiki_dir(tmp_path: FsPath) -> None:
     _assert_no_trace(store, "l1")
     assert erase_lesson(store, "l1") == 0  # idempotent
     store.close()
+
+
+def test_paths_for_teacher_filters_by_owner_and_orders_by_id() -> None:
+    """Teacher isolation primitive: only the owner's paths, ascending by path_id.
+
+    Saved out of insertion order across two teachers. Pins both the WHERE
+    teacher_id filter (drop it -> p_other leaks) and the ORDER BY path_id
+    (rows inserted p2 before p1 -> without the sort the order is wrong).
+    """
+    store = SQLiteStore()
+    store.save_path(Path(path_id="p2", title="B", subject="s", teacher_id="andrea"))
+    store.save_path(Path(path_id="p1", title="A", subject="s", teacher_id="andrea"))
+    store.save_path(Path(path_id="p9", title="X", subject="s", teacher_id="other"))
+
+    got = store.paths_for_teacher("andrea")
+
+    assert tuple(p.path_id for p in got) == ("p1", "p2")  # filtered + ordered
+    assert all(p.teacher_id == "andrea" for p in got)  # no cross-teacher leak
+    assert store.paths_for_teacher("nobody") == ()  # empty for unknown owner
+    store.close()
+
+
+def test_get_evidence_for_edge_filters_by_edge_and_orders_by_id() -> None:
+    """Grounding-evidence retrieval: only the queried edge, ascending by id.
+
+    Two pieces of evidence on e1 (saved high-id first), one on e2. Pins the
+    WHERE edge_id filter (drop it -> e2's evidence leaks in) and the
+    ORDER BY evidence_id (insertion order is reversed vs. expected).
+    """
+    store = SQLiteStore()
+    store.save_evidence(
+        GraphEvidence(evidence_id="l1#ev2", edge_id="l1#e1", seg_id="l1#s1",
+                      excerpt="b", lesson_id="l1")
+    )
+    store.save_evidence(
+        GraphEvidence(evidence_id="l1#ev1", edge_id="l1#e1", seg_id="l1#s1",
+                      excerpt="a", lesson_id="l1")
+    )
+    store.save_evidence(
+        GraphEvidence(evidence_id="l1#ev9", edge_id="l1#e2", seg_id="l1#s2",
+                      excerpt="other", lesson_id="l1")
+    )
+
+    got = store.get_evidence_for_edge("l1#e1")
+
+    assert tuple(e.evidence_id for e in got) == ("l1#ev1", "l1#ev2")  # filtered + ordered
+    assert all(e.edge_id == "l1#e1" for e in got)  # e2 excluded
+    assert got[0].excerpt == "a"  # full row hydrated, not just ids
+    assert store.get_evidence_for_edge("l1#missing") == ()  # empty for unknown edge
+    store.close()
