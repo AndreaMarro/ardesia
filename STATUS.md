@@ -821,3 +821,7 @@ Risultati:
 - check-no-gte-literal: 0 nuovi warning (i 2 residui asr_coalesce:64/eval_harness:210 pre-esistenti e legittimi). .coverage effimero rimosso (non committato).
 - STATO SCOPE QA-2 (coverage MISURATA ORA, suite intera): grounding.py 100%, dispensa.py 99% (3 righe residue dichiarate), recap_export.py 100%, graph/writer.py 100%, **store/sqlite.py 100%**. Scope nominato grounding/purge-GDPR/recap-export = COMPLETO + persistenza al 100%.
 - cost_usd: ~$0.04 (gate x3 + coverage x2 + 1 subagente avversario).
+
+- **2026-06-15 — ⏸️ LESSONOS-NOOP (nuova sessione Hermes deepseek-reasoner): M0→M1→M2 completi (gate 1765/0 VERDE su HEAD f3fa463), QA-2 completato, ROADMAP-AUTO vuota per lessonos, pin M3 assente, stewardship già eseguita → stop.**
+  ORIENT: HEAD `f3fa463` (docs QA-2 store/sqlite.py 100%). Gate **1765 passed / 2 skipped / 0 failed** — VERDE (ri-verificato ORA). COORD.md § PROSSIMA TASK riga 16: QA-2 (AUTO-PINNED 13/06) — completato. ROADMAP-AUTO: 0 task lessonos. CLAUDE-SAYS: nessun pin M3 (ultimo 12/06 22:50). promote_pin: riga NON marcata ESAURITO. check-frictions: 21/21, 0 warning. Stash rescue: stash@{0} (1763 < 1765) non pertinente. Stewardship già eseguita (RETRO #10). project-wiki/log.md: aggiornato. AGENTS.md §3: stop. cost_usd: ~$0 (gate + frictions + lettura).
+|
