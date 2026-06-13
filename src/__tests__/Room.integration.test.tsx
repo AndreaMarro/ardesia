@@ -6,6 +6,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import type { WorkspaceDriver, FileEntry } from "../store/types"
+import { hasEmoji } from "./emojiGuard"
 
 // --- Mocks per Excalidraw e dipendenze pesanti ---
 
@@ -693,8 +694,7 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/lavagna è ancora vuota/i)
     // cosa fare: seguire la diretta su Meet
     expect(empty.querySelector(".st-state-hint")?.textContent).toMatch(/diretta su Meet/i)
-    const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
-    expect(EMOJI_RE.test(empty.textContent ?? "")).toBe(false)
+    expect(hasEmoji(empty.textContent ?? "")).toBe(false)
 
     root.unmount()
   })
@@ -1022,8 +1022,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     const empty = document.querySelector(".st-drawer-body .st-state-compact")!
     expect(empty.querySelector(".st-state-title")?.textContent).toMatch(/nessuna lezione/i)
     expect(empty.querySelector(".st-state-hint")?.textContent).toMatch(/lavagna|salva/i)
-    const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
-    expect(EMOJI_RE.test(empty.textContent ?? "")).toBe(false)
+    expect(hasEmoji(empty.textContent ?? "")).toBe(false)
 
     root.unmount()
   })

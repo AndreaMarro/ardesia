@@ -5,10 +5,7 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest"
 import { createRoot, type Root } from "react-dom/client"
 import { act } from "react"
 import EmptyState from "../design/EmptyState"
-
-// Emoji pittografici: piano emoji + Misc Symbols/Dingbats + VS-16 + keycap.
-// Se uno compare nel testo renderizzato, lo stato non e' sobrio.
-const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
+import { hasEmoji } from "./emojiGuard"
 
 describe("EmptyState — vista vuota/errore (S-UX-2)", () => {
   let container: HTMLDivElement
@@ -86,8 +83,8 @@ describe("EmptyState — vista vuota/errore (S-UX-2)", () => {
     })
     const text = container.textContent ?? ""
     expect(text.length).toBeGreaterThan(0)
-    expect(EMOJI_RE.test(text)).toBe(false)
+    expect(hasEmoji(text)).toBe(false)
     // guardia non-vacua: il matcher individua un emoji se presente.
-    expect(EMOJI_RE.test("riepilogo 📦")).toBe(true)
+    expect(hasEmoji("riepilogo 📦")).toBe(true)
   })
 })

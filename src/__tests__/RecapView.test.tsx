@@ -3,6 +3,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
+import { hasEmoji } from "./emojiGuard"
 
 // Mock buildRecap per isolare il componente
 vi.mock("../store/lessonRecap", () => {
@@ -49,8 +50,6 @@ describe("RecapView", () => {
     }
   }
 
-  const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
-
   it("mostra errore quando buildRecap fallisce", async () => {
     const { buildRecap } = await import("../store/lessonRecap")
     vi.mocked(buildRecap).mockRejectedValue(new Error("ERRORE-TEST"))
@@ -68,7 +67,7 @@ describe("RecapView", () => {
     // titolo (cosa) + dettaglio (cosa è successo) + suggerimento (cosa fare)
     expect(container.querySelector(".st-state-title")?.textContent).toContain("non disponibile")
     expect(container.querySelector(".st-state-hint")?.textContent).toMatch(/Riprova|esporta/i)
-    expect(EMOJI_RE.test(container.textContent ?? "")).toBe(false)
+    expect(hasEmoji(container.textContent ?? "")).toBe(false)
   })
 
   it("lezione senza contenuto (recap a zero) mostra lo stato vuoto, non la griglia di zeri", async () => {
@@ -92,7 +91,7 @@ describe("RecapView", () => {
     expect(container.querySelector(".st-recap-grid")).toBeNull()
     expect(container.querySelector(".st-state-title")?.textContent).toMatch(/nessun appunto/i)
     expect(container.querySelector(".st-state-hint")?.textContent).toMatch(/lavagna/i)
-    expect(EMOJI_RE.test(container.textContent ?? "")).toBe(false)
+    expect(hasEmoji(container.textContent ?? "")).toBe(false)
   })
 
   it("recap con sola durata (>0) mostra la griglia, non lo stato vuoto", async () => {
@@ -280,7 +279,7 @@ describe("RecapView", () => {
     expect(container.querySelector(".st-recap-grid")).not.toBeNull()
     expect(container.querySelector(".st-state-error")).toBeNull()
     expect(container.textContent).toContain("Teoria dei Segnali")
-    expect(EMOJI_RE.test(container.textContent ?? "")).toBe(false)
+    expect(hasEmoji(container.textContent ?? "")).toBe(false)
   })
 
   it("mostra elenco formule inserite", async () => {
