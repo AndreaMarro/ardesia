@@ -12,7 +12,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [ARDESIA 13/06] **[LUNGA] S-UX-1 — passata di eleganza UI senza emoji**: rimuovi OGNI emoji dalla UI e dalle stringhe utente; tipografia curata (scala dei pesi/dimensioni coerente, interlinea, spaziatura); microcopy professionale e sobrio in italiano; verifica che i token di tema (--m-*) siano usati ovunque (niente colori hardcoded). Test: nessun emoji nei sorgenti UI (grep), gate verde. COMMIT a ogni sotto-task verde.
+- **studio**: PIN ESAURITO [auto-heal 13/06] — S-UX-1 COMPLETATO (gate 442/442, commit 8ea4efd, 4 sotto-task); ruotare via promote_pin.
 - **lessonos**: [ARDESIA 13/06] **QA-1 — consolidamento determinismo test**: converti gli assert `len(...) >= N` su conteggi DETERMINISTICI in uguaglianze `== N` dove il valore e' noto (i 61 warning di check-no-gte-literal); NON indebolire i test, NON toccare eval/gate.sh; dove il conteggio non e' deterministico lascia >= e annotalo. Obiettivo: 0 warning gte spurii. Test: gate verde, warning gte in calo (numero in STATUS). COMMIT a ogni file bonificato.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 
