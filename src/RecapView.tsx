@@ -6,10 +6,21 @@
 import { useState, useEffect } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
+import EmptyState from "./design/EmptyState"
 
 interface RecapViewProps {
   store: WorkspaceStore
   room: string
+}
+
+/** Lezione senza alcun contenuto da riepilogare: niente durata, elementi, formule, pagine. */
+function isRecapEmpty(r: LessonRecap): boolean {
+  return (
+    r.durationMs === 0 &&
+    r.totalElementsAdded === 0 &&
+    r.mathFormulas.length === 0 &&
+    r.pdfPagesViewed.length === 0
+  )
 }
 
 export default function RecapView({ store, room }: RecapViewProps) {
@@ -79,13 +90,22 @@ export default function RecapView({ store, room }: RecapViewProps) {
 
       <div className="st-recap-body" style={{ padding: "24px 32px", maxWidth: "640px", margin: "0 auto" }}>
         {loading && <p className="st-quiet">caricamento…</p>}
-        {error && <p className="st-err">{error}</p>}
-        {!loading && !error && recap === null && (
-          <div className="st-recap-empty" style={{ textAlign: "center", padding: "40px 0" }}>
-            <p>Nessun dato disponibile per questa lezione.</p>
-          </div>
+        {error && (
+          <EmptyState
+            tone="error"
+            title="Riepilogo non disponibile"
+            detail={"Non è stato possibile preparare il riepilogo di questa lezione. " + error}
+            hint="Riprova tra qualche istante. Se il problema resta, esporta la lezione e riaprila da un'altra scheda."
+          />
         )}
-        {!loading && !error && recap !== null && (
+        {!loading && !error && (recap === null || isRecapEmpty(recap)) && (
+          <EmptyState
+            title="Ancora nessun appunto"
+            detail="Questa lezione non contiene ancora elementi sulla lavagna né formule."
+            hint="Torna alla lavagna e inizia a scrivere: il riepilogo si aggiorna da solo."
+          />
+        )}
+        {!loading && !error && recap !== null && !isRecapEmpty(recap) && (
           <>
             <section style={{ marginBottom: "28px" }}>
               <h2 className="st-recap-title" style={{

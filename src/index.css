@@ -264,9 +264,38 @@ body {
 .st-student-empty {
   display: flex; align-items: center; justify-content: center;
   height: 100%; width: 100%;
-  color: var(--m-ink-4); font-size: var(--m-fs-lg);
-  font-family: var(--m-font-display);
+  padding: var(--m-sp-6) var(--m-sp-4);
 }
+
+/* ── S-UX-2: vista vuota / di errore (sobria, utile, niente emoji) ───── */
+.st-state {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: var(--m-sp-2);
+  max-width: 44ch; margin: 0 auto;
+  padding: var(--m-sp-6) var(--m-sp-4);
+}
+.st-state-compact {
+  padding: var(--m-sp-5) var(--m-sp-3); gap: var(--m-sp-1);
+  max-width: 36ch;
+}
+.st-state-title {
+  margin: 0;
+  font-family: var(--m-font-display);
+  font-size: var(--m-fs-xl); font-weight: 600; line-height: 1.3;
+  color: var(--m-ink-2);
+}
+.st-state-compact .st-state-title { font-size: var(--m-fs-lg); }
+.st-state-detail {
+  margin: 0;
+  font-size: var(--m-fs-md); line-height: 1.55;
+  color: var(--m-ink-3);
+}
+.st-state-hint {
+  margin: 0;
+  font-size: var(--m-fs-sm); line-height: 1.5;
+  color: var(--m-ink-4);
+}
+.st-state-error .st-state-title { color: var(--m-error); }
 
 /* ── responsive <=768px hamburger menu ───────────────────── */
 .st-menu-btn {

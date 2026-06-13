@@ -49,11 +49,69 @@ describe("RecapView", () => {
     }
   }
 
+  const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{20E3}]/u
+
   it("mostra errore quando buildRecap fallisce", async () => {
     const { buildRecap } = await import("../store/lessonRecap")
     vi.mocked(buildRecap).mockRejectedValue(new Error("ERRORE-TEST"))
     await renderRecapView()
     expect(container.textContent).toContain("ERRORE-TEST")
+  })
+
+  it("lo stato di errore spiega cosa fare ed è privo di emoji", async () => {
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockRejectedValue(new Error("boom"))
+    await renderRecapView()
+    const state = container.querySelector(".st-state-error")
+    expect(state).not.toBeNull()
+    expect(state?.getAttribute("role")).toBe("alert")
+    // titolo (cosa) + dettaglio (cosa è successo) + suggerimento (cosa fare)
+    expect(container.querySelector(".st-state-title")?.textContent).toContain("non disponibile")
+    expect(container.querySelector(".st-state-hint")?.textContent).toMatch(/Riprova|esporta/i)
+    expect(EMOJI_RE.test(container.textContent ?? "")).toBe(false)
+  })
+
+  it("lezione senza contenuto (recap a zero) mostra lo stato vuoto, non la griglia di zeri", async () => {
+    // buildRecap NON restituisce mai null per una lezione vuota: torna un recap
+    // a zero (no journal / no eventi). Lo stato vuoto deve scattare su QUESTO caso.
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "Lezione senza nome",
+      durationMs: 0,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: null,
+      lastEventTime: null,
+    })
+    await renderRecapView()
+    expect(container.querySelector(".st-state")).not.toBeNull()
+    // la griglia metriche NON deve comparire
+    expect(container.querySelector(".st-recap-grid")).toBeNull()
+    expect(container.querySelector(".st-state-title")?.textContent).toMatch(/nessun appunto/i)
+    expect(container.querySelector(".st-state-hint")?.textContent).toMatch(/lavagna/i)
+    expect(EMOJI_RE.test(container.textContent ?? "")).toBe(false)
+  })
+
+  it("recap con sola durata (>0) mostra la griglia, non lo stato vuoto", async () => {
+    // guardia anti-regressione: la soglia di vuoto non deve nascondere lezioni reali.
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "Test",
+      durationMs: 60_000,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: 1000,
+      lastEventTime: 61_000,
+    })
+    await renderRecapView()
+    expect(container.querySelector(".st-recap-grid")).not.toBeNull()
+    expect(container.querySelector(".st-state")).toBeNull()
   })
 
   it("mostra titolo della lezione", async () => {
