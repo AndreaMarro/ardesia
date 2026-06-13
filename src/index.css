@@ -34,7 +34,8 @@ body {
 .st-sub { font-size: var(--m-fs-2xs); letter-spacing: var(--m-track); text-transform: uppercase; color: var(--m-ink-4); }
 .st-room {
   font-family: var(--m-font-mono); font-size: var(--m-fs-2xs);
-  color: var(--m-ink-4); background: var(--m-fill);
+  /* su sfondo --m-fill (velo scuro) ink-4 scende sotto 4.2:1: usa ink-3 (AA) */
+  color: var(--m-ink-3); background: var(--m-fill);
   padding: 3px 9px; border-radius: var(--m-r-pill);
 }
 
@@ -250,7 +251,8 @@ body {
 .st-chip-student {
   display: inline-flex; align-items: center;
   font-family: var(--m-font-ui); font-size: var(--m-fs-xs);
-  color: var(--m-ink-4); background: var(--m-fill);
+  /* su sfondo --m-fill ink-4 non raggiunge AA: ink-3 sì (4.65:1) */
+  color: var(--m-ink-3); background: var(--m-fill);
   padding: 2px 10px; border-radius: var(--m-r-pill);
   user-select: none; white-space: nowrap;
 }
