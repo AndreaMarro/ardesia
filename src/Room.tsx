@@ -66,6 +66,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [rooms, setRooms] = useState<any[]>([])
   const [loadingRooms, setLoadingRooms] = useState(false)
+  /** Focus management dialog: elemento da rifocalizzare alla chiusura + bottone chiudi */
+  const drawerReturnRef = useRef<HTMLElement | null>(null)
+  const drawerCloseRef = useRef<HTMLButtonElement>(null)
   /** Dati scena caricati async dallo store (null = nessun dato salvato) */
   const [sceneData, setSceneData] = useState<any>(null)
 
@@ -193,6 +196,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     document.title = audioRecording ? "● REC — maestro · studio" : "maestro · studio"
   }, [audioRecording])
 
+  /** All'apertura del drawer porta il focus dentro al dialog (bottone chiudi) */
+  useEffect(() => {
+    if (!drawerOpen) return
+    const id = window.setTimeout(() => drawerCloseRef.current?.focus(), 0)
+    return () => window.clearTimeout(id)
+  }, [drawerOpen])
+
   // Persistenza via WorkspaceStore.
   // Aggiorna refs coi dati più recenti, poi debounce 700ms.
   function persist(elements: any, appState: any, files: any) {
@@ -242,12 +252,20 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     journalRef.current?.recordChange(elements)
   }
 
+  /** Chiude il drawer e restituisce il focus al controllo che l'ha aperto (WCAG 2.4.3) */
+  function closeDrawer() {
+    setDrawerOpen(false)
+    drawerReturnRef.current?.focus?.()
+  }
+
   /** Apre/chiude il drawer delle lezioni */
   async function toggleDrawer() {
     if (drawerOpen) {
-      setDrawerOpen(false)
+      closeDrawer()
       return
     }
+    // Ricorda chi ha aperto il dialog per ripristinare il focus alla chiusura
+    drawerReturnRef.current = (document.activeElement as HTMLElement) ?? null
     setLoadingRooms(true)
     setDrawerOpen(true)
     try {
@@ -473,8 +491,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         ) : (
           <span
             className="st-name"
+            role="button"
+            tabIndex={0}
+            aria-label={lessonName ? `Rinomina la lezione ${lessonName}` : "Assegna un nome a questa lezione"}
             title={lessonName ? `Rinomina: ${lessonName}` : `Assegna un nome a questa lezione (id: ${room})`}
             onClick={startRename}
+            onKeyDown={(e: KeyboardEvent) => {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); startRename() }
+            }}
           >
             <span className="st-name-text">{lessonName ?? room}</span>
             {!lessonName && <span className="st-name-prompt">dai un nome</span>}
@@ -518,7 +542,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         <div className={`st-actions${menuOpen ? " st-actions-open" : ""}`}>
           <button onClick={copyLink} className="st-ghost" title="Copia il link per lo studente (vista sola-lettura)">{copied ? <><IconCheck /> copiato</> : "invita studente"}</button>
           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
-          <button onClick={() => fileInputRef.current?.click()} className="st-ghost">media</button>
+          <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine o PDF">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={handleFile} />
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
@@ -548,11 +572,17 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
       {/* Drawer lezioni */}
       {drawerOpen && (
-        <div className="st-drawer-overlay" onClick={() => setDrawerOpen(false)}>
-          <div className="st-drawer" onClick={(e) => e.stopPropagation()}>
+        <div className="st-drawer-overlay" onClick={closeDrawer}>
+          <div
+            className="st-drawer"
+            role="dialog"
+            aria-label="Lezioni"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e: KeyboardEvent) => { if (e.key === "Escape") closeDrawer() }}
+          >
             <div className="st-drawer-header">
               <span className="st-drawer-title">Lezioni</span>
-              <button className="st-ghost st-drawer-close" onClick={() => setDrawerOpen(false)}>chiudi</button>
+              <button ref={drawerCloseRef} className="st-ghost st-drawer-close" onClick={closeDrawer}>chiudi</button>
             </div>
             <div className="st-drawer-body">
               {loadingRooms ? (
@@ -569,7 +599,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
                   <div
                     key={r.room}
                     className={`st-card${r.room === room ? " st-card-current" : ""}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Apri la lezione ${r.name}`}
                     onClick={() => navigateToLesson(r.room)}
+                    onKeyDown={(e: KeyboardEvent) => {
+                      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navigateToLesson(r.room) }
+                    }}
                   >
                     <div className="st-card-line">
                       <span className="st-card-name">{r.name}</span>

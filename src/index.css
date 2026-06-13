@@ -297,6 +297,22 @@ body {
 }
 .st-state-error .st-state-title { color: var(--m-error); }
 
+/* ── S-UX-3: focus visibile da tastiera (WCAG 2.4.7) ─────────────────────
+   Anello d'accento solo su :focus-visible (tastiera), mai sul click mouse.
+   Vale per ogni controllo interattivo, inclusi quelli non-<button>
+   (st-name = trigger rinomina, st-card = card lezione) resi tabbabili. */
+.st-ghost:focus-visible,
+.st-primary:focus-visible,
+.st-chip:focus-visible,
+.st-menu-btn:focus-visible,
+.st-indicator-connect:focus-visible,
+.st-name:focus-visible,
+.st-name-input:focus-visible,
+.st-card:focus-visible {
+  outline: 2px solid var(--m-accent);
+  outline-offset: 2px;
+}
+
 /* ── responsive <=768px hamburger menu ───────────────────── */
 .st-menu-btn {
   display: none; /* visibile solo su mobile */

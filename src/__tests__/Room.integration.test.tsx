@@ -1028,3 +1028,119 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     root.unmount()
   })
 })
+
+// ── S-UX-3: accessibilità tastiera e ARIA sui controlli ─────────────
+
+describe("S-UX-3: accessibilità tastiera/ARIA", () => {
+  beforeEach(async () => {
+    delete (window as any).__MAESTRO_TEST__
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReset()
+    vi.mocked(isStudentView).mockReturnValue(false)
+  })
+
+  it("il trigger di rinomina è raggiungibile da tastiera (role=button + tabindex + aria-label) e Enter apre l'input", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "loadMeta").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    let nameEl: Element | null = null
+    await vi.waitFor(() => {
+      nameEl = document.querySelector(".st-name")
+      expect(nameEl).not.toBeNull()
+    }, { timeout: 1000, interval: 10 })
+
+    // Uno <span> cliccabile senza questi attributi è invisibile alla tastiera/SR.
+    expect(nameEl!.getAttribute("role")).toBe("button")
+    expect(nameEl!.getAttribute("tabindex")).toBe("0")
+    expect(nameEl!.getAttribute("aria-label")).toBeTruthy()
+
+    // Kill-test: prima del fix non c'era onKeyDown → Enter non apriva nulla.
+    nameEl!.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }))
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-name-input")).not.toBeNull()
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("il drawer è un dialog con focus management: focus-in all'apertura, Escape chiude e ridà il focus", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    vi.spyOn(store, "listRooms").mockResolvedValue([
+      { v: 1, room: "altra", name: "Algebra Lineare", createdAt: Date.now(), mtime: Date.now() },
+    ])
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    const lezioniBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "lezioni")!
+    // Focus esplicito sul trigger: così il dialog può restituirgli il focus alla chiusura.
+    lezioniBtn.focus()
+    lezioniBtn.click()
+
+    let dialog: Element | null = null
+    await vi.waitFor(() => {
+      dialog = document.querySelector(".st-drawer")
+      expect(dialog).not.toBeNull()
+      expect(document.querySelector(".st-card")).not.toBeNull()
+    }, { timeout: 1000, interval: 10 })
+
+    expect(dialog!.getAttribute("role")).toBe("dialog")
+    expect(dialog!.getAttribute("aria-label")).toBeTruthy()
+    // aria-modal NON dichiarato: senza focus-trap reale sarebbe una bugia per gli AT.
+    expect(dialog!.getAttribute("aria-modal")).toBeNull()
+
+    // Card raggiungibile da tastiera
+    const card = document.querySelector(".st-card")!
+    expect(card.getAttribute("role")).toBe("button")
+    expect(card.getAttribute("tabindex")).toBe("0")
+    expect(card.getAttribute("aria-label")).toMatch(/Algebra Lineare/)
+
+    // All'apertura il focus entra nel dialog (bottone chiudi)
+    const closeBtn = dialog!.querySelector(".st-drawer-close")!
+    await vi.waitFor(() => {
+      expect(document.activeElement).toBe(closeBtn)
+    }, { timeout: 1000, interval: 10 })
+
+    // Escape chiude…
+    dialog!.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }))
+    await vi.waitFor(() => {
+      expect(document.querySelector(".st-drawer")).toBeNull()
+    }, { timeout: 1000, interval: 10 })
+    // …e ridà il focus al trigger (WCAG 2.4.3)
+    expect(document.activeElement).toBe(lezioniBtn)
+
+    root.unmount()
+  })
+
+  it("il bottone media (etichetta breve) espone un aria-label descrittivo", async () => {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    const mediaBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "media")!
+    expect(mediaBtn).toBeDefined()
+    expect(mediaBtn.getAttribute("aria-label")).toMatch(/immagine|pdf/i)
+
+    root.unmount()
+  })
+})
