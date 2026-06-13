@@ -51,6 +51,13 @@ if [ -f "$HOME/.fable_catchup_pending" ] && bash "$HOME/lessonos/bin/acct.sh" pi
   bash "$HOME/maestro-tools/fable-catchup.sh" >> ~/lessonos/hourly.log 2>&1 || true
 fi
 ~/lessonos/bin/hourly-digest.sh >> ~/lessonos/hourly.log 2>&1 || true
+# Ardesia: digest sintetico a Telegram ogni 6h (Andrea via, MacBook spento) — canale curl diretto
+MK="$HOME/.last_tg_digest"; NOWT=$(date +%s); LASTT=$(cat "$MK" 2>/dev/null || echo 0)
+if [ $((NOWT-LASTT)) -ge 21600 ]; then
+  D18="$(head -18 "$HOME/lessonos/DIGEST-latest.md" 2>/dev/null)"
+  bash "$HOME/maestro-tools/notify-telegram.sh" "Digest Ardesia (auto 6h): $D18" >/dev/null 2>&1 || true
+  echo "$NOWT" > "$MK"
+fi
 # HERMES-2 (red-team kimi, idempotente per commit): rivede l'ultimo commit KEPT del repo del tick. Mai bloccante.
 if [ "$repo" = "both" ]; then
   ~/lessonos/bin/adversarial.sh lessonos >> ~/lessonos/hourly.log 2>&1 || true

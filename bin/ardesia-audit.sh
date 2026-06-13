@@ -7,6 +7,7 @@
 export PATH="$HOME/.local/bin:$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
 MODE="${1:-audit}"
 cd "$HOME/lessonos" || exit 1
+[ -f "$HOME/lessonos/STOP" ] && { echo "[audit] STOP attivo, skip"; exit 0; }
 OUTDIR="$HOME/maestro-logs/audit"; mkdir -p "$OUTDIR"
 TS=$(date -u +%Y%m%d-%H%M)
 OUT="$OUTDIR/${TS}-${MODE}.md"

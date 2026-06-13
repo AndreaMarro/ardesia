@@ -45,6 +45,8 @@ for i in $(seq 1 "$N"); do
     else
     printf '| %s | %s | %s | %s | y | noop-fast | orch:pin esaurito (W2-M3, 0 builder) |\n' "$ts" "$i" "$(git rev-parse --short HEAD)" "$bp" >> "$RES"
     echo "[orch] --- iter $i: noop-fast (pin esaurito, W2-M3) ---" | tee -a "$LOG"
+    MKQ="$HOME/.coda_vuota_alert_lessonos"; NW=$(date +%s); LQ=$(cat "$MKQ" 2>/dev/null || echo 0)
+    if [ $((NW-LQ)) -ge 21600 ]; then bash "$HOME/maestro-tools/notify-telegram.sh" "Ardesia: coda lessonos vuota e pin esaurito, il loop e in attesa di un ordine. Da Telegram: pin lessonos <task> per assegnarne uno, oppure coda per lo stato." >/dev/null 2>&1 || true; echo "$NW" > "$MKQ"; fi
     continue
     fi
   fi
