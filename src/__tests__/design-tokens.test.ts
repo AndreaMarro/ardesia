@@ -158,6 +158,16 @@ describe("purge template Vite — index.css e orfani", () => {
     expect(indexCss).not.toMatch(/\b(rgba?|hsla?|oklch|oklab|lab|lch|color-mix|color)\s*\(/)
   })
 
+  it("nessun font-size sotto il floor della scala (--m-fs-2xs = 11px)", () => {
+    // S-UX-1: testo UI sotto-scala = rottura di coerenza tipografica.
+    // Le dichiarazioni font-size in px DEVONO stare >= 11px; il testo di scala
+    // passa dai token --m-fs-*. (Il campo math, sopra-scala, resta in px.)
+    const subScale = [...indexCss.matchAll(/font-size:\s*(\d+(?:\.\d+)?)px/g)]
+      .map((m) => Number(m[1]))
+      .filter((px) => px < 11)
+    expect(subScale).toEqual([])
+  })
+
   it("il blocco dark-mode del template è sparito", () => {
     expect(indexCss).not.toMatch(/prefers-color-scheme/)
     expect(indexCss).not.toMatch(/color-scheme/)

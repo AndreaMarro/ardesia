@@ -286,12 +286,12 @@ body {
   /* header: brand meno ingombrante */
   .st-word { font-size: var(--m-fs-lg); }
   .st-sub { display: none; }
-  .st-room { font-size: 10px; }
+  .st-room { font-size: var(--m-fs-2xs); }
   .st-name { max-width: 120px; font-size: var(--m-fs-xs); }
   .st-name-text { max-width: 100px; }
   .st-status .st-indicator { max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .st-err { max-width: 100px; }
-  .st-quiet { font-size: 10px; }
+  .st-quiet { font-size: var(--m-fs-2xs); }
 
   /* hamburger visibile, toolbar nascosta */
   .st-menu-btn { display: inline-flex; align-items: center; }
