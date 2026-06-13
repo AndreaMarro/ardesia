@@ -328,3 +328,23 @@ def test_erase_lesson_removes_wiki_file_and_spares_others(tmp_path: FsPath) -> N
     # Idempotent including the missing wiki file.
     assert erase_lesson(store, "l1", wiki_dir=wiki) == 0
     store.close()
+
+
+def test_erase_lesson_db_only_without_wiki_dir() -> None:
+    """GDPR erasure with no *wiki_dir*: DB-only purge, no filesystem touch.
+
+    The default ``wiki_dir=None`` call shape (the common erasure path) was
+    exercised by no test: it must skip the unlink branch entirely and return
+    just the DB row count. Pins ``if wiki_dir is not None`` — drop it and
+    ``Path(None)`` would raise.
+    """
+    store = SQLiteStore()
+    store.save_path(Path(path_id="p1", title="P", subject="s",
+                         lesson_ids=("l1",)))
+    _populate_lesson(store, "l1", "p1")
+
+    deleted = erase_lesson(store, "l1")  # wiki_dir omitted -> None
+    assert deleted == 9  # DB items only, no wiki file counted
+    _assert_no_trace(store, "l1")
+    assert erase_lesson(store, "l1") == 0  # idempotent
+    store.close()
