@@ -76,6 +76,9 @@ class TestSplitSentences:
     def test_sentence_ending_variants(self):
         text = "Dott. Rossi ha detto: ecco. Il sig. Bianchi? Sì."
         result = _split_sentences(text)
+        # NOTE: _split_sentences has no abbreviation guard, so it currently
+        # splits after "Dott." and "sig." (treating them as boundaries). This
+        # pins the CURRENT behavior; adding abbreviation handling would change it.
         assert result == ["Dott.", "Rossi ha detto: ecco.", "Il sig.", "Bianchi?", "Sì."]
 
     def test_no_sentence_boundary_returns_single(self):
@@ -369,7 +372,7 @@ class TestEdgeCases:
         """Very long text without sentence breaks."""
         text = "parola " * 500  # ~3000 chars
         result = chunk_raw_text(text, max_chars=400)
-        assert len(result.items) == 9  # 3000/400 = 7.5
+        assert len(result.items) == 9  # word-aligned hard-split: 7-char tokens don't divide 400 evenly
         for item in result.items:
             assert len(item.text) <= 410  # slight overflow from word-alignment OK
 
