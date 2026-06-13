@@ -708,5 +708,7 @@ Risultati:
 
 - **2026-06-13 — ⏸️ LESSONOS-NOOP #N+3: M2 completo (1720/0), ROADMAP-AUTO vuota, pin M3 assente, nulla cambiato → fermato.**
  ORIENT: HEAD 695e6e8 (doc commit, codice invariato). Gate 1720 passed / 2 skipped / 0 failed — VERDE. check-frictions: 21/21, 0 warning. Nessuna modifica al codice dall'ultimo NOOP. ROADMAP-AUTO per lessonos ancora vuota. CLAUDE-SAYS nessun pin M3. promote_pin sempre bloccato (riga M2-7 non marcata ESAURITO). Stewardship gia eseguita. Nessuna build. cost_usd: ~$0.
-- **2026-06-12 23:53 — NOOP #N+4: M2 completo (1720/0), ROADMAP-AUTO per lessonos vuota, pin M3 assente, stewardship già fatta → stop.**
+|- **2026-06-12 23:53 — NOOP #N+4: M2 completo (1720/0), ROADMAP-AUTO per lessonos vuota, pin M3 assente, stewardship già fatta → stop.**
   ORIENT: HEAD 74ca71e (doc NOOP #N+3). Gate 1720/0 VERDE (ri-verificato ORA). COORD.md PROSSIMA TASK riga 16: M2-7 (stale). check-frictions 21/21, 0 warning. Stash rescue: tutti ≪ 1720. Nessuna modifica al codice dall'ultima iterazione. ROADMAP-AUTO empty. CLAUDE-SAYS: nessun pin M3 lessonos dal 2026-06-12. promote_pin: pin M2-7 non marcato ESAURITO → non promuove. Stewardship già eseguita. AGENTS.md §3: stop. cost_usd: ~$0 (gate + frictions + lettura).
+- **2026-06-13 — ⏸️ NOOP #N+5: M2 completo (1720/0 VERDE), ROADMAP-AUTO vuota, pin M3 assente, unchanged → stop.**
+  ORIENT: HEAD e223381 (auto/main). Gate 1720/2/0 VERDE (ri-verificato). COORD § PROSSIMA TASK: M2-7 stale (done 20:59 12/06). ROADMAP-AUTO: empty lessonos. CLAUDE-SAYS: no M3 pin since 2026-06-12 22:50. check-frictions: 21/21 0 warning. promote_pin: pin non-ESAURITO bloccato. Stash: non pertinenti. Stewardship già eseguita (RETRO #10). AGENTS §3: stop. NEEDS-CLAUDE non ciclato (identico). cost_usd: ~$0.
