@@ -17,9 +17,15 @@ import pytest
 from lessonos.graph.grounding import (
     MAX_UNVERIFIED_RATIO,
     assert_grounding_threshold,
+    claim_badge,
     grounding_ratio,
     is_verified_excerpt,
 )
+
+# Badge code points (frozen contract — renderers depend on these exact glyphs).
+_VERIFIED = "✅"  # ✅
+_REPAIRED = "\U0001f527"  # 🔧
+_UNVERIFIED = "✗"  # ✗
 
 
 class TestIsVerifiedExcerpt:
@@ -79,3 +85,46 @@ class TestAssertGroundingThreshold:
 
     def test_threshold_constant_is_twenty_percent(self) -> None:
         assert MAX_UNVERIFIED_RATIO == 0.20
+
+
+class TestClaimBadge:
+    """Direct contract for ``claim_badge`` (M2-3 R1 per-claim badge).
+
+    Four renderers (dispensa, summarizer, teacher_book, obsidian_vault) call
+    this to label each claim. None of them passes ``dropped=True``, so the
+    drop branch and its precedence over ``repaired`` were exercised by no
+    test or caller — the exact silent-mislabel class behind the false-verde.
+    These tests pin the precedence ``dropped > repaired > verified`` and the
+    glyph mapping so a renderer can never present an unverified claim as ✅.
+    """
+
+    def test_verified_excerpt_is_check(self) -> None:
+        assert claim_badge("rate of change") == _VERIFIED
+
+    def test_absent_excerpt_is_cross(self) -> None:
+        assert claim_badge(None) == _UNVERIFIED
+
+    def test_empty_excerpt_is_cross(self) -> None:
+        assert claim_badge("") == _UNVERIFIED
+
+    def test_repaired_is_wrench_even_with_excerpt(self) -> None:
+        assert claim_badge("quoted", repaired=True) == _REPAIRED
+
+    def test_repaired_beats_verified(self) -> None:
+        # A present excerpt would be ✅, but a repaired flag downgrades it to 🔧.
+        assert claim_badge("quoted", repaired=False) == _VERIFIED
+        assert claim_badge("quoted", repaired=True) == _REPAIRED
+
+    def test_dropped_is_cross_even_with_excerpt(self) -> None:
+        assert claim_badge("quoted", dropped=True) == _UNVERIFIED
+
+    def test_dropped_beats_repaired(self) -> None:
+        # Precedence: a dropped claim is ✗ even when also flagged repaired.
+        assert claim_badge("quoted", repaired=True, dropped=True) == _UNVERIFIED
+
+    def test_dropped_beats_verified(self) -> None:
+        assert claim_badge("quoted", repaired=False, dropped=True) == _UNVERIFIED
+
+    def test_three_glyphs_are_distinct(self) -> None:
+        # Guards against a copy-paste collapse of two states onto one glyph.
+        assert len({_VERIFIED, _REPAIRED, _UNVERIFIED}) == 3
