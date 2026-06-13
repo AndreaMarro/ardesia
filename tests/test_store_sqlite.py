@@ -330,21 +330,29 @@ def test_erase_lesson_removes_wiki_file_and_spares_others(tmp_path: FsPath) -> N
     store.close()
 
 
-def test_erase_lesson_db_only_without_wiki_dir() -> None:
-    """GDPR erasure with no *wiki_dir*: DB-only purge, no filesystem touch.
+def test_erase_lesson_db_only_without_wiki_dir(tmp_path: FsPath) -> None:
+    """GDPR erasure with no *wiki_dir*: DB-only purge, filesystem untouched.
 
     The default ``wiki_dir=None`` call shape (the common erasure path) was
-    exercised by no test: it must skip the unlink branch entirely and return
-    just the DB row count. Pins ``if wiki_dir is not None`` — drop it and
-    ``Path(None)`` would raise.
+    exercised by no test: it must skip the unlink branch entirely. We place a
+    same-named ``l1.md`` on disk and confirm it SURVIVES — proving the None
+    path never reaches the filesystem (not merely that it doesn't crash).
+    Pins ``if wiki_dir is not None`` — drop it and ``Path(None)`` would raise.
     """
     store = SQLiteStore()
     store.save_path(Path(path_id="p1", title="P", subject="s",
                          lesson_ids=("l1",)))
     _populate_lesson(store, "l1", "p1")
+    # A wiki file that erase_lesson WOULD delete if it touched the filesystem.
+    bystander = tmp_path / "l1.md"
+    bystander.write_text("# riepilogo l1")
 
     deleted = erase_lesson(store, "l1")  # wiki_dir omitted -> None
-    assert deleted == 9  # DB items only, no wiki file counted
+
+    # Sibling test asserts 10 (== 9 DB + 1 wiki file). Here, with no wiki_dir,
+    # the count is 9: the file is NOT counted and NOT deleted.
+    assert deleted == 9
+    assert bystander.exists()  # filesystem NOT touched on the None path
     _assert_no_trace(store, "l1")
     assert erase_lesson(store, "l1") == 0  # idempotent
     store.close()

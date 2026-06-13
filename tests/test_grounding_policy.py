@@ -22,10 +22,11 @@ from lessonos.graph.grounding import (
     is_verified_excerpt,
 )
 
-# Badge code points (frozen contract — renderers depend on these exact glyphs).
-_VERIFIED = "✅"  # ✅
+# Expected badge glyphs. Compared against the live ``claim_badge`` return, so a
+# change to a production glyph (or a state collapsing onto the wrong one) fails.
+_VERIFIED = "✅"
 _REPAIRED = "\U0001f527"  # 🔧
-_UNVERIFIED = "✗"  # ✗
+_UNVERIFIED = "✗"
 
 
 class TestIsVerifiedExcerpt:
@@ -125,6 +126,12 @@ class TestClaimBadge:
     def test_dropped_beats_verified(self) -> None:
         assert claim_badge("quoted", repaired=False, dropped=True) == _UNVERIFIED
 
-    def test_three_glyphs_are_distinct(self) -> None:
-        # Guards against a copy-paste collapse of two states onto one glyph.
-        assert len({_VERIFIED, _REPAIRED, _UNVERIFIED}) == 3
+    def test_three_states_map_to_distinct_glyphs(self) -> None:
+        # Calls the production function for each state — guards against a
+        # collapse of two states onto one glyph (not a literal-only check).
+        badges = {
+            claim_badge("quoted"),                 # verified
+            claim_badge("quoted", repaired=True),  # repaired
+            claim_badge("quoted", dropped=True),   # unverified
+        }
+        assert len(badges) == 3
