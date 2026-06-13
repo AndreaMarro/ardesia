@@ -741,3 +741,14 @@ Risultati:
   - NEEDS-CLAUDE: 4 entry marcate ✅ TRIAGATO + esito con prova (file:line). Commit 1ec72b7.
   - cost_usd: ~$0 (gate + lettura + ZERO LLM).
   - Next: pin M2-8 (testo COORD:16) elenca commit già chiusi → eseguo promote_pin.py. Code findings 2026-06-10 esauriti; coda lessonos vuota dopo questo.
+
+## M2-8 (cont.) — triage H2 ee9c76c (route-layer ardesia) — 2026-06-13T04:41Z — commit 080922b
+- Pin M2-8 (COORD:16) elencava 5 commit già ✅ triagati (M2-1→M2-8 precedenti) → quella parte ESAURITA. Ma il report H2 NUOVO `20260613-0427-lessonos-ee9c76c.md` era ancora 'leggere e decidere' in NEEDS-CLAUDE → rientra nel testo M2-8 ("OGNI report HERMES-2 lessonos ancora 'leggere e decidere'"). Triagato.
+- **VERIFICATO** (gate 1726/0 VERDE, era 1720, +6):
+  - CRITICO `bin/route.sh:11` `. "$OV"` = RCE da override Telegram-writable. Repro REALE: override con `touch $CANARY` → file creato sullo script pre-fix (VULN CONFIRMED). FIXATO: parser whitelist (no `source`), solo `ROUTE_<NOME>="<valore>"` con NOME [A-Z_]+ e valore [A-Za-z0-9 ._-]; ogni riga-codice ignorata. Validazione ROLE [A-Z_]+ prima dell'indirection `${!_var}`. Portabile bash 3.2 (no array assoc — il primo tentativo con `declare -A` dava routing vuoto su /bin/bash 3.2.57).
+  - Finding2 (`${!var}` con ROLE sporco → esegue `;`/`${!}`=PID): FALSO POSITIVO provato (espande a vuoto, zero esecuzione).
+  - Finding3 (fallback pick-build-model senza filtro `claude-*`): FALSO POSITIVO provato (il `case claude-*` è dentro `for m in $LADDER`, copre il fallback — dimostrato).
+  - NOTA newline routes.env: già a posto (file termina con `\n`).
+- 6 test in `tests/test_route_security.py` (in-gate, pytest): iniezione/cmd-subst/override-vince/routes-env/ROLE-malformato/unknown-role. Non-tautologici: rebuild dello script pre-fix → canary creato → `test_malicious_override_is_not_executed` fallisce sul bug originale.
+- SELF-ADV: trovati 0, fixati 0 (subagente avversario su diff: ~20 payload — cmd-sub, CRLF-smuggling, `printf -v` name-injection, key-clobber `_ROUTE_PATH`, BASH_REMATCH-leak — tutti inerti; tests confermati non-tautologici).
+- cost_usd: ~$0.02 (gate + 1 subagente review locale).
