@@ -23,7 +23,7 @@ from lessonos.capsule.extraction import (
 from lessonos.capsule.segmentation import TopicSpan
 from lessonos.graph.builder import build_lesson_graph
 from lessonos.graph.writer import GraphWriter, write_capsule_graph
-from lessonos.models.entities import GraphEvidence, Segment
+from lessonos.models.entities import GraphEdge, GraphEvidence, Segment
 from lessonos.store.sqlite import SQLiteStore
 
 # Fixture segment texts — must be long enough for real-substring excerpts
@@ -453,6 +453,119 @@ class TestGroundingInvariants:
         assert len(store.get_graph_nodes_for_lesson("l1")) == 2
         assert len(store.get_graph_edges_for_lesson("l1")) == 1
         assert len(store.get_all_evidence_for_lesson("l1")) == 1
+
+
+# ===================================================================
+# Defensive branches in evidence collection (grounding writer guards)
+# ===================================================================
+
+
+class TestCollectEvidenceDefensiveBranches:
+    """Cover the guard branches in _collect_evidence and its citation helpers.
+
+    These edges/targets never arise from ``build_lesson_graph`` on a single
+    capsule (it emits only ``explains``/``assigned_in`` with well-formed
+    targets), so they are exercised by calling the helpers directly. They are
+    real contracts: a path-level edge type or a malformed/out-of-range target
+    must yield NO evidence rather than crash.
+    """
+
+    def test_non_evidence_edge_type_yields_no_evidence(self, store: SQLiteStore):
+        """An edge that is neither explains nor assigned_in collects no evidence."""
+        capsule = _make_capsule(concept_names=["Derivative"])
+        writer = GraphWriter(store)
+        # target is a VALID concept node: if the edge-type guard regressed and
+        # fell through to the concept path, this would collect evidence — so the
+        # empty result genuinely pins the "no evidence for other types" branch.
+        edge = GraphEdge(
+            edge_id="l1-depends_on->l1:concept:0",
+            source="l1",
+            target="l1:concept:0",
+            edge_type="depends_on",
+        )
+        assert writer._collect_evidence(capsule, edge) == []
+
+    def test_concept_target_without_concept_suffix(self, store: SQLiteStore):
+        """A target lacking the ``:concept:N`` suffix resolves to no citations."""
+        capsule = _make_capsule(concept_names=["Derivative"])
+        writer = GraphWriter(store)
+        edge = GraphEdge(
+            edge_id="l1-explains->l1",
+            source="l1",
+            target="l1",  # bare lesson node, no :concept:N
+            edge_type="explains",
+        )
+        assert writer._citations_for_concept(capsule, edge) == ()
+
+    def test_concept_index_out_of_range(self, store: SQLiteStore):
+        """A concept index beyond the capsule's concepts resolves to no citations."""
+        capsule = _make_capsule(concept_names=["Derivative"])  # only index 0 exists
+        writer = GraphWriter(store)
+        edge = GraphEdge(
+            edge_id="l1-explains->l1:concept:99",
+            source="l1",
+            target="l1:concept:99",
+            edge_type="explains",
+        )
+        assert writer._citations_for_concept(capsule, edge) == ()
+
+    def test_exercise_target_without_exercise_suffix(self, store: SQLiteStore):
+        """A target lacking the ``:exercise:N`` suffix resolves to no citations."""
+        capsule = _make_capsule(
+            concept_names=["Derivative"], exercise_prompts=["Solve"]
+        )
+        writer = GraphWriter(store)
+        edge = GraphEdge(
+            edge_id="l1-assigned_in->l1",
+            source="l1",
+            target="l1",  # no :exercise:N
+            edge_type="assigned_in",
+        )
+        assert writer._citations_for_exercise(capsule, edge) == ()
+
+    def test_exercise_index_out_of_range(self, store: SQLiteStore):
+        """An exercise index beyond the capsule's exercises resolves to no citations."""
+        capsule = _make_capsule(
+            concept_names=["Derivative"], exercise_prompts=["Solve"]
+        )  # only exercise index 0 exists
+        writer = GraphWriter(store)
+        edge = GraphEdge(
+            edge_id="l1-assigned_in->l1:exercise:99",
+            source="l1",
+            target="l1:exercise:99",
+            edge_type="assigned_in",
+        )
+        assert writer._citations_for_exercise(capsule, edge) == ()
+
+    def test_citation_without_excerpt_stored_as_none(self, store: SQLiteStore):
+        """A concept citation with excerpt=None is written as evidence with None.
+
+        ``verify_citation`` skips the substring check when excerpt is None
+        (grounding.py:57), so the writer projects the evidence row keeping the
+        seg_id pointer and a None excerpt. The downstream acceptance gate
+        (``assert_grounding_threshold``) — not the writer — judges it unverified.
+        """
+        content = LessonContent(
+            lesson_id="l1",
+            concepts=(
+                ConceptExtraction(
+                    name="NoExcerptConcept",
+                    status="introduced",
+                    citations=(Citation(seg_id="l1#s0", excerpt=None, confidence=0.5),),
+                ),
+            ),
+            exercises=(),
+            student_questions=(),
+            homework=(),
+        )
+        capsule = LessonCapsule(lesson_id="l1", timeline=(), content=content)
+        writer = GraphWriter(store)
+        writer.write_capsule_graph(capsule)
+
+        all_evidence = store.get_all_evidence_for_lesson("l1")
+        assert len(all_evidence) == 1
+        assert all_evidence[0].excerpt is None
+        assert all_evidence[0].seg_id == "l1#s0"
 
 
 # ===================================================================
