@@ -106,5 +106,8 @@ for i in $(seq 1 "$N"); do
   printf '%s\n%s\n' "$day" "$((dt+1))" > "$CAP_FILE"
   printf '| %s | %s | %s | %s | %s | %s | orch:%s |\n' "$ts" "$i" "$(git rev-parse --short HEAD)" "$ap" "$([ "${ae:-1}" = 0 ] && echo y || echo n)" "$status" "$note" >> "$RES"
   echo "[orch] --- iter $i: $status ($note) ---" | tee -a "$LOG"
+  # Ardesia auto-heal anti-gridlock (13/06): NOOP ripetuto su pin stale -> marca+promuovi; pass -> reset streak
+  if [ "$status" = "blocked/noop" ]; then bash "$HOME/lessonos/bin/autoheal.sh" lessonos >> "$LOG" 2>&1 || true
+  elif [ "$status" = "pass" ]; then rm -f "$HOME/.noop_streak_lessonos"; fi
 done
 echo "[orch] done $(date -u +%FT%TZ)." | tee -a "$LOG"
