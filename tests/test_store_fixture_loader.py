@@ -9,6 +9,10 @@ A dangling reference here would mean the loader fabricated a link.
 
 from __future__ import annotations
 
+import json
+
+import pytest
+
 from lessonos.store import SQLiteStore, load_sample_path
 
 
@@ -72,6 +76,46 @@ def test_source_title_is_grounded_in_file_first_line() -> None:
     # Title is taken from the source file, not invented.
     assert source.title == "Calculus Primer (synthetic source — FAKE content for tests)"
     assert source.kind == "text"
+    store.close()
+
+
+def _write_minimal_fixture(root, *, source_body: str) -> None:
+    """One source, zero lessons — isolates the source-title grounding path."""
+    (root / "sources").mkdir(parents=True)
+    (root / "lessons").mkdir()
+    (root / "path.json").write_text(
+        json.dumps(
+            {
+                "path_id": "p1",
+                "title": "T",
+                "subject": "s",
+                "lessons": [],
+                "sources": ["src1"],
+                "synthetic": True,
+            }
+        )
+    )
+    (root / "sources" / "src1.txt").write_text(source_body)
+
+
+def test_empty_source_file_raises_grounding_error(tmp_path) -> None:
+    # An empty source has no first line to ground the title in. The loader must
+    # fail with a clear ValueError, not an opaque IndexError on splitlines()[0].
+    root = tmp_path / "empty"
+    _write_minimal_fixture(root, source_body="")
+    store = SQLiteStore(":memory:")
+    with pytest.raises(ValueError, match="empty or has a blank first"):
+        load_sample_path(store, root)
+    store.close()
+
+
+def test_blank_first_line_source_raises_grounding_error(tmp_path) -> None:
+    # A blank first line would yield an empty (un-grounded) title; reject it.
+    root = tmp_path / "blank"
+    _write_minimal_fixture(root, source_body="\nReal title on line two\n")
+    store = SQLiteStore(":memory:")
+    with pytest.raises(ValueError, match="empty or has a blank first"):
+        load_sample_path(store, root)
     store.close()
 
 

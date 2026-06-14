@@ -29,7 +29,15 @@ def load_sample_path(
     # Sources first: lessons reference them, so they must already exist.
     for source_id in manifest["sources"]:
         src_file = fixture_root / "sources" / f"{source_id}.txt"
-        title = src_file.read_text().splitlines()[0].strip()
+        lines = src_file.read_text().splitlines()
+        # Title is grounded in the file's first line, never invented; an empty
+        # file or a blank first line has no title to ground -> fail loudly.
+        if not lines or not lines[0].strip():
+            raise ValueError(
+                f"source file {src_file.name} is empty or has a blank first "
+                "line; the source title must be grounded in the file"
+            )
+        title = lines[0].strip()
         store.save_source(Source(source_id=source_id, title=title, kind="text"))
 
     for lesson_id in manifest["lessons"]:
