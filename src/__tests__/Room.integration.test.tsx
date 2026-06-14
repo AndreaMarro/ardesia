@@ -1192,3 +1192,57 @@ describe("S-UX-3: accessibilità tastiera/ARIA", () => {
     root.unmount()
   })
 })
+
+describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coerente, no alert)", () => {
+  async function mountRoomAndGetFileInput() {
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    // Attende il mount di Excalidraw (apiRef impostato dal mock via setTimeout(0)):
+    // handleFile esce subito se apiRef.current è null.
+    let input: HTMLInputElement | undefined
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+      input = document.querySelector('input[type="file"]') as HTMLInputElement
+      expect(input).toBeTruthy()
+    }, { timeout: 1000, interval: 10 })
+    return { root, input: input! }
+  }
+
+  function selectFile(input: HTMLInputElement, file: File) {
+    Object.defineProperty(input, "files", { value: [file], configurable: true })
+    input.dispatchEvent(new Event("change", { bubbles: true }))
+  }
+
+  it("formato non supportato: mostra il chip st-err, non una alert modale", async () => {
+    const { root, input } = await mountRoomAndGetFileInput()
+
+    selectFile(input, new File(["ciao"], "note.txt", { type: "text/plain" }))
+
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err?.textContent).toContain("Formato non supportato")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+
+  it("errore durante l'import (pdfToImages rigetta): risuperficia il messaggio nel chip st-err", async () => {
+    const { pdfToImages } = await import("../loadFile")
+    vi.mocked(pdfToImages).mockRejectedValueOnce(new Error("pdf corrotto"))
+
+    const { root, input } = await mountRoomAndGetFileInput()
+
+    selectFile(input, new File(["%PDF-1.4"], "lez.pdf", { type: "application/pdf" }))
+
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err?.textContent).toContain("Caricamento non riuscito")
+      expect(err?.textContent).toContain("pdf corrotto")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+})

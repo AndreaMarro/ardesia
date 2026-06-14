@@ -427,10 +427,10 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         const h = Math.round(w * (height / width))
         addImages([{ dataURL, mimeType: file.type, width: w, height: h, x: 160, y: 120 }])
       } else {
-        alert("Formato non supportato (usa immagine o PDF).")
+        setStorageError("Formato non supportato (usa immagine o PDF).")
       }
     } catch (err) {
-      alert("Caricamento non riuscito: " + (err as Error).message)
+      setStorageError("Caricamento non riuscito: " + (err as Error).message)
     }
   }
   const shareUrl = studentView
