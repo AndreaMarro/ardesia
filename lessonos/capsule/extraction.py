@@ -158,7 +158,7 @@ class ConceptExtraction:
         if self.status not in CONCEPT_STATUS:
             raise ValueError(
                 f"invalid concept status: {self.status!r} "
-                f"(expected one of {sorted(CONCEPT_STATUS)}"
+                f"(expected one of {sorted(CONCEPT_STATUS)})"
             )
 
 

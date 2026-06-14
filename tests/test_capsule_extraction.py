@@ -168,6 +168,21 @@ def test_invalid_concept_status_is_refused() -> None:
     store.close()
 
 
+def test_invalid_concept_status_message_is_well_formed() -> None:
+    """The validation error must render with balanced parentheses.
+
+    Regression guard: the '(expected one of ...)' hint had a missing closing
+    paren, unlike the five sibling validators (entities.py, atoms.py). Assert
+    structure, not wording, so the test survives copy changes.
+    """
+    with pytest.raises(ValueError) as exc:
+        ConceptExtraction(name="Derivata", status="bogus")
+    msg = str(exc.value)
+    assert msg.count("(") == msg.count(")")
+    assert "expected one of" in msg
+    assert msg.rstrip().endswith(")")
+
+
 def test_concept_missing_name_is_refused() -> None:
     store = SQLiteStore()
     ingest_lesson_segments(store, L1)
