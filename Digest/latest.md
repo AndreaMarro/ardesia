@@ -1,6 +1,6 @@
-🤖 LessonOS — Sun 14/06 01:10
+🤖 LessonOS — Sun 14/06 07:09
 gate: {"passed":1766,"failed":0,"exit":0}  |  auto/main: 0eb53e5  main(rev): e42db25
-costo stimato oggi: $0.070  |  iter oggi: 38/96
+costo stimato oggi: $0.000  |  iter oggi: 0/96
 
 — ultime 3 iterazioni —
   2026-06-07T16:34:38Z   1   6d8c13a   235   y   REVERT   orch:gate rosso/regresso (exit=0 passed 246->235; 227s) -> reset  
