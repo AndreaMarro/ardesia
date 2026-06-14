@@ -438,10 +438,15 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     : `${location.origin}${location.pathname}?vista=studente#${room}`
 
   function copyLink() {
-    navigator.clipboard?.writeText(shareUrl).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    })
+    navigator.clipboard?.writeText(shareUrl).then(
+      () => {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1500)
+      },
+      (err) => {
+        setStorageError("Copia del link non riuscita: " + (err as Error).message)
+      },
+    )
   }
 
   return recapView ? (

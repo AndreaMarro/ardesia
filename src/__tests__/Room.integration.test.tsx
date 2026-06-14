@@ -743,6 +743,55 @@ describe("S-DESIGN-5: Vista studente (?vista=studente)", () => {
     }
   })
 
+  it("invita studente: se la copia clipboard fallisce, mostra l'errore e non segna 'copiato'", async () => {
+    const { isStudentView } = await import("../store/studentView")
+    vi.mocked(isStudentView).mockReturnValue(false)
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+
+    const writeText = vi.fn((_text: string) =>
+      Promise.reject(new Error("permesso negato")),
+    )
+    const originalClipboard = Object.getOwnPropertyDescriptor(navigator, "clipboard")
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText },
+      configurable: true,
+    })
+
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    let inviteBtn: HTMLButtonElement | undefined
+    await vi.waitFor(() => {
+      inviteBtn = Array.from(document.querySelectorAll("button"))
+        .find((b) => b.textContent?.trim() === "invita studente")
+      expect(inviteBtn).toBeDefined()
+    }, { timeout: 1000, interval: 10 })
+
+    inviteBtn!.click()
+
+    // La reiezione di writeText viene risuperficiata come errore, non ingoiata.
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err?.textContent).toContain("Copia del link non riuscita")
+      expect(err?.textContent).toContain("permesso negato")
+    }, { timeout: 1000, interval: 10 })
+    // Su fallimento il bottone NON deve passare a 'copiato'.
+    expect(
+      Array.from(document.querySelectorAll("button")).some(
+        (b) => b.textContent?.trim() === "copiato",
+      ),
+    ).toBe(false)
+
+    root.unmount()
+    if (originalClipboard) {
+      Object.defineProperty(navigator, "clipboard", originalClipboard)
+    } else {
+      delete (navigator as any).clipboard
+    }
+  })
+
   it("vista studente: onChange non è cablato (nessun persist dal browser dello studente)", async () => {
     const { store } = await createMockStore()
     const sceneData = {
