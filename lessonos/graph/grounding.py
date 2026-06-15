@@ -81,9 +81,13 @@ def is_verified_excerpt(excerpt: str | None) -> bool:
     """True iff *excerpt* is a non-empty, verbatim-grounding excerpt.
 
     A present excerpt means the citation genuinely quotes its segment; an
-    absent/empty excerpt means it quotes nothing and is unverified.
+    absent/empty/whitespace-only excerpt means it quotes nothing and is
+    unverified. Whitespace-only is treated as empty: a blank run is a
+    substring of most segment text, so it would slip past ``verify_citation``
+    yet quotes nothing (the same false-verde guarded at the extraction entry,
+    closed here at the canonical policy primitive — matches dispensa.py:608).
     """
-    return excerpt is not None and excerpt != ""
+    return excerpt is not None and excerpt.strip() != ""
 
 
 def claim_badge(

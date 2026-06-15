@@ -39,6 +39,13 @@ class TestIsVerifiedExcerpt:
     def test_empty_excerpt_unverified(self) -> None:
         assert is_verified_excerpt("") is False
 
+    @pytest.mark.parametrize("blank", ["   ", "\t", "\n", " \t\n ", " "])
+    def test_whitespace_only_excerpt_unverified(self, blank: str) -> None:
+        # A blank run quotes nothing yet is a substring of most segment text,
+        # so it passes verify_citation; the policy primitive must still reject
+        # it. Without the .strip() in is_verified_excerpt this returns True.
+        assert is_verified_excerpt(blank) is False
+
 
 class TestGroundingRatio:
     def test_empty_is_zero(self) -> None:
