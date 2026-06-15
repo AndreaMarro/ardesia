@@ -54,7 +54,14 @@ vi.mock("@excalidraw/excalidraw", () => {
 })
 
 vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
-vi.mock("../MathComposer", () => ({ default: () => "mock-math-composer" }))
+// Cattura onInsert per esercitare Room.insertMath (il composer vero e' pesante).
+let capturedOnInsert: ((latex: string) => void) | null = null
+vi.mock("../MathComposer", () => ({
+  default: (props: { onInsert: (latex: string) => void }) => {
+    capturedOnInsert = props.onInsert
+    return "mock-math-composer"
+  },
+}))
 vi.mock("../latexToImage", () => ({ latexToImage: vi.fn() }))
 vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() }))
 vi.mock("../store/studentView", () => ({ isStudentView: vi.fn(() => false) }))
@@ -1241,6 +1248,44 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Caricamento non riuscito")
       expect(err?.textContent).toContain("pdf corrotto")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+})
+
+describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offline = supportato)", () => {
+  it("latexToImage rigetta (CDN MathJax giu): risuperficia il messaggio nel chip st-err", async () => {
+    capturedOnInsert = null
+    const { latexToImage } = await import("../latexToImage")
+    vi.mocked(latexToImage).mockRejectedValueOnce(new Error("MathJax CDN load failed"))
+
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    // apiRef impostato dopo il mount di Excalidraw; insertMath esce subito se null.
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    // Apre il composer (bottone "formula") -> il mock cattura onInsert=insertMath
+    const formulaBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "formula")!
+    formulaBtn.click()
+
+    await vi.waitFor(() => {
+      expect(capturedOnInsert).toBeTypeOf("function")
+    }, { timeout: 1000, interval: 10 })
+
+    capturedOnInsert!("x^2")
+
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err?.textContent).toContain("Inserimento formula non riuscito")
+      expect(err?.textContent).toContain("MathJax CDN load failed")
     }, { timeout: 1000, interval: 10 })
 
     root.unmount()

@@ -400,9 +400,13 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
 
   async function insertMath(latex: string) {
     if (!apiRef.current || !latex.trim()) return
-    const { dataURL, width, height } = await latexToImage(latex)
-    addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
-    journalRef.current?.recordMathInsert(latex)
+    try {
+      const { dataURL, width, height } = await latexToImage(latex)
+      addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
+      journalRef.current?.recordMathInsert(latex)
+    } catch (err) {
+      setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
+    }
   }
 
   async function handleFile(e: ChangeEvent<HTMLInputElement>) {
