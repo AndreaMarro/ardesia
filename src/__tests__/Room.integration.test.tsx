@@ -1254,6 +1254,34 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   })
 })
 
+describe("toggleAudio: il microfono negato usa il chip d'errore invece di spegnersi muto", () => {
+  it("getUserMedia non disponibile (permesso negato): risuperficia nel chip st-err", async () => {
+    // jsdom non espone navigator.mediaDevices.getUserMedia -> AudioRecorder.start()
+    // cattura il fallimento e azzera consent: e' esattamente il path permesso-negato.
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+
+    await vi.waitFor(() => {
+      expect(document.body.textContent).toContain("mock-excalidraw")
+    }, { timeout: 1000, interval: 10 })
+
+    const audioBtn = Array.from(document.querySelectorAll("button"))
+      .find((b) => b.textContent?.trim() === "audio")!
+    expect(audioBtn).toBeDefined()
+    audioBtn.click()
+
+    await vi.waitFor(() => {
+      const err = document.querySelector(".st-err")
+      expect(err?.textContent).toContain("Microfono non disponibile")
+    }, { timeout: 1000, interval: 10 })
+
+    root.unmount()
+  })
+})
+
 describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offline = supportato)", () => {
   it("latexToImage rigetta (CDN MathJax giu): risuperficia il messaggio nel chip st-err", async () => {
     capturedOnInsert = null

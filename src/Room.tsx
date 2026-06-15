@@ -313,9 +313,14 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       setAudioOn(true)
       ar.start().then(() => {
         setAudioRecording(ar.recording)
-        // Se start fallisce (permesso negato), reset stato
+        // start() inghiotte il fallimento getUserMedia (azzera consent); se la
+        // registrazione non parte resetta lo stato e — come ogni altra azione
+        // async — segnala il microfono negato invece di spegnersi in silenzio.
         if (!ar.recording) {
           setAudioOn(false)
+          if (!ar.consent) {
+            setStorageError("Microfono non disponibile: consenti l'accesso per registrare.")
+          }
         }
       })
     }
