@@ -422,6 +422,96 @@ class TestEvalMetrics:
         assert ok is True, f"null excerpts should pass: {detail}"
         assert "0 excerpts" in detail
 
+    def test_excerpt_accuracy_skips_empty_excerpts(self) -> None:
+        """Citation excerpt="" is SKIPPED, not counted as a match (false-verde).
+
+        `"" in seg_text` is always True, so an empty excerpt would otherwise be
+        scored as a perfect verbatim match (matching=1/1, "all excerpts match"),
+        inflating citation_excerpt_accuracy. Per T6R an empty excerpt quotes
+        nothing and is unverified: it must be skipped like excerpt=None.
+        """
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_citation_excerpt_accuracy_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=10, text="Qualunque testo."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "t", ("s1",), 0, 10),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="x", status="introduced",
+                        citations=(Citation(seg_id="s1", excerpt=""),),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_citation_excerpt_accuracy_metric(store)
+        ok, detail = metric.check(capsule)
+        # Empty excerpt skipped: nothing checked, NOT counted as a 1/1 match.
+        # Pre-fix this returned "score=1.00 (1/1) — all excerpts match".
+        assert "0 excerpts" in detail, (
+            f"empty excerpt must be skipped, not scored as a match: {detail}"
+        )
+        assert ok is True
+
+    def test_excerpt_accuracy_blank_does_not_inflate_score(self) -> None:
+        """Blank excerpts (empty AND whitespace-only) must not pad the matching
+        count alongside a real mismatch: score reflects only genuine excerpts.
+
+        The segment text contains a double-space run, so a whitespace-only
+        excerpt IS a substring of it — exactly the case that would otherwise be
+        mis-scored as a verbatim match.
+        """
+        from lessonos.capsule.extraction import Citation
+        from lessonos.capsule.segmentation import TopicSpan
+        from lessonos.capsule.assembly import LessonCapsule
+        from lessonos.capsule.extraction import (
+            ConceptExtraction, LessonContent,
+        )
+        from lessonos.models.entities import Segment
+        from lessonos.store.sqlite import SQLiteStore
+        from lessonos.eval.metrics import build_citation_excerpt_accuracy_metric
+
+        store = SQLiteStore(":memory:")
+        store.save_segment(Segment(seg_id="s1", lesson_id="l1", start=0, end=25, text="Il  concetto di derivata."))
+
+        capsule = LessonCapsule(
+            lesson_id="l1",
+            timeline=(TopicSpan("l1", "t", ("s1",), 0, 25),),
+            content=LessonContent(
+                lesson_id="l1",
+                concepts=(
+                    ConceptExtraction(
+                        name="x", status="introduced",
+                        citations=(
+                            Citation(seg_id="s1", excerpt=""),
+                            Citation(seg_id="s1", excerpt="  "),
+                            Citation(seg_id="s1", excerpt="non presente"),
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+        metric = build_citation_excerpt_accuracy_metric(store)
+        ok, detail = metric.check(capsule)
+        assert ok is False
+        # Only the real mismatch is counted (0/1); both blank excerpts skipped.
+        # Pre-fix (no strip) this was "score=0.50 (1/2)" — the "  " padded matching.
+        assert "(0/1)" in detail, f"blank excerpt inflated the score: {detail}"
+
     def test_excerpt_accuracy_case_sensitive(self) -> None:
         """Excerpt matching is case-sensitive — 'Derivata' not in 'derivata'."""
         from lessonos.capsule.extraction import Citation

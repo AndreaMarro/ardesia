@@ -150,9 +150,12 @@ def build_citation_excerpt_accuracy_metric(
 ) -> EvalMetric:
     """Build a metric that checks each Citation.excerpt appears in the source text.
 
-    Score = matching_excerpts / non_null_excerpts. Citations with excerpt=None are
-    skipped (the excerpt is optional per the schema). Only citations that have an
-    excerpt AND a resolved segment are checked.
+    Score = matching_excerpts / non_blank_excerpts. Citations with no excerpt
+    (``None``, ``""`` or whitespace-only) are skipped: per the T6R grounding
+    policy a blank excerpt quotes nothing and is UNVERIFIED, never grounded —
+    counting it as a match would inflate the score (a blank string is a
+    substring of any text). Only citations that have a non-blank excerpt AND a
+    resolved segment are checked.
 
     The metric returns (passed, detail) where passed is True if ALL checked
     excerpts match (score == 1.0 or no excerpts to check).
@@ -168,8 +171,8 @@ def build_citation_excerpt_accuracy_metric(
         mismatches: list[str] = []
 
         for cit in citations:
-            if cit.excerpt is None:
-                continue  # Skipped (excerpt is optional)
+            if not cit.excerpt or not cit.excerpt.strip():
+                continue  # Skipped: blank excerpt (None/""/whitespace) = nothing to verify
             seg_text = _get_segment_text(store, cit.seg_id)
             if seg_text is None:
                 # Groundedness failure is not our job — skip ungrounded citations
