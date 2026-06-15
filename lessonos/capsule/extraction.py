@@ -302,6 +302,13 @@ def extract_lesson_content(
                         f"(not persisted for lesson {lesson_id!r})"
                     )
                 raw_excerpt: str | None = c.get("excerpt")
+                # A blank excerpt quotes nothing: normalise "" / whitespace-only
+                # to None (absent) per the T6R policy. Otherwise the FM1 guard
+                # below treats it as verbatim (a blank run is a substring of most
+                # transcript text), emitting a Citation(excerpt="  ") that is
+                # unverified yet looks "present".
+                if raw_excerpt is not None and raw_excerpt.strip() == "":
+                    raw_excerpt = None
                 repaired: bool = False
                 excerpt: str | None = raw_excerpt
                 # FM1 guard: validate excerpt against verbatim segment text

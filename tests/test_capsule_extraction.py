@@ -385,6 +385,40 @@ def test_completely_invented_excerpt_is_dropped() -> None:
     store.close()
 
 
+@pytest.mark.parametrize("blank", ["", "   ", "\n", "\t "])
+def test_blank_excerpt_normalised_to_none(blank: str) -> None:
+    """A blank excerpt from the LLM (empty OR whitespace-only) must become
+    excerpt=None (absent).
+
+    A blank string is a substring of most transcript text, so the FM1 verbatim
+    guard would pass it untouched and emit Citation(excerpt=blank), which
+    downstream treats as unverified but non-None (the false-verde the eval
+    metric mis-scored). The canonical absent form is None.
+    """
+    store = SQLiteStore()
+    ingest_lesson_segments(store, L1)
+    prompt = build_extraction_prompt(store.segments_for_lesson(L1))
+    payload = {
+        "concepts": [{
+            "name": "derivata",
+            "status": "introduced",
+            "citations": [{"seg_id": "l1s3", "excerpt": blank}],
+        }],
+        "exercises": [],
+        "student_questions": [],
+        "homework": [],
+    }
+    router = _router_returning(prompt, payload)
+
+    content = extract_lesson_content(store, L1, router)
+    cite = content.concepts[0].citations[0]
+
+    assert cite.excerpt is None
+    # Not repaired: an absent excerpt is not a paraphrase to fix.
+    assert cite.excerpt_repaired is False
+    store.close()
+
+
 def test_paraphrased_excerpt_partial_match_keeps_valid_part() -> None:
     """A paraphrased excerpt that partially overlaps should snap to a real substring.
 
