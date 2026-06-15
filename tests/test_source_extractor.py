@@ -324,8 +324,14 @@ class TestExtractEdgeCases:
         pack = extract_source_materials(bad_course)
         assert "broken" in pack.errors
         assert "broken" not in pack.materials
-        # L'errore riportato e' un fallimento di decoding, non un file mancante.
-        assert "codec" in pack.errors["broken"] or "decode" in pack.errors["broken"]
+        # str(UnicodeDecodeError) ha forma stabile in CPython:
+        # "'utf-8' codec can't decode byte 0xXX in position N: ...". Verifico
+        # ENTRAMBI i marcatori (and, non or: l'or mascherava il fallimento di
+        # un singolo ramo) e che NON sia un errore di file mancante: cosi' il
+        # test distingue davvero il ramo UnicodeDecodeError dal ramo OSError.
+        err = pack.errors["broken"]
+        assert "codec" in err and "decode" in err
+        assert "No such file" not in err
 
     def test_unsupported_format(
         self, course_folder: CourseFolder, sample_course_path: Path
