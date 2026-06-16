@@ -160,6 +160,44 @@ def test_self_dependency_is_skipped():
     assert [e for e in edges if e.edge_type == "depends_on"] == []
 
 
+def test_mutual_prerequisites_do_not_raise_cycle():
+    """Denser matching that would close a cycle drops the offending edge.
+
+    'Velocità' (l1) declares prereq 'accelerazione'; 'Accelerazione' (l2)
+    declares prereq 'velocita' (accent dropped). Exact .lower() matched
+    neither cross-edge; canonical matching matches both, which would form a
+    2-cycle and abort the DAG check. The builder must keep the first edge and
+    drop the cycle-closing second one — never raise.
+    """
+    l1 = _capsule(
+        "l1",
+        [
+            ConceptExtraction(
+                name="Velocità",
+                status="introduced",
+                prerequisites=("accelerazione",),
+            )
+        ],
+    )
+    l2 = _capsule(
+        "l2",
+        [
+            ConceptExtraction(
+                name="Accelerazione",
+                status="introduced",
+                prerequisites=("velocita",),
+            )
+        ],
+    )
+    # Must not raise.
+    _nodes, edges = build_path_graph([l1, l2])
+    depends = [e for e in edges if e.edge_type == "depends_on"]
+    # Exactly one of the two mutual edges survives (the first seen).
+    assert len(depends) == 1
+    assert depends[0].source == "l1:concept:0"
+    assert depends[0].target == "l2:concept:0"
+
+
 def test_first_occurrence_wins_for_prereq_target():
     """A repeated concept name resolves the prereq to its FIRST occurrence."""
     l1 = _capsule("l1", [ConceptExtraction(name="Segnale", status="introduced")])

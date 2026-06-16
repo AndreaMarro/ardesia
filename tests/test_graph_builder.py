@@ -235,9 +235,17 @@ class TestBuildPathGraph:
             "confidence": "0.8",
         }
 
-    def test_dag_validation_rejects_cycle(self):
-        """A cycle in the graph raises ValueError."""
-        # l1: A depends_on B, l2: B depends_on A
+    def test_mutual_prerequisites_kept_acyclic_no_raise(self):
+        """Mutual prereqs are kept acyclic by dropping the cycle-closing edge.
+
+        Previously a cycle aborted build_path_graph with ValueError. With
+        denser (canonical) prereq matching that crash would fire on realistic
+        multi-lesson data, so the builder now drops the edge that would close
+        a cycle and keeps the graph a DAG instead of raising.
+        """
+        import networkx as nx
+
+        # l1: A depends_on B, l2: B depends_on A — would form a 2-cycle.
         capsule1 = _make_capsule(
             "l1",
             [{"name": "A", "prerequisites": ["B"]}],
@@ -246,9 +254,19 @@ class TestBuildPathGraph:
             "l2",
             [{"name": "B", "prerequisites": ["A"]}],
         )
-        import pytest
-        with pytest.raises(ValueError, match="cycle"):
-            build_path_graph([capsule1, capsule2])
+        _nodes, edges = build_path_graph([capsule1, capsule2])
+
+        depends = [e for e in edges if e.edge_type == "depends_on"]
+        # Exactly one of the two mutual edges survives (first seen wins).
+        assert len(depends) == 1
+        assert depends[0].source == "l1:concept:0"
+        assert depends[0].target == "l2:concept:0"
+
+        # The resulting graph is a valid DAG.
+        G = nx.DiGraph()
+        for e in edges:
+            G.add_edge(e.source, e.target)
+        assert nx.is_directed_acyclic_graph(G)
 
     def test_no_duplicate_edges(self):
         """Same edge is not added twice."""

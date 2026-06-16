@@ -175,6 +175,15 @@ def build_path_graph(
             if key not in canonical_index:
                 canonical_index[key] = concept_node
 
+    # Accumulate the graph built so far (per-lesson + repeats edges) so each
+    # candidate 'depends_on' edge can be tested for cycle-closure BEFORE it is
+    # added. Denser canonical matching can otherwise produce mutual
+    # prerequisites (A↔B via accent/case variants) the old exact .lower() never
+    # matched — closing a cycle and aborting the run at the DAG check below.
+    G = nx.DiGraph()
+    for edge in all_edges:
+        G.add_edge(edge.source, edge.target)
+
     # Build prerequisite → concept node mapping for 'depends_on' edges
     for lesson_idx, capsule in enumerate(capsules):
         for concept_idx, concept in enumerate(capsule.content.concepts):
@@ -193,6 +202,16 @@ def build_path_graph(
                         # (and would introduce a self-loop / spurious cycle).
                         if prereq_node.node_id == concept_node.node_id:
                             continue
+                        # Skip any edge that would close a cycle: if the
+                        # prerequisite can already reach this concept, adding
+                        # "concept depends_on prereq" makes a cycle. Drop it
+                        # (deterministic: first-seen prereq edge wins).
+                        if G.has_node(prereq_node.node_id) and G.has_node(
+                            concept_node.node_id
+                        ) and nx.has_path(
+                            G, prereq_node.node_id, concept_node.node_id
+                        ):
+                            continue
                         edge_id = (
                             f"{concept_node.node_id}-depends_on->{prereq_node.node_id}"
                         )
@@ -209,11 +228,11 @@ def build_path_graph(
                             )
                             all_edges.append(edge)
                             edge_ids_seen.add(edge_id)
+                            G.add_edge(edge.source, edge.target)
 
-    # Validate DAG property using networkx
-    G = nx.DiGraph()
-    for edge in all_edges:
-        G.add_edge(edge.source, edge.target)
+    # Validate DAG property using networkx (safety net: depends_on edges are
+    # added cycle-safely above, so this guards only against per-lesson/repeats
+    # anomalies).
     if not nx.is_directed_acyclic_graph(G):
         raise ValueError("Path graph contains cycles — not a valid DAG")
 

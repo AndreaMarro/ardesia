@@ -24,11 +24,14 @@ def canonical_match_key(name: str) -> str:
     the LLM emits a prerequisite with a different accent encoding, a missing
     accent, extra spacing, or different case than the concept's own name.
 
-    Accent folding is safe for concept-name matching in this domain because
-    pedagogical concept names are distinctive multi-word noun phrases; the
-    only Italian pairs that differ solely by a final accent are function
-    words (e/è, si/sì, ne/né), never concept names. Tests pin that distinct
-    concepts ("limite"/"limiti") do NOT collapse.
+    Accent folding trades a small false-merge risk for recall. In practice
+    concept names are distinctive multi-word noun phrases, so collisions are
+    rare; the residual risk is stress-position homographs (e.g. ``princìpi``
+    vs ``prìncipi``), which almost never co-occur as STEM concept names. The
+    matching only adds ``depends_on`` edges (it never deletes data) and edges
+    that would close a cycle are dropped downstream, so a stray false merge
+    cannot corrupt the DAG. Tests pin that distinct concepts
+    ("limite"/"limiti") do NOT collapse.
     """
     decomposed = unicodedata.normalize('NFKD', name)
     without_accents = ''.join(c for c in decomposed if not unicodedata.combining(c))
