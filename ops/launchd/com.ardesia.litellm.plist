@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.ardesia.litellm</string>
+  <key>ProgramArguments</key>
+  <array><string>/bin/bash</string><string>/Users/progettibelli/litellm/run-fg.sh</string></array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>/Users/progettibelli/litellm/proxy.log</string>
+  <key>StandardErrorPath</key><string>/Users/progettibelli/litellm/proxy.err</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>HOME</key><string>/Users/progettibelli</string><key>PATH</key><string>/Users/progettibelli/.local/bin:/opt/homebrew/bin:/usr/bin:/bin</string></dict>
+</dict>
+</plist>
