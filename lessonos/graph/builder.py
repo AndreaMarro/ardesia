@@ -122,15 +122,18 @@ def build_path_graph(
                 all_edges.append(edge)
                 edge_ids_seen.add(edge.edge_id)
 
+    # Index nodes by their (unique, deterministic) id once, so the three
+    # cross-lesson passes below resolve a concept node by id in O(1) instead
+    # of scanning all_nodes each time (was O(concepts × nodes)).
+    node_by_id: dict[str, GraphNode] = {n.node_id: n for n in all_nodes}
+
     # Build concept name → list[(lesson_index, concept_node)] mapping
     concept_map: dict[str, list[tuple[int, GraphNode]]] = {}
     for lesson_idx, capsule in enumerate(capsules):
         for concept_idx, concept in enumerate(capsule.content.concepts):
             concept_name = concept.name.lower()
             concept_node_id = f"{capsule.lesson_id}:concept:{concept_idx}"
-            concept_node = next(
-                (n for n in all_nodes if n.node_id == concept_node_id), None
-            )
+            concept_node = node_by_id.get(concept_node_id)
             if concept_node:
                 if concept_name not in concept_map:
                     concept_map[concept_name] = []
@@ -166,9 +169,7 @@ def build_path_graph(
     for lesson_idx, capsule in enumerate(capsules):
         for concept_idx, concept in enumerate(capsule.content.concepts):
             concept_node_id = f"{capsule.lesson_id}:concept:{concept_idx}"
-            concept_node = next(
-                (n for n in all_nodes if n.node_id == concept_node_id), None
-            )
+            concept_node = node_by_id.get(concept_node_id)
             if concept_node is None:
                 continue
             key = canonical_match_key(concept.name)
@@ -188,9 +189,7 @@ def build_path_graph(
     for lesson_idx, capsule in enumerate(capsules):
         for concept_idx, concept in enumerate(capsule.content.concepts):
             concept_node_id = f"{capsule.lesson_id}:concept:{concept_idx}"
-            concept_node = next(
-                (n for n in all_nodes if n.node_id == concept_node_id), None
-            )
+            concept_node = node_by_id.get(concept_node_id)
             if concept_node and concept.prerequisites:
                 for prereq_name in concept.prerequisites:
                     prereq_key = canonical_match_key(prereq_name)
