@@ -49,9 +49,9 @@ for pair in "lessonos:$HOME/lessonos" "studio:$HOME/maestro-studio"; do
   fi
 done
 
-# (3) PRODUCTIVITY
+# (3) PRODUCTIVITY — commit-silenzio (morte totale) + BUILD-STARVATION (16/06: 0 build veri MA lavoro in coda)
 if [ -f "$HOME/lessonos/STOP" ]; then
-  clear_cond productivity
+  clear_cond productivity; clear_cond build-starvation
 else
   lc=$(git -C "$HOME/lessonos" log -1 --format=%ct auto/main 2>/dev/null || echo 0)
   sc=$(git -C "$HOME/maestro-studio" log -1 --format=%ct auto/main 2>/dev/null || echo 0)
@@ -61,6 +61,19 @@ else
     alert productivity "nessun commit lessonos/studio da $((stall/3600))h, no STOP - coda secca / builder morto?"
   else
     clear_cond productivity
+  fi
+  # BUILD-STARVATION: ultimo BUILD VERO (RES status != noop-fast) vecchio MA c'e' lavoro [AUTO-OK] in coda
+  bts=0
+  for f in "$HOME/maestro-logs/RESEARCH-lessonos.md" "$HOME/maestro-logs/RESEARCH-studio.md"; do
+    [ -f "$f" ] || continue
+    t=$(awk -F'|' '$7 !~ /noop-fast/ && $2 ~ /[0-9T:-]+Z/ {gsub(/ /,"",$2); ts=$2} END{print ts}' "$f")
+    if [ -n "$t" ]; then e=$(date -j -u -f "%Y-%m-%dT%H:%M:%SZ" "$t" +%s 2>/dev/null || echo 0); else e=0; fi
+    [ "${e:-0}" -gt "$bts" ] && bts=$e
+  done
+  if grep -qE "^- \[AUTO-OK\] " "$HOME/lessonos/COORDINATION.md" 2>/dev/null && [ "$bts" -gt 0 ] && [ $((now-bts)) -gt 10800 ]; then
+    alert build-starvation "0 build VERI da $(((now-bts)/3600))h MA lavoro [AUTO-OK] in coda - cap esaurito da noop / driver fermo? (bug-class 16/06)"
+  else
+    clear_cond build-starvation
   fi
 fi
 echo "$(date -u +%FT%TZ) deadman ok (liveness age=${age}s)"
