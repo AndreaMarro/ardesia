@@ -4,6 +4,7 @@ import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
+import { lessonSlug } from "./lessonSlug"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
 import { type StorageMode } from "./store/types"
@@ -368,15 +369,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       const a = document.createElement("a")
       a.href = url
       // Usa il nome lezione (slugificato) se disponibile, altrimenti room id
-      const slug = lessonName
-        ? lessonName.toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/-+/g, "-")
-            .replace(/^-|-$/g, "")
-            .slice(0, 48)
-        : room
-      a.download = `lezione-${slug}.lesson`
+      a.download = `lezione-${lessonSlug(lessonName ?? "", room)}.lesson`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
