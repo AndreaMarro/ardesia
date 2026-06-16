@@ -40,7 +40,8 @@ RNF-E geometria sub-pixel (allineamento pin/pitch esatto, fedelta posizioni-reci
 - **Canvas:** tldraw = source-available, $6k/anno commerciale + license-key client-side (kill-switch controllato da tldraw) = RISCHIO strategico per prodotto da vendere. Excalidraw = MIT ma estensibilita limitata (fork per tool custom). Konva/Fabric (MIT) = substrato low-level se costruisci tu. NB lo Studio ARDESIA esiste gia → VERIFICARE su cosa e costruito prima di decidere. In OGNI caso il layer-sandbox-plugin lo costruisci tu.
 - **SDK plugin = modello Figma + OpenAI Apps SDK** (vedi sez. B). CRDT = Yjs (MIT, default). avr8js copre solo AVR (Uno/Mega/Nano) — se i libri usano ESP32/STM32, avr8js non basta.
 
-## E. ⚠️ MOAT — verita brutale (competitive intel, 3° agente)
+## E. ⚠️ MOAT del PLUGIN ELAB-tutor (NON della piattaforma ARDESIA) — verita brutale
+**SCOPE (Andrea 16/06): questo moat e del PLUGIN elab-tutor, NON di ARDESIA-piattaforma. ELAB-tutor = primo PRODOTTO sulla piattaforma; ARDESIA = la PIATTAFORMA (lavagna+ecosistema plugin+method-graph+marketplace) con strategia propria e PIU AMPIA. Il verdetto 'architettura copiabile' vale SOLO per il pitch del plugin, non per la piattaforma. Mai confondere (regola 3-progetti).**
 - **L'architettura "lavagna + plugin LEGO" NON e il moat.** E un gap-feature sottile, copiabile in 6-18 mesi. MakeCode (extension framework, OSS Microsoft) + LTI (tool montabili standard negli LMS) PROVANO gia il pattern a scala. Pitchare "marketplace plugin" come differenziatore invita il rebuttal "Tinkercad/MagicSchool/LTI lo fanno gia".
 - **Moat REALE = il bundle, su 2 gambe commerciali/regolatorie:**
   1. **Layout book-accurate del libro italiano** = gap reale non servito (Tinkercad/Wokwi GENERICI apposta, per scalare). Moat OPERATIVO (relazioni editori + lavoro contenuto), reale per un player focalizzato ma FRAGILE se il mercato si rivela grande (copycat locale veloce).
