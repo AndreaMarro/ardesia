@@ -62,8 +62,12 @@ Il LOOP autonomo macina ENGINE+STUDIO sotto gate (maratona 40min, code piene all
 ## Memoria / architettura
 agentmemory = memoria FABBRICA (ri-popola da import → distilla via LLM capped); mem0 = PRODOTTO (da deployare). claude-mem degradato (no SPOF). Aggiorna SEMPRE SoT + vault + digest TG ad ogni milestone.
 
-## Tooling
-`ssh macmini` · `factory-metrics.py --digest` · `ssh macmini gh ...` · `~/litellm/spend-report.sh` · niente Workflow-bg (SINCRONO) · verifica `file:riga`.
+## Connettori e strumenti (RICORDALI — usa il tool giusto per ogni task)
+- **GitHub — connessione + UTILIZZO VERO**: `gh` AUTENTICATO sul Mini (scopes repo/workflow/read:org/gist) → `ssh macmini gh ...`. Usa GitHub DAVVERO, non solo push: **Issues** (traccia backlog/bug/decisioni notturne), **PR** (ogni cambio gated = branch+PR, MAI auto-merge), **Actions/CI** (leggi/triggera workflow), **release/tag**, **branch-protection** su main/auto-main (antiregressione), code-review via gh. Canale = Mini (MacBook-gh rotto = moot; NO GitHub-MCP in sessione → gh-CLI via Mini). Durabilita = dual-pushurl (commit→bare+github).
+- **Claude in Chrome** (`mcp__Claude_in_Chrome__*`): automazione browser — GitHub-web quando gh non basta, ricerca/lettura docs, verifica siti deployati, flow OAuth (es. gh-auth-MacBook device-flow di Andrea). Link sospetti: apri SOLO via Chrome, verifica URL prima.
+- **Desktop Commander / Control-Mac / computer-use / Macos**: controllo desktop+terminale+file+UI-native (osascript/Macos/computer-use), lettura Downloads (TCC → Finder/osascript bypassa), screenshot. **Verifica disponibilita all'avvio** (ToolSearch / request_access per computer-use).
+- **Regola tool-choice**: MCP-dedicato > Chrome (web) > computer-use (native/cross-app); shell/git → Bash/ssh; GitHub → gh-via-Mini.
+- Shortcuts: `ssh macmini` stato live · `python3 ~/maestro-tools/factory-metrics.py --digest` KPI · `~/litellm/spend-report.sh` costi · niente Workflow-bg (SINCRONO) · verifica `file:riga`.
 
 ## ORA: VAI. Senza domande. Tutta la notte. Parallelo su tutto. Documenta tutto.
 Leggi memoria+vault+PDF, ri-verifica live, poi ESEGUI la lista "DA FARE STANOTTE" in autonomia + tieni le lane piene + accendi le 2 cron + il closed-loop. Onesta scientifica: ogni claim a file:riga, ogni cambio canary+misura+revert-se-non-migliora, risultato-negativo onesto ammesso. Mai confondere moat-plugin (ELAB) con moat-piattaforma (ARDESIA), mai dimenticare FABBRICA-vs-PRODOTTO. Documenta tutto, lascia ad Andrea SOLO le scelte irreversibili/outward (in coda).
