@@ -24,6 +24,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Sequence
 
+from lessonos.models import require_non_empty
+
 
 class ReviewAction(Enum):
     """Azione di revisione che un docente puo applicare a un corso/modulo/atomo.
@@ -78,10 +80,8 @@ class TeacherReviewNote:
     reviewer: str = ""
 
     def __post_init__(self) -> None:
-        if not self.note_id:
-            raise ValueError("note_id must be non-empty")
-        if not self.target_id:
-            raise ValueError("target_id must be non-empty")
+        require_non_empty(self.note_id, "note_id")
+        require_non_empty(self.target_id, "target_id")
         if not isinstance(self.action, ReviewAction):
             raise ValueError(
                 f"action must be a ReviewAction enum, got {type(self.action).__name__}"
@@ -109,8 +109,7 @@ class TeacherReviewSet:
     notes: tuple[TeacherReviewNote, ...] = ()
 
     def __post_init__(self) -> None:
-        if not self.course_id:
-            raise ValueError("course_id must be non-empty")
+        require_non_empty(self.course_id, "course_id")
 
     @property
     def has_approve(self) -> bool:

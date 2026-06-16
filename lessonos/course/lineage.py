@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Sequence
 
 from lessonos.course.schema import CourseBlueprint
+from lessonos.models import require_non_empty
 
 # Export format vocab — bounded set di formati supportati.
 ARTIFACT_FORMATS: tuple[str, ...] = (
@@ -72,15 +73,13 @@ class GeneratedArtifact:
 
     def __post_init__(self) -> None:
         """Validazione fail-fast."""
-        if not self.artifact_id:
-            raise ValueError("artifact_id must be non-empty")
+        require_non_empty(self.artifact_id, "artifact_id")
         if self.format not in VALID_FORMATS:
             raise ValueError(
                 f"format={self.format!r} not in VALID_FORMATS; "
                 f"must be one of {sorted(VALID_FORMATS)}"
             )
-        if not self.file_path:
-            raise ValueError("file_path must be non-empty")
+        require_non_empty(self.file_path, "file_path")
 
 
 def _now_iso() -> str:
@@ -128,8 +127,7 @@ def build_artifact_lineage(
     # source_ids (provenienza ultima del contenuto).
 
     # Valida file_path prima di calcolare artifact_id
-    if not file_path:
-        raise ValueError("file_path must be non-empty")
+    require_non_empty(file_path, "file_path")
 
     artifact_id = Path(file_path).name
 

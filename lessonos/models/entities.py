@@ -56,6 +56,16 @@ def validate_enum(value: str, allowed: frozenset[str], label: str) -> None:
         )
 
 
+def require_non_empty(value: str, name: str) -> None:
+    """Raise ValueError if *value* is empty/falsy — shared non-empty guard.
+
+    Dedup of the ``if not self.X: raise ValueError("X must be non-empty")``
+    idiom repeated across the course/ledger entities; keeps the message uniform.
+    """
+    if not value:
+        raise ValueError(f"{name} must be non-empty")
+
+
 @dataclass(frozen=True)
 class Path:
     """A learning path: ordered lessons over a subject (PLAN §7, fixtures path.json).

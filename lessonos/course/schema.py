@@ -12,6 +12,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Sequence
 
+from lessonos.models import require_non_empty
+
 
 @dataclass(frozen=True)
 class CourseLessonRef:
@@ -28,15 +30,12 @@ class CourseLessonRef:
     """I sorgenti (file/cartella) da cui questa lezione attinge materiali."""
 
     def __post_init__(self) -> None:
-        if not self.lesson_id:
-            raise ValueError("lesson_id must be non-empty")
-        if not self.title:
-            raise ValueError("title must be non-empty")
+        require_non_empty(self.lesson_id, "lesson_id")
+        require_non_empty(self.title, "title")
         if self.order < 1:
             raise ValueError(f"order must be >= 1, got {self.order}")
         for sid in self.source_ids:
-            if not sid:
-                raise ValueError("source_ids entries must be non-empty")
+            require_non_empty(sid, "source_ids entries")
 
 
 @dataclass(frozen=True)
@@ -51,12 +50,9 @@ class CourseSourceRef:
     """tipo di sorgente: text, vtt, srt, pdf, markdown, ecc."""
 
     def __post_init__(self) -> None:
-        if not self.source_id:
-            raise ValueError("source_id must be non-empty")
-        if not self.filename:
-            raise ValueError("filename must be non-empty")
-        if not self.source_type:
-            raise ValueError("source_type must be non-empty")
+        require_non_empty(self.source_id, "source_id")
+        require_non_empty(self.filename, "filename")
+        require_non_empty(self.source_type, "source_type")
 
 
 @dataclass(frozen=True)
@@ -78,11 +74,9 @@ class ModuleBlueprint:
     """ContentAtoms che appartengono a questo modulo (P0c)."""
 
     def __post_init__(self) -> None:
-        if not self.title:
-            raise ValueError("title must be non-empty")
+        require_non_empty(self.title, "title")
         for lid in self.lesson_ids:
-            if not lid:
-                raise ValueError("lesson_ids entries must be non-empty")
+            require_non_empty(lid, "lesson_ids entries")
 
 
 @dataclass(frozen=True)
@@ -102,8 +96,7 @@ class CourseBlueprint:
     """Le lezioni del CourseFolder da cui questo blueprint è derivato."""
 
     def __post_init__(self) -> None:
-        if not self.title:
-            raise ValueError("title must be non-empty")
+        require_non_empty(self.title, "title")
 
 
 @dataclass(frozen=True)
@@ -126,10 +119,8 @@ class CourseFolder:
     modules: tuple[ModuleBlueprint, ...] = ()
 
     def __post_init__(self) -> None:
-        if not self.title:
-            raise ValueError("title must be non-empty")
-        if not self.folder_path:
-            raise ValueError("folder_path must be non-empty")
+        require_non_empty(self.title, "title")
+        require_non_empty(self.folder_path, "folder_path")
         seen_ids: set[str] = set()
         for lesson in self.lessons:
             if lesson.lesson_id in seen_ids:

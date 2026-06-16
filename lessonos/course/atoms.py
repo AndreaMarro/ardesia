@@ -18,7 +18,7 @@ from dataclasses import dataclass
 
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import Citation
-from lessonos.models import validate_enum
+from lessonos.models import require_non_empty, validate_enum
 
 ATOM_TYPES: frozenset[str] = frozenset({
     "definition",
@@ -73,13 +73,10 @@ class ContentAtom:
     vuoto solo se questo flag è True."""
 
     def __post_init__(self) -> None:
-        if not self.atom_id:
-            raise ValueError("atom_id must be non-empty")
+        require_non_empty(self.atom_id, "atom_id")
         validate_enum(self.atom_type, ATOM_TYPES, "atom_type")
-        if not self.lesson_id:
-            raise ValueError("lesson_id must be non-empty")
-        if not self.body:
-            raise ValueError("body must be non-empty")
+        require_non_empty(self.lesson_id, "lesson_id")
+        require_non_empty(self.body, "body")
         # source_refs obbligatorie salvo explicit_ai_inference
         if not self.source_refs and not self.explicit_ai_inference:
             raise ValueError(

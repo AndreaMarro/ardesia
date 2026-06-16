@@ -14,6 +14,7 @@ from lessonos.models.entities import (
     Moment,
     Path,
     Source,
+    require_non_empty,
     validate_enum,
 )
 from lessonos.models.ledger import CostLedgerEntry, CostReport
@@ -36,5 +37,6 @@ __all__ = [
     "Moment",
     "Path",
     "Source",
+    "require_non_empty",
     "validate_enum",
 ]

@@ -14,6 +14,8 @@ from dataclasses import dataclass
 
 from typing import Mapping
 
+from lessonos.models.entities import require_non_empty
+
 
 @dataclass(frozen=True)
 class CostLedgerEntry:
@@ -40,8 +42,7 @@ class CostLedgerEntry:
     label: str = ""
 
     def __post_init__(self) -> None:
-        if not self.entry_id:
-            raise ValueError("entry_id must be non-empty")
+        require_non_empty(self.entry_id, "entry_id")
         if self.prompt_tokens < 0:
             raise ValueError(f"prompt_tokens must be >= 0, got {self.prompt_tokens}")
         if self.completion_tokens < 0:

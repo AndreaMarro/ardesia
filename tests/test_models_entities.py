@@ -17,6 +17,7 @@ from lessonos.models import (
     Moment,
     Path,
     Source,
+    require_non_empty,
     validate_enum,
 )
 from lessonos.models.entities import TeacherConcept
@@ -137,6 +138,23 @@ class TestValidateEnum:
         # frozenset iteration order is unspecified; the message must be sorted.
         with pytest.raises(ValueError, match=r"\['introduced', 'mastered'"):
             validate_enum("x", CONCEPT_STATUS, "concept status")
+
+
+class TestRequireNonEmpty:
+    """Shared non-empty guard (dedup of the ~18 `if not X: raise` call sites)."""
+
+    def test_accepts_non_empty(self) -> None:
+        assert require_non_empty("x", "field") is None
+
+    def test_rejects_empty_string_with_name_in_message(self) -> None:
+        with pytest.raises(ValueError) as exc:
+            require_non_empty("", "lesson_id")
+        assert str(exc.value) == "lesson_id must be non-empty"
+
+    def test_message_uses_the_given_name_verbatim(self) -> None:
+        # The name is interpolated, not hard-coded: a different name -> different msg.
+        with pytest.raises(ValueError, match=r"^source_ids entries must be non-empty$"):
+            require_non_empty("", "source_ids entries")
 
 
 class TestEntityValidatorLabels:
