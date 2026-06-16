@@ -17,6 +17,13 @@ describe("lessonSlug", () => {
     expect(lessonSlug("", "room42")).toBe("room42")
   })
 
+  it("strip dei trattini di bordo PRIMA del taglio (nome lungo con spazio iniziale)", () => {
+    // Regressione: lo spazio iniziale collassa in un trattino di testa che va
+    // tolto prima del taglio, altrimenti consuma uno slot dei 48 char.
+    const name = " " + "a".repeat(60)
+    expect(lessonSlug(name, "room1")).toBe("a".repeat(48))
+  })
+
   it("taglia a 48 char senza lasciare un trattino finale", () => {
     // 'a' * 47 + ' x'  → il taglio a 48 cade sul trattino prima di 'x'.
     const name = "a".repeat(47) + " x"
