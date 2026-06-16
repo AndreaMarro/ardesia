@@ -1,5 +1,5 @@
 #!/bin/bash
-# MAESTRO — DEEPREVIEW: review di MILESTONE in modalità fable-5 ULTRACODE (multi-agente).
+# MAESTRO — DEEPREVIEW: review di MILESTONE in modalità opus-4-8 ULTRACODE (multi-agente; 16/06 ex-fable).
 # Strumento del SUPERVISORE (ratifiche, merge auto/main→main) — NON gira nel loop per-iterazione
 # (costo/rate-limit: la review per-iterazione resta bin/review.sh).
 # Uso: ./bin/deepreview.sh [studio|lessonos] [range-git]   es: deepreview.sh studio main..auto/main
@@ -27,7 +27,7 @@ $commits
 DIFF (troncato 150k):
 $diff"
 
-out=$(timeout 2400 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-fable-5 "$PROMPT" 2>&1); rc=$?
+out=$(timeout 2400 env -u ANTHROPIC_API_KEY claude -p --dangerously-skip-permissions --model claude-opus-4-8 "$PROMPT" 2>&1); rc=$?
 printf '# DEEPREVIEW %s %s — %s\n\n%s\n' "$repo" "$RANGE" "$(date -u +%FT%TZ)" "$out" > "$OUT"
 echo "DEEPREVIEW: $OUT (rc=$rc)"
 exit "$rc"

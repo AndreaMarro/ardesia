@@ -1,9 +1,9 @@
 #!/bin/bash
-# MAESTRO worker — FABLE-5 come CERVELLO INDIRETTO di Hermes (ordine Andrea 11/06: "fable cervello indiretto su macmini").
-#   PLAN-CHECK (sanity pre-build)  -> ladder fable-5 -> opus-4-8 -> sonnet-4-6  (fable PRIMO; fallback su rate-limit)
-#   escalation/decisioni dure       -> fable-5 ULTRACODE -> opus-4-8 -> sonnet-4-6
-# Nota: ora che fable e' il BUILDER di default, PLAN-CHECK serve solo nelle iterazioni Hermes ([GRIND]/fallback),
-# quindi volume basso -> fable-first e sostenibile. PLAN-CHECK NON e' ultracode (check rapido, non multi-agente).
+# MAESTRO worker — opus-4-8 come CERVELLO INDIRETTO di Hermes (16/06: fable-5 SOSPESO globalmente -> opus-4-8).
+#   PLAN-CHECK (sanity pre-build)  -> ladder opus-4-8 -> sonnet-4-6  (fallback su rate-limit)
+#   escalation/decisioni dure       -> opus-4-8 ULTRACODE -> sonnet-4-6
+# Nota: nome file invariato (fable.sh) perche i driver/TRIG lo chiamano per path; il modello e' opus-4-8.
+# PLAN-CHECK NON e' ultracode (check rapido); ESCALATION e' ultracode (Workflow tool, multi-agente).
 # Il routing è automatico sul contenuto: se il prompt inizia con "PLAN-CHECK" usa la ladder PLAN-CHECK.
 # Prima riga di output = [fable.sh -> <modello>] per l'audit. Login Max OAuth headless.
 # Usage: ./bin/fable.sh "domanda/spec con contesto (file:line, cosa hai provato, output gate)"
@@ -17,11 +17,11 @@ if ! bash "$HOME/lessonos/bin/acct.sh" pick >/dev/null 2>&1; then
   exit 7
 fi
 case "$1" in
-  PLAN-CHECK*) MODELS="claude-fable-5 claude-opus-4-8 claude-sonnet-4-6"; T=130; TRIES=1;;  # fable cervello indiretto; fallback opus/sonnet su rate-limit
+  PLAN-CHECK*) MODELS="claude-opus-4-8 claude-sonnet-4-6"; T=130; TRIES=1;;  # opus-4-8 cervello indiretto; fallback sonnet su rate-limit
   *)
-    # ESCALATION = fable-5 in modalità ULTRACODE (ordine Andrea 10/06): orchestrazione multi-agente
+    # ESCALATION = opus-4-8 in modalità ULTRACODE (16/06, ex-fable): orchestrazione multi-agente
     # per le decisioni dure — il keyword attiva l'opt-in del Workflow tool nella sessione headless.
-    MODELS="claude-fable-5 claude-opus-4-8 claude-sonnet-4-6"; T=600; TRIES=2
+    MODELS="claude-opus-4-8 claude-sonnet-4-6"; T=600; TRIES=2
     PROMPT="ultracode — se il problema è sostanzioso usa il Workflow tool (agenti paralleli: analisi indipendenti + verifica avversaria + sintesi); se è banale rispondi diretto. $PROMPT"
     ;;
 esac

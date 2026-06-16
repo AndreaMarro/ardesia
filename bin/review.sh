@@ -1,7 +1,7 @@
 #!/bin/bash
 # REVIEWER decorrelato = Claude Code (claude -p). Hermes COSTRUISCE, Claude RIVEDE.
 # Rivede il diff NON committato del repo indicato da REVIEW_REPO (default ~/lessonos).
-# v3 (10/06, Claude supervisore): ladder fable-5 -> opus-4-8 (retry+fallback); multi-repo via REVIEW_REPO;
+# v3 (16/06): ladder opus-4-8 -> sonnet-4-6 (retry+fallback; ex-fable); multi-repo via REVIEW_REPO;
 # blurb progetto da REVIEW-CONTEXT.md se presente; auto-observation hook reso RAGGIUNGIBILE (prima: dead code dopo exit).
 # Token re-iniettato (Hermes sanitizza l'env del subprocess). Usage: ./bin/review.sh [tier]  tier: fable(default)|opus|sonnet|haiku
 # PATH esplicito: hermes sanitizza l'env del subprocess → claude/node invisibili senza questo (blocker attempt-2).
@@ -12,8 +12,8 @@ case "$tier" in
   haiku)  models="claude-haiku-4-5"; FORCE_CLAUDE=1;;
   sonnet) models="claude-sonnet-4-6"; FORCE_CLAUDE=1;;
   opus)   models="claude-opus-4-8"; FORCE_CLAUDE=1;;
-  fable)  models="claude-fable-5 claude-opus-4-8"; FORCE_CLAUDE=1;;
-  *)      models="claude-fable-5 claude-opus-4-8";;  # auto = free cross-family first
+  fable)  models="claude-opus-4-8 claude-sonnet-4-6"; FORCE_CLAUDE=1;;
+  *)      models="claude-opus-4-8 claude-sonnet-4-6";;  # auto = free cross-family first
 esac
 # token per-account via acct.sh (12/06): vedi ladder sotto
 REPO_DIR="${REVIEW_REPO:-$HOME/lessonos}"
@@ -109,8 +109,8 @@ _kimi_review() {  # red-team k2.6, centesimi
 }
 
 # Dispatch. Default "auto" (chiamata driver) = FREE cross-family PRIMA: il builder e'
-# fable, quindi un reviewer fable e' la PEGGIOR decorrelazione (self-preference family-
-# level) E spreca il budget A1 (20x) che serve a COSTRUIRE. claude solo come ultima rete.
+# opus (Claude), quindi un reviewer Claude e' la PEGGIOR decorrelazione (self-preference
+# family-level) E spreca il budget A1 (20x) che serve a COSTRUIRE. claude solo ultima rete.
 # tier esplicito (opus/fable/...) = claude-first per review manuale ad alta posta.
 if [ "$FORCE_CLAUDE" = "1" ]; then
   _claude_ladder || _codex_review || _gemini_review || _kimi_review \

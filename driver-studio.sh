@@ -26,8 +26,8 @@ for i in $(seq 1 "$N"); do
   bm=$(bash eval/gate.sh 2>/dev/null | tail -1); bp=$(jget "$bm" passed); bp=${bp:-0}
   echo "[studio] === iter $i/$N $ts | baseline passed=$bp | oggi $dt/$CAP_MAX ===" | tee -a "$LOG"
   t0=$(date +%s)
-  # BUILDER DEFAULT = fable-5 ULTRACODE (ordine Andrea 11/06). Hermes-DeepSeek
-  # SOLO se il pin e' [GRIND] (script-dati a basso costo) o fallback rate-limit.
+  # BUILDER DEFAULT = claude-opus-4-8 ULTRACODE (16/06: ex-fable SOSPESO -> opus-4-8 via ROUTE_BUILDER).
+  # Hermes-DeepSeek SOLO se il pin e' [GRIND] (basso costo) o fallback rate-limit/quota.
   PIN_LINE=$(sed -n '/## ➡️ PROSSIMA TASK/,/## NEEDS-CLAUDE/p' "$HOME/lessonos/COORDINATION.md" 2>/dev/null | grep -m1 -- '- \*\*studio\*\*')
   # W1-M2: timeout adattivo — pin [LUNGA] = finestra doppia (il kill a 2400/3600s
   # esatti ha gia ucciso 2 build gate-verdi; -s INT -k 60 = morte pulita, non KILL secco)
@@ -55,23 +55,23 @@ for i in $(seq 1 "$N"); do
     echo "[driver] BUILDER=Hermes-DeepSeek (pin GRIND)" | tee -a "$LOG"
     timeout -k 60 -s INT "$HT" hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
   else
-    echo "[driver] BUILDER=fable-5-ultracode (default)" | tee -a "$LOG"
+    echo "[driver] BUILDER=claude-opus-4-8 ultracode (default; ex-fable)" | tee -a "$LOG"
     eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
     FACC=$(bash "$HOME/lessonos/bin/acct.sh" pick 2>/dev/null || true)
     if [ -z "$FACC" ]; then
       if [ "${MAESTRO_KIMI_STATE:-ok}" = exhausted ]; then
         echo "[driver] zero account claude E kimi esausto -> skip build (W1-M3)" | tee -a "$LOG"
       else
-      echo "[driver] quota-out su TUTTI gli account Claude -> salto fable, Hermes diretto" | tee -a "$LOG"
+      echo "[driver] quota-out su TUTTI gli account Claude -> salto Claude, Hermes diretto" | tee -a "$LOG"
       timeout -k 60 -s INT "$HT" hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"
       fi
     else
       FABTOK=$(bash "$HOME/lessonos/bin/acct.sh" token "$FACC" 2>/dev/null || true)
       BUILDMODEL=$(bash "$HOME/lessonos/bin/pick-build-model.sh" "$FABTOK" 2>/dev/null)
       if [ -z "$BUILDMODEL" ]; then echo "[driver] nessun modello Claude accessibile -> Hermes-DeepSeek" | tee -a "$LOG"; timeout -k 60 -s INT "$HT" hermes --yolo -z "$TRIG" 2>&1 | tee -a "$LOG"; BUILDMODEL=__SKIP__; fi
-      [ "$BUILDMODEL" != "claude-fable-5" ] && [ "$BUILDMODEL" != "__SKIP__" ] && echo "[driver] fable-5 inaccessibile -> builder su $BUILDMODEL" | tee -a "$LOG"
-      echo "[driver] BUILDER=fable (account $FACC)" | tee -a "$LOG"
-      [ "$BUILDMODEL" = "__SKIP__" ] || fable_out=$(timeout -k 60 -s INT "$FT" env -u ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN="$FABTOK" claude -p --dangerously-skip-permissions --model "$BUILDMODEL" 'ultracode — Sei il BUILDER fable di MAESTRO-Studio (TypeScript/React/Vite, lavagna Excalidraw), nella dir corrente ~/maestro-studio. Esegui ESATTAMENTE UNA task: quella pinnata per studio nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md e le skill in skills/. Scrivi codice e test vitest di qualita massima (orchestra subagenti per parti indipendenti e verifica avversaria), esegui bash eval/gate.sh (tsc+vitest) e consegna VERDE, poi git add dei file pertinenti e commit chiaro IMMEDIATO — COMMITTA APPENA IL GATE E VERDE, prima di STATUS/log: il driver SCARTA il lavoro non committato a timeout — poi appendi STATUS.md e log.jsonl. PRIMA DI INIZIARE: esegui git stash list e cerca stash con messaggio rescue: se uno riguarda la TUA task (pin attuale), ISPEZIONALO con git stash show -p e RIUSA il lavoro valido invece di rifare da zero (mai apply alla cieca: leggi il diff). Se un errore ti sembra gia visto, interroga i tool agentmemory (recall) PRIMA di ri-diagnosticare. Prima del commit di OGNI sotto-task lancia un subagente AVVERSARIO sul tuo diff (input reali, invarianti MAESTRO, test che possono fallire); applica i fix VERI e scrivi in STATUS.md una riga "SELF-ADV: trovati N, fixati M". Vincoli: NON toccare eval/gate.sh, niente dipendenze ingiustificate, UNA task sola, onesta brutale: fatto = gate verde eseguito. Se non fattibile scrivi il blocker in ~/lessonos/COORDINATION.md NEEDS-CLAUDE E COMMITTALO nel repo lessonos, poi fermati. MARATONA (12/06): quando chiudi la task pinnata (gate verde + commit + STATUS), esegui python3 $HOME/lessonos/bin/promote_pin.py studio — se promuove un nuovo pin, PROSEGUI nella STESSA sessione con la nuova task (stesso rigore: gate verde, commit per sotto-task, STATUS, SELF-ADV); massimo 6 promozioni per sessione, poi fermati. Se non promuove, fermati.' 2>&1)
+      [ "$BUILDMODEL" != "claude-opus-4-8" ] && [ "$BUILDMODEL" != "__SKIP__" ] && echo "[driver] opus-4-8 inaccessibile -> builder su $BUILDMODEL" | tee -a "$LOG"
+      echo "[driver] BUILDER=claude $BUILDMODEL (account $FACC)" | tee -a "$LOG"
+      [ "$BUILDMODEL" = "__SKIP__" ] || fable_out=$(timeout -k 60 -s INT "$FT" env -u ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN="$FABTOK" claude -p --dangerously-skip-permissions --model "$BUILDMODEL" 'ultracode — Sei il BUILDER (opus-4-8 ultracode) di MAESTRO-Studio (TypeScript/React/Vite, lavagna Excalidraw), nella dir corrente ~/maestro-studio. Esegui ESATTAMENTE UNA task: quella pinnata per studio nel blocco PROSSIMA TASK di ~/lessonos/COORDINATION.md (leggila per intera, criteri compresi); se e NOOP non costruire, fermati. Prima leggi AGENTS.md e STATUS.md e le skill in skills/. Scrivi codice e test vitest di qualita massima (orchestra subagenti per parti indipendenti e verifica avversaria), esegui bash eval/gate.sh (tsc+vitest) e consegna VERDE, poi git add dei file pertinenti e commit chiaro IMMEDIATO — COMMITTA APPENA IL GATE E VERDE, prima di STATUS/log: il driver SCARTA il lavoro non committato a timeout — poi appendi STATUS.md e log.jsonl. PRIMA DI INIZIARE: esegui git stash list e cerca stash con messaggio rescue: se uno riguarda la TUA task (pin attuale), ISPEZIONALO con git stash show -p e RIUSA il lavoro valido invece di rifare da zero (mai apply alla cieca: leggi il diff). Se un errore ti sembra gia visto, interroga i tool agentmemory (recall) PRIMA di ri-diagnosticare. Prima del commit di OGNI sotto-task lancia un subagente AVVERSARIO sul tuo diff (input reali, invarianti MAESTRO, test che possono fallire); applica i fix VERI e scrivi in STATUS.md una riga "SELF-ADV: trovati N, fixati M". Vincoli: NON toccare eval/gate.sh, niente dipendenze ingiustificate, UNA task sola, onesta brutale: fatto = gate verde eseguito. Se non fattibile scrivi il blocker in ~/lessonos/COORDINATION.md NEEDS-CLAUDE E COMMITTALO nel repo lessonos, poi fermati. MARATONA (12/06): quando chiudi la task pinnata (gate verde + commit + STATUS), esegui python3 $HOME/lessonos/bin/promote_pin.py studio — se promuove un nuovo pin, PROSEGUI nella STESSA sessione con la nuova task (stesso rigore: gate verde, commit per sotto-task, STATUS, SELF-ADV); massimo 6 promozioni per sessione, poi fermati. Se non promuove, fermati.' 2>&1)
       printf '%s\n' "$fable_out" | tee -a "$LOG"
       if printf '%s' "$fable_out" | grep -qiE "out of extra usage|usage limit|rate.?limit|overloaded|not logged in|unauthorized|may not exist|may not have access|selected model|invalid model|unknown model"; then
         printf '%s' "$fable_out" | bash "$HOME/lessonos/bin/quota.sh" mark "$FACC" 2>&1 | tee -a "$LOG" || true
