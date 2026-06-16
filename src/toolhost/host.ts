@@ -6,6 +6,7 @@
 import { z } from "zod"
 import { SuspendResultSchema, isValidToolId } from "../toolhost-protocol/index.ts"
 import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
+import { CONTRACT_VERSION } from "../sdk/index.ts"
 import { ToolAuditLog } from "./audit.ts"
 import type { AuditStore } from "./audit.ts"
 import { ToolBoard } from "./caps/board.ts"
@@ -48,6 +49,10 @@ export interface ToolHostDeps {
  * request rispondibile finisce nell'audit-log del tool.
  */
 export class ToolHost {
+  /** Versione del contratto SDK implementato da questo host (SemVer): un registro
+   *  o un plugin può interrogarla per decidere la compatibilità prima del mount. */
+  static readonly contractVersion = CONTRACT_VERSION
+
   readonly manifest: ToolManifest
   readonly audit: ToolAuditLog
 
