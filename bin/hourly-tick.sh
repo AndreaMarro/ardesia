@@ -39,7 +39,14 @@ else
   else
     ~/lessonos/driver-orch.sh 1 >> ~/lessonos/hourly.log 2>&1 || true
   fi
-  inc=1; [ "$repo" = "both" ] && inc=2
+  # BUGFIX 16/06 (supervisore): il cap conta SOLO build VERI (costo LLM), NON i tick noop-fast (gratis).
+  # Prima inc sempre 1/2 -> 96 noop/giorno esaurivano il budget ~05:00 -> auto-starvation (loop fermo 3g).
+  inc=0
+  case "$repo" in
+    both)   tail -1 "$HOME/maestro-logs/RESEARCH-lessonos.md" 2>/dev/null | grep -q "noop-fast" || inc=$((inc+1)); tail -1 "$HOME/maestro-logs/RESEARCH-studio.md" 2>/dev/null | grep -q "noop-fast" || inc=$((inc+1)) ;;
+    studio) tail -1 "$HOME/maestro-logs/RESEARCH-studio.md" 2>/dev/null | grep -q "noop-fast" || inc=1 ;;
+    *)      tail -1 "$HOME/maestro-logs/RESEARCH-lessonos.md" 2>/dev/null | grep -q "noop-fast" || inc=1 ;;
+  esac
   printf '%s\n%s\n' "$day" "$((bt+inc))" > "$cf"
 fi
 # FABLE-CATCHUP (ordine Andrea 11/06 "fable a massima potenza"): quota appena
