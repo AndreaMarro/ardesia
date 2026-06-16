@@ -1,30 +1,48 @@
 #!/bin/bash
-# MAESTRO worker — opus-4-8 come CERVELLO INDIRETTO di Hermes (16/06: fable-5 SOSPESO globalmente -> opus-4-8).
-#   PLAN-CHECK (sanity pre-build)  -> ladder opus-4-8 -> sonnet-4-6  (fallback su rate-limit)
-#   escalation/decisioni dure       -> opus-4-8 ULTRACODE -> sonnet-4-6
-# Nota: nome file invariato (fable.sh) perche i driver/TRIG lo chiamano per path; il modello e' opus-4-8.
-# PLAN-CHECK NON e' ultracode (check rapido); ESCALATION e' ultracode (Workflow tool, multi-agente).
-# Il routing è automatico sul contenuto: se il prompt inizia con "PLAN-CHECK" usa la ladder PLAN-CHECK.
+# MAESTRO worker — cervello indiretto di Hermes (16/06).
+#   PLAN-CHECK (sanity pre-build, FREQUENTE) -> LiteLLM gateway deepseek-chat->kimi (cheap, ~0$). NIENTE claude.
+#   escalation/decisioni dure (RARO)         -> claude -p opus-4-8 ULTRACODE -> sonnet-4-6 (caro ~0.09$/call cold).
+# Nota: nome file invariato (fable.sh) perche i driver/TRIG lo chiamano per path.
+# Routing automatico sul contenuto: prompt che inizia con "PLAN-CHECK" -> LiteLLM cheap; resto -> claude escalation.
 # Prima riga di output = [fable.sh -> <modello>] per l'audit. Login Max OAuth headless.
 # Usage: ./bin/fable.sh "domanda/spec con contesto (file:line, cosa hai provato, output gate)"
 export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 eval "$(grep -E '^[[:space:]]*export[[:space:]]+CLAUDE_CODE_OAUTH_TOKEN=' "$HOME/.zshenv" 2>/dev/null | tail -1)"
 PROMPT="$*"
+
+# PLAN-CHECK (frequente) -> LiteLLM gateway cheap (deepseek-chat -> kimi via fallback). NIENTE claude (~0.09$/call).
+case "$1" in
+  PLAN-CHECK*)
+    LK="${LITELLM_MASTER_KEY:-sk-ardesia-litellm-local}"
+    pc_out=$(PROMPT="$PROMPT" LK="$LK" python3 - <<'PYEOF'
+import os,json,urllib.request
+p=os.environ["PROMPT"]; k=os.environ["LK"]
+body=json.dumps({"model":"deepseek-chat","messages":[{"role":"user","content":p}],"max_tokens":1200,"temperature":0.2}).encode()
+req=urllib.request.Request("http://127.0.0.1:4000/v1/chat/completions",data=body,
+    headers={"Authorization":"Bearer "+k,"Content-Type":"application/json"})
+try:
+    d=json.load(urllib.request.urlopen(req,timeout=90))
+    print("[fable.sh -> litellm/deepseek-chat]")
+    print(d["choices"][0]["message"]["content"])
+except Exception as e:
+    print("[fable.sh -> LITELLM-FAIL: %s]" % e); raise SystemExit(7)
+PYEOF
+)
+    rc=$?
+    printf '%s\n' "$pc_out"
+    exit $rc
+    ;;
+esac
+
 # MULTI-ACCOUNT: fail-fast SOLO se TUTTI gli account sono in finestra quota-out
 # (il chiamante ha gia la regola "se fable.sh fallisce, procedi e annota").
 if ! bash "$HOME/lessonos/bin/acct.sh" pick >/dev/null 2>&1; then
   printf '[fable.sh -> QUOTA-OUT su tutti gli account, fail-fast]\n'
   exit 7
 fi
-case "$1" in
-  PLAN-CHECK*) MODELS="claude-opus-4-8 claude-sonnet-4-6"; T=130; TRIES=1;;  # opus-4-8 cervello indiretto; fallback sonnet su rate-limit
-  *)
-    # ESCALATION = opus-4-8 in modalità ULTRACODE (16/06, ex-fable): orchestrazione multi-agente
-    # per le decisioni dure — il keyword attiva l'opt-in del Workflow tool nella sessione headless.
-    MODELS="claude-opus-4-8 claude-sonnet-4-6"; T=600; TRIES=2
-    PROMPT="ultracode — se il problema è sostanzioso usa il Workflow tool (agenti paralleli: analisi indipendenti + verifica avversaria + sintesi); se è banale rispondi diretto. $PROMPT"
-    ;;
-esac
+# ESCALATION (raro): opus-4-8 ULTRACODE via claude -p. (PLAN-CHECK e' gia uscito sopra via LiteLLM.)
+MODELS="claude-opus-4-8 claude-sonnet-4-6"; T=600; TRIES=2
+PROMPT="ultracode — se il problema è sostanzioso usa il Workflow tool (agenti paralleli: analisi indipendenti + verifica avversaria + sintesi); se è banale rispondi diretto. $PROMPT"
 ACCS="A1"
 bash "$HOME/lessonos/bin/acct.sh" has A2 && ACCS="A1 A2"
 bash "$HOME/lessonos/bin/acct.sh" has A3 && ACCS="$ACCS A3"
