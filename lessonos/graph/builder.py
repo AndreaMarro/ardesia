@@ -10,6 +10,7 @@ from __future__ import annotations
 import networkx as nx
 
 from lessonos.capsule.assembly import LessonCapsule
+from lessonos.graph.utils import canonical_match_key
 from lessonos.models.entities import GraphEdge, GraphNode
 
 
@@ -156,6 +157,24 @@ def build_path_graph(
                     all_edges.append(edge)
                     edge_ids_seen.add(edge_id)
 
+    # Build a canonical index (canonical key → first-occurrence concept node)
+    # used ONLY for prereq→concept matching. Canonical matching (accent/case/
+    # whitespace folding) recovers depends_on edges that an exact .lower()
+    # comparison drops. First occurrence wins (deterministic: capsules and
+    # concepts are iterated in order).
+    canonical_index: dict[str, GraphNode] = {}
+    for lesson_idx, capsule in enumerate(capsules):
+        for concept_idx, concept in enumerate(capsule.content.concepts):
+            concept_node_id = f"{capsule.lesson_id}:concept:{concept_idx}"
+            concept_node = next(
+                (n for n in all_nodes if n.node_id == concept_node_id), None
+            )
+            if concept_node is None:
+                continue
+            key = canonical_match_key(concept.name)
+            if key not in canonical_index:
+                canonical_index[key] = concept_node
+
     # Build prerequisite → concept node mapping for 'depends_on' edges
     for lesson_idx, capsule in enumerate(capsules):
         for concept_idx, concept in enumerate(capsule.content.concepts):
@@ -165,11 +184,15 @@ def build_path_graph(
             )
             if concept_node and concept.prerequisites:
                 for prereq_name in concept.prerequisites:
-                    prereq_name_lower = prereq_name.lower()
-                    # Find prerequisite concept node
-                    if prereq_name_lower in concept_map:
-                        # Use the first occurrence of the prerequisite
-                        prereq_node = concept_map[prereq_name_lower][0][1]
+                    prereq_key = canonical_match_key(prereq_name)
+                    # Find prerequisite concept node via canonical matching
+                    if prereq_key in canonical_index:
+                        prereq_node = canonical_index[prereq_key]
+                        # Skip self-dependencies: a concept whose prereq
+                        # canonicalises to its own name is not a real edge
+                        # (and would introduce a self-loop / spurious cycle).
+                        if prereq_node.node_id == concept_node.node_id:
+                            continue
                         edge_id = (
                             f"{concept_node.node_id}-depends_on->{prereq_node.node_id}"
                         )
