@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {"id":"title","type":"text","x":-720,"y":-520,"width":1660,"height":70,"text":"# ARDESIA — Architettura\nFABBRICA (sistema di sviluppo, NON spedita) vs PRODOTTO (sistema sviluppato). [[06-METAPROMPT-FINALE]]"},
+
+    {"id":"prod-label","type":"text","x":-720,"y":-410,"width":1660,"height":40,"color":"4","text":"## PRODOTTO — ciò che usano docenti/studenti (GDPR runtime)"},
+    {"id":"studio","type":"text","x":-720,"y":-340,"width":300,"height":150,"color":"4","text":"### apps/studio\nLavagna minimal (solo docente) + host ToolHost. Canvas infinito, persistente, export PDF. [RF-F]"},
+    {"id":"engine","type":"text","x":-380,"y":-340,"width":300,"height":150,"color":"4","text":"### packages/engine (lessonos)\nM0-M4: capsule→grafo-del-metodo→StyleProfile→dispense→recap→learning-debt→next-lesson. AI-metodologica (NO training)."},
+    {"id":"flagship","type":"text","x":-40,"y":-340,"width":300,"height":150,"color":"6","text":"### packages/graph-suggest ⭐\nFLAGSHIP (0 codice): concetto→tool via betweenness. La cerniera engine↔studio."},
+    {"id":"toolhost","type":"text","x":300,"y":-340,"width":300,"height":150,"color":"4","text":"### packages/toolhost\npublish/install firmato ed25519, sandbox iframe+caps, kill-switch, review-pipeline. [RF-G]"},
+    {"id":"sdk","type":"text","x":640,"y":-340,"width":300,"height":150,"color":"4","text":"### packages/plugin-sdk\nmanifest + postMessage + state-CRDT + context(no-PII). Il framework \"plugin ultra-facili\". [§6 PDF]"},
+
+    {"id":"crm","type":"text","x":-720,"y":-150,"width":300,"height":140,"color":"4","text":"### packages/crm + mem0\nscheda-studente/obiettivi/materiali/note-private/storico/recap. Memoria per-utente = mem0 self-host EU."},
+    {"id":"elab","type":"text","x":-380,"y":-150,"width":300,"height":140,"color":"6","text":"### plugins/elab-tutor\nPRIMO plugin chiamabile (sim Arduino+tutor). Valida l'SDK (due-piccioni). elab-tutor resta repo separato."},
+    {"id":"web","type":"text","x":-40,"y":-150,"width":300,"height":140,"color":"2","text":"### apps/web (GREENFIELD)\nAccount/profili/ricerca/booking/pagamenti. NO-fee: paga solo il docente (SaaS a-potenza). Dopo il wedge."},
+    {"id":"vaultB","type":"text","x":300,"y":-150,"width":300,"height":140,"color":"5","text":"### ardesia-wiki (Obsidian vault B)\nKnowledge per-docente generato dal motore (grafo+dispense). Auto-sync 6h dal Mini. OUTPUT del prodotto."},
+
+    {"id":"fab-label","type":"text","x":-720,"y":60,"width":1660,"height":40,"color":"1","text":"## FABBRICA — ops/ — ciò che COSTRUISCE (non spedito). dev=qualunque-modello, no PII"},
+    {"id":"loop","type":"text","x":-720,"y":130,"width":300,"height":160,"color":"1","text":"### ops/loop — Hermes\nlaunchd KeepAlive daemon + caffeinate. driver-orch+driver-studio, maratona, auto-backlog (coda mai a secco), dead-man's-switch proof-of-work."},
+    {"id":"models","type":"text","x":-380,"y":130,"width":300,"height":160,"color":"1","text":"### Modelli\nVOLUME/grind = DeepSeek-V4-Flash→Kimi-K2.6 (cheap, non-Claude). APEX/review = Claude headless (opus→sonnet) su Max, 2 account A TURNO. GLM-5.2 trial."},
+    {"id":"amem","type":"text","x":-40,"y":130,"width":300,"height":160,"color":"1","text":"### agentmemory\nMemoria della fabbrica: cattura tool-use+errori+decisioni Hermes → self-improvement MISURATO. Rimpiazza claude-mem (degradato)."},
+    {"id":"gate","type":"text","x":300,"y":130,"width":300,"height":160,"color":"1","text":"### Antiregressione TOTALE\ngate frozen (arbitro) + ratchet (conteggio+coverage+no-skip+test-non-rimosso) + CI Nx-affected + branch-protection + canary/rollback."},
+    {"id":"vaultA","type":"text","x":640,"y":130,"width":300,"height":160,"color":"5","text":"### ARDESIA-VAULT (Obsidian vault A)\nSpec / Single-Source-of-Truth: gli agenti la LEGGONO (spec-driven). Canvas + Bases + wikilink. Governance."},
+
+    {"id":"actors","type":"text","x":-720,"y":340,"width":1000,"height":90,"color":"3","text":"### 3 attori (sync SOLO via COORDINATION.md + gate + branch/PR)\nloop-cheap (autonomo) · Telegram (comandi pin/modello/stop) · Claude-desktop (Andrea presente, lavoro profondo). Mai due editor sullo stesso working-tree."},
+    {"id":"fagh","type":"text","x":640,"y":-150,"width":300,"height":140,"color":"2","text":"### Fagherazzi/kit (esterno)\nPartner sul canale (Arduino/Omaric/PNRR) MA competitor-parziale. ardesia alle condizioni di Andrea, sua filosofia. ELAB = plugin/canale, non il capo."}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"engine","toNode":"flagship","fromSide":"right","toSide":"left","label":"betweenness"},
+    {"id":"e2","fromNode":"flagship","toNode":"studio","fromSide":"left","toSide":"right","label":"bottone giusto"},
+    {"id":"e3","fromNode":"studio","toNode":"elab","fromSide":"bottom","toSide":"top","label":"monta plugin"},
+    {"id":"e4","fromNode":"sdk","toNode":"toolhost","fromSide":"left","toSide":"right","label":"contratto"},
+    {"id":"e5","fromNode":"toolhost","toNode":"elab","fromSide":"bottom","toSide":"right","label":"firma+sandbox"},
+    {"id":"e6","fromNode":"engine","toNode":"crm","fromSide":"bottom","toSide":"top","label":"recap/CRM"},
+    {"id":"e7","fromNode":"vaultA","toNode":"loop","fromSide":"bottom","toSide":"bottom","label":"spec/SoT (agenti leggono)"},
+    {"id":"e8","fromNode":"amem","toNode":"loop","fromSide":"left","toSide":"right","label":"memoria + self-improve"},
+    {"id":"e9","fromNode":"models","toNode":"loop","fromSide":"left","toSide":"right","label":"cheap-volume + Claude-apex"},
+    {"id":"e10","fromNode":"loop","toNode":"studio","fromSide":"top","toSide":"bottom","label":"costruisce (gate verde)"},
+    {"id":"e11","fromNode":"gate","toNode":"loop","fromSide":"left","toSide":"right","label":"arbitro"}
+  ]
+}
