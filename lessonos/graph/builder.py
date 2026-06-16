@@ -10,7 +10,12 @@ from __future__ import annotations
 import networkx as nx
 
 from lessonos.capsule.assembly import LessonCapsule
-from lessonos.graph.utils import canonical_match_key
+from lessonos.graph.utils import (
+    DEFAULT_DEPENDS_FUZZY_THRESHOLD,
+    canonical_match_key,
+    content_tokens,
+    fuzzy_prereq_match,
+)
 from lessonos.models.entities import GraphEdge, GraphNode
 
 
@@ -88,6 +93,7 @@ def build_lesson_graph(
 
 def build_path_graph(
     capsules: list[LessonCapsule],
+    depends_fuzzy_threshold: float = DEFAULT_DEPENDS_FUZZY_THRESHOLD,
 ) -> tuple[list[GraphNode], list[GraphEdge]]:
     """Build path-level Lesson Graph from multiple Lesson Capsules.
 
@@ -99,9 +105,16 @@ def build_path_graph(
        Edge goes from earlier lesson's concept node to later lesson's concept node
        (determine by concept position in capsules list — first capsule = earliest)
 
-    2. 'depends_on' edges — concept.prerequisites matching another concept name
-       provenance: metadata={provenance: 'auto-suggested', confidence: '0.8'}
-       Edge goes from concept TO its prerequisite concept node
+    2. 'depends_on' edges — concept.prerequisites matching another concept name.
+       Exact canonical match (accent/case/whitespace fold) →
+       metadata={provenance: 'auto-suggested', confidence: '0.8'}.
+       When no exact key matches, a high-precision FUZZY fallback (Jaccard
+       overlap of content tokens, ``depends_fuzzy_threshold``, unique winner
+       only) recovers word-order and article/preposition variants of the same
+       content words → metadata={provenance: 'auto-suggested-fuzzy',
+       confidence: '<jaccard>'}. Subset/superset overlaps and ambiguous
+       prereqs (tied best match) are dropped (ZERO-false-match precision).
+       Edge goes from concept TO its prerequisite concept node.
 
     Edge IDs: deterministic. 'repeats' edge ID format: <source_node_id>-repeats-><target_node_id>
     'depends_on' edge ID format: <source_node_id>-depends_on-><target_node_id>
@@ -176,6 +189,14 @@ def build_path_graph(
             if key not in canonical_index:
                 canonical_index[key] = concept_node
 
+    # Fuzzy fallback candidates: (canonical_key, content_tokens) per distinct
+    # concept, used ONLY when a prereq fails the exact canonical match below.
+    # Derived from canonical_index so first-occurrence determinism is shared.
+    fuzzy_candidates: list[tuple[str, frozenset[str]]] = [
+        (key, content_tokens(node.label or ""))
+        for key, node in canonical_index.items()
+    ]
+
     # Accumulate the graph built so far (per-lesson + repeats edges) so each
     # candidate 'depends_on' edge can be tested for cycle-closure BEFORE it is
     # added. Denser canonical matching can otherwise produce mutual
@@ -193,41 +214,59 @@ def build_path_graph(
             if concept_node and concept.prerequisites:
                 for prereq_name in concept.prerequisites:
                     prereq_key = canonical_match_key(prereq_name)
-                    # Find prerequisite concept node via canonical matching
+                    # Resolve the prereq to a concept node. Exact canonical
+                    # match wins (high confidence). Only when that fails do we
+                    # fall back to high-precision fuzzy token matching, which
+                    # recovers word-order and article/preposition variants of
+                    # the same content words the exact key drops. The fuzzy edge
+                    # carries a distinct provenance and the Jaccard score as
+                    # confidence so downstream consumers can tell them apart.
                     if prereq_key in canonical_index:
                         prereq_node = canonical_index[prereq_key]
-                        # Skip self-dependencies: a concept whose prereq
-                        # canonicalises to its own name is not a real edge
-                        # (and would introduce a self-loop / spurious cycle).
-                        if prereq_node.node_id == concept_node.node_id:
-                            continue
-                        # Skip any edge that would close a cycle: if the
-                        # prerequisite can already reach this concept, adding
-                        # "concept depends_on prereq" makes a cycle. Drop it
-                        # (deterministic: first-seen prereq edge wins).
-                        if G.has_node(prereq_node.node_id) and G.has_node(
-                            concept_node.node_id
-                        ) and nx.has_path(
-                            G, prereq_node.node_id, concept_node.node_id
-                        ):
-                            continue
-                        edge_id = (
-                            f"{concept_node.node_id}-depends_on->{prereq_node.node_id}"
+                        provenance = "auto-suggested"
+                        confidence = "0.8"
+                    else:
+                        match = fuzzy_prereq_match(
+                            prereq_name, fuzzy_candidates, depends_fuzzy_threshold
                         )
-                        if edge_id not in edge_ids_seen:
-                            edge = GraphEdge(
-                                edge_id=edge_id,
-                                source=concept_node.node_id,
-                                target=prereq_node.node_id,
-                                edge_type="depends_on",
-                                metadata={
-                                    "provenance": "auto-suggested",
-                                    "confidence": "0.8",
-                                },
-                            )
-                            all_edges.append(edge)
-                            edge_ids_seen.add(edge_id)
-                            G.add_edge(edge.source, edge.target)
+                        if match is None:
+                            continue
+                        matched_key, score = match
+                        prereq_node = canonical_index[matched_key]
+                        provenance = "auto-suggested-fuzzy"
+                        confidence = f"{score:.2f}"
+                    # Skip self-dependencies: a concept whose prereq
+                    # canonicalises to its own name is not a real edge
+                    # (and would introduce a self-loop / spurious cycle).
+                    if prereq_node.node_id == concept_node.node_id:
+                        continue
+                    # Skip any edge that would close a cycle: if the
+                    # prerequisite can already reach this concept, adding
+                    # "concept depends_on prereq" makes a cycle. Drop it
+                    # (deterministic: first-seen prereq edge wins).
+                    if G.has_node(prereq_node.node_id) and G.has_node(
+                        concept_node.node_id
+                    ) and nx.has_path(
+                        G, prereq_node.node_id, concept_node.node_id
+                    ):
+                        continue
+                    edge_id = (
+                        f"{concept_node.node_id}-depends_on->{prereq_node.node_id}"
+                    )
+                    if edge_id not in edge_ids_seen:
+                        edge = GraphEdge(
+                            edge_id=edge_id,
+                            source=concept_node.node_id,
+                            target=prereq_node.node_id,
+                            edge_type="depends_on",
+                            metadata={
+                                "provenance": provenance,
+                                "confidence": confidence,
+                            },
+                        )
+                        all_edges.append(edge)
+                        edge_ids_seen.add(edge_id)
+                        G.add_edge(edge.source, edge.target)
 
     # Validate DAG property using networkx (safety net: depends_on edges are
     # added cycle-safely above, so this guards only against per-lesson/repeats

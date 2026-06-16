@@ -19,6 +19,7 @@ from __future__ import annotations
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import ConceptExtraction, LessonContent
 from lessonos.graph.builder import build_path_graph
+from lessonos.graph.utils import content_tokens, fuzzy_prereq_match
 
 
 def _capsule(lesson_id: str, concepts: list[ConceptExtraction]) -> LessonCapsule:
@@ -214,3 +215,238 @@ def test_first_occurrence_wins_for_prereq_target():
     )
     _nodes, edges = build_path_graph([l1, l2, l3])
     assert _depends_targets(edges, "l3:concept:0") == {"l1:concept:0"}
+
+
+# ---------------------------------------------------------------------------
+# GRAPH-SUGGEST-2 — fuzzy (token-overlap) prereq→concept fallback.
+#
+# The exact canonical match (GS-1) still misses prereqs that differ from the
+# concept label only by WORD ORDER or an ARTICLE/preposition. A Jaccard
+# fallback recovers those — but the DEFAULT threshold is 1.0 (content-token-SET
+# equality), so subset/superset overlaps are REJECTED: a bare generic prereq
+# ("funzione") is NOT a dependency on its specialisation ("Funzione Periodica").
+# The fixture below is a *labelled* precision set: every depends_on edge is
+# ground-truth-correct, and the assertion pins the EXACT edge set, so a single
+# false match turns the test RED. The hard spec constraint is ZERO false
+# matches; recall is secondary.
+# ---------------------------------------------------------------------------
+
+def _build_labelled_fuzzy_fixture() -> list[LessonCapsule]:
+    """Targets + prereqs with KNOWN ground truth (positives and negatives).
+
+    Targets (l1, no prereqs):
+        0: "Trasformata di Fourier"
+        1: "Trasformata di Laplace"   (distinct: must never be matched here)
+        2: "Sistema LTI"
+
+    "Spettro" (l2) prereqs:
+        "la trasformata di Fourier"  POSITIVE fuzzy → l1:0 (article variant, J=1.0)
+        "trasformata"                NEGATIVE → tie Fourier/Laplace ⇒ drop
+        "trasformata di hilbert"     NEGATIVE → tied 0.33, concept absent ⇒ drop
+
+    "Modulazione" (l3) prereqs:
+        "fourier"      NEGATIVE (subset, J=0.5 < 1.0) ⇒ NO edge
+        "sistema lti"  POSITIVE exact → l1:2 (canonical, NOT fuzzy)
+    """
+    l1 = _capsule(
+        "l1",
+        [
+            ConceptExtraction(name="Trasformata di Fourier", status="introduced"),
+            ConceptExtraction(name="Trasformata di Laplace", status="introduced"),
+            ConceptExtraction(name="Sistema LTI", status="introduced"),
+        ],
+    )
+    l2 = _capsule(
+        "l2",
+        [
+            ConceptExtraction(
+                name="Spettro",
+                status="introduced",
+                prerequisites=(
+                    "la trasformata di Fourier",
+                    "trasformata",
+                    "trasformata di hilbert",
+                ),
+            )
+        ],
+    )
+    l3 = _capsule(
+        "l3",
+        [
+            ConceptExtraction(
+                name="Modulazione",
+                status="introduced",
+                prerequisites=("fourier", "sistema lti"),
+            )
+        ],
+    )
+    return [l1, l2, l3]
+
+
+def test_fuzzy_recovers_order_and_article_prereqs_only():
+    """Fuzzy recovers exactly the ground-truth edges (order/article), zero false."""
+    caps = _build_labelled_fuzzy_fixture()
+    _nodes, edges = build_path_graph(caps)
+
+    depends = {(e.source, e.target) for e in edges if e.edge_type == "depends_on"}
+    # EXACT ground-truth edge set. The subset prereq "fourier"→Fourier and the
+    # ambiguous "trasformata" produce NO edge; any spurious edge breaks this.
+    assert depends == {
+        ("l2:concept:0", "l1:concept:0"),  # "la trasformata di Fourier" (fuzzy J=1.0)
+        ("l3:concept:0", "l1:concept:2"),  # "sistema lti" (exact canonical)
+    }
+    # ZERO false match to the distinct "Trasformata di Laplace" concept.
+    all_targets = {e.target for e in edges if e.edge_type == "depends_on"}
+    assert "l1:concept:1" not in all_targets
+
+
+def test_fuzzy_before_after_recall_count():
+    """Before/after on the labelled fixture: naive .lower()=1 → with fuzzy=2."""
+    caps = _build_labelled_fuzzy_fixture()
+    _nodes, edges = build_path_graph(caps)
+    new_count = len([e for e in edges if e.edge_type == "depends_on"])
+    # Naive exact-.lower() matches only "sistema lti" → "Sistema LTI".
+    assert _naive_lower_depends_count(caps) == 1
+    # Fuzzy (set-equality) recovers ONE more — the article variant of Fourier —
+    # WITHOUT matching the subset "fourier", the ambiguous "trasformata", or the
+    # absent "hilbert".
+    assert new_count == 2
+
+
+def test_subset_prereq_is_not_matched_to_specialisation():
+    """A generic prereq that is a strict token SUBSET of one concept ⇒ NO edge.
+
+    'funzione' (the generic notion) must NOT bind to 'Funzione Periodica':
+    a subset is not evidence of a dependency on the specialisation. This is the
+    precision leak the default threshold (1.0) closes; it would be a FALSE edge
+    at threshold 0.5.
+    """
+    l1 = _capsule(
+        "l1",
+        [
+            ConceptExtraction(name="Funzione Periodica", status="introduced"),
+            ConceptExtraction(name="Trasformata di Fourier", status="introduced"),
+        ],
+    )
+    l2 = _capsule(
+        "l2",
+        [
+            ConceptExtraction(
+                name="Limite",
+                status="introduced",
+                prerequisites=("funzione",),  # subset of "Funzione Periodica"
+            )
+        ],
+    )
+    _nodes, edges = build_path_graph([l1, l2])
+    assert [e for e in edges if e.edge_type == "depends_on"] == []
+
+
+def test_fuzzy_edges_carry_distinct_provenance_and_confidence():
+    """Fuzzy edges are labelled so consumers can tell them from exact ones."""
+    caps = _build_labelled_fuzzy_fixture()
+    _nodes, edges = build_path_graph(caps)
+    by_pair = {
+        (e.source, e.target): e for e in edges if e.edge_type == "depends_on"
+    }
+
+    fuzzy_full = by_pair[("l2:concept:0", "l1:concept:0")]
+    assert fuzzy_full.metadata["provenance"] == "auto-suggested-fuzzy"
+    assert fuzzy_full.metadata["confidence"] == "1.00"  # J=1.0 (order/article)
+
+    exact = by_pair[("l3:concept:0", "l1:concept:2")]
+    assert exact.metadata["provenance"] == "auto-suggested"
+    assert exact.metadata["confidence"] == "0.8"
+
+
+def test_fuzzy_ambiguous_prereq_is_dropped_not_guessed():
+    """A prereq tied between two concepts yields NO edge (precision > recall)."""
+    l1 = _capsule(
+        "l1",
+        [
+            ConceptExtraction(name="Trasformata di Fourier", status="introduced"),
+            ConceptExtraction(name="Trasformata di Laplace", status="introduced"),
+        ],
+    )
+    l2 = _capsule(
+        "l2",
+        [
+            ConceptExtraction(
+                name="Analisi",
+                status="introduced",
+                prerequisites=("trasformata",),  # bare → tie 0.5/0.5
+            )
+        ],
+    )
+    _nodes, edges = build_path_graph([l1, l2])
+    assert [e for e in edges if e.edge_type == "depends_on"] == []
+
+
+def test_fuzzy_does_not_match_distinct_transform_below_threshold():
+    """'Trasformata di Laplace' prereq never matches 'Trasformata di Fourier'."""
+    l1 = _capsule(
+        "l1", [ConceptExtraction(name="Trasformata di Fourier", status="introduced")]
+    )
+    l2 = _capsule(
+        "l2",
+        [
+            ConceptExtraction(
+                name="Stabilità",
+                status="introduced",
+                # share only "trasformata" of 3 union tokens → J=0.33 < 1.0
+                prerequisites=("trasformata di laplace",),
+            )
+        ],
+    )
+    _nodes, edges = build_path_graph([l1, l2])
+    assert [e for e in edges if e.edge_type == "depends_on"] == []
+
+
+# --- pure-function unit tests for the fuzzy matcher --------------------------
+
+def test_content_tokens_strips_articles_and_folds_order():
+    assert content_tokens("la Trasformata di Fourier") == frozenset(
+        {"trasformata", "fourier"}
+    )
+    # word-order invariance
+    assert content_tokens("Fourier Trasformata") == content_tokens(
+        "Trasformata di Fourier"
+    )
+    # all-stopwords / blank → empty (no signal)
+    assert content_tokens("di la il") == frozenset()
+    assert content_tokens("   ") == frozenset()
+
+
+def test_fuzzy_prereq_match_default_is_set_equality():
+    candidates = [
+        ("trasformata fourier", frozenset({"trasformata", "fourier"})),
+        ("trasformata laplace", frozenset({"trasformata", "laplace"})),
+        ("sistema lti", frozenset({"sistema", "lti"})),
+    ]
+    # exact content-token set (order/article variant) → J=1.0 unique winner
+    assert fuzzy_prereq_match("la trasformata di fourier", candidates) == (
+        "trasformata fourier",
+        1.0,
+    )
+    # subset → J=0.5 < default 1.0 → rejected (precision)
+    assert fuzzy_prereq_match("fourier", candidates) is None
+    # ambiguous tie at lower threshold → None
+    assert fuzzy_prereq_match("trasformata", candidates, threshold=0.5) is None
+    # empty prereq → None
+    assert fuzzy_prereq_match("di la", candidates) is None
+
+
+def test_fuzzy_prereq_match_threshold_only_rejection_no_tie():
+    """A UNIQUE candidate below threshold is rejected — isolates the threshold.
+
+    Single candidate, no tie possible; superset prereq scores J=2/3 < 1.0 and
+    is dropped at the default, but accepted once the threshold drops below it.
+    """
+    candidates = [("trasformata fourier", frozenset({"trasformata", "fourier"}))]
+    # superset prereq: {trasformata, fourier, continua} vs {trasformata, fourier}
+    assert fuzzy_prereq_match("trasformata di fourier continua", candidates) is None
+    key, score = fuzzy_prereq_match(
+        "trasformata di fourier continua", candidates, threshold=0.6
+    )
+    assert key == "trasformata fourier"
+    assert abs(score - 2 / 3) < 1e-9

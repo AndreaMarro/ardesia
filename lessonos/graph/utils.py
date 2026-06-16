@@ -1,6 +1,35 @@
 """Shared graph utilities — pure functions, no I/O."""
 
 import unicodedata
+from collections.abc import Iterable
+
+# Italian function words (articles, prepositions, simple/articulated
+# prepositions, coordinating conjunctions). They carry no discriminative
+# meaning, so a prereq "la trasformata di Fourier" and the concept
+# "Trasformata di Fourier" must compare equal on their CONTENT tokens
+# ({trasformata, fourier}). Kept deliberately small: only closed-class
+# function words, never domain terms.
+_MATCH_STOPWORDS = frozenset(
+    {
+        "di", "del", "dello", "della", "dei", "degli", "delle", "dell",
+        "il", "lo", "la", "i", "gli", "le", "l",
+        "un", "uno", "una",
+        "a", "ad", "da", "in", "con", "su", "per", "tra", "fra",
+        "e", "ed", "o", "od",
+    }
+)
+
+# Default Jaccard threshold for the prereq→concept FUZZY fallback in
+# build_path_graph. Tunable per-call. The default is 1.0 = content-token-set
+# EQUALITY: it recovers ONLY word-order and article/preposition variants
+# ("la trasformata di Fourier" / "Fourier trasformata" ≡ "Trasformata di
+# Fourier"), which carry the same content words. It deliberately REJECTS
+# subset/superset overlaps — a bare generic prereq ("funzione") is NOT evidence
+# of a dependency on a specialisation ("Funzione Periodica"), so accepting such
+# a subset (J=0.5) would inject FALSE depends_on edges. The spec's hard
+# constraint is ZERO false matches, so precision wins: a lower threshold can be
+# passed explicitly when a caller accepts the recall/precision trade-off.
+DEFAULT_DEPENDS_FUZZY_THRESHOLD = 1.0
 
 
 def normalize_name(name: str) -> str:
@@ -37,3 +66,71 @@ def canonical_match_key(name: str) -> str:
     without_accents = ''.join(c for c in decomposed if not unicodedata.combining(c))
     collapsed = ' '.join(without_accents.split())
     return collapsed.casefold()
+
+
+def content_tokens(name: str) -> frozenset[str]:
+    """Significant (content) tokens of a concept/prerequisite name.
+
+    Canonicalises the name (accent/case/whitespace fold via
+    :func:`canonical_match_key`), splits on whitespace, and drops Italian
+    function words (:data:`_MATCH_STOPWORDS`). The result is the token *set*
+    used for Jaccard overlap in the fuzzy prereq matcher. Being a set, it is
+    word-order invariant; dropping stopwords makes it article/preposition
+    invariant. An empty result (name was blank or all function words) carries
+    no signal and never matches.
+    """
+    return frozenset(
+        t for t in canonical_match_key(name).split() if t and t not in _MATCH_STOPWORDS
+    )
+
+
+def fuzzy_prereq_match(
+    prereq: str,
+    candidates: Iterable[tuple[str, frozenset[str]]],
+    threshold: float = DEFAULT_DEPENDS_FUZZY_THRESHOLD,
+) -> tuple[str, float] | None:
+    """Best UNIQUE concept key whose content tokens overlap the prereq's.
+
+    ``candidates`` is an iterable of ``(concept_key, content_tokens)`` (one
+    entry per distinct concept). Returns ``(concept_key, jaccard_score)`` for
+    the single best match whose Jaccard token overlap is ``>= threshold``
+    **and** is strictly greater than every other candidate's score.
+
+    At the default ``threshold`` (1.0) only an exact content-token-SET match
+    qualifies, i.e. order/article variants of the same content words; subset
+    and superset overlaps are rejected (see
+    :data:`DEFAULT_DEPENDS_FUZZY_THRESHOLD`).
+
+    Precision over recall: if the best score is tied between two or more
+    distinct concepts the prereq is ambiguous (e.g. two concepts with the same
+    content tokens but different word order) and we return ``None`` — a wrong
+    dependency edge is worse than a missing one. An empty prereq token set also
+    returns ``None``.
+
+    Pure function: no node objects, no I/O — keys only, so it is trivially
+    testable on a labelled precision set.
+    """
+    prereq_tokens = content_tokens(prereq)
+    if not prereq_tokens:
+        return None
+
+    scored: list[tuple[float, str]] = []
+    for key, toks in candidates:
+        if not toks:
+            continue
+        inter = len(prereq_tokens & toks)
+        if inter == 0:
+            continue
+        score = inter / len(prereq_tokens | toks)
+        if score >= threshold:
+            scored.append((score, key))
+
+    if not scored:
+        return None
+
+    scored.sort(key=lambda s: (-s[0], s[1]))
+    best_score, best_key = scored[0]
+    # Tie on the top score between distinct concepts ⇒ ambiguous ⇒ drop.
+    if len(scored) > 1 and scored[1][0] == best_score:
+        return None
+    return best_key, best_score
