@@ -10,7 +10,7 @@ TOK="$1"; ROLE="${2:-builder}"
 export PATH="$HOME/.local/bin:$HOME/node-local/bin:/opt/homebrew/bin:$PATH"
 MARK="$HOME/.fable5_down"
 LADDER="$(bash "$HOME/lessonos/bin/route.sh" "$ROLE" 2>/dev/null)"
-[ -n "$LADDER" ] || LADDER="claude-opus-4-8 claude-sonnet-4-6"
+[ -n "$LADDER" ] || LADDER="claude-opus-4-8"
 for m in $LADDER; do
   case "$m" in claude-*) ;; *) continue;; esac   # solo modelli claude qui (kimi/codex/gemini gestiti altrove)
   out=$(timeout 45 env -u ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN="$TOK" \
