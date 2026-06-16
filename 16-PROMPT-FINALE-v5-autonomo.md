@@ -59,6 +59,15 @@ factory-metrics+cost+digest-TG (ardesia-tools `6e2efb6`); cap-fix `cc59677` (con
 ## LAVORO PARALLELO SU TUTTO (modello)
 Il LOOP autonomo macina ENGINE+STUDIO sotto gate (maratona 40min, code piene allineate alla visione); le 2 CRON coprono research+control/meta-dev; il closed-loop ROI auto-migliora prompt/skill/route sotto canary. **Contratti Layer-0 PRIMA** (`packages/contracts`+`plugin-sdk`+ToolHost+`ui`+auth/consenso-minori) → 3 lane parallele ENGINE/STUDIO/COMMERCE (1 package=1 worktree=1 gate). **Monorepo `ardesia` Nx = da bootstrappare → LASCIA in coda per Andrea** (dove + forche GDPR/dati), NON deciderlo da solo. Antiregressione totale, MAI auto-merge, deploy-prod solo OK Andrea. Telegram = control-plane (stato/coda/pin/modello/foto) — usalo per documentare i progressi notturni ad Andrea.
 
+## 🔁 LOOP DI APPRENDIMENTO (sempre piu VELOCE — principio CORE)
+Il sistema IMPARA CONTINUAMENTE da 3 fonti e NON ri-impara mai la stessa lezione; obiettivo = ACCELERARE il ritmo di apprendimento nel tempo.
+- **Da ERRORI**: ogni bug-class confermata → un gate frozen O una skill, nella STESSA sessione (chiudi la CLASSE non l'istanza). Es. stasera: cap-counts-noop→cap-fix, deadman-cieco→BUILD-STARVATION, gridlock-pin→autoheal. agentmemory cattura ogni errore → distilla (LLM capped) → recall deja-vu PRIMA di ri-diagnosticare.
+- **Da COMPETITOR**: RESEARCH-cron monitora Tinkercad/Wokwi/MakeCode/MagicSchool/CircuitVerse + edtech-IT → `_agent-out/` → candidati pin/decisioni (capire il gap, mai copiare).
+- **Da RICERCA**: arxiv/GitHub-trending/dominio → tecniche+tool VERIFICATI alla fonte (licenze incluse) → vault.
+- **Meta-apprendimento (il loop accelera)**: il closed-loop ROI misura QUALI miglioramenti hanno alzato i KPI → ne fa di piu; gate/skill accumulati riducono il tempo-per-task; il recall riduce il ri-lavoro.
+- **KPI-ritmo (falsificabili, devono migliorare nel tempo)**: time-to-close-bug-class ↓, recall-hit ↑, lezioni-ricorrenti → 0, $/task ↓, regression-rate ↓.
+- **Tutto documentato** (SoT + vault + digest TG) a OGNI milestone → contesto cross-sessione mai perso = la base su cui il loop accelera.
+
 ## Memoria / architettura
 agentmemory = memoria FABBRICA (ri-popola da import → distilla via LLM capped); mem0 = PRODOTTO (da deployare). claude-mem degradato (no SPOF). Aggiorna SEMPRE SoT + vault + digest TG ad ogni milestone.
 
