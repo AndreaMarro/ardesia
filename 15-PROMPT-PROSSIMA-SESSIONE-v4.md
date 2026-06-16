@@ -34,7 +34,7 @@ Sviluppatore/architetto di ARDESIA. Andrea = UNICO dev, la sua reputazione dipen
 - 🔴 **adversarial `205dd8a`: 1 CRITICO su GS-2 — triagiare** (probabile FP, ma fresco).
 - **GS-3 = densificazione method-graph UPSTREAM** (ingest LLM canonicalizza nomi-prereq a concetti ESISTENTI, o embedding-semantico). String-match e morto (GS-1 no-op, GS-2 +1). **= costruzione del moat-piattaforma livello-3.**
 - **Gridlock ricorrente**: pin non auto-ruotato dopo build → thrash blocked/noop (ruotato a mano 2× stasera). **Fix durevole: autoheal marca [PIN-DONE] su blocked/noop di pin-gia-chiuso (Hermes-lane).**
-- **Mossa #2 LiteLLM cutover** (cost/cache metered sulle CHEAP; opus resta diretto): step-0 = aggiungere alias `deepseek-reasoner`+`kimi-k2.6` a `~/litellm/config.yaml` (gateway ha solo deepseek-chat/kimi-k2) → poi puntare `adversarial.py:117`+`review-kimi.py:25`+`~/.hermes/config.yaml`(base_url) a `127.0.0.1:4000/v1`. Edit+restart+test ATOMICO (il restart disturba PLAN-CHECK 55s → fallo a loop calmo).
+- **Mossa #2 LiteLLM cutover** (cost/cache metered sulle CHEAP; opus resta diretto): step-0 = aggiungere/aggiornare alias **`deepseek-v4-pro`+`kimi-2.7`** (VERIFICA id-API esatti DeepSeek/Moonshot) in `~/litellm/config.yaml` (gateway ha solo deepseek-chat/kimi-k2) → poi puntare `adversarial.py:117`+`review-kimi.py:25`+`~/.hermes/config.yaml`(base_url) a `127.0.0.1:4000/v1`. Edit+restart+test ATOMICO (il restart disturba PLAN-CHECK 55s → fallo a loop calmo).
 - **Verifica Studio-canvas** (su cosa e costruito: Konva/Excalidraw/custom) prima di scelte canvas. tldraw=$6k/yr+kill-switch (evita), Excalidraw=MIT.
 - obs agentmemory 0 (ri-popola da import); mem0-prodotto da deployare; ogg 13/06 da trascrivere.
 - 🔴 **RESTA A ANDREA (4 azioni)**: gh-auth MacBook (token invalidi ~/.zshrc:30-31); abilitare Obsidian-Sync sul vault; ruotare chiave Kimi (esposta); verificare billing Claude (metered vs subscription).
@@ -52,7 +52,7 @@ Sviluppatore/architetto di ARDESIA. Andrea = UNICO dev, la sua reputazione dipen
 **Concretamente:** il LOOP autonomo macina ENGINE+STUDIO sotto gate (code piene allineate alla visione: engine=method-graph, studio=plugin-sdk, plugin=elab-book-fidelity); IO (Claude-desktop con Andrea) = apex/architettura/supervisione/decisioni/triage; le cron-routine future coprono research+control. Telegram = control-plane (stato/coda/pin/modello + foto).
 
 ## Modelli / memoria / architettura
-Grind = cheap non-Claude via LiteLLM capped (DeepSeek-V4→Kimi-K2.6; review codex→kimi; adversarial kimi). Apex = Claude opus→sonnet via `claude -p` (2 Max a turno, salta l'account interattivo di Andrea). fable-5 SOSPESO. GLM-5.2 = TRIAL. agentmemory=memoria FABBRICA; mem0=PRODOTTO (da deployare). **FABBRICA vs PRODOTTO** (GDPR runtime SOLO prodotto, no PII nei nodi-agente).
+Grind = cheap non-Claude via LiteLLM capped (**DeepSeek-V4-Pro + Kimi-2.7**; review codex→kimi; adversarial kimi). Apex = **Claude opus-4.8 ULTRACODE ONLY via `claude -p`** (NO fallback sonnet; 2 Max a turno, salta l'account interattivo di Andrea). fable-5 SOSPESO. **GLM-5.2 = TRIAL DOMANI (17/06)**. **NUMERIA = a parte, NON guardare/toccare ora.** agentmemory=memoria FABBRICA; mem0=PRODOTTO (da deployare). **FABBRICA vs PRODOTTO** (GDPR runtime SOLO prodotto, no PII nei nodi-agente).
 
 ## Tooling sessione
 `ssh macmini` stato live · `factory-metrics.py --digest` KPI · `ssh macmini gh ...` canale GitHub · `~/litellm/spend-report.sh` costi · niente Workflow-bg (SINCRONO) · verifica `file:riga`.
