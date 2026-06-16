@@ -13,7 +13,7 @@ PROMPT="$*"
 # PLAN-CHECK (frequente) -> LiteLLM gateway cheap (deepseek-chat -> kimi via fallback). NIENTE claude (~0.09$/call).
 case "$1" in
   PLAN-CHECK*)
-    LK="${LITELLM_MASTER_KEY:-sk-ardesia-litellm-local}"
+    LK=$(cat "$HOME/litellm/.consumer-key" 2>/dev/null || echo "${LITELLM_MASTER_KEY:-sk-ardesia-litellm-local}")
     pc_out=$(PROMPT="$PROMPT" LK="$LK" python3 - <<'PYEOF'
 import os,json,urllib.request
 p=os.environ["PROMPT"]; k=os.environ["LK"]
