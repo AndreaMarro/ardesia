@@ -13,7 +13,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [PIN ESAURITO 13/06 — S-UX-3 COMPLETATO, gate 471/471, 2 sotto-task] nessun [AUTO-OK] studio in ROADMAP-AUTO: in attesa di nuovo pin CLAUDE-SAYS.
-- **lessonos**: [PIN ESAURITO 16/06 — GRAPH-SUGGEST-2 chiuso (commit 7499b57, fuzzy set-equality zero-falsi); coda vuota, attende prossimo pin]
+- **lessonos**: [ORDINE-ANDREA 17/06 01:44] **GS-3 method-graph UPSTREAM: canonicalizzare i nomi-prereq a concetti ESISTENTI gia in fase di INGEST/persistenza (non solo in-memory in build_path_graph). Approccio A=passo LLM-canonicalization (prereq grezzo -> concetto canonico del corpus, soglia confidenza + no-match fallback) oppure B=embedding-semantico (cosine sopra soglia). string-match esatto e MORTO. Criteri FALSIFICABILI: depends_on canonicalizzati PERSISTITI nello store (additive+migrate-safe, zero rottura schema esistente), ZERO-falsi su fixture etichettata (un match errato=RED), provenance+confidence sugli edge aggiunti, before/after misurato, gate VERDE, mutation-verified, SELF-ADV decorrelato. = moat-piattaforma liv.3.**
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 
 
