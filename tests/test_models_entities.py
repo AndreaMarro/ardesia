@@ -7,6 +7,7 @@ import pytest
 from lessonos.models import (
     CONCEPT_STATUS,
     EDGE_TYPES,
+    AggregatedPathNode,
     Concept,
     Exercise,
     GraphEdge,
@@ -16,7 +17,9 @@ from lessonos.models import (
     Moment,
     Path,
     Source,
+    validate_enum,
 )
+from lessonos.models.entities import TeacherConcept
 
 FIXTURE_DIR = FsPath(__file__).resolve().parent.parent / "fixtures" / "sample_path"
 
@@ -112,3 +115,61 @@ def test_path_and_lesson_roundtrip_real_fixture() -> None:
     assert lesson.path_id == path.path_id
     assert lesson.lesson_id in path.lesson_ids
     assert lesson.order == 1
+
+
+class TestValidateEnum:
+    """Shared controlled-vocabulary validator (dedup of 6 call sites)."""
+
+    def test_accepts_member_silently(self) -> None:
+        assert validate_enum("explains", EDGE_TYPES, "edge_type") is None
+
+    def test_rejects_non_member_with_value_label_and_sorted_options(self) -> None:
+        with pytest.raises(ValueError) as exc:
+            validate_enum("teleports", EDGE_TYPES, "edge_type")
+        msg = str(exc.value)
+        # value is repr'd, label verbatim, options sorted — pins the whole shape
+        assert msg == (
+            "invalid edge_type: 'teleports' "
+            f"(expected one of {sorted(EDGE_TYPES)})"
+        )
+
+    def test_options_are_sorted_not_frozenset_order(self) -> None:
+        # frozenset iteration order is unspecified; the message must be sorted.
+        with pytest.raises(ValueError, match=r"\['introduced', 'mastered'"):
+            validate_enum("x", CONCEPT_STATUS, "concept status")
+
+
+class TestEntityValidatorLabels:
+    """Each entity routes through validate_enum with its OWN label.
+
+    Mutation guard: swapping any call-site label flips the asserted substring.
+    """
+
+    def test_concept_label(self) -> None:
+        with pytest.raises(ValueError, match=r"^invalid concept status: 'bad'"):
+            Concept("c1", "derivata", status="bad")
+
+    def test_graph_edge_label(self) -> None:
+        with pytest.raises(ValueError, match=r"^invalid edge_type: 'bad'"):
+            GraphEdge("e1", "n1", "n2", "bad")
+
+    def test_aggregated_path_node_label(self) -> None:
+        with pytest.raises(
+            ValueError, match=r"^invalid aggregated concept status: 'bad'"
+        ):
+            AggregatedPathNode("n1", label="L", status="bad")
+
+    def test_teacher_concept_label(self) -> None:
+        with pytest.raises(
+            ValueError, match=r"^invalid teacher concept status: 'bad'"
+        ):
+            TeacherConcept(name="Energia", canonical="energia", status="bad")
+
+    def test_valid_status_constructs_each(self) -> None:
+        # The happy path still passes for the two previously-untested entities.
+        assert AggregatedPathNode("n1", label="L", status="introduced").status == (
+            "introduced"
+        )
+        assert TeacherConcept(
+            name="E", canonical="e", status="mastered"
+        ).status == "mastered"

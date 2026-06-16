@@ -44,6 +44,18 @@ STATUS_ORDER: dict[str, int] = {
 }
 
 
+def validate_enum(value: str, allowed: frozenset[str], label: str) -> None:
+    """Raise ValueError if *value* is not in the constrained vocabulary *allowed*.
+
+    Shared by every frozen entity with a controlled-vocabulary field so the
+    fail-fast message stays identical across the data model (PLAN §3.2/§26.1).
+    """
+    if value not in allowed:
+        raise ValueError(
+            f"invalid {label}: {value!r} (expected one of {sorted(allowed)})"
+        )
+
+
 @dataclass(frozen=True)
 class Path:
     """A learning path: ordered lessons over a subject (PLAN §7, fixtures path.json).
@@ -116,11 +128,7 @@ class Concept:
     prerequisites: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
-        if self.status not in CONCEPT_STATUS:
-            raise ValueError(
-                f"invalid concept status: {self.status!r} "
-                f"(expected one of {sorted(CONCEPT_STATUS)})"
-            )
+        validate_enum(self.status, CONCEPT_STATUS, "concept status")
 
 
 @dataclass(frozen=True)
@@ -166,11 +174,7 @@ class GraphEdge:
     metadata: dict[str, str] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        if self.edge_type not in EDGE_TYPES:
-            raise ValueError(
-                f"invalid edge_type: {self.edge_type!r} "
-                f"(expected one of {sorted(EDGE_TYPES)})"
-            )
+        validate_enum(self.edge_type, EDGE_TYPES, "edge_type")
 
 
 @dataclass(frozen=True)
@@ -213,11 +217,7 @@ class AggregatedPathNode:
     dedup_key: str = ""
 
     def __post_init__(self) -> None:
-        if self.status not in CONCEPT_STATUS:
-            raise ValueError(
-                f"invalid aggregated concept status: {self.status!r} "
-                f"(expected one of {sorted(CONCEPT_STATUS)})"
-            )
+        validate_enum(self.status, CONCEPT_STATUS, "aggregated concept status")
 
 
 @dataclass(frozen=True)
@@ -258,11 +258,7 @@ class TeacherConcept:
     citations: tuple[GraphEvidence, ...] = ()
 
     def __post_init__(self) -> None:
-        if self.status not in CONCEPT_STATUS:
-            raise ValueError(
-                f"invalid teacher concept status: {self.status!r} "
-                f"(expected one of {sorted(CONCEPT_STATUS)})"
-            )
+        validate_enum(self.status, CONCEPT_STATUS, "teacher concept status")
 
 
 @dataclass(frozen=True)

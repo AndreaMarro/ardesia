@@ -18,6 +18,7 @@ from dataclasses import dataclass
 
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import Citation
+from lessonos.models import validate_enum
 
 ATOM_TYPES: frozenset[str] = frozenset({
     "definition",
@@ -74,11 +75,7 @@ class ContentAtom:
     def __post_init__(self) -> None:
         if not self.atom_id:
             raise ValueError("atom_id must be non-empty")
-        if self.atom_type not in ATOM_TYPES:
-            raise ValueError(
-                f"invalid atom_type: {self.atom_type!r} "
-                f"(expected one of {sorted(ATOM_TYPES)})"
-            )
+        validate_enum(self.atom_type, ATOM_TYPES, "atom_type")
         if not self.lesson_id:
             raise ValueError("lesson_id must be non-empty")
         if not self.body:

@@ -15,7 +15,7 @@ from difflib import SequenceMatcher
 
 from lessonos.capsule.parsing import extract_json
 from lessonos.llm.router import Router
-from lessonos.models import CONCEPT_STATUS
+from lessonos.models import CONCEPT_STATUS, validate_enum
 from lessonos.store.base import Store
 
 
@@ -155,11 +155,7 @@ class ConceptExtraction:
     citations: tuple[Citation, ...] = ()
 
     def __post_init__(self) -> None:
-        if self.status not in CONCEPT_STATUS:
-            raise ValueError(
-                f"invalid concept status: {self.status!r} "
-                f"(expected one of {sorted(CONCEPT_STATUS)})"
-            )
+        validate_enum(self.status, CONCEPT_STATUS, "concept status")
 
 
 @dataclass(frozen=True)
