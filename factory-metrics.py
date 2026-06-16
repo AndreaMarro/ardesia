@@ -57,6 +57,21 @@ def report(recs, tasks, days=5):
     print(f"\nregression-rate lifetime: {rev}/{len(builds)} = {(100*rev/len(builds) if builds else 0):.1f}%")
     print("CAVEAT: cost_usd=self-reported (NON metered); cache-hit%=N/A.")
 
+def litellm_spend():
+    import subprocess
+    sh = f"{H}/litellm/spend-report.sh"
+    if not os.path.exists(sh): return None
+    try:
+        out = subprocess.run(["bash", sh], capture_output=True, text=True, timeout=20).stdout
+    except Exception:
+        return None
+    lines = out.splitlines()
+    for i, l in enumerate(lines):
+        if "month-to-date" in l and i + 1 < len(lines):
+            return lines[i + 1].strip()
+    return None
+
+
 def digest(recs, tasks):
     days = sorted({r["day"] for r in recs}); today = days[-1] if days else "?"
     lines = [f"Fabbrica digest {today}"]; stall = True
@@ -77,6 +92,9 @@ def digest(recs, tasks):
     lines.append(f"regression-rate {rev}/{len(builds)}={(100*rev/len(builds) if builds else 0):.1f}%")
     tt = tasks.get(today, []); cost = sum(float(t.get("cost_usd", 0) or 0) for t in tt)
     lines.append(f"task oggi(log.jsonl)={len(tt)} cost_self=${cost:.2f} (self-reported)")
+    sp = litellm_spend()
+    if sp is not None:
+        lines.append(f"LiteLLM cheap MTD: ${sp} | opus-direct NON metered (gap mossa-2)")
     return "\n".join(lines)
 
 def main():
