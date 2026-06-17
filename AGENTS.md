@@ -1,3 +1,5 @@
+> ORIENTAMENTO: leggi `~/ardesia-vault/ARDESIA-MAP.md` per com'e fatto il progetto (macchine, repo, branch auto/main vs main, loop, ruoli-modello, invarianti). E la mappa SoT.
+
 # AGENTS.md — MAESTRO-Studio (regole per Hermes)
 
 ## 1. Identità e missione
