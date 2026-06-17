@@ -8,6 +8,8 @@ for the BM25 ranker (lexical scope) AND the dense ranker (semantic scope).
 
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from lessonos.models.entities import Lesson, Path, Segment
@@ -145,6 +147,47 @@ class TestNoTeacherLeakage:
     def test_unknown_teacher_retrieves_nothing(self) -> None:
         store = _two_teacher_store()
         assert retrieve_teacher_context(store, "t_ghost", "laplace") == []
+
+
+class TestNoCapsuleLeakage:
+    """Capsules live in a DISTINCT key space (source_id == lesson_id) from
+    segments; their scope path must hold independently. Both the FTS
+    capsules_fts SQL filter and the dense capsule-doc filter are exercised here.
+    """
+
+    @staticmethod
+    def _capsule(concept_name: str) -> str:
+        return json.dumps(
+            {"content": {"concepts": [{"name": concept_name, "status": "ok"}]}}
+        )
+
+    def _store(self) -> SQLiteStore:
+        store = _two_teacher_store()
+        # both teachers' lessons get a capsule with the SAME concept text
+        cap = self._capsule("trasformata di Laplace")
+        store.save_capsule("l_alpha", cap)
+        store.save_capsule("l_beta", cap)
+        return store
+
+    def test_capsule_lexical_query_stays_in_scope(self) -> None:
+        store = self._store()
+        hits = retrieve_teacher_context(
+            store, "t_alpha", "laplace", embedder=_embedder(), top_k=10
+        )
+        # the alpha capsule is retrievable…
+        keys = {(h.source, h.source_id) for h in hits}
+        assert ("capsule", "l_alpha") in keys
+        # …and NO beta-derived doc (capsule or segment) ever leaks
+        assert all(h.lesson_id == "l_alpha" for h in hits)
+        assert ("capsule", "l_beta") not in keys
+
+    def test_capsule_present_for_other_teacher_only(self) -> None:
+        store = self._store()
+        b_hits = retrieve_teacher_context(
+            store, "t_beta", "laplace", embedder=_embedder(), top_k=10
+        )
+        assert all(h.lesson_id == "l_beta" for h in b_hits)
+        assert ("capsule", "l_beta") in {(h.source, h.source_id) for h in b_hits}
 
 
 # ── build_teacher_retriever reuse ─────────────────────────────────────────
