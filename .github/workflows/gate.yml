@@ -1,0 +1,30 @@
+name: gate
+# CI gate per ARDESIA-studio — typecheck (tsc -b) + vitest (lo stesso del gate locale).
+# Trigger: push su auto/main (visibilita) + PR verso main (gate pre-merge).
+# main = branch ratificato (protetto); auto/main = branch del bot (push diretti).
+on:
+  push:
+    branches: [auto/main, main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: gate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install deps
+        run: npm ci || npm install --no-audit --no-fund
+      - name: Typecheck
+        run: npx tsc -b --noEmit
+      - name: Vitest
+        run: npx vitest run --passWithNoTests
