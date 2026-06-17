@@ -26,7 +26,14 @@ from lessonos.graph.path_memory import (
     compute_retention,
     predict_stability,
 )
-from lessonos.graph.suggest import BridgeConcept, rank_bridge_concepts
+from lessonos.graph.suggest import (
+    BridgeConcept,
+    MethodConcept,
+    MethodDependency,
+    MethodGraph,
+    rank_bridge_concepts,
+    serve_method_graph,
+)
 from lessonos.graph.queries import (
     all_prerequisites_deep,
     build_networkx_graph,
@@ -62,7 +69,11 @@ __all__ = [
     "compute_next_lesson_plan",
     "compute_retention",
     "predict_stability",
+    "MethodConcept",
+    "MethodDependency",
+    "MethodGraph",
     "rank_bridge_concepts",
+    "serve_method_graph",
     "find_concept",
     "GraphWriter",
     "write_capsule_graph",
