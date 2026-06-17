@@ -988,3 +988,12 @@ Pin AUTO-PINNED (COORD:16). Gate 1947 -> **1962 (+15 test)**. ADDITIVO: zero sch
   - [test-gap, FIXATO] +`test_latest_recorded_wins_under_clock_skew` (verifica che vince l'ultimo REGISTRATO, non l'`at` più recente — claim del commento `sqlite.py` ora provato).
   - [MINOR, NON-difetto accettato] naive `now` assunto UTC per contratto documentato (test verifica no-raise).
 - gate: 1992/0. check-no-gte-literal: 0 nuovi warning (2 residui pre-esistenti). cost_usd: ~$0.09.
+
+## 2026-06-17T12:45Z — fix dedup classes_for_student (SELECT DISTINCT) [VERIFICATO]
+- TASK (pin 17/06 12:37): fix dedup `classes_for_student` con SELECT DISTINCT in `lessonos/store/sqlite.py`, test gemello a `test_students_for_class_dedups_multi_enrollment`, gate verde, zero regressioni.
+- Criteri di accettazione, punto per punto:
+  - [VERIFICATO] SELECT DISTINCT su `classes_for_student` — `sqlite.py:800` (`SELECT DISTINCT c.* ...`).
+  - [VERIFICATO] test gemello `test_classes_for_student_dedups_multi_enrollment` (`tests/test_crm.py`), specchio di `test_students_for_class_dedups_multi_enrollment`.
+  - [VERIFICATO] gate verde 1993/0 (era 1992, +1 = nuovo test). zero regressioni.
+- SELF-ADV (mutation check avversario sul diff): trovati 0, fixati 0. Rimosso DISTINCT -> il nuovo test fallisce (`['cls_3a','cls_3a']`), gli altri (reverse, students_for_class) reggono -> test genuino, non tautologico. Ripristinato, gate verde.
+- gate: 1993/0. cost_usd: ~$0.04.
