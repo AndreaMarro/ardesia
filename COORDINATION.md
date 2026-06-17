@@ -23,6 +23,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[HERMES-2 ADVERSARIAL 2026-06-17 17:16]** 1 problema/i CRITICO/i su `studio@5eeb9bd` — report: `/Users/progettibelli/maestro-logs/adversarial/20260617-1716-studio-5eeb9bd.md` (supervisore: leggere e decidere)
 - **[HERMES-2 ADVERSARIAL 2026-06-17 16:39]** 1 problema/i CRITICO/i su `studio@e89e769` — report: `/Users/progettibelli/maestro-logs/adversarial/20260617-1639-studio-e89e769.md` (supervisore: leggere e decidere)
 - **[AUTO-HEAL 17/06 18:15] pin lessonos auto-marcato esaurito (NOOP x2).** Task presumibilmente completata o bloccata; il driver promuove dalla coda o avvisa su Telegram. Se era BLOCCATA non completata, ripinnala (Telegram: pin lessonos <task>).
 - **[HERMES-2 ADVERSARIAL 2026-06-17 15:58]** 1 problema/i CRITICO/i su `lessonos@4161e6a` — report: `/Users/progettibelli/maestro-logs/adversarial/20260617-1558-lessonos-4161e6a.md` (supervisore: leggere e decidere)
