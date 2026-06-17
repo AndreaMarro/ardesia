@@ -12,10 +12,9 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [PIN-DONE auto 17/06 04:20] [AUTO-PINNED 17/06 03:36] plugins/elab — primo plugin concreto sul contratto Layer-0 (Arduino book-accurate skeleton via ToolHost) montato su lavagna Excalidraw, gate verde.
+- **studio**: [AUTO-PINNED 17/06 04:20] ToolHost hardening — sandbox iframe + capability-gating + kill-switch test, gate verde.
 - **lessonos**: [AUTO-PINNED 17/06 03:32] retrieval-hybrid M7 — fusione BM25+dense sul method-graph retrieval (RRF), fixture gold, recall@k MISURATO, gate verde.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] studio: ToolHost hardening — sandbox iframe + capability-gating + kill-switch test, gate verde.
 
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
