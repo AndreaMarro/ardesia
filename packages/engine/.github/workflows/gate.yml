@@ -1,0 +1,29 @@
+name: gate
+# CI gate per LessonOS — gira la suite pytest (lo stesso uv run pytest del gate locale).
+# Trigger: push su auto/main (visibilita: un commit rosso si vede subito) + PR verso main (gate pre-merge).
+# main = branch ratificato (protetto, richiede questo check); auto/main = branch del bot (push diretti, NON protetto).
+on:
+  push:
+    branches: [auto/main, main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: gate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: Sync deps
+        run: uv sync --dev
+      - name: Gate (pytest)
+        run: uv run pytest -q --no-header

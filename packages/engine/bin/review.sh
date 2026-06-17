@@ -1,0 +1,122 @@
+#!/bin/bash
+# REVIEWER decorrelato = Claude Code (claude -p). Hermes COSTRUISCE, Claude RIVEDE.
+# Rivede il diff NON committato del repo indicato da REVIEW_REPO (default ~/lessonos).
+# v3 (16/06): ladder opus-4-8 -> sonnet-4-6 (retry+fallback; ex-fable); multi-repo via REVIEW_REPO;
+# blurb progetto da REVIEW-CONTEXT.md se presente; auto-observation hook reso RAGGIUNGIBILE (prima: dead code dopo exit).
+# Token re-iniettato (Hermes sanitizza l'env del subprocess). Usage: ./bin/review.sh [tier]  tier: fable(default)|opus|sonnet|haiku
+# PATH esplicito: hermes sanitizza l'env del subprocess → claude/node invisibili senza questo (blocker attempt-2).
+export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+tier="${1:-auto}"
+FORCE_CLAUDE=0
+case "$tier" in
+  haiku)  models="claude-haiku-4-5"; FORCE_CLAUDE=1;;
+  sonnet) models="claude-sonnet-4-6"; FORCE_CLAUDE=1;;
+  opus)   models="claude-opus-4-8"; FORCE_CLAUDE=1;;
+  fable)  models="claude-opus-4-8 claude-sonnet-4-6"; FORCE_CLAUDE=1;;
+  *)      models="claude-opus-4-8 claude-sonnet-4-6";;  # auto = free cross-family first
+esac
+# token per-account via acct.sh (12/06): vedi ladder sotto
+REPO_DIR="${REVIEW_REPO:-$HOME/lessonos}"
+cd "$REPO_DIR" || exit 1
+
+diff="$(git --no-pager diff; git --no-pager diff --staged; echo '--- UNTRACKED ---'; git ls-files --others --exclude-standard | while read f; do echo "### $f"; sed -n '1,200p' "$f"; done)"
+[ -z "$(echo "$diff" | tr -d '[:space:]')" ] && { echo "REVIEW: nessun diff da rivedere."; exit 0; }
+
+# AUTO-LOAD SKILL: inietta le checklist di skills/*.md nel prompt (chiude il loop "skill creata ma non applicata", RETRO #6/#7).
+skills=""
+if compgen -G "skills/*.md" >/dev/null 2>&1; then
+  for f in skills/*.md; do
+    [ "$(basename "$f")" = "README.md" ] && continue
+    skills+="
+### SKILL: $(basename "$f")
+$(cat "$f")
+"
+  done
+fi
+[ -n "$skills" ] && skills="=== SKILL CHECKLIST (applica OGNI item al diff) ===$skills"
+
+# Blurb progetto: REVIEW-CONTEXT.md del repo se esiste, altrimenti default LessonOS.
+if [ -f REVIEW-CONTEXT.md ]; then ctx="$(cat REVIEW-CONTEXT.md)"
+else ctx="LessonOS (motore didattico Python headless: lezione -> Lesson Capsule -> Lesson Graph -> Path Memory -> Didactic Delta -> Learning Debt, grounded). Cerca anche: grounding non fondato (seg_id/citazioni inventati), scope-creep oltre il motore headless (NO iPad/web/cloud/UI), violazioni convenzioni (test su mock, dataclass frozen, ValueError su input invalido, no dipendenze ingiustificate)."
+fi
+
+prompt="Sei il REVIEWER decorrelato di questo progetto: $ctx
+Un ALTRO agente ha appena scritto questo lavoro non committato. Rivedilo ADVERSARIALMENTE e ONESTAMENTE (NON COMPIACERE). Applica ESPLICITAMENTE ogni item delle SKILL CHECKLIST qui sotto al diff. Cerca: (1) bug reali; (2) test tautologici/fasulli che asseriscono cio che il codice fa per costruzione; (3) claim senza fonte reale; (4) scope-creep oltre gli ORDINI correnti (COORDINATION.md). Se trovi problemi VERI: elencali concisi con file:line + il FIX preciso. Se e solido: scrivi 'OK'. Massimo 240 parole. POI aggiungi SEMPRE 1 consiglio breve su come MIGLIORARE (processo/skill/architettura/memoria agentmemory) per le prossime iterazioni.
+
+$skills
+
+=== DIFF ===
+$diff"
+
+# AUTO-OBSERVATION (RETRO #9 fix #2) — chiamato PRIMA di ogni uscita (nella v2 stava dopo exit = mai eseguito).
+record_observation() {
+  obs_file="$REPO_DIR/observations.jsonl"
+  head_sha="$(git rev-parse --short HEAD 2>/dev/null || echo 'pre-commit')"
+  if [ -f "$obs_file" ] && ! grep -q "$head_sha" "$obs_file" 2>/dev/null; then
+    ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    diff_files="$(git diff --name-only HEAD~1..HEAD 2>/dev/null | tr '\n' ',' | sed 's/,$//')"
+    echo "{\"ts\":\"$ts\",\"commit\":\"$head_sha\",\"task\":\"(auto-observation review.sh pre-commit)\",\"files\":[\"$diff_files\"],\"cost_usd\":0.0,\"status\":\"pending\"}" >> "$obs_file"
+  fi
+}
+
+# ── reviewer rungs (12/06 calibrazione token) ──────────────────────────────────
+# _valid_review: output non vuoto e >=100 char (filtra error JSON/"OK"/rate-limit).
+_valid_review() { [ -s "$1" ] && [ "$(wc -c < "$1")" -ge 100 ]; }
+
+_claude_ladder() {  # claude A1->A2->A3, fable poi opus; 0 al primo successo
+  local ACCS="A1"
+  bash "$HOME/lessonos/bin/acct.sh" has A2 && ACCS="A1 A2"
+  bash "$HOME/lessonos/bin/acct.sh" has A3 && ACCS="$ACCS A3"
+  local acc m try out rc TOK
+  for acc in $ACCS; do
+    bash "$HOME/lessonos/bin/quota.sh" check "$acc" >/dev/null 2>&1 || continue
+    TOK="$(bash "$HOME/lessonos/bin/acct.sh" token "$acc" 2>/dev/null)"; [ -n "$TOK" ] || continue
+    for m in $models; do
+      for try in 1 2 3; do
+        out="$(timeout 240 env -u ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN="$TOK" claude -p --dangerously-skip-permissions --model "$m" "$prompt" 2>&1)"; rc=$?
+        if printf "%s" "$out" | grep -qiE "out of (extra )?usage|usage limit|quota exceeded"; then
+          printf "%s" "$out" | bash "$HOME/lessonos/bin/quota.sh" mark "$acc" >/dev/null 2>&1 || true
+          continue 3
+        fi
+        if [ "$rc" = 124 ] || printf "%s" "$out" | grep -qiE "not logged in|please run /login|unauthorized|invalid api key|overloaded|rate.?limit|429"; then sleep 8; continue; fi
+        printf "[review: %s@%s]\n%s\n" "$m" "$acc" "$out"; return 0
+      done
+    done
+  done
+  return 1
+}
+
+_codex_review() {  # ChatGPT sub di Andrea, $0, cross-family
+  local F; F=$(mktemp)
+  if printf "%s" "$prompt" | timeout 300 codex exec --skip-git-repo-check -o "$F" - >/dev/null 2>&1 && _valid_review "$F"; then
+    printf "[review: codex-gpt]\n"; cat "$F"; rm -f "$F"; return 0
+  fi
+  rm -f "$F"; return 1
+}
+
+_gemini_review() {  # Google AI Pro di Andrea, $0, cross-family
+  local F; F=$(mktemp)
+  if printf "%s" "$prompt" | timeout 180 gemini > "$F" 2>/dev/null && _valid_review "$F"; then
+    printf "[review: gemini]\n"; cat "$F"; rm -f "$F"; return 0
+  fi
+  rm -f "$F"; return 1
+}
+
+_kimi_review() {  # red-team k2.6, centesimi
+  local out; out="$(printf "%s" "$prompt" | timeout 360 python3 "$HOME/lessonos/bin/review-kimi.py" 2>&1)" \
+    && { printf "[review: kimi-k2.6]\n%s\n" "$out"; return 0; }
+  return 1
+}
+
+# Dispatch. Default "auto" (chiamata driver) = FREE cross-family PRIMA: il builder e'
+# opus (Claude), quindi un reviewer Claude e' la PEGGIOR decorrelazione (self-preference
+# family-level) E spreca il budget A1 (20x) che serve a COSTRUIRE. claude solo ultima rete.
+# tier esplicito (opus/fable/...) = claude-first per review manuale ad alta posta.
+if [ "$FORCE_CLAUDE" = "1" ]; then
+  _claude_ladder || _codex_review || _gemini_review || _kimi_review \
+    || { printf "REVIEW FALLITA su tutti i gradini.\n"; record_observation; exit 1; }
+else
+  _codex_review || _gemini_review || _kimi_review || _claude_ladder \
+    || { printf "REVIEW FALLITA su tutti i gradini (free + claude).\n"; record_observation; exit 1; }
+fi
+record_observation; exit 0

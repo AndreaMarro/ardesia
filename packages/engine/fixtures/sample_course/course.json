@@ -1,0 +1,57 @@
+{
+  "course_id": "calc_201",
+  "title": "Calcolo 2 — Integrali e ODE",
+  "subject": "matematica",
+  "lessons": [
+    {
+      "lesson_id": "l1_derivatives",
+      "title": "Derivate di funzioni composte",
+      "order": 1,
+      "source_ids": ["derivatives_handout"]
+    },
+    {
+      "lesson_id": "l2_integrals",
+      "title": "Integrali definiti",
+      "order": 2,
+      "source_ids": ["integrals_handout"]
+    },
+    {
+      "lesson_id": "l3_differential_equations",
+      "title": "Equazioni differenziali ordinarie",
+      "order": 3,
+      "source_ids": ["ode_handout", "derivatives_handout"]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "derivatives_handout",
+      "filename": "derivatives.md",
+      "source_type": "markdown"
+    },
+    {
+      "source_id": "integrals_handout",
+      "filename": "integrals.md",
+      "source_type": "markdown"
+    },
+    {
+      "source_id": "ode_handout",
+      "filename": "ode.md",
+      "source_type": "markdown"
+    }
+  ],
+  "modules": [
+    {
+      "title": "Derivate avanzate",
+      "lesson_ids": ["l1_derivatives"]
+    },
+    {
+      "title": "Integrazione",
+      "lesson_ids": ["l2_integrals"]
+    },
+    {
+      "title": "Equazioni differenziali",
+      "lesson_ids": ["l3_differential_equations"],
+      "objectives": ["Risolvere ODE del primo ordine", "Applicare ODE a problemi di fisica"]
+    }
+  ]
+}
