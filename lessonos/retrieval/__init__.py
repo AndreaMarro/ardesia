@@ -13,6 +13,7 @@ from lessonos.retrieval.hybrid import (
     HybridRetriever,
     reciprocal_rank_fusion,
     recall_at_k,
+    reciprocal_rank,
 )
 from lessonos.retrieval.teacher import (
     build_teacher_retriever,
@@ -37,6 +38,7 @@ __all__ = [
     "HybridRetriever",
     "reciprocal_rank_fusion",
     "recall_at_k",
+    "reciprocal_rank",
     "build_teacher_retriever",
     "retrieve_teacher_context",
     "teacher_lesson_ids",

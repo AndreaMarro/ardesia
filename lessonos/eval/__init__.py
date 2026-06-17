@@ -12,6 +12,16 @@ from lessonos.eval.realtime import (
     run_realtime_eval_n_runs,
 )
 from lessonos.eval.realtime_raw import RawTranscriptEvalReport, run_raw_transcript_eval
+from lessonos.eval.retrieval import (
+    GOLD_DOCS,
+    GOLD_LEXICON,
+    GOLD_QUERIES,
+    RetrievalReport,
+    build_gold_hybrid_retriever,
+    build_gold_retrievers,
+    build_gold_store,
+    evaluate_retrieval,
+)
 from lessonos.eval.runner import run_eval
 
 __all__ = [
@@ -19,6 +29,14 @@ __all__ = [
     "EvalMetric",
     "EvalResult",
     "EvalReport",
+    "GOLD_DOCS",
+    "GOLD_LEXICON",
+    "GOLD_QUERIES",
+    "RetrievalReport",
+    "build_gold_hybrid_retriever",
+    "build_gold_retrievers",
+    "build_gold_store",
+    "evaluate_retrieval",
     "MultiRunEvalReport",
     "RawTranscriptEvalReport",
     "RealtimeEvalReport",

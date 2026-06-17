@@ -83,6 +83,26 @@ def recall_at_k(
     return len(top & relevant) / len(relevant)
 
 
+def reciprocal_rank(
+    retrieved: Sequence[Hashable],
+    relevant: set[Hashable],
+) -> float:
+    """Reciprocal rank: ``1 / position`` of the first *relevant* hit.
+
+    ``retrieved`` is best-first; ``position`` is 1-based. Returns ``1/1`` when
+    the top hit is relevant, ``1/2`` for the second, and ``0.0`` when no
+    relevant id appears (or ``relevant`` is empty). Averaging this over a query
+    set is the Mean Reciprocal Rank (MRR): unlike recall@k it rewards ranking
+    the relevant document *higher*, not merely retrieving it.
+    """
+    if not relevant:
+        return 0.0
+    for position, item in enumerate(retrieved, start=1):
+        if item in relevant:
+            return 1.0 / position
+    return 0.0
+
+
 class HybridRetriever:
     """BM25 + dense retrieval fused with RRF.
 
