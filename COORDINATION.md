@@ -12,10 +12,9 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [PIN-DONE auto 17/06 03:36] [ORDINE-ANDREA 17/06 01:44] **PLUGIN-SDK Layer-0: formalizzare il contratto ToolHost<->plugin come confine STABILE versionato (consolidare src/toolsdk + toolhost-protocol in un contratto tipizzato: manifest, capabilities, message-protocol, lifecycle) con SemVer + test di compatibilita. Sblocca lo sviluppo parallelo dei plugin. Canvas=Excalidraw (confermato, NO tldraw). Criteri FALSIFICABILI: contratto tipizzato esportato e consumato dal ToolHost esistente SENZA rompere i 471 test, 1 plugin di riferimento (plugins/elab skeleton) che typechecka contro il contratto, gate VERDE, zero regressioni.**
+- **studio**: [AUTO-PINNED 17/06 03:36] plugins/elab — primo plugin concreto sul contratto Layer-0 (Arduino book-accurate skeleton via ToolHost) montato su lavagna Excalidraw, gate verde.
 - **lessonos**: [AUTO-PINNED 17/06 03:32] retrieval-hybrid M7 — fusione BM25+dense sul method-graph retrieval (RRF), fixture gold, recall@k MISURATO, gate verde.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] studio: plugins/elab — primo plugin concreto sul contratto Layer-0 (Arduino book-accurate skeleton via ToolHost) montato su lavagna Excalidraw, gate verde.
 - [AUTO-OK] studio: ToolHost hardening — sandbox iframe + capability-gating + kill-switch test, gate verde.
 
 
