@@ -975,3 +975,16 @@ Pin AUTO-PINNED (COORD:16). Gate 1947 -> **1962 (+15 test)**. ADDITIVO: zero sch
   - Verificati NON-difetti dall'avversario: math `reciprocal_rank` (1-based, edge vuoti), bit-stabilità `5/6` vs `(1+1+0.5)/3` (bit-uguali, `>=` non flippa), determinismo ordering (cosine stretto, non tie-break repr).
 - check-no-gte-literal: 0 nuovi warning (i miei `>=` su SOGLIE float, non conteggi; 2 residui pre-esistenti asr_coalesce:64/eval_harness:210).
 - cost_usd: ~$0.10 (gate x4 + 2 subagenti avversari + probe ranking).
+
+## M-CRM consent-state — stato-consenso GDPR docente/classe (append-only) — 2026-06-17T14:30Z — commit 8d418f5
+- Primitiva event-sourced: `ConsentEvent` (granted/revoked) append-only -> stato DERIVATO a `now` iniettato: `active` / `expired` (computato, boundary INCLUSIVO: live solo STRETTAMENTE prima di expires_at) / `revoked` / `absent`. Nessun clock nascosto, ZERO-LLM, deterministico.
+- Zero-PII strutturale: solo pseudonimi opachi (event_id/teacher_id/class_id) guardati da `assert_pseudonymous`; nessuna colonna personale (tabella = event_id/teacher_id/class_id/action/at/expires_at). `expires_at` valido solo su `granted` (revoca senza scadenza). PII nel vault esterno.
+- API `lessonos/consent.py`: `grant_consent` (ValueError se expires_at<=now), `revoke_consent` (incondizionata, il "no" è sempre registrabile), `consent_status`, `consent_audit_trail`, `is_consent_active`. `_to_utc` normalizza naive(->UTC)/aware per confronti totali.
+- Persistenza: SQLiteStore SCHEMA_VERSION 9->10 (tabella `consent_events` + indice rel, migrazione additiva no-data), ORDER BY rowid = ordine causale di registrazione (robusto a clock-skew dell'`at` del chiamante).
+- Test: `tests/test_crm_consent.py` 30 test (dominio/guardie PII, grant/revoke/derivazione, expiry boundary+naive/aware, audit append-only+isolamento, zero-PII via PRAGMA table_info, persistenza cross-reconnect, transazione commit/rollback).
+- SELF-ADV (code-reviewer): trovati 1 MAJOR + 3 test-gap, fixati 4/4.
+  - [MAJOR, FIXATO] `save_consent_event` usava `INSERT OR REPLACE`: su log append-only un event_id riusato = DELETE+INSERT -> rowid riassegnato -> trail riordinato -> stato derivato "ultimo evento vince" SILENZIOSAMENTE alterato. FIX: `INSERT` puro (event_id duplicato = IntegrityError, la storia immutabile non si sovrascrive); docstring `base.py` corretta (no "upsert").
+  - [test-gap, FIXATO] +`test_reusing_event_id_is_rejected_append_only` (invariante append-only ora verificata).
+  - [test-gap, FIXATO] +`test_latest_recorded_wins_under_clock_skew` (verifica che vince l'ultimo REGISTRATO, non l'`at` più recente — claim del commento `sqlite.py` ora provato).
+  - [MINOR, NON-difetto accettato] naive `now` assunto UTC per contratto documentato (test verifica no-raise).
+- gate: 1992/0. check-no-gte-literal: 0 nuovi warning (2 residui pre-esistenti). cost_usd: ~$0.09.
