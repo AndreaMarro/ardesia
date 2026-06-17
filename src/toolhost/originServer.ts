@@ -15,6 +15,25 @@ export function toolOrigin(toolId: string, port: number): string {
   return `http://t-${toolId}.127-0-0-1.localhost:${port}`
 }
 
+/**
+ * Hardening sandbox §3: il sandbox del ToolFrame include `allow-same-origin`
+ * (necessario per consegnare l'hello con targetOrigin concreto). Questo è SICURO
+ * solo perché l'origin del tool è DISTINTA da quella dello Studio: il browser
+ * partiziona storage/cookie per origin. Se le due origin coincidessero,
+ * `allow-same-origin` darebbe al tool i poteri dello Studio (lettura DOM/storage
+ * del genitore). Guard terminale prima del mount: una collisione = rifiuto.
+ */
+export function isToolOriginIsolated(toolOriginUrl: string, studioOrigin: string): boolean {
+  return toolOriginUrl !== studioOrigin
+}
+
+/** Variante che lancia: per i chiamanti headless dove la collisione è un bug fatale. */
+export function assertToolOriginIsolated(toolOriginUrl: string, studioOrigin: string): void {
+  if (!isToolOriginIsolated(toolOriginUrl, studioOrigin)) {
+    throw new Error(`tool origin collides with studio origin (${studioOrigin}): mount refused`)
+  }
+}
+
 // CSP iniettata su OGNI risposta (spec §3, incluse direttive anti-side-channel
 // del buco #4 dei giudici). dataOut:"none" non può esfiltrare per costruzione.
 // form-action NON eredita da default-src: senza pin esplicito, allow-forms del

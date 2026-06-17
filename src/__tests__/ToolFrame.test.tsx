@@ -105,6 +105,30 @@ describe("ToolFrame (iframe sandbox + handshake al load)", () => {
     expect(transfer[0]).toBeInstanceOf(MessagePort)
   })
 
+  it("hardening §3: origin del tool == origin Studio → handleLoad rifiuta, nessun mount", async () => {
+    const host = new ToolHost(MANIFEST, resolveGrant(MANIFEST, ["board.read"]), { store, board })
+    // origin-server fasullo la cui origin COLLIDE con quella dello Studio (jsdom):
+    // con allow-same-origin sarebbe un'eredità di poteri → il guard deve fermare il mount.
+    const colliding = {
+      origin: window.location.origin,
+      issueEntryUrl: () => `${window.location.origin}/dist/index.html?n=x`,
+    } as unknown as ToolOriginServer
+    container = document.createElement("div")
+    document.body.appendChild(container)
+    root = createRoot(container)
+    await act(async () => {
+      root!.render(<ToolFrame host={host} originServer={colliding} />)
+    })
+    const iframe = container.querySelector("iframe")!
+    const posted = vi.spyOn(iframe.contentWindow!, "postMessage").mockImplementation(() => {})
+    await act(async () => {
+      iframe.dispatchEvent(new Event("load"))
+    })
+    // mount rifiutato: nessuna sessione, nessun hello consegnato al tool
+    expect(host.session).toBeNull()
+    expect(posted).not.toHaveBeenCalled()
+  })
+
   it("unmount del componente → sessione chiusa sul ToolHost", async () => {
     const { host, iframe } = await renderFrame()
     vi.spyOn(iframe.contentWindow!, "postMessage").mockImplementation(() => {})

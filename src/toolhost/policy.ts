@@ -81,6 +81,31 @@ export function resolveGrant(manifest: ToolManifest, approved: readonly Capabili
   return grant
 }
 
+/**
+ * Capability-gating hardening (difesa in profondità, spec §2 deny-by-default).
+ * `resolveGrant` produce SEMPRE un grant ⊆ manifest, ma il ToolHost accetta un
+ * grant arbitrario: un chiamante buggato (o un test malevolo) potrebbe passare
+ * una capability NON dichiarata, o con config gonfiata, scavalcando il consenso.
+ * Questo guard rifiuta l'escalation alla radice:
+ *  - ogni cap del grant (tranne `ui`, implicita per spec §2) DEVE essere nel manifest;
+ *  - la config del grant DEVE coincidere byte-a-byte con quella del manifest
+ *    (la config viene SOLO dal manifest, mai dall'approvazione).
+ * `ui` è esente: `resolveGrant` la inietta sempre ({}), anche se il manifest non
+ * la dichiara — è inerte in v0 (nessun metodo wire la usa).
+ */
+export function assertGrantWithinManifest(manifest: ToolManifest, grant: Capabilities): void {
+  for (const cap of Object.keys(grant) as CapabilityName[]) {
+    if (grant[cap] === undefined || cap === "ui") continue
+    const declared = manifest.capabilities[cap]
+    if (declared === undefined) {
+      throw new Error(`grant exceeds manifest: capability "${cap}" not declared by tool "${manifest.id}"`)
+    }
+    if (JSON.stringify(grant[cap]) !== JSON.stringify(declared)) {
+      throw new Error(`grant config for "${cap}" does not match manifest of tool "${manifest.id}"`)
+    }
+  }
+}
+
 /** Record del consenso (per session.yaml / registro locale): cosa, per quale versione, quando. */
 export interface GrantRecord {
   v: 1

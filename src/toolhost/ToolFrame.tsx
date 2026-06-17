@@ -9,6 +9,7 @@
 import { useEffect, useMemo, useRef } from "react"
 import type { ToolHost } from "./host.ts"
 import type { ToolOriginServer } from "./originServer.ts"
+import { isToolOriginIsolated } from "./originServer.ts"
 import { postHello } from "./session.ts"
 
 export const TOOL_IFRAME_SANDBOX = "allow-scripts allow-forms allow-same-origin"
@@ -36,6 +37,14 @@ export function ToolFrame({ host, originServer, title, className }: ToolFramePro
   function handleLoad(): void {
     const cw = frameRef.current?.contentWindow
     if (cw === null || cw === undefined) return
+    // hardening §3: con allow-same-origin nel sandbox, l'origin del tool DEVE
+    // restare distinta da quella dello Studio, altrimenti il tool erediterebbe i
+    // poteri del genitore. Collisione (mai in produzione) = rifiuto pulito del
+    // mount: il tool non riceve la porta né l'hello.
+    if (!isToolOriginIsolated(originServer.origin, window.location.origin)) {
+      host.unmount()
+      return
+    }
     const channel = new MessageChannel()
     const session = host.mount(channel.port1)
     postHello(cw, session.hello, channel.port2, originServer.origin)

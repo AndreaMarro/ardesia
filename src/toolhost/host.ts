@@ -13,6 +13,9 @@ import { ToolBoard } from "./caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "./caps/board.ts"
 import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
 import type { StorageDriverLike } from "./caps/storage.ts"
+import { assertGrantWithinManifest } from "./policy.ts"
+import { checkKillList } from "./killList.ts"
+import type { StorageReadWriteDelete } from "./killList.ts"
 import { ToolHostSession, createNonce } from "./session.ts"
 import type { MethodHandler } from "./router.ts"
 import type { PortLike } from "./session.ts"
@@ -64,8 +67,14 @@ export class ToolHost {
   // suspend/restore serializzati: due suspend concorrenti non devono poter
   // atterrare su state.json fuori ordine (last-write-wins con stato VECCHIO).
   private _lifecycle: Promise<unknown> = Promise.resolve()
+  // kill-switch a runtime: una volta revocato, l'host non può più montare il
+  // tool (irreversibile per questa istanza; la riabilitazione crea una nuova istanza).
+  private _revoked = false
 
   constructor(manifest: ToolManifest, grantedCaps: Capabilities, deps: ToolHostDeps) {
+    // difesa in profondità: il grant non può MAI eccedere il manifest, anche se
+    // il chiamante ha scavalcato resolveGrant (capability-gating alla radice).
+    assertGrantWithinManifest(manifest, grantedCaps)
     this.manifest = manifest
     this._grant = grantedCaps
     this._deps = deps
@@ -80,11 +89,31 @@ export class ToolHost {
     return this._session
   }
 
+  /** true dopo revoke(): il tool è stato ucciso e non può più essere montato. */
+  get revoked(): boolean {
+    return this._revoked
+  }
+
+  /**
+   * Kill-switch (spec §3): revoca a runtime. Chiude IMMEDIATAMENTE la sessione
+   * viva — uccidendo un tool già in esecuzione — e blocca ogni mount successivo.
+   * Idempotente. La kill-list persistente (killList.ts) è la fonte di verità; per
+   * legarla a un host vivo usa syncKillSwitch(). Distinto da unmount(): unmount
+   * chiude la sessione ma permette il re-mount; revoke è terminale.
+   */
+  revoke(): void {
+    this._revoked = true
+    this.unmount()
+  }
+
   /**
    * Monta il tool su una porta (l'altra estremità va alla finestra del tool con
    * postHello). Chiude l'eventuale sessione precedente: un mount = una sessione.
    */
   mount(port: PortLike): ToolHostSession {
+    if (this._revoked) {
+      throw new Error(`tool "${this.manifest.id}" is revoked: mount denied`)
+    }
     this._session?.close()
     const session = new ToolHostSession({
       grantedCaps: this._grant,
@@ -188,4 +217,17 @@ export class ToolHost {
     }
     return handlers
   }
+}
+
+/**
+ * Lega la kill-list PERSISTENTE (killList.ts) al kill-switch a runtime di un host
+ * vivo: se il tool è revocato, lo uccide subito (sessione chiusa + mount bloccati)
+ * e ritorna true. Da invocare all'avvio e quando la kill-list cambia (revoca dal
+ * pannello docente / kill-switch remoto futuro). Una kill-list corrotta propaga
+ * l'errore: meglio bloccare che eseguire un tool il cui stato di revoca è ignoto.
+ */
+export async function syncKillSwitch(store: StorageReadWriteDelete, host: ToolHost): Promise<boolean> {
+  const killed = await checkKillList(store, host.manifest.id)
+  if (killed) host.revoke()
+  return killed
 }
