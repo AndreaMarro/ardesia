@@ -287,6 +287,28 @@ def test_duplicate_canonical_pair_collapses_to_one_dependency():
     assert set(derivata.node_ids) == {"l1:concept:0", "l2:concept:0"}
 
 
+def test_non_finite_confidence_is_dropped_to_none():
+    """A malformed (nan/inf) or unparseable confidence never reaches the API."""
+
+    class _BadConfStore:
+        def all_concept_nodes(self):
+            return (
+                GraphNode("l1:concept:0", "concept", "l1:concept:0", "A"),
+                GraphNode("l1:concept:1", "concept", "l1:concept:1", "B"),
+                GraphNode("l1:concept:2", "concept", "l1:concept:2", "C"),
+            )
+
+        def all_depends_on_edges(self):
+            return (
+                GraphEdge("e0", "l1:concept:0", "l1:concept:1", "depends_on", {"confidence": "nan"}),
+                GraphEdge("e1", "l1:concept:1", "l1:concept:2", "depends_on", {"confidence": "inf"}),
+                GraphEdge("e2", "l1:concept:2", "l1:concept:0", "depends_on", {"confidence": "x"}),
+            )
+
+    mg = serve_method_graph(_BadConfStore())  # type: ignore[arg-type]
+    assert all(d.confidence is None for d in mg.dependencies)
+
+
 def test_serving_matches_in_memory_ranking_on_same_topology():
     """serve_method_graph (persisted) and rank_bridge_concepts (in-memory)
     agree on the bridge ordering for the same corpus — two independent paths to

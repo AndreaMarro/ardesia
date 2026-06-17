@@ -186,9 +186,14 @@ def _parse_confidence(raw: str | None) -> float | None:
     if raw is None:
         return None
     try:
-        return float(raw)
+        value = float(raw)
     except ValueError:
         return None
+    # Confidence is a finite score; reject nan/inf so the typed API never
+    # surfaces a non-comparable value to a downstream ranker.
+    if value != value or value in (float("inf"), float("-inf")):
+        return None
+    return value
 
 
 def serve_method_graph(store: Store) -> MethodGraph:
