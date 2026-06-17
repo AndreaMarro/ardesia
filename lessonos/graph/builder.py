@@ -310,7 +310,9 @@ def resolve_corpus_depends_on(
     Matching mirrors :func:`build_path_graph`'s ``depends_on`` pass exactly:
     exact canonical key match (``confidence="0.8"``,
     ``provenance="auto-suggested"``) then a high-precision fuzzy fallback
-    (``provenance="auto-suggested-fuzzy"``, ``confidence=<jaccard>``).
+    (``provenance="auto-suggested-fuzzy"``, ``confidence=<jaccard>``). The
+    matched ``prereq`` string is recorded in metadata so an inbound edge can be
+    re-validated against the corpus when its (positional) target is re-ingested.
     Self-dependencies and cycle-closing edges are dropped. Returns a list of
     :class:`GraphEdge` (no duplicates); the caller persists them.
 
@@ -379,6 +381,7 @@ def resolve_corpus_depends_on(
                     metadata={
                         "provenance": provenance,
                         "confidence": confidence,
+                        "prereq": prereq_name,
                     },
                 )
             )

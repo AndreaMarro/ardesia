@@ -187,6 +187,15 @@ class Store(ABC):
     def delete_graph_for_lesson(self, lesson_id: str) -> None:
         """Delete all graph data (nodes, edges, evidence) for a lesson."""
 
+    def delete_graph_edge(self, edge_id: str) -> None:
+        """Delete a single graph edge by id.
+
+        Used to invalidate a stale inbound cross-lesson ``depends_on`` edge
+        when its (positional) target concept is re-ingested with a different
+        meaning (GS-3 reconciliation). Default: no-op — only reachable for
+        backends that enumerate ``all_depends_on_edges`` (others return empty,
+        so reconciliation never deletes anything)."""
+
     # --- Transaction support ------------------------------------------------
 
     @abstractmethod

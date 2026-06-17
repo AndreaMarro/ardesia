@@ -606,6 +606,11 @@ class SQLiteStore(Store):
         if not self._in_transaction:
             self._conn.commit()
 
+    def delete_graph_edge(self, edge_id: str) -> None:
+        self._conn.execute("DELETE FROM edges WHERE edge_id = ?", (edge_id,))
+        if not self._in_transaction:
+            self._conn.commit()
+
     @staticmethod
     def _row_to_evidence(row: sqlite3.Row) -> GraphEvidence:
         return GraphEvidence(

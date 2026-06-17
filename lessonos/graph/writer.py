@@ -71,6 +71,8 @@ class GraphWriter:
             for edge in depends_on:
                 self.store.save_graph_edge(lesson_id, edge)
 
+            self._reconcile_inbound_depends_on(lesson_id)
+
             self.store.commit_transaction()
             return len(edges) + len(depends_on)
         except BaseException:
@@ -118,6 +120,55 @@ class GraphWriter:
         return resolve_corpus_depends_on(
             source_concepts, corpus_concepts, existing_edges
         )
+
+    def _reconcile_inbound_depends_on(self, lesson_id: str) -> None:
+        """Re-validate cross-lesson ``depends_on`` edges pointing INTO *lesson_id*.
+
+        Concept node_ids are positional (``{lesson_id}:concept:{i}``). When a
+        lesson is re-ingested with its concepts in a different order, an inbound
+        edge stored under ANOTHER lesson keeps pointing at the positional id
+        whose label now means something else — a silent FALSE edge that
+        ``delete_graph_for_lesson`` (scoped to this lesson) never touches.
+
+        Called after this lesson's concept nodes are rewritten (corpus snapshot
+        reflects the new labels). Each inbound edge is re-resolved from its
+        recorded ``prereq`` against the updated corpus via the same resolver; an
+        edge that no longer resolves to its current target is dropped.
+        Conservative: edges are only invalidated, never repointed (a repoint
+        would be recreated when the SOURCE lesson is itself re-ingested), so the
+        zero-false-match invariant holds. Edges persisted before this fix carry
+        no ``prereq`` and are left untouched (migrate-safe).
+        """
+        prefix = f"{lesson_id}:concept:"
+        all_edges = self.store.all_depends_on_edges()
+        inbound = [
+            e
+            for e in all_edges
+            if e.target.startswith(prefix)
+            and not e.source.startswith(prefix)
+            and "prereq" in e.metadata
+        ]
+        if not inbound:
+            return
+
+        corpus_concepts = [
+            (node.node_id, node.label)
+            for node in self.store.all_concept_nodes()
+            if node.label
+        ]
+        for edge in inbound:
+            others = [
+                (e.source, e.target)
+                for e in all_edges
+                if e.edge_id != edge.edge_id
+            ]
+            revalidated = resolve_corpus_depends_on(
+                [(edge.source, "", (edge.metadata["prereq"],))],
+                corpus_concepts,
+                others,
+            )
+            if not any(r.target == edge.target for r in revalidated):
+                self.store.delete_graph_edge(edge.edge_id)
 
     def _collect_evidence(
         self, capsule: LessonCapsule, edge: GraphEdge

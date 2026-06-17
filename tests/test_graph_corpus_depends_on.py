@@ -82,11 +82,16 @@ class TestResolverPrecision:
         edges = resolve_corpus_depends_on(source, _corpus(), [])
         by_target = {e.target: e for e in edges}
         exact = by_target["l1:concept:1"]
-        assert exact.metadata == {"provenance": "auto-suggested", "confidence": "0.8"}
+        assert exact.metadata == {
+            "provenance": "auto-suggested",
+            "confidence": "0.8",
+            "prereq": "sistema lti",
+        }
         fuzzy = by_target["l1:concept:0"]
         assert fuzzy.metadata == {
             "provenance": "auto-suggested-fuzzy",
             "confidence": "1.00",
+            "prereq": "la trasformata di Fourier",
         }
 
     def test_superset_prereq_is_not_matched(self):
@@ -285,3 +290,59 @@ class TestPersistedDependsOn:
         # Naive exact .lower() would match only "sistema lti" → 1.
         # canonical + fuzzy → 2.
         assert len(_depends_on(store, "l2")) == 2
+
+
+class TestInboundReconciliation:
+    """Positional node_ids + re-ingest reorder must not leave FALSE inbound edges.
+
+    Concept ids are ``{lesson}:concept:{i}``. If a target lesson is re-ingested
+    with concepts reordered, an inbound cross-lesson ``depends_on`` (stored under
+    the SOURCE lesson, so untouched by the target's own delete) keeps pointing at
+    a positional id whose label now means something else. The writer re-validates
+    such edges on re-ingest and drops the stale one (zero false matches).
+    """
+
+    def test_reorder_drops_stale_inbound_edge(self):
+        store = SQLiteStore(":memory:")
+        _ingest_segments(store, "l1", 2)
+        _ingest_segments(store, "l2", 1)
+        # l1: c0=Fourier, c1=LTI.
+        write_capsule_graph(
+            store,
+            _capsule("l1", [("Trasformata di Fourier", ()), ("Sistema LTI", ())]),
+        )
+        # l2 "Filtro" depends on "Sistema LTI" → edge l2:c0 → l1:c1 (LTI).
+        write_capsule_graph(store, _capsule("l2", [("Filtro", ("Sistema LTI",))]))
+        assert _depends_on(store, "l2") == [("l2:concept:0", "l1:concept:1")]
+
+        # Re-ingest l1 with concepts REORDERED: now c0=LTI, c1=Fourier. The
+        # inbound edge still points at l1:concept:1, which now means Fourier.
+        write_capsule_graph(
+            store,
+            _capsule("l1", [("Sistema LTI", ()), ("Trasformata di Fourier", ())]),
+        )
+        # The stale FALSE edge (now → Fourier) must be gone, NOT silently kept.
+        assert ("l2:concept:0", "l1:concept:1") not in _depends_on(store, "l2")
+        # Conservative: dropped, not repointed (recreated on l2 re-ingest).
+        assert _depends_on(store, "l2") == []
+
+    def test_benign_reingest_keeps_valid_inbound_edge(self):
+        """Re-ingesting the target in the SAME order keeps a still-valid edge.
+
+        Guards against over-aggressive dropping (non-tautological vs the test
+        above: same machinery, opposite outcome).
+        """
+        store = SQLiteStore(":memory:")
+        _ingest_segments(store, "l1", 2)
+        _ingest_segments(store, "l2", 1)
+        write_capsule_graph(
+            store,
+            _capsule("l1", [("Trasformata di Fourier", ()), ("Sistema LTI", ())]),
+        )
+        write_capsule_graph(store, _capsule("l2", [("Filtro", ("Sistema LTI",))]))
+        # Same order: l1:concept:1 still means LTI.
+        write_capsule_graph(
+            store,
+            _capsule("l1", [("Trasformata di Fourier", ()), ("Sistema LTI", ())]),
+        )
+        assert _depends_on(store, "l2") == [("l2:concept:0", "l1:concept:1")]
