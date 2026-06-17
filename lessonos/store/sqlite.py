@@ -793,8 +793,11 @@ class SQLiteStore(Store):
         return tuple(Student(student_id=r["student_id"]) for r in rows)
 
     def classes_for_student(self, student_id: str) -> tuple[SchoolClass, ...]:
+        # DISTINCT: mirror of students_for_class — a student with >1 enrollment
+        # row in the same class (no UNIQUE(class_id, student_id) constraint)
+        # must not fan-out to duplicate classes in the join.
         rows = self._conn.execute(
-            "SELECT c.* FROM classes c "
+            "SELECT DISTINCT c.* FROM classes c "
             "JOIN enrollments e ON e.class_id = c.class_id "
             "WHERE e.student_id = ? ORDER BY c.class_id",
             (student_id,),

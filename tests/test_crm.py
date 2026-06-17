@@ -205,6 +205,18 @@ class TestEnrollmentRelation:
         result = store.classes_for_student("stu_a")
         assert [c.class_id for c in result] == ["cls_3a", "cls_4b"]
 
+    def test_classes_for_student_dedups_multi_enrollment(
+        self, store: SQLiteStore
+    ) -> None:
+        # Same student, two enrollment rows in the same class (no UNIQUE
+        # constraint): the join must NOT fan-out to a duplicate class.
+        store.save_class(SchoolClass("cls_3a", "t_001", "fisica"))
+        store.save_enrollment(Enrollment("enr_1", "cls_3a", "stu_a"))
+        store.save_enrollment(Enrollment("enr_2", "cls_3a", "stu_a"))
+        assert [c.class_id for c in store.classes_for_student("stu_a")] == [
+            "cls_3a"
+        ]
+
     def test_enrollments_for_class_scoped(self, store: SQLiteStore) -> None:
         store.save_enrollment(Enrollment("enr_1", "cls_3a", "stu_a"))
         store.save_enrollment(Enrollment("enr_2", "cls_4b", "stu_b"))
