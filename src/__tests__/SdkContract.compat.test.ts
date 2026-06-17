@@ -175,7 +175,11 @@ describe("sdk-contract/plugin-di-riferimento (compila e rispetta il confine)", (
   })
 
   it("il plugin importa SOLO dal confine src/sdk (zero accoppiamento agli interni)", () => {
-    const pluginFiles = ["../../plugins/elab/manifest.ts", "../../plugins/elab/main.ts"]
+    // I file che consumano l'SDK DEVONO importarlo (sanity); i moduli puri
+    // intra-plugin (arduino.ts) possono non importare nulla — restano comunque
+    // soggetti alla regola "nessun import interno" su ciò che importano.
+    const sdkConsumers = ["../../plugins/elab/manifest.ts", "../../plugins/elab/main.ts"]
+    const pluginFiles = [...sdkConsumers, "../../plugins/elab/arduino.ts"]
     // forma `import ... from "x"` E forma side-effect `import "x"` (senza from):
     // entrambe potrebbero accoppiare il plugin a un modulo interno.
     const fromRe = /import\s+(?:type\s+)?[^"']*?from\s+["']([^"']+)["']/g
@@ -191,7 +195,7 @@ describe("sdk-contract/plugin-di-riferimento (compila e rispetta il confine)", (
         ...[...src.matchAll(sideEffectRe)].map((m) => m[1]),
         ...[...src.matchAll(dynamicRe)].map((m) => m[1]),
       ]
-      expect(sources.length).toBeGreaterThan(0)
+      if (sdkConsumers.includes(rel)) expect(sources.length).toBeGreaterThan(0)
       for (const spec of sources) {
         // intra-plugin (./...) ammesso; qualunque risalita in ../../src/ DEVE
         // puntare al boundary, mai a un modulo interno (toolhost/, toolsdk/, ...).
