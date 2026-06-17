@@ -450,8 +450,21 @@ class TestGroundedProgression:
         canonicals = {it["canonical"] for it in payload["items"]}
         assert "vettore" in canonicals, "verbatim-grounded progression must be served"
         assert "energia" not in canonicals, "unverified-evidence progression must be dropped"
-        # energia is the only progression with no verified citation.
-        assert payload["dropped_ungrounded"] == 1, "energia (unverified) must be dropped+declared"
+        # massa's only citation is an off-concept excerpt ("vettore"); concept-tie
+        # drops it. energia's citation has no excerpt. Both dropped + declared.
+        assert "massa" not in canonicals, "off-concept-excerpt progression must be dropped"
+        assert payload["dropped_ungrounded"] == 2
+
+    def test_off_concept_excerpt_is_not_served_as_grounding(self) -> None:
+        """An excerpt that grounds a related edge but does not mention the concept
+        (inherited from the other edge endpoint) must NOT ground the concept."""
+        store = _progression_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_progression_call(server, "t_main"))
+        # massa is the target of edge "vettore -> massa" whose only excerpt is
+        # "vettore"; serving massa with that excerpt would be a false grounding.
+        for it in payload["items"]:
+            assert it["canonical"] != "massa"
 
     def test_progression_carries_status_sequence_and_grounding(self) -> None:
         store = _progression_store()

@@ -38,6 +38,7 @@ import json
 from typing import Any
 
 from lessonos.graph.grounding import is_verified_excerpt, verify_citation
+from lessonos.graph.utils import content_tokens
 from lessonos.models.entities import ConceptProgression, GraphEvidence, TeacherConcept
 from lessonos.retrieval.dense import Embedder
 from lessonos.retrieval.teacher import retrieve_teacher_context, teacher_lesson_ids
@@ -171,6 +172,8 @@ class GroundedMemoryServer:
                 return _result(req_id, self._call_tool(request.get("params")))
             except _ToolError as exc:
                 return _error(req_id, exc.code, exc.message)
+            except Exception as exc:  # boundary: never leak a raw traceback
+                return _error(req_id, INTERNAL_ERROR, f"internal error: {exc}")
 
         return _error(req_id, METHOD_NOT_FOUND, f"unknown method {method!r}")
 
@@ -351,15 +354,21 @@ class GroundedMemoryServer:
         if tc is None:
             return None
 
-        # (2) a verified verbatim citation re-verified against the store.
+        # (2) a verified verbatim citation that actually mentions THIS concept.
+        # A concept's citations are collected from every edge incident to it
+        # (source OR target in build_teacher_book), so an edge "A explains B"
+        # attaches A's excerpt to B as well. Requiring the segment to mention
+        # the concept ties the served provenance to the concept it grounds —
+        # an off-concept excerpt (e.g. "vettore" served for "massa") is dropped.
+        concept_terms = content_tokens(prog.name) | content_tokens(prog.canonical)
         for cit in tc.citations:
-            proof = self._ground_citation(cit, owned)
+            proof = self._ground_citation(cit, owned, concept_terms)
             if proof is not None:
                 return proof
         return None
 
     def _ground_citation(
-        self, cit: GraphEvidence, owned: set[str]
+        self, cit: GraphEvidence, owned: set[str], concept_terms: frozenset[str]
     ) -> dict[str, Any] | None:
         if not is_verified_excerpt(cit.excerpt):
             return None
@@ -372,6 +381,10 @@ class GroundedMemoryServer:
         except ValueError:
             return None
         if lesson_id not in owned:
+            return None
+        # The verbatim segment must actually discuss this concept (concept-tie):
+        # at least one significant concept token appears in the segment text.
+        if concept_terms and not (concept_terms & content_tokens(seg.text)):
             return None
         return {
             "seg_id": cit.seg_id,
