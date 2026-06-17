@@ -13,7 +13,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 17/06 11:36] plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
-- **lessonos**: [AUTO-PINNED 17/06 12:15] CRM consent-state — primitiva stato-consenso GDPR (grant/revoke/expiry+audit) per relazione docente/classe, PII fuori dai nodi-agente, gate verde.
+- **lessonos**: [AUTO-PINNED-DONE 17/06 14:30] PIN ESAURITO — CRM consent-state CONSEGNATO (commit 8d418f5 feature+test, a203859 STATUS/log; gate 1992/0; SELF-ADV 1 MAJOR INSERT-OR-REPLACE→INSERT su log append-only + 3 test-gap, fixati 4/4). Ruotare dalla coda.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 - [AUTO-OK] studio: implement PluginManager.install con validazione manifest, registrazione ToolHost e persistenza store, test che plugin installato e presente in list, gate verde, zero regressioni.
 - [AUTO-OK] studio: secondo reference-plugin che esercita board.read + UI capability (stress contratto Layer-0 multi-capability), gate verde.
