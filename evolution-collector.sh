@@ -53,7 +53,7 @@ print("")
 PY
 }
 LGATE=$(grep '^\[orch\]' "$L/hourly.log" 2>/dev/null | grep -oE 'passed=[0-9]+' | tail -1 | grep -oE '[0-9]+')
-SGATE=$(grep '^\[studio\]' "$L/hourly.log" 2>/dev/null | grep -oE 'passed=[0-9]+' | tail -1 | grep -oE '[0-9]+')
+SGATE=$(grep -E '^\|' "$HOME/maestro-logs/RESEARCH-studio.md" 2>/dev/null | tail -1 | awk -F'|' '{print $5}' | tr -d ' ')
 [ -n "$LGATE" ] || LGATE=$(last_gate lessonos)
 [ -n "$SGATE" ] || SGATE=$(last_gate studio)
 
