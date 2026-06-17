@@ -17,6 +17,10 @@ THRESHOLD="${REPLENISH_THRESHOLD:-2}"
 DAYCAP="${REPLENISH_DAYCAP:-4}"
 DRY="${REPLENISH_DRY:-0}"
 LOGDIR="$HOME/maestro-logs/replenish"; mkdir -p "$LOGDIR"
+# lock PID-file (pattern hourly-tick; macOS-native, niente flock) — serializza replenish-vs-replenish
+LCK="$LOGDIR/.lock"
+if [ -f "$LCK" ] && kill -0 "$(cat "$LCK" 2>/dev/null)" 2>/dev/null; then echo "[replenish] altro run in corso — skip"; exit 0; fi
+echo $$ > "$LCK"; trap 'rm -f "$LCK"' EXIT
 TS="$(date -u +%FT%TZ)"; DAY="$(date -u +%F)"; CAPF="$LOGDIR/.cap_$DAY"
 cd "$ROOT" 2>/dev/null || { echo "[replenish] no repo"; exit 0; }
 [ -f "$COORD" ] || { echo "[replenish] no COORDINATION.md"; exit 0; }
@@ -69,7 +73,8 @@ print(json.dumps({"model":"deepseek-chat","temperature":0.2,"max_tokens":3500,"m
 RESP="$(curl -s -m 120 "$GW" -H "Authorization: Bearer $MK" -H "Content-Type: application/json" -d "$REQ" 2>/dev/null)"
 RAW="$(printf '%s' "$RESP" | python3 -c 'import sys,json
 try:
-    d=json.load(sys.stdin); print(d["choices"][0]["message"]["content"])
+    m=json.load(sys.stdin)["choices"][0]["message"]
+    print((m.get("content") or "").strip() or (m.get("reasoning_content") or ""))
 except Exception:
     print("")' 2>/dev/null)"
 if [ -z "$RAW" ]; then echo "[replenish] gateway: risposta vuota/errore — skip (nessuna scrittura)"; printf '%s' "$RESP" | head -c 300; echo; exit 0; fi
@@ -86,11 +91,14 @@ while IFS= read -r line; do
   [ "$r" = lessonos ] && [ "$nl" -ge "$THRESHOLD" ] && [ "$DRY" != "1" ] && continue
   [ "$r" = studio ]   && [ "$ns" -ge "$THRESHOLD" ] && [ "$DRY" != "1" ] && continue
   case "$line" in
-    *'`'*|*'$'*|*';'*|*'|'*|*'&'*|*'<'*|*'>'*|*'\'*|*'"'*) echo "[replenish] SCARTO (char non sicuri): $line"; continue ;;
+    *'`'*|*'$'*|*';'*|*'|'*|*'&'*|*'<'*|*'>'*|*'\'*|*'"'*|*"'"*|*'*'*) echo "[replenish] SCARTO (char non sicuri): $line"; continue ;;
   esac
   L=${#line}; { [ "$L" -ge 30 ] && [ "$L" -le 320 ]; } || { echo "[replenish] SCARTO (len $L): $line"; continue; }
   key="$(printf '%s' "$line" | python3 -c 'import sys; print(sys.stdin.read().strip()[:50])' 2>/dev/null)"
   if [ -n "$key" ] && grep -qF -- "$key" "$COORD" 2>/dev/null; then echo "[replenish] SCARTO (dup): $line"; continue; fi
+  # guardrail code-enforced (defense-in-depth, NON solo persona): studio = ZERO-brand-ELAB; criterio falsificabile = deve citare 'gate'
+  if [ "$r" = studio ] && printf '%s' "$line" | grep -qiF elab; then echo "[replenish] SCARTO (brand ELAB in studio): $line"; continue; fi
+  if ! printf '%s' "$line" | grep -qiF gate; then echo "[replenish] SCARTO (manca criterio gate): $line"; continue; fi
   VALID="${VALID}${line}
 "
 done < <(printf '%s\n' "$RAW")
@@ -112,16 +120,18 @@ add=os.environ["VALID"].strip("\n")
 m=re.search(r"^## ROADMAP-AUTO.*$", s, flags=re.M)
 if m: s=s[:m.end()]+"\n"+add+s[m.end():]; open(f,"w",encoding="utf-8").write(s)
 PY
-git add COORDINATION.md
+git add COORDINATION.md 2>/dev/null
 git commit -q -m "coord: AUTO-REPLENISH backlog (+$cnt, strategist deepseek-v4-pro) — mai-vuoto autonomo
 
 Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>" 2>/dev/null
-firstkey="$(printf '%s' "$VALID" | head -1 | cut -c1-50)"
-if git show HEAD:COORDINATION.md 2>/dev/null | grep -qF -- "$firstkey"; then
+crc=$?
+firstkey="$(printf '%s' "$VALID" | head -1 | python3 -c 'import sys; print(sys.stdin.read().strip()[:50])' 2>/dev/null)"
+if [ "$crc" -eq 0 ] && [ -n "$firstkey" ] && git show HEAD:COORDINATION.md 2>/dev/null | grep -qF -- "$firstkey"; then
   echo "$((n+1))" > "$CAPF"
   { echo "=== $TS (+$cnt) ==="; printf '%s\n' "$VALID"; } >> "$LOGDIR/replenished.log"
   echo "[replenish] OK +$cnt righe (cap $((n+1))/$DAYCAP)"
   bash "$HOME/maestro-tools/notify-telegram.sh" "AUTO-REPLENISH: +$cnt task backlog (strategist) — loop auto-rifornito. Rivedi/pota ROADMAP-AUTO in COORDINATION se off-vision." >/dev/null 2>&1 || true
 else
-  echo "[replenish] verify post-commit fallita (race?) — cap non incrementato"
+  echo "[replenish] commit/verify fallita (rc=$crc, race?) — revert append, tree pulito, cap intatto"
+  git checkout -- COORDINATION.md 2>/dev/null
 fi
