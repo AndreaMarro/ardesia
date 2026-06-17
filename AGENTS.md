@@ -29,3 +29,6 @@ ORIENT (STATUS.md + ordini + codice) → PLAN (la PRIMA task M0 non completata; 
 
 ## 5. Quando sei bloccato
 2 tentativi falliti sulla stessa task → scrivi una voce in `~/lessonos/COORDINATION.md` § NEEDS-CLAUDE e fermati. NON grindare.
+
+## ARCHITECT-CURRENT.md (design opus pre-build)
+Se nella root del repo esiste `ARCHITECT-CURRENT.md` e il suo PIN-SIG corrisponde alla task pinnata corrente, e il DESIGN autoredatto da opus PRIMA del build: leggilo PER PRIMO (dopo questo AGENTS.md) e seguilo; migliora solo motivando in STATUS.md. Se PIN-SIG non corrisponde al pin attuale e stantio: ignoralo.
