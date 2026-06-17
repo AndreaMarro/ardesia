@@ -42,8 +42,14 @@ for pair in "lessonos:$HOME/lessonos" "studio:$HOME/maestro-studio"; do
     alert "durfetch-$name" "fetch github fallito ($name) - auth/rete?"; continue
   fi
   ahead=$(git -C "$dir" rev-list --count github/auto/main..auto/main 2>/dev/null || echo 0)
+  if [ "${ahead:-0}" -gt 0 ]; then
+    # SELF-HEAL (17/06): i commit-supervisore/noop NON li pusha il driver (pusha solo su build KEPT) -> pusha qui e ri-conta.
+    git -C "$dir" push origin auto/main:auto/main --quiet 2>/dev/null || true
+    git -C "$dir" fetch github --quiet 2>/dev/null || true
+    ahead=$(git -C "$dir" rev-list --count github/auto/main..auto/main 2>/dev/null || echo 0)
+  fi
   if [ "${ahead:-0}" -gt 3 ]; then
-    alert "dur-$name" "$name: auto/main avanti di $ahead su github - mirror GitHub ROTTO (durabilita)"
+    alert "dur-$name" "$name: auto/main avanti di $ahead su github DOPO auto-push - mirror GitHub ROTTO (auth/rete reale)"
   else
     clear_cond "dur-$name"; clear_cond "durfetch-$name"
   fi
