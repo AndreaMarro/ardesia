@@ -257,6 +257,21 @@ describe("PluginManager — robustezza", () => {
     expect(await pm.getState(toolId)).toBe("enabled")
   })
 
+  it("install FALLITO (firma rotta) → nessun lifecycle.json orfano (write solo dopo install riuscito)", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 100)
+    const { manifestJson, toolId } = await makeSignedManifest()
+    // firma con una chiave diversa: installTool rigetta PRIMA di scrivere
+    const { privateKey: wrongKey } = await generateKeypair()
+    const badSig = await signJsonString(manifestJson, wrongKey)
+
+    await expect(pm.install(manifestJson, new Blob(["z"]), badSig)).rejects.toThrow(/signature/)
+    // né manifest né lifecycle scritti: install atomico al fallimento
+    expect(await store.read(manifestPath(toolId))).toBeNull()
+    expect(await store.read(lifecyclePath(toolId))).toBeNull()
+    expect(await pm.getState(toolId)).toBe("not-installed")
+  })
+
   it("lifecycle.json corrotto → getState BLOCCA (mai trattare spazzatura come enabled)", async () => {
     const store = new MemoryInstallerStore()
     const pm = new PluginManager(store, () => 100)

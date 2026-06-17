@@ -110,6 +110,12 @@ export class PluginManager {
   /**
    * Stato unico e autoritativo del plugin. Ordine di precedenza:
    * not-installed → revoked (kill-switch) → enabled/disabled (intento).
+   *
+   * Questa precedenza a READ-TIME è la GARANZIA di sicurezza, non l'ordine delle
+   * write: enable() (assertNotKilled poi write) e addToKillList() non sono
+   * serializzati tra loro, quindi una enable può "vincere" la corsa e lasciare
+   * enabled=true su un tool già nella kill-list. È innocuo perché qui `revoked`
+   * precede `enabled`: il kill-switch oscura sempre l'intento alla lettura.
    */
   async getState(toolId: string): Promise<PluginState> {
     if (!isValidToolId(toolId)) return "not-installed"
