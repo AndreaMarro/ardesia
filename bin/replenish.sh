@@ -63,7 +63,7 @@ $(tail -35 "$LASTSTRAT" 2>/dev/null)
 
 # richiesta gateway (deepseek-v4-pro via alias deepseek-chat; cheap+capped). JSON via python (escaping sicuro).
 REQ="$(PERSONA="$PERSONA" CTX="$CTX" python3 -c 'import json,os
-print(json.dumps({"model":"deepseek-chat","temperature":0.2,"max_tokens":900,"messages":[
+print(json.dumps({"model":"deepseek-chat","temperature":0.2,"max_tokens":3500,"messages":[
  {"role":"system","content":os.environ["PERSONA"]},
  {"role":"user","content":"Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro.\n\n"+os.environ["CTX"]}]}))')"
 RESP="$(curl -s -m 120 "$GW" -H "Authorization: Bearer $MK" -H "Content-Type: application/json" -d "$REQ" 2>/dev/null)"
