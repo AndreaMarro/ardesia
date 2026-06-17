@@ -13,7 +13,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [PIN-DONE auto 17/06 14:06] [AUTO-PINNED 17/06 13:29] secondo reference-plugin che esercita board.read + UI capability (stress contratto Layer-0 multi-capability), gate verde.
-- **lessonos**: [PIN-DONE auto 17/06 14:32] [AUTO-PINNED 17/06 13:59] test che tutte le query retrieval CRM (students_for_class, classes_for_student, events) non producono duplicati con iscrizioni multiple, gate verde, zero regressioni.
+- **lessonos**: [ORDINE-ANDREA 17/06 15:39] **CI-PORTABILITY: rendi ermetici i 7 test env-coupled che falliscono in GitHub Actions (passano sul Mini, rossi su clean-env). Fail: test_style.py::test_on_real_corpus (path corpus reale /Users/progettibelli/maestro-data hardcoded -> skipif dir assente), test_adversarial_kimi.py x2 (path assoluto ~/lessonos/bin/adversarial.py -> risolvi relativo al repo o skipif), test_cli_eval_real.py x2 (richiede DEEPSEEK/KIMI_API_KEY -> skipif key assente), test_skills_frictions.py x2 (UnicodeDecodeError 0xe2 -> decode errors=replace o encoding esplicito sul subprocess). NON cancellare ne indebolire: skip SOLO quando env assente. Criterio FALSIFICABILE: uv run pytest resta VERDE sul Mini (stesso passed o convertiti in skip) E verde su clean-env (la CI GitHub Actions deve passare). gate locale invariato, zero regressioni.**
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 
 
