@@ -107,3 +107,4 @@
 {"ts":"2026-06-17T09:30:00Z","task":"method-graph SERVING: serve_method_graph (grafo prereq persistito GS-3 + bridge ranking)","model":"opus-4-8","iters":1,"gate":"1912/0","self_adv":"1/1","cost_usd":0.04}
 {"ts":"2026-06-17T11:30:00Z","task":"M7 retrieval-hybrid API: single-teacher context-grounded retrieval (retrieve_teacher_context)","model":"opus-4-8","iters":1,"gate":"1929/0","self_adv":"1/1","cost_usd":0.05}
 {"ts":"2026-06-17T12:30:00Z","task":"M7 method-graph query expansion: bridge-concept widening via serve_method_graph (expand_query_with_bridges + multi-query RRF fusion)","model":"opus-4-8","iters":1,"gate":"1947/0","self_adv":"3/5","cost_usd":0.08}
+{"ts":"2026-06-17T13:30:00Z","task":"M7 retrieval-eval-harness: recall@k + MRR gold-set regression gate over hybrid retriever (evaluate_retrieval + reciprocal_rank, pinned floors recall=1.0/MRR=5/6)","model":"opus-4-8","iters":1,"gate":"1962/0","self_adv":"5/5","cost_usd":0.10}

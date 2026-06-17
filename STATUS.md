@@ -955,3 +955,23 @@ Pin AUTO-PINNED (promosso da ROADMAP-AUTO, COORD:18; sblocco promote: pin preced
   - [MINOR m4/m6, RIVISTI non-difetti] `centrality_for_key.get(k,0.0)` (serve_method_graph elenca SEMPRE ogni concetto in bridges; default solo robustezza su grafo parziale) e guard `if not tokens_for_key[key]` (RAGGIUNGIBILE e testato: `test_isolated_concept`/label-stopword; non dead code). Documentati, non modificati.
 - check-no-gte-literal: 0 nuovi warning (i 2 residui asr_coalesce:64/eval_harness:210 pre-esistenti; i miei `>=`/`<=` sono su INSIEMI non conteggi).
 - cost_usd: ~$0.08 (gate x4 + 1 subagente avversario + probe FTS5).
+
+## M7 retrieval-eval-harness — recall@k + MRR gold-set come gate di regressione — 2026-06-17 — commit a795a3b
+Pin AUTO-PINNED (COORD:16). Gate 1947 -> **1962 (+15 test)**. ADDITIVO: zero schema/migrazione, zero nuove dipendenze. Nuovo `lessonos/eval/retrieval.py` + `tests/test_eval_retrieval.py`; aggiunta `reciprocal_rank` (primitiva MRR) accanto a `recall_at_k` in `hybrid.py`; export in `eval/__init__.py` + `retrieval/__init__.py`. Nessuna modifica alla logica di ranking esistente.
+- CRITERI DI ACCETTAZIONE (punto per punto):
+  - [VERIFICATO] **gold-set**: 7 doc sintetici (4 risposte-oro d_* + 3 distrattori n_* che condividono UN token di query) in `GOLD_DOCS`/`GOLD_LEXICON`/`GOLD_QUERIES`. Ogni query risolve a un campo multi-doc reale (probe: tutte e 3 tornano 2 doc), non a un hit forzato singolo. Sintetico: zero contenuto-corpus reale.
+  - [VERIFICATO] **recall@k E MRR MISURATO sul retrieval-hybrid M7**: `evaluate_retrieval(retriever, gold, *, k) -> RetrievalReport(mean_recall, mrr, per_query)` sul vero stack BM25(FTS5)+dense(cosine)+RRF k=60 (`build_gold_retrievers/build_gold_hybrid_retriever`). MISURATO: hybrid recall@3=1.0, MRR=5/6.
+  - [VERIFICATO] **gate di regressione con SOGLIA PINNATA (calo=RED)**: `RECALL_AT_K_FLOOR=1.0`, `MRR_FLOOR=5/6` pinnate ai valori MISURATI; `test_recall_at_k_meets_pinned_floor`/`test_mrr_meets_pinned_floor` asseriscono `>= floor`. Doc droppato -> recall sotto floor -> RED; doc demoto -> MRR sotto floor -> RED.
+  - [VERIFICATO] **gate verde**: 1962/0, exit 0.
+  - [VERIFICATO] **ZERO-LLM**: embedder = sola lookup di lessico, RRF puro Python, nessuna chiamata modello/rete (confermato da avversario).
+  - [VERIFICATO] **zero regressioni**: +15 test, 0 fail; logica ranking invariata, solo aggiunta `reciprocal_rank`.
+- VALORE sui dati (non solo gate): MRR NON è ridondante con recall. Sul vero hybrid la query `'poli e residui'` torna `[n_poli, d_residui]` — il distrattore (poli magnetici) precede la risposta-oro per cosine STRETTAMENTE maggiore (n_poli vec={residue:1} cos 1.0 vs d_residui={residue,integral,complex} cos 0.816, NON tie/repr): recall@3=1.0 (presente) ma rr=0.5. `test_distractor_outranks_relevant_doc` pinna rec=1.0 E rr=0.5 sul retriever REALE (nessun wrapper fabbricato). `test_hybrid_beats_each_component`: hybrid (rec 1.0, mrr 5/6) > bm25 (1/3, 1/3) e > dense (2/3, 1/2) su ENTRAMBE le metriche — fusione misurata, non tautologica.
+- **SELF-ADV: trovati 5, fixati 5** (2 round subagente code-reviewer:code-reviewer avversario decorrelato).
+  - [CRITICAL C1, FIXATO] gold-set iniziale tornava liste a candidato SINGOLO -> MRR=1.0 aritmeticamente FORZATO, floor MRR ridondante con recall. FIX: RIDISEGNO con distrattori n_* -> campi multi-doc reali; MRR=5/6<1.0 ORA guadagnato (probe empirico).
+  - [MAJOR M2, FIXATO] discrimination test usava `_DemotingRetriever` che FABBRICAVA il rank-1 -> provava la formula, non il retriever. FIX: dimostrazione sul retriever REALE (`'poli e residui'`), wrapper rimosso.
+  - [MAJOR M3, FIXATO] gold-set duplicato/divergente da `test_retrieval_hybrid.py`. FIX: fixture ora DISTINTA e purpose-built (campi distrattori), docstring chiarisce la separazione dalla fixture component-blind-spot.
+  - [MINOR m5, FIXATO] distrattore `n_eq` INERTE (AND-gate FTS5 lo escludeva da ogni campo). FIX: testo n_eq porta ora `differenziali` -> compete con d_laplace su `'equazioni differenziali'`, d_laplace resta rank1 (rr=1.0, MRR invariato 5/6).
+  - [MINOR m6, FIXATO] docstring sovra-dichiarava "every query ... real field". Resa VERA dal fix m5; commento `equazioni differenziali` aggiornato a "due doc".
+  - Verificati NON-difetti dall'avversario: math `reciprocal_rank` (1-based, edge vuoti), bit-stabilità `5/6` vs `(1+1+0.5)/3` (bit-uguali, `>=` non flippa), determinismo ordering (cosine stretto, non tie-break repr).
+- check-no-gte-literal: 0 nuovi warning (i miei `>=` su SOGLIE float, non conteggi; 2 residui pre-esistenti asr_coalesce:64/eval_harness:210).
+- cost_usd: ~$0.10 (gate x4 + 2 subagenti avversari + probe ranking).
