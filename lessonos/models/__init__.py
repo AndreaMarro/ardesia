@@ -19,6 +19,8 @@ from lessonos.models.entities import (
 )
 from lessonos.models.ledger import CostLedgerEntry, CostReport
 from lessonos.models.crm import (
+    CONSENT_ACTIONS,
+    ConsentEvent,
     Enrollment,
     SchoolClass,
     Student,
@@ -28,11 +30,13 @@ from lessonos.models.crm import (
 
 __all__ = [
     "CONCEPT_STATUS",
+    "CONSENT_ACTIONS",
     "EDGE_TYPES",
     "STATUS_ORDER",
     "AggregatedPathGraph",
     "AggregatedPathNode",
     "Concept",
+    "ConsentEvent",
     "CostLedgerEntry",
     "CostReport",
     "Enrollment",

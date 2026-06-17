@@ -10,7 +10,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
-from lessonos.models.crm import Enrollment, SchoolClass, Student, Teacher
+from lessonos.models.crm import ConsentEvent, Enrollment, SchoolClass, Student, Teacher
 from lessonos.models.ledger import CostLedgerEntry
 
 
@@ -278,6 +278,28 @@ class Store(ABC):
         number of rows removed; idempotent (second call returns 0).
         """
         raise NotImplementedError("purge_student not implemented by this store")
+
+    # --- Consent-state: append-only GDPR consent audit trail ----------------
+
+    def save_consent_event(self, event: ConsentEvent) -> None:
+        """Append one consent grant/revoke event to the audit trail.
+
+        Append-only: each ``event_id`` is written exactly once. Re-saving an
+        existing ``event_id`` is an integrity violation (the immutable trail is
+        never overwritten) and concrete backends MUST raise rather than upsert.
+        """
+        raise NotImplementedError(
+            "save_consent_event not implemented by this store"
+        )
+
+    def consent_events_for_relation(
+        self, teacher_id: str, class_id: str
+    ) -> tuple[ConsentEvent, ...]:
+        """The append-only consent audit trail for a teacher↔class relation,
+        in recording order (oldest first, most-recent last)."""
+        raise NotImplementedError(
+            "consent_events_for_relation not implemented by this store"
+        )
 
     # --- Transaction support ------------------------------------------------
 

@@ -28,7 +28,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from lessonos.models.entities import require_non_empty
+from lessonos.models.entities import require_non_empty, validate_enum
 
 # A name has whitespace ("Mario Rossi"); an email has '@'. Both are direct PII
 # shapes an opaque pseudonym (e.g. "stu_a1b2c3") never carries.
@@ -103,3 +103,48 @@ class Enrollment:
         assert_pseudonymous(self.enrollment_id, "enrollment_id")
         assert_pseudonymous(self.class_id, "class_id")
         assert_pseudonymous(self.student_id, "student_id")
+
+
+# The two actions a data subject's consent can take. Expiry is NOT an action:
+# nobody *records* an expiry, it is derived from a grant's ``expires_at`` versus
+# the current time (see :mod:`lessonos.consent`), so the audit trail only ever
+# holds the actions a human actually performed.
+CONSENT_ACTIONS: frozenset[str] = frozenset({"granted", "revoked"})
+
+
+@dataclass(frozen=True)
+class ConsentEvent:
+    """One immutable entry in the append-only consent audit trail.
+
+    GDPR consent for a teacher↔class relationship is *event-sourced*: every
+    grant or revocation appends one of these, and the relationship's current
+    state is derived from the latest event plus the clock (never mutated in
+    place), so the trail is a complete, tamper-evident history for an audit.
+
+    Like the rest of the CRM layer this is **structurally PII-free**: the only
+    identifiers are opaque pseudonyms (``teacher_id``/``class_id`` + this
+    event's own ``event_id``), guarded against the obvious name/email shapes.
+    ``at`` and ``expires_at`` are ISO-8601 UTC timestamps (the service writes
+    them); ``expires_at`` is meaningful only for a ``"granted"`` event — a
+    revocation carries no expiry.
+    """
+
+    event_id: str
+    teacher_id: str
+    class_id: str
+    action: str
+    at: str
+    expires_at: str | None = None
+
+    def __post_init__(self) -> None:
+        assert_pseudonymous(self.event_id, "event_id")
+        assert_pseudonymous(self.teacher_id, "teacher_id")
+        assert_pseudonymous(self.class_id, "class_id")
+        validate_enum(self.action, CONSENT_ACTIONS, "consent action")
+        require_non_empty(self.at, "at")
+        if self.action == "revoked" and self.expires_at is not None:
+            raise ValueError(
+                "expires_at is only valid for a 'granted' event, not a revocation"
+            )
+        if self.expires_at is not None:
+            require_non_empty(self.expires_at, "expires_at")

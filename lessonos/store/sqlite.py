@@ -12,11 +12,11 @@ import json
 import sqlite3
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
-from lessonos.models.crm import Enrollment, SchoolClass, Student, Teacher
+from lessonos.models.crm import ConsentEvent, Enrollment, SchoolClass, Student, Teacher
 from lessonos.models.ledger import CostLedgerEntry
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 9
+SCHEMA_VERSION = 10
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -116,6 +116,21 @@ CREATE TABLE IF NOT EXISTS enrollments (
 CREATE INDEX IF NOT EXISTS idx_classes_teacher ON classes(teacher_id);
 CREATE INDEX IF NOT EXISTS idx_enrollments_class ON enrollments(class_id);
 CREATE INDEX IF NOT EXISTS idx_enrollments_student ON enrollments(student_id);
+-- consent-state (v10): append-only audit trail of GDPR consent grant/revoke
+-- for a teacher↔class relationship. Like the rest of the CRM layer it holds
+-- ONLY opaque pseudonyms + timestamps + the action — no personal column to
+-- leak. Current state is DERIVED from these events (see lessonos.consent),
+-- never stored, so the table is a tamper-evident history.
+CREATE TABLE IF NOT EXISTS consent_events (
+    event_id   TEXT PRIMARY KEY,
+    teacher_id TEXT NOT NULL,
+    class_id   TEXT NOT NULL,
+    action     TEXT NOT NULL,
+    at         TEXT NOT NULL,
+    expires_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_consent_events_rel
+    ON consent_events(teacher_id, class_id);
 """
 class SQLiteStore(Store):
     def __init__(self, db_path: str = ":memory:") -> None:
@@ -144,6 +159,8 @@ class SQLiteStore(Store):
             # Migration v8→v9 (CRM-primitives): _SCHEMA adds the teachers/
             # classes/students/enrollments tables + indexes, all
             # CREATE … IF NOT EXISTS — additive, no data migration.
+            # Migration v9→v10 (consent-state): _SCHEMA adds the append-only
+            # consent_events table + index — additive, no data migration.
             self._conn.executescript(_SCHEMA)
             self._conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
             self._conn.commit()
@@ -821,6 +838,56 @@ class SQLiteStore(Store):
             enrollment_id=row["enrollment_id"],
             class_id=row["class_id"],
             student_id=row["student_id"],
+        )
+
+    # --- Consent-state: append-only GDPR consent audit trail ----------------
+
+    def save_consent_event(self, event: ConsentEvent) -> None:
+        # Plain INSERT, never INSERT OR REPLACE: the consent trail is an
+        # append-only, tamper-evident audit log. A REPLACE on an existing
+        # event_id would DELETE+INSERT and reassign the rowid, silently
+        # reordering the (rowid-ordered) trail and so changing the derived
+        # "latest event wins" state. A duplicate event_id is an integrity
+        # violation and MUST raise, not overwrite history.
+        self._conn.execute(
+            "INSERT INTO consent_events "
+            "(event_id, teacher_id, class_id, action, at, expires_at) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                event.event_id,
+                event.teacher_id,
+                event.class_id,
+                event.action,
+                event.at,
+                event.expires_at,
+            ),
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+
+    def consent_events_for_relation(
+        self, teacher_id: str, class_id: str
+    ) -> tuple[ConsentEvent, ...]:
+        # ORDER BY rowid = insertion (recording) order: the audit trail reads
+        # chronologically by when each action was recorded, and the LAST row is
+        # the most recently recorded event — robust to out-of-order ``at``
+        # timestamps (clock skew never reorders the causal history).
+        rows = self._conn.execute(
+            "SELECT * FROM consent_events "
+            "WHERE teacher_id = ? AND class_id = ? ORDER BY rowid",
+            (teacher_id, class_id),
+        ).fetchall()
+        return tuple(self._row_to_consent_event(r) for r in rows)
+
+    @staticmethod
+    def _row_to_consent_event(row: sqlite3.Row) -> ConsentEvent:
+        return ConsentEvent(
+            event_id=row["event_id"],
+            teacher_id=row["teacher_id"],
+            class_id=row["class_id"],
+            action=row["action"],
+            at=row["at"],
+            expires_at=row["expires_at"],
         )
 
     # --- Transaction support ------------------------------------------------
