@@ -48,6 +48,20 @@ PERSONA="$(awk 'BEGIN{c=0} /^---[[:space:]]*$/{c++; next} c>=2{print}' "$AGENT" 
 
 # contesto read-only
 ctxrepo() { echo "## $2 — ultimi commit"; git -C "$1" log --oneline -8 2>/dev/null; echo "-- STATUS tail --"; tail -16 "$1/STATUS.md" 2>/dev/null; }
+# capability digest: cosa ESISTE GIA (fix root-cause: lo strategist era CIECO al codice -> proponeva task gia-fatte -> gridlock)
+builtdigest() {
+  d="$1"; nm="$2"
+  echo "### $nm — CAPABILITY GIA COSTRUITE (NON riproporle: proponi SOLO lavoro NUOVO non in questa lista)"
+  if [ "$nm" = lessonos ]; then
+    printf 'MCP tools gia esposti: '; grep -rhoE 'grounded_memory_[a-z]+' "$d/lessonos/mcp/" --include='*.py' 2>/dev/null | sort -u | tr '\n' ' '; echo
+    printf 'moduli engine: '; ls "$d/lessonos/" 2>/dev/null | grep -vE '__|[.]pyc' | tr '\n' ' '; echo
+    printf 'test gia presenti: '; ls "$d/tests/" 2>/dev/null | grep -E '^test_.*[.]py$' | tr '\n' ' '; echo
+  else
+    printf 'moduli toolhost: '; ls "$d/src/toolhost" "$d/src/toolhost-protocol" 2>/dev/null | grep -E '[.]ts$' | tr '\n' ' '; echo
+    printf 'test gia presenti: '; ls "$d/src/__tests__/" 2>/dev/null | tr '\n' ' '; echo
+    printf 'reference plugins: '; ls "$d/plugins/" 2>/dev/null | tr '\n' ' '; echo
+  fi
+}
 LASTSTRAT="$(ls -t "$HOME/maestro-logs/strategos/"*.md 2>/dev/null | head -1)"
 CTX="### PIN CORRENTI + ROADMAP-AUTO
 $(sed -n '/## ➡️ PROSSIMA TASK/,/## NEEDS-CLAUDE/p' "$COORD" | head -40)
@@ -55,6 +69,10 @@ $(sed -n '/## ➡️ PROSSIMA TASK/,/## NEEDS-CLAUDE/p' "$COORD" | head -40)
 $(ctxrepo "$ROOT" lessonos)
 
 $(ctxrepo "$HOME/maestro-studio" studio)
+
+$(builtdigest "$ROOT" lessonos)
+
+$(builtdigest "$HOME/maestro-studio" studio)
 
 ### MILESTONES (visione)
 $(head -28 "$ROOT/MILESTONES.md" 2>/dev/null)
@@ -65,7 +83,7 @@ $(tail -35 "$LASTSTRAT" 2>/dev/null)
 ### REPO SOTTO-SOGLIA DA RIFORNIRE: $([ "$nl" -lt "$THRESHOLD" ] && printf 'lessonos ')$([ "$ns" -lt "$THRESHOLD" ] && printf 'studio')"
 
 # STRATEGIST: opus-4-8 ULTRACODE first (quota-gated via acct.sh), fallback deepseek-v4-pro gateway (mai bloccato).
-USERMSG="Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro.
+USERMSG="Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro. VIETATO riproporre capability gia presenti in 'CAPABILITY GIA COSTRUITE' (tool/metodi/test gia esistenti): proponi SOLO lavoro nuovo non ancora costruito.
 
 $CTX"
 RAW=""
@@ -84,7 +102,7 @@ if [ -z "$RAW" ] && [ -n "$MK" ]; then
   REQ="$(PERSONA="$PERSONA" CTX="$CTX" python3 -c 'import json,os
 print(json.dumps({"model":"deepseek-chat","temperature":0.2,"max_tokens":3500,"messages":[
  {"role":"system","content":os.environ["PERSONA"]},
- {"role":"user","content":"Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro.\n\n"+os.environ["CTX"]}]}))')"
+ {"role":"user","content":"Stato corrente del factory qui sotto. Emetti SOLO le righe [AUTO-OK] per i repo SOTTO-SOGLIA (vedi REPO SOTTO-SOGLIA DA RIFORNIRE), max 3, nel formato esatto, niente altro. VIETATO riproporre capability gia presenti in 'CAPABILITY GIA COSTRUITE' (tool/metodi/test gia esistenti): proponi SOLO lavoro nuovo non ancora costruito.\n\n"+os.environ["CTX"]}]}))')"
   RESP="$(curl -s -m 120 "$GW" -H "Authorization: Bearer $MK" -H "Content-Type: application/json" -d "$REQ" 2>/dev/null)"
   RAW="$(printf '%s' "$RESP" | python3 -c 'import sys,json
 try:
@@ -112,6 +130,12 @@ while IFS= read -r line; do
   L=${#line}; { [ "$L" -ge 30 ] && [ "$L" -le 320 ]; } || { echo "[replenish] SCARTO (len $L): $line"; continue; }
   key="$(printf '%s' "$line" | python3 -c 'import sys; print(sys.stdin.read().strip()[:50])' 2>/dev/null)"
   if [ -n "$key" ] && grep -qF -- "$key" "$COORD" 2>/dev/null; then echo "[replenish] SCARTO (dup): $line"; continue; fi
+  # staleness-vs-code: auto-drop SOLO caso ad alta confidenza (nuovo tool MCP grounded_memory_X gia esposto = il gridlock dominante); altrimenti WARN, niente drop (un simbolo esistente != task gia fatta, es. nuovo test su simbolo esistente)
+  newtool="$(printf '%s' "$line" | grep -oE 'tool MCP grounded_memory_[a-z]+' | grep -oE 'grounded_memory_[a-z]+' | head -1)"
+  if [ -n "$newtool" ] && grep -rqF -- "$newtool" "$ROOT/lessonos/mcp/" 2>/dev/null; then echo "[replenish] SCARTO (tool MCP '\''$newtool'\'' GIA esposto nel codice): $line"; continue; fi
+  rdir="$ROOT"; [ "$r" = studio ] && rdir="$HOME/maestro-studio"
+  bsym="$(printf '%s' "$line" | grep -oE '[a-z][a-z0-9]+(_[a-z0-9]+){2,}' | head -1)"
+  if [ -n "$bsym" ] && grep -rqwF -- "$bsym" "$rdir" --include='*.py' --include='*.ts' 2>/dev/null; then echo "[replenish] WARN (simbolo '\''$bsym'\'' gia nel codice — il supervisore verifichi non-gia-fatto): $line"; fi
   # guardrail code-enforced (defense-in-depth, NON solo persona): studio = ZERO-brand-ELAB; criterio falsificabile = deve citare 'gate'
   if [ "$r" = studio ] && printf '%s' "$line" | grep -qiF elab; then echo "[replenish] SCARTO (brand ELAB in studio): $line"; continue; fi
   if ! printf '%s' "$line" | grep -qiF gate; then echo "[replenish] SCARTO (manca criterio gate): $line"; continue; fi
