@@ -1,0 +1,60 @@
+// @vitest-environment jsdom
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+
+// Verifica che un fallimento TRANSITORIO del CDN MathJax non blocchi
+// permanentemente l'inserimento di formule per il resto della sessione.
+// Regressione: loadMathJax memoizzava il Promise anche quando veniva
+// rifiutato (onerror) -> ogni chiamata successiva ereditava il reject
+// e l'utente non poteva piu inserire formule senza ricaricare la pagina.
+
+describe("latexToImage — resiliente al fallimento di rete del CDN", () => {
+  let scripts: HTMLScriptElement[]
+
+  beforeEach(() => {
+    vi.resetModules()
+    scripts = []
+    const realCreate = document.createElement.bind(document)
+    vi.spyOn(document, "createElement").mockImplementation(((tag: string) => {
+      const el = realCreate(tag)
+      if (tag === "script") scripts.push(el as HTMLScriptElement)
+      return el
+    }) as typeof document.createElement)
+    vi.spyOn(document.head, "appendChild").mockImplementation(((node: Node) => node) as typeof document.head.appendChild)
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+    delete (window as unknown as { MathJax?: unknown }).MathJax
+  })
+
+  it("dopo un errore CDN, un secondo tentativo crea un nuovo script e puo riuscire", async () => {
+    const { latexToImage } = await import("../latexToImage")
+
+    // Primo tentativo: il CDN fallisce.
+    const p1 = latexToImage("x^2")
+    expect(scripts).toHaveLength(1)
+    scripts[0].onerror?.(new Event("error"))
+    await expect(p1).rejects.toThrow(/MathJax CDN/)
+
+    // Secondo tentativo: la cache deve essere stata azzerata, quindi
+    // loadMathJax crea un NUOVO <script>. Se il CDN risponde, risolve.
+    const p2 = latexToImage("x^2")
+    expect(scripts).toHaveLength(2) // nuovo script => retry effettivo, non reject cached
+
+    // Simula lo script CDN che popola window.MathJax con l'API completa
+    // prima di emettere onload (come fa il bundle reale).
+    ;(window as unknown as { MathJax: unknown }).MathJax = {
+      startup: { promise: Promise.resolve() },
+      tex2svg: () => {
+        const wrapper = document.createElement("div")
+        wrapper.innerHTML = '<svg width="10ex" height="3ex"></svg>'
+        return wrapper
+      },
+    }
+    scripts[1].onload?.(new Event("load"))
+    const out = await p2
+    expect(out.dataURL).toContain("data:image/svg+xml;base64,")
+    expect(out.width).toBeGreaterThan(0)
+    expect(out.height).toBeGreaterThan(0)
+  })
+})
