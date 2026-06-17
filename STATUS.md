@@ -997,3 +997,14 @@ Pin AUTO-PINNED (COORD:16). Gate 1947 -> **1962 (+15 test)**. ADDITIVO: zero sch
   - [VERIFICATO] gate verde 1993/0 (era 1992, +1 = nuovo test). zero regressioni.
 - SELF-ADV (mutation check avversario sul diff): trovati 0, fixati 0. Rimosso DISTINCT -> il nuovo test fallisce (`['cls_3a','cls_3a']`), gli altri (reverse, students_for_class) reggono -> test genuino, non tautologico. Ripristinato, gate verde.
 - gate: 1993/0. cost_usd: ~$0.04.
+
+## 2026-06-17 — CRM retrieval dedup: tutte e tre le query sotto multi-iscrizione (pin COORD:16)
+Pin: "test che tutte le query retrieval CRM (students_for_class, classes_for_student, events) non producono duplicati con iscrizioni multiple, gate verde, zero regressioni". Commit `e8ef468` (test) + `87d7575` (SELF-ADV framing).
+- [VERIFICATO] nuovo `TestRetrievalDedupUnderMultiEnrollment` (`tests/test_crm.py`), 3 test, scenario unico: stu_a 3 righe enrollment in cls_3a + 2 in cls_4b, stu_b 1 in cls_3a (nessun UNIQUE(class_id,student_id) — confermato CREATE TABLE `sqlite.py:111-115`).
+  - [VERIFICATO] `students_for_class("cls_3a")` == [stu_a, stu_b] (le 3 righe duplicate collassano via SELECT DISTINCT `sqlite.py:788`).
+  - [VERIFICATO] `classes_for_student("stu_a")` == [cls_3a, cls_4b] (ogni classe una volta via SELECT DISTINCT `sqlite.py:800`).
+  - [VERIFICATO] `consent_events_for_relation("t_001","cls_3a")` == [ce_grant, ce_revoke]: la query "events" e single-table (NESSUN join enrollments `sqlite.py:878-882`) -> lunghezza trail DISACCOPPIATA dalla molteplicita iscrizioni. Test = guardia di regressione viva contro un futuro JOIN su enrollments.
+  - [VERIFICATO] gate 1996/0 (era 1993, +3). zero regressioni (additivo, zero codice produzione toccato).
+- MUTATION-VERIFIED 3x (eseguite + ripristinate): rimosso DISTINCT da students_for_class -> test1 RED; rimosso DISTINCT da classes_for_student -> test2 RED; aggiunto JOIN enrollments alla query consent -> test3 RED (fan-out reale 2->6 con rowid disambiguato).
+- SELF-ADV (code-reviewer decorrelato, mutazioni ri-eseguite dal reviewer): trovati 2 fixati 1, 0 CRITICAL/0 MAJOR. MINOR-1 (commento sopravvendeva "cartesian-multiply/would be 6" — il JOIN naïve fallisce prima su ambiguous rowid) FIXATO in `87d7575`. MINOR-2 (test1/2 confondono dedup+ordinamento) NON azionabile: l'ORDER BY e gia coperto dai test gemelli esistenti (`test_students_for_class_via_join` inserisce id fuori ordine, `test_classes_for_student_reverse`) -> copertura ordering qui = scope-creep, scartato. 3 FALSE-ALARM provati e respinti dal reviewer.
+- gate: 1996/0. cost_usd: ~$0.04.
