@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Battlecard: ARDESIA vs Competitors</title>
+<style>
+:root{--bg:#0a0d14;--elev:#0f131c;--surf:#161b28;--hover:#1e2536;--tx:#fff;--tx2:rgba(255,255,255,.72);--tx3:rgba(255,255,255,.5);--ac:#3b82f6;--win:#10b981;--lose:#ef4444;--tie:#f59e0b;--bd:rgba(255,255,255,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 -apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:24px 28px;border-bottom:1px solid var(--bd);background:var(--elev)}
+header h1{margin:0 0 4px;font-size:22px}header p{margin:0;color:var(--tx3);font-size:13px}
+nav.tabs{display:flex;flex-wrap:wrap;gap:6px;padding:14px 20px;position:sticky;top:0;background:var(--elev);border-bottom:1px solid var(--bd);z-index:5}
+.tab{background:var(--surf);color:var(--tx2);border:1px solid var(--bd);border-radius:10px;padding:7px 13px;font-size:13px;cursor:pointer;transition:.15s}
+.tab:hover{background:var(--hover)}.tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}
+.tc{display:none;padding:24px 28px;max-width:1080px}.tc.active{display:block}
+h2{font-size:18px;margin:0 0 14px;border-left:3px solid var(--ac);padding-left:10px}
+h3{font-size:15px;margin:18px 0 8px;color:var(--tx)}
+table{border-collapse:collapse;width:100%;font-size:13px;margin-bottom:18px}
+th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--surf);position:sticky;top:64px}
+td.us{background:rgba(59,130,246,.10)}
+.g{color:var(--win);font-weight:700}.r{color:var(--lose);font-weight:700}.y{color:var(--tie);font-weight:700}
+.card{background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.prof{color:var(--tx2);font-size:13px;margin-bottom:6px}
+.win li{color:var(--tx2)}.win b{color:var(--win)}.lose b{color:var(--lose)}
+ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
+.tag{display:inline-block;background:var(--hover);border:1px solid var(--bd);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--tx3);margin:2px 4px 2px 0}
+.landmine{background:rgba(245,158,11,.08);border-left:3px solid var(--tie);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px}
+.talk{background:rgba(16,185,129,.07);border-left:3px solid var(--win);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px}
+.note{color:var(--tx3);font-size:12px;font-style:italic;margin-top:8px}
+</style></head>
+<body>
+<header>
+<h1>ARDESIA — Competitive Battlecard</h1>
+<p>Generato 16/06/2026 · Fonti: web + intel interna (Combo-CompetitiveIntel 09/06, Edtech-Verdict 08/06, Superprof-Teardown) · Competitor: Superprof, Preply, Outschool, italki, Maven, Lessonspace, BitPaper, Tinkercad/Wokwi, Udemy, TpT, NotebookLM, Fagherazzi/kit</p>
+</header>
+<nav class="tabs">
+<button class="tab active" data-t="matrix">Matrice</button>
+<button class="tab" data-t="ardesia">ARDESIA (noi)</button>
+<button class="tab" data-t="superprof">Superprof</button>
+<button class="tab" data-t="preply">Preply/italki</button>
+<button class="tab" data-t="outschool">Outschool/Maven</button>
+<button class="tab" data-t="lessonspace">Lessonspace/BitPaper</button>
+<button class="tab" data-t="tinkercad">Tinkercad/Wokwi</button>
+<button class="tab" data-t="udemy">Udemy/TpT/NotebookLM</button>
+<button class="tab" data-t="fagherazzi">Fagherazzi/kit</button>
+</nav>
+
+<section id="matrix" class="tc active">
+<h2>Matrice testa-a-testa</h2>
+<p class="note">🟢 sì · 🟡 parziale · 🔴 no. Nessun competitor è 🟢 sull'intero combo (verificato ~25 prodotti). Linea di frattura: chi ha il simulatore non ha l'aula+marketplace, e viceversa.</p>
+<table>
+<tr><th>Capacità</th><th class="us">ARDESIA</th><th>Superprof</th><th>Preply/italki</th><th>Outschool</th><th>Lessonspace</th><th>BitPaper</th><th>Tinkercad</th><th>Udemy/TpT</th></tr>
+<tr><td>Aula live IN-app (video+lavagna)</td><td class="us g">🟢</td><td class="r">🔴 (tab esterna)</td><td class="g">🟢</td><td class="g">🟢</td><td class="g">🟢</td><td class="y">🟡</td><td class="r">🔴</td><td class="r">🔴 (async)</td></tr>
+<tr><td>Lavagna estendibile + plugin</td><td class="us g">🟢</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="y">🟡 (code/graph)</td><td class="y">🟡</td><td class="r">🔴</td><td class="r">🔴</td></tr>
+<tr><td>Marketplace plugin (Figma-style)</td><td class="us g">🟢*</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td></tr>
+<tr><td>Simulatori STEM in-aula (E)</td><td class="us g">🟢</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴 (no sim)</td><td class="r">🔴</td><td class="g">🟢 (isolato)</td><td class="r">🔴</td></tr>
+<tr><td>AI-metodologica (grafo metodo)</td><td class="us g">🟢</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td><td class="r">🔴</td></tr>
+<tr><td>NO fee sulle lezioni</td><td class="us g">🟢</td><td class="r">🔴 ($39-49 studente)</td><td class="r">🔴 (15-33%)</td><td class="r">🔴 (30%)</td><td class="y">🟡 (SaaS)</td><td class="g">🟢 (SaaS)</td><td class="g">🟢 (gratis)</td><td class="r">🔴 (payout −40%)</td></tr>
+<tr><td>GDPR Mode A / dati-UE / minori</td><td class="us g">🟢</td><td class="y">🟡</td><td class="y">🟡</td><td class="y">🟡</td><td class="y">🟡</td><td class="y">🟡</td><td class="r">🔴</td><td class="y">🟡</td></tr>
+</table>
+<p class="note">* Marketplace = roadmap (Fase 2, dopo i first-party); NON primo mattone (vedi tab ARDESIA → Rischio).</p>
+<h2>Quick win/loss</h2>
+<table>
+<tr><th>Competitor</th><th>Vinciamo quando…</th><th>Perdiamo quando…</th></tr>
+<tr><td>Superprof/Preply</td><td>Il docente vuole tenere il 100% + lavagna/sim integrati + privacy-UE</td><td>Conta solo la liquidità/SEO/numero-tutor (loro ce l'hanno, noi no)</td></tr>
+<tr><td>Lessonspace/BitPaper</td><td>Serve simulazione STEM + ecosistema plugin + AI-metodo</td><td>Bastano lavagna+code, niente sim; vogliono prodotto maturo subito</td></tr>
+<tr><td>Tinkercad/Wokwi</td><td>Sim DENTRO un'aula-tutoring posseduta + tracciamento+recap</td><td>Serve solo il simulatore isolato e gratis (loro lo regalano)</td></tr>
+<tr><td>Udemy/TpT/NotebookLM</td><td>Lezione LIVE interattiva + plugin vivi (non file/corsi statici)</td><td>Cercano content-gen async/gratis (NotebookLM li commoditizza)</td></tr>
+</table>
+</section>
+
+<section id="ardesia" class="tc">
+<h2>ARDESIA (noi)</h2>
+<div class="card">
+<div class="prof"><b>Cosa siamo:</b> piattaforma local-first per docenti — aula live + <b>lavagna estendibile</b> + <b>marketplace di plugin didattici</b> + <b>AI-metodologica</b> (mappa il metodo del docente, suggerisce il tool/analogia giusto, NO training). Local-first, GDPR Mode A.</div>
+<span class="tag">Engine lessonos M0-M4 (gate ~1780)</span><span class="tag">ToolHost ed25519 T0-T3</span><span class="tag">ELAB-sim primo plugin</span><span class="tag">recap-PDF</span>
+<h3>Differenziatori (dove vinciamo)</h3>
+<ul class="win">
+<li><b>Il combo non esiste</b>: lavagna-estendibile + sim/plugin-IN-AULA + AI-metodo. Verificato su ~25 prodotti, nessuno lo fa.</li>
+<li><b>NO fee sulle lezioni</b>: paga solo il docente (SaaS scalato a quanto-vuole-esprimersi) + marketplace 70/30. Vs Superprof Student-Pass e commissioni 15-33%.</li>
+<li><b>Sim STEM dentro l'aula posseduta</b> (avr8js): inizia esattamente dove Lessonspace si ferma.</li>
+<li><b>AI-metodologica + grafo-del-metodo</b> (lessonos): oltre lo spec, oltre i competitor. Differenziatore profondo.</li>
+<li><b>GDPR Mode A / dati-UE / minori</b>: moat regolatorio (Google non-EU-compliant per ammissione propria).</li>
+</ul>
+<h3>Rischio #1 (onestà — dalla tua intel)</h3>
+<div class="landmine">Il <b>marketplace-aperto a terzi (B)</b> è una trappola two-sided per un solo-dev (cold-start &gt;90% morte; Outschool/Preply hanno comprato la liquidità con anni+capitale; Replit-Edu chiuso). → <b>NON primo mattone.</b> Sequenza: studio-tool single-sided (lavagna+engine+first-party-plugin, valore col solo docente) PRIMA; marketplace-aperto DOPO, col pull. Validare WTP con tutor veri.</div>
+<div class="landmine"><b>NotebookLM-gratis</b> commoditizza la content-gen/citazioni → NON vendere "dispense-nel-tuo-stile" come headline; il valore è la lavagna+plugin+aula viva, non il RAG.</div>
+</div>
+</section>
+
+<section id="superprof" class="tc">
+<h2>Superprof / Preply (marketplace-tutor)</h2>
+<div class="card">
+<div class="prof"><b>Superprof:</b> directory di tutor; la lezione avviene FUORI (Pencil Spaces, tab esterna). Lo <b>STUDENTE paga un Student-Pass ~$39-49</b> per contattare i tutor. Recensioni &lt;4★ soppresse (1.1/5 reale su Trustpilot). Modello: pedaggio d'ingresso.</div>
+<h3 class="lose">Dove vincono</h3><ul><li><b>Liquidità + SEO + brand</b> enormi (milioni di tutor). Un solo-dev non compete sulla liquidità.</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li><b>Zero pedaggio</b>: il docente tiene il 100%, paga solo lo strumento.</li><li><b>Lezione IN-app</b> con lavagna+plugin+sim (loro mandano fuori).</li><li><b>Privacy-UE/minori</b> strutturale.</li></ul>
+<div class="talk">Talk-track: "Su Superprof lo studente paga $49 solo per scriverti, e la lezione la fai su un tool esterno scollegato. Su ardesia non c'è pedaggio e la lavagna+gli strumenti sono dentro."</div>
+<div class="landmine">Landmine: "Quanto della tariffa del docente finisce alla piattaforma? E la lezione su che strumento la fate — integrato o esterno?"</div>
+</div>
+</section>
+
+<section id="preply" class="tc">
+<h2>Preply / italki</h2>
+<div class="card">
+<div class="prof"><b>Preply:</b> Classroom proprio, <b>commissione 18-33%</b> incorporata nel prezzo tutor, primo-trial 100% alla piattaforma. <b>italki:</b> 15% flat. Forte su lingue, AI-matching, liquidità.</div>
+<h3 class="lose">Dove vincono</h3><ul><li>Liquidità + matching + brand su lingue.</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li><b>Nessuna commissione</b> sulle lezioni.</li><li><b>STEM + simulatori + plugin</b> (loro: lingue, niente sim/plugin).</li><li>AI-metodo + GDPR-UE.</li></ul>
+<div class="talk">Talk-track: "Preply si prende il 18-33% di ogni tua lezione. Su ardesia 0% — paghi solo lo strumento e tieni tutto."</div>
+<div class="landmine">Landmine: "Che percentuale trattengono sulle tue lezioni? E hai strumenti interattivi STEM o solo video+chat?"</div>
+</div>
+</section>
+
+<section id="outschool" class="tc">
+<h2>Outschool / Maven</h2>
+<div class="card">
+<div class="prof"><b>Outschool:</b> Zoom-embed, marketplace K12, <b>commissione 30%</b>, rating-classe pubblico. È il più vicino lato A+B+D — <b>ma 0 simulatore</b>. <b>Maven:</b> cohort-live adulti-pro, scegli-corso non ingaggi-tutor, 0 E.</div>
+<h3 class="lose">Dove vincono</h3><ul><li>Liquidità marketplace K12 (Outschool), anni di costruzione.</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li><b>E (sim STEM)</b> + lavagna-estendibile (loro 0).</li><li>No-fee vs 30%.</li><li>AI-metodo + 1:1 posseduto.</li></ul>
+<div class="landmine">Landmine: "Outschool si prende il 30%. E per la fisica/elettronica — c'è un simulatore interattivo sulla lavagna o è solo videochiamata?"</div>
+</div>
+</section>
+
+<section id="lessonspace" class="tc">
+<h2>Lessonspace / BitPaper (studio-tool — i più vicini)</h2>
+<div class="card">
+<div class="prof"><b>Lessonspace:</b> aula-live + code-editor + graph + equation-editor; <b>B2B white-label, niente marketplace</b>; <b>NON simula</b> (si ferma a notazione+codice). <b>BitPaper:</b> lavagna persistente a abbonamento, niente marketplace/sim. Modello sano single-sided (vendi lo strumento al docente).</div>
+<h3 class="lose">Dove vincono</h3><ul><li>Prodotti maturi, stabili, lavagna solida. Lessonspace ha code+graph già pronti.</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li><b>Simulazione STEM</b> (avr8js): "Lessonspace si ferma esattamente dove inizia il nostro sim".</li><li><b>Ecosistema plugin</b> (loro: tool chiusi).</li><li><b>AI-metodologica</b>.</li></ul>
+<div class="talk">Talk-track: "Lessonspace è ottimo per lavagna+codice, ma non SIMULA (pendolo, circuito, reazione chimica) né ha un ecosistema di plugin di terzi. Lì siamo soli."</div>
+<div class="note">Questi sono il modello-business da imitare (studio-tool single-sided, sano) — NON Outschool/Preply (marketplace).</div>
+</div>
+</section>
+
+<section id="tinkercad" class="tc">
+<h2>Tinkercad / Wokwi (sim — unici con E)</h2>
+<div class="card">
+<div class="prof"><b>Tinkercad</b> (Autodesk, gratis) e <b>Wokwi:</b> simulazione circuiti/Arduino (Blockly↔C++) — lo STESSO che fa il nostro sim. Ma single-tenant: <b>0 aula, 0 marketplace, 0 tutoring</b>.</div>
+<h3 class="lose">Dove vincono</h3><ul><li><b>Gratis + maturo</b> (Autodesk). Il sim isolato non è "nuovo".</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li>Sim <b>DENTRO un'aula-tutoring posseduta</b> + tracciamento metodo + recap.</li></ul>
+<div class="landmine">Verità scomoda (tua intel): il simulatore-da-solo NON è novità (Tinkercad lo regala). La novità è <b>sim-embeddato-in-aula-viva</b>, non il sim. Non posizionare mai "il simulatore" come headline.</div>
+</div>
+</section>
+
+<section id="udemy" class="tc">
+<h2>Udemy / Teachers Pay Teachers / NotebookLM</h2>
+<div class="card">
+<div class="prof"><b>Udemy:</b> corsi async, marketplace, payout −40%. <b>TpT</b> ("Etsy dell'education"): marketplace di FILE, payout 55-80%, domina i contenuti. <b>NotebookLM</b> (Google, gratis): citazioni grounded + content-gen.</div>
+<h3 class="lose">Dove vincono</h3><ul><li>TpT domina i contenuti (milioni di risorse); <b>NotebookLM-gratis</b> commoditizza la generazione+citazioni.</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li><b>Lezione LIVE + plugin interattivi/sim</b> (loro: file statici / async / solo testo).</li></ul>
+<div class="landmine">Implicazione strategica: NON vendere "genera-contenuti-nel-tuo-stile/citazioni" come headline — è commodity (NotebookLM gratis). Headline = aula-viva + lavagna-estendibile + sim.</div>
+</div>
+</section>
+
+<section id="fagherazzi" class="tc">
+<h2>Fagherazzi / Omaric (kit Arduino) — partner & competitor</h2>
+<div class="card">
+<div class="prof">Imprenditori impegnati, priorità al <b>KIT hardware</b> (filiera Arduino: Omaric/Strambino, Giovanni ex-Arduino-sales, Davide MePA/PNRR). Più esperti, money-first. "Se ne fregano del software." → <b>partner sul canale, MA competitor-parziale</b>.</div>
+<h3 class="lose">Dove vincono</h3><ul><li><b>Hardware + filiera + canale scuole/PNRR + esperienza commerciale</b> (il moat-canale reale, difficile da replicare).</li></ul>
+<h3 class="win">Dove vinciamo noi</h3><ul><li><b>Il software/piattaforma</b> esiste alle condizioni di Andrea, sulla SUA filosofia pedagogica. Non competiamo sull'hardware.</li><li>ardesia = indipendente, pedagogy-driven; ELAB/kit = un <b>plugin + canale</b>, non il capo.</li></ul>
+<div class="landmine">Linea: ardesia non dipende dalle loro priorità commerciali. ELAB-sim entra come primo plugin (harvest unidirezionale), ma l'architettura/la filosofia le detta Andrea. Coopetition: usa il canale-kit, non farti dettare il prodotto.</div>
+</div>
+</section>
+
+<script>
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('.tc').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');document.getElementById(b.dataset.t).classList.add('active');
+});
+</script>
+</body></html>
