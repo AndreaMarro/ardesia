@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { buildRecap, formatDuration, type LessonRecap } from "./store/lessonRecap"
+import { lessonSlug } from "./lessonSlug"
 import EmptyState from "./design/EmptyState"
 
 interface RecapViewProps {
@@ -61,14 +62,7 @@ export default function RecapView({ store, room }: RecapViewProps) {
       const zipBlob = await store.exportLesson(room)
       const url = URL.createObjectURL(zipBlob)
       const a = document.createElement("a")
-      const slug = recap?.title
-        ? recap.title.toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/-+/g, "-")
-            .replace(/^-|-$/g, "")
-            .slice(0, 48)
-        : room
+      const slug = lessonSlug(recap?.title ?? "", room)
       a.href = url
       a.download = `lezione-${slug}.lesson`
       document.body.appendChild(a)

@@ -50,6 +50,35 @@ describe("RecapView", () => {
     }
   }
 
+  // Rende il RecapView, clicca "esporta" e cattura il filename (a.download) del
+  // link di download generato. Mocka URL.createObjectURL (assente in jsdom) e la
+  // navigazione del click così il test isola SOLO la derivazione dello slug.
+  async function captureExportDownload(): Promise<string[]> {
+    const downloads: string[] = []
+    const clickSpy = vi
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(function (this: HTMLAnchorElement) {
+        downloads.push(this.download)
+      })
+    const origCreate = URL.createObjectURL
+    const origRevoke = URL.revokeObjectURL
+    URL.createObjectURL = vi.fn(() => "blob:test")
+    URL.revokeObjectURL = vi.fn()
+    try {
+      await renderRecapView()
+      const exportBtn = Array.from(container.querySelectorAll("button")).find((b) =>
+        b.textContent?.includes("esporta"),
+      )!
+      exportBtn.click()
+      await vi.waitFor(() => expect(downloads.length).toBe(1))
+    } finally {
+      clickSpy.mockRestore()
+      URL.createObjectURL = origCreate
+      URL.revokeObjectURL = origRevoke
+    }
+    return downloads
+  }
+
   it("mostra errore quando buildRecap fallisce", async () => {
     const { buildRecap } = await import("../store/lessonRecap")
     vi.mocked(buildRecap).mockRejectedValue(new Error("ERRORE-TEST"))
@@ -280,6 +309,61 @@ describe("RecapView", () => {
     expect(container.querySelector(".st-state-error")).toBeNull()
     expect(container.textContent).toContain("Teoria dei Segnali")
     expect(hasEmoji(container.textContent ?? "")).toBe(false)
+  })
+
+  it("export: slug deriva dal titolo (caso normale)", async () => {
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "Teoria dei Segnali",
+      durationMs: 1000,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: 1000,
+      lastEventTime: 2000,
+    })
+    const downloads = await captureExportDownload()
+    expect(downloads).toEqual(["lezione-teoria-dei-segnali.lesson"])
+  })
+
+  it("export: titolo senza caratteri utili ricade sul room id (no 'lezione-.lesson')", async () => {
+    // Pre-fix RecapView duplicava lo slug inline SENZA il fallback di lessonSlug:
+    // un titolo di soli simboli produceva slug vuoto -> filename 'lezione-.lesson'.
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "©™",
+      durationMs: 1000,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: 1000,
+      lastEventTime: 2000,
+    })
+    const downloads = await captureExportDownload()
+    expect(downloads).toEqual(["lezione-test-room.lesson"])
+  })
+
+  it("export: taglio a 48 char non lascia un trattino finale nel filename", async () => {
+    // Pre-fix l'inline tagliava a 48 SENZA il secondo strip del trattino: un titolo
+    // lungo con confine di parola sul char 48 dava 'lezione-...-.lesson'.
+    const { buildRecap } = await import("../store/lessonRecap")
+    vi.mocked(buildRecap).mockResolvedValue({
+      v: 1,
+      title: "a".repeat(47) + " x",
+      durationMs: 1000,
+      mathFormulas: [],
+      elementTypeCounts: {},
+      totalElementsAdded: 0,
+      pdfPagesViewed: [],
+      firstEventTime: 1000,
+      lastEventTime: 2000,
+    })
+    const downloads = await captureExportDownload()
+    expect(downloads).toEqual(["lezione-" + "a".repeat(47) + ".lesson"])
   })
 
   it("mostra elenco formule inserite", async () => {
