@@ -24,7 +24,17 @@ export function toolOrigin(toolId: string, port: number): string {
  * del genitore). Guard terminale prima del mount: una collisione = rifiuto.
  */
 export function isToolOriginIsolated(toolOriginUrl: string, studioOrigin: string): boolean {
-  return toolOriginUrl !== studioOrigin
+  // normalizza prima del confronto: host case-insensitive, slash/path finali
+  // ininfluenti. Un confronto di stringhe grezzo lascerebbe passare una collisione
+  // reale se una sorgente futura fornisse un'origin non normalizzata.
+  const norm = (o: string): string => {
+    try {
+      return new URL(o).origin
+    } catch {
+      return o
+    }
+  }
+  return norm(toolOriginUrl) !== norm(studioOrigin)
 }
 
 /** Variante che lancia: per i chiamanti headless dove la collisione è un bug fatale. */

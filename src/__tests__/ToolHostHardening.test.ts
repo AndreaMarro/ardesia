@@ -12,7 +12,7 @@ import { PROTOCOL_VERSION, ToolManifestSchema } from "../toolhost-protocol/index
 import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
 import { ToolHost, syncKillSwitch } from "../toolhost/host.ts"
 import { assertGrantWithinManifest, resolveGrant } from "../toolhost/policy.ts"
-import { assertToolOriginIsolated, toolOrigin } from "../toolhost/originServer.ts"
+import { assertToolOriginIsolated, isToolOriginIsolated, toolOrigin } from "../toolhost/originServer.ts"
 import { addToKillList } from "../toolhost/killList.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
@@ -174,6 +174,16 @@ describe("B. kill-switch a runtime", () => {
     expect(host.session).not.toBeNull()
   })
 
+  it("refreshKillSwitch: usa lo store dell'host per consultare la kill-list e revoca se elencato", async () => {
+    const store = new MemoryWorkspace()
+    const host = makeHost(resolveGrant(MANIFEST, ["board.read"]), store)
+    expect(await host.refreshKillSwitch()).toBe(false)
+    expect(host.revoked).toBe(false)
+    await addToKillList(store, MANIFEST.id, undefined, () => 1000)
+    expect(await host.refreshKillSwitch()).toBe(true)
+    expect(host.revoked).toBe(true)
+  })
+
   it("syncKillSwitch propaga l'errore su kill-list corrotta (mai eseguire con stato di revoca ignoto)", async () => {
     const store = new MemoryWorkspace()
     const host = makeHost(resolveGrant(MANIFEST, ["board.read"]), store)
@@ -195,5 +205,13 @@ describe("C. sandbox iframe: isolamento dell'origin del tool", () => {
   it("collisione origin tool == origin Studio → mount rifiutato (no eredità dei poteri)", () => {
     const studio = "http://localhost:5173"
     expect(() => assertToolOriginIsolated(studio, studio)).toThrow(/collides with studio origin.*mount refused/)
+  })
+
+  it("collisione normalizzata: differenze di slash/case dell'host NON aggirano il guard", () => {
+    // confronto grezzo direbbe 'distinte'; la normalizzazione URL.origin le smaschera
+    expect(isToolOriginIsolated("http://localhost:5173/", "http://localhost:5173")).toBe(false)
+    expect(isToolOriginIsolated("http://LOCALHOST:5173", "http://localhost:5173")).toBe(false)
+    // origin realmente distinte restano isolate
+    expect(isToolOriginIsolated("http://t-x.127-0-0-1.localhost:7311", "http://localhost:5173")).toBe(true)
   })
 })

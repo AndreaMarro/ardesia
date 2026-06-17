@@ -107,6 +107,16 @@ export class ToolHost {
   }
 
   /**
+   * Consulta la kill-list PERSISTENTE con lo store di questo host e applica il
+   * kill-switch (revoke se elencato). Pensata per essere chiamata sul percorso di
+   * mount (ToolFrame) PRIMA di consegnare l'hello: un tool revocato dopo l'install
+   * non deve mai ripartire. true = revocato.
+   */
+  refreshKillSwitch(): Promise<boolean> {
+    return syncKillSwitch(this._deps.store, this)
+  }
+
+  /**
    * Monta il tool su una porta (l'altra estremità va alla finestra del tool con
    * postHello). Chiude l'eventuale sessione precedente: un mount = una sessione.
    */

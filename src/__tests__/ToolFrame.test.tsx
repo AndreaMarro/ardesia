@@ -129,6 +129,38 @@ describe("ToolFrame (iframe sandbox + handshake al load)", () => {
     expect(posted).not.toHaveBeenCalled()
   })
 
+  it("hardening kill-switch: tool nella kill-list → handleLoad NON monta (nessun hello)", async () => {
+    const killDoc = JSON.stringify({ v: 1, entries: [{ v: 1, toolId: MANIFEST.id, t: 0 }] })
+    const killStore: StorageDriverLike & AuditStore = {
+      read: async (p: string) => (p === "tools/kill-list.json" ? new Blob([killDoc]) : null),
+      write: async () => {},
+      delete: async () => {},
+      list: async (): Promise<StorageEntryLike[]> => [],
+    }
+    const host = new ToolHost(MANIFEST, resolveGrant(MANIFEST, ["board.read"]), { store: killStore, board })
+    const server = new ToolOriginServer({
+      manifest: MANIFEST,
+      files: new Map([["dist/index.html", "<html>echo</html>"]]),
+      port: 7311,
+    })
+    container = document.createElement("div")
+    document.body.appendChild(container)
+    root = createRoot(container)
+    await act(async () => {
+      root!.render(<ToolFrame host={host} originServer={server} />)
+    })
+    const iframe = container.querySelector("iframe")!
+    const posted = vi.spyOn(iframe.contentWindow!, "postMessage").mockImplementation(() => {})
+    await act(async () => {
+      iframe.dispatchEvent(new Event("load"))
+      // l'await dentro handleLoad (refreshKillSwitch) si risolve sul microtask successivo
+      await Promise.resolve()
+    })
+    expect(host.revoked).toBe(true)
+    expect(host.session).toBeNull()
+    expect(posted).not.toHaveBeenCalled()
+  })
+
   it("unmount del componente → sessione chiusa sul ToolHost", async () => {
     const { host, iframe } = await renderFrame()
     vi.spyOn(iframe.contentWindow!, "postMessage").mockImplementation(() => {})

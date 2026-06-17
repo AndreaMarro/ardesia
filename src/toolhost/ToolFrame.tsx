@@ -34,7 +34,7 @@ export function ToolFrame({ host, originServer, title, className }: ToolFramePro
   // che un documento navigato fuori dall'origin del tool non riceva mai l'hello.
   // Nota v0: un reload interno ri-colpisce l'entry con nonce già consumato → 403
   // (il documento va ri-emesso dall'host, non auto-ricaricato).
-  function handleLoad(): void {
+  async function handleLoad(): Promise<void> {
     const cw = frameRef.current?.contentWindow
     if (cw === null || cw === undefined) return
     // hardening §3: con allow-same-origin nel sandbox, l'origin del tool DEVE
@@ -45,6 +45,11 @@ export function ToolFrame({ host, originServer, title, className }: ToolFramePro
       host.unmount()
       return
     }
+    // hardening kill-switch: un tool revocato dopo l'install (kill-list del docente)
+    // non deve MAI ripartire. Consulta la kill-list persistente PRIMA dell'hello.
+    if (await host.refreshKillSwitch()) return
+    // l'iframe potrebbe essersi smontato durante l'await: contentWindow svanito → niente mount.
+    if (frameRef.current?.contentWindow === null || frameRef.current?.contentWindow === undefined) return
     const channel = new MessageChannel()
     const session = host.mount(channel.port1)
     postHello(cw, session.hello, channel.port2, originServer.origin)
@@ -55,7 +60,9 @@ export function ToolFrame({ host, originServer, title, className }: ToolFramePro
       ref={frameRef}
       src={src}
       sandbox={TOOL_IFRAME_SANDBOX}
-      onLoad={handleLoad}
+      // fail-closed: una kill-list corrotta (o qualunque errore nel guard) NON deve
+      // montare il tool — l'errore nega il mount invece di lasciarlo passare.
+      onLoad={() => void handleLoad().catch(() => host.unmount())}
       title={title ?? host.manifest.name}
       className={className}
     />
