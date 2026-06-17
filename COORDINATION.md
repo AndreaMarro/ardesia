@@ -13,7 +13,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 17/06 11:36] plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
-- **lessonos**: [AUTO-PINNED 17/06 11:11] retrieval-hybrid M7 API — expose hybrid retrieval function for single-teacher context-grounded recap, gate verde, ZERO-LLM, zero regressioni.
+- **lessonos**: [AUTO-PINNED-DONE 17/06] retrieval-hybrid M7 API — CONSEGNATA (commit b30b680+ae077f6+18e7eed, gate 1929/0 VERDE). lessonos/retrieval/teacher.py + tests/test_retrieval_hybrid.py.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 - [AUTO-OK] lessonos: method-graph retrieval integration — query expansion via bridge concepts from serve_method_graph in retrieval-hybrid M7, gate verde, ZERO-LLM, zero regressioni.
 - [AUTO-OK] lessonos: retrieval-eval-harness — gold-set + recall@k/MRR MISURATO sul retrieval-hybrid M7 come gate di regressione (soglia pinnata, calo=RED), ZERO-LLM.
