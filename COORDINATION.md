@@ -12,11 +12,10 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [PIN-DONE auto 17/06 19:34] [PIN-SUPERVISORE 17/06 18:40] test che dopo il kill-switch revoke a runtime PluginManager.canMount nega un nuovo mount mentre lo stato enabled e l'audit del tool restano intatti su disco, gate verde, zero regressioni.
+- **studio**: [AUTO-PINNED 17/06 19:34] test che ToolHost.mountIfEnabled riconsulta canMount ad ogni invocazione cosicche un disable emesso tra due mount nega il secondo mentre l audit della prima sessione resta intatto su disco, gate verde, zero regressioni.
 - **lessonos**: [PIN-SUPERVISORE 17/06 18:32] terzo tool MCP grounded_memory_prerequisites che serve la PrerequisiteChain persistita per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 - [AUTO-OK] lessonos: quinto tool MCP grounded_memory_problematic che serve i problematic_concepts persistiti per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
-- [AUTO-OK] studio: test che ToolHost.mountIfEnabled riconsulta canMount ad ogni invocazione cosicche un disable emesso tra due mount nega il secondo mentre l audit della prima sessione resta intatto su disco, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: test che ogni tool grounded esposto in tools list rigetta una chiamata priva di teacher_id con un errore JSON-RPC deterministico senza toccare lo store, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: quarto tool MCP grounded_memory_fundamentals che serve i fundamental_concepts persistiti per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
 - [AUTO-OK] studio: test che PluginManager ricarica lifecycle.json dal disco cosicche un plugin disabled resta disabled dopo un riavvio dell host senza auto-mount, gate verde, zero regressioni.
