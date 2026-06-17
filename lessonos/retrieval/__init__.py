@@ -19,6 +19,11 @@ from lessonos.retrieval.teacher import (
     retrieve_teacher_context,
     teacher_lesson_ids,
 )
+from lessonos.retrieval.expansion import (
+    ExpandedQuery,
+    expand_query_with_bridges,
+    retrieve_teacher_context_with_bridges,
+)
 
 __all__ = [
     "FTSRetriever",
@@ -35,4 +40,7 @@ __all__ = [
     "build_teacher_retriever",
     "retrieve_teacher_context",
     "teacher_lesson_ids",
+    "ExpandedQuery",
+    "expand_query_with_bridges",
+    "retrieve_teacher_context_with_bridges",
 ]
