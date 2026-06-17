@@ -296,9 +296,10 @@ class TestRetrievalDedupUnderMultiEnrollment:
         store.save_consent_event(
             ConsentEvent("ce_revoke", "t_001", "cls_3a", "revoked", "2026-02-01T00:00:00+00:00")
         )
-        # Exactly the two recorded events, in insertion order — NOT multiplied
-        # by the three cls_3a enrollment rows (would be 6 if the query joined
-        # enrollments).
+        # Exactly the two recorded events, in insertion order — NOT inflated by
+        # the three cls_3a enrollment rows. A future JOIN on enrollments would
+        # break this (a naive one errors on an ambiguous rowid; a disambiguated
+        # one fans the trail out past two) — either way this assertion goes RED.
         assert [
             e.event_id for e in store.consent_events_for_relation("t_001", "cls_3a")
         ] == ["ce_grant", "ce_revoke"]
