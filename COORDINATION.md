@@ -12,10 +12,9 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [PIN-DONE auto 17/06 05:06] [AUTO-PINNED 17/06 04:20] ToolHost hardening — sandbox iframe + capability-gating + kill-switch test, gate verde.
+- **studio**: [AUTO-PINNED 17/06 09:11] rinomina plugins/elab -> plugins/reference (regola ZERO-brand-ELAB nel repo MAESTRO; aggiorna import/tsconfig/test/manifest), gate verde, zero regressioni. [risolve escalation naming]
 - **lessonos**: [AUTO-PINNED 17/06 09:11] method-graph SERVING — funzione tipizzata che dato il corpus restituisce il grafo prereq PERSISTITO (concept->concept depends_on da GS-3) + ranking bridge-concept, gate verde, ZERO-LLM.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] studio: rinomina plugins/elab -> plugins/reference (regola ZERO-brand-ELAB nel repo MAESTRO; aggiorna import/tsconfig/test/manifest), gate verde, zero regressioni. [risolve escalation naming]
 - [AUTO-OK] studio: plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
 - [AUTO-OK] lessonos: retrieval-eval-harness — gold-set + recall@k/MRR MISURATO sul retrieval-hybrid M7 come gate di regressione (soglia pinnata, calo=RED), ZERO-LLM.
 - [AUTO-OK] studio: secondo reference-plugin che esercita board.read + UI capability (stress contratto Layer-0 multi-capability), gate verde.
