@@ -13,9 +13,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 17/06 17:13] test che PluginManager rigetta plugin con CONTRACT_VERSION inferiore alla richiesta, gate verde, zero regressioni.
-- **lessonos**: [PIN-DONE auto 17/06 16:35] [ORDINE-ANDREA 17/06 15:39] **CI-PORTABILITY: rendi ermetici i 7 test env-coupled che falliscono in GitHub Actions (passano sul Mini, rossi su clean-env). Fail: test_style.py::test_on_real_corpus (path corpus reale /Users/progettibelli/maestro-data hardcoded -> skipif dir assente), test_adversarial_kimi.py x2 (path assoluto ~/lessonos/bin/adversarial.py -> risolvi relativo al repo o skipif), test_cli_eval_real.py x2 (richiede DEEPSEEK/KIMI_API_KEY -> skipif key assente), test_skills_frictions.py x2 (UnicodeDecodeError 0xe2 -> decode errors=replace o encoding esplicito sul subprocess). NON cancellare ne indebolire: skip SOLO quando env assente. Criterio FALSIFICABILE: uv run pytest resta VERDE sul Mini (stesso passed o convertiti in skip) E verde su clean-env (la CI GitHub Actions deve passare). gate locale invariato, zero regressioni.**
+- **lessonos**: [AUTO-PINNED 17/06 17:14] integra il wrapper MCP grounded-memory con test end-to-end su lezione campione, gate verde invariato, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] lessonos: integra il wrapper MCP grounded-memory con test end-to-end su lezione campione, gate verde invariato, zero regressioni.
 
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
