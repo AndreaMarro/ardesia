@@ -58,3 +58,7 @@ Ogni pagina + riassunto 1 riga.
 - **docling-adapter.md** — P1: Docling-adapter — PDF/DOCX/HTML/VTT/SRT extraction via subprocess + stdlib (ZERO new deps)
   - **llm-planner-stub.md** — P1: LLM-planner stub — plan_course() + PlannerResult bridge between CourseFolder materials and export pipeline (deterministic, zero-LLM, frozen dataclass)
   - **teacher-review.md** — P1: Teacher-review stub — ReviewAction/ReviewScope enums, TeacherReviewNote, TeacherReviewSet, is_course_approved() (deterministic, zero-LLM, frozen data model for human review)
+
+## MCP (Model Context Protocol)
+
+- **mcp-grounded-memory.md** — M3 white-label B2B: server JSON-RPC 2.0 / MCP in-process che espone `grounded_memory_recall` teacher-scoped con re-verifica grounding (`verify_citation`). Ogni item emesso è riverificato; candidati non risolvibili droppati e dichiarati. `lessonos/mcp/grounded_memory.py` (231 righe), `tests/test_mcp_grounded_memory.py` (22 test).
