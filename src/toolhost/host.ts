@@ -25,6 +25,16 @@ export function statePath(toolId: string): string {
   return `tools/${toolId}/state.json`
 }
 
+/**
+ * Superficie minima del PluginManager che l'host consulta prima del mount: lo
+ * stato `enabled` del lifecycle deciso dal docente (canMount = vero solo se il
+ * plugin è installato, abilitato e non revocato). Strutturale di proposito —
+ * l'host non dipende dalla classe concreta, ma il PluginManager la soddisfa.
+ */
+export interface MountGate {
+  canMount(toolId: string): Promise<boolean>
+}
+
 // Tetto sul documento di suspend serializzato: lo stato NON passa dalla quota
 // storage (vive in state.json), senza tetto sarebbe un bypass della quota.
 export const MAX_STATE_BYTES = 1024 * 1024
@@ -140,6 +150,20 @@ export class ToolHost {
     session.attach(port)
     this._session = session
     return session
+  }
+
+  /**
+   * Gate di INTENTO pre-mount (spec §3): delega a PluginManager.canMount — lo
+   * stato `enabled` del lifecycle deciso dal docente — e monta SOLO se il plugin
+   * è abilitato. Un plugin `disabled` (o revocato / non installato) NON viene
+   * montato: ritorna null e l'host resta non montato (nessuna porta consumata,
+   * nessuna sessione aperta). È il pendant sull'asse INTENTO ("il docente lo
+   * vuole acceso?") del kill-switch refreshKillSwitch (asse SICUREZZA): qui la
+   * decisione di lifecycle del PluginManager nega il mount alla radice.
+   */
+  async mountIfEnabled(gate: MountGate, port: PortLike): Promise<ToolHostSession | null> {
+    if (!(await gate.canMount(this.manifest.id))) return null
+    return this.mount(port)
   }
 
   unmount(): void {
