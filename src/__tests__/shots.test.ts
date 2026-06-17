@@ -17,12 +17,12 @@ const SHOTS_ROOT = resolve(homedir(), "maestro-logs", "ui-shots")
 // 01: Excalidraw + WelcomeScreen → molto contenuto (canvas, icone, font) → 100KB+
 // 02: Excalidraw + scena demo + Drawer overlay → 50KB+
 // 03: Vista studente CON scena demo (S-DESIGN-9b: lavagna mai vuota) → ~32KB misurati
-// 04: Tool ELAB Sim via ToolHost (S-DESIGN-10): lavagna + pannello tool + embed LED → 20KB+
+// 04: Reference Sim via ToolHost (S-DESIGN-10): lavagna + pannello tool + embed LED → 20KB+
 const THRESHOLDS: Record<string, number> = {
   "01-welcome.png": 20 * 1024,
   "02-lavagna-drawer-aperto.png": 20 * 1024,
   "03-vista-studente.png": 20 * 1024,
-  "04-elab-blink-lavagna.png": 20 * 1024,
+  "04-reference-blink-lavagna.png": 20 * 1024,
 }
 
 describe("S-DESIGN-8 visual-smoke screenshots", () => {

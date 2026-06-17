@@ -6,7 +6,7 @@
  * Usage: npm run shots
  *   Prerequisito: npm run build (o tsc -b && vite build) già eseguito prima.
  *   Produce: 01-welcome.png, 02-lavagna-drawer-aperto.png, 03-vista-studente.png,
- *            04-elab-blink-lavagna.png (Reference Sim montato via ToolHost)
+ *            04-reference-blink-lavagna.png (Reference Sim montato via ToolHost)
  *
  * Contract: process-group cleanup (no shell:true zombie), kill SIGKILL su timeout.
  */
@@ -149,7 +149,7 @@ async function main() {
       log("  ✓ 03-vista-studente.png salvato.")
 
       // --- SCREENSHOT 4: Reference Sim montato sulla lavagna (LED acceso) ---
-      log("04-elab-blink-lavagna.png — Reference Sim via ToolHost, LED ON + embed sulla lavagna...")
+      log("04-reference-blink-lavagna.png — Reference Sim via ToolHost, LED ON + embed sulla lavagna...")
       const page4 = await browser.newPage({ viewport: { width: 1280, height: 800 } })
       await page4.goto(`${BASE}/?demo=reference-blink`, { waitUntil: "networkidle" })
       // Attendi che l'handshake host.hello→tool.ready→ReadyAck completi: il wrapper
@@ -166,15 +166,15 @@ async function main() {
       // (altrimenti early-return "non connesso"). Niente shot a tempo cieco.
       await toolFrame.locator("#status.ok", { hasText: "lavagna" }).waitFor({ timeout: 5000 })
       await sleep(800) // repaint del canvas Excalidraw dopo updateScene
-      await page4.screenshot({ path: resolve(outDir, "04-elab-blink-lavagna.png"), fullPage: false })
+      await page4.screenshot({ path: resolve(outDir, "04-reference-blink-lavagna.png"), fullPage: false })
       await page4.close()
-      log("  ✓ 04-elab-blink-lavagna.png salvato.")
+      log("  ✓ 04-reference-blink-lavagna.png salvato.")
 
       log(`\n✅ Tutti e 4 gli screenshot salvati in ${outDir}`)
       log(`  ${resolve(outDir, "01-welcome.png")}`)
       log(`  ${resolve(outDir, "02-lavagna-drawer-aperto.png")}`)
       log(`  ${resolve(outDir, "03-vista-studente.png")}`)
-      log(`  ${resolve(outDir, "04-elab-blink-lavagna.png")}`)
+      log(`  ${resolve(outDir, "04-reference-blink-lavagna.png")}`)
     } finally {
       await browser.close()
     }
