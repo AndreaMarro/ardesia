@@ -67,6 +67,8 @@ def test_check_frictions_script_runs_with_no_uncovered_friction():
         cwd=str(ROOT),
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        errors="replace",
     )
     # --strict esce non-zero SOLO se c'è un attrito ricorrente senza skill/guard
     assert res.returncode == 0, (
@@ -82,6 +84,8 @@ def test_check_frictions_detects_recurrence_and_maps_to_existing_targets():
         cwd=str(ROOT),
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        errors="replace",
     )
     out = res.stdout
     # deve aver rilevato almeno un attrito ricorrente reale (i RETRO ne contengono)

@@ -9,7 +9,14 @@ End-to-end ``derive_style_profile`` is tested via the LIVE run in Phase F.
 
 from __future__ import annotations
 
+import os
+
+import pytest
+
 from lessonos.style import _extract_tics, _register_from_segments
+
+# Real Andreas-notes corpus — present on the Mini, absent in CI / clean checkout.
+_REAL_DISPENSE_DIR = "/Users/progettibelli/maestro-data/teoria-segnali-2021/derived/dispense"
 
 
 # ── _register_from_segments  ──────────────────────────────────────────
@@ -340,12 +347,16 @@ class TestDeriveWrittenStyle:
         assert ws.dispense_processed == 0
         assert ws.avg_sentence_length == 0.0
 
+    @pytest.mark.skipif(
+        not os.path.isdir(_REAL_DISPENSE_DIR),
+        reason="real dispense corpus absent (only on the Mini, not in CI)",
+    )
     def test_on_real_corpus(self) -> None:
         """Integration test on the actual dispense corpus. Tests that the
         real Andreas notes produce measurable, non-zero written-style metrics."""
         from lessonos.style import derive_written_style
 
-        real_dir = "/Users/progettibelli/maestro-data/teoria-segnali-2021/derived/dispense"
+        real_dir = _REAL_DISPENSE_DIR
         ws = derive_written_style(dispense_dir=real_dir)
         # At minimum Energia and Sommabilit should be there
         assert ws.dispense_processed >= 2, f"expected >=2 dispense, got {ws.dispense_processed}"

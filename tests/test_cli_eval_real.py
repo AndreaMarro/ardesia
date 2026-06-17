@@ -10,11 +10,32 @@ Tests that the subcommand:
 
 from __future__ import annotations
 
+import os
 import sys
 
 import pytest
 
 from lessonos.cli import main as cli_main
+
+
+def _live_key_available() -> bool:
+    """Mirror realtime.py's key resolution exactly: env DEEPSEEK, env KIMI,
+    then ``.env`` (DeepSeek only — KimiProvider never parses .env).
+
+    Resolution must match runtime: DeepSeekProvider reads ``.env`` relative to
+    CWD (``_parse_env_file(".env")``), so the gate cwd (repo root) is what
+    counts. On the Mini a key is present (env or project-root .env); in CI /
+    clean checkout no key exists, so the ``--live`` tests skip instead of
+    raising RuntimeError.
+    """
+    if os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("KIMI_API_KEY"):
+        return True
+    from lessonos.llm.deepseek import _parse_env_file
+
+    return bool(_parse_env_file(".env").get("DEEPSEEK_API_KEY"))
+
+
+_HAS_LIVE_KEY = _live_key_available()
 
 
 def test_eval_real_default_lesson() -> None:
@@ -165,6 +186,10 @@ def test_eval_real_missing_path_json_returns_1(tmp_path) -> None:
     assert "no path.json" in stderr.getvalue()
 
 
+@pytest.mark.skipif(
+    not _HAS_LIVE_KEY,
+    reason="no DEEPSEEK/KIMI key available (env or .env) — live eval would raise",
+)
 def test_eval_real_live_flag_parses() -> None:
     """eval-real --live is accepted as a parser argument (mock-tested)."""
     from io import StringIO
@@ -194,6 +219,10 @@ def test_eval_real_live_flag_parses() -> None:
         ), f"Unexpected error: {stderr.getvalue()}"
 
 
+@pytest.mark.skipif(
+    not _HAS_LIVE_KEY,
+    reason="no DEEPSEEK/KIMI key available (env or .env) — live eval would raise",
+)
 def test_eval_real_live_flag_with_n_runs() -> None:
     """eval-real --live --n-runs 3 is accepted (tries live or raises)."""
     from io import StringIO

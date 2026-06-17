@@ -3,10 +3,19 @@
 # e PASSA col fix. Niente rete: monkeypatcha urlopen. Python 3.9.6 + pytest, solo stdlib.
 import json
 import io
-import os
 import urllib.request
+from pathlib import Path
 
-ADV = os.path.expanduser("~/lessonos/bin/adversarial.py")
+import pytest
+
+# Resolve relative to the repo (tests/ -> repo root -> bin/), not a hardcoded
+# ~/lessonos path: keeps the test portable across checkouts (CI, clean env).
+ADV = str(Path(__file__).resolve().parent.parent / "bin" / "adversarial.py")
+
+pytestmark = pytest.mark.skipif(
+    not Path(ADV).is_file(),
+    reason=f"adversarial.py not found at {ADV}",
+)
 
 
 class _FakeResp(io.BytesIO):
