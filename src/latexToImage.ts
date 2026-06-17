@@ -13,7 +13,10 @@ function loadMathJax(): Promise<void> {
       const mj = (window as any).MathJax
       mj?.startup?.promise ? mj.startup.promise.then(() => resolve()) : resolve()
     }
-    s.onerror = () => reject(new Error("MathJax CDN load failed"))
+    s.onerror = () => {
+      _ready = null // blip CDN transitorio non deve bloccare i tentativi futuri
+      reject(new Error("MathJax CDN load failed"))
+    }
     document.head.appendChild(s)
   })
   return _ready
