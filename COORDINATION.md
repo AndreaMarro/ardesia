@@ -15,6 +15,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **studio**: [AUTO-PINNED 17/06 09:51] rinomina sim-elab reference component — sostituisci elab con reference in sim e store preservando funzionalita, gate verde, zero regressioni.
 - **lessonos**: [AUTO-PINNED 17/06 09:11] method-graph SERVING — funzione tipizzata che dato il corpus restituisce il grafo prereq PERSISTITO (concept->concept depends_on da GS-3) + ranking bridge-concept, gate verde, ZERO-LLM.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
+- [AUTO-OK] lessonos: retrieval-hybrid M7 API — expose hybrid retrieval function for single-teacher context-grounded recap, gate verde, ZERO-LLM, zero regressioni.
+- [AUTO-OK] studio: plugin-isolation test — due reference-plugin su stesso ToolHost non condividono stato, gate verde.
 - [AUTO-OK] lessonos: method-graph retrieval integration — query expansion via bridge concepts from serve_method_graph in retrieval-hybrid M7, gate verde, ZERO-LLM, zero regressioni.
 - [AUTO-OK] studio: plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
 - [AUTO-OK] lessonos: retrieval-eval-harness — gold-set + recall@k/MRR MISURATO sul retrieval-hybrid M7 come gate di regressione (soglia pinnata, calo=RED), ZERO-LLM.
