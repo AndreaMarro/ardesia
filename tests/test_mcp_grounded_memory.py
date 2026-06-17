@@ -24,6 +24,7 @@ from lessonos.mcp.grounded_memory import (
     INVALID_PARAMS,
     INVALID_REQUEST,
     METHOD_NOT_FOUND,
+    PREREQUISITES_TOOL_NAME,
     PROGRESSION_TOOL_NAME,
     PROTOCOL_VERSION,
     TOOL_NAME,
@@ -36,6 +37,7 @@ from lessonos.models.entities import (
     GraphNode,
     Lesson,
     Path,
+    PrerequisiteChain,
     Segment,
     TeacherBook,
     TeacherConcept,
@@ -149,13 +151,18 @@ class TestHandshake:
         assert result["serverInfo"]["name"] == "lessonos-grounded-memory"
         assert "tools" in result["capabilities"]
 
-    def test_tools_list_exposes_both_grounded_tools(self) -> None:
+    def test_tools_list_exposes_all_grounded_tools(self) -> None:
         resp = _server().handle({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})
         tools = resp["result"]["tools"]
-        assert [t["name"] for t in tools] == [TOOL_NAME, PROGRESSION_TOOL_NAME]
+        assert [t["name"] for t in tools] == [
+            TOOL_NAME,
+            PROGRESSION_TOOL_NAME,
+            PREREQUISITES_TOOL_NAME,
+        ]
         by_name = {t["name"]: t for t in tools}
         assert by_name[TOOL_NAME]["inputSchema"]["required"] == ["teacher_id", "query"]
         assert by_name[PROGRESSION_TOOL_NAME]["inputSchema"]["required"] == ["teacher_id"]
+        assert by_name[PREREQUISITES_TOOL_NAME]["inputSchema"]["required"] == ["teacher_id"]
 
     def test_initialized_notification_gets_no_response(self) -> None:
         # No "id" member ⇒ notification ⇒ no response (JSON-RPC §4.1).
@@ -340,8 +347,10 @@ class TestMultiSegmentLesson:
 # ── grounded_memory_progression fixtures ────────────────────────────────────
 
 
-def _concept(name, status, canonical):
-    return ConceptExtraction(name=name, status=status, canonical=canonical)
+def _concept(name, status, canonical, prereqs=()):
+    return ConceptExtraction(
+        name=name, status=status, canonical=canonical, prerequisites=tuple(prereqs)
+    )
 
 
 def _save_capsule(store: SQLiteStore, lesson_id: str, concepts) -> None:
@@ -573,5 +582,189 @@ class TestProgressionGroundingGuard:
         monkeypatch.setattr(gm, "build_teacher_book", lambda *a, **k: book)
         server = GroundedMemoryServer(store)
         payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+
+# ── grounded_memory_prerequisites fixtures ───────────────────────────────────
+
+
+def _prerequisites_store() -> SQLiteStore:
+    """One teacher, a real-style lesson whose concepts declare prerequisites.
+
+    * ``derivata`` — declares prereq ``limiti`` (out-of-course, kept verbatim),
+      grounded by a verbatim citation that mentions the concept. SERVED.
+    * ``energia`` — declares prereq ``lavoro`` but its only citation has no
+      excerpt (UNVERIFIED). DROPPED + declared.
+    * ``massa`` — a single-lesson edge sink with no declared prereq, so it yields
+      no chain (and never shares a citation with the others).
+    * a second teacher ``t_other`` for isolation.
+    """
+    store = SQLiteStore(":memory:")
+    store.save_path(Path(path_id="p_main", title="Matematica", subject="matematica",
+                         lesson_ids=("l1",), teacher_id="t_main"))
+    store.save_path(Path(path_id="p_other", title="Mat2", subject="matematica",
+                         lesson_ids=("lo",), teacher_id="t_other"))
+    store.save_lesson(Lesson(lesson_id="l1", path_id="p_main", title="Lezione 1", order=1))
+    store.save_lesson(Lesson(lesson_id="lo", path_id="p_other", title="Lezione X", order=1))
+
+    # Real segment the verbatim grounding resolves against (mentions "derivata").
+    store.save_segment(Segment(seg_id="l1#s0", lesson_id="l1", start=0, end=1,
+                               text="La derivata misura la pendenza della funzione."))
+    # A second same-lesson segment that does NOT mention "derivata" (used by the
+    # adversarial concept-tie test: a verbatim excerpt from here must not ground
+    # the derivata chain).
+    store.save_segment(Segment(seg_id="l1#s1", lesson_id="l1", start=2, end=3,
+                               text="La funzione varia nel tempo."))
+
+    _save_capsule(store, "l1", [
+        _concept("Derivata", "introduced", "derivata", prereqs=("limiti",)),
+        _concept("Energia", "introduced", "energia", prereqs=("lavoro",)),
+        _concept("Massa", "introduced", "massa"),
+    ])
+    # derivata → massa: VERBATIM excerpt mentioning derivata → grounds derivata.
+    _save_edge_with_evidence(store, "l1", "e_der", "l1:concept:0", "l1:concept:2",
+                             seg_id="l1#s0", excerpt="derivata")
+    # energia → massa: evidence has NO excerpt → unverified → energia dropped.
+    _save_edge_with_evidence(store, "l1", "e_ene", "l1:concept:1", "l1:concept:2",
+                             seg_id="l1#s0", excerpt=None)
+    return store
+
+
+def _prerequisites_call(server, teacher_id, **args):
+    request = {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "tools/call",
+        "params": {"name": PREREQUISITES_TOOL_NAME,
+                   "arguments": {"teacher_id": teacher_id, **args}},
+    }
+    resp = server.handle(request)
+    assert resp is not None
+    return resp
+
+
+# ── grounded_memory_prerequisites: end-to-end sample lesson ──────────────────
+
+
+class TestGroundedPrerequisites:
+    def test_serves_only_verbatim_grounded_chain(self) -> None:
+        """derivata (verbatim-grounded) is served; energia (no excerpt) dropped."""
+        store = _prerequisites_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_prerequisites_call(server, "t_main"))
+
+        canonicals = {it["canonical"] for it in payload["items"]}
+        assert "derivata" in canonicals, "verbatim-grounded chain must be served"
+        assert "energia" not in canonicals, "unverified-evidence chain must be dropped"
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_chain_carries_prerequisites_and_grounding(self) -> None:
+        store = _prerequisites_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_prerequisites_call(server, "t_main"))
+
+        item = next(it for it in payload["items"] if it["canonical"] == "derivata")
+        # The persisted prerequisite chain is served verbatim.
+        assert item["concept"] == "Derivata"
+        assert item["prerequisites"] == ["limiti"]
+        assert item["lesson_ids"] == ["l1"]
+        # Grounding proof resolves to a real same-lesson segment, verbatim.
+        grounding = item["grounding"]
+        seg = store.get_segment(grounding["seg_id"])
+        assert seg is not None
+        assert grounding["text"] == seg.text
+        assert grounding["excerpt"] in seg.text
+        assert grounding["lesson_id"] == seg.lesson_id
+
+    def test_unknown_teacher_yields_empty_not_error(self) -> None:
+        store = _prerequisites_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_prerequisites_call(server, "t_ghost"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 0
+
+    def test_cross_teacher_isolation_holds(self) -> None:
+        """t_other (different lesson) never sees t_main's grounded chain."""
+        store = _prerequisites_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_prerequisites_call(server, "t_other"))
+        assert payload["items"] == []
+
+    def test_missing_teacher_id_is_invalid_params(self) -> None:
+        store = _prerequisites_store()
+        server = GroundedMemoryServer(store)
+        resp = server.handle({
+            "jsonrpc": "2.0", "id": 1, "method": "tools/call",
+            "params": {"name": PREREQUISITES_TOOL_NAME, "arguments": {}},
+        })
+        assert resp["error"]["code"] == INVALID_PARAMS
+
+
+# ── grounded_memory_prerequisites: structural guard (adversarial) ────────────
+
+
+class TestPrerequisitesGroundingGuard:
+    def _poison_book(self, monkeypatch, *, evidence_lesson, excerpt,
+                     owned_seg=True, chain_lessons=("l1",), seg_id="l1#s0"):
+        """Make build_teacher_book return a book whose derivata chain is grounded
+        by an attacker-controlled citation."""
+        store = _prerequisites_store()
+        if not owned_seg:
+            seg_id = "does_not_exist"
+        tc = TeacherConcept(
+            name="Derivata", canonical="derivata", status="introduced",
+            lesson_ids=("l1",),
+            citations=(GraphEvidence(
+                evidence_id="x", edge_id="e", seg_id=seg_id,
+                excerpt=excerpt, lesson_id=evidence_lesson,
+            ),),
+        )
+        chain = PrerequisiteChain(
+            concept="Derivata", canonical="derivata",
+            prerequisites=("limiti",), lesson_ids=chain_lessons,
+        )
+        book = TeacherBook(
+            teacher_id="t_main", fundamental_concepts=(tc,), prerequisites=(chain,),
+        )
+        monkeypatch.setattr(gm, "build_teacher_book", lambda *a, **k: book)
+        return GroundedMemoryServer(store)
+
+    def test_fabricated_seg_id_is_dropped(self, monkeypatch) -> None:
+        server = self._poison_book(monkeypatch, evidence_lesson="l1",
+                                   excerpt="derivata", owned_seg=False)
+        payload = _payload(_prerequisites_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_cross_lesson_citation_is_dropped(self, monkeypatch) -> None:
+        # seg l1#s0 really belongs to l1, but the citation claims l2 → contamination.
+        server = self._poison_book(monkeypatch, evidence_lesson="l2", excerpt="derivata")
+        payload = _payload(_prerequisites_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_non_verbatim_excerpt_is_dropped(self, monkeypatch) -> None:
+        server = self._poison_book(monkeypatch, evidence_lesson="l1",
+                                   excerpt="parola inventata")
+        payload = _payload(_prerequisites_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_off_concept_excerpt_is_dropped(self, monkeypatch) -> None:
+        # l1#s1 ("La funzione varia nel tempo.") is a real same-lesson owned
+        # segment, and "funzione" is a verbatim substring of it — but it does NOT
+        # mention the dependent concept "derivata" → concept-tie drops it.
+        server = self._poison_book(monkeypatch, evidence_lesson="l1",
+                                   excerpt="funzione", seg_id="l1#s1")
+        payload = _payload(_prerequisites_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_chain_spanning_unowned_lesson_is_dropped(self, monkeypatch) -> None:
+        # lesson_ids references l_foreign, which t_main does not own.
+        server = self._poison_book(monkeypatch, evidence_lesson="l1",
+                                   excerpt="derivata", chain_lessons=("l1", "l_foreign"))
+        payload = _payload(_prerequisites_call(server, "t_main"))
         assert payload["items"] == []
         assert payload["dropped_ungrounded"] == 1

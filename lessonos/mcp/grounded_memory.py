@@ -6,6 +6,8 @@ LessonOS teacher-scoped memory as MCP tools:
   * ``grounded_memory_recall`` — verbatim segment recall for a query.
   * ``grounded_memory_progression`` — a teacher's persisted concept
     progressions (introduced → reinforced → …), each backed by a real citation.
+  * ``grounded_memory_prerequisites`` — a teacher's persisted prerequisite
+    chains (concept ← depends_on), each backed by a real citation.
 
 The wrapper's reason to exist is the grounding invariant. Every memory item it
 emits is RE-VERIFIED against the persisted store (``verify_citation``, PLAN
@@ -24,6 +26,15 @@ progression whose evidence was never verbatim-grounded, was purged (GDPR
 erasure), or belongs to another lesson/teacher is dropped + declared — never
 served as if grounded.
 
+The prerequisites tool serves the ``PrerequisiteChain`` rows that
+``build_teacher_book`` derives from persisted ``depends_on`` edges + capsule-
+declared prerequisites (ZERO-LLM). It applies the SAME guard: a chain is emitted
+only when its concept carries at least one VERIFIED verbatim citation
+(``is_verified_excerpt`` + ``verify_citation``) resolving to a same-lesson
+segment the teacher owns, AND every lesson the chain spans is owned. A chain
+whose evidence was never verbatim-grounded, was purged (GDPR erasure), or spans
+another teacher's lesson is dropped + declared — never served as if grounded.
+
 Scope (MVP): segment-grounded recall + concept progression (verbatim transcript
 provenance). Capsule hits carry no seg_id to ground and are dropped+declared. No
 network, no new dependency (stdlib only), no fs/shell capability — the TOOLHOST
@@ -39,7 +50,12 @@ from typing import Any
 
 from lessonos.graph.grounding import is_verified_excerpt, verify_citation
 from lessonos.graph.utils import content_tokens
-from lessonos.models.entities import ConceptProgression, GraphEvidence, TeacherConcept
+from lessonos.models.entities import (
+    ConceptProgression,
+    GraphEvidence,
+    PrerequisiteChain,
+    TeacherConcept,
+)
 from lessonos.retrieval.dense import Embedder
 from lessonos.retrieval.teacher import retrieve_teacher_context, teacher_lesson_ids
 from lessonos.store.base import Store
@@ -50,6 +66,7 @@ SERVER_NAME = "lessonos-grounded-memory"
 SERVER_VERSION = "0.1.0"
 TOOL_NAME = "grounded_memory_recall"
 PROGRESSION_TOOL_NAME = "grounded_memory_progression"
+PREREQUISITES_TOOL_NAME = "grounded_memory_prerequisites"
 
 _DEFAULT_TOP_K = 5
 _MAX_TOP_K = 50
@@ -111,6 +128,27 @@ _PROGRESSION_TOOL_SCHEMA: dict[str, Any] = {
     },
 }
 
+_PREREQUISITES_TOOL_SCHEMA: dict[str, Any] = {
+    "name": PREREQUISITES_TOOL_NAME,
+    "description": (
+        "Return a teacher's persisted prerequisite chains (which concepts a "
+        "concept depends on, derived from depends_on edges and capsule-declared "
+        "prerequisites). Every chain is grounded: it is only returned when the "
+        "concept carries a verified verbatim citation resolving to a real "
+        "transcript segment in a lesson the teacher owns."
+    ),
+    "inputSchema": {
+        "type": "object",
+        "properties": {
+            "teacher_id": {
+                "type": "string",
+                "description": "Owner whose persisted prerequisite chains to serve.",
+            },
+        },
+        "required": ["teacher_id"],
+    },
+}
+
 
 class _ToolError(Exception):
     """Carries a JSON-RPC error code out of tool dispatch."""
@@ -165,7 +203,14 @@ class GroundedMemoryServer:
             return _result(req_id, {})
         if method == "tools/list":
             return _result(
-                req_id, {"tools": [_TOOL_SCHEMA, _PROGRESSION_TOOL_SCHEMA]}
+                req_id,
+                {
+                    "tools": [
+                        _TOOL_SCHEMA,
+                        _PROGRESSION_TOOL_SCHEMA,
+                        _PREREQUISITES_TOOL_SCHEMA,
+                    ]
+                },
             )
         if method == "tools/call":
             try:
@@ -193,6 +238,8 @@ class GroundedMemoryServer:
             return self._call_recall(self._tool_args(params))
         if name == PROGRESSION_TOOL_NAME:
             return self._call_progression(self._tool_args(params))
+        if name == PREREQUISITES_TOOL_NAME:
+            return self._call_prerequisites(self._tool_args(params))
         raise _ToolError(METHOD_NOT_FOUND, f"unknown tool {name!r}")
 
     @staticmethod
@@ -246,6 +293,15 @@ class GroundedMemoryServer:
     def _call_progression(self, args: dict[str, Any]) -> dict[str, Any]:
         teacher_id = self._require_teacher_id(args)
         items, dropped = self._grounded_progression(teacher_id)
+        return self._wrap({
+            "teacher_id": teacher_id,
+            "items": items,
+            "dropped_ungrounded": dropped,
+        })
+
+    def _call_prerequisites(self, args: dict[str, Any]) -> dict[str, Any]:
+        teacher_id = self._require_teacher_id(args)
+        items, dropped = self._grounded_prerequisites(teacher_id)
         return self._wrap({
             "teacher_id": teacher_id,
             "items": items,
@@ -338,29 +394,103 @@ class GroundedMemoryServer:
         by_canonical: dict[str, TeacherConcept],
         owned: set[str],
     ) -> dict[str, Any] | None:
-        """Return a verbatim grounding proof for *prog*, or None to drop it.
+        """Return a verbatim grounding proof for *prog*, or None to drop it."""
+        return self._ground_concept(
+            name=prog.name,
+            canonical=prog.canonical,
+            lessons=(prog.first_lesson, *prog.lesson_sequence),
+            by_canonical=by_canonical,
+            owned=owned,
+        )
 
-        A progression is grounded iff (1) every lesson it spans is owned by the
-        teacher and (2) its concept carries at least one VERIFIED verbatim
-        citation that re-resolves to a same-lesson persisted segment the teacher
-        owns. Defense-in-depth: never trust the builder's scoping alone.
+    # ── grounded prerequisites (the structural guard) ────────────────────
+    def _grounded_prerequisites(
+        self, teacher_id: str
+    ) -> tuple[list[dict[str, Any]], int]:
+        try:
+            book = build_teacher_book(self._store, teacher_id)
+        except ValueError:
+            # Unknown/path-less teacher: empty, not an error (mirror recall).
+            return [], 0
+        owned = teacher_lesson_ids(self._store, teacher_id)
+        by_canonical: dict[str, TeacherConcept] = {
+            c.canonical: c for c in book.fundamental_concepts
+        }
+
+        items: list[dict[str, Any]] = []
+        dropped = 0
+        for chain in book.prerequisites:
+            grounding = self._ground_prerequisite(chain, by_canonical, owned)
+            if grounding is None:
+                dropped += 1
+                continue
+            items.append(
+                {
+                    "concept": chain.concept,
+                    "canonical": chain.canonical,
+                    "prerequisites": list(chain.prerequisites),
+                    "lesson_ids": list(chain.lesson_ids),
+                    "grounding": grounding,
+                }
+            )
+        return items, dropped
+
+    def _ground_prerequisite(
+        self,
+        chain: PrerequisiteChain,
+        by_canonical: dict[str, TeacherConcept],
+        owned: set[str],
+    ) -> dict[str, Any] | None:
+        """Return a verbatim grounding proof for *chain*, or None to drop it.
+
+        A prerequisite chain is grounded iff (1) every lesson it spans is owned
+        by the teacher and (2) its (dependent) concept carries at least one
+        VERIFIED verbatim citation re-resolving to a same-lesson persisted
+        segment the teacher owns. The grounding proves the DEPENDENT concept is
+        real and persisted — the chain's reason to exist. Defense-in-depth:
+        never trust the builder's scoping alone.
         """
-        # (1) ownership of every lesson the progression spans.
-        for lid in (prog.first_lesson, *prog.lesson_sequence):
+        return self._ground_concept(
+            name=chain.concept,
+            canonical=chain.canonical,
+            lessons=chain.lesson_ids,
+            by_canonical=by_canonical,
+            owned=owned,
+        )
+
+    def _ground_concept(
+        self,
+        *,
+        name: str,
+        canonical: str,
+        lessons: tuple[str, ...],
+        by_canonical: dict[str, TeacherConcept],
+        owned: set[str],
+    ) -> dict[str, Any] | None:
+        """Verbatim grounding proof for a concept, or None to drop it.
+
+        Shared guard for progression + prerequisites: (1) every lesson in
+        *lessons* is owned by the teacher and (2) the concept carries at least
+        one VERIFIED verbatim citation that re-resolves to a same-lesson
+        persisted segment the teacher owns AND actually mentions the concept.
+
+        A concept's citations are collected from every edge incident to it
+        (source OR target in build_teacher_book), so an edge "A explains B"
+        attaches A's excerpt to B as well. Requiring the segment to mention the
+        concept ties the served provenance to the concept it grounds — an
+        off-concept excerpt (e.g. "vettore" served for "massa") is dropped.
+        """
+        # (1) ownership of every lesson the concept spans.
+        for lid in lessons:
             if lid and lid not in owned:
                 return None
 
-        tc = by_canonical.get(prog.canonical)
+        tc = by_canonical.get(canonical)
         if tc is None:
             return None
 
         # (2) a verified verbatim citation that actually mentions THIS concept.
-        # A concept's citations are collected from every edge incident to it
-        # (source OR target in build_teacher_book), so an edge "A explains B"
-        # attaches A's excerpt to B as well. Requiring the segment to mention
-        # the concept ties the served provenance to the concept it grounds —
-        # an off-concept excerpt (e.g. "vettore" served for "massa") is dropped.
-        concept_terms = content_tokens(prog.name) | content_tokens(prog.canonical)
+        concept_terms = content_tokens(name) | content_tokens(canonical)
         for cit in tc.citations:
             proof = self._ground_citation(cit, owned, concept_terms)
             if proof is not None:
