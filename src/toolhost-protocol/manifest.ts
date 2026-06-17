@@ -28,6 +28,11 @@ export const ToolManifestSchema = z.strictObject({
   name: z.string().min(1).max(100),
   version: z.string().regex(SEMVER_RE),
   protocol: z.string().refine(isValidProtocolRange, { message: "invalid protocol range" }),
+  // Range di CONTRATTO SDK (Layer-0) richiesto all'host. Asse DISTINTO dal `protocol`
+  // del wire (CONTRACT_VERSION != PROTOCOL_VERSION): qui il plugin dichiara quale
+  // versione del contratto SDK gli serve. Opzionale -> assenza = nessun gate
+  // (manifest legacy invariati). Stessa grammatica-range di `protocol`.
+  contract: z.string().refine(isValidProtocolRange, { message: "invalid contract range" }).optional(),
   entry: z
     .string()
     .min(1)

@@ -239,6 +239,61 @@ describe("PluginManager — kill-switch (overlay su enabled)", () => {
   })
 })
 
+// ---------- gate: versione di contratto richiesta dal plugin ----------
+
+describe("PluginManager — gate contract version", () => {
+  it("rigetta un plugin che RICHIEDE un contratto superiore a quello dell'host (atomico: nessun artefatto)", async () => {
+    // host SDK = CONTRACT_VERSION (1.0.0); il plugin pretende >=1.1 → l'host è inferiore.
+    // Firmo con una chiave SBAGLIATA di proposito: se l'errore è ancora "incompatible
+    // contract" (non "signature"), il gate di contratto ha cortocircuitato PRIMA della
+    // verifica firma di installTool → prova l'ordine (gate-prima-di-firma), non solo
+    // che "qualcosa" abbia lanciato. Difende contro un reorder gate↔firma.
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 100)
+    const { manifestJson, toolId } = await makeSignedManifest({ contract: ">=1.1" })
+    const { privateKey: wrongKey } = await generateKeypair()
+    const badSig = await signJsonString(manifestJson, wrongKey)
+
+    await expect(pm.install(manifestJson, new Blob(["z"]), badSig)).rejects.toThrow(
+      /incompatible contract/,
+    )
+    // reject PRIMA di installTool: né manifest né lifecycle scritti
+    expect(await store.read(manifestPath(toolId))).toBeNull()
+    expect(await store.read(lifecyclePath(toolId))).toBeNull()
+    expect(await pm.getState(toolId)).toBe("not-installed")
+  })
+
+  it("accetta un plugin il cui range INCLUDE la versione dell'host (gate falsificabile in entrambe le direzioni)", async () => {
+    // ">=1.0 <2.0" è soddisfatto da 1.0.0 → install riesce. Un bug "rigetta-tutto"
+    // romperebbe QUESTO; un bug "accetta-tutto" romperebbe il test sopra.
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 100)
+    const toolId = await installViaManager(pm, { contract: ">=1.0 <2.0" })
+
+    expect(await pm.getState(toolId)).toBe("enabled")
+    expect(await store.read(manifestPath(toolId))).not.toBeNull()
+  })
+
+  it("manifest SENZA campo contract → install riesce (migrate-safe, zero regressione sui legacy)", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 100)
+    const toolId = await installViaManager(pm) // nessun override: niente `contract`
+
+    expect(await pm.getState(toolId)).toBe("enabled")
+  })
+
+  it("range di contract malformato → reject a parse-schema (sintassi, non compatibilità)", async () => {
+    const store = new MemoryInstallerStore()
+    const pm = new PluginManager(store, () => 100)
+    const { manifestJson, signature, toolId } = await makeSignedManifest({ contract: "abc" })
+
+    await expect(pm.install(manifestJson, new Blob(["z"]), signature)).rejects.toThrow(
+      /invalid contract range/,
+    )
+    expect(await pm.getState(toolId)).toBe("not-installed")
+  })
+})
+
 // ---------- robustezza / fail-safe ----------
 
 describe("PluginManager — robustezza", () => {

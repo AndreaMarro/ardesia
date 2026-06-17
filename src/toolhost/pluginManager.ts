@@ -19,6 +19,8 @@
 import { z } from "zod"
 import { isValidToolId } from "../toolhost-protocol/index.ts"
 import type { ToolManifest } from "../toolhost-protocol/index.ts"
+import { ToolManifestSchema } from "../toolhost-protocol/manifest.ts"
+import { protocolSatisfies } from "../toolhost-protocol/version.ts"
 import { CONTRACT_VERSION } from "../sdk/index.ts"
 import {
   installTool,
@@ -72,9 +74,31 @@ export class PluginManager {
    * l'install è riuscito: un install fallito non lascia un lifecycle orfano.
    */
   async install(manifestJson: string, bundleZip: Blob, signatureB64: string): Promise<ToolManifest> {
+    this._assertContractCompatible(manifestJson)
     const manifest = await installTool(this.store, manifestJson, bundleZip, signatureB64, this._now)
     await this._writeLifecycle(manifest.id, true)
     return manifest
+  }
+
+  /**
+   * Gate di COMPATIBILITÀ pre-install: se il manifest dichiara un range di
+   * `contract` (versione del contratto SDK Layer-0 che richiede all'host), questo
+   * manager deve soddisfarlo. Rigetta PRIMA di delegare a installTool, così un
+   * plugin incompatibile non lascia artefatti (né manifest né lifecycle scritti).
+   *
+   * NB: gate di compatibilità, NON di sicurezza — legge un manifest non ancora
+   * verificato; la firma ed25519 resta validata a valle da installTool. La refine
+   * `isValidProtocolRange` dello schema intercetta la sintassi (range malformato =
+   * "invalid contract range"), così qui protocolSatisfies vede solo range validi.
+   */
+  private _assertContractCompatible(manifestJson: string): void {
+    const manifest = ToolManifestSchema.parse(JSON.parse(manifestJson))
+    if (manifest.contract === undefined) return
+    if (!protocolSatisfies(CONTRACT_VERSION, manifest.contract)) {
+      throw new Error(
+        `incompatible contract: host SDK ${CONTRACT_VERSION} does not satisfy plugin requirement "${manifest.contract}"`,
+      )
+    }
   }
 
   /**
