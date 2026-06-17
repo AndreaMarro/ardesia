@@ -192,9 +192,9 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
     }
   }, [room, actualStore])
 
-  /** document.title: rec ← "● REC — maestro · studio", altrimenti "maestro · studio" */
+  /** document.title: rec ← "● REC — Ardesia · studio", altrimenti "Ardesia · studio" */
   useEffect(() => {
-    document.title = audioRecording ? "● REC — maestro · studio" : "maestro · studio"
+    document.title = audioRecording ? "● REC — Ardesia · studio" : "Ardesia · studio"
   }, [audioRecording])
 
   /** All'apertura del drawer porta il focus dentro al dialog (bottone chiudi) */
@@ -458,8 +458,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
       {studentView ? (
         /* Vista studente: solo wordmark + chip, niente bottoni docente */
         <header className="st-bar st-bar-student">
-          <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
-            <span className="st-word">maestro</span>
+          <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
+            <span className="st-word">Ardesia</span>
             <span className="st-bdot" aria-hidden />
             <span className="st-sub">studio</span>
           </div>
@@ -476,8 +476,8 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
         </header>
       ) : (
       <header className="st-bar">
-        <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
-          <span className="st-word">maestro</span>
+        <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
+          <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>
@@ -683,7 +683,7 @@ export default function Room({ store }: { store?: WorkspaceStore }) {
             <WelcomeScreen>
               <WelcomeScreen.Center>
                 <div className="st-brand st-welcome-brand">
-                  <span className="st-word">maestro</span>
+                  <span className="st-word">Ardesia</span>
                   <span className="st-bdot" aria-hidden />
                   <span className="st-sub">studio</span>
                 </div>

@@ -153,8 +153,8 @@ export default function ReferenceBlinkDemo() {
   return (
     <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
       <header className="st-bar">
-        <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
-          <span className="st-word">maestro</span>
+        <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
+          <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>

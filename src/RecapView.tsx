@@ -81,8 +81,8 @@ export default function RecapView({ store, room }: RecapViewProps) {
   return (
     <div className="st-recap">
       <header className="st-bar st-bar-recap">
-        <div className="st-brand" title="MAESTRO Studio — la lavagna che ricorda">
-          <span className="st-word">maestro</span>
+        <div className="st-brand" title="Ardesia Studio — la lavagna che ricorda">
+          <span className="st-word">Ardesia</span>
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>

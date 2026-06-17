@@ -83,14 +83,14 @@ beforeEach(() => {
 })
 
 describe("S-DESIGN-2 — document.title", () => {
-  it("imposta 'maestro · studio' di default (nessuna registrazione)", async () => {
+  it("imposta 'Ardesia · studio' di default (nessuna registrazione)", async () => {
     const store = await createStore()
     const root = createRoot(document.getElementById("root")!)
     const RoomModule = await import("../Room")
     root.render(<RoomModule.default store={store} />)
 
     await vi.waitFor(() => {
-      expect(document.title).toBe("maestro · studio")
+      expect(document.title).toBe("Ardesia · studio")
     }, { timeout: 1000, interval: 10 })
 
     root.unmount()

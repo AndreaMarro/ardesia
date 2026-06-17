@@ -84,7 +84,7 @@ describe("WelcomeScreen MAESTRO (§3.A)", () => {
     const root = await mountRoom()
     const brand = document.querySelector('[data-testid="excalidraw-mock"] .st-welcome-brand')
     expect(brand).not.toBeNull()
-    expect(brand!.textContent).toContain("maestro")
+    expect(brand!.textContent).toContain("Ardesia")
     expect(brand!.querySelector(".st-bdot")).not.toBeNull()
     root.unmount()
   })
