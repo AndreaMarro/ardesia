@@ -6,7 +6,7 @@
  * Usage: npm run shots
  *   Prerequisito: npm run build (o tsc -b && vite build) già eseguito prima.
  *   Produce: 01-welcome.png, 02-lavagna-drawer-aperto.png, 03-vista-studente.png,
- *            04-elab-blink-lavagna.png (tool ELAB Sim montato via ToolHost)
+ *            04-elab-blink-lavagna.png (Reference Sim montato via ToolHost)
  *
  * Contract: process-group cleanup (no shell:true zombie), kill SIGKILL su timeout.
  */
@@ -148,15 +148,15 @@ async function main() {
       await page3.close()
       log("  ✓ 03-vista-studente.png salvato.")
 
-      // --- SCREENSHOT 4: Tool ELAB Sim montato sulla lavagna (LED acceso) ---
-      log("04-elab-blink-lavagna.png — tool ELAB Sim via ToolHost, LED ON + embed sulla lavagna...")
+      // --- SCREENSHOT 4: Reference Sim montato sulla lavagna (LED acceso) ---
+      log("04-elab-blink-lavagna.png — Reference Sim via ToolHost, LED ON + embed sulla lavagna...")
       const page4 = await browser.newPage({ viewport: { width: 1280, height: 800 } })
-      await page4.goto(`${BASE}/?demo=elab-blink`, { waitUntil: "networkidle" })
+      await page4.goto(`${BASE}/?demo=reference-blink`, { waitUntil: "networkidle" })
       // Attendi che l'handshake host.hello→tool.ready→ReadyAck completi: il wrapper
-      // canvas espone data-elab-ready="1" SOLO dopo session.ready (i bottoni del
+      // canvas espone data-reference-ready="1" SOLO dopo session.ready (i bottoni del
       // tool si abilitano nello stesso ack). Se l'handshake fallisse, qui va in timeout.
-      await page4.waitForSelector('[data-elab-ready="1"]', { timeout: 20000 })
-      const toolFrame = page4.frameLocator("iframe.elab-tool-frame")
+      await page4.waitForSelector('[data-reference-ready="1"]', { timeout: 20000 })
+      const toolFrame = page4.frameLocator("iframe.reference-tool-frame")
       const btnToggle = toolFrame.locator("#btnToggle")
       await btnToggle.waitFor({ state: "visible", timeout: 10000 })
       await btnToggle.click() // accende il LED sulla breadboard

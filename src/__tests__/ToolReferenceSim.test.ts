@@ -1,6 +1,6 @@
 // @vitest-environment node
 //
-// T4 ST1 — ELAB Sim tool: validazione manifest + install via ToolHost.
+// T4 ST1 — Reference Sim tool: validazione manifest + install via ToolHost.
 // Verifica che il tool `sim/` sia un bundle ToolHost VALIDO con manifest
 // firmato, capability board.read/write, e installabile.
 
@@ -41,7 +41,7 @@ class MemoryInstallerStore implements InstallerStore {
   }
 }
 
-async function generateElabKeypair(): Promise<{ pubkeyB64: string; privateKey: CryptoKey }> {
+async function generateReferenceKeypair(): Promise<{ pubkeyB64: string; privateKey: CryptoKey }> {
   const keypair = await crypto.subtle.generateKey(
     { name: "Ed25519" },
     true,
@@ -62,19 +62,19 @@ async function signJsonString(jsonString: string, privateKey: CryptoKey): Promis
 
 const SIM_DIR = path.resolve(import.meta.dirname, "../../sim")
 const MANIFEST_SRC = fs.readFileSync(path.join(SIM_DIR, "manifest-source.json"), "utf-8")
-const BUNDLE_PATH = path.join(SIM_DIR, "elab-blink.maestrotool")
+const BUNDLE_PATH = path.join(SIM_DIR, "reference-blink.maestrotool")
 const ENTRY_HTML = fs.readFileSync(path.join(SIM_DIR, "entry.html"), "utf-8")
 
 // ---------- tests ----------
 
-describe("T4 ST1 — ELAB Sim manifest", () => {
+describe("T4 ST1 — Reference Sim manifest", () => {
   it("manifest-source.json valido contro ToolManifestSchema", () => {
     const parsed = JSON.parse(MANIFEST_SRC)
     const manifest: ToolManifest = ToolManifestSchema.parse(parsed)
 
     expect(manifest.manifestVersion).toBe(1)
-    expect(manifest.id).toBe("io.maestro.sim-elab-blink")
-    expect(manifest.name).toBe("ELAB Sim — Blink LED")
+    expect(manifest.id).toBe("io.maestro.sim-reference-blink")
+    expect(manifest.name).toBe("Reference Sim — Blink LED")
     expect(manifest.version).toBe("1.0.0")
     expect(manifest.protocol).toBe(">=1.0 <2.0")
     expect(manifest.entry).toBe("entry.html")
@@ -133,7 +133,7 @@ describe("T4 ST1 — ELAB Sim manifest", () => {
 describe("T4 ST1 — installazione via ToolHost", () => {
   it("installa il tool con chiave fresh → artefatti su disco e firma OK", async () => {
     const store = new MemoryInstallerStore()
-    const { pubkeyB64, privateKey } = await generateElabKeypair()
+    const { pubkeyB64, privateKey } = await generateReferenceKeypair()
 
     // Prepara manifest con la nuova pubkey + firma
     const manifestObj = JSON.parse(MANIFEST_SRC)
@@ -145,21 +145,21 @@ describe("T4 ST1 — installazione via ToolHost", () => {
     const manifest = await installTool(store, manifestJson, bundleZip, signature, () => 6000)
 
     // Verifica manifest parsato
-    expect(manifest.id).toBe("io.maestro.sim-elab-blink")
+    expect(manifest.id).toBe("io.maestro.sim-reference-blink")
     expect(manifest.version).toBe("1.0.0")
 
     // Verifica artefatti su disco — manifest.json byte-exact
-    const savedJsonBlob = await store.read(manifestPath("io.maestro.sim-elab-blink"))
+    const savedJsonBlob = await store.read(manifestPath("io.maestro.sim-reference-blink"))
     expect(savedJsonBlob).not.toBeNull()
     const savedJson = await savedJsonBlob!.text()
     expect(savedJson).toBe(manifestJson)
 
     // Verifica bundle
-    const savedBundle = await store.read(bundlePath("io.maestro.sim-elab-blink"))
+    const savedBundle = await store.read(bundlePath("io.maestro.sim-reference-blink"))
     expect(savedBundle).not.toBeNull()
 
     // Verifica install record
-    const installRecord = await getInstallRecord(store, "io.maestro.sim-elab-blink")
+    const installRecord = await getInstallRecord(store, "io.maestro.sim-reference-blink")
     expect(installRecord).not.toBeNull()
     expect(installRecord!.toolVersion).toBe("1.0.0")
     expect(installRecord!.t).toBe(6000)
@@ -168,7 +168,7 @@ describe("T4 ST1 — installazione via ToolHost", () => {
 
   it("tool installato → isToolInstalled e listInstalledTools OK", async () => {
     const store = new MemoryInstallerStore()
-    const { pubkeyB64, privateKey } = await generateElabKeypair()
+    const { pubkeyB64, privateKey } = await generateReferenceKeypair()
 
     const manifestObj = JSON.parse(MANIFEST_SRC)
     manifestObj.publisher.pubkey = `ed25519:${pubkeyB64}`
@@ -178,16 +178,16 @@ describe("T4 ST1 — installazione via ToolHost", () => {
 
     await installTool(store, manifestJson, bundleZip, signature)
 
-    expect(await isToolInstalled(store, "io.maestro.sim-elab-blink")).toBe(true)
+    expect(await isToolInstalled(store, "io.maestro.sim-reference-blink")).toBe(true)
 
     const installed = await listInstalledTools(store)
-    expect(installed).toContain("io.maestro.sim-elab-blink")
+    expect(installed).toContain("io.maestro.sim-reference-blink")
   })
 
   it("firma alterata → install rifiutato, nessun artefatto", async () => {
     const store = new MemoryInstallerStore()
-    const { pubkeyB64 } = await generateElabKeypair()
-    const { privateKey: wrongKey } = await generateElabKeypair()
+    const { pubkeyB64 } = await generateReferenceKeypair()
+    const { privateKey: wrongKey } = await generateReferenceKeypair()
 
     const manifestObj = JSON.parse(MANIFEST_SRC)
     manifestObj.publisher.pubkey = `ed25519:${pubkeyB64}`
@@ -200,7 +200,7 @@ describe("T4 ST1 — installazione via ToolHost", () => {
       installTool(store, manifestJson, bundleZip, badSig),
     ).rejects.toThrow(/signature verification failed/)
 
-    expect(await isToolInstalled(store, "io.maestro.sim-elab-blink")).toBe(false)
+    expect(await isToolInstalled(store, "io.maestro.sim-reference-blink")).toBe(false)
   })
 
   it("tool con capability zero (no board.write) → Zod reject", () => {
@@ -210,7 +210,7 @@ describe("T4 ST1 — installazione via ToolHost", () => {
     delete manifestObj.capabilities["board.write"]
     manifestObj.capabilities = {}
 
-    // Il tool ELAB sim ha board.read+write come capability — ci servono entrambe
+    // Il tool Reference sim ha board.read+write come capability — ci servono entrambe
     expect(() => ToolManifestSchema.parse(manifestObj)).not.toThrow()
     // Ma board.read+write non ci sono (tool inutile per demo)
     const parsed = ToolManifestSchema.parse(manifestObj)
@@ -220,7 +220,7 @@ describe("T4 ST1 — installazione via ToolHost", () => {
 
   it("tool immutabile — manifest firmato non può essere modificato post-install", async () => {
     const store = new MemoryInstallerStore()
-    const { pubkeyB64, privateKey } = await generateElabKeypair()
+    const { pubkeyB64, privateKey } = await generateReferenceKeypair()
 
     const manifestObj = JSON.parse(MANIFEST_SRC)
     manifestObj.publisher.pubkey = `ed25519:${pubkeyB64}`
@@ -231,7 +231,7 @@ describe("T4 ST1 — installazione via ToolHost", () => {
     await installTool(store, manifestJson, bundleZip, signature)
 
     // Legge il manifest salvato byte-exact
-    const savedJsonBlob = await store.read(manifestPath("io.maestro.sim-elab-blink"))
+    const savedJsonBlob = await store.read(manifestPath("io.maestro.sim-reference-blink"))
     const savedJson = await savedJsonBlob!.text()
     expect(savedJson).toBe(manifestJson)
 

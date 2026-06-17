@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
 //
-// S-DESIGN-10 — demo ELAB Sim sulla lavagna: verifica che gli helper della
+// S-DESIGN-10 — demo Reference Sim sulla lavagna: verifica che gli helper della
 // superficie demo (manifest, board adapter, skeleton) reggano un mount REALE
 // del tool via ToolHost, con board.write che deposita l'embed LED marcato.
-// Non testa entry.html (già coperto da ToolElabSim*.test): testa il wiring che
-// ElabBlinkDemo.tsx aggiunge sopra la ToolHost di produzione.
+// Non testa entry.html (già coperto da ToolReferenceSim*.test): testa il wiring che
+// ReferenceBlinkDemo.tsx aggiunge sopra la ToolHost di produzione.
 
 import { describe, it, expect, afterEach, vi } from "vitest"
 
@@ -26,11 +26,11 @@ import { embedOwner, type BoardElementLike } from "../toolhost/caps/board.ts"
 import {
   DEMO_EMBED_ID,
   DEMO_GRANTED_CAPS,
-  loadElabManifest,
+  loadReferenceManifest,
   makeLedSkeleton,
   boardAdapter,
-} from "../design/ElabBlinkDemo.tsx"
-import { isElabBlinkDemo } from "../store/elabBlinkDemo.ts"
+} from "../design/ReferenceBlinkDemo.tsx"
+import { isReferenceBlinkDemo } from "../store/referenceBlinkDemo.ts"
 
 class TestBoardApi {
   elements: BoardElementLike[] = []
@@ -76,10 +76,10 @@ async function readyOnPort(host: ToolHost, port2: MessagePort): Promise<void> {
   await new Promise((r) => setTimeout(r, 10))
 }
 
-describe("S-DESIGN-10 ElabBlinkDemo helpers", () => {
-  it("loadElabManifest parsa il manifest reale del tool Blink", () => {
-    const m = loadElabManifest()
-    expect(m.id).toBe("io.maestro.sim-elab-blink")
+describe("S-DESIGN-10 ReferenceBlinkDemo helpers", () => {
+  it("loadReferenceManifest parsa il manifest reale del tool Blink", () => {
+    const m = loadReferenceManifest()
+    expect(m.id).toBe("io.maestro.sim-reference-blink")
     expect(m.entry).toBe("entry.html")
     expect(m.capabilities["board.write"]).toEqual({ scope: "own-embeds" })
   })
@@ -102,7 +102,7 @@ describe("S-DESIGN-10 ElabBlinkDemo helpers", () => {
 
   it("mount via ToolHost + board.write deposita l'embed LED marcato dall'owner", async () => {
     const api = new TestBoardApi()
-    const host = new ToolHost(loadElabManifest(), DEMO_GRANTED_CAPS, {
+    const host = new ToolHost(loadReferenceManifest(), DEMO_GRANTED_CAPS, {
       store: new MemStore(),
       board: boardAdapter(api),
       makeSkeleton: makeLedSkeleton,
@@ -121,7 +121,7 @@ describe("S-DESIGN-10 ElabBlinkDemo helpers", () => {
 
     const embed = api.elements.find((el) => el.id === DEMO_EMBED_ID)
     expect(embed).toBeDefined()
-    expect(embedOwner(embed!)).toBe("io.maestro.sim-elab-blink")
+    expect(embedOwner(embed!)).toBe("io.maestro.sim-reference-blink")
     const marker = embed!.customData!["maestroTool"] as { state?: { ledOn?: boolean } }
     expect(marker.state?.ledOn).toBe(true)
     // lo skeleton custom (rettangolo) è stato usato, non il default embeddable
@@ -134,7 +134,7 @@ describe("S-DESIGN-10 ElabBlinkDemo helpers", () => {
     const api = new TestBoardApi()
     // disegno del docente già sulla lavagna, NON marcato come tool
     api.elements = [{ id: "docente-stroke", type: "freedraw" }]
-    const host = new ToolHost(loadElabManifest(), DEMO_GRANTED_CAPS, {
+    const host = new ToolHost(loadReferenceManifest(), DEMO_GRANTED_CAPS, {
       store: new MemStore(),
       board: boardAdapter(api),
       makeSkeleton: makeLedSkeleton,
@@ -171,7 +171,7 @@ describe("S-DESIGN-10 ElabBlinkDemo helpers", () => {
   })
 })
 
-describe("S-DESIGN-10 isElabBlinkDemo", () => {
+describe("S-DESIGN-10 isReferenceBlinkDemo", () => {
   const realHref = window.location.href
   function setHref(href: string) {
     Object.defineProperty(window, "location", {
@@ -182,16 +182,16 @@ describe("S-DESIGN-10 isElabBlinkDemo", () => {
   }
   afterEach(() => setHref(realHref))
 
-  it("true solo con ?demo=elab-blink", () => {
-    setHref("http://localhost/?demo=elab-blink#room1")
-    expect(isElabBlinkDemo()).toBe(true)
+  it("true solo con ?demo=reference-blink", () => {
+    setHref("http://localhost/?demo=reference-blink#room1")
+    expect(isReferenceBlinkDemo()).toBe(true)
   })
   it("false senza il parametro o con valore diverso", () => {
     setHref("http://localhost/#room1")
-    expect(isElabBlinkDemo()).toBe(false)
+    expect(isReferenceBlinkDemo()).toBe(false)
     setHref("http://localhost/?demo=altro")
-    expect(isElabBlinkDemo()).toBe(false)
+    expect(isReferenceBlinkDemo()).toBe(false)
     setHref("http://localhost/?vista=studente")
-    expect(isElabBlinkDemo()).toBe(false)
+    expect(isReferenceBlinkDemo()).toBe(false)
   })
 })

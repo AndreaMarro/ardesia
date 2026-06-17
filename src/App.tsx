@@ -1,8 +1,8 @@
 import Room from "./Room"
-import ElabBlinkDemo from "./design/ElabBlinkDemo"
-import { isElabBlinkDemo } from "./store/elabBlinkDemo"
+import ReferenceBlinkDemo from "./design/ReferenceBlinkDemo"
+import { isReferenceBlinkDemo } from "./store/referenceBlinkDemo"
 
 export default function App() {
-  if (isElabBlinkDemo()) return <ElabBlinkDemo />
+  if (isReferenceBlinkDemo()) return <ReferenceBlinkDemo />
   return <Room />
 }

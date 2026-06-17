@@ -1,6 +1,6 @@
 // @vitest-environment node
 //
-// T4 ST3 — ELAB Sim Blink LED demo: install → mount → board.write embed →
+// T4 ST3 — Reference Sim Blink LED demo: install → mount → board.write embed →
 // suspend/restore lifecycle. Verifica che il tool possa essere installato,
 // montato, e interagire con la board in un flusso end-to-end.
 //
@@ -51,7 +51,7 @@ class TestBoard {
 
 const SIM_DIR = path.resolve(import.meta.dirname, "../../sim")
 const MANIFEST_SRC = fs.readFileSync(path.join(SIM_DIR, "manifest-source.json"), "utf-8")
-const BUNDLE_BYTES = fs.readFileSync(path.join(SIM_DIR, "elab-blink.maestrotool"))
+const BUNDLE_BYTES = fs.readFileSync(path.join(SIM_DIR, "reference-blink.maestrotool"))
 
 const GRANTED_CAPS = {
   "board.read": {},
@@ -106,7 +106,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
   it("install → mount → board.write crea embed LED sulla board", async () => {
     // 1. Install
     const manifest = await installTool(store, manifestJson, bundleZip, signature, () => 1000)
-    expect(manifest.id).toBe("io.maestro.sim-elab-blink")
+    expect(manifest.id).toBe("io.maestro.sim-reference-blink")
 
     // 2. Mount
     host = new ToolHost(manifest, GRANTED_CAPS, { store, board, now: () => 2000 })
@@ -122,7 +122,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
       id: "bw-1",
       method: "board.write",
       params: {
-        embedId: "elab-blink-led-1",
+        embedId: "reference-blink-led-1",
         state: { ledOn: true, ts: 2000, label: "LED1" },
       },
     })
@@ -130,11 +130,11 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
     await new Promise((r) => setTimeout(r, 50))
 
     // 5. Verifica embed sulla board
-    const embed = board.elements.find((el) => el.id === "elab-blink-led-1")
+    const embed = board.elements.find((el) => el.id === "reference-blink-led-1")
     expect(embed).toBeDefined()
     const marker = embed!.customData?.["maestroTool"] as Record<string, unknown> | undefined
     expect(marker).toBeDefined()
-    expect(marker!.owner).toBe("io.maestro.sim-elab-blink")
+    expect(marker!.owner).toBe("io.maestro.sim-reference-blink")
     const state = marker!.state as { ledOn?: boolean; ts?: number; label?: string } | undefined
     expect(state).toBeDefined()
     expect(state!.ledOn).toBe(true)
@@ -146,7 +146,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
   it("tool installato → isToolInstalled true → mount funziona", async () => {
     const manifest = await installTool(store, manifestJson, bundleZip, signature, () => 1000)
 
-    expect(await isToolInstalled(store, "io.maestro.sim-elab-blink")).toBe(true)
+    expect(await isToolInstalled(store, "io.maestro.sim-reference-blink")).toBe(true)
 
     host = new ToolHost(manifest, GRANTED_CAPS, { store, board, now: () => 2000 })
     const { port1, port2 } = new MessageChannel()
@@ -205,7 +205,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
     // Scrivi embed
     p2a.postMessage({
       jsonrpc: "2.0", id: "bw-s1", method: "board.write",
-      params: { embedId: "elab-blink-led-1", state: { ledOn: true, ts: 3000, label: "LED1" } },
+      params: { embedId: "reference-blink-led-1", state: { ledOn: true, ts: 3000, label: "LED1" } },
     })
     await new Promise((r) => setTimeout(r, 50))
 
@@ -213,7 +213,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
     await host.suspend()
 
     // Verifica state.json salvato
-    const stateBlob = await store.read("tools/io.maestro.sim-elab-blink/state.json")
+    const stateBlob = await store.read("tools/io.maestro.sim-reference-blink/state.json")
     expect(stateBlob).not.toBeNull()
     const stateDoc = JSON.parse(await stateBlob!.text())
     expect(stateDoc.v).toBe(1)
@@ -245,7 +245,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
     expect(restored).toBe(true)
 
     // Verifica che l'embed sia ANCORA sulla board (persistenza board, non tool state)
-    const embed = board.elements.find((el) => el.id === "elab-blink-led-1")
+    const embed = board.elements.find((el) => el.id === "reference-blink-led-1")
     expect(embed).toBeDefined()
 
     p2a.close()
@@ -263,12 +263,12 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
     // Scrivi embed con LED acceso
     port2.postMessage({
       jsonrpc: "2.0", id: "bw-demo", method: "board.write",
-      params: { embedId: "elab-blink-led-demo", state: { ledOn: true, ts: 4000, label: "BLINK" } },
+      params: { embedId: "reference-blink-led-demo", state: { ledOn: true, ts: 4000, label: "BLINK" } },
     })
 
     await new Promise((r) => setTimeout(r, 50))
 
-    const embed = board.elements.find((el) => el.id === "elab-blink-led-demo")
+    const embed = board.elements.find((el) => el.id === "reference-blink-led-demo")
     expect(embed).toBeDefined()
     const marker = embed!.customData?.["maestroTool"] as Record<string, unknown> | undefined
     expect(marker).toBeDefined()
@@ -296,7 +296,7 @@ describe("T4 ST3 — Blink LED demo lifecycle", () => {
     expect(readResult!.elements!.length).toBeGreaterThanOrEqual(1)
 
     const readEmbed = (readResult!.elements as BoardElementLike[]).find(
-      (el) => el.id === "elab-blink-led-demo",
+      (el) => el.id === "reference-blink-led-demo",
     )
     expect(readEmbed).toBeDefined()
 

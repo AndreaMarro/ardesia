@@ -1,6 +1,6 @@
 // @vitest-environment node
 //
-// T4 ST2 — ELAB Sim tool: ToolHost runtime + handshake + board.read/write caps.
+// T4 ST2 — Reference Sim tool: ToolHost runtime + handshake + board.read/write caps.
 // Verifica che il tool possa essere montato col ToolHost, che l'handshake
 // (host.hello → tool.ready → ready ack) funzioni, e che le capability
 // board.read/write siano attive e correttamente instradate.
@@ -44,7 +44,7 @@ class TestBoard {
 const SIM_DIR = path.resolve(import.meta.dirname, "../../sim")
 const MANIFEST_SRC = fs.readFileSync(path.join(SIM_DIR, "manifest-source.json"), "utf-8")
 
-const ELAB_MANIFEST = ToolManifestSchema.parse(JSON.parse(MANIFEST_SRC))
+const REFERENCE_MANIFEST = ToolManifestSchema.parse(JSON.parse(MANIFEST_SRC))
 
 const GRANTED_CAPS = {
   "board.read": {},
@@ -61,16 +61,16 @@ describe("T4 ST2 — ToolHost runtime + handshake", () => {
   beforeEach(() => {
     store = new TestStore()
     board = new TestBoard()
-    host = new ToolHost(ELAB_MANIFEST, GRANTED_CAPS, {
+    host = new ToolHost(REFERENCE_MANIFEST, GRANTED_CAPS, {
       store,
       board,
       now: () => 1000,
     })
   })
 
-  it("ToolHost creato con manifest ELAB → audit log inizializzato", () => {
-    expect(host.manifest.id).toBe("io.maestro.sim-elab-blink")
-    expect(host.manifest.name).toBe("ELAB Sim — Blink LED")
+  it("ToolHost creato con manifest Reference → audit log inizializzato", () => {
+    expect(host.manifest.id).toBe("io.maestro.sim-reference-blink")
+    expect(host.manifest.name).toBe("Reference Sim — Blink LED")
     expect(host.audit).toBeDefined()
     expect(host.session).toBeNull()
   })
@@ -178,7 +178,7 @@ describe("T4 ST2 — ToolHost runtime + handshake", () => {
   })
 })
 
-describe("T4 ST2 — board.read/write caps con ELAB Sim", () => {
+describe("T4 ST2 — board.read/write caps con Reference Sim", () => {
   let store: TestStore
   let board: TestBoard
   let host: ToolHost
@@ -186,7 +186,7 @@ describe("T4 ST2 — board.read/write caps con ELAB Sim", () => {
   beforeEach(() => {
     store = new TestStore()
     board = new TestBoard()
-    host = new ToolHost(ELAB_MANIFEST, GRANTED_CAPS, {
+    host = new ToolHost(REFERENCE_MANIFEST, GRANTED_CAPS, {
       store,
       board,
       now: () => 1000,
@@ -253,18 +253,18 @@ describe("T4 ST2 — board.read/write caps con ELAB Sim", () => {
       jsonrpc: "2.0",
       id: "bw-1",
       method: "board.write",
-      params: { embedId: "elab-blink-led-1", state: { ledOn: true, ts: 1000 } },
+      params: { embedId: "reference-blink-led-1", state: { ledOn: true, ts: 1000 } },
     })
 
     await new Promise((r) => setTimeout(r, 50))
 
     // Verifica che l'embed sia stato creato sulla board
     expect(board.elements.length).toBeGreaterThanOrEqual(1)
-    const embed = board.elements.find((el) => el.id === "elab-blink-led-1")
+    const embed = board.elements.find((el) => el.id === "reference-blink-led-1")
     expect(embed).toBeDefined()
     expect(embed!.customData?.["maestroTool"]).toBeDefined()
     const marker = embed!.customData!["maestroTool"] as Record<string, unknown>
-    expect(marker.owner).toBe("io.maestro.sim-elab-blink")
+    expect(marker.owner).toBe("io.maestro.sim-reference-blink")
 
     // board.read: verifica che l'embed sia nella scena
     port2.postMessage({
@@ -305,7 +305,7 @@ describe("T4 ST2 — board.read/write caps con ELAB Sim", () => {
       jsonrpc: "2.0",
       id: "bw-1",
       method: "board.write",
-      params: { embedId: "elab-blink-led-1", state: { ledOn: false, ts: 1000 } },
+      params: { embedId: "reference-blink-led-1", state: { ledOn: false, ts: 1000 } },
     })
 
     await new Promise((r) => setTimeout(r, 50))
@@ -315,13 +315,13 @@ describe("T4 ST2 — board.read/write caps con ELAB Sim", () => {
       jsonrpc: "2.0",
       id: "bw-2",
       method: "board.write",
-      params: { embedId: "elab-blink-led-1", state: { ledOn: true, ts: 2000 } },
+      params: { embedId: "reference-blink-led-1", state: { ledOn: true, ts: 2000 } },
     })
 
     await new Promise((r) => setTimeout(r, 50))
 
     // Verifica stato aggiornato
-    const embed = board.elements.find((el) => el.id === "elab-blink-led-1")
+    const embed = board.elements.find((el) => el.id === "reference-blink-led-1")
     expect(embed).toBeDefined()
     const marker = embed!.customData!["maestroTool"] as Record<string, unknown>
     const state = marker.state as { ledOn?: boolean; ts?: number }

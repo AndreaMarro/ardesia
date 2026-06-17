@@ -1,5 +1,5 @@
-// MAESTRO-Studio — Demo ELAB Sim sulla lavagna (S-DESIGN-10, milestone T4).
-// Monta il PRIMO tool del marketplace (io.maestro.sim-elab-blink) via la stessa
+// MAESTRO-Studio — Demo Reference Sim sulla lavagna (S-DESIGN-10, milestone T4).
+// Monta il PRIMO tool del marketplace (io.maestro.sim-reference-blink) via la stessa
 // ToolHost reale usata in produzione: stesso handshake host.hello → tool.ready →
 // ReadyAck, stessa capability board.write che deposita l'embed sulla lavagna.
 // L'unica differenza con la shell Tauri/Electron è la SUPERFICIE dell'iframe: qui
@@ -21,16 +21,16 @@ import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/stora
 import manifestSourceRaw from "../../sim/manifest-source.json?raw"
 import entryHtml from "../../sim/entry.html?raw"
 
-export const DEMO_EMBED_ID = "elab-blink-led-1"
+export const DEMO_EMBED_ID = "reference-blink-led-1"
 
-/** Capability concesse al tool nella demo: le stesse del manifest ELAB Blink. */
+/** Capability concesse al tool nella demo: le stesse del manifest Reference Blink. */
 export const DEMO_GRANTED_CAPS: Capabilities = {
   "board.read": {},
   "board.write": { scope: "own-embeds" },
 }
 
-/** Manifest del tool ELAB Blink, parsato e validato dallo schema reale. */
-export function loadElabManifest(): ToolManifest {
+/** Manifest del tool Reference Blink, parsato e validato dallo schema reale. */
+export function loadReferenceManifest(): ToolManifest {
   return ToolManifestSchema.parse(JSON.parse(manifestSourceRaw))
 }
 
@@ -106,15 +106,15 @@ function buildLavagnaScene(): unknown[] {
       type: "text",
       x: 120,
       y: 150,
-      text: "Primo strumento ELAB sulla lavagna MAESTRO",
+      text: "Primo strumento Reference sulla lavagna MAESTRO",
       fontSize: 18,
       strokeColor: "#8a8682",
     } as never,
   ]) as unknown[]
 }
 
-export default function ElabBlinkDemo() {
-  const manifest = useMemo(loadElabManifest, [])
+export default function ReferenceBlinkDemo() {
+  const manifest = useMemo(loadReferenceManifest, [])
   const initialScene = useMemo(buildLavagnaScene, [])
   const apiRef = useRef<{
     getSceneElements(): readonly unknown[]
@@ -159,14 +159,14 @@ export default function ElabBlinkDemo() {
           <span className="st-sub">studio</span>
         </div>
         <span className="st-name">
-          <span className="st-name-text">ELAB Sim — Blink LED</span>
+          <span className="st-name-text">Reference Sim — Blink LED</span>
         </span>
-        <span className="st-chip-student st-chip-lesson" title="Primo tool del marketplace ELAB">
+        <span className="st-chip-student st-chip-lesson" title="Primo tool del marketplace Reference">
           tool: {manifest.name}
         </span>
       </header>
 
-      <div style={{ flex: 1, position: "relative" }} data-elab-ready={toolReady ? "1" : "0"}>
+      <div style={{ flex: 1, position: "relative" }} data-reference-ready={toolReady ? "1" : "0"}>
         <Excalidraw
           langCode={EXCALIDRAW_CONFIG.langCode}
           theme={EXCALIDRAW_CONFIG.theme}
@@ -183,16 +183,16 @@ export default function ElabBlinkDemo() {
         {/* Pannello del tool, ancorato sulla lavagna: la sua superficie è l'iframe
             srcdoc dell'entry del tool (breadboard + LED). Sandbox come ToolFrame:
             allow-scripts + allow-same-origin (origin = Studio → postHello consegna). */}
-        <div className="elab-tool-panel">
-          <div className="elab-tool-panel-bar">
-            <span className="elab-tool-dot" data-on={toolReady ? "1" : "0"} aria-hidden />
-            ELAB Sim · breadboard
+        <div className="reference-tool-panel">
+          <div className="reference-tool-panel-bar">
+            <span className="reference-tool-dot" data-on={toolReady ? "1" : "0"} aria-hidden />
+            Reference Sim · breadboard
           </div>
           {apiReady && (
             <iframe
               ref={frameRef}
               title={manifest.name}
-              className="elab-tool-frame"
+              className="reference-tool-frame"
               sandbox="allow-scripts allow-same-origin"
               srcDoc={entryHtml}
               onLoad={handleFrameLoad}

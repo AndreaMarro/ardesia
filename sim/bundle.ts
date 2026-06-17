@@ -1,10 +1,10 @@
-// TOOLHOST-SPEC-v0 §9 T4 — bundler per lo skeleton ELAB Blink LED tool.
+// TOOLHOST-SPEC-v0 §9 T4 — bundler per lo skeleton Reference Blink LED tool.
 // Genera coppia di chiavi Ed25519, firma il manifest, e produce il bundle
 // .maestrotool per l'installer.
 // Usage: npx tsx sim/bundle.ts
 //
 // Output:
-//   sim/elab-blink.maestrotool  — zip bundle (entry.html + manifest firma)
+//   sim/reference-blink.maestrotool  — zip bundle (entry.html + manifest firma)
 //   sim/keys.json               — chiave pubblica (per il manifest) + privata (solo demo)
 
 import { execSync } from "node:child_process"
@@ -16,7 +16,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const SIM_DIR = path.resolve(__dirname, ".")
 const MANIFEST_SRC_PATH = path.join(SIM_DIR, "manifest-source.json")
 const ENTRY_HTML_PATH = path.join(SIM_DIR, "entry.html")
-const BUNDLE_PATH = path.join(SIM_DIR, "elab-blink.maestrotool")
+const BUNDLE_PATH = path.join(SIM_DIR, "reference-blink.maestrotool")
 const KEYS_PATH = path.join(SIM_DIR, "keys.json")
 
 interface ManifestSource {
@@ -55,8 +55,8 @@ async function main(): Promise<void> {
   // 2. Crea manifest source con la pubkey
   const manifestSource: ManifestSource = {
     manifestVersion: 1,
-    id: "io.maestro.sim-elab-blink",
-    name: "ELAB Sim — Blink LED",
+    id: "io.maestro.sim-reference-blink",
+    name: "Reference Sim — Blink LED",
     version: "1.0.0",
     protocol: ">=1.0 <2.0",
     entry: "entry.html",
@@ -93,8 +93,8 @@ async function main(): Promise<void> {
   execSync(`cd "${SIM_DIR}" && zip -q "${BUNDLE_PATH}" entry.html`, { stdio: "inherit" })
 
   // 5. Stampa il riepilogo
-  console.log(`\n=== ELAB Sim tool bundled ===`)
-  console.log(`Tool ID:  io.maestro.sim-elab-blink`)
+  console.log(`\n=== Reference Sim tool bundled ===`)
+  console.log(`Tool ID:  io.maestro.sim-reference-blink`)
   console.log(`Pubkey:   ed25519:${pubkeyB64}`)
   console.log(`Sign:     ${sigB64}`)
   console.log(`Bundle:   ${BUNDLE_PATH} (${fs.statSync(BUNDLE_PATH).size} bytes)`)
@@ -102,7 +102,7 @@ async function main(): Promise<void> {
   console.log(`\nInstall command (from code):`)
   console.log(`  installTool(store, manifestJson, bundleZip, signatureB64)`)
   console.log(`  dove manifestJson = fs.readFileSync("sim/manifest-source.json", "utf-8")`)
-  console.log(`  bundleZip = new Blob([fs.readFileSync("sim/elab-blink.maestrotool")])`)
+  console.log(`  bundleZip = new Blob([fs.readFileSync("sim/reference-blink.maestrotool")])`)
   console.log(`  signatureB64 = "${sigB64}"`)
 }
 
