@@ -25,6 +25,9 @@ from dataclasses import dataclass
 from typing import Protocol, runtime_checkable
 
 from lessonos.graph.utils import canonical_match_key, content_tokens
+from lessonos.retrieval.fts import SearchResult, _capsule_to_text
+from lessonos.store.base import Store
+from lessonos.store.sqlite import SQLiteStore
 
 # Free text (unlike a concept *name*) carries punctuation: "frequenze." and
 # "l'antitrasformata" must tokenise to {frequenze} and {antitrasformata}.
@@ -36,9 +39,6 @@ _PUNCT = re.compile(r"[^\w]+", re.UNICODE)
 def _tokens(text: str) -> frozenset[str]:
     """Content tokens of free text: punctuation-stripped, IT-aware fold."""
     return content_tokens(_PUNCT.sub(" ", text))
-from lessonos.retrieval.fts import SearchResult, _capsule_to_text
-from lessonos.store.base import Store
-from lessonos.store.sqlite import SQLiteStore
 
 
 @runtime_checkable
