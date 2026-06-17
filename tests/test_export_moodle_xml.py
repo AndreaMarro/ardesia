@@ -442,6 +442,36 @@ class TestP1MoodleXMLExporter:
         assert "a < b" in answer_texts
         assert "c & d" in answer_texts
 
+    def test_special_chars_shortanswer_and_essay(self, simple_blueprint):
+        """Anche shortanswer ed essay round-trippano i caratteri speciali.
+
+        Lo stesso doppio-escaping colpiva _build_shortanswer_xml ed
+        _build_essay_xml: copre i due rami non-multichoice del fix.
+        """
+        atoms = {
+            "l1_intro_derivatives": (
+                _make_atom(
+                    atom_id="l1/quiz_question/0",
+                    body="Definisci f(x) < g(x) & spiega",
+                    lesson_id="l1_intro_derivatives",
+                ),
+                _make_atom(
+                    atom_id="l1/quiz_question/1",
+                    body="Dimostra a & b < c",
+                    lesson_id="l1_intro_derivatives",
+                    is_essay=True,
+                ),
+            ),
+        }
+        pack = export_moodle_xml(simple_blueprint, atoms=atoms)
+        root = _parse_xml(pack.files["quiz.xml"])
+
+        sa = root.find(".//question[@type='shortanswer']/questiontext/text")
+        assert sa is not None and sa.text == "Definisci f(x) < g(x) & spiega"
+
+        essay = root.find(".//question[@type='essay']/questiontext/text")
+        assert essay is not None and essay.text == "Dimostra a & b < c"
+
     def test_question_name_and_text(self, simple_blueprint):
         """Ogni domanda ha name/text e questiontext."""
         atoms = {
