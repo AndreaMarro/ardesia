@@ -15,6 +15,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **studio**: [AUTO-PINNED 17/06 17:13] test che PluginManager rigetta plugin con CONTRACT_VERSION inferiore alla richiesta, gate verde, zero regressioni.
 - **lessonos**: [AUTO-PINNED 17/06 17:14] integra il wrapper MCP grounded-memory con test end-to-end su lezione campione, gate verde invariato, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
+- [AUTO-OK] lessonos: test che GroundedMemoryServer nega il recall cross-teacher restituendo zero item per un teacher_id senza lezioni persistite, gate verde, zero regressioni.
+- [AUTO-OK] studio: test che PluginManager.canMount nega il mount a un plugin nella kill-list mantenendo lo stato enabled intatto su disco, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: test che il TeacherBook builder interroga il grounded-memory per arricchire la sezione progression su lezione campione, gate verde, zero regressioni.
 - [AUTO-OK] studio: test che ToolHost.mount integra PluginManager.canMount per negare il mount a plugin disabled, gate verde, zero regressioni.
 
