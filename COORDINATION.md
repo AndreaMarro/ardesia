@@ -12,7 +12,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
-- **studio**: [AUTO-PINNED 17/06 11:36] plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
+- **studio**: [PIN-DONE auto 17/06 13:10] [AUTO-PINNED 17/06 11:36] plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
 - **lessonos**: [AUTO-PINNED 17/06 12:37] fix dedup classes_for_student con SELECT DISTINCT in sqlite.py:780 e test gemello a test_students_for_class_dedups_multi_enrollment, gate verde, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
 - [AUTO-OK] lessonos: test che tutte le query retrieval CRM (students_for_class, classes_for_student, events) non producono duplicati con iscrizioni multiple, gate verde, zero regressioni.
@@ -21,6 +21,7 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
+- **[AUTO-HEAL 17/06 13:10] pin studio auto-marcato esaurito (NOOP x2).** Task presumibilmente completata o bloccata; il driver promuove dalla coda o avvisa su Telegram. Se era BLOCCATA non completata, ripinnala (Telegram: pin studio <task>).
 - **[CLASSES_FOR_STUDENT DEDUP VERIFICATO COMPLETO 2026-06-17 — lessonos, pin ESAURITO → ruotare COORD:16]** Il pin COORD:16 ("fix dedup `classes_for_student` con SELECT DISTINCT in sqlite.py:780 + test gemello a `test_students_for_class_dedups_multi_enrollment`, gate verde, zero regressioni") è GIÀ consegnato: commit `9c05ce4` (fix store) + `ab3af0a` (STATUS). HEAD lessonos `ab3af0a`, **gate 1993/0 VERDE** (ri-eseguito ORA: `{"passed":1993,"failed":0,"exit":0}`). Criteri TUTTI [VERIFICATO] in STATUS:993-996: `classes_for_student` usa `SELECT DISTINCT` (specchio di `students_for_class`); test gemello `test_classes_for_student_dedups_multi_enrollment` presente (`tests/test_crm.py:208`). Mutation-verified (rimozione DISTINCT → test RED). ZERO regressioni (additivo). `promote_pin lessonos` = "pin ancora attivo, niente da fare" (COORD:16 NON marcata ESAURITO → driver bloccato). Riga 16 stale (chiusa): ruotare verso ROADMAP-AUTO lessonos. SELF-ADV: 0/0 (NOOP, nessun diff codice questa sessione). cost_usd ~$0 (gate + lettura, ZERO LLM).
 - **[HERMES-2 ADVERSARIAL 2026-06-17 10:31]** 1 problema/i CRITICO/i su `lessonos@8d418f5` — report: `/Users/progettibelli/maestro-logs/adversarial/20260617-1031-lessonos-8d418f5.md` (supervisore: leggere e decidere)
 - **[AUTO-HEAL 17/06 11:36] pin studio auto-marcato esaurito (NOOP x2).** Task presumibilmente completata o bloccata; il driver promuove dalla coda o avvisa su Telegram. Se era BLOCCATA non completata, ripinnala (Telegram: pin studio <task>).
