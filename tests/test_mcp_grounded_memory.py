@@ -13,16 +13,33 @@ import json
 
 import pytest
 
+from lessonos.capsule.assembly import LessonCapsule, _serialise_capsule
+from lessonos.capsule.extraction import (
+    Citation,
+    ConceptExtraction,
+    LessonContent,
+)
 from lessonos.mcp import grounded_memory as gm
 from lessonos.mcp.grounded_memory import (
     INVALID_PARAMS,
     INVALID_REQUEST,
     METHOD_NOT_FOUND,
+    PROGRESSION_TOOL_NAME,
     PROTOCOL_VERSION,
     TOOL_NAME,
     GroundedMemoryServer,
 )
-from lessonos.models.entities import Lesson, Path, Segment
+from lessonos.models.entities import (
+    ConceptProgression,
+    GraphEdge,
+    GraphEvidence,
+    GraphNode,
+    Lesson,
+    Path,
+    Segment,
+    TeacherBook,
+    TeacherConcept,
+)
 from lessonos.retrieval.dense import LexiconEmbedder
 from lessonos.retrieval.fts import SearchResult
 from lessonos.store.sqlite import SQLiteStore
@@ -132,12 +149,13 @@ class TestHandshake:
         assert result["serverInfo"]["name"] == "lessonos-grounded-memory"
         assert "tools" in result["capabilities"]
 
-    def test_tools_list_exposes_the_single_grounded_tool(self) -> None:
+    def test_tools_list_exposes_both_grounded_tools(self) -> None:
         resp = _server().handle({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})
         tools = resp["result"]["tools"]
-        assert [t["name"] for t in tools] == [TOOL_NAME]
-        schema = tools[0]["inputSchema"]
-        assert schema["required"] == ["teacher_id", "query"]
+        assert [t["name"] for t in tools] == [TOOL_NAME, PROGRESSION_TOOL_NAME]
+        by_name = {t["name"]: t for t in tools}
+        assert by_name[TOOL_NAME]["inputSchema"]["required"] == ["teacher_id", "query"]
+        assert by_name[PROGRESSION_TOOL_NAME]["inputSchema"]["required"] == ["teacher_id"]
 
     def test_initialized_notification_gets_no_response(self) -> None:
         # No "id" member ⇒ notification ⇒ no response (JSON-RPC §4.1).
@@ -317,3 +335,230 @@ class TestMultiSegmentLesson:
             assert isinstance(item["text"], str) and item["text"]
             assert "snippet" in item  # may be empty for dense-only hits
             assert "rank" in item
+
+
+# ── grounded_memory_progression fixtures ────────────────────────────────────
+
+
+def _concept(name, status, canonical):
+    return ConceptExtraction(name=name, status=status, canonical=canonical)
+
+
+def _save_capsule(store: SQLiteStore, lesson_id: str, concepts) -> None:
+    """Persist a capsule + a graph node per concept (idx-aligned with the book)."""
+    content = LessonContent(lesson_id=lesson_id, concepts=tuple(concepts))
+    capsule = LessonCapsule(lesson_id=lesson_id, timeline=(), content=content)
+    store.save_capsule(lesson_id, _serialise_capsule(capsule))
+    for idx, c in enumerate(concepts):
+        node_id = f"{lesson_id}:concept:{idx}"
+        store.save_graph_node(
+            lesson_id,
+            GraphNode(node_id=node_id, node_type="concept", ref_id=node_id, label=c.name),
+        )
+
+
+def _save_edge_with_evidence(
+    store: SQLiteStore, lesson_id, edge_id, source, target, *, seg_id, excerpt
+) -> None:
+    """Edge referencing a concept node, grounded by one evidence row.
+
+    ``excerpt=None`` produces an UNVERIFIED citation (quotes nothing); a real
+    excerpt must be a verbatim substring of the segment text the test stored.
+    """
+    store.save_graph_edge(
+        lesson_id,
+        GraphEdge(edge_id=edge_id, source=source, target=target, edge_type="explains"),
+    )
+    store.save_evidence(
+        GraphEvidence(
+            evidence_id=f"{edge_id}#ev0",
+            edge_id=edge_id,
+            seg_id=seg_id,
+            excerpt=excerpt,
+            lesson_id=lesson_id,
+        )
+    )
+
+
+def _progression_store() -> SQLiteStore:
+    """One teacher, two lessons; a real-style concept that progresses.
+
+    * ``vettore`` — introduced (l1) → reinforced (l2), grounded by a verbatim
+      citation. Must be SERVED.
+    * ``energia`` — introduced (l1) → reinforced (l2), but its only citation has
+      no excerpt (UNVERIFIED). Must be DROPPED + declared.
+    * a second teacher ``t_other`` for isolation.
+    """
+    store = SQLiteStore(":memory:")
+    store.save_path(Path(path_id="p_main", title="Fisica", subject="fisica",
+                         lesson_ids=("l1", "l2"), teacher_id="t_main"))
+    store.save_path(Path(path_id="p_other", title="Fisica2", subject="fisica",
+                         lesson_ids=("lo",), teacher_id="t_other"))
+    store.save_lesson(Lesson(lesson_id="l1", path_id="p_main", title="Lezione 1", order=1))
+    store.save_lesson(Lesson(lesson_id="l2", path_id="p_main", title="Lezione 2", order=2))
+    store.save_lesson(Lesson(lesson_id="lo", path_id="p_other", title="Lezione X", order=1))
+
+    # Real segments the verbatim grounding resolves against.
+    store.save_segment(Segment(seg_id="l1#s0", lesson_id="l1", start=0, end=1,
+                               text="Un vettore ha modulo, direzione e verso."))
+    store.save_segment(Segment(seg_id="l2#s0", lesson_id="l2", start=0, end=1,
+                               text="Il vettore nello spazio si somma componente per componente."))
+
+    # l1/l2: vettore + energia progress; massa is a single-lesson edge sink so the
+    # two progressions never share an edge (and thus never share a citation).
+    _save_capsule(store, "l1", [
+        _concept("Vettore", "introduced", "vettore"),
+        _concept("Energia", "introduced", "energia"),
+        _concept("Massa", "introduced", "massa"),
+    ])
+    _save_capsule(store, "l2", [
+        _concept("Vettore nello spazio", "reinforced", "vettore"),
+        _concept("Energia cinetica", "reinforced", "energia"),
+    ])
+    # vettore → massa: VERBATIM excerpt → grounded.
+    _save_edge_with_evidence(store, "l1", "e_vet", "l1:concept:0", "l1:concept:2",
+                             seg_id="l1#s0", excerpt="vettore")
+    # energia → massa: evidence has NO excerpt → unverified → dropped.
+    _save_edge_with_evidence(store, "l1", "e_ene", "l1:concept:1", "l1:concept:2",
+                             seg_id="l1#s0", excerpt=None)
+    return store
+
+
+def _progression_call(server, teacher_id, **args):
+    request = {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "tools/call",
+        "params": {"name": PROGRESSION_TOOL_NAME,
+                   "arguments": {"teacher_id": teacher_id, **args}},
+    }
+    resp = server.handle(request)
+    assert resp is not None
+    return resp
+
+
+# ── grounded_memory_progression: end-to-end sample lesson ────────────────────
+
+
+class TestGroundedProgression:
+    def test_serves_only_verbatim_grounded_progression(self) -> None:
+        """vettore (verbatim-grounded) is served; energia (no excerpt) dropped."""
+        store = _progression_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_progression_call(server, "t_main"))
+
+        canonicals = {it["canonical"] for it in payload["items"]}
+        assert "vettore" in canonicals, "verbatim-grounded progression must be served"
+        assert "energia" not in canonicals, "unverified-evidence progression must be dropped"
+        # energia is the only progression with no verified citation.
+        assert payload["dropped_ungrounded"] == 1, "energia (unverified) must be dropped+declared"
+
+    def test_progression_carries_status_sequence_and_grounding(self) -> None:
+        store = _progression_store()
+        server = GroundedMemoryServer(store)
+        payload = _payload(_progression_call(server, "t_main"))
+
+        item = next(it for it in payload["items"] if it["canonical"] == "vettore")
+        # The persisted cross-lesson progression is served verbatim.
+        assert item["status_sequence"] == ["introduced", "reinforced"]
+        assert item["lesson_sequence"] == ["l1", "l2"]
+        assert item["first_lesson"] == "l1"
+        # Grounding proof resolves to a real same-lesson segment, verbatim.
+        grounding = item["grounding"]
+        seg = store.get_segment(grounding["seg_id"])
+        assert seg is not None
+        assert grounding["text"] == seg.text
+        assert grounding["excerpt"] in seg.text
+        assert grounding["lesson_id"] == seg.lesson_id
+
+    def test_unknown_teacher_yields_empty_not_error(self) -> None:
+        store = _progression_store()
+        server = GroundedMemoryServer(store)
+        # Unknown teacher (no paths) → empty, not an error (mirrors recall).
+        payload = _payload(_progression_call(server, "t_ghost"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 0
+
+    def test_missing_teacher_id_is_invalid_params(self) -> None:
+        store = _progression_store()
+        server = GroundedMemoryServer(store)
+        resp = server.handle({
+            "jsonrpc": "2.0", "id": 1, "method": "tools/call",
+            "params": {"name": PROGRESSION_TOOL_NAME, "arguments": {}},
+        })
+        assert resp["error"]["code"] == INVALID_PARAMS
+
+
+# ── grounded_memory_progression: structural guard (adversarial) ──────────────
+
+
+class TestProgressionGroundingGuard:
+    def _poison_book(self, monkeypatch, *, evidence_lesson, excerpt, owned_seg=True):
+        """Make build_teacher_book return a book whose vettore progression is
+        grounded by an attacker-controlled citation."""
+        store = _progression_store()
+        seg_id = "l1#s0" if owned_seg else "does_not_exist"
+        tc = TeacherConcept(
+            name="Vettore", canonical="vettore", status="introduced",
+            lesson_ids=("l1", "l2"),
+            citations=(GraphEvidence(
+                evidence_id="x", edge_id="e", seg_id=seg_id,
+                excerpt=excerpt, lesson_id=evidence_lesson,
+            ),),
+        )
+        prog = ConceptProgression(
+            name="Vettore", canonical="vettore", first_lesson="l1",
+            status_sequence=("introduced", "reinforced"),
+            lesson_sequence=("l1", "l2"),
+        )
+        book = TeacherBook(
+            teacher_id="t_main", fundamental_concepts=(tc,), progression=(prog,),
+        )
+        monkeypatch.setattr(gm, "build_teacher_book", lambda *a, **k: book)
+        return GroundedMemoryServer(store)
+
+    def test_fabricated_seg_id_is_dropped(self, monkeypatch) -> None:
+        server = self._poison_book(monkeypatch, evidence_lesson="l1",
+                                   excerpt="vettore", owned_seg=False)
+        payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_cross_lesson_citation_is_dropped(self, monkeypatch) -> None:
+        # seg l1#s0 really belongs to l1, but the citation claims l2 → contamination.
+        server = self._poison_book(monkeypatch, evidence_lesson="l2", excerpt="vettore")
+        payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_non_verbatim_excerpt_is_dropped(self, monkeypatch) -> None:
+        # Excerpt is not a substring of the segment text → verify_citation raises.
+        server = self._poison_book(monkeypatch, evidence_lesson="l1",
+                                   excerpt="parola inventata")
+        payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_progression_spanning_unowned_lesson_is_dropped(self, monkeypatch) -> None:
+        store = _progression_store()
+        tc = TeacherConcept(
+            name="Vettore", canonical="vettore", status="introduced",
+            citations=(GraphEvidence(
+                evidence_id="x", edge_id="e", seg_id="l1#s0",
+                excerpt="vettore", lesson_id="l1",
+            ),),
+        )
+        # lesson_sequence references l_foreign, which t_main does not own.
+        prog = ConceptProgression(
+            name="Vettore", canonical="vettore", first_lesson="l1",
+            status_sequence=("introduced", "reinforced"),
+            lesson_sequence=("l1", "l_foreign"),
+        )
+        book = TeacherBook(
+            teacher_id="t_main", fundamental_concepts=(tc,), progression=(prog,),
+        )
+        monkeypatch.setattr(gm, "build_teacher_book", lambda *a, **k: book)
+        server = GroundedMemoryServer(store)
+        payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1

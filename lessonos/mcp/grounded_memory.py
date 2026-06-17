@@ -1,7 +1,11 @@
 """Grounded-memory MCP wrapper (M3 white-label B2B — PLATFORM-MAESTRO §48,§80).
 
 A dependency-free, in-process JSON-RPC 2.0 surface (MCP semantics) exposing
-LessonOS teacher-scoped retrieval as a single MCP tool: ``grounded_memory_recall``.
+LessonOS teacher-scoped memory as MCP tools:
+
+  * ``grounded_memory_recall`` — verbatim segment recall for a query.
+  * ``grounded_memory_progression`` — a teacher's persisted concept
+    progressions (introduced → reinforced → …), each backed by a real citation.
 
 The wrapper's reason to exist is the grounding invariant. Every memory item it
 emits is RE-VERIFIED against the persisted store (``verify_citation``, PLAN
@@ -11,11 +15,21 @@ the querying teacher. Candidates that fail (fabricated seg_id, cross-lesson
 contamination, cross-teacher leak, or non-segment source) are dropped and
 DECLARED in ``dropped_ungrounded`` — never emitted.
 
-Scope (MVP): segment-grounded recall (verbatim transcript provenance). Capsule
-hits carry no seg_id to ground and are dropped+declared. No network, no new
-dependency (stdlib only), no fs/shell capability — the TOOLHOST security
-invariant (docs/TOOLHOST-SPEC-v0.md). This module is a pure request→response
-handler; wiring it to stdio/HTTP transport is the caller's concern.
+The progression tool serves the ``ConceptProgression`` rows that
+``build_teacher_book`` derives from persisted capsules + graph (ZERO-LLM). It
+applies the SAME guard: a progression is emitted only when the concept carries
+at least one VERIFIED verbatim citation (``is_verified_excerpt`` +
+``verify_citation``) resolving to a same-lesson segment the teacher owns. A
+progression whose evidence was never verbatim-grounded, was purged (GDPR
+erasure), or belongs to another lesson/teacher is dropped + declared — never
+served as if grounded.
+
+Scope (MVP): segment-grounded recall + concept progression (verbatim transcript
+provenance). Capsule hits carry no seg_id to ground and are dropped+declared. No
+network, no new dependency (stdlib only), no fs/shell capability — the TOOLHOST
+security invariant (docs/TOOLHOST-SPEC-v0.md). This module is a pure
+request→response handler; wiring it to stdio/HTTP transport is the caller's
+concern.
 """
 
 from __future__ import annotations
@@ -23,15 +37,18 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from lessonos.graph.grounding import verify_citation
+from lessonos.graph.grounding import is_verified_excerpt, verify_citation
+from lessonos.models.entities import ConceptProgression, GraphEvidence, TeacherConcept
 from lessonos.retrieval.dense import Embedder
 from lessonos.retrieval.teacher import retrieve_teacher_context, teacher_lesson_ids
 from lessonos.store.base import Store
+from lessonos.teacher_book import build_teacher_book
 
 PROTOCOL_VERSION = "2025-06-18"  # MCP spec revision implemented
 SERVER_NAME = "lessonos-grounded-memory"
 SERVER_VERSION = "0.1.0"
 TOOL_NAME = "grounded_memory_recall"
+PROGRESSION_TOOL_NAME = "grounded_memory_progression"
 
 _DEFAULT_TOP_K = 5
 _MAX_TOP_K = 50
@@ -69,6 +86,27 @@ _TOOL_SCHEMA: dict[str, Any] = {
             },
         },
         "required": ["teacher_id", "query"],
+    },
+}
+
+_PROGRESSION_TOOL_SCHEMA: dict[str, Any] = {
+    "name": PROGRESSION_TOOL_NAME,
+    "description": (
+        "Return a teacher's persisted concept progressions (how each concept "
+        "evolved across lessons: introduced → reinforced → reviewed → "
+        "mastered). Every progression is grounded: it is only returned when the "
+        "concept carries a verified verbatim citation resolving to a real "
+        "transcript segment in a lesson the teacher owns."
+    ),
+    "inputSchema": {
+        "type": "object",
+        "properties": {
+            "teacher_id": {
+                "type": "string",
+                "description": "Owner whose persisted progressions to serve.",
+            },
+        },
+        "required": ["teacher_id"],
     },
 }
 
@@ -125,7 +163,9 @@ class GroundedMemoryServer:
         if method == "ping":
             return _result(req_id, {})
         if method == "tools/list":
-            return _result(req_id, {"tools": [_TOOL_SCHEMA]})
+            return _result(
+                req_id, {"tools": [_TOOL_SCHEMA, _PROGRESSION_TOOL_SCHEMA]}
+            )
         if method == "tools/call":
             try:
                 return _result(req_id, self._call_tool(request.get("params")))
@@ -146,18 +186,40 @@ class GroundedMemoryServer:
         if not isinstance(params, dict):
             raise _ToolError(INVALID_PARAMS, "params must be an object")
         name = params.get("name")
-        if name != TOOL_NAME:
-            raise _ToolError(METHOD_NOT_FOUND, f"unknown tool {name!r}")
+        if name == TOOL_NAME:
+            return self._call_recall(self._tool_args(params))
+        if name == PROGRESSION_TOOL_NAME:
+            return self._call_progression(self._tool_args(params))
+        raise _ToolError(METHOD_NOT_FOUND, f"unknown tool {name!r}")
 
+    @staticmethod
+    def _tool_args(params: dict[str, Any]) -> dict[str, Any]:
         args = params.get("arguments")
         if args is None:
             args = {}
         if not isinstance(args, dict):
             raise _ToolError(INVALID_PARAMS, "arguments must be an object")
+        return args
 
+    @staticmethod
+    def _require_teacher_id(args: dict[str, Any]) -> str:
         teacher_id = args.get("teacher_id")
         if not isinstance(teacher_id, str) or not teacher_id:
             raise _ToolError(INVALID_PARAMS, "teacher_id must be a non-empty string")
+        return teacher_id
+
+    @staticmethod
+    def _wrap(payload: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "content": [
+                {"type": "text", "text": json.dumps(payload, ensure_ascii=False)}
+            ],
+            "structuredContent": payload,
+            "isError": False,
+        }
+
+    def _call_recall(self, args: dict[str, Any]) -> dict[str, Any]:
+        teacher_id = self._require_teacher_id(args)
 
         query = args.get("query")
         if not isinstance(query, str) or not query.strip():
@@ -171,19 +233,21 @@ class GroundedMemoryServer:
             raise _ToolError(INVALID_PARAMS, f"top_k must be in [1, {_MAX_TOP_K}]")
 
         items, dropped = self._grounded_recall(teacher_id, query, top_k)
-        payload = {
+        return self._wrap({
             "teacher_id": teacher_id,
             "query": query,
             "items": items,
             "dropped_ungrounded": dropped,
-        }
-        return {
-            "content": [
-                {"type": "text", "text": json.dumps(payload, ensure_ascii=False)}
-            ],
-            "structuredContent": payload,
-            "isError": False,
-        }
+        })
+
+    def _call_progression(self, args: dict[str, Any]) -> dict[str, Any]:
+        teacher_id = self._require_teacher_id(args)
+        items, dropped = self._grounded_progression(teacher_id)
+        return self._wrap({
+            "teacher_id": teacher_id,
+            "items": items,
+            "dropped_ungrounded": dropped,
+        })
 
     # ── grounded recall (the structural guard) ───────────────────────────
     def _grounded_recall(
@@ -229,3 +293,89 @@ class GroundedMemoryServer:
                 }
             )
         return items, dropped
+
+    # ── grounded progression (the structural guard) ──────────────────────
+    def _grounded_progression(
+        self, teacher_id: str
+    ) -> tuple[list[dict[str, Any]], int]:
+        try:
+            book = build_teacher_book(self._store, teacher_id)
+        except ValueError:
+            # Unknown/path-less teacher: empty, not an error (mirror recall).
+            return [], 0
+        owned = teacher_lesson_ids(self._store, teacher_id)
+        # fundamental_concepts is the full concept set (sorted), each carrying
+        # the grounded citations the guard needs.
+        by_canonical: dict[str, TeacherConcept] = {
+            c.canonical: c for c in book.fundamental_concepts
+        }
+
+        items: list[dict[str, Any]] = []
+        dropped = 0
+        for prog in book.progression:
+            grounding = self._ground_progression(prog, by_canonical, owned)
+            if grounding is None:
+                dropped += 1
+                continue
+            items.append(
+                {
+                    "name": prog.name,
+                    "canonical": prog.canonical,
+                    "first_lesson": prog.first_lesson,
+                    "status_sequence": list(prog.status_sequence),
+                    "lesson_sequence": list(prog.lesson_sequence),
+                    "grounding": grounding,
+                }
+            )
+        return items, dropped
+
+    def _ground_progression(
+        self,
+        prog: ConceptProgression,
+        by_canonical: dict[str, TeacherConcept],
+        owned: set[str],
+    ) -> dict[str, Any] | None:
+        """Return a verbatim grounding proof for *prog*, or None to drop it.
+
+        A progression is grounded iff (1) every lesson it spans is owned by the
+        teacher and (2) its concept carries at least one VERIFIED verbatim
+        citation that re-resolves to a same-lesson persisted segment the teacher
+        owns. Defense-in-depth: never trust the builder's scoping alone.
+        """
+        # (1) ownership of every lesson the progression spans.
+        for lid in (prog.first_lesson, *prog.lesson_sequence):
+            if lid and lid not in owned:
+                return None
+
+        tc = by_canonical.get(prog.canonical)
+        if tc is None:
+            return None
+
+        # (2) a verified verbatim citation re-verified against the store.
+        for cit in tc.citations:
+            proof = self._ground_citation(cit, owned)
+            if proof is not None:
+                return proof
+        return None
+
+    def _ground_citation(
+        self, cit: GraphEvidence, owned: set[str]
+    ) -> dict[str, Any] | None:
+        if not is_verified_excerpt(cit.excerpt):
+            return None
+        seg = self._store.get_segment(cit.seg_id)
+        if seg is None:
+            return None
+        lesson_id = cit.lesson_id or seg.lesson_id
+        try:
+            verify_citation(self._store, cit.seg_id, lesson_id, cit.excerpt)
+        except ValueError:
+            return None
+        if lesson_id not in owned:
+            return None
+        return {
+            "seg_id": cit.seg_id,
+            "lesson_id": lesson_id,
+            "excerpt": cit.excerpt,
+            "text": seg.text,  # verbatim provenance
+        }
