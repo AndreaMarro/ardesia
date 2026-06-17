@@ -12,6 +12,7 @@ iters=$(sed -n 2p .iters_today 2>/dev/null); iters=${iters:-0}
   echo "🤖 LessonOS — $(date '+%a %d/%m %H:%M')"
   echo "gate: ${g:-?}  |  auto/main: $(git rev-parse --short auto/main 2>/dev/null)  main(rev): $(git rev-parse --short main 2>/dev/null)"
   echo "costo stimato oggi: \$${cost}  |  iter oggi: ${iters}/${LESSONOS_DAILY_CAP:-12}"
+  echo "opus oggi: build=$(sed -n 2p .builds_today 2>/dev/null || echo 0) architect=$(cat $HOME/maestro-logs/architect/.cap_$today 2>/dev/null || echo 0) aggiudica=$(cat $HOME/maestro-logs/hermes2-adjudicate/.cap_$today 2>/dev/null || echo 0)  (cap ${LESSONOS_DAILY_CAP:-96}; hard-stop=quota.sh)"
   [ -f STOP ] && echo "⏸ STOP attivo (loop in pausa)"
   echo ""
   echo "— ultime 3 iterazioni —"
