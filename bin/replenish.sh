@@ -90,7 +90,7 @@ while IFS= read -r line; do
   esac
   L=${#line}; { [ "$L" -ge 30 ] && [ "$L" -le 320 ]; } || { echo "[replenish] SCARTO (len $L): $line"; continue; }
   key="$(printf '%s' "$line" | python3 -c 'import sys; print(sys.stdin.read().strip()[:50])' 2>/dev/null)"
-  if [ -n "$key" ] && grep -qF "$key" "$COORD" 2>/dev/null; then echo "[replenish] SCARTO (dup): $line"; continue; fi
+  if [ -n "$key" ] && grep -qF -- "$key" "$COORD" 2>/dev/null; then echo "[replenish] SCARTO (dup): $line"; continue; fi
   VALID="${VALID}${line}
 "
 done < <(printf '%s\n' "$RAW")
@@ -117,7 +117,7 @@ git commit -q -m "coord: AUTO-REPLENISH backlog (+$cnt, strategist deepseek-v4-p
 
 Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>" 2>/dev/null
 firstkey="$(printf '%s' "$VALID" | head -1 | cut -c1-50)"
-if git show HEAD:COORDINATION.md 2>/dev/null | grep -qF "$firstkey"; then
+if git show HEAD:COORDINATION.md 2>/dev/null | grep -qF -- "$firstkey"; then
   echo "$((n+1))" > "$CAPF"
   { echo "=== $TS (+$cnt) ==="; printf '%s\n' "$VALID"; } >> "$LOGDIR/replenished.log"
   echo "[replenish] OK +$cnt righe (cap $((n+1))/$DAYCAP)"
