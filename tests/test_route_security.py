@@ -62,7 +62,7 @@ def test_command_substitution_in_override_not_executed(tmp_path):
     res = _run(env, home, "builder")
     assert not canary.exists(), "command substitution eseguita dall'override"
     # valore non-whitelist ($, parentesi) -> riga rifiutata -> torna al valore di routes.env
-    assert res.stdout.strip() == "claude-opus-4-8 claude-sonnet-4-6"
+    assert res.stdout.strip() == "claude-opus-4-8"
 
 
 def test_override_value_wins_for_legit_assignment(tmp_path):

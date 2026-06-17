@@ -275,3 +275,114 @@ def build_path_graph(
         raise ValueError("Path graph contains cycles — not a valid DAG")
 
     return all_nodes, all_edges
+
+
+def resolve_corpus_depends_on(
+    source_concepts: list[tuple[str, str, tuple[str, ...]]],
+    corpus_concepts: list[tuple[str, str]],
+    existing_edges: list[tuple[str, str]],
+    *,
+    depends_fuzzy_threshold: float = DEFAULT_DEPENDS_FUZZY_THRESHOLD,
+) -> list[GraphEdge]:
+    """Resolve a lesson's prerequisites to EXISTING corpus concepts (GS-3).
+
+    The in-memory :func:`build_path_graph` only sees the capsules of one
+    pipeline run. This resolver is its persisted, *incremental* counterpart:
+    given the concepts of the lesson being ingested and the concept nodes
+    already stored from prior lessons, it produces the cross-lesson
+    ``depends_on`` edges to persist — so canonicalisation happens at
+    INGEST/persistence time, not only in a transient pipeline result.
+
+    Args:
+        source_concepts: ``(node_id, name, prerequisites)`` for each concept
+            of the lesson being ingested (the edge SOURCES).
+        corpus_concepts: ``(node_id, name)`` for every concept node already in
+            the store, INCLUDING this lesson's own freshly-written concepts.
+            The first occurrence of each canonical key wins (pass in a
+            deterministic order, e.g. ordered by ``node_id``).
+        existing_edges: ``(source_node_id, target_node_id)`` of every
+            ``depends_on`` edge already persisted, used as a cycle guard so an
+            incremental edge never closes a cycle with the stored graph.
+        depends_fuzzy_threshold: Jaccard threshold for the fuzzy fallback
+            (default :data:`DEFAULT_DEPENDS_FUZZY_THRESHOLD` = 1.0, set-equality;
+            ZERO false matches).
+
+    Matching mirrors :func:`build_path_graph`'s ``depends_on`` pass exactly:
+    exact canonical key match (``confidence="0.8"``,
+    ``provenance="auto-suggested"``) then a high-precision fuzzy fallback
+    (``provenance="auto-suggested-fuzzy"``, ``confidence=<jaccard>``).
+    Self-dependencies and cycle-closing edges are dropped. Returns a list of
+    :class:`GraphEdge` (no duplicates); the caller persists them.
+
+    Pure function: no store, no I/O — testable on a labelled precision set.
+    """
+    # Canonical index over the corpus: canonical key → first-seen concept
+    # node_id. ``key_label`` keeps the representative name for token derivation.
+    canonical_index: dict[str, str] = {}
+    key_label: dict[str, str] = {}
+    for node_id, name in corpus_concepts:
+        key = canonical_match_key(name)
+        if key not in canonical_index:
+            canonical_index[key] = node_id
+            key_label[key] = name
+
+    fuzzy_candidates: list[tuple[str, frozenset[str]]] = [
+        (key, content_tokens(key_label[key])) for key in canonical_index
+    ]
+
+    # Cycle guard graph seeded with already-persisted depends_on edges.
+    G = nx.DiGraph()
+    for src, tgt in existing_edges:
+        G.add_edge(src, tgt)
+
+    resolved: list[GraphEdge] = []
+    edge_ids_seen: set[str] = set()
+
+    for source_node_id, _name, prerequisites in source_concepts:
+        for prereq_name in prerequisites:
+            prereq_key = canonical_match_key(prereq_name)
+            if prereq_key in canonical_index:
+                target_id = canonical_index[prereq_key]
+                provenance = "auto-suggested"
+                confidence = "0.8"
+            else:
+                match = fuzzy_prereq_match(
+                    prereq_name, fuzzy_candidates, depends_fuzzy_threshold
+                )
+                if match is None:
+                    continue
+                matched_key, score = match
+                target_id = canonical_index[matched_key]
+                provenance = "auto-suggested-fuzzy"
+                confidence = f"{score:.2f}"
+
+            # Self-dependency: a concept whose prereq resolves to itself.
+            if target_id == source_node_id:
+                continue
+            # Cycle guard: skip if the prereq can already reach this concept.
+            if (
+                G.has_node(target_id)
+                and G.has_node(source_node_id)
+                and nx.has_path(G, target_id, source_node_id)
+            ):
+                continue
+
+            edge_id = f"{source_node_id}-depends_on->{target_id}"
+            if edge_id in edge_ids_seen:
+                continue
+            resolved.append(
+                GraphEdge(
+                    edge_id=edge_id,
+                    source=source_node_id,
+                    target=target_id,
+                    edge_type="depends_on",
+                    metadata={
+                        "provenance": provenance,
+                        "confidence": confidence,
+                    },
+                )
+            )
+            edge_ids_seen.add(edge_id)
+            G.add_edge(source_node_id, target_id)
+
+    return resolved

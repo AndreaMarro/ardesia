@@ -144,6 +144,25 @@ class Store(ABC):
     def get_graph_nodes_for_lesson(self, lesson_id: str) -> tuple[GraphNode, ...]:
         """Retrieve all graph nodes for a lesson."""
 
+    def all_concept_nodes(self) -> tuple[GraphNode, ...]:
+        """All concept nodes across the corpus (node_type='concept'), ordered by node_id.
+
+        Used at ingest to canonicalise a lesson's prerequisites against the
+        concepts already persisted from prior lessons (GS-3 cross-lesson
+        ``depends_on``). Default: empty — a backend that cannot enumerate the
+        corpus simply persists no cross-lesson ``depends_on`` (additive
+        degradation, never an error).
+        """
+        return ()
+
+    def all_depends_on_edges(self) -> tuple[GraphEdge, ...]:
+        """All persisted ``depends_on`` edges across the corpus, ordered by edge_id.
+
+        Used as a cycle guard when persisting new ``depends_on`` edges at
+        ingest. Default: empty (see :meth:`all_concept_nodes`).
+        """
+        return ()
+
     @abstractmethod
     def save_graph_edge(self, lesson_id: str, edge: GraphEdge) -> None:
         """Persist a graph edge for a lesson."""

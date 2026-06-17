@@ -14,7 +14,7 @@ import re
 
 from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import Citation
-from lessonos.graph.builder import build_lesson_graph
+from lessonos.graph.builder import build_lesson_graph, resolve_corpus_depends_on
 from lessonos.graph.grounding import verify_citation
 from lessonos.models.entities import GraphEdge, GraphEvidence
 from lessonos.store.base import Store
@@ -67,11 +67,57 @@ class GraphWriter:
                 for ev in evidence_list:
                     self.store.save_evidence(ev)
 
+            depends_on = self._persist_corpus_depends_on(capsule)
+            for edge in depends_on:
+                self.store.save_graph_edge(lesson_id, edge)
+
             self.store.commit_transaction()
-            return len(edges)
+            return len(edges) + len(depends_on)
         except BaseException:
             self.store.rollback_transaction()
             raise
+
+    def _persist_corpus_depends_on(
+        self, capsule: LessonCapsule
+    ) -> list[GraphEdge]:
+        """Resolve this lesson's prerequisites to EXISTING corpus concepts (GS-3).
+
+        Called inside the write transaction AFTER the lesson's own concept
+        nodes are saved, so the corpus snapshot already includes them (same
+        connection sees the uncommitted rows). Matches each concept's
+        prerequisites against every persisted concept node (canonical exact +
+        high-precision fuzzy fallback) and returns the ``depends_on`` edges to
+        persist — with provenance/confidence and cycle-safe against the stored
+        graph. Pure resolution is delegated to
+        :func:`lessonos.graph.builder.resolve_corpus_depends_on`.
+
+        Stores that cannot enumerate the corpus return empty from
+        ``all_concept_nodes`` (base default) → no cross-lesson edges, no error.
+        """
+        lesson_id = capsule.lesson_id
+        source_concepts: list[tuple[str, str, tuple[str, ...]]] = [
+            (
+                f"{lesson_id}:concept:{i}",
+                concept.name,
+                tuple(concept.prerequisites),
+            )
+            for i, concept in enumerate(capsule.content.concepts)
+        ]
+        if not any(prereqs for _id, _name, prereqs in source_concepts):
+            return []
+
+        corpus_concepts: list[tuple[str, str]] = [
+            (node.node_id, node.label)
+            for node in self.store.all_concept_nodes()
+            if node.label
+        ]
+        existing_edges: list[tuple[str, str]] = [
+            (edge.source, edge.target)
+            for edge in self.store.all_depends_on_edges()
+        ]
+        return resolve_corpus_depends_on(
+            source_concepts, corpus_concepts, existing_edges
+        )
 
     def _collect_evidence(
         self, capsule: LessonCapsule, edge: GraphEdge

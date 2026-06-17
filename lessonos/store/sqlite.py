@@ -506,6 +506,35 @@ class SQLiteStore(Store):
             for r in rows
         )
 
+    def all_concept_nodes(self) -> tuple[GraphNode, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM nodes WHERE node_type = 'concept' ORDER BY node_id"
+        ).fetchall()
+        return tuple(
+            GraphNode(
+                node_id=r["node_id"],
+                node_type=r["node_type"],
+                ref_id=r["ref_id"],
+                label=r["label"],
+            )
+            for r in rows
+        )
+
+    def all_depends_on_edges(self) -> tuple[GraphEdge, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM edges WHERE edge_type = 'depends_on' ORDER BY edge_id"
+        ).fetchall()
+        return tuple(
+            GraphEdge(
+                edge_id=r["edge_id"],
+                source=r["source"],
+                target=r["target"],
+                edge_type=r["edge_type"],
+                metadata=json.loads(r["metadata"]),
+            )
+            for r in rows
+        )
+
     def save_graph_edge(self, lesson_id: str, edge: GraphEdge) -> None:
         self._conn.execute(
             "INSERT OR REPLACE INTO edges "
