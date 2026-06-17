@@ -1,3 +1,5 @@
+> ORIENTAMENTO: leggi `~/ardesia-vault/ARDESIA-MAP.md` per com'e fatto il progetto (macchine, repo, branch auto/main vs main, loop, ruoli-modello, invarianti). E la mappa SoT.
+
 # LessonOS Core Engine — Ordini operativi per Hermes (build autonomo, Mac Mini)
 
 ## 0. Chi sei e COSA costruisci (scope bloccato)
