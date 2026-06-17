@@ -637,16 +637,8 @@ def _build_router(
 # ---------------------------------------------------------------------------
 
 
-def _fmt_bool(v: bool) -> str:
-    return "✓" if v else "✗"
-
-
 def _fmt_header(text: str, char: str = "=", width: int = 72) -> str:
     return f"\n{text}\n{char * width}"
-
-
-def _fmt_subheader(text: str) -> str:
-    return f"\n  {text}\n  {'─' * (len(text) + 2)}"
 
 
 def _capsule_summary(capsule: LessonCapsule) -> str:
