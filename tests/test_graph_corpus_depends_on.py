@@ -326,6 +326,29 @@ class TestInboundReconciliation:
         # Conservative: dropped, not repointed (recreated on l2 re-ingest).
         assert _depends_on(store, "l2") == []
 
+    def test_reingest_keeps_valid_edge_to_duplicate_label_concept(self):
+        """Re-validation is PAIRWISE: a valid edge to a duplicate-label concept
+        survives even when another concept shares the canonical key.
+
+        l2 teaches "Limite" (l2:concept:0); l3 depends on it. Later l1 ALSO
+        teaches "Limite" (l1:concept:0 — wins first-by-node_id). Re-ingesting l2
+        must KEEP l3→l2: its target's label still matches the prereq. A
+        corpus-wide re-resolution would mis-redirect "Limite" to l1 and wrongly
+        drop the still-valid edge (the recall-loss bug pairwise matching avoids).
+        """
+        store = SQLiteStore(":memory:")
+        _ingest_segments(store, "l1", 1)
+        _ingest_segments(store, "l2", 1)
+        _ingest_segments(store, "l3", 1)
+        write_capsule_graph(store, _capsule("l2", [("Limite", ())]))
+        write_capsule_graph(store, _capsule("l3", [("Derivata", ("Limite",))]))
+        assert _depends_on(store, "l3") == [("l3:concept:0", "l2:concept:0")]
+        # A later lesson introduces a duplicate "Limite" (wins first-by-node_id).
+        write_capsule_graph(store, _capsule("l1", [("Limite", ())]))
+        # Re-ingest l2 unchanged: the l3→l2 edge stays valid.
+        write_capsule_graph(store, _capsule("l2", [("Limite", ())]))
+        assert _depends_on(store, "l3") == [("l3:concept:0", "l2:concept:0")]
+
     def test_benign_reingest_keeps_valid_inbound_edge(self):
         """Re-ingesting the target in the SAME order keeps a still-valid edge.
 

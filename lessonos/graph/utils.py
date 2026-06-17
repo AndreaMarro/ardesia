@@ -84,6 +84,34 @@ def content_tokens(name: str) -> frozenset[str]:
     )
 
 
+def prereq_matches_label(
+    prereq: str,
+    label: str,
+    threshold: float = DEFAULT_DEPENDS_FUZZY_THRESHOLD,
+) -> bool:
+    """True iff *prereq* still supports a ``depends_on`` edge to a *label*.
+
+    Pairwise re-validation of ONE persisted edge against its CURRENT target
+    label (GS-3 reconciliation): exact canonical-key equality, else content-token
+    Jaccard ``>= threshold`` (same metric as :func:`fuzzy_prereq_match`). Unlike
+    that function this is deliberately pairwise — no corpus-wide uniqueness — so
+    an edge whose prereq genuinely matches its target stays even when a duplicate
+    concept now exists elsewhere in the corpus. Keeping a genuinely-matching edge
+    is never a false match, while a target whose label changed (reorder/removal)
+    fails the check and the stale edge is dropped. Empty token sets → False.
+    """
+    if canonical_match_key(prereq) == canonical_match_key(label):
+        return True
+    prereq_tokens = content_tokens(prereq)
+    label_tokens = content_tokens(label)
+    if not prereq_tokens or not label_tokens:
+        return False
+    inter = len(prereq_tokens & label_tokens)
+    if inter == 0:
+        return False
+    return inter / len(prereq_tokens | label_tokens) >= threshold
+
+
 def fuzzy_prereq_match(
     prereq: str,
     candidates: Iterable[tuple[str, frozenset[str]]],

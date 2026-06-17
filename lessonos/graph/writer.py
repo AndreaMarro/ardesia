@@ -16,6 +16,7 @@ from lessonos.capsule.assembly import LessonCapsule
 from lessonos.capsule.extraction import Citation
 from lessonos.graph.builder import build_lesson_graph, resolve_corpus_depends_on
 from lessonos.graph.grounding import verify_citation
+from lessonos.graph.utils import prereq_matches_label
 from lessonos.models.entities import GraphEdge, GraphEvidence
 from lessonos.store.base import Store
 
@@ -130,14 +131,17 @@ class GraphWriter:
         whose label now means something else — a silent FALSE edge that
         ``delete_graph_for_lesson`` (scoped to this lesson) never touches.
 
-        Called after this lesson's concept nodes are rewritten (corpus snapshot
-        reflects the new labels). Each inbound edge is re-resolved from its
-        recorded ``prereq`` against the updated corpus via the same resolver; an
-        edge that no longer resolves to its current target is dropped.
-        Conservative: edges are only invalidated, never repointed (a repoint
-        would be recreated when the SOURCE lesson is itself re-ingested), so the
-        zero-false-match invariant holds. Edges persisted before this fix carry
-        no ``prereq`` and are left untouched (migrate-safe).
+        Called after this lesson's concept nodes are rewritten (so the node
+        snapshot reflects the NEW labels). Each inbound edge's recorded
+        ``prereq`` is re-validated PAIRWISE against its current target label via
+        :func:`prereq_matches_label`; if it no longer matches (reorder, removal,
+        or the positional id now absent) the stale edge is dropped. Pairwise (not
+        a corpus-wide re-resolution) so a duplicate/ambiguous concept elsewhere
+        never drops a genuinely-matching edge — keeping a matching edge is never a
+        false match, while every non-matching one goes, so zero-false holds.
+        Conservative: edges are only invalidated, never repointed (a repoint is
+        recreated when the SOURCE lesson is itself re-ingested). Edges persisted
+        before this fix carry no ``prereq`` and are left untouched (migrate-safe).
         """
         prefix = f"{lesson_id}:concept:"
         all_edges = self.store.all_depends_on_edges()
@@ -151,23 +155,16 @@ class GraphWriter:
         if not inbound:
             return
 
-        corpus_concepts = [
-            (node.node_id, node.label)
+        labels = {
+            node.node_id: node.label
             for node in self.store.all_concept_nodes()
             if node.label
-        ]
+        }
         for edge in inbound:
-            others = [
-                (e.source, e.target)
-                for e in all_edges
-                if e.edge_id != edge.edge_id
-            ]
-            revalidated = resolve_corpus_depends_on(
-                [(edge.source, "", (edge.metadata["prereq"],))],
-                corpus_concepts,
-                others,
-            )
-            if not any(r.target == edge.target for r in revalidated):
+            target_label = labels.get(edge.target)
+            if target_label is None or not prereq_matches_label(
+                edge.metadata["prereq"], target_label
+            ):
                 self.store.delete_graph_edge(edge.edge_id)
 
     def _collect_evidence(
