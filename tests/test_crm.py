@@ -18,6 +18,7 @@ from pathlib import Path as FsPath
 import pytest
 
 from lessonos.models.crm import (
+    ConsentEvent,
     Enrollment,
     SchoolClass,
     Student,
@@ -231,6 +232,76 @@ class TestEnrollmentRelation:
         assert store.delete_enrollment("enr_1") is True
         assert store.get_enrollment("enr_1") is None
         assert store.delete_enrollment("enr_1") is False
+
+
+class TestRetrievalDedupUnderMultiEnrollment:
+    """Every CRM retrieval query stays duplicate-free when a student carries
+    *several* enrollment rows in the same class (there is no
+    ``UNIQUE(class_id, student_id)`` constraint, so duplicate rows are legal
+    and the queries must absorb them).
+
+    The three queries fall into two kinds:
+      * ``students_for_class`` / ``classes_for_student`` JOIN ``enrollments`` and
+        rely on ``SELECT DISTINCT`` not to fan out across duplicate rows.
+      * ``consent_events_for_relation`` ("events") does NOT join ``enrollments``
+        at all, so the trail length is *decoupled* from enrollment multiplicity.
+        Asserting that decoupling here is a live guard: a future change that
+        joined enrollments into the consent query (e.g. to filter the trail by
+        enrolled students) would cartesian-multiply the trail by the number of
+        rows and this test would go RED.
+    """
+
+    def _seed_multi_enrollment(self, store: SQLiteStore) -> None:
+        # stu_a sits in cls_3a THREE times and in cls_4b TWICE; stu_b once.
+        store.save_class(SchoolClass("cls_3a", "t_001", "fisica"))
+        store.save_class(SchoolClass("cls_4b", "t_001", "chimica"))
+        store.save_student(Student("stu_a"))
+        store.save_student(Student("stu_b"))
+        store.save_enrollment(Enrollment("enr_1", "cls_3a", "stu_a"))
+        store.save_enrollment(Enrollment("enr_2", "cls_3a", "stu_a"))
+        store.save_enrollment(Enrollment("enr_3", "cls_3a", "stu_a"))
+        store.save_enrollment(Enrollment("enr_4", "cls_4b", "stu_a"))
+        store.save_enrollment(Enrollment("enr_5", "cls_4b", "stu_a"))
+        store.save_enrollment(Enrollment("enr_6", "cls_3a", "stu_b"))
+
+    def test_students_for_class_no_duplicate_pseudonyms(
+        self, store: SQLiteStore
+    ) -> None:
+        self._seed_multi_enrollment(store)
+        # stu_a's three rows in cls_3a collapse to one; stu_b appears once.
+        assert [s.student_id for s in store.students_for_class("cls_3a")] == [
+            "stu_a",
+            "stu_b",
+        ]
+
+    def test_classes_for_student_no_duplicate_classes(
+        self, store: SQLiteStore
+    ) -> None:
+        self._seed_multi_enrollment(store)
+        # Each class appears once despite three / two enrollment rows.
+        assert [c.class_id for c in store.classes_for_student("stu_a")] == [
+            "cls_3a",
+            "cls_4b",
+        ]
+
+    def test_consent_events_decoupled_from_enrollment_count(
+        self, store: SQLiteStore
+    ) -> None:
+        self._seed_multi_enrollment(store)
+        # Two events on the (t_001, cls_3a) relation — the SAME class that holds
+        # stu_a's three duplicate enrollment rows.
+        store.save_consent_event(
+            ConsentEvent("ce_grant", "t_001", "cls_3a", "granted", "2026-01-01T00:00:00+00:00")
+        )
+        store.save_consent_event(
+            ConsentEvent("ce_revoke", "t_001", "cls_3a", "revoked", "2026-02-01T00:00:00+00:00")
+        )
+        # Exactly the two recorded events, in insertion order — NOT multiplied
+        # by the three cls_3a enrollment rows (would be 6 if the query joined
+        # enrollments).
+        assert [
+            e.event_id for e in store.consent_events_for_relation("t_001", "cls_3a")
+        ] == ["ce_grant", "ce_revoke"]
 
 
 class TestPurgeStudentErasure:
