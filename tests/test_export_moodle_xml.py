@@ -409,6 +409,39 @@ class TestP1MoodleXMLExporter:
             f"Expected 'Integrali' category, got {category_texts}"
         )
 
+    def test_special_chars_not_double_escaped(self, simple_blueprint):
+        """I caratteri XML speciali (< > &) round-trippano intatti.
+
+        Regressione: il body veniva escapato a mano e poi di nuovo da
+        ElementTree, producendo `&amp;lt;` invece di `&lt;` — Moodle
+        mostrava letteralmente le entity allo studente. Il body sotto
+        contiene `<`, `>`, `&` sia nel testo della domanda sia in una
+        choice; dopo il parse il testo deve essere esattamente l'originale.
+        """
+        atoms = {
+            "l1_intro_derivatives": (
+                _make_atom(
+                    atom_id="l1/quiz_question/0",
+                    body="Risolvi x < 5 & y > 3",
+                    choices=("a < b", "c & d", "normale"),
+                    correct_choice=0,
+                    lesson_id="l1_intro_derivatives",
+                ),
+            ),
+        }
+        pack = export_moodle_xml(simple_blueprint, atoms=atoms)
+        root = _parse_xml(pack.files["quiz.xml"])
+
+        question_text = root.find(".//questiontext/text")
+        assert question_text is not None
+        assert question_text.text == "Risolvi x < 5 & y > 3"
+
+        answer_texts = [
+            a.text for a in root.findall(".//answer/text")
+        ]
+        assert "a < b" in answer_texts
+        assert "c & d" in answer_texts
+
     def test_question_name_and_text(self, simple_blueprint):
         """Ogni domanda ha name/text e questiontext."""
         atoms = {

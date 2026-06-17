@@ -155,7 +155,7 @@ def _build_multichoice_xml(
     # Question text
     qt = ET.SubElement(q, "questiontext", format="html")
     qt_text = ET.SubElement(qt, "text")
-    qt_text.text = _escape_xml(question_text)
+    qt_text.text = question_text
 
     # Default grade
     defaultgrade = ET.SubElement(q, "defaultgrade")
@@ -188,7 +188,7 @@ def _build_multichoice_xml(
         fraction = "100" if i == correct_index else "0"
         ans = ET.SubElement(q, "answer", fraction=fraction, format="html")
         ans_text = ET.SubElement(ans, "text")
-        ans_text.text = _escape_xml(choice)
+        ans_text.text = choice
         # Feedback vuoto
         fb = ET.SubElement(ans, "feedback", format="html")
         fb_text = ET.SubElement(fb, "text")
@@ -216,7 +216,7 @@ def _build_shortanswer_xml(question_text: str) -> ET.Element:
     # Question text
     qt = ET.SubElement(q, "questiontext", format="html")
     qt_text = ET.SubElement(qt, "text")
-    qt_text.text = _escape_xml(question_text)
+    qt_text.text = question_text
 
     # Default grade
     defaultgrade = ET.SubElement(q, "defaultgrade")
@@ -259,7 +259,7 @@ def _build_essay_xml(question_text: str) -> ET.Element:
     # Question text
     qt = ET.SubElement(q, "questiontext", format="html")
     qt_text = ET.SubElement(qt, "text")
-    qt_text.text = _escape_xml(question_text)
+    qt_text.text = question_text
 
     # Default grade
     defaultgrade = ET.SubElement(q, "defaultgrade")
