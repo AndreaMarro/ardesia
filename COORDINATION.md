@@ -13,9 +13,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 17/06 17:13] test che PluginManager rigetta plugin con CONTRACT_VERSION inferiore alla richiesta, gate verde, zero regressioni.
-- **lessonos**: [PIN-DONE auto 17/06 18:15] [AUTO-PINNED 17/06 17:14] integra il wrapper MCP grounded-memory con test end-to-end su lezione campione, gate verde invariato, zero regressioni.
+- **lessonos**: [AUTO-PINNED 17/06 18:15] secondo tool MCP grounded_memory_progression che serve la ConceptProgression persistita per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] lessonos: secondo tool MCP grounded_memory_progression che serve la ConceptProgression persistita per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
 - [AUTO-OK] studio: test che la firma ed25519 del manifest copre il campo contract cosicche alterarne il range dopo la firma fa fallire la verifica in PluginManager.install, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: test che grounded_memory_recall restituisce un ranking deterministico e stabile su chiamate ripetute sullo stesso store, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: test che GroundedMemoryServer nega il recall cross-teacher restituendo zero item per un teacher_id senza lezioni persistite, gate verde, zero regressioni.
