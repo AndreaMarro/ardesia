@@ -109,10 +109,22 @@ describe("sdk-contract/sorgente-di-verità (moduli vivi dell'host == golden)", (
     expect({ ...ERR }).toEqual(GOLDEN_ERROR_CODES)
   })
 
-  it("il descrittore è congelato (immutabile a runtime)", () => {
+  it("il descrittore è congelato (immutabile a runtime, anche annidato)", () => {
     expect(Object.isFrozen(CONTRACT)).toBe(true)
     expect(() => {
       ;(CONTRACT as unknown as { contractVersion: string }).contractVersion = "9.9.9"
+    }).toThrow()
+    // Object.freeze è SHALLOW: il top-frozen non basta. I contenitori annidati
+    // devono essere congelati uno per uno, altrimenti
+    // `CONTRACT.errorCodes.CAPABILITY_DENIED = 0` muterebbe il descrittore SENZA
+    // throw e farebbe divergere il golden in silenzio. Questo locca il freeze
+    // profondo: togliere un Object.freeze interno (index.ts) = RED.
+    expect(Object.isFrozen(CONTRACT.capabilities)).toBe(true)
+    expect(Object.isFrozen(CONTRACT.toolMethods)).toBe(true)
+    expect(Object.isFrozen(CONTRACT.lifecycleMethods)).toBe(true)
+    expect(Object.isFrozen(CONTRACT.errorCodes)).toBe(true)
+    expect(() => {
+      ;(CONTRACT.errorCodes as unknown as Record<string, number>).CAPABILITY_DENIED = 0
     }).toThrow()
   })
 })
@@ -168,11 +180,16 @@ describe("sdk-contract/plugin-di-riferimento (compila e rispetta il confine)", (
     // entrambe potrebbero accoppiare il plugin a un modulo interno.
     const fromRe = /import\s+(?:type\s+)?[^"']*?from\s+["']([^"']+)["']/g
     const sideEffectRe = /import\s+["']([^"']+)["']/g
+    // import() dinamico (anche con backtick statico): un plugin potrebbe
+    // accoppiarsi a un interno via `await import("../../src/toolhost/host.ts")`
+    // bypassando i due pattern statici sopra. Lo catturiamo qui.
+    const dynamicRe = /import\s*\(\s*[`"']([^`"']+)[`"']\s*\)/g
     for (const rel of pluginFiles) {
       const src = readFileSync(fileURLToPath(new URL(rel, import.meta.url)), "utf8")
       const sources = [
         ...[...src.matchAll(fromRe)].map((m) => m[1]),
         ...[...src.matchAll(sideEffectRe)].map((m) => m[1]),
+        ...[...src.matchAll(dynamicRe)].map((m) => m[1]),
       ]
       expect(sources.length).toBeGreaterThan(0)
       for (const spec of sources) {
