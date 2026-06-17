@@ -15,6 +15,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 - **studio**: [PIN-SUPERVISORE 17/06 18:18] test che ToolHost.mount integra PluginManager.canMount per negare il mount a un plugin disabled, gate verde, zero regressioni.
 - **lessonos**: [AUTO-PINNED 17/06 18:15] secondo tool MCP grounded_memory_progression che serve la ConceptProgression persistita per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
+- [AUTO-OK] lessonos: terzo tool MCP grounded_memory_prerequisites che serve la PrerequisiteChain persistita per un teacher attraverso la grounding-guard con test end-to-end su lezione campione, gate verde, zero regressioni.
+- [AUTO-OK] studio: test che dopo il kill-switch revoke a runtime PluginManager.canMount nega un nuovo mount mentre lo stato enabled e l-audit del tool restano intatti su disco, gate verde, zero regressioni.
 - [AUTO-OK] studio: test che la firma ed25519 del manifest copre il campo contract cosicche alterarne il range dopo la firma fa fallire la verifica in PluginManager.install, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: test che grounded_memory_recall restituisce un ranking deterministico e stabile su chiamate ripetute sullo stesso store, gate verde, zero regressioni.
 - [AUTO-OK] lessonos: test che il TeacherBook builder interroga il grounded-memory per arricchire la sezione progression su lezione campione, gate verde, zero regressioni.
