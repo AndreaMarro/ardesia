@@ -12,10 +12,11 @@ import json
 import sqlite3
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
+from lessonos.models.crm import Enrollment, SchoolClass, Student, Teacher
 from lessonos.models.ledger import CostLedgerEntry
 from lessonos.store.base import Store
 
-SCHEMA_VERSION = 8
+SCHEMA_VERSION = 9
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS paths (
@@ -93,6 +94,28 @@ CREATE TABLE IF NOT EXISTS evidence (
     lesson_id   TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_paths_teacher ON paths(teacher_id);
+-- CRM-primitives (v9): anonymised teacher/class/student roster. By design the
+-- teachers/students tables hold ONLY an opaque pseudonym PK — there is no
+-- personal column to leak (GDPR by construction; PII vault is external).
+CREATE TABLE IF NOT EXISTS teachers (
+    teacher_id TEXT PRIMARY KEY
+);
+CREATE TABLE IF NOT EXISTS classes (
+    class_id   TEXT PRIMARY KEY,
+    teacher_id TEXT NOT NULL,
+    subject    TEXT
+);
+CREATE TABLE IF NOT EXISTS students (
+    student_id TEXT PRIMARY KEY
+);
+CREATE TABLE IF NOT EXISTS enrollments (
+    enrollment_id TEXT PRIMARY KEY,
+    class_id      TEXT NOT NULL,
+    student_id    TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_classes_teacher ON classes(teacher_id);
+CREATE INDEX IF NOT EXISTS idx_enrollments_class ON enrollments(class_id);
+CREATE INDEX IF NOT EXISTS idx_enrollments_student ON enrollments(student_id);
 """
 class SQLiteStore(Store):
     def __init__(self, db_path: str = ":memory:") -> None:
@@ -118,6 +141,9 @@ class SQLiteStore(Store):
             # Migration v7→v8 (M1-1c micro, debito H2 0613): _SCHEMA now
             # contains CREATE INDEX IF NOT EXISTS idx_paths_teacher — the
             # executescript creates it on fresh, v6 and v7 databases alike.
+            # Migration v8→v9 (CRM-primitives): _SCHEMA adds the teachers/
+            # classes/students/enrollments tables + indexes, all
+            # CREATE … IF NOT EXISTS — additive, no data migration.
             self._conn.executescript(_SCHEMA)
             self._conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
             self._conn.commit()
@@ -620,6 +646,174 @@ class SQLiteStore(Store):
             excerpt=row["excerpt"],
             confidence=row["confidence"],
             lesson_id=row["lesson_id"],
+        )
+
+    # --- CRM: anonymised teacher / class / student relation -----------------
+
+    def save_teacher(self, teacher: Teacher) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO teachers (teacher_id) VALUES (?)",
+            (teacher.teacher_id,),
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+
+    def get_teacher(self, teacher_id: str) -> Teacher | None:
+        row = self._conn.execute(
+            "SELECT teacher_id FROM teachers WHERE teacher_id = ?",
+            (teacher_id,),
+        ).fetchone()
+        return Teacher(teacher_id=row["teacher_id"]) if row is not None else None
+
+    def all_teachers(self) -> tuple[Teacher, ...]:
+        rows = self._conn.execute(
+            "SELECT teacher_id FROM teachers ORDER BY teacher_id"
+        ).fetchall()
+        return tuple(Teacher(teacher_id=r["teacher_id"]) for r in rows)
+
+    def delete_teacher(self, teacher_id: str) -> bool:
+        cur = self._conn.execute(
+            "DELETE FROM teachers WHERE teacher_id = ?", (teacher_id,)
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+        return cur.rowcount > 0
+
+    def save_class(self, school_class: SchoolClass) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO classes (class_id, teacher_id, subject) "
+            "VALUES (?, ?, ?)",
+            (school_class.class_id, school_class.teacher_id, school_class.subject),
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+
+    def get_class(self, class_id: str) -> SchoolClass | None:
+        row = self._conn.execute(
+            "SELECT * FROM classes WHERE class_id = ?", (class_id,)
+        ).fetchone()
+        return self._row_to_class(row) if row is not None else None
+
+    def classes_for_teacher(self, teacher_id: str) -> tuple[SchoolClass, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM classes WHERE teacher_id = ? ORDER BY class_id",
+            (teacher_id,),
+        ).fetchall()
+        return tuple(self._row_to_class(r) for r in rows)
+
+    def delete_class(self, class_id: str) -> bool:
+        cur = self._conn.execute(
+            "DELETE FROM classes WHERE class_id = ?", (class_id,)
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+        return cur.rowcount > 0
+
+    @staticmethod
+    def _row_to_class(row: sqlite3.Row) -> SchoolClass:
+        return SchoolClass(
+            class_id=row["class_id"],
+            teacher_id=row["teacher_id"],
+            subject=row["subject"],
+        )
+
+    def save_student(self, student: Student) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO students (student_id) VALUES (?)",
+            (student.student_id,),
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+
+    def get_student(self, student_id: str) -> Student | None:
+        row = self._conn.execute(
+            "SELECT student_id FROM students WHERE student_id = ?",
+            (student_id,),
+        ).fetchone()
+        return Student(student_id=row["student_id"]) if row is not None else None
+
+    def delete_student(self, student_id: str) -> bool:
+        cur = self._conn.execute(
+            "DELETE FROM students WHERE student_id = ?", (student_id,)
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+        return cur.rowcount > 0
+
+    def save_enrollment(self, enrollment: Enrollment) -> None:
+        self._conn.execute(
+            "INSERT OR REPLACE INTO enrollments "
+            "(enrollment_id, class_id, student_id) VALUES (?, ?, ?)",
+            (enrollment.enrollment_id, enrollment.class_id, enrollment.student_id),
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+
+    def get_enrollment(self, enrollment_id: str) -> Enrollment | None:
+        row = self._conn.execute(
+            "SELECT * FROM enrollments WHERE enrollment_id = ?",
+            (enrollment_id,),
+        ).fetchone()
+        return self._row_to_enrollment(row) if row is not None else None
+
+    def enrollments_for_class(self, class_id: str) -> tuple[Enrollment, ...]:
+        rows = self._conn.execute(
+            "SELECT * FROM enrollments WHERE class_id = ? ORDER BY enrollment_id",
+            (class_id,),
+        ).fetchall()
+        return tuple(self._row_to_enrollment(r) for r in rows)
+
+    def students_for_class(self, class_id: str) -> tuple[Student, ...]:
+        rows = self._conn.execute(
+            "SELECT s.student_id FROM students s "
+            "JOIN enrollments e ON e.student_id = s.student_id "
+            "WHERE e.class_id = ? ORDER BY s.student_id",
+            (class_id,),
+        ).fetchall()
+        return tuple(Student(student_id=r["student_id"]) for r in rows)
+
+    def classes_for_student(self, student_id: str) -> tuple[SchoolClass, ...]:
+        rows = self._conn.execute(
+            "SELECT c.* FROM classes c "
+            "JOIN enrollments e ON e.class_id = c.class_id "
+            "WHERE e.student_id = ? ORDER BY c.class_id",
+            (student_id,),
+        ).fetchall()
+        return tuple(self._row_to_class(r) for r in rows)
+
+    def delete_enrollment(self, enrollment_id: str) -> bool:
+        cur = self._conn.execute(
+            "DELETE FROM enrollments WHERE enrollment_id = ?", (enrollment_id,)
+        )
+        if not self._in_transaction:
+            self._conn.commit()
+        return cur.rowcount > 0
+
+    def purge_student(self, student_id: str) -> int:
+        """Erase a pseudonymous student + all their enrollments atomically."""
+        self.begin_transaction()
+        total = 0
+        try:
+            cur = self._conn.execute(
+                "DELETE FROM enrollments WHERE student_id = ?", (student_id,)
+            )
+            total += cur.rowcount
+            cur = self._conn.execute(
+                "DELETE FROM students WHERE student_id = ?", (student_id,)
+            )
+            total += cur.rowcount
+            self.commit_transaction()
+        except BaseException:
+            self.rollback_transaction()
+            raise
+        return total
+
+    @staticmethod
+    def _row_to_enrollment(row: sqlite3.Row) -> Enrollment:
+        return Enrollment(
+            enrollment_id=row["enrollment_id"],
+            class_id=row["class_id"],
+            student_id=row["student_id"],
         )
 
     # --- Transaction support ------------------------------------------------

@@ -18,6 +18,13 @@ from lessonos.models.entities import (
     validate_enum,
 )
 from lessonos.models.ledger import CostLedgerEntry, CostReport
+from lessonos.models.crm import (
+    Enrollment,
+    SchoolClass,
+    Student,
+    Teacher,
+    assert_pseudonymous,
+)
 
 __all__ = [
     "CONCEPT_STATUS",
@@ -28,6 +35,7 @@ __all__ = [
     "Concept",
     "CostLedgerEntry",
     "CostReport",
+    "Enrollment",
     "Exercise",
     "GraphEdge",
     "GraphEvidence",
@@ -36,7 +44,11 @@ __all__ = [
     "Lesson",
     "Moment",
     "Path",
+    "SchoolClass",
     "Source",
+    "Student",
+    "Teacher",
+    "assert_pseudonymous",
     "require_non_empty",
     "validate_enum",
 ]

@@ -10,6 +10,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 from lessonos.models.entities import Lesson, Moment, Path, Segment, Source, GraphNode, GraphEdge, GraphEvidence
+from lessonos.models.crm import Enrollment, SchoolClass, Student, Teacher
 from lessonos.models.ledger import CostLedgerEntry
 
 
@@ -195,6 +196,88 @@ class Store(ABC):
         meaning (GS-3 reconciliation). Default: no-op — only reachable for
         backends that enumerate ``all_depends_on_edges`` (others return empty,
         so reconciliation never deletes anything)."""
+
+    # --- CRM: anonymised teacher / class / student relation (CRM-primitives) -
+    #
+    # CRUD over the pseudonymous roster. Concrete defaults raise
+    # NotImplementedError (like ``all_paths``): a backend that does not manage a
+    # roster simply does not override them — never an abstract method, so
+    # existing stub Stores stay instantiable (additive degradation).
+
+    def save_teacher(self, teacher: Teacher) -> None:
+        """Create or update a teacher (upsert by ``teacher_id``)."""
+        raise NotImplementedError("save_teacher not implemented by this store")
+
+    def get_teacher(self, teacher_id: str) -> Teacher | None:
+        raise NotImplementedError("get_teacher not implemented by this store")
+
+    def all_teachers(self) -> tuple[Teacher, ...]:
+        raise NotImplementedError("all_teachers not implemented by this store")
+
+    def delete_teacher(self, teacher_id: str) -> bool:
+        """Delete a teacher; ``True`` if one existed (idempotent)."""
+        raise NotImplementedError("delete_teacher not implemented by this store")
+
+    def save_class(self, school_class: SchoolClass) -> None:
+        """Create or update a class (upsert by ``class_id``)."""
+        raise NotImplementedError("save_class not implemented by this store")
+
+    def get_class(self, class_id: str) -> SchoolClass | None:
+        raise NotImplementedError("get_class not implemented by this store")
+
+    def classes_for_teacher(self, teacher_id: str) -> tuple[SchoolClass, ...]:
+        raise NotImplementedError(
+            "classes_for_teacher not implemented by this store"
+        )
+
+    def delete_class(self, class_id: str) -> bool:
+        raise NotImplementedError("delete_class not implemented by this store")
+
+    def save_student(self, student: Student) -> None:
+        """Create or update a student (upsert by ``student_id``)."""
+        raise NotImplementedError("save_student not implemented by this store")
+
+    def get_student(self, student_id: str) -> Student | None:
+        raise NotImplementedError("get_student not implemented by this store")
+
+    def delete_student(self, student_id: str) -> bool:
+        raise NotImplementedError("delete_student not implemented by this store")
+
+    def save_enrollment(self, enrollment: Enrollment) -> None:
+        """Create or update an enrollment (upsert by ``enrollment_id``)."""
+        raise NotImplementedError("save_enrollment not implemented by this store")
+
+    def get_enrollment(self, enrollment_id: str) -> Enrollment | None:
+        raise NotImplementedError("get_enrollment not implemented by this store")
+
+    def enrollments_for_class(self, class_id: str) -> tuple[Enrollment, ...]:
+        raise NotImplementedError(
+            "enrollments_for_class not implemented by this store"
+        )
+
+    def students_for_class(self, class_id: str) -> tuple[Student, ...]:
+        """Pseudonymous students enrolled in *class_id* (via enrollments)."""
+        raise NotImplementedError(
+            "students_for_class not implemented by this store"
+        )
+
+    def classes_for_student(self, student_id: str) -> tuple[SchoolClass, ...]:
+        """All classes *student_id* is enrolled in (reverse of enrollment)."""
+        raise NotImplementedError(
+            "classes_for_student not implemented by this store"
+        )
+
+    def delete_enrollment(self, enrollment_id: str) -> bool:
+        raise NotImplementedError(
+            "delete_enrollment not implemented by this store"
+        )
+
+    def purge_student(self, student_id: str) -> int:
+        """GDPR erasure of a pseudonymous student: delete the student row and
+        all their enrollments in one transaction (all-or-nothing). Returns the
+        number of rows removed; idempotent (second call returns 0).
+        """
+        raise NotImplementedError("purge_student not implemented by this store")
 
     # --- Transaction support ------------------------------------------------
 
