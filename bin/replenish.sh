@@ -89,8 +89,8 @@ while IFS= read -r line; do
     *'`'*|*'$'*|*';'*|*'|'*|*'&'*|*'<'*|*'>'*|*'\'*|*'"'*) echo "[replenish] SCARTO (char non sicuri): $line"; continue ;;
   esac
   L=${#line}; { [ "$L" -ge 30 ] && [ "$L" -le 320 ]; } || { echo "[replenish] SCARTO (len $L): $line"; continue; }
-  key="$(printf '%s' "$line" | cut -c1-58)"
-  if grep -qF "$key" "$COORD" 2>/dev/null; then echo "[replenish] SCARTO (dup): $line"; continue; fi
+  key="$(printf '%s' "$line" | python3 -c 'import sys; print(sys.stdin.read().strip()[:50])' 2>/dev/null)"
+  if [ -n "$key" ] && grep -qF "$key" "$COORD" 2>/dev/null; then echo "[replenish] SCARTO (dup): $line"; continue; fi
   VALID="${VALID}${line}
 "
 done < <(printf '%s\n' "$RAW")
