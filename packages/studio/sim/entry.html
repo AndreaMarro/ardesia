@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reference Sim — Blink LED</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #faf9f6;
+    color: #2c2825;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    height: 100vh;
+    overflow: auto;
+  }
+  h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .sub { font-size: 12px; color: #8a8682; margin-bottom: 16px; }
+
+  /* Breadboard visual */
+  .breadboard {
+    position: relative;
+    width: 280px;
+    height: 200px;
+    background: #e8e4df;
+    border-radius: 8px;
+    border: 2px solid #d0ccc7;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .bb-label {
+    position: absolute;
+    font-size: 9px;
+    color: #a09c97;
+    letter-spacing: 1px;
+  }
+  .bb-label.top { top: 4px; left: 8px; }
+  .bb-label.bot { bottom: 4px; left: 8px; }
+
+  /* LED */
+  .led {
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    transition: background 0.15s;
+  }
+  .led.off { background: #666; }
+  .led.on {
+    background: #ff3333;
+    box-shadow: 0 0 12px #ff3333aa;
+    animation: glow 0.8s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 6px #ff333366; }
+    to   { box-shadow: 0 0 20px #ff3333cc; }
+  }
+
+  .led-label {
+    position: absolute;
+    top: 88px;
+    left: 72px;
+    font-size: 10px;
+    color: #333;
+  }
+
+  /* Wires */
+  .wire { stroke: #888; stroke-width: 1.5; fill: none; }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  button {
+    padding: 8px 16px;
+    font-size: 13px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #1763ff;
+    color: #fff;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  button:hover { opacity: 0.85; }
+  button:active { transform: scale(0.97); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button.toggle { background: #ff3333; }
+  button.place { background: #0a8a3a; }
+
+  .status {
+    font-size: 12px;
+    color: #6b6763;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .status.ok { color: #0a8a3a; }
+  .status.err { color: #d44; }
+
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+  .dot.green { background: #0a8a3a; }
+  .dot.gray { background: #a09c97; }
+</style>
+</head>
+<body>
+  <h1>🧪 Reference Sim</h1>
+  <p class="sub">Blink LED · demo breadboard</p>
+
+  <div class="breadboard">
+    <span class="bb-label top">+5V</span>
+    <span class="bb-label bot">GND</span>
+    <div id="led" class="led off"></div>
+    <span class="led-label">LED1</span>
+    <svg width="280" height="200" style="position:absolute;top:0;left:0;pointer-events:none">
+      <path class="wire" d="M92,72 L92,120 L140,120" />
+      <path class="wire" d="M92,84 L92,60 L200,60" stroke="#d44" />
+    </svg>
+  </div>
+
+  <div class="controls">
+    <button id="btnToggle" class="toggle" disabled>LED: OFF</button>
+    <button id="btnPlace" class="place" disabled>📌 Place on Board</button>
+  </div>
+  <div id="status" class="status"><span class="dot gray"></span>connessione in corso…</div>
+
+<script>
+(function() {
+  'use strict';
+
+  let port = null;
+  let ready = false;
+  let bearerToken = null;
+  let grantedCaps = null;
+  let embedId = 'reference-blink-led-1';
+  let ledOn = false;
+
+  const ledEl = document.getElementById('led');
+  const btnToggle = document.getElementById('btnToggle');
+  const btnPlace = document.getElementById('btnPlace');
+  const statusEl = document.getElementById('status');
+
+  function setStatus(msg, type) {
+    statusEl.className = 'status' + (type ? ' ' + type : '');
+    const dot = type === 'ok' ? '<span class="dot green"></span>'
+               : type === 'err' ? '<span class="dot" style="background:#d44"></span>'
+               : '<span class="dot gray"></span>';
+    statusEl.innerHTML = dot + msg;
+  }
+
+  function setLed(state) {
+    ledOn = state;
+    ledEl.className = 'led ' + (state ? 'on' : 'off');
+    btnToggle.textContent = (state ? '🔴' : '⚫') + ' LED: ' + (state ? 'ON' : 'OFF');
+  }
+
+  // --- Handshake ---
+
+  window.addEventListener('message', function onHello(ev) {
+    // Host.hello arrives via window.postMessage with port in transferables
+    const data = ev.data;
+    if (!data || typeof data !== 'object') return;
+    if (data.method === 'host.hello' && ev.ports && ev.ports.length > 0) {
+      port = ev.ports[0];
+      setStatus('handshake ricevuto, rispondo…');
+      const params = data.params || {};
+      const nonce = params.nonce || '';
+      // Respond tool.ready on port
+      port.postMessage({
+        jsonrpc: '2.0',
+        id: 'ready-1',
+        method: 'tool.ready',
+        params: { nonce, protocolVersion: '1.0.0' }
+      });
+      // Listen for response on port
+      port.addEventListener('message', function onPortMsg(portEv) {
+        const res = portEv.data;
+        if (!res || typeof res !== 'object') return;
+        // Expect JSON-RPC response with bearerToken
+        if (res.result && res.id === 'ready-1') {
+          bearerToken = res.result.bearerToken || null;
+          grantedCaps = res.result.grantedCaps || null;
+          ready = true;
+          setStatus('✅ connesso al toolhost', 'ok');
+          btnToggle.disabled = false;
+          btnPlace.disabled = false;
+          setLed(false);
+        } else if (res.error) {
+          setStatus('❌ handshake fallito: ' + (res.error.message || 'errore'), 'err');
+        }
+      });
+      port.start();
+      window.removeEventListener('message', onHello);
+    }
+  });
+
+  // --- Board interactions ---
+
+  function boardWrite(state) {
+    if (!port || !ready) {
+      setStatus('non connesso', 'err');
+      return;
+    }
+    port.postMessage({
+      jsonrpc: '2.0',
+      id: 'bw-' + Date.now(),
+      method: 'board.write',
+      params: { embedId, state }
+    });
+    setStatus('📌 scritto LED' + (state?.ledOn ? ' ON' : ' OFF') + ' sulla lavagna', 'ok');
+  }
+
+  function boardRead() {
+    if (!port || !ready) {
+      setStatus('non connesso', 'err');
+      return;
+    }
+    port.postMessage({
+      jsonrpc: '2.0',
+      id: 'br-' + Date.now(),
+      method: 'board.read',
+      params: { target: 'scene' }
+    });
+    setStatus('📖 richiesta lettura scena…', 'ok');
+  }
+
+  // --- UI handlers ---
+
+  btnToggle.addEventListener('click', function() {
+    setLed(!ledOn);
+  });
+
+  btnPlace.addEventListener('click', function() {
+    boardWrite({ ledOn, timestamp: Date.now() });
+  });
+
+  // Also listen for board.read responses
+  // (In a real tool, you'd listen on the port for responses too)
+  setStatus('in attesa di connessione…');
+
+})();
+</script>
+</body>
+</html>

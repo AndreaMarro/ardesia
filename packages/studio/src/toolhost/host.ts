@@ -1,0 +1,243 @@
+// TOOLHOST-SPEC-v0 §9 T2 — runtime host per UN tool installato: lega manifest +
+// grant alle capability REALI (board/storage), all'audit-log e al lifecycle
+// suspend/restore. Le superfici (iframe, origin-server) restano fuori: questo
+// modulo è headless e testabile con MessageChannel puri.
+
+import { z } from "zod"
+import { SuspendResultSchema, isValidToolId } from "../toolhost-protocol/index.ts"
+import type { Capabilities, ToolManifest } from "../toolhost-protocol/index.ts"
+import { CONTRACT_VERSION } from "../sdk/index.ts"
+import { ToolAuditLog } from "./audit.ts"
+import type { AuditStore } from "./audit.ts"
+import { ToolBoard } from "./caps/board.ts"
+import type { BoardApiLike, BoardElementLike } from "./caps/board.ts"
+import { ToolStorage, purgeToolStorage } from "./caps/storage.ts"
+import type { StorageDriverLike } from "./caps/storage.ts"
+import { assertGrantWithinManifest } from "./policy.ts"
+import { checkKillList } from "./killList.ts"
+import type { StorageReadWriteDelete } from "./killList.ts"
+import { ToolHostSession, createNonce } from "./session.ts"
+import type { MethodHandler } from "./router.ts"
+import type { PortLike } from "./session.ts"
+
+export function statePath(toolId: string): string {
+  if (!isValidToolId(toolId)) throw new Error(`invalid tool id: ${toolId}`)
+  return `tools/${toolId}/state.json`
+}
+
+// Tetto sul documento di suspend serializzato: lo stato NON passa dalla quota
+// storage (vive in state.json), senza tetto sarebbe un bypass della quota.
+export const MAX_STATE_BYTES = 1024 * 1024
+
+const StateDocSchema = z.strictObject({ v: z.literal(1), t: z.number(), state: z.unknown() })
+
+export interface ToolHostDeps {
+  /** Il workspaceStore reale li soddisfa entrambi strutturalmente. */
+  store: StorageDriverLike & AuditStore
+  board: BoardApiLike
+  makeSkeleton?: (embedId: string) => BoardElementLike
+  theme?: "light" | "dark"
+  locale?: string
+  /** Tetto per le request host→tool (default 10s in session.ts). */
+  requestTimeoutMs?: number
+  /** Iniettabili SOLO nei test (il runtime è cattura-side, non replay-side). */
+  now?: () => number
+  bearerToken?: string
+}
+
+/**
+ * Host runtime di un tool. Una istanza per tool installato; ogni mount (iframe)
+ * apre una NUOVA sessione con nonce fresco. Gli handler wire usano le capability
+ * costruite dal GRANT (che non eccede mai il manifest, vedi policy.ts) e ogni
+ * request rispondibile finisce nell'audit-log del tool.
+ */
+export class ToolHost {
+  /** Versione del contratto SDK implementato da questo host (SemVer): un registro
+   *  o un plugin può interrogarla per decidere la compatibilità prima del mount. */
+  static readonly contractVersion = CONTRACT_VERSION
+
+  readonly manifest: ToolManifest
+  readonly audit: ToolAuditLog
+
+  private _grant: Capabilities
+  private _deps: ToolHostDeps
+  private _board: ToolBoard
+  private _storage: ToolStorage | null
+  private _session: ToolHostSession | null = null
+  // suspend/restore serializzati: due suspend concorrenti non devono poter
+  // atterrare su state.json fuori ordine (last-write-wins con stato VECCHIO).
+  private _lifecycle: Promise<unknown> = Promise.resolve()
+  // kill-switch a runtime: una volta revocato, l'host non può più montare il
+  // tool (irreversibile per questa istanza; la riabilitazione crea una nuova istanza).
+  private _revoked = false
+
+  constructor(manifest: ToolManifest, grantedCaps: Capabilities, deps: ToolHostDeps) {
+    // difesa in profondità: il grant non può MAI eccedere il manifest, anche se
+    // il chiamante ha scavalcato resolveGrant (capability-gating alla radice).
+    assertGrantWithinManifest(manifest, grantedCaps)
+    this.manifest = manifest
+    this._grant = grantedCaps
+    this._deps = deps
+    this.audit = new ToolAuditLog(deps.store, manifest.id, deps.now)
+    this._board = new ToolBoard(deps.board, manifest.id, deps.makeSkeleton)
+    const quota = grantedCaps.storage?.quotaMB
+    this._storage = quota === undefined ? null : new ToolStorage(deps.store, manifest.id, quota)
+  }
+
+  /** Sessione viva (mount corrente), o null se il tool non è montato. */
+  get session(): ToolHostSession | null {
+    return this._session
+  }
+
+  /** true dopo revoke(): il tool è stato ucciso e non può più essere montato. */
+  get revoked(): boolean {
+    return this._revoked
+  }
+
+  /**
+   * Kill-switch (spec §3): revoca a runtime. Chiude IMMEDIATAMENTE la sessione
+   * viva — uccidendo un tool già in esecuzione — e blocca ogni mount successivo.
+   * Idempotente. La kill-list persistente (killList.ts) è la fonte di verità; per
+   * legarla a un host vivo usa syncKillSwitch(). Distinto da unmount(): unmount
+   * chiude la sessione ma permette il re-mount; revoke è terminale.
+   */
+  revoke(): void {
+    this._revoked = true
+    this.unmount()
+  }
+
+  /**
+   * Consulta la kill-list PERSISTENTE con lo store di questo host e applica il
+   * kill-switch (revoke se elencato). Pensata per essere chiamata sul percorso di
+   * mount (ToolFrame) PRIMA di consegnare l'hello: un tool revocato dopo l'install
+   * non deve mai ripartire. true = revocato.
+   */
+  refreshKillSwitch(): Promise<boolean> {
+    return syncKillSwitch(this._deps.store, this)
+  }
+
+  /**
+   * Monta il tool su una porta (l'altra estremità va alla finestra del tool con
+   * postHello). Chiude l'eventuale sessione precedente: un mount = una sessione.
+   */
+  mount(port: PortLike): ToolHostSession {
+    if (this._revoked) {
+      throw new Error(`tool "${this.manifest.id}" is revoked: mount denied`)
+    }
+    this._session?.close()
+    const session = new ToolHostSession({
+      grantedCaps: this._grant,
+      handlers: this._handlers(),
+      isOwnEmbed: this._board.isOwnEmbed,
+      // fire-and-forget consapevole: un audit-sink rotto non blocca il tool
+      // (policy ST2); l'errore resta osservabile da audit.idle() nei test.
+      onAudit: (event) => void this.audit.append(event).catch(() => {}),
+      bearerToken: this._deps.bearerToken ?? createNonce(),
+      requestTimeoutMs: this._deps.requestTimeoutMs,
+      theme: this._deps.theme,
+      locale: this._deps.locale,
+    })
+    session.attach(port)
+    this._session = session
+    return session
+  }
+
+  unmount(): void {
+    this._session?.close()
+    this._session = null
+  }
+
+  /** host.suspend: chiede lo stato al tool e lo persiste in tools/<id>/state.json. */
+  suspend(): Promise<void> {
+    return this._serializeLifecycle(async () => {
+      const session = this._requireSession()
+      const result = SuspendResultSchema.parse(await session.request("host.suspend", {}))
+      const now = this._deps.now ?? (() => Date.now())
+      const doc = JSON.stringify({ v: 1, t: now(), state: result.state ?? null })
+      const blob = new Blob([doc], { type: "application/json" })
+      if (blob.size > MAX_STATE_BYTES) {
+        throw new Error(`suspend state too large (${blob.size} > ${MAX_STATE_BYTES} bytes)`)
+      }
+      await this._deps.store.write(statePath(this.manifest.id), blob)
+    })
+  }
+
+  /** host.restore: consegna al tool l'ultimo stato persistito. false = nessuno stato. */
+  restore(): Promise<boolean> {
+    return this._serializeLifecycle(async () => {
+      const session = this._requireSession()
+      const blob = await this._deps.store.read(statePath(this.manifest.id))
+      if (blob === null) return false
+      let doc: z.infer<typeof StateDocSchema>
+      try {
+        doc = StateDocSchema.parse(JSON.parse(await blob.text()))
+      } catch {
+        // mai consegnare spazzatura al tool: meglio un errore esplicito al docente
+        throw new Error(`corrupted tool state: ${statePath(this.manifest.id)}`)
+      }
+      await session.request("host.restore", { state: doc.state })
+      return true
+    })
+  }
+
+  /**
+   * Uninstall (spec §2): via storage/ e state.json del tool; l'audit-log
+   * SOPRAVVIVE (il docente deve poter rispondere a "cosa ha letto questo tool?").
+   */
+  async uninstall(): Promise<void> {
+    this.unmount()
+    // drena le mutazioni storage in coda: una set in-flight che atterrasse
+    // DOPO il purge resusciterebbe dati che dovevano sparire.
+    await this._storage?.idle()
+    await purgeToolStorage(this._deps.store, this.manifest.id)
+    await this._deps.store.delete(statePath(this.manifest.id))
+  }
+
+  private _requireSession(): ToolHostSession {
+    if (this._session === null) throw new Error("tool not mounted")
+    return this._session
+  }
+
+  private _serializeLifecycle<T>(op: () => Promise<T>): Promise<T> {
+    const p = this._lifecycle.then(op, op)
+    this._lifecycle = p.then(
+      () => {},
+      () => {},
+    )
+    return p
+  }
+
+  private _handlers(): Partial<Record<string, MethodHandler>> {
+    const handlers: Partial<Record<string, MethodHandler>> = {
+      "board.read": (p) => this._board.read((p as { target: "scene" | "selection" }).target),
+      "board.write": (p) => {
+        const { embedId, state } = p as { embedId: string; state: unknown }
+        return this._board.write(embedId, state)
+      },
+    }
+    const storage = this._storage
+    if (storage !== null) {
+      handlers["storage.get"] = (p) => storage.get((p as { key: string }).key)
+      handlers["storage.set"] = (p) => {
+        const { key, value } = p as { key: string; value: string }
+        return storage.set(key, value)
+      }
+      handlers["storage.delete"] = (p) => storage.delete((p as { key: string }).key)
+      handlers["storage.list"] = (p) => storage.list((p as { prefix?: string }).prefix)
+    }
+    return handlers
+  }
+}
+
+/**
+ * Lega la kill-list PERSISTENTE (killList.ts) al kill-switch a runtime di un host
+ * vivo: se il tool è revocato, lo uccide subito (sessione chiusa + mount bloccati)
+ * e ritorna true. Da invocare all'avvio e quando la kill-list cambia (revoca dal
+ * pannello docente / kill-switch remoto futuro). Una kill-list corrotta propaga
+ * l'errore: meglio bloccare che eseguire un tool il cui stato di revoca è ignoto.
+ */
+export async function syncKillSwitch(store: StorageReadWriteDelete, host: ToolHost): Promise<boolean> {
+  const killed = await checkKillList(store, host.manifest.id)
+  if (killed) host.revoke()
+  return killed
+}
