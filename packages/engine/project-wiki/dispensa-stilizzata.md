@@ -1,0 +1,120 @@
+# Dispensa Stilizzata (M1-4)
+
+Modulo per generare dispense didattiche **nello stile del docente** a partire dal TeacherBook e dalle capsule. Ogni claim fattuale cita un segmento reale del transcript — gate fail-closed (identico al summary M0).
+
+## Architettura
+
+### `lessonos/style.py` (ZERO-LLM)
+`StyleProfile` frozen dataclass + `derive_style_profile(store, teacher_id)`:
+
+- **exercise_density** = esercizi / concetti (dal TeacherBook + capsule)
+- **question_density** = domande / segmenti
+- **prereq_explicitness** = catene prerequisiti / concetti
+- **concept_granularity** = concetti / 1000 parole trascritte
+- **registro** = `"colloquiale" | "formale" | "misto"` — euristica da filler/formal markers nei segmenti
+- **tics** = top-5 n-gram ricorrenti (unigram/bigram/trigram, min 3 occorrenze, stopword esclusi)
+
+Deterministico: stesso store + teacher_id → stesso StyleProfile.
+
+### `lessonos/dispensa.py` (core)
+Pipeline a 4 fasi:
+
+1. **`build_dispensa_prompt(teacher_id, style, concepts)`** — costruisce prompt deterministico. Lo stile guida struttura e tono:
+   - exercise_density alta → ogni sezione APRE con esercizio svolto
+   - question_density alta → struttura a domande-risposta
+   - prereq_explicitness alta → box "Prima devi sapere"
+   - registro+tics → istruzione nel prompt di usare il registro del docente
+
+2. **`generate_dispensa(store, teacher_id, router, style=None)`** — carica TeacherBook, risolve concetti via `_resolve_concepts_from_capsules()` (exact normalized → edit-distance ≥0.85 → ValueError se nessun ConceptExtraction con citazioni), chiama LLM (via router, mock in test), parsifica risposta JSON. Budget ~$0.05/dispensa.
+   - **M1-4b fix**: sostituito substring matching `norm_ext in norm_tc` con edit-distance (SequenceMatcher, soglia 0.85) + fail-closed ValueError. Eliminato silent fallback (creazione ConceptExtraction senza citazioni). (`lessonos/dispensa.py:138-200`, commit d044044)
+   - **`_name_similar(a, b, threshold=0.85)`** — helper edit-distance con soglia conservativa. 'fourier' vs 'serie di fourier' (~0.53) → no match. 'fourier' vs 'fourier' (1.0) → match.
+   - **M1-5.5**: test determinismo su exact-match multipli — stesso concetto in 2 capsule → sempre primo lid in insertion order (test_multiple_exact_matches_deterministic, commit f3775ab).
+
+3. **`verify_dispensa(doc, store)`** — riusa `graph/grounding.verify_citation` su ogni claim:
+   - seg_id risolvibile, stessa lezione (cross-lesson guard), excerpt verbatim
+   - Gate fail-closed: 0 claims o >20% unverified = `ValueError`
+   - Paragrafi non-grounded droppati + dichiarati nel footer (M1-4b: preserva TESTO reale dei paragrafi scartati, non stringa generica)
+   - **CRITICO FIX 2026-07-16** (commit 478f628, gate 1634/0): claim con `excerpt=None` e seg_id valido NON è più contato come VERIFIED. `_verify_or_repair` (dispensa.py:467-475) ora controlla che excerpt non sia None/'' dopo `verify_citation` — claim senza excerpt è unverifiable (return None → dropped). Precedente: `verify_citation(_, _, _, None)` saltava il check substring, e il claim passava come VERIFIED. Test: `test_excerpt_none_dropped`.
+
+4. **`render_dispensa_md(doc, report)`** — ZERO-LLM, markdown con sezioni, citazioni, footer grounding.
+
+### `bin/run_dispensa.sh` — runner riproducibile
+```bash
+bash bin/run_dispensa.sh prof_pratico              # singolo docente
+bash bin/run_dispensa.sh pratico socratico rigoroso # piu docenti
+bash bin/run_dispensa.sh                            # default: 3 sim + andrea
+```
+
+Env: `DB_PATH`, `DERIVED_DIR`, `PROVIDER`, `MODEL`.
+
+## Test
+- **Divergenza stilistica** (test del prodotto): stesse capsule, 2 StyleProfile opposti (pratico exercise-first vs socratico domande-first) → markdown strutturalmente diverso ("Esercizio" in Sezione 1 vs "Domanda")
+- **Gate fail-closed**: 0 claims → ValueError; 100% unverified → ValueError; 16.7% unverified → PASS
+- **Prompt-injection**: contenuto segmento non altera template JSON
+- **Determinismo**: prompt, parsing, rendering byte-per-byte identici
+
+## Specifica completa
+`docs/ORDERS-M1-4.md` — spec vincolante per il builder.
+
+## File
+- `lessonos/style.py` — StyleProfile + derivazione (ZERO-LLM, file:line)
+- `lessonos/dispensa.py` — generazione dispensa (file:line)
+- `tests/test_style.py` — 10 test (file:line)
+- `bin/run_dispensa.sh` — runner
+- `docs/ORDERS-M1-4.md` — spec prodotto
+- `tests/test_dispensa.py` — 34 test (file:line, M1-4b: +10, M1-5.5: +1)
+
+## M2-2: WrittenStyleProfile (2026-06-12)
+
+`WrittenStyleProfile` estende lo stile con metriche dal corpus **SCRITTO** (dispense VERE di Andrea, 9 PDF via pdftotext). `derive_written_style(dispense_dir)` legge `*.raw.txt` (read-only), pulisce, computa:
+
+| Metrica | Valore reale (corpus Andrea) | Descrizione |
+|---|---|---|
+| `avg_sentence_length` | 55.25 | Frasi accademiche complesse |
+| `formal_density` | 11.96/1000t | Marcatori accademici (condizione, teorema, criterio) |
+| `section_count` | 61 | Sezioni rilevate nei 9 file |
+| `bullet_density` | 8.08/1000t | Uso sistematico di elenchi puntati |
+| `math_density` | 54.07/1000t | Altissima densità di notazione matematica |
+| `avg_paragraph_length` | 23.41 tok | Paragrafi brevi e compatti |
+
+### Prompt integration
+
+- `build_dispensa_prompt` accetta `written_style: WrittenStyleProfile` via kwargs
+- `_written_style_hint(ws)` → istruzione testuale per il prompt
+- `generate_dispensa` accetta `written_style` e lo passa al prompt builder
+- LLM vede: "insegna come parli (v1) ma struttura come scrivi (v2)"
+- Backward compat: chiamanti senza `written_style` identici a prima
+
+### A/B test
+
+`bin/ab-dispensa-written-style.py`: v1-only = 44 linee/1271 char. V1+v2 = 49 linee/1818 char. Diff strutturale verificato.
+
+### File
+
+- `lessonos/style.py` — WrittenStyleProfile + 6 metric functions + derive_written_style (ZERO-LLM, file:line)
+- `lessonos/dispensa.py` — _written_style_hint + kwargs passaggio (file:line)
+- `bin/extract-written-style.sh` — conversione PDF→txt (file:line)
+- `bin/ab-dispensa-written-style.py` — A/B script (file:line)
+- `tests/test_style.py` — 28 nuovi test
+
+### Dispense generate su dati reali
+
+| Docente | DB | Claims | Verified | Dropped | Cost |
+|---|---|---|---|---|---|
+| prof_pratico (sim) | fisica1-sim | 51 | 51 | 0 | ~$0 |
+| prof_socratico (sim) | fisica1-sim | 32 | 32 | 0 | ~$0 |
+| prof_rigoroso (sim) | fisica1-sim | 27 | 27 | 0 | ~$0 |
+| **andrea (reale)** | teoria-segnali-2021 | **23** | **23** | **0** | **$0.0029** |
+
+Andrea dispensa su `~/maestro-data/teoria-segnali-2021/derived/dispense/andrea.md`.
+
+### Ground-truth vs dispense VERE (Claude-SAYS 2026-06-11 19:35)
+
+Energia.pdf e Sommabilità.pdf estratti via pdftotext; confronto onesto (STATUS.md § M1-6). **Zero contraddizioni** — la dispensa generata (Prima lezione) opera a livello introduttivo, le dispense vere sono supplementi matematici. Le lezioni 2-4 coprono argomenti più vicini al contenuto delle dispense vere (supporto, durata, classificazione energetica).
+
+### Output su disco
+- `derived/dispense/andrea.md` — dispensa generata (23 claims, verify PASS)
+- `derived/dispense/BLIND-TEST-ANDREA.md` — 10 paragrafi per giudizio (>=7/10)
+- `derived/dispense/GROUND-TRUTH-COMPARISON.md` — confronto per-argomento
+- `derived/dispense/Energia.raw.txt` — pdftotext di Energia.pdf
+- `derived/dispense/Sommabilità.raw.txt` — pdftotext di Sommabilità.pdf

@@ -1,0 +1,64 @@
+# project-wiki/ — Index
+
+Ogni pagina + riassunto 1 riga.
+
+## Meta
+
+- **schema.md** — convenzioni wiki: 1 concetto/pagina, citazioni verificate, index+log, codice-vince-su-doc
+- **log.md** — storia append-only delle modifiche wiki
+
+## Architettura e Principi
+
+- **architecture.md** — decisioni architetturali fondamentali (Python, SQLite, router multi-LLM, JSON strutturati)
+- **grounding.md** — invariante anti-allucinazione: citazioni validate, ValueError su seg_id fabbricato
+
+## Sistemi Core
+
+- **llm-router.md** — router astratto + provider mock (deterministico) + kimi (Moonshot eval-gated)
+- **data-model.md** — 9 entità domain + vincoli vocab (EDGE_TYPES, CONCEPT_STATUS) validati a costruzione
+- **store.md** — layer persistenza astratto (Store ABC) + SQLiteStore relazionale
+- **capsule-pipeline.md** — pipeline estrazione Lesson Capsule: ingest → segmentation → extraction
+- **path-memory.md** — Path Memory: aggregazione path-level da capsules (M3-task3)
+- **didactic-delta.md** — Didactic Delta: diff tra versioni PathMemory (M4-task1, PLAN §3.3)
+- **learning-debt.md** — Learning Debt Ledger: 5 categorie di debito didattico da PathMemory + Delta (M4-task2, PLAN §3.4)
+- **next-lesson-planner.md** — Next Lesson Plan: agenda prioritizzata per la prossima lezione da PathMemory + Delta + Debt (M4-task3, PLAN §8.2)
+- **eval-metrics.md** — EvalMetrics: groundedness + citation-excerpt-accuracy metric factories (M5-task2, PLAN §22)
+- **realtime-eval.md** — P1 eval LLM reale: run_realtime_eval con Kimi su fixture, misura qualità + costo
+- **observation.md** — Observation Store: cross-iterazione structured memory file-based JSONL (poiché Hermes memory disabilitato + agentmemory :3111 non HTTP-reachable)
+- **cost-ledger.md** — Cost Ledger: per-LLM-call cost tracker (M5-task3, PLAN §20)
+- **graph-writer.md** — GraphWriter: proiezione Capsule→SQLite nodes/edges/evidence (T5, SCHEMA_VERSION 6)
+- **teacher-graph.md** — Teacher Graph Aggregator: `aggregate_teacher_graph()` dedup per canonical, cross-teacher guard (M1-1 + M1-1b)
+- **teacher-book.md** — Teacher Book Builder: struttura l'aggregated graph in TeacherBook (concetti fondamentali, problematici, progressione, prerequisiti) — ZERO-LLM, deterministico (M1-2a)
+|- **teacher-book-renderer.md** — M1-3: ZERO-LLM markdown renderer per TeacherBook + comparative report (render_teacher_book, render_comparative_report, 10 docenti sim Fisica1, 17 test)
+||- **vault-export.md** — Obsidian Vault Export: read-only proiezione derived/ (M1-7, M1-7b fix raw->merged)
+||- **M1-5 motore** — purge_lesson transazionale + _lesson_ids_from_path fonte primaria + negation-aware repair + pipeline.run_ingest + H2-1327 determinism test
+||- **M1-6 Fase F: dispense LIVE** — andrea dispensa generata (23/23 verified) + ground-truth vs dispense VERE (zero contraddizioni) + blind-test pack (10 paragrafi)
+||- **M2-3: badge per-claim** — claim_badge() helper in grounding.py + per-claim verification badge ✅/🔧/✗ in dispensa.py, teacher_book_renderer.py, summarizer.py (M2-3, roadmap R1, ZERO LLM, 1656 test)
+- **grounding.md** — Shared citation verification helper: `lessonos/graph/grounding.verify_citation(store, seg_id, lesson_id, excerpt)` — reuses T5-FIX invariant
+- **summarizer.md** — Lesson Summary Generator: `generate_lesson_summary()` → markdown with mechanically verified citations (T6)
+- **llm-retry.md** — Shared retry helper for LLM provider HTTP calls (FM2 timeout+retry, lessonos/llm/_retry.py)
+- **pipeline.md** — PipelineOrchestrator: run_pipeline() + PipelineResult (P2 product-API, lessonos/pipeline.py)
+- **cli.md** — CLI lessonos run-path end-to-end (M6-task1, PLAN §8.2) + `lessonos observations` subcommand
+- **cross-fixture.md** — Multi-fixture hardening: second fixture path spaced_path (SM-2/FSRS), pattern per aggiungere nuovi fixture path
+- **retrieval-fts-cross-fixture.md** — Cross-fixture FTS integration tests: 3 domains (calculus, spaced repetition, biology), 21 test, rebuild consistency, domain isolation
+- **lesson-graph.md** — Lesson Graph: build_lesson_graph (per-lesson), build_path_graph (cross-lesson repeats/depends_on), graph queries (where_introduced, prerequisites_of, topological_concepts)
+- **raw-ingestion.md** — Raw text/VTT/SRT → Segments: rule-based chunker M7 P0 (ZERO-LLM)
+- **raw-eval.md** — Raw-transcript eval: pipeline end-to-end su raw text con failure modes (M7 P1)
+- **asr.md** — ASR module: faster-whisper + ffmpeg pipeline for real lecture audio transcription, on-device (zero cloud), mock-tested
+- **cross-fixture-grounding-audit.md** — P2: Grounding audit cross-fixture (run_pipeline su tutte e 3 le fixture, verifica seg_id+excerpt su ogni citazione)
+
+## Course Foundry (nuovo)
+
+- **course-foundry.md** — P0a: CourseFolder schema + folder_loader + fixture sample_course (3 lezioni, ZERO-LLM, NO UI)
+  - **markdown-export.md** — P1: Markdown Course Exporter: CourseBlueprint + ContentAtoms → course.md + modules + exercises.md + quiz.md (ZERO-LLM)
+    - **quarto-export.md** — P1: Quarto Course Exporter: CourseBlueprint + ContentAtoms → _quarto.yml + .qmd files per HTML/PDF/slides (ZERO-LLM). P2: export_quarto_slides → revealjs slides format.
+  - **moodle-xml-export.md** — P1: Moodle XML Quiz Exporter: quiz_question atoms → quiz.xml formato standard Moodle (ZERO-LLM, stdlib-only)
+  - **cli-compile-course.md** — P1: CLI `lessons compile-course <folder> --target` wiring CourseFolder → exporter (ZERO-LLM, zero deps)
+  - **source-extractor.md** — P1: SourceMaterial + extract_source_materials da CourseFolder (Docling-adapter foundation, stdlib-only)
+- **docling-adapter.md** — P1: Docling-adapter — PDF/DOCX/HTML/VTT/SRT extraction via subprocess + stdlib (ZERO new deps)
+  - **llm-planner-stub.md** — P1: LLM-planner stub — plan_course() + PlannerResult bridge between CourseFolder materials and export pipeline (deterministic, zero-LLM, frozen dataclass)
+  - **teacher-review.md** — P1: Teacher-review stub — ReviewAction/ReviewScope enums, TeacherReviewNote, TeacherReviewSet, is_course_approved() (deterministic, zero-LLM, frozen data model for human review)
+
+## MCP (Model Context Protocol)
+
+- **mcp-grounded-memory** (no page yet) — M3 white-label B2B: server JSON-RPC 2.0 / MCP in-process (`GroundedMemoryServer`) che espone 3 tool teacher-scoped con re-verifica grounding (`verify_citation`): `grounded_memory_recall` (segmenti verbatim per query), `grounded_memory_progression` (ConceptProgression persistite), `grounded_memory_prerequisites` (PrerequisiteChain persistite). Progression+prerequisites condividono il guard `_ground_concept`/`_ground_citation` (ownership lesson-span + `is_verified_excerpt` + `verify_citation` same-lesson + concept-tie `content_tokens`). Ogni item emesso è riverificato; candidati non grounded droppati e dichiarati in `dropped_ungrounded`. `lessonos/mcp/grounded_memory.py:1` (524 righe), `tests/test_mcp_grounded_memory.py:1` (45 test).
