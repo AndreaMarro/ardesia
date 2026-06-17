@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from collections.abc import Collection
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -199,6 +200,7 @@ class FTSRetriever:
         *,
         top_k: int = 5,
         source_filter: str | None = None,
+        lesson_ids: Collection[str] | None = None,
     ) -> list[SearchResult]:
         """Search across segments and capsules.
 
@@ -209,6 +211,13 @@ class FTSRetriever:
             top_k: Maximum results to return (across all sources).
             source_filter: If set to ``'segment'`` or ``'capsule'``, only
                           search that source. Default ``None`` searches both.
+            lesson_ids: If set, restrict results to these lesson ids at the SQL
+                          level (non-lossy scoping — the ``LIMIT``/``top_k``
+                          cutoff applies *after* the filter, so an out-of-scope
+                          lesson can never crowd out an in-scope one). ``None``
+                          (default) searches every lesson; an *empty* collection
+                          matches nothing. Used to ground a single teacher's
+                          recap in that teacher's own corpus only.
 
         Returns:
             List of ``SearchResult`` sorted by relevance (best first).
@@ -222,27 +231,48 @@ class FTSRetriever:
             )
         if not query or not query.strip():
             return []
+        if lesson_ids is not None and len(lesson_ids) == 0:
+            return []  # explicit empty scope → nothing in scope (no IN () SQL)
 
         results: list[SearchResult] = []
         cleaned = query.strip()
 
         # Search segments
         if source_filter is None or source_filter == "segment":
-            results.extend(self._search_segments(cleaned))
+            results.extend(self._search_segments(cleaned, lesson_ids))
 
         # Search capsules
         if source_filter is None or source_filter == "capsule":
-            results.extend(self._search_capsules(cleaned))
+            results.extend(self._search_capsules(cleaned, lesson_ids))
 
         # Sort by rank (lower = better match), take top_k
         results.sort(key=lambda r: r.rank)
         return results[:top_k]
 
-    def _search_segments(self, query: str) -> list[SearchResult]:
+    @staticmethod
+    def _scope_clause(
+        column: str, lesson_ids: Collection[str] | None
+    ) -> tuple[str, list[str]]:
+        """Build an ``AND <column> IN (?, …)`` fragment + its bound params.
+
+        Returns ``("", [])`` when *lesson_ids* is ``None`` (no scope). The
+        placeholders are derived only from ``len`` and the values are bound as
+        parameters, so there is no SQL injection surface.
+        """
+        if lesson_ids is None:
+            return "", []
+        ordered = sorted(lesson_ids)
+        placeholders = ",".join("?" * len(ordered))
+        return f" AND {column} IN ({placeholders})", ordered
+
+    def _search_segments(
+        self, query: str, lesson_ids: Collection[str] | None = None
+    ) -> list[SearchResult]:
         """Run FTS5 query against the segments index."""
+        scope_sql, scope_params = self._scope_clause("segments.lesson_id", lesson_ids)
         try:
             rows = self._conn.execute(
-                """SELECT
+                f"""SELECT
                     segments.seg_id,
                     segments.lesson_id,
                     rank,
@@ -250,10 +280,10 @@ class FTSRetriever:
                     AS excerpt
                 FROM segments_fts
                 JOIN segments ON segments.rowid = segments_fts.rowid
-                WHERE segments_fts MATCH ?
+                WHERE segments_fts MATCH ?{scope_sql}
                 ORDER BY rank
                 LIMIT 100""",
-                (query,),
+                (query, *scope_params),
             ).fetchall()
         except sqlite3.OperationalError:
             # Malformed FTS5 query (e.g. trailing OR operator)
@@ -270,21 +300,24 @@ class FTSRetriever:
             for row in rows
         ]
 
-    def _search_capsules(self, query: str) -> list[SearchResult]:
+    def _search_capsules(
+        self, query: str, lesson_ids: Collection[str] | None = None
+    ) -> list[SearchResult]:
         """Run FTS5 query against the capsules index."""
+        scope_sql, scope_params = self._scope_clause("capsules.lesson_id", lesson_ids)
         try:
             rows = self._conn.execute(
-                """SELECT
+                f"""SELECT
                     capsules.lesson_id,
                     rank,
                     snippet(capsules_fts, 1, '<mark>', '</mark>', '...', 40)
                     AS excerpt
                 FROM capsules_fts
                 JOIN capsules ON capsules.rowid = capsules_fts.rowid
-                WHERE capsules_fts MATCH ?
+                WHERE capsules_fts MATCH ?{scope_sql}
                 ORDER BY rank
                 LIMIT 100""",
-                (query,),
+                (query, *scope_params),
             ).fetchall()
         except sqlite3.OperationalError:
             return []
