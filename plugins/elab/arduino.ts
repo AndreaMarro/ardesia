@@ -172,14 +172,20 @@ export class SketchScheduler {
    * I registri sono stabili per tutto l'intervallo restituito.
    */
   step(): number {
-    if (this._gen === null) this._gen = this._sketch.loop(this._rt)
-    const next = this._gen.next()
-    if (next.done === true) {
-      this._gen = null
-      return this.step() // loop() terminato → riparte dall'inizio
+    // Riavvia loop() AL PIÙ una volta per chiamata: uno sketch che non chiama mai
+    // delay() (es. `void loop(){}`) terminerebbe subito e ricorrerebbe all'infinito
+    // (stack overflow). Due tentativi bastano: il generatore corrente, poi un
+    // loop() fresco; se anche quello finisce senza yield, è un loop senza confini.
+    for (let restart = 0; restart < 2; restart++) {
+      if (this._gen === null) this._gen = this._sketch.loop(this._rt)
+      const next = this._gen.next()
+      if (next.done !== true) {
+        this._rt.delay(next.value)
+        return next.value
+      }
+      this._gen = null // loop() terminato → riparte dall'inizio
     }
-    this._rt.delay(next.value)
-    return next.value
+    throw new Error("loop() non chiama mai delay(): nessun confine di esecuzione (loop infinito)")
   }
 
   /** Posizione del generatore NON serializzabile: il restore riparte loop() da capo. */

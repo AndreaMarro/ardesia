@@ -140,6 +140,17 @@ describe("arduino model — sketch Blink via scheduler", () => {
     expect(rt.millis()).toBe(2000)
   })
 
+  it("loop() senza delay() → errore esplicito, niente ricorsione infinita", () => {
+    const rt = new ArduinoRuntime()
+    const noYield: Sketch = {
+      setup() {},
+      // eslint-disable-next-line require-yield
+      *loop() {},
+    }
+    const sched = new SketchScheduler(noYield, rt)
+    expect(() => sched.step()).toThrow(/nessun confine di esecuzione/)
+  })
+
   it("isArduinoSnapshot scarta forme non valide", () => {
     expect(isArduinoSnapshot({ v: 1, millis: 0, modes: {}, levels: {} })).toBe(true)
     expect(isArduinoSnapshot(null)).toBe(false)
@@ -292,6 +303,7 @@ describe("plugin concreto — montaggio via ToolHost", () => {
     expect(plugin.conn.grantedCaps["board.write"]).toBeUndefined()
     expect(await plugin.step()).toBe(false)
     expect(plugin.ledOn()).toBe(true) // il modello lampeggia comunque
+    expect(plugin.runtime.millis()).toBe(1000) // step() ha davvero avanzato lo sketch
     expect(board.elements).toHaveLength(0) // ma nulla è stato disegnato
   })
 
