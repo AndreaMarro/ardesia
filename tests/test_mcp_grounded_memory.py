@@ -412,6 +412,11 @@ def _progression_store() -> SQLiteStore:
                                text="Un vettore ha modulo, direzione e verso."))
     store.save_segment(Segment(seg_id="l2#s0", lesson_id="l2", start=0, end=1,
                                text="Il vettore nello spazio si somma componente per componente."))
+    # A REAL segment owned by t_other (lesson lo) that mentions the concept: used
+    # by the citation-ownership adversarial test — verbatim + concept-tied but
+    # cross-teacher, so the citation-level ownership guard must drop it.
+    store.save_segment(Segment(seg_id="lo#s0", lesson_id="lo", start=0, end=1,
+                               text="Anche qui il vettore ha modulo e direzione."))
 
     # l1/l2: vettore + energia progress; massa is a single-lesson edge sink so the
     # two progressions never share an edge (and thus never share a citation).
@@ -515,11 +520,13 @@ class TestGroundedProgression:
 
 
 class TestProgressionGroundingGuard:
-    def _poison_book(self, monkeypatch, *, evidence_lesson, excerpt, owned_seg=True):
+    def _poison_book(self, monkeypatch, *, evidence_lesson, excerpt,
+                     owned_seg=True, seg_id="l1#s0"):
         """Make build_teacher_book return a book whose vettore progression is
         grounded by an attacker-controlled citation."""
         store = _progression_store()
-        seg_id = "l1#s0" if owned_seg else "does_not_exist"
+        if not owned_seg:
+            seg_id = "does_not_exist"
         tc = TeacherConcept(
             name="Vettore", canonical="vettore", status="introduced",
             lesson_ids=("l1", "l2"),
@@ -557,6 +564,25 @@ class TestProgressionGroundingGuard:
         # Excerpt is not a substring of the segment text → verify_citation raises.
         server = self._poison_book(monkeypatch, evidence_lesson="l1",
                                    excerpt="parola inventata")
+        payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_whitespace_only_excerpt_is_dropped(self, monkeypatch) -> None:
+        # " " is a substring of the segment text (so verify_citation passes) but
+        # quotes nothing → only is_verified_excerpt catches it (anti-false-verde).
+        server = self._poison_book(monkeypatch, evidence_lesson="l1", excerpt=" ")
+        payload = _payload(_progression_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_citation_resolving_to_unowned_segment_is_dropped(self, monkeypatch) -> None:
+        # The progression spans only owned lessons, but its citation resolves to a
+        # REAL segment in another teacher's lesson (lo#s0) — verbatim + concept-
+        # tied. The citation-level ownership guard (distinct from the lesson-span
+        # loop) must drop it; otherwise t_other's verbatim text leaks.
+        server = self._poison_book(monkeypatch, evidence_lesson="lo",
+                                   excerpt="vettore", seg_id="lo#s0")
         payload = _payload(_progression_call(server, "t_main"))
         assert payload["items"] == []
         assert payload["dropped_ungrounded"] == 1
@@ -616,6 +642,11 @@ def _prerequisites_store() -> SQLiteStore:
     # the derivata chain).
     store.save_segment(Segment(seg_id="l1#s1", lesson_id="l1", start=2, end=3,
                                text="La funzione varia nel tempo."))
+    # A REAL segment owned by t_other (lesson lo) that mentions the concept: used
+    # by the citation-ownership adversarial test — verbatim + concept-tied but
+    # cross-teacher, so the citation-level ownership guard must drop it.
+    store.save_segment(Segment(seg_id="lo#s0", lesson_id="lo", start=0, end=1,
+                               text="Anche la derivata compare in questa lezione."))
 
     _save_capsule(store, "l1", [
         _concept("Derivata", "introduced", "derivata", prereqs=("limiti",)),
@@ -765,6 +796,25 @@ class TestPrerequisitesGroundingGuard:
         # lesson_ids references l_foreign, which t_main does not own.
         server = self._poison_book(monkeypatch, evidence_lesson="l1",
                                    excerpt="derivata", chain_lessons=("l1", "l_foreign"))
+        payload = _payload(_prerequisites_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_whitespace_only_excerpt_is_dropped(self, monkeypatch) -> None:
+        # " " is a substring of l1#s0 (so verify_citation passes) but quotes
+        # nothing → only is_verified_excerpt catches it (anti-false-verde).
+        server = self._poison_book(monkeypatch, evidence_lesson="l1", excerpt=" ")
+        payload = _payload(_prerequisites_call(server, "t_main"))
+        assert payload["items"] == []
+        assert payload["dropped_ungrounded"] == 1
+
+    def test_citation_resolving_to_unowned_segment_is_dropped(self, monkeypatch) -> None:
+        # The chain spans only owned l1, but its citation resolves to a REAL
+        # segment in another teacher's lesson (lo#s0) — verbatim + concept-tied.
+        # The citation-level ownership guard (distinct from the chain lesson loop)
+        # must drop it; otherwise t_other's verbatim text leaks.
+        server = self._poison_book(monkeypatch, evidence_lesson="lo",
+                                   excerpt="derivata", seg_id="lo#s0")
         payload = _payload(_prerequisites_call(server, "t_main"))
         assert payload["items"] == []
         assert payload["dropped_ungrounded"] == 1
