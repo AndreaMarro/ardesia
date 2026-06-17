@@ -13,9 +13,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 17/06 11:36] plugin lifecycle — install/uninstall/enable a runtime via contratto SDK Layer-0, test compat + kill-switch, gate verde.
-- **lessonos**: [AUTO-PINNED-DONE] method-graph retrieval integration — PIN ESAURITO 17/06 (commit 260ce6e, gate 1947/0 VERDE, +18 test). lessonos/retrieval/expansion.py: expand_query_with_bridges + retrieve_teacher_context_with_bridges (multi-query RRF fusion).
+- **lessonos**: [AUTO-PINNED 17/06 11:56] retrieval-eval-harness — gold-set + recall@k/MRR MISURATO sul retrieval-hybrid M7 come gate di regressione (soglia pinnata, calo=RED), ZERO-LLM.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] lessonos: retrieval-eval-harness — gold-set + recall@k/MRR MISURATO sul retrieval-hybrid M7 come gate di regressione (soglia pinnata, calo=RED), ZERO-LLM.
 - [AUTO-OK] studio: secondo reference-plugin che esercita board.read + UI capability (stress contratto Layer-0 multi-capability), gate verde.
 - [AUTO-OK] lessonos: CRM consent-state — primitiva stato-consenso GDPR (grant/revoke/expiry+audit) per relazione docente/classe, PII fuori dai nodi-agente, gate verde.
 
