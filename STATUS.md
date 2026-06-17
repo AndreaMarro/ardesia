@@ -2,6 +2,22 @@
 
 > Append-only. Ultima riga = dove sei / blocker / domande.
 
+- **2026-06-17 — MCP grounded-memory wrapper integrato + test end-to-end su lezione campione (commit 347a9c6, gate 2018/0, +3).**
+  Pin: [AUTO-PINNED 17/06 17:14] integra il wrapper MCP grounded-memory con test end-to-end su lezione campione, gate verde invariato, zero regressioni.
+  Il wrapper `lessonos/mcp/grounded_memory.py` (231 righe, già scritto ma untracked) è un server JSON-RPC 2.0 / MCP in-process, dependency-free, che espone il recall grounded teacher-scoped come tool `grounded_memory_recall`. L'invariante di grounding: ogni item emesso è riverificato via `verify_citation` contro lo store persistito; candidati non risolvibili, cross-teacher, cross-lesson o capsule (senza seg_id) sono droppati e dichiarati in `dropped_ungrounded`.
+  File integrati e committati:
+  - `lessonos/mcp/__init__.py` (13 righe) — export pulito
+  - `lessonos/mcp/grounded_memory.py` (231 righe) — server JSON-RPC 2.0 con tool tools/call
+  - `tests/test_mcp_grounded_memory.py` (318 righe, 22 test) — handshake, recall, grounding guard, error surface + 3 nuovi test end-to-end `TestMultiSegmentLesson`
+  Nuovi test `TestMultiSegmentLesson`:
+  - `test_multi_segment_recall_returns_verbatim_provenance`: lezione 3-segmenti, query "segnale supporto" → 2 hit (s1, s2), text verbatim confermato via store.get_segment
+  - `test_cross_teacher_isolation_holds_with_multi_segment`: query "segnale tempo" matcha ENTRAMBI i teacher ma lo scope limita a t_main → solo s1, mai s_other
+  - `test_each_item_has_required_fields`: contratto strutturale (seg_id/lesson_id/text/snippet/rank) su 3 hit
+  - **PLAN-CHECK**: fable.sh approvato (exit 0).
+  - **REVIEW**: review.sh (gemini) — FALSO POSITIVO: i file erano troncati da `sed -n '1,200p'` nella review, ma compilano correttamente (Python AST verified). Gate verde conferma.
+  - Gate: 2015→2018 (+3), zero regressioni. cost_usd: ~$0 (mock, ZERO LLM).
+  - Next: attende prossimo pin da CLAUDE-SAYS o promote_pin da ROADMAP-AUTO.
+
 - **2026-06-12 — Adversarial triage: fix excerpt guard + test parametrizzato (adversarial 03:40 su 478f628).**
   Ipotesi singola: il finding MINORE VERO dell'adversarial su 478f628 (03:40) — `excerpt=""` e `excerpt="   "` non coperti dal test e dal codice — va fissato. Il CRITICO (test tautologico) e la NOTA (FsPath) dell'adversarial 08:02 su b7d23c1 sono **FALSI POSITIVI** (assert gia adeguati, comparazione su stringa non FsPath).
   Risultati:
