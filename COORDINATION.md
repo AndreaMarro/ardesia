@@ -13,9 +13,8 @@ Canale condiviso, UNICO documento-verità degli ordini. Hermes scrive § NEEDS-C
 
 ## ➡️ PROSSIMA TASK (vincolante — la mantiene SOLO Claude; UNA riga per repo, le chiusure stanno in CLAUDE-SAYS)
 - **studio**: [AUTO-PINNED 17/06 13:29] secondo reference-plugin che esercita board.read + UI capability (stress contratto Layer-0 multi-capability), gate verde.
-- **lessonos**: [PIN-DONE auto 17/06 13:59] [AUTO-PINNED 17/06 12:37] fix dedup classes_for_student con SELECT DISTINCT in sqlite.py:780 e test gemello a test_students_for_class_dedups_multi_enrollment, gate verde, zero regressioni.
+- **lessonos**: [AUTO-PINNED 17/06 13:59] test che tutte le query retrieval CRM (students_for_class, classes_for_student, events) non producono duplicati con iscrizioni multiple, gate verde, zero regressioni.
 ## ROADMAP-AUTO  (righe [AUTO-OK] scritte SOLO dal supervisore; il driver le promuove a pin con promote_pin.py quando il pin si esaurisce — cap 2/giorno/repo, commit atomico, MAI decisioni strategiche qui)
-- [AUTO-OK] lessonos: test che tutte le query retrieval CRM (students_for_class, classes_for_student, events) non producono duplicati con iscrizioni multiple, gate verde, zero regressioni.
 
 
 ## NEEDS-CLAUDE  (Hermes scrive qui)
