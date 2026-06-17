@@ -7,7 +7,7 @@
 //   2. handshake multi-capability: grantedCaps contiene board.read E ui, NON board.write;
 //   3. board.read reale (due target: scene + selection) → contorno corretto;
 //   4. `ui` gate il pannello: adattivo con ui, fallback inerte senza ui;
-//   5. `ui` è INERTE in v0: nessun metodo wire `ui.*` → METHOD_NOT_FOUND;
+//   5. `ui` è capability dichiarabile MA senza metodo wire (by contract) → inerte in v0;
 //   6. least-privilege: board.write NON concessa → CAPABILITY_DENIED al wire;
 //   7. lifecycle: lo stato UI del pannello sopravvive a suspend/restore;
 //   8. audit: solo board.read (zero write — l'ispettore non scrive mai).
@@ -31,7 +31,7 @@ import { readAuditLog } from "../toolhost/audit.ts"
 import type { AuditStore } from "../toolhost/audit.ts"
 import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/storage.ts"
 import { resolveGrant } from "../toolhost/policy.ts"
-import { ERR } from "../sdk/index.ts"
+import { CONTRACT, ERR } from "../sdk/index.ts"
 import type { Capabilities, CapabilityName, WindowLike } from "../sdk/index.ts"
 
 class MemoryWorkspace implements StorageDriverLike, AuditStore {
@@ -232,10 +232,13 @@ describe("plugin-outline — board.read + ui via ToolHost reale", () => {
     expect(plugin.render().lines).toEqual(["Totale: 4", "ellipse: 1", "rectangle: 2", "text: 1"])
   })
 
-  it("ui NEGATA (grant senza ui): fallback inerte, controlli no-op", async () => {
+  it("grant senza ui (difensivo, non-v0): fallback inerte, controlli no-op", async () => {
     const board = new FakeBoard()
     seedBoard(board)
-    // grant esplicito senza ui (la policy normalmente la inietta: qui un host che la nega).
+    // NOTA onesta: in v0 resolveGrant INIETTA SEMPRE `ui` (policy.ts:80), quindi un
+    // grant senza ui NON è prodotto in produzione. Qui forziamo il grant a mano per
+    // esercitare DIFENSIVAMENTE il ramo di degrado del modello (forward-looking se
+    // una versione futura rendesse `ui` negabile) — non uno scenario operativo v0.
     const { plugin } = await mount(board, new MemoryWorkspace(), { grant: { "board.read": {} } })
     expect(plugin.conn.grantedCaps.ui).toBeUndefined()
     const view = plugin.render()
@@ -247,10 +250,19 @@ describe("plugin-outline — board.read + ui via ToolHost reale", () => {
     expect(plugin.render().lines).toEqual(["4 elementi, 2 selezionati"])
   })
 
-  it("`ui` è INERTE in v0: nessun metodo wire ui.* (METHOD_NOT_FOUND)", async () => {
+  it("`ui` è capability dichiarabile ma SENZA metodo wire in v0 (inerte by contract)", async () => {
+    // Invariante REALE del contratto (non l'assenza di una stringa qualsiasi): `ui`
+    // è nel vocabolario capability MA nessun metodo wire è gated da `ui`. Aggiungere
+    // un metodo ui.* a TOOL_METHODS romperebbe questa asserzione → decisione cosciente.
+    expect(CONTRACT.capabilities).toContain("ui")
+    expect(Object.values(CONTRACT.toolMethods)).not.toContain("ui")
+    expect(Object.keys(CONTRACT.toolMethods).some((m) => m.startsWith("ui."))).toBe(false)
+    // Corollario sul wire vivo: un plugin che ha `ui` concessa non raggiunge alcun
+    // metodo ui.* (il method-lookup del router precede il cap-check → METHOD_NOT_FOUND).
     const board = new FakeBoard()
     seedBoard(board)
     const { plugin } = await mount(board, new MemoryWorkspace())
+    expect(plugin.conn.grantedCaps.ui).toBeDefined()
     let err: { code?: number } | null = null
     await plugin.conn.call("ui.resize", { width: 200 }).catch((e: unknown) => {
       err = e as { code?: number }
@@ -271,6 +283,16 @@ describe("plugin-outline — board.read + ui via ToolHost reale", () => {
       })
     expect(err).not.toBeNull()
     expect(err!.code).toBe(ERR.CAPABILITY_DENIED)
+
+    // Params MALFORMATI con cap negata: ancora CAPABILITY_DENIED (non INVALID_PARAMS).
+    // Prova che il router gate la capability PRIMA di validare i params: un plugin
+    // senza board.write non scopre nemmeno la forma attesa dei params.
+    let err2: { code?: number } | null = null
+    await plugin.conn.call("board.write", { garbage: true }).catch((e: unknown) => {
+      err2 = e as { code?: number }
+    })
+    expect(err2!.code).toBe(ERR.CAPABILITY_DENIED)
+
     // l'ispettore non ha toccato la lavagna
     expect(board.elements).toHaveLength(4)
   })

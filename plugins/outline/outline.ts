@@ -70,9 +70,12 @@ function byTypeLines(outline: BoardOutline): readonly string[] {
  * Vista del pannello. Con `ui` concesso il pannello è ADATTIVO: rispetta
  * view/expanded scelti dal docente. Senza `ui` degrada a un sommario testuale
  * inerte di una riga (nessun controllo, nessuna espansione). Il plugin gate sul
- * grant EFFETTIVO, non sul manifest — difesa in profondità identica a come il
- * primo reference plugin gate board.write — anche se in v0 `ui` è concessa di
- * default dalla policy (resolveGrant la inietta sempre).
+ * grant EFFETTIVO, non sul manifest.
+ * NOTA onesta sulla differenza con board.write: board.write è REALMENTE negabile
+ * (resolveGrant la concede solo se approvata), quindi il suo gate è un percorso
+ * di produzione. `ui` invece è concessa SEMPRE da resolveGrant in v0 (non
+ * negabile) → questo ramo `!uiGranted` è una guardia DIFENSIVA forward-looking,
+ * non un percorso v0. Lo teniamo per coerenza di disciplina (gate sul grant vivo).
  */
 export function renderPanel(outline: BoardOutline, state: PanelState, uiGranted: boolean): PanelRender {
   if (!uiGranted) {
