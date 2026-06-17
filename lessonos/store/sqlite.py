@@ -764,8 +764,11 @@ class SQLiteStore(Store):
         return tuple(self._row_to_enrollment(r) for r in rows)
 
     def students_for_class(self, class_id: str) -> tuple[Student, ...]:
+        # DISTINCT: a student with >1 enrollment row in the same class (no
+        # UNIQUE(class_id, student_id) constraint) must not fan-out to
+        # duplicate pseudonyms in the join.
         rows = self._conn.execute(
-            "SELECT s.student_id FROM students s "
+            "SELECT DISTINCT s.student_id FROM students s "
             "JOIN enrollments e ON e.student_id = s.student_id "
             "WHERE e.class_id = ? ORDER BY s.student_id",
             (class_id,),
@@ -790,7 +793,11 @@ class SQLiteStore(Store):
         return cur.rowcount > 0
 
     def purge_student(self, student_id: str) -> int:
-        """Erase a pseudonymous student + all their enrollments atomically."""
+        """Erase a pseudonymous student + all their enrollments atomically.
+
+        Opens its own transaction (like ``purge_lesson``): not composable
+        inside an outer ``begin_transaction`` — call it standalone.
+        """
         self.begin_transaction()
         total = 0
         try:

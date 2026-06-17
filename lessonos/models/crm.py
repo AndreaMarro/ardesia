@@ -1,16 +1,24 @@
 """Anonymised CRM relation: teacher / class / student (GDPR by construction).
 
 The agent core orchestrates lessons over a *roster* — which teacher owns which
-class, which students sit in it — without ever touching personal data. These
-entities carry **only opaque pseudonymous identifiers**: there is no ``name``,
-``email`` or ``dob`` field, so the engine structurally *cannot* store direct PII
-(VINCOLO FERREO §5.1). The mapping pseudonym → real identity is the school's
-external "PII vault", deliberately outside the agent nodes.
+class, which students sit in it — without ever touching a person's identity.
+Every **identifier** here is an opaque pseudonym: there is no ``name``,
+``email`` or ``dob`` field, so a person can never be *identified* from these
+nodes (VINCOLO FERREO §5.1). The mapping pseudonym → real identity is the
+school's external "PII vault", deliberately outside the agent nodes. In
+particular ``Student`` carries a single field — there is nowhere to put a name.
 
-``assert_pseudonymous`` is a structural safety-net, not a complete PII detector:
-it rejects the obvious PII shapes (whitespace = a full name like ``"Mario
-Rossi"``; ``@`` = an email). The real guarantee is the *absence of PII-bearing
-fields* on the dataclasses themselves.
+Scope of the guarantee (no overclaim): it covers the *identifier* fields. The
+one non-id field, ``SchoolClass.subject``, is a non-personal discipline label
+(e.g. ``"fisica"``) by the same convention as the pre-existing ``Path.subject``
+— free text, not an identity, and therefore not pseudonym-guarded (a multi-word
+discipline like ``"fisica applicata"`` is legitimate). Callers must keep
+personal data out of it, exactly as for ``Path.subject`` / ``Source.title``.
+
+``assert_pseudonymous`` is a structural safety-net for the id fields, not a
+complete PII detector: it rejects the obvious PII shapes (whitespace = a full
+name like ``"Mario Rossi"``; ``@`` = an email). The real guarantee is the
+*absence of PII-bearing identifier fields* on the dataclasses themselves.
 
 Pure domain, no I/O — persistence (SQLite CRUD) lives in ``store``.
 """
