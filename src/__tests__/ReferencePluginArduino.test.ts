@@ -1,10 +1,10 @@
 // @vitest-environment node
 //
-// Primo plugin CONCRETO ELAB — simulazione Arduino Blink book-accurate montata
+// Primo plugin CONCRETO di riferimento — simulazione Arduino Blink book-accurate montata
 // sulla lavagna via ToolHost. Due livelli:
 //   1) modello puro (arduino.ts): costanti/semantica fedeli alla Language Reference,
 //      clock virtuale deterministico, snapshot/restore.
-//   2) integrazione: plugin reale (start/step da plugins/elab/main.ts) connesso
+//   2) integrazione: plugin reale (start/step da plugins/reference/main.ts) connesso
 //      al ToolHost reale via MessageChannel + SDK reale (connectTool); il LED del
 //      pin 13 si rispecchia su un board adapter (la stessa BoardApiLike che in
 //      produzione è alimentata dall'API Excalidraw).
@@ -20,11 +20,11 @@ import {
   SketchScheduler,
   blinkSketch,
   isArduinoSnapshot,
-} from "../../plugins/elab/arduino.ts"
-import type { Sketch } from "../../plugins/elab/arduino.ts"
-import { start } from "../../plugins/elab/main.ts"
-import type { LedEmbedState } from "../../plugins/elab/main.ts"
-import { manifest as elabManifest } from "../../plugins/elab/manifest.ts"
+} from "../../plugins/reference/arduino.ts"
+import type { Sketch } from "../../plugins/reference/arduino.ts"
+import { start } from "../../plugins/reference/main.ts"
+import type { LedEmbedState } from "../../plugins/reference/main.ts"
+import { manifest as refManifest } from "../../plugins/reference/manifest.ts"
 import { ToolHost, statePath } from "../toolhost/host.ts"
 import { EMBED_DATA_KEY } from "../toolhost/caps/board.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
@@ -34,7 +34,7 @@ import { resolveGrant } from "../toolhost/policy.ts"
 import type { CapabilityName } from "../toolhost-protocol/index.ts"
 import type { WindowLike } from "../sdk/index.ts"
 
-const EMBED_ID = `${elabManifest.id}:led`
+const EMBED_ID = `${refManifest.id}:led`
 
 // ----------------------------- modello puro -----------------------------------
 
@@ -230,7 +230,7 @@ async function mountPlugin(
 ): Promise<Harness> {
   const board = opts.board ?? new FakeBoard()
   const store = opts.store ?? new MemoryWorkspace()
-  const host = new ToolHost(elabManifest, resolveGrant(elabManifest, approved), {
+  const host = new ToolHost(refManifest, resolveGrant(refManifest, approved), {
     store,
     board,
     bearerToken: "bearer-test",
@@ -260,7 +260,7 @@ describe("plugin concreto — montaggio via ToolHost", () => {
     expect(plugin.ledOn()).toBe(false)
 
     const embed = ledEmbed(board)
-    expect(embed?.owner).toBe(elabManifest.id)
+    expect(embed?.owner).toBe(refManifest.id)
     expect(embed?.state).toEqual({ ledOn: false, pin: LED_BUILTIN, millis: 0 })
   })
 
@@ -315,7 +315,7 @@ describe("plugin concreto — montaggio via ToolHost", () => {
     await plugin.step()
     // il disegno del docente è intatto, l'embed del plugin è separato
     expect(board.elements.find((e) => e.id === "disegno-docente")?.customData).toBeUndefined()
-    expect(ledEmbed(board)?.owner).toBe(elabManifest.id)
+    expect(ledEmbed(board)?.owner).toBe(refManifest.id)
   })
 })
 
@@ -330,7 +330,7 @@ describe("plugin concreto — lifecycle suspend/restore via host", () => {
     expect(a.plugin.ledOn()).toBe(true)
 
     await a.host.suspend()
-    const persisted = JSON.parse(await store.files.get(statePath(elabManifest.id))!.text())
+    const persisted = JSON.parse(await store.files.get(statePath(refManifest.id))!.text())
     expect(persisted.state).toEqual({ v: 1, millis: 3000, modes: { 13: OUTPUT }, levels: { 13: HIGH } })
     a.host.unmount()
 
@@ -346,7 +346,7 @@ describe("plugin concreto — lifecycle suspend/restore via host", () => {
     const store = new MemoryWorkspace()
     const { host, plugin } = await mountPlugin(["board.read", "board.write"], { store })
     // forza un documento di stato dalla forma sbagliata (snapshot non-arduino)
-    store.files.set(statePath(elabManifest.id), new Blob(['{"v":1,"t":1,"state":{"garbage":true}}']))
+    store.files.set(statePath(refManifest.id), new Blob(['{"v":1,"t":1,"state":{"garbage":true}}']))
     expect(await host.restore()).toBe(true) // l'host consegna; la guardia del tool scarta
     expect(plugin.runtime.millis()).toBe(0)
     expect(plugin.runtime.getMode(LED_BUILTIN)).toBe(OUTPUT) // setup originale intatto

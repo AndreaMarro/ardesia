@@ -20,7 +20,7 @@ import {
 } from "../sdk/index.ts"
 import type { CapabilityName } from "../sdk/index.ts"
 import { ToolHost } from "../toolhost/host.ts"
-import { manifest as elabManifest } from "../../plugins/elab/manifest.ts"
+import { manifest as refManifest } from "../../plugins/reference/manifest.ts"
 
 // ---- GOLDEN: la forma congelata del contratto v1.0.0 -----------------------
 // Cambiare uno di questi valori SENZA bumpare CONTRACT_VERSION è un errore: il
@@ -169,17 +169,17 @@ describe("sdk-contract/defineManifest (authoring type-safe + validato)", () => {
 })
 
 describe("sdk-contract/plugin-di-riferimento (compila e rispetta il confine)", () => {
-  it("il manifest del plugin ELAB è valido contro lo schema del contratto", () => {
-    expect(ToolManifestSchema.safeParse(elabManifest).success).toBe(true)
-    expect(elabManifest.id).toBe("io.maestro.elab-ref")
+  it("il manifest del plugin di riferimento è valido contro lo schema del contratto", () => {
+    expect(ToolManifestSchema.safeParse(refManifest).success).toBe(true)
+    expect(refManifest.id).toBe("io.maestro.plugin-ref")
   })
 
   it("il plugin importa SOLO dal confine src/sdk (zero accoppiamento agli interni)", () => {
     // I file che consumano l'SDK DEVONO importarlo (sanity); i moduli puri
     // intra-plugin (arduino.ts) possono non importare nulla — restano comunque
     // soggetti alla regola "nessun import interno" su ciò che importano.
-    const sdkConsumers = ["../../plugins/elab/manifest.ts", "../../plugins/elab/main.ts"]
-    const pluginFiles = [...sdkConsumers, "../../plugins/elab/arduino.ts"]
+    const sdkConsumers = ["../../plugins/reference/manifest.ts", "../../plugins/reference/main.ts"]
+    const pluginFiles = [...sdkConsumers, "../../plugins/reference/arduino.ts"]
     // forma `import ... from "x"` E forma side-effect `import "x"` (senza from):
     // entrambe potrebbero accoppiare il plugin a un modulo interno.
     const fromRe = /import\s+(?:type\s+)?[^"']*?from\s+["']([^"']+)["']/g

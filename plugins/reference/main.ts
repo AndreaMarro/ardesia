@@ -1,4 +1,4 @@
-// Runtime del primo plugin CONCRETO ELAB: una simulazione Arduino Blink
+// Runtime del primo plugin CONCRETO di riferimento: una simulazione Arduino Blink
 // book-accurate montata sulla lavagna via ToolHost. Esercita i quattro pilastri
 // del contratto SDK Layer-0 usando SOLO la superficie pubblica `src/sdk`:
 //   manifest (manifest.ts) · capabilities (grantedCaps) · message-protocol (call)
@@ -36,7 +36,7 @@ export interface StartOptions {
 }
 
 /** Controller del plugin montato: il tick di rendering chiama step() per animare. */
-export interface ElabPlugin {
+export interface ReferencePlugin {
   readonly conn: ToolConnection
   readonly runtime: ArduinoRuntime
   /**
@@ -54,7 +54,7 @@ export interface ElabPlugin {
  * capability EFFETTIVAMENTE concesse (grantedCaps), non da quelle dichiarate nel
  * manifest: il docente può negarne alcune e il plugin deve degradare in sicurezza.
  */
-export async function start(opts: StartOptions = {}): Promise<ElabPlugin> {
+export async function start(opts: StartOptions = {}): Promise<ReferencePlugin> {
   const runtime = new ArduinoRuntime()
   const sketch = opts.sketch ?? blinkSketch
 

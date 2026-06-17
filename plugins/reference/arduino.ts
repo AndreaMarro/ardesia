@@ -1,4 +1,4 @@
-// Modello Arduino book-accurate — nucleo del primo plugin concreto ELAB.
+// Modello Arduino book-accurate — nucleo del primo plugin concreto di riferimento.
 // Riproduce la semantica del Linguaggio Arduino (Language Reference) per ciò che
 // serve all'esempio canonico Blink (File ▸ Examples ▸ 01.Basics ▸ Blink):
 // costanti di pin/livello, pinMode/digitalWrite/digitalRead, delay()/millis() su
