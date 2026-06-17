@@ -97,3 +97,6 @@ Claude verifica (non si fida del "fatto"), sblocca, fa le **task dure M3/M4 in e
 - Serve Claude → voce in `COORDINATION.md` § NEEDS-CLAUDE: `[BLOCKER|ESCALATION|REVIEW|DOMANDA]` + contesto (`file:line`, iter RESEARCH) + richiesta. Lui risponde § CLAUDE-SAYS.
 - **Migliora QUESTA interazione**: handoff goffo/lento → proponi una regola in § PROPOSTE-PROTOCOLLO (`PROPONGO: … PERCHÉ: …`). Interazione che migliora = parte del progetto.
 - **Logga il costo VERO** (stima token Kimi × tariffa, anche grossolana) in `log.jsonl` — mai `cost_usd:0`.
+
+## ARCHITECT-CURRENT.md (design opus pre-build)
+Se nella root del repo esiste `ARCHITECT-CURRENT.md` e il suo PIN-SIG corrisponde alla task pinnata corrente, e il DESIGN autoredatto da opus PRIMA del build: leggilo PER PRIMO (dopo questo AGENTS.md) e seguilo; migliora solo motivando in STATUS.md. Se PIN-SIG non corrisponde al pin attuale e stantio: ignoralo.
