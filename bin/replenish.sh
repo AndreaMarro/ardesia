@@ -36,7 +36,7 @@ if [ "$DRY" != "1" ] && [ "$nl" -ge "$THRESHOLD" ] && [ "$ns" -ge "$THRESHOLD" ]
 fi
 
 # master key gateway (litellm)
-MK="$(grep -rhoE 'LITELLM_MASTER_KEY[=: ]+["'"'"']?sk-[A-Za-z0-9_-]+' "$HOME/.zshenv" "$HOME/litellm/.env" "$HOME/Library/LaunchAgents/com.ardesia.litellm.plist" 2>/dev/null | grep -oE 'sk-[A-Za-z0-9_-]+' | head -1)"
+MK="$(grep -rhoE 'LITELLM_MASTER_KEY[=: ]+["'"'"']?sk-[A-Za-z0-9_-]+' "$HOME/.zshenv" "$HOME/.zprofile" "$HOME/.zshrc" "$HOME/litellm/.env" "$HOME/litellm/start.sh" "$HOME/litellm/run-fg.sh" "$HOME/Library/LaunchAgents/com.ardesia.litellm.plist" 2>/dev/null | grep -oE 'sk-[A-Za-z0-9_-]+' | head -1)"
 [ -n "$MK" ] || { echo "[replenish] master key non trovata — skip"; exit 0; }
 
 # persona = corpo dell'agent .md (dopo il SECONDO '---')
